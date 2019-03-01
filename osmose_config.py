@@ -238,7 +238,7 @@ def gen_country(area, path_base=None,
 
     return gen
 
-france_region = gen_country('europe', 'france', language='fr', proj=2154, municipality_ref='ref:INSEE', phone_code='33', phone_size=8, include=[
+france_departement = gen_country('europe', 'france', download_repo=OSMFR, language='fr', proj=2154, municipality_ref='ref:INSEE', phone_code='33', phone_size=8, include=[
     'osmosis_building_geodesie_FR',
     'osmosis_natural_swimming-pool',
     'osmosis_fantoir',
@@ -246,22 +246,10 @@ france_region = gen_country('europe', 'france', language='fr', proj=2154, munici
     'osmosis_highway_zone',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_region("alsace", 8636, "FR-A")
-france_region("aquitaine", 8637, "FR-B", include=[
-    # Bordeaux
-    'merge_recycling_FR_bm',
-    'merge_parking_FR_bm',
-    'merge_bicycle_parking_FR_bordeaux',
-    'merge_public_equipment_FR_bordeaux_toilets',
-    'merge_public_transport_FR_tbm',
-    'merge_street_number_bordeaux',
-    # Pau
-    'merge_recycling_FR_capp_glass',
-    'merge_recycling_FR_capp_clothes',
-    'merge_parking_FR_capp',
-    'merge_bicycle_parking_FR_capp',
-    # Gironde
-    'merge_public_transport_FR_transgironde',
+france_departement("alsace/bas_rhin", 7415, "FR-67")
+france_departement("alsace/haut_rhin", 7403, "FR-68")
+
+include_aquitaine = [
     # Aquitiane
     'merge_tourism_FR_aquitaine_camp_caravan',
     'merge_tourism_FR_aquitaine_museum',
@@ -270,56 +258,142 @@ france_region("aquitaine", 8637, "FR-B", include=[
     'merge_library_FR_aquitaine',
     'merge_winery_FR_aquitaine',
     'merge_restaurant_FR_aquitaine',
+]
+france_departement("aquitaine/dordogne", 7375, "FR-24", include=include_aquitaine)
+france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine + [
+    # Bordeaux
+    'merge_recycling_FR_bm',
+    'merge_parking_FR_bm',
+    'merge_bicycle_parking_FR_bordeaux',
+    'merge_public_equipment_FR_bordeaux_toilets',
+    'merge_public_transport_FR_tbm',
+    'merge_street_number_bordeaux',
+    # Gironde
+    'merge_public_transport_FR_transgironde',
 ])
-france_region("auvergne", 8638, "FR-C")
-france_region("basse-normandie", 8646, "FR-P")
-france_region("bourgogne", 27768, "FR-D", include=[
+france_departement("aquitaine/landes", 7376, "FR-40", include=include_aquitaine)
+france_departement("aquitaine/lot_et_garonne", 1284995, "FR-47", include=include_aquitaine)
+france_departement("aquitaine/pyrenees_atlantiques", 7450, "FR-64", include=include_aquitaine + [
+    # Pau
+    'merge_recycling_FR_capp_glass',
+    'merge_recycling_FR_capp_clothes',
+    'merge_parking_FR_capp',
+    'merge_bicycle_parking_FR_capp',
+])
+
+france_departement("auvergne/allier", 1450201, "FR-03")
+france_departement("auvergne/cantal", 7381, "FR-15")
+france_departement("auvergne/haute_loire", 7452, "FR-43")
+france_departement("auvergne/puy_de_dome", 7406, "FR-63")
+
+france_departement("basse_normandie/calvados", 7453, "FR-14")
+france_departement("basse_normandie/manche", 7404, "FR-50")
+france_departement("basse_normandie/orne", 7419, "FR-61")
+
+france_departement("bourgogne/cote_d_or", 7424, "FR-21")
+france_departement("bourgogne/nievre", 7448, "FR-58")
+france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
     # Saône-et-Loire
     'merge_public_transport_FR_cg71',
     'merge_restaurant_FR_cg71',
 ])
-france_region("bretagne", 102740, "FR-E", include=[
+france_departement("bourgogne/yonne", 7392, "FR-89")
+
+france_departement("bretagne/cotes_d_armor", 7398, "FR-22")
+france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=[
     # Rennes
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
     'merge_street_number_rennes',
 ])
-france_region("centre", 8640, "FR-F")
-france_region("champagne-ardenne", 8641, "FR-G")
-france_region("corse", 76910, "FR-H")
-france_region("franche-comte", 8642, "FR-I")
-france_region("haute-normandie", 8656, "FR-Q", include=[
+france_departement("bretagne/finistere", 102430, "FR-29")
+france_departement("bretagne/morbihan", 7447, "FR-56")
+
+france_departement("centre/cher", 7456, "FR-18")
+france_departement("centre/eure_et_loir", 7374, "FR-28")
+france_departement("centre/indre", 7417, "FR-36")
+france_departement("centre/indre_et_loire", 7408, "FR-37")
+france_departement("centre/loir_et_cher", 7399, "FR-41")
+france_departement("centre/loiret", 7440, "FR-45")
+
+france_departement("champagne_ardenne/ardennes", 7395, "FR-08")
+france_departement("champagne_ardenne/aube", 7441, "FR-10")
+france_departement("champagne_ardenne/marne", 7379, "FR-51")
+france_departement("champagne_ardenne/haute_marne", 7396, "FR-52")
+
+france_departement("corse/corse_du_sud", 76932, "FR-2A")
+france_departement("corse/haute_corse", 76931, "FR-2B")
+
+france_departement("franche_comte/doubs", 7462, "FR-25")
+france_departement("franche_comte/jura", 7460, "FR-39")
+france_departement("franche_comte/haute_saone", 7423, "FR-70")
+france_departement("franche_comte/territoire_de_belfort", 7410, "FR-90")
+
+france_departement("haute_normandie/eure", 7435, "FR-27")
+france_departement("haute_normandie/seine_maritime", 7426, "FR-76", include=[
     # Le Havre
     'merge_public_equipment_FR_lehavre_toilets',
 ])
-france_region("ile-de-france", 8649, "FR-J", include=[
+
+include_ile_de_france = [
     # Île-de-france
     'merge_public_transport_FR_ratp',
     'merge_public_transport_FR_stif',
+]
+france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
     'merge_bicycle_parking_FR_paris',
+])
+france_departement("ile_de_france/hauts_de_seine", 7449, "FR-92", include=include_ile_de_france + [
     # Hauts-de-Seine
     'merge_restriction_FR_92',
 ])
-france_region("languedoc-roussillon", 8643, "FR-K", include=[
+france_departement("ile_de_france/seine_saint_denis", 7389, "FR-93", include=include_ile_de_france)
+france_departement("ile_de_france/val_de_marne", 7458, "FR-94", include=include_ile_de_france)
+france_departement("ile_de_france/essonne", 7401, "FR-91", include=include_ile_de_france)
+france_departement("ile_de_france/seine_et_marne", 7383, "FR-77", include=include_ile_de_france)
+france_departement("ile_de_france/val_d_oise", 7433, "FR-95", include=include_ile_de_france)
+france_departement("ile_de_france/yvelines", 7457, "FR-78", include=include_ile_de_france)
+
+france_departement("languedoc_roussillon/aude", 7446, "FR-11")
+france_departement("languedoc_roussillon/gard", 7461, "FR-30")
+france_departement("languedoc_roussillon/herault", 7429, "FR-34", include=[
     # Montpellier
     #'merge_public_equipment_FR_montpellier_toilets',
     'merge_street_number_montpellier',
 ])
-france_region("limousin", 8644, "FR-L")
-france_region("lorraine", 8645, "FR-M", include=[
+france_departement("languedoc_roussillon/lozere", 7421, "FR-48")
+france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66")
+
+france_departement("limousin/correze", 7464, "FR-19")
+france_departement("limousin/creuse", 7459, "FR-23")
+france_departement("limousin/haute_vienne", 7418, "FR-87")
+
+france_departement("lorraine/meurthe_et_moselle", 51856, "FR-54", include=[
     # Nancy
     'merge_public_transport_FR_stan',
 ])
-france_region("midi-pyrenees", 8647, "FR-N", include=[
+france_departement("lorraine/meuse", 7382, "FR-55")
+france_departement("lorraine/moselle", 51854, "FR-57")
+france_departement("lorraine/vosges", 7384, "FR-88")
+
+france_departement("midi_pyrenees/ariege", 7439, "FR-09")
+france_departement("midi_pyrenees/aveyron", 7451, "FR-12")
+france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_street_number_toulouse',
 ])
-france_region("nord-pas-de-calais", 8648, "FR-O")
-france_region("pays-de-la-loire", 8650, "FR-R", include=[
-    # Angers
-    'merge_public_equipment_FR_angers_toilets',
+france_departement("midi_pyrenees/gers", 7422, "FR-32")
+france_departement("midi_pyrenees/lot", 7454, "FR-46")
+france_departement("midi_pyrenees/hautes_pyrenees", 7467, "FR-65")
+france_departement("midi_pyrenees/tarn", 7442, "FR-81")
+france_departement("midi_pyrenees/tarn_et_garonne", 7388, "FR-82")
+
+france_departement("nord_pas_de_calais/nord", 7400, "FR-59")
+france_departement("nord_pas_de_calais/pas_de_calais", 7394, "FR-62")
+
+france_departement("pays_de_la_loire/loire_atlantique", 7432, "FR-44", include=[
     # Nantes
     'merge_recycling_FR_nm_glass',
     'merge_bicycle_rental_FR_bm',
@@ -327,19 +401,48 @@ france_region("pays-de-la-loire", 8650, "FR-R", include=[
     'merge_public_equipment_FR_nantes_toilets',
     'merge_street_number_nantes',
 ])
-france_region("picardie", 8651, "FR-S")
-france_region("poitou-charentes", 8652, "FR-T")
-france_region("provence-alpes-cote-d-azur", 8654, "FR-U", include=[
+france_departement("pays_de_la_loire/maine_et_loire", 7409, "FR-49", include=[
+    # Angers
+    'merge_public_equipment_FR_angers_toilets',
+])
+france_departement("pays_de_la_loire/mayenne", 7438, "FR-53")
+france_departement("pays_de_la_loire/sarthe", 7443, "FR-72")
+france_departement("pays_de_la_loire/vendee", 7402, "FR-85")
+
+france_departement("picardie/aisne", 7411, "FR-02")
+france_departement("picardie/oise", 7427, "FR-60")
+france_departement("picardie/somme", 7463, "FR-80")
+
+france_departement("poitou_charentes/charente", 7428, "FR-16")
+france_departement("poitou_charentes/charente_maritime", 7431, "FR-17")
+france_departement("poitou_charentes/deux_sevres", 7455, "FR-79")
+france_departement("poitou_charentes/vienne", 7377, "FR-86")
+
+france_departement("provence_alpes_cote_d_azur/alpes_de_haute_provence", 7380, "FR-04")
+france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05")
+france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06")
+france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
     # Arles
     'merge_street_number_arles',
 ])
-france_region("rhone-alpes", 8655, "FR-V", include=[
+france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
+france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
+
+france_departement("rhone_alpes/ain", 7387, "FR-01")
+france_departement("rhone_alpes/ardeche", 7430, "FR-07")
+france_departement("rhone_alpes/drome", 7434, "FR-26")
+france_departement("rhone_alpes/isere", 7437, "FR-38")
+france_departement("rhone_alpes/loire", 7420, "FR-42")
+france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
     # Lyon
     'merge_public_equipment_FR_lyon_toilets',
     'merge_street_number_lyon',
 ])
+france_departement("rhone_alpes/savoie", 7425, "FR-73")
+france_departement("rhone_alpes/haute_savoie", 7407, "FR-74")
 
-france_region_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_size=8, include=[
+
+france_departement_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_size=8, include=[
     'osmosis_building_geodesie_FR',
     'osmosis_natural_swimming-pool',
     'osmosis_fantoir',
@@ -359,11 +462,11 @@ france_region_dom = gen_country('europe', 'france', language='fr', municipality_
     'merge_post_box_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_region_dom("guadeloupe", 1401835, "FR-GP", proj=32620, phone_code="590")
-france_region_dom("guyane", 1260551, "FR-GF", proj=2972, phone_code="594")
-france_region_dom("martinique", 1891495, "FR-MQ", proj=32620, phone_code="596")
-france_region_dom("mayotte", 1259885, "FR-YT", proj=32738, phone_code="262")
-france_region_dom("reunion", 1785276, "FR-RE", proj=2975, phone_code="262")
+france_departement_dom("guadeloupe", 1401835, "FR-GP", proj=32620, phone_code="590")
+france_departement_dom("guyane", 1260551, "FR-GF", proj=2972, phone_code="594")
+france_departement_dom("martinique", 1891495, "FR-MQ", proj=32620, phone_code="596")
+france_departement_dom("mayotte", 1259885, "FR-YT", proj=32738, phone_code="262")
+france_departement_dom("reunion", 1785276, "FR-RE", proj=2975, phone_code="262")
 
 france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE', phone_size=6, include=[
     'merge_college_FR',
