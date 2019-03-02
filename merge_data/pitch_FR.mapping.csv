@@ -81,7 +81,7 @@
 85,Salle de beach-volley,leisure=pitch,sport=beachvolleyball,
 86,Salle de billard,,sport=billards,
 87,Salle de culturisme,,,
-88,Salle de danse,amenity=dancing_school,,
+88,Salle de danse,leisure=dance,dance:teaching=yes,
 89,Salle de gymnastique sportive,,sport=gymnastics,
 90,Salle de handball,leisure=pitch,sport=handball,
 91,Salle de lutte,,sport=wrestling,
