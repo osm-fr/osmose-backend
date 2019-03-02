@@ -47,9 +47,9 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
         self.missing_official = {"item":"8170", "class": classs, "level": 3, "tag": ["merge", "leisure"], "desc": T_(u"Pitch not integrated %s", topic) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
-            u"Recensement des équipements sportifs, fiches équipements",
-            CSV(Source(attribution = u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports", millesime = "11/2015",
-                    fileUrl = u"https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20160209-165648/20160209_RES_FichesEquipement.zip", zip = "20160209_RES_FichesEquipement.csv", encoding = "ISO-8859-15"),
+            u"Recensement des équipements sportifs, espaces et sites de pratiques",
+            CSV(Source(attribution = u"Le ministère de la ville, de la jeunesse et des sports", millesime = "01/2018",
+                    fileUrl = u"https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20180112-114703/20180110_RES_FichesEquipements.zip", zip = "20180110_RES_FichesEquipements.csv", encoding = "ISO-8859-15"),
                 separator = u';'),
             Load("EquGpsX", "EquGpsY",
                 select = {"EquipementTypeLib": topic},
