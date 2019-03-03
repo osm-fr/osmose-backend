@@ -29,6 +29,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Watch multiple tags") }
         self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
         self.errors[30327] = { "item": 3032, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Waterway with level") }
+        self.errors[303210] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Fence with materal tag, better use fence_type tag") }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction") }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
         self.errors[20803] = { "item": 2080, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing for tracktype or lanes") }
@@ -72,6 +73,9 @@ class TagFix_MultipleTag(Plugin):
             err.append({"class": 32301, "fix": {"-": ["recycling:glass"], "+": {"recycling:glass_bottles": "yes"}}})
         if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("name"):
             err.append({"class": 32302})
+
+        if tags.get("barrier") == "fence" and "fence_type" not in tags and "materal" in tags:
+            err.append({"class": 303210})
 
         return err
 
@@ -195,3 +199,5 @@ class Test(TestPluginCommon):
 
         assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "recycling:glass": "yes"})
         assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "name": "My nice awesome container"})
+
+        assert a.node(None, {"barrier": "fence", "materal": "wood"})
