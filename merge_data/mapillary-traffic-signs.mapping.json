@@ -531,6 +531,7 @@
     "class": 20,
     "level": 2,
     "otype": [
+      "nodes",
       "ways"
     ],
     "conflation": 1000,
@@ -543,6 +544,10 @@
       "warning--height-restriction--g5"
     ],
     "select_tags": [
+      {
+        "barrier": null,
+        "maxheight": null
+      },
       {
         "highway": null,
         "maxheight": null
