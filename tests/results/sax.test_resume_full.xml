@@ -1130,6 +1130,7 @@
 <class item="3091" tag="tag" id="30911" level="2">
 <classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
+<classtext lang="fa" title="کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید" />
 <classtext lang="fr" title="Le code couleur devrait commencer par '#' suivi de 3 ou 6 chiffres" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
 <classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
@@ -1138,9 +1139,11 @@
 </class>
 <class item="3093" tag="value,fix:chair" id="30931" level="2">
 <classtext lang="en" title="The URL contains a space" />
+<classtext lang="fa" title="در URL فاصله وجود دارد" />
 </class>
 <class item="3093" tag="value,fix:chair" id="30932" level="2">
 <classtext lang="en" title="The URL does not have a valid scheme" />
+<classtext lang="fa" title="URL درست نوشته نشده" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
@@ -1887,6 +1890,9 @@
 <classtext lang="hu" title="A transzformátoron kell lennie egy &lt;frequency&gt; címkének " />
 <classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
+</class>
+<class item="3032" tag="tag,highway,fix:chair" id="303210" level="1">
+<classtext lang="en" title="Fence with materal tag, better use fence_type tag" />
 </class>
 <class item="3032" tag="tag,highway" id="303241" level="1">
 <classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
@@ -3399,6 +3405,7 @@
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
 <classtext lang="cs" title="Ve jménu Farsi zjištěna arabská písmena" />
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
+<classtext lang="fa" title="حرف عربی در نام فارسی" />
 <classtext lang="fr" title="Lettre arabe détectée dans le nom Farsi" />
 <classtext lang="gl" title="Letra árabe detectada no nome da lingua farsi" />
 <classtext lang="hu" title="Arab betűk a fárszi nyelvű névben" />
@@ -4575,17 +4582,7 @@
 <member ref="2324451" role="subarea" type="relation" />
 <member ref="2324452" role="subarea" type="relation" />
 </relation>
-<text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : présence inattendue de “́́”" />
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
-<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
-<text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды"意外"́́"' />
-<text lang="it" value="“name:ru”=“Кари́бские Нидерла́нды” inatteso “́́”" />
-<text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
-<text lang="fa" value='"name:ru"="Кари́бские Нидерла́нды" - غیرمنتظره: "́́"' />
-<text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
-<text lang="cs" value='"name:ru"="Кари́бские Нидерла́нды" neočekávaný "́́"' />
-<text lang="gl" value='"name:ru"="Кари́бские Нидерла́нды" non agardado "́́"' />
-<text lang="es" value="«name:ru»=«Кари́бские Нидерла́нды» inesperado «́́»" />
 </error>
 <error class="9007001" subclass="881372982">
 <location lat="0" lon="0" />

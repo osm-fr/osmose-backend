@@ -1347,58 +1347,20 @@
 <class item="3091" tag="tag" id="30911" level="2">
 <classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
+<classtext lang="fa" title="کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید" />
 <classtext lang="fr" title="Le code couleur devrait commencer par '#' suivi de 3 ou 6 chiffres" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
 <classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
 <classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
 <classtext lang="nl" title="Kleur code moet starten met '#' gevolgd door 3 of 6 nummers" />
 </class>
-<class item="3092" tag="value,fix:chair" id="30921" level="2">
-<classtext lang="cs" title='Extra "0" za mezinárodním kódem' />
-<classtext lang="de" title='Zusätzliche "0" nach internationaler Vorwahl' />
-<classtext lang="en" title='Extra "0" after international code' />
-<classtext lang="es" title="Extra «0» después del código internacional" />
-<classtext lang="fa" title="«0» اضافی پس از پیش‌شمارهٔ بین‌المللی" />
-<classtext lang="fr" title="“0” en trop après le préfixe international “+” et le code pays" />
-<classtext lang="gl" title='"0" adicional após o código internacional' />
-<classtext lang="hu" title="Fölösleges „0” a nemzetközi hívószám után" />
-<classtext lang="it" title="Uno “0” di troppo sopo il codice internazionale" />
-<classtext lang="nl" title='Extra "0" na international code' />
-<classtext lang="uk" title='Додатковий "0" після міжнародного коду' />
-<classtext lang="zh_CN" title="国际代码后加“0”" />
-</class>
-<class item="3092" tag="value,fix:chair" id="30922" level="2">
-<classtext lang="cs" title="Národní zkratku nelze internacionalizovat" />
-<classtext lang="en" title="National short code can't be internationalized" />
-<classtext lang="es" title="El código corto nacional no puede ser internacionalizado" />
-<classtext lang="fa" title="پیش‌شمارهٔ ملی را نمی‌توان در قالب بین‌المللی نوشت" />
-<classtext lang="fr" title="Un numéro court national ne peut pas être internationalisé" />
-<classtext lang="gl" title="O código curto nacional non pode ser internacionalizado" />
-<classtext lang="hu" title="A nemzeti rövid hívószám nem nemzetköziesíthető" />
-<classtext lang="it" title="Il codice nazionale accorciato non può essere internazionalizzato" />
-<classtext lang="nl" title="Nationale afkortingen kunnen niet worden geïnternationaliseerd" />
-<classtext lang="uk" title="Національний короткий код не може бути інтернаціоналізованим" />
-<classtext lang="zh_CN" title="国家短代码不能国际化" />
-</class>
-<class item="3092" tag="value,fix:chair" id="30923" level="3">
-<classtext lang="cs" title="Chybí mezinárodní prefix" />
-<classtext lang="de" title="Landesvorwahl fehlt" />
-<classtext lang="en" title="Missing international prefix" />
-<classtext lang="es" title="Falta el prefijo internacional" />
-<classtext lang="fa" title="کمبود پیش‌شمارهٔ بین‌المللی" />
-<classtext lang="fr" title="Préfixe international “+” et code pays manquants" />
-<classtext lang="gl" title="Falla o prefixo internacional" />
-<classtext lang="hu" title="Hiányzó nemzetközi hívószám" />
-<classtext lang="it" title="Prefisso internazionale mancante" />
-<classtext lang="nl" title="international prefix ontbreekt" />
-<classtext lang="uk" title="Відсутній міжнародний префікс" />
-<classtext lang="zh_CN" title="缺少国际前缀" />
-</class>
 <class item="3093" tag="value,fix:chair" id="30931" level="2">
 <classtext lang="en" title="The URL contains a space" />
+<classtext lang="fa" title="در URL فاصله وجود دارد" />
 </class>
 <class item="3093" tag="value,fix:chair" id="30932" level="2">
 <classtext lang="en" title="The URL does not have a valid scheme" />
+<classtext lang="fa" title="URL درست نوشته نشده" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
@@ -2197,6 +2159,9 @@
 <classtext lang="pt_BR" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 <classtext lang="uk" title="тип об'єкта FANTOIR не співпадає з ознакою OSM" />
 <classtext lang="zh_CN" title="FANTOIR对象类型与OSM功能不匹配" />
+</class>
+<class item="3032" tag="tag,highway,fix:chair" id="303210" level="1">
+<classtext lang="en" title="Fence with materal tag, better use fence_type tag" />
 </class>
 <class item="3032" tag="tag,highway" id="303241" level="1">
 <classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
@@ -3709,6 +3674,7 @@
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
 <classtext lang="cs" title="Ve jménu Farsi zjištěna arabská písmena" />
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
+<classtext lang="fa" title="حرف عربی در نام فارسی" />
 <classtext lang="fr" title="Lettre arabe détectée dans le nom Farsi" />
 <classtext lang="gl" title="Letra árabe detectada no nome da lingua farsi" />
 <classtext lang="hu" title="Arab betűk a fárszi nyelvű névben" />
@@ -5499,17 +5465,7 @@
 <member ref="2324451" role="subarea" type="relation" />
 <member ref="2324452" role="subarea" type="relation" />
 </relation>
-<text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : présence inattendue de “́́”" />
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
-<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
-<text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды"意外"́́"' />
-<text lang="it" value="“name:ru”=“Кари́бские Нидерла́нды” inatteso “́́”" />
-<text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
-<text lang="fa" value='"name:ru"="Кари́бские Нидерла́нды" - غیرمنتظره: "́́"' />
-<text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
-<text lang="cs" value='"name:ru"="Кари́бские Нидерла́нды" neočekávaný "́́"' />
-<text lang="gl" value='"name:ru"="Кари́бские Нидерла́нды" non agardado "́́"' />
-<text lang="es" value="«name:ru»=«Кари́бские Нидерла́нды» inesperado «́́»" />
 </error>
 <error class="9007001" subclass="881372982">
 <location lat="0" lon="0" />
