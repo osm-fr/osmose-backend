@@ -523,7 +523,7 @@ def to_p(t):
             fix = len(fix) > 0 and map(lambda om: "'" + om[0] + "': " + ("dict" if om[0] != '-' else "") + "([\n            " + ",\n            ".join(om[1]) + "])", sorted(fix.items()))
             return (
                 selectors_text + "\n" +
-                (("if (" + ") or (".join(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), sorted(main_tags))) + ")") if not main_tags_None else "if True") + ":\n" + # Quick fail
+                (("if (" + ") or (".join(sorted(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), main_tags))) + ")") if not main_tags_None else "if True") + ":\n" + # Quick fail
                 "    match = False\n" +
                 "".join(map(lambda s:
                 "    if not match:\n" +
