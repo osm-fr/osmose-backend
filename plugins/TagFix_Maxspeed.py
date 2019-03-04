@@ -36,7 +36,7 @@ class TagFix_Maxspeed(Plugin):
         'at:rural': ['100'],
         'at:trunk': ['100'],
         'be:motorway': ['120'],
-        'be-vlg:rural ': ['70'],
+        'be-vlg:rural': ['70'],
         'by:urban': ['60'],
         'by:motorway': ['110'],
         'ch:rural': ['80'],
@@ -56,8 +56,8 @@ class TagFix_Maxspeed(Plugin):
         'nl:trunk': ['100'],
         'no:rural': ['80'],
         'no:motorway': ['110'],
-        'pl:rural': ['100'],
-        'pl:trunk': ['120'],
+        'pl:rural': ['90', '100'],
+        'pl:trunk': ['100', '120'],
         'pl:motorway': ['140'],
         'ro:trunk': ['100'],
         'ru:living_street': ['20'],
@@ -73,7 +73,7 @@ class TagFix_Maxspeed(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[303241] = { 'item': 3032, 'level': 1, 'tag': ['tag', 'highway'], 'desc': T_(u'Discordant maxspeed and source:maxspeed') }
+        self.errors[303241] = { 'item': 3032, 'level': 1, 'tag': ['tag', 'highway'], 'desc': T_f(u'Discordant maxspeed and source:maxspeed') }
 
 
     def way(self, data, tags, nds):
@@ -85,7 +85,7 @@ class TagFix_Maxspeed(Plugin):
             return
 
         if tags['maxspeed'] not in source_maxspeed:
-            return [{'class': 303241, 'subclass': 0, 'text': T_('Discordant %s and %s' % (tags['maxspeed'], tags['source:maxspeed']))}]
+            return [{'class': 303241, 'subclass': 0, 'text': T_f(u'Discordant {0} and {1}', tags['maxspeed'], tags['source:maxspeed'])}]
 
 
 ###########################################################################

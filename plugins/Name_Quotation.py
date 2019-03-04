@@ -26,7 +26,7 @@ class Name_Quotation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50704] = {"item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Unbalanced Quotation mark or Bracket in name") }
+        self.errors[50704] = {"item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Unbalanced Quotation mark or Bracket in name") }
         self.quotes = [
             # https://en.wikipedia.org/wiki/Quotation_mark#Unicode_code_point_table
             u"«»", u"‹›", u"“”‟„", u"〝〞〟",
@@ -49,10 +49,10 @@ class Name_Quotation(Plugin):
                 else:
                     p, group = stack.pop()
                     if c not in group:
-                        return [{"class": 50704, "subclass": 0, "text": T_(u"Umbalanced %s with %s", p, c)}]
+                        return [{"class": 50704, "subclass": 0, "text": T_f(u"Umbalanced {0} with {1}", p, c)}]
 
         if len(stack) > 0:
-            return [{"class": 50704, "subclass": 1, "text": T_(u"Umbalanced %s", "".join(map(lambda q: q[0], stack)))}]
+            return [{"class": 50704, "subclass": 1, "text": T_f(u"Umbalanced {0}", "".join(map(lambda q: q[0], stack)))}]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

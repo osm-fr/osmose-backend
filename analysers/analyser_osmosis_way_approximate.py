@@ -122,8 +122,8 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
                       (30, "highway", highway_values),
                     )
         for t in self.tags:
-            self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway", "fix:imagery"], "desc": T_(u"Approximate %s", t[1]) }
-        self.callback10 = lambda res: {"class":res[4], "subclass":stablehash(res[3]), "data":[self.way_full, self.positionAsText], "text": T_(u"%s deviation of %sm", res[3], res[2])}
+            self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway", "fix:imagery"], "desc": T_f(u"Approximate {0}", t[1]) }
+        self.callback10 = lambda res: {"class":res[4], "subclass":stablehash(res[3]), "data":[self.way_full, self.positionAsText], "text": T_f(u"{0} deviation of {1}m", res[3], res[2])}
 
     def analyser_osmosis_full(self):
         self.run(sql10)

@@ -104,8 +104,8 @@ class Analyser_Osmosis_Fantoir(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[11] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Multiple name for the same ref FANTOIR") }
+        self.classs[11] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_f(u"Multiple name for the same ref FANTOIR") }
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":11, "data":[self.array_full, self.positionAsText],
-            "text": T_(u"Multiple name for the same ref FANTOIR %s : %s", res[2], ', '.join(res[3]))} )
+            "text": T_f(u"Multiple name for the same ref FANTOIR {0}: {1}", res[2], ', '.join(res[3]))} )

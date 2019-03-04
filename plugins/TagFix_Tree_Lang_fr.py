@@ -57,12 +57,12 @@ class TagFix_Tree_Lang_fr(Plugin):
     def check(self, tag, value, subclass):
         name = self.normalize(u''.join(value))
         if name in self.Tree:
-            return {"class": 3120, "subclass": subclass, "text": T_(u"Bad tag %s=\"%s\"", tag, value),
+            return {"class": 3120, "subclass": subclass, "text": T_f(u"Bad tag {0}=\"{1}\"", tag, value),
                     "fix": {"-": [tag], "+": self.Tree[name]}}
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3120] = {"item": 3120, "level": 3, "tag": ["natural", "fix:imagery"], "desc": T_(u"Tree tagging") }
+        self.errors[3120] = {"item": 3120, "level": 3, "tag": ["natural", "fix:imagery"], "desc": T_f(u"Tree tagging") }
 
         self.Tree = {}
         self.liste_des_arbres_fruitiers()
@@ -76,7 +76,7 @@ class TagFix_Tree_Lang_fr(Plugin):
 
         if 'name' in tags:
             if tags['name'].lower() in ('arbre', 'tree') or 'chablis' in tags['name'].lower() or 'branche' in tags['name'].lower():
-                err.append({"class": 3120, "subclass": 0, "text": T_(u"Bad tag name=\"%s\"", tags["name"])})
+                err.append({"class": 3120, "subclass": 0, "text": T_f(u"Bad tag name=\"{0}\"", tags["name"])})
             c = self.check('name', tags['name'], 1)
             if c:
                 err.append(c)
@@ -86,11 +86,11 @@ class TagFix_Tree_Lang_fr(Plugin):
             if c:
                 err.append(c)
             elif tags['type'] not in ('broad_leaved', 'broad_leafed', 'conifer', 'palm'):
-                err.append({"class": 3120, "subclass": 3, "text": T_(u"Bad tag type=\"%s\"", tags["type"])})
+                err.append({"class": 3120, "subclass": 3, "text": T_f(u"Bad tag type=\"{0}\"", tags["type"])})
 
         if 'denotation' in tags:
             if tags['denotation'] not in ('cluster', 'avenue', 'urban', 'natural_monument', 'park', 'landmark'):
-                err.append({"class": 3120, "subclass": 4, "text": T_(u"Bad tag denotation=\"%s\"", tags["denotation"])})
+                err.append({"class": 3120, "subclass": 4, "text": T_f(u"Bad tag denotation=\"{0}\"", tags["denotation"])})
 
         return err
 

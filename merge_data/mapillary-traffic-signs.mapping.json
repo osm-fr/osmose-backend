@@ -20,6 +20,14 @@
       {
         "highway": null,
         "maxspeed": "5"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "5"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "5"
       }
     ],
     "generate_tags": {
@@ -47,6 +55,14 @@
       {
         "highway": null,
         "maxspeed": "10"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "10"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "10"
       }
     ],
     "generate_tags": {
@@ -74,6 +90,14 @@
       {
         "highway": null,
         "maxspeed": "15"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "15"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "15"
       }
     ],
     "generate_tags": {
@@ -101,6 +125,14 @@
       {
         "highway": null,
         "maxspeed": "20"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "20"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "20"
       }
     ],
     "generate_tags": {
@@ -172,6 +204,14 @@
       {
         "highway": null,
         "maxspeed": "35"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "35"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "35"
       }
     ],
     "generate_tags": {
@@ -199,6 +239,14 @@
       {
         "highway": null,
         "maxspeed": "40"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "40"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "40"
       }
     ],
     "generate_tags": {
@@ -226,6 +274,14 @@
       {
         "highway": null,
         "maxspeed": "45"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "45"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "45"
       }
     ],
     "generate_tags": {
@@ -292,6 +348,14 @@
       {
         "highway": null,
         "maxspeed": "60"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "60"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "60"
       }
     ],
     "generate_tags": {
@@ -439,6 +503,14 @@
       },
       {
         "highway": null,
+        "maxspeed:forward": "100"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "100"
+      },
+      {
+        "highway": null,
         "maxspeed:conditional": null
       }
     ],
@@ -467,6 +539,14 @@
       {
         "highway": null,
         "maxspeed": "110"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "110"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "110"
       }
     ],
     "generate_tags": {
@@ -494,6 +574,14 @@
       {
         "highway": null,
         "maxspeed": "120"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "120"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "120"
       }
     ],
     "generate_tags": {
@@ -521,6 +609,14 @@
       {
         "highway": null,
         "maxspeed": "130"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "130"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "130"
       }
     ],
     "generate_tags": {
@@ -531,6 +627,7 @@
     "class": 20,
     "level": 2,
     "otype": [
+      "nodes",
       "ways"
     ],
     "conflation": 1000,
@@ -543,6 +640,10 @@
       "warning--height-restriction--g5"
     ],
     "select_tags": [
+      {
+        "barrier": null,
+        "maxheight": null
+      },
       {
         "highway": null,
         "maxheight": null
@@ -755,6 +856,14 @@
       {
         "highway": null,
         "maxspeed": "5 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "5 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "5 mph"
       }
     ],
     "generate_tags": {
@@ -782,6 +891,14 @@
       {
         "highway": null,
         "maxspeed": "10 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "10 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "10 mph"
       }
     ],
     "generate_tags": {
@@ -809,6 +926,14 @@
       {
         "highway": null,
         "maxspeed": "15 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "15 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "15 mph"
       }
     ],
     "generate_tags": {
@@ -1071,6 +1196,14 @@
       {
         "highway": null,
         "maxspeed": "50 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "50 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "50 mph"
       }
     ],
     "generate_tags": {
@@ -1098,6 +1231,14 @@
       {
         "highway": null,
         "maxspeed": "55 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "55 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "55 mph"
       }
     ],
     "generate_tags": {
@@ -1125,6 +1266,14 @@
       {
         "highway": null,
         "maxspeed": "60 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "60 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "60 mph"
       }
     ],
     "generate_tags": {
@@ -1152,6 +1301,14 @@
       {
         "highway": null,
         "maxspeed": "65 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "65 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "65 mph"
       }
     ],
     "generate_tags": {
@@ -1179,6 +1336,14 @@
       {
         "highway": null,
         "maxspeed": "70 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "70 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "70 mph"
       }
     ],
     "generate_tags": {
@@ -1206,6 +1371,14 @@
       {
         "highway": null,
         "maxspeed": "75 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "75 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "75 mph"
       }
     ],
     "generate_tags": {

@@ -64,11 +64,11 @@ sql20 = """
 SELECT
     id,
     ST_AsText(relation_locate(id)),
-    coalesce(ntags->'{2}', wtags->'{2}')
+    {2}
 FROM
     {0}_{1}_admin
 WHERE
-    NOT rtags?'{2}'
+    {3}
 """
 
 sql50 = """
@@ -111,11 +111,14 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
         self.municipality_ref = self.config.options and self.config.options.get("municipality_ref")
-        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Missing admin_centre role") }
-        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_(u"Missing name") }
+        if self.municipality_ref and not isinstance(self.municipality_ref, list):
+            self.municipality_ref = [self.municipality_ref]
+
+        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_f(u"Missing admin_centre role") }
+        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_f(u"Missing name") }
         if self.municipality_ref:
-            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_(u"Missing municipality ref %s", self.municipality_ref) }
-        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc": T_(u"Missing wikipedia tag") }
+            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_f(u"Missing municipality ref {0}", ", ".join(self.municipality_ref)) }
+        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc": T_f(u"Missing wikipedia tag") }
         self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc": T_(u"Different population tag between relation and admin_centre") }
         self.classs_change[6] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Invalid role") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
@@ -124,34 +127,46 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{self.municipality_ref: res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText],
-            "text": T_(u"Population on admin_centre role (%s) greater than population on the relation (%s)", res[2], res[3]) }
+            "text": T_f(u"Population on admin_centre role ({0}) greater than population on the relation ({1})", res[2], res[3]) }
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}}
+
+    def municipality_col(self, tags):
+        if isinstance(tags, list):
+            return "NULL::text"
+        else:
+            return "coalesce(ntags->'name', wtags->'name')"
+
+    def municipality_not(self, tags):
+        if isinstance(tags, list):
+            return " AND ".join(map(lambda t: "NOT rtags?'{0}'".format(t), tags))
+        else:
+            return "NOT rtags?'{0}'".format(tags)
 
     def analyser_osmosis_full(self):
         self.run(sql00.format("", "", self.admin_level))
         self.run(sql10.format("", ""), self.callback10)
-        self.run(sql20.format("", "", "name"), self.callback20)
+        self.run(sql20.format("", "", self.municipality_col("name"), self.municipality_not("name")), self.callback20)
         if self.municipality_ref:
-            self.run(sql20.format("", "", self.municipality_ref), self.callback30)
-        self.run(sql20.format("", "", "wikipedia"), self.callback40)
+            self.run(sql20.format("", "", self.municipality_col(self.municipality_ref), self.municipality_not(self.municipality_ref)), self.callback30)
+        self.run(sql20.format("", "", self.municipality_col("wikipedia"), self.municipality_not("wikipedia")), self.callback40)
         self.run(sql50.format("", ""), self.callback50)
         self.run(sql60.format(""), self.callback60)
 
     def analyser_osmosis_diff(self):
         self.run(sql00.format("touched_", "", self.admin_level))
         self.run(sql10.format("touched_", ""), self.callback10)
-        self.run(sql20.format("touched_", "", "name"), self.callback20)
+        self.run(sql20.format("touched_", "", self.municipality_col("name"), self.municipality_not("name")), self.callback20)
         if self.municipality_ref:
-            self.run(sql20.format("touched_", "", self.municipality_ref), self.callback30)
-        self.run(sql20.format("touched_", "", "wikipedia"), self.callback40)
+            self.run(sql20.format("touched_", "", self.municipality_col(self.municipality_ref), self.municipality_not(self.municipality_ref)), self.callback30)
+        self.run(sql20.format("touched_", "", self.municipality_col("wikipedia"), self.municipality_not("wikipedia")), self.callback40)
         self.run(sql50.format("touched_", ""), self.callback50)
 
         self.run(sql00.format("not_touched_", "touched_", self.admin_level))
         self.run(sql10.format("not_touched_", "touched_"), self.callback10)
-        self.run(sql20.format("not_touched_", "touched_", "name"), self.callback20)
+        self.run(sql20.format("not_touched_", "touched_", self.municipality_col("name"), self.municipality_not("name")), self.callback20)
         if self.municipality_ref:
-            self.run(sql20.format("not_touched_", "touched_", self.municipality_ref), self.callback30)
-        self.run(sql20.format("not_touched_", "touched_", "wikipedia"), self.callback40)
+            self.run(sql20.format("not_touched_", "touched_", self.municipality_col(self.municipality_ref), self.municipality_not(self.municipality_ref)), self.callback30)
+        self.run(sql20.format("not_touched_", "touched_", self.municipality_col("wikipedia"), self.municipality_not("wikipedia")), self.callback40)
         self.run(sql50.format("not_touched_", "touched_"), self.callback50)
 
         self.run(sql60.format("touched_"), self.callback60)

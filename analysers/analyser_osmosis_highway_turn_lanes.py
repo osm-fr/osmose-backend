@@ -135,7 +135,7 @@ class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3160", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes number or lanes:turn before and after this node") }
+        self.classs[1] = {"item":"3160", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad lanes number or lanes:turn before and after this node") }
 
     def analyser_osmosis_common(self):
         self.run(sql10)
@@ -143,4 +143,4 @@ class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
         self.run(sql12)
         self.run(sql13)
         self.run(sql14, lambda res: {"class":1, "data":[self.node, self.positionAsText],
-            "text": T_(u"lanes in %s(-%s+%s), lanes out %s(-%s+%s)", res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) })
+            "text": T_f(u"lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})", res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) })
