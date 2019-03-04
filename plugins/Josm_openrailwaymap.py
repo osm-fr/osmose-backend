@@ -51,6 +51,7 @@ class Josm_openrailwaymap(Plugin):
         self.errors[9015041] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'controlled_area relations are deprecated'}}
         self.errors[9015042] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'interlocking relation without type=railway'}}
         self.errors[9015043] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'interlocking relation with type other than railway'}}
+        self.errors[9015044] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
 
         self.re_066203d3 = re.compile(ur'^[0-9]+$')
         self.re_0e3375d5 = re.compile(ur'[Vv]iadu[ck]t')
@@ -567,6 +568,75 @@ class Josm_openrailwaymap(Plugin):
                     '+': dict([
                     [u'railway:switch:resetting',u'yes']])
                 }})
+
+        # node[railway=station][!name]
+        # node[railway=halt][!name]
+        # node[railway=junction][!name]
+        # node[railway=spur_junction][!name]
+        # node[railway=service_station][!name]
+        # node[railway=site][!name]
+        # node[railway=tram_stop][!name]
+        # node[railway=yard][!name]
+        # node[railway=crossover][!name]
+        if (u'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'station') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'halt') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'junction') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'spur_junction') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'service_station') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'site') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'tram_stop') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'yard') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'crossover') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0}={1} without name","{0.key}","{0.value}")
+                # assertNoMatch:"node railway=crossover name=foo"
+                # assertMatch:"node railway=crossover"
+                # assertNoMatch:"node railway=halt name=foo"
+                # assertMatch:"node railway=halt"
+                # assertNoMatch:"node railway=junction name=foo"
+                # assertMatch:"node railway=junction"
+                # assertNoMatch:"node railway=service_station name=foo"
+                # assertMatch:"node railway=service_station"
+                # assertNoMatch:"node railway=site name=foo"
+                # assertMatch:"node railway=site"
+                # assertNoMatch:"node railway=spur_junction name=foo"
+                # assertMatch:"node railway=spur_junction"
+                # assertNoMatch:"node railway=station name=foo"
+                # assertMatch:"node railway=station"
+                # assertNoMatch:"node railway=tram_stop name=foo"
+                # assertMatch:"node railway=tram_stop"
+                # assertNoMatch:"node railway=yard name=foo"
+                # assertMatch:"node railway=yard"
+                err.append({'class': 9015044, 'subclass': 1983319850, 'text': mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
 
         return err
 
@@ -1569,6 +1639,24 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'railway': u'switch', u'railway:switch': u'default'}), expected={'class': 9015040, 'subclass': 967663151})
         self.check_err(n.node(data, {u'railway': u'switch', u'railway:switch': u'resetting', u'ref': u'2'}), expected={'class': 9015040, 'subclass': 967663151})
         self.check_not_err(n.node(data, {u'railway': u'switch'}), expected={'class': 9015040, 'subclass': 967663151})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'crossover'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'crossover'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'halt'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'halt'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'junction'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'junction'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'service_station'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'service_station'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'site'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'site'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'spur_junction'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'spur_junction'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'station'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'station'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'tram_stop'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'tram_stop'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'yard'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_err(n.node(data, {u'railway': u'yard'}), expected={'class': 9015044, 'subclass': 1983319850})
         self.check_not_err(n.way(data, {u'railway': u'rail', u'service': u'siding'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
         self.check_not_err(n.way(data, {u'railway': u'rail', u'service': u'yard', u'usage': u'industrial'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
         self.check_err(n.way(data, {u'railway': u'rail', u'service': u'siding', u'usage': u'main'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})

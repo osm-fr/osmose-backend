@@ -14,7 +14,6 @@ class Josm_geometry(Plugin):
         self.errors[9003002] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way or relation.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
         self.errors[9003003] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
         self.errors[9003004] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003005] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'suspicious tag combination')}
         self.errors[9003006] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9003007] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
         self.errors[9003008] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
@@ -259,6 +258,7 @@ class Josm_geometry(Plugin):
         # node[golf=bunker]
         # node[golf=fairway]
         # node[area=yes]
+        # node[area:highway]
         # node[landuse]
         # node[natural=scree]
         # node[natural=scrub]
@@ -274,6 +274,8 @@ class Josm_geometry(Plugin):
         # node[natural=wood]
         # node[natural=bare_rock]
         # node[natural=glacier]
+        # node[leisure=park][natural!=tree]
+        # node[leisure=nature_reserve]
         # node[waterway=riverbank]
         # node[man_made=bridge]
         # node[man_made=breakwater]
@@ -282,7 +284,7 @@ class Josm_geometry(Plugin):
         # node[power=switchgear]
         # node[building:part]
         # node[source:outline]
-        if (u'aeroway' in keys) or (u'area' in keys) or (u'building:part' in keys) or (u'golf' in keys) or (u'landuse' in keys) or (u'man_made' in keys) or (u'natural' in keys) or (u'power' in keys) or (u'source:outline' in keys) or (u'waterway' in keys):
+        if (u'aeroway' in keys) or (u'area' in keys) or (u'area:highway' in keys) or (u'building:part' in keys) or (u'golf' in keys) or (u'landuse' in keys) or (u'leisure' in keys) or (u'man_made' in keys) or (u'natural' in keys) or (u'power' in keys) or (u'source:outline' in keys) or (u'waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -299,6 +301,10 @@ class Josm_geometry(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'area') == mapcss._value_capture(capture_tags, 0, u'yes'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'area:highway'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -362,6 +368,14 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != mapcss._value_capture(capture_tags, 1, u'tree'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'nature_reserve'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'riverbank'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -394,16 +408,21 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node. Should be drawn as an area.","{0.tag}")
-                err.append({'class': 9003003, 'subclass': 913295728, 'text': mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9003003, 'subclass': 1633038746, 'text': mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # node[type=multipolygon]
+        # node[interval]
         # node[route]
         # node[restriction]
-        if (u'restriction' in keys) or (u'route' in keys) or (u'type' in keys):
+        if (u'interval' in keys) or (u'restriction' in keys) or (u'route' in keys) or (u'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'multipolygon'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -415,7 +434,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} on a node. Should be used in a relation","{0.tag}")
-                err.append({'class': 9003004, 'subclass': 1669293716, 'text': mapcss.tr(u'{0} on a node. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9003004, 'subclass': 104835602, 'text': mapcss.tr(u'{0} on a node. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # node[man_made!=monitoring_station][at(0.0,0.0)]
         if True:
@@ -428,33 +447,6 @@ class Josm_geometry(Plugin):
                 # throwError:tr("Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.")
                 # fixDeleteObject:this
                 err.append({'class': 9003009, 'subclass': 829325630, 'text': mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.')})
-
-        # node[leisure=park][natural=tree]
-        if (u'leisure' in keys and u'natural' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') == mapcss._value_capture(capture_tags, 1, u'tree'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1} on a node. Remove {0}.","{0.tag}","{1.tag}")
-                # fixRemove:"leisure"
-                err.append({'class': 9003005, 'subclass': 1715941543, 'text': mapcss.tr(u'{0} together with {1} on a node. Remove {0}.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')), 'allow_fix_override': True, 'fix': {
-                    '-': ([
-                    u'leisure'])
-                }})
-
-        # node[leisure=park][natural!=tree]
-        if (u'leisure' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != mapcss._value_capture(capture_tags, 1, u'tree'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # throwWarning:tr("{0} on a node. Should be drawn as an area.","{0.tag}")
-                err.append({'class': 9003003, 'subclass': 317377122, 'text': mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # node[source:geometry]
         if (u'source:geometry' in keys):
@@ -481,7 +473,9 @@ class Josm_geometry(Plugin):
         err = []
 
 
+        # way[emergency=fire_hydrant]
         # way[entrance]
+        # way[door]
         # way[railway=subway_entrance]
         # way[man_made=survey_point]
         # way[aeroway=holding_position]
@@ -504,11 +498,19 @@ class Josm_geometry(Plugin):
         # way[highway=turning_loop]
         # way[highway=turning_circle]
         # way[highway=motorway_junction]
-        if (u'aeroway' in keys) or (u'amenity' in keys) or (u'entrance' in keys) or (u'highway' in keys) or (u'man_made' in keys) or (u'natural' in keys) or (u'power' in keys) or (u'railway' in keys):
+        if (u'aeroway' in keys) or (u'amenity' in keys) or (u'door' in keys) or (u'emergency' in keys) or (u'entrance' in keys) or (u'highway' in keys) or (u'man_made' in keys) or (u'natural' in keys) or (u'power' in keys) or (u'railway' in keys):
             match = False
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == mapcss._value_capture(capture_tags, 0, u'fire_hydrant'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'entrance'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'door'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -600,12 +602,13 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
-                err.append({'class': 9003007, 'subclass': 1466799427, 'text': mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9003007, 'subclass': 1144340551, 'text': mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # way[restriction][restriction=~/^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$/]
         # way[type=multipolygon]
+        # way[interval][route!=ferry]
         # way[route=bus]
-        if (u'restriction' in keys) or (u'route' in keys) or (u'type' in keys):
+        if (u'interval' in keys) or (u'restriction' in keys) or (u'route' in keys) or (u'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -617,11 +620,15 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval') and mapcss._tag_capture(capture_tags, 1, tags, u'route') != mapcss._value_capture(capture_tags, 1, u'ferry'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'route') == mapcss._value_capture(capture_tags, 0, u'bus'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} on a way. Should be used in a relation","{0.tag}")
-                err.append({'class': 9003008, 'subclass': 1728608057, 'text': mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9003008, 'subclass': 665916193, 'text': mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # way[place=island]!:closed
         if (u'place' in keys):

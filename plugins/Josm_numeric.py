@@ -26,6 +26,7 @@ class Josm_numeric(Plugin):
 
         self.re_035d45f0 = re.compile(ur'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_066203d3 = re.compile(ur'^[0-9]+$')
+        self.re_08f211f3 = re.compile(ur'^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$')
         self.re_0ae2edfd = re.compile(ur'^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$')
         self.re_0b0f0f56 = re.compile(ur'^0$|^(-|\+)?[1-5]$')
         self.re_18424cc6 = re.compile(ur'^[0-9]+,[0-9][0-9]?( (m|ft))?$')
@@ -522,6 +523,28 @@ class Josm_numeric(Plugin):
                 # assertMatch:"node ele=high"
                 err.append({'class': 9006011, 'subclass': 1781084832, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # node[fire_hydrant:pressure="#"]
+        if (u'fire_hydrant:pressure' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'fire_hydrant:pressure') == mapcss._value_capture(capture_tags, 0, u'#'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("unusual value of {0}","{0.key}")
+                err.append({'class': 9006010, 'subclass': 256087474, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
+        if (u'interval' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_08f211f3), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("unusual value of {0}","{0.key}")
+                err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
         return err
 
     def way(self, data, tags, nds):
@@ -1004,6 +1027,25 @@ class Josm_numeric(Plugin):
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 err.append({'class': 9006011, 'subclass': 1781084832, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
+        if (u'interval' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_08f211f3), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("unusual value of {0}","{0.key}")
+                # assertNoMatch:"way interval=00:05"
+                # assertNoMatch:"way interval=00:05:00"
+                # assertMatch:"way interval=00:65:00"
+                # assertNoMatch:"way interval=03:00:00"
+                # assertMatch:"way interval=0:5:0"
+                # assertMatch:"way interval=123"
+                # assertNoMatch:"way interval=20"
+                # assertNoMatch:"way interval=5"
+                err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -1338,6 +1380,17 @@ class Josm_numeric(Plugin):
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 err.append({'class': 9006011, 'subclass': 1781084832, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
+        if (u'interval' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_08f211f3), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("unusual value of {0}","{0.key}")
+                err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
         return err
 
 
@@ -1558,3 +1611,11 @@ class Test(TestPluginCommon):
         self.check_not_err(n.way(data, {u'highway': u'residential', u'lanes': u'1'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
         self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'1;2'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
         self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'5.5'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
+        self.check_not_err(n.way(data, {u'interval': u'00:05'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_not_err(n.way(data, {u'interval': u'00:05:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_err(n.way(data, {u'interval': u'00:65:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_not_err(n.way(data, {u'interval': u'03:00:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_err(n.way(data, {u'interval': u'0:5:0'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_err(n.way(data, {u'interval': u'123'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_not_err(n.way(data, {u'interval': u'20'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_not_err(n.way(data, {u'interval': u'5'}, [0]), expected={'class': 9006010, 'subclass': 549662812})

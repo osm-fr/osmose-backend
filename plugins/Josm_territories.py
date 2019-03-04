@@ -113,6 +113,10 @@ class Josm_territories(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
+                # assertMatch:"way name=Hauptstrasse"
+                # assertNoMatch:"way name=Hauptstraße"
+                # assertNoMatch:"way name=Kapitän-Strasser-Straße"
+                # assertNoMatch:"way name=Peter-Strasser-Platz"
                 err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(u'street name contains ss')})
 
         # *[addr:street=~/(?i).*Straße.*/][inside("LI,CH")]
@@ -129,6 +133,8 @@ class Josm_territories(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
+                # assertNoMatch:"way name=Hauptstrasse"
+                # assertMatch:"way name=Hauptstraße"
                 err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(u'street name contains ß')})
 
         return err
@@ -205,4 +211,9 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-
+        self.check_err(n.way(data, {u'name': u'Hauptstrasse'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {u'name': u'Hauptstraße'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {u'name': u'Kapitän-Strasser-Straße'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {u'name': u'Peter-Strasser-Platz'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {u'name': u'Hauptstrasse'}, [0]), expected={'class': 9009003, 'subclass': 610086334})
+        self.check_err(n.way(data, {u'name': u'Hauptstraße'}, [0]), expected={'class': 9009003, 'subclass': 610086334})
