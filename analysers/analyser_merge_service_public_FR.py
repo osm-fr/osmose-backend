@@ -133,7 +133,7 @@ class Analyser_Merge_ServicePublic_FR_CG_CR(_Analyser_Merge_ServicePublic_Name_F
 
 class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 10, 3, "tresorerie", {"office": "tax"}, {"office": "tax"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 10, 3, "tresorerie", [{"office": "tax"}, {"office": "government", "government": "tax"}], {"office": "government", "government": "tax"})
 
 class Analyser_Merge_ServicePublic_FR_CAF(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
