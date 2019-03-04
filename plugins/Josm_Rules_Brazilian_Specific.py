@@ -703,7 +703,7 @@ class Josm_Rules_Brazilian_Specific(Plugin):
 
         # *[aeroway][designation=~/^[A-Z]{4}$/][!icao]
         # *[aeroway][ref=~/^[A-Z]{4}$/][!icao]
-        if (u'aeroway' in keys and u'ref' in keys) or (u'aeroway' in keys and u'designation' in keys):
+        if (u'aeroway' in keys and u'designation' in keys) or (u'aeroway' in keys and u'ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1953,7 +1953,7 @@ class Josm_Rules_Brazilian_Specific(Plugin):
 
         # *[aeroway][designation=~/^[A-Z]{4}$/][!icao]
         # *[aeroway][ref=~/^[A-Z]{4}$/][!icao]
-        if (u'aeroway' in keys and u'ref' in keys) or (u'aeroway' in keys and u'designation' in keys):
+        if (u'aeroway' in keys and u'designation' in keys) or (u'aeroway' in keys and u'ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -2655,7 +2655,7 @@ class Josm_Rules_Brazilian_Specific(Plugin):
 
         # way[waterway=~/^(river|stream)$/][name][name!~/^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b/]
         # way[waterway=~/^(river|stream)$/][alt_name][alt_name!~/^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b/]
-        if (u'name' in keys and u'waterway' in keys) or (u'alt_name' in keys and u'waterway' in keys):
+        if (u'alt_name' in keys and u'waterway' in keys) or (u'name' in keys and u'waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -3214,7 +3214,7 @@ class Josm_Rules_Brazilian_Specific(Plugin):
 
         # *[aeroway][designation=~/^[A-Z]{4}$/][!icao]
         # *[aeroway][ref=~/^[A-Z]{4}$/][!icao]
-        if (u'aeroway' in keys and u'ref' in keys) or (u'aeroway' in keys and u'designation' in keys):
+        if (u'aeroway' in keys and u'designation' in keys) or (u'aeroway' in keys and u'ref' in keys):
             match = False
             if not match:
                 capture_tags = {}

@@ -28,7 +28,7 @@ class Josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'access' in keys and u'highway' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
+        if (u'access' in keys and u'highway' in keys) or (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -108,7 +108,7 @@ class Josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'access' in keys and u'highway' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
+        if (u'access' in keys and u'highway' in keys) or (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -221,7 +221,7 @@ class Josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'access' in keys and u'highway' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
+        if (u'access' in keys and u'highway' in keys) or (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
             match = False
             if not match:
                 capture_tags = {}

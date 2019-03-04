@@ -405,7 +405,7 @@ class Josm_combinations(Plugin):
         # node[transformer=distribution][voltage][power=pole]
         # *[amenity=vending_machine][shop]
         # *[noname?][name]
-        if (u'internet_access' in keys and u'internet_access:fee' in keys) or (u'name' in keys and u'noname' in keys) or (u'power' in keys and u'transformer' in keys and u'voltage' in keys) or (u'power' in keys and u'voltage' in keys) or (u'amenity' in keys and u'shop' in keys):
+        if (u'amenity' in keys and u'shop' in keys) or (u'internet_access' in keys and u'internet_access:fee' in keys) or (u'name' in keys and u'noname' in keys) or (u'power' in keys and u'transformer' in keys and u'voltage' in keys) or (u'power' in keys and u'voltage' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -639,7 +639,7 @@ class Josm_combinations(Plugin):
 
         # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
         # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
-        if (u'male' in keys and u'shop' in keys and u'unisex' in keys) or (u'female' in keys and u'shop' in keys and u'unisex' in keys):
+        if (u'female' in keys and u'shop' in keys and u'unisex' in keys) or (u'male' in keys and u'shop' in keys and u'unisex' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1271,7 +1271,7 @@ class Josm_combinations(Plugin):
         # way[oneway=yes][/:forward/][!traffic_sign:forward][bicycle:forward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
         # way[oneway=-1][/:backward/][!traffic_sign:backward][bicycle:backward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
         # way[oneway=-1][/:forward/][!traffic_sign:forward][bicycle:forward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
-        if (u'internet_access' in keys and u'internet_access:fee' in keys) or (u'name' in keys and u'noname' in keys) or (u'oneway' in keys) or (u'amenity' in keys and u'shop' in keys):
+        if (u'amenity' in keys and u'shop' in keys) or (u'internet_access' in keys and u'internet_access:fee' in keys) or (u'name' in keys and u'noname' in keys) or (u'oneway' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1311,7 +1311,7 @@ class Josm_combinations(Plugin):
         # way[man_made=pipeline][tunnel=flooded]
         # way[waterway=canal][tunnel=yes]
         # way[highway=footway][bicycle=designated]
-        if (u'foot' in keys and u'segregated' in keys) or (u'bicycle' in keys and u'highway' in keys) or (u'bicycle' in keys and u'segregated' in keys) or (u'man_made' in keys and u'tunnel' in keys) or (u'tunnel' in keys and u'waterway' in keys):
+        if (u'bicycle' in keys and u'highway' in keys) or (u'bicycle' in keys and u'segregated' in keys) or (u'foot' in keys and u'segregated' in keys) or (u'man_made' in keys and u'tunnel' in keys) or (u'tunnel' in keys and u'waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1560,7 +1560,7 @@ class Josm_combinations(Plugin):
         # *[highway][waterway][waterway!=dam][waterway!=weir]
         # way[highway][natural][natural!=ridge]
         # *[landuse][building][landuse!=retail]
-        if (u'building' in keys and u'landuse' in keys) or (u'barrier' in keys and u'highway' in keys) or (u'highway' in keys and u'natural' in keys) or (u'highway' in keys and u'waterway' in keys):
+        if (u'barrier' in keys and u'highway' in keys) or (u'building' in keys and u'landuse' in keys) or (u'highway' in keys and u'natural' in keys) or (u'highway' in keys and u'waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1746,7 +1746,7 @@ class Josm_combinations(Plugin):
 
         # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
         # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
-        if (u'male' in keys and u'shop' in keys and u'unisex' in keys) or (u'female' in keys and u'shop' in keys and u'unisex' in keys):
+        if (u'female' in keys and u'shop' in keys and u'unisex' in keys) or (u'male' in keys and u'shop' in keys and u'unisex' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1820,7 +1820,7 @@ class Josm_combinations(Plugin):
         # way[highway=~/^(motorway|motorway_link|trunk|trunk_link)$/][lanes][destination:lanes][tag(lanes)!=eval(count(split("|",tag("destination:lanes"))))]
         # way[highway=~/^(motorway|motorway_link|trunk|trunk_link)$/][lanes][destination:ref:lanes][tag(lanes)!=eval(count(split("|",tag("destination:ref:lanes"))))]
         # way[highway=~/^(motorway|motorway_link|trunk|trunk_link)$/][lanes][destination:symbol:lanes][tag(lanes)!=eval(count(split("|",tag("destination:symbol:lanes"))))]
-        if (u'destination:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'destination:symbol:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'change:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'destination:ref:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'highway' in keys and u'lanes' in keys and u'maxspeed:lanes' in keys) or (u'highway' in keys and u'lanes' in keys and u'minspeed:lanes' in keys) or (u'highway' in keys and u'lanes' in keys and u'turn:lanes' in keys):
+        if (u'change:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'destination:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'destination:ref:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'destination:symbol:lanes' in keys and u'highway' in keys and u'lanes' in keys) or (u'highway' in keys and u'lanes' in keys and u'maxspeed:lanes' in keys) or (u'highway' in keys and u'lanes' in keys and u'minspeed:lanes' in keys) or (u'highway' in keys and u'lanes' in keys and u'turn:lanes' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -2251,7 +2251,7 @@ class Josm_combinations(Plugin):
         # *[internet_access=no][internet_access:fee]
         # *[amenity=vending_machine][shop]
         # *[noname?][name]
-        if (u'internet_access' in keys and u'internet_access:fee' in keys) or (u'name' in keys and u'noname' in keys) or (u'amenity' in keys and u'shop' in keys):
+        if (u'amenity' in keys and u'shop' in keys) or (u'internet_access' in keys and u'internet_access:fee' in keys) or (u'name' in keys and u'noname' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -2478,7 +2478,7 @@ class Josm_combinations(Plugin):
 
         # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
         # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
-        if (u'male' in keys and u'shop' in keys and u'unisex' in keys) or (u'female' in keys and u'shop' in keys and u'unisex' in keys):
+        if (u'female' in keys and u'shop' in keys and u'unisex' in keys) or (u'male' in keys and u'shop' in keys and u'unisex' in keys):
             match = False
             if not match:
                 capture_tags = {}

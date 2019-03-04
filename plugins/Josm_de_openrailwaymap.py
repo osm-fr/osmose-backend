@@ -206,7 +206,7 @@ class Josm_de_openrailwaymap(Plugin):
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"~="DE-ESO:kennlicht"]["railway:signal:distant:shortened"="no"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"~="DE-ESO:kennlicht"][!"railway:signal:distant:shortened"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"=~/^DE-ESO:/]["railway:signal:main"!="DE-ESO:hp"]
-        if (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys):
+        if (u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys):
             match = False
             if not match:
                 capture_tags = {}

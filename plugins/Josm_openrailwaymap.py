@@ -413,7 +413,7 @@ class Josm_openrailwaymap(Plugin):
         # node[railway=signal]["railway:signal:resetting_switch"]["railway:signal:resetting_switch"!~/.+:.+/]
         # node[railway=signal]["railway:signal:short_route"]["railway:signal:short_route"!~/.+:.+/]
         # node[railway=signal]["railway:signal:brake_test"]["railway:signal:brake_test"!~/.+:.+/]
-        if (u'railway' in keys and u'railway:signal:crossing' in keys) or (u'railway' in keys and u'railway:signal:crossing_distant' in keys) or (u'railway' in keys and u'railway:signal:minor_distant' in keys) or (u'railway' in keys and u'railway:signal:short_route' in keys) or (u'railway' in keys and u'railway:signal:speed_limit' in keys) or (u'railway' in keys and u'railway:signal:wrong_road' in keys) or (u'railway' in keys and u'railway:signal:brake_test' in keys) or (u'railway' in keys and u'railway:signal:combined' in keys) or (u'railway' in keys and u'railway:signal:departure' in keys) or (u'railway' in keys and u'railway:signal:distant' in keys) or (u'railway' in keys and u'railway:signal:humping' in keys) or (u'railway' in keys and u'railway:signal:main' in keys) or (u'railway' in keys and u'railway:signal:main_repeated' in keys) or (u'railway' in keys and u'railway:signal:minor' in keys) or (u'railway' in keys and u'railway:signal:resetting_switch' in keys) or (u'railway' in keys and u'railway:signal:route' in keys) or (u'railway' in keys and u'railway:signal:route_distant' in keys) or (u'railway' in keys and u'railway:signal:shunting' in keys) or (u'railway' in keys and u'railway:signal:speed_limit_distant' in keys) or (u'railway' in keys and u'railway:signal:stop_demand' in keys):
+        if (u'railway' in keys and u'railway:signal:brake_test' in keys) or (u'railway' in keys and u'railway:signal:combined' in keys) or (u'railway' in keys and u'railway:signal:crossing' in keys) or (u'railway' in keys and u'railway:signal:crossing_distant' in keys) or (u'railway' in keys and u'railway:signal:departure' in keys) or (u'railway' in keys and u'railway:signal:distant' in keys) or (u'railway' in keys and u'railway:signal:humping' in keys) or (u'railway' in keys and u'railway:signal:main' in keys) or (u'railway' in keys and u'railway:signal:main_repeated' in keys) or (u'railway' in keys and u'railway:signal:minor' in keys) or (u'railway' in keys and u'railway:signal:minor_distant' in keys) or (u'railway' in keys and u'railway:signal:resetting_switch' in keys) or (u'railway' in keys and u'railway:signal:route' in keys) or (u'railway' in keys and u'railway:signal:route_distant' in keys) or (u'railway' in keys and u'railway:signal:short_route' in keys) or (u'railway' in keys and u'railway:signal:shunting' in keys) or (u'railway' in keys and u'railway:signal:speed_limit' in keys) or (u'railway' in keys and u'railway:signal:speed_limit_distant' in keys) or (u'railway' in keys and u'railway:signal:stop_demand' in keys) or (u'railway' in keys and u'railway:signal:wrong_road' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -631,7 +631,7 @@ class Josm_openrailwaymap(Plugin):
 
         # way[railway][usage=freight][!railway:traffic_mode]
         # way[railway][usage=freight][railway:traffic_mode=freight]
-        if (u'railway' in keys and u'usage' in keys) or (u'railway' in keys and u'railway:traffic_mode' in keys and u'usage' in keys):
+        if (u'railway' in keys and u'railway:traffic_mode' in keys and u'usage' in keys) or (u'railway' in keys and u'usage' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -839,7 +839,7 @@ class Josm_openrailwaymap(Plugin):
         # way[railway=platform][description=*ref][ref=~/^[Gg]leis [0-9]+[a-z]*.*/]
         # way[railway=platform][description=*ref][ref=~/^[Tt]rack [0-9]+[a-z]*.*/]
         # way[railway=platform][description=*ref][ref=~/^[Vv]oie [0-9]+[a-z]*.*/]
-        if (u'description' in keys and u'name' in keys and u'railway' in keys) or (u'description' in keys and u'name:de' in keys and u'railway' in keys) or (u'description' in keys and u'name:fr' in keys and u'railway' in keys) or (u'name' in keys and u'railway' in keys) or (u'name:de' in keys and u'railway' in keys) or (u'name:fr' in keys and u'railway' in keys) or (u'description' in keys and u'railway' in keys and u'ref' in keys) or (u'railway' in keys and u'ref' in keys):
+        if (u'description' in keys and u'name' in keys and u'railway' in keys) or (u'description' in keys and u'name:de' in keys and u'railway' in keys) or (u'description' in keys and u'name:fr' in keys and u'railway' in keys) or (u'description' in keys and u'railway' in keys and u'ref' in keys) or (u'name' in keys and u'railway' in keys) or (u'name:de' in keys and u'railway' in keys) or (u'name:fr' in keys and u'railway' in keys) or (u'railway' in keys and u'ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1281,7 +1281,7 @@ class Josm_openrailwaymap(Plugin):
         # way[railway][wikipedia=~/[Vv]iadu[ck]t/]["bridge:wikipedia"=*wikipedia]
         # way[railway][wikipedia=~/[Bb]rücke/][!"bridge:wikipedia"]
         # way[railway][wikipedia=~/[Bb]rücke/]["bridge:wikipedia"=*wikipedia]
-        if (u'railway' in keys and u'wikipedia' in keys) or (u'bridge:wikipedia' in keys and u'railway' in keys and u'wikipedia' in keys):
+        if (u'bridge:wikipedia' in keys and u'railway' in keys and u'wikipedia' in keys) or (u'railway' in keys and u'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
