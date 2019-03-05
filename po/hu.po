@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-04 20:03+0000\n"
+"PO-Revision-Date: 2019-03-05 21:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -2157,10 +2157,6 @@ msgstr ""
 msgid "Discordant {0} and {1}"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:32
-msgid "Fence with materal tag, better use fence_type tag"
-msgstr ""
-
 #: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
@@ -2204,4 +2200,8 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:32
+msgid "Fence with material tag, better use fence_type tag"
 msgstr ""

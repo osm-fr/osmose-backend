@@ -6,7 +6,7 @@
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
 # Codain, 2017-2018
 # deuzeffe, 2018
-# frodrigo <fred.rodrigo@gmail.com>, 2014-2018
+# frodrigo <fred.rodrigo@gmail.com>, 2014-2019
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-04 20:03+0000\n"
+"PO-Revision-Date: 2019-03-05 21:26+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1963,7 +1963,7 @@ msgstr ""
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "Monument historique : {0} (positionné en {1} avec une confiance {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1974,7 +1974,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr ""
+msgstr "arrêt {0} non intégré"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1985,7 +1985,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
-msgstr ""
+msgstr "arrêt {0}, proposition d'intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1995,13 +1995,13 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-brace-format
 msgid "{0} stop of {1}"
-msgstr ""
+msgstr "arrêt {0} de {1}"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "arrêt {0}, mise à jour"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
@@ -2016,7 +2016,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 #, python-brace-format
 msgid "Missing municipality ref {0}"
-msgstr ""
+msgstr "Attribut “ref” manquant pour la municipalité : {0}"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:130
 #, python-brace-format
@@ -2177,10 +2177,6 @@ msgstr ""
 msgid "Discordant {0} and {1}"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:32
-msgid "Fence with materal tag, better use fence_type tag"
-msgstr ""
-
 #: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
@@ -2224,4 +2220,8 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:32
+msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
