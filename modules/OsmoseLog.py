@@ -53,6 +53,12 @@ class logger:
     def err(self, txt):
         self._err(txt, 0)
 
+    def _warn(self, txt, level):
+        self._log(u'{0}{1}{2}{3}'.format(self.log_av_r, u'warning: ', txt, self.log_ap), level)
+
+    def warn(self, txt):
+        self._warn(txt, 0)
+
 
     def sub(self):
         return sublog(self, 1)
@@ -120,6 +126,9 @@ class sublog:
 
     def err(self, txt):
         self._root._err(txt, self._level)
+
+    def warn(self, txt):
+        self._root._warn(txt, self._level)
 
     def sub(self):
         return sublog(self._root, self._level + 1)

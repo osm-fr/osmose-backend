@@ -223,7 +223,7 @@ def execc(conf, logger, options, osmosis_manager):
                                     logger.sub().err("Not able to resume")
 
                             if analyser_obj.timestamp() and remote_timestamp and analyser_obj.timestamp() <= remote_timestamp:
-                                logger.sub().err("Skip, frontend is already up to date")
+                                logger.sub().warn("Skip, frontend is already up to date")
                                 continue
 
                             if not options.change or not xml_change:
