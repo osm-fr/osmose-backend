@@ -24,7 +24,7 @@ class Construction2(Plugin):
         # way[highway][proposed][highway!=proposed]
         # way[railway][construction][railway!=construction]
         # way[railway][proposed][railway!=proposed]
-        if (u'construction' in keys and u'railway' in keys) or (u'construction' in keys and u'highway' in keys) or (u'highway' in keys and u'proposed' in keys) or (u'proposed' in keys and u'railway' in keys):
+        if (u'construction' in keys and u'highway' in keys) or (u'construction' in keys and u'railway' in keys) or (u'highway' in keys and u'proposed' in keys) or (u'proposed' in keys and u'railway' in keys):
             match = False
             if not match:
                 capture_tags = {}

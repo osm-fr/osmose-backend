@@ -28,7 +28,7 @@ class Josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'access' in keys and u'highway' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
+        if (u'access' in keys and u'highway' in keys) or (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -94,6 +94,22 @@ class Josm_unnecessary(Plugin):
                     u'payment:cash'])
                 }})
 
+        # node[emergency=fire_hydrant][fire_hydrant:count=1]
+        if (u'emergency' in keys and u'fire_hydrant:count' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == mapcss._value_capture(capture_tags, 0, u'fire_hydrant') and mapcss._tag_capture(capture_tags, 1, tags, u'fire_hydrant:count') == mapcss._value_capture(capture_tags, 1, 1))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} is unnecessary for {1}","{1.tag}","{0.tag}")
+                # fixRemove:"{1.key}"
+                err.append({'class': 9010001, 'subclass': 178896259, 'text': mapcss.tr(u'{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'), mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, u'{1.key}')])
+                }})
+
         return err
 
     def way(self, data, tags, nds):
@@ -108,7 +124,7 @@ class Josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'access' in keys and u'highway' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
+        if (u'access' in keys and u'highway' in keys) or (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -221,7 +237,7 @@ class Josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'access' in keys and u'highway' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
+        if (u'access' in keys and u'highway' in keys) or (u'bridge' in keys) or (u'building' in keys) or (u'elevation' in keys) or (u'highway' in keys and u'motor_vehicle' in keys) or (u'layer' in keys):
             match = False
             if not match:
                 capture_tags = {}

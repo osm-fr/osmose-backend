@@ -206,7 +206,7 @@ class Josm_de_openrailwaymap(Plugin):
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"~="DE-ESO:kennlicht"]["railway:signal:distant:shortened"="no"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"~="DE-ESO:kennlicht"][!"railway:signal:distant:shortened"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"=~/^DE-ESO:/]["railway:signal:main"!="DE-ESO:hp"]
-        if (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys):
+        if (u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -430,7 +430,7 @@ class Josm_de_openrailwaymap(Plugin):
                 # assertMatch:"node railway=signal railway:signal:speed_limit=\"DE-ESO:zs3\" railway:signal:speed_limit:form=light railway:signal:speed_limit:speed=foo"
                 err.append({'class': 9016015, 'subclass': 1065351347, 'text': {'en': u'Zs3 light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}})
 
-        # node[railway=signal]["railway:signal:speed_limit"="DE-ESO:db:zs10"]["railway:signal:speed_limit:form"=light]
+        # node|z16-[railway=signal]["railway:signal:speed_limit"="DE-ESO:db:zs10"]["railway:signal:speed_limit:form"=light]
         if (u'railway' in keys and u'railway:signal:speed_limit' in keys and u'railway:signal:speed_limit:form' in keys):
             match = False
             if not match:
@@ -442,7 +442,7 @@ class Josm_de_openrailwaymap(Plugin):
                 # assertNoMatch:"node railway=signal railway:signal:speed_limit=\"DE-ESO:db:zs1\" railway:signal:speed_limit:form=light"
                 # assertMatch:"node railway=signal railway:signal:speed_limit=\"DE-ESO:db:zs10\" railway:signal:speed_limit:form=light"
                 # assertNoMatch:"node railway=signal railway:signal:speed_limit=\"DE-ESO:db:zs10\" railway:signal:speed_limit:form=sign"
-                err.append({'class': 9016016, 'subclass': 504597862, 'text': {'en': u'It is unclear if Zs10 light signals have ever been placed, please double check.'}})
+                err.append({'class': 9016016, 'subclass': 1437297810, 'text': {'en': u'It is unclear if Zs10 light signals have ever been placed, please double check.'}})
 
         return err
 
@@ -844,9 +844,9 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:zs3', u'railway:signal:speed_limit:form': u'light', u'railway:signal:speed_limit:speed': u'200'}), expected={'class': 9016015, 'subclass': 1065351347})
         self.check_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:zs3', u'railway:signal:speed_limit:form': u'light', u'railway:signal:speed_limit:speed': u'85'}), expected={'class': 9016015, 'subclass': 1065351347})
         self.check_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:zs3', u'railway:signal:speed_limit:form': u'light', u'railway:signal:speed_limit:speed': u'foo'}), expected={'class': 9016015, 'subclass': 1065351347})
-        self.check_not_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs1', u'railway:signal:speed_limit:form': u'light'}), expected={'class': 9016016, 'subclass': 504597862})
-        self.check_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs10', u'railway:signal:speed_limit:form': u'light'}), expected={'class': 9016016, 'subclass': 504597862})
-        self.check_not_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs10', u'railway:signal:speed_limit:form': u'sign'}), expected={'class': 9016016, 'subclass': 504597862})
+        self.check_not_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs1', u'railway:signal:speed_limit:form': u'light'}), expected={'class': 9016016, 'subclass': 1437297810})
+        self.check_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs10', u'railway:signal:speed_limit:form': u'light'}), expected={'class': 9016016, 'subclass': 1437297810})
+        self.check_not_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs10', u'railway:signal:speed_limit:form': u'sign'}), expected={'class': 9016016, 'subclass': 1437297810})
         self.check_err(n.way(data, {u'name': u'Kursbuchstrecke 710.1', u'railway': u'light_rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
         self.check_not_err(n.way(data, {u'railway': u'light_rail', u'ref': u'Kursbuchstrecke 710.1'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
         self.check_err(n.way(data, {u'name': u'KBS 258', u'railway': u'rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
