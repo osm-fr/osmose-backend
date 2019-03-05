@@ -1140,10 +1140,12 @@
 <class item="3093" tag="value,fix:chair" id="30931" level="2">
 <classtext lang="en" title="The URL contains a space" />
 <classtext lang="fa" title="در URL فاصله وجود دارد" />
+<classtext lang="fr" title="L'URL contient une espace" />
 </class>
 <class item="3093" tag="value,fix:chair" id="30932" level="2">
 <classtext lang="en" title="The URL does not have a valid scheme" />
 <classtext lang="fa" title="URL درست نوشته نشده" />
+<classtext lang="fr" title="L'URL n'est pas du bon format" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
@@ -1892,7 +1894,7 @@
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="303210" level="1">
-<classtext lang="en" title="Fence with materal tag, better use fence_type tag" />
+<classtext lang="en" title="Fence with material tag, better use fence_type tag" />
 </class>
 <class item="3032" tag="tag,highway" id="303241" level="1">
 <classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
@@ -2223,22 +2225,7 @@
 <classtext lang="zh_CN" title="不常见的短键" />
 </class>
 <class item="9002" tag="tag,deprecated" id="9002013" level="3">
-<classtext lang="ca" title="{0.key}={0.value} no és prou precís" />
-<classtext lang="cs" title="{0.key}={0.value} je nepřesné" />
-<classtext lang="de" title="{0.key}={0.value} ist ungenau" />
-<classtext lang="en" title="{0.key}={0.value} is inaccurate" />
-<classtext lang="es" title="{0.key}={0.value} no es exacto" />
-<classtext lang="fr" title="{0.key}={0.value} est imprécis" />
-<classtext lang="hu" title="{0.key}={0.value} pontatlan" />
-<classtext lang="it" title="{0.key}={0.value} è impreciso" />
-<classtext lang="nl" title="{0.key}={0.value} is niet accuraat" />
-<classtext lang="pl" title="{0.key}={0.value} jest niedokładne" />
-<classtext lang="pt" title="{0.key}={0.value} é genérico" />
-<classtext lang="pt_BR" title="{0.key}={0.value} é impreciso" />
-<classtext lang="ru" title="{0.key}={0.value} — неточное значение" />
-<classtext lang="uk" title="{0.key}={0.value} — неточне значення" />
-<classtext lang="zh_CN" title="{0.key}={0.value} 不准确" />
-<classtext lang="zh_TW" title="{0.key}={0.value} 不準確" />
+<classtext lang="en" title="{0.key}={0.value} is inaccurate. Use separate tags for each specific type, e.g. payment:bitcoin=yes or payment:litecoin=yes." />
 </class>
 <class item="9002" tag="tag,deprecated" id="9002015" level="3">
 <classtext lang="ca" title="{0.key}={0.value} no és específic. Si us plau canvieu ''{0.value}''per ''costat esquerre (left)'', ''costat dret (right)'' o ''ambdós (both)''." />
@@ -2397,25 +2384,6 @@
 <classtext lang="ru" title="{0.key}={0.value} на точке. Должен использоваться на отношении" />
 <classtext lang="uk" title="{0.key}={0.value} на точці. Повинен використовуватись для звʼязку" />
 <classtext lang="zh_CN" title="在点上的{0.key}={0.value}。其应运用于关系中" />
-</class>
-<class item="9003" tag="geom" id="9003005" level="3">
-<classtext lang="cs" title="podezřelá kombinace značek" />
-<classtext lang="de" title="verdächtige Merkmalskombination" />
-<classtext lang="en" title="suspicious tag combination" />
-<classtext lang="es" title="combinación de etiquetas sospechosa" />
-<classtext lang="fr" title="combinaison suspecte d’attributs" />
-<classtext lang="hu" title="gyanús címkekombináció" />
-<classtext lang="it" title="combinazione di etichette sospetta" />
-<classtext lang="ja" title="疑わしいタグの組み合わせ" />
-<classtext lang="lt" title="įtartina žymų kombinacija" />
-<classtext lang="nl" title="onwaarschijnlijke tagcombinatie" />
-<classtext lang="pl" title="podejrzane połączenie znaczników" />
-<classtext lang="pt" title="combinação de etiquetas suspeita" />
-<classtext lang="pt_BR" title="combinação suspeita de etiquetas" />
-<classtext lang="ru" title="подозрительная комбинация тегов" />
-<classtext lang="uk" title="підозріла комбінація теґів" />
-<classtext lang="zh_CN" title="可疑的标签组合" />
-<classtext lang="zh_TW" title="合併標籤時有問題" />
 </class>
 <class item="9003" tag="geom" id="9003006" level="3">
 <classtext lang="ca" title="{0.key} a un node" />
@@ -3402,6 +3370,9 @@
 <class item="9015" tag="tag,railway" id="9015043" level="2">
 <classtext lang="en" title="interlocking relation with type other than railway" />
 </class>
+<class item="9015" tag="tag,railway" id="9015044" level="3">
+<classtext lang="en" title="{0.key}={0.value} without name" />
+</class>
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
 <classtext lang="cs" title="Ve jménu Farsi zjištěna arabská písmena" />
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
@@ -3610,7 +3581,7 @@
 <location lat="17.8949922" lon="-62.8494653" />
 <text lang="en" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unexpected &quot;̂̀&quot;" />
 </error>
-<error class="9001001" subclass="288794802">
+<error class="9001001" subclass="1599415806">
 <node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
 <tag k="power_source" v="oil" />
 <tag k="name" v="EDF" />
