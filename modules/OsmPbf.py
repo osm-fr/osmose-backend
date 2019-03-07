@@ -19,9 +19,14 @@
 ##                                                                       ##
 ###########################################################################
 
-from . import OsmPbf_imposm
-OsmPbfReader = OsmPbf_imposm.OsmPbfReader
-TestCountObjects = OsmPbf_imposm.TestCountObjects
+try:
+    from . import OsmPbf_libosmbf
+    OsmPbfReader = OsmPbf_libosmbf.OsmPbfReader
+    TestCountObjects = OsmPbf_libosmbf.TestCountObjects
+except ImportError:
+    from . import OsmPbf_imposm
+    OsmPbfReader = OsmPbf_imposm.OsmPbfReader
+    TestCountObjects = OsmPbf_imposm.TestCountObjects
 
 ###########################################################################
 import unittest
