@@ -558,7 +558,7 @@ default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
-default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
+default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154, "phone_code": '377', "phone_len": 8, "phone_format": r'^[+]%s([- ./]*[469])([- ./]*[0-9]){6}[0-9]$', "phone_international": '00'}, download_repo=OSMFR)
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
 default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
