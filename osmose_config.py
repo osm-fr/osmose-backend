@@ -265,6 +265,7 @@ france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine
     'merge_recycling_FR_bm',
     'merge_parking_FR_bm',
     'merge_bicycle_parking_FR_bordeaux',
+    'merge_bicycle_rental_FR_bm',
     'merge_public_equipment_FR_bordeaux_toilets',
     'merge_public_transport_FR_tbm',
     'merge_street_number_bordeaux',
@@ -396,8 +397,6 @@ france_departement("nord_pas_de_calais/pas_de_calais", 7394, "FR-62")
 france_departement("pays_de_la_loire/loire_atlantique", 7432, "FR-44", include=[
     # Nantes
     'merge_recycling_FR_nm_glass',
-    'merge_bicycle_rental_FR_bm',
-    'merge_bicycle_rental_FR_bm',
     'merge_public_equipment_FR_nantes_toilets',
     'merge_street_number_nantes',
 ])
