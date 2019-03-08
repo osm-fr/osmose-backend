@@ -26,14 +26,14 @@ import json
 
 class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 5, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Nantes") }
+        self.missing_official = {"item":"8180", "class": 5, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", u"Nantes Métropole") }
         Analyser_Merge.__init__(self, config, logger,
-            u"http://data.nantes.fr/donnees/detail/toilettes-publiques-de-nantes-metropole/",
-            u"Toilettes publiques",
+            u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
+            u"Toilettes publiques de Nantes Métropole",
             JSON(Source(attribution = u"Nantes Métropole", millesime = "11/2016",
-                    fileUrl = u"http://data.nantes.fr/api/publication/24440040400129_NM_NM_00170/Toilettes_publiques_nm_STBL/content/?format=json"),
-                extractor = lambda json: json['data']),
-            Load("_l", "_l",
+                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole/download/?format=json&timezone=Europe/Berlin"),
+                extractor = lambda json: map(lambda j: j['fields'], json)),
+            Load("location", "location",
                 xFunction = lambda c: c and json.loads(c)[1],
                 yFunction = lambda c: c and json.loads(c)[0]),
             Mapping(
@@ -47,6 +47,6 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res['geo.name'] if res['geo.name'] else None,
-                        "ref": lambda res: res['ID'] if res['ID'] else None,
-                        "wheelchair": lambda res: "yes" if res['Acces_PMR'] == u'oui' else "no" if res['Acces_PMR'] == u'non' else None } )))
+                        "name": 'nom',
+                        "ref": 'id',
+                        "wheelchair": lambda res: "yes" if res['acces_pmr'] == u'oui' else "no" if res['acces_pmr'] == u'non' else None } )))

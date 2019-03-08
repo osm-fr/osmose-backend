@@ -27,7 +27,7 @@ from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 2, "Nantes", logger,
-            u"http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/",
+            u"https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole",
             u"Adresses postales de Nantes Métropole",
             CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
                     fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole/download/?format=csv"), separator = u";"),
