@@ -24,7 +24,6 @@ import re
 
 
 class Phone(Plugin):
-    focus = True
 
     PHONE_TAGS = set((u"contact:fax", u"contact:phone", u"fax", u"phone"))
 

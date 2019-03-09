@@ -42,6 +42,8 @@ class OsmOsis:
                 if retry == 0:
                     raise
                 else:
+                    if retry % 10 == 0:
+                        print('DB connection fails, retry...')
                     time.sleep(1)
         psycopg2.extras.register_hstore(self._PgConn, unicode=True)
         self._PgCurs = self._PgConn.cursor()
