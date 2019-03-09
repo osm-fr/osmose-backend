@@ -69,7 +69,9 @@ struct Visitor
 
   Visitor(PyObject *p) : self(p) {}
 
-  Visitor(PyObject *p, const Visitor & x) : self(p) {}
+  Visitor(PyObject *p, const Visitor & x) : self(p) {
+    (void)x;
+  }
 
   void node_callback(uint64_t osmid, double lon, double lat, const Tags & tags) const {
       if (!tags.empty()) { // TODO Move this check earlier
