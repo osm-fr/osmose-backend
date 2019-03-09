@@ -15,7 +15,7 @@ and send results to frontend. This works as following:
 Installation Python
 -------------------
 
-Osmose QA backend requires python > 2.6.
+Osmose QA backend requires python > 2.7.
 
 Setup system dependencies (Debian Stretch)
 ```
@@ -24,16 +24,20 @@ apt install python
 
 You can install python dependencies in the system or in a virtualenv.
 
+### Alt: Python dependencies in the system
+
 In the system install the folowing packages:
 ```
-apt install python-dateutil python-imposm-parser python-lockfile python-polib python-poster python-psycopg2 python-shapely python-regex python-requests
+apt install python-dateutil python-lockfile python-polib python-poster python-psycopg2 python-shapely python-regex python-requests libboost-python-dev libosmpbf-dev
 ```
+
+### Alt: python dependencies in a virtualenv
 
 Alternatively instal python-virtualenv and create a new virtualenv.
 
 Setup system dependencies (Debian Stretch)
 ```
-apt install build-essential git python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev postgis
+apt install build-essential git python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev libboost-python-dev libosmpbf-dev postgis
 ```
 
 Create a python virtualenv, active it and install python dependencies
@@ -46,6 +50,14 @@ pip install -r requirements.txt
 To run tests, additional packages are needed.
 ```
 pip install -r requirements-dev.txt
+```
+
+### Compile the OMS PBF parser
+
+Build the native python module lib to parse .osm.pbf files:
+```
+cd modules/osm_pbf_parser/
+make
 ```
 
 

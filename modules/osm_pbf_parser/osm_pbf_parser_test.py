@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Jocelyn Jaubert 2019                                       ##
+## Copyrights Frédéric Rodrigo 2019                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,27 +19,24 @@
 ##                                                                       ##
 ###########################################################################
 
-try:
-    from . import OsmPbf_libosmbf
-    OsmPbfReader = OsmPbf_libosmbf.OsmPbfReader
-    TestCountObjects = OsmPbf_libosmbf.TestCountObjects
-except ImportError:
-    from . import OsmPbf_imposm
-    OsmPbfReader = OsmPbf_imposm.OsmPbfReader
-    TestCountObjects = OsmPbf_imposm.TestCountObjects
+import sys
+import osm_pbf_parser
 
-###########################################################################
-import unittest
+class V(osm_pbf_parser.Visitor):
+  def node(self, osmid, lon, lat, tags):
+    pass
+    #print('node', osmid, tags)
+#    return "e"
 
-class Test(unittest.TestCase):
-    def test_copy_all(self):
-        # basic test to verify connection to submodules
-        import dateutil
+  def way(self, osmid, tags, refs):
+    #print('way', osmid, tags)
+    #print('way', osmid, refs)
+    return "e"
 
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
-        i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
-        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
+  def relation(self, osmid, tags, ref):
+    #print('relation', osmid, tags, ref)
+    return "e"
+
+v = V()
+
+osm_pbf_parser.read_osm_pbf(sys.argv[1], v)

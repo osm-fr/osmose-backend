@@ -3,9 +3,13 @@ FROM python:2.7
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        gcc \
         git \
+        libboost-python-dev \
+        libosmpbf-dev \
         libprotobuf-dev \
         locales \
+        make \
         openjdk-8-jre-headless \
         postgis \
         postgresql-client \
@@ -21,6 +25,9 @@ RUN mkdir -p /data/work/osmose && \
     chown osmose /data/work/osmose && \
     locale-gen en_US.UTF-8 && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
+
+ADD modules/osm_pbf_parser /opt/osmose-backend/modules/osm_pbf_parser
+RUN cd /opt/osmose-backend/modules/osm_pbf_parser && make
 
 ADD requirements.txt /opt/osmose-backend/requirements.txt
 ADD requirements-dev.txt /opt/osmose-backend/requirements-dev.txt
