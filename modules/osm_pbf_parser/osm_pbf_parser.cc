@@ -49,7 +49,7 @@ boost::python::list referencesToDict(const References & refs) {
     for (const auto & i: refs) {
         boost::python::dict dictionary;
         dictionary["ref"] = i.member_id;
-        dictionary["role"] = i.role;
+        dictionary["role"] = stringToUnicode(i.role);
         switch(i.member_type) {
             case OSMPBF::Relation::NODE : dictionary["type"] = "node";
                 break;
