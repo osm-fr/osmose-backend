@@ -31,13 +31,8 @@ class TagRemove_Roundabout_Ref(Plugin):
         self.errors[102] = { "item": 4020, "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Unneeded tag on junction=roundabout") }
 
     def way(self, data, tags, nds):
-        if tags.get("junction") != "roundabout":
-            return
-        err = []
-        if u"ref" in tags:
-            err.append({"class": 102, "subclass": 1, "text": T_(u"Should not contain tag ref=%s", tags[u"ref"]),
-                        "fix": {"-": ["ref"]}})
-        return err
+        if tags.get("junction") == "roundabout" and u"ref" in tags:
+            return {"class": 102, "subclass": 1, "text": T_(u"Should not contain tag ref=%s", tags[u"ref"]), "fix": {"-": ["ref"]}}
 
 
 ###########################################################################
