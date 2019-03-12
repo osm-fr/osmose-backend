@@ -27,7 +27,7 @@ CREATE TEMP TABLE commune AS
 SELECT
     relations.id AS id,
     relations.tags->'ref:INSEE' AS ref,
-    ST_Polygonize(ways.linestring) AS polygon
+    ST_Buffer(ST_Polygonize(ways.linestring), 0) AS polygon
 FROM
     relations
     JOIN relation_members ON

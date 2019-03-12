@@ -49,7 +49,7 @@ boost::python::list referencesToDict(const References & refs) {
     for (const auto & i: refs) {
         boost::python::dict dictionary;
         dictionary["ref"] = i.member_id;
-        dictionary["role"] = i.role;
+        dictionary["role"] = stringToUnicode(i.role);
         switch(i.member_type) {
             case OSMPBF::Relation::NODE : dictionary["type"] = "node";
                 break;
@@ -69,7 +69,9 @@ struct Visitor
 
   Visitor(PyObject *p) : self(p) {}
 
-  Visitor(PyObject *p, const Visitor & x) : self(p) {}
+  Visitor(PyObject *p, const Visitor & x) : self(p) {
+    (void)x;
+  }
 
   void node_callback(uint64_t osmid, double lon, double lat, const Tags & tags) const {
       if (!tags.empty()) { // TODO Move this check earlier
