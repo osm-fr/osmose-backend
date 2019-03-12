@@ -3,6 +3,7 @@ FROM python:2.7
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        g++ \
         gcc \
         git \
         libboost-python-dev \
@@ -11,6 +12,7 @@ RUN apt-get update && \
         locales \
         make \
         openjdk-8-jre-headless \
+        pkg-config \
         postgis \
         postgresql-client \
         protobuf-compiler \
