@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-05 21:26+0000\n"
+"PO-Revision-Date: 2019-03-12 20:11+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -289,10 +289,6 @@ msgstr "重复的自行车道，highway=*+cycleway=track 和 highway=cycleway"
 #: ../analysers/analyser_osmosis_highway_deadend.py:181
 msgid "Unconnected cycleway"
 msgstr "未连接自行车道"
-
-#: ../analysers/analyser_osmosis_highway_deadend.py:182
-msgid "Unconnected way"
-msgstr "未连接路径"
 
 #: ../analysers/analyser_osmosis_highway_features.py:77
 msgid "Missing way on level crossing"
@@ -1012,7 +1008,7 @@ msgstr "水平与等级"
 msgid "Long Waterway above ground and no bridge"
 msgstr "长水路在空中但没有桥梁"
 
-#: ../plugins/TagRemove_Roundabout.py:36
+#: ../plugins/TagRemove_Roundabout.py:33
 msgid "Unnecessary tag oneway"
 msgstr "不必要的单向标签"
 
@@ -1521,7 +1517,7 @@ msgstr "整合建议的Power support"
 msgid "Duplicate wikipedia tag"
 msgstr "重复的维基百科标签"
 
-#: ../plugins/TagRemove_Roundabout_Ref.py:38
+#: ../plugins/TagRemove_Roundabout_Ref.py:35
 #, python-format
 msgid "Should not contain tag ref=%s"
 msgstr "不应该包含标签ref=%s"
@@ -1574,11 +1570,11 @@ msgstr "这条路线的轨迹包含空白"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
-#: ../plugins/Phone.py:38
+#: ../plugins/Phone.py:37
 msgid "Extra \"0\" after international code"
 msgstr "国际代码后加“0”"
 
-#: ../plugins/Phone.py:40
+#: ../plugins/Phone.py:39
 msgid "Missing international prefix"
 msgstr "缺少国际前缀"
 
@@ -2124,27 +2120,27 @@ msgstr ""
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
 
-#: ../plugins/Phone.py:37
+#: ../plugins/Phone.py:36
 msgid "Phone number does not match the expected format"
 msgstr ""
 
-#: ../plugins/Phone.py:39
+#: ../plugins/Phone.py:38
 msgid "Local short code can't be internationalized"
 msgstr ""
 
-#: ../plugins/Phone.py:41
+#: ../plugins/Phone.py:40
 msgid "Bad international prefix"
 msgstr ""
 
-#: ../plugins/Phone.py:42
+#: ../plugins/Phone.py:41
 msgid "Unallowed char in phone number"
 msgstr ""
 
-#: ../plugins/Phone.py:43
+#: ../plugins/Phone.py:42
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/Phone.py:100
+#: ../plugins/Phone.py:99
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
 msgstr ""
@@ -2201,4 +2197,8 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:182
+msgid "Unconnected highway"
 msgstr ""
