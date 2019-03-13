@@ -889,7 +889,7 @@
     ],
     "conflation": 100,
     "title": "bus stop",
-    "only_fro": [
+    "only_for": [
       "DE",
       "LR",
       "US"
