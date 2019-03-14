@@ -32,28 +32,30 @@ class Phone(Plugin):
         self.code = self.father.config.options.get("phone_code")
         if not self.code:
             return False
-
-        self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Phone number does not match the expected format")}
-        self.errors[30921] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Extra \"0\" after international code")}
-        self.errors[30922] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Local short code can't be internationalized")}
-        self.errors[30923] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Missing international prefix")}
-        self.errors[30924] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Bad international prefix")}
-        self.errors[30925] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Unallowed char in phone number")}
-        self.errors[30926] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Bad separator for multiple values")}
-
-        self.code = self.father.config.options.get("phone_code")
         self.size = self.father.config.options.get("phone_len")
         self.size_short = self.father.config.options.get("phone_len_short")
         self.format = self.father.config.options.get("phone_format")
-        self.phone_international = self.father.config.options.get("phone_international")
+        self.international_prefix = self.father.config.options.get("phone_international")
+        self.local_prefix = self.father.config.options.get("phone_local_prefix")
+
+        if self.format:
+            self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Phone number does not match the expected format")}
+        if self.local_prefix:
+            self.errors[30921] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Extra \"{0}\" after international code", self.local_prefix)}
+        if self.size_short:
+            self.errors[30922] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Local short code can't be internationalized")}
+        self.errors[30923] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Missing international prefix")}
+        self.errors[30924] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Bad international prefix")}
+        self.errors[30925] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Unallowed char in phone number")}
+        self.errors[30926] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Bad separator for multiple values")}
 
         country = self.father.config.options.get("country")
 
-        if country and country.startswith("FR"):
-            # Regular numbers must not have a 0 after +[code]
-            self.BadInter = re.compile(r"^[+]%s[- ./]*0((?:[- ./]*[0-9]){%s})$" % (self.code, self.size))
+        if self.code and self.local_prefix:
+            # Regular numbers must not have a local_prefix (aka "0") after +[code]
+            self.InternationalAndLocalPrefix = re.compile(r"^[+]%s[- ./]*%s((?:[- ./]*[0-9])+)$" % (self.code, self.local_prefix))
         else:
-            self.BadInter = None
+            self.InternationalAndLocalPrefix = None
 
         if self.size_short:
             # Short numbers cannot be internationalized
@@ -61,23 +63,28 @@ class Phone(Plugin):
         else:
             self.BadShort = None
 
-        if country and country.startswith("FR"):
-            # Local numbers to internationalize. Note that in addition to
-            # short numbers this also skips special numbers starting with 08
-            # or 09 since these may or may not be callable from abroad.
-            self.Local = re.compile(r"^0[- ./]*([1-7](:?[- ./]*[0-9]){%s})$" % (self.size - 1))
+        if self.international_prefix:
+            self.InternationalPrefix = re.compile(r"^%s(.*)" % self.international_prefix)
         else:
-            self.Local = re.compile(r"^((:?[0-9][- ./]*){%s}[0-9])$" % (self.size - 1))
+            self.InternationalPrefix = None
+
+        if self.local_prefix:
+            if country and country.startswith("FR"):
+                # Local numbers to internationalize. Note that in addition to
+                # short numbers this also skips special numbers starting with 08
+                # or 09 since these may or may not be callable from abroad.
+                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*([1-7](:?[- ./]*[0-9]){%s})$" % (self.local_prefix, self.size - 1))
+            elif self.size:
+                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*){%s}[0-9])$" % (self.local_prefix, self.size - len(self.local_prefix) - 1))
+            else:
+                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*)+[0-9])$" % (self.local_prefix))
+        else:
+            self.MissingInternationalPrefix = re.compile(r"^((:?[0-9][- ./]*){%s}[0-9])$" % (self.size - 1))
 
         if self.format:
-            self.Good = re.compile(self.format % self.code)
+            self.Format = re.compile(self.format % self.code)
         else:
-            self.Good = None
-
-        if self.phone_international:
-            self.International = re.compile(r"^%s(.*)" % self.phone_international)
-        else:
-            self.International = None
+            self.Format = None
 
     def check(self, tags):
         err = []
@@ -99,22 +106,24 @@ class Phone(Plugin):
                 err.append({"class": 30925, "text": T_f(u"Not allowed char \"{0}\" in phone number", phone_test)})
                 continue
 
-            if self.International:
-                r = self.International.match(phone)
+            # Before local prefix
+            if self.InternationalPrefix:
+                r = self.InternationalPrefix.match(phone)
                 if r:
                     err.append({"class": 30924, "fix": {tag: "+" + r.group(1)}})
                     continue
 
-            if self.BadInter:
-                r = self.BadInter.match(phone)
+            if self.InternationalAndLocalPrefix:
+                r = self.InternationalAndLocalPrefix.match(phone)
                 if r:
                     err.append({"class": 30921, "fix": {tag: "+" + self.code + " " + r.group(1)}})
                     continue
 
-            r = self.Local.match(phone)
-            if r:
-                err.append({"class": 30923, "fix": {tag: "+" + self.code + " " + r.group(1)}})
-                continue
+            if self.MissingInternationalPrefix:
+                r = self.MissingInternationalPrefix.match(phone)
+                if r:
+                    err.append({"class": 30923, "fix": {tag: "+" + self.code + " " + r.group(1)}})
+                    continue
 
             if self.BadShort:
                 r = self.BadShort.match(phone)
@@ -123,8 +132,8 @@ class Phone(Plugin):
                     continue
 
             # Last
-            if self.Good:
-                r = self.Good.match(phone)
+            if self.Format:
+                r = self.Format.match(phone)
                 if not r:
                     err.append({"class": 30920, "text": {"en": phone}})
                     continue
@@ -148,7 +157,7 @@ class Test(TestPluginCommon):
     def test_FR(self):
         p = Phone(None)
         class _config:
-            options = {"country": "FR", "phone_code": "33", "phone_len": 9, "phone_len_short": [4, 6], "phone_format": r"^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$", "phone_international": "00"}
+            options = {"country": "FR", "phone_code": "33", "phone_len": 9, "phone_len_short": [4, 6], "phone_format": r"^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$", "phone_international": "00", "phone_local_prefix": "0"}
         class father:
             config = _config()
         p.father = father()
