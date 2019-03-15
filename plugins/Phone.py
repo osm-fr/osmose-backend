@@ -37,6 +37,7 @@ class Phone(Plugin):
         self.format = self.father.config.options.get("phone_format")
         self.international_prefix = self.father.config.options.get("phone_international")
         self.local_prefix = self.father.config.options.get("phone_local_prefix")
+        self.values_separators = self.father.config.options.get("phone_values_separators", [' / ', ' - ', ','])
 
         if self.format:
             self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Phone number does not match the expected format")}
@@ -95,9 +96,15 @@ class Phone(Plugin):
             if u';' in phone:
                 continue  # Ignore multiple phone numbers
 
-            if u' / ' in phone or ' - ' in phone:
-                err.append({"class": 30926, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ')}})
-                continue
+            if self.values_separators:
+                p = phone
+                for sep in self.values_separators:
+                    if sep in phone:
+                        phone = phone.replace(sep, '; ')
+                if p != phone:
+                    phone = phone.replace('  ', ' ')
+                    err.append({"class": 30926, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ').replace(',', ';')}})
+                    continue
 
             phone_test = phone
             for c in '+0123456789 -./()':
