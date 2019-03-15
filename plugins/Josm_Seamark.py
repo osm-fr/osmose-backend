@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -21,26 +22,26 @@ class Josm_Seamark(Plugin):
         self.errors[9012009] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'In {0} {1}={2} require {3}={4}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))}
         self.errors[9012010] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} sign require {1} set to left or right', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
 
-        self.re_01dd9715 = re.compile(ur'right|left')
-        self.re_09200db5 = re.compile(ur'keep_to_port_margin|keep_to_starboard_margin|keep_to_mid|cross_river_to_port|cross_river_to_starboard|reduce_speed')
-        self.re_09c0bae9 = re.compile(ur'opening_to_right|opening_to_left')
-        self.re_0b7ab6fc = re.compile(ur'keep_to_port_margin|keep_to_starboard_margin|keep_to_mid-river|cross_river_to_port|cross_river_to_starboard')
-        self.re_0e114cad = re.compile(ur'bniwr2|ppwbc')
-        self.re_0e3e01fc = re.compile(ur'no_entry|closed_area|no_overtaking|no_convoy_overtaking|no_passing|no_convoy_passing|no_berthing|no_berthing_lateral_limit|no_anchoring|no_mooring|no_turning|no_wash|no_passage_left|no_passage_right|no_motor_craft|no_sport_craft|no_waterskiing|no_sailing_craft|no_unpowered_craft|no_sailboards|no_high_speeds|no_launching_beaching|no_waterbikes')
-        self.re_1389a933 = re.compile(ur'move_to_left|move_to_right|move_to_port|move_to_starboard|keep_to_port|keep_to_starboard|cross_to_port|cross_to_starboard|stop|speed_limit|sound_horn|keep_lookout|give_way_junction|give_way_crossing|make_radio_contact')
-        self.re_141d4d2f = re.compile(ur'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire')
-        self.re_253b0e7a = re.compile(ur'channel_two_way|channel_one_way|opening_to_right|opening_to_left|proceed_to_left|proceed_to_right')
-        self.re_281803e9 = re.compile(ur'preferred_channel_starboard|turnoff_right')
-        self.re_288a42ac = re.compile(ur'port|waterway_right|channel_right')
-        self.re_2a269778 = re.compile(ur'main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right')
-        self.re_2e10f0c7 = re.compile(ur'entry_permitted|overhead_cable|weir|ferry_non_independent|ferry_independent|berthing_permitted|berthing_lateral_limit|berthing_lateral_limits|berthing_rafting_limit|berthing_unmarked_pushing|berthing_marked_pushing_1|berthing_marked_pushing_2|berthing_marked_pushing_3|berthing_unmarked_non_pushing|berthing_marked_non_pushing_1|berthing_marked_non_pushing_2|berthing_marked_non_pushing_3|berthing_unmarked|berthing_marked_1|berthing_marked_2|berthing_marked_3|anchoring_permitted|mooring_permitted|vehicle_loading_berth|turning_area|secondary_waterway_crossing|secondary_waterway_right|secondary_waterway_left|main_waterway_right_secondary_ahead|main_waterway_left_secondary_ahead|main_waterway_right_secondary_left|main_waterway_left_secondary_right|main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right|main_waterway_crossing|main_waterway_junction|main_waterway_ahead_right|main_waterway_ahead_left|main_waterway_ahead_right_secondary_left|main_waterway_ahead_left_secondary_right|prohibition_ends|drinking_water|telephone|motor_craft_permitted|sport_craft_permitted|waterskiing_permitted|sailing_craft_permitted|unpowered_craft_permitted|sailboards_permitted|high_speeds_permitted|launching_beaching_permitted|radio_information|waterbikes_permitted')
-        self.re_32e3abb7 = re.compile(ur'starboard|waterway_left|channel_left')
-        self.re_336a6c28 = re.compile(ur'limited_depth|limited_headroom|limited_width|navigation_restrictions|channel_distance_left|channel_distance_right')
-        self.re_39084725 = re.compile(ur'limited_headroom')
-        self.re_430e795b = re.compile(ur'main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right|traffic_between_margins')
-        self.re_61629c48 = re.compile(ur'preferred_channel_starboard|preferred_channel_port|waterway_separation|channel_separation')
-        self.re_637abe26 = re.compile(ur'preferred_channel_port|turnoff_left')
-        self.re_7c5430c7 = re.compile(ur'no_anchoring')
+        self.re_01dd9715 = re.compile(r'right|left')
+        self.re_09200db5 = re.compile(r'keep_to_port_margin|keep_to_starboard_margin|keep_to_mid|cross_river_to_port|cross_river_to_starboard|reduce_speed')
+        self.re_09c0bae9 = re.compile(r'opening_to_right|opening_to_left')
+        self.re_0b7ab6fc = re.compile(r'keep_to_port_margin|keep_to_starboard_margin|keep_to_mid-river|cross_river_to_port|cross_river_to_starboard')
+        self.re_0e114cad = re.compile(r'bniwr2|ppwbc')
+        self.re_0e3e01fc = re.compile(r'no_entry|closed_area|no_overtaking|no_convoy_overtaking|no_passing|no_convoy_passing|no_berthing|no_berthing_lateral_limit|no_anchoring|no_mooring|no_turning|no_wash|no_passage_left|no_passage_right|no_motor_craft|no_sport_craft|no_waterskiing|no_sailing_craft|no_unpowered_craft|no_sailboards|no_high_speeds|no_launching_beaching|no_waterbikes')
+        self.re_1389a933 = re.compile(r'move_to_left|move_to_right|move_to_port|move_to_starboard|keep_to_port|keep_to_starboard|cross_to_port|cross_to_starboard|stop|speed_limit|sound_horn|keep_lookout|give_way_junction|give_way_crossing|make_radio_contact')
+        self.re_141d4d2f = re.compile(r'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire')
+        self.re_253b0e7a = re.compile(r'channel_two_way|channel_one_way|opening_to_right|opening_to_left|proceed_to_left|proceed_to_right')
+        self.re_281803e9 = re.compile(r'preferred_channel_starboard|turnoff_right')
+        self.re_288a42ac = re.compile(r'port|waterway_right|channel_right')
+        self.re_2a269778 = re.compile(r'main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right')
+        self.re_2e10f0c7 = re.compile(r'entry_permitted|overhead_cable|weir|ferry_non_independent|ferry_independent|berthing_permitted|berthing_lateral_limit|berthing_lateral_limits|berthing_rafting_limit|berthing_unmarked_pushing|berthing_marked_pushing_1|berthing_marked_pushing_2|berthing_marked_pushing_3|berthing_unmarked_non_pushing|berthing_marked_non_pushing_1|berthing_marked_non_pushing_2|berthing_marked_non_pushing_3|berthing_unmarked|berthing_marked_1|berthing_marked_2|berthing_marked_3|anchoring_permitted|mooring_permitted|vehicle_loading_berth|turning_area|secondary_waterway_crossing|secondary_waterway_right|secondary_waterway_left|main_waterway_right_secondary_ahead|main_waterway_left_secondary_ahead|main_waterway_right_secondary_left|main_waterway_left_secondary_right|main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right|main_waterway_crossing|main_waterway_junction|main_waterway_ahead_right|main_waterway_ahead_left|main_waterway_ahead_right_secondary_left|main_waterway_ahead_left_secondary_right|prohibition_ends|drinking_water|telephone|motor_craft_permitted|sport_craft_permitted|waterskiing_permitted|sailing_craft_permitted|unpowered_craft_permitted|sailboards_permitted|high_speeds_permitted|launching_beaching_permitted|radio_information|waterbikes_permitted')
+        self.re_32e3abb7 = re.compile(r'starboard|waterway_left|channel_left')
+        self.re_336a6c28 = re.compile(r'limited_depth|limited_headroom|limited_width|navigation_restrictions|channel_distance_left|channel_distance_right')
+        self.re_39084725 = re.compile(r'limited_headroom')
+        self.re_430e795b = re.compile(r'main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right|traffic_between_margins')
+        self.re_61629c48 = re.compile(r'preferred_channel_starboard|preferred_channel_port|waterway_separation|channel_separation')
+        self.re_637abe26 = re.compile(r'preferred_channel_port|turnoff_left')
+        self.re_7c5430c7 = re.compile(r'no_anchoring')
 
 
     def node(self, data, tags):

@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -15,27 +16,27 @@ class Josm_combinations(Plugin):
         self.errors[9001003] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} on a relation without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
         self.errors[9001004] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'incomplete usage of {0} on a way without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
 
-        self.re_050395e0 = re.compile(ur'^maxspeed:?')
-        self.re_0737b0c4 = re.compile(ur'^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$')
-        self.re_0889a956 = re.compile(ur'^(basin|reservoir)$')
-        self.re_088b0835 = re.compile(ur'^addr:')
-        self.re_12ce6b85 = re.compile(ur':forward')
-        self.re_1dcd648f = re.compile(ur'^(runway|taxiway)$')
-        self.re_213d4d09 = re.compile(ur'^parking.*')
-        self.re_23888fca = re.compile(ur'^(motorway|motorway_link|trunk|trunk_link)$')
-        self.re_25d98c90 = re.compile(ur'_name$')
-        self.re_27d9cb1c = re.compile(ur'^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$')
-        self.re_29fa4401 = re.compile(ur'^(beach|bare_rock|cliff|peak|water)$')
-        self.re_3b4f8f73 = re.compile(ur'^(recreation_ground|piste|farm|farmland)$')
-        self.re_46fc3877 = re.compile(ur'^(river|canal|lock)$')
-        self.re_4f156c8f = re.compile(ur'^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$')
-        self.re_4fbfe59b = re.compile(ur'^(water|spring)$')
-        self.re_521b2098 = re.compile(ur'water|bay|strait')
-        self.re_5cf0a79f = re.compile(ur'^(parking|parking_space|parking_entrance|motorcycle_parking)$')
-        self.re_5ee853b2 = re.compile(ur'^(ferry|road)$')
-        self.re_64c931ef = re.compile(ur'^(pub|restaurant|swimming_pool)$')
-        self.re_68c05e86 = re.compile(ur'^(wall|retaining_wall)$')
-        self.re_7346b495 = re.compile(ur':backward')
+        self.re_050395e0 = re.compile(r'^maxspeed:?')
+        self.re_0737b0c4 = re.compile(r'^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$')
+        self.re_0889a956 = re.compile(r'^(basin|reservoir)$')
+        self.re_088b0835 = re.compile(r'^addr:')
+        self.re_12ce6b85 = re.compile(r':forward')
+        self.re_1dcd648f = re.compile(r'^(runway|taxiway)$')
+        self.re_213d4d09 = re.compile(r'^parking.*')
+        self.re_23888fca = re.compile(r'^(motorway|motorway_link|trunk|trunk_link)$')
+        self.re_25d98c90 = re.compile(r'_name$')
+        self.re_27d9cb1c = re.compile(r'^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$')
+        self.re_29fa4401 = re.compile(r'^(beach|bare_rock|cliff|peak|water)$')
+        self.re_3b4f8f73 = re.compile(r'^(recreation_ground|piste|farm|farmland)$')
+        self.re_46fc3877 = re.compile(r'^(river|canal|lock)$')
+        self.re_4f156c8f = re.compile(r'^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$')
+        self.re_4fbfe59b = re.compile(r'^(water|spring)$')
+        self.re_521b2098 = re.compile(r'water|bay|strait')
+        self.re_5cf0a79f = re.compile(r'^(parking|parking_space|parking_entrance|motorcycle_parking)$')
+        self.re_5ee853b2 = re.compile(r'^(ferry|road)$')
+        self.re_64c931ef = re.compile(r'^(pub|restaurant|swimming_pool)$')
+        self.re_68c05e86 = re.compile(r'^(wall|retaining_wall)$')
+        self.re_7346b495 = re.compile(r':backward')
 
 
     def node(self, data, tags):

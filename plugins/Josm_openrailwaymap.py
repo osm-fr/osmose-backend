@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -53,20 +54,20 @@ class Josm_openrailwaymap(Plugin):
         self.errors[9015043] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'interlocking relation with type other than railway'}}
         self.errors[9015044] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
 
-        self.re_066203d3 = re.compile(ur'^[0-9]+$')
-        self.re_0e3375d5 = re.compile(ur'[Vv]iadu[ck]t')
-        self.re_14388f34 = re.compile(ur'^[0-9]+[a-z]*.*')
-        self.re_18e8cc14 = re.compile(ur'[Bb]rücke')
-        self.re_25833d04 = re.compile(ur'[Bb]ridge')
-        self.re_32cef8e4 = re.compile(ur'.+:.+')
-        self.re_3d75a7eb = re.compile(ur'^[Vv]oie [0-9]+[a-z]*.*')
-        self.re_4399527a = re.compile(ur';')
-        self.re_473b08ca = re.compile(ur'^railway:signal:')
-        self.re_4b2a9052 = re.compile(ur'^[Tt]rack [0-9]+[a-z]*.*')
-        self.re_5bca804b = re.compile(ur'[Tt]unnel')
-        self.re_61639c68 = re.compile(ur'^(passenger|mixed)$')
-        self.re_63c39ff3 = re.compile(ur'^[0-9]+ mph$')
-        self.re_7cf15856 = re.compile(ur'^[Gg]leis [0-9]+[a-z]*.*')
+        self.re_066203d3 = re.compile(r'^[0-9]+$')
+        self.re_0e3375d5 = re.compile(r'[Vv]iadu[ck]t')
+        self.re_14388f34 = re.compile(r'^[0-9]+[a-z]*.*')
+        self.re_18e8cc14 = re.compile(r'[Bb]rücke')
+        self.re_25833d04 = re.compile(r'[Bb]ridge')
+        self.re_32cef8e4 = re.compile(r'.+:.+')
+        self.re_3d75a7eb = re.compile(r'^[Vv]oie [0-9]+[a-z]*.*')
+        self.re_4399527a = re.compile(r';')
+        self.re_473b08ca = re.compile(r'^railway:signal:')
+        self.re_4b2a9052 = re.compile(r'^[Tt]rack [0-9]+[a-z]*.*')
+        self.re_5bca804b = re.compile(r'[Tt]unnel')
+        self.re_61639c68 = re.compile(r'^(passenger|mixed)$')
+        self.re_63c39ff3 = re.compile(r'^[0-9]+ mph$')
+        self.re_7cf15856 = re.compile(r'^[Gg]leis [0-9]+[a-z]*.*')
 
 
     def node(self, data, tags):

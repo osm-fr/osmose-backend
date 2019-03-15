@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -42,18 +43,18 @@ class Josm_de_openrailwaymap(Plugin):
         self.errors[9016028] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'workrules=BOA is deprecated, replace by an adequate value'}}
         self.errors[9016029] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'workrules: separate country and ruleset by : , not by -'}}
 
-        self.re_057dc3df = re.compile(ur'^Kursbuchstrecke [0-9]*.*')
-        self.re_103aec5a = re.compile(ur'^DE-ESO:')
-        self.re_12ca7ec2 = re.compile(ur'^[0-9]{3}\.[0-9]+$')
-        self.re_27c794aa = re.compile(ur'^[0-9]{3}\.[0-9]{1,2}[-.][0-9]{1,2}$')
-        self.re_36ee52ff = re.compile(ur'^[0-9]{4}-[0-9]+')
-        self.re_38b81466 = re.compile(ur'^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$')
-        self.re_480b052a = re.compile(ur'^VzG [0-9]*.*')
-        self.re_48fcc4a9 = re.compile(ur'^[0-9]{3}$')
-        self.re_4fd6fb40 = re.compile(ur'^KBS [0-9]*.*')
-        self.re_555f3b4c = re.compile(ur'^[0-9]{4}$')
-        self.re_707f42a1 = re.compile(ur'^[1-9][0-9]?[05]$')
-        self.re_77700681 = re.compile(ur'^(.*;)?DE-ESO:kennlicht(;.*)?$')
+        self.re_057dc3df = re.compile(r'^Kursbuchstrecke [0-9]*.*')
+        self.re_103aec5a = re.compile(r'^DE-ESO:')
+        self.re_12ca7ec2 = re.compile(r'^[0-9]{3}\.[0-9]+$')
+        self.re_27c794aa = re.compile(r'^[0-9]{3}\.[0-9]{1,2}[-.][0-9]{1,2}$')
+        self.re_36ee52ff = re.compile(r'^[0-9]{4}-[0-9]+')
+        self.re_38b81466 = re.compile(r'^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$')
+        self.re_480b052a = re.compile(r'^VzG [0-9]*.*')
+        self.re_48fcc4a9 = re.compile(r'^[0-9]{3}$')
+        self.re_4fd6fb40 = re.compile(r'^KBS [0-9]*.*')
+        self.re_555f3b4c = re.compile(r'^[0-9]{4}$')
+        self.re_707f42a1 = re.compile(r'^[1-9][0-9]?[05]$')
+        self.re_77700681 = re.compile(r'^(.*;)?DE-ESO:kennlicht(;.*)?$')
 
 
     def node(self, data, tags):
