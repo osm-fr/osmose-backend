@@ -8,10 +8,16 @@
     "conflation": 200,
     "title": "max speed limit 5 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-5--g1"
@@ -43,10 +49,16 @@
     "conflation": 200,
     "title": "max speed limit 10 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-10--g1"
@@ -78,10 +90,16 @@
     "conflation": 200,
     "title": "max speed limit 15 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-15--g1"
@@ -113,10 +131,16 @@
     "conflation": 200,
     "title": "max speed limit 20 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-20--g1"
@@ -149,10 +173,16 @@
     "conflation": 200,
     "title": "max speed limit 30 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-30--g1"
@@ -192,10 +222,16 @@
     "conflation": 200,
     "title": "max speed limit 35 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-35--g1"
@@ -227,10 +263,16 @@
     "conflation": 200,
     "title": "max speed limit 40 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-40--g1"
@@ -262,10 +304,16 @@
     "conflation": 200,
     "title": "max speed limit 45 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-45--g1"
@@ -297,10 +345,16 @@
     "conflation": 200,
     "title": "max speed limit 50 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-50--g1"
@@ -336,10 +390,16 @@
     "conflation": 200,
     "title": "max speed limit 60 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-60--g1"
@@ -371,10 +431,16 @@
     "conflation": 200,
     "title": "max speed limit 70 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-70--g1"
@@ -410,10 +476,16 @@
     "conflation": 200,
     "title": "max speed limit 80 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-80--g1"
@@ -453,10 +525,16 @@
     "conflation": 200,
     "title": "max speed limit 90 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-90--g1"
@@ -488,10 +566,16 @@
     "conflation": 200,
     "title": "max speed limit 100 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-100--g1"
@@ -527,10 +611,16 @@
     "conflation": 200,
     "title": "max speed limit 110 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-110--g1"
@@ -562,10 +652,16 @@
     "conflation": 200,
     "title": "max speed limit 120 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-120--g1"
@@ -597,10 +693,16 @@
     "conflation": 200,
     "title": "max speed limit 130 km/h",
     "not_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-130--g1"
@@ -787,7 +889,7 @@
     ],
     "conflation": 100,
     "title": "bus stop",
-    "only_fro": [
+    "only_for": [
       "DE",
       "LR",
       "US"
@@ -844,10 +946,16 @@
     "conflation": 200,
     "title": "max speed limit 5 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-5--g3"
@@ -879,10 +987,16 @@
     "conflation": 200,
     "title": "max speed limit 10 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-10--g3"
@@ -914,10 +1028,16 @@
     "conflation": 200,
     "title": "max speed limit 15 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-15--g3"
@@ -949,10 +1069,16 @@
     "conflation": 200,
     "title": "max speed limit 20 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-20--g3"
@@ -988,10 +1114,16 @@
     "conflation": 200,
     "title": "max speed limit 25 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-25--g3"
@@ -1028,10 +1160,16 @@
     "conflation": 200,
     "title": "max speed limit 30 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-30--g3"
@@ -1067,10 +1205,16 @@
     "conflation": 200,
     "title": "max speed limit 35 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-35--g3"
@@ -1106,10 +1250,16 @@
     "conflation": 200,
     "title": "max speed limit 40 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-40--g3"
@@ -1145,10 +1295,16 @@
     "conflation": 200,
     "title": "max speed limit 45 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-45--g3"
@@ -1184,10 +1340,16 @@
     "conflation": 200,
     "title": "max speed limit 50 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-50--g3"
@@ -1219,10 +1381,16 @@
     "conflation": 200,
     "title": "max speed limit 55 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-55--g3"
@@ -1254,10 +1422,16 @@
     "conflation": 200,
     "title": "max speed limit 60 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-60--g3"
@@ -1289,10 +1463,16 @@
     "conflation": 200,
     "title": "max speed limit 65 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-65--g3"
@@ -1324,10 +1504,16 @@
     "conflation": 200,
     "title": "max speed limit 70 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-70--g3"
@@ -1359,10 +1545,16 @@
     "conflation": 200,
     "title": "max speed limit 75 mph",
     "only_for": [
+      "BS",
+      "BZ",
+      "FM",
       "GB",
+      "GG",
+      "IM",
+      "JE",
       "LR",
-      "MM",
-      "US"
+      "US",
+      "WS"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-75--g3"

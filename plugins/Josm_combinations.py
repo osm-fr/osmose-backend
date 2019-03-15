@@ -1837,17 +1837,17 @@ class Josm_combinations(Plugin):
                     u'male'])
                 }})
 
-        # way!:closed[water][natural!~/water|bay|strait/][water!=intermittent]
+        # way!:closed[water][natural!~/water|bay|strait/][water!=intermittent][amenity!=lavoir]
         if (u'water' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'water') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_521b2098), mapcss._tag_capture(capture_tags, 1, tags, u'natural')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') != mapcss._value_capture(capture_tags, 2, u'intermittent') and nds[0] == nds[-1])
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'water') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_521b2098), mapcss._tag_capture(capture_tags, 1, tags, u'natural')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') != mapcss._value_capture(capture_tags, 2, u'intermittent') and mapcss._tag_capture(capture_tags, 3, tags, u'amenity') != mapcss._value_capture(capture_tags, 3, u'lavoir') and nds[0] == nds[-1])
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{1.key}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 2074767689, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1912499290, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.tag}'))})
 
         # way[highway=~/^(motorway|motorway_link|trunk|trunk_link)$/][lanes][turn:lanes][tag(lanes)!=eval(count(split("|",tag("turn:lanes"))))]
         # way[highway=~/^(motorway|motorway_link|trunk|trunk_link)$/][lanes][change:lanes][tag(lanes)!=eval(count(split("|",tag("change:lanes"))))]

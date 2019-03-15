@@ -38,9 +38,9 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
     def check_not_only_for(self, not_for, only_for):
         country = "country" in self.config.options and self.config.options["country"]
         if only_for:
-            return country and any(map(lambda co: co.startswith(country), only_for))
+            return country and any(map(lambda co: country.startswith(co), only_for))
         if not_for:
-            return not country or not any(map(lambda co: co.startswith(country), not_for))
+            return not country or not any(map(lambda co: country.startswith(co), not_for))
         return True
 
 
