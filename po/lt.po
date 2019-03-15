@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-12 20:11+0000\n"
+"PO-Revision-Date: 2019-03-15 19:00+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -1570,11 +1570,7 @@ msgstr ""
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
-#: ../plugins/Phone.py:37
-msgid "Extra \"0\" after international code"
-msgstr ""
-
-#: ../plugins/Phone.py:39
+#: ../plugins/Phone.py:48
 msgid "Missing international prefix"
 msgstr ""
 
@@ -2120,27 +2116,27 @@ msgstr ""
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
 
-#: ../plugins/Phone.py:36
+#: ../plugins/Phone.py:43
 msgid "Phone number does not match the expected format"
 msgstr ""
 
-#: ../plugins/Phone.py:38
+#: ../plugins/Phone.py:47
 msgid "Local short code can't be internationalized"
 msgstr ""
 
-#: ../plugins/Phone.py:40
+#: ../plugins/Phone.py:49
 msgid "Bad international prefix"
 msgstr ""
 
-#: ../plugins/Phone.py:41
+#: ../plugins/Phone.py:50
 msgid "Unallowed char in phone number"
 msgstr ""
 
-#: ../plugins/Phone.py:42
+#: ../plugins/Phone.py:51
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/Phone.py:99
+#: ../plugins/Phone.py:113
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
 msgstr ""
@@ -2201,4 +2197,9 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected highway"
+msgstr ""
+
+#: ../plugins/Phone.py:45
+#, python-brace-format
+msgid "Extra \"{0}\" after international code"
 msgstr ""

@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# jie x, 2017-2018
+# jie x, 2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-12 20:11+0000\n"
+"PO-Revision-Date: 2019-03-15 19:00+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -1570,11 +1570,7 @@ msgstr "这条路线的轨迹包含空白"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
-#: ../plugins/Phone.py:37
-msgid "Extra \"0\" after international code"
-msgstr "国际代码后加“0”"
-
-#: ../plugins/Phone.py:39
+#: ../plugins/Phone.py:48
 msgid "Missing international prefix"
 msgstr "缺少国际前缀"
 
@@ -1672,7 +1668,7 @@ msgstr "未整合的阿基坦旅游信息"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Aquitaine tourism information, integration suggestion"
-msgstr ""
+msgstr "建议整合的阿基坦旅游信息"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:28
 msgid "Aquitaine museum not integrated"
@@ -1680,27 +1676,27 @@ msgstr "未整合的阿基坦博物馆"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
-msgstr ""
+msgstr "建议整合的阿基坦博物馆"
 
 #: ../plugins/TagFix_Opening_Hours.py:36
 msgid "Invalid Opening Hours"
-msgstr ""
+msgstr "营业时间无效"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
-msgstr ""
+msgstr "在相关的街道关系中缺少高速公路"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without ref:UAI or invalid"
-msgstr ""
+msgstr "学院没有ref:UAI或无效"
 
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
-msgstr ""
+msgstr "建议整合的学院"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
-msgstr ""
+msgstr "学院更新"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
@@ -1710,7 +1706,7 @@ msgstr "未整合的{0}"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr ""
+msgstr "建议整合{0}"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:129
 msgid ""
@@ -1720,82 +1716,82 @@ msgstr "除了主干网以外的小公路群或上游通道不足"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
-msgstr ""
+msgstr "电力对象相交的建筑物"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object and highway too close"
-msgstr ""
+msgstr "店里对象和公路太近了"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Highway intersecting highway without junction"
-msgstr ""
+msgstr "公路相交却没有路口"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
-msgstr ""
+msgstr "公路重叠"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
-msgstr ""
+msgstr "水道相交却没有交界处"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "水路重叠"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:106
 #: ../analysers/analyser_osmosis_highway_zone.py:107
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr ""
+msgstr "在街坊附近可能缺少标签 zone:maxspeed=XX:%s"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:360
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
-msgstr ""
+msgstr "限制关系，“from”或“to”成员的单向方向错误"
 
 #: ../plugins/disabled/Structural_Restriction2.py:35
 msgid "Useless no_u_turn restriction, it's already forbidden by local law"
-msgstr ""
+msgstr "无用的no_u_turn限制，已被当地法律禁止"
 
 #: ../plugins/disabled/Structural_Restriction.py:29
 msgid "Useless turn restriction"
-msgstr ""
+msgstr "无用的转弯限制"
 
 #: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:41
 #: ../plugins/Name_Cadastre_FR.py:66
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
-msgstr ""
+msgstr "自然村或地区名称后缀Nord，Sud，Est，Ouest，Center应从Cadastre名称中删除。方位名应该只整合为一个。"
 
 #: ../plugins/Name_Punctuation.py:29
 msgid "Unexpected punctuation in name"
-msgstr ""
+msgstr "名称中出现意外的标点符号"
 
 #: ../plugins/Name_Punctuation.py:37
 #, python-format
 msgid "Unexpected char %s"
-msgstr ""
+msgstr "不寻常字符%s"
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
 msgid "Power Transformers should always be on a node"
-msgstr ""
+msgstr "变压器应始终位于节点上"
 
 #: ../plugins/Power.py:14 ../plugins/Power.py:36
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr ""
+msgstr "在变压器上使用voltage:primary=*和voltage:secondary=*代替voltage"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
 "This wikidata value matches a chain store, it should be in a brand:wikidata "
 "tag."
-msgstr ""
+msgstr "这个维基数据值与连锁店相匹配，它应该是一个brand:wikidata标签。"
 
 #: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
-msgstr ""
+msgstr "另请查看维基百科标签。"
 
 #: ../analysers/analyser_merge_cadastre_FR.py:28
 #: ../analysers/analyser_merge_cadastre_FR.py:47
@@ -1808,48 +1804,48 @@ msgstr "未整合的SITCOM回收"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
 msgid "SITCOM recycling, integration suggestion"
-msgstr ""
+msgstr "建议整合SITCOM回收"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
 msgid "SITCOM recycling update"
-msgstr ""
+msgstr "更新SITCOM回收"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:50
 msgid "Direct or too permissive access to motorway"
-msgstr ""
+msgstr "太直接或过于宽松地进入高速公路"
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Unbalanced Quotation mark or Bracket in name"
-msgstr ""
+msgstr "名称中的不平衡报价标记或括号"
 
 #: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:148
 msgid "Opposite or opposite lane in the same way of the oneway"
-msgstr ""
+msgstr "相反或相反的车道以相同的方式单向行驶"
 
 #: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:58
 #, python-brace-format
 msgid "{0} without {1}"
-msgstr ""
+msgstr "{0} 没有 {1}"
 
 #: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:94
 #, python-brace-format
 msgid "{0} with {1}"
-msgstr ""
+msgstr "{0} 和 {1}"
 
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:42
 #, python-brace-format
 msgid "{0} with {1} and {2}"
-msgstr ""
+msgstr "{0} 和 {1} 以及 {2}"
 
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:75
 #, python-brace-format
 msgid "{0} is preferred to {1}"
-msgstr ""
+msgstr "{0} 是优选的 {1}"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
-msgstr ""
+msgstr "{0} 没有 (有效) ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
@@ -1857,32 +1853,32 @@ msgstr "未整合的警察/“宪兵”"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr ""
+msgstr "建议整合的警察/“宪兵”"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
-msgstr ""
+msgstr "警察/“宪兵”更新"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "缺少进入停车场的方式"
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "可能只适用于瓶子，而不适用于任何类型的玻璃"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "对象需要审核"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
-msgstr ""
+msgstr "公路分类需要审查"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:51
 msgid "Power Transformers should have a frequency tag"
-msgstr ""
+msgstr "变压器应该有一个频率标签"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
@@ -1898,7 +1894,7 @@ msgstr "未整合的共享摩托车/摩托车停放处"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "在波斯语名称中检测到阿拉伯字母"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
@@ -1908,35 +1904,35 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr ""
+msgstr "在波斯语中，阿拉伯字母 '{0}' 应替换为 '{1}'"
 
 #: ../plugins/Colour.py:13
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "颜色代码应以“＃”开头，后跟3或6位数字"
 
 #: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "{0}颜色代码应以“＃”开头，后跟3或6位数字"
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "链接包含空格"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "该链接没有有效的方案"
 
 #: ../plugins/Website.py:41
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
+msgstr "不良的链接%(k)s=%(v)s"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "历史纪念碑: {0} (positioned at {1} 置于 {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1947,7 +1943,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr ""
+msgstr "{0} 停止 不整合"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1958,7 +1954,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
-msgstr ""
+msgstr "建议整合的{0} 停止 "
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1968,76 +1964,76 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-brace-format
 msgid "{0} stop of {1}"
-msgstr ""
+msgstr "{0} 停止了 {1}"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "{0} 停止更新"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "{0} 停止 {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:60
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} 交通信号灯 {1} 观察周围但不相关的标签"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 #, python-brace-format
 msgid "Missing municipality ref {0}"
-msgstr ""
+msgstr "缺少自治市参考 {0}"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:130
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
-msgstr ""
+msgstr "admin_centre角色上的人口 ({0}) 大于关系上的人口 ({1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr ""
+msgstr "同一参考的多个名称 FANTOIR {0}: {1}"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "不符 motor_vehicle 值 ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr ""
+msgstr "进车道 {0}(-{1}+{2}), 出车道 {3}(-{4}+{5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "近似 {0}"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "{0} 偏差 {1}m"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
-msgstr ""
+msgstr "未知的转弯车道值 \"{0}\""
 
 #: ../plugins/Highway_Lanes.py:151
 #, python-brace-format
 msgid "lanes={0} is not an integer"
-msgstr ""
+msgstr "lanes={0} 不是整数"
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "在一个方向, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:212
 #, python-brace-format
@@ -2045,160 +2041,165 @@ msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
-msgstr ""
+msgstr "在两个方向, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:214
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "在两个方向, (lanes={0}) <= (lanes:forward={1}) - (非全宽 forward={2})"
 
 #: ../plugins/Highway_Lanes.py:216
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
-msgstr ""
+msgstr "在两个方向, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
 #: ../plugins/Highway_Lanes.py:218
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
-msgstr ""
+msgstr "在两个方向, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})"
 
 #: ../plugins/Name_Quotation.py:52
 #, python-brace-format
 msgid "Umbalanced {0} with {1}"
-msgstr ""
+msgstr "不平衡 {0} 和 {1}"
 
 #: ../plugins/Name_Quotation.py:55
 #, python-brace-format
 msgid "Umbalanced {0}"
-msgstr ""
+msgstr "不平衡 {0}"
 
 #: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
-msgstr ""
+msgstr "\"{0}\" 不寻常的不可打印字符 ({1}, 0x{2:04x}) 键的位置在 {3}"
 
 #: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" 不寻常的不可打印字符 ({2}, 0x{3:04x}) 值的位置在 {4}"
 
 #: ../plugins/Name_Script.py:108
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
-msgstr ""
+msgstr "\"{0}\" 不寻常的符号字符 ({1}, 0x{2:04x}) 键的位置在 {3}"
 
 #: ../plugins/Name_Script.py:113
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" 不寻常的符号字符 ({2}, 0x{3:04x}) 值的位置在 {4}"
 
 #: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" 不寻常字符 \"{2}\" ({3}, 0x{4:04x}). 意味着 \"{5}\" ({6}, 0x{7:04x})?"
 
 #: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" 不寻常字符 \"{2}\" ({3}, 0x{4:04x})"
 
 #: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" 不寻常 \"{2}\""
 
-#: ../plugins/Phone.py:36
+#: ../plugins/Phone.py:43
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "电话号码与预期格式不符"
 
-#: ../plugins/Phone.py:38
+#: ../plugins/Phone.py:47
 msgid "Local short code can't be internationalized"
-msgstr ""
+msgstr "本地短代码无法国际化"
 
-#: ../plugins/Phone.py:40
+#: ../plugins/Phone.py:49
 msgid "Bad international prefix"
-msgstr ""
+msgstr "不良的国际前缀"
 
-#: ../plugins/Phone.py:41
+#: ../plugins/Phone.py:50
 msgid "Unallowed char in phone number"
-msgstr ""
+msgstr "电话号码中不允许使用字符"
 
-#: ../plugins/Phone.py:42
+#: ../plugins/Phone.py:51
 msgid "Bad separator for multiple values"
-msgstr ""
+msgstr "多个值的错误分隔符"
 
-#: ../plugins/Phone.py:99
+#: ../plugins/Phone.py:113
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
-msgstr ""
+msgstr "电话号码中不允许使用字符“{0}”"
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
 msgid "Discordant {0} and {1}"
-msgstr ""
+msgstr "不和谐{0}和{1}"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
-msgstr ""
+msgstr "不良标签{0}=\"{1}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-brace-format
 msgid "Bad tag name=\"{0}\""
-msgstr ""
+msgstr "不良标签name=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-brace-format
 msgid "Bad tag type=\"{0}\""
-msgstr ""
+msgstr "不良标签type=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-brace-format
 msgid "Bad tag denotation=\"{0}\""
-msgstr ""
+msgstr "不良标签denotation=\"{0}\""
 
 #: ../plugins/TagWatchFrViPofm.py:90
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
-msgstr ""
+msgstr "tag key: {0} => {1} (rule ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:92
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
-msgstr ""
+msgstr "tag value: {0}={1} => {2} (rule ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
-msgstr ""
+msgstr "tag value: {0}={1} => {2} (rule ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:101
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
-msgstr ""
+msgstr "tag key: {0} => {1} (rule kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
-msgstr ""
+msgstr "tag value: {0}={1} => {2} (rule kr_vs)"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
-msgstr ""
+msgstr "使用材质标签的栅栏，最好使用fence_type标签"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected highway"
+msgstr "未连接的公路"
+
+#: ../plugins/Phone.py:45
+#, python-brace-format
+msgid "Extra \"{0}\" after international code"
 msgstr ""
