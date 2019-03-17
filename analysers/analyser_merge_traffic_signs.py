@@ -31,6 +31,7 @@ from backports import csv # In python3 only just "import csv"
 from modules import config
 from modules.PointInPolygon import PointInPolygon
 from modules import SourceVersion
+from modules import downloader
 
 
 class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
@@ -139,49 +140,33 @@ class Source_Mapillary(Source):
 
       bbox = pip.bbox()
 
-      sleep = 1
       b = 0
       for traffic_signs_ in slice(traffic_signs, 10):
-        b = b +1
+        b = b + 1
         self.logger.log('Batch {0}/{1}: {2}'.format(b, round(len(traffic_signs) / 10 + 0.5), ','.join(traffic_signs_)))
         url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers=trafficsigns&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time='2016-06-01', values=','.join(traffic_signs_))
         with open(tmp_file, 'a') as csvfile:
           writer = csv.writer(csvfile)
 
-          try:
-            r = None
-            page = 0
-            while(url):
-              page = page + 1
-              self.logger.log("Page {0}".format(page))
-              while True:
-                r = requests.get(url=url)
-                if r.status_code != 502 and r.status_code != 504:
-                  sleep = int(sleep / 2 + 0.5)
-                  break
-                else:
-                  self.logger.log("Too fast: sleep {0}".format(sleep))
-                  time.sleep(sleep)
-                  sleep = sleep * 2
-              url = r.links['next']['url'] if 'next' in r.links else None
+          r = None
+          page = 0
+          while(url):
+            page = page + 1
+            self.logger.log("Page {0}".format(page))
+            r = downloader.get(url)
+            url = r.links['next']['url'] if 'next' in r.links else None
 
-              features = json.loads(r.text)['features']
-              filtered = 0
-              self.logger.log('{0} features fetched'.format(len(features)))
-              for j in features:
-                p = j['properties']
-                image_key = p['detections'][0]['image_key']
-                gc = j['geometry']['coordinates']
-                row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']] + gc
-                if row[0] > 0.01 and pip.point_inside_polygon(gc[0], gc[1]):
-                  writer.writerow(row)
-                  filtered = filtered + 1
-              self.logger.log('{0} keeped'.format(filtered))
-          except:
-            self.logger.err(url)
-            if r:
-                self.logger.err(str(r.status_code))
-                self.logger.err(r.text[0:200])
-            raise
+            features = r.json()['features']
+            filtered = 0
+            self.logger.log('{0} features fetched'.format(len(features)))
+            for j in features:
+              p = j['properties']
+              image_key = p['detections'][0]['image_key']
+              gc = j['geometry']['coordinates']
+              row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']] + gc
+              if row[0] > 0.01 and pip.point_inside_polygon(gc[0], gc[1]):
+                writer.writerow(row)
+                filtered = filtered + 1
+            self.logger.log('{0} keeped'.format(filtered))
 
       return tmp_file
