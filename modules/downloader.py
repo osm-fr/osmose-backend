@@ -24,13 +24,34 @@ import hashlib
 import os
 import time
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
 from . import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
-def update_cache(url, delay):
+def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=(500, 502, 504)):
+    session = requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    return session
+
+
+def get(url, headers={}):
+    headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
+    return requests_retry_session().get(url, headers=headers, stream=True)
+
+def update_cache(url, delay, get=get):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
     tmp_file = cache + ".tmp"
@@ -46,9 +67,7 @@ def update_cache(url, delay):
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
         headers["If-Modified-Since"] = date_string
 
-    headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
-
-    answer = requests.get(url, headers=headers, stream=True)
+    answer = get(url, headers)
     if answer.status_code == 304:
         # not newer
         os.utime(cache, (cur_time,cur_time))
