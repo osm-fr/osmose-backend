@@ -98,11 +98,11 @@ class TagFix_Wikipedia(Plugin):
                     except:
                         interwiki = None
 
-                    if interwiki and suffix in interwiki and interwiki[suffix] == self.human_readable(tags[tag]):
-                        err.append({"class": 30317, "subclass": 7, "fix": [
-                            {'-': [tag]},
-                            {'-': [tag], '~': {wikipediaTag: suffix+':'+interwiki[suffix]}}
-                        ]})
+                if interwiki and suffix in interwiki and interwiki[suffix] == self.human_readable(tags[tag]):
+                    err.append({"class": 30317, "subclass": 7, "fix": [
+                        {'-': [tag]},
+                        {'-': [tag], '~': {wikipediaTag: suffix+':'+interwiki[suffix]}}
+                    ]})
 
             if suffix in tags:
                 # wikipedia:xxxx only authorized if tag xxxx exist
@@ -168,6 +168,17 @@ class Test(TestPluginCommon):
         if has_error:
             self.check_err(errors, (tags, errors_msg))
         return 0
+
+    def test(self):
+        self.analyser = TagFix_Wikipedia(None)
+        class _config:
+            options = {"project": "openstreetmap"}
+        class father:
+            config = _config()
+        self.analyser.father = father()
+        self.analyser.init(None)
+
+        self.check_err(self.analyser.node(None, {u"wikipedia:fr": u"Pèlerinage_de_Saint-Jacques-de-Compostelle", u"wikipedia:en": u"Way_of_St._James", u"wikipedia": u"de:Jakobsweg"}))
 
     def test_fr(self):
         self.analyser = TagFix_Wikipedia(None)
