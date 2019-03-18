@@ -33,7 +33,7 @@ class Name_Local(Plugin):
         if not self.Language:
             # no language
             return False
-        elif not isinstance(self.Language, basestring):
+        elif isinstance(self.Language, list):
             # more than one language
             return False # Checked by Name_Multilingual
 
