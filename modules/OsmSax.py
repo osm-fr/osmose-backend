@@ -93,16 +93,16 @@ class OsmSaxReader(handler.ContentHandler):
                 return
 
     def _GetFile(self):
-        if isinstance(self._filename, basestring):
+        try:
             if self._filename.endswith(".bz2"):
                 return bz2.BZ2File(self._filename)
             elif self._filename.endswith(".gz"):
                 return gzip.open(self._filename)
             else:
                 return open(self._filename, "rb")
-        else:
+        except AttributeError:
             return self._filename
-        
+
     def CopyTo(self, output):
         self._debug_in_way      = False
         self._debug_in_relation = False
@@ -195,18 +195,18 @@ class OscSaxReader(handler.ContentHandler):
     def __init__(self, filename, logger = dummylog()):
         self._filename = filename
         self._logger   = logger
- 
+
     def _GetFile(self):
-        if isinstance(self._filename, basestring):
+        try:
             if self._filename.endswith(".bz2"):
                 return bz2.BZ2File(self._filename)
             elif self._filename.endswith(".gz"):
                 return gzip.open(self._filename)
             else:
                 return open(self._filename)
-        else:
+        except AttributeError:
             return self._filename
-        
+
     def CopyTo(self, output):
         self._output = output
         parser = make_parser()
