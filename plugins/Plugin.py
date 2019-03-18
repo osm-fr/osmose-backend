@@ -196,21 +196,21 @@ class TestPluginCommon(unittest.TestCase):
     def check_dict(self, d, log):
         for (k,v) in d.items():
             self.check_str(k, log)
-            if isinstance(v, basestring):
-                self.check_str(v, log)
+            if isinstance(v, list):
+                self.check_array(v, log)
             elif isinstance(v, dict):
                 self.check_dict(v, log)
             else:
-                self.check_array(v, log)
+                self.check_str(v, log)
 
     def check_array(self, a, log):
         for v in a:
-            if isinstance(v, basestring):
-                self.check_str(v, log)
+            if isinstance(v, list):
+                self.check_array(v, log)
             elif isinstance(v, dict):
                 self.check_dict(v, log)
             else:
-                self.check_array(v, log)
+                self.check_str(v, log)
 
     def check_str(self, s, log):
         if isinstance(s, str):
