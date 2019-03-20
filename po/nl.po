@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-15 19:00+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-03-16 02:12+0000\n"
+"Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1389,11 +1389,11 @@ msgstr "\"%s\" kan worden ingesteld in bepaalde tag"
 
 #: ../plugins/Name_Script.py:34
 msgid "Non printable char"
-msgstr "Niet afdrukbare char"
+msgstr "Niet afdrukbare karakter"
 
 #: ../plugins/Name_Script.py:35
 msgid "Symbol char"
-msgstr "Symbool char"
+msgstr "Symbool karakter"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
 msgid "Member without addr:housenumber nor addr:housename"
@@ -1774,7 +1774,7 @@ msgstr "Onverwachte punctuatie in naam"
 #: ../plugins/Name_Punctuation.py:37
 #, python-format
 msgid "Unexpected char %s"
-msgstr "Onverwacht char %s"
+msgstr "Onverwacht karakter%s"
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
 msgid "Power Transformers should always be on a node"
@@ -1921,21 +1921,21 @@ msgstr "{0} Kleur code moet starten met '#' gevolgd door 3 of 6 nummers"
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "De  URL bevat spaties"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "De URL heeft geen geldige schema"
 
 #: ../plugins/Website.py:41
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
+msgstr "Verkeerde URL %(k)s=%(v)s"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "Historisch monument: {0} (geplaatst op {1} met vertrouwen {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1946,7 +1946,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr ""
+msgstr "{0} halte niet geïntegreerd "
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1957,7 +1957,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
-msgstr ""
+msgstr "{0} halte, integratie suggestie "
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1967,76 +1967,76 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-brace-format
 msgid "{0} stop of {1}"
-msgstr ""
+msgstr "{0} halte van {1}"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "{0} halte update "
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "{0} halte {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:60
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Verkeersborden voor {1} waargenomen maar geen geassocieerde tags"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 #, python-brace-format
 msgid "Missing municipality ref {0}"
-msgstr ""
+msgstr "Gemeente ref ontbreekt {0}"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:130
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
-msgstr ""
+msgstr "Bevolkingsaantal op admin_centre role ({0})  is groter dan bevolkingsaantal op de relatie ({1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr ""
+msgstr "Meerdere namen voor dezelfde ref FANTOIR {0}: {1}"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Inconsistent motor_vehicle waarden ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr ""
+msgstr "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "bij benadering {0}"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "{0} afwijking van {1}m"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
-msgstr ""
+msgstr "Onbekende omkeer rijstroken waarde \"{0}\""
 
 #: ../plugins/Highway_Lanes.py:151
 #, python-brace-format
 msgid "lanes={0} is not an integer"
-msgstr ""
+msgstr "lanes={0} is niet een integer "
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "op éénrichtingsweg, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:212
 #, python-brace-format
@@ -2044,165 +2044,165 @@ msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:214
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:216
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
 #: ../plugins/Highway_Lanes.py:218
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})"
 
 #: ../plugins/Name_Quotation.py:52
 #, python-brace-format
 msgid "Umbalanced {0} with {1}"
-msgstr ""
+msgstr "onevenwichtig {0} met {1}"
 
 #: ../plugins/Name_Quotation.py:55
 #, python-brace-format
 msgid "Umbalanced {0}"
-msgstr ""
+msgstr "onevenwichtig {0}"
 
 #: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
-msgstr ""
+msgstr "\"{0}\" onverwachte niet afdrukbare karakter ({1}, 0x{2:04x})  in key op positie  {3}"
 
 #: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" onverwachte niet afdrukbare karakter ({2}, 0x{3:04x})  in waarde op positie {4}"
 
 #: ../plugins/Name_Script.py:108
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
-msgstr ""
+msgstr "\"{0}\" onverwachte symbool karakter ({1}, 0x{2:04x}) in key op positie {3}"
 
 #: ../plugins/Name_Script.py:113
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" onverwachte symbool karakter ({2}, 0x{3:04x}) in waarde op positie {4}"
 
 #: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" onverwachte karakter \"{2}\" ({3}, 0x{4:04x}). Betekent \"{5}\" ({6}, 0x{7:04x})?"
 
 #: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" onverwachte karakter \"{2}\" ({3}, 0x{4:04x})"
 
 #: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" onverwacht \"{2}\""
 
 #: ../plugins/Phone.py:43
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "Telefoonnummer komt niet overeen met het verwachte formaat"
 
 #: ../plugins/Phone.py:47
 msgid "Local short code can't be internationalized"
-msgstr ""
+msgstr "Lokale afkortingen kunnen niet worden geïnternationaliseerd"
 
 #: ../plugins/Phone.py:49
 msgid "Bad international prefix"
-msgstr ""
+msgstr "Verkeerde internationaal prefix"
 
 #: ../plugins/Phone.py:50
 msgid "Unallowed char in phone number"
-msgstr ""
+msgstr "Niet toegestane karakter in telefoonnummer "
 
 #: ../plugins/Phone.py:51
 msgid "Bad separator for multiple values"
-msgstr ""
+msgstr "Verkeerde separator voor meerdere waarden"
 
 #: ../plugins/Phone.py:113
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
-msgstr ""
+msgstr "Niet toegestane karakter \"{0}\" in telefoonnummer"
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
 msgid "Discordant {0} and {1}"
-msgstr ""
+msgstr "Dissonant {0} en {1}"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
-msgstr ""
+msgstr "Verkeerde tag {0}=\"{1}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-brace-format
 msgid "Bad tag name=\"{0}\""
-msgstr ""
+msgstr "Verkeerde tag name=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-brace-format
 msgid "Bad tag type=\"{0}\""
-msgstr ""
+msgstr "Verkeerde tag type=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-brace-format
 msgid "Bad tag denotation=\"{0}\""
-msgstr ""
+msgstr "Verkeerde tag denotation=\"{0}\""
 
 #: ../plugins/TagWatchFrViPofm.py:90
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
-msgstr ""
+msgstr "tag key: {0} => {1} (rule ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:92
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
-msgstr ""
+msgstr "tag waarde: {0}={1} => {2} (rule ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
-msgstr ""
+msgstr "tag waarde: {0}={1} => {2} (rule ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:101
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
-msgstr ""
+msgstr "tag key: {0} => {1} (rule kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
-msgstr ""
+msgstr "tag waarde: {0}={1} => {2} (rule kr_vs)"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
-msgstr ""
+msgstr "Hek met material tag, gebruik beter fence_type tag"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected highway"
-msgstr ""
+msgstr "Niet verbonden weg "
 
 #: ../plugins/Phone.py:45
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
-msgstr ""
+msgstr "Extra \"{0}\" na international code "
