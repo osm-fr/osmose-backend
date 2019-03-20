@@ -45,6 +45,10 @@ class Analyser_Merge_Dynamic(Analyser):
 #                else:
 #                    analyser_obj.analyser_change()
 
+    def timestamp(self):
+        with self.analysers[0](self.config, self.error_file,  self.logger) as analyser_obj:
+            return analyser_obj.timestamp()
+
 
 class SubAnalyser_Merge_Dynamic(Analyser_Merge):
 

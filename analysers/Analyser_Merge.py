@@ -742,7 +742,7 @@ class Generate:
             elif colomn and res[colomn]:
                 tags[tag] = res[colomn]
 
-        return dict(map(lambda kv: [kv[0], kv[1] != None and unicode(kv[1]) or None], tags.items()))
+        return dict(map(lambda kv: [kv[0], kv[1] != None and u'{0}'.format(kv[1]) or None], tags.items()))
 
     def tagFactory(self, res):
         tags = self.tagFactoryGroup(res, self.static1, self.mapping1)

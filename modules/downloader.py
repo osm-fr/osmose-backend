@@ -24,13 +24,34 @@ import hashlib
 import os
 import time
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
 from . import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
-def update_cache(url, delay, bz2_decompress=False):
+def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=(500, 502, 504)):
+    session = requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    return session
+
+
+def get(url, headers={}):
+    headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
+    return requests_retry_session().get(url, headers=headers, stream=True)
+
+def update_cache(url, delay, get=get):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
     tmp_file = cache + ".tmp"
@@ -46,9 +67,7 @@ def update_cache(url, delay, bz2_decompress=False):
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
         headers["If-Modified-Since"] = date_string
 
-    headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
-
-    answer = requests.get(url, headers=headers, stream=True)
+    answer = get(url, headers)
     if answer.status_code == 304:
         # not newer
         os.utime(cache, (cur_time,cur_time))
@@ -62,14 +81,8 @@ def update_cache(url, delay, bz2_decompress=False):
 
     # write the file
     try:
-        outfile = None
-        if bz2_decompress:
-            import bz2
-            decompressor = bz2.BZ2Decompressor()
         outfile = open(tmp_file, "wb")
         for data in answer.iter_content(chunk_size=None):
-            if bz2_decompress:
-                data = decompressor.decompress(data)
             outfile.write(data)
     except:
         raise
@@ -135,28 +148,28 @@ class Test(unittest.TestCase):
         self.check_content(content)
 
     def test_update_cache(self):
-        dst1 = update_cache(self.url, 0, bz2_decompress=False)
+        dst1 = update_cache(self.url, 0)
         assert dst1
         self.check_file_content(dst1)
         print("dest file='%s'" % dst1)
 
         # make sure that it is downloaded from server
         os.remove(dst1)
-        dst2 = update_cache(self.url, 0, bz2_decompress=False)
+        dst2 = update_cache(self.url, 0)
         assert dst2
         self.assertEquals(dst1, dst2)
         self.check_file_content(dst2)
         dst2_mtime = os.stat(dst2).st_mtime
 
         # check that file is not downloaded again with delay > 0
-        dst3 = update_cache(self.url, 2, bz2_decompress=False)
+        dst3 = update_cache(self.url, 2)
         assert dst3
         self.assertEquals(dst1, dst3)
         dst3_mtime = os.stat(dst3).st_mtime
         self.assertEquals(dst2_mtime, dst3_mtime)
 
         # check that file is downloaded again with delay = 0
-        dst4 = update_cache(self.url, 0, bz2_decompress=False)
+        dst4 = update_cache(self.url, 0)
         assert dst4
         self.assertEquals(dst1, dst4)
         dst4_mtime = os.stat(dst4).st_mtime
@@ -165,7 +178,7 @@ class Test(unittest.TestCase):
         # check that file is downloaded again with delay > 0
         old_time = dst4_mtime - 10*24*60*60 - 142
         os.utime(dst4, (old_time, old_time))
-        dst5 = update_cache(self.url, 5, bz2_decompress=False)
+        dst5 = update_cache(self.url, 5)
         assert dst5
         self.assertEquals(dst1, dst5)
         dst5_mtime = os.stat(dst5).st_mtime
@@ -175,7 +188,7 @@ class Test(unittest.TestCase):
 
     def test_update_cache_404(self):
         with self.assertRaises(requests.HTTPError):
-            update_cache(self.url_404, 0, bz2_decompress=False)
+            update_cache(self.url_404, 0)
 
     def test_urlmtime(self):
         dst = urlmtime(self.url, 10)

@@ -25,6 +25,7 @@ import sys
 import os
 import requests
 from modules import OsmoseLog
+from modules import downloader
 
 def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
 
@@ -51,7 +52,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
         headers["If-Modified-Since"] = open(file_ts).read()
 
     # request fails with a 304 error when the file wasn't modified
-    answer = requests.get(url, headers=headers, stream=True)
+    answer = downloader.get(url, headers=headers)
     if answer.status_code == 304:
         logger.log(u"not newer")
         return False
