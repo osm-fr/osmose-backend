@@ -160,7 +160,7 @@ class Highway_Lanes(Plugin):
         n_lanes = {}
         for direction in ['', ':forward', ':backward', ':both_ways']:
             tag = None
-            for star in number.keys():
+            for star in sorted(number.keys()):
                 non_fullwidth_lanes_number_star = ((non_fullwidth_lanes_number.get(direction) or 0) if star != 'lanes' else 0)
                 non_fullwidth_lanes_number_tag = ((non_fullwidth_lanes_number.get(direction) or 0) if tag != 'lanes:lanes'+direction else 0)
                 if n_lanes.get(direction) != None and number[star].get(direction) != None and \
