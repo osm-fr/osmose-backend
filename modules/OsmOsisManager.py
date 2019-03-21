@@ -324,11 +324,11 @@ class OsmOsisManager:
     os.makedirs(dir_country_tmp)
 
     try:
-      prev_state_ts = None
       is_uptodate = False
       nb_iter = 0
 
       osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+      prev_state_ts = osm_state.timestamp()
       cur_ts = datetime.datetime.today()
       print("state: ", osm_state.timestamp(), end=' ')
       if osm_state.timestamp() < (cur_ts - datetime.timedelta(days=10)):
