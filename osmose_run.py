@@ -105,25 +105,26 @@ def execc(conf, logger, options, osmosis_manager):
     elif "url" in conf.download:
         newer = False
         xml_change = None
-        updated = False  # set if extract was updated instead of fully downloaded
 
         if not newer and options.skip_download:
             logger.sub().log("skip download")
             newer = True
-            updated = True
 
         if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
             (status, xml_change) = osmosis_manager.run_diff(conf)
             if status:
                 newer = True
-                updated = True
 
         if not newer:
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
                                 min_file_size=8*1024)
 
-            updated = False
+            if newer and options.diff:
+                osmosis_manager.init_diff(conf)
+                if "/minute/" in conf.download["diff"] or "/hour/" in conf.download["diff"]:
+                    # update extract with any more recent available diff
+                    osmosis_manager.run_diff(conf)
 
         if not newer:
             return 0x11
@@ -133,8 +134,6 @@ def execc(conf, logger, options, osmosis_manager):
 
         if options.change:
             osmosis_manager.init_change(conf)
-        elif options.diff and not updated:
-            osmosis_manager.init_diff(conf)
 
     if hasattr(conf, "sql_post_scripts"):
         logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
