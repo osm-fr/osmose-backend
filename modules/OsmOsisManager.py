@@ -304,7 +304,7 @@ class OsmOsisManager:
             sys.stdout.write(line)
     fileinput.close()
 
-    download.dl(conf.download["diff"] + "state.txt",
+    download.dl(conf.download["state.txt"],
                 os.path.join(diff_path, "state.txt"),
                 self.logger.sub(),
                 min_file_size=10)
