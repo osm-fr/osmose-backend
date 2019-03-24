@@ -24,6 +24,7 @@ from __future__ import print_function
 
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
+from modules import downloader
 import sys, os, traceback
 import modules.OsmOsisManager
 import modules.config
@@ -203,7 +204,7 @@ def execc(conf, logger, options, osmosis_manager):
                             remote_timestamp = None
                             if not options.skip_frontend_check:
                                 url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (country, analyser_name, 'objects=true' if options.resume else '')
-                                resp = requests.get(url)
+                                resp = downloader.get(url)
                                 if not resp.ok:
                                     logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
                                 else:
