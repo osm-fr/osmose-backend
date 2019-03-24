@@ -25,7 +25,7 @@ from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dy
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
 
-import requests, time, os, shutil, hashlib, codecs, tempfile
+import time, os, shutil, hashlib, codecs, tempfile
 from io import open # In python3 only, this import is not required
 from backports import csv # In python3 only just "import csv"
 from modules import config
