@@ -453,7 +453,7 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'osmosis_highway_zone',
 
     'merge_heritage_FR_merimee',
-#    'merge_poste_FR',
+    'merge_poste_FR',
     'merge_school_FR',
     'merge_college_FR',
     'merge_service_public_FR',
