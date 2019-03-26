@@ -190,9 +190,11 @@ class default_country_simple(default_simple):
         })
         if download_repo == GEOFABRIK:
             self.download["diff"] = self.download_repo + part + download_country + "-updates/"
+            self.download["state.txt"] = self.download["diff"] + "state.txt"
         if download_repo == OSMFR:
             self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
             self.download["diff"] = self.download_repo + "../replication/" + part + download_country + "/minute/"
+            self.download["state.txt"] = self.download_repo + part + download_country + ".state.txt"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
