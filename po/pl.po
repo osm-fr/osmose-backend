@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-20 16:50+0000\n"
+"PO-Revision-Date: 2019-03-23 17:55+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1281,7 +1281,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "Stacja benzynowa, propozycja integracji"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
@@ -1298,7 +1298,7 @@ msgstr "Węzeł z place=%s bez tagu name"
 
 #: ../plugins/Name_Saint_FR.py:40
 msgid "Missing hyphen after \"Saint(e)\""
-msgstr ""
+msgstr "Brakuje łącznika po \"Saint(e)\""
 
 #: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
@@ -1425,7 +1425,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated node without tag"
-msgstr ""
+msgstr "Zduplikowany węzeł bez tagów"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Should be polygon, part of multipolygon or not having area tag"
@@ -1449,7 +1449,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
-msgstr ""
+msgstr "Brakuje typu relacji"
 
 #: ../plugins/TagFix_Deprecated.py:87
 #, python-format
@@ -1911,7 +1911,7 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr ""
+msgstr "W perskim arabska litera '{0}' powinna być zastąpiona przez '{1}'"
 
 #: ../plugins/Colour.py:13
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
@@ -1925,11 +1925,11 @@ msgstr ""
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "Adres strony internetowej zawiera spację"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "Adres strony internetowej nie ma poprawnego formatu"
 
 #: ../plugins/Website.py:41
 #, python-format
