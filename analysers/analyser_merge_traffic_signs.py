@@ -25,7 +25,7 @@ from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dy
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
 
-import requests, time, os, shutil, hashlib, codecs, tempfile
+import time, os, shutil, hashlib, codecs, tempfile
 from io import open # In python3 only, this import is not required
 from backports import csv # In python3 only just "import csv"
 from modules import config
@@ -44,15 +44,26 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
             return not country or not any(map(lambda co: country.startswith(co), not_for))
         return True
 
+    def dict_replace(self, d, f, r):
+        return dict(map(lambda kv: [kv[0], kv[1] and kv[1].replace(f, r)], d.items()))
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
         if "country" not in self.config.options:
             return
 
+        speed_limit_unit = self.config.options.get("speed_limit_unit")
+
         mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json").read())
         for r in mapingfile:
             if self.check_not_only_for(r.get('not_for'), r.get('only_for')):
+                if speed_limit_unit:
+                    unit = ' ' + speed_limit_unit
+                else:
+                    unit = ''
+                r['select_tags'] = list(map(lambda select: self.dict_replace(select, '{speed_limit_unit}', unit), r['select_tags']))
+                r['generate_tags'] = self.dict_replace(r['generate_tags'], '{speed_limit_unit}', unit)
+
                 self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['select_tags'], r['generate_tags'])
 
 

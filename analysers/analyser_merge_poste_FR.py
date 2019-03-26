@@ -33,16 +33,14 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office, integration suggestion") }
         self.update_official  = {"item":"8022", "class": 4, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office update") }
 
-        self.Annexe = re.compile(' A$')
-        self.Principal = re.compile(' PAL$')
-        self.APBP = re.compile(' (AP|BP)$')
+        self.APBP = re.compile(' (AP|BP|RP)$')
 
         Analyser_Merge.__init__(self, config, logger,
-            u"https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
-            u"Liste des points de contact du réseau postal français et horaires",
-            CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "06/2015",
-                    file = "poste_FR.csv.bz2", encoding = "ISO-8859-15"),
-                separator = u";"),
+            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont",
+            u"Liste des services disponibles en bureaux de poste, agences postales et relais poste",
+            CSV(Source(attribution = u"LaPoste", millesime = "03/2019",
+                     fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                 separator = u";"),
             Load("Longitude", "Latitude"),
             Mapping(
                 select = Select(
@@ -56,17 +54,14 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                         "operator": "La Poste"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:LaPoste": "#Identifiant",
-                        "post_office:type": lambda res: {
-                            None: None,
-                            u"Bureau de poste": None,
-                            u"Agence postale commnunale": "post_annex",
-                            u"Relais poste commerçant": "post_partner"
-                        }[res["Caractéristique_du_site"]],
+                        "ref:FR:LaPoste": "#Identifiant_du_site",
+                        "post_office:type": lambda res:
+                            "post_annex" if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste
+                            "post_partner" if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
+                            None, # BP: Bureau de poste; other
                         "addr:postcode": "Code_postal",
                         # localite
                         # pays
-                        "copy_facility": lambda res: self.bool[res["Photocopie"]],
                         "atm": lambda res: self.bool[res["Distributeur_de_billets"]],
                         "stamping_machine": lambda res: self.bool[res["Affranchissement_Libre_Service"]],
                         "wheelchair": lambda res:
@@ -74,7 +69,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                             "limited" if self.bool[res[u"Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res[u"Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "no"},
                     mapping2 = {
-                        "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé_du_site"]))),
+                        "name": lambda res: re.sub(self.APBP, "", res["Libellé_du_site"]),
                         "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "phone": lambda res: ("+33" + res["Numéro_de_téléphone"][1:]) if res["Numéro_de_téléphone"] != "3631" else None},
                 text = lambda tags, fields: {"en": u"Post office %s" % ", ".join(filter(lambda x: x, [fields[u"Précision_du_géocodage"].lower(), fields[u"Adresse"], fields[u"Complément_d_adresse"], fields[u"Lieu_dit"], fields["Code postal"], fields[u"Localité"]]))} )))

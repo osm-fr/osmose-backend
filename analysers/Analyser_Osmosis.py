@@ -430,7 +430,7 @@ WHERE
                     for (i, d) in enumerate(ret["data"]):
                         if d != None:
                             d(res[i])
-                    ret["fixType"] = map(lambda datai: self.FixTypeTable[datai] if datai != None and datai in self.FixTypeTable else None, ret["data"])
+                    ret["fixType"] = list(map(lambda datai: self.FixTypeTable[datai] if datai != None and datai in self.FixTypeTable else None, ret["data"]))
                 self.error_file.error(
                     ret["class"],
                     ret.get("subclass"),

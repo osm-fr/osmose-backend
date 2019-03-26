@@ -80,7 +80,7 @@ class TagFix_DuplicateValue(Plugin):
             if k == 'source':
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise')
             if ';' in v:
-                vs = map(lambda w: w.strip(), v.split(';'))
+                vs = list(map(lambda w: w.strip(), v.split(';')))
                 if len(vs) != len(set(vs)):
                     err.append({"class": 3060, "subclass": 4,
                                 "text": T_("Duplicated values %(key)s=%(val)s", {"key": k, "val": tags[k]}),

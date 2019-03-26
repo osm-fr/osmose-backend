@@ -32,7 +32,7 @@ from . import config
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
-def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=(500, 502, 504)):
+def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=(500, 502, 503, 504)):
     session = requests.Session()
     retry = Retry(
         total=retries,

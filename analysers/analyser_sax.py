@@ -433,7 +433,7 @@ class Analyser_Sax(Analyser):
                     conf_limit.add(self.config.options[i])
 
         # load plugins
-        for plugin in sorted(self.ToolsListDir("plugins")):
+        for plugin in sorted(self.ToolsListDir(u"plugins")):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]

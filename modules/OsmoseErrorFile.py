@@ -132,12 +132,12 @@ class ErrorFile:
             fixes = [[fixes]]
         elif not isinstance(fixes[0], list):
             # Default one level array is different way of fix
-            fixes = map(lambda x: [x], fixes)
-        return map(lambda fix:
-            map(lambda f:
+            fixes = list(map(lambda x: [x], fixes))
+        return list(map(lambda fix:
+            list(map(lambda f:
                 None if f == None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
-                fix),
-            fixes)
+                fix)),
+            fixes))
 
     def filterfix(self, res, fixesType, fixes, geom):
         ret_fixes = []

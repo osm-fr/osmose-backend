@@ -6,18 +6,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 5 km/h",
+    "title": "max speed limit 5",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-5--g1"
@@ -25,19 +17,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "5"
+        "maxspeed": "5{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "5"
+        "maxspeed:forward": "5{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "5"
+        "maxspeed:backward": "5{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "5"
+      "maxspeed": "5{speed_limit_unit}"
     }
   },
   {
@@ -47,18 +39,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 10 km/h",
+    "title": "max speed limit 10",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-10--g1"
@@ -66,15 +50,15 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "10"
+        "maxspeed": "10{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "10"
+        "maxspeed:forward": "10{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "10"
+        "maxspeed:backward": "10{speed_limit_unit}"
       }
     ],
     "generate_tags": {
@@ -88,18 +72,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 15 km/h",
+    "title": "max speed limit 15",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-15--g1"
@@ -107,19 +83,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "15"
+        "maxspeed": "15{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "15"
+        "maxspeed:forward": "15{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "15"
+        "maxspeed:backward": "15{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "15"
+      "maxspeed": "15{speed_limit_unit}"
     }
   },
   {
@@ -129,18 +105,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 20 km/h",
+    "title": "max speed limit 20",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-20--g1"
@@ -148,19 +116,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "20"
+        "maxspeed": "20{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "20"
+        "maxspeed:forward": "20{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "20"
+        "maxspeed:backward": "20{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "20"
+      "maxspeed": "20{speed_limit_unit}"
     }
   },
   {
@@ -171,18 +139,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 30 km/h",
+    "title": "max speed limit 30",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-30--g1"
@@ -190,27 +150,27 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "30"
+        "maxspeed": "30{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "30"
+        "maxspeed:forward": "30{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "30"
+        "maxspeed:backward": "30{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "30"
+        "maxspeed:hgv": "30{speed_limit_unit}"
       },
       {
         "traffic_calming": null,
-        "maxspeed": "30"
+        "maxspeed": "30{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "30"
+      "maxspeed": "30{speed_limit_unit}"
     }
   },
   {
@@ -220,18 +180,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 35 km/h",
+    "title": "max speed limit 35",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-35--g1"
@@ -239,19 +191,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "35"
+        "maxspeed": "35{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "35"
+        "maxspeed:forward": "35{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "35"
+        "maxspeed:backward": "35{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "35"
+      "maxspeed": "35{speed_limit_unit}"
     }
   },
   {
@@ -261,18 +213,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 40 km/h",
+    "title": "max speed limit 40",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-40--g1"
@@ -280,19 +224,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "40"
+        "maxspeed": "40{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "40"
+        "maxspeed:forward": "40{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "40"
+        "maxspeed:backward": "40{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "40"
+      "maxspeed": "40{speed_limit_unit}"
     }
   },
   {
@@ -302,18 +246,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 45 km/h",
+    "title": "max speed limit 45",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-45--g1"
@@ -321,19 +257,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "45"
+        "maxspeed": "45{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "45"
+        "maxspeed:forward": "45{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "45"
+        "maxspeed:backward": "45{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "45"
+      "maxspeed": "45{speed_limit_unit}"
     }
   },
   {
@@ -343,18 +279,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 50 km/h",
+    "title": "max speed limit 50",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-50--g1"
@@ -362,23 +290,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "50"
+        "maxspeed": "50{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "50"
+        "maxspeed:forward": "50{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "50"
+        "maxspeed:backward": "50{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "50"
+        "maxspeed:hgv": "50{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "50"
+      "maxspeed": "50{speed_limit_unit}"
     }
   },
   {
@@ -388,18 +316,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 60 km/h",
+    "title": "max speed limit 60",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-60--g1"
@@ -407,19 +327,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "60"
+        "maxspeed": "60{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "60"
+        "maxspeed:forward": "60{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "60"
+        "maxspeed:backward": "60{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "60"
+      "maxspeed": "60{speed_limit_unit}"
     }
   },
   {
@@ -429,18 +349,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 70 km/h",
+    "title": "max speed limit 70",
     "not_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-70--g1"
@@ -448,23 +360,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "70"
+        "maxspeed": "70{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "70"
+        "maxspeed:forward": "70{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "70"
+        "maxspeed:backward": "70{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "70"
+        "maxspeed:hgv": "70{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "70"
+      "maxspeed": "70{speed_limit_unit}"
     }
   },
   {
@@ -474,10 +386,11 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 80 km/h",
+    "title": "max speed limit 80",
     "not_for": [
       "BS",
       "BZ",
+      "CA",
       "FM",
       "GB",
       "GG",
@@ -493,19 +406,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "80"
+        "maxspeed": "80{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "80"
+        "maxspeed:forward": "80{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "80"
+        "maxspeed:backward": "80{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "80"
+        "maxspeed:hgv": "80{speed_limit_unit}"
       },
       {
         "highway": null,
@@ -513,7 +426,7 @@
       }
     ],
     "generate_tags": {
-      "maxspeed": "80"
+      "maxspeed": "80{speed_limit_unit}"
     }
   },
   {
@@ -523,10 +436,11 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 90 km/h",
+    "title": "max speed limit 90",
     "not_for": [
       "BS",
       "BZ",
+      "CA",
       "FM",
       "GB",
       "GG",
@@ -542,19 +456,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "90"
+        "maxspeed": "90{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "90"
+        "maxspeed:forward": "90{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "90"
+        "maxspeed:backward": "90{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "90"
+      "maxspeed": "90{speed_limit_unit}"
     }
   },
   {
@@ -564,10 +478,11 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 100 km/h",
+    "title": "max speed limit 100",
     "not_for": [
       "BS",
       "BZ",
+      "CA",
       "FM",
       "GB",
       "GG",
@@ -583,15 +498,15 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "100"
+        "maxspeed": "100{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "100"
+        "maxspeed:forward": "100{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "100"
+        "maxspeed:backward": "100{speed_limit_unit}"
       },
       {
         "highway": null,
@@ -599,7 +514,7 @@
       }
     ],
     "generate_tags": {
-      "maxspeed": "100"
+      "maxspeed": "100{speed_limit_unit}"
     }
   },
   {
@@ -609,10 +524,11 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 110 km/h",
+    "title": "max speed limit 110",
     "not_for": [
       "BS",
       "BZ",
+      "CA",
       "FM",
       "GB",
       "GG",
@@ -628,19 +544,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "110"
+        "maxspeed": "110{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "110"
+        "maxspeed:forward": "110{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "110"
+        "maxspeed:backward": "110{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "110"
+      "maxspeed": "110{speed_limit_unit}"
     }
   },
   {
@@ -650,10 +566,11 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 120 km/h",
+    "title": "max speed limit 120",
     "not_for": [
       "BS",
       "BZ",
+      "CA",
       "FM",
       "GB",
       "GG",
@@ -669,19 +586,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "120"
+        "maxspeed": "120{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "120"
+        "maxspeed:forward": "120{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "120"
+        "maxspeed:backward": "120{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "120"
+      "maxspeed": "120{speed_limit_unit}"
     }
   },
   {
@@ -691,10 +608,11 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 130 km/h",
+    "title": "max speed limit 130",
     "not_for": [
       "BS",
       "BZ",
+      "CA",
       "FM",
       "GB",
       "GG",
@@ -710,19 +628,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "130"
+        "maxspeed": "130{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "130"
+        "maxspeed:forward": "130{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "130"
+        "maxspeed:backward": "130{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "130"
+      "maxspeed": "130{speed_limit_unit}"
     }
   },
   {
@@ -944,18 +862,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 5 mph",
+    "title": "max speed limit 5",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-5--g3"
@@ -963,19 +873,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "5 mph"
+        "maxspeed": "5{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "5 mph"
+        "maxspeed:forward": "5{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "5 mph"
+        "maxspeed:backward": "5{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "5 mph"
+      "maxspeed": "5{speed_limit_unit}"
     }
   },
   {
@@ -985,18 +895,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 10 mph",
+    "title": "max speed limit 10",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-10--g3"
@@ -1004,19 +906,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "10 mph"
+        "maxspeed": "10{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "10 mph"
+        "maxspeed:forward": "10{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "10 mph"
+        "maxspeed:backward": "10{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "10 mph"
+      "maxspeed": "10{speed_limit_unit}"
     }
   },
   {
@@ -1026,18 +928,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 15 mph",
+    "title": "max speed limit 15",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-15--g3"
@@ -1045,19 +939,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "15 mph"
+        "maxspeed": "15{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "15 mph"
+        "maxspeed:forward": "15{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "15 mph"
+        "maxspeed:backward": "15{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "15 mph"
+      "maxspeed": "15{speed_limit_unit}"
     }
   },
   {
@@ -1067,18 +961,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 20 mph",
+    "title": "max speed limit 20",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-20--g3"
@@ -1086,23 +972,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "20 mph"
+        "maxspeed": "20{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "20 mph"
+        "maxspeed:forward": "20{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "20 mph"
+        "maxspeed:backward": "20{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "20 mph"
+        "maxspeed:hgv": "20{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "20 mph"
+      "maxspeed": "20{speed_limit_unit}"
     }
   },
   {
@@ -1112,18 +998,9 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 25 mph",
+    "title": "max speed limit 25",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-25--g3"
@@ -1131,23 +1008,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "25 mph"
+        "maxspeed": "25{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "25 mph"
+        "maxspeed:forward": "25{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "25 mph"
+        "maxspeed:backward": "25{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "25 mph"
+        "maxspeed:hgv": "25{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "25 mph"
+      "maxspeed": "25{speed_limit_unit}"
     }
   },
   {
@@ -1158,18 +1035,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 30 mph",
+    "title": "max speed limit 30",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-30--g3"
@@ -1177,23 +1046,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "30 mph"
+        "maxspeed": "30{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "30 mph"
+        "maxspeed:forward": "30{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "30 mph"
+        "maxspeed:backward": "30{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "30 mph"
+        "maxspeed:hgv": "30{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "30 mph"
+      "maxspeed": "30{speed_limit_unit}"
     }
   },
   {
@@ -1203,18 +1072,9 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 35 mph",
+    "title": "max speed limit 35",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-35--g3"
@@ -1222,23 +1082,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "35 mph"
+        "maxspeed": "35{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "35 mph"
+        "maxspeed:forward": "35{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "35 mph"
+        "maxspeed:backward": "35{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "35 mph"
+        "maxspeed:hgv": "35{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "35 mph"
+      "maxspeed": "35{speed_limit_unit}"
     }
   },
   {
@@ -1248,18 +1108,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 40 mph",
+    "title": "max speed limit 40",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-40--g3"
@@ -1267,23 +1119,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "40 mph"
+        "maxspeed": "40{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "40 mph"
+        "maxspeed:forward": "40{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "40 mph"
+        "maxspeed:backward": "40{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "40 mph"
+        "maxspeed:hgv": "40{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "40 mph"
+      "maxspeed": "40{speed_limit_unit}"
     }
   },
   {
@@ -1293,18 +1145,9 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 45 mph",
+    "title": "max speed limit 45",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-45--g3"
@@ -1312,23 +1155,23 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "45 mph"
+        "maxspeed": "45{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "45 mph"
+        "maxspeed:forward": "45{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "45 mph"
+        "maxspeed:backward": "45{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:hgv": "45 mph"
+        "maxspeed:hgv": "45{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "45 mph"
+      "maxspeed": "45{speed_limit_unit}"
     }
   },
   {
@@ -1338,18 +1181,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 50 mph",
+    "title": "max speed limit 50",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-50--g3"
@@ -1357,19 +1192,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "50 mph"
+        "maxspeed": "50{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "50 mph"
+        "maxspeed:forward": "50{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "50 mph"
+        "maxspeed:backward": "50{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "50 mph"
+      "maxspeed": "50{speed_limit_unit}"
     }
   },
   {
@@ -1379,18 +1214,9 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 55 mph",
+    "title": "max speed limit 55",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-55--g3"
@@ -1398,19 +1224,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "55 mph"
+        "maxspeed": "55{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "55 mph"
+        "maxspeed:forward": "55{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "55 mph"
+        "maxspeed:backward": "55{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "55 mph"
+      "maxspeed": "55{speed_limit_unit}"
     }
   },
   {
@@ -1420,18 +1246,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 60 mph",
+    "title": "max speed limit 60",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-60--g3"
@@ -1439,19 +1257,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "60 mph"
+        "maxspeed": "60{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "60 mph"
+        "maxspeed:forward": "60{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "60 mph"
+        "maxspeed:backward": "60{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "60 mph"
+      "maxspeed": "60{speed_limit_unit}"
     }
   },
   {
@@ -1461,18 +1279,9 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 65 mph",
+    "title": "max speed limit 65",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-65--g3"
@@ -1480,19 +1289,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "65 mph"
+        "maxspeed": "65{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "65 mph"
+        "maxspeed:forward": "65{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "65 mph"
+        "maxspeed:backward": "65{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "65 mph"
+      "maxspeed": "65"
     }
   },
   {
@@ -1502,18 +1311,10 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 70 mph",
+    "title": "max speed limit 70",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "CA",
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-70--g3"
@@ -1521,19 +1322,19 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "70 mph"
+        "maxspeed": "70{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "70 mph"
+        "maxspeed:forward": "70{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "70 mph"
+        "maxspeed:backward": "70{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "70 mph"
+      "maxspeed": "70{speed_limit_unit}"
     }
   },
   {
@@ -1543,18 +1344,9 @@
       "ways"
     ],
     "conflation": 200,
-    "title": "max speed limit 75 mph",
+    "title": "max speed limit 75",
     "only_for": [
-      "BS",
-      "BZ",
-      "FM",
-      "GB",
-      "GG",
-      "IM",
-      "JE",
-      "LR",
-      "US",
-      "WS"
+      "US"
     ],
     "sign": [
       "regulatory--maximum-speed-limit-75--g3"
@@ -1562,19 +1354,184 @@
     "select_tags": [
       {
         "highway": null,
-        "maxspeed": "75 mph"
+        "maxspeed": "75{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:forward": "75 mph"
+        "maxspeed:forward": "75{speed_limit_unit}"
       },
       {
         "highway": null,
-        "maxspeed:backward": "75 mph"
+        "maxspeed:backward": "75{speed_limit_unit}"
       }
     ],
     "generate_tags": {
-      "maxspeed": "75 mph"
+      "maxspeed": "75{speed_limit_unit}"
+    }
+  },
+  {
+    "class": 116,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 80",
+    "only_for": [
+      "CA"
+    ],
+    "sign": [
+      "regulatory--maximum-speed-limit-80--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "80{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "80{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "80{speed_limit_unit}"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "80{speed_limit_unit}"
+    }
+  },
+  {
+    "class": 117,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 90",
+    "only_for": [
+      "CA"
+    ],
+    "sign": [
+      "regulatory--maximum-speed-limit-90--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "90{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "90{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "90{speed_limit_unit}"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "90{speed_limit_unit}"
+    }
+  },
+  {
+    "class": 118,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 100",
+    "only_for": [
+      "CA"
+    ],
+    "sign": [
+      "regulatory--maximum-speed-limit-100--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "100{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "100{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "100{speed_limit_unit}"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "100{speed_limit_unit}"
+    }
+  },
+  {
+    "class": 119,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 110",
+    "only_for": [
+      "CA-AB",
+      "CA-BC",
+      "CA-MB",
+      "CA-NB",
+      "CA-NS",
+      "CA-SK"
+    ],
+    "sign": [
+      "regulatory--maximum-speed-limit-110--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "110{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "110{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "110{speed_limit_unit}"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "110{speed_limit_unit}"
+    }
+  },
+  {
+    "class": 120,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 120",
+    "only_for": [
+      "CA-BC"
+    ],
+    "sign": [
+      "regulatory--maximum-speed-limit-120--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "120{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "120{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "120{speed_limit_unit}"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "120{speed_limit_unit}"
     }
   }
 ]

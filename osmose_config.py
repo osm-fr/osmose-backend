@@ -453,7 +453,7 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'osmosis_highway_zone',
 
     'merge_heritage_FR_merimee',
-#    'merge_poste_FR',
+    'merge_poste_FR',
     'merge_school_FR',
     'merge_college_FR',
     'merge_service_public_FR',
@@ -550,11 +550,11 @@ default_country("europe", "estonia", 79510, {"country": "EE", "language": "et", 
 default_country("europe", "cyprus", 307787, {"country": "CY", "language": ["el", "tr", "en"], "driving_side": "left", "proj": 32636})
 default_country("europe", "faroe-islands", 52939, {"country": "FO", "language": "fo", "proj": 2169})
 default_country("europe", "greece",  192307, {"country": "GR", "language": "el","proj": 32635}, download_repo=GEOFABRIK)
-default_country("europe", "guernesey", 270009, {"country": "GG", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
+default_country("europe", "guernesey", 270009, {"country": "GG", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "ireland", 62273, {"country": "IE", "driving_side": "left", "language": ["en", "ga"], "proj": 32629}, download_repo=OSMFR)
-default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
-default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
+default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630})
+default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "kosovo", 2088990, {"country": "XK", "language": ["sq", "sr-Latn"], "proj": 32634, "multilingual-style": "xk"})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
 lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK)
@@ -576,9 +576,9 @@ default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, 
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
-default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
-default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
-default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
+default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
+default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
@@ -656,7 +656,7 @@ default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": 
 
 #########################################################################
 
-us_state = gen_country('north-america/us', country_base='usa', language='en')
+us_state = gen_country('north-america/us', country_base='usa', language='en', speed_limit_unit='mph')
 
 us_state("alabama", 161950, "US-AL", proj=26916)
 us_state("alaska", 1116270, "US-AK", proj=26905)
@@ -827,7 +827,7 @@ default_country("africa", "guinea-bissau", 192776, {"country": "GW", "language":
 default_country("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "kenya", 192798,    {"country": "KE", "language": "en", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
 default_country("africa", "lesotho", 2093234, {"country": "LS", "language": "en", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
-default_country("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
+default_country("africa", "liberia", 192780,  {"country": "LR", "language": "en", "speed_limit_unit": "mph", "proj": 32629})
 default_country("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32633})
 default_country("africa", "madagascar", 447325, {"country": "MG", "language": ["fr", "mg"], "proj": 32738}, download_repo=GEOFABRIK)
 default_country("africa", "malawi", 195290, {"country": "MW", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
@@ -962,7 +962,7 @@ id_province("yogyakarta", 5616105, "ID-YO")
 
 # central america
 
-default_country("central-america", "belize", 287827, {"country": "BZ", "language": "en", "proj": 32616})
+default_country("central-america", "belize", 287827, {"country": "BZ", "language": "en", "speed_limit_unit": "mph", "proj": 32616})
 default_country("central-america", "costa_rica", 287667, {"country": "CR", "language": "es", "proj": 32617}, download_repo=OSMFR)
 default_country("central-america", "el_salvador", 1520612, {"country": "SV", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
@@ -979,7 +979,7 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
-default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
+default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
 default_country("central-america", "dominica", 307823, {"country": "DM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "es", "proj": 32619}, download_repo=GEOFABRIK, download_country="haiti-and-domrep")
@@ -1005,7 +1005,7 @@ default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "l
 default_country("oceania", "marshall_islands", 571771, {"country": "MH", "language": "en", "proj": 32660}, download_repo=OSMFR)
 default_country("oceania", "nauru", 571804, {"country": "NR", "language": "en", "driving_side": "left", "proj": 32659}, download_repo=OSMFR)
 default_country("oceania", "palau", 571805, {"country": "PW", "language": "en", "proj": 32653}, download_repo=OSMFR)
-default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "en", "proj": 32656}, download_repo=OSMFR)
+default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "en", "speed_limit_unit": "mph", "proj": 32656}, download_repo=OSMFR)
 default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
 default_country("oceania", "solomon_islands", 1857436, {"country": "SB", "language": "en", "driving_side": "left", "proj": 32657}, download_repo=OSMFR)
 default_country("oceania", "tuvalu", 2177266, {"country": "TV", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
@@ -1047,7 +1047,7 @@ default_country("south-america", "new_zealand_tokelau", 2186600, {"country": "TK
 default_country("south-america", "niue", 1558556, {"country": "NU", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
-default_country("south-america", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
+default_country("south-america", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32602}, download_repo=OSMFR)
 default_country("south-america", "tonga", 2186665 , {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
 default_country("south-america", "trinidad_and_tobago", 555717, {"country": "TT", "language": "en", "driving_side": "left","proj": 32620}, download_repo=OSMFR)
 default_country("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)

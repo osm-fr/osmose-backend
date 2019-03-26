@@ -35,7 +35,7 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
             spamreader = csv.reader(mappingfile)
             for row in spamreader:
                 classs, topic = row[0:2]
-                tags = map(lambda t: t.split('=') if t else None, row[2:5])
+                tags = list(map(lambda t: t.split('=') if t else None, row[2:5]))
                 osmTags = dict(filter(lambda t: t, tags[0:2]))
                 if len(osmTags) > 0:
                     defaultTags = dict(filter(lambda t: t, tags[2:3]))

@@ -24,6 +24,7 @@ import regex
 import unicodedata
 from modules.languages import language2scripts, gen_regex
 from modules import confusables
+from modules.py3 import ilen
 
 
 class Name_Script(Plugin):
@@ -51,7 +52,7 @@ class Name_Script(Plugin):
 
         self.uniq_scripts = {}
         for k, s in self.scripts.items():
-            if s and len(filter(lambda ss: ss[0] != "[", s)) == 1:
+            if s and ilen(filter(lambda ss: ss[0] != "[", s)) == 1:
                 self.uniq_scripts[k] = s[0]
             else:
                 self.uniq_scripts[k] = None
@@ -82,7 +83,7 @@ class Name_Script(Plugin):
 
         self.uniq_script = self.uniq_scripts.get(languages[0]) if languages and len(languages) == 1 else None
 
-        for l, s in self.lang.items():
+        for l, s in list(self.lang.items()):
             if s == None:
                 del(self.lang[l])
             else:

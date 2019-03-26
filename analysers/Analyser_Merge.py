@@ -650,7 +650,7 @@ class Load(object):
                             "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
                             "tags": tags[1],
                             "tags1": tags[0],
-                            "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
+                            "fields": dict(zip(dict(res).keys(), dict(res).values())),
                             "lon": lonLat[0] if is_pip else None, "lat": lonLat[1] if is_pip else None
                         })
             if isinstance(self.x, tuple):
@@ -1000,7 +1000,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     fix["~"][k] = osm[k] + ";" + fix["~"][k] # Append new value to the list
                 else:
                     del(fix["~"][k]) # Value already in the list, change nothing
-        keys = [s for s in (fix["+"].keys() + fix["~"].keys()) if s != "name" and not s.startswith("source")]
+        keys = [s for s in (list(fix["+"].keys()) + list(fix["~"].keys())) if s != "name" and not s.startswith("source")]
         if "name" in osm and "name" in official and osm["name"] != official["name"] and len(keys) != 0:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
             del(fix0["~"]["name"])
