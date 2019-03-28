@@ -1299,7 +1299,7 @@ es_comm("melilla", 1154757, "ES-ML", proj=32628, area="africa")
 
 #########################################################################
 
-en_region = gen_country('europe', 'united_kingdom/england', download_repo=OSMFR, country_code='GB-ENG', language='en', proj=32630, driving_side='left')
+en_region = gen_country('europe', 'united_kingdom/england', download_repo=OSMFR, country_code='GB-ENG', language='en', proj=32630, driving_side='left', speed_limit_unit='mph')
 
 en_region("east_midlands", 151279)
 en_region("east", 151336)
