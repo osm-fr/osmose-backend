@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 #-*- coding: utf8 -*-
 
-import commands, sets
+import subprocess
+#from io import open
+from backports import csv
 
 # Liste des départements
 ListeDept = []
@@ -22,59 +24,26 @@ ListeDept.sort()
 ################################################################################
 # Téléchargement base de données
 
-# http://www.insee.fr/fr/methodes/default.asp?page=nomenclatures/cog/doc_ffrancee.htm
-# 0  ACTUAL   : 1
-# 1  CHEFLIEU : 0
-# 2  CDC      : 0
-# 3  RANG     :
-# 4  REG      : 82
-# 5  DEP      : 01
-# 6  COM      : 001
-# 7  AR       : 2
-# 8  CT       : 10
-# 9  MODIF    : 0
-# 10 POLE     :
-# 11 TNCC     : 5
-# 12 ARTMAJ   : (L')
-# 13 NCC      : ABERGEMENT-CLEMENCIAT
-# 14 ARTMIN   : (L')
-# 15 NCCENR   : Abergement-Clémenciat
-# 16 ARTICLCT :
-# 17 NCCCT    : Châtillon-sur-Chalaronne
-
-commands.getstatusoutput("rm -f comsimp2017.zip comsimp2017.txt")
-commands.getstatusoutput("wget https://www.insee.fr/fr/statistiques/fichier/2666684/comsimp2017-txt.zip")
-commands.getstatusoutput("unzip -q comsimp2017-txt.zip")
-Bdd0 = [x.decode("iso8859-15").strip().split(u"\t") for x in open("comsimp2017.txt").readlines()][1:]
-#commands.getstatusoutput("rm -f comsimp2010.zip comsimp2010.txt 2> /dev/null")
+subprocess.getstatusoutput("rm -f cog_ensemble_2019_csv.zip *.csv")
+subprocess.getstatusoutput("wget https://www.insee.fr/fr/statistiques/fichier/3720946/cog_ensemble_2019_csv.zip")
+subprocess.getstatusoutput("unzip -q cog_ensemble_2019_csv.zip")
+Bdd0 = list(csv.reader(open("commune2019.csv")))
 
 Bdd1 = {}
 for x in Bdd0:
-    if len(x) == 11:
-        x = [''] + x
-
+  if x[0] == "COM":
     ## code insee
-    code = x[3]+x[4]
-
-    ## dept
-    dept = x[3]
+    code = x[1]
 
     ## nom
-    nom = x[10]
-    nom = nom.replace("(", "")
-    nom = nom.replace(")", "")
-    if nom and not nom.endswith("'"):
-        nom += u" "
-    nom += x[11].replace(u"",u"œ").replace(u"", u"Œ")
+    nom = x[8]
 
     ## quelques exceptions
     if nom == u"Vitrolles-en-Lubéron":
         nom = u"Vitrolles-en-Luberon" # MP krysst         le 25/03/2009
-    if code == u"02419":
-        nom = u"Leschelle"            # ML Mathieu Arnold le 02/06/2009
 
     ## on enregistre
-    Bdd1[code] = (nom, dept)
+    Bdd1[code] = (nom, u"")
 
 ################################################################################
 # http://www.insee.fr/fr/methodes/default.asp?page=nomenclatures/cog/outremer.htm
@@ -200,52 +169,8 @@ Bdd1["98758"] = (u"Kouaoua", u"")
 Bdd1["98758"] = (u"Île de Clipperton", u"")
 
 ################################################################################
-# Téléchargement des populations
-Bdd2 = {}
-for dept in ListeDept:
-    print "Dl " + dept
-    page = "http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/departement.asp?dep="+dept
-    page = commands.getstatusoutput("wget -q -O - "+page)[1]
-    page = page.split("\n")
-    page = [x.strip() for x in page]
-    incommune = False
-    for i in range(len(page)):
-        if "Code canton" in page[i]:
-            incommune = False
-        if "Code commune" in page[i]:
-            incommune = True
-        if incommune and page[i].startswith("<td class=\"code\">"):
-            code = page[i+0].split(">")[1].split("<")[0].decode("iso8859-15")
-            nom  = page[i+1].split(">")[1].split("<")[0].decode("iso8859-15")
-            if not nom:
-                nom = page[i+1].split(">")[2].split("<")[0].decode("iso8859-15")
-            popu = page[i+2].split(">")[1].split("<")[0].decode("iso8859-15").replace(u" " , u"")
-            Bdd2[code] = (nom, popu)
-
-################################################################################
-# Analyse des clés
-
-## populations manquantes reconstruites
-for x in Bdd1:
-    if x not in Bdd2:
-        Bdd2[x] = (Bdd1[x][0], "?")
-
-## communes absentes du COG
-for x in Bdd2:
-    if x not in Bdd1:
-        print (u"Not in COG : " + x).encode("utf8")
-
-for x in Bdd1:
-    if x not in Bdd2: continue
-    #if Bdd1[x][0].replace(u"œ", u"oe").replace(u"Œ",u"OE") <> Bdd2[x][0]:
-    if Bdd1[x][0].replace(u"œ", u"oe").replace(u"Œ",u"OE") <> Bdd2[x][0].replace(u"œ", u"oe").replace(u"Œ",u"OE"):
-        print (u"Diff name : " + x + u" " + Bdd1[x][0] + u" / " + Bdd2[x][0]).encode("utf8")
 
 f = open("BddCommunes", "w")
 for x in sorted(Bdd1.keys()):
-    #if x not in Bdd2: continue
-    f.write((u"\t".join([x, Bdd1[x][0], Bdd2[x][1]])).encode("utf8")+"\n")
+    f.write(u"\t".join([x, Bdd1[x][0]])+"\t?\n")
 f.close()
-
-#for x in Bdd1:
-#    print x[14].replace("(","").replace(")", "") + x[15]

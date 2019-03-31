@@ -19,7 +19,7 @@
 01022	Artemare	?
 01023	Asnières-sur-Saône	?
 01024	Attignat	?
-01025	Bâgé-la-Ville	?
+01025	Bâgé-Dommartin	?
 01026	Bâgé-le-Châtel	?
 01027	Balan	?
 01028	Baneins	?
@@ -27,10 +27,10 @@
 01030	Beauregard	?
 01031	Bellignat	?
 01032	Béligneux	?
-01033	Bellegarde-sur-Valserine	?
+01033	Valserhône	?
 01034	Belley	?
 01035	Belleydoux	?
-01036	Belmont-Luthézieu	?
+01036	Valromey-sur-Séran	?
 01037	Bénonces	?
 01038	Bény	?
 01039	Béon	?
@@ -51,7 +51,6 @@
 01056	Boyeux-Saint-Jérôme	?
 01057	Boz	?
 01058	Brégnier-Cordon	?
-01059	Brénaz	?
 01060	Brénod	?
 01061	Brens	?
 01062	Bressolles	?
@@ -81,13 +80,11 @@
 01088	Charnoz-sur-Ain	?
 01089	Château-Gaillard	?
 01090	Châtenay	?
-01091	Châtillon-en-Michaille	?
 01092	Châtillon-la-Palud	?
 01093	Châtillon-sur-Chalaronne	?
 01094	Chavannes-sur-Reyssouze	?
 01095	Nivigne et Suran	?
 01096	Chaveyriat	?
-01097	Chavornay	?
 01098	Chazey-Bons	?
 01099	Chazey-sur-Ain	?
 01100	Cheignieu-la-Balme	?
@@ -110,14 +107,13 @@
 01117	Conzieu	?
 01118	Corbonod	?
 01121	Corlier	?
-01122	Cormaranche-en-Bugey	?
 01123	Cormoranche-sur-Saône	?
 01124	Cormoz	?
 01125	Corveissiat	?
 01127	Courmangoux	?
 01128	Courtes	?
 01129	Crans	?
-01130	Cras-sur-Reyssouze	?
+01130	Bresse Vallons	?
 01133	Cressin-Rochefort	?
 01134	Crottet	?
 01135	Crozet	?
@@ -128,7 +124,6 @@
 01141	Cuzieu	?
 01142	Dagneux	?
 01143	Divonne-les-Bains	?
-01144	Dommartin	?
 01145	Dompierre-sur-Veyle	?
 01146	Dompierre-sur-Chalaronne	?
 01147	Domsure	?
@@ -138,7 +133,6 @@
 01151	Druillat	?
 01152	Échallon	?
 01153	Échenevex	?
-01154	Étrez	?
 01155	Évosges	?
 01156	Faramans	?
 01157	Fareins	?
@@ -162,8 +156,7 @@
 01181	Groissiat	?
 01183	Guéreins	?
 01184	Hautecourt-Romanèche	?
-01185	Hauteville-Lompnes	?
-01186	Hostiaz	?
+01185	Plateau d'Hauteville	?
 01187	Haut Valromey	?
 01188	Illiat	?
 01189	Injoux-Génissiat	?
@@ -181,7 +174,6 @@
 01202	Lagnieu	?
 01203	Laiz	?
 01204	Le Poizat-Lalleyriat	?
-01205	Lancrans	?
 01206	Lantenay	?
 01207	Lapeyrouse	?
 01208	Lavours	?
@@ -191,11 +183,9 @@
 01212	Lescheroux	?
 01213	Leyment	?
 01214	Leyssard	?
-01215	Lhôpital	?
+01215	Surjoux-Lhopital	?
 01216	Lhuis	?
-01218	Lochieu	?
 01219	Lompnas	?
-01221	Lompnieu	?
 01224	Loyettes	?
 01225	Lurcy	?
 01227	Magnieu	?
@@ -296,7 +286,6 @@
 01337	Saint-Bénigne	?
 01338	Groslée-Saint-Benoit	?
 01339	Saint-Bernard	?
-01341	Saint-Champ	?
 01342	Sainte-Croix	?
 01343	Saint-Cyr-sur-Menthon	?
 01344	Saint-Denis-lès-Bourg	?
@@ -364,11 +353,8 @@
 01410	Sonthonnax-la-Montagne	?
 01411	Souclin	?
 01412	Sulignat	?
-01413	Surjoux	?
-01414	Sutrieu	?
 01415	Talissieu	?
 01416	Tenay	?
-01417	Thézillieu	?
 01418	Thil	?
 01419	Thoiry	?
 01420	Thoissey	?
@@ -391,7 +377,6 @@
 01437	Vescours	?
 01439	Vésines	?
 01441	Vieu-d'Izenave	?
-01442	Vieu	?
 01443	Villars-les-Dombes	?
 01444	Villebois	?
 01445	Villemotier	?
@@ -402,7 +387,7 @@
 01450	Villieu-Loyes-Mollon	?
 01451	Viriat	?
 01452	Virieu-le-Grand	?
-01453	Virieu-le-Petit	?
+01453	Arvière-en-Valromey	?
 01454	Virignin	?
 01456	Vongnes	?
 01457	Vonnas	?
@@ -423,7 +408,7 @@
 02015	Ancienville	?
 02016	Andelain	?
 02017	Anguilcourt-le-Sart	?
-02018	Anizy-le-Château	?
+02018	Anizy-le-Grand	?
 02019	Annois	?
 02020	Any-Martin-Rieux	?
 02021	Archon	?
@@ -553,7 +538,7 @@
 02150	Cerny-en-Laonnois	?
 02151	Cerny-lès-Bucy	?
 02152	Cerseuil	?
-02153	Cessières	?
+02153	Cessières-Suzy	?
 02154	Chacrise	?
 02155	Chaillevois	?
 02156	Chalandry	?
@@ -696,7 +681,6 @@
 02297	Étrépilly	?
 02298	Étreux	?
 02299	Évergnicourt	?
-02301	Faucoucourt	?
 02302	Faverolles	?
 02303	Fayet	?
 02304	La Fère	?
@@ -726,7 +710,7 @@
 02330	Francilly-Selency	?
 02331	Franqueville	?
 02332	Fresnes-en-Tardenois	?
-02333	Fresnes	?
+02333	Fresnes-sous-Coucy	?
 02334	Fresnoy-le-Grand	?
 02335	Fressancourt	?
 02336	Frières-Faillouël	?
@@ -751,7 +735,7 @@
 02357	Gronard	?
 02358	Grougis	?
 02359	Grugies	?
-02360	Guignicourt	?
+02360	Villeneuve-sur-Aisne	?
 02361	Guise	?
 02362	Guivry	?
 02363	Guny	?
@@ -823,7 +807,6 @@
 02431	Liez	?
 02432	Limé	?
 02433	Lislet	?
-02434	Lizy	?
 02435	Logny-lès-Aubenton	?
 02438	Longpont	?
 02439	Les Septvallons	?
@@ -862,7 +845,6 @@
 02472	Mauregny-en-Haye	?
 02473	Mayot	?
 02474	Mennessis	?
-02475	Menneville	?
 02476	Mennevret	?
 02477	Mercin-et-Vaux	?
 02478	Merlieux-et-Fouquerolles	?
@@ -1111,7 +1093,6 @@
 02730	Soupir	?
 02731	Le Sourd	?
 02732	Surfontaine	?
-02733	Suzy	?
 02734	Taillefontaine	?
 02735	Tannières	?
 02736	Tartiers	?
@@ -1576,7 +1557,7 @@
 04059	Clumanc	?
 04061	Colmars	?
 04062	La Condamine-Châtelard	?
-04063	Corbières	?
+04063	Corbières-en-Provence	?
 04065	Cruis	?
 04066	Curbans	?
 04067	Curel	?
@@ -1725,7 +1706,7 @@
 04242	Villeneuve	?
 04244	Volonne	?
 04245	Volx	?
-05001	Abriès	?
+05001	Abriès-Ristolas	?
 05003	Aiguilles	?
 05004	Ancelle	?
 05006	L'Argentière-la-Bessée	?
@@ -1744,7 +1725,7 @@
 05021	Le Bersac	?
 05022	Bréziers	?
 05023	Briançon	?
-05024	Bruis	?
+05024	Valdoule	?
 05025	Buissard	?
 05026	Ceillac	?
 05027	Cervières	?
@@ -1757,9 +1738,8 @@
 05036	Châteauroux-les-Alpes	?
 05037	Châteauvieux	?
 05038	Château-Ville-Vieille	?
-05039	Chauffayer	?
+05039	Aubessagne	?
 05040	Chorges	?
-05043	Les Costes	?
 05044	Crévoux	?
 05045	Crots	?
 05046	Embrun	?
@@ -1801,7 +1781,6 @@
 05085	Montgenèvre	?
 05086	Montjay	?
 05087	Montmaur	?
-05088	Montmorin	?
 05089	Montrond	?
 05090	La Motte-en-Champsaur	?
 05091	Moydans	?
@@ -1832,7 +1811,6 @@
 05117	Ribeyret	?
 05118	Val Buëch-Méouge	?
 05119	Risoul	?
-05120	Ristolas	?
 05121	Rochebrune	?
 05122	La Roche-de-Rame	?
 05123	La Roche-des-Arnauds	?
@@ -1850,7 +1828,6 @@
 05136	Saint-Crépin	?
 05139	Dévoluy	?
 05140	Saint-Étienne-le-Laus	?
-05141	Saint-Eusèbe-en-Champsaur	?
 05142	Saint-Firmin	?
 05144	Saint-Jacques-en-Valgodemard	?
 05145	Saint-Jean-Saint-Nicolas	?
@@ -1858,7 +1835,6 @@
 05147	Saint-Julien-en-Champsaur	?
 05148	Saint-Laurent-du-Cros	?
 05149	Saint-Léger-les-Mélèzes	?
-05150	Sainte-Marie	?
 05151	Saint-Martin-de-Queyrières	?
 05152	Saint-Maurice-en-Valgodemard	?
 05153	Saint-Michel-de-Chaillol	?
@@ -2065,12 +2041,11 @@
 07008	Alissas	?
 07009	Andance	?
 07010	Annonay	?
-07011	Antraigues-sur-Volane	?
+07011	Vallées-d'Antraigues-Asperjoc	?
 07012	Arcens	?
 07013	Ardoix	?
 07014	Arlebosc	?
 07015	Arras-sur-Rhône	?
-07016	Asperjoc	?
 07017	Les Assions	?
 07018	Astet	?
 07019	Aubenas	?
@@ -2153,7 +2128,7 @@
 07100	Gravières	?
 07101	Grospierres	?
 07102	Guilherand-Granges	?
-07103	Intres	?
+07103	Saint-Julien-d'Intres	?
 07104	Issamoulenc	?
 07105	Issanlas	?
 07106	Issarlès	?
@@ -2184,7 +2159,6 @@
 07132	Largentière	?
 07133	Larnas	?
 07134	Laurac-en-Vivarais	?
-07135	Laval-d'Aurelle	?
 07136	Laveyrune	?
 07137	Lavillatte	?
 07138	Lavilledieu	?
@@ -2213,7 +2187,7 @@
 07161	Montpezat-sous-Bauzon	?
 07162	Montréal	?
 07163	Montselgues	?
-07165	Nonières	?
+07165	Belsentes	?
 07166	Nozières	?
 07167	Les Ollières-sur-Eyrieux	?
 07168	Orgnac-l'Aven	?
@@ -2298,17 +2272,15 @@
 07249	Saint-Jeure-d'Andaure	?
 07250	Saint-Jeure-d'Ay	?
 07251	Saint-Joseph-des-Bancs	?
-07252	Saint-Julien-Boutières	?
 07253	Saint-Julien-du-Gua	?
 07254	Saint-Julien-du-Serre	?
 07255	Saint-Julien-en-Saint-Alban	?
-07256	Saint-Julien-Labrousse	?
 07257	Saint-Julien-le-Roux	?
 07258	Saint-Julien-Vocance	?
 07259	Saint-Just-d'Ardèche	?
 07260	Saint-Lager-Bressac	?
 07261	Saint-Laurent-du-Pape	?
-07262	Saint-Laurent-les-Bains	?
+07262	Saint-Laurent-les-Bains-Laval-d'Aurelle	?
 07263	Saint-Laurent-sous-Coiron	?
 07264	Saint-Marcel-d'Ardèche	?
 07265	Saint-Marcel-lès-Annonay	?
@@ -2431,7 +2403,6 @@
 08039	Avaux	?
 08040	Les Ayvelles	?
 08041	Baâlons	?
-08042	Balaives-et-Butz	?
 08043	Balan	?
 08044	Balham	?
 08045	Ballay	?
@@ -2463,7 +2434,6 @@
 08076	Boulzicourt	?
 08077	Bourcq	?
 08078	Bourg-Fidèle	?
-08079	Boutancourt	?
 08080	Bouvellemont	?
 08081	Bogny-sur-Meuse	?
 08082	Brécy-Brières	?
@@ -2528,7 +2498,6 @@
 08149	L'Échelle	?
 08150	Écly	?
 08151	Écordal	?
-08152	Élan	?
 08153	Escombres-et-le-Chesnois	?
 08154	Estrebay	?
 08155	Étalle	?
@@ -2872,7 +2841,6 @@
 09025	Aucazein	?
 09026	Audressein	?
 09027	Augirein	?
-09028	Aulos	?
 09029	Aulus-les-Bains	?
 09030	Auzat	?
 09031	Axiat	?
@@ -2977,7 +2945,6 @@
 09132	Gaudiès	?
 09133	Génat	?
 09134	Gestiès	?
-09135	Goulier	?
 09136	Gourbit	?
 09137	Gudas	?
 09138	L'Herm	?
@@ -3124,7 +3091,6 @@
 09283	Savignac-les-Ormeaux	?
 09284	Ségura	?
 09285	Seix	?
-09286	Sem	?
 09287	Senconac	?
 09289	Lorp-Sentaraille	?
 09290	Sentein	?
@@ -3133,13 +3099,12 @@
 09293	Serres-sur-Arget	?
 09294	Sieuras	?
 09295	Siguer	?
-09296	Sinsat	?
+09296	Aulos-Sinsat	?
 09297	Sor	?
 09298	Sorgeat	?
 09299	Soueix-Rogalle	?
 09300	Soula	?
 09301	Soulan	?
-09302	Suc-et-Sentenac	?
 09303	Surba	?
 09304	Suzan	?
 09305	Tabre	?
@@ -3169,7 +3134,7 @@
 09330	Vernaux	?
 09331	Le Vernet	?
 09332	Verniolle	?
-09334	Vicdessos	?
+09334	Val-de-Sos	?
 09335	Villeneuve	?
 09336	Villeneuve-d'Olmes	?
 09338	Villeneuve-du-Latou	?
@@ -3703,7 +3668,6 @@
 11094	Clermont-sur-Lauquet	?
 11095	Comigne	?
 11096	Comus	?
-11097	Conilhac-de-la-Montagne	?
 11098	Conilhac-Corbières	?
 11099	Conques-sur-Orbiel	?
 11100	Corbières	?
@@ -3737,7 +3701,7 @@
 11128	Escueillens-et-Saint-Just-de-Bélengard	?
 11129	Espéraza	?
 11130	Espezel	?
-11131	Fa	?
+11131	Val-du-Faby	?
 11132	Fabrezan	?
 11133	Fajac-en-Val	?
 11134	Fajac-la-Relenque	?
@@ -3855,7 +3819,7 @@
 11248	Montirat	?
 11249	Montjardin	?
 11250	Montjoi	?
-11251	Montlaur	?
+11251	Val-de-Dagne	?
 11252	Montmaur	?
 11253	Montolieu	?
 11254	Montréal	?
@@ -3902,7 +3866,6 @@
 11295	Portel-des-Corbières	?
 11296	Pouzols-Minervois	?
 11297	Pradelles-Cabardès	?
-11298	Pradelles-en-Val	?
 11299	Preixan	?
 11300	Puginier	?
 11301	Puichéric	?
@@ -3927,13 +3890,12 @@
 11320	Roquefeuil	?
 11321	Roquefort-de-Sault	?
 11322	Roquefort-des-Corbières	?
-11323	Roquetaillade	?
+11323	Roquetaillade-et-Conilhac	?
 11324	Roubia	?
 11325	Rouffiac-d'Aude	?
 11326	Rouffiac-des-Corbières	?
 11327	Roullens	?
 11328	Routier	?
-11329	Rouvenac	?
 11330	Rustiques	?
 11331	Saint-Amans	?
 11332	Saint-André-de-Roquelongue	?
@@ -4449,7 +4411,6 @@
 13118	Coudoux	?
 13119	Carnoux-en-Provence	?
 14001	Ablon	?
-14002	Acqueville	?
 14003	Agy	?
 14005	Valambray	?
 14006	Amayé-sur-Orne	?
@@ -4457,7 +4418,6 @@
 14009	Amfreville	?
 14011	Aurseulles	?
 14012	Angerville	?
-14013	Angoville	?
 14014	Colomby-Anguerny	?
 14015	Anisy	?
 14016	Annebault	?
@@ -4559,7 +4519,7 @@
 14146	Cauville	?
 14147	Cernay	?
 14149	Cesny-aux-Vignes	?
-14150	Cesny-Bois-Halbout	?
+14150	Cesny-les-Sources	?
 14159	Chouain	?
 14160	Cintheaux	?
 14161	Clarbec	?
@@ -4582,7 +4542,6 @@
 14182	Cormolain	?
 14183	Cossesseville	?
 14184	Cottun	?
-14185	Coudray-Rabut	?
 14190	Courcy	?
 14191	Courseulles-sur-Mer	?
 14193	Courtonne-la-Meurdrac	?
@@ -4662,7 +4621,6 @@
 14290	Fresney-le-Puceux	?
 14291	Fresney-le-Vieux	?
 14293	Fumichon	?
-14294	Garcelles-Secqueville	?
 14297	Gavrus	?
 14298	Géfosse-Fontenay	?
 14299	Genneville	?
@@ -4673,7 +4631,6 @@
 14304	Gonneville-sur-Honfleur	?
 14305	Gonneville-sur-Mer	?
 14306	Gonneville-en-Auge	?
-14307	Goupillières	?
 14308	Goustranville	?
 14309	Gouvix	?
 14310	Grainville-Langannerie	?
@@ -4696,7 +4653,6 @@
 14336	Hottot-les-Bagues	?
 14337	La Houblonnière	?
 14338	Houlgate	?
-14339	Hubert-Folie	?
 14341	Ifs	?
 14342	Isigny-sur-Mer	?
 14343	Les Isles-Bardel	?
@@ -4809,13 +4765,11 @@
 14501	Pierrefitte-en-Cinglais	?
 14502	Pierrepont	?
 14504	Le Pin	?
-14505	Placy	?
 14506	Planquery	?
 14509	Plumetot	?
 14510	La Pommeraye	?
 14511	Pont-Bellanger	?
 14512	Pontécoulant	?
-14513	Pont-Farcy	?
 14514	Pont-l'Évêque	?
 14515	Port-en-Bessin-Huppain	?
 14516	Potigny	?
@@ -4832,7 +4786,7 @@
 14534	Reux	?
 14535	Reviers	?
 14536	La Rivière-Saint-Sauveur	?
-14538	Rocquancourt	?
+14538	Castine-en-Plaine	?
 14540	Rocques	?
 14541	La Roque-Baignard	?
 14542	Rosel	?
@@ -4841,7 +4795,7 @@
 14547	Rubercy	?
 14550	Rumesnil	?
 14552	Ryes	?
-14554	Saint-Aignan-de-Cramesnil	?
+14554	Le Castelet	?
 14555	Saint-André-d'Hébertot	?
 14556	Saint-André-sur-Orne	?
 14557	Saint-Arnoult	?
@@ -4874,7 +4828,6 @@
 14601	Saint-Julien-sur-Calonne	?
 14602	Saint-Lambert	?
 14603	Saint-Laurent-de-Condel	?
-14604	Saint-Laurent-du-Mont	?
 14605	Saint-Laurent-sur-Mer	?
 14606	Saint-Léger-Dubosq	?
 14607	Saint-Louet-sur-Seulles	?
@@ -4931,14 +4884,12 @@
 14685	Thaon	?
 14687	Le Theil-en-Auge	?
 14689	Le Hom	?
-14691	Tilly-la-Campagne	?
 14692	Tilly-sur-Seulles	?
 14694	Le Torquesne	?
 14698	Touffréville	?
 14699	Touques	?
 14700	Tour-en-Bessin	?
 14701	Tourgéville	?
-14703	Tournebu	?
 14705	Tournières	?
 14706	Tourville-en-Auge	?
 14707	Tourville-sur-Odon	?
@@ -4947,7 +4898,7 @@
 14710	Tréprel	?
 14711	Trévières	?
 14712	Saline	?
-14713	Trois-Monts	?
+14713	Montillières-sur-Orne	?
 14714	Le Tronquay	?
 14715	Trouville-sur-Mer	?
 14716	Trungy	?
@@ -5011,7 +4962,7 @@
 15024	Brageac	?
 15025	Albepierre-Bredons	?
 15026	Brezons	?
-15027	Calvinet	?
+15027	Puycapel	?
 15028	Carlat	?
 15029	Cassaniouze	?
 15030	Cayrols	?
@@ -5109,7 +5060,6 @@
 15133	Montmurat	?
 15134	Montsalvy	?
 15135	Montvert	?
-15136	Mourjou	?
 15137	Moussages	?
 15138	Murat	?
 15139	Narnhac	?
@@ -5247,7 +5197,6 @@
 16014	Angeduc	?
 16015	Angoulême	?
 16016	Ansac-sur-Vienne	?
-16017	Anville	?
 16018	Ars	?
 16019	Asnières-sur-Nouère	?
 16020	Aubeterre-sur-Dronne	?
@@ -5272,12 +5221,11 @@
 16042	Bessé	?
 16044	Bioussac	?
 16045	Birac	?
-16046	Côteaux du Blanzacais	?
+16046	Coteaux-du-Blanzacais	?
 16047	Blanzaguet-Saint-Cybard	?
 16048	Boisbreteau	?
 16049	Bonnes	?
 16050	Bonneuil	?
-16051	Bonneville	?
 16052	Bors (Canton de Tude-et-Lavalette)	?
 16053	Bors (Canton de Charente-Sud)	?
 16054	Le Bouchage	?
@@ -5354,7 +5302,7 @@
 16131	Esse	?
 16132	Étagnac	?
 16133	Étriac	?
-16134	Exideuil	?
+16134	Exideuil-sur-Vienne	?
 16135	Eymouthiers	?
 16136	La Faye	?
 16137	Feuillade	?
@@ -5369,14 +5317,12 @@
 16146	Garat	?
 16147	Gardes-le-Pontaroux	?
 16148	Genac-Bignac	?
-16149	Genouillac	?
 16150	Gensac-la-Pallue	?
 16151	Genté	?
 16152	Gimeux	?
-16153	Gondeville	?
+16153	Mainxe-Gondeville	?
 16154	Gond-Pontouvre	?
 16155	Les Gours	?
-16156	Gourville	?
 16157	Le Grand-Madieu	?
 16158	Grassac	?
 16160	Guimps	?
@@ -5409,7 +5355,7 @@
 16189	Londigny	?
 16190	Longré	?
 16191	Lonnes	?
-16192	Roumazières-Loubert	?
+16192	Terres-de-Haute-Charente	?
 16193	Louzac-Saint-André	?
 16194	Lupsault	?
 16195	Lussac	?
@@ -5418,7 +5364,6 @@
 16198	Magnac-Lavalette-Villars	?
 16199	Magnac-sur-Touvre	?
 16200	Maine-de-Boixe	?
-16202	Mainxe	?
 16203	Mainzac	?
 16204	Bellevigne	?
 16205	Manot	?
@@ -5430,7 +5375,6 @@
 16211	Marthon	?
 16212	Massignac	?
 16213	Mazerolles	?
-16214	Mazières	?
 16215	Médillac	?
 16216	Mérignac	?
 16217	Merpins	?
@@ -5443,7 +5387,6 @@
 16225	Montembœuf	?
 16226	Montignac-Charente	?
 16227	Montignac-le-Coq	?
-16228	Montigné	?
 16229	Montjean	?
 16230	Montmoreau	?
 16231	Montrollet	?
@@ -5471,7 +5414,6 @@
 16255	Parzac	?
 16256	Passirac	?
 16258	Pérignac	?
-16259	La Péruse	?
 16260	Pillac	?
 16261	Les Pins	?
 16263	Plassac-Rouffiac	?
@@ -5483,13 +5425,12 @@
 16271	Puymoyen	?
 16272	Puyréaux	?
 16273	Raix	?
-16274	Rancogne	?
 16275	Ranville-Breuillaud	?
 16276	Reignac	?
 16277	Réparsac	?
 16279	Rioux-Martin	?
 16280	Rivières	?
-16281	La Rochefoucauld	?
+16281	La Rochefoucauld-en-Angoumois	?
 16282	La Rochette	?
 16283	Ronsenac	?
 16284	Rouffiac	?
@@ -5502,10 +5443,9 @@
 16292	Ruffec	?
 16293	Saint-Adjutory	?
 16295	Saint-Amant-de-Boixe	?
-16296	Saint-Amant-de-Bonnieure	?
 16297	Graves-Saint-Amant	?
 16298	Saint-Amant-de-Nouère	?
-16300	Saint-Angeau	?
+16300	Val-de-Bonnieure	?
 16301	Saint-Aulais-la-Chapelle	?
 16302	Saint-Avit	?
 16303	Saint-Bonnet	?
@@ -5513,7 +5453,6 @@
 16306	Saint-Christophe	?
 16307	Saint-Ciers-sur-Bonnieure	?
 16308	Saint-Claud	?
-16309	Sainte-Colombe	?
 16310	Saint-Coutant	?
 16312	Saint-Cybardeaux	?
 16315	Saint-Félix	?
@@ -5528,18 +5467,16 @@
 16329	Saint-Laurent-de-Céris	?
 16330	Saint-Laurent-de-Cognac	?
 16331	Saint-Laurent-des-Combes	?
-16332	Saint-Léger	?
 16334	Saint-Martial	?
 16335	Saint-Martin-du-Clocher	?
 16336	Saint-Mary	?
 16337	Saint-Maurice-des-Lions	?
 16338	Saint-Médard	?
-16339	Auge-Saint-Médard	?
+16339	Val-d'Auge	?
 16340	Saint-Même-les-Carrières	?
 16341	Saint-Michel	?
 16342	Saint-Palais-du-Né	?
 16343	Saint-Preuil	?
-16344	Saint-Projet-Saint-Constant	?
 16345	Saint-Quentin-sur-Charente	?
 16346	Saint-Quentin-de-Chalais	?
 16347	Saint-Romain	?
@@ -5569,7 +5506,6 @@
 16373	Souvigné	?
 16374	Soyaux	?
 16375	Suaux	?
-16376	Suris	?
 16377	La Tâche	?
 16378	Taizé-Aizie	?
 16379	Taponnat-Fleurignac	?
@@ -5583,7 +5519,6 @@
 16388	Trois-Palis	?
 16389	Turgon	?
 16390	Tusson	?
-16391	Tuzie	?
 16392	Valence	?
 16393	Vars	?
 16394	Vaux-Lavalette	?
@@ -5598,11 +5533,9 @@
 16403	Le Vieux-Cérier	?
 16404	Vieux-Ruffec	?
 16405	Vignolles	?
-16406	Vilhonneur	?
+16406	Moulins-sur-Tardoire	?
 16408	Villebois-Lavalette	?
 16409	Villefagnan	?
-16410	Villegats	?
-16411	Villejésus	?
 16412	Villejoubert	?
 16413	Villiers-le-Roux	?
 16414	Villognon	?
@@ -5713,7 +5646,6 @@
 17100	Chérac	?
 17101	Cherbonnières	?
 17102	Chermignac	?
-17103	Chervettes	?
 17104	Chevanceaux	?
 17105	Chives	?
 17106	Cierzac	?
@@ -5777,7 +5709,6 @@
 17166	Forges	?
 17167	Le Fouilloux	?
 17168	Fouras	?
-17169	La Frédière	?
 17171	Geay	?
 17172	Gémozac	?
 17173	La Genétouze	?
@@ -5796,7 +5727,6 @@
 17186	Le Gué-d'Alleré	?
 17187	Guitinières	?
 17188	Haimps	?
-17189	Hiers-Brouage	?
 17190	L'Houmeau	?
 17191	La Jard	?
 17192	Jarnac-Champagne	?
@@ -5826,7 +5756,7 @@
 17216	Lussant	?
 17217	Macqueville	?
 17218	Marans	?
-17219	Marennes	?
+17219	Marennes-Hiers-Brouage	?
 17220	Marignac	?
 17221	Marsais	?
 17222	Marsilly	?
@@ -5877,7 +5807,6 @@
 17269	Orignolles	?
 17270	Ozillac	?
 17271	Paillé	?
-17272	Péré	?
 17273	Pérignac	?
 17274	Périgny	?
 17275	Pessines	?
@@ -5945,7 +5874,7 @@
 17337	Saint-Georges-d'Oléron	?
 17338	Saint-Georges-du-Bois	?
 17339	Saint-Germain-de-Lusignan	?
-17340	Saint-Germain-de-Marencennes	?
+17340	Saint-Pierre-La-Noue	?
 17341	Saint-Germain-de-Vibrac	?
 17342	Saint-Germain-du-Seudre	?
 17343	Saint-Grégoire-d'Ardennes	?
@@ -5957,7 +5886,6 @@
 17349	Saint-Jean-de-Liversay	?
 17350	Saint-Julien-de-l'Escap	?
 17351	Saint-Just-Luzac	?
-17352	Saint-Laurent-de-la-Barrière	?
 17353	Saint-Laurent-de-la-Prée	?
 17354	Saint-Léger	?
 17355	Sainte-Lheurine	?
@@ -5994,7 +5922,6 @@
 17389	Sainte-Radegonde	?
 17390	Sainte-Ramée	?
 17391	Saint-Rogatien	?
-17392	Saint-Romain-sur-Gironde	?
 17393	Saint-Romain-de-Benet	?
 17394	Saint-Saturnin-du-Bois	?
 17395	Saint-Sauvant	?
@@ -6056,7 +5983,7 @@
 17453	Trizay	?
 17454	Tugéras-Saint-Maurice	?
 17455	La Vallée	?
-17457	Vandré	?
+17457	La Devise	?
 17458	Vanzac	?
 17459	Varaize	?
 17460	Varzay	?
@@ -6207,7 +6134,6 @@
 18120	Jussy-le-Chaudrier	?
 18121	Lantan	?
 18122	Lapan	?
-18123	Laverdines	?
 18124	Lazenay	?
 18125	Léré	?
 18126	Levet	?
@@ -6306,7 +6232,6 @@
 18219	Saint-Laurent	?
 18220	Saint-Léger-le-Petit	?
 18221	Saint-Loup-des-Chaumes	?
-18222	Sainte-Lunaise	?
 18223	Saint-Martin-d'Auxigny	?
 18224	Saint-Martin-des-Champs	?
 18225	Saint-Maur	?
@@ -6323,7 +6248,6 @@
 18236	Saint-Symphorien	?
 18237	Sainte-Thorette	?
 18238	Saint-Vitte	?
-18239	Saligny-le-Vif	?
 18240	Sancergues	?
 18241	Sancerre	?
 18242	Sancoins	?
@@ -6406,7 +6330,6 @@
 19029	Branceilles	?
 19030	Brignac-la-Plaine	?
 19031	Brive-la-Gaillarde	?
-19032	Brivezac	?
 19033	Bugeat	?
 19034	Camps-Saint-Mathurin-Léobazel	?
 19035	Chabrignac	?
@@ -6472,10 +6395,10 @@
 19095	Lacelle	?
 19096	Ladignac-sur-Rondelles	?
 19097	Lafage-sur-Sombre	?
-19098	Lagarde-Enval	?
+19098	Lagarde-Marc-la-Tour	?
 19099	Lagleygeolle	?
 19100	Lagraulière	?
-19101	Laguenne	?
+19101	Laguenne-sur-Avalouze	?
 19102	Lamazière-Basse	?
 19103	Lamazière-Haute	?
 19104	Lamongerie	?
@@ -6501,7 +6424,6 @@
 19124	Mansac	?
 19125	Marcillac-la-Croisille	?
 19126	Marcillac-la-Croze	?
-19127	Marc-la-Tour	?
 19128	Margerides	?
 19129	Masseret	?
 19130	Maussac	?
@@ -6558,7 +6480,6 @@
 19181	Saint-Augustin	?
 19182	Saint-Aulaire	?
 19184	Saint-Bazile-de-Meyssac	?
-19185	Saint-Bonnet-Avalouze	?
 19186	Saint-Bonnet-Elvert	?
 19187	Saint-Bonnet-la-Rivière	?
 19188	Saint-Bonnet-l'Enfantier	?
@@ -6729,7 +6650,6 @@
 21070	Bévy	?
 21071	Bèze	?
 21072	Bézouotte	?
-21073	Bierre-lès-Semur	?
 21074	Billey	?
 21075	Billy-lès-Chanceaux	?
 21076	Binges	?
@@ -6833,7 +6753,7 @@
 21175	Cirey-lès-Pontailler	?
 21176	Civry-en-Montagne	?
 21177	Clamerey	?
-21178	Clémencey	?
+21178	Valforêt	?
 21179	Clénay	?
 21180	Cléry	?
 21181	Clomot	?
@@ -6925,7 +6845,7 @@
 21269	Flammerans	?
 21270	Flavignerot	?
 21271	Flavigny-sur-Ozerain	?
-21272	Flée	?
+21272	Le Val-Larrey	?
 21273	Fleurey-sur-Ouche	?
 21274	Foissy	?
 21275	Foncegrive	?
@@ -7004,7 +6924,7 @@
 21349	Liernais	?
 21350	Lignerolles	?
 21351	Longchamp	?
-21352	Longeault	?
+21352	Longeault-Pluvault	?
 21353	Longecourt-en-Plaine	?
 21354	Longecourt-lès-Culêtre	?
 21355	Longvic	?
@@ -7136,7 +7056,6 @@
 21483	Pichanges	?
 21484	Planay	?
 21485	Plombières-lès-Dijon	?
-21486	Pluvault	?
 21487	Pluvet	?
 21488	Poinçon-lès-Larrey	?
 21489	Poiseul-la-Grange	?
@@ -7162,7 +7081,6 @@
 21510	Prusly-sur-Ource	?
 21511	Puits	?
 21512	Puligny-Montrachet	?
-21513	Quemigny-Poisot	?
 21514	Quemigny-sur-Seine	?
 21515	Quetigny	?
 21516	Quincerot	?
@@ -7269,9 +7187,8 @@
 21618	Talmay	?
 21619	Tanay	?
 21620	Tarsul	?
-21621	Tart-l'Abbaye	?
 21622	Tart-le-Bas	?
-21623	Tart-le-Haut	?
+21623	Tart	?
 21624	Tellecey	?
 21625	Ternant	?
 21626	Terrefondrée	?
@@ -7395,7 +7312,6 @@
 22035	Les Champs-Géraux	?
 22036	La Chapelle-Blanche	?
 22037	La Chapelle-Neuve	?
-22038	Châtelaudren	?
 22039	La Chèze	?
 22040	Coadout	?
 22041	Coatascorn	?
@@ -7432,7 +7348,6 @@
 22075	Hémonstoir	?
 22076	Hénanbihen	?
 22077	Hénansal	?
-22078	Hengoat	?
 22079	Hénon	?
 22081	Hillion	?
 22082	Le Hinglé	?
@@ -7445,14 +7360,13 @@
 22090	Kermaria-Sulard	?
 22091	Kermoroc'h	?
 22092	Kerpert	?
-22093	Lamballe	?
+22093	Lamballe-Armor	?
 22094	Lancieux	?
 22095	Landebaëron	?
 22096	Landébia	?
 22097	La Landec	?
 22098	Landéhen	?
 22099	Lanfains	?
-22100	Langast	?
 22101	Langoat	?
 22103	Langrolay-sur-Rance	?
 22104	Languédias	?
@@ -7473,7 +7387,6 @@
 22119	Lanvellec	?
 22121	Lanvollon	?
 22122	Laurenan	?
-22123	Léhon	?
 22124	Lescouët-Gouarec	?
 22126	Le Leslay	?
 22127	Lézardrieux	?
@@ -7500,7 +7413,6 @@
 22150	Le Merzer	?
 22152	Minihy-Tréguier	?
 22153	Moncontour	?
-22154	Morieux	?
 22155	La Motte	?
 22156	Moustéru	?
 22157	Le Moustoir	?
@@ -7517,7 +7429,6 @@
 22170	Plaine-Haute	?
 22171	Plaintel	?
 22172	Plancoët	?
-22173	Planguenoual	?
 22174	Pléboulle	?
 22175	Plédéliac	?
 22176	Plédran	?
@@ -7527,7 +7438,7 @@
 22180	Plélan-le-Petit	?
 22181	Plélauff	?
 22182	Plélo	?
-22183	Les Moulins	?
+22183	Plémet	?
 22184	Plémy	?
 22185	Plénée-Jugon	?
 22186	Pléneuf-Val-André	?
@@ -7548,7 +7459,7 @@
 22203	Plœuc-L'Hermitage	?
 22204	Ploëzal	?
 22205	Plorec-sur-Arguenon	?
-22206	Plouagat	?
+22206	Châtelaudren-Plouagat	?
 22207	Plouaret	?
 22208	Plouasne	?
 22209	Beaussais-sur-Mer	?
@@ -7561,7 +7472,7 @@
 22216	Plougonver	?
 22217	Plougras	?
 22218	Plougrescant	?
-22219	Plouguenast	?
+22219	Plouguenast-Langast	?
 22220	Plouguernével	?
 22221	Plouguiel	?
 22222	Plouha	?
@@ -7588,12 +7499,10 @@
 22244	Plussulien	?
 22245	Pluzunet	?
 22246	Pommeret	?
-22247	Pommerit-Jaudy	?
 22248	Pommerit-le-Vicomte	?
 22249	Pont-Melvez	?
 22250	Pontrieux	?
 22251	Pordic	?
-22253	Pouldouran	?
 22254	Prat	?
 22255	La Prénessaye	?
 22256	Quemper-Guézennec	?
@@ -7604,7 +7513,7 @@
 22261	Quintenic	?
 22262	Quintin	?
 22263	Le Quiou	?
-22264	La Roche-Derrien	?
+22264	La Roche-Jaudy	?
 22265	Rospez	?
 22266	Rostrenen	?
 22267	Rouillac	?
@@ -7824,7 +7733,7 @@
 23106	Lépaud	?
 23107	Lépinas	?
 23108	Leyrat	?
-23109	Linard	?
+23109	Linard-Malval	?
 23110	Lioux-les-Monges	?
 23111	Lizières	?
 23112	Lourdoueix-Saint-Pierre	?
@@ -7836,12 +7745,10 @@
 23118	Maisonnisses	?
 23119	Malleret	?
 23120	Malleret-Boussac	?
-23121	Malval	?
 23122	Mansat-la-Courrière	?
 23123	Les Mars	?
 23124	Marsac	?
 23125	Le Mas-d'Artige	?
-23126	Masbaraud-Mérignat	?
 23127	Mautes	?
 23128	Mazeirat	?
 23129	La Mazière-aux-Bons-Hommes	?
@@ -7900,7 +7807,7 @@
 23186	Saint-Christophe	?
 23187	Saint-Dizier-la-Tour	?
 23188	Saint-Dizier-les-Domaines	?
-23189	Saint-Dizier-Leyrenne	?
+23189	Saint-Dizier-Masbaraud	?
 23190	Saint-Domet	?
 23191	Saint-Éloi	?
 23192	Fursac	?
@@ -8043,7 +7950,6 @@
 24075	Campagnac-lès-Quercy	?
 24076	Campagne	?
 24077	Campsegret	?
-24079	Cantillac	?
 24080	Capdrot	?
 24081	Carlux	?
 24082	Carsac-Aillac	?
@@ -8084,7 +7990,6 @@
 24123	Clermont-de-Beauregard	?
 24124	Clermont-d'Excideuil	?
 24126	Colombier	?
-24127	Coly	?
 24128	Comberanche-et-Épeluche	?
 24129	Condat-sur-Trincou	?
 24130	Condat-sur-Vézère	?
@@ -8124,16 +8029,14 @@
 24165	Eygurande-et-Gardedeuil	?
 24167	Eymet	?
 24168	Plaisance	?
-24170	Eyvirat	?
 24171	Eyzerac	?
-24172	Les Eyzies-de-Tayac-Sireuil	?
+24172	Les Eyzies	?
 24174	Fanlac	?
 24175	Les Farges	?
 24176	Faurilles	?
 24177	Faux	?
 24179	La Feuillade	?
 24180	Firbeix	?
-24181	Flaugeac	?
 24182	Le Fleix	?
 24183	Fleurac	?
 24184	Florimont-Gaumier	?
@@ -8148,7 +8051,6 @@
 24195	Gaugeac	?
 24196	Génis	?
 24197	Ginestet	?
-24198	La Gonterie-Boulouneix	?
 24199	Gout-Rossignol	?
 24200	Grand-Brassac	?
 24202	Granges-d'Ans	?
@@ -8179,7 +8081,6 @@
 24230	Larzac	?
 24231	Lavalade	?
 24232	Lavaur	?
-24233	Laveyssière	?
 24234	Les Lèches	?
 24236	Léguillac-de-l'Auche	?
 24237	Lembras	?
@@ -8193,7 +8094,6 @@
 24246	Lunas	?
 24247	Lusignac	?
 24248	Lussas-et-Nontronneau	?
-24249	Manaurie	?
 24251	Manzac-sur-Vern	?
 24252	Marcillac-Saint-Quentin	?
 24253	Mareuil en Périgord	?
@@ -8201,7 +8101,7 @@
 24255	Marquay	?
 24256	Marsac-sur-l'Isle	?
 24257	Marsalès	?
-24259	Maurens	?
+24259	Eyraud-Crempse-Maurens	?
 24260	Mauzac-et-Grand-Castang	?
 24261	Mauzens-et-Miremont	?
 24262	Mayac	?
@@ -8292,7 +8192,7 @@
 24360	Sagelat	?
 24361	Saint-Agne	?
 24362	Val de Louyre et Caudeau	?
-24364	Saint-Amand-de-Coly	?
+24364	Coly-Saint-Amand	?
 24365	Saint-Amand-de-Vergt	?
 24366	Saint-André-d'Allas	?
 24367	Saint-André-de-Double	?
@@ -8314,9 +8214,7 @@
 24385	Saint-Cernin-de-Labarde	?
 24386	Saint-Cernin-de-l'Herm	?
 24388	Saint-Chamassy	?
-24389	Saint-Cirq	?
 24390	Saint-Crépin-d'Auberoche	?
-24391	Saint-Crépin-de-Richemont	?
 24392	Saint-Crépin-et-Carlucet	?
 24393	Sainte-Croix	?
 24394	Sainte-Croix-de-Mareuil	?
@@ -8326,7 +8224,6 @@
 24398	Saint-Estèphe	?
 24399	Saint-Étienne-de-Puycorbier	?
 24401	Sainte-Eulalie-d'Ans	?
-24402	Sainte-Eulalie-d'Eymet	?
 24403	Saint-Félix-de-Bourdeilles	?
 24404	Saint-Félix-de-Reillac-et-Mortemart	?
 24405	Saint-Félix-de-Villadeix	?
@@ -8347,16 +8244,13 @@
 24420	Saint-Géry	?
 24421	Saint-Geyrac	?
 24422	Saint-Hilaire-d'Estissac	?
-24423	Sainte-Innocence	?
+24423	Saint-Julien-Innocence-Eulalie	?
 24424	Saint-Jean-d'Ataux	?
 24425	Saint-Jean-de-Côle	?
 24426	Saint-Jean-d'Estissac	?
-24427	Saint-Jean-d'Eyraud	?
 24428	Saint-Jory-de-Chalais	?
 24429	Saint-Jory-las-Bloux	?
-24431	Saint-Julien-de-Crempse	?
 24432	Saint-Julien-de-Lampon	?
-24433	Saint-Julien-d'Eymet	?
 24434	Saint-Just	?
 24436	Saint-Laurent-des-Hommes	?
 24437	Saint-Laurent-des-Vignes	?
@@ -8443,11 +8337,10 @@
 24527	Savignac-les-Églises	?
 24528	Sceau-Saint-Angel	?
 24529	Segonzac	?
-24530	Sencenac-Puy-de-Fourches	?
 24531	Sergeac	?
 24532	Serres-et-Montguyard	?
 24533	Servanches	?
-24534	Sigoulès	?
+24534	Sigoulès-et-Flaugeac	?
 24535	Simeyrols	?
 24536	Singleyrac	?
 24537	Siorac-de-Ribérac	?
@@ -8472,7 +8365,6 @@
 24558	Trémolat	?
 24559	Tursac	?
 24560	Urval	?
-24561	Valeuil	?
 24562	Vallereuil	?
 24563	Valojoulx	?
 24564	Vanxains	?
@@ -8520,7 +8412,6 @@
 25024	Arçon	?
 25025	Arc-sous-Cicon	?
 25026	Arc-sous-Montenot	?
-25027	Arguel	?
 25029	Aubonne	?
 25030	Audeux	?
 25031	Audincourt	?
@@ -8617,10 +8508,8 @@
 25133	Châtillon-le-Duc	?
 25134	Châtillon-sur-Lison	?
 25136	Chaucenne	?
-25137	Chaudefontaine	?
 25138	Les Terres-de-Chaux	?
 25139	La Chaux	?
-25140	Chaux-lès-Clerval	?
 25141	Chaux-lès-Passavant	?
 25142	Chaux-Neuve	?
 25143	Chay	?
@@ -8634,7 +8523,7 @@
 25153	Chevroz	?
 25154	Chouzelot	?
 25155	Cléron	?
-25156	Pays de Clerval	?
+25156	Pays-de-Clerval	?
 25157	La Cluse-et-Mijoux	?
 25159	Colombier-Fontaine	?
 25160	Les Combes	?
@@ -8721,7 +8610,6 @@
 25247	Fontenelle-Montby	?
 25248	Les Fontenelles	?
 25249	Fontenotte	?
-25250	Foucherans	?
 25251	Fourbanne	?
 25252	Fourcatier-et-Maison-Neuve	?
 25253	Fourg	?
@@ -8827,7 +8715,7 @@
 25365	Mancenans	?
 25366	Mancenans-Lizerne	?
 25367	Mandeure	?
-25368	Marchaux	?
+25368	Marchaux-Chaudefontaine	?
 25369	Marvelise	?
 25370	Mathay	?
 25371	Mazerolles-le-Salin	?
@@ -9005,7 +8893,7 @@
 25555	Taillecourt	?
 25556	Tallans	?
 25557	Tallenay	?
-25558	Tarcenay	?
+25558	Tarcenay-Foucherans	?
 25559	Thiébouhans	?
 25560	Thise	?
 25561	Thoraise	?
@@ -9029,7 +8917,6 @@
 25583	Valonne	?
 25584	Valoreille	?
 25586	Vandoncourt	?
-25587	Vauchamps	?
 25588	Vaucluse	?
 25589	Vauclusotte	?
 25590	Vaudrivillers	?
@@ -9249,7 +9136,6 @@
 26181	Mévouillon	?
 26182	Mirabel-aux-Baronnies	?
 26183	Mirabel-et-Blacons	?
-26184	Miribel	?
 26185	Mirmande	?
 26186	Miscon	?
 26188	Mollans-sur-Ouvèze	?
@@ -9274,7 +9160,7 @@
 26207	Montmiral	?
 26208	Montoison	?
 26209	Montréal-les-Sources	?
-26210	Montrigaud	?
+26210	Valherbasse	?
 26211	Montségur-sur-Lauzon	?
 26212	Montvendre	?
 26213	Moras-en-Valloire	?
@@ -9356,7 +9242,6 @@
 26294	Saint-Bardoux	?
 26295	Saint-Barthélemy-de-Vals	?
 26296	Saint-Benoit-en-Diois	?
-26297	Saint-Bonnet-de-Valclérieux	?
 26298	Saint-Christophe-et-le-Laris	?
 26299	Sainte-Croix	?
 26300	Saint-Dizier-en-Diois	?
@@ -9413,7 +9298,6 @@
 26351	Les Tonils	?
 26352	La Touche	?
 26353	Les Tourrettes	?
-26354	Treschenu-Creyers	?
 26355	Triors	?
 26356	Truinas	?
 26357	Tulette	?
@@ -9503,7 +9387,7 @@
 27067	Bézu-Saint-Éloi	?
 27068	Bois-Anzeray	?
 27069	Bois-Arnault	?
-27070	Boisemont	?
+27070	Frenelles-en-Vexin	?
 27071	Le Bois-Hellain	?
 27072	Bois-Jérôme-Saint-Ouen	?
 27073	Bois-le-Roi	?
@@ -9565,7 +9449,6 @@
 27140	Chambray	?
 27141	Champ-Dolent	?
 27142	Champenard	?
-27143	Champignolles	?
 27144	Champigny-la-Futelaye	?
 27146	La Chapelle-Bayvel	?
 27147	La Chapelle-du-Bois-des-Faulx	?
@@ -9591,7 +9474,6 @@
 27171	Le Cormier	?
 27173	Corneville-la-Fouquetière	?
 27174	Corneville-sur-Risle	?
-27175	Corny	?
 27176	Coudray	?
 27177	Coudres	?
 27179	Courbépine	?
@@ -9664,12 +9546,10 @@
 27259	Foucrainville	?
 27260	Foulbec	?
 27261	Fouqueville	?
-27263	Fourmetot	?
+27263	Le Perrey	?
 27266	Franqueville	?
 27267	Freneuse-sur-Risle	?
-27268	Le Fresne	?
 27269	Fresne-Cauverville	?
-27270	Fresne-l'Archevêque	?
 27271	Fresney	?
 27273	Gadencourt	?
 27275	Gaillon	?
@@ -9686,11 +9566,10 @@
 27287	Glisolles	?
 27288	Glos-sur-Risle	?
 27289	La Goulafrière	?
-27290	Goupillières	?
+27290	Goupil-Othon	?
 27291	Gournay-le-Guérin	?
 27294	Val d'Orger	?
 27295	Grand-Camp	?
-27297	Grandvilliers	?
 27298	Graveron-Sémerville	?
 27299	Gravigny	?
 27300	Grosley-sur-Risle	?
@@ -9784,7 +9663,6 @@
 27399	Mercey	?
 27400	Merey	?
 27401	Le Mesnil-Fuguet	?
-27402	Le Mesnil-Hardray	?
 27403	Le Mesnil-Jourdain	?
 27404	Mesnil-Rousset	?
 27405	Mesnil-sous-Vienne	?
@@ -9797,7 +9675,6 @@
 27413	Montfort-sur-Risle	?
 27414	Montreuil-l'Argillé	?
 27415	Morainville-Jouveaux	?
-27416	Buis-sur-Damville	?
 27417	Morgny	?
 27418	Morsan	?
 27419	Mouettes	?
@@ -9827,7 +9704,7 @@
 27444	Le Noyer-en-Ouche	?
 27445	Noyers	?
 27446	Ormes	?
-27447	Orvaux	?
+27447	Le Val-Doré	?
 27448	Pacy-sur-Eure	?
 27451	Parville	?
 27453	Perriers-sur-Andelle	?
@@ -9847,7 +9724,7 @@
 27468	Pont-Authou	?
 27469	Pont-de-l'Arche	?
 27470	Pont-Saint-Pierre	?
-27471	Porte-Joie	?
+27471	Porte-de-Seine	?
 27472	Portes	?
 27473	Port-Mort	?
 27474	Poses	?
@@ -9865,7 +9742,6 @@
 27488	Renneville	?
 27489	Reuilly	?
 27490	Richeville	?
-27491	Roman	?
 27492	Romilly-la-Puthenaye	?
 27493	Romilly-sur-Andelle	?
 27495	La Roquette	?
@@ -9882,13 +9758,12 @@
 27511	Saint-Aubin-d'Écrosville	?
 27512	Saint-Aubin-de-Scellon	?
 27514	Saint-Aubin-du-Thenney	?
-27516	Saint-Aubin-le-Vertueux	?
+27516	Treis-Sants-en-Ouche	?
 27517	Saint-Aubin-sur-Gaillon	?
 27518	Saint-Aubin-sur-Quillebeuf	?
 27520	Saint-Benoît-des-Ombres	?
 27521	Saint-Christophe-sur-Avre	?
 27522	Saint-Christophe-sur-Condé	?
-27523	Saint-Clair-d'Arcey	?
 27524	Sainte-Colombe-la-Commanderie	?
 27525	Sainte-Colombe-près-Vernon	?
 27527	Saint-Cyr-de-Salerne	?
@@ -9904,7 +9779,7 @@
 27538	Saint-Étienne-l'Allier	?
 27539	Saint-Étienne-sous-Bailleul	?
 27540	Sainte-Geneviève-lès-Gasny	?
-27541	Saint-Georges-du-Mesnil	?
+27541	Le Mesnil-Saint-Jean	?
 27542	Saint-Georges-du-Vièvre	?
 27543	Saint-Georges-Motel	?
 27544	Saint-Germain-de-Fresney	?
@@ -9912,9 +9787,7 @@
 27546	Saint-Germain-des-Angles	?
 27547	Saint-Germain-la-Campagne	?
 27548	Saint-Germain-sur-Avre	?
-27549	Saint-Germain-Village	?
 27550	Saint-Grégoire-du-Vièvre	?
-27551	Saint-Jean-de-la-Léqueraye	?
 27552	Saint-Jean-du-Thenney	?
 27553	Saint-Julien-de-la-Liègue	?
 27554	La Chapelle-Longueville	?
@@ -9939,7 +9812,6 @@
 27578	Sainte-Marie-d'Attez	?
 27579	Saint-Ouen-de-Pontcheuil	?
 27580	Saint-Ouen-de-Thouberville	?
-27581	Saint-Ouen-des-Champs	?
 27582	Saint-Ouen-du-Tilleul	?
 27584	Saint-Paul-de-Fourques	?
 27586	Saint-Philbert-sur-Boissey	?
@@ -9954,14 +9826,12 @@
 27597	Saint-Pierre-du-Val	?
 27598	Saint-Pierre-du-Vauvray	?
 27599	Saint-Pierre-la-Garenne	?
-27600	Saint-Quentin-des-Isles	?
 27601	Saint-Samson-de-la-Roque	?
 27602	Saint-Sébastien-de-Morsent	?
 27603	Saint-Siméon	?
 27604	Saint-Sulpice-de-Grimbouville	?
 27605	Saint-Sylvestre-de-Cormeilles	?
 27606	Saint-Symphorien	?
-27607	Saint-Thurien	?
 27608	Saint-Victor-de-Chrétienville	?
 27609	Saint-Victor-d'Épine	?
 27610	Saint-Victor-sur-Avre	?
@@ -9989,19 +9859,16 @@
 27638	Le Thuit de l'Oison	?
 27640	Tilleul-Dame-Agnès	?
 27641	Le Tilleul-Lambert	?
-27642	Le Tilleul-Othon	?
 27643	Tillières-sur-Avre	?
 27644	Tilly	?
 27645	Tocqueville	?
 27646	Le Torpt	?
 27649	Touffreville	?
 27650	Tournedos-Bois-Hubert	?
-27651	Tournedos-sur-Seine	?
 27652	Tourneville	?
 27654	Tourville-la-Campagne	?
 27655	Tourville-sur-Pont-Audemer	?
 27656	Toutainville	?
-27657	Touville	?
 27658	Le Tremblay-Omonville	?
 27659	La Trinité	?
 27660	La Trinité-de-Réville	?
@@ -10044,7 +9911,6 @@
 27700	Vraiville	?
 27701	Val-de-Reuil	?
 28001	Abondant	?
-28002	Allaines-Mervilliers	?
 28003	Allainville	?
 28004	Allonnes	?
 28005	Alluyes	?
@@ -10099,10 +9965,8 @@
 28060	Briconville	?
 28061	Brou	?
 28062	Broué	?
-28063	Brunelles	?
 28064	Bû	?
 28065	Bullainville	?
-28066	Bullou	?
 28067	Cernay	?
 28068	Challet	?
 28070	Champhol	?
@@ -10143,7 +10007,6 @@
 28109	Les Corvées-les-Yys	?
 28110	Le Coudray	?
 28111	Coudray-au-Perche	?
-28112	Coudreceau	?
 28113	Coulombs	?
 28114	Courbehaye	?
 28116	Courville-sur-Eure	?
@@ -10188,7 +10051,6 @@
 28162	Fresnay-le-Comte	?
 28163	Fresnay-le-Gilmert	?
 28164	Fresnay-l'Évêque	?
-28165	Frétigny	?
 28166	Friaize	?
 28167	Fruncé	?
 28168	Gallardon	?
@@ -10218,12 +10080,11 @@
 28196	Illiers-Combray	?
 28197	Intréville	?
 28198	Jallans	?
-28199	Janville	?
+28199	Janville-en-Beauce	?
 28200	Jaudrais	?
 28201	Jouy	?
 28202	Lamblore	?
 28203	Landelles	?
-28205	Lanneray	?
 28206	Laons	?
 28207	Léthuin	?
 28208	Levainville	?
@@ -10252,7 +10113,7 @@
 28233	Marboué	?
 28234	Marchéville	?
 28235	Marchezais	?
-28236	Margon	?
+28236	Arcisses	?
 28237	Marolles-les-Buis	?
 28239	Marville-Moutiers-Brûlé	?
 28240	Meaucé	?
@@ -10263,7 +10124,6 @@
 28247	Le Mesnil-Simon	?
 28248	Le Mesnil-Thomas	?
 28249	Mévoisins	?
-28250	Mézières-au-Perche	?
 28251	Mézières-en-Drouais	?
 28252	Miermaigne	?
 28253	Mignières	?
@@ -10317,7 +10177,6 @@
 28308	Prudemanche	?
 28309	Prunay-le-Gillon	?
 28310	La Puisaye	?
-28311	Le Puiset	?
 28312	Puiseux	?
 28313	Réclainville	?
 28314	Les Ressuintes	?
@@ -10334,10 +10193,10 @@
 28327	Saint-Bomer	?
 28329	Saint-Christophe	?
 28330	Villemaury	?
-28331	Saint-Denis-d'Authou	?
+28331	Saintigny	?
 28332	Sainte-Gemme-Moronval	?
 28333	Saint-Denis-des-Puits	?
-28334	Saint-Denis-les-Ponts	?
+28334	Saint-Denis-Lanneray	?
 28335	Saint-Éliph	?
 28336	Saint-Éman	?
 28337	Saint-Georges-sur-Eure	?
@@ -10374,7 +10233,6 @@
 28373	Senonches	?
 28374	Serazereux	?
 28375	Serville	?
-28376	Soizé	?
 28377	Sorel-Moussel	?
 28378	Souancé-au-Perche	?
 28379	Soulaires	?
@@ -10400,13 +10258,12 @@
 28403	Ver-lès-Chartres	?
 28404	Vernouillet	?
 28405	Vert-en-Drouais	?
-28406	Eole-en-Beauce	?
+28406	Éole-en-Beauce	?
 28407	Vichères	?
 28408	Vierville	?
 28409	Vieuvicq	?
 28410	Villampuy	?
 28411	Villars	?
-28412	Villeau	?
 28414	Villebon	?
 28415	Villemeux-sur-Eure	?
 28417	Villiers-le-Morhier	?
@@ -10537,7 +10394,6 @@
 29125	Leuhan	?
 29126	Loc-Brévalaire	?
 29128	Loc-Eguiner	?
-29129	Locmaria-Berrien	?
 29130	Locmaria-Plouzané	?
 29131	Locmélar	?
 29132	Locquénolé	?
@@ -10619,7 +10475,6 @@
 29216	Pluguffan	?
 29217	Pont-Aven	?
 29218	Pont-Croix	?
-29219	Le Ponthou	?
 29220	Pont-l'Abbé	?
 29221	Porspoder	?
 29222	Port-Launay	?
@@ -11108,7 +10963,7 @@
 30049	Bourdic	?
 30050	Bragassargues	?
 30051	Branoux-les-Taillades	?
-30052	Bréau-et-Salagosse	?
+30052	Bréau-Mars	?
 30053	Brignon	?
 30054	Brouzet-lès-Quissac	?
 30055	Brouzet-lès-Alès	?
@@ -11210,7 +11065,6 @@
 30154	Mandagout	?
 30155	Manduel	?
 30156	Marguerittes	?
-30157	Mars	?
 30158	Martignargues	?
 30159	Le Martinet	?
 30160	Maruéjols-lès-Gardon	?
@@ -11243,7 +11097,6 @@
 30187	Navacelles	?
 30188	Ners	?
 30189	Nîmes	?
-30190	Notre-Dame-de-la-Rouvière	?
 30191	Orsan	?
 30192	Orthoux-Sérignac-Quilhan	?
 30193	Parignargues	?
@@ -11296,7 +11149,7 @@
 30240	Saint-Césaire-de-Gauzignan	?
 30241	Saint-Chaptes	?
 30242	Saint-Christol-de-Rodières	?
-30243	Saint-Christol-lès-Alès	?
+30243	Saint-Christol-lez-Alès	?
 30244	Saint-Clément	?
 30245	Saint-Côme-et-Maruéjols	?
 30246	Sainte-Croix-de-Caderle	?
@@ -11392,7 +11245,7 @@
 30336	Vallabrègues	?
 30337	Vallabrix	?
 30338	Vallérargues	?
-30339	Valleraugue	?
+30339	Val-d'Aigoual	?
 30340	Valliguières	?
 30341	Vauvert	?
 30342	Vénéjan	?
@@ -11682,7 +11535,7 @@
 31274	Larcan	?
 31275	Laréole	?
 31276	Larroque	?
-31277	Lasserre	?
+31277	Lasserre-Pradère	?
 31278	Latoue	?
 31279	Latour	?
 31280	Latrape	?
@@ -11703,7 +11556,6 @@
 31295	Lespugue	?
 31296	Lestelle-de-Saint-Martory	?
 31297	Lévignac	?
-31298	Lez	?
 31299	Lherm	?
 31300	Lieoux	?
 31301	Lilhac	?
@@ -11842,7 +11694,6 @@
 31435	Poucharramet	?
 31436	Pouy-de-Touges	?
 31437	Pouze	?
-31438	Pradère-les-Bourguets	?
 31439	Préserville	?
 31440	Proupiary	?
 31441	Prunet	?
@@ -11875,7 +11726,7 @@
 31468	Saint-André	?
 31469	Saint-Araille	?
 31470	Saint-Aventin	?
-31471	Saint-Béat	?
+31471	Saint-Béat-Lez	?
 31472	Saint-Bertrand-de-Comminges	?
 31473	Saint-Cézert	?
 31474	Saint-Christaud	?
@@ -12069,7 +11920,6 @@
 32071	Caillavet	?
 32072	Callian	?
 32073	Campagne-d'Armagnac	?
-32074	Cannet	?
 32075	Cassaigne	?
 32076	Castelnau-Barbarens	?
 32077	Castelnau-d'Anglès	?
@@ -12365,7 +12215,7 @@
 32371	Saint-Créac	?
 32372	Saint-Cricq	?
 32373	Sainte-Dode	?
-32374	Saint-Élix	?
+32374	Saint-Élix-d'Astarac	?
 32375	Saint-Élix-Theux	?
 32376	Sainte-Gemme	?
 32377	Saint-Georges	?
@@ -12467,7 +12317,7 @@
 33005	Andernos-les-Bains	?
 33006	Anglade	?
 33007	Arbanats	?
-33008	Arbis	?
+33008	Porte-de-Benauge	?
 33009	Arcachon	?
 33010	Arcins	?
 33011	Arès	?
@@ -12513,7 +12363,7 @@
 33052	Les Billaux	?
 33053	Birac	?
 33054	Blaignac	?
-33055	Blaignan	?
+33055	Blaignan-Prignac	?
 33056	Blanquefort	?
 33057	Blasimon	?
 33058	Blaye	?
@@ -12549,7 +12399,6 @@
 33088	Camps-sur-l'Isle	?
 33089	Campugnan	?
 33090	Canéjan	?
-33092	Cantois	?
 33093	Capian	?
 33094	Caplong	?
 33095	Captieux	?
@@ -12720,7 +12569,6 @@
 33263	Madirac	?
 33264	Maransin	?
 33266	Marcenais	?
-33267	Marcillac	?
 33268	Margaux-Cantenac	?
 33269	Margueron	?
 33270	Marimbault	?
@@ -12789,7 +12637,6 @@
 33335	Le Pout	?
 33336	Préchac	?
 33337	Preignac	?
-33338	Prignac-en-Médoc	?
 33339	Prignac-et-Marcamps	?
 33341	Pugnac	?
 33342	Puisseguin	?
@@ -12828,7 +12675,7 @@
 33377	Saint-Avit-de-Soulège	?
 33378	Saint-Avit-Saint-Nazaire	?
 33379	Saint-Brice	?
-33380	Saint-Caprais-de-Blaye	?
+33380	Val-de-Livenne	?
 33381	Saint-Caprais-de-Bordeaux	?
 33382	Saint-Christoly-de-Blaye	?
 33383	Saint-Christoly-Médoc	?
@@ -13243,7 +13090,7 @@
 34243	Saint-Bauzille-de-Putois	?
 34244	Saint-Brès	?
 34245	Saint-Chinian	?
-34246	Saint-Christol	?
+34246	Entre-Vignes	?
 34247	Saint-Clément-de-Rivière	?
 34248	Sainte-Croix-de-Quintillargues	?
 34249	Saint-Drézéry	?
@@ -13326,7 +13173,6 @@
 34327	Vendargues	?
 34328	Vendémian	?
 34329	Vendres	?
-34330	Vérargues	?
 34331	Verreries-de-Moussans	?
 34332	Vias	?
 34333	Vic-la-Gardiole	?
@@ -13344,14 +13190,13 @@
 35001	Acigné	?
 35002	Amanlis	?
 35003	Andouillé-Neuville	?
-35004	Antrain	?
+35004	Val-Couesnon	?
 35005	Arbrissel	?
 35006	Argentré-du-Plessis	?
 35007	Aubigné	?
 35008	Availles-sur-Seiche	?
 35009	Baguer-Morvan	?
 35010	Baguer-Pican	?
-35011	Baillé	?
 35012	Bain-de-Bretagne	?
 35013	Bains-sur-Oust	?
 35014	Bais	?
@@ -13389,7 +13234,6 @@
 35050	Cardroc	?
 35051	Cesson-Sévigné	?
 35052	Champeaux	?
-35053	Chancé	?
 35054	Chanteloup	?
 35055	Chantepie	?
 35056	La Chapelle-aux-Filtzméens	?
@@ -13433,7 +13277,6 @@
 35097	Domalain	?
 35098	La Dominelais	?
 35099	Domloup	?
-35100	Dompierre-du-Chemin	?
 35101	Dourdain	?
 35102	Drouges	?
 35103	Eancé	?
@@ -13446,7 +13289,6 @@
 35110	Feins	?
 35111	Le Ferré	?
 35112	Fleurigné	?
-35113	La Fontenelle	?
 35114	Forges-la-Forêt	?
 35115	Fougères	?
 35116	La Fresnais	?
@@ -13479,7 +13321,6 @@
 35144	Langan	?
 35145	Langon	?
 35146	Langouet	?
-35147	Lanhélin	?
 35148	Lanrigan	?
 35149	Lassy	?
 35150	Lécousse	?
@@ -13494,7 +13335,7 @@
 35160	Loutehel	?
 35161	Louvigné-de-Bais	?
 35162	Louvigné-du-Désert	?
-35163	Luitré	?
+35163	Luitré-Dompierre	?
 35164	Marcillé-Raoul	?
 35165	Marcillé-Robert	?
 35166	Marpiré	?
@@ -13548,7 +13389,7 @@
 35217	Le Pertre	?
 35218	Le Petit-Fougeray	?
 35219	Pipriac	?
-35220	Piré-sur-Seiche	?
+35220	Piré-Chancé	?
 35221	Pléchâtel	?
 35222	Pleine-Fougères	?
 35223	Plélan-le-Grand	?
@@ -13595,7 +13436,6 @@
 35265	Saint-Domineuc	?
 35266	Saint-Erblon	?
 35268	Saint-Ganton	?
-35269	Saint-Georges-de-Chesné	?
 35270	Saint-Georges-de-Gréhaigne	?
 35271	Saint-Georges-de-Reintembault	?
 35272	Saint-Germain-du-Pinel	?
@@ -13608,7 +13448,7 @@
 35279	Saint-Guinoux	?
 35280	Saint-Hilaire-des-Landes	?
 35281	Saint-Jacques-de-la-Lande	?
-35282	Saint-Jean-sur-Couesnon	?
+35282	Rives-du-Couesnon	?
 35283	Saint-Jean-sur-Vilaine	?
 35284	Saint-Jouan-des-Guérets	?
 35285	Saint-Just	?
@@ -13619,21 +13459,18 @@
 35290	Saint-Malon-sur-Mel	?
 35291	Saint-Marcan	?
 35292	Saint-Marc-le-Blanc	?
-35293	Saint-Marc-sur-Couesnon	?
 35294	Sainte-Marie	?
 35295	Saint-Maugan	?
 35296	Saint-Médard-sur-Ille	?
 35297	Saint-Méen-le-Grand	?
 35299	Saint-Méloir-des-Ondes	?
 35300	Saint-M'Hervé	?
-35301	Saint-M'Hervon	?
 35302	Saint-Onen-la-Chapelle	?
-35303	Saint-Ouen-la-Rouërie	?
 35304	Saint-Ouen-des-Alleux	?
 35305	Saint-Péran	?
-35306	Saint-Père	?
+35306	Saint-Père-Marc-en-Poulet	?
 35307	Saint-Pern	?
-35308	Saint-Pierre-de-Plesguen	?
+35308	Mesnil-Roc'h	?
 35309	Saint-Rémy-du-Plain	?
 35310	Saint-Sauveur-des-Landes	?
 35311	Saint-Séglin	?
@@ -13664,14 +13501,11 @@
 35338	Torcé	?
 35339	Trans-la-Forêt	?
 35340	Treffendel	?
-35341	Tremblay	?
 35342	Trémeheuc	?
 35343	Tresbœuf	?
-35344	Tressé	?
 35345	Trévérien	?
 35346	Trimer	?
 35347	Val-d'Izé	?
-35348	Vendel	?
 35350	Vergéal	?
 35351	Le Verger	?
 35352	Vern-sur-Seiche	?
@@ -13756,7 +13590,6 @@
 36069	Écueillé	?
 36070	Éguzon-Chantôme	?
 36071	Étrechet	?
-36072	Faverolles	?
 36073	Feusines	?
 36074	Fléré-la-Rivière	?
 36075	Fontenay	?
@@ -13887,7 +13720,6 @@
 36203	Saint-Médard	?
 36204	Saint-Michel-en-Brenne	?
 36205	Saint-Pierre-de-Jards	?
-36206	Saint-Pierre-de-Lamps	?
 36207	Saint-Plantaire	?
 36208	Sainte-Sévère-sur-Indre	?
 36209	Saint-Valentin	?
@@ -13925,7 +13757,7 @@
 36241	Villedieu-sur-Indre	?
 36242	Villegongis	?
 36243	Villegouin	?
-36244	Villentrois	?
+36244	Villentrois-Faverolles-en-Berry	?
 36246	Villiers	?
 36247	Vineuil	?
 36248	Vouillon	?
@@ -14132,7 +13964,6 @@
 37206	Saint-Antoine-du-Rocher	?
 37207	Saint-Aubin-le-Dépeint	?
 37208	Saint-Avertin	?
-37209	Saint-Bauld	?
 37210	Saint-Benoît-la-Forêt	?
 37211	Saint-Branchs	?
 37212	Sainte-Catherine-de-Fierbois	?
@@ -14153,7 +13984,7 @@
 37229	Saint-Nicolas-des-Motets	?
 37230	Saint-Ouen-les-Vignes	?
 37231	Saint-Paterne-Racan	?
-37232	Côteaux-sur-Loire	?
+37232	Coteaux-sur-Loire	?
 37233	Saint-Pierre-des-Corps	?
 37234	Saint-Quentin-sur-Indrois	?
 37236	Saint-Règle	?
@@ -14173,7 +14004,7 @@
 37251	Souvigné	?
 37252	Souvigny-de-Touraine	?
 37253	Sublaines	?
-37254	Tauxigny	?
+37254	Tauxigny-Saint-Bauld	?
 37255	Tavant	?
 37256	Theneuil	?
 37257	Thilouze	?
@@ -14215,14 +14046,12 @@
 38012	Aoste	?
 38013	Apprieu	?
 38015	Artas	?
-38016	Arzay	?
 38017	Assieu	?
 38018	Auberives-en-Royans	?
 38019	Auberives-sur-Varèze	?
 38020	Auris	?
 38022	Les Avenières Veyrins-Thuellin	?
 38023	Avignonet	?
-38025	Balbins	?
 38026	La Balme-les-Grottes	?
 38027	Barraux	?
 38029	La Bâtie-Montgascon	?
@@ -14269,7 +14098,7 @@
 38070	Le Champ-près-Froges	?
 38071	Champ-sur-Drac	?
 38072	Chanas	?
-38073	Chantelouve	?
+38073	Chantepérier	?
 38074	Chantesse	?
 38075	Chapareillan	?
 38076	La Chapelle-de-la-Tour	?
@@ -14313,7 +14142,6 @@
 38117	Cognin-les-Gorges	?
 38118	Colombe	?
 38120	La Combe-de-Lancey	?
-38121	Commelle	?
 38124	Corbelin	?
 38126	Corenc	?
 38127	Cornillon-en-Trièves	?
@@ -14349,7 +14177,7 @@
 38160	Eyzin-Pinet	?
 38161	Faramans	?
 38162	Faverges-de-la-Tour	?
-38163	La Ferrière	?
+38163	Le Haut-Bréda	?
 38166	La Flachère	?
 38167	Flachères	?
 38169	Fontaine	?
@@ -14447,7 +14275,6 @@
 38271	Murianette	?
 38272	Murinais	?
 38273	Nantes-en-Ratier	?
-38274	Nantoin	?
 38275	Serre-Nerpol	?
 38276	Nivolas-Vermelle	?
 38277	Notre-Dame-de-Commiers	?
@@ -14457,7 +14284,7 @@
 38281	Noyarey	?
 38282	Optevoz	?
 38283	Oris-en-Rattier	?
-38284	Ornacieux	?
+38284	Ornacieux-Balbins	?
 38285	Ornon	?
 38286	Oulles	?
 38287	Oyeu	?
@@ -14466,7 +14293,6 @@
 38290	Pact	?
 38291	Pajay	?
 38292	Villages du Lac de Paladru	?
-38293	Panissage	?
 38294	Panossas	?
 38295	Parmilieu	?
 38296	Le Passage	?
@@ -14475,10 +14301,8 @@
 38299	Pellafol	?
 38300	Penol	?
 38301	Percy	?
-38302	Le Périer	?
 38303	La Pierre	?
 38304	Pierre-Châtel	?
-38306	Pinsot	?
 38307	Pisieu	?
 38308	Plan	?
 38309	Poisat	?
@@ -14537,7 +14361,6 @@
 38364	Saint-Barthélemy-de-Séchilienne	?
 38365	Saint-Baudille-de-la-Tour	?
 38366	Saint-Baudille-et-Pipet	?
-38367	Saint-Bernard	?
 38368	Saint-Blaise-du-Buis	?
 38369	Sainte-Blandine	?
 38370	Saint-Bonnet-de-Chavagne	?
@@ -14563,7 +14386,7 @@
 38392	Saint-Hilaire-de-Brens	?
 38393	Saint-Hilaire-de-la-Côte	?
 38394	Saint-Hilaire-du-Rosier	?
-38395	Saint-Hilaire	?
+38395	Plateau-des-Petites-Roches	?
 38396	Saint-Honoré	?
 38397	Saint-Ismier	?
 38398	Saint-Jean-d'Avelanne	?
@@ -14602,7 +14425,6 @@
 38432	Saint-Nicolas-de-Macherin	?
 38433	Saint-Nizier-du-Moucherotte	?
 38434	Saint-Ondras	?
-38435	Saint-Pancrasse	?
 38436	Saint-Paul-de-Varces	?
 38437	Saint-Paul-d'Izeaux	?
 38438	Saint-Paul-lès-Monestier	?
@@ -14642,7 +14464,7 @@
 38475	Satolas-et-Bonce	?
 38476	Savas-Mépin	?
 38478	Séchilienne	?
-38479	Semons	?
+38479	Porte-des-Bonnevaux	?
 38480	Septème	?
 38481	Sérézin-de-la-Tour	?
 38483	Sermérieu	?
@@ -14715,7 +14537,7 @@
 38557	Villette-d'Anthon	?
 38558	Villette-de-Vienne	?
 38559	Vinay	?
-38560	Virieu	?
+38560	Val-de-Virieu	?
 38561	Viriville	?
 38562	Vizille	?
 38563	Voiron	?
@@ -14754,14 +14576,13 @@
 39032	Avignon-lès-Saint-Claude	?
 39034	Balaiseaux	?
 39035	Balanod	?
-39036	La Balme-d'Épy	?
 39037	Bans	?
 39038	Barésia-sur-l'Ain	?
 39039	La Barre	?
 39040	Barretaine	?
 39041	Baume-les-Messieurs	?
 39042	Baverans	?
-39043	Beaufort	?
+39043	Beaufort-Orbagna	?
 39045	Beffia	?
 39046	Bellecombe	?
 39047	Bellefontaine	?
@@ -14788,7 +14609,6 @@
 39072	Bracon	?
 39073	Brainans	?
 39074	Brans	?
-39075	Bréry	?
 39076	La Bretenière	?
 39077	Bretenières	?
 39078	Brevans	?
@@ -14800,7 +14620,6 @@
 39085	Cerniébaud	?
 39086	Cernon	?
 39088	Cesancey	?
-39089	Cézia	?
 39090	Chaînée-des-Coupis	?
 39091	Les Chalesmes	?
 39092	Chambéria	?
@@ -14823,9 +14642,7 @@
 39110	La Charme	?
 39111	Charnod	?
 39112	La Chassagne	?
-39113	Chassal	?
 39114	Château-Chalon	?
-39115	Château-des-Prés	?
 39116	La Châtelaine	?
 39117	Chatelay	?
 39118	Châtel-de-Joux	?
@@ -14844,7 +14661,7 @@
 39133	Chaux-Champagny	?
 39134	Chavéria	?
 39136	Chemenot	?
-39137	Chemilla	?
+39137	Saint-Hymetière-sur-Valouse	?
 39138	Chemin	?
 39139	Chêne-Bernard	?
 39140	Chêne-Sec	?
@@ -14854,7 +14671,6 @@
 39145	Chille	?
 39146	Chilly-le-Vignoble	?
 39147	Chilly-sur-Salins	?
-39148	Chisséria	?
 39149	Chissey-sur-Loue	?
 39150	Choisey	?
 39151	Choux	?
@@ -14909,7 +14725,7 @@
 39206	Écleux	?
 39207	Écrille	?
 39208	Entre-deux-Monts	?
-39209	Val d'Épy	?
+39209	Val-d'Épy	?
 39210	Équevillon	?
 39211	Les Essards-Taignevaux	?
 39214	Esserval-Tartre	?
@@ -14948,7 +14764,7 @@
 39253	Gigny	?
 39254	Gillois	?
 39255	Gizia	?
-39258	Grande-Rivière	?
+39258	Grande-Rivière Château	?
 39259	Grange-de-Vaivre	?
 39261	Graye-et-Charnay	?
 39262	Gredisans	?
@@ -14974,7 +14790,6 @@
 39284	Lavangeot	?
 39285	Lavans-lès-Dole	?
 39286	Lavans-lès-Saint-Claude	?
-39287	Lavans-sur-Valouse	?
 39288	Lavigny	?
 39289	Lect	?
 39290	Valzin en Petite Montagne	?
@@ -15020,7 +14835,7 @@
 39336	Molain	?
 39337	Molamboz	?
 39338	Molay	?
-39339	Molinges	?
+39339	Chassal-Molinges	?
 39342	Monay	?
 39343	Monnetay	?
 39344	Monnet-la-Ville	?
@@ -15065,7 +14880,6 @@
 39392	Offlanges	?
 39393	Onglières	?
 39394	Onoz	?
-39395	Orbagna	?
 39396	Orchamps	?
 39397	Orgelet	?
 39398	Ougney	?
@@ -15083,9 +14897,7 @@
 39411	Perrigny	?
 39412	Peseux	?
 39413	La Pesse	?
-39414	Le Petit-Mercey	?
 39415	Petit-Noir	?
-39417	Les Piards	?
 39418	Picarreau	?
 39419	Pillemoine	?
 39420	Pimorin	?
@@ -15106,7 +14918,6 @@
 39436	Pont-d'Héry	?
 39437	Pont-du-Navoy	?
 39439	Port-Lesney	?
-39440	Pratz	?
 39441	Prémanon	?
 39443	Présilly	?
 39444	Pretin	?
@@ -15145,8 +14956,6 @@
 39479	Saint-Cyr-Montmalin	?
 39480	Saint-Didier	?
 39481	Saint-Germain-en-Montagne	?
-39483	Saint-Hymetière	?
-39484	Saint-Jean-d'Étreux	?
 39485	Val Suran	?
 39486	Saint-Lamain	?
 39487	Saint-Laurent-en-Grandvaux	?
@@ -15194,7 +15003,6 @@
 39538	Uxelles	?
 39539	Vadans	?
 39540	Valempoulières	?
-39542	Valfin-sur-Valouse	?
 39543	Vannoz	?
 39545	Le Vaudioux	?
 39546	Vaudrey	?
@@ -15212,7 +15020,6 @@
 39559	La Vieille-Loye	?
 39560	Villard-Saint-Sauveur	?
 39561	Villards-d'Héria	?
-39562	Villard-sur-Bienne	?
 39565	Villeneuve-d'Aval	?
 39567	Villeneuve-sous-Pymont	?
 39568	Villerserine	?
@@ -15228,7 +15035,7 @@
 39579	Viry	?
 39581	Vitreux	?
 39582	Voiteur	?
-39583	Vosbles	?
+39583	Vosbles-Valfin	?
 39584	Vriange	?
 39585	Vulvoz	?
 39586	Aresches	?
@@ -15240,7 +15047,6 @@
 40006	Arengosse	?
 40007	Argelos	?
 40008	Argelouse	?
-40009	Arjuzanx	?
 40011	Arsague	?
 40012	Artassenx	?
 40013	Arthez-d'Armagnac	?
@@ -15335,7 +15141,6 @@
 40104	Gamarde-les-Bains	?
 40105	Garein	?
 40106	Garrey	?
-40107	Garrosse	?
 40108	Gastes	?
 40109	Gaujacq	?
 40110	Geaune	?
@@ -15425,7 +15230,7 @@
 40194	Montfort-en-Chalosse	?
 40195	Montgaillard	?
 40196	Montsoué	?
-40197	Morcenx	?
+40197	Morcenx-la-Nouvelle	?
 40198	Morganx	?
 40199	Mouscardès	?
 40200	Moustey	?
@@ -15529,7 +15334,6 @@
 40299	Serreslous-et-Arribans	?
 40300	Seyresse	?
 40301	Siest	?
-40302	Sindères	?
 40303	Solférino	?
 40304	Soorts-Hossegor	?
 40305	Sorbets	?
@@ -15566,7 +15370,6 @@
 41002	Angé	?
 41003	Areines	?
 41004	Artins	?
-41005	Arville	?
 41006	Autainville	?
 41007	Authon	?
 41008	Avaray	?
@@ -15614,7 +15417,7 @@
 41055	Valloire-sur-Cisse	?
 41057	Conan	?
 41058	Concriers	?
-41059	Contres	?
+41059	Le Controis-en-Sologne	?
 41060	Cormenon	?
 41061	Cormeray	?
 41062	Couddes	?
@@ -15624,7 +15427,7 @@
 41067	Cour-Cheverny	?
 41068	Courmemin	?
 41069	Cour-sur-Loire	?
-41070	Couture-sur-Loir	?
+41070	Vallée-de-Ronsard	?
 41071	Crouy-sur-Cosson	?
 41072	Crucheray	?
 41073	Danzé	?
@@ -15635,7 +15438,6 @@
 41079	Les Essarts	?
 41080	Faverolles-sur-Cher	?
 41081	Faye	?
-41082	Feings	?
 41083	La Ferté-Beauharnais	?
 41084	La Ferté-Imbault	?
 41085	La Ferté-Saint-Cyr	?
@@ -15645,11 +15447,10 @@
 41089	La Fontenelle	?
 41090	Fortan	?
 41091	Fossé	?
-41092	Fougères-sur-Bièvre	?
 41093	Françay	?
 41094	Fresnes	?
 41095	Fréteval	?
-41096	Le Gault-Perche	?
+41096	Le Gault-du-Perche	?
 41097	Gièvres	?
 41098	Gombergean	?
 41099	Gy-en-Sologne	?
@@ -15663,7 +15464,7 @@
 41107	Lancé	?
 41108	Lancôme	?
 41109	Landes-le-Gaulois	?
-41110	Langon	?
+41110	Langon-sur-Cher	?
 41112	Lassay-sur-Croisne	?
 41113	Lavardin	?
 41114	Lestiou	?
@@ -15714,11 +15515,9 @@
 41161	Nouan-le-Fuzelier	?
 41163	Nourray	?
 41164	Noyers-sur-Cher	?
-41165	Oigny	?
 41166	Oisly	?
 41167	Veuzain-sur-Loire	?
 41168	Orçay	?
-41170	Ouchamps	?
 41171	Oucques La Nouvelle	?
 41172	Ouzouer-le-Doyen	?
 41173	Beauce la Romaine	?
@@ -15744,12 +15543,10 @@
 41194	Romorantin-Lanthenay	?
 41195	Rougeou	?
 41196	Ruan-sur-Egvonne	?
-41197	Saint-Agil	?
 41198	Saint-Aignan	?
 41199	Saint-Amand-Longpré	?
 41200	Sainte-Anne	?
 41201	Saint-Arnoult	?
-41202	Saint-Avit	?
 41203	Saint-Bohaire	?
 41204	Saint-Claude-de-Diray	?
 41205	Saint-Cyr-du-Gault	?
@@ -15791,7 +15588,7 @@
 41245	Séris	?
 41246	Seur	?
 41247	Soings-en-Sologne	?
-41248	Souday	?
+41248	Couëtron-au-Perche	?
 41249	Souesmes	?
 41250	Sougé	?
 41251	Souvigny-en-Sologne	?
@@ -15800,13 +15597,11 @@
 41254	Le Temple	?
 41255	Ternay	?
 41256	Theillay	?
-41257	Thenay	?
 41258	Thésée	?
 41259	Thoré-la-Rochette	?
 41260	Thoury	?
 41261	Tourailles	?
 41262	Tour-en-Sologne	?
-41263	Tréhet	?
 41265	Troo	?
 41266	Valaire	?
 41267	Vallières-les-Grandes	?
@@ -15841,7 +15636,6 @@
 42001	Aboën	?
 42002	Ailleux	?
 42003	Ambierle	?
-42004	Amions	?
 42005	Andrézieux-Bouthéon	?
 42006	Apinac	?
 42007	Arcinges	?
@@ -15916,7 +15710,6 @@
 42078	Le Crozet	?
 42079	Cuinzier	?
 42081	Cuzieu	?
-42082	Dancé	?
 42083	Dargoire	?
 42084	Débats-Rivière-d'Orpra	?
 42085	Doizieux	?
@@ -16074,7 +15867,7 @@
 42241	Saint-Jodard	?
 42242	Saint-Joseph	?
 42243	Saint-Julien-d'Oddes	?
-42245	Saint-Julien-la-Vêtre	?
+42245	Vêtre-sur-Anzon	?
 42246	Saint-Julien-Molin-Molette	?
 42247	Saint-Just-en-Bas	?
 42248	Saint-Just-en-Chevalet	?
@@ -16094,7 +15887,7 @@
 42265	Saint-Michel-sur-Rhône	?
 42266	Saint-Nizier-de-Fornas	?
 42267	Saint-Nizier-sous-Charlieu	?
-42268	Saint-Paul-de-Vézelin	?
+42268	Vézelin-sur-Loire	?
 42269	Saint-Paul-d'Uzore	?
 42270	Saint-Paul-en-Cornillon	?
 42271	Saint-Paul-en-Jarez	?
@@ -16117,7 +15910,6 @@
 42288	Saint-Sixte	?
 42289	Saint-Symphorien-de-Lay	?
 42290	Saint-Thomas-la-Garde	?
-42291	Saint-Thurin	?
 42293	Saint-Victor-sur-Rhins	?
 42294	Saint-Vincent-de-Boisset	?
 42295	Les Salles	?
@@ -16423,7 +16215,7 @@
 43268	Yssingeaux	?
 44001	Abbaretz	?
 44002	Aigrefeuille-sur-Maine	?
-44003	Ancenis	?
+44003	Ancenis-Saint-Géréon	?
 44005	Chaumes-en-Retz	?
 44006	Assérac	?
 44007	Avessac	?
@@ -16434,7 +16226,6 @@
 44014	Le Bignon	?
 44015	Blain	?
 44016	La Boissière-du-Doré	?
-44017	Bonnœuvre	?
 44018	Bouaye	?
 44019	Bouée	?
 44020	Bouguenais	?
@@ -16505,7 +16296,6 @@
 44090	La Marne	?
 44091	Marsac-sur-Don	?
 44092	Massérac	?
-44093	Maumusson	?
 44094	Mauves-sur-Loire	?
 44095	La Meilleraye-de-Bretagne	?
 44096	Mésanger	?
@@ -16571,7 +16361,6 @@
 44157	Saint-Étienne-de-Mer-Morte	?
 44158	Saint-Étienne-de-Montluc	?
 44159	Saint-Fiacre-sur-Maine	?
-44160	Saint-Géréon	?
 44161	Saint-Gildas-des-Bois	?
 44162	Saint-Herblain	?
 44163	Vair-sur-Loire	?
@@ -16589,7 +16378,7 @@
 44176	Saint-Malo-de-Guersac	?
 44178	Saint-Mars-de-Coutais	?
 44179	Saint-Mars-du-Désert	?
-44180	Saint-Mars-la-Jaille	?
+44180	Vallons-de-l'Erdre	?
 44182	Saint-Michel-Chef-Chef	?
 44183	Saint-Molf	?
 44184	Saint-Nazaire	?
@@ -16599,7 +16388,6 @@
 44188	Saint-Philbert-de-Grand-Lieu	?
 44189	Sainte-Reine-de-Bretagne	?
 44190	Saint-Sébastien-sur-Loire	?
-44191	Saint-Sulpice-des-Landes	?
 44192	Saint-Viaud	?
 44193	Saint-Vincent-des-Landes	?
 44194	Sautron	?
@@ -16627,7 +16415,6 @@
 44216	Vieillevigne	?
 44217	Vigneux-de-Bretagne	?
 44218	Villepot	?
-44219	Vritz	?
 44220	Vue	?
 44221	La Chevallerais	?
 44222	La Roche-Blanche	?
@@ -16735,7 +16522,7 @@
 45107	Coudroy	?
 45108	Coullons	?
 45109	Coulmiers	?
-45110	Courcelles	?
+45110	Courcelles-le-Roi	?
 45111	Courcy-aux-Loges	?
 45112	La Cour-Marigny	?
 45113	Courtemaux	?
@@ -16972,7 +16759,6 @@
 46011	Autoire	?
 46012	Aynac	?
 46013	Bach	?
-46014	Bagat-en-Quercy	?
 46015	Bagnac-sur-Célé	?
 46016	Baladou	?
 46017	Bannes	?
@@ -16989,7 +16775,7 @@
 46030	Bio	?
 46031	Blars	?
 46032	Boissières	?
-46033	Le Boulvé	?
+46033	Porte-du-Quercy	?
 46034	Le Bourg	?
 46035	Boussac	?
 46036	Le Bouyssou	?
@@ -17022,7 +16808,6 @@
 46064	Catus	?
 46065	Cavagnac	?
 46066	Cazals	?
-46067	Cazillac	?
 46068	Cénevières	?
 46069	Cézac	?
 46070	Cieurac	?
@@ -17036,7 +16821,7 @@
 46080	Crayssac	?
 46081	Crégols	?
 46082	Cremps	?
-46083	Cressensac	?
+46083	Cressensac-Sarrazac	?
 46084	Creysse	?
 46085	Cuzac	?
 46086	Cuzance	?
@@ -17052,7 +16837,6 @@
 46096	Espeyroux	?
 46097	Estal	?
 46098	Fajoles	?
-46099	Fargues	?
 46100	Faycelles	?
 46101	Felzins	?
 46102	Figeac	?
@@ -17108,7 +16892,6 @@
 46155	Larnagol	?
 46156	Bellefont-La Rauze	?
 46157	Larroque-Toirac	?
-46158	Lascabanes	?
 46159	Latouille-Lentillac	?
 46160	Latronquière	?
 46161	Lauresses	?
@@ -17181,7 +16964,7 @@
 46229	Puybrun	?
 46230	Puyjourdes	?
 46231	Puy-l'Évêque	?
-46232	Les Quatre-Routes-du-Lot	?
+46232	Le Vignon-en-Quercy	?
 46233	Quissac	?
 46234	Rampoux	?
 46235	Reilhac	?
@@ -17209,8 +16992,8 @@
 46258	Saint-Cirq-Souillaguet	?
 46259	Saint-Clair	?
 46260	Sainte-Colombe	?
-46262	Saint-Cyprien	?
-46263	Saint-Daunès	?
+46262	Lendou-en-Quercy	?
+46263	Barguelonne-en-Quercy	?
 46264	Saint-Denis-Catus	?
 46265	Saint-Denis-lès-Martel	?
 46266	Saint-Félix	?
@@ -17221,17 +17004,14 @@
 46271	Saint-Jean-Lespinasse	?
 46272	Saint-Jean-Mirabel	?
 46273	Saint-Laurent-les-Tours	?
-46274	Saint-Laurent-Lolmie	?
 46276	Saint-Martin-Labouval	?
 46277	Saint-Martin-le-Redon	?
-46278	Saint-Matré	?
 46279	Saint-Maurice-en-Quercy	?
 46280	Saint-Médard	?
 46281	Saint-Médard-de-Presque	?
 46282	Saint-Médard-Nicourby	?
 46283	Saint-Michel-de-Bannières	?
 46284	Saint-Michel-Loubéjou	?
-46285	Saint-Pantaléon	?
 46286	Saint-Paul-de-Vern	?
 46288	Saint-Perdoux	?
 46289	Saint-Pierre-Toirac	?
@@ -17242,9 +17022,7 @@
 46295	Saint-Vincent-du-Pendit	?
 46296	Saint-Vincent-Rive-d'Olt	?
 46297	Salviac	?
-46298	Sarrazac	?
 46299	Sauliac-sur-Célé	?
-46300	Saux	?
 46301	Sauzet	?
 46302	Sénaillac-Latronquière	?
 46303	Sénaillac-Lauzès	?
@@ -17629,7 +17407,7 @@
 48034	La Canourgue	?
 48036	Cassagnas	?
 48037	Chadenet	?
-48038	Chambon-le-Château	?
+48038	Bel-Air-Val-d'Ance	?
 48039	Chanac	?
 48041	Chastanier	?
 48042	Chastel-Nouvel	?
@@ -17644,7 +17422,6 @@
 48054	Cubiérettes	?
 48055	Cultures	?
 48056	Esclanèdes	?
-48057	Estables	?
 48058	La Fage-Montivernoux	?
 48059	La Fage-Saint-Julien	?
 48061	Florac Trois Rivières	?
@@ -17661,7 +17438,6 @@
 48074	Hures-la-Parade	?
 48075	Ispagnac	?
 48077	Julianges	?
-48078	Lachamp	?
 48079	Lajo	?
 48080	Langogne	?
 48081	Lanuéjols	?
@@ -17698,14 +17474,13 @@
 48121	Prunières	?
 48123	Recoules-d'Aubrac	?
 48124	Recoules-de-Fumas	?
-48126	Ribennes	?
-48127	Rieutort-de-Randon	?
+48126	Lachamp-Ribennes	?
+48127	Monts-de-Randon	?
 48128	Rimeize	?
 48129	Rocles	?
 48130	Rousses	?
 48131	Le Rozier	?
 48132	Saint-Alban-sur-Limagnole	?
-48133	Saint-Amans	?
 48135	Saint-André-Capcèze	?
 48136	Saint-André-de-Lancize	?
 48137	Saint-Bauzile	?
@@ -17746,17 +17521,14 @@
 48179	Saint-Privat-du-Fau	?
 48181	Saint-Saturnin	?
 48182	Saint-Sauveur-de-Ginestoux	?
-48184	Saint-Symphorien	?
 48185	Les Salelles	?
 48187	Les Salces	?
 48188	Serverette	?
-48189	Servières	?
 48190	Termes	?
 48191	La Tieule	?
 48192	Trélans	?
 48193	Vebron	?
 48194	Vialas	?
-48197	La Villedieu	?
 48198	Villefort	?
 49002	Allonnes	?
 49003	Tuffalun	?
@@ -17783,7 +17555,6 @@
 49038	Bourg-l'Évêque	?
 49041	Brain-sur-Allonnes	?
 49045	La Breille-les-Pins	?
-49046	Brézé	?
 49048	Briollay	?
 49050	Brissac Loire Aubance	?
 49053	Brossay	?
@@ -17792,17 +17563,16 @@
 49056	Carbay	?
 49057	Cernusson	?
 49058	Les Cerqueux	?
-49060	Chacé	?
+49060	Bellevigne-les-Châteaux	?
 49061	Challain-la-Potherie	?
 49063	Chalonnes-sur-Loire	?
 49064	Chambellay	?
-49065	Les Hauts d'Anjou	?
 49067	Chenillé-Champteussé	?
 49068	Champtocé-sur-Loire	?
 49069	Orée d'Anjou	?
 49070	Chanteloup-les-Bois	?
 49076	La Chapelle-Saint-Laud	?
-49080	Châteauneuf-sur-Sarthe	?
+49080	Les Hauts-d'Anjou	?
 49082	Chaudefonds-sur-Layon	?
 49086	Terranjou	?
 49089	Chazé-sur-Argos	?
@@ -17829,17 +17599,14 @@
 49135	Feneu	?
 49138	Les Bois d'Anjou	?
 49140	Fontevraud-l'Abbaye	?
-49144	Freigné	?
-49149	Gennes-Val de Loire	?
 49155	Grez-Neuville	?
-49159	Huillé	?
 49160	Ingrandes-Le Fresne sur Loire	?
 49161	La Jaille-Yvon	?
 49163	Jarzé Villages	?
 49167	Les Garennes sur Loire	?
 49170	Juvardeil	?
 49171	La Lande-Chasles	?
-49174	Lézigné	?
+49174	Huillé-Lézigné	?
 49176	Le Lion-d'Angers	?
 49178	Loiré	?
 49180	Longué-Jumelles	?
@@ -17881,27 +17648,24 @@
 49257	Les Rairies	?
 49259	Rochefort-sur-Loire	?
 49260	La Romagne	?
-49261	Les Rosiers-sur-Loire	?
+49261	Gennes-Val-de-Loire	?
 49262	Rou-Marson	?
 49266	Saint-Augustin-des-Bois	?
 49267	Saint-Barthélemy-d'Anjou	?
 49269	Saint-Christophe-du-Bois	?
 49271	Saint-Clément-de-la-Place	?
 49272	Saint-Clément-des-Levées	?
-49274	Saint-Cyr-en-Bourg	?
 49278	Sainte-Gemmes-sur-Loire	?
 49283	Saint-Georges-sur-Loire	?
 49284	Saint-Germain-des-Prés	?
 49288	Saint-Jean-de-la-Croix	?
-49289	Saint-Jean-de-Linières	?
 49291	Saint-Just-sur-Dive	?
 49292	Val-du-Layon	?
 49294	Saint-Lambert-la-Potherie	?
-49298	Saint-Léger-des-Bois	?
+49298	Saint-Léger-de-Linières	?
 49299	Saint-Léger-sous-Cholet	?
 49301	Sèvremoine	?
 49302	Saint-Macaire-du-Bois	?
-49304	Saint-Martin-de-la-Place	?
 49306	Saint-Martin-du-Fouilloux	?
 49307	Loire-Authion	?
 49308	Saint-Melaine-sur-Aubance	?
@@ -17918,7 +17682,6 @@
 49333	Seiches-sur-le-Loir	?
 49334	Sermaise	?
 49336	Somloire	?
-49337	Soucelles	?
 49338	Soulaines-sur-Aubance	?
 49339	Soulaire-et-Bourg	?
 49341	Souzay-Champigny	?
@@ -17941,17 +17704,15 @@
 49371	Vezins	?
 49373	Lys-Haut-Layon	?
 49374	Villebernier	?
-49377	Villevêque	?
+49377	Rives-du-Loir-en-Anjou	?
 49378	Vivy	?
 49381	Yzernay	?
 50002	Agneaux	?
 50003	Agon-Coutainville	?
 50004	Airel	?
 50006	Amigny	?
-50007	Ancteville	?
 50008	Anctoville-sur-Boscq	?
 50013	Anneville-en-Saire	?
-50014	Anneville-sur-Mer	?
 50015	Annoville	?
 50016	Appeville	?
 50019	Aucey-la-Plaine	?
@@ -18006,7 +17767,6 @@
 50086	Brillevast	?
 50087	Brix	?
 50088	Brouains	?
-50089	Brucheville	?
 50090	Buais-Les-Monts	?
 50092	Cambernon	?
 50093	Cametours	?
@@ -18015,13 +17775,11 @@
 50096	Canteloup	?
 50097	Canville-la-Rocque	?
 50098	Carantilly	?
-50099	Carentan les Marais	?
+50099	Carentan-les-Marais	?
 50101	Carneville	?
 50102	Carolles	?
-50103	Carquebut	?
 50105	Catteville	?
 50106	Cavigny	?
-50107	Catz	?
 50108	Céaux	?
 50109	Cérences	?
 50110	Cerisy-la-Forêt	?
@@ -18040,7 +17798,6 @@
 50137	La Colombe	?
 50138	Colomby	?
 50139	Condé-sur-Vire	?
-50140	Contrières	?
 50142	Vicq-sur-Mer	?
 50143	Coudeville-sur-Mer	?
 50144	Coulouvray-Boisbenâtre	?
@@ -18056,7 +17813,6 @@
 50156	Crosville-sur-Douve	?
 50158	Cuves	?
 50159	Dangy	?
-50160	Denneville	?
 50161	Le Dézert	?
 50162	Digosville	?
 50164	Domjean	?
@@ -18084,25 +17840,23 @@
 50194	Fresville	?
 50195	Gathemo	?
 50196	Gatteville-le-Phare	?
-50197	Gavray	?
+50197	Gavray-sur-Sienne	?
 50198	Geffosses	?
 50199	Genêts	?
 50200	Ger	?
 50205	La Godefroy	?
-50206	La Gohannière	?
 50207	Golleville	?
 50208	Gonfreville	?
 50209	Gonneville-Le Theil	?
 50210	Gorges	?
 50214	Gouvets	?
-50215	Gouville sur Mer	?
+50215	Gouville-sur-Mer	?
 50216	Graignes-Mesnil-Angot	?
 50217	Le Grand-Celland	?
 50218	Granville	?
 50219	Gratot	?
 50221	Grimesnil	?
 50222	Grosville	?
-50223	Guéhébert	?
 50225	Le Guislain	?
 50227	Le Ham	?
 50228	Hambye	?
@@ -18120,10 +17874,8 @@
 50240	Helleville	?
 50241	Hémevez	?
 50243	Heugueville-sur-Sienne	?
-50244	Hérenguerville	?
 50246	Hiesville	?
 50247	Hocquigny	?
-50248	Le Hommet-d'Arthenay	?
 50251	Huberville	?
 50252	Hudimesnil	?
 50253	Huisnes-sur-Mer	?
@@ -18165,18 +17917,14 @@
 50298	Méautis	?
 50299	Le Mesnil	?
 50300	Le Mesnil-Adelée	?
-50301	Le Mesnil-Amand	?
 50302	Le Mesnil-Amey	?
 50304	Le Mesnil-Aubert	?
 50305	Le Mesnil-au-Val	?
-50308	Le Mesnilbus	?
 50310	Le Mesnil-Eury	?
 50311	Le Mesnil-Garnier	?
 50312	Le Mesnil-Gilbert	?
-50313	Le Mesnil-Herman	?
 50315	Le Mesnillard	?
 50317	Le Mesnil-Ozenne	?
-50320	Le Mesnil-Rogues	?
 50321	Le Mesnil-Rouxelin	?
 50324	Le Mesnil-Véneron	?
 50326	Le Mesnil-Villeman	?
@@ -18192,16 +17940,13 @@
 50342	Montfarville	?
 50345	Monthuchon	?
 50347	Montjoie-Saint-Martin	?
-50348	Montmartin-en-Graignes	?
 50349	Montmartin-sur-Mer	?
 50350	Montpinchon	?
 50351	Montrabot	?
 50352	Montreuil-sur-Lozon	?
 50353	Le Mont-Saint-Michel	?
-50354	Montsurvent	?
 50356	Moon-sur-Elle	?
 50357	Morigny	?
-50358	Morsalines	?
 50359	Mortain-Bocage	?
 50360	Morville	?
 50361	La Mouche	?
@@ -18242,7 +17987,7 @@
 50409	Pont-Hébert	?
 50410	Pontorson	?
 50411	Ponts	?
-50412	Portbail	?
+50412	Port-Bail-sur-Mer	?
 50413	Précey	?
 50417	Quettehou	?
 50419	Quettreville-sur-Sienne	?
@@ -18252,7 +17997,6 @@
 50423	Rampan	?
 50425	Rauville-la-Bigot	?
 50426	Rauville-la-Place	?
-50427	Ravenoville	?
 50428	Reffuveille	?
 50429	Regnéville-sur-Mer	?
 50430	Reigneville-Bocage	?
@@ -18261,7 +18005,6 @@
 50435	Rocheville	?
 50436	Romagny Fontenay	?
 50437	Roncey	?
-50438	La Ronde-Haye	?
 50442	Le Rozel	?
 50443	Sacey	?
 50444	Saint-Amand-Villages	?
@@ -18269,7 +18012,6 @@
 50446	Saint-André-de-l'Épine	?
 50447	Saint-Aubin-des-Préaux	?
 50448	Saint-Aubin-de-Terregatte	?
-50449	Saint-Aubin-du-Perron	?
 50450	Saint-Barthélemy	?
 50451	Saint-Brice	?
 50452	Saint-Brice-de-Landelles	?
@@ -18298,7 +18040,6 @@
 50482	Saint-Germain-sur-Sèves	?
 50483	Saint-Gilles	?
 50484	Saint-Hilaire-du-Harcouët	?
-50485	Saint-Hilaire-Petitville	?
 50486	Saint-Jacques-de-Néhou	?
 50487	Saint-James	?
 50488	Saint-Jean-de-Daye	?
@@ -18313,7 +18054,6 @@
 50499	Saint-Laurent-de-Cuves	?
 50500	Saint-Laurent-de-Terregatte	?
 50502	Saint-Lô	?
-50503	Saint-Lô-d'Ourville	?
 50504	Saint-Louet-sur-Vire	?
 50505	Saint-Loup	?
 50506	Saint-Malo-de-la-Lande	?
@@ -18324,14 +18064,12 @@
 50512	Saint-Martin-de-Bonfossé	?
 50513	Saint-Martin-de-Cenilly	?
 50514	Chaulieu	?
-50516	Saint-Martin-des-Champs	?
 50517	Saint-Martin-de-Varreville	?
 50518	Saint-Martin-le-Bouillant	?
 50519	Saint-Martin-le-Gréard	?
 50521	Saint-Maur-des-Bois	?
 50522	Saint-Maurice-en-Cotentin	?
 50523	Sainte-Mère-Église	?
-50524	Saint-Michel-de-la-Pierre	?
 50525	Saint-Michel-de-Montjoie	?
 50528	Saint-Nicolas-de-Pierrepont	?
 50529	Saint-Nicolas-des-Bois	?
@@ -18350,7 +18088,7 @@
 50546	Bourgvallées	?
 50548	Saint-Sauveur-de-Pierrepont	?
 50549	Saint-Sauveur-la-Pommeraye	?
-50550	Saint-Sauveur-Lendelin	?
+50550	Saint-Sauveur-Villages	?
 50551	Saint-Sauveur-le-Vicomte	?
 50552	Saint-Sébastien-de-Raids	?
 50553	Saint-Senier-de-Beuvron	?
@@ -18366,7 +18104,6 @@
 50570	Savigny-le-Vieux	?
 50571	Sébeville	?
 50572	Sénoville	?
-50573	Servigny	?
 50574	Servon	?
 50575	Sideville	?
 50576	Siouville-Hague	?
@@ -18374,9 +18111,7 @@
 50578	Sortosville	?
 50579	Sottevast	?
 50580	Sotteville	?
-50581	Soulles	?
 50582	Sourdeval	?
-50583	Sourdeval-les-Bois	?
 50584	Subligny	?
 50585	Surtainville	?
 50587	Taillepied	?
@@ -18384,17 +18119,16 @@
 50589	Tanis	?
 50590	Le Tanu	?
 50591	Le Teilleul	?
-50592	Tessy Bocage	?
+50592	Tessy-Bocage	?
 50593	Teurthéville-Bocage	?
 50594	Teurthéville-Hague	?
 50596	Théville	?
-50597	Tirepied	?
+50597	Tirepied-sur-Sée	?
 50598	Tocqueville	?
 50599	Tollevast	?
 50601	Torigny-les-Villes	?
 50603	Tourville-sur-Sienne	?
 50604	Tréauville	?
-50605	Trelly	?
 50606	Tribehou	?
 50607	La Trinité	?
 50609	Turqueville	?
@@ -18407,14 +18141,12 @@
 50618	Varouville	?
 50619	Le Vast	?
 50621	Vaudreville	?
-50622	Vaudrimesnil	?
 50624	La Vendelée	?
 50626	Ver	?
 50628	Vernix	?
 50629	Vesly	?
 50633	Le Vicel	?
 50634	Videcosville	?
-50636	Vierville	?
 50637	Villebaudon	?
 50639	Villedieu-les-Poêles-Rouffigny	?
 50641	Villiers-Fossard	?
@@ -18500,7 +18232,7 @@
 51083	Braux-Saint-Remy	?
 51084	Bréban	?
 51085	Le Breuil	?
-51086	Breuil	?
+51086	Breuil-sur-Vesle	?
 51087	Breuvery-sur-Coole	?
 51088	Brimont	?
 51089	Brouillet	?
@@ -18673,7 +18405,6 @@
 51268	Germinon	?
 51269	Giffaumont-Champaubert	?
 51270	Gigny-Bussy	?
-51271	Gionges	?
 51272	Givry-en-Argonne	?
 51273	Givry-lès-Loisy	?
 51274	Gizaucourt	?
@@ -18799,7 +18530,6 @@
 51407	La Noue	?
 51409	Nuisement-sur-Coole	?
 51410	Œuilly	?
-51411	Oger	?
 51412	Ognes	?
 51413	Oiry	?
 51414	Olizy	?
@@ -18988,7 +18718,7 @@
 51609	Verneuil	?
 51610	Verrières	?
 51611	Vert-Toulon	?
-51612	Vertus	?
+51612	Blancs-Coteaux	?
 51613	Verzenay	?
 51614	Verzy	?
 51616	Vésigneul-sur-Marne	?
@@ -19026,7 +18756,6 @@
 51648	Vitry-la-Ville	?
 51649	Vitry-le-François	?
 51650	Voilemont	?
-51651	Voipreux	?
 51652	Vouarces	?
 51654	Vouillers	?
 51655	Vouzy	?
@@ -19214,7 +18943,6 @@
 52221	Gillancourt	?
 52222	Gillaumé	?
 52223	Gilley	?
-52225	Goncourt	?
 52227	Graffigny-Chemin	?
 52228	Grandchamp	?
 52229	Grenant	?
@@ -19467,9 +19195,7 @@
 53001	Ahuillé	?
 53002	Alexain	?
 53003	Ambrières-les-Vallées	?
-53004	Ampoigné	?
 53005	Andouillé	?
-53006	Argenton-Notre-Dame	?
 53007	Argentré	?
 53008	Aron	?
 53009	Arquenay	?
@@ -19477,7 +19203,6 @@
 53011	Astillé	?
 53012	Athée	?
 53013	Averton	?
-53014	Azé	?
 53015	La Baconnière	?
 53016	Bais	?
 53017	Val-du-Maine	?
@@ -19490,7 +19215,7 @@
 53026	Beaulieu-sur-Oudon	?
 53027	Beaumont-Pied-de-Bœuf	?
 53028	Belgeard	?
-53029	Bierné	?
+53029	Bierné-les-Villages	?
 53030	Le Bignon-du-Maine	?
 53031	La Bigottière	?
 53033	La Boissière	?
@@ -19519,10 +19244,9 @@
 53058	La Chapelle-Craonnaise	?
 53059	La Chapelle-Rainsouin	?
 53061	Charchigné	?
-53062	Château-Gontier	?
+53062	Château-Gontier-sur-Mayenne	?
 53063	Châtelain	?
 53064	Châtillon-sur-Colmont	?
-53065	Châtres-la-Forêt	?
 53066	Chemazé	?
 53067	Chémeré-le-Roi	?
 53068	Chérancé	?
@@ -19547,7 +19271,6 @@
 53089	Daon	?
 53090	Denazé	?
 53091	Désertines	?
-53092	Deux-Évailles	?
 53093	La Dorée	?
 53094	Entrammes	?
 53096	Ernée	?
@@ -19558,7 +19281,7 @@
 53101	Fromentières	?
 53102	Gastines	?
 53103	Le Genest-Saint-Isle	?
-53104	Gennes-sur-Glaize	?
+53104	Gennes-Longuefuye	?
 53105	Gesnes	?
 53106	Gesvres	?
 53107	Gorron	?
@@ -19578,7 +19301,7 @@
 53121	Javron-les-Chapelles	?
 53122	Jublains	?
 53123	Juvigné	?
-53124	Laigné	?
+53124	Prée-d'Anjou	?
 53125	Landivy	?
 53126	Larchamp	?
 53127	Lassay-les-Châteaux	?
@@ -19590,9 +19313,8 @@
 53133	Lignières-Orgères	?
 53134	Livet	?
 53135	Livré-la-Touche	?
-53136	Loigné-sur-Mayenne	?
+53136	La Roche-Neuville	?
 53137	Loiron-Ruillé	?
-53138	Longuefuye	?
 53139	Loupfougères	?
 53140	Louverné	?
 53141	Louvigné	?
@@ -19612,9 +19334,8 @@
 53156	Montflours	?
 53157	Montigné-le-Brillant	?
 53158	Montjean	?
-53159	Montourtier	?
 53160	Montreuil-Poulay	?
-53161	Montsûrs-Saint-Céneré	?
+53161	Montsûrs	?
 53162	Moulay	?
 53163	Neau	?
 53164	Neuilly-le-Vendin	?
@@ -19654,7 +19375,6 @@
 53203	Saint-Brice	?
 53204	Saint-Calais-du-Désert	?
 53206	Saint-Charles-la-Forêt	?
-53207	Saint-Christophe-du-Luat	?
 53208	Saint-Cyr-en-Pail	?
 53209	Saint-Cyr-le-Gravelais	?
 53210	Saint-Denis-d'Anjou	?
@@ -19662,7 +19382,6 @@
 53212	Saint-Denis-du-Maine	?
 53213	Saint-Ellier-du-Maine	?
 53214	Saint-Erblon	?
-53215	Saint-Fort	?
 53216	Saint-Fraimbault-de-Prières	?
 53218	Sainte-Gemmes-le-Robert	?
 53219	Saint-Georges-Buttavent	?
@@ -19676,7 +19395,6 @@
 53228	Blandouet-Saint Jean	?
 53229	Saint-Jean-sur-Mayenne	?
 53230	Saint-Julien-du-Terroux	?
-53231	Saint-Laurent-des-Mortiers	?
 53232	Saint-Léger	?
 53233	Saint-Loup-du-Dorat	?
 53234	Saint-Loup-du-Gast	?
@@ -19686,10 +19404,8 @@
 53238	Saint-Mars-sur-la-Futaie	?
 53239	Saint-Martin-de-Connée	?
 53240	Saint-Martin-du-Limet	?
-53241	Saint-Michel-de-Feins	?
 53242	Saint-Michel-de-la-Roë	?
 53243	Saint-Ouën-des-Toits	?
-53244	Saint-Ouën-des-Vallons	?
 53245	Saint-Pierre-des-Landes	?
 53246	Saint-Pierre-des-Nids	?
 53247	Saint-Pierre-la-Cour	?
@@ -19698,7 +19414,6 @@
 53250	Saint-Poix	?
 53251	Saint-Quentin-les-Anges	?
 53253	Saint-Saturnin-du-Limet	?
-53254	Saint-Sulpice	?
 53255	Sainte-Suzanne-et-Chammes	?
 53256	Saint-Thomas-de-Courceriers	?
 53257	Saulges	?
@@ -20214,7 +19929,6 @@
 54502	Serres	?
 54504	Serrouville	?
 54505	Sexey-aux-Forges	?
-54506	Sexey-les-Bois	?
 54507	Sionviller	?
 54508	Sivry	?
 54509	Sommerviller	?
@@ -20265,7 +19979,7 @@
 54554	Vaudigny	?
 54555	Vaxainville	?
 54556	Vého	?
-54557	Velaine-en-Haye	?
+54557	Bois-de-Haye	?
 54558	Velaine-sous-Amance	?
 54559	Velle-sur-Moselle	?
 54560	Veney	?
@@ -20335,7 +20049,6 @@
 55027	Bannoncourt	?
 55028	Bantheville	?
 55029	Bar-le-Duc	?
-55030	Baudignécourt	?
 55031	Baudonvilliers	?
 55032	Baudrémont	?
 55033	Baulny	?
@@ -20440,7 +20153,7 @@
 55146	Dannevoux	?
 55148	Delouze-Rosières	?
 55149	Delut	?
-55150	Demange-aux-Eaux	?
+55150	Demange-Baudignécourt	?
 55153	Dieppe-sous-Douaumont	?
 55154	Dieue-sur-Meuse	?
 55155	Dombasle-en-Argonne	?
@@ -20451,7 +20164,6 @@
 55160	Dompierre-aux-Bois	?
 55162	Domremy-la-Canne	?
 55163	Doncourt-aux-Templiers	?
-55164	Douaumont	?
 55165	Doulcon	?
 55166	Dugny-sur-Meuse	?
 55167	Dun-sur-Meuse	?
@@ -20560,7 +20272,7 @@
 55292	Liny-devant-Dun	?
 55293	Lion-devant-Dun	?
 55295	Lisle-en-Barrois	?
-55296	Lisle-en-Rigault	?
+55296	L'Isle-en-Rigault	?
 55297	Lissey	?
 55298	Loisey	?
 55299	Loison	?
@@ -20714,7 +20426,7 @@
 55468	Samogneux	?
 55469	Sassey-sur-Meuse	?
 55470	Saudrupt	?
-55471	Saulmory-et-Villefranche	?
+55471	Saulmory-Villefranche	?
 55472	Saulvaux	?
 55473	Saulx-lès-Champlon	?
 55474	Sauvigny	?
@@ -20771,7 +20483,7 @@
 55534	Vaudeville-le-Haut	?
 55535	Vaudoncourt	?
 55536	Vauquois	?
-55537	Vaux-devant-Damloup	?
+55537	Douaumont-Vaux	?
 55540	Vaux-lès-Palameix	?
 55541	Vavincourt	?
 55543	Velaines	?
@@ -20827,7 +20539,6 @@
 56013	Belz	?
 56014	Berné	?
 56015	Berric	?
-56016	Bieuzy	?
 56017	Bignan	?
 56018	Billiers	?
 56019	Billio	?
@@ -20868,7 +20579,6 @@
 56056	Évriguet	?
 56057	Le Faouët	?
 56058	Férel	?
-56059	Les Forges	?
 56060	Les Fougerêts	?
 56061	La Gacilly	?
 56062	Gâvres	?
@@ -20909,7 +20619,7 @@
 56099	Langoëlan	?
 56100	Langonnet	?
 56101	Languidic	?
-56102	Lanouée	?
+56102	Forges de Lanouée	?
 56103	Lantillac	?
 56104	Lanvaudan	?
 56105	Lanvénégen	?
@@ -20945,7 +20655,6 @@
 56135	Molac	?
 56136	Monteneuf	?
 56137	Monterblanc	?
-56138	Monterrein	?
 56139	Montertelot	?
 56140	Moréac	?
 56141	Moustoir-Ac	?
@@ -20978,7 +20687,7 @@
 56170	Plouray	?
 56171	Pluherlin	?
 56172	Plumelec	?
-56173	Pluméliau	?
+56173	Pluméliau-Bieuzy	?
 56174	Plumelin	?
 56175	Plumergat	?
 56176	Pluneret	?
@@ -21479,7 +21188,7 @@
 57436	Malaucourt-sur-Seille	?
 57437	Malling	?
 57438	Malroy	?
-57439	Manderen	?
+57439	Manderen-Ritzing	?
 57440	Manhoué	?
 57441	Manom	?
 57442	Many	?
@@ -21613,14 +21322,13 @@
 57575	Retonfey	?
 57576	Rettel	?
 57577	Reyersviller	?
-57578	Rezonville	?
+57578	Rezonville-Vionville	?
 57579	Rhodes	?
 57580	Riche	?
 57581	Richeling	?
 57582	Richemont	?
 57583	Richeval	?
 57584	Rimling	?
-57585	Ritzing	?
 57586	Rochonvillers	?
 57587	Rodalbe	?
 57588	Rodemack	?
@@ -21751,7 +21459,6 @@
 57719	Villers-sur-Nied	?
 57720	Villing	?
 57721	Vilsberg	?
-57722	Vionville	?
 57723	Virming	?
 57724	Vitry-sur-Orne	?
 57725	Vittersbourg	?
@@ -22104,7 +21811,7 @@
 59001	Abancourt	?
 59002	Abscon	?
 59003	Aibes	?
-59004	Aix	?
+59004	Aix-en-Pévèle	?
 59005	Allennes-les-Marais	?
 59006	Amfroipret	?
 59007	Anhiers	?
@@ -22785,7 +22492,6 @@
 60035	Avricourt	?
 60036	Avrigny	?
 60037	Babœuf	?
-60038	Bachivillers	?
 60039	Bacouël	?
 60040	Bailleul-le-Soc	?
 60041	Bailleul-sur-Thérain	?
@@ -22801,7 +22507,7 @@
 60051	Beaudéduit	?
 60052	Beaugies-sous-Bois	?
 60053	Beaulieu-les-Fontaines	?
-60054	Beaumont-les-Nonains	?
+60054	Les Hauts Talican	?
 60055	Beaurains-lès-Noyon	?
 60056	Beaurepaire	?
 60057	Beauvais	?
@@ -22827,7 +22533,6 @@
 60077	Blicourt	?
 60078	Blincourt	?
 60079	Boissy-Fresnoy	?
-60080	Boissy-le-Bois	?
 60081	Bonlier	?
 60082	Bonneuil-les-Eaux	?
 60083	Bonneuil-en-Valois	?
@@ -22843,7 +22548,6 @@
 60093	Boulogne-la-Grasse	?
 60094	Boursonne	?
 60095	Boury-en-Vexin	?
-60096	Boutavent	?
 60097	Boutencourt	?
 60098	Bouvresse	?
 60099	Braisnes-sur-Aronde	?
@@ -22955,7 +22659,7 @@
 60206	Élincourt-Sainte-Marguerite	?
 60207	Éméville	?
 60208	Énencourt-Léage	?
-60209	Énencourt-le-Sec	?
+60209	La Corne en Vexin	?
 60210	Épineuse	?
 60211	Éragny-sur-Epte	?
 60212	Ercuis	?
@@ -23001,7 +22705,7 @@
 60253	Francastel	?
 60254	Francières	?
 60255	Fréniches	?
-60256	Fresneaux-Montchevreuil	?
+60256	Montchevreuil	?
 60257	Fresne-Léguillon	?
 60258	Fresnières	?
 60259	Fresnoy-en-Thelle	?
@@ -23044,7 +22748,6 @@
 60297	Le Hamel	?
 60298	Hanvoile	?
 60299	Hardivillers	?
-60300	Hardivillers-en-Vexin	?
 60301	Haucourt	?
 60302	Haudivillers	?
 60303	Hautbos	?
@@ -23194,7 +22897,6 @@
 60451	Neuilly-sous-Clermont	?
 60452	Neuville-Bosc	?
 60454	La Neuville-en-Hez	?
-60455	La Neuville-Garnier	?
 60456	La Neuville-Roy	?
 60457	La Neuville-Saint-Pierre	?
 60458	La Neuville-sur-Oudeuil	?
@@ -23213,7 +22915,6 @@
 60472	Offoy	?
 60473	Ognes	?
 60474	Ognolles	?
-60475	Ognon	?
 60476	Omécourt	?
 60477	Ons-en-Bray	?
 60478	Ormoy-le-Davien	?
@@ -23415,7 +23116,7 @@
 60679	La Villeneuve-sous-Thury	?
 60680	Villeneuve-sur-Verberie	?
 60681	Villers-Saint-Barthélemy	?
-60682	Villers-Saint-Frambourg	?
+60682	Villers Saint Frambourg-Ognon	?
 60683	Villers-Saint-Genest	?
 60684	Villers-Saint-Paul	?
 60685	Villers-Saint-Sépulcre	?
@@ -23423,11 +23124,9 @@
 60687	Villers-sur-Auchy	?
 60688	Villers-sur-Bonnières	?
 60689	Villers-sur-Coudun	?
-60690	Villers-sur-Trie	?
 60691	Villers-Vermont	?
 60692	Villers-Vicomte	?
 60693	Villeselve	?
-60694	Villotran	?
 60695	Vineuil-Saint-Firmin	?
 60697	Vrocourt	?
 60698	Wacquemoulin	?
@@ -23567,8 +23266,6 @@
 61169	Flers	?
 61170	Fleuré	?
 61171	Fontaine-les-Bassets	?
-61172	Fontenai-les-Louvets	?
-61173	Fontenai-sur-Orne	?
 61176	Francheville	?
 61178	La Fresnaie-Fayel	?
 61180	Fresnay-le-Samson	?
@@ -23581,7 +23278,7 @@
 61190	Ginai	?
 61192	Godisson	?
 61193	La Gonfrière	?
-61194	Goulet	?
+61194	Monts-sur-Orne	?
 61195	Le Grais	?
 61196	Belforêt-en-Perche	?
 61197	Guêprei	?
@@ -23608,10 +23305,9 @@
 61224	Larré	?
 61225	Lignères	?
 61227	Lignou	?
-61228	Livaie	?
+61228	L'Orée-d'Écouves	?
 61229	Loisail	?
 61230	Longny les Villages	?
-61231	Longuenoë	?
 61232	Lonlay-l'Abbaye	?
 61233	Lonlay-le-Tesson	?
 61234	Lonrai	?
@@ -23652,7 +23348,6 @@
 61281	Moncy	?
 61283	Montabard	?
 61284	Montchevrel	?
-61285	Montgaroult	?
 61286	Montgaudry	?
 61287	Montilly-sur-Noireau	?
 61288	Montmerrei	?
@@ -23665,7 +23360,6 @@
 61295	La Motte-Fouquet	?
 61297	Moulins-la-Marche	?
 61298	Moulins-sur-Orne	?
-61299	Moussonvilliers	?
 61300	Moutiers-au-Perche	?
 61301	Neauphe-sous-Essai	?
 61302	Neauphe-sur-Dive	?
@@ -23675,7 +23369,6 @@
 61308	Neuvy-au-Houlme	?
 61309	Perche en Nocé	?
 61310	Nonant-le-Pin	?
-61311	Normandel	?
 61314	Occagnes	?
 61316	Ommoy	?
 61317	Orgères	?
@@ -23725,7 +23418,6 @@
 61379	Saint-Cyr-la-Rosière	?
 61381	Saint-Denis-sur-Huisne	?
 61382	Saint-Denis-sur-Sarthon	?
-61383	Saint-Didier-sous-Écouves	?
 61384	Saint-Ellier-les-Bois	?
 61385	Saint-Evroult-de-Montfort	?
 61386	Saint-Evroult-Notre-Dame-du-Bois	?
@@ -23745,7 +23437,6 @@
 61400	Saint-Gervais-du-Perron	?
 61401	Saint-Gilles-des-Marais	?
 61402	Saint-Hilaire-de-Briouze	?
-61403	Saint-Hilaire-la-Gérard	?
 61404	Saint-Hilaire-le-Châtel	?
 61405	Saint-Hilaire-sur-Erre	?
 61406	Saint-Hilaire-sur-Risle	?
@@ -23767,7 +23458,7 @@
 61425	Saint-Martin-des-Pézerits	?
 61426	Saint-Martin-du-Vieux-Bellême	?
 61427	Saint-Martin-l'Aiguillon	?
-61429	Saint-Maurice-lès-Charencey	?
+61429	Charencey	?
 61432	Saint-Michel-Tubœuf	?
 61433	Saint-Nicolas-des-Bois	?
 61435	Saint-Nicolas-de-Sommaire	?
@@ -23797,7 +23488,6 @@
 61464	Sées	?
 61466	La Selle-la-Forge	?
 61467	Semallé	?
-61468	Sentilly	?
 61472	Sévigny	?
 61473	Sevrai	?
 61474	Gouffern en Auge	?
@@ -24035,7 +23725,6 @@
 62207	Campigneulles-les-Petites	?
 62208	Canettemont	?
 62209	Canlers	?
-62210	Canteleux	?
 62211	Capelle-Fermont	?
 62212	Capelle-lès-Hesdin	?
 62213	Carency	?
@@ -24486,7 +24175,7 @@
 62668	Prédefin	?
 62669	Pressy	?
 62670	Preures	?
-62671	Pronville	?
+62671	Pronville-en-Artois	?
 62672	Puisieux	?
 62673	Quéant	?
 62674	Quelmes	?
@@ -24796,7 +24485,6 @@
 63075	Chamalières	?
 63076	Chambon-sur-Dolore	?
 63077	Chambon-sur-Lac	?
-63078	Chaméane	?
 63079	Champagnat-le-Jeune	?
 63080	Champeix	?
 63081	Champétières	?
@@ -24845,13 +24533,11 @@
 63124	Cournon-d'Auvergne	?
 63125	Courpière	?
 63126	Le Crest	?
-63127	Creste	?
 63128	Crevant-Laveine	?
 63129	Cros	?
 63130	La Crouzille	?
 63131	Culhat	?
 63132	Cunlhat	?
-63133	Dallet	?
 63134	Dauzat-sur-Vodable	?
 63135	Davayat	?
 63136	Domaize	?
@@ -24943,7 +24629,7 @@
 63223	Menat	?
 63224	Ménétrol	?
 63225	Messeix	?
-63226	Mezel	?
+63226	Mur-sur-Allier	?
 63227	Mirefleurs	?
 63228	Miremont	?
 63229	Moissat	?
@@ -25162,7 +24848,7 @@
 63445	Vassel	?
 63446	Vensat	?
 63447	Vergheas	?
-63448	Vernet-la-Varenne	?
+63448	Le Vernet-Chaméane	?
 63449	Le Vernet-Sainte-Marguerite	?
 63450	Verneugheol	?
 63451	Vernines	?
@@ -25822,7 +25508,7 @@
 65089	Betpouey	?
 65090	Betpouy	?
 65091	Bettes	?
-65092	Beyrède-Jumet	?
+65092	Beyrède-Jumet-Camous	?
 65093	Bize	?
 65094	Bizous	?
 65095	Bonnefont	?
@@ -25852,7 +25538,6 @@
 65119	Caixon	?
 65120	Calavanté	?
 65121	Camalès	?
-65122	Camous	?
 65123	Campan	?
 65124	Camparan	?
 65125	Campistrous	?
@@ -26253,7 +25938,7 @@
 66048	Cerbère	?
 66049	Céret	?
 66050	Claira	?
-66051	Clara	?
+66051	Clara-Villerach	?
 66052	Codalet	?
 66053	Collioure	?
 66054	Conat	?
@@ -26379,7 +26064,7 @@
 66179	Saint-Laurent-de-Cerdans	?
 66180	Saint-Laurent-de-la-Salanque	?
 66181	Sainte-Léocadie	?
-66182	Sainte-Marie	?
+66182	Sainte-Marie-la-Mer	?
 66183	Saint-Marsal	?
 66184	Saint-Martin-de-Fenouillet	?
 66185	Saint-Michel-de-Llotes	?
@@ -26442,7 +26127,6 @@
 67011	Artolsheim	?
 67012	Aschbach	?
 67013	Asswiller	?
-67014	Auenheim	?
 67016	Avolsheim	?
 67017	Baerendorf	?
 67018	Balbronn	?
@@ -26575,7 +26259,7 @@
 67150	Furdenheim	?
 67151	Gambsheim	?
 67152	Geispolsheim	?
-67153	Geiswiller	?
+67153	Geiswiller-Zœbersdorf	?
 67154	Gerstheim	?
 67155	Gertwiller	?
 67156	Geudertheim	?
@@ -26773,7 +26457,7 @@
 67369	Ottwiller	?
 67370	Petersbach	?
 67371	La Petite-Pierre	?
-67372	Val de Moder	?
+67372	Val-de-Moder	?
 67373	Pfalzweyer	?
 67375	Pfulgriesheim	?
 67377	Plaine	?
@@ -26798,7 +26482,6 @@
 67398	Richtolsheim	?
 67400	Riedseltz	?
 67401	Rimsdorf	?
-67402	Ringeldorf	?
 67403	Ringendorf	?
 67404	Rittershoffen	?
 67405	Rœschwoog	?
@@ -26814,7 +26497,7 @@
 67415	Rothbach	?
 67416	Rott	?
 67417	Rottelsheim	?
-67418	Rountzenheim	?
+67418	Rountzenheim-Auenheim	?
 67420	Russ	?
 67421	Saales	?
 67422	Saasenheim	?
@@ -26946,7 +26629,6 @@
 67557	Zellwiller	?
 67558	Zinswiller	?
 67559	Zittersheim	?
-67560	Zœbersdorf	?
 68001	Algolsheim	?
 68002	Altenach	?
 68004	Altkirch	?
@@ -27326,11 +27008,10 @@
 69012	Les Ardillats	?
 69013	Arnas	?
 69014	Aveize	?
-69015	Avenas	?
 69016	Azolette	?
 69017	Bagnols	?
 69018	Beaujeu	?
-69019	Belleville	?
+69019	Belleville-en-Beaujolais	?
 69020	Belmont-d'Azergues	?
 69021	Bessenay	?
 69022	Bibost	?
@@ -27357,7 +27038,6 @@
 69045	Charentay	?
 69046	Charly	?
 69047	Charnay	?
-69048	Chassagny	?
 69049	Chasselay	?
 69050	Châtillon	?
 69051	Chaussan	?
@@ -27382,7 +27062,6 @@
 69070	Cublize	?
 69071	Curis-au-Mont-d'Or	?
 69072	Dardilly	?
-69073	Dareizé	?
 69074	Denicé	?
 69075	Dième	?
 69076	Dommartin	?
@@ -27409,7 +27088,6 @@
 69098	Les Halles	?
 69099	Haute-Rivoire	?
 69100	Irigny	?
-69101	Jarnioux	?
 69102	Joux	?
 69103	Juliénas	?
 69104	Jullié	?
@@ -27440,7 +27118,7 @@
 69132	Meys	?
 69133	Millery	?
 69134	Moiré	?
-69135	Monsols	?
+69135	Deux-Grosnes	?
 69136	Montagny	?
 69137	Montmelas-Saint-Sorlin	?
 69138	Montromant	?
@@ -27450,17 +27128,15 @@
 69142	La Mulatière	?
 69143	Neuville-sur-Saône	?
 69145	Odenas	?
-69147	Les Olmes	?
 69148	Orliénas	?
 69149	Oullins	?
-69150	Ouroux	?
 69151	Le Perréon	?
 69152	Pierre-Bénite	?
 69153	Poleymieux-au-Mont-d'Or	?
 69154	Pollionnay	?
 69155	Pomeys	?
 69156	Pommiers	?
-69157	Pontcharra-sur-Turdine	?
+69157	Vindry-sur-Turdine	?
 69159	Porte des Pierres Dorées	?
 69160	Poule-les-Écharmeaux	?
 69161	Propières	?
@@ -27481,13 +27157,12 @@
 69176	Soucieu-en-Jarrest	?
 69177	Sourcieux-les-Mines	?
 69178	Souzy	?
-69179	Saint-Andéol-le-Château	?
+69179	Beauvallon	?
 69180	Saint-André-la-Côte	?
 69181	Saint-Appolinaire	?
 69182	Saint-Bonnet-des-Bruyères	?
 69183	Saint-Bonnet-le-Troncy	?
 69184	Sainte-Catherine	?
-69185	Saint-Christophe	?
 69186	Saint-Clément-de-Vers	?
 69187	Saint-Clément-les-Places	?
 69188	Saint-Clément-sur-Valsonne	?
@@ -27511,10 +27186,7 @@
 69207	Saint-Germain-au-Mont-d'Or	?
 69208	Saint-Germain-Nuelles	?
 69209	Saint-Igny-de-Vers	?
-69210	Saint-Jacques-des-Arrêts	?
-69211	Saint-Jean-d'Ardières	?
 69212	Saint-Jean-des-Vignes	?
-69213	Saint-Jean-de-Touslas	?
 69214	Saint-Jean-la-Bussière	?
 69215	Saint-Julien	?
 69216	Saint-Julien-sur-Bibost	?
@@ -27522,8 +27194,6 @@
 69218	Saint-Lager	?
 69219	Saint-Laurent-d'Agny	?
 69220	Saint-Laurent-de-Chamousset	?
-69223	Saint-Loup	?
-69224	Saint-Mamert	?
 69225	Saint-Marcel-l'Éclairé	?
 69227	Saint-Martin-en-Haut	?
 69228	Chabanière	?
@@ -27546,7 +27216,6 @@
 69248	Thizy-les-Bourgs	?
 69249	Thurins	?
 69250	La Tour-de-Salvagny	?
-69251	Trades	?
 69252	Trèves	?
 69253	Tupin-et-Semons	?
 69254	Valsonne	?
@@ -27821,7 +27490,7 @@
 70242	Fontenois-la-Ville	?
 70243	Fontenois-lès-Montbozon	?
 70244	Fouchécourt	?
-70245	Fougerolles	?
+70245	Fougerolles-Saint-Valbert	?
 70247	Fouvent-Saint-Andoche	?
 70248	Frahier-et-Chatebier	?
 70249	Francalmont	?
@@ -27940,7 +27609,6 @@
 70372	Montureux-lès-Baulay	?
 70373	La Roche-Morey	?
 70374	Motey-Besuche	?
-70375	Motey-sur-Saône	?
 70376	Nantilly	?
 70378	Navenne	?
 70380	Neurey-en-Vaux	?
@@ -28029,10 +27697,9 @@
 70469	Sainte-Marie-en-Chanois	?
 70470	Sainte-Marie-en-Chaux	?
 70471	Sainte-Reine	?
-70472	Saint-Remy	?
+70472	Saint-Rémy-en-Comté	?
 70473	Saint-Sauveur	?
 70474	Saint-Sulpice	?
-70475	Saint-Valbert	?
 70476	Saponcourt	?
 70477	Saulnot	?
 70478	Saulx	?
@@ -28048,12 +27715,11 @@
 70488	Senoncourt	?
 70489	Servance-Miellin	?
 70490	Servigney	?
-70491	Seveux	?
+70491	Seveux-Motey	?
 70492	Soing-Cubry-Charentenay	?
 70493	Sorans-lès-Breurey	?
 70494	Sornay	?
 70496	Tartécourt	?
-70497	Tavey	?
 70498	Ternuay-Melay-et-Saint-Hilaire	?
 70499	Theuley	?
 70500	Thieffrans	?
@@ -28187,7 +27853,6 @@
 71051	Bouzeron	?
 71052	Boyer	?
 71054	Bragny-sur-Saône	?
-71055	Brandon	?
 71056	Branges	?
 71057	Bray	?
 71058	Bresse-sur-Grosne	?
@@ -28264,7 +27929,7 @@
 71131	Ciel	?
 71132	Ciry-le-Noble	?
 71133	La Clayette	?
-71134	Clermain	?
+71134	Navour-sur-Grosne	?
 71135	Clessé	?
 71136	Clessy	?
 71137	Cluny	?
@@ -28426,7 +28091,6 @@
 71301	Mont	?
 71302	Montagny-lès-Buxy	?
 71303	Montagny-près-Louhans	?
-71304	Montagny-sur-Grosne	?
 71305	Montbellet	?
 71306	Montceau-les-Mines	?
 71307	Montceaux-l'Étoile	?
@@ -28732,7 +28396,6 @@
 72029	Beaumont-sur-Sarthe	?
 72031	Beillé	?
 72032	Berfay	?
-72033	Bernay-en-Champagne	?
 72034	Bérus	?
 72035	Bessé-sur-Braye	?
 72036	Béthon	?
@@ -28776,8 +28439,7 @@
 72077	Chenu	?
 72078	Chérancé	?
 72079	Chérisay	?
-72080	Cherré	?
-72081	Cherreau	?
+72080	Cherré-Au	?
 72083	Chevillé	?
 72084	Clermont-Créans	?
 72085	Cogners	?
@@ -28791,7 +28453,6 @@
 72094	Coudrecieux	?
 72095	Coulaines	?
 72096	Coulans-sur-Gée	?
-72097	Coulombiers	?
 72098	Coulongé	?
 72099	Courcebœufs	?
 72100	Courcelles-la-Forêt	?
@@ -28809,8 +28470,6 @@
 72113	Degré	?
 72114	Dehault	?
 72115	Dissay-sous-Courcillon	?
-72116	Dissé-sous-Ballon	?
-72117	Dissé-sous-le-Lude	?
 72118	Dollon	?
 72119	Domfront-en-Champagne	?
 72120	Doucelles	?
@@ -28821,7 +28480,7 @@
 72125	Écorpain	?
 72126	Épineu-le-Chevreuil	?
 72127	Étival-lès-le-Mans	?
-72128	Évaillé	?
+72128	Val d'Étangson	?
 72129	Fatines	?
 72130	Fay	?
 72131	Fercé-sur-Sarthe	?
@@ -28906,7 +28565,7 @@
 72216	Neuvillalais	?
 72217	Neuville-sur-Sarthe	?
 72218	Neuvillette-en-Charnie	?
-72219	Neuvy-en-Champagne	?
+72219	Bernay-Neuvy-en-Champagne	?
 72220	Nogent-le-Bernard	?
 72221	Nogent-sur-Loir	?
 72222	Nouans	?
@@ -28967,7 +28626,6 @@
 72281	Saint-Georges-du-Rosay	?
 72282	Saint-Georges-le-Gaultier	?
 72283	Saint-Germain-d'Arcé	?
-72284	Saint-Germain-sur-Sarthe	?
 72286	Saint-Gervais-de-Vic	?
 72287	Saint-Gervais-en-Belin	?
 72289	Sainte-Jamme-sur-Sarthe	?
@@ -28984,7 +28642,6 @@
 72300	Saint-Mars-la-Brière	?
 72302	Saint-Martin-des-Monts	?
 72303	Saint-Michel-de-Chavaignes	?
-72304	Sainte-Osmane	?
 72305	Saint-Ouen-de-Mimbré	?
 72306	Saint-Ouen-en-Belin	?
 72307	Saint-Ouen-en-Champagne	?
@@ -29064,8 +28721,7 @@
 72385	Yvré-le-Pôlin	?
 72386	Yvré-l'Évêque	?
 73001	Aiguebelette-le-Lac	?
-73002	Aiguebelle	?
-73003	Aigueblanche	?
+73003	Grand-Aigueblanche	?
 73004	Aillon-le-Jeune	?
 73005	Aillon-le-Vieux	?
 73006	Aime-la-Plagne	?
@@ -29101,8 +28757,6 @@
 73041	Betton-Bettonet	?
 73042	Billième	?
 73043	La Biolle	?
-73045	Le Bois	?
-73046	Bonneval	?
 73047	Bonneval-sur-Arc	?
 73048	Bonvillard	?
 73049	Bonvillaret	?
@@ -29132,7 +28786,6 @@
 73077	Les Chapelles	?
 73078	La Chapelle-Saint-Martin	?
 73079	Châteauneuf	?
-73080	Le Châtel	?
 73081	Le Châtelard	?
 73082	La Chavanne	?
 73083	Les Chavannes-en-Maurienne	?
@@ -29160,27 +28813,23 @@
 73107	Entremont-le-Vieux	?
 73109	Épierre	?
 73110	Esserts-Blay	?
-73111	Étable	?
-73112	Feissons-sur-Isère	?
 73113	Feissons-sur-Salins	?
 73114	Flumet	?
 73116	Fontcouverte-la-Toussuire	?
 73117	Fourneaux	?
-73118	Francin	?
 73119	Freney	?
 73120	Fréterive	?
 73121	Frontenex	?
 73122	Gerbaix	?
 73123	La Giettaz	?
 73124	Gilly-sur-Isère	?
-73127	Gresin	?
 73128	Grésy-sur-Aix	?
 73129	Grésy-sur-Isère	?
 73130	Grignon	?
 73131	Hautecour	?
 73132	Hauteluce	?
 73133	Hauteville	?
-73135	Hermillon	?
+73135	La Tour-en-Maurienne	?
 73137	Jacob-Bellecombette	?
 73138	Jarrier	?
 73139	Jarsy	?
@@ -29192,7 +28841,7 @@
 73147	Loisieux	?
 73149	Lucey	?
 73150	La Plagne Tarentaise	?
-73151	Les Marches	?
+73151	Porte-de-Savoie	?
 73152	Marcieux	?
 73153	Marthod	?
 73154	Mercury	?
@@ -29233,7 +28882,6 @@
 73200	Planaise	?
 73201	Planay	?
 73202	Plancherine	?
-73203	Pontamafrey-Montpascal	?
 73204	Le Pont-de-Beauvoisin	?
 73205	Le Pontet	?
 73206	Pralognan-la-Vanoise	?
@@ -29241,10 +28889,10 @@
 73208	Pugny-Chatenod	?
 73210	Puygros	?
 73211	Queige	?
-73212	Randens	?
+73212	Val-d'Arc	?
 73213	La Ravoire	?
 73214	Rochefort	?
-73215	La Rochette	?
+73215	Valgelon-La Rochette	?
 73216	Rognaix	?
 73217	Rotherens	?
 73218	Ruffieux	?
@@ -29265,13 +28913,12 @@
 73233	Saint-Franc	?
 73234	Saint-François-de-Sales	?
 73235	Saint François Longchamp	?
-73236	Saint-Genix-sur-Guiers	?
+73236	Saint-Genix-les-Villages	?
 73237	Saint-Georges-d'Hurtières	?
 73240	Sainte-Hélène-du-Lac	?
 73241	Sainte-Hélène-sur-Isère	?
 73242	Saint-Jean-d'Arves	?
 73243	Saint-Jean-d'Arvey	?
-73244	Saint-Jean-de-Belleville	?
 73245	Saint-Jean-de-Chevelu	?
 73246	Saint-Jean-de-Couz	?
 73247	Saint-Jean-de-la-Porte	?
@@ -29286,12 +28933,10 @@
 73257	Les Belleville	?
 73258	Saint-Martin-de-la-Porte	?
 73259	Saint-Martin-sur-la-Chambre	?
-73260	Saint-Maurice-de-Rotherens	?
 73261	Saint-Michel-de-Maurienne	?
 73262	Saint-Nicolas-la-Chapelle	?
 73263	Saint-Offenge	?
 73265	Saint-Ours	?
-73266	Saint-Oyen	?
 73267	Saint-Pancrace	?
 73268	Saint-Paul-sur-Isère	?
 73269	Saint-Paul	?
@@ -29447,7 +29092,6 @@
 74107	Droisy	?
 74108	Duingt	?
 74109	Éloise	?
-74110	Entremont	?
 74111	Entrevernes	?
 74112	Epagny Metz-Tessy	?
 74114	Essert-Romand	?
@@ -29538,7 +29182,7 @@
 74209	Peillonnex	?
 74210	Perrignier	?
 74211	Pers-Jussy	?
-74212	Le Petit-Bornand-les-Glières	?
+74212	Glières-Val-de-Borne	?
 74213	Poisy	?
 74215	Praz-sur-Arly	?
 74216	Présilly	?
@@ -29584,12 +29228,11 @@
 74264	Scionzier	?
 74265	Serraval	?
 74266	Servoz	?
-74267	Sévrier	?
+74267	Sevrier	?
 74269	Seyssel	?
 74271	Seytroux	?
 74272	Sillingy	?
 74273	Sixt-Fer-à-Cheval	?
-74274	Val-de-Fier	?
 74275	Talloires-Montmin	?
 74276	Taninges	?
 74278	Thyez	?
@@ -29603,7 +29246,7 @@
 74286	Vacheresse	?
 74287	Vailly	?
 74288	Valleiry	?
-74289	Vallières	?
+74289	Vallières-sur-Fier	?
 74290	Vallorcine	?
 74291	Vanzy	?
 74292	Vaulx	?
@@ -29660,13 +29303,13 @@
 76030	Aubermesnil-Beaumais	?
 76032	Auberville-la-Manuel	?
 76033	Auberville-la-Renault	?
-76034	Auffay	?
+76034	Val-de-Scie	?
 76035	Aumale	?
 76036	Auppegard	?
 76038	Authieux-Ratiéville	?
 76039	Les Authieux-sur-le-Port-Saint-Ouen	?
 76040	Autigny	?
-76041	Autretot	?
+76041	Les Hauts-de-Caux	?
 76042	Auvilliers	?
 76043	Auzebosc	?
 76045	Auzouville-l'Esneval	?
@@ -29706,7 +29349,7 @@
 76084	Bertreville	?
 76085	Bertreville-Saint-Ouen	?
 76086	Bertrimont	?
-76087	Berville	?
+76087	Berville-en-Caux	?
 76088	Berville-sur-Seine	?
 76090	Beuzeville-la-Grenier	?
 76091	Beuzeville-la-Guérard	?
@@ -29803,7 +29446,6 @@
 76188	Cottévrard	?
 76189	Crasville-la-Mallet	?
 76190	Crasville-la-Rocquefort	?
-76191	Cressy	?
 76192	Criel-sur-Mer	?
 76193	La Crique	?
 76194	Criquebeuf-en-Caux	?
@@ -30262,7 +29904,6 @@
 76671	Sept-Meules	?
 76672	Serqueux	?
 76673	Servaville-Salmonville	?
-76674	Sévis	?
 76675	Sierville	?
 76676	Sigy-en-Bray	?
 76677	Smermesnil	?
@@ -30311,7 +29952,6 @@
 76726	Vattetot-sur-Mer	?
 76727	Vatteville-la-Rue	?
 76728	La Vaupalière	?
-76729	Veauville-lès-Baons	?
 76730	Veauville-lès-Quelles	?
 76731	Vénestanville	?
 76732	Butot-Vénesville	?
@@ -30367,7 +30007,6 @@
 77025	Bazoches-lès-Bray	?
 77026	Beauchery-Saint-Martin	?
 77027	Beaumont-du-Gâtinais	?
-77028	Beautheil	?
 77029	Beauvoir	?
 77030	Bellot	?
 77031	Bernay-Vilbert	?
@@ -30444,7 +30083,7 @@
 77106	Chauffry	?
 77107	Chaumes-en-Brie	?
 77108	Chelles	?
-77109	Chenoise	?
+77109	Chenoise-Cucharmoy	?
 77110	Chenou	?
 77111	Chessy	?
 77112	Chevrainvilliers	?
@@ -30484,7 +30123,6 @@
 77146	Croissy-Beaubourg	?
 77147	La Croix-en-Brie	?
 77148	Crouy-sur-Ourcq	?
-77149	Cucharmoy	?
 77150	Cuisy	?
 77151	Dagny	?
 77152	Dammarie-les-Lys	?
@@ -30722,7 +30360,6 @@
 77396	Rupéreux	?
 77397	Saâcy-sur-Marne	?
 77398	Sablonnières	?
-77399	Saint-Ange-le-Viel	?
 77400	Saint-Augustin	?
 77401	Sainte-Aulde	?
 77402	Saint-Barthélemy	?
@@ -30755,7 +30392,7 @@
 77430	Saint-Pathus	?
 77431	Saint-Pierre-lès-Nemours	?
 77432	Saint-Rémy-la-Vanne	?
-77433	Saints	?
+77433	Beautheil-Saints	?
 77434	Saint-Sauveur-lès-Bray	?
 77435	Saint-Sauveur-sur-École	?
 77436	Saint-Siméon	?
@@ -30906,7 +30543,7 @@
 78146	Chatou	?
 78147	Chaufour-lès-Bonnières	?
 78152	Chavenay	?
-78158	Le Chesnay	?
+78158	Le Chesnay-Rocquencourt	?
 78160	Chevreuse	?
 78162	Choisel	?
 78163	Civry-la-Forêt	?
@@ -30942,7 +30579,6 @@
 78242	Fontenay-le-Fleury	?
 78245	Fontenay-Mauvoisin	?
 78246	Fontenay-Saint-Père	?
-78251	Fourqueux	?
 78255	Freneuse	?
 78261	Gaillon-sur-Montcient	?
 78262	Galluis	?
@@ -30970,7 +30606,7 @@
 78311	Houilles	?
 78314	Issou	?
 78317	Jambville	?
-78320	Jeufosse	?
+78320	Notre-Dame-de-la-Mer	?
 78321	Jouars-Pontchartrain	?
 78322	Jouy-en-Josas	?
 78324	Jouy-Mauvoisin	?
@@ -31047,7 +30683,6 @@
 78499	Ponthévrard	?
 78501	Porcheville	?
 78502	Le Port-Marly	?
-78503	Port-Villez	?
 78505	Prunay-le-Temple	?
 78506	Prunay-en-Yvelines	?
 78513	La Queue-les-Yvelines	?
@@ -31056,7 +30691,6 @@
 78518	Rennemoulin	?
 78520	Richebourg	?
 78522	Rochefort-en-Yvelines	?
-78524	Rocquencourt	?
 78528	Rolleboise	?
 78530	Rosay	?
 78531	Rosny-sur-Seine	?
@@ -31116,16 +30750,14 @@
 79001	L'Absie	?
 79002	Adilly	?
 79003	Aiffres	?
-79004	Aigonnay	?
 79005	Airvault	?
 79007	Allonne	?
 79008	Amailloux	?
 79009	Amuré	?
 79010	Arçais	?
-79011	Ardilleux	?
 79012	Ardin	?
 79013	Argentonnay	?
-79014	Argenton-l'Église	?
+79014	Loretz-d'Argenton	?
 79015	Asnières-en-Poitou	?
 79016	Assais-les-Jumeaux	?
 79018	Aubigné	?
@@ -31135,27 +30767,19 @@
 79023	Avon	?
 79024	Azay-le-Brûlé	?
 79025	Azay-sur-Thouet	?
-79027	La Bataille	?
 79029	Beaulieu-sous-Parthenay	?
 79030	Beaussais-Vitré	?
 79031	Beauvoir-sur-Niort	?
 79032	Béceleuf	?
-79033	Belleville	?
 79034	Bessines	?
-79035	Le Beugnon	?
 79038	Boismé	?
-79039	Boisserolles	?
 79040	La Boissière-en-Gâtine	?
 79042	Bougon	?
-79043	Bouillé-Loretz	?
-79045	Bouin	?
 79046	Le Bourdet	?
 79047	Boussais	?
 79048	La Crèche	?
 79049	Bressuire	?
 79050	Bretignolles	?
-79051	Le Breuil-Bernard	?
-79054	Brie	?
 79055	Brieuil-sur-Chizé	?
 79056	Brion-près-Thouet	?
 79057	Brioux-sur-Boutonne	?
@@ -31165,17 +30789,15 @@
 79061	Celles-sur-Belle	?
 79062	Cerizay	?
 79063	Val en Vignes	?
-79064	Chail	?
-79066	Champdeniers-Saint-Denis	?
-79068	Chantecorps	?
+79064	Fontivillié	?
+79066	Champdeniers	?
 79069	Chanteloup	?
 79070	La Chapelle-Bâton	?
 79071	La Chapelle-Bertrand	?
 79074	La Chapelle-Pouilloux	?
-79075	La Chapelle-Saint-Étienne	?
 79076	La Chapelle-Saint-Laurent	?
-79077	La Chapelle-Thireuil	?
-79078	Prissé-la-Charrière	?
+79077	Beugnon-Thireuil	?
+79078	Plaine-d'Argenson	?
 79079	Mauléon	?
 79080	Châtillon-sur-Thouet	?
 79081	Chauray	?
@@ -31192,15 +30814,13 @@
 79094	Clessé	?
 79095	Clussais-la-Pommeraie	?
 79096	Combrand	?
-79098	La Couarde	?
 79100	Coulon	?
 79101	Coulonges-sur-l'Autize	?
 79102	Coulonges-Thouarsais	?
 79103	Courlay	?
 79104	Cours	?
-79105	Coutières	?
+79105	Les Châteliers	?
 79106	Couture-d'Argenson	?
-79107	Crézières	?
 79108	Doux	?
 79109	Échiré	?
 79111	Ensigné	?
@@ -31230,7 +30850,7 @@
 79136	Alloinay	?
 79137	Granzay-Gript	?
 79139	Les Groseillers	?
-79140	Hanc	?
+79140	Valdelaume	?
 79141	Irais	?
 79142	Juillé	?
 79144	Juscorps	?
@@ -31255,28 +30875,23 @@
 79166	Marigny	?
 79167	Marnes	?
 79170	Mauzé-sur-le-Mignon	?
-79171	Mauzé-Thouarsais	?
 79172	Mazières-en-Gâtine	?
-79173	Mazières-sur-Béronne	?
 79174	Melle	?
 79175	Melleran	?
 79176	Ménigoute	?
 79177	Messé	?
-79178	Missé	?
-79179	Moncoutant	?
+79179	Moncoutant-sur-Sèvre	?
 79180	Montalembert	?
 79183	Montravers	?
 79184	La Mothe-Saint-Héray	?
-79185	Mougon-Thorigné	?
-79188	Moutiers-sous-Chantemerle	?
+79185	Aigondigné	?
 79189	Nanteuil	?
 79190	Neuvy-Bouin	?
 79191	Niort	?
 79195	Nueil-les-Aubiers	?
-79196	Oiron	?
+79196	Plaine-et-Vallées	?
 79197	Oroux	?
 79198	Paizay-le-Chapt	?
-79199	Paizay-le-Tort	?
 79200	Pamplie	?
 79201	Pamproux	?
 79202	Parthenay	?
@@ -31287,17 +30902,13 @@
 79208	La Peyratte	?
 79209	Pierrefitte	?
 79210	Le Pin	?
-79211	Pioussay	?
 79212	Pliboux	?
 79213	Pompaire	?
-79214	Pouffonds	?
 79215	Pougne-Hérisson	?
 79216	Prahecq	?
-79217	Prailles	?
+79217	Prailles-La Couarde	?
 79218	Pressigny	?
-79219	Priaires	?
 79220	Prin-Deyrançon	?
-79222	Pugny	?
 79223	Puihardy	?
 79225	Reffannes	?
 79226	Le Retail	?
@@ -31308,16 +30919,14 @@
 79236	Saint-André-sur-Sèvre	?
 79238	Saint-Aubin-du-Plain	?
 79239	Saint-Aubin-le-Cloud	?
-79240	Sainte-Blandine	?
 79241	Saint-Christophe-sur-Roc	?
 79242	Voulmentin	?
 79243	Saint-Coutant	?
 79244	Saint-Cyr-la-Lande	?
 79246	Sainte-Eanne	?
-79247	Saint-Étienne-la-Cigogne	?
 79249	Saint-Gelais	?
 79250	Sainte-Gemme	?
-79251	Saint-Génard	?
+79251	Marcillé	?
 79252	Saint-Généroux	?
 79253	Saint-Georges-de-Noisné	?
 79254	Saint-Georges-de-Rex	?
@@ -31326,10 +30935,7 @@
 79257	Saint-Hilaire-la-Palud	?
 79258	Saint-Jacques-de-Thouars	?
 79259	Saint-Jean-de-Thouars	?
-79260	Saint-Jouin-de-Marnes	?
-79261	Saint-Jouin-de-Milly	?
 79263	Saint-Laurs	?
-79264	Saint-Léger-de-la-Martinière	?
 79265	Saint-Léger-de-Montbrun	?
 79267	Saint-Lin	?
 79268	Saint-Loup-Lamairé	?
@@ -31341,17 +30947,14 @@
 79276	Saint-Martin-de-Saint-Maixent	?
 79277	Saint-Martin-de-Sanzay	?
 79278	Saint-Martin-du-Fouilloux	?
-79279	Saint-Martin-lès-Melle	?
 79280	Saint Maurice Étusson	?
 79281	Saint-Maxire	?
-79282	Saint-Médard	?
 79283	Sainte-Néomaye	?
 79284	Sainte-Ouenne	?
-79285	Saint-Pardoux	?
+79285	Saint-Pardoux-Soutiers	?
 79286	Saint-Paul-en-Gâtine	?
 79289	Saint-Pierre-des-Échaubrognes	?
 79290	Saint-Pompain	?
-79292	Sainte-Radegonde	?
 79293	Saint-Rémy	?
 79294	Saint-Romans-des-Champs	?
 79295	Saint-Romans-lès-Melle	?
@@ -31371,21 +30974,15 @@
 79311	Secondigny	?
 79312	Séligné	?
 79313	Sepvret	?
-79314	Sompt	?
 79316	Soudan	?
-79318	Soutiers	?
 79319	Souvigné	?
 79320	Surin	?
-79321	Taizé-Maulais	?
 79322	Le Tallud	?
-79325	Tessonnière	?
 79326	Thénezay	?
-79328	Thorigny-sur-le-Mignon	?
 79329	Thouars	?
-79330	Tillou	?
 79331	Tourtenay	?
 79332	Trayes	?
-79334	Usseau	?
+79334	Val-du-Mignon	?
 79335	Vallans	?
 79336	Vançais	?
 79337	Le Vanneau-Irleau	?
@@ -31574,7 +31171,6 @@
 80172	Cappy	?
 80173	Cardonnette	?
 80174	Le Cardonnois	?
-80175	Carnoy	?
 80176	Carrépuis	?
 80177	Cartigny	?
 80179	Caulières	?
@@ -31607,7 +31203,6 @@
 80206	Contalmaison	?
 80207	Contay	?
 80208	Conteville	?
-80209	Contoire	?
 80210	Contre	?
 80211	Conty	?
 80212	Corbie	?
@@ -31776,7 +31371,6 @@
 80386	Gratibus	?
 80387	Grattepanche	?
 80388	Grébault-Mesnil	?
-80389	Grécourt	?
 80390	Grivesnes	?
 80391	Grivillers	?
 80392	Grouches-Luchuel	?
@@ -31804,7 +31398,6 @@
 80416	Hangest-sur-Somme	?
 80417	Harbonnières	?
 80418	Hardecourt-aux-Bois	?
-80419	Hargicourt	?
 80420	Harponville	?
 80421	Hattencourt	?
 80422	Hautvillers-Ouville	?
@@ -31863,7 +31456,7 @@
 80481	Lihons	?
 80482	Limeux	?
 80484	Liomer	?
-80485	Lœuilly	?
+80485	Ô-de-Selle	?
 80486	Long	?
 80487	Longavesnes	?
 80488	Longpré-les-Corps-Saints	?
@@ -31882,10 +31475,10 @@
 80502	Maison-Roland	?
 80503	Maizicourt	?
 80504	Malpart	?
-80505	Mametz	?
+80505	Carnoy-Mametz	?
 80507	Marcelcave	?
 80508	Marché-Allouarde	?
-80509	Marchélepot	?
+80509	Marchélepot-Misery	?
 80511	Marestmontiers	?
 80512	Mareuil-Caubert	?
 80513	Maricourt	?
@@ -31923,7 +31516,6 @@
 80548	Millencourt-en-Ponthieu	?
 80549	Miraumont	?
 80550	Mirvaux	?
-80551	Misery	?
 80552	Moislains	?
 80553	Molliens-au-Bois	?
 80554	Molliens-Dreuil	?
@@ -31963,7 +31555,6 @@
 80591	Neuville-au-Bois	?
 80592	Neuville-Coppegueule	?
 80593	La Neuville-lès-Bray	?
-80594	Neuville-lès-Lœuilly	?
 80595	La Neuville-Sire-Bernard	?
 80596	Neuvillette	?
 80597	Nibas	?
@@ -31991,7 +31582,7 @@
 80622	Picquigny	?
 80623	Piennes-Onvillers	?
 80624	Pierregot	?
-80625	Pierrepont-sur-Avre	?
+80625	Trois-Rivières	?
 80626	Pissy	?
 80627	Plachy-Buyon	?
 80628	Le Plessier-Rozainvillers	?
@@ -32115,7 +31706,6 @@
 80758	Thory	?
 80759	Tilloloy	?
 80760	Tilloy-Floriville	?
-80761	Tilloy-lès-Conty	?
 80762	Tincourt-Boucly	?
 80763	Le Titre	?
 80764	Tœufles	?
@@ -32403,14 +31993,13 @@
 81223	Le Rialet	?
 81224	Le Riols	?
 81225	Rivières	?
-81226	Ronel	?
 81227	Roquecourbe	?
 81228	Roquemaure	?
 81229	Roquevidal	?
 81230	Rosières	?
 81231	Rouairoux	?
 81232	Rouffiac	?
-81233	Roumégoux	?
+81233	Terre-de-Bancalié	?
 81234	Roussayrolles	?
 81235	Saint-Affrique-les-Montagnes	?
 81236	Saint-Agnan	?
@@ -32418,7 +32007,6 @@
 81238	Saint-Amans-Soult	?
 81239	Saint-Amans-Valtoret	?
 81240	Saint-André	?
-81241	Saint-Antonin-de-Lacalm	?
 81242	Saint-Avit	?
 81243	Saint-Beauzile	?
 81244	Saint-Benoît-de-Carmaux	?
@@ -32437,7 +32025,6 @@
 81257	Saint-Juéry	?
 81258	Saint-Julien-du-Puy	?
 81259	Saint-Julien-Gaulène	?
-81260	Saint-Lieux-Lafenasse	?
 81261	Saint-Lieux-lès-Lavaur	?
 81262	Saint-Marcel-Campes	?
 81263	Saint-Martin-Laguépie	?
@@ -32473,12 +32060,10 @@
 81293	Tauriac	?
 81294	Técou	?
 81295	Teillet	?
-81296	Terre-Clapier	?
 81297	Terssac	?
 81298	Teulat	?
 81299	Teyssode	?
 81300	Tonnac	?
-81301	Le Travet	?
 81302	Tréban	?
 81303	Trébas	?
 81304	Trévien	?
@@ -32524,7 +32109,7 @@
 82018	Bioule	?
 82019	Boudou	?
 82020	Bouillac	?
-82021	Bouloc	?
+82021	Bouloc-en-Quercy	?
 82022	Bourg-de-Visa	?
 82023	Bourret	?
 82024	Brassac	?
@@ -32884,7 +32469,7 @@
 84030	Caromb	?
 84031	Carpentras	?
 84032	Caseneuve	?
-84033	Castellet	?
+84033	Castellet-en-Luberon	?
 84034	Caumont-sur-Durance	?
 84035	Cavaillon	?
 84036	Châteauneuf-de-Gadagne	?
@@ -33028,7 +32613,6 @@
 85024	Bois-de-Céné	?
 85025	La Boissière-de-Montaigu	?
 85026	La Boissière-des-Landes	?
-85027	Boufféré	?
 85028	Bouillé-Courdault	?
 85029	Bouin	?
 85031	Le Boupère	?
@@ -33045,7 +32629,6 @@
 85045	La Chaize-Giraud	?
 85046	La Chaize-le-Vicomte	?
 85047	Challans	?
-85048	Chambretaud	?
 85049	Champagné-les-Marais	?
 85050	Le Champ-Saint-Père	?
 85051	Chantonnay	?
@@ -33055,7 +32638,6 @@
 85056	La Chapelle-Thémer	?
 85058	Chasnais	?
 85059	La Châtaigneraie	?
-85060	Château-d'Olonne	?
 85061	Château-Guibert	?
 85062	Châteauneuf	?
 85064	Chauché	?
@@ -33086,7 +32668,7 @@
 85095	Froidfond	?
 85096	La Garnache	?
 85097	La Gaubretière	?
-85098	La Génétouze	?
+85098	La Genétouze	?
 85099	Le Girouard	?
 85100	Givrand	?
 85101	Le Givre	?
@@ -33095,7 +32677,6 @@
 85104	Grues	?
 85105	Le Gué-de-Velluire	?
 85106	La Guérinière	?
-85107	La Guyonnière	?
 85108	L'Herbergement	?
 85109	Les Herbiers	?
 85110	L'Hermenault	?
@@ -33132,7 +32713,7 @@
 85143	Mervent	?
 85144	Mesnard-la-Barotière	?
 85145	Monsireigne	?
-85146	Montaigu	?
+85146	Montaigu-Vendée	?
 85147	Montournais	?
 85148	Montreuil	?
 85149	Moreilles	?
@@ -33147,19 +32728,17 @@
 85159	Nalliers	?
 85160	Nesmy	?
 85161	Nieul-le-Dolent	?
-85162	Nieul-sur-l'Autise	?
+85162	Rives-d'Autise	?
 85163	Noirmoutier-en-l'Île	?
 85164	Notre-Dame-de-Monts	?
-85166	Olonne-sur-Mer	?
 85167	L'Orbrie	?
-85168	Oulmes	?
 85169	Palluau	?
 85171	Péault	?
 85172	Le Perrier	?
 85174	Petosse	?
 85175	Les Pineaux	?
 85176	Pissotte	?
-85177	Le Poiré-sur-Velluire	?
+85177	Les Velluire-sur-Vendée	?
 85178	Le Poiré-sur-Vie	?
 85179	Poiroux	?
 85181	Pouillé	?
@@ -33194,13 +32773,11 @@
 85214	Sainte-Foy	?
 85215	Saint-Fulgent	?
 85216	Sainte-Gemme-la-Plaine	?
-85217	Saint-Georges-de-Montaigu	?
 85218	Saint-Georges-de-Pointindoux	?
 85220	Saint-Germain-de-Prinçay	?
 85221	Saint-Gervais	?
 85222	Saint-Gilles-Croix-de-Vie	?
 85223	Sainte-Hermine	?
-85224	Saint-Hilaire-de-Loulay	?
 85226	Saint-Hilaire-de-Riez	?
 85227	Saint-Hilaire-des-Loges	?
 85229	Saint-Hilaire-de-Voust	?
@@ -33261,10 +32838,9 @@
 85296	Treize-Vents	?
 85297	Triaize	?
 85298	Vairé	?
-85299	Velluire	?
 85300	Venansault	?
 85301	Vendrennes	?
-85302	La Verrie	?
+85302	Chanverrie	?
 85303	Vix	?
 85304	Vouillé-les-Marais	?
 85305	Vouvant	?
@@ -33290,7 +32866,6 @@
 86018	Basses	?
 86019	Beaumont Saint-Cyr	?
 86020	Bellefonds	?
-86021	Benassay	?
 86022	Berrie	?
 86023	Berthegon	?
 86024	Béruges	?
@@ -33310,7 +32885,6 @@
 86040	La Bussière	?
 86041	Buxerolles	?
 86042	Buxeuil	?
-86043	Ceaux-en-Couhé	?
 86044	Ceaux-en-Loudun	?
 86045	Celle-Lévescault	?
 86046	Cenon-sur-Vienne	?
@@ -33323,7 +32897,6 @@
 86053	Champigny en Rochereau	?
 86054	Champniers	?
 86055	La Chapelle-Bâton	?
-86056	La Chapelle-Montreuil	?
 86058	La Chapelle-Moulière	?
 86059	Chapelle-Viviers	?
 86061	Charroux	?
@@ -33332,7 +32905,6 @@
 86064	Château-Garnier	?
 86065	Château-Larcher	?
 86066	Châtellerault	?
-86067	Châtillon	?
 86068	Chaunay	?
 86069	La Chaussée	?
 86070	Chauvigny	?
@@ -33346,7 +32918,7 @@
 86079	La Roche-Rigault	?
 86080	Cloué	?
 86081	Colombiers	?
-86082	Couhé	?
+86082	Valence-en-Poitou	?
 86083	Coulombiers	?
 86084	Coulonges	?
 86085	Coussay	?
@@ -33386,7 +32958,7 @@
 86120	Lathus-Saint-Rémy	?
 86121	Latillé	?
 86122	Lauthiers	?
-86123	Lavausseau	?
+86123	Boivre-la-Vallée	?
 86124	Lavoux	?
 86125	Leigné-les-Bois	?
 86126	Leignes-sur-Fontaine	?
@@ -33427,7 +32999,6 @@
 86163	Montamisé	?
 86164	Monthoiron	?
 86165	Montmorillon	?
-86166	Montreuil-Bonnin	?
 86167	Monts-sur-Guesnes	?
 86169	Morton	?
 86170	Moulismes	?
@@ -33446,7 +33017,6 @@
 86184	Ouzilly	?
 86186	Oyré	?
 86187	Paizay-le-Sec	?
-86188	Payré	?
 86189	Payroux	?
 86190	Persac	?
 86191	Pindray	?
@@ -33522,11 +33092,9 @@
 86274	Les Trois-Moutiers	?
 86275	Usseau	?
 86276	Usson-du-Poitou	?
-86277	Varennes	?
-86278	Vaux	?
 86279	Vaux-sur-Vienne	?
 86280	Vellèches	?
-86281	Saint Martin la Pallu	?
+86281	Saint-Martin-la-Pallu	?
 86284	Vernon	?
 86285	Verrières	?
 86286	Verrue	?
@@ -33569,7 +33137,7 @@
 87024	Bujaleuf	?
 87025	Burgnac	?
 87027	Bussière-Galant	?
-87028	Bussière-Poitevine	?
+87028	Val-d'Oire-et-Gartempe	?
 87029	Les Cars	?
 87030	Chaillac-sur-Vienne	?
 87031	Le Chalard	?
@@ -33596,7 +33164,6 @@
 87052	La Croix-sur-Gartempe	?
 87053	Cromac	?
 87054	Cussac	?
-87055	Darnac	?
 87056	Dinsac	?
 87057	Dompierre-les-Églises	?
 87058	Domps	?
@@ -33667,7 +33234,7 @@
 87125	Rilhac-Rancon	?
 87126	Rochechouart	?
 87127	La Roche-l'Abeille	?
-87128	Roussac	?
+87128	Saint-Pardoux-le-Lac	?
 87129	Royères	?
 87130	Roziers-Saint-Georges	?
 87131	Saillat-sur-Vienne	?
@@ -33675,7 +33242,6 @@
 87133	Saint-Amand-Magnazeix	?
 87134	Sainte-Anne-Saint-Priest	?
 87135	Saint-Auvent	?
-87136	Saint-Barbant	?
 87137	Saint-Bazile	?
 87138	Saint-Bonnet-Briance	?
 87139	Saint-Bonnet-de-Bellac	?
@@ -33711,7 +33277,6 @@
 87169	Saint-Maurice-les-Brousses	?
 87170	Saint-Méard	?
 87172	Saint-Ouen-sur-Gartempe	?
-87173	Saint-Pardoux	?
 87174	Saint-Paul	?
 87176	Saint-Priest-Ligoure	?
 87177	Saint-Priest-sous-Aixe	?
@@ -33721,7 +33286,6 @@
 87181	Saint-Sulpice-Laurière	?
 87182	Saint-Sulpice-les-Feuilles	?
 87183	Saint-Sylvestre	?
-87184	Saint-Symphorien-sur-Couze	?
 87185	Saint-Victurnien	?
 87186	Saint-Vitte-sur-Briance	?
 87187	Saint-Yrieix-la-Perche	?
@@ -33733,7 +33297,6 @@
 87193	Surdoux	?
 87194	Sussac	?
 87195	Tersannes	?
-87196	Thiat	?
 87197	Thouron	?
 87198	Vaulry	?
 87199	Vayres	?
@@ -34347,7 +33910,6 @@
 89104	Chichée	?
 89105	Chichery	?
 89108	Chitry	?
-89109	Cisery	?
 89111	Les Clérimois	?
 89112	Collan	?
 89113	Collemiers	?
@@ -34422,7 +33984,7 @@
 89194	Grimault	?
 89195	Gron	?
 89196	Valravillon	?
-89197	Guillon	?
+89197	Guillon-Terre-Plaine	?
 89198	Gurgy	?
 89199	Gy-l'Évêque	?
 89200	Hauterive	?
@@ -34550,7 +34112,6 @@
 89337	Saint-Bris-le-Vineux	?
 89338	Saint-Clément	?
 89339	Sainte-Colombe	?
-89340	Sainte-Colombe-sur-Loing	?
 89341	Saint-Cyr-les-Colons	?
 89342	Saint-Denis-lès-Sens	?
 89344	Saint-Fargeau	?
@@ -34585,7 +34146,6 @@
 89378	Sauvigny-le-Bois	?
 89379	Savigny-en-Terre-Plaine	?
 89380	Savigny-sur-Clairis	?
-89381	Sceaux	?
 89382	Seignelay	?
 89383	Sementron	?
 89384	Senan	?
@@ -34621,8 +34181,7 @@
 89417	Tissey	?
 89418	Tonnerre	?
 89419	Toucy	?
-89420	Treigny	?
-89421	Trévilly	?
+89420	Treigny-Perreuse-Sainte-Colombe	?
 89422	Trichey	?
 89423	Tronchoy	?
 89424	Trucy-sur-Yonne	?
@@ -34646,7 +34205,6 @@
 89445	Vézannes	?
 89446	Vézelay	?
 89447	Vézinnes	?
-89448	Vignes	?
 89449	Villeblevin	?
 89450	Villebougis	?
 89451	Villechétive	?
@@ -34744,12 +34302,11 @@
 90065	Lepuix	?
 90066	Leval	?
 90067	Menoncourt	?
-90068	Meroux	?
+90068	Meroux-Moval	?
 90069	Méziré	?
 90070	Montbouton	?
 90071	Montreux-Château	?
 90072	Morvillars	?
-90073	Moval	?
 90074	Novillard	?
 90075	Offemont	?
 90076	Pérouse	?
@@ -34835,7 +34392,6 @@
 91175	Corbreuse	?
 91179	Le Coudray-Montceaux	?
 91180	Courances	?
-91182	Courcouronnes	?
 91184	Courdimanche-sur-Essonne	?
 91186	Courson-Monteloup	?
 91191	Crosne	?
@@ -34847,11 +34403,10 @@
 91207	Égly	?
 91215	Épinay-sous-Sénart	?
 91216	Épinay-sur-Orge	?
-91222	Estouches	?
 91223	Étampes	?
 91225	Étiolles	?
 91226	Étréchy	?
-91228	Évry	?
+91228	Évry-Courcouronnes	?
 91232	La Ferté-Alais	?
 91235	Fleury-Mérogis	?
 91240	Fontaine-la-Rivière	?
@@ -34889,7 +34444,7 @@
 91377	Massy	?
 91378	Mauchamps	?
 91386	Mennecy	?
-91390	Méréville	?
+91390	Le Mérévillois	?
 91393	Mérobert	?
 91399	Mespuits	?
 91405	Milly-la-Forêt	?
@@ -35045,7 +34600,7 @@
 93063	Romainville	?
 93064	Rosny-sous-Bois	?
 93066	Saint-Denis	?
-93070	Saint-Ouen	?
+93070	Saint-Ouen-sur-Seine	?
 93071	Sevran	?
 93072	Stains	?
 93073	Tremblay-en-France	?
@@ -35174,7 +34729,6 @@
 95256	Frépillon	?
 95257	La Frette-sur-Seine	?
 95258	Frouville	?
-95259	Gadancourt	?
 95268	Garges-lès-Gonesse	?
 95270	Genainville	?
 95271	Génicourt	?
@@ -35188,8 +34742,8 @@
 95301	Haute-Isle	?
 95303	Le Heaulme	?
 95304	Hédouville	?
-95306	Herblay	?
-95308	Hérouville	?
+95306	Herblay-sur-Seine	?
+95308	Hérouville-en-Vexin	?
 95309	Hodent	?
 95313	L'Isle-Adam	?
 95316	Jagny-sous-Bois	?
