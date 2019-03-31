@@ -63,7 +63,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     static1 = dict(dict(**osmTags), **defaultTags),
                     static2 = {"source": self.source},
                     mapping1 = {"surface": self.surface},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i != None, [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
 
     def validLatLon(self, row):
         if abs(float(row["EquGpsX"])) <= 180 and abs(float(row["EquGpsY"])) <= 90:

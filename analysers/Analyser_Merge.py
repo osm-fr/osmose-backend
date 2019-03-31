@@ -650,7 +650,7 @@ class Load(object):
                             "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
                             "tags": tags[1],
                             "tags1": tags[0],
-                            "fields": dict(zip(dict(res).keys(), dict(res).values())),
+                            "fields": dict(zip(dict(res).keys(), map(lambda s: (s == None and None) or u'{0}'.format(s), dict(res).values()))),
                             "lon": lonLat[0] if is_pip else None, "lat": lonLat[1] if is_pip else None
                         })
             if isinstance(self.x, tuple):
