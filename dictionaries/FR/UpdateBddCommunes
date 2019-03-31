@@ -172,5 +172,5 @@ Bdd1["98758"] = (u"Île de Clipperton", u"")
 
 f = open("BddCommunes", "w")
 for x in sorted(Bdd1.keys()):
-    f.write(u"\t".join([x, Bdd1[x][0]])+"\t?\n")
+    f.write(u"\t".join([x, Bdd1[x][0]])+"\n")
 f.close()
