@@ -42,7 +42,7 @@ class TagRemove_Incompatibles(Plugin):
             ],
             'place': [
                 ['square', 'area', 'yes'],
-                ['square', ' highway', 'pedestrian'],
+                ['square', 'highway', 'pedestrian'],
             ],
             'highway': [
                 ['elevator', 'railway', 'subway_entrance'],
@@ -109,5 +109,6 @@ class Test(TestPluginCommon):
                   {"bridge": "yes", "tunnel": "no"},
                   {"waterway": "dam", "highway": "road"},
                   {"landuse": "school", "amenity": "school"},
+                  {"place": "square", "highway": "pedestrian"},
                  ]:
             assert not a.node(None, t), t
