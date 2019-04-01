@@ -2,6 +2,12 @@
 import requests.utils
 import re
 
+try:
+    unicode # Python 2
+except:
+    unicode = str
+    long = int
+
 
 # Utils
 

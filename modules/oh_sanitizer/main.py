@@ -8,6 +8,11 @@ import unittest as _unittest
 import lark as _lark
 from lark.lexer import Token as _Token
 
+try:
+    unicode # Python 2
+except:
+    unicode = str
+
 
 def get_parser():
     """

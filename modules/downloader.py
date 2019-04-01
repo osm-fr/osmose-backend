@@ -29,6 +29,11 @@ from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
 from . import config
 
+try:
+    unicode
+except:
+    unicode = str
+
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 

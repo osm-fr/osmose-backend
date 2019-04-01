@@ -23,11 +23,15 @@ import inspect
 import time, os
 import hashlib
 
+try:
+    unicode # Python 2
+except:
+    unicode = str
 
 def version(*sources):
     h = hashlib.md5()
     for source in sources:
-        if isinstance(source, basestring) and os.path.exists(source):
+        if (isinstance(source, str) or isinstance(source, unicode)) and os.path.exists(source):
             h.update(open(source, 'rb').read())
         elif isinstance(source, int):
             h.update(str(source).encode('utf-8'))
