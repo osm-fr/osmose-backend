@@ -427,7 +427,10 @@ def removequotesjson(s):
     @param s : source string
     @return same string without trailing/leading " char
     """
-    return re.sub('^"', '', re.sub('"$', '', s)) if isinstance(s, basestring) else s
+    try:
+        return s.strip('"')
+    except AttributeError:
+        return s
 
 class JSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
@@ -630,6 +633,7 @@ class Load(object):
             osmosis.run(sql00 % {"official": tableOfficial})
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            mult_space = re.compile(r'\s+')
             def insertOfficial(res):
                 x = self.xFunction(res[0])
                 y = self.yFunction(res[1])
@@ -642,8 +646,10 @@ class Load(object):
                         is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
                     if not self.pip or is_pip:
                         for k in res.keys():
-                            if res[k] != None and isinstance(res[k], basestring):
-                                res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
+                            try:
+                                res[k] = mult_space.sub(' ', res[k].strip()) # Strip and remove duplicate space
+                            except AttributeError:
+                                pass
                         tags = mapping.generate.tagFactory(res)
                         tags[1].update(tags[0])
                         giscurs.execute(sql02.replace("%(official)s", tableOfficial), {

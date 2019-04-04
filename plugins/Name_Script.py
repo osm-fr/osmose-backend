@@ -64,7 +64,7 @@ class Name_Script(Plugin):
         self.default = None
         languages = self.father.config.options.get("language")
         if languages:
-            if isinstance(languages, basestring):
+            if not isinstance(languages, list):
                 languages = [languages]
 
             # Assert the languages are mapped to scripts

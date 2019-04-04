@@ -46,7 +46,7 @@ class TagFix_Wikipedia(Plugin):
 
         self.Country = self.father.config.options.get("country")
         self.Language = self.father.config.options.get("language")
-        if not isinstance(self.Language, basestring):
+        if isinstance(self.Language, list):
             self.Language = None
 
     def human_readable(self, string):

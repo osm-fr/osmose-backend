@@ -195,31 +195,17 @@ class TestPluginCommon(unittest.TestCase):
 
     def check_dict(self, d, log):
         for (k,v) in d.items():
-            self.check_str(k, log)
-            if isinstance(v, basestring):
-                self.check_str(v, log)
+            if isinstance(v, list):
+                self.check_array(v, log)
             elif isinstance(v, dict):
                 self.check_dict(v, log)
-            else:
-                self.check_array(v, log)
 
     def check_array(self, a, log):
         for v in a:
-            if isinstance(v, basestring):
-                self.check_str(v, log)
+            if isinstance(v, list):
+                self.check_array(v, log)
             elif isinstance(v, dict):
                 self.check_dict(v, log)
-            else:
-                self.check_array(v, log)
-
-    def check_str(self, s, log):
-        if isinstance(s, str):
-            try:
-                s.decode('ascii')
-            except:
-                print(log)
-                print(s)
-                raise
 
 
 class Test(TestPluginCommon):
@@ -267,12 +253,6 @@ class Test(TestPluginCommon):
         self.assertEquals(self.check_dict({"a": ["toto", "titi"]}, None), None)
         self.assertEquals(self.check_dict({"a": ["toto", {"a": "titi"}]}, None), None)
 
-        assert_raises(Exception, self.check_dict, {"é": "aaa"}, None)
-        assert_raises(Exception, self.check_dict, {"a": "éééé"}, None)
-        assert_raises(Exception, self.check_dict, {"a": ["ùùu"]}, None)
-        assert_raises(Exception, self.check_dict, {"a": ["toto", "èè"]}, None)
-        assert_raises(Exception, self.check_dict, {"a": {"a": "œ"}}, None)
-
     def test_check_array(self):
         from nose.tools import assert_raises
         self.assertEquals(self.check_array("toto", None), None)
@@ -280,18 +260,6 @@ class Test(TestPluginCommon):
         self.assertEquals(self.check_array(["toto", "titi"], None), None)
         self.assertEquals(self.check_array(["toto", {"a": "titi"}], None), None)
         self.assertEquals(self.check_array(["toto", ["a", "titi"]], None), None)
-
-        assert_raises(Exception, self.check_array, "éééé", None)
-        assert_raises(Exception, self.check_array, ["ùùu"], None)
-        assert_raises(Exception, self.check_array, ["toto", "èè"], None)
-        assert_raises(Exception, self.check_array, ["toto", {"a": "œ"}], None)
-        assert_raises(Exception, self.check_array, ["toto", ["a", "œ"]], None)
-
-    def test_check_str(self):
-        from nose.tools import assert_raises
-        self.assertEquals(self.check_str("toto", None), None)
-        self.assertEquals(self.check_str(u"éééé", None), None)
-        assert_raises(Exception, self.check_str, "ééé", None)
 
     def test_availableMethodes(self):
         class Plugin_with_node(Plugin):
