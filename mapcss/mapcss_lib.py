@@ -550,9 +550,9 @@ def outside(options, areas):
 # only_for lang
 def language(options, locales):
     language = options.get("language")
-    return language and isinstance(language, str) and any(map(lambda c: language.startswith(c), locales.split(','))) or False
+    return language and not isinstance(language, list) and any(map(lambda c: language.startswith(c), locales.split(','))) or False
 
 # not_for lang
 def no_language(options, locales):
     language = options.get("language")
-    return language and isinstance(language, str) and all(map(lambda c: not language.startswith(c), locales.split(','))) or False
+    return language and not isinstance(language, list) and all(map(lambda c: not language.startswith(c), locales.split(','))) or False
