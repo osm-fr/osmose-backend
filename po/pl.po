@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-23 17:55+0000\n"
+"PO-Revision-Date: 2019-03-27 15:46+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1393,11 +1393,11 @@ msgstr "\"%s\" może zostać zastąpiony przez dokładniejszy tag"
 
 #: ../plugins/Name_Script.py:34
 msgid "Non printable char"
-msgstr ""
+msgstr "Niedrukowalny znak"
 
 #: ../plugins/Name_Script.py:35
 msgid "Symbol char"
-msgstr ""
+msgstr "Symbol w nazwie"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
 msgid "Member without addr:housenumber nor addr:housename"
@@ -1629,7 +1629,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
-msgstr ""
+msgstr "Sama nazwa bez podstawowego tagu (amenity, shop, itp.)"
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:29
 msgid "Power minor_distribution substation not integrated"
@@ -1735,15 +1735,15 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
-msgstr ""
+msgstr "Nakładające się drogi"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
-msgstr ""
+msgstr "Przecinające się cieki bez węzła"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "Nakładające się cieki"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:106
 #: ../analysers/analyser_osmosis_highway_zone.py:107
@@ -1869,11 +1869,11 @@ msgstr ""
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "Brak drogi dojazdowej do parkingu"
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "Prawdopodobnie tylko na butelki, nie każdy rodzaj szkła"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
@@ -1901,7 +1901,7 @@ msgstr ""
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "Litera z alfabetu arabskiego w nazwie po persku"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70

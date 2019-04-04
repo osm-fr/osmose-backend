@@ -515,7 +515,7 @@ msgstr ""
 msgid "Bad date format"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:28
+#: ../plugins/Highway_Lanes.py:29
 msgid "Bad lanes value"
 msgstr ""
 
@@ -965,7 +965,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../plugins/Name_Multilingual.py:35
+#: ../plugins/Name_Multilingual.py:36
 msgid "Multilingual not matching"
 msgstr ""
 
@@ -1193,38 +1193,38 @@ msgstr ""
 msgid "BM glass recycling update"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:29
+#: ../plugins/Highway_Lanes.py:30
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:30
+#: ../plugins/Highway_Lanes.py:31
 msgid "Conflict between lanes number"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:31
+#: ../plugins/Highway_Lanes.py:32
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:32
+#: ../plugins/Highway_Lanes.py:33
 msgid "Unknown turn lanes value"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:33
+#: ../plugins/Highway_Lanes.py:34
 msgid "Bad turn lanes order"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:34
+#: ../plugins/Highway_Lanes.py:35
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:35
+#: ../plugins/Highway_Lanes.py:36
 msgid "Bad access lanes value, should not be an integer but a restriction"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:36
+#: ../plugins/Highway_Lanes.py:37
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
@@ -1290,7 +1290,7 @@ msgstr ""
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr ""
 
-#: ../plugins/Name_Script.py:33
+#: ../plugins/Name_Script.py:34
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
@@ -1381,11 +1381,11 @@ msgstr ""
 msgid "\"%s\" can be set in specific tag"
 msgstr ""
 
-#: ../plugins/Name_Script.py:34
+#: ../plugins/Name_Script.py:35
 msgid "Non printable char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:35
+#: ../plugins/Name_Script.py:36
 msgid "Symbol char"
 msgstr ""
 
@@ -1972,7 +1972,7 @@ msgstr ""
 msgid "{0} stop {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:61
+#: ../analysers/analyser_merge_traffic_signs.py:72
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr ""
@@ -2014,23 +2014,23 @@ msgstr ""
 msgid "{0} deviation of {1}m"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:73
+#: ../plugins/Highway_Lanes.py:74
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:151
+#: ../plugins/Highway_Lanes.py:152
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:207
+#: ../plugins/Highway_Lanes.py:208
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:212
+#: ../plugins/Highway_Lanes.py:213
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -2038,20 +2038,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:215
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:217
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:219
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -2068,44 +2068,44 @@ msgstr ""
 msgid "Umbalanced {0}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
+#: ../plugins/Name_Script.py:99 ../plugins/Name_Script.py:121
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
+#: ../plugins/Name_Script.py:104 ../plugins/Name_Script.py:125
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:108
+#: ../plugins/Name_Script.py:109
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:113
+#: ../plugins/Name_Script.py:114
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position "
 "{4}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
+#: ../plugins/Name_Script.py:141 ../plugins/Name_Script.py:163
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means "
 "\"{5}\" ({6}, 0x{7:04x})?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:168
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr ""
 
-#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
+#: ../plugins/Name_Script.py:149 ../plugins/Name_Script.py:171
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
