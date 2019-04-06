@@ -34,11 +34,15 @@ FROM
 WHERE
   tags != ''::hstore AND
   (
+    -- Cycle only
+    (tags?'railway' AND tags->'railway' = 'platform') OR
+    (tags?'public_transport' AND tags->'public_transport' = 'platform') OR
+    (tags?'highway' AND tags->'highway' = 'pedestrian') OR
+    -- Commons
     (tags?'route' AND tags->'route' = 'ferry') OR
     (tags?'man_made' AND tags->'man_made' = 'pier') OR
     (tags?'aeroway' AND tags->'aeroway' IN ('taxiway', 'runway', 'apron')) OR
     (tags?'railway' AND tags->'railway' = 'platform') OR
-    (tags?'public_transport' AND tags->'public_transport' = 'platform') OR
     (tags?'highway' AND tags->'highway' IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
   )
 """
