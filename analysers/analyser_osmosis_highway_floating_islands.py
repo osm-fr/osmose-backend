@@ -134,8 +134,9 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11)
         if False and self.config.polygon_id and 'proj' in self.config.options:
-            bbox = Polygon(self.config.polygon_id).bbox()
-            self.run(sql12.format(self.config.options.get("proj"), *bbox))
+            bboxes = Polygon(self.config.polygon_id).bboxes()
+            for bbox in bboxes:
+                self.run(sql12.format(self.config.options.get("proj"), *bbox))
         else:
             self.run(sql12o)
         self.run(sqlb13)

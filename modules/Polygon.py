@@ -20,6 +20,7 @@
 ###########################################################################
 
 from shapely.wkt import loads
+from shapely.geometry import MultiPolygon
 from modules import downloader
 
 
@@ -35,8 +36,23 @@ class Polygon:
             s = s.split(";", 1)[1]
         self.polygon = loads(s)
 
-    def bbox(self):
-        return self.polygon.bounds
+    def bboxes(self):
+        bbox = self.polygon.bounds
+        if not(bbox[0] < -179 and bbox[2] > 179):
+            return [bbox]
+        else: # Cross the 180°
+            negative = []
+            positive = []
+            for polygon in self.polygon:
+                sub_bbox = polygon.bounds
+                if sub_bbox[0] < 0:
+                    negative.append(polygon)
+                else:
+                    positive.append(polygon)
+            return [
+                MultiPolygon(negative).bounds,
+                MultiPolygon(positive).bounds,
+            ]
 
 
 ###########################################################################
@@ -47,4 +63,4 @@ class Test(unittest.TestCase):
     def test(self):
         # France
         p = Polygon(1403916)
-        assert(p.bbox() != None)
+        assert(p.bboxes() != None)

@@ -30,8 +30,8 @@ class PointInPolygon:
         self.polygon = Polygon(polygon_id, cache_delay)
         self.build()
 
-    def bbox(self):
-        return self.polygon.bbox()
+    def bboxes(self):
+        return self.polygon.bboxes()
 
     def sameVDir(self, x1, y1, x2, y2, x3, y3):
         # Check if next segment have same direction again vertical.
