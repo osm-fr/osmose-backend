@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -20,7 +21,7 @@ class Josm_geometry(Plugin):
         self.errors[9003009] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.')}
         self.errors[9003010] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'Way with {0} not closed.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
 
-        self.re_22f56734 = re.compile(ur'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
+        self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
 
 
     def node(self, data, tags):

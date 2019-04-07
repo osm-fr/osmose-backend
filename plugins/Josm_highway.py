@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -18,13 +19,13 @@ class Josm_highway(Plugin):
         self.errors[9004007] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), u'sidewalk=left|right|both|no')}
         self.errors[9004008] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'wrong highway tag on a node')}
 
-        self.re_015aabd5 = re.compile(ur'^(unclassified|residential|living_street|service)$')
-        self.re_3092b7ac = re.compile(ur'^.*_link$')
-        self.re_3dc5dd7c = re.compile(ur'motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway')
-        self.re_4dcdb354 = re.compile(ur'^footway:')
-        self.re_55ee32ac = re.compile(ur'^(motorway|trunk|primary|secondary|tertiary)$')
-        self.re_61bbe299 = re.compile(ur'footway:')
-        self.re_776f2c1a = re.compile(ur'(?i).* (Ave|Blvd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Wy)[.]?$')
+        self.re_015aabd5 = re.compile(r'^(unclassified|residential|living_street|service)$')
+        self.re_3092b7ac = re.compile(r'^.*_link$')
+        self.re_3dc5dd7c = re.compile(r'motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway')
+        self.re_4dcdb354 = re.compile(r'^footway:')
+        self.re_55ee32ac = re.compile(r'^(motorway|trunk|primary|secondary|tertiary)$')
+        self.re_61bbe299 = re.compile(r'footway:')
+        self.re_776f2c1a = re.compile(r'(?i).* (Ave|Blvd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Wy)[.]?$')
 
 
     def node(self, data, tags):

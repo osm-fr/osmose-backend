@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -17,8 +18,8 @@ class Bicycle(Plugin):
         self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), 'desc': mapcss.tr(u'{0} is preferred to {1}', mapcss._tag_uncapture(capture_tags, u'{2.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
         self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1} and {2}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
 
-        self.re_1825c777 = re.compile(ur'footway|construction')
-        self.re_67b51e41 = re.compile(ur'opposite|opposite_lane')
+        self.re_1825c777 = re.compile(r'footway|construction')
+        self.re_67b51e41 = re.compile(r'opposite|opposite_lane')
 
 
     def way(self, data, tags, nds):

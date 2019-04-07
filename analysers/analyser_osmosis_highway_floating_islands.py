@@ -34,11 +34,15 @@ FROM
 WHERE
   tags != ''::hstore AND
   (
+    -- Cycle only
+    (tags?'railway' AND tags->'railway' = 'platform') OR
+    (tags?'public_transport' AND tags->'public_transport' = 'platform') OR
+    (tags?'highway' AND tags->'highway' = 'pedestrian') OR
+    -- Commons
     (tags?'route' AND tags->'route' = 'ferry') OR
     (tags?'man_made' AND tags->'man_made' = 'pier') OR
     (tags?'aeroway' AND tags->'aeroway' IN ('taxiway', 'runway', 'apron')) OR
     (tags?'railway' AND tags->'railway' = 'platform') OR
-    (tags?'public_transport' AND tags->'public_transport' = 'platform') OR
     (tags?'highway' AND tags->'highway' IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
   )
 """
@@ -134,8 +138,9 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11)
         if False and self.config.polygon_id and 'proj' in self.config.options:
-            bbox = Polygon(self.config.polygon_id).bbox()
-            self.run(sql12.format(self.config.options.get("proj"), *bbox))
+            bboxes = Polygon(self.config.polygon_id).bboxes()
+            for bbox in bboxes:
+                self.run(sql12.format(self.config.options.get("proj"), *bbox))
         else:
             self.run(sql12o)
         self.run(sqlb13)

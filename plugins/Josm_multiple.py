@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -13,8 +14,8 @@ class Josm_multiple(Plugin):
         self.errors[9005001] = {'item': 9005, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} with multiple values', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9005002] = {'item': 9005, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
 
-        self.re_53db61ac = re.compile(ur'.+;(.+)?')
-        self.re_579c7c6a = re.compile(ur'^(;.*|.*;;.*|.*;)$')
+        self.re_53db61ac = re.compile(r'.+;(.+)?')
+        self.re_579c7c6a = re.compile(r'^(;.*|.*;;.*|.*;)$')
 
 
     def node(self, data, tags):

@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -14,9 +15,9 @@ class Josm_territories(Plugin):
         self.errors[9009002] = {'item': 9009, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'street name contains ss')}
         self.errors[9009003] = {'item': 9009, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'street name contains ß')}
 
-        self.re_3d3faeb5 = re.compile(ur'(?i).*Straße.*')
-        self.re_559797c8 = re.compile(ur'(?i).*Strasser.*')
-        self.re_5b84a257 = re.compile(ur'(?i).*Strasse.*')
+        self.re_3d3faeb5 = re.compile(r'(?i).*Straße.*')
+        self.re_559797c8 = re.compile(r'(?i).*Strasser.*')
+        self.re_5b84a257 = re.compile(r'(?i).*Strasse.*')
 
 
     def node(self, data, tags):

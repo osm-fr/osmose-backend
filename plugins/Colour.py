@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -12,9 +13,9 @@ class Colour(Plugin):
         tags = capture_tags = {}
         self.errors[30911] = {'item': 3091, 'level': 2, 'tag': mapcss.list_(u'tag'), 'desc': mapcss.tr(u'Colour code should start with \'#\' followed by 3 or 6 digits')}
 
-        self.re_1b3f6ace = re.compile(ur'^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$')
-        self.re_30dca0d4 = re.compile(ur'^#')
-        self.re_7d65c79d = re.compile(ur'^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$')
+        self.re_1b3f6ace = re.compile(r'^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$')
+        self.re_30dca0d4 = re.compile(r'^#')
+        self.re_7d65c79d = re.compile(r'^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$')
 
 
     def node(self, data, tags):

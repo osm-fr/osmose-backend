@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -26,8 +27,8 @@ class Josm_transport(Plugin):
         self.errors[9014013] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check the operator tag')}
         self.errors[9014014] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check the network tag')}
 
-        self.re_25554804 = re.compile(ur'STIF|Kéolis|Véolia')
-        self.re_37f81db8 = re.compile(ur'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$')
+        self.re_25554804 = re.compile(r'STIF|Kéolis|Véolia')
+        self.re_37f81db8 = re.compile(r'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$')
 
 
     def node(self, data, tags):

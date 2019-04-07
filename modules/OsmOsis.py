@@ -23,6 +23,7 @@ import psycopg2
 import psycopg2.extensions
 import psycopg2.extras
 import time
+import sys
 
 ###########################################################################
 ## Reader / Writer
@@ -45,7 +46,10 @@ class OsmOsis:
                     if retry % 10 == 0:
                         print('DB connection fails, retry...')
                     time.sleep(1)
-        psycopg2.extras.register_hstore(self._PgConn, unicode=True)
+        if sys.version_info < (3, ):
+            psycopg2.extras.register_hstore(self._PgConn, unicode=True) # Python 2
+        else:
+            psycopg2.extras.register_hstore(self._PgConn)
         self._PgCurs = self._PgConn.cursor()
         if schema_path:
             self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)

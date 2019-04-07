@@ -149,35 +149,36 @@ class Source_Mapillary(Source):
 
       slice = lambda A, n: [A[i:i+n] for i in range(0, len(A), n)]
 
-      bbox = pip.bbox()
+      bboxes = pip.bboxes()
 
       b = 0
       for traffic_signs_ in slice(traffic_signs, 10):
         b = b + 1
         self.logger.log('Batch {0}/{1}: {2}'.format(b, round(len(traffic_signs) / 10 + 0.5), ','.join(traffic_signs_)))
-        url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers=trafficsigns&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time='2016-06-01', values=','.join(traffic_signs_))
-        with open(tmp_file, 'a') as csvfile:
-          writer = csv.writer(csvfile)
+        for bbox in bboxes:
+          url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers=trafficsigns&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time='2016-06-01', values=','.join(traffic_signs_))
+          with open(tmp_file, 'a') as csvfile:
+            writer = csv.writer(csvfile)
 
-          r = None
-          page = 0
-          while(url):
-            page = page + 1
-            self.logger.log("Page {0}".format(page))
-            r = downloader.get(url)
-            url = r.links['next']['url'] if 'next' in r.links else None
+            r = None
+            page = 0
+            while(url):
+              page = page + 1
+              self.logger.log("Page {0}".format(page))
+              r = downloader.get(url)
+              url = r.links['next']['url'] if 'next' in r.links else None
 
-            features = r.json()['features']
-            filtered = 0
-            self.logger.log('{0} features fetched'.format(len(features)))
-            for j in features:
-              p = j['properties']
-              image_key = p['detections'][0]['image_key']
-              gc = j['geometry']['coordinates']
-              row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']] + gc
-              if row[0] > 0.01 and pip.point_inside_polygon(gc[0], gc[1]):
-                writer.writerow(row)
-                filtered = filtered + 1
-            self.logger.log('{0} keeped'.format(filtered))
+              features = r.json()['features']
+              filtered = 0
+              self.logger.log('{0} features fetched'.format(len(features)))
+              for j in features:
+                p = j['properties']
+                image_key = p['detections'][0]['image_key']
+                gc = j['geometry']['coordinates']
+                row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']] + gc
+                if row[0] > 0.01 and pip.point_inside_polygon(gc[0], gc[1]):
+                  writer.writerow(row)
+                  filtered = filtered + 1
+              self.logger.log('{0} keeped'.format(filtered))
 
       return tmp_file

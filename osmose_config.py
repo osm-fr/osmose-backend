@@ -540,11 +540,6 @@ default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", 
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
-#default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
-brussels_capital_region = default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be", "municipality_ref": "ref:INS"}, download_repo=OSMFR)
-default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
-default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
-default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "language": ["bs", "hr", "sr"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "croatia", 214885, {"country": "HR", "language": "hr", "proj": 32633}, download_repo=GEOFABRIK)
@@ -587,6 +582,15 @@ iceland.download["url"] = ""
 
 default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
+
+#########################################################################
+
+be_part = gen_country('europe', 'belgium', download_repo=OSMFR, proj=32631, municipality_ref='ref:INS')
+
+be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], **{'multilingual-style': 'be'})
+be_part('flanders', 53134, 'BE-VLG', language='nl')
+be_part('wallonia_french_community', 2620920, 'BE-WAL', language='fr')
+be_part('wallonia_german_community', 2425209, 'BE-WAL', language='de')
 
 #########################################################################
 

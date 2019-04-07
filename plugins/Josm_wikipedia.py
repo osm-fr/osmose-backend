@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -24,29 +25,29 @@ class Josm_wikipedia(Plugin):
         self.errors[9011012] = {'item': 9011, 'level': 2, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit')}
         self.errors[9011014] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia tag is not set, but a \'\'{0}\'\' tag is. Make sure to use wikipedia=language:value together with wikidata tag.', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
 
-        self.re_034ab801 = re.compile(ur'^cz:')
-        self.re_07f8e639 = re.compile(ur'(?i)^[-a-z]{2,12}:')
-        self.re_08b52119 = re.compile(ur'(?i)^[-a-z]{2,12}:.*_')
-        self.re_091c4afa = re.compile(ur'(?i)^[-a-z]{2,12}:https?:\/\/')
-        self.re_1559839b = re.compile(ur'(?i)^([-a-z]+:)(.+)$')
-        self.re_19995c46 = re.compile(ur'(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]')
-        self.re_1ac7f364 = re.compile(ur'^jbo:')
-        self.re_1f90813f = re.compile(ur'^https?:\/\/')
-        self.re_210c6ccc = re.compile(ur'%[0-9A-F][0-9A-F]')
-        self.re_2a71e33b = re.compile(ur'(?i)^([-a-z]+:)wiki/(.*)$')
-        self.re_2d3d5d3d = re.compile(ur'(?i)^[-a-z]{2,12}:https?:')
-        self.re_4b567f18 = re.compile(ur'^Q[1-9][0-9]{0,8}$')
-        self.re_536e5b67 = re.compile(ur'(?i)^[-a-z]{2,12}: ')
-        self.re_53b6f173 = re.compile(ur'^be-x-old:')
-        self.re_577ca7fb = re.compile(ur'^cz:(.+)$')
-        self.re_5940ff7c = re.compile(ur'^[-a-zA-Z]{2,12}:\p{Ll}')
-        self.re_62d51e93 = re.compile(ur'(?i)^([-a-z]+:)([-a-z]+:)(.*)$')
-        self.re_6313f817 = re.compile(ur'^(aa|ab|ace|ady|ady-cyrl|aeb|aeb-arab|aeb-latn|af|ak|aln|als|am|an|ang|anp|ar|arc|arn|arq|ary|arz|as|ase|ast|av|avk|awa|ay|az|azb|ba|ban|bar|bat-smg|bbc|bbc-latn|bcc|bcl|be|be-tarask|be-x-old|bg|bgn|bh|bho|bi|bjn|bm|bn|bo|bpy|bqi|br|brh|bs|bto|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|cho|chr|chy|ckb|co|cps|cr|crh|crh-cyrl|crh-latn|cs|csb|cu|cv|cy|cz|da|de|de-at|de-ch|de-formal|din|diq|dsb|dtp|dty|dv|dz|ee|egl|el|eml|en|en-ca|en-gb|eo|es|et|eu|ext|fa|ff|fi|fit|fiu-vro|fj|fo|fr|frc|frp|frr|fur|fy|ga|gag|gan|gan-hans|gan-hant|gd|gl|glk|gn|gom|gom-deva|gom-latn|gor|got|grc|gsw|gu|gv|ha|hak|haw|he|hi|hif|hif-latn|hil|ho|hr|hrx|hsb|ht|hu|hy|hz|ia|id|ie|ig|ii|ik|ike-cans|ike-latn|ilo|inh|io|is|it|iu|ja|jam|jbo|jut|jv|ka|kaa|kab|kbd|kbd-cyrl|kea|kg|khw|ki|kiu|kj|kk|kk-arab|kk-cn|kk-cyrl|kk-kz|kk-latn|kk-tr|kl|km|kn|ko|ko-kp|koi|kr|krc|kri|krj|krl|ks|ks-arab|ks-deva|ksh|ku|ku-arab|ku-latn|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|liv|lki|lmo|ln|lo|loz|lrc|lt|ltg|lus|luz|lv|lzh|lzz|mai|map-bms|mdf|mg|mh|mhr|mi|min|mk|ml|mn|mo|mr|mrj|ms|mt|mus|mwl|my|myv|mzn|na|nah|nan|nap|nb|nds|nds-nl|ne|new|ng|niu|nl|nl-informal|nn|no|nod|nov|nrm|nso|nv|ny|nys|oc|olo|om|or|os|ota|pa|pag|pam|pap|pcd|pdc|pdt|pfl|pi|pih|pl|pms|pnb|pnt|prg|ps|pt|pt-br|qu|qug|rgn|rif|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rup|ruq|ruq-cyrl|ruq-latn|rw|rwr|sa|sah|sat|sc|scn|sco|sd|sdc|sdh|se|sei|ses|sg|sgs|sh|shi|shi-latn|shi-tfng|shn|si|simple|sje|sk|sl|sli|sm|sma|smj|sn|so|sq|sr|sr-ec|sr-el|srn|srq|ss|st|stq|su|sv|sw|szl|ta|tcy|te|tet|tg|tg-cyrl|tg-latn|th|ti|tk|tl|tly|tn|to|tokipona|tpi|tr|tru|ts|tt|tt-cyrl|tt-latn|tum|tw|ty|tyv|tzm|udm|ug|ug-arab|ug-latn|uk|ur|uz|uz-cyrl|uz-latn|ve|vec|vep|vi|vls|vmf|vo|vot|vro|wa|war|wo|wuu|xal|xh|xmf|yi|yo|yue|za|zea|zh|zh-classical|zh-cn|zh-hans|zh-hant|zh-hk|zh-min-nan|zh-mo|zh-my|zh-sg|zh-tw|zh-yue|zu):')
-        self.re_676bdf5d = re.compile(ur'(?i)^([-a-z]+:)(.*)$')
-        self.re_67c3b565 = re.compile(ur'(?i)^[-a-z]{2,12}:wiki\/')
-        self.re_6a4abd53 = re.compile(ur'^be-x-old:(.+)$')
-        self.re_6a7e1973 = re.compile(ur'(?i)^([-a-z]+:)(.)(.*)$')
-        self.re_79319bf9 = re.compile(ur'^wikipedia:')
+        self.re_034ab801 = re.compile(r'^cz:')
+        self.re_07f8e639 = re.compile(r'(?i)^[-a-z]{2,12}:')
+        self.re_08b52119 = re.compile(r'(?i)^[-a-z]{2,12}:.*_')
+        self.re_091c4afa = re.compile(r'(?i)^[-a-z]{2,12}:https?:\/\/')
+        self.re_1559839b = re.compile(r'(?i)^([-a-z]+:)(.+)$')
+        self.re_19995c46 = re.compile(r'(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]')
+        self.re_1ac7f364 = re.compile(r'^jbo:')
+        self.re_1f90813f = re.compile(r'^https?:\/\/')
+        self.re_210c6ccc = re.compile(r'%[0-9A-F][0-9A-F]')
+        self.re_2a71e33b = re.compile(r'(?i)^([-a-z]+:)wiki/(.*)$')
+        self.re_2d3d5d3d = re.compile(r'(?i)^[-a-z]{2,12}:https?:')
+        self.re_4b567f18 = re.compile(r'^Q[1-9][0-9]{0,8}$')
+        self.re_536e5b67 = re.compile(r'(?i)^[-a-z]{2,12}: ')
+        self.re_53b6f173 = re.compile(r'^be-x-old:')
+        self.re_577ca7fb = re.compile(r'^cz:(.+)$')
+        self.re_5940ff7c = re.compile(r'^[-a-zA-Z]{2,12}:\p{Ll}')
+        self.re_62d51e93 = re.compile(r'(?i)^([-a-z]+:)([-a-z]+:)(.*)$')
+        self.re_6313f817 = re.compile(r'^(aa|ab|ace|ady|ady-cyrl|aeb|aeb-arab|aeb-latn|af|ak|aln|als|am|an|ang|anp|ar|arc|arn|arq|ary|arz|as|ase|ast|av|avk|awa|ay|az|azb|ba|ban|bar|bat-smg|bbc|bbc-latn|bcc|bcl|be|be-tarask|be-x-old|bg|bgn|bh|bho|bi|bjn|bm|bn|bo|bpy|bqi|br|brh|bs|bto|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|cho|chr|chy|ckb|co|cps|cr|crh|crh-cyrl|crh-latn|cs|csb|cu|cv|cy|cz|da|de|de-at|de-ch|de-formal|din|diq|dsb|dtp|dty|dv|dz|ee|egl|el|eml|en|en-ca|en-gb|eo|es|et|eu|ext|fa|ff|fi|fit|fiu-vro|fj|fo|fr|frc|frp|frr|fur|fy|ga|gag|gan|gan-hans|gan-hant|gd|gl|glk|gn|gom|gom-deva|gom-latn|gor|got|grc|gsw|gu|gv|ha|hak|haw|he|hi|hif|hif-latn|hil|ho|hr|hrx|hsb|ht|hu|hy|hz|ia|id|ie|ig|ii|ik|ike-cans|ike-latn|ilo|inh|io|is|it|iu|ja|jam|jbo|jut|jv|ka|kaa|kab|kbd|kbd-cyrl|kea|kg|khw|ki|kiu|kj|kk|kk-arab|kk-cn|kk-cyrl|kk-kz|kk-latn|kk-tr|kl|km|kn|ko|ko-kp|koi|kr|krc|kri|krj|krl|ks|ks-arab|ks-deva|ksh|ku|ku-arab|ku-latn|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|liv|lki|lmo|ln|lo|loz|lrc|lt|ltg|lus|luz|lv|lzh|lzz|mai|map-bms|mdf|mg|mh|mhr|mi|min|mk|ml|mn|mo|mr|mrj|ms|mt|mus|mwl|my|myv|mzn|na|nah|nan|nap|nb|nds|nds-nl|ne|new|ng|niu|nl|nl-informal|nn|no|nod|nov|nrm|nso|nv|ny|nys|oc|olo|om|or|os|ota|pa|pag|pam|pap|pcd|pdc|pdt|pfl|pi|pih|pl|pms|pnb|pnt|prg|ps|pt|pt-br|qu|qug|rgn|rif|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rup|ruq|ruq-cyrl|ruq-latn|rw|rwr|sa|sah|sat|sc|scn|sco|sd|sdc|sdh|se|sei|ses|sg|sgs|sh|shi|shi-latn|shi-tfng|shn|si|simple|sje|sk|sl|sli|sm|sma|smj|sn|so|sq|sr|sr-ec|sr-el|srn|srq|ss|st|stq|su|sv|sw|szl|ta|tcy|te|tet|tg|tg-cyrl|tg-latn|th|ti|tk|tl|tly|tn|to|tokipona|tpi|tr|tru|ts|tt|tt-cyrl|tt-latn|tum|tw|ty|tyv|tzm|udm|ug|ug-arab|ug-latn|uk|ur|uz|uz-cyrl|uz-latn|ve|vec|vep|vi|vls|vmf|vo|vot|vro|wa|war|wo|wuu|xal|xh|xmf|yi|yo|yue|za|zea|zh|zh-classical|zh-cn|zh-hans|zh-hant|zh-hk|zh-min-nan|zh-mo|zh-my|zh-sg|zh-tw|zh-yue|zu):')
+        self.re_676bdf5d = re.compile(r'(?i)^([-a-z]+:)(.*)$')
+        self.re_67c3b565 = re.compile(r'(?i)^[-a-z]{2,12}:wiki\/')
+        self.re_6a4abd53 = re.compile(r'^be-x-old:(.+)$')
+        self.re_6a7e1973 = re.compile(r'(?i)^([-a-z]+:)(.)(.*)$')
+        self.re_79319bf9 = re.compile(r'^wikipedia:')
 
 
     def node(self, data, tags):

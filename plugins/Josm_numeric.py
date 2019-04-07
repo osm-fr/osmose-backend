@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -24,32 +25,32 @@ class Josm_numeric(Plugin):
         self.errors[9006019] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9006020] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
 
-        self.re_035d45f0 = re.compile(ur'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
-        self.re_066203d3 = re.compile(ur'^[0-9]+$')
-        self.re_08f211f3 = re.compile(ur'^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$')
-        self.re_0ae2edfd = re.compile(ur'^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$')
-        self.re_0b0f0f56 = re.compile(ur'^0$|^(-|\+)?[1-5]$')
-        self.re_18424cc6 = re.compile(ur'^[0-9]+,[0-9][0-9]?( (m|ft))?$')
-        self.re_1d428b19 = re.compile(ur'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
-        self.re_1e934345 = re.compile(ur'^[0-9]+,[0-9][0-9]?( (t|kg|lbs))?$')
-        self.re_288e587a = re.compile(ur'^\+\d')
-        self.re_29d73dcf = re.compile(ur'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$')
-        self.re_2a784076 = re.compile(ur'^(([0-9]|[1-9][0-9]*)(\.5)?)$')
-        self.re_2b84c9ab = re.compile(ur'^[0-9]+,[0-9][0-9]?$')
-        self.re_43c55ce5 = re.compile(ur'(.*[A-Za-z].*)|.*,.*|.*( ).*')
-        self.re_45b46d60 = re.compile(ur'^-?[0-9]+(\.[0-9]+)?$')
-        self.re_45e73e1b = re.compile(ur'^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$')
-        self.re_49888e30 = re.compile(ur'^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$')
-        self.re_4b9c2b6a = re.compile(ur'^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
-        self.re_4d44d8e0 = re.compile(ur'^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$')
-        self.re_4e26566a = re.compile(ur'^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$')
-        self.re_5478d8af = re.compile(ur'^[1-9]([0-9]*)$')
-        self.re_55d147d6 = re.compile(ur'^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$')
-        self.re_597f003d = re.compile(ur'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
-        self.re_63a07204 = re.compile(ur'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$')
-        self.re_762a1d1d = re.compile(ur'^-?[0-9]+(\.[0-9]+)? ?m$')
-        self.re_7f163374 = re.compile(ur'^(1|2|3|4|5|6|7|8|9|10|11|12)$')
-        self.re_7f19b94b = re.compile(ur'^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$')
+        self.re_035d45f0 = re.compile(r'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
+        self.re_066203d3 = re.compile(r'^[0-9]+$')
+        self.re_08f211f3 = re.compile(r'^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$')
+        self.re_0ae2edfd = re.compile(r'^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$')
+        self.re_0b0f0f56 = re.compile(r'^0$|^(-|\+)?[1-5]$')
+        self.re_18424cc6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|ft))?$')
+        self.re_1d428b19 = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
+        self.re_1e934345 = re.compile(r'^[0-9]+,[0-9][0-9]?( (t|kg|lbs))?$')
+        self.re_288e587a = re.compile(r'^\+\d')
+        self.re_29d73dcf = re.compile(r'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$')
+        self.re_2a784076 = re.compile(r'^(([0-9]|[1-9][0-9]*)(\.5)?)$')
+        self.re_2b84c9ab = re.compile(r'^[0-9]+,[0-9][0-9]?$')
+        self.re_43c55ce5 = re.compile(r'(.*[A-Za-z].*)|.*,.*|.*( ).*')
+        self.re_45b46d60 = re.compile(r'^-?[0-9]+(\.[0-9]+)?$')
+        self.re_45e73e1b = re.compile(r'^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$')
+        self.re_49888e30 = re.compile(r'^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$')
+        self.re_4b9c2b6a = re.compile(r'^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
+        self.re_4d44d8e0 = re.compile(r'^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$')
+        self.re_4e26566a = re.compile(r'^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$')
+        self.re_5478d8af = re.compile(r'^[1-9]([0-9]*)$')
+        self.re_55d147d6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$')
+        self.re_597f003d = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
+        self.re_63a07204 = re.compile(r'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$')
+        self.re_762a1d1d = re.compile(r'^-?[0-9]+(\.[0-9]+)? ?m$')
+        self.re_7f163374 = re.compile(r'^(1|2|3|4|5|6|7|8|9|10|11|12)$')
+        self.re_7f19b94b = re.compile(r'^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$')
 
 
     def node(self, data, tags):

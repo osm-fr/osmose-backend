@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -12,8 +13,8 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
         tags = capture_tags = {}
         self.errors[50109001] = {'item': 5010, 'level': 2, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'Arabic letter detected in Farsi name')}
 
-        self.re_4234bf3b = re.compile(ur'ك')
-        self.re_5eeade1c = re.compile(ur'ي')
+        self.re_4234bf3b = re.compile(r'ك')
+        self.re_5eeade1c = re.compile(r'ي')
 
 
     def node(self, data, tags):

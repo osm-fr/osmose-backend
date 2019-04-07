@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -13,7 +14,7 @@ class Josm_relation(Plugin):
         self.errors[9007001] = {'item': 9007, 'level': 3, 'tag': ["tag", "relation"], 'desc': mapcss.tr(u'missing tag')}
         self.errors[9007002] = {'item': 9007, 'level': 2, 'tag': ["tag", "relation"], 'desc': mapcss.tr(u'relation without type')}
 
-        self.re_67b11051 = re.compile(ur'^restriction')
+        self.re_67b11051 = re.compile(r'^restriction')
 
 
     def relation(self, data, tags, members):

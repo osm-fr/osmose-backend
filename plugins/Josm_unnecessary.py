@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -13,7 +14,7 @@ class Josm_unnecessary(Plugin):
         self.errors[9010001] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'unnecessary tag')}
         self.errors[9010002] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} makes no sense', u'{0.tag')}
 
-        self.re_3ad9e1f5 = re.compile(ur'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
+        self.re_3ad9e1f5 = re.compile(r'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
 
 
     def node(self, data, tags):

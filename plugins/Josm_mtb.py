@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -14,10 +15,10 @@ class Josm_mtb(Plugin):
         self.errors[9013002] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but is neither a track nor a path.', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9013003] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Invalid \'\'{0}\'\' value: \'\'{1}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
 
-        self.re_1b95e3e9 = re.compile(ur'^[0-6][-+]?$')
-        self.re_3d3b0752 = re.compile(ur'^[0-5]$')
-        self.re_6937bec1 = re.compile(ur'path|track')
-        self.re_731f6ce6 = re.compile(ur'^[0-4]$')
+        self.re_1b95e3e9 = re.compile(r'^[0-6][-+]?$')
+        self.re_3d3b0752 = re.compile(r'^[0-5]$')
+        self.re_6937bec1 = re.compile(r'path|track')
+        self.re_731f6ce6 = re.compile(r'^[0-4]$')
 
 
     def way(self, data, tags, nds):

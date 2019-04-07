@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -29,18 +30,18 @@ class Josm_deprecated(Plugin):
         self.errors[9002018] = {'item': 9002, 'level': 2, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'misspelled value')}
         self.errors[9002019] = {'item': 9002, 'level': 2, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
 
-        self.re_047d5648 = re.compile(ur'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
-        self.re_05edd24e = re.compile(ur'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$')
-        self.re_0c5b5730 = re.compile(ur'color:')
-        self.re_1f92073a = re.compile(ur'^(?i)fixme$')
-        self.re_27210286 = re.compile(ur'^.$')
-        self.re_2fd4cdcf = re.compile(ur'^(crossover|siding|spur|yard)$')
-        self.re_34c15d62 = re.compile(ur'^..$')
-        self.re_554de4c7 = re.compile(ur':color')
-        self.re_5ee0acf2 = re.compile(ur'josm\/ignore')
-        self.re_61b0be1b = re.compile(ur'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$')
-        self.re_620f4d52 = re.compile(ur'=|\+|\/|&|<|>|;|\'|\"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$')
-        self.re_7a045a17 = re.compile(ur'^(irrigation|transportation|water_power)$')
+        self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
+        self.re_05edd24e = re.compile(r'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$')
+        self.re_0c5b5730 = re.compile(r'color:')
+        self.re_1f92073a = re.compile(r'^(?i)fixme$')
+        self.re_27210286 = re.compile(r'^.$')
+        self.re_2fd4cdcf = re.compile(r'^(crossover|siding|spur|yard)$')
+        self.re_34c15d62 = re.compile(r'^..$')
+        self.re_554de4c7 = re.compile(r':color')
+        self.re_5ee0acf2 = re.compile(r'josm\/ignore')
+        self.re_61b0be1b = re.compile(r'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$')
+        self.re_620f4d52 = re.compile(r'=|\+|\/|&|<|>|;|\'|\"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$')
+        self.re_7a045a17 = re.compile(r'^(irrigation|transportation|water_power)$')
 
 
     def node(self, data, tags):
