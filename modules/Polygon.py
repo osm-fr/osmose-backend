@@ -63,4 +63,12 @@ class Test(unittest.TestCase):
     def test(self):
         # France
         p = Polygon(1403916)
-        assert(p.bboxes() != None)
+        b = p.bboxes()
+        self.assertNotEquals(b, None)
+        self.assertEquals(len(b), 1)
+
+        # Alaska
+        p = Polygon(1116270)
+        b = p.bboxes()
+        self.assertNotEquals(b, None)
+        self.assertEquals(len(b), 2)
