@@ -33,11 +33,16 @@ class Phone(Plugin):
         if not self.code:
             return False
         self.size = self.father.config.options.get("phone_len")
+        if not isinstance(self.size, list):
+            self.size = [self.size]
         self.size_short = self.father.config.options.get("phone_len_short")
+        if not isinstance(self.size_short, list):
+            self.size_short = [self.size_short]
         self.format = self.father.config.options.get("phone_format")
         self.international_prefix = self.father.config.options.get("phone_international")
         self.local_prefix = self.father.config.options.get("phone_local_prefix")
         self.values_separators = self.father.config.options.get("phone_values_separators", [' / ', ' - ', ','])
+        self.suffix_separators = self.father.config.options.get("suffix_separators")
 
         if self.format:
             self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Phone number does not match the expected format")}
@@ -74,13 +79,13 @@ class Phone(Plugin):
                 # Local numbers to internationalize. Note that in addition to
                 # short numbers this also skips special numbers starting with 08
                 # or 09 since these may or may not be callable from abroad.
-                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*([1-7](:?[- ./]*[0-9]){%s})$" % (self.local_prefix, self.size - 1))
+                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*([1-7](:?[- ./]*[0-9]){%s,%s})$" % (self.local_prefix, min(self.size) - 1, max(self.size) - 1))
             elif self.size:
-                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*){%s}[0-9])$" % (self.local_prefix, self.size - len(self.local_prefix) - 1))
+                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*){%s,%s}[0-9])$" % (self.local_prefix, min(self.size) - len(self.local_prefix) - 1, max(self.size) - len(self.local_prefix) - 1))
             else:
                 self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*)+[0-9])$" % (self.local_prefix))
         else:
-            self.MissingInternationalPrefix = re.compile(r"^((:?[0-9][- ./]*){%s}[0-9])$" % (self.size - 1))
+            self.MissingInternationalPrefix = re.compile(r"^((:?[0-9][- ./]*){%s,%s}[0-9])$" % (min(self.size) - 1, max(self.size) - 1))
 
         if self.format:
             self.Format = re.compile(self.format % self.code)
@@ -95,6 +100,9 @@ class Phone(Plugin):
             phone = tags[tag]
             if u';' in phone:
                 continue  # Ignore multiple phone numbers
+
+            if self.suffix_separators != None:
+                phone = phone.split(self.suffix_separators, 1)[0]
 
             if self.values_separators:
                 p = phone
