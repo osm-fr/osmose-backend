@@ -33,6 +33,7 @@ meta[lang=fr] {
 
 *[building:colour][building:colour=~/^#/][building:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
 *[roof:colour][roof:colour=~/^#/][roof:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
+*[colour][colour=~/^#/][colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
 *[ref:colour][ref:colour=~/^#/][ref:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/] {
     group: tr("Colour code should start with '#' followed by 3 or 6 digits");
     -osmoseItemClassLevel: "3091/30911:0/2";
@@ -48,6 +49,7 @@ meta[lang=fr] {
 
 *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
 *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
+*[colour][colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
 *[ref:colour][ref:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/] {
     group: tr("Colour code should start with '#' followed by 3 or 6 digits");
     -osmoseItemClassLevel: "3091/30911:1/2";
