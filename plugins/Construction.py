@@ -155,17 +155,17 @@ class Test(TestPluginCommon):
                     assert not self.p.relation({}, t, None), t
 
     def test_timestamp(self):
-         tags = {"construction": "yes"}
-         for ts in ["2003-01-04", "1989-03-10"]:
-             self.check_err(self.p.node({"timestamp": ts}, tags), ts)
-         for ts in ["2078-01-04"]:
-             assert not self.p.node({"timestamp": ts}, tags), ts
+        tags = {"construction": "yes"}
+        for ts in ["2003-01-04", "1989-03-10"]:
+            self.check_err(self.p.node({"timestamp": ts}, tags), ts)
+        for ts in ["2078-01-04"]:
+            assert not self.p.node({"timestamp": ts}, tags), ts
 
     def test_recall(self):
-         tags = {"construction": "yes"}
-         today = datetime.datetime.today()
-         td = datetime.timedelta(days=6 * 30)
-         for i in range(5, 10, 1):
-             e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
-             self.check_err(e, i)
-             assert e["subclass"] == i - 5
+        tags = {"construction": "yes"}
+        today = datetime.datetime.today()
+        td = datetime.timedelta(days=6 * 30)
+        for i in range(5, 10, 1):
+            e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
+            self.check_err(e, i)
+            assert e["subclass"] == i - 5

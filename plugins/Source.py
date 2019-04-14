@@ -72,6 +72,6 @@ class Test(TestPluginCommon):
             assert not a.node(None, d), d
 
         for d in [{u"source":u"google maps"}]:
-             self.check_err(a.node(None, d), d)
-             self.check_err(a.way(None, d, None), d)
-             self.check_err(a.relation(None, d, None), d)
+            self.check_err(a.node(None, d), d)
+            self.check_err(a.way(None, d, None), d)
+            self.check_err(a.relation(None, d, None), d)

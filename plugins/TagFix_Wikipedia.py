@@ -122,9 +122,9 @@ class TagFix_Wikipedia(Plugin):
                 err.append({"class": 30315, "subclass": 5, "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
 
         if missing_primary != []:
-          if self.Language:
-            missing_primary = sorted(missing_primary, key=lambda x: x['+'][wikipediaTag][0:2] if x['+'][wikipediaTag][0:2] != self.Language else '')
-          err.append({"class": 30314, "subclass": 4, "fix": missing_primary})
+            if self.Language:
+                missing_primary = sorted(missing_primary, key=lambda x: x['+'][wikipediaTag][0:2] if x['+'][wikipediaTag][0:2] != self.Language else '')
+            err.append({"class": 30314, "subclass": 4, "fix": missing_primary})
 
         return err
 

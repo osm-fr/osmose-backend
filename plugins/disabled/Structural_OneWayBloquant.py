@@ -23,19 +23,19 @@ from plugins.Plugin import Plugin
 
 
 class Structural_OneWayBloquant(Plugin):
-    
+
     #err_107_fr = (u"Way à sens unique sans entrée-sortie", u"oneway bloquant")
     #err_107_en = (u"One-way Way without entrance-exit", u"blocking one-way")
-    
+
     def way(self, data, tags, nds):
         return
-        
+
         if u"oneway" not in tags:
             return
-        
+
         if tags[u"oneway"] not in [u"yes", u"1", u"true", u"-1"]:
             return
-        
+
         err = []
         if len(self.father._reader.NodeWaysId(nds[0])) == 1 or len(self.father._reader.NodeWaysId(nds[-1])) == 1:
             err.append((107, 0, {}))

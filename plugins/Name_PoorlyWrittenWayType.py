@@ -31,8 +31,8 @@ class P_Name_PoorlyWrittenWayType(Plugin):
         r = u"^(("
         start = 0
         if self.toponymie:
-          r += p1[0]  # keep first leter in uppercase
-          start = 1
+            r += p1[0]  # keep first leter in uppercase
+            start = 1
         for c in p1[start:]:
             r += u"[%s%s]" % (c.lower(), c.upper())
         r += u")(\.|"

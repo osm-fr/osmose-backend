@@ -102,10 +102,10 @@ class Name_Toponymy_FR(Plugin):
 
         self.special_subst = dict()
         for x in special_with_apost:
-           for k, v in apost_subst.items():
-               before = x.replace(u"'", k)
-               after  = x.replace(u"'", v)
-               self.special_subst[before] = after
+            for k, v in apost_subst.items():
+                before = x.replace(u"'", k)
+                after  = x.replace(u"'", v)
+                self.special_subst[before] = after
 
     def apply_special_subst(self, name):
         for k, v in self.special_subst.items():
