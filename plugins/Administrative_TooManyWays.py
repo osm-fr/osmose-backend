@@ -32,7 +32,7 @@ class Administrative_TooManyWays(Plugin):
 
         if tags.get(u"boundary", u"") != u"administrative":
             return
-        w = [m[u"ref"] for m in members if m[u"type"]==u"way"]
+        w = [m[u"ref"] for m in members if m[u"type"] == u"way"]
         if len(w) != len(set(w)):
             return {"class": 504}
 

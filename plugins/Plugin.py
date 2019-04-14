@@ -42,9 +42,9 @@ class Plugin(object):
         """
         capabilities = []
         currentClass = self.__class__
-        if currentClass.node!=Plugin.node: capabilities.append("node")
-        if currentClass.way!=Plugin.way: capabilities.append("way")
-        if currentClass.relation!=Plugin.relation: capabilities.append("relation")
+        if currentClass.node != Plugin.node: capabilities.append("node")
+        if currentClass.way != Plugin.way: capabilities.append("way")
+        if currentClass.relation != Plugin.relation: capabilities.append("relation")
         return capabilities
 
     def node(self, node, tags):

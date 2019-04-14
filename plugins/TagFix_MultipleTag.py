@@ -178,8 +178,8 @@ class Test(TestPluginCommon):
             assert not a.way(None, t, None), t
 
         assert a.node(None, {"name": "foo"})
-        assert not  a.node(None, {"name": "foo", "disused:highway": "bar"})
-        assert not  a.node(None, {"name": "foo", "abandoned:highway": "bar"})
+        assert not a.node(None, {"name": "foo", "disused:highway": "bar"})
+        assert not a.node(None, {"name": "foo", "abandoned:highway": "bar"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 

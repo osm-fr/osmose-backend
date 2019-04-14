@@ -51,14 +51,14 @@ class Name_Toponymy_FR(Plugin):
 
         special += [u"bis", u"ter"]
 
-        special += [u"le" , u"la" , u"les", u"l"  , u"un" , u"une"]
+        special += [u"le", u"la", u"les", u"l", u"un", u"une"]
 
-        special += [u"a"  , u"al" , u"als", u"an" , u"ar" , u"d"  , u"das", u"de",
-                    u"dem", u"den", u"der", u"die", u"e"  , u"ech", u"el" ,
-                    u"éla", u"els", u"en" , u"er" , u"era", u"ero", u"et" ,
-                    u"eul", u"eun", u"eur", u"gli", u"het", u"i"  , u"las",
-                    u"lé" , u"lo" , u"los", u"lou", u"lous",u"s"  , u"t"  ,
-                    u"u"  , u"ul" , u"ur"]
+        special += [u"a", u"al", u"als", u"an", u"ar", u"d", u"das", u"de",
+                    u"dem", u"den", u"der", u"die", u"e", u"ech", u"el",
+                    u"éla", u"els", u"en", u"er", u"era", u"ero", u"et",
+                    u"eul", u"eun", u"eur", u"gli", u"het", u"i", u"las",
+                    u"lé", u"lo", u"los", u"lou", u"lous", u"s", u"t",
+                    u"u", u"ul", u"ur"]
 
         special += [u"au", u"aux", u"du", u"des", u"ès"]
 
@@ -97,7 +97,7 @@ class Name_Toponymy_FR(Plugin):
         self.minus = u"abcdefghijklmnopqrstuvwxyzàäâéèëêïîöôüûÿ"
 
         # Les apostrophes sont replacées par des caractères à usage privé d'Unicode
-        apost_subst = {u"'" : u"\ue000", u"’" : u"\ue001", u"&apos;" : u"\ue002"}
+        apost_subst = {u"'": u"\ue000", u"’": u"\ue001", u"&apos;": u"\ue002"}
         special_with_apost = [u"c'h", u"C'h", u"prud'homme", u"Prud'homme"]
 
         self.special_subst = dict()
