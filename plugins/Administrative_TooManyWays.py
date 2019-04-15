@@ -32,7 +32,7 @@ class Administrative_TooManyWays(Plugin):
 
         if tags.get(u"boundary", u"") != u"administrative":
             return
-        w = [m[u"ref"] for m in members if m[u"type"]==u"way"]
+        w = [m[u"ref"] for m in members if m[u"type"] == u"way"]
         if len(w) != len(set(w)):
             return {"class": 504}
 
@@ -53,14 +53,14 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
     def test(self):
-       w1_0 = { "ref": 1, "role": "xx", "type": "way"}
-       w1_1 = { "ref": 1, "role": "yy", "type": "way"}
-       w2   = { "ref": 2, "role": "xx", "type": "way"}
-       w3   = { "ref": 2, "role": "xx", "type": "way"}
-       n1   = { "ref": 1, "role": "xx", "type": "node"}
-       self.check_err(self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1]))
-       self.check_err(self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1, w2, w3, n1]))
-       assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, w2])
-       assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, n1])
-       assert not self.p.relation(None, {}, [w1_0, w1_1])
-       assert not self.p.relation(None, {}, [w1_0, w1_1])
+        w1_0 = { "ref": 1, "role": "xx", "type": "way"}
+        w1_1 = { "ref": 1, "role": "yy", "type": "way"}
+        w2   = { "ref": 2, "role": "xx", "type": "way"}
+        w3   = { "ref": 2, "role": "xx", "type": "way"}
+        n1   = { "ref": 1, "role": "xx", "type": "node"}
+        self.check_err(self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1]))
+        self.check_err(self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1, w2, w3, n1]))
+        assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, w2])
+        assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, n1])
+        assert not self.p.relation(None, {}, [w1_0, w1_1])
+        assert not self.p.relation(None, {}, [w1_0, w1_1])

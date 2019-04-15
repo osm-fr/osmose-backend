@@ -21,7 +21,6 @@
 
 from plugins.Plugin import Plugin
 import sqlite3 as lite
-import sys
 
 
 class Wiki(Plugin):

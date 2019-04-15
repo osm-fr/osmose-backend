@@ -569,7 +569,7 @@ default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", 
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
-default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": ["swisstopo:BFS_NUMMER", "swisstopo:BEZIRKSNUM"]})
+default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": ["swisstopo:BFS_NUMMER", "swisstopo:BEZIRKSNUM"], 'phone_code': '41', 'phone_local_prefix': '0', 'phone_len': 9, 'phone_international': '00'})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
@@ -581,11 +581,12 @@ iceland = default_country("europe","iceland", 299133, {"country": "IS", "languag
 iceland.download["url"] = ""
 
 default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
-default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632, "phone_code": '45', "phone_len": 8, "phone_international": '00'}, download_repo=GEOFABRIK)
 
 #########################################################################
 
-be_part = gen_country('europe', 'belgium', download_repo=OSMFR, proj=32631, municipality_ref='ref:INS')
+be_part = gen_country('europe', 'belgium', download_repo=OSMFR, proj=32631, municipality_ref='ref:INS',
+    phone_code='32', phone_len=[8, 9], phone_len_short=4, phone_international='00', phone_local_prefix='0')
 
 be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], **{'multilingual-style': 'be'})
 be_part('flanders', 53134, 'BE-VLG', language='nl')
@@ -786,7 +787,7 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 #########################################################################
 
 canada_province = gen_country('north-america', 'canada', language='en',
-    phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$",
+    phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", suffix_separators="x",
     exclude=[
     'osmosis_waterway',
 ])
@@ -809,7 +810,7 @@ canada_province("yukon", 391455, "CA-YT", proj=32608)
 
 default_country("africa", "algeria", 192756,  {"country": "DZ", "language": ["ar", "fr"], "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "angola", 195267, {"country": "AO", "language": "pt", "proj": 32733}, download_repo=OSMFR)
-default_country("africa", "benin", 192784,    {"country": "BJ", "language": "fr", "proj": 32631}, download_repo=OSMFR)
+default_country("africa", "benin", 192784, {"country": "BJ", "language": "fr", "proj": 32631, 'phone_code': '229', 'phone_len': 8, 'phone_international': '00'}, download_repo=OSMFR)
 default_country("africa", "botswana", 1889339, {"country": "BW", "language": "en", "driving_side": "left", "proj": 32734})
 default_country("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "burundi", 195269,  {"country": "BI", "language": "fr", "proj": 32735}, download_repo=OSMFR)
@@ -907,7 +908,7 @@ default_country("asia", "nepal", 184633, {"country": "NP", "language": "ne", "dr
 default_country("asia", "oman", 305138, {"country": "OM", "language": "ar","proj": 32640}, download_repo=OSMFR)
 default_country("asia", "pakistan", 307573, {"country": "PK", "language": ["en", "ur"], "driving_side": "left", "proj": 32642})
 default_country("asia", "palestine", 1703814, {"country": "PS", "language": "ar", "proj": 32636}, download_repo=OSMFR)
-default_country("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
+default_country("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651, 'phone_code': '63', 'phone_len': [7, 8], 'phone_international': '00'}, download_repo=GEOFABRIK)
 default_country("asia", "qatar", 305095, {"country": "QA", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "saudi_arabia", 307584, {"country": "SA", "language": "ar","proj": 32637}, download_repo=OSMFR)
 default_country("asia", "singapore", 536780 , {"country": "SG", "language": "en", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
@@ -1065,7 +1066,8 @@ default_country("south-america", "venezuela", 272644, {"country": "VE", "languag
 
 #########################################################################
 
-ar_state = gen_country('south-america', 'argentina', download_repo=OSMFR, language='es', proj=32720)
+ar_state = gen_country('south-america', 'argentina', download_repo=OSMFR, language='es', proj=32720,
+    phone_code='54', phone_local_prefix='0', phone_len=10, phone_international=00, suffix_separators='INT')
 
 ar_state('buenos_aires_city', 1224652, 'AR-C')
 ar_state('buenos_aires', 1632167, 'AR-B')

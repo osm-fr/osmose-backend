@@ -106,7 +106,7 @@ class TagMissing_LookLike(Plugin):
                     if row[1] in info:
                         info[row[1]].append(row)
                     else:
-                         info[row[1]] = [row]
+                        info[row[1]] = [row]
                 self.info[type] = info
 
     def check(self, type, tags):
@@ -120,13 +120,13 @@ class TagMissing_LookLike(Plugin):
         return ret
 
     def node(self, data, tags):
-        return self.check('nodes', tags);
+        return self.check('nodes', tags)
 
     def way(self, data, tags, nds):
-        return self.check('ways', tags);
+        return self.check('ways', tags)
 
     def relation(self, data, tags, members):
-        return self.check('relations', tags);
+        return self.check('relations', tags)
 
 
 ###########################################################################

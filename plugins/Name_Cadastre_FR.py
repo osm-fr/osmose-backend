@@ -10,7 +10,7 @@ class Name_Cadastre_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        tags = capture_tags = {}
+        capture_tags = {}
         self.errors[50801] = {'item': 5080, 'level': 1, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')}
 
         self.re_422a87ff = re.compile(r'.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$')

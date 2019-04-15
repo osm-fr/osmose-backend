@@ -285,7 +285,7 @@ yamaha
 """
 
 if __name__ == "__main__":
-    a = TagACorriger_Brand(None)
+    a = TagFix_Brand(None)
     a.init(None)
     for d in [u"Citroën"]:
         if not a.node(None, {"name":d}):

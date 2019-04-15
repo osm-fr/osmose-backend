@@ -42,9 +42,9 @@ class Plugin(object):
         """
         capabilities = []
         currentClass = self.__class__
-        if currentClass.node!=Plugin.node: capabilities.append("node")
-        if currentClass.way!=Plugin.way: capabilities.append("way")
-        if currentClass.relation!=Plugin.relation: capabilities.append("relation")
+        if currentClass.node != Plugin.node: capabilities.append("node")
+        if currentClass.way != Plugin.way: capabilities.append("way")
+        if currentClass.relation != Plugin.relation: capabilities.append("relation")
         return capabilities
 
     def node(self, node, tags):
@@ -247,14 +247,12 @@ class Test(TestPluginCommon):
         assert_raises(Exception, self.check_err, ["unknown"])
 
     def test_check_dict(self):
-        from nose.tools import assert_raises
         self.assertEquals(self.check_dict({"a": "toto"}, None), None)
         self.assertEquals(self.check_dict({"a": ["toto"]}, None), None)
         self.assertEquals(self.check_dict({"a": ["toto", "titi"]}, None), None)
         self.assertEquals(self.check_dict({"a": ["toto", {"a": "titi"}]}, None), None)
 
     def test_check_array(self):
-        from nose.tools import assert_raises
         self.assertEquals(self.check_array("toto", None), None)
         self.assertEquals(self.check_array(["toto"], None), None)
         self.assertEquals(self.check_array(["toto", "titi"], None), None)

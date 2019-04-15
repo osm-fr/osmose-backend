@@ -47,7 +47,7 @@ class Highway_Lanes(Plugin):
                 break
 
         if not lanes:
-          return
+            return
 
         tags_lanes = {}
         for tag in tags:

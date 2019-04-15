@@ -39,7 +39,7 @@ class Structural_DuplicateNodes(Plugin):
             c[n] = c.get(n, 0) + 1
             max_ = max(max_, c[n])
             if c[n] == 2:
-               twice += 1
+                twice += 1
 
         # Any way with only 2 different nodes in it, having one node more than once, is an error.
         if len(c) == 1:

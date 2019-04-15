@@ -130,9 +130,7 @@ class Name_Script(Plugin):
                     s = self.alone_char.sub(u"", s)
                     s = self.roman_number.sub(u"", s)
                     s = self.default.sub(u"", s)
-                    if len(s) > 0 and \
-                        not(len(value) == 2 and len(s) == 1) and \
-                        len(s) <= len(value) / 10 + 1:
+                    if len(s) > 0 and not(len(value) == 2 and len(s) == 1) and len(s) <= len(value) / 10 + 1:
                         if len(s) == 1:
                             c = s[0]
                             u = self.uniq_script and confusables.unconfuse(c, self.uniq_script)

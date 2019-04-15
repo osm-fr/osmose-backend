@@ -111,7 +111,7 @@ class P_Name_Dictionary(Plugin):
 
 
     def init_dictionaries(self):
-      pass
+        pass
 
 
     def _get_err(self, name):

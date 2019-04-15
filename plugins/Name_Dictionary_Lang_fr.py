@@ -20,7 +20,6 @@
 ###########################################################################
 
 from .Name_Dictionary import P_Name_Dictionary
-import re
 
 
 class Name_Dictionary_Lang_fr(P_Name_Dictionary):
