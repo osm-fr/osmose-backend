@@ -45,7 +45,7 @@ class TagFix_Opening_Hours(Plugin):
                 return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized_field}}
         except InconsistentField as e:
             return {"class": 32501, "subclass": 1, 'text': {'en': str(e)}}
-        except SanitizeError as e:
+        except SanitizeError:
             return {"class": 32501, "subclass": 2}
 
     def node(self, data, tags):
