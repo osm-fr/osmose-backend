@@ -120,6 +120,9 @@ class Test(TestPluginCommon):
         a.init(None)
 
         assert not a.node(None, {"addr:housenumber": "313A"})
+        assert not a.node(None, {"addr:housenumber": "1"})
+        assert not a.node(None, {"addr:housenumber": "1,2"})
+        assert a.node(None, {"addr:housenumber": "1;2"})
 
     def test_CZ(self):
         a = TagFix_Housenumber(None)
@@ -143,16 +146,3 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"addr:housenumber": "42A-44A"})
         assert not a.node(None, {"addr:housenumber": "42BIS"})
-
-    def test_CH(self):
-        a = TagFix_Housenumber(None)
-        class _config:
-            options = {"country": "CH"}
-        class father:
-            config = _config()
-        a.father = father()
-        a.init(None)
-
-        assert not a.node(None, {"addr:housenumber": "1"})
-        assert not a.node(None, {"addr:housenumber": "1,2"})
-        assert a.node(None, {"addr:housenumber": "1;2"})

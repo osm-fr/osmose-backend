@@ -45,7 +45,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Structural_Restriction(None)
+        a = Structural_Restriction2(None)
         class _config:
             options = {}
         class father:
@@ -59,7 +59,7 @@ class Test(TestPluginCommon):
         assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}])
 
     def test_BR(self):
-        a = Structural_Restriction(None)
+        a = Structural_Restriction2(None)
         class _config:
             options = {"country": "BR"}
         class father:
