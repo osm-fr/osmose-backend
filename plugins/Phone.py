@@ -33,10 +33,10 @@ class Phone(Plugin):
         if not self.code:
             return False
         self.size = self.father.config.options.get("phone_len")
-        if not isinstance(self.size, list):
+        if self.size and not isinstance(self.size, list):
             self.size = [self.size]
         self.size_short = self.father.config.options.get("phone_len_short")
-        if not isinstance(self.size_short, list):
+        if self.size_short and not isinstance(self.size_short, list):
             self.size_short = [self.size_short]
         self.format = self.father.config.options.get("phone_format")
         self.international_prefix = self.father.config.options.get("phone_international")
