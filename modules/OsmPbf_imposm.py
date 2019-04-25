@@ -19,11 +19,11 @@
 ##                                                                       ##
 ###########################################################################
 
+import sys
 import time
 import dateutil.parser
 import traceback
 from . import config
-from imposm.parser.simple import OSMParser
 from .OsmState import OsmState
 import subprocess
 
@@ -41,6 +41,9 @@ class OsmPbfReader:
         self._logger.log(txt)
 
     def __init__(self, pbf_file, state_file, logger = dummylog()):
+        import imposm.parser.simple
+        self.OSMParser = imposm.parser.simple.OSMParser
+
         self._pbf_file = pbf_file
         self._state_file = state_file
         self._logger = logger
@@ -74,7 +77,7 @@ class OsmPbfReader:
 
     def CopyTo(self, output):
         self._output = output
-        self.parser = OSMParser(concurrency=2,
+        self.parser = self.OSMParser(concurrency=2,
                                 nodes_callback=self.NodeParse,
                                 ways_callback=self.WayParse,
                                 relations_callback=self.RelationParse)
@@ -85,7 +88,7 @@ class OsmPbfReader:
 
     def CopyWayTo(self, output):
         self._output = output
-        self.parser = OSMParser(concurrency=2,
+        self.parser = self.OSMParser(concurrency=2,
                                 nodes_callback=None,
                                 ways_callback=self.WayParse,
                                 relations_callback=None)
@@ -96,7 +99,7 @@ class OsmPbfReader:
 
     def CopyRelationTo(self, output):
         self._output = output
-        self.parser = OSMParser(concurrency=2,
+        self.parser = self.OSMParser(concurrency=2,
                                 nodes_callback=None,
                                 ways_callback=None,
                                 relations_callback=self.RelationParse)
@@ -190,6 +193,7 @@ class TestCountObjects:
     def RelationCreate(self, data):
         self.num_rels += 1
 
+@unittest.skipIf(sys.version_info > (3, ), "imposm is not supported in python3")
 class Test(unittest.TestCase):
     def test_copy_all(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
