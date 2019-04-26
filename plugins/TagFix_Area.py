@@ -30,7 +30,7 @@ class TagFix_Area(Plugin):
         self.errors[32002] = { "item": 3200, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"area=yes on object without kind") }
         self.errors[32003] = { "item": 3200, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad usage of area=no. Object must be a surface") }
         self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'power', 'public_transport', 'sport', 'tourism', 'waterway'))
-        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'landuse', 'natural', 'office', 'place', 'shop'))
+        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'landuse', 'natural', 'office', 'place', 'shop', 'indoor'))
 
     def way(self, data, tags, nds):
         err = []
@@ -57,6 +57,7 @@ class Test(TestPluginCommon):
                   {"area":"yes", "building": "yes"},
                   {"area":"yes", "landuse": "farm"},
                   {"area":"no", "amenity": "bakery"},
+                  {"area":"yes", "indoor": "room"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
