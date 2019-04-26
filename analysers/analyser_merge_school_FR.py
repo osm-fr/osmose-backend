@@ -54,7 +54,7 @@ class Analyser_Merge_School_FR(Analyser_Merge):
             self.is_in = lambda code_postal: code_postal[0:2] != "97"
 
         self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"School not integrated") }
-        self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without ref:UAI or invalid") }
+        self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without tag \"ref:UAI\" or invalid") }
         self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
         self.update_official  = {"item":"8032", "class": classs+4, "level": 3, "tag": ["merge"], "desc": T_(u"School update") }
         Analyser_Merge.__init__(self, config, logger,

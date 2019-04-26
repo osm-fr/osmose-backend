@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_College_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge"], "desc": T_(u"College not integrated") }
-        self.missing_osm      = {"item":"7070", "class": 101, "level": 3, "tag": ["merge"], "desc": T_(u"College without ref:UAI or invalid") }
+        self.missing_osm      = {"item":"7070", "class": 101, "level": 3, "tag": ["merge"], "desc": T_(u"College without tag \"ref:UAI\" or invalid") }
         self.possible_merge   = {"item":"8031", "class": 102, "level": 3, "tag": ["merge"], "desc": T_(u"College, integration suggestion") }
         self.update_official  = {"item":"8032", "class": 103, "level": 3, "tag": ["merge"], "desc": T_(u"College update") }
         Analyser_Merge.__init__(self, config, logger,
