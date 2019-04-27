@@ -60,10 +60,6 @@ msgstr ""
 msgid "Historical monument not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
-msgid "Historical monument without ref:mhs or invalid"
-msgstr ""
-
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
 msgstr ""
@@ -80,20 +76,12 @@ msgstr ""
 msgid "Post office not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poste_FR.py:32
-msgid "Post office without ref:FR:LaPoste"
-msgstr ""
-
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_railway_railstation_FR.py:29
-msgid "Railway station without uic_ref or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
@@ -110,10 +98,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:56
 msgid "School not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_school_FR.py:57
-msgid "School without ref:UAI or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:58
@@ -535,11 +519,11 @@ msgstr ""
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr ""
 
-#: ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary.py:32
 msgid "Word not found in dictionary"
 msgstr ""
 
-#: ../plugins/Name_Dictionary.py:32
+#: ../plugins/Name_Dictionary.py:33
 msgid "Encoding problem"
 msgstr ""
 
@@ -674,7 +658,7 @@ msgstr ""
 msgid "Tag highway missing on oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:118
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:119
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
@@ -965,7 +949,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../plugins/Name_Multilingual.py:36
+#: ../plugins/Name_Multilingual.py:37
 msgid "Multilingual not matching"
 msgstr ""
 
@@ -1036,10 +1020,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
-msgstr ""
-
-#: ../analysers/analyser_merge_post_box_FR.py:30
-msgid "Post box without ref"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:42
@@ -1463,10 +1443,6 @@ msgstr ""
 msgid "Power generator not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_generator_FR.py:30
-msgid "Power generator without ref:FR:RTE"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
 msgstr ""
@@ -1485,10 +1461,6 @@ msgstr ""
 msgid "Power substation not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_substation_FR.py:30
-msgid "Power substation without ref:FR:RTE"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
 msgstr ""
@@ -1499,10 +1471,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_power_tower_FR.py:30
-msgid "Power support without ref"
 msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
@@ -1543,11 +1511,6 @@ msgstr ""
 msgid "%s not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_shop_FR.py:52
-#, python-format
-msgid "%s without ref:FR:SIRET or invalid"
-msgstr ""
-
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
@@ -1566,7 +1529,7 @@ msgstr ""
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
-#: ../plugins/Phone.py:48
+#: ../plugins/Phone.py:53
 msgid "Missing international prefix"
 msgstr ""
 
@@ -1641,7 +1604,7 @@ msgstr ""
 msgid "Open relation type=boundary admin_level=%d"
 msgstr ""
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:50
+#: ../plugins/Construction2.py:14 ../plugins/Construction2.py:51
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr ""
@@ -1682,10 +1645,6 @@ msgstr ""
 msgid "Missing highway in associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_merge_college_FR.py:29
-msgid "College without ref:UAI or invalid"
-msgstr ""
-
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
 msgstr ""
@@ -1704,7 +1663,7 @@ msgstr ""
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:129
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:133
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1752,8 +1711,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:41
-#: ../plugins/Name_Cadastre_FR.py:66
+#: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
+#: ../plugins/Name_Cadastre_FR.py:67
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1768,11 +1727,11 @@ msgstr ""
 msgid "Unexpected char %s"
 msgstr ""
 
-#: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
+#: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
 msgid "Power Transformers should always be on a node"
 msgstr ""
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:36
+#: ../plugins/Power.py:15 ../plugins/Power.py:37
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place "
 "of voltage"
@@ -1813,33 +1772,28 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:148
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:149
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:58
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:59
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:94
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:95
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:42
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:43
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:75
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:76
 #, python-brace-format
 msgid "{0} is preferred to {1}"
-msgstr ""
-
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#, python-brace-format
-msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
@@ -1871,7 +1825,7 @@ msgstr ""
 msgid "Highway classification need review"
 msgstr ""
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:51
+#: ../plugins/Power.py:16 ../plugins/Power.py:52
 msgid "Power Transformers should have a frequency tag"
 msgstr ""
 
@@ -1887,26 +1841,26 @@ msgstr ""
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:14
 msgid "Arabic letter detected in Farsi name"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:100
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:122
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:152
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr ""
 
-#: ../plugins/Colour.py:13
+#: ../plugins/Colour.py:14
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""
 
-#: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
-#: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
+#: ../plugins/Colour.py:48 ../plugins/Colour.py:72 ../plugins/Colour.py:112
+#: ../plugins/Colour.py:141 ../plugins/Colour.py:175 ../plugins/Colour.py:199
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""
@@ -1972,7 +1926,7 @@ msgstr ""
 msgid "{0} stop {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:72
+#: ../analysers/analyser_merge_traffic_signs.py:74
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr ""
@@ -2093,44 +2047,44 @@ msgid ""
 "{4}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:141 ../plugins/Name_Script.py:163
+#: ../plugins/Name_Script.py:139 ../plugins/Name_Script.py:161
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means "
 "\"{5}\" ({6}, 0x{7:04x})?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:168
+#: ../plugins/Name_Script.py:144 ../plugins/Name_Script.py:166
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr ""
 
-#: ../plugins/Name_Script.py:149 ../plugins/Name_Script.py:171
+#: ../plugins/Name_Script.py:147 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
 
-#: ../plugins/Phone.py:43
+#: ../plugins/Phone.py:48
 msgid "Phone number does not match the expected format"
 msgstr ""
 
-#: ../plugins/Phone.py:47
+#: ../plugins/Phone.py:52
 msgid "Local short code can't be internationalized"
 msgstr ""
 
-#: ../plugins/Phone.py:49
+#: ../plugins/Phone.py:54
 msgid "Bad international prefix"
 msgstr ""
 
-#: ../plugins/Phone.py:50
+#: ../plugins/Phone.py:55
 msgid "Unallowed char in phone number"
 msgstr ""
 
-#: ../plugins/Phone.py:51
+#: ../plugins/Phone.py:56
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/Phone.py:113
+#: ../plugins/Phone.py:121
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
 msgstr ""
@@ -2193,7 +2147,70 @@ msgstr ""
 msgid "Unconnected highway"
 msgstr ""
 
-#: ../plugins/Phone.py:45
+#: ../plugins/Phone.py:50
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
+msgid "IDF bicycle rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
+msgid "IDF bicycle rental integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
+msgid "IDF bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:29
+msgid "College without tag \"ref:UAI\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
+#: ../analysers/analyser_merge_shop_FR.py:52
+#, python-brace-format
+msgid "{0} without tag \"{1}\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
+msgid "Historical monument without tag \"ref:mhs\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without tag \"ref\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:32
+msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:30
+msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:30
+msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:30
+msgid "Power support without tag \"ref\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_railway_railstation_FR.py:29
+msgid "Railway station without tag \"uic_ref\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:57
+msgid "School without tag \"ref:UAI\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:47
+#, python-brace-format
+msgid "{0} Street object {1} observed around but not associated tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_enforcement.py:54
+msgid "Speed camera should be on the highway or in an enforcement relation"
 msgstr ""

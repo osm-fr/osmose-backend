@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-03-15 19:00+0000\n"
+"PO-Revision-Date: 2019-04-27 18:35+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -65,10 +65,6 @@ msgstr "Szintbeni kereszteződés: nincs a térképen"
 msgid "Historical monument not integrated"
 msgstr "Műemlék: nincs a térképen"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
-msgid "Historical monument without ref:mhs or invalid"
-msgstr "Műemlék: hiányzó vagy érvénytelen <ref:mhs>"
-
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
 msgstr "Műemlék: javasolt hely a térképen"
@@ -85,10 +81,6 @@ msgstr "CAPP mozgássérült-parkoló: nincs a térképen"
 msgid "Post office not integrated"
 msgstr "Posta: nincs a térképen"
 
-#: ../analysers/analyser_merge_poste_FR.py:32
-msgid "Post office without ref:FR:LaPoste"
-msgstr "Posta: hiányzó <ref:FR:LaPoste> címke"
-
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
 msgstr "Posta: javasolt hely a térképen"
@@ -96,10 +88,6 @@ msgstr "Posta: javasolt hely a térképen"
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
 msgstr "Vasútállomás: nincs a térképen"
-
-#: ../analysers/analyser_merge_railway_railstation_FR.py:29
-msgid "Railway station without uic_ref or invalid"
-msgstr "Vasútállomás hiányzó vagy érvénytelen uic_ref címkével"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
@@ -116,10 +104,6 @@ msgstr "CAPP üveg-újrahasznosítás: nincs a térképen"
 #: ../analysers/analyser_merge_school_FR.py:56
 msgid "School not integrated"
 msgstr "Iskola: nincs a térképen"
-
-#: ../analysers/analyser_merge_school_FR.py:57
-msgid "School without ref:UAI or invalid"
-msgstr "Iskola hiányzó vagy érvénytelen <ref:UAI> címkével"
 
 #: ../analysers/analyser_merge_school_FR.py:58
 msgid "School, integration suggestion"
@@ -448,11 +432,11 @@ msgstr "Hiányzó egyirányúság"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Roundabout shortcut"
-msgstr "Körforgalom levágása"
+msgstr "Az út csak egy ponton kapcsolódik a körforgalomhoz"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout crossing"
-msgstr "Körforgalom átvágása"
+msgstr "Körforgalom átvágva"
 
 #: ../analysers/analyser_osmosis_roundabout.py:61
 msgid "Missing junction=roundabout"
@@ -520,9 +504,9 @@ msgstr "Befejezett építkezés"
 msgid "Bad date format"
 msgstr "Hibás dátumformátum"
 
-#: ../plugins/Highway_Lanes.py:28
+#: ../plugins/Highway_Lanes.py:29
 msgid "Bad lanes value"
-msgstr "Hibás érték a <lanes> kulcs mellett"
+msgstr "Hibás érték a <lanes> kulcs (sávok) mellett"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
@@ -540,11 +524,11 @@ msgstr "Hibás érték a <parking:lane:[side]> kulcs mellett"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "<parking:condition:[side]>: hiányzik a <parking:lane:[side]> értéke"
 
-#: ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary.py:32
 msgid "Word not found in dictionary"
 msgstr "A szó nem található a szótárban"
 
-#: ../plugins/Name_Dictionary.py:32
+#: ../plugins/Name_Dictionary.py:33
 msgid "Encoding problem"
 msgstr "Kódolási hiba"
 
@@ -679,7 +663,7 @@ msgstr "A kereszteződésről hiányzik a <highway> címke"
 msgid "Tag highway missing on oneway"
 msgstr "Az egyirányú útról hiányzik a <highway> címke"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:118
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:119
 msgid "Opposite cycleway without oneway"
 msgstr "Ellenkező irányú kerékpárút egyirányú jelölés nélkül"
 
@@ -885,7 +869,7 @@ msgstr "Érvénytelen %(postcode)s utcaszintű irányítószám a(z) %(country)s
 
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
-msgstr "Név végén fölösleges szóköz van"
+msgstr "Névben egymást követő szóközök vannak"
 
 #: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
@@ -971,7 +955,7 @@ msgstr "Étterem: nincs a térképen"
 msgid "Winery not integrated"
 msgstr "Borászat: nincs a térképen"
 
-#: ../plugins/Name_Multilingual.py:35
+#: ../plugins/Name_Multilingual.py:37
 msgid "Multilingual not matching"
 msgstr "Többnyelvű térség: egyezési hiba"
 
@@ -1043,10 +1027,6 @@ msgstr "Hiányzó <level> vagy <repeat_on> címke"
 #: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "Épület részekben"
-
-#: ../analysers/analyser_merge_post_box_FR.py:30
-msgid "Post box without ref"
-msgstr "Postaláda <ref> nélkül"
 
 #: ../plugins/TagFix_MultipleTag.py:42
 msgid "Indoor or buildingpart tag missing"
@@ -1199,38 +1179,38 @@ msgstr "BM üveg-újrahasznosítás: javasolt hely a térképen"
 msgid "BM glass recycling update"
 msgstr "BM üveg-újrahasznosítás: frissítendő"
 
-#: ../plugins/Highway_Lanes.py:29
+#: ../plugins/Highway_Lanes.py:30
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
 msgstr "Ellentmondás a <*:lanes> vagy <*:lanes:(forward|backward|both_ways)> használata között"
 
-#: ../plugins/Highway_Lanes.py:30
+#: ../plugins/Highway_Lanes.py:31
 msgid "Conflict between lanes number"
 msgstr "Ellentmondás a sávok száma között"
 
-#: ../plugins/Highway_Lanes.py:31
+#: ../plugins/Highway_Lanes.py:32
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
 msgstr "A <*:lanes:(backward|both_ways)> érvénytelen használata egyirányú úton"
 
-#: ../plugins/Highway_Lanes.py:32
-msgid "Unknown turn lanes value"
-msgstr "Ismeretlen érték a <turn:lanes> kulcs mellett"
-
 #: ../plugins/Highway_Lanes.py:33
+msgid "Unknown turn lanes value"
+msgstr "Ismeretlen érték a <turn:lanes> kulcs (bekanyarodósávok) mellett"
+
+#: ../plugins/Highway_Lanes.py:34
 msgid "Bad turn lanes order"
 msgstr "Hibás a bekanyarodósávok <turn:lanes> sorrendje"
 
-#: ../plugins/Highway_Lanes.py:34
+#: ../plugins/Highway_Lanes.py:35
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
 msgstr "Ellentmondás az azonos utótagú sávszámok között ('', forward, backward or both_ways)"
 
-#: ../plugins/Highway_Lanes.py:35
+#: ../plugins/Highway_Lanes.py:36
 msgid "Bad access lanes value, should not be an integer but a restriction"
 msgstr "Hibás <access lanes> érték: ne egész szám legyen, hanem korlátozás"
 
-#: ../plugins/Highway_Lanes.py:36
+#: ../plugins/Highway_Lanes.py:37
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "A <merge_to_…> címkéjű bekanyarodósávokhoz egy oldalsó sáv is szükséges a megfelelő oldalon"
 
@@ -1296,7 +1276,7 @@ msgstr "<place=%s> címkéjű pont név nélkül"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "Hiányzó kötőjel a „Saint(e)” után (FR)"
 
-#: ../plugins/Name_Script.py:33
+#: ../plugins/Name_Script.py:34
 msgid "Some value chars does not match the language charset"
 msgstr "Az értékmezőben néhány karakter nem felel meg a nyelv karakterkészletének"
 
@@ -1387,11 +1367,11 @@ msgstr "Építkezési <construction> címkét kell használni a következőhöz:
 msgid "\"%s\" can be set in specific tag"
 msgstr "A(z) „%s” konkrét címkével is meghatározható"
 
-#: ../plugins/Name_Script.py:34
+#: ../plugins/Name_Script.py:35
 msgid "Non printable char"
 msgstr "Nem nyomtatható karakter"
 
-#: ../plugins/Name_Script.py:35
+#: ../plugins/Name_Script.py:36
 msgid "Symbol char"
 msgstr "Szimbólumkarakter"
 
@@ -1470,10 +1450,6 @@ msgstr "Ez gyanús név egy konténernek"
 msgid "Power generator not integrated"
 msgstr "Áramfejlesztő: nincs a térképen"
 
-#: ../analysers/analyser_merge_power_generator_FR.py:30
-msgid "Power generator without ref:FR:RTE"
-msgstr "Áramfejlesztő: hiányzó <ref:FR:RTE> címke"
-
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
 msgstr "Áramfejlesztő: javasolt hely a térképen"
@@ -1492,10 +1468,6 @@ msgstr "%s elektromos alállomás"
 msgid "Power substation not integrated"
 msgstr "Elektromos alállomás: nincs a térképen"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:30
-msgid "Power substation without ref:FR:RTE"
-msgstr "Elektromos alállomás <ref:FR:RTE> címke nélkül"
-
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
 msgstr "Elektromos alállomás: javasolt hely a térképen"
@@ -1507,10 +1479,6 @@ msgstr "Elektromos alállomás: frissítendő"
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
 msgstr "Villanyvezeték-oszlop: nincs a térképen"
-
-#: ../analysers/analyser_merge_power_tower_FR.py:30
-msgid "Power support without ref"
-msgstr "Villanyvezeték-oszlop <ref> nélkül"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
@@ -1550,11 +1518,6 @@ msgstr "Ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <add
 msgid "%s not integrated"
 msgstr "%s nincs a térképen"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
-#, python-format
-msgid "%s without ref:FR:SIRET or invalid"
-msgstr "Hiányzik vagy érvénytelen a <ref:FR:SIRET> kulcs a következőből: %s"
-
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
@@ -1573,7 +1536,7 @@ msgstr "Az útvonal nyomvonala nem folytonos"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "A megálló vagy a peron túl messze van az útvonal nyomvonalától"
 
-#: ../plugins/Phone.py:48
+#: ../plugins/Phone.py:53
 msgid "Missing international prefix"
 msgstr "Hiányzó nemzetközi hívószám"
 
@@ -1648,7 +1611,7 @@ msgstr "Nyitott kapcsolat: <type=multipoligon>"
 msgid "Open relation type=boundary admin_level=%d"
 msgstr "Nyitott kapcsolat: <type=boundary> admin_level=%d"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:50
+#: ../plugins/Construction2.py:14 ../plugins/Construction2.py:51
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "Következetlen címkézés: {0}"
@@ -1689,10 +1652,6 @@ msgstr "Érvénytelen nyitva tartás"
 msgid "Missing highway in associatedStreet relation"
 msgstr "Hiányzik az út az <associatedStreet> kapcsolatból"
 
-#: ../analysers/analyser_merge_college_FR.py:29
-msgid "College without ref:UAI or invalid"
-msgstr "Főiskola hiányzó vagy érvénytelen <ref:UAI> címkével"
-
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
 msgstr "Főiskola: javasolt hely a térképen"
@@ -1711,7 +1670,7 @@ msgstr "{0}: nincs a térképen"
 msgid "{0}, integration suggestion"
 msgstr "{0}: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:129
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:133
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1760,8 +1719,8 @@ msgstr "Fölösleges megfordulási tilalom (a helyi jog szerint amúgyis tilos)"
 msgid "Useless turn restriction"
 msgstr "Fölösleges bekanyarodási tilalom"
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:41
-#: ../plugins/Name_Cadastre_FR.py:66
+#: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
+#: ../plugins/Name_Cadastre_FR.py:67
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1776,11 +1735,11 @@ msgstr "Furcsa központozás a névben"
 msgid "Unexpected char %s"
 msgstr "Furcsa karakter: %s"
 
-#: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
+#: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
 msgid "Power Transformers should always be on a node"
 msgstr "A villamos transzformátornak mindig pontnak kell lennie"
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:36
+#: ../plugins/Power.py:15 ../plugins/Power.py:37
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -1821,34 +1780,29 @@ msgstr "Közvetlen vagy túlságosan megtűrt autópálya-használat"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "A névben hiányzik egy idézőjel vagy egy zárójel"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:148
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:149
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr "Szembejövő út vagy sáv az egyirányú utca irányába"
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:58
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:59
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0}, {1} nélkül"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:94
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:95
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} a következővel: {1}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:42
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:43
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} a következőkkel: {1} és {2}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:75
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:76
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} előnyösebb ehhez: {1}"
-
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#, python-brace-format
-msgid "{0} without (valid) ref:FR:FINESS"
-msgstr "{0} (érvényes) <ref:FR:FINESS> címke nélkül"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
@@ -1879,7 +1833,7 @@ msgstr "Felülvizsgálandó objektum"
 msgid "Highway classification need review"
 msgstr "Az út besorolását felül kell vizsgálni"
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:51
+#: ../plugins/Power.py:16 ../plugins/Power.py:52
 msgid "Power Transformers should have a frequency tag"
 msgstr "A transzformátoron kell lennie egy <frequency> címkének "
 
@@ -1895,47 +1849,47 @@ msgstr "Párizsi motorkerékpár-parkoló: nincs a térképen"
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "Párizsi közös kerékpár-/motorkerékpár-parkoló: nincs a térképen"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:14
 msgid "Arabic letter detected in Farsi name"
 msgstr "Arab betűk a fárszi nyelvű névben"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:100
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:122
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:152
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "Az arab „{0}” betű helyébe fárszi nyelven „{1}” betűt kell írni"
 
-#: ../plugins/Colour.py:13
+#: ../plugins/Colour.py:14
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr "A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ"
 
-#: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
-#: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
+#: ../plugins/Colour.py:48 ../plugins/Colour.py:72 ../plugins/Colour.py:112
+#: ../plugins/Colour.py:141 ../plugins/Colour.py:175 ../plugins/Colour.py:199
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr "{0}: a színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ"
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "Az URL szóközt tartalmaz"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "Az URL sémája érvénytelen"
 
 #: ../plugins/Website.py:41
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
+msgstr "Hibás URL %(k)s=%(v)s"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "Műemlék: {0} ({2} a valószínűsége annak, hogy ez a(z) {1} a helye)"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1946,7 +1900,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr ""
+msgstr "{0} megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1957,7 +1911,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
-msgstr ""
+msgstr "{0} megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1967,242 +1921,305 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-brace-format
 msgid "{0} stop of {1}"
-msgstr ""
+msgstr "{0} megálló itt: {1}"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "{0} megálló: frissítendő"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "{0} megálló: {1}"
 
-#: ../analysers/analyser_merge_traffic_signs.py:60
+#: ../analysers/analyser_merge_traffic_signs.py:74
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0}: itt <{0}> jelzőtábla van, de nincs felcímkézve"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 #, python-brace-format
 msgid "Missing municipality ref {0}"
-msgstr ""
+msgstr "Hiányzó településhivatkozás (municipality ref): {0}"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:130
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
-msgstr ""
+msgstr "Az <admin_centre> szerep népessége ({0}) nagyobb, mint a kapcsolaté ({1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr ""
+msgstr "Több név a FANTOIR-címregiszter ugyanazon hivatkozáshoz: {0}:{1} (FR)"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Következetlen érték a <motor_vehicle> kulcs mellett: ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr ""
+msgstr "befelé jövő sávok: {0}(-{1}+{2}), kifelé menő sávok: {3}(-{4}+{5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "Körülbelül {0}"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "{0} eltérés ettől: {1}m"
 
-#: ../plugins/Highway_Lanes.py:73
+#: ../plugins/Highway_Lanes.py:74
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
-msgstr ""
+msgstr "Ismeretlen érték a <turn:lanes> kulcs (bekanyarodósávok) mellett: \"{0}\""
 
-#: ../plugins/Highway_Lanes.py:151
+#: ../plugins/Highway_Lanes.py:152
 #, python-brace-format
 msgid "lanes={0} is not an integer"
-msgstr ""
+msgstr "<lanes={0}> nem egész szám"
 
-#: ../plugins/Highway_Lanes.py:207
+#: ../plugins/Highway_Lanes.py:208
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "egyirányú utcában: (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
-#: ../plugins/Highway_Lanes.py:212
+#: ../plugins/Highway_Lanes.py:213
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
-msgstr ""
+msgstr "kéritányú utcában: (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:215
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "két vonalon (lanes={0}) <= (lanes:forward={1}) - (nem teljes szélességben forward={2})"
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:217
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
-msgstr ""
+msgstr "kétirányú utcában: (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:219
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
-msgstr ""
+msgstr "két vonalon (lanes={0}) < (lanes:both_ways={1}) - (nem teljes szélességben both_ways={2})"
 
 #: ../plugins/Name_Quotation.py:52
 #, python-brace-format
 msgid "Umbalanced {0} with {1}"
-msgstr ""
+msgstr "Nem illenek össze: {0} és {1}"
 
 #: ../plugins/Name_Quotation.py:55
 #, python-brace-format
 msgid "Umbalanced {0}"
-msgstr ""
+msgstr "Hiányzó {0}"
 
-#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
+#: ../plugins/Name_Script.py:99 ../plugins/Name_Script.py:121
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
-msgstr ""
+msgstr "\"{0}\" furcsa, kinyomtathatatlan karakter ({1}, 0x{2:04x}) a kulcsban a következő pozíciónál: {3}"
 
-#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
+#: ../plugins/Name_Script.py:104 ../plugins/Name_Script.py:125
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" furcsa, kinyomtathatatlan karakter ({2}, 0x{3:04x}) az értékben a következő pozíciónál: {4}"
 
-#: ../plugins/Name_Script.py:108
+#: ../plugins/Name_Script.py:109
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
-msgstr ""
+msgstr "\"{0}\" furcsa szimbólum ({1}, 0x{2:04x}) a kulcsban a következő pozíciónál: {3}"
 
-#: ../plugins/Name_Script.py:113
+#: ../plugins/Name_Script.py:114
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" furcsa érték ({2}, 0x{3:04x}) az értékben a következő pozíciónál: {4}"
 
-#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
+#: ../plugins/Name_Script.py:139 ../plugins/Name_Script.py:161
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" furcsa karatker \"{2}\" ({3}, 0x{4:04x}). Esetleg ezt jelenti: \"{5}\" ({6}, 0x{7:04x})?"
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:144 ../plugins/Name_Script.py:166
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" furcsa karakter \"{2}\" ({3}, 0x{4:04x})"
 
-#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
+#: ../plugins/Name_Script.py:147 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" furcsa \"{2}\""
 
-#: ../plugins/Phone.py:43
+#: ../plugins/Phone.py:48
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "A telefonszám nem az elvárt formátumú"
 
-#: ../plugins/Phone.py:47
+#: ../plugins/Phone.py:52
 msgid "Local short code can't be internationalized"
-msgstr ""
+msgstr "A helyi rövid hívószám nem nemzetköziesíthető"
 
-#: ../plugins/Phone.py:49
+#: ../plugins/Phone.py:54
 msgid "Bad international prefix"
-msgstr ""
+msgstr "Hibás nemzetközi előhívószám"
 
-#: ../plugins/Phone.py:50
+#: ../plugins/Phone.py:55
 msgid "Unallowed char in phone number"
-msgstr ""
+msgstr "Nem engedélyezett karakter a telefonszámban"
 
-#: ../plugins/Phone.py:51
+#: ../plugins/Phone.py:56
 msgid "Bad separator for multiple values"
-msgstr ""
+msgstr "Hibás elválasztó több érték esetén"
 
-#: ../plugins/Phone.py:113
+#: ../plugins/Phone.py:121
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
-msgstr ""
+msgstr "Nem engedélyezett karakter a telefonszámban: \"{0}\""
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
 msgid "Discordant {0} and {1}"
-msgstr ""
+msgstr "<{0}> és <{1}> nincs összhangban"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
-msgstr ""
+msgstr "Hibás címke {0}=\"{1}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-brace-format
 msgid "Bad tag name=\"{0}\""
-msgstr ""
+msgstr "Hibás címke: name=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-brace-format
 msgid "Bad tag type=\"{0}\""
-msgstr ""
+msgstr "Hibás címke: type=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-brace-format
 msgid "Bad tag denotation=\"{0}\""
-msgstr ""
+msgstr "Hibás <denotation=„{0}\"> címke"
 
 #: ../plugins/TagWatchFrViPofm.py:90
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
-msgstr ""
+msgstr "címkekulcs: {0} => {1} (szabály: helyes kulcs)"
 
 #: ../plugins/TagWatchFrViPofm.py:92
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
-msgstr ""
+msgstr "címkeérték: {0}={1} => {2} (szabály: helyes kulcs => helyes érték)"
 
 #: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
-msgstr ""
+msgstr "címkeérték: {0}={1} => {2} (szabály: helyes kulcs => érték írásmódja)"
 
 #: ../plugins/TagWatchFrViPofm.py:101
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
-msgstr ""
+msgstr "címkekulcs: {0} => {1} (szabály: kulcs írásmódja)"
 
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
-msgstr ""
+msgstr "címkeérték: {0}={1} => {2} (szabály: kulcs írásmódja => helyes érték)"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
-msgstr ""
+msgstr "Kerítés <material> címkével. Inkább <fence_type> címkét kellene használni"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected highway"
-msgstr ""
+msgstr "Nem kapcsolódó út"
 
-#: ../plugins/Phone.py:45
+#: ../plugins/Phone.py:50
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
+msgstr "Fölösleges \"{0}\" a nemzetközi kód után"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
+msgid "IDF bicycle rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
+msgid "IDF bicycle rental integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
+msgid "IDF bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:29
+msgid "College without tag \"ref:UAI\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
+#: ../analysers/analyser_merge_shop_FR.py:52
+#, python-brace-format
+msgid "{0} without tag \"{1}\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
+msgid "Historical monument without tag \"ref:mhs\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without tag \"ref\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:32
+msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:30
+msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:30
+msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:30
+msgid "Power support without tag \"ref\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_railway_railstation_FR.py:29
+msgid "Railway station without tag \"uic_ref\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:57
+msgid "School without tag \"ref:UAI\" or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:47
+#, python-brace-format
+msgid "{0} Street object {1} observed around but not associated tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_enforcement.py:54
+msgid "Speed camera should be on the highway or in an enforcement relation"
 msgstr ""
