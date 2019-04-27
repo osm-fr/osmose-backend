@@ -26,9 +26,9 @@ You can install python dependencies in the system or in a virtualenv.
 
 ### Alt: Python dependencies in the system
 
-In the system install the folowing packages:
+In the system install the following packages:
 ```
-apt install python-dateutil python-lockfile python-polib python-poster python-psycopg2 python-shapely python-regex python-requests
+apt install python-dateutil python-polib python-psycopg2 python-shapely python-regex python-requests
 ```
 
 ### Alt: python dependencies in a virtualenv
