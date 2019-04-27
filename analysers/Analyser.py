@@ -140,6 +140,25 @@ class TestAnalyser(unittest.TestCase):
         return (conf, analyser_conf)
 
     @staticmethod
+    def dict_sort_key(d):
+        """
+	Create a key from dict, with a string containing all keys and values,
+        sorted by keys.
+        """
+        s = ""
+        for k in sorted(d.keys()):
+            v = d[k]
+            if hasattr(v, 'items'):
+                s += "%s-%s-" % (k, TestAnalyser.dict_sort_key(v))
+            elif isinstance(v, list):
+                s += "%s-" % k
+                for l in v:
+                    s += "%s_" % TestAnalyser.dict_sort_key(l)
+            else:
+                s += "%s-%s-" % (k, v)
+        return s
+
+    @staticmethod
     def normalise_dict(d):
         """
         Recursively convert dict-like object (eg OrderedDict) into plain dict.
@@ -151,7 +170,7 @@ class TestAnalyser(unittest.TestCase):
                 out[k] = TestAnalyser.normalise_dict(v)
             elif isinstance(v, list):
                 out[k] = []
-                for item in sorted(v):
+                for item in sorted(v, key=TestAnalyser.dict_sort_key):
                     if hasattr(item, 'items'):
                         out[k].append(TestAnalyser.normalise_dict(item))
                     else:
