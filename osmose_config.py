@@ -174,6 +174,7 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_floating_islands"] = "xxx"
         self.analyser["merge_traffic_signs"] = "xxx"
         self.analyser["merge_street_objects"] = "xxx"
+        self.analyser["osmosis_relation_enforcement"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
