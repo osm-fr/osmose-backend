@@ -31,6 +31,11 @@ In the system install the following packages:
 apt install python-dateutil python-polib python-psycopg2 python-shapely python-regex python-requests
 ```
 
+If you want to install for python3, use the following packages instead:
+```
+apt install python3-dateutil python3-polib python3-psycopg2 python3-shapely python3-regex python3-requests
+```
+
 ### Alt: python dependencies in a virtualenv
 
 Alternatively instal python-virtualenv and create a new virtualenv.
