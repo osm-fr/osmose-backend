@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Power_Generator_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8270", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power generator not integrated") }
-        self.missing_osm      = {"item":"7180", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power generator without ref:FR:RTE") }
+        self.missing_osm      = {"item":"7180", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power generator without tag \"ref:FR:RTE\" or invalid") }
         self.possible_merge   = {"item":"8271", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power generator, integration suggestion") }
         self.update_official  = {"item":"8272", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power generator update") }
 

@@ -1,0 +1,106 @@
+[
+  {
+    "class": 1,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 30,
+    "title": "bench",
+    "object": [
+      "object--bench"
+    ],
+    "select_tags": [
+      {
+        "amenity": "bench"
+      }
+    ],
+    "generate_tags": {
+      "amenity": "bench"
+    }
+  },
+  {
+    "class": 2,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 30,
+    "title": "bicycle parking",
+    "object": [
+      "object--bike-rack"
+    ],
+    "select_tags": [
+      {
+        "amenity": "bicycle_parking"
+      }
+    ],
+    "generate_tags": {
+      "amenity": "bicycle_parking"
+    }
+  },
+  {
+    "class": 3,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 30,
+    "title": "surveillance camera",
+    "object": [
+      "object--cctv-camera"
+    ],
+    "select_tags": [
+      {
+        "man_made": "surveillance"
+      }
+    ],
+    "generate_tags": {
+      "man_made": "surveillance"
+    }
+  },
+  {
+    "class": 4,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 30,
+    "title": "fire hydrant",
+    "object": [
+      "object--fire-hydrant"
+    ],
+    "select_tags": [
+      {
+        "emergency": "fire_hydrant"
+      }
+    ],
+    "generate_tags": {
+      "emergency": "fire_hydrant"
+    }
+  },
+  {
+    "class": 5,
+    "level": 1,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 50,
+    "title": "traffic light",
+    "object": [
+      "object--traffic-light--cyclists",
+      "object--traffic-light--general-horizontal",
+      "object--traffic-light--general-single",
+      "object--traffic-light--general-upright",
+      "object--traffic-light--other"
+    ],
+    "select_tags": [
+      {
+        "highway": "traffic_signals"
+      }
+    ],
+    "generate_tags": {
+      "highway": "traffic_signals"
+    }
+  }
+]

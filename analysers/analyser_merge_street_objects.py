@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2017                                      ##
+## Copyrights Frédéric Rodrigo 2019                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,60 +22,33 @@
 
 import json
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
-from time import gmtime, strftime
 
-import time, os, shutil, hashlib, codecs, tempfile
 from io import open # In python3 only, this import is not required
-from backports import csv # In python3 only just "import csv"
 from modules import config
-from modules.PointInPolygon import PointInPolygon
-from modules import SourceVersion
-from modules import downloader
 
 
-class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
-
-    def check_not_only_for(self, not_for, only_for):
-        country = "country" in self.config.options and self.config.options["country"]
-        if only_for:
-            return country and any(map(lambda co: country.startswith(co), only_for))
-        if not_for:
-            return not country or not any(map(lambda co: country.startswith(co), not_for))
-        return True
-
-    def dict_replace(self, d, f, r):
-        return dict(map(lambda kv: [kv[0], kv[1] and kv[1].replace(f, r)], d.items()))
+class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
         if "country" not in self.config.options:
             return
 
-        speed_limit_unit = self.config.options.get("speed_limit_unit")
-
-        mapping = 'merge_data/mapillary-traffic-signs.mapping.json'
+        mapping = 'merge_data/mapillary-street-objects.mapping.json'
         mapingfile = json.loads(open(mapping).read())
         for r in mapingfile:
-            if self.check_not_only_for(r.get('not_for'), r.get('only_for')):
-                if speed_limit_unit:
-                    unit = ' ' + speed_limit_unit
-                else:
-                    unit = ''
-                r['select_tags'] = list(map(lambda select: self.dict_replace(select, '{speed_limit_unit}', unit), r['select_tags']))
-                r['generate_tags'] = self.dict_replace(r['generate_tags'], '{speed_limit_unit}', unit)
-
-                self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'trafficsigns')
+            self.classFactory(SubAnalyser_Merge_Street_Objects, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'points')
 
 
-class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
+class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, layer):
-        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_f(u"{0} Traffic signs for {1} observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
+        self.missing_official = {"item":"8360", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_f(u"{0} Street object {1} observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
-            u"Traffic Signs from Street-level imagery",
-            CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", millesime = "10/2018", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
+            u"Street Objects from Street-level imagery",
+            CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", millesime = "04/2019", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
             Load("X", "Y",
                 select = {"value": object}),
             Mapping(

@@ -173,6 +173,8 @@ class default_simple(template_config):
         self.analyser["osmosis_relation_route_access"] = "xxx"
         self.analyser["osmosis_highway_floating_islands"] = "xxx"
         self.analyser["merge_traffic_signs"] = "xxx"
+        self.analyser["merge_street_objects"] = "xxx"
+        self.analyser["osmosis_relation_enforcement"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -344,6 +346,7 @@ include_ile_de_france = [
     # Île-de-france
     'merge_public_transport_FR_ratp',
     'merge_public_transport_FR_stif',
+    'merge_bicycle_rental_FR_IDF',
 ]
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris

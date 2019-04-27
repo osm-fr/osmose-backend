@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8280", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation not integrated") }
-        self.missing_osm      = {"item":"7190", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation without ref:FR:RTE") }
+        self.missing_osm      = {"item":"7190", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation without tag \"ref:FR:RTE\" or invalid") }
         self.possible_merge   = {"item":"8281", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation, integration suggestion") }
         self.update_official  = {"item":"8282", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation update") }
 
