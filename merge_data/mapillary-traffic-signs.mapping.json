@@ -985,6 +985,10 @@
       {
         "highway": null,
         "maxspeed:hgv": "20{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -1021,6 +1025,10 @@
       {
         "highway": null,
         "maxspeed:hgv": "25{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -1059,6 +1067,10 @@
       {
         "highway": null,
         "maxspeed:hgv": "30{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -1095,6 +1107,10 @@
       {
         "highway": null,
         "maxspeed:hgv": "35{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -1132,6 +1148,10 @@
       {
         "highway": null,
         "maxspeed:hgv": "40{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -1168,6 +1188,10 @@
       {
         "highway": null,
         "maxspeed:hgv": "45{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -1201,6 +1225,10 @@
       {
         "highway": null,
         "maxspeed:backward": "50{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
