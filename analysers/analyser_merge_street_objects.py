@@ -48,7 +48,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
             u"Street Objects from Street-level imagery",
-            CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", millesime = "04/2019", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
+            CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
             Load("X", "Y",
                 select = {"value": object}),
             Mapping(
@@ -59,7 +59,9 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
                 generate = Generate(
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
-                    mapping1 = {"mapillary": "image_key"},
+                    mapping1 = {
+                      "mapillary": "image_key",
+                      "survey:date": lambda res: res["last_seen_at"][0:10]},
                 text = lambda tags, fields: {"en": (
                     "Observed between %s and %s" % (fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
                     "Observed on %s" % (fields["first_seen_at"][0:10],))} )))
