@@ -30,27 +30,22 @@ class Analyser_Merge_School_FR(Analyser_Merge):
         if config.db_schema == 'france_guadeloupe':
             classs = 10
             officialName = u"Guadeloupe"
-            srid = 2970
             self.is_in = lambda code_postal: code_postal[0:3] == "971"
         elif config.db_schema == 'france_guyane':
             classs = 20
             officialName = u"Guyane"
-            srid = 2972
             self.is_in = lambda code_postal: code_postal[0:3] == "973"
         elif config.db_schema == 'france_reunion':
             classs = 30
             officialName = u"Réunion"
-            srid = 2975
             self.is_in = lambda code_postal: code_postal[0:3] == "974"
         elif config.db_schema == 'france_martinique':
             classs = 40
             officialName = u"Martinique"
-            srid = 2973
             self.is_in = lambda code_postal: code_postal[0:3] == "972"
         else:
             classs = 0
             officialName = u"Métropole"
-            srid = 2154
             self.is_in = lambda code_postal: code_postal[0:2] != "97"
 
         self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"School not integrated") }
@@ -58,14 +53,17 @@ class Analyser_Merge_School_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
         self.update_official  = {"item":"8032", "class": classs+4, "level": 3, "tag": ["merge"], "desc": T_(u"School update") }
         Analyser_Merge.__init__(self, config, logger,
-            u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres/",
+            u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/",
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
-            CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "05/2016",
-                    file = "school_FR.csv.bz2", encoding = "ISO-8859-15",
-                filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"))),
-            Load("X", "Y", srid = srid,
-                select = {"etat_etablissement": ["1", "3"]},
-                where = lambda res: res["nature_uai"][0] != "8" and res["code_postal_uai"] and self.is_in(res["code_postal_uai"])),
+            CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "03/2018",
+                    fileUrl = "https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
+                    filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire")),
+                 separator = u";"),
+            Load("Position", "Position",
+                xFunction = lambda x: x != None and x.split(',')[1] or None,
+                yFunction = lambda y: y != None and y.split(',')[0] or None,
+                select = {"Code état établissement": ["1", "3"]},
+                where = lambda res: res["Code postal"] and self.is_in(res["Code postal"])),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
@@ -75,43 +73,50 @@ class Analyser_Merge_School_FR(Analyser_Merge):
                 generate = Generate(
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "amenity": lambda res: "kindergarten" if res["nature_uai"] in ("101", "102", "103", "111") else "school",
-                        "ref:UAI": "numero_uai",
-                        "school:FR": lambda res: self.School_FR_nature_uai[res["nature_uai"]],
-                        "operator:type": lambda res: "private" if res["secteur_public_prive"] == "PR" else None},
-                    mapping2 = {"name": "appellation_officielle_uai"},
+                        "amenity": lambda res: "kindergarten" if res["Code nature"] in ("101", "102", "103", "111") else "school",
+                        "ref:UAI": "Code établissement",
+                        "school:FR": lambda res: self.School_FR_nature_uai[res["Code nature"]],
+                        "operator:type": lambda res: "private" if res[u"Secteur Public/Privé"] == u"Privé" else None},
+                    mapping2 = {"name": "Appellation officielle"},
                     text = self.text)))
 
     def text(self, tags, fields):
-      lib = ', '.join(filter(lambda x: x, [fields["appellation_officielle_uai"], fields["adresse_uai"], fields["lieu_dit_uai"], fields["boite_postale_uai"], fields["code_postal_uai"], fields["localite_acheminement_uai"], fields[""]]))
+      lib = ', '.join(filter(lambda x: x and x != "None", [fields["Appellation officielle"], fields["Adresse"], fields["Lieu dit"], fields["Boite postale"], fields["Code postal"], fields["Localite d'acheminement"], fields["Commune"]]))
       return {
-          "en": lib + " (positioned: %s, matching: %s)" % (self.School_FR_loc[fields["loc"]]["en"], self.School_FR_app[fields["app"]]["en"]),
-          "fr": lib + " (position : %s, appariement : %s)" % (self.School_FR_loc[fields["loc"]]["fr"], self.School_FR_app[fields["app"]]["fr"]),
+          "en": lib + " (positioned: %s, matching: %s)" % (self.School_FR_loc[fields["Localisation"]]["en"], self.School_FR_app[fields[u"Qualité d'appariement"]]["en"]),
+          "fr": lib + " (position : %s, appariement : %s)" % (self.School_FR_loc[fields["Localisation"]]["fr"], self.School_FR_app[fields[u"Qualité d'appariement"]]["fr"]),
       }
 
     School_FR_loc = {
         "None": {"en": u"none", "fr": u"aucun"},
-        "AUCUN": {"en": u"none", "fr": u"aucun"},
         "BATIMENT": {"en": u"building", "fr": u"bâtiment"},
+        "CENTRE_PARCELLE": {"en": u"parcel centre", "fr": u"centre de la parcelle"},
         "CENTRE_PARCELLE_PROJETE": {"en": u"parcel", "fr": u"parcelle"},
-        "COMMUNE": {"en": u"city", "fr": u"commune"},
+        "COMMUNE": {"en": u"municipality", "fr": u"commune"},
         "DEFAUT_DE_NUMERO": {"en": u"missing number", "fr": u"défaut de numéro"},
         "DEFAUT_DE_TRONCON": {"en": u"missing street", "fr": u"défaut de troncon"},
-        "DIFF_NOM": {"en": u"different name", "fr": u"nom dfférent"},
-        "DIFF_TYPE": {"en": u"different type", "fr": u"type différent"},
+        "ENTREE PRINCIPALE": {"en": u"main entrance", "fr": u"entrée principale"},
         "INTERPOLATION": {"en": u"interpolated", "fr": u"interpolation"},
-        "MANUEL": {"en": u"manual", "fr": u"manuel"},
+        "Lieu-dit": {"en": u"locality", "fr": u"lieu-dit"},
+        "NUMERO (ADRESSE)": {"en": u"addresse number", "fr": u"numéro d'adresse"},
+        "Numéro de rue": {"en": u"street number", "fr": u"numéro de rue"},
         "PLAQUE_ADRESSE": {"en": u"house number", "fr": u"plaque adresse"},
-        "SIMILAIRE": {"en": u"similar", "fr": u"similaire"},
+        "Rue": {"en": u"street", "fr": u"rue"},
+        "Ville": {"en": u"city", "fr": u"ville"},
         "ZONE_ADRESSAGE": {"en": u"addresse area", "fr": u"zone d'adressage"},
     }
 
     School_FR_app = {
         "None": {"en": u"none", "fr": u"aucun"},
-        "AUCUN": {"en": u"none", "fr": u"aucun"},
+        "COMMUNE": {"en": u"municipality", "fr": u"commune"},
+        "Correcte": {"en": u"good", "fr": u"correcte"},
         "DIFF_NOM": {"en": u"different name", "fr": u"nom dfférent"},
         "DIFF_TYPE": {"en": u"different type", "fr": u"type différent"},
+        "Imparfaite": {"en": u"bad", "fr": u"imparfaite"},
         "MANUEL": {"en": u"manual", "fr": u"manuel"},
+        "METRE": {"en": u"meter", "fr": u"metre"},
+        "Moyenne": {"en": u"medium", "fr": u"moyenne"},
+        "Parfaite": {"en": u"parfect", "fr": u"parfaite"},
         "SIMILAIRE": {"en": u"similar", "fr": u"similaire"},
     }
 
