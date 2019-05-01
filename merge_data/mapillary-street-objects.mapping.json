@@ -13,6 +13,9 @@
     "select_tags": [
       {
         "amenity": "bench"
+      },
+      {
+        "bench": "yes"
       }
     ],
     "generate_tags": {
@@ -97,6 +100,14 @@
     "select_tags": [
       {
         "highway": "traffic_signals"
+      },
+      {
+        "highway": "crossing",
+        "crossing": "traffic_signals"
+      },
+      {
+        "railway": "level_crossing",
+        "crossing:light": "yes"
       }
     ],
     "generate_tags": {

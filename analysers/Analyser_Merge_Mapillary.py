@@ -30,6 +30,7 @@ from modules import config
 from modules.PointInPolygon import PointInPolygon
 from modules import SourceVersion
 from modules import downloader
+from datetime import datetime, timedelta
 
 
 class Source_Mapillary(Source):
@@ -95,12 +96,13 @@ class Source_Mapillary(Source):
 
       bboxes = pip.bboxes()
 
+      start_time = (datetime.today() - timedelta(days=365*2)).isoformat()[0:10]
       b = 0
       for traffic_signs_ in slice(traffic_signs, 10):
         b = b + 1
         self.logger.log('Batch {0}/{1}: {2}'.format(b, round(len(traffic_signs) / 10 + 0.5), ','.join(traffic_signs_)))
         for bbox in bboxes:
-          url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers={layer}&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), layer=self.layer, client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time='2016-06-01', values=','.join(traffic_signs_))
+          url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers={layer}&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), layer=self.layer, client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time=start_time, values=','.join(traffic_signs_))
           print(url)
           with open(tmp_file, 'a') as csvfile:
             writer = csv.writer(csvfile)
