@@ -35,6 +35,7 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Invalid reference") }
         self.errors[30326] = { "item": 2100, "level": 3, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drugs under prescription") }
         self.errors[206013] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"FANTOIR object type not match OSM feature") }
+        self.errors[21501] = { "item": 2150, "level": 3, "tag": ["railway", "fix:chair"], "desc": T_(u"Missing gauge on rail") }
 
         self.school = {
             u"elementaire": u"élémentaire",
@@ -98,6 +99,9 @@ class TagFix_MultipleTag_FR(Plugin):
         if (tags.get("highway") in ("motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway") and
             "ref" in tags and not self.Ref.match(tags["ref"])):
             err.append({"class": 30325, "subclass": 4, "text": {"en": tags["ref"]}})
+        
+        if tags.get("railway") == "rail" and "gauge" not in tags:
+            err.append({"class": 21501, "subclass": 1, "text": T_(u"Add gauge tag (1435 on main railway network)")})
 
         return err
 
