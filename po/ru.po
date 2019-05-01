@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Jake Strine <jake.strine@gmail.com>, 2017
-# 4004 <tohaklim@gmail.com>, 2017
+# 4004, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
