@@ -32,10 +32,10 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
         final_name = re.compile("/.*$")
 
         Analyser_Merge.__init__(self, config, logger,
-            u"http://opendata71interactive.cloudapp.net/DataBrowser/data/CG71Restaurants",
+            u"https://www.data.gouv.fr/fr/datasets/restaurants-od71",
             u"Les restaurants en Saône-et-Loire - CG71",
-            CSV(Source(attribution = u"Conseil général de la Saône-et-Loire - Agence de Développement Touristique", millesime = "03/2013",
-                    fileUrl = u"http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER", encoding = "ISO-8859-15"),
+            CSV(Source(attribution = u"Département de Saône-et-Loire", millesime = "03/2013",
+                    fileUrl = u"https://www.data.gouv.fr/s/resources/restaurants-od71/20180207-141445/CG71Restaurants.csv", encoding = "ISO-8859-15"),
                 separator = u";"),
             Load("LONGITUDE", "LATITUDE",
                 xFunction = self.float_comma,
