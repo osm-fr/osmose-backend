@@ -301,7 +301,6 @@ france_departement("bourgogne/cote_d_or", 7424, "FR-21")
 france_departement("bourgogne/nievre", 7448, "FR-58")
 france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
     # Saône-et-Loire
-    'merge_public_transport_FR_cg71',
     'merge_restaurant_FR_cg71',
 ])
 france_departement("bourgogne/yonne", 7392, "FR-89")
