@@ -38,7 +38,7 @@ meta[lang=fr] {
     -osmoseItemClassLevel: "5010/50109001/2";
     fixAdd: concat("{0.key}=", replace("{0.value}",  "ي", "ی"));
 
-    assertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
+    -osmoseAssertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
     assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
     assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
 }
@@ -50,7 +50,7 @@ meta[lang=fr] {
     -osmoseItemClassLevel: "5010/50109001/2";
     fixAdd: concat("{0.key}=", replace("{0.value}",  "ك", "ک"));
 
-    assertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
+    -osmoseAssertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
     assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
     assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
 }

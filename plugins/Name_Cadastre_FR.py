@@ -10,7 +10,7 @@ class Name_Cadastre_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        capture_tags = {}
+        tags = capture_tags = {}
         self.errors[50801] = {'item': 5080, 'level': 1, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')}
 
         self.re_422a87ff = re.compile(r'.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$')
@@ -37,8 +37,8 @@ class Name_Cadastre_FR(Plugin):
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")
-                # assertNoMatchWithContext:list('node place=hamlet name="ZA Sud Loire"',"inside=FR")
-                # assertMatchWithContext:list('node place=hamlet name=Montdésert-Sud',"inside=FR")
+                # -osmoseAssertNoMatchWithContext:list('node place=hamlet name="ZA Sud Loire"',"inside=FR")
+                # -osmoseAssertMatchWithContext:list('node place=hamlet name=Montdésert-Sud',"inside=FR")
                 err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')})
 
         return err
@@ -64,6 +64,8 @@ class Name_Cadastre_FR(Plugin):
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")
+                # -osmoseAssertNoMatchWithContext:list('node place=hamlet name="ZA Sud Loire"',"inside=FR")
+                # -osmoseAssertMatchWithContext:list('node place=hamlet name=Montdésert-Sud',"inside=FR")
                 err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')})
 
         return err
@@ -83,6 +85,10 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.node(data, {u'name': u'ZA Sud Loire', u'place': u'hamlet'}), expected={'class': 50801, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.node(data, {u'name': u'Montdésert-Sud', u'place': u'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.node(data, {u'name': u'ZA Sud Loire', u'place': u'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
