@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
@@ -31,9 +31,9 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/",
             u"Vélib' - Disponibilité temps réel",
-            SHP(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2019",
-                fileUrl = u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=shp&timezone=Europe/Berlin", zip = "velib-disponibilite-en-temps-reel.shp")),
-            Load(("ST_X(geom)", ), ("ST_Y(geom)", )),
+            GeoJSON(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2019",
+                fileUrl = u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=geojson&timezone=Europe/Berlin")),
+            Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -42,9 +42,9 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
                 generate = Generate(
                     static1 = {
                         "amenity": "bicycle_rental",
-                        "network": "Vélib’",
+                        "network": u"Vélib’",
                         "operator": "Smovengo"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": "station_nam",
+                        "name": "station_name",
                         "capacity": lambda res: res["nbedock"] if res["nbedock"] != "0" else None} )))
