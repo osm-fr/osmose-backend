@@ -1,6 +1,10 @@
 #-*- coding: utf-8 -*-
 item_map = \
-{'Rules_Brazilian-Specific': {'class': {'Brasil - Correções e melhorias': 9018006,
+{'FranceSpecificRules': {'class': {'a': 1},
+                         'item': 9999,
+                         'prefix': 'Josm_',
+                         'tags': []},
+ 'Rules_Brazilian-Specific': {'class': {'Brasil - Correções e melhorias': 9018006,
                                         'Brasil - Verificar': 9018002,
                                         'SAMU classificado de forma errada': 9018016,
                                         'adicionar {0} ao {1}': 9018018,
