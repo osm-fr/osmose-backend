@@ -346,6 +346,7 @@ include_ile_de_france = [
     'merge_public_transport_FR_ratp',
     'merge_public_transport_FR_stif',
     'merge_bicycle_rental_FR_IDF',
+    'merge_parking_FR_IDF',
 ]
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
