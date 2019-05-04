@@ -56,12 +56,14 @@ class template_config:
         dir_scripts + "/osmosis/CreateFunctions.sql",
     ]
     osmosis_change_init_post_scripts = [  # Scripts to run on database initialisation
+        dir_scripts + "/osmosis/pgsimple_schema_0.6_action_drop.sql",
         dir_scripts + "/osmosis/osmosis-0.47/script/pgsnapshot_schema_0.6_action.sql",
     ]
     osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/CreateTouched.sql",
     ]
     osmosis_resume_init_post_scripts = [  # Scripts to run on database initialisation
+        dir_scripts + "/osmosis/pgsimple_schema_0.6_action_drop.sql",
         dir_scripts + "/osmosis/osmosis-0.47/script/pgsnapshot_schema_0.6_action.sql",
     ]
     osmosis_resume_post_scripts = [  # Scripts to run each time the database is updated
