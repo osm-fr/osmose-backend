@@ -51,6 +51,8 @@ class TagFix_Housenumber(Plugin):
         self.housenumberRegexByCountry["CZ"] = re.compile("^(ev\.)?[1-9]")
         # From open data from CACLR, https://data.public.lu/en/datasets/registre-national-des-localites-et-des-rues/
         self.housenumberRegexByCountry["LU"] = re.compile("^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
+        # Allow "snc" (Senza numero civico) in Italy
+        self.housenumberRegexByCountry["IT"] = re.compile("(:?^[1-9])|(^snc$)")
 
     def node(self, data, tags):
         err = []
@@ -146,3 +148,15 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"addr:housenumber": "42A-44A"})
         assert not a.node(None, {"addr:housenumber": "42BIS"})
+
+    def test_LU(self):
+        a = TagFix_Housenumber(None)
+        class _config:
+            options = {"country": "IT"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"addr:housenumber": "42"})
+        assert not a.node(None, {"addr:housenumber": "snc"})
