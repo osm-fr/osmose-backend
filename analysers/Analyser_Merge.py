@@ -445,7 +445,7 @@ class JSON(Parser):
         self.json = None
 
     def header(self):
-        self.json = map(flattenjson, self.extractor(json.loads(self.source.open().read())))
+        self.json = list(map(flattenjson, self.extractor(json.loads(self.source.open().read()))))
         return self.json[0].keys()
 
     def import_(self, table, srid, osmosis):
@@ -453,7 +453,7 @@ class JSON(Parser):
         for row in self.json:
             osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                 (table, u'", "'.join(row.keys()), (u'%s, ' * len(row.keys()))[:-2]),
-                map(removequotesjson, row.values()))
+                list(map(removequotesjson, row.values())))
 
 class GeoJSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
@@ -469,7 +469,7 @@ class GeoJSON(Parser):
 
     def header(self):
         self.json = self.extractor(json.loads(self.source.open().read()))
-        columns = flattenjson(self.json['features'][0]['properties']).keys()
+        columns = list(flattenjson(self.json['features'][0]['properties']).keys())
         columns.append(u"geom_x")
         columns.append(u"geom_y")
         return columns
@@ -479,7 +479,7 @@ class GeoJSON(Parser):
         insert_statement = u"insert into %s (%%s) values %%s" % table
         for row in self.json['features']:
             row['properties'] = flattenjson(row['properties'])
-            columns = row['properties'].keys()
+            columns = list(row['properties'].keys())
             values = map(removequotesjson, map(lambda column: row['properties'][column], columns))
             columns.append(u"geom_x")
             columns.append(u"geom_y")
