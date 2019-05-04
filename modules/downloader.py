@@ -85,6 +85,7 @@ def update_cache(url, delay, get=get):
             answer.raise_for_status()
 
     # write the file
+    outfile = None
     try:
         outfile = open(tmp_file, "wb")
         for data in answer.iter_content(chunk_size=None):

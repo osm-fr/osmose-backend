@@ -91,14 +91,14 @@ class OsmOsisManager:
   def psql_c(self, sql):
     cmd  = ["psql"]
     cmd += self.db_psql_args
-    cmd += ["-c", sql]
+    cmd += ["-c", sql, "-v", "ON_ERROR_STOP=1"]
     self.logger.execute_out(cmd)
 
 
   def psql_f(self, script, cwd=None):
     cmd  = ["psql"]
     cmd += self.db_psql_args
-    cmd += ["-f", script]
+    cmd += ["-f", script, "-v", "ON_ERROR_STOP=1"]
     self.logger.execute_out(cmd, cwd=cwd)
 
 

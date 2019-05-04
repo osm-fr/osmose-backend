@@ -35,7 +35,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
             Load("LON", "LAT",
                 select = {
                     'TYPRES': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],
-                    'CATRES': self.amenity_type.keys()},
+                    'CATRES': list(self.amenity_type.keys())},
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(

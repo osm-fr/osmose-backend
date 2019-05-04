@@ -208,9 +208,9 @@ rule_declarations_order_map = {
     'fixDeleteObject': 4,
     # test
     'assertMatch': 5,
-    'assertMatchWithContext': 5,
+    '-osmoseAssertMatchWithContext': 5,
     'assertNoMatch': 5,
-    'assertNoMatchWithContext': 5,
+    '-osmoseAssertNoMatchWithContext': 5,
 }
 
 def rule_declarations_order(t, c):
@@ -449,7 +449,7 @@ def segregate_selectors_type(rules):
                     out_rules[t].append(rule.copy())
                     out_rules[t][-1]['selectors'] = out_selector[t]
                     out_rules[t][-1]['declarations'] = list(filter(lambda d:
-                        not d['property'] or not d['property'].startswith('assert') or
+                        not d['property'] or not d['property'].startswith('assert') or not d['property'].startswith('-osmoseAssert') or
                         (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)) or
                         (d['value']['type'] == 'declaration_value_function' and d['value']['params'][0]['value']['value'].startswith(t)),
                         out_rules[t][-1]['declarations']))
@@ -623,7 +623,7 @@ def to_p(t):
             elif t['property'] == 'fixDeleteObject':
                 # raise NotImplementedError(t['property'])
                 fix['fixRemove'] == "*keys" # TODO delete completly the objet in place of remove all tags
-            elif t['property'].startswith('assert'):
+            elif t['property'].startswith('assert') or t['property'].startswith('-osmoseAssert'):
                 if t['value']['type'] == 'single_value':
                     what, context = (to_p(t['value']), None)
                 else: # It's a list (we hope so)
@@ -709,7 +709,7 @@ def build_tests(tests):
         o, kvs = okvs[0], list(map(lambda a: a[0] in '"\'' and a[0] == a[-1] and a[1:-1] or a, map(lambda a: a.replace('\\\"', '"').replace("\\\'", "'"), okvs[1:])))
         kvs = zip(kvs[0::2], kvs[1::2]) # kvs.slice(2)
         tags = dict(kvs)
-        test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') else "check_not_err") + "(" +
+        test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') or test['type'].startswith('-osmoseAssertMatch') else "check_not_err") + "(" +
             "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}" + {'node': "", 'way': ", [0]", 'relation': ", []"}[o] + "), " +
             "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})")
         out.append(test_code)

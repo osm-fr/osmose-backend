@@ -56,7 +56,7 @@ class Analyser_Merge_School_FR(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/",
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
             CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "03/2018",
-                    fileUrl = "https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
+                    fileUrl = u"https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
                     filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire")),
                  separator = u";"),
             Load("Position", "Position",
