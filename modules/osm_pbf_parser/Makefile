@@ -10,9 +10,9 @@ BOOST_LIB2=boost_python$(PYTHON_VERSION_MN)
 
 # Detection of -lboost_python option to use is done by lanching gcc, which
 # generates a different error message if it cannot find library.
-ifeq ($(shell gcc -l$(BOOST_LIB1) 2>&1 | grep -c "undefined reference to .main."),1)
+ifeq ($(shell LANG=C gcc -l$(BOOST_LIB1) 2>&1 | grep -c "undefined reference to .main."),1)
   BOOST_LIB = $(BOOST_LIB1)
-else ifeq ($(shell gcc -l$(BOOST_LIB2) 2>&1 | grep -c "undefined reference to .main."),1)
+else ifeq ($(shell LANG=C gcc -l$(BOOST_LIB2) 2>&1 | grep -c "undefined reference to .main."),1)
   BOOST_LIB = $(BOOST_LIB2)
 else
   $(error Cannot find boost_python library from $(BOOST_LIB1) or $(BOOST_LIB2))
