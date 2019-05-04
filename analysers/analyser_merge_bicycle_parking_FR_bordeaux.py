@@ -28,14 +28,13 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
         self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             u"http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
-            u"Mobiliers urbains : Stationnement vélo",
-            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
-                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
-                separator = u";"),
-            Load("X_LONG", "Y_LAT",
+            u"Mobiliers urbains : Stationnement deux-roues",
+            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2019",
+                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER")),
+            Load("x_long", "y_lat",
                 select = {
-                    "REALISATION": u"Réalisé",
-                    "NATURE": [u"Arceau vélo", u"Rack", u"Potelet"]},
+                    "realisation": u"Réalisé",
+                    "nature": [u"Arceau vélo", u"Rack", u"Potelet"]},
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -46,4 +45,4 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
                 generate = Generate(
                     static1 = {"amenity": "bicycle_parking"},
                     static2 = {"source": self.source},
-                    mapping1 = {"capacity": lambda res: None if res["NOMBRE"] in (None, "0") else res["NOMBRE"] if res["NATURE"] == "Rack" else str(int(res["NOMBRE"])*2)} )))
+                    mapping1 = {"capacity": lambda res: None if res["nombre"] in (None, "0") else res["nombre"] if res["nombre"] == "Rack" else str(int(res["nombre"])*2)} )))
