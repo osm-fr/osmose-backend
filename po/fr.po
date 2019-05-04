@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-04-27 18:35+0000\n"
+"PO-Revision-Date: 2019-05-04 18:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -121,11 +121,11 @@ msgstr "Recyclage de vêtements de la CAPP non intégré"
 msgid "CAPP glass recycling not integrated"
 msgstr "Recyclage de verre de la CAPP non intégré"
 
-#: ../analysers/analyser_merge_school_FR.py:56
+#: ../analysers/analyser_merge_school_FR.py:51
 msgid "School not integrated"
 msgstr "École non intégrée"
 
-#: ../analysers/analyser_merge_school_FR.py:58
+#: ../analysers/analyser_merge_school_FR.py:53
 msgid "School, integration suggestion"
 msgstr "École, proposition d’intégration"
 
@@ -1155,7 +1155,7 @@ msgstr "Recyclage de verre de NM, proposition d’intégration"
 msgid "NM glass recycling update"
 msgstr "Recyclage de verre de NM mis à jour"
 
-#: ../analysers/analyser_merge_school_FR.py:59
+#: ../analysers/analyser_merge_school_FR.py:54
 msgid "School update"
 msgstr "École mise à jour"
 
@@ -1740,7 +1740,7 @@ msgid "Useless turn restriction"
 msgstr "Interdiction de changement de direction inutile"
 
 #: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
-#: ../plugins/Name_Cadastre_FR.py:67
+#: ../plugins/Name_Cadastre_FR.py:69
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1875,10 +1875,10 @@ msgstr "Lettre arabe détectée dans le nom persan"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:129
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:162
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:187
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "En persan, la lettre arabe ‹{0}› devrait être remplacée par ‹{1}›"
@@ -1911,34 +1911,34 @@ msgstr "Mauvaise URL “%(k)s”=“%(v)s”"
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr "Monument historique : {0} (positionné en {1} avec une confiance {2})"
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
 #: ../analysers/analyser_merge_public_transport_FR_star.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:29
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr "arrêt {0} non intégré"
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:30
 #: ../analysers/analyser_merge_public_transport_FR_star.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:30
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:30
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr "arrêt {0}, proposition d’intégration"
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:53
 #: ../analysers/analyser_merge_public_transport_FR_star.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:52
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:53
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "arrêt {0} de {1}"
@@ -1952,7 +1952,7 @@ msgstr "arrêt {0} mis à jour"
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "arrêt {0} de {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:74
 #, python-brace-format
@@ -2146,27 +2146,27 @@ msgstr "Attribut “denotation”=“{0}” erroné"
 #: ../plugins/TagWatchFrViPofm.py:90
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
-msgstr ""
+msgstr "clé d’attribut : {0} ⇒ {1} (règle ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:92
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
-msgstr ""
+msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
-msgstr ""
+msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:101
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
-msgstr ""
+msgstr "clé d’attribut : {0} ⇒ {1} (règle kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
-msgstr ""
+msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vs)"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
@@ -2183,63 +2183,63 @@ msgstr "“{0}” en trop après le code international"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
-msgstr ""
+msgstr "Location de vélo de IDF non intégrée"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr ""
+msgstr "Location de vélo de IDF proposition d’intégration"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr ""
+msgstr "Location de vélo de IDF mise à jour"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "Établissement d’enseignement supérieur sans attribut “ref:UAI” ou incorrect."
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
-msgstr ""
+msgstr "{0} sans attribut {1} ou incorrect"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
-msgstr ""
+msgstr "Monument historique sans attribut “ref:mhs” ou incorrect"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Boîte aux lettres sans attribut “ref” ou incorrect"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
-msgstr ""
+msgstr "Bureau de poste sans attribut “ref:FR:LaPoste” ou incorrect"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Centrale électrique sans “ref:FR:RTE” ou incorrect"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Poste transformateur électrique sans “ref:FR:RTE” ou incorrect"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Boîte aux lettres sans attribut “ref” ou incorrect"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without tag \"uic_ref\" or invalid"
-msgstr ""
+msgstr "Gare ferroviaire sans attribut “uic_ref” ou incorrect"
 
-#: ../analysers/analyser_merge_school_FR.py:57
+#: ../analysers/analyser_merge_school_FR.py:52
 msgid "School without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "École sans attribut “ref:UAI” ou incorrect"
 
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} objet de rue {1} observé autour mais pas d’attributs associés"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
-msgstr ""
+msgstr "Le radar de vitesse devrait être sur la route ou dans une relation enforcement"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-04-27 18:35+0000\n"
+"PO-Revision-Date: 2019-05-04 18:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -100,11 +100,11 @@ msgstr ""
 msgid "CAPP glass recycling not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_school_FR.py:56
+#: ../analysers/analyser_merge_school_FR.py:51
 msgid "School not integrated"
 msgstr "Escola no integrada"
 
-#: ../analysers/analyser_merge_school_FR.py:58
+#: ../analysers/analyser_merge_school_FR.py:53
 msgid "School, integration suggestion"
 msgstr ""
 
@@ -1134,7 +1134,7 @@ msgstr ""
 msgid "NM glass recycling update"
 msgstr ""
 
-#: ../analysers/analyser_merge_school_FR.py:59
+#: ../analysers/analyser_merge_school_FR.py:54
 msgid "School update"
 msgstr ""
 
@@ -1719,7 +1719,7 @@ msgid "Useless turn restriction"
 msgstr ""
 
 #: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
-#: ../plugins/Name_Cadastre_FR.py:67
+#: ../plugins/Name_Cadastre_FR.py:69
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1854,10 +1854,10 @@ msgstr ""
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:129
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:162
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:187
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr ""
@@ -1890,34 +1890,34 @@ msgstr ""
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
 #: ../analysers/analyser_merge_public_transport_FR_star.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:29
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:30
 #: ../analysers/analyser_merge_public_transport_FR_star.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:30
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:30
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:53
 #: ../analysers/analyser_merge_public_transport_FR_star.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:52
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:53
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr ""
@@ -2210,7 +2210,7 @@ msgstr ""
 msgid "Railway station without tag \"uic_ref\" or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_school_FR.py:57
+#: ../analysers/analyser_merge_school_FR.py:52
 msgid "School without tag \"ref:UAI\" or invalid"
 msgstr ""
 

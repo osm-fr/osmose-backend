@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-04-27 18:35+0000\n"
+"PO-Revision-Date: 2019-05-04 18:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -101,11 +101,11 @@ msgstr "CAPP kledij recycling niet geïntegreerd"
 msgid "CAPP glass recycling not integrated"
 msgstr "CAPP glas recycling niet geïntegreerd"
 
-#: ../analysers/analyser_merge_school_FR.py:56
+#: ../analysers/analyser_merge_school_FR.py:51
 msgid "School not integrated"
 msgstr "School niet geïntegreerd"
 
-#: ../analysers/analyser_merge_school_FR.py:58
+#: ../analysers/analyser_merge_school_FR.py:53
 msgid "School, integration suggestion"
 msgstr "School, integratie suggestie"
 
@@ -1135,7 +1135,7 @@ msgstr "NM glas recycling, integratie suggestie"
 msgid "NM glass recycling update"
 msgstr "NM glas recycling update"
 
-#: ../analysers/analyser_merge_school_FR.py:59
+#: ../analysers/analyser_merge_school_FR.py:54
 msgid "School update"
 msgstr "School update "
 
@@ -1720,7 +1720,7 @@ msgid "Useless turn restriction"
 msgstr "Nutteloze afslag beperking"
 
 #: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
-#: ../plugins/Name_Cadastre_FR.py:67
+#: ../plugins/Name_Cadastre_FR.py:69
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1855,10 +1855,10 @@ msgstr "Arabische letter gedetecteerd in Farsi naam"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:129
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:162
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:187
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "In Farsi, de Arabische letter '{0}' moet veranderd worden door '{1}'"
@@ -1891,34 +1891,34 @@ msgstr "Verkeerde URL %(k)s=%(v)s"
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr "Historisch monument: {0} (geplaatst op {1} met vertrouwen {2})"
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
 #: ../analysers/analyser_merge_public_transport_FR_star.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:29
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr "{0} halte niet geïntegreerd "
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:30
 #: ../analysers/analyser_merge_public_transport_FR_star.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:30
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:30
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr "{0} halte, integratie suggestie "
 
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:53
 #: ../analysers/analyser_merge_public_transport_FR_star.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:52
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:53
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "{0} halte van {1}"
@@ -2163,63 +2163,63 @@ msgstr "Extra \"{0}\" na international code "
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
-msgstr ""
+msgstr "IDF fietsverhuur niet geïntegreerd"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr ""
+msgstr "IDF fietsverhuur integratie suggestie"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr ""
+msgstr "IDF fiets update"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "College zonder tag \"ref:UAI\" of ongeldig"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
-msgstr ""
+msgstr "{0} zonder tag \"{1}\" of ongeldig"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
-msgstr ""
+msgstr "Historisch monument zonder tag \"ref:mhs\" of ongeldig"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Post bus zonder tag \"ref\" of ongeldig"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
-msgstr ""
+msgstr "Postkantoor zonder tag \"ref:FR:LaPoste\" of ongeldig"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Electriciteits generator zonder tag \"ref:FR:RTE\" of ongeldig "
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Transformatorstation  zonder tag \"ref:FR:RTE\" of ongeldig "
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Spanningsmast zonder tag \"ref\" of ongeldig"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without tag \"uic_ref\" or invalid"
-msgstr ""
+msgstr "Treinstation zonder tag \"uic_ref\" of ongeldig"
 
-#: ../analysers/analyser_merge_school_FR.py:57
+#: ../analysers/analyser_merge_school_FR.py:52
 msgid "School without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "School zonder tag \"ref:UAI\" of ongeldig"
 
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Straat object {1} waargenomen maar geen geassocieerde tags"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
-msgstr ""
+msgstr "Flitspalen moeten op de snelweg of in een enforcement relatie staan"
