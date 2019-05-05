@@ -501,58 +501,6 @@ FROM
     NATURAL JOIN addr_city
 """
 
-sqlD0 = """
-SELECT
-    ways.id,
-    ST_AsText(way_locate(ways.linestring)),
-    string_agg(DISTINCT nodes.tags->'addr:street', ', ')
-FROM
-    {0}ways AS ways
-    JOIN way_nodes ON
-        way_nodes.way_id = ways.id
-    JOIN {1}nodes AS nodes on
-        nodes.id = way_nodes.node_id AND
-        nodes.tags != ''::hstore AND
-        nodes.tags?'addr:street'
-WHERE
-    ways.tags != ''::hstore AND
-    ways.tags?'addr:interpolation'
-GROUP BY
-    ways.id,
-    ways.linestring
-HAVING
-    COUNT(DISTINCT nodes.tags->'addr:street') != 1
-"""
-
-sqlE0 = """
-SELECT
-    ways.id,
-    ST_AsText(way_locate(ways.linestring)),
-    string_agg(DISTINCT relations.tags->'name', ', ')
-FROM
-    ways
-    JOIN way_nodes ON
-        way_nodes.way_id = ways.id
-    JOIN nodes on
-        nodes.id = way_nodes.node_id AND
-        nodes.tags != ''::hstore AND
-        nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
-    JOIN relation_members ON
-        relation_members.member_type = 'N' AND
-        relation_members.member_id = nodes.id
-    JOIN relations ON
-        relations.id = relation_members.relation_id AND
-        relations.tags->'type' = 'associatedStreet'
-WHERE
-    ways.tags != ''::hstore AND
-    ways.tags?'addr:interpolation'
-GROUP BY
-    ways.id,
-    ways.linestring
-HAVING
-    COUNT(DISTINCT relations.id) != 1
-"""
-
 sqlF0 = """
 SELECT
     highways.id,
@@ -584,8 +532,6 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom", "fix:chair"], "desc": T_(u"House too far away from street") }
         if self.config.options.get("addr:city-admin_level"):
             self.classs[12] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Tag \"addr:city\" not matching a city") }
-        self.classs_change[16] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
-        self.classs[17] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
         self.classs[18] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Missing highway in associatedStreet relation") }
         self.callback20 = lambda res: res[1] and {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
@@ -594,8 +540,6 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText]}
-        self.callbackD0 = lambda res: {"class":16, "subclass":1, "data":[self.way_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
-        self.callbackE0 = lambda res: {"class":17, "subclass":1, "data":[self.relation_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
         self.callbackF0 = lambda res: {"class":18, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
 
     def analyser_osmosis_common(self):
@@ -617,7 +561,6 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql91)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
-        self.run(sqlE0.format("", ""), self.callbackE0)
         self.run(sqlF0.format(self.config.options.get("proj")), self.callbackF0)
 
     def analyser_osmosis_full(self):
@@ -631,7 +574,6 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC0)
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
             self.run(sqlC2.format(""), self.callbackC2)
-        self.run(sqlD0.format("", ""), self.callbackD0)
 
     def analyser_osmosis_diff(self):
         self.run(sql20.format("touched_"), self.callback20)
@@ -648,5 +590,3 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC0)
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
             self.run(sqlC2.format("touched_"), self.callbackC2)
-        self.run(sqlD0.format("touched_", ""), self.callbackD0)
-        self.run(sqlD0.format("not_touched_", "touched_"), self.callbackD0)
