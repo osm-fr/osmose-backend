@@ -34,9 +34,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
             Load("x_long", "y_lat",
                 select = {
                     "realisation": u"Réalisé",
-                    "nature": [u"Arceau vélo", u"Rack", u"Potelet"]},
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                    "nature": [u"Arceau vélo", u"Rack", u"Potelet"]}),
             Mapping(
                 select = Select(
                     types = ["nodes"],
