@@ -29,12 +29,9 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"http://opendata.bordeaux.fr/content/toilettes-publiques",
             u"Toilettes publiques",
-            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
-                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
-                separator = u";"),
-            Load("X_LONG", "Y_LAT",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2019",
+                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER")),
+            Load("x_long", "y_lat"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -47,5 +44,5 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "toilets:wheelchair": lambda res: "yes" if res["OPTIONS"] == u"Handicapé" else None,
-                        "toilets:position": lambda res: "urinal" if res["TYPOLOGIE"] == u"Urinoir" else None} )))
+                        "toilets:wheelchair": lambda res: "yes" if res["options"] == u"Handicapé" else None,
+                        "toilets:position": lambda res: "urinal" if res["typologie"] == u"Urinoir" else None} )))
