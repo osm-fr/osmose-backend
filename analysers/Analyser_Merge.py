@@ -480,7 +480,7 @@ class GeoJSON(Parser):
         for row in self.json['features']:
             row['properties'] = flattenjson(row['properties'])
             columns = list(row['properties'].keys())
-            values = map(removequotesjson, map(lambda column: row['properties'][column], columns))
+            values = list(map(removequotesjson, map(lambda column: row['properties'][column], columns)))
             columns.append(u"geom_x")
             columns.append(u"geom_y")
             values.append(row['geometry']['coordinates'][0])

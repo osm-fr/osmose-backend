@@ -99,7 +99,7 @@ class Analyser_Merge_School_FR(Analyser_Merge):
         "INTERPOLATION": {"en": u"interpolated", "fr": u"interpolation"},
         "Lieu-dit": {"en": u"locality", "fr": u"lieu-dit"},
         "NUMERO (ADRESSE)": {"en": u"addresse number", "fr": u"numéro d'adresse"},
-        "Numéro de rue": {"en": u"street number", "fr": u"numéro de rue"},
+        u"Numéro de rue": {"en": u"street number", "fr": u"numéro de rue"},
         "PLAQUE_ADRESSE": {"en": u"house number", "fr": u"plaque adresse"},
         "Rue": {"en": u"street", "fr": u"rue"},
         "Ville": {"en": u"city", "fr": u"ville"},
