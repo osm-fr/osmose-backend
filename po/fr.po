@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-04 18:52+0000\n"
+"PO-Revision-Date: 2019-05-06 20:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1959,12 +1959,7 @@ msgstr "arrêt {0} de {1}"
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr "{0} signalisations trouvées pour {1} observées autour mais pas d’attributs associés"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
-#, python-brace-format
-msgid "Missing municipality ref {0}"
-msgstr "Attribut “ref” manquant pour la municipalité : {0}"
-
-#: ../analysers/analyser_osmosis_boundary_relation.py:130
+#: ../analysers/analyser_osmosis_boundary_relation.py:131
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
@@ -2243,3 +2238,16 @@ msgstr "{0} objet de rue {1} observé autour mais pas d’attributs associés"
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
 msgstr "Le radar de vitesse devrait être sur la route ou dans une relation enforcement"
+
+#: ../analysers/analyser_merge_parking_FR_IDF.py:27
+msgid "P+R parking in Île-de-France not integrated"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
+msgid "Missing municipality ref tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
+#, python-brace-format
+msgid "Missing municipality ref tag {0}"
+msgstr ""

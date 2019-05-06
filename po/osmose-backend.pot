@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
@@ -1931,12 +1931,7 @@ msgstr ""
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
-#, python-brace-format
-msgid "Missing municipality ref {0}"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_boundary_relation.py:130
+#: ../analysers/analyser_osmosis_boundary_relation.py:131
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
@@ -2213,4 +2208,17 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_IDF.py:27
+msgid "P+R parking in Île-de-France not integrated"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
+msgid "Missing municipality ref tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
+#, python-brace-format
+msgid "Missing municipality ref tag {0}"
 msgstr ""
