@@ -34,7 +34,7 @@ SELECT
     coalesce(ways.tags->'addr:housenumber', ways.tags->'addr:housename') AS number,
     ways.tags->'addr:door' AS door,
     ways.tags->'addr:unit' AS unit,
-    coalesce(relations.tags->'name', ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:neighbourhood', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
+    relations.tags->'name' AS r_name
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -62,7 +62,7 @@ SELECT
     coalesce(nodes.tags->'addr:housenumber', nodes.tags->'addr:housename') AS number,
     nodes.tags->'addr:door' AS door,
     nodes.tags->'addr:unit' AS unit,
-    coalesce(relations.tags->'name', nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:neighbourhood', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
+    relations.tags->'name' AS r_name
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -224,7 +224,7 @@ SELECT
     number,
     door,
     unit,
-    street
+    r_name
 FROM
     nodes_addr
 WHERE
@@ -238,7 +238,7 @@ SELECT
     number,
     door,
     unit,
-    street
+    r_name
 FROM
     ways_addr
 WHERE
@@ -248,7 +248,7 @@ WHERE
 """
 
 sql61 = """
-CREATE INDEX idx_housenumber_street_number ON housenumber(street, number)
+CREATE INDEX idx_housenumber_r_name_number ON housenumber(r_name, number)
 """
 
 sql62 = """
@@ -260,7 +260,7 @@ SELECT
     CAST(substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 2) AS BIGINT) AS id,
     substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 1, 1) AS type,
     ST_AsText(ST_Transform(hn1.geom, 4326)),
-    hn1.street,
+    hn1.r_name,
     hn1.number,
     hn1.door,
     hn1.unit
@@ -268,14 +268,14 @@ FROM
     housenumber AS hn1
     JOIN housenumber AS hn2 ON
         hn1.type || hn1.id < hn2.type || hn2.id AND
-        hn1.street = hn2.street AND
+        hn1.r_name = hn2.r_name AND
         hn1.number = hn2.number AND
         ((hn1.door IS NULL AND hn2.door IS NULL) OR hn1.door = hn2.door) AND
         ((hn1.unit IS NULL AND hn2.unit IS NULL) OR hn1.unit = hn2.unit) AND
         ST_DWithin(hn1.geom, hn2.geom, 1000)
 GROUP BY
     LEAST(hn1.type || hn1.id, hn2.type || hn2.id),
-    hn1.street,
+    hn1.r_name,
     hn1.number,
     hn1.door,
     hn1.unit,
@@ -439,7 +439,7 @@ GROUP BY
     house.type,
     house.geom
 HAVING
-    MIN(ST_DistanceSphere(house.geom, street.geom)) > 200
+    MIN(ST_Distance_Sphere(house.geom, street.geom)) > 200
 """
 
 sqlC0 = """
