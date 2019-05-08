@@ -34,7 +34,8 @@ SELECT
     coalesce(ways.tags->'addr:housenumber', ways.tags->'addr:housename') AS number,
     ways.tags->'addr:door' AS door,
     ways.tags->'addr:unit' AS unit,
-    relations.tags->'name' AS r_name
+    relations.tags->'name' AS r_name,
+    coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:neighbourhood', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS name
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -46,8 +47,7 @@ FROM
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
     ways.tags != ''::hstore AND
-    ways.tags ?| ARRAY['addr:housenumber', 'addr:housename'] AND
-    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:neighbourhood', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+    ways.tags ?| ARRAY['addr:housenumber', 'addr:housename']
 """
 
 sql01 = """
@@ -62,7 +62,8 @@ SELECT
     coalesce(nodes.tags->'addr:housenumber', nodes.tags->'addr:housename') AS number,
     nodes.tags->'addr:door' AS door,
     nodes.tags->'addr:unit' AS unit,
-    relations.tags->'name' AS r_name
+    relations.tags->'name' AS r_name,
+    coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:neighbourhood', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS name
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -74,8 +75,7 @@ FROM
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
     nodes.tags != ''::hstore AND
-    nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename'] AND
-    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:neighbourhood', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+    nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename']
 """
 
 # ways with addr:housenumber or addr:housename and without addr:street and not member of a associatedStreet
@@ -86,6 +86,7 @@ SELECT
 FROM
     ways_addr
 WHERE
+    name IS NULL AND
     rid IS NULL
 """
 
@@ -97,6 +98,7 @@ SELECT
 FROM
     nodes_addr
 WHERE
+    name IS NULL AND
     rid IS NULL
 """
 
