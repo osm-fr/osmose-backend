@@ -284,6 +284,7 @@ GROUP BY
     hn1.geom
 """
 
+# Many name in relation
 sql70 = """
 CREATE TEMP TABLE street_name AS (
 SELECT
@@ -321,7 +322,6 @@ WHERE
 )
 """
 
-# Many name in relation
 sql80 = """
 SELECT
     id,
@@ -335,6 +335,7 @@ HAVING
     COUNT(*) > 1
 """
 
+# Many relations for same street
 sql90 = """
 CREATE TEMP TABLE street_area AS
 SELECT
@@ -353,7 +354,6 @@ sql91 = """
 CREATE INDEX idx_street_area ON street_area USING GIST(geom)
 """
 
-# Many relations for same street
 sqlA0 = """
 SELECT
     sa1.id,
@@ -444,6 +444,7 @@ HAVING
     MIN(ST_Distance_Sphere(house.geom, street.geom)) > 200
 """
 
+# Check addr:city
 sqlC0 = """
 CREATE TEMP TABLE addr_city AS (
 SELECT
@@ -503,6 +504,7 @@ FROM
     NATURAL JOIN addr_city
 """
 
+# Missing highway in associatedStreet
 sqlF0 = """
 SELECT
     highways.id,
