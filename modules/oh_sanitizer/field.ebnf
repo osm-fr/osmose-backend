@@ -7,7 +7,7 @@
 //         abbreviations.
 WDAY_MO : "Monday"i | "Lundi"i | "Lunedi"i | "Lunes"i | "Понедельник"i
         | "Mon"i | "Lun"i | "Пон"i 
-        | "Mo"i | "Lu"i | ("Пн"i | "Пк"i)
+        | "Mo"i | "Lu"i | ("По"i | "Пн"i | "Пк"i)
         
 WDAY_TU : "Tuesday"i | "Mardi"i | "Martedì"i | "Martes"i | "Вторник"i 
         | "Tue"i | "Вто"i 
