@@ -5,20 +5,35 @@
 // - For English, French, Italian and Spanish
 //   Note: Make sure to avoid collisions between languages for the
 //         abbreviations.
-WDAY_MO : "Monday"i | "Lundi"i | "Lunedi"i | "Lunes"i
-        | "Mon"i | "Lun"i | "Mo"i | "Lu"i
-WDAY_TU : "Tuesday"i | "Mardi"i | "Martedì"i | "Martes"i
-        | "Tue"i | "Tu"i | "Ma"i // Note: "Mar" would collide with March
+WDAY_MO : "Monday"i | "Lundi"i | "Lunedi"i | "Lunes"i | "Понедельник"i
+        | "Mon"i | "Lun"i | "Пон"i 
+        | "Mo"i | "Lu"i | "По"i | "Пн"i | "Пк"i
+        
+
+WDAY_TU : "Tuesday"i | "Mardi"i | "Martedì"i | "Martes"i | "Вторник"i 
+        | "Tue"i | "Вто"i // Note: "Mar" would collide with March, skipping.
+        | "Tu"i | "Ma"i | "Вт"i | "Вк"i
+        
 WDAY_WE : "Wednesday"i | "Mercredi"i | "Mercoledì"i | ("Miércoles"i | "Miercoles"i)
-        | "Wed"i | "Mer"i | "We"i | "Me"i
-WDAY_TH : "Thursday"i | "Jeudi"i | "Giovedi"i | "Jueves"i
-        | "Thu"i | "Gio"i | "Th"i | "Je"i
-WDAY_FR : "Friday"i | "Vendredi"i | "Venerdì"i | "Viernes"i
-        | "Fri"i | "Ven"i | "Fr"i | "Ve"i
-WDAY_SA : "Saturday"i | "Samedi"i | "Sabato"i | ("Sábado"i | "Sabado"i)
-        | "Sat"i | "Sab"i | "Sa"i
-WDAY_SU : "Sunday"i | "Dimanche"i | "Domenica"i | "Domingo"i
-        | "Sun"i | "Dom"i | "Su"i | "Di"i
+        | "Среда"i | "Wed"i | "Mer"i | "Сре"i 
+        | "We"i | "Me"i | "Ср"i | "Сд"i
+        
+WDAY_TH : "Thursday"i | "Jeudi"i | "Giovedi"i | "Jueves"i | "Чертверг"i
+        | "Thu"i | "Gio"i | "Чет"i 
+        | "Th"i | "Je"i | "Че"i | "Чт"i | "Чр"i | "Чг"i
+        
+WDAY_FR : "Friday"i | "Vendredi"i | "Venerdì"i | "Viernes"i | "Пятница"i
+        | "Fri"i | "Ven"i | "Пят"i
+        | "Fr"i | "Ve"i | "Пя"i | "Пт"i | "Пц"i
+        
+WDAY_SA : "Saturday"i | "Samedi"i | "Sabato"i | ("Sábado"i | "Sabado"i) | "Суббота"i
+        | "Sat"i | "Sab"i | "Суб"i
+        | "Sa"i | "Су"i | "Сб"i | "Ст"i
+        
+WDAY_SU : "Sunday"i | "Dimanche"i | "Domenica"i | "Domingo"i | "Воскресенье"i
+        | "Sun"i | "Dom"i | "Вос"i
+        | "Su"i | "Di"i | "Во"i | "Вс"i
+
 
 wday.1 : WDAY_MO | WDAY_TU | WDAY_WE | WDAY_TH | WDAY_FR | WDAY_SA | WDAY_SU
 
@@ -27,8 +42,8 @@ PUBLIC_HOLIDAY : "PH"i
 SCHOOL_HOLIDAY : "SH"i
 EVENT.2 : "dawn"i | "sunrise"i | "sunset"i | "dusk"i
 EASTER : "easter"i
-OPEN : "open"i
-CLOSED : "closed"i
+OPEN : "open"i | "открыто"i
+CLOSED : "closed"i | "закрыто"i
 OFF : "off"i | "fermé"i
 ALWAYS_OPEN.2 : "24/7"
 WEEK.2 : "week "i

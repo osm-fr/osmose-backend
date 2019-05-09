@@ -423,6 +423,9 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("PH off"), "PH off")
         self.assertEqual(sanitize_field("off"), "off")
         self.assertEqual(sanitize_field("closed"), "closed")
+        self.assertEqual(sanitize_field(u"закрыто"), "closed")
+        self.assertEqual(sanitize_field(u"открыто"), "open")
+        self.assertEqual(sanitize_field(u"Пн-Вт закрыто; Пт-Вос открыто"), "Mo-Tu closed; Fr-Su open")
 
         self.assertEqual(sanitize_field("Dec 25: 09:00-12:00"), "Dec 25: 09:00-12:00")
         self.assertEqual(sanitize_field("Dec 25: closed"), "Dec 25: closed")
@@ -452,6 +455,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mon-fri 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr : 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Lundi - Vendredi: 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field(u"По–Вт 09:00–12:00; Среда-Чет 10:00–11:00; Суб-Вос 13:00-14:00"), "Mo-Tu 09:00-12:00; We-Th 10:00-11:00; Sa-Su 13:00-14:00")
 
         # Time correction
         self.assertEqual(sanitize_field("8:00"), "08:00")
