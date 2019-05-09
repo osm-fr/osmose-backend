@@ -468,6 +468,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("9h p.m. 6 - 10 pm 15"), "21:06-22:15")
         self.assertEqual(sanitize_field("9 am - 12+"), "09:00-12:00+")
         self.assertEqual(sanitize_field("12:33 pm - 12:44 am"), "12:33-24:44")
+        self.assertEqual(sanitize_field("0-12,12-24"), "00:00-12:00,12:00-24:00")
 
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
