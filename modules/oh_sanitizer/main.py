@@ -423,6 +423,9 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("PH off"), "PH off")
         self.assertEqual(sanitize_field("off"), "off")
         self.assertEqual(sanitize_field("closed"), "closed")
+        self.assertEqual(sanitize_field(u"закрыто"), "closed")
+        self.assertEqual(sanitize_field(u"открыто"), "open")
+        self.assertEqual(sanitize_field(u"Пн-Вт закрыто; Пт-Вос открыто"), "Mo-Tu closed; Fr-Su open")
 
         self.assertEqual(sanitize_field("Dec 25: 09:00-12:00"), "Dec 25: 09:00-12:00")
         self.assertEqual(sanitize_field("Dec 25: closed"), "Dec 25: closed")
