@@ -155,7 +155,7 @@
 178,Hippodrome,leisure=track,sport=horse_racing,
 180,Refuge de montagne,amenity=shelter,,tourism=alpine_hut
 181,Boucle de randonnée,,,
-183,Salle ou terrain de paintball,,sport=shooting,type=paintball
+183,Salle ou terrain de paintball,,sport=shooting,shooting=paintball
 184,Bassin de réception de toboggan,attraction=water_slide,,
 185,Terrain de boules traditionnelles,leisure=pitch,sport=boules,
 186,Terrain de moto-ball,leisure=pitch,,

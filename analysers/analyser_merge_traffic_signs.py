@@ -45,8 +45,14 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
             return not country or not any(map(lambda co: country.startswith(co), not_for))
         return True
 
+    def value_replace(self, v, key, replacement):
+        if isinstance(v, dict):
+            return dict(map(lambda kv: [kv[0], self.value_replace(kv[1], key, replacement)], v.items()))
+        else:
+            return v.replace(key, replacement)
+
     def dict_replace(self, d, f, r):
-        return dict(map(lambda kv: [kv[0], kv[1] and kv[1].replace(f, r)], d.items()))
+        return dict(map(lambda kv: [kv[0], kv[1] and self.value_replace(kv[1], f, r)], d.items()))
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)

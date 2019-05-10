@@ -1058,6 +1058,11 @@ class Analyser_Merge(Analyser_Osmosis):
               clauses.append("tags?'%s'" % k)
               if isinstance(v, list):
                   clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), v))))
+              elif isinstance(v, dict):
+                  if "like" in v:
+                      clauses.append("tags->'%s' LIKE '%s'" % (k, v["like"].replace("'", "''")))
+                  elif "regex" in v:
+                      clauses.append("tags->'%s' ~ '%s'" % (k, v["regex"].replace("'", "''")))
               elif v:
                   clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
         return " AND ".join(clauses)
