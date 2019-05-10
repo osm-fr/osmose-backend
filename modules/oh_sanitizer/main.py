@@ -382,9 +382,6 @@ def sanitize_field(field):
 class TestSanitize(_unittest.TestCase):
     maxDiff = None
 
-    def test_quick(self):
-        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu,We 14:11-15:15"), "Mo 11:00-12:00; Tu,We 14:11-15:15")
-        
     def test_valid_fields(self):
         self.assertEqual(sanitize_field("24/7"), "24/7")
         self.assertEqual(sanitize_field("24/7; Jan 1 off"), "24/7; Jan 1 off")
