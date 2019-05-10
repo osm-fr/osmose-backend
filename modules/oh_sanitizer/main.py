@@ -279,9 +279,9 @@ class SanitizerTransformer(_lark.Transformer):
         h = combined // 100
         m = combined % 100
         if len(args) > 1 and args[1].type == 'PM':
-            h = h + 12
+            h += 12
         return str(h).zfill(2) + ':' + str(m).zfill(2)
-	
+
     def hour_minutes(self, args):
         if len(args) == 1 and ':' in args[0]:
             return args[0] # Ready-to-use hour_am_pm_minutes string
@@ -294,8 +294,7 @@ class SanitizerTransformer(_lark.Transformer):
                 h = 0
             elif ( arg.type == 'PM' and h < 12 ):
                 h += 12
-        if (h >= 24):
-            h -= 24
+        h %= 24 # In some cases, could be greater than 24.
         
         return str(h).zfill(2) + ':' + str(m).zfill(2)
 
