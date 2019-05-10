@@ -43,11 +43,11 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
                         "type": "boundary",
                         "admin_level": "8",
                         "ref:INSEE": None}),
-                osmRef = "addr:postcode",
+                osmRef = "postal_code",
                 extraJoin = "ref:INSEE",
                 generate = Generate(
                     static2 = {"source:postal_code": self.source},
                     mapping1 = {
                         "ref:INSEE": "Code_commune_INSEE",
-                        "addr:postcode": "Code_postal"},
+                        "postal_code": "Code_postal"},
                 text = lambda tags, fields: {"en": u"Postal code %s for %s (INSEE:%s)" % (fields["Code_postal"], (fields["Nom_commune"] or "").strip(), fields["Code_commune_INSEE"])} )))
