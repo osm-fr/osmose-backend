@@ -65,15 +65,29 @@ class SanitizerTransformer(_lark.Transformer):
             else:
                 return f(children)
 
+
     def time_domain(self, args):
         parts = []
+        i = -1
+        
+        defaultDict = {';': '; ', ',': ',', '||': ' || '}
+        tweakedDict = {';': '; ', ',': '; ', '||': ' || '}
+        
         for arg in args:
+            i += 1
             if isinstance(arg, _Token):
-                parts.append(
-                    {';': '; ', ',': ',', '||': ' || '}.get(arg.value.strip())
-                )
+                separatorsDict = defaultDict
+                # if args has at least one more element
+                if ( (i + 1) <= len(args) ):
+                    # if next arg starts with weekday
+                    weekday = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su)")
+                    if ( weekday.match(args[i+1]) ):
+                        separatorsDict = tweakedDict
+                        
+                parts.append( separatorsDict.get(arg.value.strip()) )
             else:
                 parts.append(arg)
+            
         return ''.join(parts)
 
     def rule_sequence(self, args):
@@ -368,6 +382,9 @@ def sanitize_field(field):
 class TestSanitize(_unittest.TestCase):
     maxDiff = None
 
+    def test_quick(self):
+        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu,We 14:11-15:15"), "Mo 11:00-12:00; Tu,We 14:11-15:15")
+        
     def test_valid_fields(self):
         self.assertEqual(sanitize_field("24/7"), "24/7")
         self.assertEqual(sanitize_field("24/7; Jan 1 off"), "24/7; Jan 1 off")
@@ -383,7 +400,11 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo-Fr,SH 10:00-20:00"), "Mo-Fr,SH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr,PH 10:00-20:00"), "Mo-Fr,PH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr 10:00-12:00,13:00-20:00"), "Mo-Fr 10:00-12:00,13:00-20:00")
-        self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00")
+        
+        self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00, Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00")
+        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu 13:00-14:00,We 14:11-15:15;Fr 16:16-17:17"), "Mo 11:00-12:00; Tu 13:00-14:00; We 14:11-15:15; Fr 16:16-17:17")
+        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu,We 14:11-15:15"), "Mo 11:00-12:00; Tu,We 14:11-15:15")
+        
         # Ideally we would want a space after the comma rule separator in
         # "off, Mar" and after no other comma. But the space is optional,
         # getting the parser to correctly identify this case is hard /
@@ -404,7 +425,6 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Jan 10:00-20:00"), "Jan 10:00-20:00")
         self.assertEqual(sanitize_field("Jan,Aug 10:00-20:00"), "Jan,Aug 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Su 08:00-18:00; Apr 10-15 off; Jun 08:00-14:00; Aug off; Dec 25 off"), "Mo-Su 08:00-18:00; Apr 10-15 off; Jun 08:00-14:00; Aug off; Dec 25 off")
-
         # Raises a SanitizeError, cause "<year> <time>" confuses with "<time>" without colon.
         # self.assertEqual(sanitize_field("2010 10:00-20:00"), "2010 10:00-20:00")
         self.assertEqual(sanitize_field("2010-2020 10:00-20:00"), "2010-2020 10:00-20:00")
@@ -514,7 +534,6 @@ class TestSanitize(_unittest.TestCase):
 
         with self.assertRaises(InconsistentField) as context:
             sanitize_field('on appointement"')
-
-
+    
 if __name__ == '__main__':
     _unittest.main()
