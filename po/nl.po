@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-06 20:57+0000\n"
+"PO-Revision-Date: 2019-05-10 20:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -362,31 +362,31 @@ msgstr "Geen spanningsknoop op spanningslijn"
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:571
 msgid "No street role"
 msgstr "Geen straat role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:572
 msgid "street role is not an highway"
 msgstr "Straat role is niet een weg"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:579
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:573
 msgid "Roleless member"
 msgstr "Nummer zonder role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:575
 msgid "Number twice in the street"
 msgstr "Nummer dubbel in straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
 msgid "Many street names"
 msgstr "Te veel straat namen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
 msgid "Many relations on one street"
 msgstr "Te veel relaties op één straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:584
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 msgid "House too far away from street"
 msgstr "Huis te ver weg van straat"
 
@@ -765,7 +765,7 @@ msgstr "Sportveld niet geïntegreerd %s "
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Meerdere namen voor dezelfde ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:586
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Tag \"addr:city\" komt met geen enkele stad overeen"
 
@@ -1056,7 +1056,7 @@ msgstr "Kruising van ongerelateerde weg en waterweg objecten"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Kruising van ongerelateerde weg en energie objecten"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Meerdere nummers \"%(numbers)s\" in weg \"%(way)s\""
@@ -1375,7 +1375,7 @@ msgstr "Niet afdrukbare karakter"
 msgid "Symbol char"
 msgstr "Symbool karakter"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:574
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Lid zonder addr:housenumber noch addr:housename"
 
@@ -1383,13 +1383,12 @@ msgstr "Lid zonder addr:housenumber noch addr:housename"
 msgid "Invalid multipolygon"
 msgstr "Ongeldig multipolygoon"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:587
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Interpolatie op nodes van meerdere straat namen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:597
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
+#: ../analysers/analyser_osmosis_addr_interpolation.py:181
+#: ../analysers/analyser_osmosis_addr_interpolation.py:182
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Interpolatiebereik op straten:%s"
@@ -1506,7 +1505,7 @@ msgstr "verkeerde combinatie weg toegang relatie route=%s"
 msgid "Public transport relation route not in route_master relation"
 msgstr "Public transport relatie route niet in route_master relatie"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:570
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1648,7 +1647,7 @@ msgstr "Aquitaine museum, integratie suggestie"
 msgid "Invalid Opening Hours"
 msgstr "Ongeldige Opening Uren"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
 msgid "Missing highway in associatedStreet relation"
 msgstr "Ontbrekende weg in associatedStreet relatie"
 
@@ -1934,7 +1933,7 @@ msgstr "{0} halte update "
 msgid "{0} stop {1}"
 msgstr "{0} halte {1}"
 
-#: ../analysers/analyser_merge_traffic_signs.py:74
+#: ../analysers/analyser_merge_traffic_signs.py:80
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr "{0} Verkeersborden voor {1} waargenomen maar geen geassocieerde tags"
@@ -2221,13 +2220,43 @@ msgstr "Flitspalen moeten op de snelweg of in een enforcement relatie staan"
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
-msgstr ""
+msgstr "P+R parking in Île-de-France niet toegevoegd"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing municipality ref tag"
-msgstr ""
+msgstr "Gemeente ref tag ontbreekt"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
+msgstr "Gemeente ref tag ontbreekt {0}"
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:169
+msgid "Interpolation on nodes without tag \"addr:housenumber\""
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:170
+msgid "\"addr:housenumber\" in multiple interpolations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:171
+msgid "Interpolation intersection"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+msgid "Interpolation ends should have tag \"addr:housenumber\""
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+msgid ""
+"Interpolation ends should have have different tag \"addr:housenumber\" "
+"values"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
+msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""

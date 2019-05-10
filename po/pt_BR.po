@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-06 20:57+0000\n"
+"PO-Revision-Date: 2019-05-10 20:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -363,31 +363,31 @@ msgstr "Nó não relativo à energia em linha de energia"
 msgid "Missing power tower or pole"
 msgstr "Faltando torre de energia ou poste"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:571
 msgid "No street role"
 msgstr "No papel rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:572
 msgid "street role is not an highway"
 msgstr "papel rua não é uma auto-estrada"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:579
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:573
 msgid "Roleless member"
 msgstr "Membro Roleless"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:575
 msgid "Number twice in the street"
 msgstr "Número repetido na rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
 msgid "Many street names"
 msgstr "Muitos nomes de rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
 msgid "Many relations on one street"
 msgstr "Muitas relações em uma rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:584
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 msgid "House too far away from street"
 msgstr "Casa muito longe da rua"
 
@@ -766,7 +766,7 @@ msgstr "Quadra não integrada %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiplos nomes para o mesmo ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:586
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Etiqueta \"addr:city\" não corresponde a uma cidade"
 
@@ -1057,7 +1057,7 @@ msgstr ""
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr ""
@@ -1376,7 +1376,7 @@ msgstr "Caractere não imprimível"
 msgid "Symbol char"
 msgstr "Caractere de símbolo"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:574
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
 
@@ -1384,13 +1384,12 @@ msgstr ""
 msgid "Invalid multipolygon"
 msgstr "Multipolígono inválido"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:587
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation on nodes of multiple street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:597
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
+#: ../analysers/analyser_osmosis_addr_interpolation.py:181
+#: ../analysers/analyser_osmosis_addr_interpolation.py:182
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr ""
@@ -1507,7 +1506,7 @@ msgstr ""
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:570
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1649,7 +1648,7 @@ msgstr ""
 msgid "Invalid Opening Hours"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
 msgid "Missing highway in associatedStreet relation"
 msgstr ""
 
@@ -1935,7 +1934,7 @@ msgstr ""
 msgid "{0} stop {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:74
+#: ../analysers/analyser_merge_traffic_signs.py:80
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr ""
@@ -2231,4 +2230,34 @@ msgstr ""
 #: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:169
+msgid "Interpolation on nodes without tag \"addr:housenumber\""
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:170
+msgid "\"addr:housenumber\" in multiple interpolations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:171
+msgid "Interpolation intersection"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+msgid "Interpolation ends should have tag \"addr:housenumber\""
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+msgid ""
+"Interpolation ends should have have different tag \"addr:housenumber\" "
+"values"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
+msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""
