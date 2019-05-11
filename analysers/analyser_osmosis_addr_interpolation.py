@@ -47,7 +47,8 @@ FROM
     JOIN nodes ON
         nodes.geom && interpolations.linestring AND
         nodes.id = ANY (interpolations.nodes) AND
-        nodes.tags != ''::hstore
+        nodes.tags != ''::hstore AND
+        nodes.tags - ARRAY['source'] != ''::hstore
 """
 
 sql03 = """
