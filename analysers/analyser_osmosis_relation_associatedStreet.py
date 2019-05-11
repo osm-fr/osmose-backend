@@ -542,7 +542,7 @@ FROM
     LEFT JOIN highways ON
         highways.tags?'name' AND
         highways.tags->'name' = addr_street.addr_street AND
-        ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, 200)
+        ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, 500)
 WHERE
     highways.id IS NULL
 """
@@ -556,7 +556,7 @@ SELECT
 FROM
     street_area
     JOIN highways on
-        ST_DWithin(highways.linestring_proj, ST_Transform(street_area.geom, {0}), 200) AND
+        ST_DWithin(highways.linestring_proj, ST_Transform(street_area.geom, {0}), 500) AND
         highways.id != ALL(street_area.wids) AND
         highways.tags?'name' AND
         highways.tags->'name' = street_area.name
