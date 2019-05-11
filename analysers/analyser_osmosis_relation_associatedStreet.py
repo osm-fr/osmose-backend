@@ -540,6 +540,7 @@ SELECT
 FROM
     addr_street
     LEFT JOIN highways ON
+        highways.tags?'name' AND
         highways.tags->'name' = addr_street.addr_street AND
         ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, 200)
 WHERE
@@ -608,8 +609,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql91)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
-        self.run(sqlD0)
         if "proj" in self.config.options:
+            self.run(sqlD0)
             self.run(sqlD1, lambda res: {"class":19, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, None, self.positionAsText], "text":{"en": res[2]}})
         self.run(sqlF0.format(self.config.options.get("proj")), self.callbackF0)
 
