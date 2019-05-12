@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="439437203">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="416087159">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -720,6 +720,9 @@
 <classtext lang="it" title="Opposite oppure opposite lane nello stesso percorso con oneway" />
 <classtext lang="nl" title="Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan" />
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
+</class>
+<class item="2060" tag="tag,addr" id="20601" level="3">
+<classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
@@ -4007,18 +4010,18 @@
 <text lang="fr" value="boundary en combinaison avec addr:*" />
 <text lang="en" value="boundary together with addr:*" />
 <text lang="nl" value="boundary samen met addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="pt" value="boundary junto com addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
-<text lang="de" value="boundary zusammen mit addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="it" value="boundary insieme con addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
+<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
 <text lang="uk" value="boundary разом з addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="es" value="boundary junto con addr:*" />
 </error>
 <error class="9001001" subclass="1096267911">
@@ -4181,18 +4184,18 @@
 <text lang="fr" value="boundary relation sans boundary attribut" />
 <text lang="en" value="boundary relation without boundary tag" />
 <text lang="nl" value="boundary relatie zonder boundary tag" />
-<text lang="pt_BR" value="boundary relação sem boundary tag" />
 <text lang="pt" value="boundary relação sem a etiqueta boundary" />
+<text lang="pt_BR" value="boundary relação sem boundary tag" />
 <text lang="zh_CN" value="boundary关系没有boundary标签" />
 <text lang="ca" value="boundary relació sense l''etiqueta boundary" />
-<text lang="de" value="boundary Relation ohne boundary Merkmal" />
+<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
 <text lang="it" value="relazione boundary senza etichetta boundary" />
 <text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
+<text lang="de" value="boundary Relation ohne boundary Merkmal" />
 <text lang="lt" value="boundary ryšys be boundary žymos" />
 <text lang="pl" value="boundary relacji bez znacznika boundary" />
 <text lang="uk" value="boundary зв’язок без теґу boundary" />
 <text lang="cs" value="boundary relace bez boundary značky" />
-<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
 <text lang="ja" value="boundaryリレーションにboundaryタグがない" />
 <text lang="es" value="relación boundary sin etiqueta boundary" />
 </error>
@@ -4246,18 +4249,18 @@
 <text lang="fr" value="boundary en combinaison avec addr:*" />
 <text lang="en" value="boundary together with addr:*" />
 <text lang="nl" value="boundary samen met addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="pt" value="boundary junto com addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
-<text lang="de" value="boundary zusammen mit addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="it" value="boundary insieme con addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
+<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
 <text lang="uk" value="boundary разом з addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="es" value="boundary junto con addr:*" />
 </error>
 <delete type="node" id="1" />

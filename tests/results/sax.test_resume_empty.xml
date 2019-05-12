@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="439437203">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="416087159">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -720,6 +720,9 @@
 <classtext lang="it" title="Opposite oppure opposite lane nello stesso percorso con oneway" />
 <classtext lang="nl" title="Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan" />
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
+</class>
+<class item="2060" tag="tag,addr" id="20601" level="3">
+<classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />

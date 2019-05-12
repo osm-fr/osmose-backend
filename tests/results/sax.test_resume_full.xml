@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="439437203">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="416087159">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -720,6 +720,9 @@
 <classtext lang="it" title="Opposite oppure opposite lane nello stesso percorso con oneway" />
 <classtext lang="nl" title="Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan" />
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
+</class>
+<class item="2060" tag="tag,addr" id="20601" level="3">
+<classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
@@ -3625,19 +3628,19 @@
 <text lang="fr" value="power=generator sans generator:source" />
 <text lang="en" value="power=generator without generator:source" />
 <text lang="nl" value="power=generator zonder generator:source" />
-<text lang="pt_BR" value="power=generator sem generator:source" />
 <text lang="pt" value="power=generator sem generator:source" />
+<text lang="pt_BR" value="power=generator sem generator:source" />
 <text lang="zh_CN" value="power=generator 没有 generator:source" />
 <text lang="ca" value="power=generator sense generator:source" />
-<text lang="de" value="power=generator ohne generator:source" />
+<text lang="zh_TW" value="power=generator 沒有 generator:source" />
 <text lang="it" value="power=generator senza generator:source" />
 <text lang="hu" value="power=generator, generator:source nélkül" />
 <text lang="fa" value="power=generator بدون generator:source" />
+<text lang="de" value="power=generator ohne generator:source" />
 <text lang="lt" value="power=generator be generator:source" />
 <text lang="pl" value="power=generator bez generator:source" />
 <text lang="uk" value="power=generator без generator:source" />
 <text lang="cs" value="power=generator bez generator:source" />
-<text lang="zh_TW" value="power=generator 沒有 generator:source" />
 <text lang="gl" value="power=generator sen generator:source" />
 <text lang="ja" value="power=generatorがあるのにgenerator:sourceがない" />
 <text lang="es" value="power=generator sin generator:source" />
@@ -3653,19 +3656,19 @@
 <text lang="fr" value="power_source est déprécié" />
 <text lang="en" value="power_source is deprecated" />
 <text lang="nl" value="power_source is vervallen" />
-<text lang="pt_BR" value="power_source está obsoleta" />
 <text lang="pt" value="''power_source'' está em desuso" />
-<text lang="zh_CN" value="power_source 已过时" />
+<text lang="pt_BR" value="power_source está obsoleta" />
+<text lang="el" value="power_source είναι παρωχημένο" />
 <text lang="ca" value="power_source és obsolet" />
-<text lang="de" value="power_source ist veraltet" />
+<text lang="zh_TW" value="power_source 已經廢棄" />
 <text lang="it" value="power_source è deprecata" />
+<text lang="zh_CN" value="power_source 已过时" />
 <text lang="hu" value="power_source elavult" />
+<text lang="de" value="power_source ist veraltet" />
 <text lang="lt" value="power_source pasenusi" />
 <text lang="pl" value="power_source jest przestarzały" />
 <text lang="uk" value="power_source заборонено" />
-<text lang="el" value="power_source είναι παρωχημένο" />
 <text lang="cs" value="power_source je zavržen" />
-<text lang="zh_TW" value="power_source 已經廢棄" />
 <text lang="ja" value="power_sourceは推奨されていません" />
 <text lang="es" value="power_source está obsoleto" />
 </error>
@@ -3679,19 +3682,19 @@
 <text lang="fr" value="L’attribut “power_source” est désapprouvé : generator:source" />
 <text lang="en" value="Tag power_source is deprecated: generator:source" />
 <text lang="nl" value="Tag power_source is deprecated: generator:source" />
-<text lang="pt_BR" value="Etiqueta power_source está em desuso: generator:source" />
 <text lang="pt" value="Etiqueta power_source está em desuso: generator:source" />
+<text lang="pt_BR" value="Etiqueta power_source está em desuso: generator:source" />
 <text lang="zh_CN" value="标签power_source已弃用：generator:source" />
 <text lang="ca" value="L'etiqueta power_source és en desús: generator:source" />
-<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
+<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="A(z) power_source címke elavult: generator:source" />
 <text lang="fa" value="استفاده از تگ power_source نکوهش شده: generator:source" />
+<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
 <text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
 <text lang="uk" value="Теґ power_source не підтримується: generator:source" />
 <text lang="cs" value="Značka power_source je zastaralá: generator:source" />
-<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
 <text lang="gl" value="A etiqueta power_source está obsoleta: generator:source" />
 <text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
@@ -4220,8 +4223,8 @@
 <text lang="fr" value="Type de route imprécis" />
 <text lang="en" value="Unspecific highway type" />
 <text lang="nl" value="Niet gespecificeerd type highway" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
 <text lang="pt" value="Tipo de estrada/rua não especificada" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
 <text lang="zh_CN" value="不特定的道路种类" />
 <text lang="de" value="Unbestimmter Straßentyp" />
 <text lang="it" value="Tipo di strada non specificato" />
@@ -4269,8 +4272,8 @@
 <text lang="fr" value="Type de route imprécis" />
 <text lang="en" value="Unspecific highway type" />
 <text lang="nl" value="Niet gespecificeerd type highway" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
 <text lang="pt" value="Tipo de estrada/rua não especificada" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
 <text lang="zh_CN" value="不特定的道路种类" />
 <text lang="de" value="Unbestimmter Straßentyp" />
 <text lang="it" value="Tipo di strada non specificato" />
@@ -4500,18 +4503,18 @@
 <text lang="fr" value="boundary en combinaison avec addr:*" />
 <text lang="en" value="boundary together with addr:*" />
 <text lang="nl" value="boundary samen met addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="pt" value="boundary junto com addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
-<text lang="de" value="boundary zusammen mit addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="it" value="boundary insieme con addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
+<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
 <text lang="uk" value="boundary разом з addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="es" value="boundary junto con addr:*" />
 </error>
 <error class="9001001" subclass="1096267911">
@@ -4674,18 +4677,18 @@
 <text lang="fr" value="boundary relation sans boundary attribut" />
 <text lang="en" value="boundary relation without boundary tag" />
 <text lang="nl" value="boundary relatie zonder boundary tag" />
-<text lang="pt_BR" value="boundary relação sem boundary tag" />
 <text lang="pt" value="boundary relação sem a etiqueta boundary" />
+<text lang="pt_BR" value="boundary relação sem boundary tag" />
 <text lang="zh_CN" value="boundary关系没有boundary标签" />
 <text lang="ca" value="boundary relació sense l''etiqueta boundary" />
-<text lang="de" value="boundary Relation ohne boundary Merkmal" />
+<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
 <text lang="it" value="relazione boundary senza etichetta boundary" />
 <text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
+<text lang="de" value="boundary Relation ohne boundary Merkmal" />
 <text lang="lt" value="boundary ryšys be boundary žymos" />
 <text lang="pl" value="boundary relacji bez znacznika boundary" />
 <text lang="uk" value="boundary зв’язок без теґу boundary" />
 <text lang="cs" value="boundary relace bez boundary značky" />
-<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
 <text lang="ja" value="boundaryリレーションにboundaryタグがない" />
 <text lang="es" value="relación boundary sin etiqueta boundary" />
 </error>
@@ -4739,18 +4742,18 @@
 <text lang="fr" value="boundary en combinaison avec addr:*" />
 <text lang="en" value="boundary together with addr:*" />
 <text lang="nl" value="boundary samen met addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="pt" value="boundary junto com addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
-<text lang="de" value="boundary zusammen mit addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="it" value="boundary insieme con addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
+<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
 <text lang="uk" value="boundary разом з addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="es" value="boundary junto con addr:*" />
 </error>
 </analyserChange>
