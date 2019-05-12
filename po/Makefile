@@ -15,6 +15,7 @@ osmose-backend.pot: $(PYFILES)
 
 %.po:
 	tx pull -a --minimum-perc=5
+	@sed -i 's/^# 4004.*, 2017/# 4004, 2017/' ru.po  # redact email following request
 
 statistics:
 	@for i in $(PO); do \
