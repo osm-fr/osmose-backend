@@ -47,7 +47,8 @@ FROM
     JOIN nodes ON
         nodes.geom && interpolations.linestring AND
         nodes.id = ANY (interpolations.nodes) AND
-        nodes.tags != ''::hstore
+        nodes.tags != ''::hstore AND
+        nodes.tags - ARRAY['source'] != ''::hstore
 """
 
 sql03 = """
@@ -94,7 +95,7 @@ FROM
 sql40 = """
 SELECT
     ways.id,
-    St_AsText(nodes.geom)
+    St_AsText(coalesce(nodes.geom, way_locate(ways.linestring)))
 FROM
     interpolations AS ways
     LEFT JOIN interpolation_nodes AS nodes ON
