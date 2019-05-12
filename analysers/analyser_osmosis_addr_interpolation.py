@@ -95,7 +95,7 @@ FROM
 sql40 = """
 SELECT
     ways.id,
-    St_AsText(nodes.geom)
+    St_AsText(coalesce(nodes.geom, way_locate(ways.linestring)))
 FROM
     interpolations AS ways
     LEFT JOIN interpolation_nodes AS nodes ON
