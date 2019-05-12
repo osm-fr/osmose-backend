@@ -486,8 +486,6 @@ WHERE
     re_points = re.compile("[\(,][^\(,\)]*[\),]")
 
     def get_points(self, text):
-        if not text:
-            return []
         pts = []
         for r in self.re_points.findall(text):
             lon, lat = r[1:-1].split(" ")
@@ -495,6 +493,9 @@ WHERE
         return pts
 
     def positionAsText(self, res):
+        if res == None:
+            self.logger.err("NULL location provided")
+            return []
         for loc in self.get_points(res):
             self.geom["position"].append(loc)
 
