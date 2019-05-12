@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Andrey Golovin, 2018
-# Ігор Варварчук <varvar1@bigmir.net>, 2018
+# Ігор Варварчук <varvar1@bigmir.net>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-10 20:55+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-05-11 08:13+0000\n"
+"Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1651,27 +1651,27 @@ msgstr "Відсутній шлях в зв'язку associatedStreet"
 
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
-msgstr ""
+msgstr "Коледж, пропозиція з інтеґрації"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
-msgstr ""
+msgstr "Коледж оновлення"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} not integrated"
-msgstr ""
+msgstr "{0} неінтеґрована (-ий)"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr ""
+msgstr "{0}, пропозиція з інтеґрації"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:133
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
-msgstr ""
+msgstr "Невелика група автомагістралей з основної мережі або з недостатнім доступом далі за напрямом"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
@@ -1702,35 +1702,35 @@ msgstr "Накладання водних шляхів"
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr ""
+msgstr "Ймовірно, пропущений теґ zone:maxspeed=XX:%s, стосовно околиці"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:360
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
-msgstr ""
+msgstr "Зв'язок обмеження, помилковий напрям oneway члена \"from\" або \"to\""
 
 #: ../plugins/disabled/Structural_Restriction2.py:35
 msgid "Useless no_u_turn restriction, it's already forbidden by local law"
-msgstr ""
+msgstr "Даремне обмеження no_u_turn , заборонене місцевим законодавством"
 
 #: ../plugins/disabled/Structural_Restriction.py:29
 msgid "Useless turn restriction"
-msgstr ""
+msgstr "Даремне обмеження повороту"
 
 #: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
 #: ../plugins/Name_Cadastre_FR.py:69
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
-msgstr ""
+msgstr "Хутір або місцевість містить в назві суфікс північ-, південь-, схід-, захід-, центр-, і його слід видалити з назви кадастру. Місце має бути інтеґроване лише один раз."
 
 #: ../plugins/Name_Punctuation.py:29
 msgid "Unexpected punctuation in name"
-msgstr ""
+msgstr "Несподівана пунктуація в назві"
 
 #: ../plugins/Name_Punctuation.py:37
 #, python-format
 msgid "Unexpected char %s"
-msgstr ""
+msgstr "Несподіваний символ %s"
 
 #: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
 msgid "Power Transformers should always be on a node"
@@ -1740,115 +1740,115 @@ msgstr "Трансформатор завжди позначається точ�
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr ""
+msgstr "На трансформаторі застосовуйте voltage:primary=* та voltage:secondary=* замість одного теґу напруги"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
 "This wikidata value matches a chain store, it should be in a brand:wikidata "
 "tag."
-msgstr ""
+msgstr "Це значення wikidata збігається з мережею магазинів, і має бути в тезі wikidata"
 
 #: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
-msgstr ""
+msgstr "Будь-ласка також перевірте теґ Вікіпедії"
 
 #: ../analysers/analyser_merge_cadastre_FR.py:28
 #: ../analysers/analyser_merge_cadastre_FR.py:47
 msgid "Misc not integrated"
-msgstr ""
+msgstr "Різне неінтеґроване"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
 msgid "SITCOM recycling not integrated"
-msgstr ""
+msgstr "Вторинна переробка SITCOM неінтеґрована"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
 msgid "SITCOM recycling, integration suggestion"
-msgstr ""
+msgstr "Вторинна переробка SITCOM, пропозиція з інтеґрації"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
 msgid "SITCOM recycling update"
-msgstr ""
+msgstr "Вторинна переробка SITCOM оновлення"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:50
 msgid "Direct or too permissive access to motorway"
-msgstr ""
+msgstr "Прямий, або занадто дозволений доступ до автомагістралі"
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Unbalanced Quotation mark or Bracket in name"
-msgstr ""
+msgstr "Незбалансован і \"лапки\" або дужка в назві"
 
 #: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:149
 msgid "Opposite or opposite lane in the same way of the oneway"
-msgstr ""
+msgstr "Протилежний напрям руху на шляху з одним напрямом"
 
 #: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:59
 #, python-brace-format
 msgid "{0} without {1}"
-msgstr ""
+msgstr "{0} без {1}"
 
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:95
 #, python-brace-format
 msgid "{0} with {1}"
-msgstr ""
+msgstr "{0} з {1}"
 
 #: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:43
 #, python-brace-format
 msgid "{0} with {1} and {2}"
-msgstr ""
+msgstr "{0} з {1} і {2}"
 
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:76
 #, python-brace-format
 msgid "{0} is preferred to {1}"
-msgstr ""
+msgstr "{0} є кращим за {1}"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr ""
+msgstr "Поліція/\"Жандармерія\" неінтеґрована"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr ""
+msgstr "Поліція/\"Жандармерія\", пропозиція з інтеґрації"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
-msgstr ""
+msgstr "Поліція/\"Жандармерія\", оновлення"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "Відсутній шлях доступу до паркінґу"
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "Ймовірно, лише для пляшок, а не для будь-якого типу скла"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "Об'єкт потребує перегляду"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
-msgstr ""
+msgstr "Класифікація автошляху потребує перегляду"
 
 #: ../plugins/Power.py:16 ../plugins/Power.py:52
 msgid "Power Transformers should have a frequency tag"
-msgstr ""
+msgstr "Трансформатор повинен мати теґ frequency"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
-msgstr ""
+msgstr "Париж велопаркінґ неінтеґрований"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
 msgid "Paris motorcycle parking not integrated"
-msgstr ""
+msgstr "Париж мотопаркінґ неінтеґрований"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
-msgstr ""
+msgstr "Париж прокат мотоциклів/мотопаркінґ неінтеґрований"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:14
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "Арабська буква виявлена в назві на фарсі"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
@@ -1858,35 +1858,35 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:187
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr ""
+msgstr "На фарсі арабська буква \"{0}\" має бути замінена на \"{1}\""
 
 #: ../plugins/Colour.py:14
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Код кольору повинен мати '#' далі 3 або 6 цифр"
 
 #: ../plugins/Colour.py:48 ../plugins/Colour.py:72 ../plugins/Colour.py:112
 #: ../plugins/Colour.py:141 ../plugins/Colour.py:175 ../plugins/Colour.py:199
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "{0} код кольору повинен мати '#' далі 3 або 6 цифр"
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "Веб-лінк містить пробіл"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "Веб-лінк не відповідає чинній схемі"
 
 #: ../plugins/Website.py:41
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
+msgstr "Помилколий веб-лінк %(k)s=%(v)s"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "Історичний монумент: {0} (розташований {1} з точністю {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
@@ -1897,7 +1897,7 @@ msgstr ""
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr ""
+msgstr "{0} зупинка неінтеґрована"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:30
@@ -1908,7 +1908,7 @@ msgstr ""
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:30
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
-msgstr ""
+msgstr "{0} зупинка, пропозиція з інтеґрації"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:53
@@ -1918,71 +1918,71 @@ msgstr ""
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:53
 #, python-brace-format
 msgid "{0} stop of {1}"
-msgstr ""
+msgstr "{0} зупинка з {1}"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "{0} stop update"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "{0} зупинка {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:80
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Дорожні знаки для {1} спостережних навколо, але не асоційованих теґів"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:131
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
-msgstr ""
+msgstr "Значення population ролі admin_centre ({0}) є більшим за population зв'язку ({1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr ""
+msgstr "Множинна назва для того ж ref FANTOIR {0}: {1}"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Невідповідні значення motor_vehicle ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr ""
+msgstr "смуги в {0}(-{1}+{2}), смуги з {3}(-{4}+{5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "Нескруглений {0}"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "{0} відхилення {1}м"
 
 #: ../plugins/Highway_Lanes.py:74
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
-msgstr ""
+msgstr "Невідоме значення смуг повороту \"{0}\""
 
 #: ../plugins/Highway_Lanes.py:152
 #, python-brace-format
 msgid "lanes={0} is not an integer"
-msgstr ""
+msgstr "lanes={0} не є цілим числом"
 
 #: ../plugins/Highway_Lanes.py:208
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "на односторонньому шляху, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:213
 #, python-brace-format
@@ -1990,271 +1990,271 @@ msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
-msgstr ""
+msgstr "на двосторонньому шляху, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
 #: ../plugins/Highway_Lanes.py:215
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr ""
+msgstr "на двосторонньому шляху, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 
 #: ../plugins/Highway_Lanes.py:217
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
-msgstr ""
+msgstr "на двосторонньому шляху, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
 #: ../plugins/Highway_Lanes.py:219
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
-msgstr ""
+msgstr "на двосторонньому шляху, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})"
 
 #: ../plugins/Name_Quotation.py:52
 #, python-brace-format
 msgid "Umbalanced {0} with {1}"
-msgstr ""
+msgstr "Незбалансованість {0} з {1}"
 
 #: ../plugins/Name_Quotation.py:55
 #, python-brace-format
 msgid "Umbalanced {0}"
-msgstr ""
+msgstr "Незбалансованість {0}"
 
 #: ../plugins/Name_Script.py:99 ../plugins/Name_Script.py:121
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
-msgstr ""
+msgstr "\"{0}\" несподіваний недрукований символ ({1}, 0x{2:04x}) в ключі, позиція {3}"
 
 #: ../plugins/Name_Script.py:104 ../plugins/Name_Script.py:125
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" несподіваний недрукований символ ({2}, 0x{3:04x}) в значенні, позиція {4}"
 
 #: ../plugins/Name_Script.py:109
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
-msgstr ""
+msgstr "\"{0}\" несподіваний знаковий символ ({1}, 0x{2:04x}) в ключі, позиція {3}"
 
 #: ../plugins/Name_Script.py:114
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" несподіваний знаковий символ ({2}, 0x{3:04x}) в значенні, позиція {4}"
 
 #: ../plugins/Name_Script.py:139 ../plugins/Name_Script.py:161
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" несподіваний символ \"{2}\" ({3}, 0x{4:04x}). Засоби \"{5}\" ({6}, 0x{7:04x})?"
 
 #: ../plugins/Name_Script.py:144 ../plugins/Name_Script.py:166
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" несподіваний символ \"{2}\" ({3}, 0x{4:04x})"
 
 #: ../plugins/Name_Script.py:147 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" несподіваний \"{2}\""
 
 #: ../plugins/Phone.py:48
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "Номер телефону не відповідає очікуваному формату"
 
 #: ../plugins/Phone.py:52
 msgid "Local short code can't be internationalized"
-msgstr ""
+msgstr "Локальний короткий код не може бути інтернаціоналізованим"
 
 #: ../plugins/Phone.py:54
 msgid "Bad international prefix"
-msgstr ""
+msgstr "Недійсний міжнародний префікс"
 
 #: ../plugins/Phone.py:55
 msgid "Unallowed char in phone number"
-msgstr ""
+msgstr "Неприпустимий символ у номері телефону"
 
 #: ../plugins/Phone.py:56
 msgid "Bad separator for multiple values"
-msgstr ""
+msgstr "Помилковий роздільник для багатьох значень"
 
 #: ../plugins/Phone.py:121
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
-msgstr ""
+msgstr "Недійсний символ \"{0}\" в номері телефону"
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
 msgid "Discordant {0} and {1}"
-msgstr ""
+msgstr "Розбіжність {0} і {1}"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
-msgstr ""
+msgstr "Помилковий теґ {0}=\"{1}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-brace-format
 msgid "Bad tag name=\"{0}\""
-msgstr ""
+msgstr "Помилковий теґ name=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-brace-format
 msgid "Bad tag type=\"{0}\""
-msgstr ""
+msgstr "Помилковий тип теґу type=\"{0}\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-brace-format
 msgid "Bad tag denotation=\"{0}\""
-msgstr ""
+msgstr "Помилковий теґ denotation=\"{0}\""
 
 #: ../plugins/TagWatchFrViPofm.py:90
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
-msgstr ""
+msgstr "ключ теґу: {0} => {1} (rule ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:92
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
-msgstr ""
+msgstr "значення теґу: {0}={1} => {2} (rule ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
-msgstr ""
+msgstr "значення теґу: {0}={1} => {2} (rule ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:101
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
-msgstr ""
+msgstr "ключ теґу: {0} => {1} (rule kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
-msgstr ""
+msgstr "значення теґу: {0}={1} => {2} (rule kr_vs)"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
-msgstr ""
+msgstr "Огорожа з теґом матеріалу, краще застосувати теґ fence_type"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected highway"
-msgstr ""
+msgstr "Нез'єднаний шлях"
 
 #: ../plugins/Phone.py:50
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
-msgstr ""
+msgstr "Додатковий \"{0}\" після міжнародного коду"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
-msgstr ""
+msgstr "Велопрокат IDF неінтеґрований"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr ""
+msgstr "Велопрокат IDF пропозиція з інтеґрації"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr ""
+msgstr "Велопрокат IDF оновлення"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "Коледж без \"ref:UAI\" або недійсний"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
-msgstr ""
+msgstr "{0} без теґу \"{1}\" або недійсний"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
-msgstr ""
+msgstr "Історичний монумент без теґу \"ref:mhs\" або недійсний"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Поштова скринька без теґу \"ref\" або недійсна"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
-msgstr ""
+msgstr "Відділення зв'язку без теґу \"ref:FR:LaPoste\" або недійсне"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Електрогенератор без теґу \"ref:FR:RTE\" або недійсний"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Електропідстанція без теґу \"ref:FR:RTE\" або недійсна"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Підтримка енергетики без теґу \"ref\" або недійсна"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without tag \"uic_ref\" or invalid"
-msgstr ""
+msgstr "Залізнична станція без теґу \"uic_ref\" або недійсна"
 
 #: ../analysers/analyser_merge_school_FR.py:52
 msgid "School without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "Школа без теґу \"ref:UAI\" або недійсна"
 
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Об'єкт вулиці {1} спостережних навколо, але не асоційованих теґів"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
-msgstr ""
+msgstr "Камера швидкості повинна знаходитися на шляху або в примусовому зв'язку"
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
-msgstr ""
+msgstr "Паркінґ P+R в Іль-де-Франс неінтеґрований"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing municipality ref tag"
-msgstr ""
+msgstr "Відсутній теґ ref муніципалітету"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
-msgstr ""
+msgstr "Відсутній теґ номеру муніципалітету {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:169
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
-msgstr ""
+msgstr "Інтерполяція на вузлах без теґу \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:170
 msgid "\"addr:housenumber\" in multiple interpolations"
-msgstr ""
+msgstr "\"addr:housenumber\" в кількох інтерполяціях"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:171
 msgid "Interpolation intersection"
-msgstr ""
+msgstr "Перетин інтерполяцій"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:172
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr ""
+msgstr "Закінчення інтерполяції повинне мати теґ \"addr: housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:173
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
-msgstr ""
+msgstr "Закінчення інтерполяції повинне мати різні значення \"addr: housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
-msgstr ""
+msgstr "Інтерполяція на вузли кількох зв'язків \"associatedStreet\""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "Теґ \"addr:street\" не містить назву вулиць, розміщених довкола"
