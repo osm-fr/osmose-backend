@@ -24,7 +24,7 @@ try:
 except ImportError:
     import __builtin__ as builtins
 
-import re, hashlib
+import hashlib
 from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
 from modules import SourceVersion
@@ -73,17 +73,6 @@ class Analyser(object):
     def close_error_file(self):
         if self.error_file:
           self.error_file.end()
-
-    re_points = re.compile("[\(,][^\(,\)]*[\),]")
-
-    def get_points(self, text):
-        if not text:
-            return []
-        pts = []
-        for r in self.re_points.findall(text):
-            lon, lat = r[1:-1].split(" ")
-            pts.append({"lat":lat, "lon":lon})
-        return pts
 
     def analyser(self):
         pass

@@ -24,6 +24,7 @@ from .Analyser import Analyser
 import os
 import psycopg2
 import psycopg2.extensions
+import re
 from modules import DictCursorUnicode
 from collections import defaultdict
 from inspect import getframeinfo, stack
@@ -481,6 +482,17 @@ WHERE
     def array_full(self, res):
         for type, id in map(lambda r: (r[0], r[1:]), res):
             self.typeMapping[type](int(id))
+
+    re_points = re.compile("[\(,][^\(,\)]*[\),]")
+
+    def get_points(self, text):
+        if not text:
+            return []
+        pts = []
+        for r in self.re_points.findall(text):
+            lon, lat = r[1:-1].split(" ")
+            pts.append({"lat":lat, "lon":lon})
+        return pts
 
     def positionAsText(self, res):
         for loc in self.get_points(res):
