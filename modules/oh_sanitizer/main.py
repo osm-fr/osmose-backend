@@ -68,23 +68,23 @@ class SanitizerTransformer(_lark.Transformer):
 
     def time_domain(self, args):
         parts = []
-        i = -1
         
         defaultDict = {';': '; ', ',': ',', '||': ' || '}
         tweakedDict = {';': '; ', ',': '; ', '||': ' || '}
+        weekdayRe = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su)")
         
-        for arg in args:
-            i += 1
+        for counter, arg in enumerate(args):
+            # if looking at a separator token
             if isinstance(arg, _Token):
                 separatorsDict = defaultDict
                 # if args has at least one more element
-                if ( (i + 1) <= len(args) ):
+                if ( (counter + 1) <= len(args) ):
                     # if next arg starts with weekday
-                    weekday = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su)")
-                    if ( weekday.match(args[i+1]) ):
+                    if ( weekdayRe.match(args[counter+1]) ):
                         separatorsDict = tweakedDict
                         
                 parts.append( separatorsDict.get(arg.value.strip()) )
+            # looking at actual value
             else:
                 parts.append(arg)
             
