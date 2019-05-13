@@ -185,6 +185,7 @@ WHERE
         (ways.tags?'amenity' AND ways.tags->'amenity' in ('bar', 'biergarten', 'cafe', 'fast_food', 'food_court', 'ice_cream', 'pub', 'restaurant', 'college', 'kindergarten', 'library', 'public_bookcase', 'school', 'music_school', 'driving_school', 'language_school', 'university', 'bicycle_repair_station', 'bicycle_rental', 'boat_sharing', 'bus_station', 'car_rental', 'car_sharing', 'car_wash', 'ferry_terminal', 'fuel', 'motorcycle_parking', 'parking', 'parking_space', 'taxi', 'bank', 'baby_hatch', 'clinic', 'dentist', 'doctors', 'hospital', 'nursing_home', 'pharmacy', 'social_facility', 'veterinary', 'blood_donation', 'arts_centre', 'brothel', 'casino', 'cinema', 'community_centre', 'fountain', 'gambling', 'nightclub', 'planetarium', 'social_centre', 'studio', 'swingerclub', 'theatre', 'animal_boarding', 'animal_shelter', 'courthouse', 'coworking_space', 'crematorium', 'crypt', 'dive_centre', 'dojo', 'embassy', 'fire_station', 'firepit', 'game_feeding', 'grave_yard', 'gym', 'hunting_stand', 'internet_cafe', 'kneipp_water_cure', 'marketplace', 'place_of_worship', 'police', 'post_office', 'prison', 'public_building', 'ranger_station', 'recycling', 'rescue_station', 'sauna', 'shelter', 'shower', 'toilets', 'townhall', 'waste_transfer_station')) OR
         ways.tags?'building'
     ) AND
+    ways.linestring IS NOT NULL AND
     NOT ways.is_polygon AND
     relation_members.member_id IS NULL
 """

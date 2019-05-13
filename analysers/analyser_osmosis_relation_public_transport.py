@@ -183,7 +183,10 @@ sql30 = """
 SELECT
   relations.id,
   relation_members.member_type || relation_members.member_id,
-  ST_AsText(any_locate(relation_members.member_type, relation_members.member_id))
+  ST_AsText(coalesce(
+    any_locate(relation_members.member_type, relation_members.member_id),
+    relation_locate(relations.id)
+  ))
 FROM
   relations
   JOIN relation_members ON
@@ -197,7 +200,11 @@ WHERE
   (
     relation_members.member_type != 'R' OR
     m.id IS NOT NULL
-  )
+  ) AND
+  coalesce(
+    any_locate(relation_members.member_type, relation_members.member_id),
+    relation_locate(relations.id)
+  ) IS NOT NULL
 """
 
 sql40 = """
