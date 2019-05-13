@@ -293,7 +293,7 @@ class SanitizerTransformer(_lark.Transformer):
         h = combined // 100
         m = combined % 100
         if len(args) > 1 and args[1].type == 'PM':
-            h = h + 12
+            h += 12
         return str(h).zfill(2) + ':' + str(m).zfill(2)
 
     def hour_minutes(self, args):
@@ -304,8 +304,12 @@ class SanitizerTransformer(_lark.Transformer):
         for arg in args:
             if arg.type == 'MINUTE':
                 m = int(arg)
-            elif arg.type == 'PM':
-                h = h + 12
+            elif ( arg.type == 'AM' and h == 12 ):
+                h = 0
+            elif ( arg.type == 'PM' and h < 12 ):
+                h += 12
+        h %= 24 # In some cases, could be greater than 24.
+        
         return str(h).zfill(2) + ':' + str(m).zfill(2)
 
     def variable_time(self, args):
@@ -482,6 +486,17 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("8h45 am - 11.45 a.m."), "08:45-11:45")
         self.assertEqual(sanitize_field("9h p.m. 6 - 10 pm 15"), "21:06-22:15")
         self.assertEqual(sanitize_field("9 am - 12+"), "09:00-12:00+")
+        self.assertEqual(sanitize_field("12:33 pm - 12:44 am"), "12:33-00:44")
+        self.assertEqual(sanitize_field("0"), "00:00")
+        self.assertEqual(sanitize_field("0am"), "00:00")
+        self.assertEqual(sanitize_field("12"), "12:00")
+        self.assertEqual(sanitize_field("12am"), "00:00")
+        self.assertEqual(sanitize_field("12pm"), "12:00")
+        self.assertEqual(sanitize_field("24"), "00:00")
+        self.assertEqual(sanitize_field("24:00"), "00:00")
+        self.assertEqual(sanitize_field("24:00am"), "00:00")
+        self.assertEqual(sanitize_field("26:00"), "02:00")
+        self.assertEqual(sanitize_field("29:00"), "05:00")
 
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
@@ -494,7 +509,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field(u"Mo–Fr 09:00–12:00"), "Mo-Fr 09:00-12:00")
 
         # Global
-        self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
+        self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-00:00,13:00-20:00")
         self.assertEqual(sanitize_field("2020 mo-fr 1000 - 2000 / 22:20-23:00"), "2020 Mo-Fr 10:00-20:00,22:20-23:00")
         self.assertEqual(sanitize_field("Monday-friday 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field(u"lundi-vendredi 10h am - 12h / 13h-20h; dimanche fermé"), "Mo-Fr 10:00-12:00,13:00-20:00; Su off")
