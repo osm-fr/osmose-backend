@@ -116,7 +116,7 @@ WHERE
     tags?'power' AND
     tags->'power' NOT IN ('pole', 'tower')
 )
-UNION
+UNION ALL
 (
 SELECT
     'W' || id AS type_id,

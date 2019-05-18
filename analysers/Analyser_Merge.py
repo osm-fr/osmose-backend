@@ -228,7 +228,7 @@ sql41 = """
         ST_Y(geom::geometry)::float AS lat
     FROM
         match
-) UNION (
+) UNION ALL (
     SELECT
         NULL::bigint AS osm_id,
         NULL::varchar AS osm_type,
@@ -237,7 +237,7 @@ sql41 = """
         ST_Y(geom::geometry)::float AS lat
     FROM
         missing_official
-) UNION (
+) UNION ALL (
     SELECT
         id::bigint AS osm_id,
         type::varchar AS osm_type,
@@ -851,7 +851,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.logger.log(u"Retrive OSM item")
         where = "((" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + "))"
         self.run("CREATE TEMP TABLE osm_item AS " +
-            ("UNION".join(
+            ("UNION ALL".join(
                 map(lambda type:
                     ("""(
                     SELECT

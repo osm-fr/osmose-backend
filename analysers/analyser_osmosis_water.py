@@ -55,7 +55,7 @@ WHERE
     tags?'man_made' AND
     tags->'man_made' IN ('quay', 'pier')
   )
-) UNION
+) UNION ALL
 (
 SELECT
   ways.id,
@@ -116,7 +116,7 @@ WHERE
     tags->'man_made' IN ('quay', 'pier')
   )
 )
-UNION
+UNION ALL
 (
 SELECT
   'N'::CHAR(1) AS type,

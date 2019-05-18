@@ -59,7 +59,7 @@ FROM
                     tags != ''::hstore AND
                     tags?'ref:FR:FANTOIR' AND
                     tags?'addr:street'
-                ) UNION (
+                ) UNION ALL (
                 SELECT
                     'W'::char(1) AS type,
                     id,
@@ -71,7 +71,7 @@ FROM
                     tags != ''::hstore AND
                     tags?'ref:FR:FANTOIR' AND
                     COALESCE(tags->'addr:street', tags->'name') IS NOT NULL
-                ) UNION (
+                ) UNION ALL (
                 SELECT
                     'R'::char(1) AS type,
                     id,

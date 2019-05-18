@@ -234,7 +234,7 @@ FROM
 WHERE
     role = 'house' AND
     NOT flats
-) UNION (
+) UNION ALL (
 SELECT
     type,
     id,
@@ -301,7 +301,7 @@ WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet' AND
     relations.tags?'name'
-) UNION (
+) UNION ALL (
 SELECT
     relations.id,
     ways.tags->'name' AS name,
@@ -399,7 +399,7 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
-) UNION (
+) UNION ALL (
     SELECT
         relations.id AS rid,
         'N' AS type,
@@ -458,7 +458,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'addr:city'
-) UNION (
+) UNION ALL (
 SELECT
     'W'::char(1) AS type,
     id,
@@ -518,7 +518,7 @@ FROM
     nodes_addr
 WHERE
     addr_street IS NOT NULL
-) UNION (
+) UNION ALL (
 SELECT
     'W'::char(1) AS type,
     id,

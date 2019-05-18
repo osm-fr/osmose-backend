@@ -121,7 +121,7 @@ WHERE
   ) OR (
     ways.tags?'amenity' AND ways.tags->'amenity' = 'parking'
   )
-) UNION (
+) UNION ALL (
 SELECT
   oneway.nid
 FROM
