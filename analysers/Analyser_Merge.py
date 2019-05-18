@@ -849,7 +849,7 @@ class Analyser_Merge(Analyser_Osmosis):
           typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
           typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
-        where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
+        where = "((" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + "))"
         self.run("CREATE TEMP TABLE osm_item AS " +
             ("UNION".join(
                 map(lambda type:
