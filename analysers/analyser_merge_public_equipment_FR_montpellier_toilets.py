@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
@@ -29,11 +29,10 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"http://data.montpellier3m.fr/dataset/toilettes-publiques-de-montpellier",
             u"Toilettes publiques",
-            JSON(Source(attribution = u"Montpellier Mediterranée Métropole", millesime = "12/2017",
-                    fileUrl = u"http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_PUBLICS.json", encoding = "ISO-8859-15"),
-                extractor = lambda json: json['features']),
-            Load("geometry.x", "geometry.y",
-                select = {u'attributes.enservice': u'En Service'}),
+            GeoJSON(Source(attribution = u"Montpellier Mediterranée Métropole", millesime = "05/2019",
+                    fileUrl = u"http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_Publics.json")),
+            Load("geom_x", "geom_y",
+                select = {u'enservice': u'En Service'}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -45,6 +44,6 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res['attributes.nom'] if res['attributes.nom'] else None,
-                        "operator": lambda res: res['attributes.gestion'] if res['attributes.gestion'] else None,
-                        "wheelchair": lambda res: "yes" if res['attributes.pmr'] == u'PMR' else "no" if res['attributes.pmr'] == u'non PMR' else None } )))
+                        "name": lambda res: res['nom'] if res['nom'] else None,
+                        "operator": lambda res: res['gestion'] if res['gestion'] else None,
+                        "wheelchair": lambda res: "yes" if res['pmr'] == u'PMR' else "no" if res['pmr'] == u'non PMR' else None } )))

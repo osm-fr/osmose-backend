@@ -234,7 +234,7 @@ FROM
 WHERE
     role = 'house' AND
     NOT flats
-) UNION (
+) UNION ALL (
 SELECT
     type,
     id,
@@ -301,7 +301,7 @@ WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet' AND
     relations.tags?'name'
-) UNION (
+) UNION ALL (
 SELECT
     relations.id,
     ways.tags->'name' AS name,
@@ -399,7 +399,7 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
-) UNION (
+) UNION ALL (
     SELECT
         relations.id AS rid,
         'N' AS type,
@@ -458,7 +458,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'addr:city'
-) UNION (
+) UNION ALL (
 SELECT
     'W'::char(1) AS type,
     id,
@@ -518,7 +518,7 @@ FROM
     nodes_addr
 WHERE
     addr_street IS NOT NULL
-) UNION (
+) UNION ALL (
 SELECT
     'W'::char(1) AS type,
     id,
@@ -542,7 +542,7 @@ FROM
     LEFT JOIN highways ON
         highways.tags?'name' AND
         highways.tags->'name' = addr_street.addr_street AND
-        ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, 500)
+        ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, {0})
 WHERE
     highways.id IS NULL
 """
@@ -588,6 +588,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText]}
+        self.callbackD1 = lambda res: {"class":19, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, None, self.positionAsText], "text":{"en": res[2]}}
         self.callbackF0 = lambda res: {"class":18, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
 
     def analyser_osmosis_common(self):
@@ -611,7 +612,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
         if "proj" in self.config.options:
             self.run(sqlD0)
-            self.run(sqlD1, lambda res: {"class":19, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, None, self.positionAsText], "text":{"en": res[2]}})
+            self.run(sqlD1.format(self.config.options.get("addr:street_distance", 500)), self.callbackD1)
         self.run(sqlF0.format(self.config.options.get("proj")), self.callbackF0)
 
     def analyser_osmosis_full(self):

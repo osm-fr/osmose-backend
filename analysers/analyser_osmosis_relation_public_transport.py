@@ -131,7 +131,7 @@ WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
   (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
-) UNION (
+) UNION ALL (
 SELECT
   relations.id,
   relation_members.member_type,
@@ -183,7 +183,10 @@ sql30 = """
 SELECT
   relations.id,
   relation_members.member_type || relation_members.member_id,
-  ST_AsText(any_locate(relation_members.member_type, relation_members.member_id))
+  ST_AsText(coalesce(
+    any_locate(relation_members.member_type, relation_members.member_id),
+    relation_locate(relations.id)
+  ))
 FROM
   relations
   JOIN relation_members ON
@@ -197,7 +200,11 @@ WHERE
   (
     relation_members.member_type != 'R' OR
     m.id IS NOT NULL
-  )
+  ) AND
+  coalesce(
+    any_locate(relation_members.member_type, relation_members.member_id),
+    relation_locate(relations.id)
+  ) IS NOT NULL
 """
 
 sql40 = """

@@ -56,7 +56,7 @@ WHERE
     k.count_%(type)s > 100 AND
     from_fraction > .9 AND
     from_fraction < 1.0
-UNION
+UNION ALL
 SELECT
     k.key1 AS key,
     k.key2 AS other_key,

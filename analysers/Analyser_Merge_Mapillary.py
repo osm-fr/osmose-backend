@@ -34,49 +34,22 @@ from datetime import datetime, timedelta
 
 
 class Source_Mapillary(Source):
-    def __init__(self, country, polygon_id, logger, mapping, layer, **args):
+    def __init__(self, country, polygon_id, mapping, layer, **args):
       self.polygon_id = polygon_id
-      self.logger = logger
       self.mapping = mapping
       self.layer = layer
       Source.__init__(self, **args)
-      self.fileUrl = 'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version(self.mapping))
+      self.fileUrl = u'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version(self.mapping))
       self.fileUrlCache = 120
 
     def time(self):
-       self.fetch_cached()
-       return Source.time(self)
+      self.open()
+      return Source.time(self)
 
     def open(self):
-      return self.fetch_cached()
+      return open(downloader.update_cache(self.fileUrl, 60, self.fetch))
 
-    def fetch_cached(self):
-      file_name = hashlib.sha1(self.fileUrl.encode('utf-8')).hexdigest()
-      cache = os.path.join(config.dir_cache, file_name)
-
-      cur_time = time.time()
-
-      if os.path.exists(cache):
-        statbuf = os.stat(cache)
-        if (cur_time - self.fileUrlCache*24*60*60) < statbuf.st_mtime:
-          # force cache by local delay
-          return open(cache)
-
-      tmp_file = self.fetch()
-
-      outfile = codecs.open(cache+".url", "w", "utf-8")
-      outfile.write(self.fileUrl)
-      outfile.close()
-      shutil.move(tmp_file, cache)
-
-      # set timestamp
-      os.utime(cache, (cur_time, cur_time))
-
-      return open(cache)
-
-    def fetch(self):
-      fd, tmp_file = tempfile.mkstemp()
-
+    def fetch(self, url, tmp_file, date_string=None):
       pip = PointInPolygon(self.polygon_id, 60)
 
       traffic_signs = []
@@ -103,7 +76,7 @@ class Source_Mapillary(Source):
         self.logger.log('Batch {0}/{1}: {2}'.format(b, round(len(traffic_signs) / 10 + 0.5), ','.join(traffic_signs_)))
         for bbox in bboxes:
           url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers={layer}&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), layer=self.layer, client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time=start_time, values=','.join(traffic_signs_))
-          print(url)
+          self.logger.log(url)
           with open(tmp_file, 'a') as csvfile:
             writer = csv.writer(csvfile)
 
@@ -128,4 +101,4 @@ class Source_Mapillary(Source):
                   filtered = filtered + 1
               self.logger.log('{0} keeped'.format(filtered))
 
-      return tmp_file
+      return True

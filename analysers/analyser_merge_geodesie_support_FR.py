@@ -36,11 +36,11 @@ class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
             spamreader = csv.reader(mappingfile,  delimiter=u';')
             for row in spamreader:
                 item, classs, level, topic = row[0:4]
-                tags = map(lambda t: t.split('=') if t else None, row[4:7])
+                tags = list(map(lambda t: t.split('=') if t else None, row[4:7]))
                 osmTags = dict(filter(lambda t: t, tags[0:2]))
                 if len(osmTags) > 0:
                     defaultTags = dict(filter(lambda t: t, tags[2:3]))
-                    slug = filter(lambda x: x.isalpha(), topic.split('|')[0]).capitalize().encode('ascii', 'ignore')
+                    slug = u''.join(filter(lambda x: x.isalpha(), topic.split('|')[0])).capitalize().encode('ascii', 'ignore').decode('utf8')
                     self.classFactory(SubAnalyser_Geodesie_Support_FR, slug, item, classs, level, topic, osmTags, defaultTags)
 
 

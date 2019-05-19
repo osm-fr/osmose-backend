@@ -228,7 +228,7 @@ sql41 = """
         ST_Y(geom::geometry)::float AS lat
     FROM
         match
-) UNION (
+) UNION ALL (
     SELECT
         NULL::bigint AS osm_id,
         NULL::varchar AS osm_type,
@@ -237,7 +237,7 @@ sql41 = """
         ST_Y(geom::geometry)::float AS lat
     FROM
         missing_official
-) UNION (
+) UNION ALL (
     SELECT
         id::bigint AS osm_id,
         type::varchar AS osm_type,
@@ -278,7 +278,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
+    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None, logger = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -287,6 +287,7 @@ class Source:
         @param fileUrlCache: days for file in cache
         @param zip: extract file from zip
         @param filter: lambda expression applied on text file before loading
+        @param logger: a logger
         """
         self.attribution = attribution
         self.millesime = millesime
@@ -296,6 +297,7 @@ class Source:
         self.fileUrlCache = fileUrlCache
         self.zip = zip
         self.filter = filter
+        self.logger = logger
 
         if self.file:
             if not os.path.isabs(self.file):
@@ -849,9 +851,9 @@ class Analyser_Merge(Analyser_Osmosis):
           typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
           typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
-        where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
+        where = "((" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + "))"
         self.run("CREATE TEMP TABLE osm_item AS " +
-            ("UNION".join(
+            ("UNION ALL".join(
                 map(lambda type:
                     ("""(
                     SELECT

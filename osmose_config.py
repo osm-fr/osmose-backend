@@ -370,7 +370,7 @@ france_departement("languedoc_roussillon/aude", 7446, "FR-11")
 france_departement("languedoc_roussillon/gard", 7461, "FR-30")
 france_departement("languedoc_roussillon/herault", 7429, "FR-34", include=[
     # Montpellier
-    #'merge_public_equipment_FR_montpellier_toilets',
+    'merge_public_equipment_FR_montpellier_toilets',
     'merge_street_number_montpellier',
 ])
 france_departement("languedoc_roussillon/lozere", 7421, "FR-48")
@@ -533,7 +533,7 @@ france_local_db.analyser["merge_healthcare_FR_finess"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
-#france_local_db.analyser["merge_power_generator_FR"] = "xxx" # Waiting for data source update, ETA 2019 1Q
+france_local_db.analyser["merge_power_plant_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_shop_FR"] = "xxx"
@@ -796,7 +796,7 @@ canada_province = gen_country('north-america', 'canada', language='en',
     phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", suffix_separators="x",
     exclude=[
     'osmosis_waterway',
-])
+], **{'addr:street_distance': 2000})
 
 canada_province("alberta", 391186, "CA-AB", proj=32610)
 canada_province("british-columbia", 390867, "CA-BC", proj=32609)
@@ -1013,7 +1013,7 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 
 #########################################################################
 
-default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
+default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left", "addr:street_distance": 2000})
 
 default_country("oceania", "marshall_islands", 571771, {"country": "MH", "language": "en", "proj": 32660}, download_repo=OSMFR)
 default_country("oceania", "nauru", 571804, {"country": "NR", "language": "en", "driving_side": "left", "proj": 32659}, download_repo=OSMFR)

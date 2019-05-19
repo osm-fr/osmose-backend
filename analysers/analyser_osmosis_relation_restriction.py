@@ -67,7 +67,7 @@ WHERE
         ((nnvia = 1 AND nwvia = 0) OR (nnvia = 0 AND nwvia > 0)) AND
         nrvia = 0
     )
-) UNION (
+) UNION ALL (
 SELECT
     id,
     ST_AsText(relation_locate(id))
@@ -83,7 +83,7 @@ WHERE
         ((nnvia = 1 AND nwvia = 0) OR (nnvia = 0 AND nwvia > 0)) AND
         nrvia = 0
     )
-) UNION (
+) UNION ALL (
 SELECT
     id,
     ST_AsText(relation_locate(id))

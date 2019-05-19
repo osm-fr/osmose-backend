@@ -96,7 +96,8 @@ FROM
         member_type = 'R'
 WHERE
     (member_role IS NULL OR member_role = '') AND
-    relations.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
+    relations.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore AND
+    relation_locate(relations.id) IS NOT NULL -- We can't locate pure relation or relations
 """
 
 sql31 = """

@@ -40,7 +40,7 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-) UNION (
+) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
     'W' || id AS tid,
@@ -53,7 +53,7 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
-) UNION (
+) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
     'R' || id AS tid,
