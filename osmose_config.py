@@ -370,7 +370,7 @@ france_departement("languedoc_roussillon/aude", 7446, "FR-11")
 france_departement("languedoc_roussillon/gard", 7461, "FR-30")
 france_departement("languedoc_roussillon/herault", 7429, "FR-34", include=[
     # Montpellier
-    #'merge_public_equipment_FR_montpellier_toilets',
+    'merge_public_equipment_FR_montpellier_toilets',
     'merge_street_number_montpellier',
 ])
 france_departement("languedoc_roussillon/lozere", 7421, "FR-48")
