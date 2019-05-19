@@ -134,7 +134,6 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":4, "subclass":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
-        postgis_version = self.config.osmosis_manager.postgis_version()
         self.run(sql10)
         self.run(sql11)
         if False and self.config.polygon_id and 'proj' in self.config.options:
