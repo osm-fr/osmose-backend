@@ -278,7 +278,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
+    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None, logger = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -287,6 +287,7 @@ class Source:
         @param fileUrlCache: days for file in cache
         @param zip: extract file from zip
         @param filter: lambda expression applied on text file before loading
+        @param logger: a logger
         """
         self.attribution = attribution
         self.millesime = millesime
@@ -296,6 +297,7 @@ class Source:
         self.fileUrlCache = fileUrlCache
         self.zip = zip
         self.filter = filter
+        self.logger = logger
 
         if self.file:
             if not os.path.isabs(self.file):

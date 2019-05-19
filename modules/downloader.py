@@ -56,33 +56,16 @@ def get(url, headers={}):
     headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
     return requests_retry_session().get(url, headers=headers, stream=True)
 
-def update_cache(url, delay, get=get):
-    file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
-    cache = os.path.join(config.dir_cache, file_name)
-    tmp_file = cache + ".tmp"
-
-    cur_time = time.time()
+def http_get(url, tmp_file, date_string=None, get=get):
     headers = {}
-
-    if os.path.exists(cache):
-        statbuf = os.stat(cache)
-        if (cur_time - delay*24*60*60) < statbuf.st_mtime:
-            # force cache by local delay
-            return cache
-        date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
+    if date_string:
         headers["If-Modified-Since"] = date_string
 
     answer = get(url, headers)
     if answer.status_code == 304:
-        # not newer
-        os.utime(cache, (cur_time,cur_time))
-        return cache
+        return False
     elif not answer.ok:
-        if os.path.exists(cache):
-            print("Error: Fails to download, fall back to obsolete cache: {}".format(url))
-            return cache
-        else:
-            answer.raise_for_status()
+        answer.raise_for_status()
 
     # write the file
     outfile = None
@@ -94,6 +77,35 @@ def update_cache(url, delay, get=get):
         raise
     finally:
         outfile and outfile.close()
+
+    return True
+
+def update_cache(url, delay, fetch=http_get):
+    file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
+    cache = os.path.join(config.dir_cache, file_name)
+    tmp_file = cache + ".tmp"
+
+    cur_time = time.time()
+    date_string = None
+
+    if os.path.exists(cache):
+        statbuf = os.stat(cache)
+        if (cur_time - delay*24*60*60) < statbuf.st_mtime:
+            # force cache by local delay
+            return cache
+        date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
+
+    try:
+        if not fetch(url, tmp_file, date_string):
+            # not newer
+            os.utime(cache, (cur_time,cur_time))
+            return cache
+    except:
+        if os.path.exists(cache):
+            print("Error: Fails to download, fall back to obsolete cache: {}".format(url))
+            return cache
+        else:
+            raise
 
     outfile = open(cache+".url", "w", encoding="utf-8")
     outfile.write(url)
