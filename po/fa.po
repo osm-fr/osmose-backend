@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-12 18:36+0000\n"
+"PO-Revision-Date: 2019-05-23 18:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -392,15 +392,15 @@ msgstr "خانه از خیابان بسیار دور است"
 msgid "Large relation"
 msgstr "رابطهٔ بزرگ"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Double inner polygon"
 msgstr "چندضلعی inner تکراری"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "چندچندضلعی و عضوها ناهمخوانی دارند"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Inconsistant multipolygon member nature"
 msgstr "عضو چندچندضلعی ناهمخوانی دارد"
 
@@ -458,15 +458,15 @@ msgstr "هم‌پوشانی محوطه %s"
 msgid "Typo in tag"
 msgstr "غلط املایی در تگ"
 
-#: ../analysers/analyser_osmosis_useless.py:122
+#: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on node"
 msgstr "کمبود تگ یا نقش برای گره"
 
-#: ../analysers/analyser_osmosis_useless.py:123
+#: ../analysers/analyser_osmosis_useless.py:124
 msgid "Missing tag or role on way"
 msgstr "کمبود تگ یا نقش برای راه"
 
-#: ../analysers/analyser_osmosis_useless.py:124
+#: ../analysers/analyser_osmosis_useless.py:125
 msgid "Missing tag or role on relation"
 msgstr "کمبود تگ یا نقش برای رابطه"
 
@@ -1054,7 +1054,7 @@ msgstr "تقاطع معبر و راه آبی نامرتبط"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "تقاطع معبر و تجهیزات برق که به هم ربطی ندارند"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "چند پلاک %(numbers)s در راه %(way)s"
@@ -1081,7 +1081,7 @@ msgstr "شامل car،‏ horse،‏ moped،‏ hazmat و مانند آن می�
 msgid "Inconsistent Access"
 msgstr "دسترسی ناسازگار است"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "Non route relation member in route_master relation"
 msgstr "عضو نامربوط به رابطهٔ route در رابطهٔ route_master"
 
@@ -1400,7 +1400,7 @@ msgstr "رابطهٔ بزرگ از نوع %s"
 msgid "Duplicated node without tag"
 msgstr "گره تکراری بدون تگ"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:200
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "باید چندضلعی باشد یا جزئی از چندچندضلعی یا اینکه تگ محوطه‌ای نداشته باشد"
 
@@ -1443,19 +1443,6 @@ msgstr "احتمالاً تگ direction برای stop یا give way از قلم 
 msgid "Suspicious name for a container"
 msgstr "نام مشکوک برای زباله‌دان"
 
-#: ../analysers/analyser_merge_power_generator_FR.py:29
-msgid "Power generator not integrated"
-msgstr "ژنراتور برق یکپارچه نشده"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:31
-msgid "Power generator, integration suggestion"
-msgstr "ژنراتور برق، پیشنهاد یکپارچگی"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:32
-msgid "Power generator update"
-msgstr "ژنراتور برق، به‌روزآوری"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
@@ -1499,7 +1486,7 @@ msgstr "نام خیلی مشابه"
 msgid "Way access mismatch relation route=%s"
 msgstr "دسترسی راه با رابطهٔ route=%s همخوانی ندارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Public transport relation route not in route_master relation"
 msgstr "رابطهٔ مسیر حمل‌ونقل عمومی در رابطهٔ route_master نیامده"
 
@@ -1525,11 +1512,11 @@ msgstr "%s، پیشنهاد یکپارچگی"
 msgid "%s update"
 msgstr "%s، به‌روزآوری"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:259
 msgid "The track of this route contains gaps"
 msgstr "مسیر این route شکاف‌هایی دارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The stop or platform is too far from the track of this route"
 msgstr "ایستگاه یا سکو خیلی از مسیر این route دور است"
 
@@ -1541,13 +1528,13 @@ msgstr "کمبود پیش‌شمارهٔ بین‌المللی"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "maxspeed و source:maxspeed ناسازگار"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:256
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های route و route_master باید یکسان باشد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:269
 #, python-format
 msgid "%s are different"
 msgstr "%s متفاوت هستند"
@@ -2187,10 +2174,6 @@ msgstr ""
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_generator_FR.py:30
-msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
 msgstr ""
@@ -2261,4 +2244,13 @@ msgstr ""
 
 #: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:57
+#, python-format
+msgid "Power plant %s"
 msgstr ""

@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-12 18:36+0000\n"
+"PO-Revision-Date: 2019-05-23 18:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -397,15 +397,15 @@ msgstr "Dům příliš daleko od ulice"
 msgid "Large relation"
 msgstr "Velká relace"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Double inner polygon"
 msgstr "Dvojitý vnitřní polygon"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "Typ multipolygonu je nekonzistentní s typem členů"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Inconsistant multipolygon member nature"
 msgstr "Nekonzistentní povaha členů multipolygonu"
 
@@ -463,15 +463,15 @@ msgstr "Průnik plochy %s"
 msgid "Typo in tag"
 msgstr "Překlep ve značce"
 
-#: ../analysers/analyser_osmosis_useless.py:122
+#: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on node"
 msgstr "Chybějící značka nebo role na uzlu"
 
-#: ../analysers/analyser_osmosis_useless.py:123
+#: ../analysers/analyser_osmosis_useless.py:124
 msgid "Missing tag or role on way"
 msgstr "Chybějící značka nebo role na cestě"
 
-#: ../analysers/analyser_osmosis_useless.py:124
+#: ../analysers/analyser_osmosis_useless.py:125
 msgid "Missing tag or role on relation"
 msgstr "Chybějící značka nebo role na relaci"
 
@@ -1059,7 +1059,7 @@ msgstr "Protínající se nesouvisející cesta a voda"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Protínající se nesouvisející cesta a objekt elektřiny."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Několik čísel \"%(numbers)s\" v cestě \"%(way)s\""
@@ -1086,7 +1086,7 @@ msgstr "Včetně auta, koně, mopedu atd. pokud není řečeno jinak"
 msgid "Inconsistent Access"
 msgstr "nekonzistentní přístup"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "Non route relation member in route_master relation"
 msgstr "Jiný člen relace než route v relaci route_master"
 
@@ -1405,7 +1405,7 @@ msgstr "Rozsáhlá relace typu %s"
 msgid "Duplicated node without tag"
 msgstr "Duplikovaný uzel bez tagu"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:200
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Měl by být polygon, část multipolygonu nebo nemít tag area"
 
@@ -1448,19 +1448,6 @@ msgstr "Zřejmě chybějící direction tag na stopce nebo přednosti v jízdě.
 msgid "Suspicious name for a container"
 msgstr "Podezřelé jméno pro kontejner"
 
-#: ../analysers/analyser_merge_power_generator_FR.py:29
-msgid "Power generator not integrated"
-msgstr "Zdroj energie není integrován"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:31
-msgid "Power generator, integration suggestion"
-msgstr "Zdroj energie, návrh na integraci"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:32
-msgid "Power generator update"
-msgstr "Aktualizace zdroje energie"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
@@ -1504,7 +1491,7 @@ msgstr "Blízko podobnému jménu"
 msgid "Way access mismatch relation route=%s"
 msgstr "Přístup na cestu nesouhlasí s relací trasy=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relace trasy veřejné dopravy není v relaci route_master"
 
@@ -1530,11 +1517,11 @@ msgstr "%s, návrh na integraci"
 msgid "%s update"
 msgstr "%s aktualizace"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:259
 msgid "The track of this route contains gaps"
 msgstr "Tato trasa obsahuje díry"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Zastávka nebo nástupiště je příliš daleko od této trasy"
 
@@ -1546,13 +1533,13 @@ msgstr "Chybí mezinárodní prefix"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Nesouhlasí maxspeed a source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:256
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "tagy network, operator, ref, colour by měly být stejné na relacích route a route_master"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:269
 #, python-format
 msgid "%s are different"
 msgstr "%s jsou různé"
@@ -2192,10 +2179,6 @@ msgstr ""
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_generator_FR.py:30
-msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
 msgstr ""
@@ -2266,4 +2249,13 @@ msgstr ""
 
 #: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:57
+#, python-format
+msgid "Power plant %s"
 msgstr ""

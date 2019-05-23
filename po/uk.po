@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Andrey Golovin, 2018
-# Ігор Варварчук <varvar1@bigmir.net>, 2018-2019
+# Ігор Варварчук <182050@i.ua>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-11 08:13+0000\n"
-"Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
+"PO-Revision-Date: 2019-05-23 18:36+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,31 +360,31 @@ msgstr "Не power точка на лінії електромережі"
 msgid "Missing power tower or pole"
 msgstr "Відсутня power=tower або pole"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:571
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:572
 msgid "No street role"
 msgstr "Вулиця без ролі"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:572
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:573
 msgid "street role is not an highway"
 msgstr "роль вулиці не на highway"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:573
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:574
 msgid "Roleless member"
 msgstr "Член без ролі"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:575
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
 msgid "Number twice in the street"
 msgstr "Номер двічі на вулиці"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
 msgid "Many street names"
 msgstr "Кілька імен вулиці"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 msgid "Many relations on one street"
 msgstr "Декілька зв'язків на одній вулиці"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:579
 msgid "House too far away from street"
 msgstr "Будинок задалеко від вулиці"
 
@@ -392,15 +392,15 @@ msgstr "Будинок задалеко від вулиці"
 msgid "Large relation"
 msgstr "Завеликий зв'язок"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Double inner polygon"
 msgstr "Подвійний внутрішній полігон"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "Невідповідність мультиполігону природи з членами природи"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Inconsistant multipolygon member nature"
 msgstr "Невідповідність мультиполігону з членом природи"
 
@@ -458,15 +458,15 @@ msgstr "Перетин ділянок %s"
 msgid "Typo in tag"
 msgstr "Помилка в теґові"
 
-#: ../analysers/analyser_osmosis_useless.py:122
+#: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on node"
 msgstr "Відсутній теґ або роль на точці"
 
-#: ../analysers/analyser_osmosis_useless.py:123
+#: ../analysers/analyser_osmosis_useless.py:124
 msgid "Missing tag or role on way"
 msgstr "Відсутній теґ або роль на лінії"
 
-#: ../analysers/analyser_osmosis_useless.py:124
+#: ../analysers/analyser_osmosis_useless.py:125
 msgid "Missing tag or role on relation"
 msgstr "Відсутній теґ або роль у зв'язку"
 
@@ -763,7 +763,7 @@ msgstr "Крок неінтеґрований %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Множинна назва для того ж ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Теґ \"addr:city\" не співпадає з містом"
 
@@ -1054,7 +1054,7 @@ msgstr "Перетин непов'язаних об'єктів шосе та в�
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Перетин непов'язаних об'єктів шляху та електромереж"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Декілька номерів \"%(numbers)s\" на лінії \"%(way)s\""
@@ -1081,7 +1081,7 @@ msgstr "Включаючи car, horse, moped, hazmat і т. д., крім чіт
 msgid "Inconsistent Access"
 msgstr "Несумісний Доступ"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "Non route relation member in route_master relation"
 msgstr "До складу зв'язку route_master входить об'єкт через який неможливо прокласти маршрут"
 
@@ -1373,7 +1373,7 @@ msgstr "Недрукований символ"
 msgid "Symbol char"
 msgstr "Символьний знак"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:574
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:575
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Член без addr:housenumber ані addr:housename"
 
@@ -1381,12 +1381,12 @@ msgstr "Член без addr:housenumber ані addr:housename"
 msgid "Invalid multipolygon"
 msgstr "Недійсний мультиполігон"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Інтерполяція на вузлах з багатьох назв вулиць"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:181
 #: ../analysers/analyser_osmosis_addr_interpolation.py:182
+#: ../analysers/analyser_osmosis_addr_interpolation.py:183
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Проміжок інтерполяції на вулиці: %s"
@@ -1400,7 +1400,7 @@ msgstr "Великий зв'язок з типом %s"
 msgid "Duplicated node without tag"
 msgstr "Дублювання точки без теґу"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:200
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Має бути полігон, частина мультиполігону або не мати теґу area"
 
@@ -1443,19 +1443,6 @@ msgstr "Можливо відсутній теґ direction на зупинці �
 msgid "Suspicious name for a container"
 msgstr "Підозріле ім'я для контейнера"
 
-#: ../analysers/analyser_merge_power_generator_FR.py:29
-msgid "Power generator not integrated"
-msgstr "Електрогенератор неінтеґрований"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:31
-msgid "Power generator, integration suggestion"
-msgstr "Електрогенератор, пропозиція з інтеґрації"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:32
-msgid "Power generator update"
-msgstr "Електрогенератор оновлення"
-
-#: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
@@ -1499,11 +1486,11 @@ msgstr "Закрити подібне ім'я"
 msgid "Way access mismatch relation route=%s"
 msgstr "Значення access лінії не відповідає зв'язку route=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Public transport relation route not in route_master relation"
 msgstr "Зв'язок маршруту громадського транспорту не входить до складу зв'язку route_master"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:570
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:571
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1525,11 +1512,11 @@ msgstr "%s, пропозиція з інтеґрації"
 msgid "%s update"
 msgstr "%s оновлення"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:259
 msgid "The track of this route contains gaps"
 msgstr "Трек цього маршруту містить прогалини"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
@@ -1541,13 +1528,13 @@ msgstr "Відсутній міжнародний префікс"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Розбіжність maxspeed та source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:256
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "теґи network, operator, ref, colour мають бути однаковими у зв'язків route та зв'язку route_master, до якого вони входять"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:269
 #, python-format
 msgid "%s are different"
 msgstr "%s різні"
@@ -1645,7 +1632,7 @@ msgstr "Аквітанський музей, пропозиція з інтеґ�
 msgid "Invalid Opening Hours"
 msgstr "Помилковий \"Час роботи\""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
 msgid "Missing highway in associatedStreet relation"
 msgstr "Відсутній шлях в зв'язку associatedStreet"
 
@@ -2187,10 +2174,6 @@ msgstr "Поштова скринька без теґу \"ref\" або неді�
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
 msgstr "Відділення зв'язку без теґу \"ref:FR:LaPoste\" або недійсне"
 
-#: ../analysers/analyser_merge_power_generator_FR.py:30
-msgid "Power generator without tag \"ref:FR:RTE\" or invalid"
-msgstr "Електрогенератор без теґу \"ref:FR:RTE\" або недійсний"
-
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
 msgstr "Електропідстанція без теґу \"ref:FR:RTE\" або недійсна"
@@ -2229,32 +2212,45 @@ msgstr "Відсутній теґ ref муніципалітету"
 msgid "Missing municipality ref tag {0}"
 msgstr "Відсутній теґ номеру муніципалітету {0}"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:169
+#: ../analysers/analyser_osmosis_addr_interpolation.py:170
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr "Інтерполяція на вузлах без теґу \"addr:housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:170
+#: ../analysers/analyser_osmosis_addr_interpolation.py:171
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr "\"addr:housenumber\" в кількох інтерполяціях"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:171
+#: ../analysers/analyser_osmosis_addr_interpolation.py:172
 msgid "Interpolation intersection"
 msgstr "Перетин інтерполяцій"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:173
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr "Закінчення інтерполяції повинне мати теґ \"addr: housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr "Закінчення інтерполяції повинне мати різні значення \"addr: housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr "Інтерполяція на вузли кількох зв'язків \"associatedStreet\""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "Теґ \"addr:street\" не містить назву вулиць, розміщених довкола"
+
+#: ../plugins/Addr_Interpolation.py:30
+msgid "Misusing addr:interpolation in combination with other tags"
+msgstr "Зловживання addr:interpolation в комбінації з іншими теґами"
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:57
+#, python-format
+msgid "Power plant %s"
+msgstr ""
