@@ -69,7 +69,9 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'natural' AND
-    tags->'natural' = 'tree'
+    tags->'natural' = 'tree' AND
+    (NOT tags?'level' OR tags->'level' = '0') AND
+    (NOT tags?'layer' OR tags->'layer' = '0')
 """
 
 sql03 = """
