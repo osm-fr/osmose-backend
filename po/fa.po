@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-23 18:36+0000\n"
+"PO-Revision-Date: 2019-05-27 21:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -312,15 +312,15 @@ msgstr "معبر ‎*_link بد"
 msgid "Highway too long for a *_link"
 msgstr "معبر برای تگ ‎*_link خیلی طولانی است"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:342
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Highway intersecting building"
 msgstr "روی هم افتادن معبر و ساختمان "
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree intersecting building"
 msgstr "روی هم افتادن درخت و ساختمان"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Tree and highway too close"
 msgstr "درخت و ساختمان خیلی به هم نزدیک‌اند"
 
@@ -912,10 +912,6 @@ msgstr "پسوند ویکی‌پدیایی %s نامعتبر است"
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "مقادیر تکراری %(key)s=%(val)s"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:29
-msgid "admin_level 8 without addr:postcode"
-msgstr "admin_level=8 بدون addr:postcode"
-
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
 msgstr "Postal code، پیشنهاد یکپارچگی"
@@ -1081,7 +1077,7 @@ msgstr "شامل car،‏ horse،‏ moped،‏ hazmat و مانند آن می�
 msgid "Inconsistent Access"
 msgstr "دسترسی ناسازگار است"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Non route relation member in route_master relation"
 msgstr "عضو نامربوط به رابطهٔ route در رابطهٔ route_master"
 
@@ -1101,11 +1097,11 @@ msgstr "power major line ناتمام مانده"
 msgid "Unfinished power minor line"
 msgstr "power minor line ناتمام مانده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting small water piece"
 msgstr "معبر روی یک قطعهٔ آبی کوچک افتاده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Highway intersecting large water piece"
 msgstr "معبر روی یک قطعهٔ آبی بزرگ افتاده"
 
@@ -1486,7 +1482,7 @@ msgstr "نام خیلی مشابه"
 msgid "Way access mismatch relation route=%s"
 msgstr "دسترسی راه با رابطهٔ route=%s همخوانی ندارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "Public transport relation route not in route_master relation"
 msgstr "رابطهٔ مسیر حمل‌ونقل عمومی در رابطهٔ route_master نیامده"
 
@@ -1502,21 +1498,11 @@ msgstr "وقتی addr:housenumber یا addr:housename بدون addr:street،‏ 
 msgid "%s not integrated"
 msgstr "%s یکپارچه نشده"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
-#, python-format
-msgid "%s, integration suggestion"
-msgstr "%s، پیشنهاد یکپارچگی"
-
-#: ../analysers/analyser_merge_shop_FR.py:54
-#, python-format
-msgid "%s update"
-msgstr "%s، به‌روزآوری"
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The track of this route contains gaps"
 msgstr "مسیر این route شکاف‌هایی دارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "The stop or platform is too far from the track of this route"
 msgstr "ایستگاه یا سکو خیلی از مسیر این route دور است"
 
@@ -1528,13 +1514,13 @@ msgstr "کمبود پیش‌شمارهٔ بین‌المللی"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "maxspeed و source:maxspeed ناسازگار"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های route و route_master باید یکسان باشد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 #, python-format
 msgid "%s are different"
 msgstr "%s متفاوت هستند"
@@ -1660,27 +1646,27 @@ msgid ""
 "upstream"
 msgstr "گروه کوچکی از معابر جدا از شبکهٔ اصلی هستند یا دسترسی‌شان به شبکه نامناسب است"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Power object intersecting building"
 msgstr "تجهیزات برق روی ساختمان افتاده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Power object and highway too close"
 msgstr "معبر و تجهیزات برق خیلی به هم نزدیک‌اند"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway intersecting highway without junction"
 msgstr "ردشدن معابر از روی هم بدون تقاطع"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Highway overlaps"
 msgstr "روی هم افتادن معابر"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway intersecting waterway without junction"
 msgstr "ردشدن راه‌های آبی از روی هم بدون تقاطع"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Waterway overlaps"
 msgstr "روی هم افتادن راه‌های آبی"
 
@@ -2157,7 +2143,6 @@ msgid "College without tag \"ref:UAI\" or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr ""
@@ -2246,11 +2231,15 @@ msgstr ""
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:31
-msgid "Power plant not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without tag \"postal_code\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated, geocoded at municipality level"
 msgstr ""

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
+# Binnette <binnette@gmail.com>, 2019
 # Codain, 2017-2018
 # deuzeffe, 2018
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2019
@@ -32,7 +33,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-23 18:36+0000\n"
+"PO-Revision-Date: 2019-05-27 21:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -334,15 +335,15 @@ msgstr "Type de voirie “highway”=“*_link” incorrect"
 msgid "Highway too long for a *_link"
 msgstr "Voirie trop longue pour un “*_link”"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:342
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Highway intersecting building"
 msgstr "Intersection entre la voirie et un bâtiment"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree intersecting building"
 msgstr "Intersection entre un arbre et un bâtiment"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Tree and highway too close"
 msgstr "Arbre trop proche de la voirie"
 
@@ -934,10 +935,6 @@ msgstr "Suffixe “%s” non valide pour l’attribut “wikipedia”"
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Valeurs dupliquées “%(key)s”=“%(val)s”"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:29
-msgid "admin_level 8 without addr:postcode"
-msgstr "objet “admin_level”=“8” sans “addr:postcode”"
-
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
 msgstr "Code postal, proposition d’intégration"
@@ -1103,7 +1100,7 @@ msgstr "Y compris “car”, “horse”, “moped”, “hazmat”, etc., sauf 
 msgid "Inconsistent Access"
 msgstr "Accès incohérent"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Non route relation member in route_master relation"
 msgstr "Membres d’une relation “route_master” qui ne sont pas des relations de type “route”"
 
@@ -1123,11 +1120,11 @@ msgstr "La ligne haute tension n’est pas terminée"
 msgid "Unfinished power minor line"
 msgstr "La ligne basse tension n’est pas terminée"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting small water piece"
 msgstr "Intersection entre la voirie et une petite surface d’eau"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Highway intersecting large water piece"
 msgstr "Intersection entre la voirie et une grande surface d’eau"
 
@@ -1508,7 +1505,7 @@ msgstr "Nom proche similaire"
 msgid "Way access mismatch relation route=%s"
 msgstr "Accès à la voie ne correspondant pas à la relation “route”=“%s”"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation “route” de transport public non incluse dans une relation “route_master”"
 
@@ -1524,21 +1521,11 @@ msgstr "Un élément marqué avec “addr:housenumber” ou “addr:housename”
 msgid "%s not integrated"
 msgstr "%s non intégré"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
-#, python-format
-msgid "%s, integration suggestion"
-msgstr "%s, intégration suggérée"
-
-#: ../analysers/analyser_merge_shop_FR.py:54
-#, python-format
-msgid "%s update"
-msgstr "%s, mise à jour"
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The track of this route contains gaps"
 msgstr "Le trajet de cette route est discontinu"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "The stop or platform is too far from the track of this route"
 msgstr "L’arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
@@ -1550,13 +1537,13 @@ msgstr "Préfixe international ‹+› et code pays manquants"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Attributs “maxspeed” et “source:maxspeed” discordants"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "Chaque attribut “network”, “operator”, “ref”, “colour” devrait correspondre à l’identique sur les relations “route” et “route_master”"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 #, python-format
 msgid "%s are different"
 msgstr "%s sont différents"
@@ -1682,27 +1669,27 @@ msgid ""
 "upstream"
 msgstr "Petit ensemble de voiries séparées du réseau principal ou avec des accès insuffisants"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Power object intersecting building"
 msgstr "Intersection entre un équipement électrique et un bâtiment"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Power object and highway too close"
 msgstr "Équipement électrique trop proche de la voirie"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway intersecting highway without junction"
 msgstr "Intersection de voiries sans jonction"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Highway overlaps"
 msgstr "Voiries superposées"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway intersecting waterway without junction"
 msgstr "Intersection de cours d’eau sans jonction"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Waterway overlaps"
 msgstr "Superpositions de cours d’eau"
 
@@ -2179,7 +2166,6 @@ msgid "College without tag \"ref:UAI\" or invalid"
 msgstr "Établissement d’enseignement supérieur sans attribut “ref:UAI” ou incorrect."
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} sans attribut {1} ou incorrect"
@@ -2223,56 +2209,60 @@ msgstr "Le radar de vitesse devrait être sur la route ou dans une relation enfo
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
-msgstr ""
+msgstr "P+R parking-relais en Île-de-France non intégré"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing municipality ref tag"
-msgstr ""
+msgstr "Attribut ref de la commune manquant"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
-msgstr ""
+msgstr "Attribut ref de la commune manquant {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:170
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
-msgstr ""
+msgstr "Interpolation sur nœud sans attribut \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:171
 msgid "\"addr:housenumber\" in multiple interpolations"
-msgstr ""
+msgstr "\"addr:housenumber\" dans plusieurs interpolations"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:172
 msgid "Interpolation intersection"
-msgstr ""
+msgstr "Intersection d'interpolations"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:173
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr ""
+msgstr "Les extrémités de l'interpolation doivent avoir un attribut \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
-msgstr ""
+msgstr "Les extrémités de l'interpolation doivent avoir des valeurs d'attribut \"addr:housenumber\" différentes"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
-msgstr ""
+msgstr "Interpolation sur un nœud de plusieurs relations \"associatedStreet\""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "L'attribut \"addr:street\" ne correspond pas à un nom de rue à proximité "
 
 #: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
-msgstr ""
-
-#: ../analysers/analyser_merge_power_plant_FR.py:31
-msgid "Power plant not integrated"
-msgstr ""
+msgstr "Mauvaise utilisation de \"addr:interpolation\" en combinaison avec d'autres attributs"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
+msgstr "Centrale électrique %s"
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without tag \"postal_code\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated, geocoded at municipality level"
 msgstr ""

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Andrey Golovin, 2018
+# Ігор Варварчук <182050@i.ua>, 2019
 # Ігор Варварчук <182050@i.ua>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-23 18:36+0000\n"
+"PO-Revision-Date: 2019-05-27 21:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -312,15 +313,15 @@ msgstr "Помилковий *_link highway"
 msgid "Highway too long for a *_link"
 msgstr "Highway задовгий для *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:342
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Highway intersecting building"
 msgstr "Шлях перетинає будівлю"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree intersecting building"
 msgstr "Дерево перетинає будівлю"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Tree and highway too close"
 msgstr "Дерево і шлях надто близько"
 
@@ -912,10 +913,6 @@ msgstr "Недійсний суфікс Вікіпедія '%s'"
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Дубльовані значення %(key)s=%(val)s"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:29
-msgid "admin_level 8 without addr:postcode"
-msgstr "admin_level 8 без addr:postcode"
-
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
 msgstr "Індекс, пропозиція з інтеґрації"
@@ -1081,7 +1078,7 @@ msgstr "Включаючи car, horse, moped, hazmat і т. д., крім чіт
 msgid "Inconsistent Access"
 msgstr "Несумісний Доступ"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Non route relation member in route_master relation"
 msgstr "До складу зв'язку route_master входить об'єкт через який неможливо прокласти маршрут"
 
@@ -1101,11 +1098,11 @@ msgstr "Незавершена основна лінія електромере�
 msgid "Unfinished power minor line"
 msgstr "Незавершена другорядна лінія електромережі"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting small water piece"
 msgstr "Дорога перетинає малу частину water"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Highway intersecting large water piece"
 msgstr "Дорога перетинає велику частину water"
 
@@ -1486,7 +1483,7 @@ msgstr "Закрити подібне ім'я"
 msgid "Way access mismatch relation route=%s"
 msgstr "Значення access лінії не відповідає зв'язку route=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "Public transport relation route not in route_master relation"
 msgstr "Зв'язок маршруту громадського транспорту не входить до складу зв'язку route_master"
 
@@ -1502,21 +1499,11 @@ msgstr "addr:housenumber або addr:housename без addr:street, addr:district
 msgid "%s not integrated"
 msgstr "%s неінтеґрована (-ий)"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
-#, python-format
-msgid "%s, integration suggestion"
-msgstr "%s, пропозиція з інтеґрації"
-
-#: ../analysers/analyser_merge_shop_FR.py:54
-#, python-format
-msgid "%s update"
-msgstr "%s оновлення"
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The track of this route contains gaps"
 msgstr "Трек цього маршруту містить прогалини"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
@@ -1528,13 +1515,13 @@ msgstr "Відсутній міжнародний префікс"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Розбіжність maxspeed та source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "теґи network, operator, ref, colour мають бути однаковими у зв'язків route та зв'язку route_master, до якого вони входять"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 #, python-format
 msgid "%s are different"
 msgstr "%s різні"
@@ -1660,27 +1647,27 @@ msgid ""
 "upstream"
 msgstr "Невелика група автомагістралей з основної мережі або з недостатнім доступом далі за напрямом"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Power object intersecting building"
 msgstr "Об'єкт енергетики перетинає будівлю"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Power object and highway too close"
 msgstr "Об'єкт енергетики та шлях знаходяться надто близько"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway intersecting highway without junction"
 msgstr "Перетин шляхів без з'єднання"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Highway overlaps"
 msgstr "Накладання шляхів"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway intersecting waterway without junction"
 msgstr "Перетин водних шляхів без з'єднання"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Waterway overlaps"
 msgstr "Накладання водних шляхів"
 
@@ -2157,7 +2144,6 @@ msgid "College without tag \"ref:UAI\" or invalid"
 msgstr "Коледж без \"ref:UAI\" або недійсний"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} без теґу \"{1}\" або недійсний"
@@ -2246,11 +2232,15 @@ msgstr "Теґ \"addr:street\" не містить назву вулиць, ро
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "Зловживання addr:interpolation в комбінації з іншими теґами"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:31
-msgid "Power plant not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
+msgstr "Електростанція %s"
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without tag \"postal_code\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated, geocoded at municipality level"
 msgstr ""

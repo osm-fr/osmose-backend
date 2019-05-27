@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-23 18:36+0000\n"
+"PO-Revision-Date: 2019-05-27 21:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -317,15 +317,15 @@ msgstr "Nesprávné napojení silnice *_link"
 msgid "Highway too long for a *_link"
 msgstr "Cesta je příliš dlouhá na napojení silnice typu *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:342
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Highway intersecting building"
 msgstr "Cesta protínající budovu"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree intersecting building"
 msgstr "Strom protínající budovu"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Tree and highway too close"
 msgstr "Strom a silnice příliš blízko"
 
@@ -917,10 +917,6 @@ msgstr "Chybná přípona wikipedie '%s'"
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Duplikované hodnoty %(key)s=%(val)s"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:29
-msgid "admin_level 8 without addr:postcode"
-msgstr "admin_level 8 bez addr:postcode"
-
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
 msgstr "Návrh na využití PSČ"
@@ -1086,7 +1082,7 @@ msgstr "Včetně auta, koně, mopedu atd. pokud není řečeno jinak"
 msgid "Inconsistent Access"
 msgstr "nekonzistentní přístup"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Non route relation member in route_master relation"
 msgstr "Jiný člen relace než route v relaci route_master"
 
@@ -1106,11 +1102,11 @@ msgstr "Nedokončená hlavní linka rozvodu elektřiny"
 msgid "Unfinished power minor line"
 msgstr "Nedokončená vedlejší linka rozvodu elektřiny"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting small water piece"
 msgstr "Silnice protíná malé vodní těleso"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Highway intersecting large water piece"
 msgstr "Silnice protíná velké vodní těleso"
 
@@ -1491,7 +1487,7 @@ msgstr "Blízko podobnému jménu"
 msgid "Way access mismatch relation route=%s"
 msgstr "Přístup na cestu nesouhlasí s relací trasy=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relace trasy veřejné dopravy není v relaci route_master"
 
@@ -1507,21 +1503,11 @@ msgstr "addr:housenumber nebo addr:housename bez addr:street, addr:district, add
 msgid "%s not integrated"
 msgstr "%s není integrováno"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
-#, python-format
-msgid "%s, integration suggestion"
-msgstr "%s, návrh na integraci"
-
-#: ../analysers/analyser_merge_shop_FR.py:54
-#, python-format
-msgid "%s update"
-msgstr "%s aktualizace"
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The track of this route contains gaps"
 msgstr "Tato trasa obsahuje díry"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Zastávka nebo nástupiště je příliš daleko od této trasy"
 
@@ -1533,13 +1519,13 @@ msgstr "Chybí mezinárodní prefix"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Nesouhlasí maxspeed a source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "tagy network, operator, ref, colour by měly být stejné na relacích route a route_master"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 #, python-format
 msgid "%s are different"
 msgstr "%s jsou různé"
@@ -1665,27 +1651,27 @@ msgid ""
 "upstream"
 msgstr "Malý shluk cest oddělený od hlavní silniční sítě s nedostatečným přístupem"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Power object intersecting building"
 msgstr "Objekt elektrického rozvodu se překrývá s budovou"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Power object and highway too close"
 msgstr "Objekt elektrického rozvodu a cesta jsou příliš blízko u sebe"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway intersecting highway without junction"
 msgstr "Křížení cest (highway) bez bodu křížení"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Highway overlaps"
 msgstr "Cesta (highway) kříží"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway intersecting waterway without junction"
 msgstr "Křížení vodních cest bez bodu křížení"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Waterway overlaps"
 msgstr "Vodní tok kříží"
 
@@ -2162,7 +2148,6 @@ msgid "College without tag \"ref:UAI\" or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr ""
@@ -2251,11 +2236,15 @@ msgstr ""
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:31
-msgid "Power plant not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without tag \"postal_code\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated, geocoded at municipality level"
 msgstr ""

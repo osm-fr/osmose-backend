@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-23 18:36+0000\n"
+"PO-Revision-Date: 2019-05-27 21:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -314,15 +314,15 @@ msgstr "Hibás útfelhajtó: <…_link>"
 msgid "Highway too long for a *_link"
 msgstr "Az út túl hosszú ahhoz, hogy <*_link> legyen"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:342
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Highway intersecting building"
 msgstr "Épületet metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree intersecting building"
 msgstr "Épületet metsző fa"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Tree and highway too close"
 msgstr "Egymáshoz túl közeli út és fa"
 
@@ -914,10 +914,6 @@ msgstr "Érvénytelen Wikipédia-utótag: '%s'"
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Megkettőzött értékek %(key)s=%(val)s"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:29
-msgid "admin_level 8 without addr:postcode"
-msgstr "<admin_level=8> irányítószám <addr:postcode> nélkül"
-
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
 msgstr "Irányítószám: javasolt hely a térképen"
@@ -1083,7 +1079,7 @@ msgstr "Használható többek között autóval, lóval, kismotorral, veszélyes
 msgid "Inconsistent Access"
 msgstr "Következetlen hozzáférés/használat (Access)"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "Non route relation member in route_master relation"
 msgstr "Nem útnak jelölt kapcsolattag egy <route_master> kapcsolatban"
 
@@ -1103,11 +1099,11 @@ msgstr "Befejezetlen távvezeték"
 msgid "Unfinished power minor line"
 msgstr "Befejezetlen villanyvezeték"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting small water piece"
 msgstr "Kis vízobjektumot metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Highway intersecting large water piece"
 msgstr "Nagy vízobjektumot metsző út"
 
@@ -1488,7 +1484,7 @@ msgstr "Hasonló név a közelben"
 msgid "Way access mismatch relation route=%s"
 msgstr "Nem illeszkedő úthasználat (way access) a <route=%s> kapcsolaton"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "Public transport relation route not in route_master relation"
 msgstr "Tömegközlekedési kapcsolat útvonal nem része semmilyen <route_master> kapcsolatnak"
 
@@ -1504,21 +1500,11 @@ msgstr "Ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <add
 msgid "%s not integrated"
 msgstr "%s nincs a térképen"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
-#, python-format
-msgid "%s, integration suggestion"
-msgstr "%s: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_shop_FR.py:54
-#, python-format
-msgid "%s update"
-msgstr "%s: frissítendő"
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
 msgid "The track of this route contains gaps"
 msgstr "Az útvonal nyomvonala nem folytonos"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
 msgid "The stop or platform is too far from the track of this route"
 msgstr "A megálló vagy a peron túl messze van az útvonal nyomvonalától"
 
@@ -1530,13 +1516,13 @@ msgstr "Hiányzó nemzetközi hívószám"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "A <maxspeed> és a <source:maxspeed> nincs összhangban"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "a <network>, <operator>, <ref>, <colour> címkének azonosnak kell lennie az úton és a <route_master> kapcsolatokon"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 #, python-format
 msgid "%s are different"
 msgstr "%s különbözik"
@@ -1662,27 +1648,27 @@ msgid ""
 "upstream"
 msgstr "Kis útcsoport a fő úthálózaton kívül vagy hiányos csatlakozással a magasabb rendű utakhoz"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Power object intersecting building"
 msgstr "Épületet metsző villamos objektum"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Power object and highway too close"
 msgstr "Egymáshoz túl közeli út és villamos objektum"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway intersecting highway without junction"
 msgstr "Egymást kereszteződés nélkül metsző utak"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Highway overlaps"
 msgstr "Egymást átfedő utak"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway intersecting waterway without junction"
 msgstr "Egymást kereszteződés nélkül metsző vízfolyások"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Waterway overlaps"
 msgstr "Egymás átfedő vízfolyások"
 
@@ -2159,7 +2145,6 @@ msgid "College without tag \"ref:UAI\" or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
-#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr ""
@@ -2248,11 +2233,15 @@ msgstr ""
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:31
-msgid "Power plant not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without tag \"postal_code\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_plant_FR.py:31
+msgid "Power plant not integrated, geocoded at municipality level"
 msgstr ""
