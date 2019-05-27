@@ -28,7 +28,7 @@ from .modules import downloader
 
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8270", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power plant not integrated") }
+        self.missing_official = {"item":"8270", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power plant not integrated, geocoded at municipality level") }
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
@@ -39,7 +39,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
             Load("longitude", "latitude"),
             Mapping(
                 select = Select(
-                    types = ["ways"],
+                    types = ["ways", "relations"],
                     tags = {"power": "plant"}),
                 conflationDistance = 5000,
                 generate = Generate(
@@ -50,14 +50,13 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                         # No voltage tga on power=plant
                         #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["Filière"]][fields["Combustible"]],
-                        "plant:output:electricity": lambda fields: (int(float(fields["max_puissance"]) * 1000000)) if fields.get("max_puissance") else None},
+                        "plant:output:electricity": lambda fields: (int(float(fields["max_puissance"]) * 1000)) if fields.get("max_puissance") and float(fields["max_puissance"]) >= 1000 else None},
                     mapping2 = {
-                        "start": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
+                        "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
                    tag_keep_multiple_values = ["voltage"],
                    text = lambda tags, fields: T_(u"Power plant %s", fields["nomInstallation"]) if fields["nomInstallation"] != 'None' else None)))
 
     filiere = {
-#        None: {None: ""},
         u"Autre": {
             None: "",
             u"Gaz": "",
@@ -71,7 +70,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
         },
         u"Energies Marines": {None: ""},
         u"Eolien": {None: "wind"},
-        u"Géothermie": {None: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"},
+        u"Géothermie": {None: "geothermal"},
         u"Hydraulique": {None: "hydro"},
         u"Nucléaire": {"Uranium": "nuclear"},
         u"Solaire": {None: "solar"},

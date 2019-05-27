@@ -221,7 +221,8 @@ FROM
 WHERE
     relations.tags->'type' = 'route' AND
     relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
-    (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master')
+    (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master') AND
+    relation_locate(relations.id) IS NOT NULL
 """
 
 sql50 = """

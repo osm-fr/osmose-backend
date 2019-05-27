@@ -1,28 +1,5 @@
 [
   {
-    "class": 1,
-    "level": 3,
-    "otype": [
-      "nodes"
-    ],
-    "conflation": 30,
-    "title": "bench",
-    "object": [
-      "object--bench"
-    ],
-    "select_tags": [
-      {
-        "amenity": "bench"
-      },
-      {
-        "bench": "yes"
-      }
-    ],
-    "generate_tags": {
-      "amenity": "bench"
-    }
-  },
-  {
     "class": 2,
     "level": 3,
     "otype": [

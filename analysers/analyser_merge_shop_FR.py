@@ -49,9 +49,10 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, items, classs, level, title, selectTags, generateTags):
         classss = int(classs.replace('.', '0')[:-1]) * 100 + ord(classs[-1]) - 65
         self.missing_official = {"item": items[0], "class": classss+1, "level": level, "tag": ["merge"], "desc": T_(u"%s not integrated", title) }
-        self.missing_osm      = {"item": items[1], "class": classss+2, "level": level, "tag": ["merge"], "desc": T_f(u"{0} without tag \"{1}\" or invalid", title, 'ref:FR:SIRET') }
-        self.possible_merge   = {"item": items[0][0:-1]+"1", "class": classss+3, "level": level, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
-        self.update_official  = {"item": items[0][0:-1]+"2", "class": classss+4, "level": level, "tag": ["merge"], "desc": T_(u"%s update", title) }
+        #self.missing_osm      = {"item": items[1], "class": classss+2, "level": level, "tag": ["merge"], "desc": T_f(u"{0} without tag \"{1}\" or invalid", title, 'ref:FR:SIRET') }
+        #self.possible_merge   = {"item": items[0][0:-1]+"1", "class": classss+3, "level": level, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
+        #self.update_official  = {"item": items[0][0:-1]+"2", "class": classss+4, "level": level, "tag": ["merge"], "desc": T_(u"%s update", title) }
+
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"http://www.sirene.fr/sirene/public/static/open-data",
             u"Sirene",
@@ -63,17 +64,17 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = selectTags),
-                conflationDistance = 80,
+                conflationDistance = 200,
                 generate = Generate(
                     static1 = generateTags,
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:SIRET": lambda fields: fields["SIREN"] + fields["NIC"],
-                        "ref:FR:RNA": "RNA",
+                        # "ref:FR:SIRET": lambda fields: fields["SIREN"] + fields["NIC"],
+                        # "ref:FR:RNA": "RNA",
                         "name": lambda fields: fields["ENSEIGNE"] or (fields["NOMEN_LONG"] if fields["NJ"] else None),
-                        "short_name": "SIGLE",
-                        "start_date": lambda fields:
-                            "-".join([fields["DDEBACT"][0:4], fields["DDEBACT"][4:6], fields["DDEBACT"][6:8]]) if fields["DDEBACT"] != "19000101" else
-                            "-".join([fields["DCRET"][0:4], fields["DCRET"][4:6], fields["DCRET"][6:8]]) if fields["DCRET"] != "19000101" else
-                            None},
+                        "short_name": "SIGLE"},
+                        #"start_date": lambda fields:
+                        #    "-".join([fields["DDEBACT"][0:4], fields["DDEBACT"][4:6], fields["DDEBACT"][6:8]]) if fields["DDEBACT"] != "19000101" else
+                        #    "-".join([fields["DCRET"][0:4], fields["DCRET"][4:6], fields["DCRET"][6:8]]) if fields["DCRET"] != "19000101" else
+                        #    None},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f, [fields["ENSEIGNE"] or (fields["NOMEN_LONG"] if fields["NJ"] else None)] + map(lambda k: fields[k], ["L1_DECLAREE", "L2_DECLAREE" ,"L3_DECLAREE", "L4_DECLAREE", "L5_DECLAREE", "L6_DECLAREE", "L7_DECLAREE"])))} )))
