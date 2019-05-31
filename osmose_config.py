@@ -792,22 +792,22 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 
 #########################################################################
 
-canada_province = gen_country('north-america', 'canada', language='en',
+canada_province = gen_country('north-america', 'canada', download_repo=OSMFR, language='en',
     phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", suffix_separators="x",
     exclude=[
     'osmosis_waterway',
 ], **{'addr:street_distance': 2000})
 
 canada_province("alberta", 391186, "CA-AB", proj=32610)
-canada_province("british-columbia", 390867, "CA-BC", proj=32609)
+canada_province("british_columbia", 390867, "CA-BC", proj=32609)
 canada_province("manitoba", 390841, "CA-MB", proj=32615)
-canada_province("new-brunswick", 68942, "CA-NB", proj=32619)
-canada_province("newfoundland-and-labrador", 391196, "CA-NL", proj=32621)
-canada_province("northwest-territories", 391220, "CA-NT", proj=32612)
-canada_province("nova-scotia", 390558, "CA-NS", proj=32620)
+canada_province("new_brunswick", 68942, "CA-NB", proj=32619)
+canada_province("newfoundland_and_labrador", 391196, "CA-NL", proj=32621)
+canada_province("northwest_territories", 391220, "CA-NT", proj=32612)
+canada_province("nova_scotia", 390558, "CA-NS", proj=32620)
 canada_province("nunavut", 390840, "CA-NU", proj=32616)
 canada_province("ontario", 68841, "CA-ON", proj=32616)
-canada_province("prince-edward-island", 391115, "CA-PE", proj=32620)
+canada_province("prince_edward_island", 391115, "CA-PE", proj=32620)
 canada_province("quebec", 61549, "CA-QC", proj=2138, language="fr")
 canada_province("saskatchewan", 391178, "CA-SK", proj=32613)
 canada_province("yukon", 391455, "CA-YT", proj=32608)
