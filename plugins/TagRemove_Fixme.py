@@ -30,8 +30,8 @@ class TagRemove_Fixme(Plugin):
         self.errors[40611] = { "item": 4061, "level": 2, "tag": ["fixme", "fix:chair", "highway"], "desc": T_(u"Highway classification need review") }
 
     def node(self, data, tags):
-        if "fixme" in tags:
-            return [{"class": 40610, "subclass": 1, "text": {"en": tags['fixme']}}]
+        if "fixme" in tags or "FIXME" in tags:
+            return [{"class": 40610, "subclass": 1, "text": {"en": tags.get('fixme') or tags['FIXME']}}]
         else:
             return []
 
@@ -56,3 +56,4 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"highway": "trunk"}, None)
         self.check_err(a.way(None, {"highway": "road"}, None))
         self.check_err(a.way(None, {"fixme": "plop"}, None))
+        self.check_err(a.way(None, {"FIXME": "plop"}, None))
