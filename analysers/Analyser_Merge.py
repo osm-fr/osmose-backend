@@ -22,6 +22,7 @@
 
 import io
 import bz2
+import gzip
 from backports import csv # In python3 only just "import csv"
 import hashlib
 import inspect
@@ -278,7 +279,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None, logger = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None, logger = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -286,6 +287,7 @@ class Source:
         @param urlFile: remote URL of source file
         @param fileUrlCache: days for file in cache
         @param zip: extract file from zip
+        @param gzip: uncompress as gzip
         @param filter: lambda expression applied on text file before loading
         @param logger: a logger
         """
@@ -296,6 +298,7 @@ class Source:
         self.fileUrl = fileUrl
         self.fileUrlCache = fileUrlCache
         self.zip = zip
+        self.gzip = gzip
         self.filter = filter
         self.logger = logger
 
@@ -332,6 +335,10 @@ class Source:
             if self.zip:
                 z = zipfile.ZipFile(f, 'r').open(self.zip)
                 f = io.BytesIO(z.read())
+                f.seek(0)
+            elif self.gzip:
+                d = gzip.open(downloader.path(self.fileUrl, self.fileUrlCache), mode='r')
+                f = io.BytesIO(d.read())
                 f.seek(0)
         f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
         f.seek(0)
