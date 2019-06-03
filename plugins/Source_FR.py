@@ -40,7 +40,7 @@ class Source_FR(Plugin):
         source = tags[u"source"].lower()
         if u"geoportail" in source or u"géoportail" in source:
             return {"class": 706, "subclass": 3, "text": {"en":u"Géoportail"}}
-        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source and not u"CRAIG/IGN" in source and not u"rtho" in source:
+        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source and not u"CRAIG/IGN" in source and not u"rtho" in source and not u'craig' in source:
             if not self.IGN.match(source):
                 return {"class": 706, "subclass": 4, "text": {"en":u"IGN"}}
         if u"camptocamp" in source:
