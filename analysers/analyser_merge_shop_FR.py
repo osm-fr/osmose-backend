@@ -42,7 +42,7 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
                 level = int(level)
                 osmTags = filter(lambda a: a, map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[4:]))
                 if len(osmTags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Shop_FR, classs, items, classs, level, title, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
+                    self.classFactory(SubAnalyser_Merge_Shop_FR, classs.replace('.', ''), items, classs, level, title, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
 
 
 class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
@@ -56,10 +56,11 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"http://www.sirene.fr/sirene/public/static/open-data",
             u"Sirene",
-            CSV(Source(attribution = u"INSEE", millesime = "07/2017", file = "shop_FR-light.csv.bz2")),
+            CSV(Source(attribution = u"INSEE", millesime = "06/2018", gzip = True,
+                fileUrl = u"http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_84.csv.gz")),
             Load("longitude", "latitude",
-                select = {"APET700": classs, "NJ": True},
-                uniq = ["SIREN", "NIC"]),
+                select = {"activitePrincipaleEtablissement": classs},
+                uniq = ["siren", "nic"]),
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
@@ -69,12 +70,12 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                     static1 = generateTags,
                     static2 = {"source": self.source},
                     mapping1 = {
-                        # "ref:FR:SIRET": lambda fields: fields["SIREN"] + fields["NIC"],
+                        # "ref:FR:SIRET": lambda fields: fields["siren"] + fields["nic"],
                         # "ref:FR:RNA": "RNA",
-                        "name": lambda fields: fields["ENSEIGNE"] or (fields["NOMEN_LONG"] if fields["NJ"] else None),
-                        "short_name": "SIGLE"},
+                        "name": lambda fields: fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"] or None},
+                        #"short_name": "SIGLE"},
                         #"start_date": lambda fields:
                         #    "-".join([fields["DDEBACT"][0:4], fields["DDEBACT"][4:6], fields["DDEBACT"][6:8]]) if fields["DDEBACT"] != "19000101" else
                         #    "-".join([fields["DCRET"][0:4], fields["DCRET"][4:6], fields["DCRET"][6:8]]) if fields["DCRET"] != "19000101" else
                         #    None},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f, [fields["ENSEIGNE"] or (fields["NOMEN_LONG"] if fields["NJ"] else None)] + map(lambda k: fields[k], ["L1_DECLAREE", "L2_DECLAREE" ,"L3_DECLAREE", "L4_DECLAREE", "L5_DECLAREE", "L6_DECLAREE", "L7_DECLAREE"])))} )))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f, [fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"]] + map(lambda k: fields[k], ["numeroVoieEtablissement", "indiceRepetitionEtablissement" ,"typeVoieEtablissement", "libelleVoieEtablissement", "complementAdresseEtablissement", "codePostalEtablissement", "libelleCommuneEtablissement"])))} )))
