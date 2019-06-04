@@ -71,7 +71,6 @@ class SanitizerTransformer(_lark.Transformer):
         
         defaultDict = {';': '; ', ',': ',', '||': ' || '}
         tweakedDict = {';': '; ', ',': ', ', '||': ' || '}
-        # tweakedDict = {';': '; ', ',': '; ', '||': ' || '}
         weekdayRe = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su|PH|SH)")
         timeRe = _re.compile("(dawn|sunrise|sunset|dusk|\d\d:\d\d)[+-]?$")
         
