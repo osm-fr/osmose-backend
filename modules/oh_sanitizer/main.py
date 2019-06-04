@@ -70,7 +70,8 @@ class SanitizerTransformer(_lark.Transformer):
         parts = []
         
         defaultDict = {';': '; ', ',': ',', '||': ' || '}
-        tweakedDict = {';': '; ', ',': '; ', '||': ' || '}
+        tweakedDict = {';': '; ', ',': ', ', '||': ' || '}
+        # tweakedDict = {';': '; ', ',': '; ', '||': ' || '}
         weekdayRe = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su|PH|SH)")
         timeRe = _re.compile("(dawn|sunrise|sunset|dusk|\d\d:\d\d)[+-]?$")
         
@@ -405,12 +406,12 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo-Fr,PH 10:00-20:00"), "Mo-Fr,PH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr 10:00-12:00,13:00-20:00"), "Mo-Fr 10:00-12:00,13:00-20:00")
         
-        self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00, Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00")
-        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu 13:00-14:00,We 14:11-15:15;Fr 16:16-17:17"), "Mo 11:00-12:00; Tu 13:00-14:00; We 14:11-15:15; Fr 16:16-17:17")
-        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu,We 14:11-15:15"), "Mo 11:00-12:00; Tu,We 14:11-15:15")
+        self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00, Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00, Tu 11:00-13:00,15:00-19:00")
+        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu 13:00-14:00,We 14:11-15:15;Fr 16:16-17:17"), "Mo 11:00-12:00, Tu 13:00-14:00, We 14:11-15:15; Fr 16:16-17:17")
+        self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu,We 14:11-15:15"), "Mo 11:00-12:00, Tu,We 14:11-15:15")
         self.assertEqual(sanitize_field("Tu-Th 12:00-22:00; Fr,Sa 12:00-23:00; Su 12:00-19:00"), "Tu-Th 12:00-22:00; Fr,Sa 12:00-23:00; Su 12:00-19:00")
-        self.assertEqual(sanitize_field("Mo 11:11-12:12, Tu, Fr,Sa 12:00-23:00"), "Mo 11:11-12:12; Tu,Fr,Sa 12:00-23:00")
-        self.assertEqual(sanitize_field("11:11-12:12, Tu,Fr,Sa 12:00-23:00, PH,Su,We 12:12-13:13"), "11:11-12:12; Tu,Fr,Sa 12:00-23:00; PH,Su,We 12:12-13:13")
+        self.assertEqual(sanitize_field("Mo 11:11-12:12, Tu, Fr,Sa 12:00-23:00"), "Mo 11:11-12:12, Tu,Fr,Sa 12:00-23:00")
+        self.assertEqual(sanitize_field("11:11-12:12, Tu,Fr,Sa 12:00-23:00, PH,Su,We 12:12-13:13"), "11:11-12:12, Tu,Fr,Sa 12:00-23:00, PH,Su,We 12:12-13:13")
         
         # Ideally we would want a space after the comma rule separator in
         # "off, Mar" and after no other comma. But the space is optional,
