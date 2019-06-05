@@ -3,7 +3,8 @@
     "class": 2,
     "level": 3,
     "otype": [
-      "nodes"
+      "nodes",
+      "ways"
     ],
     "conflation": 30,
     "title": "bicycle parking",
