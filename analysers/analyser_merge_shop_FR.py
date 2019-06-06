@@ -53,13 +53,16 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
         #self.possible_merge   = {"item": items[0][0:-1]+"1", "class": classss+3, "level": level, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
         #self.update_official  = {"item": items[0][0:-1]+"2", "class": classss+4, "level": level, "tag": ["merge"], "desc": T_(u"%s update", title) }
 
+        dep_code = config.options.get('country').split('-')[1]
+
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"http://www.sirene.fr/sirene/public/static/open-data",
             u"Sirene",
             CSV(Source(attribution = u"INSEE", millesime = "06/2018", gzip = True,
-                fileUrl = u"http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_84.csv.gz")),
+                fileUrl = u"http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_{0}.csv.gz".format(dep_code))),
             Load("longitude", "latitude",
-                select = {"activitePrincipaleEtablissement": classs},
+                select = {"activitePrincipaleEtablissement": classs, "geo_type": "housenumber", "etatAdministratifEtablissement": "A"},
+                where = lambda res: float(res["geo_score"]) > 0.9,
                 uniq = ["siren", "nic"]),
             Mapping(
                 select = Select(
@@ -78,4 +81,4 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                         #    "-".join([fields["DDEBACT"][0:4], fields["DDEBACT"][4:6], fields["DDEBACT"][6:8]]) if fields["DDEBACT"] != "19000101" else
                         #    "-".join([fields["DCRET"][0:4], fields["DCRET"][4:6], fields["DCRET"][6:8]]) if fields["DCRET"] != "19000101" else
                         #    None},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f, [fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"]] + map(lambda k: fields[k], ["numeroVoieEtablissement", "indiceRepetitionEtablissement" ,"typeVoieEtablissement", "libelleVoieEtablissement", "complementAdresseEtablissement", "codePostalEtablissement", "libelleCommuneEtablissement"])))} )))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f and f != 'None', [fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"]] + map(lambda k: fields[k], ["numeroVoieEtablissement", "indiceRepetitionEtablissement" ,"typeVoieEtablissement", "libelleVoieEtablissement", "complementAdresseEtablissement", "codePostalEtablissement", "libelleCommuneEtablissement"])))} )))
