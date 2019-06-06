@@ -72,7 +72,7 @@ class SanitizerTransformer(_lark.Transformer):
         defaultDict = {';': '; ', ',': ',', '||': ' || '}
         tweakedDict = {';': '; ', ',': ', ', '||': ' || '}
         weekdayRe = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su|PH|SH)")
-        timeRe = _re.compile("(dawn|sunrise|sunset|dusk|\d\d:\d\d)[+-]?$")
+        timeRe = _re.compile("(dawn|sunrise|sunset|dusk|unknown|off|on|closed|open|\d\d:\d\d)[+-]?$")
         
         for counter, arg in enumerate(args):
             # if looking at a separator token
@@ -340,6 +340,11 @@ class SanitizerTransformer(_lark.Transformer):
             return "off " + args[1].value
         return "off"
 
+    def rule_modifier_unknown(self, args):
+        if len(args) == 2:
+            return "unknown " + args[1].value
+        return "unknown"
+
     def rule_modifier_comment(self, args):
         return args[0].value
 
@@ -450,6 +455,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("PH off"), "PH off")
         self.assertEqual(sanitize_field("off"), "off")
         self.assertEqual(sanitize_field("closed"), "closed")
+        self.assertEqual(sanitize_field("unknown"), "unknown")
         self.assertEqual(sanitize_field(u"закрыто"), "closed")
         self.assertEqual(sanitize_field(u"открыто"), "open")
         self.assertEqual(sanitize_field(u"Пн-Вт закрыто; Пт-Вос открыто"), "Mo-Tu closed; Fr-Su open")
@@ -466,6 +472,10 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo[-1] 10:00-20:00"), "Mo[-1] 10:00-20:00")
         self.assertEqual(sanitize_field("Mo[1,3] 10:00-20:00"), "Mo[1,3] 10:00-20:00")
 
+        self.assertEqual(sanitize_field(
+            'Mo off,Tu unknown,We 11:00-19:00;Th unknown "COMMENT"'), 
+            'Mo off, Tu unknown, We 11:00-19:00; Th unknown "COMMENT"')
+        
     def test_invalid_fields(self):
         self.assertEqual(sanitize_field(" 24/7 "), "24/7")
 
@@ -477,6 +487,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("(SUNrISE-01:00)-(SUnsET+01:00)"), "(sunrise-01:00)-(sunset+01:00)")
         self.assertEqual(sanitize_field("su,sh off"), "Su,SH off")
         self.assertEqual(sanitize_field("mo-fr CLOSED"), "Mo-Fr closed")
+        self.assertEqual(sanitize_field("sA uNkNoWn"), "Sa unknown")
 
         # Weekday correction
         self.assertEqual(sanitize_field("Mon-fri 10:00-20:00"), "Mo-Fr 10:00-20:00")
