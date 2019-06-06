@@ -435,7 +435,9 @@ france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13",
     'merge_street_number_arles',
 ])
 france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
-france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
+france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84", include=[
+    'merge_shop_FR',
+])
 
 france_departement("rhone_alpes/ain", 7387, "FR-01")
 france_departement("rhone_alpes/ardeche", 7430, "FR-07")
@@ -536,7 +538,6 @@ france_local_db.analyser["merge_post_box_FR"] = "xxx"
 france_local_db.analyser["merge_power_plant_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
-france_local_db.analyser["merge_shop_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 
