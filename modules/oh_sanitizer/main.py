@@ -311,7 +311,10 @@ class SanitizerTransformer(_lark.Transformer):
                 h = 0
             elif ( arg.type == 'PM' and h < 12 ):
                 h += 12
-        h %= 24 # In some cases, could be greater than 24.
+        
+        # In some cases, hours could be greater than 24.
+        if (h >= 25) or (h >= 24 and m > 0):
+            h -= 24
         
         return str(h).zfill(2) + ':' + str(m).zfill(2)
 
@@ -509,11 +512,16 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("12"), "12:00")
         self.assertEqual(sanitize_field("12am"), "00:00")
         self.assertEqual(sanitize_field("12pm"), "12:00")
-        self.assertEqual(sanitize_field("24"), "00:00")
-        self.assertEqual(sanitize_field("24:00"), "00:00")
-        self.assertEqual(sanitize_field("24:00am"), "00:00")
+        self.assertEqual(sanitize_field("24"), "24:00")
+        self.assertEqual(sanitize_field("24:00"), "24:00")
+        self.assertEqual(sanitize_field("24:00am"), "24:00")
         self.assertEqual(sanitize_field("26:00"), "02:00")
         self.assertEqual(sanitize_field("29:00"), "05:00")
+        self.assertEqual(sanitize_field("24:00"), "24:00")
+        self.assertEqual(sanitize_field("23:23-24:00"), "23:23-24:00")
+        self.assertEqual(sanitize_field("23:23-24:24"), "23:23-00:24")
+        self.assertEqual(sanitize_field("24:00-23:00"), "24:00-23:00") # FixMe: should be 00:00-23:00
+
 
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
