@@ -22,6 +22,8 @@
 
 import re
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
+from functools import reduce
 
 
 class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
@@ -56,12 +58,18 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
             u"Dolmen", u"Hôtel", u"Ancien château", u"Immeuble", u"Eglise", u"Maison"
         ]
 
+        SKIP = [
+            u"Ile-de-France;Paris;Paris 9e Arrondissement;Immeubles aux abords de l'Opéra (voir aussi : 25, 27, 29, 31 bd Haussmann, Immeuble de la Société Générale);19e siècle;Rohaut de Fleury Charles (architecte);Façades et toitures sur rue des immeubles situés 3, 5, 7 rue Auber, 1 rue Boudreau, 4, 6, 8 boulevard des Capucines, 3, 3bis, 5, 7, 9, 11, 13 rue de la Chaussée-d'Antin, 2, 4, 6, 8, 10, 12, 14, 16 rue Halévy, 1 rue des Mathurins, 1, 2, 3, 4, 5, 7 rue Meyerbeer, 9, 11, 11bis, 15, 17 rue Scribe, 2 rue Auber, 7, place Charles-Garnier : inscription par arrêté du 30 décembre 1977, modifiée par arrêtés des 16 mai 2013 et 14 juin 2013;\"1977/12/30 : inscrit MH ; 2013/05/16 : inscrit MH ; 2013/06/14 : inscrit MH\";propriété privée;\"Auber (rue) 2, 3, 5, 7 ; Boudreau (rue) 1 ; Capucines (boulevard des) 4, 6, 8 ; Charles-Garnier (place) 7 ; Chaussée-d'Antin (rue de la) 3 à 13 ; Halévy (rue) 2 à 16 ; Mathurins (rue des) 1 ; Meyerbeer (rue) 1, 2, 3, 4, 5, 7 ; Scribe (rue) 9, 11, 11bis, 15, 17\";75109;;recensement immeubles MH;PA00088922;48.8768961624, 2.33746024139;75;Ile-de-France;ile de france",
+            u"Normandie;Calvados;Falaise;Vestiges de l'enceinte fortifiée;\"13e siècle;17e siècle\";;\"Restes de la porte Lecomte : inscription par arrêté du 31 mai 1927 ; Porte des Cordeliers : classement par arrêté du 13 mars 1930 ; Vestiges de l'enceinte fortifiée : de la porte du Château à la porte de Guibray : rue Porte-du-Château 10, 8 (cad. B 67, 68) , rue Blâcher 32, 28, 22, 10, 6 (cad. D 87, 92, 96, 105, 108 à 110). De la porte Guibray à la porte Marescot : rue Amiral-Courbet (cad. D 521, 519, 513, 514, 515, 512, 509). De la porte Marescot à la porte Lecomte : rue Georges-Clémenceau (cad. B 801) , rue Victor-Hugo 15, 17, 19, 21, 23, 25 (cad. B 604, 608, 612, 615) , rue du Sergent-Goubin (cad. B 625). De la porte Lecomte à la route de Caen : rue du Sergent Goubin 24, 22, 20, 2 (cad. B 566, 569, 562, 563, 559, 556, 557, 1058 à 1060) , rue Gambetta 18, 14, 12 (cad. B 1045, 1048, 994, 997). De la route de Caen à la porte Philippe-Jean : rue Frédéric-Gaberon (cad. E 235) , rue des Cordeliers (cad. E 247) , rue du Camp-Ferme (cad. E 354, 364, 365, 370, 383). De la porte Philippe-Jean auchâteau : place Guillaume-le-Conquérant et rue de la Porte-Philippe-Jean (cad. E 585, 572, 578) , place Guillaume-le-Conquérant (cad. E 594, 610, 612, 613) : inscription par arrêté du 19 juin 1951\";\"1927/05/31 : inscrit MH ; 1930/03/13 : classé MH ; 1951/06/19 : inscrit MH\";\"propriété de la commune ; propriété d'une personne privée\";\"Porte-du-Château (rue) ; Blâcher (rue) ; Amiral-Courbet (rue) ; Georges-Clémenceau (rue) ; Victor-Hugo (rue) ; Sergent-Goubin (rue du) ; Gambetta (rue) ; Frédéric-Gaberon (rue) ; Cordeliers (rue des) ; Camp-Ferme (rue du) ; Guillaume-le-Conquérant (place)\";14258;;Recensement immeubles MH;PA00111315;48.8957800281, -0.193401711782;14;Basse-Normandie;basse normandie",
+        ]
+
         Analyser_Merge.__init__(self, config, logger,
-            u"https://data.culturecommunication.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
+            u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Immeubles protégés au titre des Monuments Historiques",
-            # Original without accurate location, geocoded with https://adresse.data.gouv.fr/csv
-            CSV(Source(attribution = u"Ministère de la Culture", millesime = "07/2018",
-                    file = "heritage_FR_merimee.csv.bz2"),
+            CSV(Geocode_Addok_CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
+                    fileUrl = u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
+                    filter = lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore'))),
+                columns = 'Adresse', citycode = 'INSEE', delimiter = u';', logger = logger),
                 separator = u';'),
             Load("longitude", "latitude",
                 select = {u"Date de Protection": True}),
