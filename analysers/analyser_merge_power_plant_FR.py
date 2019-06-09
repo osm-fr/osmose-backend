@@ -23,6 +23,7 @@
 import re
 from io import open # In python3 only, this import is not required
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from .modules import downloader
 
 
@@ -33,8 +34,9 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
             u"Registre national des installations de production d'électricité et de stockage",
-            CSV(Power_Plant_FR_Source(attribution = u"data.gouv.fr:RTE", millesime = "2017",
-                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true", logger=logger),
+            CSV(Geocode_Addok_CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2017",
+                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    columns = 'Commune', citycode = 'codeINSEECommune', delimiter = ';', logger = logger),
                 separator = u";"),
             Load("longitude", "latitude",
                 where = lambda res: res.get('max_puissance') and float(res["max_puissance"]) > 1000),
@@ -55,7 +57,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                     mapping2 = {
                         "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
                    tag_keep_multiple_values = ["voltage"],
-                   text = lambda tags, fields: T_(u"Power plant %s", fields["nomInstallation"]) if fields["nomInstallation"] != 'None' else None)))
+                   text = lambda tags, fields: T_(u"Power plant %s", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["Commune"]]))) )))
 
     filiere = {
         u"Autre": {
@@ -81,37 +83,3 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
             u"Fioul": "oil",
             u"Gaz": "gaz"},
      }
-
-
-class Power_Plant_FR_Source(Source):
-
-    def open(self):
-      return open(downloader.update_cache('geocoded://' + self.fileUrl, 60, self.fetch))
-
-    def fetch(self, url, tmp_file, date_string=None):
-        service = u'https://api-adresse.data.gouv.fr/search/csv/'
-        outfile = open(tmp_file, 'w', encoding='utf-8')
-
-        content = Source.open(self).readlines()
-        header = content[0:1]
-        step = 2000
-        slices = int((len(content)-1) / step) + 1
-        for i in range(0, slices):
-            self.logger.log("Geocode slice {0}/{1}".format(i, slices))
-            slice = '\n'.join(header + content[1 + step*i : step*(i+1)])
-            r = downloader.requests_retry_session().post(url=service, data={
-                'delimiter': ';',
-                'encoding': 'utf-8',
-                'columns': 'Commune',
-                'citycode': 'codeINSEECommune',
-            }, files={
-                'data': slice,
-            })
-            r.raise_for_status()
-            if i == 0:
-                text = '\n'.join(r.text.split('\n')[0:])
-            else:
-                text = '\n'.join(r.text.split('\n')[1:])
-            writer = outfile.write(text)
-
-        return True
