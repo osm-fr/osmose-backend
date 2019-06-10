@@ -34,10 +34,11 @@ from datetime import datetime, timedelta
 
 
 class Source_Mapillary(Source):
-    def __init__(self, country, polygon_id, mapping, layer, **args):
+    def __init__(self, country, polygon_id, mapping, layer, logger, **args):
       self.polygon_id = polygon_id
       self.mapping = mapping
       self.layer = layer
+      self.logger = logger
       Source.__init__(self, **args)
       self.fileUrl = u'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version(self.mapping))
       self.fileUrlCache = 120
