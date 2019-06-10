@@ -540,7 +540,7 @@ class GTFS(CSV):
 
 class Load(object):
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
-            select = {}, uniq = None, where = lambda res: True, xFunction = lambda i: i, yFunction = lambda i: i):
+            select = {}, uniq = None, where = lambda res: True, map = lambda i: i, xFunction = lambda i: i, yFunction = lambda i: i):
         """
         Describ the conversion of data set loaded with COPY into the database into an other table more usable for processing.
         @param x: the name of x column, as or converted to longitude, can be a SQL expression formatted as ("SQL CODE",)
@@ -551,6 +551,7 @@ class Load(object):
         @param select: dict reformatted as SQL to filter row import before conversion, prefer this as the where param
         @param uniq: select distinct by column list
         @param where: lambda expression taking row as dict and returning boolean to determine whether or not inserting the row into the table
+        @param map: lambda return a replace record
         @param xFunction: lambda expression for convert x content column before reprojection, identity by default
         @param yFunction: lambda expression for convert y content column before reprojection, identity by default
         """
@@ -562,6 +563,7 @@ class Load(object):
         self.select = select
         self.uniq = uniq
         self.where = where
+        self.map = map
         self.xFunction = xFunction
         self.yFunction = yFunction
 
@@ -642,9 +644,12 @@ class Load(object):
             giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             mult_space = re.compile(r'\s+')
             def insertOfficial(res):
-                x = self.xFunction(res[0])
-                y = self.yFunction(res[1])
-                if (not self.pip or (x and y)) and self.where(res):
+                if not self.where(res):
+                    return
+                res = self.map(res)
+                x = self.xFunction(res['_x'])
+                y = self.yFunction(res['_y'])
+                if not self.pip or (x and y):
                     is_pip = False
                     if self.pip:
                         giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})

@@ -25,6 +25,7 @@ from io import open # In python3 only, this import is not required
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from .modules import downloader
+from .modules import Stablehash
 
 
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
@@ -39,7 +40,8 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                     columns = 'Commune', citycode = 'codeINSEECommune', delimiter = ';', logger = logger),
                 separator = u";"),
             Load("longitude", "latitude",
-                where = lambda res: res.get('max_puissance') and float(res["max_puissance"]) > 1000),
+                where = lambda res: res.get('max_puissance') and float(res["max_puissance"]) > 1000,
+                map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001})),
             Mapping(
                 select = Select(
                     types = ["ways", "relations"],
