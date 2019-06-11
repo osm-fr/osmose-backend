@@ -1,0 +1,953 @@
+[
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "10.71C",
+    "level": 3,
+    "title": "Boulangerie et boulangerie-pâtisserie",
+    "match": [
+      {
+        "shop": "bakery"
+      }
+    ],
+    "generate": {
+      "shop": "bakery"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "10.71D",
+    "level": 3,
+    "title": "Pâtisserie",
+    "match": [
+      {
+        "shop": "pastry"
+      }
+    ],
+    "generate": {
+      "shop": "pastry"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "45.20A",
+    "level": 3,
+    "title": "Entretien et réparation de véhicules automobiles",
+    "match": [
+      {
+        "shop": "car_repair"
+      }
+    ],
+    "generate": {
+      "shop": "car_repair"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "45.32Z",
+    "level": 3,
+    "title": "Commerce de détail d'équipements automobiles",
+    "match": [
+      {
+        "shop": "car_parts"
+      }
+    ],
+    "generate": {
+      "shop": "car_parts"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "45.40Z",
+    "level": 3,
+    "title": "Commerce et réparation de motocycles",
+    "match": [
+      {
+        "shop": "motorcycle"
+      },
+      {
+        "shop": "motorcycle_repair"
+      }
+    ],
+    "generate": {
+      "shop": "motorcycle;motorcycle_repair",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.11A",
+    "level": 3,
+    "title": "Commerce de détail de produits surgelés",
+    "match": [
+      {
+        "shop": "frozen_food"
+      }
+    ],
+    "generate": {
+      "shop": "frozen_food"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.11C",
+    "level": 3,
+    "title": "Supérettes",
+    "match": [
+      {
+        "shop": "convenience"
+      }
+    ],
+    "generate": {
+      "shop": "convenience"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.11D",
+    "level": 3,
+    "title": "Supermarchés",
+    "match": [
+      {
+        "shop": "supermarket"
+      }
+    ],
+    "generate": {
+      "shop": "supermarket"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.11F",
+    "level": 3,
+    "title": "Hypermarchés",
+    "match": [
+      {
+        "shop": "supermarket"
+      }
+    ],
+    "generate": {
+      "shop": "supermarket"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.19A",
+    "level": 3,
+    "title": "Grands magasins",
+    "match": [
+      {
+        "shop": "department_store"
+      }
+    ],
+    "generate": {
+      "shop": "department_store"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.21Z",
+    "level": 3,
+    "title": "Commerce de détail de fruits et légumes en magasin spécialisé",
+    "match": [
+      {
+        "shop": "grocery"
+      },
+      {
+        "shop": "farm"
+      },
+      {
+        "shop": "greengrocer"
+      }
+    ],
+    "generate": {
+      "shop": "grocery;farm;greengrocer",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.22Z",
+    "level": 3,
+    "title": "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé",
+    "match": [
+      {
+        "shop": "butcher"
+      }
+    ],
+    "generate": {
+      "shop": "butcher"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.23Z",
+    "level": 3,
+    "title": "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé",
+    "match": [
+      {
+        "shop": "seafood"
+      }
+    ],
+    "generate": {
+      "shop": "seafood"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.24Z",
+    "level": 3,
+    "title": "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé",
+    "match": [
+      {
+        "shop": "bakery"
+      }
+    ],
+    "generate": {
+      "shop": "bakery"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.25Z",
+    "level": 3,
+    "title": "Commerce de détail de boissons en magasin spécialisé",
+    "match": [
+      {
+        "shop": "beverages"
+      }
+    ],
+    "generate": {
+      "shop": "beverages"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.26Z",
+    "level": 3,
+    "title": "Commerce de détail de produits à base de tabac en magasin spécialisé",
+    "match": [
+      {
+        "shop": "tobacco"
+      }
+    ],
+    "generate": {
+      "shop": "tobacco"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.30Z",
+    "level": 3,
+    "title": "Commerce de détail de carburants en magasin spécialisé",
+    "match": [
+      {
+        "amenity": "fuel"
+      }
+    ],
+    "generate": {
+      "amenity": "fuel"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.41Z",
+    "level": 3,
+    "title": "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé",
+    "match": [
+      {
+        "shop": "computer"
+      },
+      {
+        "shop": "video_games"
+      }
+    ],
+    "generate": {
+      "shop": "computer;video_games",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.42Z",
+    "level": 3,
+    "title": "Commerce de détail de matériels de télécommunication en magasin spécialisé",
+    "match": [
+      {
+        "shop": "mobile_phone"
+      }
+    ],
+    "generate": {
+      "shop": "mobile_phone"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.43Z",
+    "level": 3,
+    "title": "Commerce de détail de matériels audio et vidéo en magasin spécialisé",
+    "match": [
+      {
+        "shop": "hifi"
+      }
+    ],
+    "generate": {
+      "shop": "hifi"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.51Z",
+    "level": 3,
+    "title": "Commerce de détail de textiles en magasin spécialisé",
+    "match": [
+      {
+        "shop": "fabric"
+      },
+      {
+        "shop": "fabric"
+      }
+    ],
+    "generate": {
+      "shop": "fabric;wool",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.53Z",
+    "level": 3,
+    "title": "Commerce de détail de tapis, moquettes et revêtements de murs et de sols en magasin spécialisé",
+    "match": [
+      {
+        "shop": "carpet"
+      }
+    ],
+    "generate": {
+      "shop": "carpet"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.59A",
+    "level": 3,
+    "title": "Commerce de détail de meubles",
+    "match": [
+      {
+        "shop": "furniture"
+      },
+      {
+        "shop": "furniture"
+      }
+    ],
+    "generate": {
+      "shop": "furniture;kitchen",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.61Z",
+    "level": 3,
+    "title": "Commerce de détail de livres en magasin spécialisé",
+    "match": [
+      {
+        "shop": "books"
+      }
+    ],
+    "generate": {
+      "shop": "books"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.62Z",
+    "level": 3,
+    "title": "Commerce de détail de journaux et papeterie en magasin spécialisé",
+    "match": [
+      {
+        "shop": "newsagent"
+      }
+    ],
+    "generate": {
+      "shop": "newsagent"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.63Z",
+    "level": 3,
+    "title": "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé",
+    "match": [
+      {
+        "shop": "music"
+      },
+      {
+        "shop": "video"
+      }
+    ],
+    "generate": {
+      "shop": "music;video",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.64Z",
+    "level": 3,
+    "title": "Commerce de détail d'articles de sport en magasin spécialisé",
+    "match": [
+      {
+        "shop": "sports"
+      },
+      {
+        "shop": "outdoor"
+      }
+    ],
+    "generate": {
+      "shop": "sports;outdoor",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.65Z",
+    "level": 3,
+    "title": "Commerce de détail de jeux et jouets en magasin spécialisé",
+    "match": [
+      {
+        "shop": "toys"
+      },
+      {
+        "shop": "games"
+      }
+    ],
+    "generate": {
+      "shop": "toys;games",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.71Z",
+    "level": 3,
+    "title": "Commerce de détail d'habillement en magasin spécialisé",
+    "match": [
+      {
+        "shop": "clothes"
+      }
+    ],
+    "generate": {
+      "shop": "clothes"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.72A",
+    "level": 3,
+    "title": "Commerce de détail de la chaussure",
+    "match": [
+      {
+        "shop": "shoes"
+      }
+    ],
+    "generate": {
+      "shop": "shoes"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.72B",
+    "level": 3,
+    "title": "Commerce de détail de maroquinerie et d'articles de voyage",
+    "match": [
+      {
+        "shop": "bag"
+      }
+    ],
+    "generate": {
+      "shop": "bag"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.73Z",
+    "level": 3,
+    "title": "Commerce de détail de produits pharmaceutiques en magasin spécialisé",
+    "match": [
+      {
+        "amenity": "pharmacy"
+      }
+    ],
+    "generate": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.75Z",
+    "level": 3,
+    "title": "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé",
+    "match": [
+      {
+        "shop": "perfumery"
+      }
+    ],
+    "generate": {
+      "shop": "perfumery"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.76Z",
+    "level": 3,
+    "title": "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé",
+    "match": [
+      {
+        "shop": "florist"
+      },
+      {
+        "shop": "pet"
+      }
+    ],
+    "generate": {
+      "shop": "florist;pet",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.77Z",
+    "level": 3,
+    "title": "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé",
+    "match": [
+      {
+        "shop": "watches"
+      },
+      {
+        "shop": "jewelry"
+      }
+    ],
+    "generate": {
+      "shop": "watches;jewelry",
+      "note": "FIXME select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.78A",
+    "level": 3,
+    "title": "Commerces de détail d'optique",
+    "match": [
+      {
+        "shop": "optician"
+      }
+    ],
+    "generate": {
+      "shop": "optician"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.79Z",
+    "level": 3,
+    "title": "Commerce de détail de biens d'occasion en magasin",
+    "match": [
+      {
+        "shop": "second_hand"
+      }
+    ],
+    "generate": {
+      "shop": "second_hand"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "55.10Z",
+    "level": 3,
+    "title": "Hôtels et hébergement similaire",
+    "match": [
+      {
+        "tourism": "hotel"
+      }
+    ],
+    "generate": {
+      "tourism": "hotel"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "55.30Z",
+    "level": 3,
+    "title": "Terrains de camping et parcs pour caravanes ou véhicules de loisirs",
+    "match": [
+      {
+        "tourism": "camp_site"
+      }
+    ],
+    "generate": {
+      "tourism": "camp_site"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "56.10A",
+    "level": 3,
+    "title": "Restauration traditionnelle",
+    "match": [
+      {
+        "amenity": "restaurant"
+      }
+    ],
+    "generate": {
+      "amenity": "restaurant"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "56.10C",
+    "level": 3,
+    "title": "Restauration de type rapide",
+    "match": [
+      {
+        "amenity": "fast_food"
+      }
+    ],
+    "generate": {
+      "amenity": "fast_food"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "56.30Z",
+    "level": 3,
+    "title": "Débits de boissons",
+    "match": [
+      {
+        "amenity": "bar"
+      },
+      {
+        "amenity": "cafe"
+      },
+      {
+        "amenity": "pub"
+      }
+    ],
+    "generate": {
+      "amenity": "bar;cafe;pub",
+      "note": "FIXME select an amenity type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "59.14Z",
+    "level": 3,
+    "title": "Projection de films cinématographiques",
+    "match": [
+      {
+        "amenity": "cinema"
+      }
+    ],
+    "generate": {
+      "amenity": "cinema"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "71.11Z",
+    "level": 3,
+    "title": "Activités d'architecture",
+    "match": [
+      {
+        "office": "architect"
+      }
+    ],
+    "generate": {
+      "office": "architect"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "71.12A",
+    "level": 3,
+    "title": "Activité des géomètres",
+    "match": [
+      {
+        "office": "surveyor"
+      }
+    ],
+    "generate": {
+      "office": "surveyor"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "75.00Z",
+    "level": 3,
+    "title": "Activités vétérinaires",
+    "match": [
+      {
+        "amenity": "veterinary"
+      }
+    ],
+    "generate": {
+      "amenity": "veterinary"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "77.22Z",
+    "level": 3,
+    "title": "Location de vidéocassettes et disques vidéo",
+    "match": [
+      {
+        "shop": "video"
+      }
+    ],
+    "generate": {
+      "shop": "video"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "78.10Z",
+    "level": 3,
+    "title": "Activités des agences de placement de main-d'œuvre",
+    "match": [
+      {
+        "office": "employment_agency"
+      }
+    ],
+    "generate": {
+      "office": "employment_agency"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "79.11Z",
+    "level": 3,
+    "title": "Activités des agences de voyage",
+    "match": [
+      {
+        "shop": "travel_agency"
+      }
+    ],
+    "generate": {
+      "shop": "travel_agency"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "86.10Z",
+    "level": 3,
+    "title": "Activités hospitalières",
+    "match": [
+      {
+        "amenity": "hospital"
+      }
+    ],
+    "generate": {
+      "amenity": "hospital"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "86.21Z",
+    "level": 3,
+    "title": "Activité des médecins généralistes",
+    "match": [
+      {
+        "amenity": "doctors"
+      }
+    ],
+    "generate": {
+      "amenity": "doctors"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "86.23Z",
+    "level": 3,
+    "title": "Pratique dentaire",
+    "match": [
+      {
+        "amenity": "dentist"
+      }
+    ],
+    "generate": {
+      "amenity": "dentist"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "87.30A",
+    "level": 3,
+    "title": "Hébergement social pour personnes âgées",
+    "match": [
+      {
+        "amenity": "social_facility",
+        "social_facility": "group_home",
+        "social_facility:for": "senior"
+      }
+    ],
+    "generate": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "senior"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "87.30B",
+    "level": 3,
+    "title": "Hébergement social pour handicapés  physiques",
+    "match": [
+      {
+        "amenity": "social_facility",
+        "social_facility": "group_home",
+        "social_facility:for": "disabled"
+      }
+    ],
+    "generate": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "disabled"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "87.90A",
+    "level": 3,
+    "title": "Hébergement social pour enfants en difficultés",
+    "match": [
+      {
+        "amenity": "social_facility",
+        "social_facility": "group_home",
+        "social_facility:for": "child"
+      }
+    ],
+    "generate": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "child"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "87.90B",
+    "level": 3,
+    "title": "Hébergement social pour adultes et familles en difficultés et autre hébergement social",
+    "match": [
+      {
+        "amenity": "social_facility",
+        "social_facility": "group_home",
+        "social_facility:for": "underprivileged"
+      }
+    ],
+    "generate": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "underprivileged"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "96.02A",
+    "level": 3,
+    "title": "Coiffure",
+    "match": [
+      {
+        "shop": "hairdresser"
+      }
+    ],
+    "generate": {
+      "shop": "hairdresser"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "96.02B",
+    "level": 3,
+    "title": "Soins de beauté",
+    "match": [
+      {
+        "shop": "beauty"
+      }
+    ],
+    "generate": {
+      "shop": "beauty"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "96.03Z",
+    "level": 3,
+    "title": "Services funéraires",
+    "match": [
+      {
+        "shop": "funeral_directors"
+      }
+    ],
+    "generate": {
+      "shop": "funeral_directors"
+    }
+  }
+]
