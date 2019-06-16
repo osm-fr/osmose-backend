@@ -91,6 +91,9 @@ running. You can stop them with `docker-compose stop`.
 Note: if you don't need the frontend just remove `-f
 docker-compose-frontend.yml`.
 
+Note: You will need to compile the OMS PBF parser as mentioned in the
+top-level README file.
+
 Running the analysis and showing the result on the map
 ------------------------------------------------------
 
