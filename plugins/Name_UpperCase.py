@@ -36,8 +36,12 @@ class Name_UpperCase(Plugin):
         self.errors[803] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Name with uppercase") }
         self.UpperTitleCase = re.compile(u".*[\p{Lu}\p{Lt}]{5,}")
         self.RomanNumber = re.compile(u".*[IVXCDLM]{5,}")
-        country = self.father.config.options.get("country")[:2]
-        self.whitelist = UpperCase_WhiteList.get(country, None)
+
+        if "country" in self.father.config.options:
+            country = self.father.config.options.get("country")[:2]
+            self.whitelist = UpperCase_WhiteList.get(country, None)
+        else:
+            self.whitelist = None
 
     def node(self, data, tags):
         err = []
