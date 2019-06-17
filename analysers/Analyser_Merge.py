@@ -279,7 +279,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None, logger = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -289,7 +289,6 @@ class Source:
         @param zip: extract file from zip
         @param gzip: uncompress as gzip
         @param filter: lambda expression applied on text file before loading
-        @param logger: a logger
         """
         self.attribution = attribution
         self.millesime = millesime
@@ -300,7 +299,6 @@ class Source:
         self.zip = zip
         self.gzip = gzip
         self.filter = filter
-        self.logger = logger
 
         if self.file:
             if not os.path.isabs(self.file):
@@ -542,7 +540,7 @@ class GTFS(CSV):
 
 class Load(object):
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
-            select = {}, uniq = None, where = lambda res: True, xFunction = lambda i: i, yFunction = lambda i: i):
+            select = {}, uniq = None, where = lambda res: True, map = lambda i: i, xFunction = lambda i: i, yFunction = lambda i: i):
         """
         Describ the conversion of data set loaded with COPY into the database into an other table more usable for processing.
         @param x: the name of x column, as or converted to longitude, can be a SQL expression formatted as ("SQL CODE",)
@@ -553,6 +551,7 @@ class Load(object):
         @param select: dict reformatted as SQL to filter row import before conversion, prefer this as the where param
         @param uniq: select distinct by column list
         @param where: lambda expression taking row as dict and returning boolean to determine whether or not inserting the row into the table
+        @param map: lambda return a replace record
         @param xFunction: lambda expression for convert x content column before reprojection, identity by default
         @param yFunction: lambda expression for convert y content column before reprojection, identity by default
         """
@@ -564,6 +563,7 @@ class Load(object):
         self.select = select
         self.uniq = uniq
         self.where = where
+        self.map = map
         self.xFunction = xFunction
         self.yFunction = yFunction
 
@@ -644,9 +644,12 @@ class Load(object):
             giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             mult_space = re.compile(r'\s+')
             def insertOfficial(res):
-                x = self.xFunction(res[0])
-                y = self.yFunction(res[1])
-                if (not self.pip or (x and y)) and self.where(res):
+                if not self.where(res):
+                    return
+                res = self.map(res)
+                x = self.xFunction(res['_x'])
+                y = self.yFunction(res['_y'])
+                if not self.pip or (x and y):
                     is_pip = False
                     if self.pip:
                         giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
@@ -875,9 +878,9 @@ class Analyser_Merge(Analyser_Osmosis):
                         LEFT JOIN LATERAL regexp_split_to_table(tags->'%(ref)s', ';') a(ref) ON true
                     WHERE""" + ("""
                         %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
-                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
+                        ST_SetSRID(ST_Expand(ST_GeomFromText('%(bbox)s'), %(distance)s), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
                         tags != ''::hstore AND
-                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "where":where},
+                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "distance": self.mapping.conflationDistance, "where":where},
                     self.mapping.select.types
                 )
             ))

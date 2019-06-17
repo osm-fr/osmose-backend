@@ -79,7 +79,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     tags = {
 #                        "heritage": ["1", "2", "3"],
                         "heritage:operator": None,
-                        "ref:mhs": lambda t: "{0} NOT LIKE 'PM%'".format(t)}), # Not a Palissy ref
+                        "ref:mhs": lambda t: "{0} NOT LIKE 'PM%' AND {0} NOT LIKE 'IA%'".format(t)}), # Not a Palissy ref nor "Inventaire général du patrimoine culturel" ref
                 osmRef = "ref:mhs",
                 conflationDistance = 1000,
                 generate = Generate(
