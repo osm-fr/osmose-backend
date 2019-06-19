@@ -34,7 +34,8 @@ WHERE
     highway = 'motorway' OR
     (highway = 'trunk' AND is_oneway)
   ) AND
-  tags?'turn:lanes'
+  tags?'turn:lanes' AND
+  NOT is_area
 """
 
 sql11 = """

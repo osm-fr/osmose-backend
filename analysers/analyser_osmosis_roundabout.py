@@ -36,7 +36,7 @@ WHERE
     -- tags
     ways.level < 5 AND -- it's a car road
     NOT is_roundabout AND
-    NOT ways.tags?'area' AND
+    NOT is_area AND
     (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- no name or start with 'Rond' or 'Giratoire' (French)
     -- geometry
     ways.is_polygon AND -- It's a polygon

@@ -60,6 +60,7 @@ FROM
     highways
 WHERE
     is_roundabout AND
+    NOT is_area AND
     array_length(nodes, 1) > 3 AND
     nodes[1] = nodes[array_length(nodes,1)] AND
     level(highway) IS NOT NULL
@@ -237,7 +238,7 @@ FROM
 WHERE
     ways.highway NOT IN ('footway') AND
     ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
-    NOT ways.tags?'area'
+    NOT is_area
 """
 
 class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
