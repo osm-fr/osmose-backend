@@ -62,7 +62,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = selectTags),
-                conflationDistance = 200,
+                conflationDistance = 50,
                 generate = Generate(
                     static1 = generateTags,
                     static2 = {"source": self.source},
