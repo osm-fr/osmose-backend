@@ -35,6 +35,7 @@ FROM
         FROM
             highways
         WHERE
+            NOT is_construction AND
             highway != 'cycleway' AND
             tags?'cycleway' AND
             tags->'cycleway' IN ('track', 'opposite_track')
@@ -46,6 +47,7 @@ FROM
         FROM
             highways
         WHERE
+            NOT is_construction AND
             highway = 'cycleway'
     ) AS cycleway ON
         cycle_track.linestring && cycleway.linestring AND

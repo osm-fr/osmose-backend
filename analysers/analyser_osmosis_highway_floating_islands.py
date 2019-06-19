@@ -79,6 +79,8 @@ CREATE TEMP TABLE islands0 AS
     highways
     JOIN bbox_array ON
       bbox_array.extent IS NULL OR bbox_array.extent && highways.linestring
+  WHERE
+    NOT highways.is_construction
   GROUP BY
     bbox_array.extent
 """
@@ -120,6 +122,7 @@ FROM
     islands.cluster_id IN (SELECT cluster_id FROM connected_islands) AND
     ST_Intersects(islands.linestring, highways.linestring)
 WHERE
+  NOT highways.is_construction AND
   highways.level IS NOT NULL AND
   islands.linestring IS NULL
 """

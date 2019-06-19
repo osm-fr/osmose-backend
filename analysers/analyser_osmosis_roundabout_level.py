@@ -61,6 +61,7 @@ FROM
 WHERE
     is_roundabout AND
     NOT is_area AND
+    NOT is_construction AND
     array_length(nodes, 1) > 3 AND
     nodes[1] = nodes[array_length(nodes,1)] AND
     level(highway) IS NOT NULL
@@ -87,7 +88,8 @@ FROM
     JOIN highways AS ways ON
         roundabout.linestring && ways.linestring AND
         roundabout.nodes && ways.nodes AND
-        roundabout.id != ways.id
+        roundabout.id != ways.id AND
+        NOT ways.is_construction
 """
 
 sql15 = """
@@ -165,7 +167,8 @@ FROM
     JOIN highways AS ways ON
         roundabout.linestring && ways.linestring AND
         (ways.nodes[1] = ANY (roundabout.nodes) OR ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes)) AND
-        roundabout.id != ways.id
+        roundabout.id != ways.id AND
+        NOT ways.is_construction
 WHERE
     ways.highway IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
 """
@@ -203,7 +206,8 @@ FROM
       ways.highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
       ways.linestring && roundabout.linestring AND
       ways.nodes && roundabout.nodes AND
-      ways.id != roundabout.id
+      ways.id != roundabout.id AND
+      NOT ways.is_construction
 """
 
 sql31 = """
@@ -236,6 +240,7 @@ FROM
         roundabout.linestring && ways.linestring AND
         roundabout.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
+    NOT ways.is_construction AND
     ways.highway NOT IN ('footway') AND
     ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
     NOT is_area

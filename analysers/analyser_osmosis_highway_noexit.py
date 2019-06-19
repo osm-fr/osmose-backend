@@ -36,6 +36,8 @@ FROM
       nodes.tags != ''::hstore AND
       nodes.tags?'noexit' AND
       nodes.tags->'noexit' = 'yes'
+WHERE
+    NOT ways.is_construction
 GROUP BY
     nodes.id,
     nodes.geom
@@ -60,7 +62,9 @@ FROM
             w1.linestring && w2.linestring AND
             w1.nodes && w2.nodes
     WHERE
-        w1.tags?'noexit' = 'yes'
+        w1.tags?'noexit' = 'yes' AND
+        NOT w1.is_construction AND
+        NOT w2.is_construction
     GROUP BY
         w1.id,
         w1.linestring,

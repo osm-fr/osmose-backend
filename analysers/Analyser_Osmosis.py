@@ -46,6 +46,7 @@ SELECT
     (tags?'junction' AND tags->'junction' = 'roundabout') AS is_roundabout,
     (tags?'oneway' AND tags->'oneway' IN ('yes', 'true', '1', '-1')) AS is_oneway,
     (tags?'area' AND tags->'area' != 'no') AS is_area,
+    tags->'highway' IN ('planned', 'proposed', 'construction') AS is_construction,
     CASE tags->'highway'
         WHEN 'motorway' THEN 1
         WHEN 'primary' THEN 1
@@ -73,7 +74,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
-    tags->'highway' NOT IN ('services', 'planned', 'proposed', 'construction', 'rest_area', 'razed', 'no') AND
+    tags->'highway' NOT IN ('services', 'rest_area', 'razed', 'no') AND
     ST_NPoints(linestring) >= 2
 ;
 
@@ -98,7 +99,8 @@ SELECT
 FROM
     highways
 WHERE
-    NOT is_area
+    NOT is_area AND
+    NOT is_construction
 ;
 
 ANALYZE {0}.highway_ends;

@@ -159,6 +159,7 @@ FROM
     JOIN highways AS ways ON
         ways.id = relation_members.member_id AND
         NOT is_area AND
+        NOT is_construction AND
         ST_NPoints(ways.linestring) > 1
 WHERE
     nwfrom = 1 AND

@@ -39,7 +39,8 @@ FROM
         way_nodes.node_id = network.nid AND
         way_nodes.way_id != network.id
     JOIN highways AS ways ON
-        ways.id = way_nodes.way_id
+        ways.id = way_nodes.way_id AND
+        NOT ways.is_construction
 WHERE
     network.nodes[1] != network.nodes[array_length(network.nodes,1)] AND
     network.highway IN ('primary', 'secondary', 'tertiary')

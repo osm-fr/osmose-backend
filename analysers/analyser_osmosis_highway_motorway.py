@@ -33,7 +33,8 @@ FROM
     highways.nodes && motorways.nodes AND
     highways.highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'escape') AND
     NOT(highways.tags?'access' AND highways.tags->'access' IN ('no', 'private', 'emergency')) AND
-    NOT(highways.highway = 'service' AND highways.tags->'service' = 'emergency_access')
+    NOT(highways.highway = 'service' AND highways.tags->'service' = 'emergency_access') AND
+    NOT highways.is_construction
   JOIN nodes ON
     nodes.id = (SELECT * FROM (SELECT unnest(highways.nodes) INTERSECT SELECT unnest(motorways.nodes)) AS t LIMIT 1)
 WHERE

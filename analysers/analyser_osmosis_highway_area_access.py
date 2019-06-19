@@ -36,7 +36,8 @@ FROM
   JOIN {1}highways AS ways ON
     ways.id = way_nodes.way_id AND
     ways.highway = 'pedestrian' AND
-    NOT ways.is_area
+    NOT ways.is_area AND
+    NOT ways.is_construction
 WHERE
   nodes.tags != ''::hstore AND
   nodes.tags?'barrier' AND
