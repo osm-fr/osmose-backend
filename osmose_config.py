@@ -234,11 +234,11 @@ def gen_country(area, path_base=None,
 
         default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country)
 
-        for analyser in exclude_default + exclude:
-            del(self.analyser[analyser])
-
         for analyser in include_default + include:
             self.analyser[analyser] = 'xxx'
+
+        for analyser in exclude_default + exclude:
+            del(self.analyser[analyser])
 
     class gen(default_country):
         __init__ = init
@@ -253,6 +253,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'osmosis_fantoir',
     'osmosis_highway_motorway',
     'osmosis_highway_zone',
+    'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement("alsace/bas_rhin", 7415, "FR-67")
@@ -354,6 +355,8 @@ include_ile_de_france = [
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
     'merge_bicycle_parking_FR_paris',
+], exclude=[
+    'merge_shop_FR',
 ])
 france_departement("ile_de_france/hauts_de_seine", 7449, "FR-92", include=include_ile_de_france + [
     # Hauts-de-Seine
@@ -435,9 +438,7 @@ france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13",
     'merge_street_number_arles',
 ])
 france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
-france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84", include=[
-    'merge_shop_FR',
-])
+france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
 
 france_departement("rhone_alpes/ain", 7387, "FR-01")
 france_departement("rhone_alpes/ardeche", 7430, "FR-07")
@@ -473,6 +474,7 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'merge_healthcare_FR_finess',
     'merge_postal_code_FR',
     'merge_post_box_FR',
+    'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom("guadeloupe", 1401835, "FR-GP", proj=32620, phone_code="590")
