@@ -229,12 +229,14 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
 
         # Check langues for country are writen with alphabets
-        self.alphabet = 'language' in config.options and languages.languages_are_alphabets(config.options['language'])
-        if self.alphabet:
+        self.scripts = 'language' in config.options and languages.scripts(config.options['language'])
+        if self.scripts and len(self.scripts) == 1 and (self.scripts[0] == 'Latin' or self.scripts[0].startswith('[A-Za-z')):
             self.classs[1] = {"item":"5050", "level": 2, "tag": ["name", "fix:survey"], "desc": T_(u"Soundex test") } # FIXME "menu":"test soundex"
+        else:
+            self.scripts = None
 
     def analyser_osmosis_common(self):
-        if not self.alphabet:
+        if not self.scripts:
             return
 
         if "language" in self.config.options and self.config.options["language"] == "fr":
