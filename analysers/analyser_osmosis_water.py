@@ -43,7 +43,7 @@ WHERE
     tags->'natural' = 'water' AND
     (
       NOT tags?'water' OR
-      tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond')
+      tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond', 'fjord', 'harbour')
     )
   ) OR (
     tags?'natural' AND
@@ -80,7 +80,7 @@ WHERE
     relations.tags->'natural' = 'water' AND
     (
       NOT relations.tags?'water' OR
-      relations.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond')
+      relations.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond', 'fjord', 'harbour')
     )
   ) OR (
     relations.tags?'natural' AND
@@ -141,7 +141,7 @@ FROM
   LEFT JOIN water ON
     (objects.type != 'W' OR water.id != objects.id) AND
     objects.bbox && water.linestring AND
-    ST_DistanceSphere(objects.geom, water.linestring) < 30
+    ST_Distance_Sphere(objects.geom, water.linestring) < 30
 WHERE
   water IS NULL
 """
