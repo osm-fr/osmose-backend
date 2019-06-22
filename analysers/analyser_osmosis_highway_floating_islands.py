@@ -73,16 +73,16 @@ CREATE TEMP TABLE bbox_array AS (SELECT * FROM (VALUES (NULL::geometry)) AS t(ex
 
 sqlb13 = """
 CREATE TEMP TABLE islands0 AS
-  SELECT
-    unnest(ST_ClusterIntersecting(linestring)) AS geom
-  FROM
-    highways
-    JOIN bbox_array ON
-      bbox_array.extent IS NULL OR bbox_array.extent && highways.linestring
-  WHERE
-    NOT highways.is_construction
-  GROUP BY
-    bbox_array.extent
+SELECT
+  unnest(ST_ClusterIntersecting(linestring)) AS geom
+FROM
+  highways
+  JOIN bbox_array ON
+    bbox_array.extent IS NULL OR bbox_array.extent && highways.linestring
+WHERE
+  NOT highways.is_construction
+GROUP BY
+  bbox_array.extent
 """
 
 sqlb14 = """
@@ -95,7 +95,7 @@ FROM
 """
 
 sqlb15 = """
-DROP TABLE islands0;
+DROP TABLE islands0
 """
 
 sqlb16 = """
