@@ -51,38 +51,14 @@ sql11 = """
 CREATE INDEX idx_starts_linestring on starts USING gist(linestring)
 """
 
-sql12 = """
-CREATE TEMP TABLE bbox_array AS
-SELECT
-  ST_MakeEnvelope(
-    xmin + (xmax - xmin) / 8 * mx,
-    ymin + (ymax - ymin) / 8 * my,
-    xmin + (xmax - xmin) / 8 * (mx + 1),
-    ymin + (ymax - ymin) / 8 * (my + 1),
-    {0}
-  ) AS extent
-FROM
-  (VALUES ({1}, {2}, {3}, {4})) AS extent(xmin, ymin, xmax, ymax),
-  (SELECT generate_series(0, 8 - 1) AS mx) AS multx,
-  (SELECT generate_series(0, 8 - 1) AS my) AS multy
-"""
-
-sql12o = """
-CREATE TEMP TABLE bbox_array AS (SELECT * FROM (VALUES (NULL::geometry)) AS t(extent))
-"""
-
 sqlb13 = """
 CREATE TEMP TABLE islands0 AS
 SELECT
   unnest(ST_ClusterIntersecting(linestring)) AS geom
 FROM
   highways
-  JOIN bbox_array ON
-    bbox_array.extent IS NULL OR bbox_array.extent && highways.linestring
 WHERE
   NOT highways.is_construction
-GROUP BY
-  bbox_array.extent
 """
 
 sqlb14 = """
@@ -139,12 +115,6 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
     def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql11)
-        if False and self.config.polygon_id and 'proj' in self.config.options:
-            bboxes = Polygon(self.config.polygon_id).bboxes()
-            for bbox in bboxes:
-                self.run(sql12.format(self.config.options.get("proj"), *bbox))
-        else:
-            self.run(sql12o)
         self.run(sqlb13)
         self.run(sqlb14)
         self.run(sqlb15)
