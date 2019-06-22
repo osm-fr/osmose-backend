@@ -27,7 +27,7 @@ from .modules.Polygon import Polygon
 sql10 = """
 CREATE TEMP TABLE starts AS
 SELECT
-  ST_MakeLine(ST_StartPoint(linestring), ST_EndPoint(linestring)) as linestring,
+  linestring,
   id
 FROM
   ways
