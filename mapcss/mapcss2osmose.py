@@ -471,6 +471,14 @@ def filter_osmose_none_rules(rules):
         rules))
 
 
+def filter_area_rules(rules):
+    return list(filter(lambda rule: rule.get('_meta') or len(rule['selectors']) > 0, map(lambda rule:
+        rule.get('_meta') and rule or
+        rule.update({'selectors': list(filter(lambda selector: selector['simple_selectors'][0]['type_selector'] != 'area' or print("W: Skip area selector"), rule['selectors']))}) or rule,
+        rules
+    )))
+
+
 def stablehash(s):
     """
     Compute a stable positive integer hash on 32bits
@@ -759,6 +767,7 @@ def main(_, mapcss):
     tree = rewrite_tree(selectors_by_complexity['rules_meta'] + selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
+    tree = filter_area_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
     global class_, tests, regex_store, set_store
