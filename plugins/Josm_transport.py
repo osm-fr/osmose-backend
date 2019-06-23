@@ -26,9 +26,16 @@ class Josm_transport(Plugin):
         self.errors[9014010] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing transportation mode, change tag route to route_master')}
         self.errors[9014013] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check the operator tag')}
         self.errors[9014014] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check the network tag')}
+        self.errors[9014019] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'A bus stop is supposed to be a node')}
+        self.errors[9014020] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The color of the public transport line should be in a colour tag')}
+        self.errors[9014021] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The interval is invalid (try a number of minutes)')}
+        self.errors[9014022] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The duration is invalid (try a number of minutes)')}
+        self.errors[9014023] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing interval tag to specify the main interval')}
+        self.errors[9014024] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing opening_hours tag')}
 
         self.re_25554804 = re.compile(r'STIF|Kéolis|Véolia')
-        self.re_37f81db8 = re.compile(r'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$')
+        self.re_3d9f4d39 = re.compile(r'^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$')
+        self.re_6194d2a4 = re.compile(r'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus|walking_bus)$')
 
 
     def node(self, data, tags):
@@ -176,6 +183,25 @@ class Josm_transport(Plugin):
 
         return err
 
+    def way(self, data, tags, nds):
+        capture_tags = {}
+        keys = tags.keys()
+        err = []
+        set_pt_route = set_pt_route_master = False
+
+        # way[highway=bus_stop]
+        if (u'highway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("A bus stop is supposed to be a node")
+                err.append({'class': 9014019, 'subclass': 1153984743, 'text': mapcss.tr(u'A bus stop is supposed to be a node')})
+
+        return err
+
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
@@ -221,23 +247,23 @@ class Josm_transport(Plugin):
                     u'route'])
                 }})
 
-        # relation[type=route][route=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$/]
+        # relation[type=route][route=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus|walking_bus)$/]
         if (u'route' in keys and u'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6194d2a4), mapcss._tag_capture(capture_tags, 1, tags, u'route')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setpt_route
                 set_pt_route = True
 
-        # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$/]
+        # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus|walking_bus)$/]
         if (u'route_master' in keys and u'type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6194d2a4), mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setpt_route_master
@@ -335,6 +361,43 @@ class Josm_transport(Plugin):
                 # assertMatch:"relation type=route route=bus"
                 err.append({'class': 21405, 'subclass': 0, 'text': mapcss.tr(u'Missing from/to tag on a public_transport route relation')})
 
+        # relation.pt_route[tag(network)!=parent_tag(network)]
+        # Part of rule not implemented
+
+        # relation.pt_route[tag(operator)!=parent_tag(operator)]
+        # Part of rule not implemented
+
+        # relation.pt_route[tag(ref)!=parent_tag(ref)]
+        # Part of rule not implemented
+
+        # relation.pt_route[tag(colour)!=parent_tag(colour)]
+        # Part of rule not implemented
+
+        # relation.pt_route[tag(route)!=parent_tag(route_master)]
+        # Part of rule not implemented
+
+        # relation.pt_route[!colour][color]
+        # relation.pt_route_master[!colour][color]
+        if (u'color' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss._tag_capture(capture_tags, 1, tags, u'color'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss._tag_capture(capture_tags, 1, tags, u'color'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("The color of the public transport line should be in a colour tag")
+                # fixChangeKey:"color=>colour"
+                err.append({'class': 9014020, 'subclass': 218794881, 'text': mapcss.tr(u'The color of the public transport line should be in a colour tag'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'colour', mapcss.tag(tags, u'color')]]),
+                    '-': ([
+                    u'color'])
+                }})
+
         # relation.pt_route["operator"=~/STIF|Kéolis|Véolia/][inside("FR")]
         # relation.pt_route_master["operator"=~/STIF|Kéolis|Véolia/][inside("FR")]
         if (u'operator' in keys):
@@ -367,8 +430,83 @@ class Josm_transport(Plugin):
                 # throwError:tr("Check the network tag")
                 err.append({'class': 9014014, 'subclass': 735027962, 'text': mapcss.tr(u'Check the network tag')})
 
+        # relation[highway=bus_stop]
+        if (u'highway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("A bus stop is supposed to be a node")
+                err.append({'class': 9014019, 'subclass': 1590282811, 'text': mapcss.tr(u'A bus stop is supposed to be a node')})
+
         # relation.pt_route!.route_ok
         # Use undeclared class pt_route, route_ok
+
+        # relation.pt_route[interval][interval!~/^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
+        # relation.pt_route_master[interval][interval!~/^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
+        if (u'interval' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("The interval is invalid (try a number of minutes)")
+                err.append({'class': 9014021, 'subclass': 1893709522, 'text': mapcss.tr(u'The interval is invalid (try a number of minutes)')})
+
+        # relation.pt_route[duration][duration!~/^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
+        # relation.pt_route_master[duration][duration!~/^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
+        if (u'duration' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'duration') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'duration')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'duration') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'duration')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("The duration is invalid (try a number of minutes)")
+                err.append({'class': 9014022, 'subclass': 1468186952, 'text': mapcss.tr(u'The duration is invalid (try a number of minutes)')})
+
+        # relation.pt_route["interval:conditional"][!interval]
+        # relation.pt_route_master["interval:conditional"][!interval]
+        if (u'interval:conditional' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'interval:conditional') and not mapcss._tag_capture(capture_tags, 1, tags, u'interval'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'interval:conditional') and not mapcss._tag_capture(capture_tags, 1, tags, u'interval'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("Missing interval tag to specify the main interval")
+                err.append({'class': 9014023, 'subclass': 1710360237, 'text': mapcss.tr(u'Missing interval tag to specify the main interval')})
+
+        # relation.pt_route["interval:conditional"][!opening_hours]
+        # relation.pt_route_master["interval:conditional"][!opening_hours]
+        if (u'interval:conditional' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'interval:conditional') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'interval:conditional') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("Missing opening_hours tag")
+                err.append({'class': 9014024, 'subclass': 210081506, 'text': mapcss.tr(u'Missing opening_hours tag')})
 
         return err
 

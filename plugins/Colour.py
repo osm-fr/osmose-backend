@@ -26,8 +26,9 @@ class Colour(Plugin):
 
         # *[building:colour][building:colour=~/^#/][building:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^#/][roof:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
+        # *[colour][colour=~/^#/][colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[ref:colour][ref:colour=~/^#/][ref:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
-        if (u'building:colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
+        if (u'building:colour' in keys) or (u'colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -36,6 +37,10 @@ class Colour(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'roof:colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_30dca0d4), mapcss._tag_capture(capture_tags, 1, tags, u'roof:colour')) and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1b3f6ace), mapcss._tag_capture(capture_tags, 2, tags, u'roof:colour')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_30dca0d4), mapcss._tag_capture(capture_tags, 1, tags, u'colour')) and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1b3f6ace), mapcss._tag_capture(capture_tags, 2, tags, u'colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -49,8 +54,9 @@ class Colour(Plugin):
 
         # *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
+        # *[colour][colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[ref:colour][ref:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
-        if (u'building:colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
+        if (u'building:colour' in keys) or (u'colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -59,6 +65,10 @@ class Colour(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'roof:colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7d65c79d), mapcss._tag_capture(capture_tags, 1, tags, u'roof:colour')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7d65c79d), mapcss._tag_capture(capture_tags, 1, tags, u'colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -84,8 +94,9 @@ class Colour(Plugin):
 
         # *[building:colour][building:colour=~/^#/][building:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^#/][roof:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
+        # *[colour][colour=~/^#/][colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[ref:colour][ref:colour=~/^#/][ref:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
-        if (u'building:colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
+        if (u'building:colour' in keys) or (u'colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -94,6 +105,10 @@ class Colour(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'roof:colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_30dca0d4), mapcss._tag_capture(capture_tags, 1, tags, u'roof:colour')) and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1b3f6ace), mapcss._tag_capture(capture_tags, 2, tags, u'roof:colour')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_30dca0d4), mapcss._tag_capture(capture_tags, 1, tags, u'colour')) and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1b3f6ace), mapcss._tag_capture(capture_tags, 2, tags, u'colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -113,8 +128,9 @@ class Colour(Plugin):
 
         # *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
+        # *[colour][colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[ref:colour][ref:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
-        if (u'building:colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
+        if (u'building:colour' in keys) or (u'colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -123,6 +139,10 @@ class Colour(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'roof:colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7d65c79d), mapcss._tag_capture(capture_tags, 1, tags, u'roof:colour')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7d65c79d), mapcss._tag_capture(capture_tags, 1, tags, u'colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -153,8 +173,9 @@ class Colour(Plugin):
 
         # *[building:colour][building:colour=~/^#/][building:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^#/][roof:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
+        # *[colour][colour=~/^#/][colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[ref:colour][ref:colour=~/^#/][ref:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
-        if (u'building:colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
+        if (u'building:colour' in keys) or (u'colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -163,6 +184,10 @@ class Colour(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'roof:colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_30dca0d4), mapcss._tag_capture(capture_tags, 1, tags, u'roof:colour')) and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1b3f6ace), mapcss._tag_capture(capture_tags, 2, tags, u'roof:colour')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_30dca0d4), mapcss._tag_capture(capture_tags, 1, tags, u'colour')) and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1b3f6ace), mapcss._tag_capture(capture_tags, 2, tags, u'colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -176,8 +201,9 @@ class Colour(Plugin):
 
         # *[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
+        # *[colour][colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
         # *[ref:colour][ref:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/]
-        if (u'building:colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
+        if (u'building:colour' in keys) or (u'colour' in keys) or (u'ref:colour' in keys) or (u'roof:colour' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -186,6 +212,10 @@ class Colour(Plugin):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'roof:colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7d65c79d), mapcss._tag_capture(capture_tags, 1, tags, u'roof:colour')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'colour') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7d65c79d), mapcss._tag_capture(capture_tags, 1, tags, u'colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
