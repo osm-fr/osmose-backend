@@ -44,7 +44,7 @@ language2scripts = {
   'fa': ['Arabic', '[\u064B-\u064E\u0650-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac'
   'fi': ['Latin'],
   'fo': ['Latin'],
-  'fr': [u'[A-ZÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆa-zéàèùâêîôûëïüÿçœæ]'],
+  'fr': [u'[A-Za-zÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆéàèùâêîôûëïüÿçœæ]'],
   'fy': ['Latin'],
   'ga': ['Latin'],
   'gl': ['Latin'],
@@ -71,7 +71,7 @@ language2scripts = {
   'ms': ['Latin'],
   'my': None, # Birman
   'ne': ['Devanagari'],
-  'nl': [u'[A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÇÑa-záéíóúàèìòùäëïöüçñ]'],
+  'nl': [u'[A-Za-zÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÇÑáéíóúàèìòùäëïöüçñ]'],
   'no': ['Latin'],
   'pl': ['Latin'],
   'pt': ['Latin'],
@@ -82,9 +82,9 @@ language2scripts = {
   'sk': ['Latin'],
   'sl': ['Latin'],
   'so': ['Latin'],
-  'sq': [u'[A-ZÇËa-zçë]'],
+  'sq': [u'[A-Za-zÇËçë]'],
   'sr': ['Cyrillic'],
-  'sr-Latn': [u'[A-ZČĆĐŠŽa-zčćđšž]'],
+  'sr-Latn': [u'[A-Za-zČĆĐŠŽčćđšž]'],
   'sv': ['Latin'],
   'ta': ['Tamil'],
   'tg': ['Arabic', 'Cyrillic'],
@@ -102,18 +102,26 @@ language2scripts = {
 def script_is_alphabet(script):
     return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hebrew', 'Khmer', 'Latin', 'Lao', 'Manchu', 'Sinhala', 'Tamil', 'Thai', 'Tifinagh']
 
-def languages_are_alphabets(languages):
+def scripts(languages):
     if not languages:
-        return False
+        return
     if not isinstance(languages, list):
         languages = [languages]
+    all_scripts = []
     for language in languages:
         scripts = language2scripts[language]
         if not scripts:
+            return
+        all_scripts.append(*scripts)
+    return list(set(all_scripts))
+
+def languages_are_alphabets(languages):
+    scripts_ = scripts(languages)
+    if not scripts_:
+        return False
+    for script in scripts_:
+        if script[0] != '[' and not script_is_alphabet(script):
             return False
-        for script in scripts:
-            if script[0] != '[' and not script_is_alphabet(script):
-                return False
     return True
 
 def gen_regex(scripts):

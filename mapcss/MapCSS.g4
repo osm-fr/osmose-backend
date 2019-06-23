@@ -50,6 +50,10 @@ COMMA: ',';
 QUESTION_MARK: '?';
 OP_INCLUDED_IN: '∈';
 OP_INTERSECTS: '⧉';
+OP_SUBSET: '⊆';
+OP_SUPERSET: '⊇';
+OP_NOSUBSET: '⊈';
+OP_NOSUPERSET: '⊉';
 PAR_OPEN: '(';
 PAR_CLOSE: ')';
 DOT: '.';
@@ -160,7 +164,7 @@ selector
     | simple_selector simple_selector_operator simple_selector
     ;
 
-simple_selector_operator : OP_LT | OP_INCLUDED_IN | OP_INTERSECTS;
+simple_selector_operator : OP_LT | OP_INCLUDED_IN | OP_INTERSECTS | OP_SUBSET | OP_SUPERSET | OP_NOSUBSET | OP_NOSUPERSET;
 
 link_selector
     : LBRACKET ROLE valueOperator valueExpression RBRACKET

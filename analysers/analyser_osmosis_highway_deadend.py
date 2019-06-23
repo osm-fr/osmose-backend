@@ -31,7 +31,8 @@ FROM
     {0}highway_ends AS way_ends
     JOIN highways ON
         highways.linestring && way_ends.linestring AND
-        way_ends.nid = ANY(highways.nodes)
+        way_ends.nid = ANY(highways.nodes) AND
+        NOT highways.is_construction
     JOIN nodes ON
         nodes.id = way_ends.nid AND
         (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle')
@@ -69,6 +70,7 @@ FROM (
     FROM
       highways
     WHERE
+      NOT highways.is_construction AND
       highway != 'motorway' AND -- Ignore motorway even with oneway tag
       (
         is_oneway OR

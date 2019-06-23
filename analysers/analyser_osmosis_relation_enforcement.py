@@ -30,7 +30,8 @@ FROM
   nodes
   LEFT JOIN highways ON
     nodes.geom && highways.linestring AND
-    nodes.id = ANY (highways.nodes)
+    nodes.id = ANY (highways.nodes) AND
+    NOT highways.is_construction
   LEFT JOIN relation_members ON
     relation_members.member_type = 'N' AND
     relation_members.member_id = nodes.id

@@ -35,6 +35,7 @@ SELECT
 FROM
   highways
 WHERE
+  NOT is_construction AND
   tags?'zone:maxspeed' AND
   highways.tags->'zone:maxspeed' LIKE '%:{0}'
 """
@@ -89,6 +90,7 @@ FROM
     highways.tags != ''::hstore AND
     highways.tags?'highway' AND
     highways.tags->'highway' IN ('residential', 'unclassified') AND
+    NOT highways.is_construction AND
     (NOT highways.tags?'zone:maxspeed' OR NOT highways.tags->'zone:maxspeed' LIKE '%:{0}') AND
     (NOT highways.tags?'maxspeed' OR highways.tags->'maxspeed' = '{0}') AND
     highways.linestring_proj && a3.geom AND

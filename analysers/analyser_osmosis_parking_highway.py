@@ -30,7 +30,8 @@ SELECT
 FROM
   highways
 WHERE
-  highway NOT IN ('footway', 'cycleway', 'steps', 'platform')
+  highway NOT IN ('footway', 'cycleway', 'steps', 'platform') AND
+  NOT is_construction
 """
 
 sql11= """
