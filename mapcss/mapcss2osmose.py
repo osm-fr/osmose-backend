@@ -449,7 +449,7 @@ def segregate_selectors_type(rules):
                     out_rules[t].append(rule.copy())
                     out_rules[t][-1]['selectors'] = out_selector[t]
                     out_rules[t][-1]['declarations'] = list(filter(lambda d:
-                        not d['property'] or not d['property'].startswith('assert') or not d['property'].startswith('-osmoseAssert') or
+                        not d['property'] or not (d['property'].startswith('assert') or d['property'].startswith('-osmoseAssert')) or
                         (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)) or
                         (d['value']['type'] == 'declaration_value_function' and d['value']['params'][0]['value']['value'].startswith(t)),
                         out_rules[t][-1]['declarations']))
