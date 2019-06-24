@@ -726,10 +726,13 @@
     "match": [
       {
         "office": "surveyor"
+      },
+      {
+        "office": "geodesist"
       }
     ],
     "generate": {
-      "office": "surveyor"
+      "office": "geodesist"
     }
   },
   {
