@@ -112,7 +112,7 @@ def scripts(languages):
         scripts = language2scripts[language]
         if not scripts:
             return
-        all_scripts.append(*scripts)
+        all_scripts += scripts
     return list(set(all_scripts))
 
 def languages_are_alphabets(languages):
