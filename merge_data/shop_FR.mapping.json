@@ -391,10 +391,14 @@
     "match": [
       {
         "shop": "newsagent"
+      },
+      {
+        "shop": "stationery"
       }
     ],
     "generate": {
-      "shop": "newsagent"
+      "shop": "newsagent;stationery",
+      "note": "FIXME select a shop type"
     }
   },
   {
@@ -523,10 +527,14 @@
     "match": [
       {
         "shop": "perfumery"
+      },
+      {
+      "shop": "cosmetics"
       }
     ],
     "generate": {
-      "shop": "perfumery"
+      "shop": "perfumery;cosmetics",
+      "note": "FIXME select a shop type"
     }
   },
   {
