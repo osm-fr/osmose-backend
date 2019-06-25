@@ -47,7 +47,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
         #self.possible_merge   = {"item": missing_official[0:-1]+"1", "class": classss+3, "level": level, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
         #self.update_official  = {"item": missing_official[0:-1]+"2", "class": classss+4, "level": level, "tag": ["merge"], "desc": T_(u"%s update", title) }
 
-        dep_code = config.options.get('country').split('-')[1]
+        dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
 
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"http://www.sirene.fr/sirene/public/static/open-data",
