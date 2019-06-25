@@ -705,21 +705,6 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
-    "class": "71.11Z",
-    "level": 3,
-    "title": "Activités d'architecture",
-    "match": [
-      {
-        "office": "architect"
-      }
-    ],
-    "generate": {
-      "office": "architect"
-    }
-  },
-  {
-    "missing_official": 8310,
-    "missing_osm": 7210,
     "class": "71.12A",
     "level": 3,
     "title": "Activité des géomètres",
