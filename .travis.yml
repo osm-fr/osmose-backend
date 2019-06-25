@@ -1,6 +1,7 @@
 dist: xenial
 language: python
 python:
+  - "2.7_with_system_site_packages"
   - "3.5_with_system_site_packages"
 services:
   - postgresql
@@ -10,6 +11,9 @@ addons:
     packages:
     - postgresql-10-postgis-2.4
     - postgresql-10-postgis-2.4-scripts
+    # for python2
+    - python-imposm-parser
+    # for python3
     - python3-nose
     # for osm pbf parser
     - g++
@@ -40,6 +44,6 @@ before_script:
   - sudo mkdir -p /data/work/$USER /data/work/$USER/cache
   - sudo chown $USER /data/work/$USER /data/work/$USER/cache
   # compile osm pbf parser
-  - cd modules/osm_pbf_parser && make py3 && cd ../../
+  - cd modules/osm_pbf_parser && make && cd ../../
 script:
   - ./tools/pynose.sh
