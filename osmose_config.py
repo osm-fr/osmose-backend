@@ -477,11 +477,11 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_departement_dom("guadeloupe", 1401835, "FR-GP", proj=32620, phone_code="590")
-france_departement_dom("guyane", 1260551, "FR-GF", proj=2972, phone_code="594")
-france_departement_dom("martinique", 1891495, "FR-MQ", proj=32620, phone_code="596")
-france_departement_dom("mayotte", 1259885, "FR-YT", proj=32738, phone_code="262")
-france_departement_dom("reunion", 1785276, "FR-RE", proj=2975, phone_code="262")
+france_departement_dom("guadeloupe", 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
+france_departement_dom("guyane", 1260551, "FR-GF", dep_code=973, proj=2972, phone_code="594")
+france_departement_dom("martinique", 1891495, "FR-MQ", dep_code=972, proj=32620, phone_code="596")
+france_departement_dom("mayotte", 1259885, "FR-YT", dep_code=976, proj=32738, phone_code="262")
+france_departement_dom("reunion", 1785276, "FR-RE", dep_code=974, proj=2975, phone_code="262")
 
 france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE',
     phone_len=9, phone_format=r'^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$', phone_international='00', phone_local_prefix='0',

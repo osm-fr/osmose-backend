@@ -391,10 +391,14 @@
     "match": [
       {
         "shop": "newsagent"
+      },
+      {
+        "shop": "stationery"
       }
     ],
     "generate": {
-      "shop": "newsagent"
+      "shop": "newsagent;stationery",
+      "note": "FIXME select a shop type"
     }
   },
   {
@@ -523,10 +527,14 @@
     "match": [
       {
         "shop": "perfumery"
+      },
+      {
+      "shop": "cosmetics"
       }
     ],
     "generate": {
-      "shop": "perfumery"
+      "shop": "perfumery;cosmetics",
+      "note": "FIXME select a shop type"
     }
   },
   {
@@ -697,31 +705,19 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
-    "class": "71.11Z",
-    "level": 3,
-    "title": "Activités d'architecture",
-    "match": [
-      {
-        "office": "architect"
-      }
-    ],
-    "generate": {
-      "office": "architect"
-    }
-  },
-  {
-    "missing_official": 8310,
-    "missing_osm": 7210,
     "class": "71.12A",
     "level": 3,
     "title": "Activité des géomètres",
     "match": [
       {
         "office": "surveyor"
+      },
+      {
+        "office": "geodesist"
       }
     ],
     "generate": {
-      "office": "surveyor"
+      "office": "geodesist"
     }
   },
   {
