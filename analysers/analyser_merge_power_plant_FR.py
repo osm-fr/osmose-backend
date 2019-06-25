@@ -83,5 +83,5 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
             None: "",
             u"Charbon": "coal",
             u"Fioul": "oil",
-            u"Gaz": "gaz"},
+            u"Gaz": "gas"},
      }
