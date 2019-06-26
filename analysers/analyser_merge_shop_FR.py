@@ -56,7 +56,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 fileUrl = u"http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_{0}.csv.gz".format(dep_code))),
             Load("longitude", "latitude",
                 select = {"activitePrincipaleEtablissement": classs, "geo_type": "housenumber", "etatAdministratifEtablissement": "A"},
-                where = lambda res: float(res["geo_score"]) > 0.9,
+                where = lambda res: float(res["geo_score"]) > 0.9 and (not res["complementAdresseEtablissement"] or (" APP" not in res["complementAdresseEtablissement"] and " CHEZ " not in res["complementAdresseEtablissement"])),
                 uniq = ["siren", "nic"]),
             Mapping(
                 select = Select(
