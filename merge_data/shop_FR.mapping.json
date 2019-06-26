@@ -75,7 +75,7 @@
     ],
     "generate": {
       "shop": "motorcycle;motorcycle_repair",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -172,7 +172,7 @@
     ],
     "generate": {
       "shop": "grocery;farm;greengrocer",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -281,7 +281,7 @@
     ],
     "generate": {
       "shop": "computer;video_games",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -330,7 +330,7 @@
     ],
     "generate": {
       "shop": "fabric;wool",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -364,7 +364,7 @@
     ],
     "generate": {
       "shop": "furniture;kitchen",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -398,7 +398,7 @@
     ],
     "generate": {
       "shop": "newsagent;stationery",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -417,7 +417,7 @@
     ],
     "generate": {
       "shop": "music;video",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -436,7 +436,7 @@
     ],
     "generate": {
       "shop": "sports;outdoor",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -455,7 +455,7 @@
     ],
     "generate": {
       "shop": "toys;games",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -534,7 +534,7 @@
     ],
     "generate": {
       "shop": "perfumery;cosmetics",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -553,7 +553,7 @@
     ],
     "generate": {
       "shop": "florist;pet",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -572,7 +572,7 @@
     ],
     "generate": {
       "shop": "watches;jewelry",
-      "note": "FIXME select a shop type"
+      "fixme": "select a shop type"
     }
   },
   {
@@ -684,7 +684,7 @@
     ],
     "generate": {
       "amenity": "bar;cafe;pub",
-      "note": "FIXME select an amenity type"
+      "fixme": "select an amenity type"
     }
   },
   {
