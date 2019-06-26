@@ -72,11 +72,15 @@ import unittest
 
 class Test(unittest.TestCase):
     from modules import config
-    f1 = config.dir_tmp + "/tests/lockfile1"
-    f2 = config.dir_tmp + "/tests/lockfile2"
+
+    dir_tmp_tests = os.path.join(config.dir_tmp, "tests")
+    f1 = os.path.join(dir_tmp_tests, "lockfile1")
+    f2 = os.path.join(dir_tmp_tests, "lockfile2")
 
     def setup(self):
         import os
+        if not os.path.exists(self.dir_tmp_tests):
+            os.makedirs(self.dir_tmp_tests)
         if os.path.isfile(self.f1):
             os.remove(self.f1)
         if os.path.isfile(self.f2):

@@ -1,0 +1,49 @@
+dist: xenial
+language: python
+python:
+  - "2.7_with_system_site_packages"
+  - "3.5_with_system_site_packages"
+services:
+  - postgresql
+addons:
+  postgresql: 10
+  apt:
+    packages:
+    - postgresql-10-postgis-2.4
+    - postgresql-10-postgis-2.4-scripts
+    # for python2
+    - python-imposm-parser
+    # for python3
+    - python3-nose
+    # for osm pbf parser
+    - g++
+    - libboost-python-dev
+    - libosmpbf-dev
+    - libprotobuf-dev
+    - make
+    - pkg-config
+    - protobuf-compiler
+before_install:
+  # from https://github.com/travis-ci/travis-ci/issues/9624
+  - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
+  - sudo service postgresql restart
+  - sleep 1
+install:
+  - pip install -r requirements.txt -r requirements-dev.txt -r requirements-dev-python3.txt
+before_script:
+  # configure database
+  - psql -c 'CREATE USER osmose;' -U postgres
+  - psql -c "ALTER USER osmose WITH PASSWORD '-osmose-';" -U postgres
+  - psql -c 'CREATE DATABASE osmose_test;' -U postgres
+  - psql -c 'GRANT ALL ON database osmose_test TO osmose;' -U postgres
+  - psql -c 'CREATE EXTENSION hstore; CREATE EXTENSION fuzzystrmatch; CREATE EXTENSION unaccent; CREATE EXTENSION postgis;' -U postgres osmose_test
+  - psql -c "GRANT SELECT,UPDATE,DELETE ON TABLE spatial_ref_sys TO osmose;" -U postgres osmose_test
+  - psql -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;" -U postgres osmose_test
+  - echo "localhost:*:osmose_test:osmose:-osmose-" >> ~/.pgpass
+  # configure paths used for tmp files
+  - sudo mkdir -p /data/work/$USER /data/work/$USER/cache
+  - sudo chown $USER /data/work/$USER /data/work/$USER/cache
+  # compile osm pbf parser
+  - cd modules/osm_pbf_parser && make && cd ../../
+script:
+  - ./tools/pynose.sh

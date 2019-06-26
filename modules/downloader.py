@@ -71,7 +71,7 @@ def http_get(url, tmp_file, date_string=None, get=get):
     outfile = None
     try:
         outfile = open(tmp_file, "wb")
-        for data in answer.iter_content(chunk_size=None):
+        for data in answer.iter_content(chunk_size=512):
             outfile.write(data)
     except:
         raise
