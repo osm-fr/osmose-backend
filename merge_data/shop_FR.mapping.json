@@ -656,6 +656,7 @@
     "class": "56.10C",
     "level": 3,
     "title": "Restauration de type rapide",
+    "trancheEffectifs": 1,
     "match": [
       {
         "amenity": "fast_food"

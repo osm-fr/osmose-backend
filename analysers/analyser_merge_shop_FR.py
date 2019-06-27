@@ -36,11 +36,11 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
         mapping = 'merge_data/shop_FR.mapping.json'
         mapingfile = json.loads(open(mapping).read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Shop_FR, r['class'].replace('.', ''), r['missing_official'], r['missing_osm'], r['class'], r['level'], r['title'], r['match'], r['generate'])
+            self.classFactory(SubAnalyser_Merge_Shop_FR, r['class'].replace('.', ''), r['missing_official'], r['missing_osm'], r['class'], r['level'], r['title'], r.get('trancheEffectifs'), r['match'], r['generate'])
 
 
 class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, missing_official, missing_osm, classs, level, title, selectTags, generateTags):
+    def __init__(self, config, error_file, logger, missing_official, missing_osm, classs, level, title, trancheEffectifs, selectTags, generateTags):
         classss = int(classs.replace('.', '0')[:-1]) * 100 + ord(classs[-1]) - 65
         self.missing_official = {"item": missing_official, "class": classss+1, "level": level, "tag": ["merge"], "desc": T_(u"%s not integrated", title) }
         #self.missing_osm      = {"item": missing_osm, "class": classss+2, "level": level, "tag": ["merge"], "desc": T_f(u"{0} without tag \"{1}\" or invalid", title, 'ref:FR:SIRET') }
@@ -56,7 +56,10 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 fileUrl = u"http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_{0}.csv.gz".format(dep_code))),
             Load("longitude", "latitude",
                 select = {"activitePrincipaleEtablissement": classs, "geo_type": "housenumber", "etatAdministratifEtablissement": "A"},
-                where = lambda res: float(res["geo_score"]) > 0.9 and (not res["complementAdresseEtablissement"] or (" APP" not in res["complementAdresseEtablissement"] and " CHEZ " not in res["complementAdresseEtablissement"])),
+                where = lambda res: (
+                    float(res["geo_score"]) > 0.9 and
+                    (not res["complementAdresseEtablissement"] or (" APP" not in res["complementAdresseEtablissement"] and " CHEZ " not in res["complementAdresseEtablissement"])) and
+                    (not trancheEffectifs or (res["trancheEffectifsEtablissement"] and res["trancheEffectifsEtablissement"] != "NN" and int(res["trancheEffectifsEtablissement"]) > trancheEffectifs)) ),
                 uniq = ["siren", "nic"]),
             Mapping(
                 select = Select(
