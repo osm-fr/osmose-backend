@@ -784,36 +784,6 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
-    "class": "86.10Z",
-    "level": 3,
-    "title": "Activités hospitalières",
-    "match": [
-      {
-        "amenity": "hospital"
-      }
-    ],
-    "generate": {
-      "amenity": "hospital"
-    }
-  },
-  {
-    "missing_official": 8310,
-    "missing_osm": 7210,
-    "class": "86.21Z",
-    "level": 3,
-    "title": "Activité des médecins généralistes",
-    "match": [
-      {
-        "amenity": "doctors"
-      }
-    ],
-    "generate": {
-      "amenity": "doctors"
-    }
-  },
-  {
-    "missing_official": 8310,
-    "missing_osm": 7210,
     "class": "86.23Z",
     "level": 3,
     "title": "Pratique dentaire",
