@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-27 21:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-06-12 20:24+0000\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1381,7 +1381,7 @@ msgstr "Érvénytelen multipoligon"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "Interpolation on nodes of multiple street names"
-msgstr "Több utcanév pontjainak interpolálása"
+msgstr "Interpoláció több utcanév pontjain"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:182
 #: ../analysers/analyser_osmosis_addr_interpolation.py:183
@@ -2130,118 +2130,118 @@ msgstr "Fölösleges \"{0}\" a nemzetközi kód után"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
-msgstr ""
+msgstr "IDF kerékpárkölcsönző: nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr ""
+msgstr "IDF kerékpárkölcsönző: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr ""
+msgstr "IDF kerékpár: frissítendő"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "Főiskola hiányzó vagy érvénytelen <ref:UAI> címkével"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
-msgstr ""
+msgstr "<{0}> hiányzó vagy érvénytelen <{1}> címkével"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
-msgstr ""
+msgstr "Műemlék hiányzó vagy érvénytelen <ref:mhs> címkével"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Postaláda hiányzó vagy érvénytelen <ref> címkével"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
-msgstr ""
+msgstr "Posta hiányzó vagy érvénytelen <ref:FR:LaPoste> címkével"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
-msgstr ""
+msgstr "Elektromos alállomás hiányzó vagy érvénytelen <ref:FR:RTE> címkével"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Áramellátás hiányzó vagy érvénytelen <ref> címkével"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without tag \"uic_ref\" or invalid"
-msgstr ""
+msgstr "Vasútállomás hiányzó vagy érvénytelen <uic_ref> címkével"
 
 #: ../analysers/analyser_merge_school_FR.py:52
 msgid "School without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "Iskola hiányzó vagy érvénytelen <ref:UAI> címkével"
 
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr ""
+msgstr "<{0}>: itt egy {1} utcai műtárgy figyelhető meg, de nincs hozzá kapcsolódó címke"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
-msgstr ""
+msgstr "A traffipaxnak az úton vagy egy forgalomellenőrzési (enforcement) kapcsolaton kell lennie"
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
-msgstr ""
+msgstr "P+R parkoló Île-de-France-ban: nincs a térképen"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing municipality ref tag"
-msgstr ""
+msgstr "Hiányzó települési hivatkozási címke"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
-msgstr ""
+msgstr "Hiányzó települési hivatkozási címke: <{0}>"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:170
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
-msgstr ""
+msgstr "Interpoláció pontokon <addr:housenumber> címke nélkül"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:171
 msgid "\"addr:housenumber\" in multiple interpolations"
-msgstr ""
+msgstr "<addr:housenumber> több interpolációban is"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:172
 msgid "Interpolation intersection"
-msgstr ""
+msgstr "Egymást metsző interpolációk"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:173
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr ""
+msgstr "Az interpoláció végpontjain <addr:housenumber> címkének kell lennie"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
-msgstr ""
+msgstr "Az interpoláció végpontjain különböző <addr:housenumber> címkéknek kell lenniük"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
-msgstr ""
+msgstr "Interpoláció több <associatedStreet> kapcsolat pontjain"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "Az <addr:street> címke nem illeszkedik egyik környező utcához sem"
 
 #: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
-msgstr ""
+msgstr "Más címkékkel együtt hibásan használt <addr:interpolation> címke"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
-msgstr ""
+msgstr "Erőmű %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without tag \"postal_code\""
-msgstr ""
+msgstr "admin_level 8 <postal_code> címke nélkül"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:31
 msgid "Power plant not integrated, geocoded at municipality level"
-msgstr ""
+msgstr "Erőmű nincs a térképen, települési szinten geokódolva"

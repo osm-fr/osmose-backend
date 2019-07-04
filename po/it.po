@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ferruccio Cantone <canfe.news@gmail.com>, 2019
+# frodrigo <fred.rodrigo@gmail.com>, 2019
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019
 # Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
 # Marco <marcxosm@gmail.com>, 2018-2019
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-27 21:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-06-08 15:53+0000\n"
+"Last-Translator: frodrigo <fred.rodrigo@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1862,7 +1863,7 @@ msgstr "URL errato %(k)s=%(v)s"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr "Monumento storico: [0] (posizionato in [1] con precisione [2])"
+msgstr "Monumento storico: {0} (posizionato in {1} con precisione {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
@@ -1873,7 +1874,7 @@ msgstr "Monumento storico: [0] (posizionato in [1] con precisione [2])"
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:29
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr "[0] segnale di arresto non integrato"
+msgstr "{0} segnale di arresto non integrato"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:30

@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-27 21:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-06-17 14:07+0000\n"
+"Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2184,7 +2184,7 @@ msgstr ""
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr "{0}: Zaobserwowano {1} w okolicy, ale nie ma na mapie"
+msgstr "{0}: Zaobserwowano w okolicy, ale nie ma na mapie"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
@@ -2196,12 +2196,12 @@ msgstr "Parking park & ride w Île-de-France niezintegrowany"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing municipality ref tag"
-msgstr ""
+msgstr "Brak tagu ref dla gminy"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
-msgstr ""
+msgstr "Brak tagu ref dla gminy {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:170
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
@@ -2240,11 +2240,11 @@ msgstr "Niewłaściwe użycie addr:interpolation w połączeniu z innymi tagami"
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
-msgstr ""
+msgstr "Elektrownia %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without tag \"postal_code\""
-msgstr ""
+msgstr "admin_level=8 bez tagu \"postal_code\""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:31
 msgid "Power plant not integrated, geocoded at municipality level"

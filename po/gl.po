@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# ccpr1l <csdpe0810-tf@yahoo.es>, 2019
 # Iván Seoane, 2019
 # Iván Seoane, 2019
 msgid ""
@@ -10,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-06-05 18:03+0000\n"
+"PO-Revision-Date: 2019-07-02 14:50+0000\n"
 "Last-Translator: Iván Seoane\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -735,7 +736,7 @@ msgstr "Referencia de estrada na etiqueta 'name'"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
-msgstr "Importación do OpenSeaMap, posición moi preta."
+msgstr "Importación do OpenSeaMap, posición moi cercana."
 
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
@@ -1235,7 +1236,7 @@ msgstr "Xeometría de nó duplicado pero con diferentes etiquetas"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing highway=traffic_signals nearby"
-msgstr "Posíbel ausencia preta dun 'highway=traffic_signals'"
+msgstr "Posíbel ausencia cercana dun 'highway=traffic_signals'"
 
 #: ../analysers/analyser_osmosis_powerline.py:318
 msgid "Unmatched voltage of line on substation"
@@ -2040,15 +2041,15 @@ msgstr ""
 
 #: ../plugins/Phone.py:48
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "O número de teléfono non coincide co formato agardado"
 
 #: ../plugins/Phone.py:52
 msgid "Local short code can't be internationalized"
-msgstr ""
+msgstr "O código local acurtado non pode ser internacionalizado"
 
 #: ../plugins/Phone.py:54
 msgid "Bad international prefix"
-msgstr ""
+msgstr "Prefixo internacional erróneo"
 
 #: ../plugins/Phone.py:55
 msgid "Unallowed char in phone number"

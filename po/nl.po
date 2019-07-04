@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-06-04 03:06+0000\n"
+"PO-Revision-Date: 2019-07-03 21:06+0000\n"
 "Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -2219,7 +2219,7 @@ msgstr "Interpolatie einde moet een tag \"addr:housenumber\" hebben"
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
-msgstr ""
+msgstr "Interpolaties eindes moeten een veschillende tag hebben \"addr:housenumber\" values"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
@@ -2236,7 +2236,7 @@ msgstr "Verkeerd gebruik addr:interpolation in combinatie met andere tags"
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
-msgstr ""
+msgstr "Energiecentrale %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without tag \"postal_code\""
@@ -2244,4 +2244,4 @@ msgstr "admin_level 8 zonder \"postal_code\" tag"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:31
 msgid "Power plant not integrated, geocoded at municipality level"
-msgstr ""
+msgstr "Energiecentrale niet toegevoegd, geocoded op gemeentelijke level"
