@@ -1,0 +1,193 @@
+# Translators:
+# imni <iriman@chmail.ir>, 2018
+# Noémie Lehuby, 2019
+# 
+msgid ""
+msgstr ""
+"Last-Translator: imni <iriman@chmail.ir>, 2018\n"
+"Language-Team: Persian (https://www.transifex.com/openstreetmap-france/teams/17462/fa/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../transport.validator.mapcss:15
+msgid "Uncompromising validation of transit data"
+msgstr ""
+
+#: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
+msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
+msgstr ""
+"شیوهٔ حمل‌ونقل عمومی مشخص نشده. یکی از تگ‌های route = bus/coach/tram/...‎ را"
+" وارد کنید."
+
+#: ../transport.validator.mapcss:67
+msgid "Missing transportation mode, change tag route to route_master"
+msgstr ""
+"شیوهٔ حمل‌ونقل عمومی مشخص نشده. تگ route را به route_master تغییر دهید"
+
+#: ../transport.validator.mapcss:83
+msgid ""
+"Missing public_transport:version tag on a public_transport route relation"
+msgstr ""
+"کمبود تگ public_transport:version روی رابطهٔ route از نوع public_transport"
+
+#: ../transport.validator.mapcss:92
+msgid "Missing network tag on a public_transport relation"
+msgstr "کمبود تگ network روی رابطهٔ public_transport"
+
+#: ../transport.validator.mapcss:101
+msgid "Missing operator tag on a public_transport relation"
+msgstr "کمبود تگ operator روی رابطهٔ public_transport"
+
+#: ../transport.validator.mapcss:110
+msgid "Missing ref tag for line number on a public_transport relation"
+msgstr "کمبود تگ ref برای شمارهٔ خط، روی رابطهٔ public_transport"
+
+#: ../transport.validator.mapcss:119
+msgid "Missing from/to tag on a public_transport route relation"
+msgstr "تگ from/to در رابطهٔ public_transport وجود ندارد"
+
+#: ../transport.validator.mapcss:129
+msgid ""
+"The network tag should be the same for the route and the route_master : {0} "
+"vs {1}"
+msgstr ""
+
+#: ../transport.validator.mapcss:134
+msgid ""
+"The operator tag should be the same for the route and the route_master : {0}"
+" vs {1}"
+msgstr ""
+
+#: ../transport.validator.mapcss:139
+msgid ""
+"The ref tag should be the same for the route and the route_master : {0} vs "
+"{1}"
+msgstr ""
+
+#: ../transport.validator.mapcss:144
+msgid ""
+"The colour tag should be the same for the route and the route_master : {0} "
+"vs {1}"
+msgstr ""
+
+#: ../transport.validator.mapcss:149
+msgid ""
+"The public transport mode should be the same for the route and the "
+"route_master : {0} vs {1}"
+msgstr ""
+
+#: ../transport.validator.mapcss:155
+msgid "Check the colour tag"
+msgstr ""
+
+#: ../transport.validator.mapcss:162
+msgid "The colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../transport.validator.mapcss:170
+msgid "The color of the public transport line should be in a colour tag"
+msgstr ""
+
+#: ../transport.validator.mapcss:176
+msgid "The stops may not be in the right order"
+msgstr "ایستگاه‌ها به ترتیب نیستند"
+
+#: ../transport.validator.mapcss:184
+msgid "Check the operator tag"
+msgstr "تگ operator را بررسی کنید"
+
+#: ../transport.validator.mapcss:190
+msgid "Check the network tag"
+msgstr "تگ network را بررسی کنید"
+
+#: ../transport.validator.mapcss:196
+msgid "A bus stop is supposed to be a node"
+msgstr ""
+
+#: ../transport.validator.mapcss:201
+msgid "Stop without name"
+msgstr "ایستگاه بدون نام"
+
+#: ../transport.validator.mapcss:207
+msgid "Is it a bus stop or a bus station?"
+msgstr "ایستگاه اتوبوس است (stop) یا پایانهٔ اتوبوس (station)؟"
+
+#: ../transport.validator.mapcss:213
+msgid ""
+"A bus station is usually a large area where many buses stops, check if you "
+"can draw this area"
+msgstr ""
+
+#: ../transport.validator.mapcss:219
+msgid ""
+"Specify if it is a stop (platform) or a location on the road (stop_position)"
+msgstr ""
+"مشخص کنید آیا ایستگاه است (سکو، platform) یا نقطه‌ای در جاده (stop_position،"
+" محل توقف وسیله)"
+
+#: ../transport.validator.mapcss:220 ../transport.validator.mapcss:231
+msgid "Missing public_transport tag on a public transport stop"
+msgstr "کمبود تگ public_transport روی ایستگاه حمل‌ونقل عمومی"
+
+#: ../transport.validator.mapcss:230
+msgid ""
+"Specify if it is a stop (platform) or a location on the rails "
+"(stop_position)"
+msgstr ""
+"مشخص کنید آیا ایستگاه (platform، سکو) است یا مکانی در کنار ریل "
+"(stop_position، محل توقف وسیله)"
+
+#: ../transport.validator.mapcss:241
+msgid ""
+"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
+msgstr "کمبود تگ قدیم، تگ highway=bus_stop یا railway=tram_stop را اضافه کنید"
+
+#: ../transport.validator.mapcss:242 ../transport.validator.mapcss:250
+msgid "Missing legacy tag on a public transport stop"
+msgstr "کمبود تگ قدیم برای یک ایستگاه حمل‌ونقل عمومی"
+
+#: ../transport.validator.mapcss:249
+msgid "Is this a bus stop? add the tag highway=bus_stop"
+msgstr "ایستگاه اتوبوس است؟ تگ highway=bus_stop را بدهید"
+
+#: ../transport.validator.mapcss:260
+msgid "Check if the note can be deleted"
+msgstr "بررسی کنید آیا یادداشت را می‌توان حذف کرد"
+
+#: ../transport.validator.mapcss:265
+msgid "The network should be on the transport lines and not on the stops"
+msgstr "network باید روی خطوط حمل‌ونقل باشد نه روی ایستگاه‌ها"
+
+#: ../transport.validator.mapcss:271
+msgid "The operator should be on the transport lines and not on the stops"
+msgstr "operator باید روی خطوط حمل‌ونقل باشد نه روی ایستگاه‌ها"
+
+#: ../transport.validator.mapcss:282
+msgid ""
+"The line variant does not belong to any line, add it to the route_master "
+"relation"
+msgstr ""
+"خط جایگزین به هیچ خطی تعلق ندارد. آن را به رابطهٔ route_master اضافه کنید."
+
+#: ../transport.validator.mapcss:292
+msgid "The stop is not served by any line, add it to a route relation"
+msgstr ""
+"هیچ خطی از ایستگاه نمی‌گذرد. ایستگاه را به یک رابطهٔ route اضافه کنید."
+
+#: ../transport.validator.mapcss:299
+msgid "The interval is invalid (try a number of minutes)"
+msgstr ""
+
+#: ../transport.validator.mapcss:305
+msgid "The duration is invalid (try a number of minutes)"
+msgstr ""
+
+#: ../transport.validator.mapcss:311
+msgid "Missing interval tag to specify the main interval"
+msgstr ""
+
+#: ../transport.validator.mapcss:317
+msgid "Missing opening_hours tag"
+msgstr ""
