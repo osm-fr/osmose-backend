@@ -1,0 +1,207 @@
+# Translators:
+# frodrigo <fred.rodrigo@gmail.com>, 2018
+# Jo <winfixit@gmail.com>, 2018
+# ali zaroili <ali.zaroili@gmail.com>, 2018
+# alain2003, 2019
+# Noémie Lehuby, 2019
+# 
+msgid ""
+msgstr ""
+"Last-Translator: alain2003, 2019\n"
+"Language-Team: Dutch (https://www.transifex.com/openstreetmap-france/teams/17462/nl/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../transport.validator.mapcss:15
+msgid "Uncompromising validation of transit data"
+msgstr "Compromisloze validatie van transit data"
+
+#: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
+msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
+msgstr ""
+"Soort vervoermiddel ontbreekt , voeg een tag route = bus/coach/tram/etc"
+
+#: ../transport.validator.mapcss:67
+msgid "Missing transportation mode, change tag route to route_master"
+msgstr "Soort vervoermiddel ontbreekt , verander tag route in route_master"
+
+#: ../transport.validator.mapcss:83
+msgid ""
+"Missing public_transport:version tag on a public_transport route relation"
+msgstr ""
+"public_transport:version tag ontbreekt op een public_transport route relatie"
+
+#: ../transport.validator.mapcss:92
+msgid "Missing network tag on a public_transport relation"
+msgstr "network tag op public_transport relatie ontbreekt"
+
+#: ../transport.validator.mapcss:101
+msgid "Missing operator tag on a public_transport relation"
+msgstr "operator tag op public_transport relatie ontbreekt"
+
+#: ../transport.validator.mapcss:110
+msgid "Missing ref tag for line number on a public_transport relation"
+msgstr "ref tag voor lijn nummer ontbreekt op een public_transport relatie"
+
+#: ../transport.validator.mapcss:119
+msgid "Missing from/to tag on a public_transport route relation"
+msgstr "from/to tag op een public_transport weg relatie ontbreekt "
+
+#: ../transport.validator.mapcss:129
+msgid ""
+"The network tag should be the same for the route and the route_master : {0} "
+"vs {1}"
+msgstr ""
+"Het netwerk tag moet dezelfde zijn voor de route en de route_master : {0} vs"
+" {1}"
+
+#: ../transport.validator.mapcss:134
+msgid ""
+"The operator tag should be the same for the route and the route_master : {0}"
+" vs {1}"
+msgstr ""
+"De beheerder tag moet dezelfde zijn voor de route en de route_master : {0} "
+"vs {1}"
+
+#: ../transport.validator.mapcss:139
+msgid ""
+"The ref tag should be the same for the route and the route_master : {0} vs "
+"{1}"
+msgstr ""
+"De ref tag moet dezelfde zijn voor de route en de route_master : {0} vs {1}"
+
+#: ../transport.validator.mapcss:144
+msgid ""
+"The colour tag should be the same for the route and the route_master : {0} "
+"vs {1}"
+msgstr ""
+"De colour tag moet dezelfde zijn voor de route en de route_master : {0} vs "
+"{1}"
+
+#: ../transport.validator.mapcss:149
+msgid ""
+"The public transport mode should be the same for the route and the "
+"route_master : {0} vs {1}"
+msgstr ""
+"Het openbaar vervoer mode moet dezelfde zijn voor de route en de "
+"route_master : {0} vs {1}"
+
+#: ../transport.validator.mapcss:155
+msgid "Check the colour tag"
+msgstr " Controleer de colour tag "
+
+#: ../transport.validator.mapcss:162
+msgid "The colour code should start with '#' followed by 3 or 6 digits"
+msgstr "De colour code moet starten met '#' gevolgd door 3 of 6 nummers "
+
+#: ../transport.validator.mapcss:170
+msgid "The color of the public transport line should be in a colour tag"
+msgstr "De kluer van een openbaar vervoer lijn moet in een colour tag"
+
+#: ../transport.validator.mapcss:176
+msgid "The stops may not be in the right order"
+msgstr "De haltes staan misschien niet in de juiste volgorde"
+
+#: ../transport.validator.mapcss:184
+msgid "Check the operator tag"
+msgstr "Controleer de operator tag"
+
+#: ../transport.validator.mapcss:190
+msgid "Check the network tag"
+msgstr "Controleer de network tag"
+
+#: ../transport.validator.mapcss:196
+msgid "A bus stop is supposed to be a node"
+msgstr "Een bushalte wordt verondersteld een node te zijn"
+
+#: ../transport.validator.mapcss:201
+msgid "Stop without name"
+msgstr "Halte zonder naam"
+
+#: ../transport.validator.mapcss:207
+msgid "Is it a bus stop or a bus station?"
+msgstr "Is dit een bushalte of een busstation?"
+
+#: ../transport.validator.mapcss:213
+msgid ""
+"A bus station is usually a large area where many buses stops, check if you "
+"can draw this area"
+msgstr ""
+"Een busstation is gebruikelijk een groot gebied,controleer of je deze gebied"
+" kan tekenen"
+
+#: ../transport.validator.mapcss:219
+msgid ""
+"Specify if it is a stop (platform) or a location on the road (stop_position)"
+msgstr ""
+"Specifieer of het om een halte (platform) of om een stoppositie op de weg "
+"gaat (stop_position)."
+
+#: ../transport.validator.mapcss:220 ../transport.validator.mapcss:231
+msgid "Missing public_transport tag on a public transport stop"
+msgstr "public_transport tag ontbreekt op een public transport halte"
+
+#: ../transport.validator.mapcss:230
+msgid ""
+"Specify if it is a stop (platform) or a location on the rails "
+"(stop_position)"
+msgstr ""
+"Specifieer of het om een halte (platform) of om een stoppositie op de rails "
+"gaat (stop_position)"
+
+#: ../transport.validator.mapcss:241
+msgid ""
+"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
+msgstr ""
+"De legacy tag ontbreekt, voeg de tag highway=bus_stop / railway=tram_stop "
+"toe"
+
+#: ../transport.validator.mapcss:242 ../transport.validator.mapcss:250
+msgid "Missing legacy tag on a public transport stop"
+msgstr "legacy tag op een  public transport halte ontbreekt"
+
+#: ../transport.validator.mapcss:249
+msgid "Is this a bus stop? add the tag highway=bus_stop"
+msgstr "Is dit een bushalte?   tag highway=bus_stop toevoegen"
+
+#: ../transport.validator.mapcss:260
+msgid "Check if the note can be deleted"
+msgstr "Controleer of de nota verwijderd kan worden"
+
+#: ../transport.validator.mapcss:265
+msgid "The network should be on the transport lines and not on the stops"
+msgstr "Het netwerk moet op de transport lijn en niet op de halte's"
+
+#: ../transport.validator.mapcss:271
+msgid "The operator should be on the transport lines and not on the stops"
+msgstr "De beheerder moet op de transport lijn en niet op de halte's"
+
+#: ../transport.validator.mapcss:282
+msgid ""
+"The line variant does not belong to any line, add it to the route_master "
+"relation"
+msgstr ""
+"Deze routerelatie behoort bij geen enkele lijn, voeg toe bij route_master "
+"relatie "
+
+#: ../transport.validator.mapcss:292
+msgid "The stop is not served by any line, add it to a route relation"
+msgstr "De halte is niet in gebruik, voeg dit toe bij relatie route"
+
+#: ../transport.validator.mapcss:299
+msgid "The interval is invalid (try a number of minutes)"
+msgstr "De interval is ongeldig (probeer een nummer of minuten)"
+
+#: ../transport.validator.mapcss:305
+msgid "The duration is invalid (try a number of minutes)"
+msgstr "De duur is ongeldig (probeer een nummer of minuten) "
+
+#: ../transport.validator.mapcss:311
+msgid "Missing interval tag to specify the main interval"
+msgstr ""
+
+#: ../transport.validator.mapcss:317
+msgid "Missing opening_hours tag"
+msgstr " opening_hours tag ontbreekt"

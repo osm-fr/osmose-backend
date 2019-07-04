@@ -6,3 +6,8 @@ file_filter = po/<lang>.po
 source_file = po/osmose-backend.pot
 source_lang = en
 type = PO
+
+[osmose.transport_mapcss]
+file_filter = po/transport_mapcss/<lang>.po
+source_lang = en
+type = PO

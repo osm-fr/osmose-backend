@@ -28,9 +28,12 @@ class OsmoseTranslation:
         self.languages = []
         self.trans = {}
         josm_po_path = "po/josm/"
+        transport_mapcss_po_path = "po/transport_mapcss/"
         for fn in os.listdir("po/"):
             if os.path.isfile(os.path.join(josm_po_path, fn)):
                 self.add_po(fn, josm_po_path)
+            if os.path.isfile(os.path.join(transport_mapcss_po_path, fn)):
+                self.add_po(fn, transport_mapcss_po_path)
             if fn.endswith(".po"):
                 self.add_po(fn, "po/")
 
