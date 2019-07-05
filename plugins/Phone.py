@@ -252,10 +252,11 @@ class Test(TestPluginCommon):
         # Verify we got error for other correct numbers
         for bad in (u"3631", u"(123) 123-4567", "+1 123 1234567"):
             assert p.node(None, {"phone": bad}), ("phone='%s'" % bad)
+
     def test_ES(self):
         p = Phone(None)
         class _config:
-            options = {"country": "ES", "phone_code": "34", "phone_len": 9, "phone_format": r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{3}$"}
+            options = {"country": "ES", "phone_code": "34", "phone_len": 9, "phone_len_short": [3, 4, 5], "phone_international": "00"}
         class father:
             config = _config()
         p.father = father()
@@ -264,8 +265,8 @@ class Test(TestPluginCommon):
         for (bad, good) in (
             (u"923 555 000", u"+34 923 555 000"),
             (u"923 55 50 00", u"+34 923 55 50 00"),
-            (u"923555000", u"+34 923 555 000"),
-            (u"0034923555000", u"+34 923 555 000"),
+            (u"923555000", u"+34 923555000"),
+            (u"0034923555000", u"+34923555000"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -274,7 +275,3 @@ class Test(TestPluginCommon):
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
-
-        # Verify we got error for other correct numbers
-        for bad in (u"3631"):
-            assert p.node(None, {"phone": bad}), ("phone='%s'" % bad)

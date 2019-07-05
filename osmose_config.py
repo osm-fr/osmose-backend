@@ -1289,7 +1289,7 @@ at_state("vorarlberg", 74942, "AT-8")
 
 #########################################################################
 
-es_comm = gen_country('europe', 'spain', download_repo=OSMFR, language='es', proj=32629, municipality_ref='ine:municipio')
+es_comm = gen_country('europe', 'spain', download_repo=OSMFR, language='es', proj=32629, municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00')
 
 es_comm("andalucia", 349044, "ES-AN", proj=32629)
 es_comm("aragon", 349045, "ES-AR", proj=32630)
