@@ -52,6 +52,9 @@ class TagRemove_Incompatibles(Plugin):
             'natural': [
                 ['water', 'leisure', 'marina'],
             ],
+            'amenity': [
+                ['stables', 'leisure', 'horse_riding'],
+            ],
         }.items()
 
     def node(self, data, tags):
