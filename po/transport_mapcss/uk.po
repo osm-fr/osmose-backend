@@ -14,7 +14,7 @@ msgstr ""
 
 #: ../transport.validator.mapcss:15
 msgid "Uncompromising validation of transit data"
-msgstr "Безкомпромісна валідація транзитних даних"
+msgstr "Безкомпромісна перевірка транзитних даних"
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"

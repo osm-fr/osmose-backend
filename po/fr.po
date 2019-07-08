@@ -33,8 +33,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-27 21:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-07-05 23:01+0000\n"
+"Last-Translator: frodrigo <fred.rodrigo@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -730,11 +730,11 @@ msgstr "Utilisez le titre lisible tel qu’il apparaît en tête de l’article 
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
-msgstr "Un attribut “wikipedia”=“‹code›:*” doit être présent avant d’utiliser des attributs “wikipedia:‹code›”=“*”"
+msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
-msgstr "Utilisation incorrecte d’un attribut “wikipedia:‹code›=*”, ‹code› devrait être un autre attribut ou un code langue"
+msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
@@ -953,7 +953,7 @@ msgstr "Noms dans la langue locale et dans la langue par défaut différents"
 
 #: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
-msgstr "Objet nommé avec l’attribut localisé “name:‹langue›” mais sans “name” par défaut"
+msgstr "Objet avec tag \"name\" localisé mais sans tag \"name\" par défaut"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
@@ -1336,7 +1336,7 @@ msgstr "Le type FANTOIR numérique est destiné à marquer la voirie"
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling or "
 "neighbourhood"
-msgstr "Les types FANTOIR ‹B› ou ‹W› sont destinés à marquer les lieux-dits, hameaux, habitats isolés ou voisinages"
+msgstr "Les types FANTOIR B ou W sont destinés à marquer les lieux-dits, hameaux, habitats isolés ou voisinages"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:89
 msgid "A living_street in France is a Zone 20"
@@ -1531,7 +1531,7 @@ msgstr "L’arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
 #: ../plugins/Phone.py:53
 msgid "Missing international prefix"
-msgstr "Préfixe international ‹+› et code pays manquants"
+msgstr "Préfixe international manquants"
 
 #: ../plugins/TagFix_Maxspeed.py:76
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1726,7 +1726,7 @@ msgstr "Ponctuation inattendue dans le nom"
 #: ../plugins/Name_Punctuation.py:37
 #, python-format
 msgid "Unexpected char %s"
-msgstr "Caractère ‹%s› inattendu "
+msgstr "Caractère %s inattendu"
 
 #: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
 msgid "Power Transformers should always be on a node"
@@ -1854,17 +1854,17 @@ msgstr "Lettre arabe détectée dans le nom persan"
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:187
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr "En persan, la lettre arabe ‹{0}› devrait être remplacée par ‹{1}›"
+msgstr "En persan, la lettre arabe {0} devrait être remplacée par {1}"
 
 #: ../plugins/Colour.py:14
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr "Le code couleur devrait commencer par un ‹#› suivi de 3 ou 6 chiffres hexadécimaux"
+msgstr "Le code couleur devrait commencer par un '#' suivi de 3 ou 6 chiffres hexadécimaux"
 
 #: ../plugins/Colour.py:48 ../plugins/Colour.py:72 ../plugins/Colour.py:112
 #: ../plugins/Colour.py:141 ../plugins/Colour.py:175 ../plugins/Colour.py:199
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr "Le code couleur “{0}” devrait commencer par un ‹#› suivi de 3 ou 6 chiffres hexadécimaux"
+msgstr "Le code couleur “{0}” devrait commencer par un '#' suivi de 3 ou 6 chiffres"
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
@@ -2049,12 +2049,12 @@ msgstr "“{0}”=“{1}” : symbole ({2}, 0x{3:04x}) inattendu dans la valeur 
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr "“{0}”=“{1}” : caractère ‹{2}› ({3}, 0x{4:04x}) inattendu, veut-il dire ‹{5}› ({6}, 0x{7:04x}) ?"
+msgstr "\"{0}\"=\"{1}\" : caractère \"{2}\" ({3}, 0x{4:04x}) inattendu, veut-il dire \"{5}\" ({6}, 0x{7:04x}) ?"
 
 #: ../plugins/Name_Script.py:144 ../plugins/Name_Script.py:166
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr "“{0}”=“{1}” : caractère ‹{2}› ({3}, 0x{4:04x}) inattendu"
+msgstr "\"{0}\"=\"{1}\" : caractère \"{2}\" ({3}, 0x{4:04x}) inattendu"
 
 #: ../plugins/Name_Script.py:147 ../plugins/Name_Script.py:169
 #, python-brace-format
@@ -2084,7 +2084,7 @@ msgstr "Séparateur incorrect pour des valeurs multiples"
 #: ../plugins/Phone.py:121
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
-msgstr "Caractère ‹{0}› non autorisé dans un numéro de téléphone"
+msgstr "Caractère \"{0}\" non autorisé dans un numéro de téléphone"
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
