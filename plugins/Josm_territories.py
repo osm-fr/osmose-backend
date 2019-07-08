@@ -195,6 +195,19 @@ class Josm_territories(Plugin):
                 # throwError:tr("street name contains ß")
                 err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(u'street name contains ß')})
 
+        # relation[type=associatedStreet][inside("DE")]
+        if (u'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'associatedStreet') and mapcss.inside(self.father.config.options, u'DE'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated in {1}","{0.tag}","Deutschland")
+                # suggestAlternative:"addr:street"
+                err.append({'class': 9009001, 'subclass': 746730328, 'text': mapcss.tr(u'{0} is deprecated in {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'Deutschland')})
+
         return err
 
 

@@ -996,7 +996,7 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32620}, download_repo=OSMFR)
-default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
+default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617, "phone_code": "53", "phone_len": 8, "phone_international": "011", "phone_local_prefix": "0"})
 default_country("central-america", "dominica", 307823, {"country": "DM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "es", "proj": 32619}, download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 default_country("central-america", "grenada", 550727, {"country": "GD", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
@@ -1289,7 +1289,7 @@ at_state("vorarlberg", 74942, "AT-8")
 
 #########################################################################
 
-es_comm = gen_country('europe', 'spain', download_repo=OSMFR, language='es', proj=32629, municipality_ref='ine:municipio')
+es_comm = gen_country('europe', 'spain', download_repo=OSMFR, language='es', proj=32629, municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00')
 
 es_comm("andalucia", 349044, "ES-AN", proj=32629)
 es_comm("aragon", 349045, "ES-AR", proj=32630)

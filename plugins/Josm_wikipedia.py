@@ -16,7 +16,7 @@ class Josm_wikipedia(Plugin):
         self.errors[9011003] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'deprecated tagging')}
         self.errors[9011004] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia \'\'{0}\'\' language is obsolete, use \'\'{1}\'\' instead', u'be-x-old', u'be-tarask')}
         self.errors[9011005] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia \'\'{0}\'\' language is invalid, use \'\'{1}\'\' instead', u'cz', u'cs')}
-        self.errors[9011006] = {'item': 9011, 'level': 2, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
+        self.errors[9011006] = {'item': 9011, 'level': 2, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9011007] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia title should not start with a space after language code')}
         self.errors[9011008] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia title should not have \'\'{0}\'\' prefix', u'wiki/')}
         self.errors[9011009] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia page title should have first letter capitalized')}
@@ -162,11 +162,11 @@ class Josm_wikipedia(Plugin):
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.tag}")
+                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
                 # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(replace(URL_decode(get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),2)),"_"," ")))
                 # assertMatch:"node wikipedia=en:Foo%27s"
                 # assertNoMatch:"node wikipedia=en:Foo"
-                err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_676bdf5d, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2)), u'_', u' ')))).split('=', 1)])
                 }})
@@ -501,9 +501,9 @@ class Josm_wikipedia(Plugin):
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.tag}")
+                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
                 # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(replace(URL_decode(get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),2)),"_"," ")))
-                err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_676bdf5d, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2)), u'_', u' ')))).split('=', 1)])
                 }})
@@ -816,9 +816,9 @@ class Josm_wikipedia(Plugin):
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.tag}")
+                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
                 # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(replace(URL_decode(get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),2)),"_"," ")))
-                err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_676bdf5d, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2)), u'_', u' ')))).split('=', 1)])
                 }})

@@ -31,13 +31,14 @@ meta[lang=fr] {
     description: "Vérification d'inconsistance de attributs pour les voies en construction ou proposées";
 }
 
-way[highway][construction][highway!=construction],
+way[highway][construction][highway!=construction][construction!=minor],
 way[highway][proposed][highway!=proposed],
-way[railway][construction][railway!=construction],
+way[railway][construction][railway!=construction][construction!=minor],
 way[railway][proposed][railway!=proposed] {
     throwError: tr("Inconsistent tagging of {0}", "{1.key}");
     -osmoseItemClassLevel: "4070/40701/1";
 
     assertMatch: "way highway=primary construction=primary";
     assertNoMatch: "way highway=construction construction=primary";
+    assertNoMatch: "way highway=primary construction=minor";
 }

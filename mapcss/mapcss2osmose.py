@@ -449,7 +449,7 @@ def segregate_selectors_type(rules):
                     out_rules[t].append(rule.copy())
                     out_rules[t][-1]['selectors'] = out_selector[t]
                     out_rules[t][-1]['declarations'] = list(filter(lambda d:
-                        not d['property'] or not d['property'].startswith('assert') or not d['property'].startswith('-osmoseAssert') or
+                        not d['property'] or not (d['property'].startswith('assert') or d['property'].startswith('-osmoseAssert')) or
                         (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)) or
                         (d['value']['type'] == 'declaration_value_function' and d['value']['params'][0]['value']['value'].startswith(t)),
                         out_rules[t][-1]['declarations']))
@@ -469,6 +469,14 @@ def filter_osmose_none_rules(rules):
         rule.get('_meta') or
         not next(filter(lambda declaration: declaration.get('property') == '-osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
+
+
+def filter_area_rules(rules):
+    return list(filter(lambda rule: rule.get('_meta') or len(rule['selectors']) > 0, map(lambda rule:
+        rule.get('_meta') and rule or
+        rule.update({'selectors': list(filter(lambda selector: selector['simple_selectors'][0]['type_selector'] != 'area' or print("W: Skip area selector"), rule['selectors']))}) or rule,
+        rules
+    )))
 
 
 def stablehash(s):
@@ -759,6 +767,7 @@ def main(_, mapcss):
     tree = rewrite_tree(selectors_by_complexity['rules_meta'] + selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
+    tree = filter_area_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
     global class_, tests, regex_store, set_store

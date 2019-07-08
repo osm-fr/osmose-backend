@@ -533,18 +533,31 @@ WHERE
 
 sqlD1 = """
 SELECT
+    id,
+    type,
+    addr_street,
+    ST_AsText(ST_Transform(geom, 4326))
+FROM (
+SELECT
     addr_street.id,
     addr_street.type,
     addr_street.addr_street,
-    ST_AsText(ST_Transform(any_locate(addr_street.type, addr_street.id), 4326))
+    any_locate(addr_street.type, addr_street.id) AS geom
 FROM
     addr_street
     LEFT JOIN highways ON
-        highways.tags?'name' AND
-        highways.tags->'name' = addr_street.addr_street AND
+        highways.tags ?| ARRAY['name', 'name:left', 'name:right'] AND
+        (
+            highways.tags->'name' = addr_street.addr_street OR
+            highways.tags->'name:left' = addr_street.addr_street OR
+            highways.tags->'name:right' = addr_street.addr_street
+        ) AND
         ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, {0})
 WHERE
     highways.id IS NULL
+) AS t
+WHERE
+    geom IS NOT NULL
 """
 
 # Missing highway in associatedStreet
@@ -558,8 +571,12 @@ FROM
     JOIN highways on
         ST_DWithin(highways.linestring_proj, ST_Transform(street_area.geom, {0}), 500) AND
         highways.id != ALL(street_area.wids) AND
-        highways.tags?'name' AND
-        highways.tags->'name' = street_area.name
+        highways.tags ?| ARRAY['name', 'name:left', 'name:right'] AND
+        (
+            highways.tags->'name' = street_area.name OR
+            highways.tags->'name:left' = street_area.name OR
+            highways.tags->'name:right' = street_area.name
+        )
 """
 
 class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):

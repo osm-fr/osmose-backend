@@ -24,6 +24,7 @@ class Josm_numeric(Plugin):
         self.errors[9006018] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9006019] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9006020] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
+        self.errors[9006021] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'Unnecessary amount of decimal places')}
 
         self.re_035d45f0 = re.compile(r'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_066203d3 = re.compile(r'^[0-9]+$')
@@ -47,6 +48,7 @@ class Josm_numeric(Plugin):
         self.re_5478d8af = re.compile(r'^[1-9]([0-9]*)$')
         self.re_55d147d6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$')
         self.re_597f003d = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
+        self.re_5a7f47b9 = re.compile(r'^-?[0-9]+\.[0-9][0-9][0-9]+$')
         self.re_63a07204 = re.compile(r'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$')
         self.re_762a1d1d = re.compile(r'^-?[0-9]+(\.[0-9]+)? ?m$')
         self.re_7f163374 = re.compile(r'^(1|2|3|4|5|6|7|8|9|10|11|12)$')
@@ -523,6 +525,25 @@ class Josm_numeric(Plugin):
                 # assertNoMatch:"node ele=12m"
                 # assertMatch:"node ele=high"
                 err.append({'class': 9006011, 'subclass': 1781084832, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # *[ele][ele=~/^-?[0-9]+\.[0-9][0-9][0-9]+$/]
+        if (u'ele' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a7f47b9), mapcss._tag_capture(capture_tags, 1, tags, u'ele')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Unnecessary amount of decimal places")
+                # throwWarning:tr("{0}","{0.tag}")
+                # assertMatch:"node ele=-12.6789"
+                # assertNoMatch:"node ele=1.12"
+                # assertNoMatch:"node ele=12"
+                # assertNoMatch:"node ele=12.123 m"
+                # assertMatch:"node ele=12.123"
+                # assertMatch:"node ele=12.1234"
+                # assertNoMatch:"node ele=high"
+                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # node[fire_hydrant:pressure="#"]
         if (u'fire_hydrant:pressure' in keys):
@@ -1028,6 +1049,18 @@ class Josm_numeric(Plugin):
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 err.append({'class': 9006011, 'subclass': 1781084832, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[ele][ele=~/^-?[0-9]+\.[0-9][0-9][0-9]+$/]
+        if (u'ele' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a7f47b9), mapcss._tag_capture(capture_tags, 1, tags, u'ele')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Unnecessary amount of decimal places")
+                # throwWarning:tr("{0}","{0.tag}")
+                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
         # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
         if (u'interval' in keys):
             match = False
@@ -1381,6 +1414,18 @@ class Josm_numeric(Plugin):
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 err.append({'class': 9006011, 'subclass': 1781084832, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[ele][ele=~/^-?[0-9]+\.[0-9][0-9][0-9]+$/]
+        if (u'ele' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a7f47b9), mapcss._tag_capture(capture_tags, 1, tags, u'ele')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Unnecessary amount of decimal places")
+                # throwWarning:tr("{0}","{0.tag}")
+                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
         # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
         if (u'interval' in keys):
             match = False
@@ -1548,6 +1593,13 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {u'ele': u'12km'}), expected={'class': 9006011, 'subclass': 1781084832})
         self.check_not_err(n.node(data, {u'ele': u'12m'}), expected={'class': 9006011, 'subclass': 1781084832})
         self.check_err(n.node(data, {u'ele': u'high'}), expected={'class': 9006011, 'subclass': 1781084832})
+        self.check_err(n.node(data, {u'ele': u'-12.6789'}), expected={'class': 9006021, 'subclass': 185098060})
+        self.check_not_err(n.node(data, {u'ele': u'1.12'}), expected={'class': 9006021, 'subclass': 185098060})
+        self.check_not_err(n.node(data, {u'ele': u'12'}), expected={'class': 9006021, 'subclass': 185098060})
+        self.check_not_err(n.node(data, {u'ele': u'12.123 m'}), expected={'class': 9006021, 'subclass': 185098060})
+        self.check_err(n.node(data, {u'ele': u'12.123'}), expected={'class': 9006021, 'subclass': 185098060})
+        self.check_err(n.node(data, {u'ele': u'12.1234'}), expected={'class': 9006021, 'subclass': 185098060})
+        self.check_not_err(n.node(data, {u'ele': u'high'}), expected={'class': 9006021, 'subclass': 185098060})
         self.check_err(n.way(data, {u'123': u'foo'}, [0]), expected={'class': 9006001, 'subclass': 750700308})
         self.check_not_err(n.way(data, {u'ref.1': u'foo'}, [0]), expected={'class': 9006001, 'subclass': 750700308})
         self.check_not_err(n.way(data, {u'width': u'1\''}, [0]), expected={'class': 9006018, 'subclass': 587682576})
