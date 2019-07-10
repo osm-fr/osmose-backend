@@ -244,6 +244,9 @@
     "match": [
       {
         "shop": "tobacco"
+      },
+      {
+        "shop": "newsagent"
       }
     ],
     "generate": {
@@ -820,7 +823,7 @@
     "missing_osm": 7210,
     "class": "87.30B",
     "level": 3,
-    "title": "Hébergement social pour handicapés  physiques",
+    "title": "Hébergement social pour handicapés physiques",
     "match": [
       {
         "amenity": "social_facility",
