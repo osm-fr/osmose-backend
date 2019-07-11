@@ -130,7 +130,10 @@ def booleanExpression_capture_first_operand(t, c):
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
         t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['operands'][0]['params'][0]]}
-        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1]]}
+        if t['operator'] in ('!', '!=', '!~') and t['operands'][1]['type'] in ('quoted', 'osmtag', 'regexExpression'):
+            t['operands'][1] = {'type': 'functionExpression', 'name': '_value_const_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1], {'type': 'quoted', 'value': str(t['operands'][1]['value'])}]}
+        else:
+            t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1]]}
     return t
 
 def booleanExpression_negated_operator(t, c):
