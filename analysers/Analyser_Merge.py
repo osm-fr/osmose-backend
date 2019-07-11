@@ -880,7 +880,7 @@ class Analyser_Merge(Analyser_Osmosis):
                         %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
                         ST_SetSRID(ST_Expand(ST_GeomFromText('%(bbox)s'), %(distance)s), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
                         tags != ''::hstore AND
-                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "distance": self.mapping.conflationDistance, "where":where},
+                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "distance": self.mapping.conflationDistance or 0, "where":where},
                     self.mapping.select.types
                 )
             ))
