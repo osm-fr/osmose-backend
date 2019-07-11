@@ -881,6 +881,7 @@
     "class": "96.02A",
     "level": 3,
     "title": "Coiffure",
+    "trancheEffectifs": 1,
     "match": [
       {
         "shop": "hairdresser"
@@ -896,6 +897,7 @@
     "class": "96.02B",
     "level": 3,
     "title": "Soins de beauté",
+    "trancheEffectifs": 1,
     "match": [
       {
         "shop": "beauty"
