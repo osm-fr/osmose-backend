@@ -1095,7 +1095,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'fuel'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'fuel', u'fuel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1713,7 +1713,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == mapcss._value_capture(capture_tags, 0, u'buoy') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_61b0be1b), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == mapcss._value_capture(capture_tags, 0, u'buoy') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_61b0be1b, u'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$'), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -2502,7 +2502,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'vending') == mapcss._value_capture(capture_tags, 0, u'photos') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'vending_machine'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'vending') == mapcss._value_capture(capture_tags, 0, u'photos') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'vending_machine', u'vending_machine'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -4114,7 +4114,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'fuel'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'fuel', u'fuel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -4731,7 +4731,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') and mapcss._tag_capture(capture_tags, 1, tags, u'type') != mapcss._value_capture(capture_tags, 1, u'waterway') and mapcss._tag_capture(capture_tags, 2, tags, u'man_made') == mapcss._value_capture(capture_tags, 2, u'pipeline'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') and mapcss._tag_capture(capture_tags, 1, tags, u'type') != mapcss._value_const_capture(capture_tags, 1, u'waterway', u'waterway') and mapcss._tag_capture(capture_tags, 2, tags, u'man_made') == mapcss._value_capture(capture_tags, 2, u'pipeline'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -4781,7 +4781,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == mapcss._value_capture(capture_tags, 0, u'buoy') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_61b0be1b), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == mapcss._value_capture(capture_tags, 0, u'buoy') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_61b0be1b, u'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$'), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -5412,7 +5412,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'barrier') == mapcss._value_capture(capture_tags, 0, u'wall') and mapcss._tag_capture(capture_tags, 1, tags, u'type') == mapcss._value_capture(capture_tags, 1, u'noise_barrier') and mapcss._tag_capture(capture_tags, 2, tags, u'wall') and mapcss._tag_capture(capture_tags, 3, tags, u'wall') != mapcss._value_capture(capture_tags, 3, u'noise_barrier'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'barrier') == mapcss._value_capture(capture_tags, 0, u'wall') and mapcss._tag_capture(capture_tags, 1, tags, u'type') == mapcss._value_capture(capture_tags, 1, u'noise_barrier') and mapcss._tag_capture(capture_tags, 2, tags, u'wall') and mapcss._tag_capture(capture_tags, 3, tags, u'wall') != mapcss._value_const_capture(capture_tags, 3, u'noise_barrier', u'noise_barrier'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -5481,15 +5481,15 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05edd24e), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_05edd24e, u'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$'), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'rail') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2fd4cdcf), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'rail') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fd4cdcf, u'^(crossover|siding|spur|yard)$'), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'canal') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7a045a17), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'canal') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7a045a17, u'^(irrigation|transportation|water_power)$'), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("The key {0} has an uncommon value.","{1.key}")
@@ -5691,7 +5691,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tracktype') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_047d5648), mapcss._tag_capture(capture_tags, 1, tags, u'tracktype')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tracktype') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_047d5648, u'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$'), mapcss._tag_capture(capture_tags, 1, tags, u'tracktype')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wrong value: {0}","{0.tag}")
@@ -5796,11 +5796,11 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') == mapcss._value_capture(capture_tags, 0, u'up') and mapcss._tag_capture(capture_tags, 1, tags, u'incline') and mapcss._tag_capture(capture_tags, 2, tags, u'incline') != mapcss._value_capture(capture_tags, 2, u'up'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') == mapcss._value_capture(capture_tags, 0, u'up') and mapcss._tag_capture(capture_tags, 1, tags, u'incline') and mapcss._tag_capture(capture_tags, 2, tags, u'incline') != mapcss._value_const_capture(capture_tags, 2, u'up', u'up'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') == mapcss._value_capture(capture_tags, 0, u'down') and mapcss._tag_capture(capture_tags, 1, tags, u'incline') and mapcss._tag_capture(capture_tags, 2, tags, u'incline') != mapcss._value_capture(capture_tags, 2, u'down'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') == mapcss._value_capture(capture_tags, 0, u'down') and mapcss._tag_capture(capture_tags, 1, tags, u'incline') and mapcss._tag_capture(capture_tags, 2, tags, u'incline') != mapcss._value_const_capture(capture_tags, 2, u'down', u'down'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -7130,7 +7130,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'fuel'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'fuel', u'fuel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -7729,7 +7729,7 @@ class Josm_deprecated(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == mapcss._value_capture(capture_tags, 0, u'buoy') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_61b0be1b), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == mapcss._value_capture(capture_tags, 0, u'buoy') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_61b0be1b, u'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$'), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")

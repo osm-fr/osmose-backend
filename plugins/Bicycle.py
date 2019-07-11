@@ -47,7 +47,7 @@ class Bicycle(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'sidewalk') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1825c777), mapcss._tag_capture(capture_tags, 1, tags, u'highway')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'sidewalk') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1825c777, u'footway|construction'), mapcss._tag_capture(capture_tags, 1, tags, u'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("footway","fix:chair")
@@ -63,7 +63,7 @@ class Bicycle(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') == mapcss._value_capture(capture_tags, 1, u'psv') and mapcss._tag_capture(capture_tags, 2, tags, u'psv') != mapcss._value_capture(capture_tags, 2, u'yes'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') == mapcss._value_capture(capture_tags, 1, u'psv') and mapcss._tag_capture(capture_tags, 2, tags, u'psv') != mapcss._value_const_capture(capture_tags, 2, u'yes', u'yes'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
