@@ -70,7 +70,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                     static1 = generateTags,
                     static2 = {"source": self.source},
                     mapping1 = {
-                        # "ref:FR:SIRET": lambda fields: fields["siren"] + fields["nic"],
+                        "ref:FR:SIRET": lambda fields: fields["siret"],
                         # "ref:FR:RNA": "RNA",
                         "name": lambda fields: fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"] or None},
                         #"short_name": "SIGLE"},
