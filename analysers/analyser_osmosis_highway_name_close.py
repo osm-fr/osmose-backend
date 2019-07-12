@@ -57,7 +57,8 @@ SELECT
   h1.id,
   h2.id,
   ST_AsText(way_locate(h1.linestring)),
-  h1.name
+  h1.name,
+  h2.name
 FROM
   {0}highways_name AS h1
   JOIN {1}highways_name AS h2 ON
@@ -86,7 +87,7 @@ class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
         if self.alphabet:
             self.run(sql10)
             self.run(sql11)
-            self.run(sql12.format('', '', 'false'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+            self.run(sql12.format('', '', 'false'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": ', '.join([res[3], res[4]])}})
 
     def analyser_osmosis_diff(self):
         if self.alphabet:
