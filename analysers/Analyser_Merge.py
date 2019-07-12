@@ -497,12 +497,14 @@ class GeoJSON(Parser):
                 values)
 
 class SHP(Parser):
-    def __init__(self, source):
+    def __init__(self, source, edit = lambda s: s):
         """
         Load Shape file data.
         @param source: source file reader
+        @param edit: edit the SQL code produced by shp2pgsql
         """
         self.source = source
+        self.edit = edit
 
     def header(self):
         return True
@@ -523,7 +525,7 @@ class SHP(Parser):
         )
         if os.system(shp2pgsql):
             raise Exception("shp2pgsql error")
-        sql = open(tmp_file.name, 'r').read().split(";\n")
+        sql = self.edit(open(tmp_file.name, 'r').read()).split(";\n")
         for s in sql:
             if s != "":
                 osmosis.giscurs.execute(s)
