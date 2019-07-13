@@ -32,6 +32,38 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
+    "class": "45.11Z.",
+    "level": 3,
+    "title": "Commerce de voitures et de véhicules automobiles légers",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "shop": "car"
+      }
+    ],
+    "generate": {
+      "shop": "car"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "45.19Z",
+    "level": 3,
+    "title": "Commerce d'autres véhicules automobiles",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "shop": "car"
+      }
+    ],
+    "generate": {
+      "shop": "car"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
     "class": "45.20A",
     "level": 3,
     "title": "Entretien et réparation de véhicules automobiles",
@@ -704,6 +736,22 @@
     ],
     "generate": {
       "amenity": "cinema"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "71.11Z",
+    "level": 3,
+    "title": "Activités d'architecture",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "office": "architect"
+      }
+    ],
+    "generate": {
+      "office": "architect"
     }
   },
   {
