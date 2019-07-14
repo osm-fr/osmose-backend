@@ -220,6 +220,12 @@ WHERE
     highway.layer = water.layer AND
     NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford')
+GROUP BY
+    highway.id,
+    water.id,
+    highway.linestring,
+    water.linestring,
+    water.waterway
 """
 
 sql50 = """
