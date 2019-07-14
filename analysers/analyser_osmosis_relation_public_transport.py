@@ -106,6 +106,7 @@ GROUP BY
   t.id,
   t.string
 HAVING
+  relation_locate(t.id) IS NOT NULL AND
   string != count(*)
 """
 
