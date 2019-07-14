@@ -1228,7 +1228,6 @@
 <classtext lang="en" title="Missing primary Wikipedia tag" />
 <classtext lang="es" title="Falta etiqueta wikipedia primaria" />
 <classtext lang="fa" title="کمبود تگ اصلی ویکی‌پدیا" />
-<classtext lang="fr" title="Un attribut “wikipedia”=“‹code›:*” doit être présent avant d’utiliser des attributs “wikipedia:‹code›”=“*”" />
 <classtext lang="gl" title="Falla a etiqueta da Wikipedia primaria" />
 <classtext lang="hu" title="Hiányzó elsődleges &lt;wikipedia&gt; címke" />
 <classtext lang="it" title="Tag wikipedia principale mancante" />
@@ -1247,7 +1246,6 @@
 <classtext lang="en" title="Invalid wikipedia suffix" />
 <classtext lang="es" title="Sufijo wikipedia inválido" />
 <classtext lang="fa" title="پیشوند نامعتبر برای ویکی‌پدیا" />
-<classtext lang="fr" title="Utilisation incorrecte d’un attribut “wikipedia:‹code›=*”, ‹code› devrait être un autre attribut ou un code langue" />
 <classtext lang="gl" title="Sufixo da wikipedia non válido" />
 <classtext lang="hu" title="Érvénytelen Wikipédia-utótag" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
@@ -1454,7 +1452,7 @@
 <classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
 <classtext lang="fa" title="کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید" />
-<classtext lang="fr" title="Le code couleur devrait commencer par un ‹#› suivi de 3 ou 6 chiffres hexadécimaux" />
+<classtext lang="fr" title="Le code couleur devrait commencer par un '#' suivi de 3 ou 6 chiffres hexadécimaux" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
 <classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
 <classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
@@ -5909,18 +5907,18 @@
 <member ref="70236570" role="inner" type="way" />
 <member ref="70236587" role="inner" type="way" />
 </relation>
-<text lang="ru" value="boat без waterway, natural=water, landuse={3.value} или ford=yes" />
-<text lang="fr" value="boat sans waterway, natural=water, landuse={3.value} ou ford=yes" />
-<text lang="en" value="boat without waterway, natural=water, landuse={3.value} or ford=yes" />
-<text lang="nl" value="boat zonder waterway, natural=water, landuse={3.value} of ford=yes" />
-<text lang="pt" value="boat sem waterway, natural=water, landuse={3.value} ou ford=yes" />
-<text lang="de" value="boat ohne waterway, natural=water, landuse={3.value} oder ford=yes" />
-<text lang="it" value="boat senza waterway, natural=water, landuse={3.value} o ford=yes" />
-<text lang="hu" value="waterway, natural=water, landuse={3.value} vagy ford=yes nélküli boat" />
-<text lang="pl" value="boat bez waterway, natural=water, landuse={3.value} lub ford=yes" />
-<text lang="uk" value="boat без waterway, natural=water, landuse={3.value} або ford=yes" />
-<text lang="cs" value="boat bez waterway, natural=water, landuse={3.value} nebo ford=yes" />
-<text lang="es" value="boat sin waterway, natural=water, landuse={3.value} o ford=yes" />
+<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
+<text lang="fr" value="boat sans waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
+<text lang="en" value="boat without waterway, natural=water, landuse=^(basin|reservoir)$ or ford=yes" />
+<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
+<text lang="pt" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
+<text lang="de" value="boat ohne waterway, natural=water, landuse=^(basin|reservoir)$ oder ford=yes" />
+<text lang="it" value="boat senza waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
+<text lang="hu" value="waterway, natural=water, landuse=^(basin|reservoir)$ vagy ford=yes nélküli boat" />
+<text lang="pl" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ lub ford=yes" />
+<text lang="uk" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ або ford=yes" />
+<text lang="cs" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ nebo ford=yes" />
+<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
 </error>
 <error class="50701" subclass="1">
 <location lat="0" lon="0" />

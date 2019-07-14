@@ -1085,7 +1085,6 @@
 <classtext lang="en" title="Missing primary Wikipedia tag" />
 <classtext lang="es" title="Falta etiqueta wikipedia primaria" />
 <classtext lang="fa" title="کمبود تگ اصلی ویکی‌پدیا" />
-<classtext lang="fr" title="Un attribut “wikipedia”=“‹code›:*” doit être présent avant d’utiliser des attributs “wikipedia:‹code›”=“*”" />
 <classtext lang="gl" title="Falla a etiqueta da Wikipedia primaria" />
 <classtext lang="hu" title="Hiányzó elsődleges &lt;wikipedia&gt; címke" />
 <classtext lang="it" title="Tag wikipedia principale mancante" />
@@ -1104,7 +1103,6 @@
 <classtext lang="en" title="Invalid wikipedia suffix" />
 <classtext lang="es" title="Sufijo wikipedia inválido" />
 <classtext lang="fa" title="پیشوند نامعتبر برای ویکی‌پدیا" />
-<classtext lang="fr" title="Utilisation incorrecte d’un attribut “wikipedia:‹code›=*”, ‹code› devrait être un autre attribut ou un code langue" />
 <classtext lang="gl" title="Sufixo da wikipedia non válido" />
 <classtext lang="hu" title="Érvénytelen Wikipédia-utótag" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
@@ -1237,7 +1235,7 @@
 <classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
 <classtext lang="fa" title="کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید" />
-<classtext lang="fr" title="Le code couleur devrait commencer par un ‹#› suivi de 3 ou 6 chiffres hexadécimaux" />
+<classtext lang="fr" title="Le code couleur devrait commencer par un '#' suivi de 3 ou 6 chiffres hexadécimaux" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
 <classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
 <classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
