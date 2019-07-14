@@ -41,7 +41,7 @@ WHERE
     relations.tags->'type' = 'boundary' AND
     relations.tags?'boundary'
 )
-UNION ALL
+UNION
 (
 SELECT
     ways.id,
