@@ -151,6 +151,10 @@ WHERE
 )
 """
 
+sql20b = """
+CREATE INDEX indx_stop_platform_geom ON stop_platform USING gist(geom)
+"""
+
 sql21 = """
 CREATE TEMP TABLE route_geom AS
 SELECT
@@ -173,7 +177,8 @@ FROM
   stop_platform
   JOIN route_geom ON
     route_geom.id = stop_platform.id AND
-    ST_Distance(route_geom.geom, stop_platform.geom) BETWEEN 50 AND 1000 
+    ST_DWithin(route_geom.geom, stop_platform.geom, 1000) AND
+    ST_Distance(route_geom.geom, stop_platform.geom) BETWEEN 50 AND 1000
 """
 
 sql30 = """
@@ -272,6 +277,7 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql01)
         self.run(sql10, self.callback10)
         self.run(sql20.format(self.config.options.get("proj")))
+        self.run(sql20b)
         self.run(sql21.format(self.config.options.get("proj")))
         self.run(sql22, self.callback20)
         self.run(sql30, self.callback30)
