@@ -182,7 +182,7 @@ FROM
 """
 
 sql30 = """
-SELECT
+SELECT DISTINCT ON(relations.id, relation_members.member_type || relation_members.member_id)
   relations.id,
   relation_members.member_type || relation_members.member_id,
   ST_AsText(coalesce(
@@ -210,7 +210,7 @@ WHERE
 """
 
 sql40 = """
-SELECT
+SELECT DISTINCT ON(relations.id)
     relations.id,
     ST_AsText(relation_locate(relations.id))
 FROM
