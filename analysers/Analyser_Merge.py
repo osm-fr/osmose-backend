@@ -906,7 +906,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.missing_official:
             self.run(sql12, lambda res: {
                 "class": self.missing_official["class"],
-                "subclass": str(stablehash("%s%s"%(res[0],res[1]))),
+                "subclass": str(stablehash("%s%s%s"%(res[0],res[1],res[3]))),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
