@@ -119,8 +119,6 @@ SELECT
   ST_Transform(ways.linestring, {0}) AS geom
 FROM
   relations
-  JOIN route ON
-    route.id = relations.id
   JOIN relation_members ON
     relation_members.member_type = 'W' AND
     relation_members.relation_id = relations.id AND
@@ -139,8 +137,6 @@ SELECT
   ST_Transform(nodes.geom, {0}) AS geom
 FROM
   relations
-  JOIN route ON
-    route.id = relations.id
   JOIN relation_members ON
     relation_members.member_type = 'N' AND
     relation_members.relation_id = relations.id AND
