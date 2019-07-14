@@ -20,13 +20,15 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.Stablehash import stablehash
 from plugins.Plugin import Plugin
 
 class TagFix_BadKey(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3050] = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad tag") }
+        self.errors[3050]  = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad tag") }
+        self.errors[30501] = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad tag suffix") }
 
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
@@ -61,9 +63,9 @@ class TagFix_BadKey(Plugin):
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append({"class": 3050, "subclass": 0, "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 3050, "subclass": stablehash(k), "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append({"class": 3050, "subclass": 1, "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 30501, "subclass": stablehash(k), "text": T_("Bad tag suffix %(k)s=%(v)s", {"k":k, "v":tags[k]})})
 
         return err
 
