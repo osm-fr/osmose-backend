@@ -497,12 +497,14 @@ class GeoJSON(Parser):
                 values)
 
 class SHP(Parser):
-    def __init__(self, source):
+    def __init__(self, source, edit = lambda s: s):
         """
         Load Shape file data.
         @param source: source file reader
+        @param edit: edit the SQL code produced by shp2pgsql
         """
         self.source = source
+        self.edit = edit
 
     def header(self):
         return True
@@ -523,7 +525,7 @@ class SHP(Parser):
         )
         if os.system(shp2pgsql):
             raise Exception("shp2pgsql error")
-        sql = open(tmp_file.name, 'r').read().split(";\n")
+        sql = self.edit(open(tmp_file.name, 'r').read()).split(";\n")
         for s in sql:
             if s != "":
                 osmosis.giscurs.execute(s)
@@ -880,7 +882,7 @@ class Analyser_Merge(Analyser_Osmosis):
                         %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
                         ST_SetSRID(ST_Expand(ST_GeomFromText('%(bbox)s'), %(distance)s), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
                         tags != ''::hstore AND
-                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "distance": self.mapping.conflationDistance, "where":where},
+                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "distance": self.mapping.conflationDistance or 0, "where":where},
                     self.mapping.select.types
                 )
             ))

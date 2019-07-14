@@ -369,7 +369,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != mapcss._value_capture(capture_tags, 1, u'tree'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != mapcss._value_const_capture(capture_tags, 1, u'tree', u'tree'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -442,7 +442,7 @@ class Josm_geometry(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'man_made') != mapcss._value_capture(capture_tags, 0, u'monitoring_station') and mapcss.at(data['lat'], data['lon'], 0.0, 0.0))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'man_made') != mapcss._value_const_capture(capture_tags, 0, u'monitoring_station', u'monitoring_station') and mapcss.at(data['lat'], data['lon'], 0.0, 0.0))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.")
@@ -621,7 +621,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval') and mapcss._tag_capture(capture_tags, 1, tags, u'route') != mapcss._value_capture(capture_tags, 1, u'ferry'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'interval') and mapcss._tag_capture(capture_tags, 1, tags, u'route') != mapcss._value_const_capture(capture_tags, 1, u'ferry', u'ferry'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}

@@ -28,7 +28,7 @@ class Josm_FranceSpecificRules(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, u'carpool') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'car_pooling', u'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, u'carpool') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -73,7 +73,7 @@ class Josm_FranceSpecificRules(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, u'carpool') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'car_pooling', u'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, u'carpool') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -103,7 +103,7 @@ class Josm_FranceSpecificRules(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_capture(capture_tags, 1, u'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, u'carpool') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 1, u'car_pooling', u'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, u'carpool') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")

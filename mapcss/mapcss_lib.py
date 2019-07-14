@@ -348,6 +348,10 @@ def _value_capture(stock, index, value):
         stock[index][1] = str(value)
     return value
 
+def _value_const_capture(stock, index, value, const):
+    _value_capture(stock, index, const)
+    return value
+
 #parent_tag(key_name)
 #    get the value of the key key_name from the object's parent 
 #parent_tags(key_name)

@@ -450,11 +450,11 @@ class Josm_transport(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3d9f4d39, u'^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'interval') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3d9f4d39, u'^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, u'interval')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("The interval is invalid (try a number of minutes)")
@@ -466,11 +466,11 @@ class Josm_transport(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'duration') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'duration')))
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, u'duration') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3d9f4d39, u'^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, u'duration')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'duration') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d9f4d39), mapcss._tag_capture(capture_tags, 1, tags, u'duration')))
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, u'duration') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3d9f4d39, u'^([0-9][0-9][0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, u'duration')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("The duration is invalid (try a number of minutes)")

@@ -32,6 +32,38 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
+    "class": "45.11Z.",
+    "level": 3,
+    "title": "Commerce de voitures et de véhicules automobiles légers",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "shop": "car"
+      }
+    ],
+    "generate": {
+      "shop": "car"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "45.19Z",
+    "level": 3,
+    "title": "Commerce d'autres véhicules automobiles",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "shop": "car"
+      }
+    ],
+    "generate": {
+      "shop": "car"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
     "class": "45.20A",
     "level": 3,
     "title": "Entretien et réparation de véhicules automobiles",
@@ -244,6 +276,9 @@
     "match": [
       {
         "shop": "tobacco"
+      },
+      {
+        "shop": "newsagent"
       }
     ],
     "generate": {
@@ -706,6 +741,22 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
+    "class": "71.11Z",
+    "level": 3,
+    "title": "Activités d'architecture",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "office": "architect"
+      }
+    ],
+    "generate": {
+      "office": "architect"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
     "class": "71.12A",
     "level": 3,
     "title": "Activité des géomètres",
@@ -820,7 +871,7 @@
     "missing_osm": 7210,
     "class": "87.30B",
     "level": 3,
-    "title": "Hébergement social pour handicapés  physiques",
+    "title": "Hébergement social pour handicapés physiques",
     "match": [
       {
         "amenity": "social_facility",
@@ -878,6 +929,7 @@
     "class": "96.02A",
     "level": 3,
     "title": "Coiffure",
+    "trancheEffectifs": 1,
     "match": [
       {
         "shop": "hairdresser"
@@ -893,6 +945,7 @@
     "class": "96.02B",
     "level": 3,
     "title": "Soins de beauté",
+    "trancheEffectifs": 1,
     "match": [
       {
         "shop": "beauty"

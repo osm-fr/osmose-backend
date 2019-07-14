@@ -30,7 +30,8 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
             u"http://data.bordeaux-metropole.fr/data.php?themes=8",
             u"Numéro de voirie de Bordeaux Métropole",
             SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                    fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=20&format=2", zip = "FV_NUMVO_P.shp", encoding = "ISO-8859-15")),
+                    fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=20&format=2", zip = "FV_NUMVO_P.shp", encoding = "ISO-8859-15"),
+                edit = lambda sql: sql.replace(u'"numero" float8', '"numero" integer').replace(u'"NUMERO" float8', '"NUMERO" integer')),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(

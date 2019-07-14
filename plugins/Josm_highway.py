@@ -39,7 +39,7 @@ class Josm_highway(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3dc5dd7c), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != mapcss._value_capture(capture_tags, 1, u'motorway_junction') and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != mapcss._value_capture(capture_tags, 2, u'services'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3dc5dd7c), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != mapcss._value_const_capture(capture_tags, 1, u'motorway_junction', u'motorway_junction') and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != mapcss._value_const_capture(capture_tags, 2, u'services', u'services'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong highway tag on a node")
@@ -312,7 +312,7 @@ class Josm_highway(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_fixable_footway and not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'footway') != mapcss._value_capture(capture_tags, 1, u'sidewalk') and mapcss._tag_capture(capture_tags, 2, tags, u'footway') != mapcss._value_capture(capture_tags, 2, u'crossing'))
+                try: match = (not set_fixable_footway and not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'footway') != mapcss._value_const_capture(capture_tags, 1, u'sidewalk', u'sidewalk') and mapcss._tag_capture(capture_tags, 2, tags, u'footway') != mapcss._value_const_capture(capture_tags, 2, u'crossing', u'crossing'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Value of ''{0}'' should either be ''{1}'' or ''{2}''. For sidewalks use ''{3}'' instead.","{0.key}","{1.value}","{2.value}","sidewalk=left|right|both|no")
