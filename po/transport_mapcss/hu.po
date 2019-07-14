@@ -1,11 +1,11 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
-# Gábor Babos <gabor.babos@gmail.com>, 2018
+# Gábor Babos <gabor.babos@gmail.com>, 2019
 # Noémie Lehuby, 2019
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>, 2018\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>, 2019\n"
 "Language-Team: Hungarian (https://www.transifex.com/openstreetmap-france/teams/17462/hu/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,80 +19,93 @@ msgstr "Tömegközlekedési adatok teljes körű érvényesítése"
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
 msgstr ""
-"Hiányzik a közlekedési mód. Adjon hozzá egy <route=bus/coach/tram/stb.> "
+"Hiányzik a közlekedési mód. Adjon hozzá egy [route=bus/coach/tram/stb.] "
 "címkét"
 
 #: ../transport.validator.mapcss:67
 msgid "Missing transportation mode, change tag route to route_master"
 msgstr ""
-"Hiányzik a közlekedési mód. Módosítsa a <route> címkét erre: <route_master>"
+"Hiányzik a közlekedési mód. Módosítsa a [route] címkét erre: [route_master]"
 
 #: ../transport.validator.mapcss:83
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
 msgstr ""
-"Hiányzik a <public_transport:version> címke a <public_transport> "
+"Hiányzik a [public_transport:version] címke a [public_transport] "
 "útvonalkapcsolatról"
 
 #: ../transport.validator.mapcss:92
 msgid "Missing network tag on a public_transport relation"
-msgstr "Hiányzik a <network>hálózatcímke a <public_transport> kapcsolatról"
+msgstr "Hiányzik a [network]hálózatcímke a [public_transport] kapcsolatról"
 
 #: ../transport.validator.mapcss:101
 msgid "Missing operator tag on a public_transport relation"
 msgstr ""
-"Hiányzik az <operator> üzemeltető címke a <public_transport> kapcsolatról"
+"Hiányzik az [operator] üzemeltető címke a [public_transport] kapcsolatról"
 
 #: ../transport.validator.mapcss:110
 msgid "Missing ref tag for line number on a public_transport relation"
 msgstr ""
-"Hiányzik a vonal számát jelölő <ref> címke a <public_transport> kapcsolatról"
+"Hiányzik a vonal számát jelölő [ref] címke a [public_transport] kapcsolatról"
 
 #: ../transport.validator.mapcss:119
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Hiányzik a <from/to> címke a <public_transport> <route> kapcsolatról"
+msgstr "Hiányzik a [from/to] címke a [public_transport] [route] kapcsolatról"
 
 #: ../transport.validator.mapcss:129
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"A [network] hálózat címkének meg kell egyeznie a [route] és a [route_master]"
+" esetében: {0} vs {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
+"Az [operator] üzemeltető címkének meg kell egyeznie a [route] és a "
+"[route_master] esetében: {0} vs {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr ""
+"A [ref] címkének meg kell egyeznie a [route] és a [route_master] esetében: "
+"{0} vs {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"A [colour] szín címkének meg kell egyeznie a [route] és a [route_master] "
+"esetében: {0} vs {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
 msgstr ""
+"A tömegközlekedési mód címkéjének meg kell egyeznie a [route] és a "
+"[route_master] esetében: {0} vs {1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr ""
+msgstr "Ellenőrizze a [colour] szín címkét"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""
+"A [colour] szín címkének # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy "
+"követhet"
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
+"A tömegközlekedési vonal színének a [colour] szín címkében kell szerepelnie"
 
 #: ../transport.validator.mapcss:176
 msgid "The stops may not be in the right order"
@@ -100,15 +113,15 @@ msgstr "Lehet, hogy a megállók helytelen sorrendben vannak"
 
 #: ../transport.validator.mapcss:184
 msgid "Check the operator tag"
-msgstr "Ellenőrizze az üzemeltetőt jelző <operatort> címkét"
+msgstr "Ellenőrizze az üzemeltetőt jelző [operatort] címkét"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag"
-msgstr "Ellenőrizze a hálózatot jelölő <network> címkét"
+msgstr "Ellenőrizze a hálózatot jelölő [network] címkét"
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "A buszmegálló feltételezhetően egy pont"
 
 #: ../transport.validator.mapcss:201
 msgid "Stop without name"
@@ -123,32 +136,34 @@ msgid ""
 "A bus station is usually a large area where many buses stops, check if you "
 "can draw this area"
 msgstr ""
+"A buszállomás általában egy nagyobb terület, ahol sok busz megáll. "
+"Ellenőrizze, hogy meg tudja-e rajzolni az adott területet"
 
 #: ../transport.validator.mapcss:219
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
-"Határozza meg, hogy ez egy megálló/peron <platform> vagy a jármű "
-"megállásának helye az úton <stop_position>"
+"Határozza meg, hogy ez egy megálló/peron [platform] vagy a jármű "
+"megállásának helye az úton [stop_position]"
 
 #: ../transport.validator.mapcss:220 ../transport.validator.mapcss:231
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "Hiányzik a <public_transport> címke a tömegközlekedési megállóról"
+msgstr "Hiányzik a [public_transport] címke a tömegközlekedési megállóról"
 
 #: ../transport.validator.mapcss:230
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
-"Határozza meg, hogy ez egy megálló/peron <platform> vagy a jármű "
-"megállásának helye a sínen <stop_position>"
+"Határozza meg, hogy ez egy megálló/peron [platform] vagy a jármű "
+"megállásának helye a sínen [stop_position]"
 
 #: ../transport.validator.mapcss:241
 msgid ""
 "The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
 msgstr ""
-"Hiányzik az örökségcímke. Adja hozzá valamelyiket: <highway=bus_stop> vagy  "
-"<railway=tram_stop>"
+"Hiányzik az örökségcímke. Adja hozzá valamelyiket: [highway=bus_stop] vagy  "
+"[railway=tram_stop]"
 
 #: ../transport.validator.mapcss:242 ../transport.validator.mapcss:250
 msgid "Missing legacy tag on a public transport stop"
@@ -156,7 +171,7 @@ msgstr "Hiányzik az örökségcímke a tömegközlekedési megállóról"
 
 #: ../transport.validator.mapcss:249
 msgid "Is this a bus stop? add the tag highway=bus_stop"
-msgstr "Ez egy buszmegálló? Adja hozzá a <highway=bus_stop> címkét"
+msgstr "Ez egy buszmegálló? Adja hozzá a [highway=bus_stop] címkét"
 
 #: ../transport.validator.mapcss:260
 msgid "Check if the note can be deleted"
@@ -165,13 +180,13 @@ msgstr "Ellenőrizze, hogy törölhető-e a megjegyzés"
 #: ../transport.validator.mapcss:265
 msgid "The network should be on the transport lines and not on the stops"
 msgstr ""
-"A hálózat <network> megjelölésének a tömegközlekedési útvonalakon kell "
+"A hálózat [network] megjelölésének a tömegközlekedési útvonalakon kell "
 "lennie, nem pedig a megállókon"
 
 #: ../transport.validator.mapcss:271
 msgid "The operator should be on the transport lines and not on the stops"
 msgstr ""
-"Az üzemeltető <operator> megjelölésének a tömegközlekedési útvonalakon kell "
+"Az üzemeltető [operator] megjelölésének a tömegközlekedési útvonalakon kell "
 "lennie, nem pedig a megállókon"
 
 #: ../transport.validator.mapcss:282
@@ -180,26 +195,28 @@ msgid ""
 "relation"
 msgstr ""
 "Ez a vonalváltozat egyetlen útvonalhoz sem tartozik. Adja hozzá a "
-"<route_master> kapcsolathoz"
+"[route_master] kapcsolathoz"
 
 #: ../transport.validator.mapcss:292
 msgid "The stop is not served by any line, add it to a route relation"
 msgstr ""
-"Ez a megálló egyetlen vonalhoz sem tartozik. Adja hozzá egy <route> "
+"Ez a megálló egyetlen vonalhoz sem tartozik. Adja hozzá egy [route] "
 "kapcsolathoz"
 
 #: ../transport.validator.mapcss:299
 msgid "The interval is invalid (try a number of minutes)"
 msgstr ""
+"Érvénytelen [interval] követési időköz (próbálja meg a percek számát "
+"megadni)"
 
 #: ../transport.validator.mapcss:305
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "Érvénytelen időtartam (próbálja meg a percek számát megadni)"
 
 #: ../transport.validator.mapcss:311
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "Hiányzik az [interval] címke a fő követési időköz meghatározásához"
 
 #: ../transport.validator.mapcss:317
 msgid "Missing opening_hours tag"
-msgstr ""
+msgstr "Hiányzik az [opening_hours] nyitva tartás címke"

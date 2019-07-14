@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Christian Ostermann, 2015-2016
-# Christian Ostermann, 2017-2018
+# Christian Ostermann, 2017-2019
 # Claudius Henrichs <claudius.h@gmx.de>, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2017
 # osmtools <osm@haraldhartmann.de>, 2017
@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-05-27 21:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-07-13 18:35+0000\n"
+"Last-Translator: Christian Ostermann\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -818,7 +818,7 @@ msgstr "area=yes auf Objekt ohne Art"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
-msgstr "Falsche Verwendung von area=no. Objekt muss eine Oberfläche sein"
+msgstr "Falsche Verwendung von area=no. Objekt muss eine Fläche sein"
 
 #: ../plugins/TagFix_BadKey.py:64 ../plugins/TagFix_BadKey.py:66
 #, python-format
@@ -960,7 +960,7 @@ msgstr "Weingut nicht eingetragen"
 
 #: ../plugins/Name_Multilingual.py:37
 msgid "Multilingual not matching"
-msgstr "Mehrsprachriger Name nicht übereinstimmend"
+msgstr "Mehrsprachiger Name nicht übereinstimmend"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1517,7 +1517,7 @@ msgstr "Der stop oder platform ist zu weit vom Fahrtweg der Route entfernt"
 
 #: ../plugins/Phone.py:53
 msgid "Missing international prefix"
-msgstr "Landesvorwahl fehlt"
+msgstr "Ländervorwahl fehlt"
 
 #: ../plugins/TagFix_Maxspeed.py:76
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1593,7 +1593,7 @@ msgstr ""
 #: ../plugins/Construction2.py:14 ../plugins/Construction2.py:51
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
-msgstr ""
+msgstr "Inkonsistentes Tagging von {0}"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Aquitaine equestrian spot not integrated"
@@ -1728,7 +1728,7 @@ msgstr ""
 msgid ""
 "This wikidata value matches a chain store, it should be in a brand:wikidata "
 "tag."
-msgstr ""
+msgstr "Dieser wikidata Wert entspricht einer Ladenkette, dafür sollte der brand:wikidata Tag verwendet werden"
 
 #: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
@@ -1785,24 +1785,24 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr ""
+msgstr "Polizei/Gendarmerie nicht integriert"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr ""
+msgstr "Polizei/Gendarmerie, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
-msgstr ""
+msgstr "Polizei/Gendarmerie Update"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "Fehlender Zufahrtweg zum Parkplatz"
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
@@ -1814,7 +1814,7 @@ msgstr ""
 
 #: ../plugins/Power.py:16 ../plugins/Power.py:52
 msgid "Power Transformers should have a frequency tag"
-msgstr ""
+msgstr "Umspannwerke sollten einen frequency Tag haben"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
@@ -1830,7 +1830,7 @@ msgstr ""
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:14
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "Arabischer Buchstabe in Farsi Namen erkannt"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
@@ -1854,11 +1854,11 @@ msgstr ""
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "Der URL enthält ein Leerzeichen"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "Der URL hat kein gültiges Schema"
 
 #: ../plugins/Website.py:41
 #, python-format
@@ -2049,7 +2049,7 @@ msgstr ""
 
 #: ../plugins/Phone.py:48
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "Telefonnummer entspricht nicht dem erwartetem Format"
 
 #: ../plugins/Phone.py:52
 msgid "Local short code can't be internationalized"
@@ -2057,7 +2057,7 @@ msgstr ""
 
 #: ../plugins/Phone.py:54
 msgid "Bad international prefix"
-msgstr ""
+msgstr "Falsche Ländervorwahl"
 
 #: ../plugins/Phone.py:55
 msgid "Unallowed char in phone number"
@@ -2124,7 +2124,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Fence with material tag, better use fence_type tag"
-msgstr ""
+msgstr "'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected highway"
@@ -2133,7 +2133,7 @@ msgstr ""
 #: ../plugins/Phone.py:50
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
-msgstr ""
+msgstr "Unnötige \"{0}\" nach Ländervorwahl"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
@@ -2162,7 +2162,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without tag \"ref\" or invalid"
-msgstr ""
+msgstr "Briefkasten ohne \"ref\" Tag oder ungültig"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
@@ -2191,11 +2191,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
-msgstr ""
+msgstr "Blitzer sollte auf der Straße oder in einer enforcement-Relation sein"
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
-msgstr ""
+msgstr "P+R-Stellplatz in Île-de-France nicht integriert"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing municipality ref tag"
@@ -2243,7 +2243,7 @@ msgstr ""
 #: ../analysers/analyser_merge_power_plant_FR.py:57
 #, python-format
 msgid "Power plant %s"
-msgstr ""
+msgstr "Kraftwerk %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without tag \"postal_code\""

@@ -200,7 +200,7 @@ msgstr "De duur is ongeldig (probeer een nummer of minuten) "
 
 #: ../transport.validator.mapcss:311
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "Ontbrekende interval tag om de hoofdinterval te specificeren"
 
 #: ../transport.validator.mapcss:317
 msgid "Missing opening_hours tag"

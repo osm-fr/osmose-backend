@@ -1,11 +1,11 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
-# Christian Ostermann, 2018
+# Christian Ostermann, 2019
 # Noémie Lehuby, 2019
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Christian Ostermann, 2018\n"
+"Last-Translator: Christian Ostermann, 2019\n"
 "Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,24 +53,28 @@ msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"Der network-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
+"Der operator-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr ""
+"Der ref-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"Der colour-Tag sollte bei route und route_master gleich sein: {0} vs. {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
@@ -80,11 +84,11 @@ msgstr ""
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr ""
+msgstr "colour Tag überprüfen"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Der Farbcode sollte aus '#' und 3 oder 6 Ziffern bestehen"
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
@@ -120,6 +124,8 @@ msgid ""
 "A bus station is usually a large area where many buses stops, check if you "
 "can draw this area"
 msgstr ""
+"Ein Busbahnhof ist üblicherweise ein großer Bereich wo viele Busse halten, "
+"prüfe ob du diesen Bereich einzeichnen kannst"
 
 #: ../transport.validator.mapcss:219
 msgid ""
