@@ -215,15 +215,19 @@ SELECT
     roundabout.id,
     ST_AsText(way_locate(roundabout.linestring))
 FROM (
-    SELECT
-        rid AS id
-    FROM
-        access
-    GROUP BY
-        rid,
-        nodes
-    HAVING
-        COUNT(*) > 1
+    SELECT DISTINCT ON (id)
+        id
+    FROM (
+        SELECT
+            rid AS id
+        FROM
+            access
+        GROUP BY
+            rid,
+            nodes
+        HAVING
+            COUNT(*) > 1
+    ) AS t
 ) AS t
     NATURAL JOIN roundabout
 """
