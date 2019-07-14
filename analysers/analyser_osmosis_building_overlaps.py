@@ -91,7 +91,7 @@ WHERE
 
 sql50 = """
 SELECT
-    DISTINCT ON (bnodes.id, bnodes.point_proj)
+    DISTINCT ON (bnodes.id)
     buildings.id,
     bnodes.id,
     ST_AsText(ST_Transform(bnodes.point_proj, 4326))
@@ -107,8 +107,7 @@ WHERE
     buildings.polygon_proj IS NOT NULL AND
     buildings.wall
 ORDER BY
-    bnodes.id,
-    bnodes.point_proj
+    bnodes.id
 """
 
 sql60 = """
