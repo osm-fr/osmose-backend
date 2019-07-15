@@ -37,17 +37,24 @@ class Structural_Multipolygon(Plugin):
 
         outer = 0
         inner = 0
-        err = []
+        err_roles = []
+        err_members = []
         for member in members:
             if member['type'] == 'way':
                 if member['role'] not in ('', 'outer', 'inner'):
-                    err.append({"class": 11701, "subclass": 1, "text": {"en": member['role']}})
+                    err_roles.append(member['role'])
                 if member['role'] in ('', 'outer'):
                     outer += 1
                 elif member['role'] == 'inner':
                     inner += 1
             else:
-                err.append({"class": 11702, "subclass": 1, "text": {"en": "%s - %s" % (member['type'], member['role'])}})
+                err_members.append("{0} - {1}".format(member['type'], member['role']))
+
+        err = []
+        if len(err_roles) > 0:
+            err.append({"class": 11701, "subclass": 1, "text": {"en": ', '.join(err_roles)}})
+        if len(err_members) > 0:
+            err.append({"class": 11702, "subclass": 1, "text": {"en": ', '.join(err_members)}})
 
         if outer == 0:
             err.append({"class": 11703, "subclass": 1})
