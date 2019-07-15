@@ -25,6 +25,7 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql40 = """
 SELECT
     t.id,
+    t.nid,
     ST_AsText(nodes.geom),
     level
 FROM
@@ -60,9 +61,9 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1090", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 1") }
-        self.classs[2] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 2") }
-        self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 3") }
+        self.classs[1] = {"item":"1090", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad topology way level {0}", 1) }
+        self.classs[2] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad topology way level {0}", 2) }
+        self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad topology way level {0}", 3) }
 
     def analyser_osmosis_common(self):
-        self.run(sql40, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )
+        self.run(sql40, lambda res: {"class":res[3], "data":[self.way, self.node, self.positionAsText]} )
