@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-07-14 21:01+0000\n"
+"PO-Revision-Date: 2019-07-15 07:47+0000\n"
 "Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1759,7 +1759,7 @@ msgstr "Szembejövő út vagy sáv az egyirányú utca irányába"
 #: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:59
 #, python-brace-format
 msgid "{0} without {1}"
-msgstr "{0}, {1} nélkül"
+msgstr "[{0}], [{1}] nélkül"
 
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:95
 #, python-brace-format
@@ -1909,7 +1909,7 @@ msgstr "{0} megálló: {1}"
 #: ../analysers/analyser_merge_traffic_signs.py:80
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr "{0}: itt [{1}] jelzőtábla van, de nincs felcímkézve"
+msgstr "[{0}]: itt [{1}] jelzőtábla van, de nincs felcímkézve"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:131
 #, python-brace-format
@@ -2180,7 +2180,7 @@ msgstr "Iskola hiányzó vagy érvénytelen [ref:UAI] címkével"
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr "[{0}]: itt egy {1} utcai műtárgy figyelhető meg, de nincs hozzá kapcsolódó címke"
+msgstr "[{0}]: itt egy „{1}” utcai műtárgy figyelhető meg, de nincs hozzá kapcsolódó címke"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:54
 msgid "Speed camera should be on the highway or in an enforcement relation"
