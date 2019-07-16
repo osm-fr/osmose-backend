@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+from modules.Stablehash import stablehash
 
 class Highway_Parking_Lane(Plugin):
 
@@ -45,7 +46,7 @@ class Highway_Parking_Lane(Plugin):
         conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
         for c in conditions:
             if c not in tags:
-                err.append({"class": 31616})
+                err.append({"class": 31616, "subclass": stablehash(c)})
 
         if n_sides == 0:
             return err
@@ -58,7 +59,7 @@ class Highway_Parking_Lane(Plugin):
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
             if side in tags and tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "fire_lane"):
-                err.append({"class": 31615})
+                err.append({"class": 31615, "subclass": stablehash(side)})
 
         return err
 
