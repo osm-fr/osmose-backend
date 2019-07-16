@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+from modules.Stablehash import stablehash
 
 
 class Website(Plugin):
@@ -53,7 +54,7 @@ class Website(Plugin):
                 if ' ' in url:
                     # We don't know how to fix such a URL: Remove everything
                     # after the space? Encode the space?
-                    err.append({"class": 30931, "text": self._bad_url(tag, tags)})
+                    err.append({"class": 30931, "subclass": stablehash(tag), "text": self._bad_url(tag, tags)})
                     continue
                 stripped = True
 
@@ -66,10 +67,10 @@ class Website(Plugin):
             elif ':' in url or '//' in url:
                 # The URL already contains some sort of broken scheme
                 # so it's too complex for us to fix
-                err.append({"class": 30932, "text": self._bad_url(tag, tags)})
+                err.append({"class": 30932, "subclass": stablehash(tag), "text": self._bad_url(tag, tags)})
                 continue
 
-            err.append({"class": 30932, "fix": [
+            err.append({"class": 30932, "subclass": stablehash(tag), "fix": [
                 {tag: "https://" + url},
                 {tag: "http://" + url}
             ]})
