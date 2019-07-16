@@ -21,6 +21,7 @@
 
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
+from modules.Stablehash import stablehash
 import urllib
 import json
 
@@ -99,7 +100,7 @@ class TagFix_Wikipedia(Plugin):
                         interwiki = None
 
                 if interwiki and suffix in interwiki and interwiki[suffix] == self.human_readable(tags[tag]):
-                    err.append({"class": 30317, "subclass": 7, "fix": [
+                    err.append({"class": 30317, "subclass": stablehash(tag), "fix": [
                         {'-': [tag]},
                         {'-': [tag], '~': {wikipediaTag: suffix+':'+interwiki[suffix]}}
                     ]})
@@ -119,7 +120,7 @@ class TagFix_Wikipedia(Plugin):
                         value = self.human_readable(tags[tag])
                     missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
-                err.append({"class": 30315, "subclass": 5, "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
+                err.append({"class": 30315, "subclass": stablehash(tag), "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
 
         if missing_primary != []:
             if self.Language:
