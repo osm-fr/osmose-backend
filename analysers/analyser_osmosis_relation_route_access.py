@@ -56,6 +56,10 @@ WHERE
   relations.tags->'type' = 'route' AND
   relations.tags?'route' AND
   relations.tags->'route' = '{2}'
+GROUP BY
+  ways.id,
+  relations.id,
+  linestring
 """
 
 class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
