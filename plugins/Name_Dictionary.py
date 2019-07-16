@@ -129,7 +129,7 @@ class P_Name_Dictionary(Plugin):
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append({"class": 703, "subclass": stablehash(WordComplet), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}})
+                    err.append({"class": 703, "subclass": stablehash(name), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}})
                 else:
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
@@ -137,7 +137,7 @@ class P_Name_Dictionary(Plugin):
                 for x in self.DictEncoding:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append({"class": 704, "subclass": 0, "fix": {"name": initialName.replace(x, self.DictEncoding[x])}})
+                        err.append({"class": 704, "subclass": stablehash(name), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}})
                 if PbEncodage: continue
                 #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue
