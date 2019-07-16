@@ -23,7 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-SELECT
+SELECT DISTINCT ON (nodes.id)
     nodes.id,
     relation_members.relation_id,
     ST_ASText(geom)
@@ -38,7 +38,7 @@ WHERE
 """
 
 sql11 = """
-SELECT
+SELECT DISTINCT ON (nodes.id)
     nodes.id,
     relation_members.relation_id,
     ST_ASText(geom)
@@ -54,7 +54,7 @@ FROM
 """
 
 sql20 = """
-SELECT
+SELECT DISTINCT ON (ways.id)
     ways.id,
     relation_members.relation_id,
     ST_ASText(way_locate(linestring))
@@ -69,7 +69,7 @@ WHERE
 """
 
 sql21 = """
-SELECT
+SELECT DISTINCT ON (ways.id)
     ways.id,
     relation_members.relation_id,
     ST_ASText(way_locate(linestring))
