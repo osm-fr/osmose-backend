@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-07-02 14:50+0000\n"
-"Last-Translator: Iván Seoane\n"
+"PO-Revision-Date: 2019-07-17 20:12+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,11 +60,11 @@ msgstr "Hidrante, suxestión de integración"
 msgid "Crossing level not integrated"
 msgstr "Paso a nivel non integrado"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:29
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument not integrated"
 msgstr "Monumento histórico non integrado"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:31
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
 msgid "Historical monument, integration suggestion"
 msgstr "Monumento histórico, suxestión de integración"
 
@@ -197,16 +197,16 @@ msgstr "Wikipedia, suxestión de integración en castelo"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia, suxestión de integración en igrexa"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:183
+#: ../analysers/analyser_osmosis_boundary_administrative.py:184
 msgid "Survey point out of boundary"
 msgstr "Punto xeodésico fóra do límite"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_administrative.py:185
 #: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "Intersección de límites"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:185
+#: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Lone boundary fragment"
 msgstr "Anaco de límite illado"
 
@@ -230,9 +230,9 @@ msgstr "Diferenza na etiqueta de poboación entre a relación e admin_centre"
 msgid "Invalid role"
 msgstr "Rol non válido"
 
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:112
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:115
 msgid "Broken highway level continuity"
 msgstr "Rachada a continuidade a nivel de estrada"
 
@@ -240,23 +240,23 @@ msgstr "Rachada a continuidade a nivel de estrada"
 msgid "Merge building (triangle)"
 msgstr "Edificio fusionado (triángulo)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
 msgstr "Intersección de edificios"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
 msgstr "Intersección de edificios grandes"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building too small"
 msgstr "Edificio moi pequeno"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Gap between buildings"
 msgstr "Separación entre edificios"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:165
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
 msgstr "Grupo de interseccións de edificios grandes"
 
@@ -268,11 +268,11 @@ msgstr "Edificio especial (redondo)"
 msgid "Special building (large)"
 msgstr "Edificio especial (grande)"
 
-#: ../analysers/analyser_osmosis_cycleway_track.py:61
+#: ../analysers/analyser_osmosis_cycleway_track.py:63
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Sendas ciclistas duplicadas, highway=*+cycleway=track e highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:181
+#: ../analysers/analyser_osmosis_highway_deadend.py:184
 msgid "Unconnected cycleway"
 msgstr "Senda ciclista non conectada"
 
@@ -292,18 +292,6 @@ msgstr "Marcaxe xeodésica sen edificio"
 msgid "Possible crossing=traffic_signals"
 msgstr "Posíbel crossing=traffic_signals"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
-msgid "Bad topology way level 1"
-msgstr "Topoloxía errónea de vía a nivel 1"
-
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
-msgid "Bad topology way level 2"
-msgstr "Topoloxía errónea de vía a nivel 2"
-
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
-msgid "Bad topology way level 3"
-msgstr "Topoloxía errónea de vía a nivel 3"
-
 #: ../analysers/analyser_osmosis_highway_link.py:130
 #: ../analysers/analyser_osmosis_highway_link.py:132
 msgid "Bad *_link highway"
@@ -313,15 +301,15 @@ msgstr "*_link de estrada errónea"
 msgid "Highway too long for a *_link"
 msgstr "Estrada moi longa para unha *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway intersecting building"
 msgstr "A estrada intersecta cun edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Tree intersecting building"
 msgstr "A árbore intersecta cun edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Tree and highway too close"
 msgstr "Árbore e estrada moi preto"
 
@@ -361,31 +349,31 @@ msgstr "Sen nó de enerxía en liña eléctrica"
 msgid "Missing power tower or pole"
 msgstr "Falla a torre ou piar eléctricos"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:572
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "No street role"
 msgstr "Sen rol de rúa"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:573
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:590
 msgid "street role is not an highway"
 msgstr "o rol da rúa non é unha estrada"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:574
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 msgid "Roleless member"
 msgstr "Membro sen rol"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:593
 msgid "Number twice in the street"
 msgstr "Dous números na rúa"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:594
 msgid "Many street names"
 msgstr "Múltiplos nomes de rúa"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:595
 msgid "Many relations on one street"
 msgstr "Moitas relacións nunha rúa"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:579
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:596
 msgid "House too far away from street"
 msgstr "Casa moi lonxe da rúa"
 
@@ -393,51 +381,51 @@ msgstr "Casa moi lonxe da rúa"
 msgid "Large relation"
 msgstr "Relación grande"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Double inner polygon"
 msgstr "Polígono interior duplo"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "Natureza do multipolígono inconsistente ca natureza dos membros"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:200
 msgid "Inconsistant multipolygon member nature"
 msgstr "Natureza do membro multipolígono inconsistente"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:357
+#: ../analysers/analyser_osmosis_relation_restriction.py:359
 msgid "Restriction relation, wrong number of members"
 msgstr "Relación de restrición, número de membros erróneo"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:358
+#: ../analysers/analyser_osmosis_relation_restriction.py:360
 msgid "Restriction relation, bad member type"
 msgstr "Relación de restrición, tipo de membro erróneo"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:359
+#: ../analysers/analyser_osmosis_relation_restriction.py:361
 msgid "Unconnected restriction relation ways"
 msgstr "Vías de relación de restrición non conectadas"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:361
+#: ../analysers/analyser_osmosis_relation_restriction.py:363
 msgid "Restriction doesn't match topology"
 msgstr "A restrición non coincide ca tipoloxía"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:249
+#: ../analysers/analyser_osmosis_roundabout_level.py:259
 msgid "Wrong highway on roundabout"
 msgstr "Estrada errónea en rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:250
+#: ../analysers/analyser_osmosis_roundabout_level.py:260
 msgid "Missing oneway"
 msgstr "Falla o sentido único"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:251
+#: ../analysers/analyser_osmosis_roundabout_level.py:261
 msgid "Roundabout shortcut"
 msgstr "Atallo á rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:252
+#: ../analysers/analyser_osmosis_roundabout_level.py:262
 msgid "Roundabout crossing"
 msgstr "Cruzamento na rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout.py:61
+#: ../analysers/analyser_osmosis_roundabout.py:62
 msgid "Missing junction=roundabout"
 msgstr "Falla junction=roundabout"
 
@@ -455,7 +443,7 @@ msgstr "Proba Soundex"
 msgid "Area intersection %s"
 msgstr "Intersección de área %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:128
+#: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
 msgstr "Erro tipográfico en etiqueta"
 
@@ -507,19 +495,19 @@ msgstr "Formato de data erróneo"
 msgid "Bad lanes value"
 msgstr "Valor dos carrís erróneo"
 
-#: ../plugins/Highway_Parking_Lane.py:30
+#: ../plugins/Highway_Parking_Lane.py:31
 msgid "Bad parking:lane:[side]"
 msgstr "O parking:lane:[side] é erróneo "
 
-#: ../plugins/Highway_Parking_Lane.py:31
+#: ../plugins/Highway_Parking_Lane.py:32
 msgid "Too many parking:lane:[side]"
 msgstr "Moitos parking:lane:[side]"
 
-#: ../plugins/Highway_Parking_Lane.py:32
+#: ../plugins/Highway_Parking_Lane.py:33
 msgid "Bad parking:lane:[side] value"
 msgstr "Valor erróneo no parking:lane:[side]"
 
-#: ../plugins/Highway_Parking_Lane.py:33
+#: ../plugins/Highway_Parking_Lane.py:34
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] sen valor parking:lane:[side]"
 
@@ -615,21 +603,17 @@ msgstr "Canle fluvial pechada"
 msgid "Way with one node"
 msgstr "Vía cun nó"
 
-#: ../plugins/TagFix_BadKey.py:29
+#: ../plugins/TagFix_BadKey.py:30
 msgid "Bad tag"
 msgstr "Etiquetaxe errónea"
 
-#: ../plugins/TagFix_BadValue.py:29
+#: ../plugins/TagFix_BadValue.py:30
 msgid "Bad value in a tag"
 msgstr "Valor erróneo nunha etiqueta"
 
-#: ../plugins/TagFix_Deprecated.py:76
+#: ../plugins/TagFix_Deprecated.py:77
 msgid "Deprecated tag"
 msgstr "Etiqueta vella e obsoleta"
-
-#: ../plugins/TagFix_DuplicateValue.py:31
-msgid "Duplicated similar values"
-msgstr "Valores semellantes publicados"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:32
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:31
@@ -670,7 +654,7 @@ msgstr "Carril bici oposto sen un só sentido"
 msgid "Missing maxheight tag"
 msgstr "Falla a etiqueta de altitude máxima"
 
-#: ../plugins/TagFix_MultipleValue.py:61
+#: ../plugins/TagFix_MultipleValue.py:62
 msgid "Multiple values"
 msgstr "Valores múltiplos"
 
@@ -690,31 +674,31 @@ msgstr "Rol non axeitado"
 msgid "Tree tagging"
 msgstr "Etiquetaxe de árbores"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Not a Wikipedia URL"
 msgstr "Sen unha URL da Wikipedia"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Wikipedia URL instead of article title"
 msgstr "Unha URL da Wikipedia no canto do nome do artigo"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Missing Wikipedia language before article title"
 msgstr "Falla a lingua da Wikipedia antes do título do artigo"
 
-#: ../plugins/TagFix_Wikipedia.py:36
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Use human Wikipedia page title"
 msgstr "Emprega un título de páxina da Wikipedia humano"
 
-#: ../plugins/TagFix_Wikipedia.py:37
+#: ../plugins/TagFix_Wikipedia.py:38
 msgid "Missing primary Wikipedia tag"
 msgstr "Falla a etiqueta da Wikipedia primaria"
 
-#: ../plugins/TagFix_Wikipedia.py:38
+#: ../plugins/TagFix_Wikipedia.py:39
 msgid "Invalid wikipedia suffix"
 msgstr "Sufixo da wikipedia non válido"
 
-#: ../plugins/TagFix_Wikipedia.py:39
+#: ../plugins/TagFix_Wikipedia.py:40
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Etiqueta da wikipedia duplicada coma sufixo e prefixo"
 
@@ -764,7 +748,7 @@ msgstr "Cancha non integrada %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiplos nomes para o mesmo ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "A etiqueta 'addr:city' non coincide cunha cidade"
 
@@ -788,15 +772,15 @@ msgstr "Paraxe de Wallonia, suxestión de integración"
 msgid "Gas station not integrated"
 msgstr "Gasolineira non integrada"
 
-#: ../plugins/TagFix_Wikipedia.py:40
+#: ../plugins/TagFix_Wikipedia.py:41
 msgid "Same wikipedia topic on other language"
 msgstr "O mesmo eido da wikipedia noutra lingua"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:83
+#: ../analysers/analyser_osmosis_highway_noexit.py:87
 msgid "noexit on node with exit"
 msgstr "'noexit' nun nó cunha saída"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:84
+#: ../analysers/analyser_osmosis_highway_noexit.py:88
 msgid "noexit on way with multiple exits"
 msgstr "'noexit' nunha vía con moitas saídas"
 
@@ -812,7 +796,7 @@ msgstr "'area=yes' nun obxecto sen clase"
 msgid "Bad usage of area=no. Object must be a surface"
 msgstr "Emprego erróneo da 'area=no'. O obxecto ten que ser unha área"
 
-#: ../plugins/TagFix_BadKey.py:64 ../plugins/TagFix_BadKey.py:66
+#: ../plugins/TagFix_BadKey.py:66
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
 msgstr "Etiquetaxe errónea %(k)s=%(v)s"
@@ -840,17 +824,17 @@ msgstr "O nome comeza cun espazo"
 msgid "Name ends with a space"
 msgstr "O nome remata cun espazo"
 
-#: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
+#: ../plugins/TagFix_BadValue.py:95 ../plugins/TagFix_BadValue.py:100
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Valor erróneo para %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:87
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "A etiqueta %(tag)s está obsoleta: %(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:93
+#: ../plugins/TagFix_DuplicateValue.py:95
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Valores semellantes duplicados %(key)s=%(val)s"
@@ -870,17 +854,17 @@ msgstr "Código postal a nivel de rúa non válido %(postcode)s para o código d
 msgid "Name contains successive spaces"
 msgstr "O nome contén sucesivos espazos"
 
-#: ../plugins/TagFix_MultipleValue.py:91
+#: ../plugins/TagFix_MultipleValue.py:92
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Moitos valores na etiqueta: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:79
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflito entre etiquetas: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:79
+#: ../plugins/TagRemove_Incompatibles.py:82
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflito entre as etiquetas: 'bridge' e 'tunnel'"
 
@@ -898,17 +882,17 @@ msgstr "a dirección da mini-rotonda neste país é polo xeral \"%s\""
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Empregar a etiqueta \"toll\" no canto de \"fee\""
 
-#: ../plugins/TagFix_Wikipedia.py:68
+#: ../plugins/TagFix_Wikipedia.py:69
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Empregar wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:122
+#: ../plugins/TagFix_Wikipedia.py:123
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Sufixo '%s' da wikipedia non válido"
 
-#: ../plugins/TagFix_DuplicateValue.py:86
+#: ../plugins/TagFix_DuplicateValue.py:88
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Valores duplicados %(key)s=%(val)s"
@@ -1019,7 +1003,7 @@ msgstr "Rotonda coma área"
 msgid "Level or repeat_on tag missing"
 msgstr "Falla a etiqueta 'level' ou 'repeat_on'"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:167
+#: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building in parts"
 msgstr "Edficio en anacos"
 
@@ -1051,12 +1035,12 @@ msgstr "Cruzamento de estradas e obxectos de corpos de auga non relacionados"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Cruzamento de estradas e obxectos de enerxía non relacionados"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Moitos números \"%(numbers)s\" na vía \"%(way)s\""
 
-#: ../plugins/Name_UpperCase.py:32
+#: ../plugins/Name_UpperCase.py:36
 msgid "Name with uppercase"
 msgstr "Nome con maiúscula"
 
@@ -1074,11 +1058,11 @@ msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Incluíndo automóbil, cabalo, ciclomotor, materiais perigosos e así de xeito sucesivo, agás que se exclúan de xeito explícito"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:60
+#: ../analysers/analyser_osmosis_highway_area_access.py:61
 msgid "Inconsistent Access"
 msgstr "Acceso non coherente"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid "Non route relation member in route_master relation"
 msgstr "Sen membro de relación de rota na relación route_master"
 
@@ -1098,11 +1082,11 @@ msgstr "Liña principal de enerxía non rematada"
 msgid "Unfinished power minor line"
 msgstr "Liña menor de enerxía non rematada"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Highway intersecting small water piece"
 msgstr "A estrada intersecta cunha pequena peza de auga"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Highway intersecting large water piece"
 msgstr "A estrada intersecta cunha longa peza de auga"
 
@@ -1110,7 +1094,7 @@ msgstr "A estrada intersecta cunha longa peza de auga"
 msgid "Paris Autolib' car rental update"
 msgstr "Aluguer de automóbiles \"Paris Autolib'\" actualizado"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:32
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:34
 msgid "Historical monument update"
 msgstr "Monumento histórico actualizado"
 
@@ -1209,12 +1193,12 @@ msgstr "O valor de acceso a carrís é erróneo, non ten que ser un enteiro sen�
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "O carrís de xiro 'merge_to_*' precisan unha liña paralela na beira correcta"
 
-#: ../plugins/TagRemove_Incompatibles.py:82
+#: ../plugins/TagRemove_Incompatibles.py:85
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflito entre as etiquetas: 'crossing=no' ten que ser empregada sen un 'highway=crossing'"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:138
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:139
 msgid "Bad lanes number or lanes:turn before and after this node"
 msgstr "O número de carrís é erróneo ou 'lanes:turn' está antes e despois deste nó"
 
@@ -1370,7 +1354,7 @@ msgstr "Caracter non imprimíbel"
 msgid "Symbol char"
 msgstr "Carácter símbólico"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:575
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:592
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Membros sen 'addr:housenumber' nin 'addr:housename'"
 
@@ -1397,7 +1381,7 @@ msgstr "Relación grande de tipo %s"
 msgid "Duplicated node without tag"
 msgstr "Nó duplicado sen etiqueta"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:200
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:201
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Tería que ser un polígono, forma parte dun multipolígono ou non ter unha etiqueta de área"
 
@@ -1405,7 +1389,7 @@ msgstr "Tería que ser un polígono, forma parte dun multipolígono ou non ter u
 msgid "Almost junction, join or use noexit tag"
 msgstr "Case cruzamento, unir ou empregar a etiqueta 'noexit'"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:183
+#: ../analysers/analyser_osmosis_highway_deadend.py:186
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Sentido único inaccesíbel ou falla vía de aparcadoiro ou entrada do aparcadoiro"
 
@@ -1421,7 +1405,7 @@ msgstr "Falla a etiqueta de estrada para o tipo de pista ou carrís"
 msgid "Missing relation type"
 msgstr "Falla o tipo de relación"
 
-#: ../plugins/TagFix_Deprecated.py:87
+#: ../plugins/TagFix_Deprecated.py:89
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "A etiqueta %(tag)s=%(value)s está obsoleta: %(depr)s"
@@ -1474,40 +1458,40 @@ msgstr "Etiqueta da wikipedia duplicada"
 msgid "Should not contain tag ref=%s"
 msgstr "Non ten que conter a etiqueta ref=%s"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:83
+#: ../analysers/analyser_osmosis_highway_name_close.py:84
 msgid "Close similar name"
 msgstr "Nome moi semellante"
 
-#: ../analysers/analyser_osmosis_relation_route_access.py:86
+#: ../analysers/analyser_osmosis_relation_route_access.py:90
 #, python-format
 msgid "Way access mismatch relation route=%s"
 msgstr "O acceso da vía non coincide ca relación route=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:265
 msgid "Public transport relation route not in route_master relation"
 msgstr "A relación de rota de transporte público non está en relación co route_master"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:571
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber ou addr:housename sen addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place ou addr:hamlet ten que estar nunha relación associatedStreet"
 
-#: ../analysers/analyser_merge_shop_FR.py:51
+#: ../analysers/analyser_merge_shop_FR.py:45
 #, python-format
 msgid "%s not integrated"
 msgstr "%s non integrado"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "The track of this route contains gaps"
 msgstr "A pista desta rota contén buratos"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "The stop or platform is too far from the track of this route"
 msgstr "A paraxe ou plataforma está moi lonxe da pista desta rota"
 
-#: ../plugins/Phone.py:53
+#: ../plugins/Phone.py:54
 msgid "Missing international prefix"
 msgstr "Falla o prefixo internacional"
 
@@ -1515,13 +1499,13 @@ msgstr "Falla o prefixo internacional"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Discorda o 'maxspeed' e o 'source:maxspeed'"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:264
+#: ../analysers/analyser_osmosis_relation_public_transport.py:266
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "a etiqueta 'network', 'operator', 'ref', 'colour' terían que ser a misma na rota e nas relacións route_master"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:270
+#: ../analysers/analyser_osmosis_relation_public_transport.py:272
 #, python-format
 msgid "%s are different"
 msgstr "%s son diferentes"
@@ -1582,7 +1566,7 @@ msgstr "Relación aberta 'type=multipolygon'"
 msgid "Open relation type=boundary admin_level=%d"
 msgstr "Relación aberta 'type=boundary' e 'admin_level=%d'"
 
-#: ../plugins/Construction2.py:14 ../plugins/Construction2.py:51
+#: ../plugins/Construction2.py:14 ../plugins/Construction2.py:52
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "Etiquetaxe non coherente de {0}"
@@ -1619,7 +1603,7 @@ msgstr "Museo de Aquitania, suxestión de integración"
 msgid "Invalid Opening Hours"
 msgstr "Horario de apertura non válido"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:599
 msgid "Missing highway in associatedStreet relation"
 msgstr "Falla a autoestrada nunha relación 'associatedStreet'"
 
@@ -1641,44 +1625,44 @@ msgstr "{0} non integrado"
 msgid "{0}, integration suggestion"
 msgstr "{0}, suxestión de integración"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:133
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:112
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
 msgstr "Agrupamento de estradas pequenas, á parte da rede principal ou con acceso non suficiente en sentido contrario"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:355
 msgid "Power object intersecting building"
 msgstr "O obxecto de enerxía intersecta cun edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:356
 msgid "Power object and highway too close"
 msgstr "O obxecto de enerxía e a estrada están moi preto"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:357
 msgid "Highway intersecting highway without junction"
 msgstr "A estrada intersecta cunha estrada sen que haxa cruzamento"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:358
 msgid "Highway overlaps"
 msgstr "Sobresposicións da estrada"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+#: ../analysers/analyser_osmosis_highway_vs_building.py:359
 msgid "Waterway intersecting waterway without junction"
 msgstr "A canle fluvial intersecta cunha canle fluvial sen que haxa cruzamento"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:354
+#: ../analysers/analyser_osmosis_highway_vs_building.py:360
 msgid "Waterway overlaps"
 msgstr "Sobresposicións da canle fluvial"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:106
-#: ../analysers/analyser_osmosis_highway_zone.py:107
+#: ../analysers/analyser_osmosis_highway_zone.py:108
+#: ../analysers/analyser_osmosis_highway_zone.py:109
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
 msgstr "Seica falla a etiqueta 'zone:maxspeed=XX:%s', segundo o barrio ou a veciñanza"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:360
+#: ../analysers/analyser_osmosis_relation_restriction.py:362
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "Relación de restrición, dirección dun só sentido errónea no membro \"dende\" ou \"cara\" "
 
@@ -1691,7 +1675,7 @@ msgid "Useless turn restriction"
 msgstr "Restrición de xiro non útil"
 
 #: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
-#: ../plugins/Name_Cadastre_FR.py:69
+#: ../plugins/Name_Cadastre_FR.py:67
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1743,7 +1727,7 @@ msgstr "Reciclaxe SITCOM, suxestión de integración"
 msgid "SITCOM recycling update"
 msgstr "Reciclaxe SITCOM actualizado"
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:50
+#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Direct or too permissive access to motorway"
 msgstr "Acceso directo ou moi permisivo á estrada"
 
@@ -1787,8 +1771,8 @@ msgstr "Policía/\"Gendarmerie\", suxestión de integración"
 msgid "Police/\"Gendarmerie\" update"
 msgstr "Policía/\"Gendarmerie\" actualizada"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
+#: ../analysers/analyser_osmosis_parking_highway.py:65
 msgid "Missing access way to parking"
 msgstr "Falla o acceso ó aparcadoiro"
 
@@ -1826,10 +1810,10 @@ msgstr "Letra árabe detectada no nome da lingua farsi"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:129
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:162
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:187
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "Na lingua farsi, a letra árabe '{0}' ten que ser substituída por '{1}'"
@@ -1838,26 +1822,26 @@ msgstr "Na lingua farsi, a letra árabe '{0}' ten que ser substituída por '{1}'
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr "O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos"
 
-#: ../plugins/Colour.py:48 ../plugins/Colour.py:72 ../plugins/Colour.py:112
-#: ../plugins/Colour.py:141 ../plugins/Colour.py:175 ../plugins/Colour.py:199
+#: ../plugins/Colour.py:53 ../plugins/Colour.py:82 ../plugins/Colour.py:127
+#: ../plugins/Colour.py:161 ../plugins/Colour.py:200 ../plugins/Colour.py:229
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr "{0} o código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos"
 
-#: ../plugins/Website.py:37
+#: ../plugins/Website.py:38
 msgid "The URL contains a space"
 msgstr "A URL contén un espazo"
 
-#: ../plugins/Website.py:38
+#: ../plugins/Website.py:39
 msgid "The URL does not have a valid scheme"
 msgstr "A URL non ten un esquema válido"
 
-#: ../plugins/Website.py:41
+#: ../plugins/Website.py:42
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "URL errónea %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:86
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:94
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr ""
@@ -1922,12 +1906,12 @@ msgstr "Poboación en rol admin_centre ({0}) maior ca poboación na relación ({
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
 msgstr "Múltiples nomes para o mesmo ref FANTOIR {0}: {1}"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:62
+#: ../analysers/analyser_osmosis_highway_area_access.py:63
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
 msgstr "Valores inconsistentes do motor_vehicle ('{0}'!='{1}')"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:147
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr "carrís de entrada {0}(-{1}+{2}), carrís de saída {3}(-{4}+{5})"
@@ -2039,27 +2023,27 @@ msgstr ""
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
 
-#: ../plugins/Phone.py:48
+#: ../plugins/Phone.py:49
 msgid "Phone number does not match the expected format"
 msgstr "O número de teléfono non coincide co formato agardado"
 
-#: ../plugins/Phone.py:52
+#: ../plugins/Phone.py:53
 msgid "Local short code can't be internationalized"
 msgstr "O código local acurtado non pode ser internacionalizado"
 
-#: ../plugins/Phone.py:54
+#: ../plugins/Phone.py:55
 msgid "Bad international prefix"
 msgstr "Prefixo internacional erróneo"
 
-#: ../plugins/Phone.py:55
+#: ../plugins/Phone.py:56
 msgid "Unallowed char in phone number"
 msgstr ""
 
-#: ../plugins/Phone.py:56
+#: ../plugins/Phone.py:57
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/Phone.py:121
+#: ../plugins/Phone.py:122
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number"
 msgstr ""
@@ -2118,11 +2102,11 @@ msgstr "etiqueta valor: {0}={1} => {2} (regra kr_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:182
+#: ../analysers/analyser_osmosis_highway_deadend.py:185
 msgid "Unconnected highway"
 msgstr ""
 
-#: ../plugins/Phone.py:50
+#: ../plugins/Phone.py:51
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
 msgstr "\"{0}\" adicional após o código internacional"
@@ -2148,7 +2132,7 @@ msgstr ""
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr ""
 
@@ -2181,7 +2165,7 @@ msgstr ""
 msgid "{0} Street object {1} observed around but not associated tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_enforcement.py:54
+#: ../analysers/analyser_osmosis_relation_enforcement.py:55
 msgid "Speed camera should be on the highway or in an enforcement relation"
 msgstr ""
 
@@ -2224,7 +2208,7 @@ msgstr ""
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:600
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""
 
@@ -2232,7 +2216,7 @@ msgstr ""
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:57
+#: ../analysers/analyser_merge_power_plant_FR.py:62
 #, python-format
 msgid "Power plant %s"
 msgstr ""
@@ -2241,6 +2225,34 @@ msgstr ""
 msgid "admin_level 8 without tag \"postal_code\""
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:31
+#: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:66
+#, python-brace-format
+msgid "Bad topology way level {0}"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:31
+msgid "Bad tag suffix"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:68
+#, python-format
+msgid "Bad tag suffix %(k)s=%(v)s"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:78
+msgid "Deprecated value"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:32
+msgid "Duplicated values"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:33
+msgid "Similar values"
 msgstr ""
