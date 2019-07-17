@@ -29,7 +29,7 @@
 <classtext lang="fa" title="مقدار نامعتبر برای addr:housenumber" />
 <classtext lang="fr" title="Valeur de “addr:housenumber” incorrecte" />
 <classtext lang="gl" title="Valor 'addr:housenumber' non válido" />
-<classtext lang="hu" title="Érvénytelen érték az &lt;addr:housenumber&gt; kulcs mellett" />
+<classtext lang="hu" title="Érvénytelen érték az [addr:housenumber] kulcs mellett" />
 <classtext lang="it" title="Valore di addr:housenumber non valido" />
 <classtext lang="nl" title="Ongeldig addr:housenumber waarde" />
 <classtext lang="pl" title="Niepoprawna wartość addr:housenumber" />
@@ -61,7 +61,7 @@
 <classtext lang="fa" title="مقدار نامعتبر برای addr:interpolation یا addr:inclusion" />
 <classtext lang="fr" title="Valeur incorrecte pour “addr:interpolation” ou “addr:inclusion”" />
 <classtext lang="gl" title="O valor de 'addr:interpolation' ou 'addr:inclusion' non é válido" />
-<classtext lang="hu" title="Érvénytelen érték az &lt;addr:interpolation&gt; vagy az &lt;addr:inclusion&gt; kulcs mellett" />
+<classtext lang="hu" title="Érvénytelen érték az [addr:interpolation] vagy az [addr:inclusion] kulcs mellett" />
 <classtext lang="it" title="Valore di addr:interpolation oppure addr:inclusion non valido" />
 <classtext lang="nl" title="ongeldig addr:interpolation of addr:inclusion waarde" />
 <classtext lang="uk" title="Недійсне значення addr:interpolation або addr:inclusion " />
@@ -76,7 +76,7 @@
 <classtext lang="fa" title="تگ غیرضروری برای junction=roundabout" />
 <classtext lang="fr" title="Attribut superflu sur “junction”=“roundabout”" />
 <classtext lang="gl" title="Etiqueta non precisa en junction=roundabout" />
-<classtext lang="hu" title="Felesleges címke a következőn: &lt;junction=roundabout&gt;" />
+<classtext lang="hu" title="Felesleges címke a következőn: [junction=roundabout]" />
 <classtext lang="it" title="Tag non necessario su junction=roundabout" />
 <classtext lang="ja" title="junction=roundaboutは不要なタグです" />
 <classtext lang="lt" title="Nereikalinga žyma ant sankryža=žiedas" />
@@ -183,7 +183,7 @@
 <classtext lang="fa" title="تگ نام حاوی دو نام است" />
 <classtext lang="fr" title="L’attribut “name” contient deux noms" />
 <classtext lang="gl" title="O nome da etiqueta contén dous nomes" />
-<classtext lang="hu" title="A &lt;name&gt; címke két nevet tartalmaz" />
+<classtext lang="hu" title="A [name] címke két nevet tartalmaz" />
 <classtext lang="it" title="Il tag name contiene due nomi" />
 <classtext lang="ja" title="nameタグに2つの名前がある" />
 <classtext lang="lt" title="Pavadinimo žymoje yra du pavadinimai" />
@@ -202,7 +202,7 @@
 <classtext lang="fa" title="تگ source ناقص است یا غیرقانونی است" />
 <classtext lang="fr" title="Attribut “source” illégal ou incomplet" />
 <classtext lang="gl" title="Etiqueta fonte non legal ou incompleta" />
-<classtext lang="hu" title="Jogellenes vagy befejezetlen &lt;source&gt; címke" />
+<classtext lang="hu" title="Jogellenes vagy befejezetlen [source] címke" />
 <classtext lang="it" title="Tag source incompleto o non valido" />
 <classtext lang="lt" title="Neleistina ar nebaigta šaltinio žyma" />
 <classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
@@ -222,7 +222,7 @@
 <classtext lang="fa" title="کمبود تگ source" />
 <classtext lang="fr" title="Attribut “source” manquant" />
 <classtext lang="gl" title="Falla a etiqueta fonte ('source')" />
-<classtext lang="hu" title="Hiányzó &lt;source&gt; címke" />
+<classtext lang="hu" title="Hiányzó [source] címke" />
 <classtext lang="it" title="Tag source mancante" />
 <classtext lang="lt" title="Trūksta šaltinio žymos" />
 <classtext lang="nl" title="Ontbrekende bron tag" />
@@ -414,24 +414,7 @@
 <classtext lang="zh_CN" title="不良 tag" />
 </class>
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
-<classtext lang="ca" title="Valors similars duplicats" />
-<classtext lang="cs" title="Duplikované podobné hodnoty" />
-<classtext lang="de" title="Duplizierte ähnliche Werte" />
-<classtext lang="el" title="Διπλές παρόμοιες τιμές" />
-<classtext lang="en" title="Duplicated similar values" />
-<classtext lang="es" title="Valores similares publicados" />
-<classtext lang="fa" title="مقادیر مشابه تکراری" />
-<classtext lang="fr" title="Valeur similaire en double" />
-<classtext lang="gl" title="Valores semellantes publicados" />
-<classtext lang="hu" title="Megkettőzött hasonló értékek" />
-<classtext lang="it" title="Valori simili duplicati" />
-<classtext lang="lt" title="Dubliuotos panašios reikšmės" />
-<classtext lang="nl" title="Dubbele vergelijkbare waarden" />
-<classtext lang="pl" title="Powielone podobne wartości" />
-<classtext lang="pt" title="Valores semelhantes duplicados" />
-<classtext lang="pt_BR" title="Valores semelhantes duplicados" />
-<classtext lang="uk" title="Дубльовані подібні значення" />
-<classtext lang="zh_CN" title="重复的类似值" />
+<classtext lang="en" title="Duplicated values" />
 </class>
 <class item="3070" tag="value,fix:chair" id="3070" level="2">
 <classtext lang="ca" title="Valors múltiples" />
@@ -496,7 +479,7 @@
 <classtext lang="uk" title="Числове значення" />
 <classtext lang="zh_CN" title="数值" />
 </class>
-<class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
+<class item="4010" tag="deprecated,tag,fix:chair" id="4010" level="2">
 <classtext lang="ca" title="Etiqueta en desús" />
 <classtext lang="cs" title="Již nepoužívaná značka" />
 <classtext lang="de" title="Veraltetes Merkmal" />
@@ -603,7 +586,7 @@
 <classtext lang="fa" title="کمبود نقش outer برای چندچندضلعی" />
 <classtext lang="fr" title="Rôle “outer” manquant dans le “multipolygon”" />
 <classtext lang="gl" title="Falla o rol 'outer' para o multipolígono" />
-<classtext lang="hu" title="Hiányzik a külső &lt;outer&gt; szerep a multipoligonról" />
+<classtext lang="hu" title="Hiányzik a külső [outer] szerep a multipoligonról" />
 <classtext lang="it" title="Ruolo outer mancante nel multipoligono" />
 <classtext lang="lt" title="Trūkstama išorinė rolė multipoligonui" />
 <classtext lang="nl" title="De outer role voor multipolygoon ontbreekt" />
@@ -725,7 +708,7 @@
 <class item="2060" tag="tag,addr" id="20601" level="3">
 <classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 <classtext lang="fr" title="Mauvaise utilisation de &quot;addr:interpolation&quot; en combinaison avec d'autres attributs" />
-<classtext lang="hu" title="Más címkékkel együtt hibásan használt &lt;addr:interpolation&gt; címke" />
+<classtext lang="hu" title="Más címkékkel együtt hibásan használt [addr:interpolation] címke" />
 <classtext lang="nl" title="Verkeerd gebruik addr:interpolation in combinatie met andere tags" />
 <classtext lang="pl" title="Niewłaściwe użycie addr:interpolation w połączeniu z innymi tagami" />
 <classtext lang="uk" title="Зловживання addr:interpolation в комбінації з іншими теґами" />
@@ -738,7 +721,7 @@
 <classtext lang="fa" title="junction است اما تگ highway ندارد" />
 <classtext lang="fr" title="Attribut “highway” manquant sur junction" />
 <classtext lang="gl" title="Falla a etiqueta 'highway' no cruzamento" />
-<classtext lang="hu" title="A kereszteződésről hiányzik a &lt;highway&gt; címke" />
+<classtext lang="hu" title="A kereszteződésről hiányzik a [highway] címke" />
 <classtext lang="it" title="Tag highway mancante sul raccordo" />
 <classtext lang="ja" title="交差点にhighwayタグがない" />
 <classtext lang="lt" title="Sankryžai trūksta „highway“ žymos" />
@@ -757,7 +740,7 @@
 <classtext lang="fa" title="oneway هست اما تگ highway نیست" />
 <classtext lang="fr" title="Attribut “highway” manquant sur sens unique" />
 <classtext lang="gl" title="Falla a etiqueta 'highway' no sentido único" />
-<classtext lang="hu" title="Az egyirányú útról hiányzik a &lt;highway&gt; címke" />
+<classtext lang="hu" title="Az egyirányú útról hiányzik a [highway] címke" />
 <classtext lang="it" title="Tag highway mancante sul senso unico" />
 <classtext lang="ja" title="一方通行にhighwayタグがない" />
 <classtext lang="lt" title="Vienpusiam eismui trūksta „highway“ žymos" />
@@ -776,7 +759,7 @@
 <classtext lang="fa" title="کمبود تگ ref برای emergency access point" />
 <classtext lang="fr" title="Référence manquante pour le point d’accès d’urgence" />
 <classtext lang="gl" title="Falla a etiqueta 'ref' para un punto de acceso de emerxencia" />
-<classtext lang="hu" title="Hiányzik a &lt;ref&gt; címke a vészhelyzeti bejutási pontról (emergency access point)" />
+<classtext lang="hu" title="Hiányzik a [ref] címke a vészhelyzeti bejutási pontról (emergency access point)" />
 <classtext lang="it" title="Etichetta ref per punto di ritrovo d’emergenza mancante" />
 <classtext lang="lt" title="Pagalbos prieigos taškui trūksta ref žymos" />
 <classtext lang="nl" title="Ontbrekende tag ref spoed toegans punten" />
@@ -794,7 +777,7 @@
 <classtext lang="fa" title="تگ tracktype یا lanes بدون تگ highway" />
 <classtext lang="fr" title="Attribut “highway” manquant sur “tracktypes” ou “lanes”" />
 <classtext lang="gl" title="Falla a etiqueta de estrada para o tipo de pista ou carrís" />
-<classtext lang="hu" title="A &lt;tracktype&gt; vagy &lt;lanes&gt; címkék mellől hiányzik a &lt;highway&gt; címke" />
+<classtext lang="hu" title="A [tracktype] vagy [lanes] címkék mellől hiányzik a [highway] címke" />
 <classtext lang="it" title="Etichetta highway mancante per tracktype oppure lanes" />
 <classtext lang="nl" title="Tag highway ontbreekt voor tracktype of rijwegen" />
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
@@ -809,7 +792,7 @@
 <classtext lang="fa" title="{0.key}={0.value} بدون highway=footway|construction" />
 <classtext lang="fr" title="{0.key}={0.value} sans highway=footway|construction" />
 <classtext lang="gl" title="{0.key}={0.value} sen highway=footway|construction" />
-<classtext lang="hu" title="{0.key}={0.value}, highway=footway|construction nélkül" />
+<classtext lang="hu" title="[{0.key}={0.value}], [highway=footway|construction] nélkül" />
 <classtext lang="it" title="{0.key}={0.value} senza highway=footway|construction" />
 <classtext lang="ja" title="{0.key}={0.value}があるのにhighway=footway|constructionがない" />
 <classtext lang="lt" title="{0.key}={0.value} be highway=footway|construction" />
@@ -864,7 +847,7 @@
 <classtext lang="fa" title="کمبود تگ Level یا repeat_on" />
 <classtext lang="fr" title="Attribut “level” ou “repeat_on” manquant" />
 <classtext lang="gl" title="Falla a etiqueta 'level' ou 'repeat_on'" />
-<classtext lang="hu" title="Hiányzó &lt;level&gt; vagy &lt;repeat_on&gt; címke" />
+<classtext lang="hu" title="Hiányzó [level] vagy [repeat_on] címke" />
 <classtext lang="it" title="Etichette level oppure repeat_on mancanti" />
 <classtext lang="lt" title="Trūksta lygio ar repeat_on žymos" />
 <classtext lang="nl" title="Niveau of repeat_on tag ontbreekt" />
@@ -880,7 +863,7 @@
 <classtext lang="fa" title="کمبود تگ indoor یا buildingpart" />
 <classtext lang="fr" title="Attribut “indoor” ou “buildingpart” manquant" />
 <classtext lang="gl" title="Falla a etiqueta interior ou parte do edificio" />
-<classtext lang="hu" title="Hiányzó &lt;indoor&gt; vagy &lt;buildingpart&gt; címke" />
+<classtext lang="hu" title="Hiányzó [indoor] vagy [buildingpart] címke" />
 <classtext lang="it" title="Etichette indoor o buildingpart mancanti" />
 <classtext lang="lt" title="Trūksta žymos indoor ar buildingpart" />
 <classtext lang="nl" title="Indoor of stukken van gebouw tag ontbreekt" />
@@ -898,7 +881,7 @@
 <classtext lang="fa" title="کمبود تگ public_transport:version روی رابطهٔ route از نوع public_transport" />
 <classtext lang="fr" title="La version de schéma est manquante, ajouter un attribut “public_transport:version”" />
 <classtext lang="gl" title="Falla a etiqueta 'public_transport:version' nunha relación de rota 'public_transport'" />
-<classtext lang="hu" title="Hiányzik a &lt;public_transport:version&gt; címke a &lt;public_transport&gt; útvonalkapcsolatról" />
+<classtext lang="hu" title="Hiányzik a [public_transport:version] címke a [public_transport] útvonalkapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta public_transport:version su una relazione di linea di tipo public_transport" />
 <classtext lang="nl" title="public_transport:version tag ontbreekt op een public_transport route relatie" />
 <classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту" />
@@ -913,7 +896,7 @@
 <classtext lang="fa" title="کمبود تگ network روی رابطهٔ public_transport" />
 <classtext lang="fr" title="Le réseau est manquant, ajouter un attribut “network”" />
 <classtext lang="gl" title="Falla a etiqueta 'network' nunha relación 'public_transport'" />
-<classtext lang="hu" title="Hiányzik a &lt;network&gt;hálózatcímke a &lt;public_transport&gt; kapcsolatról" />
+<classtext lang="hu" title="Hiányzik a [network]hálózatcímke a [public_transport] kapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta network su una relazione di tipo public_transport" />
 <classtext lang="nl" title="network tag op public_transport relatie ontbreekt" />
 <classtext lang="uk" title="Відсутній теґ network на зв'язку public_transport" />
@@ -928,7 +911,7 @@
 <classtext lang="fa" title="کمبود تگ operator روی رابطهٔ public_transport" />
 <classtext lang="fr" title="L’opérateur est manquant, ajouter un attribut “operator”" />
 <classtext lang="gl" title="Falla a etiqueta 'operator' nunha relación 'public_transport'" />
-<classtext lang="hu" title="Hiányzik az &lt;operator&gt; üzemeltető címke a &lt;public_transport&gt; kapcsolatról" />
+<classtext lang="hu" title="Hiányzik az [operator] üzemeltető címke a [public_transport] kapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta operator su una relazione di tipo public_transport" />
 <classtext lang="nl" title="operator tag op public_transport relatie ontbreekt" />
 <classtext lang="uk" title="Відсутній теґ operator у зв'язку громадського транспорту" />
@@ -943,7 +926,7 @@
 <classtext lang="fa" title="کمبود تگ ref برای شمارهٔ خط، روی رابطهٔ public_transport" />
 <classtext lang="fr" title="Le numéro de ligne est manquant, ajouter un attribut “ref”" />
 <classtext lang="gl" title="Falla a etiqueta 'ref' co número de liña, nunha relación 'public_transport'" />
-<classtext lang="hu" title="Hiányzik a vonal számát jelölő &lt;ref&gt; címke a &lt;public_transport&gt; kapcsolatról" />
+<classtext lang="hu" title="Hiányzik a vonal számát jelölő [ref] címke a [public_transport] kapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta ref per il numero di linea di una relazione di tipo public_transport" />
 <classtext lang="nl" title="ref tag voor lijn nummer ontbreekt op een public_transport relatie" />
 <classtext lang="uk" title="Відсутній теґ ref для номеру лінії на зв'язку public_transport" />
@@ -958,7 +941,7 @@
 <classtext lang="fa" title="تگ from/to در رابطهٔ public_transport وجود ندارد" />
 <classtext lang="fr" title="L’origine ou la destination est manquante, renseigner les attributs “from” et “to”" />
 <classtext lang="gl" title="Falla a etiqueta 'from/to' nunha relación de rota 'public_transport'" />
-<classtext lang="hu" title="Hiányzik a &lt;from/to&gt; címke a &lt;public_transport&gt; &lt;route&gt; kapcsolatról" />
+<classtext lang="hu" title="Hiányzik a [from/to] címke a [public_transport] [route] kapcsolatról" />
 <classtext lang="it" title="Manca l‘etichetta from/to su una relazione di tipo public_transport" />
 <classtext lang="nl" title="from/to tag op een public_transport weg relatie ontbreekt " />
 <classtext lang="uk" title="Відсутній теґ from/to у зв'язку маршруту громадського транспорту" />
@@ -973,7 +956,7 @@
 <classtext lang="fa" title="کمبود تگ public_transport روی ایستگاه حمل‌ونقل عمومی" />
 <classtext lang="fr" title="Il manque l’attribut “public_transport” sur un arrêt" />
 <classtext lang="gl" title="Falla a etiqueta 'public_transport' nunha paraxe de transporte público" />
-<classtext lang="hu" title="Hiányzik a &lt;public_transport&gt; címke a tömegközlekedési megállóról" />
+<classtext lang="hu" title="Hiányzik a [public_transport] címke a tömegközlekedési megállóról" />
 <classtext lang="it" title="Manca l’etichetta public_transport sulla fermata di trasporto pubblico" />
 <classtext lang="nl" title="public_transport tag ontbreekt op een public transport halte" />
 <classtext lang="uk" title="Відсутній теґ public_transport на public_transport_stop" />
@@ -1086,7 +1069,7 @@
 <classtext lang="es" title="Falta etiqueta wikipedia primaria" />
 <classtext lang="fa" title="کمبود تگ اصلی ویکی‌پدیا" />
 <classtext lang="gl" title="Falla a etiqueta da Wikipedia primaria" />
-<classtext lang="hu" title="Hiányzó elsődleges &lt;wikipedia&gt; címke" />
+<classtext lang="hu" title="Hiányzó elsődleges [wikipedia] címke" />
 <classtext lang="it" title="Tag wikipedia principale mancante" />
 <classtext lang="lt" title="Trūksta pirminės Vikipedijos žymos" />
 <classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
@@ -1122,7 +1105,7 @@
 <classtext lang="fa" title="تگ تکراری ویکی‌پدیا به‌صورت پیشوندی و پسوندی" />
 <classtext lang="fr" title="Double attribut “wikipedia” comme préfixe et suffixe" />
 <classtext lang="gl" title="Etiqueta da wikipedia duplicada coma sufixo e prefixo" />
-<classtext lang="hu" title="Megkettőzött &lt;wikipedia&gt; címke: elő- és utótag" />
+<classtext lang="hu" title="Megkettőzött [wikipedia] címke: elő- és utótag" />
 <classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
 <classtext lang="lt" title="Vikipedijos žymos dublikatas kaip priesaga ir priešdėlis" />
 <classtext lang="nl" title="Zelfde wikipedia tag as suffix and prefix" />
@@ -1152,11 +1135,12 @@
 </class>
 <class item="3031" tag="value,wikidata,fix:chair" id="30318" level="2">
 <classtext lang="cs" title="Tato značka wikidat odpovídá obchodnímu řetězci, měla by být použita ve značce brand:wikidata" />
+<classtext lang="de" title="Dieser wikidata Wert entspricht einer Ladenkette, dafür sollte der brand:wikidata Tag verwendet werden" />
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
 <classtext lang="fa" title="این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در یک تگ brand:wikidata بیاید." />
 <classtext lang="fr" title="L’attribut “wikidata” correspond à un nom de franchise, il devrait être dans l’attribut “brand:wikidata”." />
 <classtext lang="gl" title="Este valor da wikidata coincide cunha cadea de tendas, ten que estar nunha etiqueta 'brand:wikidata'" />
-<classtext lang="hu" title="Ez a wikidata-érték megfelel egy üzletláncnak, így a &lt;brand:wikidata&gt; címkét kellene használni." />
+<classtext lang="hu" title="Ez a wikidata-érték megfelel egy üzletláncnak, így a [brand:wikidata] címkét kellene használni." />
 <classtext lang="it" title="Questo valore di wikidata corrisponde a una catena di negozi, dovrebbe stare nell’etichetta brand:wikidata." />
 <classtext lang="nl" title="Deze wikidata waarde vertegenwoordigt een winkelketen, het moet in een  brand:wikidata tag." />
 <classtext lang="uk" title="Це значення wikidata збігається з мережею магазинів, і має бути в тезі wikidata" />
@@ -1205,7 +1189,7 @@
 <classtext lang="fa" title="level روی راه آبی" />
 <classtext lang="fr" title="Cours d’eau avec “level”" />
 <classtext lang="gl" title="Canle fluvial con nivel" />
-<classtext lang="hu" title="Vízfolyás &lt;level&gt; címkével" />
+<classtext lang="hu" title="Vízfolyás [level] címkével" />
 <classtext lang="it" title="Corso d'acqua con level" />
 <classtext lang="lt" title="Vandens kelias su lygiu" />
 <classtext lang="nl" title="Waterweg met niveau" />
@@ -1228,6 +1212,12 @@
 <classtext lang="uk" title="{0.key}={0.value} з {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
 </class>
+<class item="3050" tag="tag,fix:chair" id="30501" level="1">
+<classtext lang="en" title="Bad tag suffix" />
+</class>
+<class item="3060" tag="value,fix:chair" id="30601" level="3">
+<classtext lang="en" title="Similar values" />
+</class>
 <class item="3080" tag="tag,tag,fix:chair,leisure,public equipment" id="30801" level="3">
 <classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
 </class>
@@ -1244,6 +1234,8 @@
 <classtext lang="zh_CN" title="颜色代码应以“＃”开头，后跟3或6位数字" />
 </class>
 <class item="3093" tag="value,fix:chair" id="30931" level="2">
+<classtext lang="cs" title="URL obsahuje mezeru" />
+<classtext lang="de" title="Der URL enthält ein Leerzeichen" />
 <classtext lang="en" title="The URL contains a space" />
 <classtext lang="es" title="La URL contiene un espacio" />
 <classtext lang="fa" title="در URL فاصله وجود دارد" />
@@ -1257,6 +1249,7 @@
 <classtext lang="zh_CN" title="链接包含空格" />
 </class>
 <class item="3093" tag="value,fix:chair" id="30932" level="2">
+<classtext lang="de" title="Der URL hat kein gültiges Schema" />
 <classtext lang="en" title="The URL does not have a valid scheme" />
 <classtext lang="es" title="La URL no tiene un esquema válido" />
 <classtext lang="fa" title="URL درست نوشته نشده" />
@@ -1276,7 +1269,7 @@
 <classtext lang="es" title="Carriles de giro merge_to_* necesita una línea paralela en el lado bueno" />
 <classtext lang="fr" title="La voie de rabattement “merge_to_*” vers une voie fusionnée plus loin devrait longer une autre voie dans le même sens" />
 <classtext lang="gl" title="O carrís de xiro 'merge_to_*' precisan unha liña paralela na beira correcta" />
-<classtext lang="hu" title="A &lt;merge_to_…&gt; címkéjű bekanyarodósávokhoz egy oldalsó sáv is szükséges a megfelelő oldalon" />
+<classtext lang="hu" title="A [merge_to_…] címkéjű bekanyarodósávokhoz egy oldalsó sáv is szükséges a megfelelő oldalon" />
 <classtext lang="it" title="Le corsie di preselezione con merge_to_* necessitano di una corsia accanto sul lato giusto" />
 <classtext lang="nl" title="Afslag rijstroken merge_to_ * heeft een zijrijstrook nodig op de goede zij" />
 <classtext lang="uk" title="Смуги повороту merge_to_* потребує сторону смуги з хорошого боку" />
@@ -1291,7 +1284,7 @@
 <classtext lang="fa" title="مقدار lanes بد است" />
 <classtext lang="fr" title="Mauvaise valeur de “lanes”" />
 <classtext lang="gl" title="Valor dos carrís erróneo" />
-<classtext lang="hu" title="Hibás érték a &lt;lanes&gt; kulcs (sávok) mellett" />
+<classtext lang="hu" title="Hibás érték a [lanes] kulcs (sávok) mellett" />
 <classtext lang="it" title="Valore di lanes errato" />
 <classtext lang="ja" title="lanesの値が間違っている" />
 <classtext lang="lt" title="Bloga juostos reikšmė" />
@@ -1311,7 +1304,7 @@
 <classtext lang="fa" title="تداخل بین کاربرد ‎*:lanes یا ‎*:lanes:(forward|backward|both_ways)‎" />
 <classtext lang="fr" title="Utilisation conflictuelle de “*:lanes” et de “*:lanes:(forward|backward|both_ways)”" />
 <classtext lang="gl" title="Conflito entre o emprego das *:lanes ou *:lanes:(forward|backward|both_ways)" />
-<classtext lang="hu" title="Ellentmondás a &lt;*:lanes&gt; vagy &lt;*:lanes:(forward|backward|both_ways)&gt; használata között" />
+<classtext lang="hu" title="Ellentmondás a [*:lanes] vagy [*:lanes:(forward|backward|both_ways)] használata között" />
 <classtext lang="it" title="Uso di *:lanes e *:lanes:(forward|backward|both_ways) in conflitto " />
 <classtext lang="ja" title="*:lanes と *:lanes: が競合している:&#10;(forward|backward|both_ways)" />
 <classtext lang="nl" title="Conflict tussen het gebruik van *:lanes or *:lanes:(forward|backward|both_ways)" />
@@ -1344,7 +1337,7 @@
 <classtext lang="fa" title="کاربرد نامعتبر از ‎*:lanes:(backward|both_ways)‎ روی معبر یکطرفه" />
 <classtext lang="fr" title="Utilisation incorrecte de “*:lanes:(backward|both_ways)” sur une route à sens unique" />
 <classtext lang="gl" title="Emprego non válido das *:lanes:(backward|both_ways) nunha estrada dun só sentido" />
-<classtext lang="hu" title="A &lt;*:lanes:(backward|both_ways)&gt; érvénytelen használata egyirányú úton" />
+<classtext lang="hu" title="A [*:lanes:(backward|both_ways)] érvénytelen használata egyirányú úton" />
 <classtext lang="it" title="Uso non valido di *:lanes:(backward|both_ways)  su strada a senso unico" />
 <classtext lang="nl" title="Ongeldig gebruik van *:lanes:(backward|both_ways) op éénrichtingsweg" />
 <classtext lang="uk" title="Недійсне використання *:lanes:(backward|both_ways) на oneway highway" />
@@ -1358,7 +1351,7 @@
 <classtext lang="fa" title="مقدار ناشناخته برای turn lanes" />
 <classtext lang="fr" title="Valeur inconnue de direction de voies de circulation" />
 <classtext lang="gl" title="O valor dos carrís de xiro é descoñecido" />
-<classtext lang="hu" title="Ismeretlen érték a &lt;turn:lanes&gt; kulcs (bekanyarodósávok) mellett" />
+<classtext lang="hu" title="Ismeretlen érték a [turn:lanes] kulcs (bekanyarodósávok) mellett" />
 <classtext lang="it" title="Valore sconosciuto per le corsie di preselezione" />
 <classtext lang="nl" title="Onbekende omkeer rijstroken waarde" />
 <classtext lang="uk" title="Невідомі значення смуг повороту" />
@@ -1372,7 +1365,7 @@
 <classtext lang="fa" title="ترتیب بد turn lanes" />
 <classtext lang="fr" title="Ordre incorrect des directions de voies de circulation" />
 <classtext lang="gl" title="A orde dos carrís de xiro é errónea" />
-<classtext lang="hu" title="Hibás a bekanyarodósávok &lt;turn:lanes&gt; sorrendje" />
+<classtext lang="hu" title="Hibás a bekanyarodósávok [turn:lanes] sorrendje" />
 <classtext lang="it" title="Ordine delle corsie di preselezione errato" />
 <classtext lang="nl" title="Verkeerde omkeer rijstroken volgorde" />
 <classtext lang="pl" title="Zła kolejność pasów skręcania" />
@@ -1399,7 +1392,7 @@
 <classtext lang="es" title="Valor de acceso a carriles erróneo, no debe ser un entero sino una restricción" />
 <classtext lang="fr" title="Mauvaise valeur “access” pour voies de circulation, ne devrait pas être un entier mais plutôt une restriction" />
 <classtext lang="gl" title="O valor de acceso a carrís é erróneo, non ten que ser un enteiro senón unha restrición" />
-<classtext lang="hu" title="Hibás &lt;access lanes&gt; érték: ne egész szám legyen, hanem korlátozás" />
+<classtext lang="hu" title="Hibás [access lanes] érték: ne egész szám legyen, hanem korlátozás" />
 <classtext lang="it" title="Valore di accesso alle corsie errato, non dovrebbe essere un numero intero ma un divieto" />
 <classtext lang="nl" title="Verkeerde rijstroken toegang waarde, moet niet een geheel getal maar een beperking zijn" />
 <classtext lang="uk" title="Помилкове значення смуг доступу, не має бути цілим числом, а обмеженням" />
@@ -1413,7 +1406,7 @@
 <classtext lang="fa" title="parking:lane:[side] بد" />
 <classtext lang="fr" title="Mauvais “parking:lane[:coté]”" />
 <classtext lang="gl" title="O parking:lane:[side] é erróneo " />
-<classtext lang="hu" title="Hibás &lt;parking:lane:[side]&gt;" />
+<classtext lang="hu" title="Hibás [parking:lane:[side]]" />
 <classtext lang="it" title="parking:lane:[side] errato" />
 <classtext lang="lt" title="Bloga parking:lane:[side]" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
@@ -1432,7 +1425,7 @@
 <classtext lang="fa" title="تعداد خیلی زیادی parking:lane:[side]" />
 <classtext lang="fr" title="Trop de “parking:lane[:coté]”" />
 <classtext lang="gl" title="Moitos parking:lane:[side]" />
-<classtext lang="hu" title="Túl sok &lt;parking:lane:[side]&gt;" />
+<classtext lang="hu" title="Túl sok [parking:lane:[side]]" />
 <classtext lang="it" title="Troppi parking:lane:[side]" />
 <classtext lang="lt" title="Per daug parking:lane:[side]" />
 <classtext lang="nl" title="Te veel parking:lane:[zijde]" />
@@ -1451,7 +1444,7 @@
 <classtext lang="fa" title="مقدار بد برای parking:lane:[side] " />
 <classtext lang="fr" title="Mauvaise valeur de “parking:lane[:coté]”" />
 <classtext lang="gl" title="Valor erróneo no parking:lane:[side]" />
-<classtext lang="hu" title="Hibás érték a &lt;parking:lane:[side]&gt; kulcs mellett" />
+<classtext lang="hu" title="Hibás érték a [parking:lane:[side]] kulcs mellett" />
 <classtext lang="it" title="Valore di parking:lane:[side] errato" />
 <classtext lang="lt" title="Bloga parking:lane:[side] reikšmė" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
@@ -1470,7 +1463,7 @@
 <classtext lang="fa" title="parking:condition:[side] بدون مقداری برای parking:lane:[side]" />
 <classtext lang="fr" title="“parking:condition[:coté]” sans valeur de “parking:lane[:coté]” " />
 <classtext lang="gl" title="parking:condition:[side] sen valor parking:lane:[side]" />
-<classtext lang="hu" title="&lt;parking:condition:[side]&gt;: hiányzik a &lt;parking:lane:[side]&gt; értéke" />
+<classtext lang="hu" title="[parking:condition:[side]]: hiányzik a [parking:lane:[side]] értéke" />
 <classtext lang="it" title="parking:condition:[side] senza parking:lane:[side]" />
 <classtext lang="lt" title="parking:condition:[side] be parking:lane:[side] reikšmės" />
 <classtext lang="nl" title="parking:condition:[zijde] zonder parking:lane:[zijde] waarde" />
@@ -1529,7 +1522,7 @@
 <classtext lang="fa" title="کاربرد بد از area=yes. این شیء به خودی خود یک محوطه محسوب می‌شود" />
 <classtext lang="fr" title="“area=yes” superflu, l’objet est une surface par nature" />
 <classtext lang="gl" title="Emprego erróneo da 'area=yes'. O obxecto xa é unha área por natureza" />
-<classtext lang="hu" title="Hibás &lt;area=yes&gt; használat. Az objektum jellegénél fogva amúgyis terület" />
+<classtext lang="hu" title="Hibás [area=yes] használat. Az objektum jellegénél fogva amúgyis terület" />
 <classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
 <classtext lang="lt" title="Blogas area=yes naudojimas. Objektas savo esme ir taip yra plotas" />
 <classtext lang="nl" title="Verkeerde gebruik van area=yes. Object is al een area uit zichzelf" />
@@ -1549,7 +1542,7 @@
 <classtext lang="fa" title="area=yes بدون مشخص‌کردن چیستی آن" />
 <classtext lang="fr" title="“area=yes” sur un objet sans nature" />
 <classtext lang="gl" title="'area=yes' nun obxecto sen clase" />
-<classtext lang="hu" title="&lt;area=yes&gt; címke típus nélküli objektumon" />
+<classtext lang="hu" title="[area=yes] címke típus nélküli objektumon" />
 <classtext lang="it" title="area=yes su di un oggetto senza tipologia" />
 <classtext lang="lt" title="area=yes ant objekto be rūšies" />
 <classtext lang="nl" title="area=yes op object is zonder soort" />
@@ -1562,13 +1555,13 @@
 <class item="3200" tag="tag,fix:chair" id="32003" level="3">
 <classtext lang="ca" title="Ús incorrecte de area=ho. L'objecte ha de ser una superfície" />
 <classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
-<classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Oberfläche sein" />
+<classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Fläche sein" />
 <classtext lang="en" title="Bad usage of area=no. Object must be a surface" />
 <classtext lang="es" title="Mal uso de area=no. El objeto debe ser una superficie" />
 <classtext lang="fa" title="کاربرد بد از area=no. این شیء باید محوطه باشد" />
 <classtext lang="fr" title="Mauvais usage de “area”=“no”. L’objet doit être une surface." />
 <classtext lang="gl" title="Emprego erróneo da 'area=no'. O obxecto ten que ser unha área" />
-<classtext lang="hu" title="Hibás &lt;area=no&gt; használat. Az objektumnak felületnek kell lennie" />
+<classtext lang="hu" title="Hibás [area=no] használat. Az objektumnak felületnek kell lennie" />
 <classtext lang="it" title="Utilizzo scorretto di area=no. L'oggetto deve essere una superficie" />
 <classtext lang="lt" title="Blogas area=no naudojimas. Objektas privalo būti paviršiumi" />
 <classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
@@ -1586,7 +1579,7 @@
 <classtext lang="fa" title="تگ access=yes|permissive به همهٔ حالات حمل‌ونقل دسترسی می‌دهد" />
 <classtext lang="fr" title="“access”=“yes|permissive” autorise tous les modes de transport" />
 <classtext lang="gl" title="access=yes|permissive permitido a tódolos xeitos de transporte" />
-<classtext lang="hu" title="minden közlekedési mód számára nyitott hozzáférés &lt;acess=yes|permissive&gt;" />
+<classtext lang="hu" title="minden közlekedési mód számára nyitott hozzáférés [acess=yes|permissive]" />
 <classtext lang="it" title="access=yes|permissive permette qualsiasi tipo di trasporto" />
 <classtext lang="lt" title="access=yes|permissive leidžia visas transporto rūšis" />
 <classtext lang="nl" title="access=yes|permissive staat alle transportmiddelen toe" />
@@ -1602,7 +1595,7 @@
 <classtext lang="fa" title="تگ access=yes|permissive به همهٔ حالات حمل‌ونقل دسترسی می‌دهد" />
 <classtext lang="fr" title="“access”=“yes|permissive” autorise tous les modes de transport" />
 <classtext lang="gl" title="access=yes|permissive permitido a tódolos xeitos de transporte" />
-<classtext lang="hu" title="minden közlekedési mód számára nyitott hozzáférés &lt;acess=yes|permissive&gt;" />
+<classtext lang="hu" title="minden közlekedési mód számára nyitott hozzáférés [acess=yes|permissive]" />
 <classtext lang="it" title="access=yes|permissive permette qualsiasi tipo di trasporto" />
 <classtext lang="lt" title="access=yes|permissive leidžia visas transporto rūšis" />
 <classtext lang="nl" title="access=yes|permissive staat alle transportmiddelen toe" />
@@ -1612,6 +1605,7 @@
 </class>
 <class item="3230" tag="highway,fix:chair" id="32301" level="2">
 <classtext lang="cs" title="Pravděpodobně jen pro lahve, ne pro jakýkoli druh skla" />
+<classtext lang="de" title="Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas" />
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
 <classtext lang="fa" title="احتمالا فقط برای بطری‌هاست و برای هیچ نوع شیشه‌ای نیست" />
 <classtext lang="fr" title="Probablement seulement pour les bouteilles, pas pour tout type de verre" />
@@ -1663,6 +1657,9 @@
 <classtext lang="nl" title="voorkeur {2.key}={2.value} op {1.key}={1.value}" />
 <classtext lang="uk" title="{2.key}={2.value} є кращим за {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{2.key}={2.value} 是优选的 {1.key}={1.value}" />
+</class>
+<class item="4010" tag="deprecated,value,fix:chair" id="40102" level="2">
+<classtext lang="en" title="Deprecated value" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -1725,6 +1722,7 @@
 </class>
 <class item="4070" tag="tag,highway,fix:survey" id="40701" level="1">
 <classtext lang="cs" title="Nekonzistentní značky {1.key}" />
+<classtext lang="de" title="Inkonsistentes Tagging von {1.key}" />
 <classtext lang="en" title="Inconsistent tagging of {1.key}" />
 <classtext lang="es" title="Etiquetado inconsistente de {1.key}" />
 <classtext lang="fa" title="ناسازگاری در تگ‌گذاری {1.key}" />
@@ -1744,7 +1742,7 @@
 <classtext lang="fa" title="راه آبی طولانی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Long cours d’eau au dessus du sol et sans pont" />
 <classtext lang="gl" title="Canle fluvial longa elevada sobre o chan e sen ponte" />
-<classtext lang="hu" title="Hosszú vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="hu" title="Hosszú vízfolyás a föld fölött [bridge] nélkül" />
 <classtext lang="it" title="Corso d'acqua lungo e sopraelevato ma non è un ponte" />
 <classtext lang="lt" title="Ilgas vandens kelias virš žemės be tilto" />
 <classtext lang="nl" title="Lange Waterweg bovengronds en geen brug" />
@@ -1797,7 +1795,7 @@
 <classtext lang="fa" title="معبر زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Route souterraine sans tunnel" />
 <classtext lang="gl" title="Estrada subterránea e sen túnel" />
-<classtext lang="hu" title="Út a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="hu" title="Út a föld alatt [tunnel] nélkül" />
 <classtext lang="it" title="Strada sotterranea e nessun tunnel" />
 <classtext lang="lt" title="Kelias po žeme be tunelio" />
 <classtext lang="nl" title="Weg ondergronds en geen tunnel" />
@@ -1814,7 +1812,7 @@
 <classtext lang="fa" title="معبر طولانی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Longue route souterraine sans tunnel" />
 <classtext lang="gl" title="Estrada subterránea longa e sen túnel" />
-<classtext lang="hu" title="Hosszú út a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="hu" title="Hosszú út a föld alatt [tunnel] nélkül" />
 <classtext lang="it" title="Strada lunga sotterranea e nessun tunnel" />
 <classtext lang="lt" title="Ilgas kelias po žeme be tunelio" />
 <classtext lang="nl" title="Lange Weg ondergronds en geen tunnel" />
@@ -1831,7 +1829,7 @@
 <classtext lang="fa" title="معبر بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Route au dessus du sol sans pont" />
 <classtext lang="gl" title="Estrada elevada sobre o chan e sen ponte" />
-<classtext lang="hu" title="Út a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="hu" title="Út a föld fölött [bridge] nélkül" />
 <classtext lang="it" title="Strada al di sopra del terreno e nessun ponte" />
 <classtext lang="lt" title="Kelias virš žemės be tilto" />
 <classtext lang="nl" title="Weg bovengronds en geen brug" />
@@ -1848,7 +1846,7 @@
 <classtext lang="fa" title="معبر طولانی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Longue route au dessus du sol sans pont" />
 <classtext lang="gl" title="Estrada longa elevada sobre o chan e sen ponte" />
-<classtext lang="hu" title="Hosszú út a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="hu" title="Hosszú út a föld fölött [bridge] nélkül" />
 <classtext lang="it" title="Strada lunga e al di sopra del terreno e nessun ponte" />
 <classtext lang="lt" title="Ilgas kelias virš žemės be tilto" />
 <classtext lang="nl" title="Lange Weg bovengronds en geen brug" />
@@ -1865,7 +1863,7 @@
 <classtext lang="fa" title="راه آبی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Cours d’eau souterrain sans tunnel" />
 <classtext lang="gl" title="Canle fluvial subterránea e sen túnel" />
-<classtext lang="hu" title="Vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="hu" title="Vízfolyás a föld alatt [tunnel] nélkül" />
 <classtext lang="it" title="Corso d'acqua sotterraneo ma non è un tunnel" />
 <classtext lang="lt" title="Vandens kelias po žeme be tunelio" />
 <classtext lang="nl" title="Waterweg ondergronds en geen tunnel" />
@@ -1882,7 +1880,7 @@
 <classtext lang="fa" title="راه آبی طولانی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Long cours d’eau souterrain sans tunnel" />
 <classtext lang="gl" title="Canle fluvial longa subterránea e sen túnel" />
-<classtext lang="hu" title="Hosszú vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="hu" title="Hosszú vízfolyás a föld alatt [tunnel] nélkül" />
 <classtext lang="it" title="Corso d'acqua lungo e sotterraneo ma non è un tunnel" />
 <classtext lang="lt" title="Ilgas vandens kelias po žeme be tunelio" />
 <classtext lang="nl" title="Lange Waterweg ondergronds en geen tunnel" />
@@ -1899,7 +1897,7 @@
 <classtext lang="fa" title="راه آبی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Cours d’eau au dessus du sol et sans pont" />
 <classtext lang="gl" title="Canle fluvial elevada sobre o chan e sen ponte" />
-<classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="hu" title="Vízfolyás a föld fölött [bridge] nélkül" />
 <classtext lang="it" title="Corso d'acqua sopraelevato ma non è un ponte" />
 <classtext lang="lt" title="Vandens kelias virš žemės be tilto" />
 <classtext lang="nl" title="Waterweg bovengronds en geen brug" />
@@ -2000,7 +1998,7 @@
 <classtext lang="fa" title="کمبود تگ maxheight " />
 <classtext lang="fr" title="Attribut “maxheight” manquant" />
 <classtext lang="gl" title="Falla a etiqueta de altitude máxima" />
-<classtext lang="hu" title="Hiányzó magasságkorlátozás &lt;maxheight&gt; címke" />
+<classtext lang="hu" title="Hiányzó magasságkorlátozás [maxheight] címke" />
 <classtext lang="it" title="Tag maxheight mancante" />
 <classtext lang="lt" title="Trūksta didžiausio aukščio žymos" />
 <classtext lang="nl" title="maxheight tag ontbreekt" />
@@ -2028,7 +2026,7 @@
 <classtext lang="fa" title="روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید" />
 <classtext lang="fr" title="Sur les transformateurs, distinguez “voltage:primary”=“*” et “”voltage:secondary”=”*” à la place d’un “voltage”=“*” unique" />
 <classtext lang="gl" title="Nos transformadores de enerxía emprégase 'voltage:primary=*' e 'voltage:secondary=*' no canto da voltaxe" />
-<classtext lang="hu" title="&lt;voltage:primary=*&gt; és &lt;voltage:secondary=*&gt; használata villamos transzformátoron (a &lt;voltage=*&gt; helyett)" />
+<classtext lang="hu" title="[voltage:primary=*] és [voltage:secondary=*] használata villamos transzformátoron (a [voltage=*] helyett)" />
 <classtext lang="it" title="Su un trasformatore usare voltage:primary=* e voltage:secondary=* invece di voltage" />
 <classtext lang="nl" title="Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage" />
 <classtext lang="uk" title="На трансформаторі застосовуйте voltage:primary=* та voltage:secondary=* замість одного теґу напруги" />
@@ -2036,20 +2034,22 @@
 </class>
 <class item="9100" tag="power,fix:chair,tag" id="91003" level="3">
 <classtext lang="cs" title="Transformátorová stanice by měla mít značku frequency" />
+<classtext lang="de" title="Umspannwerke sollten einen frequency Tag haben" />
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
 <classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
 <classtext lang="fr" title="Les transformateurs devraient avoir un attribut “frequency”" />
 <classtext lang="gl" title="Os transformadores de enerxía teñen que ter unha etiqueta de frecuencia ('frequency')" />
-<classtext lang="hu" title="A transzformátoron kell lennie egy &lt;frequency&gt; címkének " />
+<classtext lang="hu" title="A transzformátoron kell lennie egy [frequency] címkének " />
 <classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
 <classtext lang="uk" title="Трансформатор повинен мати теґ frequency" />
 <classtext lang="zh_CN" title="变压器应该有一个频率标签" />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="303210" level="1">
+<classtext lang="de" title="'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden" />
 <classtext lang="en" title="Fence with material tag, better use fence_type tag" />
 <classtext lang="fr" title="Clôture avec attribut matériel, utilisez de préférence l’attribut “fence_type”" />
-<classtext lang="hu" title="Kerítés &lt;material&gt; címkével. Inkább &lt;fence_type&gt; címkét kellene használni" />
+<classtext lang="hu" title="Kerítés [material] címkével. Inkább [fence_type] címkét kellene használni" />
 <classtext lang="nl" title="Hek met material tag, gebruik beter fence_type tag" />
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
@@ -2062,7 +2062,7 @@
 <classtext lang="fa" title="maxspeed و source:maxspeed ناسازگار" />
 <classtext lang="fr" title="Attributs “maxspeed” et “source:maxspeed” discordants" />
 <classtext lang="gl" title="Discorda o 'maxspeed' e o 'source:maxspeed'" />
-<classtext lang="hu" title="A &lt;maxspeed&gt; és a &lt;source:maxspeed&gt; nincs összhangban" />
+<classtext lang="hu" title="A [maxspeed] és a [source:maxspeed] nincs összhangban" />
 <classtext lang="it" title="Maxspeed e source:maxspeed discordanti" />
 <classtext lang="nl" title="Dissonant  maxspeed en source:maxspeed" />
 <classtext lang="pl" title="Niezgodne maxspeed i source:maxspeed" />
@@ -3479,7 +3479,7 @@
 <classtext lang="fa" title="{0.key} بدون {1.key}" />
 <classtext lang="fr" title="{0.key} sans {1.key}" />
 <classtext lang="gl" title="{0.key} sen {1.key}" />
-<classtext lang="hu" title="{0.key}, {1.key} nélkül" />
+<classtext lang="hu" title="[{0.key}], [{1.key}] nélkül" />
 <classtext lang="it" title="{0.key} senza {1.key}" />
 <classtext lang="ja" title="{0.key}があるのに{1.key}がない" />
 <classtext lang="lt" title="{0.key} be {1.key}" />
@@ -3545,7 +3545,7 @@
 <classtext lang="fa" title="network باید روی خطوط حمل‌ونقل باشد نه روی ایستگاه‌ها" />
 <classtext lang="fr" title="Le réseau devrait être porté par les lignes de transport et non par les arrêts" />
 <classtext lang="gl" title="A rede ten que estar nas liñas de transporte e non nas paraxes" />
-<classtext lang="hu" title="A hálózat &lt;network&gt; megjelölésének a tömegközlekedési útvonalakon kell lennie, nem pedig a megállókon" />
+<classtext lang="hu" title="A hálózat [network] megjelölésének a tömegközlekedési útvonalakon kell lennie, nem pedig a megállókon" />
 <classtext lang="it" title="L’etichetta network dovrebbe stare sulle linee di trasporto e non sulle fermate" />
 <classtext lang="nl" title="Het netwerk moet op de transport lijn en niet op de halte's" />
 <classtext lang="uk" title="Network повинен бути на транспортних лініях, а не на зупинках" />
@@ -3559,7 +3559,7 @@
 <classtext lang="fa" title="operator باید روی خطوط حمل‌ونقل باشد نه روی ایستگاه‌ها" />
 <classtext lang="fr" title="L’opérateur devrait être porté par les lignes de transport et non par les arrêts" />
 <classtext lang="gl" title="O operador ten que estar nas liñas de transporte e non nas paraxes" />
-<classtext lang="hu" title="Az üzemeltető &lt;operator&gt; megjelölésének a tömegközlekedési útvonalakon kell lennie, nem pedig a megállókon" />
+<classtext lang="hu" title="Az üzemeltető [operator] megjelölésének a tömegközlekedési útvonalakon kell lennie, nem pedig a megállókon" />
 <classtext lang="it" title="L’etichetta operator dovrebbe stare sulle linee di trasporto e non sulle fermate" />
 <classtext lang="nl" title="De beheerder moet op de transport lijn en niet op de halte's" />
 <classtext lang="uk" title="Operator повинен бути на транспортних лініях, а не на зупинках" />
@@ -3574,7 +3574,7 @@
 <classtext lang="fa" title="شیوهٔ حمل‌ونقل عمومی مشخص نشده. یکی از تگ‌های route = bus/coach/tram/...‎ را وارد کنید." />
 <classtext lang="fr" title="Le mode est manquant, ajouter un attribut “route”=“bus/coach/tram/etc.”" />
 <classtext lang="gl" title="Falla o xeito de transporte, engade unha etiqueta route = bus/coach/tram/etc" />
-<classtext lang="hu" title="Hiányzik a közlekedési mód. Adjon hozzá egy &lt;route=bus/coach/tram/stb.&gt; címkét" />
+<classtext lang="hu" title="Hiányzik a közlekedési mód. Adjon hozzá egy [route=bus/coach/tram/stb.] címkét" />
 <classtext lang="it" title="Manca la modalità di trasporto, aggiungere l’etichetta route = bus/coach/tram/ecc." />
 <classtext lang="nl" title="Soort vervoermiddel ontbreekt , voeg een tag route = bus/coach/tram/etc" />
 <classtext lang="uk" title="Відсутній режим транспортування, додайте теґ route=bus/coach/tram/тощо" />
@@ -3589,7 +3589,7 @@
 <classtext lang="fa" title="شیوهٔ حمل‌ونقل عمومی مشخص نشده. تگ route را به route_master تغییر دهید" />
 <classtext lang="fr" title="Le mode est manquant, transformer l’attribut “route” en “route_master”" />
 <classtext lang="gl" title="Falla o xeito de transporte, subtituír a etiqueta 'route' por 'route_master'" />
-<classtext lang="hu" title="Hiányzik a közlekedési mód. Módosítsa a &lt;route&gt; címkét erre: &lt;route_master&gt;" />
+<classtext lang="hu" title="Hiányzik a közlekedési mód. Módosítsa a [route] címkét erre: [route_master]" />
 <classtext lang="it" title="Manca la modalità di trasporto, cambiare l’etichetta da route a route_master" />
 <classtext lang="nl" title="Soort vervoermiddel ontbreekt , verander tag route in route_master" />
 <classtext lang="uk" title="Відсутній режим транспортування, змініть теґ route на route_master" />
@@ -3604,7 +3604,7 @@
 <classtext lang="fa" title="تگ operator را بررسی کنید" />
 <classtext lang="fr" title="Vérifier l’opérateur indiqué dans l’attribut “operator”" />
 <classtext lang="gl" title="Comprobar a etiqueta 'operator'" />
-<classtext lang="hu" title="Ellenőrizze az üzemeltetőt jelző &lt;operatort&gt; címkét" />
+<classtext lang="hu" title="Ellenőrizze az üzemeltetőt jelző [operatort] címkét" />
 <classtext lang="it" title="Controlla l’etichetta operator" />
 <classtext lang="nl" title="Controleer de operator tag" />
 <classtext lang="pl" title="Sprawdź tag operator" />
@@ -3620,7 +3620,7 @@
 <classtext lang="fa" title="تگ network را بررسی کنید" />
 <classtext lang="fr" title="Vérifier le réseau indiqué dans l’attribut “network”" />
 <classtext lang="gl" title="Comprobar a etiqueta 'network'" />
-<classtext lang="hu" title="Ellenőrizze a hálózatot jelölő &lt;network&gt; címkét" />
+<classtext lang="hu" title="Ellenőrizze a hálózatot jelölő [network] címkét" />
 <classtext lang="it" title="Controlla l’etichetta network" />
 <classtext lang="nl" title="Controleer de network tag" />
 <classtext lang="pl" title="Sprawdź tag network" />
@@ -3633,6 +3633,7 @@
 <classtext lang="es" title="Una parada de autobús se supone que es un nodo" />
 <classtext lang="fr" title="Un arrêt de bus est censé être un nœud " />
 <classtext lang="gl" title="Unha paraxe de bus suponse que é un nó" />
+<classtext lang="hu" title="A buszmegálló feltételezhetően egy pont" />
 <classtext lang="nl" title="Een bushalte wordt verondersteld een node te zijn" />
 <classtext lang="pl" title="Przystanek autobusowy powinien być węzłem" />
 <classtext lang="uk" title="Зупинка автобуса повинна бути точкою" />
@@ -3642,6 +3643,7 @@
 <classtext lang="es" title="El color de la línea de transporte público debe estar en la etiqueta colour." />
 <classtext lang="fr" title="La couleur de la ligne doit être dans un attribut 'colour'" />
 <classtext lang="gl" title="A cor da liña de transporte público ten que estar na etiqueta 'colour'." />
+<classtext lang="hu" title="A tömegközlekedési vonal színének a [colour] szín címkében kell szerepelnie" />
 <classtext lang="nl" title="De kluer van een openbaar vervoer lijn moet in een colour tag" />
 <classtext lang="uk" title="Колір лінії громадського транспорту повинен мати теґ colour" />
 </class>
@@ -3650,6 +3652,7 @@
 <classtext lang="es" title="El intervalo no es válido (intente un número de minutos)" />
 <classtext lang="fr" title="La fréquence de passage est invalide (essayer un nombre en minutes)" />
 <classtext lang="gl" title="O intre non é válido (tente un número de minutos)" />
+<classtext lang="hu" title="Érvénytelen [interval] követési időköz (próbálja meg a percek számát megadni)" />
 <classtext lang="nl" title="De interval is ongeldig (probeer een nummer of minuten)" />
 <classtext lang="uk" title="Недійсний інтервал (вкажіть кількість хвилин)" />
 </class>
@@ -3658,6 +3661,7 @@
 <classtext lang="es" title="La duración no es válida (intente un número de minutos)" />
 <classtext lang="fr" title="La durée est invalide (essayer un nombre en minutes)" />
 <classtext lang="gl" title="A dura non é válida (tente un número de minutos)" />
+<classtext lang="hu" title="Érvénytelen időtartam (próbálja meg a percek számát megadni)" />
 <classtext lang="nl" title="De duur is ongeldig (probeer een nummer of minuten) " />
 <classtext lang="uk" title="Недійсна тривалість (вкажіть кількість хвилин)" />
 </class>
@@ -3666,6 +3670,8 @@
 <classtext lang="es" title="Falta etiqueta interval para especificar el intervalo principal" />
 <classtext lang="fr" title="Il manque l'attribut interval pour préciser la fréquence de passage principale" />
 <classtext lang="gl" title="Falla a etiqueta 'interval' para especificar o intre principal" />
+<classtext lang="hu" title="Hiányzik az [interval] címke a fő követési időköz meghatározásához" />
+<classtext lang="nl" title="Ontbrekende interval tag om de hoofdinterval te specificeren" />
 <classtext lang="uk" title="Відсутній теґ interval для вказання основного інтервалу" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014024" level="2">
@@ -3673,6 +3679,7 @@
 <classtext lang="es" title="Falta etiqueta opening_hours" />
 <classtext lang="fr" title="Attribut opening_hours (heures de service) manquant" />
 <classtext lang="gl" title="Falla a etiqueta 'opening_hours'" />
+<classtext lang="hu" title="Hiányzik az [opening_hours] nyitva tartás címke" />
 <classtext lang="nl" title=" opening_hours tag ontbreekt" />
 <classtext lang="pl" title="Brak znacznika opening_hours" />
 <classtext lang="uk" title="Відсутній теґ opening_hours" />
@@ -3805,6 +3812,7 @@
 </class>
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
 <classtext lang="cs" title="Ve jménu Farsi zjištěna arabská písmena" />
+<classtext lang="de" title="Arabischer Buchstabe in Farsi Namen erkannt" />
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
 <classtext lang="es" title="Letra árabe detectada en nombre farsi" />
 <classtext lang="fa" title="حرف عربی در نام فارسی" />
@@ -4092,7 +4100,7 @@
 <text lang="ca" value="power=generator sense generator:source" />
 <text lang="de" value="power=generator ohne generator:source" />
 <text lang="it" value="power=generator senza generator:source" />
-<text lang="hu" value="power=generator, generator:source nélkül" />
+<text lang="hu" value="[power=generator], [generator:source] nélkül" />
 <text lang="fa" value="power=generator بدون generator:source" />
 <text lang="lt" value="power=generator be generator:source" />
 <text lang="pl" value="power=generator bez generator:source" />
@@ -4130,7 +4138,7 @@
 <text lang="ja" value="power_sourceは推奨されていません" />
 <text lang="es" value="power_source está obsoleto" />
 </error>
-<error class="4010" subclass="0">
+<error class="4010" subclass="1468904873">
 <node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
 <tag k="power_source" v="oil" />
 <tag k="name" v="EDF" />
