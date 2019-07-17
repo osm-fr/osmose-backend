@@ -106,6 +106,7 @@ GROUP BY
   t.id,
   t.string
 HAVING
+  relation_locate(t.id) IS NOT NULL AND
   string != count(*)
 """
 
@@ -119,8 +120,6 @@ SELECT
   ST_Transform(ways.linestring, {0}) AS geom
 FROM
   relations
-  JOIN route ON
-    route.id = relations.id
   JOIN relation_members ON
     relation_members.member_type = 'W' AND
     relation_members.relation_id = relations.id AND
@@ -139,8 +138,6 @@ SELECT
   ST_Transform(nodes.geom, {0}) AS geom
 FROM
   relations
-  JOIN route ON
-    route.id = relations.id
   JOIN relation_members ON
     relation_members.member_type = 'N' AND
     relation_members.relation_id = relations.id AND
@@ -152,6 +149,10 @@ WHERE
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
  (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
 )
+"""
+
+sql20b = """
+CREATE INDEX indx_stop_platform_geom ON stop_platform USING gist(geom)
 """
 
 sql21 = """
@@ -176,11 +177,12 @@ FROM
   stop_platform
   JOIN route_geom ON
     route_geom.id = stop_platform.id AND
-    ST_Distance(route_geom.geom, stop_platform.geom) BETWEEN 50 AND 1000 
+    ST_DWithin(route_geom.geom, stop_platform.geom, 1000) AND
+    ST_Distance(route_geom.geom, stop_platform.geom) BETWEEN 50 AND 1000
 """
 
 sql30 = """
-SELECT
+SELECT DISTINCT ON(relations.id, relation_members.member_type || relation_members.member_id)
   relations.id,
   relation_members.member_type || relation_members.member_id,
   ST_AsText(coalesce(
@@ -208,7 +210,7 @@ WHERE
 """
 
 sql40 = """
-SELECT
+SELECT DISTINCT ON(relations.id)
     relations.id,
     ST_AsText(relation_locate(relations.id))
 FROM
@@ -275,6 +277,7 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql01)
         self.run(sql10, self.callback10)
         self.run(sql20.format(self.config.options.get("proj")))
+        self.run(sql20b)
         self.run(sql21.format(self.config.options.get("proj")))
         self.run(sql22, self.callback20)
         self.run(sql30, self.callback30)

@@ -31,11 +31,13 @@ class TagFix_Role(Plugin):
         self.Role = re.compile("^[a-z_:]*$")
 
     def relation(self, data, tags, members):
-        err = []
+        roles = []
         for member in members:
             if not self.Role.match(member["role"]):
-                err.append({"class": 31700, "subclass": 1, "text": {"en": "role=\"%s\"" % member["role"]}})
-        return err
+                roles.append(member["role"])
+
+        if len(roles) > 0:
+            return {"class": 31700, "subclass": 1, "text": {"en": "role=%s" % ', '.join(roles)}}
 
 
 ###########################################################################
@@ -45,4 +47,4 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Role(None)
         a.init(None)
-        self.check_err(a.relation(None, None, [{"role":"<std>"}]))
+        self.check_err(a.relation(None, None, [{"role":"<std>"}, {"role":"$$"}]))

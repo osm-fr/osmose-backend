@@ -25,6 +25,7 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql20 = """
 SELECT
     MIN(way_ends.id),
+    nodes.id,
     ST_AsText(nodes.geom),
     MIN(way_ends.highway)
 FROM
@@ -183,7 +184,7 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway", "fix:chair"], "desc": T_(u"Unconnected cycleway") }
         self.classs_change[2] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Unconnected highway") }
         self.classs[3] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"One way inaccessible or missing parking or parking entrance") }
-        self.callback20 = lambda res: {"class":1 if res[2]=='cycleway' else 2, "data":[self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":1 if res[3]=='cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql30)

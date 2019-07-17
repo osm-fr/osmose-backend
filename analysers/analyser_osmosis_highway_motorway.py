@@ -23,7 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-SELECT
+SELECT DISTINCT ON (highways.id)
   highways.id,
   ST_AsText(nodes.geom)
 FROM

@@ -53,6 +53,7 @@ WHERE
 """
 
 from plugins.Plugin import Plugin
+from modules.Stablehash import stablehash
 
 class TagFix_MultipleValue(Plugin):
 
@@ -88,7 +89,7 @@ class TagFix_MultipleValue(Plugin):
         keys = set(keys) & self.SimpleValuedTag
         for k in keys:
             if ';' in tags[k]:
-                err.append({"class": 3070, "subclass": 0, "text": T_("Multiple values on tag: %(key)s=%(val)s", {"key": k, "val": tags[k]})})
+                err.append({"class": 3070, "subclass": stablehash(k), "text": T_("Multiple values on tag: %(key)s=%(val)s", {"key": k, "val": tags[k]})})
 
         return err
 

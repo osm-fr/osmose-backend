@@ -43,6 +43,7 @@ CREATE INDEX rel_poly_linestring_idx ON rel_poly USING gist(linestring)
 
 sql12 = """
 SELECT
+    relations.id,
     w1.id,
     w2.id,
     ST_AsText(ST_Centroid(ST_Envelope(w1.linestring)))
@@ -198,7 +199,7 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.classs_change[2] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon nature with members nature") }
         self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon member nature") }
         self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon, part of multipolygon or not having area tag") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "subclass":stablehash(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s,%s)"%k, filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
         }

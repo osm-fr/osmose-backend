@@ -8,6 +8,9 @@
     "match": [
       {
         "shop": "bakery"
+      },
+      {
+        "shop": "pastry"
       }
     ],
     "generate": {
@@ -261,10 +264,14 @@
     "match": [
       {
         "shop": "beverages"
+      },
+      {
+        "shop": "alcohol"
       }
     ],
     "generate": {
-      "shop": "beverages"
+      "shop": "beverages;alcohol",
+      "fixme": "select a shop type"
     }
   },
   {
@@ -360,11 +367,14 @@
         "shop": "fabric"
       },
       {
-        "shop": "fabric"
+        "shop": "wool"
+      },
+      {
+        "shop": "household_linen"
       }
     ],
     "generate": {
-      "shop": "fabric;wool",
+      "shop": "fabric;wool;household_linen",
       "fixme": "select a shop type"
     }
   },
@@ -564,11 +574,14 @@
         "shop": "perfumery"
       },
       {
-      "shop": "cosmetics"
+        "shop": "cosmetics"
+      },
+      {
+        "shop": "chemist"
       }
     ],
     "generate": {
-      "shop": "perfumery;cosmetics",
+      "shop": "perfumery;cosmetics;chemist;beauty",
       "fixme": "select a shop type"
     }
   },

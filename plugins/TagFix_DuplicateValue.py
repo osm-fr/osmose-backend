@@ -22,13 +22,15 @@
 
 import re
 import itertools
+from modules.Stablehash import stablehash
 from plugins.Plugin import Plugin
 
 class TagFix_DuplicateValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
+        self.errors[3060]  = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated values") }
+        self.errors[30601] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Similar values") }
         self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'collection_times', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'is_in', 'position'))
         self.BlackListRegex = set((
             re.compile('seamark:.+:colour'),
@@ -82,14 +84,14 @@ class TagFix_DuplicateValue(Plugin):
             if ';' in v:
                 vs = list(map(lambda w: w.strip(), v.split(';')))
                 if len(vs) != len(set(vs)):
-                    err.append({"class": 3060, "subclass": 4,
+                    err.append({"class": 3060, "subclass": stablehash(k),
                                 "text": T_("Duplicated values %(key)s=%(val)s", {"key": k, "val": tags[k]}),
                                 "fix": {k: ";".join(set(vs))} })
                 else:
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
-                            err.append({"class": 3060, "subclass": 0,
+                            err.append({"class": 30601, "subclass": stablehash(k),
                                         "text": T_("Duplicated similar values %(key)s=%(val)s", {"key": k, "val": tags[k]})})
 
         return err

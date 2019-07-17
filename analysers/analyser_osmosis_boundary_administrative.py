@@ -123,6 +123,7 @@ SELECT
 FROM
     commune_dump AS c1
     JOIN commune_dump AS c2 ON
+        c1.id < c2.id AND
         c1.polygon && c2.polygon AND
         ST_Overlaps(c1.polygon, c2.polygon)
 WHERE
