@@ -1318,13 +1318,13 @@ class Josm_combinations(Plugin):
                 # throwWarning:tr("{0} without {1}, {2}, {3} or {4}","{0.key}","{1.key}","{2.tag}","{3.tag}","{4.tag}")
                 err.append({'class': 9001001, 'subclass': 1096267911, 'text': mapcss.tr(u'{0} without {1}, {2}, {3} or {4}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.tag}'), mapcss._tag_uncapture(capture_tags, u'{3.tag}'), mapcss._tag_uncapture(capture_tags, u'{4.tag}'))})
 
-        # way[oneway][!highway][!railway][!aerialway][attraction!=summer_toboggan]
+        # way[oneway][!highway][!railway][!aerialway][attraction!=summer_toboggan][aeroway!~/^(runway|taxiway)$/]
         # *[snowplowing][!highway][!amenity][!leisure]
         if (u'oneway' in keys) or (u'snowplowing' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'oneway') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'aerialway') and mapcss._tag_capture(capture_tags, 4, tags, u'attraction') != mapcss._value_const_capture(capture_tags, 4, u'summer_toboggan', u'summer_toboggan'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'oneway') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'aerialway') and mapcss._tag_capture(capture_tags, 4, tags, u'attraction') != mapcss._value_const_capture(capture_tags, 4, u'summer_toboggan', u'summer_toboggan') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_1dcd648f, u'^(runway|taxiway)$'), mapcss._tag_capture(capture_tags, 5, tags, u'aeroway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
