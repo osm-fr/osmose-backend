@@ -483,7 +483,7 @@ class Josm_combinations(Plugin):
                 err.append({'class': 9001002, 'subclass': 93781778, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # *[building:part][building]
-        # *[addr:street][addr:place]
+        # *[addr:street][addr:place][outside("CZ,DK")]
         if (u'addr:place' in keys and u'addr:street' in keys) or (u'building' in keys and u'building:part' in keys):
             match = False
             if not match:
@@ -492,12 +492,12 @@ class Josm_combinations(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:place'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:place') and mapcss.outside(self.father.config.options, u'CZ,DK'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
-                err.append({'class': 9001002, 'subclass': 2125953568, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9001002, 'subclass': 1590654104, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # *[access][eval(number_of_tags())=1]
         # *[area][eval(number_of_tags())=1]!.area_yes_autofix
@@ -1477,7 +1477,7 @@ class Josm_combinations(Plugin):
                 err.append({'class': 9001002, 'subclass': 892898288, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
         # *[building:part][building]
-        # *[addr:street][addr:place]
+        # *[addr:street][addr:place][outside("CZ,DK")]
         if (u'addr:place' in keys and u'addr:street' in keys) or (u'building' in keys and u'building:part' in keys):
             match = False
             if not match:
@@ -1486,12 +1486,12 @@ class Josm_combinations(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:place'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:place') and mapcss.outside(self.father.config.options, u'CZ,DK'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
-                err.append({'class': 9001002, 'subclass': 2125953568, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9001002, 'subclass': 1590654104, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # way[waterway][bridge=yes][waterway!=weir]
         if (u'bridge' in keys and u'waterway' in keys):
@@ -2484,7 +2484,7 @@ class Josm_combinations(Plugin):
                 err.append({'class': 9001002, 'subclass': 1091177792, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
         # *[building:part][building]
-        # *[addr:street][addr:place]
+        # *[addr:street][addr:place][outside("CZ,DK")]
         if (u'addr:place' in keys and u'addr:street' in keys) or (u'building' in keys and u'building:part' in keys):
             match = False
             if not match:
@@ -2493,12 +2493,12 @@ class Josm_combinations(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:place'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:place') and mapcss.outside(self.father.config.options, u'CZ,DK'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
-                err.append({'class': 9001002, 'subclass': 2125953568, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9001002, 'subclass': 1590654104, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # *[access][eval(number_of_tags())=1]
         # *[area][eval(number_of_tags())=1]!.area_yes_autofix
