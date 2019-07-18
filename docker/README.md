@@ -123,8 +123,13 @@ Access the database
 After running `osmose_run.py` with `--no-clean` the data base will
 contain the OSM data. You can enter to explore and test SQL directly.
 Open a psql shell on database from within the backend container:
-```
+```sh
 psql -h postgis
+```
+
+Then
+```
+osmose=> set search_path to comoros,public;
 ```
 
 Password management
