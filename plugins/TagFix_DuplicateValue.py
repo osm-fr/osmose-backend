@@ -93,6 +93,7 @@ class TagFix_DuplicateValue(Plugin):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
                             err.append({"class": 30601, "subclass": stablehash(k),
                                         "text": T_("Duplicated similar values %(key)s=%(val)s", {"key": k, "val": tags[k]})})
+                            break
 
         return err
 
