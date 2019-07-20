@@ -1,4 +1,4 @@
-FROM python:3.5-stretch
+FROM python:3.7
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
         libprotobuf-dev \
         locales \
         make \
-        openjdk-8-jre-headless \
+        openjdk-11-jre-headless \
         pkg-config \
         postgis \
         postgresql-client \
