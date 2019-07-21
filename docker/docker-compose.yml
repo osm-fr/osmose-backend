@@ -14,6 +14,8 @@ services:
       ## With tmpfs database is only on memory, lost on stop. Save SSD lifetime.
       #- type: tmpfs
       #  target: /var/lib/postgresql/data
+    networks:
+      - osmose-backend-internal
 
   backend:
     build:
@@ -33,3 +35,8 @@ services:
       - DB_HOST=postgis
     user: "1000:1000"
     command: ./osmose_run.py --country=monaco --analyser=osmosis_highway_floating_islands
+    networks:
+      - osmose-backend-internal
+
+networks:
+  osmose-backend-internal:

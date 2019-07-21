@@ -60,29 +60,16 @@ Overview
 --------
 
 With docker-compose you can run a full development environment with
-backend and frontend. In develop mode the backend is configured to run an
-analysis and send the results to the local frontend without requiring
-extra configuration or upload password.
-
-Setup the Osmose Frontend
--------------------------
-
-Quick setup:
-```
-git clone https://github.com/osm-fr/osmose-frontend.git
-cd osmose-frontend/docker
-docker build -f Dockerfile -t osm-fr/osmose_frontend:latest ..
-```
-
-For a detailed procedure see
-https://github.com/osm-fr/osmose-frontend/tree/master/docker
+backend and frontend. In develop mode the backend can run an analysis and
+send the results to the local frontend without requiring extra
+configuration or upload password.
 
 Start Docker Backend container
 ------------------------------
 
 Enter the container with:
 ```
-docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 ```
 
 Note: when exiting the backend, the dependency containers will still
@@ -94,8 +81,8 @@ docker-compose-frontend.yml`.
 Note: You will need to compile the OMS PBF parser as mentioned in the
 top-level README file.
 
-Running the analysis and showing the result on the map
-------------------------------------------------------
+Running the analysis
+--------------------
 
 From docker container you can test analyser:
 ```
@@ -111,11 +98,33 @@ or longer:
 2018-01-25 20:19:04 end of analyses
 ```
 
-The results files will be at `./work/results`. There are also uploaded to
-the local Osmose frontend: http://localhost:20009/map?useDev=all
+The results files will be at `./work/results`.
 
 To debug, stay on container, edit the pyhton files from outside, then run
 again `osmose-run`. You can add the option `--skip-init` to speedup.
+
+Showing the result on the Osmose Frontend Map
+---------------------------------------------
+
+Quick Osmose Frontend setup:
+```
+git clone https://github.com/osm-fr/osmose-frontend.git
+cd osmose-frontend/docker
+docker-compose build
+docker-compose -f docker-compose.yml -f docker-compose-test.yml up
+```
+
+For a detailed procedure see
+https://github.com/osm-fr/osmose-frontend/tree/master/docker
+
+
+To uploaded analysis results to the frontend use:
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
+```
+
+The result will be available at: http://localhost:20009/map?useDev=all
+
 
 Access the database
 -------------------
@@ -123,13 +132,11 @@ Access the database
 After running `osmose_run.py` with `--no-clean` the data base will
 contain the OSM data. You can enter to explore and test SQL directly.
 Open a psql shell on database from within the backend container:
-```
+```sh
 psql -h postgis
 ```
 
-Password management
--------------------
-
-By default with `docker-compose-dev.yml` the password checks are disabled
-on the frontend with `OSMOSE_UNLOCKED_UPDATE`: all updates from the
-backend are accepted.
+Then
+```
+osmose=> set search_path to comoros,public;
+```

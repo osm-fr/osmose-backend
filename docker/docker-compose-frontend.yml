@@ -2,15 +2,16 @@ version: '3.3'
 
 services:
   backend:
-    depends_on:
-      - frontend
+    volumes:
+      - type: bind
+        source: ../osmose_config_password-example.py
+        target: /opt/osmose-backend/osmose_config_password.py
     environment:
       - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
+    networks:
+      - osmose-frontend
 
-  frontend:
-    image: osm-fr/osmose_frontend
-    ports:
-      - 20009:20009
-    environment:
-      - URL_FRONTEND=localhost:20009
-      - OSMOSE_UNLOCKED_UPDATE=on
+networks:
+  osmose-frontend:
+    external:
+      name: docker_osmose-frontend

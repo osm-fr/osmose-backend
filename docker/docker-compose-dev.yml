@@ -9,6 +9,7 @@ services:
       - type: bind
         source: ../osmose_config_password-example.py
         target: /opt/osmose-backend/osmose_config_password.py
+    command: bash
     environment:
       - DB_HOST=postgis
       - DB_BASE_TEST=osmose

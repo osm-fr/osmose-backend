@@ -46,7 +46,8 @@ class Highway_Parking_Lane(Plugin):
         conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
         for c in conditions:
             if c not in tags:
-                err.append({"class": 31616, "subclass": stablehash(c)})
+                err.append({"class": 31616})
+                break
 
         if n_sides == 0:
             return err
