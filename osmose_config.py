@@ -547,7 +547,6 @@ france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 
 default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", "proj": 32634})
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
-default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "language": ["bs", "hr", "sr"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
@@ -573,7 +572,6 @@ default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq"
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154, "phone_code": '377', "phone_len": 8, "phone_format": r'^[+]%s([- ./]*[469])([- ./]*[0-9]){6}[0-9]$', "phone_international": '00'}, download_repo=OSMFR)
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
-default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
@@ -601,6 +599,15 @@ be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], **{'m
 be_part('flanders', 53134, 'BE-VLG', language='nl')
 be_part('wallonia_french_community', 2620920, 'BE-WAL', language='fr')
 be_part('wallonia_german_community', 2425209, 'BE-WAL', language='de')
+
+#########################################################################
+
+default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
+
+pt_part = gen_country('europe', 'portugal', download_repo=OSMFR, language='pt')
+
+pt_part('azores', 6451096, 'PT', proj=32627)
+pt_part('madeira', 6451097, 'PT', proj=32628)
 
 #########################################################################
 
