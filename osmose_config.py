@@ -803,7 +803,7 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 #########################################################################
 
 canada_options = {'download_repo': OSMFR, 'language': 'en', 'addr:street_distance': 2000,
-  'phone_code': 1, 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
+  'phone_code': '1', 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
   'exclude': [
     'osmosis_waterway',
 ]}
