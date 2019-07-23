@@ -802,11 +802,12 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 
 #########################################################################
 
-canada_province = gen_country('north-america', 'canada', download_repo=OSMFR, language='en',
-    phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", suffix_separators="x",
-    exclude=[
+canada_options = {'download_repo': OSMFR, 'language': 'en', 'addr:street_distance': 2000,
+  'phone_code': 1, 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
+  'exclude': [
     'osmosis_waterway',
-], **{'addr:street_distance': 2000})
+]}
+canada_province = gen_country('north-america', 'canada', **canada_options)
 
 canada_province("alberta", 391186, "CA-AB", proj=32610)
 canada_province("british_columbia", 390867, "CA-BC", proj=32609)
@@ -816,7 +817,16 @@ canada_province("newfoundland_and_labrador", 391196, "CA-NL", proj=32621)
 canada_province("northwest_territories", 391220, "CA-NT", proj=32612)
 canada_province("nova_scotia", 390558, "CA-NS", proj=32620)
 canada_province("nunavut", 390840, "CA-NU", proj=32616)
-canada_province("ontario", 68841, "CA-ON", proj=32616)
+
+canada_ontario_region = gen_country('north-america', 'canada/ontario', proj=32616, country_code='CA-ON', **canada_options)
+
+canada_ontario_region('central_ontario', 9330364)
+canada_ontario_region('eastern_ontario', 9330323)
+canada_ontario_region('golden_horseshoe', 9330407)
+canada_ontario_region('northeastern_ontario', 9330447)
+canada_ontario_region('northwestern_ontario', 9330452)
+canada_ontario_region('southwestern_ontario', 9330436)
+
 canada_province("prince_edward_island", 391115, "CA-PE", proj=32620)
 canada_province("quebec", 61549, "CA-QC", proj=2138, language="fr")
 canada_province("saskatchewan", 391178, "CA-SK", proj=32613)
