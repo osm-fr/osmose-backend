@@ -67,19 +67,23 @@ configuration or upload password.
 Start Docker Backend container
 ------------------------------
 
+On first time only:
+```
+chmod a+w ../modules/osm_pbf_parser/
+```
+
 Enter the container with:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 ```
 
+On first time only, compile the OSM PBF parser:
+```
+cd modules/osm_pbf_parser/ && make && cd -
+```
+
 Note: when exiting the backend, the dependency containers will still
 running. You can stop them with `docker-compose stop`.
-
-Note: if you don't need the frontend just remove `-f
-docker-compose-frontend.yml`.
-
-Note: You will need to compile the OMS PBF parser as mentioned in the
-top-level README file.
 
 Running the analysis
 --------------------

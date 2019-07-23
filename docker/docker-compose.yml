@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   postgis:
-    image: mdillon/postgis:9.4-alpine
+    image: mdillon/postgis:11-alpine
     volumes:
       - type: bind
         source: ./postgis-init.sh
