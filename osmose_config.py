@@ -547,7 +547,6 @@ france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 
 default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", "proj": 32634})
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
-default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "language": ["bs", "hr", "sr"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
@@ -573,7 +572,6 @@ default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq"
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154, "phone_code": '377', "phone_len": 8, "phone_format": r'^[+]%s([- ./]*[469])([- ./]*[0-9]){6}[0-9]$', "phone_international": '00'}, download_repo=OSMFR)
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
-default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
@@ -601,6 +599,15 @@ be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], **{'m
 be_part('flanders', 53134, 'BE-VLG', language='nl')
 be_part('wallonia_french_community', 2620920, 'BE-WAL', language='fr')
 be_part('wallonia_german_community', 2425209, 'BE-WAL', language='de')
+
+#########################################################################
+
+default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
+
+pt_part = gen_country('europe', 'portugal', download_repo=OSMFR, language='pt')
+
+pt_part('azores', 6451096, 'PT', proj=32627)
+pt_part('madeira', 6451097, 'PT', proj=32628)
 
 #########################################################################
 
@@ -795,11 +802,12 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 
 #########################################################################
 
-canada_province = gen_country('north-america', 'canada', download_repo=OSMFR, language='en',
-    phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", suffix_separators="x",
-    exclude=[
+canada_options = {'download_repo': OSMFR, 'language': 'en', 'addr:street_distance': 2000,
+  'phone_code': 1, 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
+  'exclude': [
     'osmosis_waterway',
-], **{'addr:street_distance': 2000})
+]}
+canada_province = gen_country('north-america', 'canada', **canada_options)
 
 canada_province("alberta", 391186, "CA-AB", proj=32610)
 canada_province("british_columbia", 390867, "CA-BC", proj=32609)
@@ -809,7 +817,16 @@ canada_province("newfoundland_and_labrador", 391196, "CA-NL", proj=32621)
 canada_province("northwest_territories", 391220, "CA-NT", proj=32612)
 canada_province("nova_scotia", 390558, "CA-NS", proj=32620)
 canada_province("nunavut", 390840, "CA-NU", proj=32616)
-canada_province("ontario", 68841, "CA-ON", proj=32616)
+
+canada_ontario_region = gen_country('north-america', 'canada/ontario', proj=32616, country_code='CA-ON', **canada_options)
+
+canada_ontario_region('central_ontario', 9330364)
+canada_ontario_region('eastern_ontario', 9330323)
+canada_ontario_region('golden_horseshoe', 9330407)
+canada_ontario_region('northeastern_ontario', 9330447)
+canada_ontario_region('northwestern_ontario', 9330452)
+canada_ontario_region('southwestern_ontario', 9330436)
+
 canada_province("prince_edward_island", 391115, "CA-PE", proj=32620)
 canada_province("quebec", 61549, "CA-QC", proj=2138, language="fr")
 canada_province("saskatchewan", 391178, "CA-SK", proj=32613)

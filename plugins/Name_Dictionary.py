@@ -114,10 +114,8 @@ class P_Name_Dictionary(Plugin):
         pass
 
 
-    def _get_err(self, name):
+    def _get_err(self, tag, name):
         initialName = name
-
-        err = []
 
         for x in [u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
             name = name.replace(x, " ")
@@ -129,7 +127,7 @@ class P_Name_Dictionary(Plugin):
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append({"class": 703, "subclass": stablehash(name), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}})
+                    return {"class": 703, "subclass": stablehash(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
                 else:
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
@@ -137,7 +135,8 @@ class P_Name_Dictionary(Plugin):
                 for x in self.DictEncoding:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append({"class": 704, "subclass": stablehash(name), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}})
+                        return {"class": 704, "subclass": stablehash(tag), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}}
+
                 if PbEncodage: continue
                 #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue
@@ -152,14 +151,14 @@ class P_Name_Dictionary(Plugin):
                 if "9" in WordComplet: continue
                 self.DictUnknownWords.add(WordComplet)
 
-        return err
-
 
     def node(self, data, tags):
         err = []
         for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
             if name in tags:
-                err += self._get_err(tags[name])
+                e = self._get_err(name, tags[name])
+                if e != None:
+                    err.append(e)
         return err
 
     def way(self, data, tags, nodes):

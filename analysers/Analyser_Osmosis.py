@@ -112,7 +112,7 @@ SELECT
     *,
     CASE WHEN polygon_proj IS NOT NULL AND wall THEN ST_Area(polygon_proj) ELSE NULL END AS area
 FROM (
-SELECT
+SELECT DISTINCT ON (id)
     id,
     tags,
     linestring,
@@ -131,8 +131,6 @@ WHERE
     tags?'building' AND
     tags->'building' != 'no' AND
     is_polygon
-ORDER BY
-    id
 ) AS t
 ;
 

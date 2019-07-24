@@ -111,7 +111,7 @@ ORDER BY
 """
 
 sql60 = """
-SELECT
+SELECT DISTINCT ON(ST_Centroid(geom))
     ST_AsText(ST_Transform(ST_Centroid(geom), 4326)),
     ST_Area(geom)
 FROM
