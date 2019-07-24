@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-07-17 20:12+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-07-18 18:04+0000\n"
+"Last-Translator: Ігор Варварчук <182050@i.ua>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2234,25 +2234,25 @@ msgstr "Електростанція неінтеґрована, геокоду�
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:66
 #, python-brace-format
 msgid "Bad topology way level {0}"
-msgstr ""
+msgstr "Помилкова топологія лінії {0} рівня"
 
 #: ../plugins/TagFix_BadKey.py:31
 msgid "Bad tag suffix"
-msgstr ""
+msgstr "Помилковий суфікс теґу"
 
 #: ../plugins/TagFix_BadKey.py:68
 #, python-format
 msgid "Bad tag suffix %(k)s=%(v)s"
-msgstr ""
+msgstr "Помилковий суфікс теґу %(k)s=%(v)s"
 
 #: ../plugins/TagFix_Deprecated.py:78
 msgid "Deprecated value"
-msgstr ""
+msgstr "Значення, що не підтримується"
 
 #: ../plugins/TagFix_DuplicateValue.py:32
 msgid "Duplicated values"
-msgstr ""
+msgstr "Дубльоване значення"
 
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
-msgstr ""
+msgstr "Cхожі значення"

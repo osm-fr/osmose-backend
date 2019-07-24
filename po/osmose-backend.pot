@@ -193,16 +193,16 @@ msgstr ""
 msgid "Wikipedia, church integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:185
+#: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
 msgstr ""
 
@@ -1022,11 +1022,11 @@ msgstr ""
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:93
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:91
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
