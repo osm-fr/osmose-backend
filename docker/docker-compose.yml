@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
   postgis:
+    shm_size: 1g
     image: mdillon/postgis:11-alpine
     volumes:
       - type: bind
