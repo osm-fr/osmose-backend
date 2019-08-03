@@ -36,7 +36,7 @@ class Name_Initials(Plugin):
             name = tags[u"name"]
             r = self.ReInitColleNom.match(name)
             if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                return {"class":902, "subclass": 0, "fix":{"name": "%s %s" % (r.group(1), r.group(2))}}
+                return {"class":902, "subclass": 0, "text":{"en":tags[u"name"]}, "fix":{"name": "%s %s" % (r.group(1), r.group(2))}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
