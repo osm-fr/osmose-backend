@@ -57,7 +57,8 @@ SELECT
 FROM
     {0}_{1}_admin
 WHERE
-    NOT has_admin_centre
+    NOT has_admin_centre AND
+    relation_locate(id) IS NOT NULL
 """
 
 sql20 = """
@@ -68,7 +69,8 @@ SELECT
 FROM
     {0}_{1}_admin
 WHERE
-    {3}
+    {3} AND
+    relation_locate(id) IS NOT NULL
 """
 
 sql50 = """
@@ -102,7 +104,8 @@ WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'boundary' AND
     relations.tags?'boundary' AND
-    relations.tags->'boundary' = 'administrative'
+    relations.tags->'boundary' = 'administrative' AND
+    relation_locate(relations.id) IS NOT NULL
 """
 
 class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):

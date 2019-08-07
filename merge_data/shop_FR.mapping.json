@@ -203,10 +203,13 @@
       },
       {
         "shop": "greengrocer"
+      },
+      {
+        "shop": "deli"
       }
     ],
     "generate": {
-      "shop": "grocery;farm;greengrocer",
+      "shop": "grocery;farm;greengrocer;deli",
       "fixme": "select a shop type"
     }
   },
@@ -659,6 +662,7 @@
     "class": "55.10Z",
     "level": 3,
     "title": "Hôtels et hébergement similaire",
+    "trancheEffectifs": 1,
     "match": [
       {
         "tourism": "hotel"
@@ -692,6 +696,9 @@
     "match": [
       {
         "amenity": "restaurant"
+      },
+      {
+        "amenity": "fast_food"
       }
     ],
     "generate": {
@@ -706,6 +713,9 @@
     "title": "Restauration de type rapide",
     "trancheEffectifs": 1,
     "match": [
+      {
+        "amenity": "restaurant"
+      },
       {
         "amenity": "fast_food"
       }
