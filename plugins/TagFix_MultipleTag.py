@@ -49,7 +49,7 @@ class TagFix_MultipleTag(Plugin):
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
-        for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type'):
+        for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction'):
             name_parent.append(i)
             name_parent.append("disused:" + i)
             name_parent.append("abandoned:" + i)
