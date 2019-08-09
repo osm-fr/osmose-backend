@@ -89,6 +89,7 @@ CREATE INDEX orphan1_geom_idx ON orphan1 USING gist(geom)
 sql18 = """
 SELECT
     o1.id,
+    o1.nid,
     ST_AsText(o1.geom),
     o1.level
 FROM
@@ -100,6 +101,7 @@ WHERE
     ST_DistanceSphere(o1.geom, o2.geom) < 1000
 GROUP BY
     o1.id,
+    o1.nid,
     o1.level,
     o1.geom
 """
@@ -120,4 +122,4 @@ class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
         self.run(sql15)
         self.run(sql16)
         self.run(sql17)
-        self.run(sql18, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql18, lambda res: {"class":res[3], "data":[self.way_full, self.node, self.positionAsText]} )
