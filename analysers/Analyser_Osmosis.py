@@ -94,7 +94,8 @@ SELECT
     highway,
     is_link,
     is_roundabout,
-    ends(nodes) AS nid,
+    (ends_geom(nodes, linestring)).id AS nid,
+    (ends_geom(nodes, linestring)).geom AS geom,
     level
 FROM
     highways
