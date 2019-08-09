@@ -24,35 +24,27 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql40 = """
 SELECT
-    t.id,
-    t.nid,
-    ST_AsText(nodes.geom),
-    level
+    way_ends.id,
+    way_ends.nid,
+    ST_AsText(way_ends.geom),
+    way_ends.level
 FROM
-    (
-    SELECT
-        way_ends.id,
-        way_ends.nid,
-        way_ends.level
-    FROM
-        highway_ends AS way_ends
-        JOIN way_nodes ON
-            way_ends.nid = way_nodes.node_id AND
-            way_nodes.way_id != way_ends.id
-        JOIN highway_ends AS highway_level ON
-            highway_level.id = way_nodes.way_id
-    WHERE
-        NOT way_ends.is_roundabout AND
-        way_ends.level <= 3
-    GROUP BY
-        way_ends.id,
-        way_ends.nid,
-        way_ends.level
-    HAVING
-        BOOL_AND(way_ends.level + 1 < highway_level.level)
-    ) AS t
-    JOIN nodes ON
-        nodes.id = nid
+    highway_ends AS way_ends
+    JOIN way_nodes ON
+        way_ends.nid = way_nodes.node_id AND
+        way_nodes.way_id != way_ends.id
+    JOIN highway_ends AS highway_level ON
+        highway_level.id = way_nodes.way_id
+WHERE
+    NOT way_ends.is_roundabout AND
+    way_ends.level <= 3
+GROUP BY
+    way_ends.id,
+    way_ends.nid,
+    way_ends.geom,
+    way_ends.level
+HAVING
+    BOOL_AND(way_ends.level + 1 < highway_level.level)
 """
 
 class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
