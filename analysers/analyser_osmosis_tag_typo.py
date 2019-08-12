@@ -84,7 +84,7 @@ GROUP BY
 
 sql20 = """
 CREATE TEMP TABLE fix_{0} AS
-SELECT
+SELECT DISTINCT ON (t1.key)
     t1.key as low_key,
     t2.key as hight_key
 FROM
@@ -94,6 +94,9 @@ WHERE
     t1.count < t2.count / 20 AND
     abs(length(t1.key) - length(t2.key)) <= 1 AND
     levenshtein(t1.key, t2.key) <= 1
+ORDER BY
+    t1.key,
+    t2.count DESC
 """
 
 sql30 = """
