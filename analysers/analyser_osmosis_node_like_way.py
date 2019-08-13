@@ -67,6 +67,8 @@ WHERE
     slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) OR
     slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) <@
     slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'])
+ORDER BY
+    nodes.id
 """
 
 class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):
