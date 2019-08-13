@@ -123,7 +123,7 @@ WHERE
 
 # role street without highway
 sql30 = """
-SELECT
+SELECT DISTINCT ON (ways.id)
     ways.id,
     relations.id,
     ST_ASText(way_locate(linestring))
@@ -139,11 +139,13 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
+ORDER BY
+    ways.id
 """
 
 # roleless member node in relation
 sql40 = """
-SELECT
+SELECT DISTINCT ON (nodes.id)
     nodes.id,
     relations.id,
     ST_AsText(geom)
@@ -158,11 +160,13 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
+ORDER BY
+    nodes.id
 """
 
 # roleless member way in relation
 sql41 = """
-SELECT
+SELECT DISTINCT ON (ways.id)
     ways.id,
     relations.id,
     ST_AsText(way_locate(linestring))
@@ -177,11 +181,13 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
+ORDER BY
+    ways.id
 """
 
 # node of relation without addr:housenumber nor addr:housename
 sql50 = """
-SELECT
+SELECT DISTINCT ON (nodes.id)
     nodes.id,
     relations.id,
     ST_AsText(geom)
@@ -196,11 +202,13 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
+ORDER BY
+    nodes.id
 """
 
 # house role way of relation without addr:housenumber nor addr:housename
 sql51 = """
-SELECT
+SELECT DISTINCT ON (ways.id)
     ways.id,
     relations.id,
     ST_AsText(way_locate(linestring))
@@ -216,12 +224,14 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
+ORDER BY
+    ways.id
 """
 
 # many time same number in street
 sql60 = """
 CREATE TEMP TABLE housenumber AS (
-SELECT
+SELECT DISTINCT ON (id)
     type,
     id,
     geom_proj,
@@ -234,8 +244,10 @@ FROM
 WHERE
     role = 'house' AND
     NOT flats
+ORDER BY
+    id
 ) UNION ALL (
-SELECT
+SELECT DISTINCT ON (id)
     type,
     id,
     ST_Centroid(linestring_proj) AS geom_proj,
@@ -248,6 +260,8 @@ FROM
 WHERE
     role = 'house' AND
     NOT flats
+ORDER BY
+    id
 )
 """
 
