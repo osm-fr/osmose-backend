@@ -24,7 +24,7 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TEMP TABLE {0}_{1}_admin AS
-SELECT
+SELECT DISTINCT ON (relations.id)
     relations.id,
     (relation_members.member_role IS NOT NULL) AS has_admin_centre,
     relations.tags AS rtags,
@@ -48,6 +48,8 @@ WHERE
     relations.tags->'boundary' = 'administrative' AND
     relations.tags?'admin_level' AND
     relations.tags->'admin_level' = '{2}'
+ORDER BY
+    relations.id
 """
 
 sql10 = """
