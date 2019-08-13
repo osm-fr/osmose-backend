@@ -40,8 +40,10 @@ CREATE INDEX idx_interpolations_geom ON interpolations USING gist(linestring)
 sql02 = """
 CREATE TEMP TABLE interpolation_nodes AS
 SELECT
-    interpolations.id AS w_id,
-    nodes.*
+    array_agg(interpolations.id) AS w_ids,
+    nodes.id,
+    nodes.tags,
+    nodes.geom
 FROM
     interpolations
     JOIN nodes ON
@@ -49,6 +51,10 @@ FROM
         nodes.id = ANY (interpolations.nodes) AND
         nodes.tags != ''::hstore AND
         nodes.tags - ARRAY['source'] != ''::hstore
+GROUP BY
+    nodes.id,
+    nodes.tags,
+    nodes.geom
 """
 
 sql03 = """
@@ -72,12 +78,8 @@ SELECT
 FROM
     interpolation_nodes
 WHERE
-    tags?'addr:housenumber'
-GROUP BY
-    id,
-    geom
-HAVING
-    count(*) > 1
+    tags?'addr:housenumber' AND
+    array_length(w_ids, 1) > 1
 """
 
 sql30 = """
@@ -99,7 +101,7 @@ SELECT
 FROM
     interpolations AS ways
     LEFT JOIN interpolation_nodes AS nodes ON
-        nodes.w_id = ways.id AND
+        ways.id = ANY (nodes.w_ids) AND
         (
             nodes.id = ways.nodes[1] OR
             nodes.id = ways.nodes[array_length(nodes,1)]
@@ -116,11 +118,11 @@ SELECT
 FROM
     interpolations AS ways
     JOIN interpolation_nodes AS nodes_s ON
-        nodes_s.w_id = ways.id AND
+        ways.id = ANY (nodes_s.w_ids) AND
         nodes_s.id = ways.nodes[1] AND
         nodes_s.tags?'addr:housenumber'
     JOIN interpolation_nodes AS nodes_e ON
-        nodes_e.w_id = ways.id AND
+        ways.id = ANY (nodes_e.w_ids) AND
         nodes_e.id = ways.nodes[array_length(nodes,1)] AND
         nodes_e.tags?'addr:housenumber'
 WHERE
@@ -133,7 +135,7 @@ SELECT
     ST_AsText(min(geom)),
     string_agg(DISTINCT tags->'addr:street', ', ')
 FROM
-    interpolation_nodes AS nodes
+    (SELECT *, unnest(w_ids) AS w_id FROM interpolation_nodes) AS nodes
 WHERE
     tags != ''::hstore AND
     tags?'addr:street'
