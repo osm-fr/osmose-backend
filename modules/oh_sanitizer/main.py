@@ -72,7 +72,7 @@ class SanitizerTransformer(_lark.Transformer):
         defaultDict = {';': '; ', ',': ',', '||': ' || '}
         tweakedDict = {';': '; ', ',': ', ', '||': ' || '}
         weekdayRe = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su|PH|SH)")
-        timeRe = _re.compile("(dawn|sunrise|sunset|dusk|unknown|off|on|closed|open|[0-2][0-9]:[0-5][0-9])[+-]?$")
+        timeRe = _re.compile("(dawn|sunrise|sunset|dusk|unknown|off|on|closed|open|\d\d:\d\d)[+-]?$")
         
         for counter, arg in enumerate(args):
             # if looking at a separator token
@@ -563,6 +563,12 @@ class TestSanitize(_unittest.TestCase):
 
         with self.assertRaises(SanitizeError) as context:
             sanitize_field("week 1337 10:00-20:00 Mo-Fr")
+
+        with self.assertRaises(SanitizeError) as context:
+            sanitize_field('23:60')
+
+        with self.assertRaises(SanitizeError) as context:
+            sanitize_field('30:00')
 
         with self.assertRaises(InconsistentField) as context:
             sanitize_field("week 10-20/54 off")
