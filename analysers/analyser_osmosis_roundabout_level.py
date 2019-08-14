@@ -180,6 +180,7 @@ CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id)
 sql22 = """
 SELECT
     ra1.a_id,
+    COALESCE(ra1.n_ids[2], ra1.n_ids[1]),
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
 FROM
     roundabout_acces AS ra1
@@ -274,7 +275,7 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.run(sql17, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21)
-        self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
+        self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node, self.node_position]} )
         self.run(sql30)
         self.run(sql31, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
         self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )
