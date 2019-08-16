@@ -104,7 +104,7 @@ WHERE
 
 sql20 = """
 CREATE TEMP TABLE bad_member AS
-SELECT
+SELECT DISTINCT ON (restrictions.id, ways.id)
     restrictions.id AS rid,
     ways.id AS wid,
     ways.linestring
@@ -124,6 +124,9 @@ WHERE
     noto = 0 AND
     ((nnvia = 1 AND nwvia = 0) OR (nnvia = 0 AND nwvia > 0)) AND
     nrvia = 0
+ORDER BY
+    restrictions.id,
+    ways.id
 """
 
 sql21 = """
