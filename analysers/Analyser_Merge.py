@@ -55,8 +55,7 @@ END $$
 """
 
 sql00 = """
-DROP TABLE IF EXISTS %(official)s CASCADE;
-CREATE UNLOGGED TABLE %(official)s (
+CREATE TEMP TABLE %(official)s_temp (
     ref varchar(65534),
     tags hstore,
     tags1 hstore,
@@ -97,7 +96,7 @@ WHERE
 
 sql02 = """
 INSERT INTO
-    %(official)s
+    %(official)s_temp
 VALUES (
     %(ref)s,
     %(tags)s,
@@ -105,6 +104,25 @@ VALUES (
     %(fields)s,
     ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography
 )
+"""
+
+sql02b = """
+DROP TABLE IF EXISTS %(official)s CASCADE;
+CREATE UNLOGGED TABLE %(official)s AS
+SELECT
+  ref,
+  tags,
+  tags1,
+  fields,
+  geom
+FROM
+  %(official)s_temp
+GROUP BY
+  ref,
+  tags,
+  tags1,
+  fields,
+  geom
 """
 
 sql03 = """
@@ -688,6 +706,7 @@ class Load(object):
             else:
                 distinct = order_by = ""
             osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo) % {"table":table, "x":self.x, "y":self.y, "where":self.formatCSVSelect(), "distinct": distinct, "order_by": order_by}, insertOfficial)
+            giscurs.execute(sql02b.replace("%(official)s", tableOfficial))
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
                 self.bbox = giscurs.fetchone()[0]
