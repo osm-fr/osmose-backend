@@ -23,7 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-SELECT
+SELECT DISTINCT ON (nodes.id)
   nodes.id,
   ST_AsText(nodes.geom)
 FROM
@@ -44,6 +44,8 @@ WHERE
   nodes.tags->'highway' = 'speed_camera' AND
   relations.id IS NULL AND
   highways.id IS NULL
+ORDER BY
+  nodes.id
 """
 
 class Analyser_Osmosis_Relation_Enforcement(Analyser_Osmosis):
