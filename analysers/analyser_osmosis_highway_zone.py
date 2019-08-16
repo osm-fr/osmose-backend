@@ -81,7 +81,7 @@ FROM
 
 # Get candidates ways in the resulting envelope
 sql14 = """
-SELECT
+SELECT DISTINCT ON (highways.id)
   highways.id,
   ST_AsText(way_locate(linestring))
 FROM
@@ -97,6 +97,8 @@ FROM
     ST_Length(ST_Intersection(highways.linestring_proj, a3.geom)) / ST_Length(highways.linestring) > 0.8
 WHERE
   NOT ST_IsEmpty(a3.geom)
+ORDER BY
+  highways.id
 """
 
 class Analyser_Osmosis_Highway_Zone(Analyser_Osmosis):
