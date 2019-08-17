@@ -1,14 +1,11 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # jie x, 2018
-# Noémie Lehuby, 2019
 # 
 msgid ""
 msgstr ""
 "Last-Translator: jie x, 2018\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/openstreetmap-france/teams/17462/zh_CN/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -44,6 +41,64 @@ msgstr "在public_transport关系中缺少线路编号的ref标记"
 #: ../transport.validator.mapcss:119
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr "在public_transport路径关系上缺少from/to标签"
+
+#: ../transport.validator.mapcss:176
+msgid "The stops may not be in the right order"
+msgstr "站点可能没有按照正确的顺序"
+
+#: ../transport.validator.mapcss:201
+msgid "Is it a bus stop or a bus station?"
+msgstr "它是一个公交站还是一个公交总站？"
+
+#: ../transport.validator.mapcss:213
+msgid ""
+"Specify if it is a stop (platform) or a location on the road (stop_position)"
+msgstr "指定它是停靠点（站台）还是道路上的位置（stop_position）"
+
+#: ../transport.validator.mapcss:235
+msgid ""
+"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
+msgstr "遗留标签丢失，请添加标签highway=bus_stop / railway=tram_stop"
+
+#: ../transport.validator.mapcss:242
+msgid "Is this a bus stop? add the tag highway=bus_stop"
+msgstr "这是公交站吗？ 添加标签highway=bus_stop"
+
+#: ../transport.validator.mapcss:253
+msgid "Check if the note can be deleted"
+msgstr "检查笔记是否可以删除"
+
+#: ../transport.validator.mapcss:258
+msgid "The network should be on the transport lines and not on the stops"
+msgstr "交通系统network标签应该在交通线路上，而不是在停靠点上"
+
+#: ../transport.validator.mapcss:264
+msgid "The operator should be on the transport lines and not on the stops"
+msgstr "运营商标签应该在交通线路上，而不是在停靠站上"
+
+#: ../transport.validator.mapcss:275
+msgid ""
+"The line variant does not belong to any line, add it to the route_master "
+"relation"
+msgstr "线型不属于任何线路，将其添加到route_master关系中"
+
+#: ../transport.validator.mapcss:289
+msgid "The stop is not served by any line, add it to a route relation"
+msgstr "停靠点不是为任何线路服务的，将其添加到路线关系中"
+
+#: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
+msgid "Missing public_transport tag on a public transport stop"
+msgstr "公共交通站点缺少public_transport标记"
+
+#: ../transport.validator.mapcss:224
+msgid ""
+"Specify if it is a stop (platform) or a location on the rails "
+"(stop_position)"
+msgstr "指定它是停靠点（站台）还是位于铁轨上的位置（stop_position）"
+
+#: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
+msgid "Missing legacy tag on a public transport stop"
+msgstr "在公共交通站点遗失遗留标记"
 
 #: ../transport.validator.mapcss:129
 msgid ""
@@ -87,98 +142,41 @@ msgstr ""
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
 
-#: ../transport.validator.mapcss:176
-msgid "The stops may not be in the right order"
-msgstr "站点可能没有按照正确的顺序"
-
-#: ../transport.validator.mapcss:184
-msgid "Check the operator tag"
-msgstr "检查运行商标签"
-
-#: ../transport.validator.mapcss:190
-msgid "Check the network tag"
-msgstr "检查network标签"
-
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
 msgstr ""
 
-#: ../transport.validator.mapcss:201
-msgid "Stop without name"
-msgstr "站没有名字"
-
-#: ../transport.validator.mapcss:207
-msgid "Is it a bus stop or a bus station?"
-msgstr "它是一个公交站还是一个公交总站？"
-
-#: ../transport.validator.mapcss:213
-msgid ""
-"A bus station is usually a large area where many buses stops, check if you "
-"can draw this area"
-msgstr ""
-
-#: ../transport.validator.mapcss:219
-msgid ""
-"Specify if it is a stop (platform) or a location on the road (stop_position)"
-msgstr "指定它是停靠点（站台）还是道路上的位置（stop_position）"
-
-#: ../transport.validator.mapcss:220 ../transport.validator.mapcss:231
-msgid "Missing public_transport tag on a public transport stop"
-msgstr "公共交通站点缺少public_transport标记"
-
-#: ../transport.validator.mapcss:230
-msgid ""
-"Specify if it is a stop (platform) or a location on the rails "
-"(stop_position)"
-msgstr "指定它是停靠点（站台）还是位于铁轨上的位置（stop_position）"
-
-#: ../transport.validator.mapcss:241
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr "遗留标签丢失，请添加标签highway=bus_stop / railway=tram_stop"
-
-#: ../transport.validator.mapcss:242 ../transport.validator.mapcss:250
-msgid "Missing legacy tag on a public transport stop"
-msgstr "在公共交通站点遗失遗留标记"
-
-#: ../transport.validator.mapcss:249
-msgid "Is this a bus stop? add the tag highway=bus_stop"
-msgstr "这是公交站吗？ 添加标签highway=bus_stop"
-
-#: ../transport.validator.mapcss:260
-msgid "Check if the note can be deleted"
-msgstr "检查笔记是否可以删除"
-
-#: ../transport.validator.mapcss:265
-msgid "The network should be on the transport lines and not on the stops"
-msgstr "交通系统network标签应该在交通线路上，而不是在停靠点上"
-
-#: ../transport.validator.mapcss:271
-msgid "The operator should be on the transport lines and not on the stops"
-msgstr "运营商标签应该在交通线路上，而不是在停靠站上"
-
-#: ../transport.validator.mapcss:282
-msgid ""
-"The line variant does not belong to any line, add it to the route_master "
-"relation"
-msgstr "线型不属于任何线路，将其添加到route_master关系中"
-
-#: ../transport.validator.mapcss:292
-msgid "The stop is not served by any line, add it to a route relation"
-msgstr "停靠点不是为任何线路服务的，将其添加到路线关系中"
-
-#: ../transport.validator.mapcss:299
+#: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:305
+#: ../transport.validator.mapcss:314
 msgid "The duration is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:311
+#: ../transport.validator.mapcss:320
 msgid "Missing interval tag to specify the main interval"
 msgstr ""
 
-#: ../transport.validator.mapcss:317
+#: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"
+msgstr ""
+
+#: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
+msgid "Missing name on a public transport stop"
+msgstr ""
+
+#: ../transport.validator.mapcss:184
+msgid ""
+"Check the operator tag : this operator does not exist, it may be a typo"
+msgstr ""
+
+#: ../transport.validator.mapcss:190
+msgid "Check the network tag : this network does not exist, it may be a typo"
+msgstr ""
+
+#: ../transport.validator.mapcss:207
+msgid ""
+"A bus station is usually a large area where many buses stop, check if you "
+"can draw this area"
 msgstr ""

@@ -1,13 +1,10 @@
 # Translators:
 # Supaplex <bejokeup@gmail.com>, 2018
-# Noémie Lehuby, 2019
 # 
 msgid ""
 msgstr ""
 "Last-Translator: Supaplex <bejokeup@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/openstreetmap-france/teams/17462/zh_TW/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -43,6 +40,64 @@ msgstr "public_transport 關聯遺失路線號碼 ref 標籤"
 #: ../transport.validator.mapcss:119
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr "public_transport 路線關聯遺失 from/to 標籤"
+
+#: ../transport.validator.mapcss:176
+msgid "The stops may not be in the right order"
+msgstr "站牌並不是對的順序"
+
+#: ../transport.validator.mapcss:201
+msgid "Is it a bus stop or a bus station?"
+msgstr "這是公車站牌還是公車轉運站"
+
+#: ../transport.validator.mapcss:213
+msgid ""
+"Specify if it is a stop (platform) or a location on the road (stop_position)"
+msgstr "請指明是站牌 (月台) 或是路線上的位置 (停車位置)"
+
+#: ../transport.validator.mapcss:235
+msgid ""
+"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
+msgstr "遺失傳統標籤，請加上 highway=bus_stop / railway=tram_stop 標籤"
+
+#: ../transport.validator.mapcss:242
+msgid "Is this a bus stop? add the tag highway=bus_stop"
+msgstr "這是公車站牌？請加上 highway=bus_stop 標籤"
+
+#: ../transport.validator.mapcss:253
+msgid "Check if the note can be deleted"
+msgstr "檢查註解是否能移除"
+
+#: ../transport.validator.mapcss:258
+msgid "The network should be on the transport lines and not on the stops"
+msgstr "網路應該在交通路線上而不是站牌"
+
+#: ../transport.validator.mapcss:264
+msgid "The operator should be on the transport lines and not on the stops"
+msgstr "營運者應該在交通路線上而不是站牌"
+
+#: ../transport.validator.mapcss:275
+msgid ""
+"The line variant does not belong to any line, add it to the route_master "
+"relation"
+msgstr "差異路線並不屬於任何路線，請加到 route_master 關聯中"
+
+#: ../transport.validator.mapcss:289
+msgid "The stop is not served by any line, add it to a route relation"
+msgstr "站牌並沒有服務任何路線，請加到 route 關聯"
+
+#: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
+msgid "Missing public_transport tag on a public transport stop"
+msgstr "大眾運輸站點遺失 public_transport 標籤"
+
+#: ../transport.validator.mapcss:224
+msgid ""
+"Specify if it is a stop (platform) or a location on the rails "
+"(stop_position)"
+msgstr "請指明是車站 (月台) 或是鐵軌上的位置 (停車位置)"
+
+#: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
+msgid "Missing legacy tag on a public transport stop"
+msgstr "大眾運輸站點遺失傳統標籤"
 
 #: ../transport.validator.mapcss:129
 msgid ""
@@ -86,98 +141,41 @@ msgstr ""
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
 
-#: ../transport.validator.mapcss:176
-msgid "The stops may not be in the right order"
-msgstr "站牌並不是對的順序"
-
-#: ../transport.validator.mapcss:184
-msgid "Check the operator tag"
-msgstr "檢查營業者標籤"
-
-#: ../transport.validator.mapcss:190
-msgid "Check the network tag"
-msgstr "檢查網路標籤"
-
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
 msgstr ""
 
-#: ../transport.validator.mapcss:201
-msgid "Stop without name"
-msgstr "沒有名稱的站牌"
-
-#: ../transport.validator.mapcss:207
-msgid "Is it a bus stop or a bus station?"
-msgstr "這是公車站牌還是公車轉運站"
-
-#: ../transport.validator.mapcss:213
-msgid ""
-"A bus station is usually a large area where many buses stops, check if you "
-"can draw this area"
-msgstr ""
-
-#: ../transport.validator.mapcss:219
-msgid ""
-"Specify if it is a stop (platform) or a location on the road (stop_position)"
-msgstr "請指明是站牌 (月台) 或是路線上的位置 (停車位置)"
-
-#: ../transport.validator.mapcss:220 ../transport.validator.mapcss:231
-msgid "Missing public_transport tag on a public transport stop"
-msgstr "大眾運輸站點遺失 public_transport 標籤"
-
-#: ../transport.validator.mapcss:230
-msgid ""
-"Specify if it is a stop (platform) or a location on the rails "
-"(stop_position)"
-msgstr "請指明是車站 (月台) 或是鐵軌上的位置 (停車位置)"
-
-#: ../transport.validator.mapcss:241
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr "遺失傳統標籤，請加上 highway=bus_stop / railway=tram_stop 標籤"
-
-#: ../transport.validator.mapcss:242 ../transport.validator.mapcss:250
-msgid "Missing legacy tag on a public transport stop"
-msgstr "大眾運輸站點遺失傳統標籤"
-
-#: ../transport.validator.mapcss:249
-msgid "Is this a bus stop? add the tag highway=bus_stop"
-msgstr "這是公車站牌？請加上 highway=bus_stop 標籤"
-
-#: ../transport.validator.mapcss:260
-msgid "Check if the note can be deleted"
-msgstr "檢查註解是否能移除"
-
-#: ../transport.validator.mapcss:265
-msgid "The network should be on the transport lines and not on the stops"
-msgstr "網路應該在交通路線上而不是站牌"
-
-#: ../transport.validator.mapcss:271
-msgid "The operator should be on the transport lines and not on the stops"
-msgstr "營運者應該在交通路線上而不是站牌"
-
-#: ../transport.validator.mapcss:282
-msgid ""
-"The line variant does not belong to any line, add it to the route_master "
-"relation"
-msgstr "差異路線並不屬於任何路線，請加到 route_master 關聯中"
-
-#: ../transport.validator.mapcss:292
-msgid "The stop is not served by any line, add it to a route relation"
-msgstr "站牌並沒有服務任何路線，請加到 route 關聯"
-
-#: ../transport.validator.mapcss:299
+#: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:305
+#: ../transport.validator.mapcss:314
 msgid "The duration is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:311
+#: ../transport.validator.mapcss:320
 msgid "Missing interval tag to specify the main interval"
 msgstr ""
 
-#: ../transport.validator.mapcss:317
+#: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"
+msgstr ""
+
+#: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
+msgid "Missing name on a public transport stop"
+msgstr ""
+
+#: ../transport.validator.mapcss:184
+msgid ""
+"Check the operator tag : this operator does not exist, it may be a typo"
+msgstr ""
+
+#: ../transport.validator.mapcss:190
+msgid "Check the network tag : this network does not exist, it may be a typo"
+msgstr ""
+
+#: ../transport.validator.mapcss:207
+msgid ""
+"A bus station is usually a large area where many buses stop, check if you "
+"can draw this area"
 msgstr ""

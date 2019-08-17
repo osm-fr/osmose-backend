@@ -206,23 +206,23 @@ msgstr ""
 msgid "Lone boundary fragment"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:117
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Missing admin_centre role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:121
 msgid "Missing name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:124
 msgid "Missing wikipedia tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:122
+#: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Different population tag between relation and admin_centre"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:123
+#: ../analysers/analyser_osmosis_boundary_relation.py:126
 msgid "Invalid role"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:132
 msgid "Typo in tag"
 msgstr ""
 
@@ -1887,7 +1887,7 @@ msgstr ""
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:131
+#: ../analysers/analyser_osmosis_boundary_relation.py:134
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
@@ -2165,11 +2165,11 @@ msgstr ""
 msgid "P+R parking in Île-de-France not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing municipality ref tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:127
+#: ../analysers/analyser_osmosis_boundary_relation.py:130
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
 msgstr ""

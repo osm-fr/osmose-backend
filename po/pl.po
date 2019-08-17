@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-07-18 15:24+0000\n"
+"PO-Revision-Date: 2019-08-17 13:19+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -392,11 +392,11 @@ msgstr "Podwójny wewnętrzny wielokąt"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Inconsistant multipolygon nature with members nature"
-msgstr "Niespólny multipoligon natury z członkami natury"
+msgstr "Człony relacji multipolygon są inaczej otagowane"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:200
 msgid "Inconsistant multipolygon member nature"
-msgstr "Niespójny członek multipoligonu natury"
+msgstr "Człon relacji multipolygon jest inaczej otagowany niż pozostałe"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:359
 msgid "Restriction relation, wrong number of members"
@@ -1388,7 +1388,7 @@ msgstr "Zduplikowany węzeł bez tagów"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:201
 msgid "Should be polygon, part of multipolygon or not having area tag"
-msgstr ""
+msgstr "To powinien być wielokąt, część relacji multipolygon lub nie powinno być tagu obszarowego"
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
@@ -1490,11 +1490,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:262
 msgid "The track of this route contains gaps"
-msgstr ""
+msgstr "Przebieg tej trasy zawiera luki"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:263
 msgid "The stop or platform is too far from the track of this route"
-msgstr ""
+msgstr "Przystanek jest zbyt daleko od przebiegu tej trasy"
 
 #: ../plugins/Phone.py:54
 msgid "Missing international prefix"
@@ -1634,7 +1634,7 @@ msgstr ""
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
-msgstr ""
+msgstr "Grupa dróg niepodłączonych do głównej sieci dróg lub nieprawidłowo oznaczony dostęp"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:355
 msgid "Power object intersecting building"
@@ -1646,7 +1646,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:357
 msgid "Highway intersecting highway without junction"
-msgstr ""
+msgstr "Przecinające się drogi bez węzła"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:358
 msgid "Highway overlaps"
@@ -2109,7 +2109,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:185
 msgid "Unconnected highway"
-msgstr ""
+msgstr "Niepołączona droga"
 
 #: ../plugins/Phone.py:51
 #, python-brace-format

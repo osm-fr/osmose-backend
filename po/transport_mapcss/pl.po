@@ -1,13 +1,10 @@
 # Translators:
 # maro21 OSM, 2019
-# Noémie Lehuby, 2019
 # 
 msgid ""
 msgstr ""
 "Last-Translator: maro21 OSM, 2019\n"
 "Language-Team: Polish (https://www.transifex.com/openstreetmap-france/teams/17462/pl/)\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
@@ -42,6 +39,64 @@ msgstr ""
 
 #: ../transport.validator.mapcss:119
 msgid "Missing from/to tag on a public_transport route relation"
+msgstr ""
+
+#: ../transport.validator.mapcss:176
+msgid "The stops may not be in the right order"
+msgstr ""
+
+#: ../transport.validator.mapcss:201
+msgid "Is it a bus stop or a bus station?"
+msgstr "To przystanek czy dworzec autobusowy?"
+
+#: ../transport.validator.mapcss:213
+msgid ""
+"Specify if it is a stop (platform) or a location on the road (stop_position)"
+msgstr ""
+
+#: ../transport.validator.mapcss:235
+msgid ""
+"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
+msgstr ""
+
+#: ../transport.validator.mapcss:242
+msgid "Is this a bus stop? add the tag highway=bus_stop"
+msgstr "Czy to przystanek autobusowy? Dodaj tag highway=bus_stop"
+
+#: ../transport.validator.mapcss:253
+msgid "Check if the note can be deleted"
+msgstr "Sprawdź, czy tag note może być usunięty"
+
+#: ../transport.validator.mapcss:258
+msgid "The network should be on the transport lines and not on the stops"
+msgstr ""
+
+#: ../transport.validator.mapcss:264
+msgid "The operator should be on the transport lines and not on the stops"
+msgstr ""
+
+#: ../transport.validator.mapcss:275
+msgid ""
+"The line variant does not belong to any line, add it to the route_master "
+"relation"
+msgstr ""
+
+#: ../transport.validator.mapcss:289
+msgid "The stop is not served by any line, add it to a route relation"
+msgstr ""
+
+#: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
+msgid "Missing public_transport tag on a public transport stop"
+msgstr ""
+
+#: ../transport.validator.mapcss:224
+msgid ""
+"Specify if it is a stop (platform) or a location on the rails "
+"(stop_position)"
+msgstr ""
+
+#: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
+msgid "Missing legacy tag on a public transport stop"
 msgstr ""
 
 #: ../transport.validator.mapcss:129
@@ -86,100 +141,43 @@ msgstr ""
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
 
-#: ../transport.validator.mapcss:176
-msgid "The stops may not be in the right order"
-msgstr ""
-
-#: ../transport.validator.mapcss:184
-msgid "Check the operator tag"
-msgstr "Sprawdź tag operator"
-
-#: ../transport.validator.mapcss:190
-msgid "Check the network tag"
-msgstr "Sprawdź tag network"
-
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
 msgstr "Przystanek autobusowy powinien być węzłem"
 
-#: ../transport.validator.mapcss:201
-msgid "Stop without name"
-msgstr "Przystanek bez nazwy"
+#: ../transport.validator.mapcss:308
+msgid "The interval is invalid (try a number of minutes)"
+msgstr ""
+
+#: ../transport.validator.mapcss:314
+msgid "The duration is invalid (try a number of minutes)"
+msgstr ""
+
+#: ../transport.validator.mapcss:320
+msgid "Missing interval tag to specify the main interval"
+msgstr ""
+
+#: ../transport.validator.mapcss:326
+msgid "Missing opening_hours tag"
+msgstr "Brak znacznika opening_hours"
+
+#: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
+msgid "Missing name on a public transport stop"
+msgstr "Brak nazwy przystanku"
+
+#: ../transport.validator.mapcss:184
+msgid ""
+"Check the operator tag : this operator does not exist, it may be a typo"
+msgstr ""
+
+#: ../transport.validator.mapcss:190
+msgid "Check the network tag : this network does not exist, it may be a typo"
+msgstr ""
 
 #: ../transport.validator.mapcss:207
-msgid "Is it a bus stop or a bus station?"
-msgstr "To przystanek czy dworzec autobusowy?"
-
-#: ../transport.validator.mapcss:213
 msgid ""
-"A bus station is usually a large area where many buses stops, check if you "
+"A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
 "Dworzec autobusowy to zwykle duży obszar, gdzie zatrzymuje się wiele "
 "autobusów, spróbuj go narysować"
-
-#: ../transport.validator.mapcss:219
-msgid ""
-"Specify if it is a stop (platform) or a location on the road (stop_position)"
-msgstr ""
-
-#: ../transport.validator.mapcss:220 ../transport.validator.mapcss:231
-msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
-
-#: ../transport.validator.mapcss:230
-msgid ""
-"Specify if it is a stop (platform) or a location on the rails "
-"(stop_position)"
-msgstr ""
-
-#: ../transport.validator.mapcss:241
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-
-#: ../transport.validator.mapcss:242 ../transport.validator.mapcss:250
-msgid "Missing legacy tag on a public transport stop"
-msgstr ""
-
-#: ../transport.validator.mapcss:249
-msgid "Is this a bus stop? add the tag highway=bus_stop"
-msgstr "Czy to przystanek autobusowy? Dodaj tag highway=bus_stop"
-
-#: ../transport.validator.mapcss:260
-msgid "Check if the note can be deleted"
-msgstr "Sprawdź, czy tag note może być usunięty"
-
-#: ../transport.validator.mapcss:265
-msgid "The network should be on the transport lines and not on the stops"
-msgstr ""
-
-#: ../transport.validator.mapcss:271
-msgid "The operator should be on the transport lines and not on the stops"
-msgstr ""
-
-#: ../transport.validator.mapcss:282
-msgid ""
-"The line variant does not belong to any line, add it to the route_master "
-"relation"
-msgstr ""
-
-#: ../transport.validator.mapcss:292
-msgid "The stop is not served by any line, add it to a route relation"
-msgstr ""
-
-#: ../transport.validator.mapcss:299
-msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
-
-#: ../transport.validator.mapcss:305
-msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
-
-#: ../transport.validator.mapcss:311
-msgid "Missing interval tag to specify the main interval"
-msgstr ""
-
-#: ../transport.validator.mapcss:317
-msgid "Missing opening_hours tag"
-msgstr "Brak znacznika opening_hours"
