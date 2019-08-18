@@ -72,6 +72,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                 columns = ['Adresse', 'Commune'], citycode = 'INSEE', delimiter = u';', logger = logger),
                 separator = u';'),
             Load("longitude", "latitude",
+                map = self.coord_fallback,
                 select = {u"Date de Protection": True}),
             Mapping(
                 select = Select(
@@ -92,3 +93,8 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
                     tag_keep_multiple_values = ["heritage:operator"],
                     text = lambda tags, fields: T_f(u"Historical monument: {0} (positioned at {1} with confidence {2})", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))
+
+    def coord_fallback(self, fields):
+        if not fields['longitude'] and fields['Coordonnées INSEE']:
+            fields['latitude'], fields['longitude'] = list(map(lambda s: float(s.strip()), fields['Coordonnées INSEE'].split(',')))
+        return fields
