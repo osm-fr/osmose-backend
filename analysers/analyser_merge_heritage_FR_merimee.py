@@ -69,7 +69,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
             CSV(Geocode_Addok_CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
                     fileUrl = u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
                     filter = lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore'))),
-                columns = 'Adresse', citycode = 'INSEE', delimiter = u';', logger = logger),
+                columns = ['Adresse', 'Commune'], citycode = 'INSEE', delimiter = u';', logger = logger),
                 separator = u';'),
             Load("longitude", "latitude",
                 select = {u"Date de Protection": True}),
