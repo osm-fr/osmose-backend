@@ -35,12 +35,12 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
             u"Registre national des installations de production d'électricité et de stockage",
-            CSV(Geocode_Addok_CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2017",
+            CSV(Geocode_Addok_CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2019",
                     fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                     columns = 'Commune', citycode = 'codeINSEECommune', delimiter = ';', logger = logger),
                 separator = u";"),
             Load("longitude", "latitude",
-                where = lambda res: res.get('max_puissance') and float(res["max_puissance"]) > 1000,
+                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 1000,
                 map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001})),
             Mapping(
                 select = Select(
@@ -55,7 +55,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                         # No voltage tga on power=plant
                         #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["Filière"]][fields["Combustible"]],
-                        "plant:output:electricity": lambda fields: int(float(fields["max_puissance"]) * 1000)},
+                        "plant:output:electricity": lambda fields: int(float(fields["puisMaxRac"]) * 1000)},
                     mapping2 = {
                         "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
                    tag_keep_multiple_values = ["voltage"],
