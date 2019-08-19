@@ -415,6 +415,11 @@
 </class>
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
 <classtext lang="en" title="Duplicated values" />
+<classtext lang="es" title="Valores duplicados" />
+<classtext lang="hu" title="Duplikált érték" />
+<classtext lang="nl" title="Dubbele waarden" />
+<classtext lang="pl" title="Zdublowane wartości" />
+<classtext lang="uk" title="Дубльоване значення" />
 </class>
 <class item="3070" tag="value,fix:chair" id="3070" level="2">
 <classtext lang="ca" title="Valors múltiples" />
@@ -1214,9 +1219,17 @@
 </class>
 <class item="3050" tag="tag,fix:chair" id="30501" level="1">
 <classtext lang="en" title="Bad tag suffix" />
+<classtext lang="hu" title="Hibás címkeutótag" />
+<classtext lang="nl" title="Verkeerde tag  suffix" />
+<classtext lang="uk" title="Помилковий суфікс теґу" />
 </class>
 <class item="3060" tag="value,fix:chair" id="30601" level="3">
 <classtext lang="en" title="Similar values" />
+<classtext lang="es" title="Valores similares" />
+<classtext lang="hu" title="Hasonló értékek" />
+<classtext lang="nl" title="Vergelijkbare waarden" />
+<classtext lang="pl" title="Podobne wartości" />
+<classtext lang="uk" title="Cхожі значення" />
 </class>
 <class item="3080" tag="tag,tag,fix:chair,leisure,public equipment" id="30801" level="3">
 <classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
@@ -1660,6 +1673,11 @@
 </class>
 <class item="4010" tag="deprecated,value,fix:chair" id="40102" level="2">
 <classtext lang="en" title="Deprecated value" />
+<classtext lang="es" title="Valor obsoleto" />
+<classtext lang="hu" title="Elavult érték" />
+<classtext lang="nl" title="Deprecated waarde" />
+<classtext lang="pl" title="Przestarzała wartość" />
+<classtext lang="uk" title="Значення, що не підтримується" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -2095,6 +2113,7 @@
 <classtext lang="fr" title="{0.key} sans numéro" />
 <classtext lang="it" title="{0.key} senza numero" />
 <classtext lang="nl" title="{0.key} zonder nummer" />
+<classtext lang="pl" title="{0.key} bez numeru" />
 <classtext lang="ru" title="{0.key} без номера" />
 <classtext lang="uk" title="{0.key} без номера" />
 </class>
@@ -2207,7 +2226,7 @@
 <classtext lang="pt_BR" title="''access=designated'' não tem sentido, use tags mais específicas, por exemplo, ''bicycle=designated''" />
 <classtext lang="ru" title="''access=designated'' невыразителен, используйте более характерные теги, например, ''bicycle=designated''" />
 <classtext lang="uk" title="''access=designated'' не має сенсу, використовуйте більш конкретні теґи, наприклад ''bicycle=designated''" />
-<classtext lang="zh_CN" title="''access=designated'' 无意义，使用更特定的标签，例如''bicycle=designated''" />
+<classtext lang="zh_CN" title="“access=designated”无意义，使用更特定的标签，例如“bicycle=designated”" />
 <classtext lang="zh_TW" title="「access=designated」太沒意義：使用更明確的標籤，像是「bicycle=designated」" />
 </class>
 <class item="9002" tag="tag,deprecated" id="9002003" level="3">
@@ -2246,7 +2265,7 @@
 <classtext lang="pt_BR" title="{0.key}={0.value} é inespecífico. Em vez de ''{0.value}'', por favor, dê mais informações sobre o que exatamente deve ser corrigido." />
 <classtext lang="ru" title="{0.key}={0.value} — точно не определённый тег. Вместо ''{0.value}'' опишите подробнее то, что должно быть исправлено." />
 <classtext lang="uk" title="{0.key}={0.value} є неспецифічним. Замість ''{0.value}'' вкажіть докладнішу інформацію про те, що дійсно потрібно виправити." />
-<classtext lang="zh_CN" title="{0.key}={0.value}不特定。请给出更多关于修复的信息而不是''{0.value}''" />
+<classtext lang="zh_CN" title="{0.key}={0.value}不特定。请给出更多关于修复的信息而不是“{0.value}”。" />
 </class>
 <class item="9002" tag="tag,deprecated" id="9002005" level="3">
 <classtext lang="ca" title="Utilització incorrecta de l''etiqueta {0.key}. Suprimiu {0.key}={0.value}, perquè és evident que manca el nom, fins i tot sense una altra etiqueta." />
@@ -2719,6 +2738,7 @@
 <class item="9004" tag="tag,highway" id="9004004" level="3">
 <classtext lang="cs" title="Nespecifikovaný typ silnice" />
 <classtext lang="de" title="Unbestimmter Straßentyp" />
+<classtext lang="el" title="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 <classtext lang="en" title="Unspecific highway type" />
 <classtext lang="es" title="Tipo de vía no especificada" />
 <classtext lang="fr" title="Type de route imprécis" />
@@ -2773,7 +2793,7 @@
 <classtext lang="cs" title="Hodnota ''{0.key}'' by měla být buď ''{1.value}'' nebo ''{2.value}''. Pro chodník pak použijte ''sidewalk=left|right|both|no''." />
 <classtext lang="de" title="Der Wert von ''{0.key}'' sollte entweder ''{1.value}'' oder ''{2.value}'' sein. Für Fußwege nutze stattdessen ''sidewalk=left|right|both|no''." />
 <classtext lang="en" title="Value of ''{0.key}'' should either be ''{1.value}'' or ''{2.value}''. For sidewalks use ''sidewalk=left|right|both|no'' instead." />
-<classtext lang="es" title="El valor de ''{0.key}'' debería ser ''{1.value}'' o ''{2.value}''. Para veredas utilice ''sidewalk=left|right|both|no'' en su lugar." />
+<classtext lang="es" title="El valor de ''{0.key}'' debería ser ''{1.value}'' o ''{2.value}''. Para aceras utilice ''sidewalk=left|right|both|no'' en su lugar." />
 <classtext lang="fr" title='La valeur de "{0.key}" doit être soit "{1.value}", soit "{2.value}". Pour les trottoirs, utiliser "sidewalk=left|right|both|no" à la place' />
 <classtext lang="hu" title="A(z) ''{0.key}'' értékének vagy ''{1.value}''-nak vagy ''{2.value}''-nak kellene lennie. Járdákhoz ''sidewalk=left|right|both|no'' használandó inkább." />
 <classtext lang="it" title="Il valore di ''{0.key}'' dovrebbe essere ''{1.value}'' o ''{2.value}''. Per i marciapiedi invece utilizzare ''sidewalk=left|right|both|no''." />
@@ -2784,7 +2804,7 @@
 <classtext lang="pt_BR" title="Valor de ''{0.key}'' deve ser ''{1.value}'' ou ''{2.value}''. Para calçadas use ''sidewalk=left|right|both|no''." />
 <classtext lang="ru" title="Значение ''{0.key}'' должнобыть либо ''{1.value}'', либо ''{2.value}''. Для тротуаров используйте взамен ''sidewalk=left|right|both|no''." />
 <classtext lang="uk" title="Значення ''{0.key}'' повинно бути ''{1.value}'' або ''{2.value}''. Для тротуарів використовуйте ''sidewalk=left|right|both|no''." />
-<classtext lang="zh_CN" title="''{0.key}''的值应为''{1.value}''或''{2.value}''中其一。对于人行道，使用''sidewalk=left|right|both|no''。" />
+<classtext lang="zh_CN" title="“{0.key}”的值应为“{1.value}”或“{2.value}”中其一。对于人行道，使用“sidewalk=left|right|both|no”。" />
 </class>
 <class item="9004" tag="tag,highway" id="9004008" level="3">
 <classtext lang="ca" title="etiqueta de via errònia a un node" />
@@ -2839,7 +2859,7 @@
 <classtext lang="pt_BR" title="valor vazio no separados por ponto e vírgula ''{0.key}''" />
 <classtext lang="ru" title="пустое значение в разделённом точками с запятой списке ''{0.key}''" />
 <classtext lang="uk" title="пусте значення в рядку з розділювачами (;) ''{0.key}''" />
-<classtext lang="zh_CN" title="分号隔开的''{0.key}''中有空值" />
+<classtext lang="zh_CN" title="分号隔开的“{0.key}”中有空值" />
 </class>
 <class item="9006" tag="tag,value" id="9006001" level="3">
 <classtext lang="ca" title="clau numèrica" />
@@ -3284,7 +3304,7 @@
 <classtext lang="pt_BR" title="o idioma da wikipedia ''be-x-old'' é obsoleto, use ''be-tarask'' ao invés disto" />
 <classtext lang="ru" title="язык  wikipedia ''be-x-old'' устарел, используйте ''be-tarask'' вместо него" />
 <classtext lang="uk" title='мовний код "be-x-old" теґу wikipedia є застарілим, використовуйте "be-tarask" замість нього' />
-<classtext lang="zh_CN" title="维基百科''be-x-old''语言过时，使用''be-tarask''" />
+<classtext lang="zh_CN" title="维基百科“be-x-old”语言过时，使用“be-tarask”" />
 <classtext lang="zh_TW" title="維基百科的 ''be-x-old'' 語言代碼已經過時，請用 ''be-tarask'' 替換" />
 </class>
 <class item="9011" tag="tag,wikipedia" id="9011005" level="3">
@@ -3302,7 +3322,7 @@
 <classtext lang="pt_BR" title="o idioma da wikipedia ''cz'' é inválido, utilize ''cs'' ao invés disto" />
 <classtext lang="ru" title="неверный язык тега wikipedia ''cz'', используйте ''cs'' вместо него" />
 <classtext lang="uk" title='мовний код "cz" теґу wikipedia є помилковим, використовуйте "cs" замість нього' />
-<classtext lang="zh_CN" title="维基百科''cz''语言无效，使用''cs''" />
+<classtext lang="zh_CN" title="维基百科“cz”语言无效，使用“cs”" />
 <classtext lang="zh_TW" title="維基百科的 ''cz'' 語言代碼無效，請用 ''cs'' 替換" />
 </class>
 <class item="9011" tag="tag,wikipedia" id="9011006" level="2">
@@ -3355,7 +3375,7 @@
 <classtext lang="pt_BR" title="o título da página em wikipedia não deve ter o prefixo ''wiki/''" />
 <classtext lang="ru" title="заголовок страницы Википедии не должен иметь префикс ''wiki/''" />
 <classtext lang="uk" title='Назва сторінки у Вікіпедії не повинна мати префікс "wiki/"' />
-<classtext lang="zh_CN" title="维基百科标题不应有''wiki/''前缀" />
+<classtext lang="zh_CN" title="维基百科标题不应有“wiki/”前缀" />
 <classtext lang="zh_TW" title="維基百科條目標題不可以用 ''wiki/'' 開頭" />
 </class>
 <class item="9011" tag="tag,wikipedia" id="9011009" level="3">
@@ -3447,7 +3467,7 @@
 <classtext lang="pt_BR" title="a etiqueta wikipedia não está definida, mas a etiqueta ''{1.key}'' está. Certifique-se de usar wikipedia=linguagem:valor junto com a etiqueta wikidata." />
 <classtext lang="ru" title="тег wikipedia не задан, но имеется тег ''{1.key}''. Убедитесь в использовании wikipedia=language:value совместно с тегом wikidata." />
 <classtext lang="uk" title='теґ wikipedia не встановлено, проте є теґ "{1.key}". Переконайтесь, що ви використовуєте wikipedia=код мови:назва сторінки разом з wikidata' />
-<classtext lang="zh_CN" title="维基百科标签未设定，但''{1.key}''标签已设定。确保将wikipedia=语言:值与维基数据标签一同使用。" />
+<classtext lang="zh_CN" title="维基百科标签未设定，但“{1.key}”标签已设定。确保将wikipedia=语言:值与维基数据标签一同使用。" />
 </class>
 <class item="9012" tag="tag,seamark" id="9012001" level="3">
 <classtext lang="en" title="Multi-colour {0.value} without {2.key}" />
@@ -3597,36 +3617,10 @@
 <classtext lang="zh_TW" title="遺失交通模式，請更改標籤從 route 到 route_master" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014013" level="2">
-<classtext lang="cs" title="Zkontroluj tag operator" />
-<classtext lang="de" title="operator Tag überprüfen" />
 <classtext lang="en" title="Check the operator tag" />
-<classtext lang="es" title="Comprobar la etiqueta operator" />
-<classtext lang="fa" title="تگ operator را بررسی کنید" />
-<classtext lang="fr" title="Vérifier l’opérateur indiqué dans l’attribut “operator”" />
-<classtext lang="gl" title="Comprobar a etiqueta 'operator'" />
-<classtext lang="hu" title="Ellenőrizze az üzemeltetőt jelző [operatort] címkét" />
-<classtext lang="it" title="Controlla l’etichetta operator" />
-<classtext lang="nl" title="Controleer de operator tag" />
-<classtext lang="pl" title="Sprawdź tag operator" />
-<classtext lang="uk" title="Перевірте теґ operator" />
-<classtext lang="zh_CN" title="检查运行商标签" />
-<classtext lang="zh_TW" title="檢查營業者標籤" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014014" level="2">
-<classtext lang="cs" title="Zkontroluj tag network" />
-<classtext lang="de" title="network Tag überprüfen" />
 <classtext lang="en" title="Check the network tag" />
-<classtext lang="es" title="Comprobar la etiqueta network" />
-<classtext lang="fa" title="تگ network را بررسی کنید" />
-<classtext lang="fr" title="Vérifier le réseau indiqué dans l’attribut “network”" />
-<classtext lang="gl" title="Comprobar a etiqueta 'network'" />
-<classtext lang="hu" title="Ellenőrizze a hálózatot jelölő [network] címkét" />
-<classtext lang="it" title="Controlla l’etichetta network" />
-<classtext lang="nl" title="Controleer de network tag" />
-<classtext lang="pl" title="Sprawdź tag network" />
-<classtext lang="uk" title="Перевірте теґ network" />
-<classtext lang="zh_CN" title="检查network标签" />
-<classtext lang="zh_TW" title="檢查網路標籤" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014019" level="2">
 <classtext lang="en" title="A bus stop is supposed to be a node" />
@@ -4083,7 +4077,7 @@
 </node>
 <location lat="17.9022784" lon="-62.8532376" />
 </error>
-<error class="50701" subclass="0">
+<error class="50701" subclass="1398494170">
 <node changeset="10911031" uid="620107" timestamp="2012-03-08T17:00:13Z" lon="-62.8494653" version="1" user="John_King" lat="17.8949922" id="1666075550">
 <tag k="amenity" v="bar" />
 <tag k="name" v="Le Bête à Z'Ailes - Baz Bar" />
@@ -4721,6 +4715,7 @@
 <text lang="hu" value="Nem konkrét úttípus" />
 <text lang="pl" value="Nieznana wartość highway" />
 <text lang="uk" value="Невизначений тип дороги" />
+<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
 <text lang="es" value="Tipo de vía no especificada" />
 </error>
@@ -4770,6 +4765,7 @@
 <text lang="hu" value="Nem konkrét úttípus" />
 <text lang="pl" value="Nieznana wartość highway" />
 <text lang="uk" value="Невизначений тип дороги" />
+<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
 <text lang="es" value="Tipo de vía no especificada" />
 </error>
@@ -5056,7 +5052,7 @@
 <text lang="cs" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ nebo ford=yes" />
 <text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
 </error>
-<error class="50701" subclass="1">
+<error class="50701" subclass="1716201502">
 <location lat="0" lon="0" />
 <relation changeset="13026199" uid="236651" timestamp="2012-09-07T18:24:57Z" user="Sanjak" version="12" id="1216720">
 <tag k="name:pt" v="Países Baixos Caribenhos" />
