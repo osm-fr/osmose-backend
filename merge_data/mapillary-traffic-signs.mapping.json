@@ -950,6 +950,39 @@
     }
   },
   {
+    "class": 52,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 100,
+    "title": "stop",
+    "only_for": [
+      "CA-ON",
+      "CA-QC"
+    ],
+    "object": [
+      "regulatory--stop--g1",
+      "regulatory--stop--g2",
+      "regulatory--stop--g3",
+      "regulatory--stop--g4",
+      "regulatory--stop--g5",
+      "regulatory--stop--g6",
+      "regulatory--stop--g7",
+      "regulatory--stop--g8",
+      "regulatory--stop--g9",
+      "regulatory--stop--g10"
+    ],
+    "select_tags": [
+      {
+        "highway": "stop"
+      }
+    ],
+    "generate_tags": {
+      "highway": "stop"
+    }
+  },
+  {
     "class": 101,
     "level": 2,
     "otype": [

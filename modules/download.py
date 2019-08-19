@@ -52,7 +52,8 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
         headers["If-Modified-Since"] = open(file_ts).read()
 
     # request fails with a 304 error when the file wasn't modified
-    answer = downloader.get(url, headers=headers)
+    # Retry on 404, workaround Geofabrik update in progress
+    answer = downloader.get(url, headers=headers, session=downloader.requests_retry_session(status_forcelist=downloader.DEFAULT_RETRY_ON + (404, )))
     if answer.status_code == 304:
         logger.log(u"not newer")
         return False

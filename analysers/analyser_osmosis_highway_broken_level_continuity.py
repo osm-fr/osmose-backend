@@ -23,11 +23,12 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql13 = """
-CREATE TEMP VIEW orphan_endin AS
+CREATE TEMP TABLE orphan_endin AS
 SELECT
     network.id,
     network.nid,
     network.level,
+    network.geom,
     CASE network.level
         WHEN 1 THEN (ways.highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
         WHEN 2 THEN (ways.highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link'))
@@ -48,58 +49,52 @@ GROUP BY
     1,
     2,
     3,
-    4
+    4,
+    5
 """
 
 sql14 = """
-CREATE TEMP VIEW orphan0 AS
+CREATE TEMP TABLE orphan AS
 SELECT
     id,
     nid,
-    level
+    level,
+    geom
 FROM
     orphan_endin
 GROUP BY
     id,
     nid,
-    level
+    level,
+    geom
 HAVING
     NOT BOOL_OR(orphan_endin.endin)
 """
 
-sql15 = """
-CREATE TEMP TABLE orphan1 AS
-SELECT
-    orphan0.*,
-    geom
-FROM
-    orphan0
-    JOIN nodes ON
-        orphan0.nid = nodes.id
-"""
-
 sql16 = """
-CREATE INDEX orphan1_level_idx ON orphan1(level)
+CREATE INDEX orphan_level_idx ON orphan(level)
 """
 
 sql17 = """
-CREATE INDEX orphan1_geom_idx ON orphan1 USING gist(geom)
+CREATE INDEX orphan_geom_idx ON orphan USING gist(geom)
 """
 
 sql18 = """
 SELECT
     o1.id,
+    o1.nid,
     ST_AsText(o1.geom),
     o1.level
 FROM
-    orphan1 AS o1,
-    orphan1 AS o2
+    orphan AS o1,
+    orphan AS o2
 WHERE
     o1.nid != o2.nid AND
     o1.level = o2.level AND
     ST_DistanceSphere(o1.geom, o2.geom) < 1000
 GROUP BY
     o1.id,
+    o1.nid,
     o1.level,
     o1.geom
 """
@@ -117,7 +112,6 @@ class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
     def analyser_osmosis_common(self):
         self.run(sql13)
         self.run(sql14)
-        self.run(sql15)
         self.run(sql16)
         self.run(sql17)
-        self.run(sql18, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql18, lambda res: {"class":res[3], "data":[self.way_full, self.node, self.positionAsText]} )

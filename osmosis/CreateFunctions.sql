@@ -11,6 +11,28 @@ $$ LANGUAGE plpgsql
    RETURNS NULL ON NULL INPUT;
 
 
+CREATE TYPE id_geom AS (
+    id bigint,
+    geom geometry
+);
+
+CREATE OR REPLACE FUNCTION ends_geom(nodes bigint[], linestring geometry) RETURNS SETOF id_geom AS $$
+DECLARE
+    tmp id_geom;
+BEGIN
+    tmp.id = nodes[1];
+    tmp.geom = ST_StartPoint(linestring);
+    RETURN NEXT tmp;
+    tmp.id = nodes[array_length(nodes,1)];
+    tmp.geom = ST_EndPoint(linestring);
+    RETURN NEXT tmp;
+    RETURN;
+END
+$$ LANGUAGE plpgsql
+   IMMUTABLE
+   RETURNS NULL ON NULL INPUT;
+
+
 CREATE OR REPLACE FUNCTION way_locate(linestring geometry) RETURNS geometry AS $$
 DECLARE BEGIN
     IF ST_NPoints(linestring) > 1 THEN
