@@ -200,19 +200,25 @@ msgstr "Hiányzik az [opening_hours] nyitva tartás címke"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Hiányzik a [name] név a tömegközlekedési megállóról"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Ellenőrizze az [operator] címkét: ilyen üzemeltető nem létezik, talán elírás"
+" történt"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Ellenőrizze a [network] címkét: ilyen hálózat nem létezik, talán elírás "
+"történt"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"A buszállomás általában egy nagyobb terület, ahol sok busz megáll. "
+"Ellenőrizze, hogy meg tudja-e rajzolni ezt a területet"

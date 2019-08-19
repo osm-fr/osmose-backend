@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-07-22 11:14+0000\n"
-"Last-Translator: Jorge Sanz <sanchi2@gmail.com>\n"
+"PO-Revision-Date: 2019-08-19 19:40+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,42 +199,42 @@ msgstr "Wikipedia, sugerencia de integración en castillo"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia, sugerencia de integración en iglesia"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
 msgstr "Punto geodésico fuera del límite"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:185
+#: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "Intersección de límites"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
 msgstr "Fragmento de límite aislado"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:117
+#: ../analysers/analyser_osmosis_boundary_relation.py:122
 msgid "Missing admin_centre role"
 msgstr "Falta rol admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing name"
 msgstr "Falta nombre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:126
 msgid "Missing wikipedia tag"
 msgstr "Falta etiqueta wikipedia"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:122
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
 msgid "Different population tag between relation and admin_centre"
 msgstr "Diferencia en la etiqueta población entre la relación y admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:123
+#: ../analysers/analyser_osmosis_boundary_relation.py:128
 msgid "Invalid role"
 msgstr "Rol inválido"
 
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:115
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:108
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:109
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:110
 msgid "Broken highway level continuity"
 msgstr "Rota la continuidad a nivel de carretera"
 
@@ -323,7 +323,7 @@ msgstr "Pequeña granja: considerar patio o edificio en su lugar"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Piscinas, embalses, estanques como natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:76
+#: ../analysers/analyser_osmosis_node_like_way.py:78
 msgid "Way node tagged like way"
 msgstr "Nodo vía etiquetado como vía"
 
@@ -351,31 +351,31 @@ msgstr "Sin nodo energía en línea de energía"
 msgid "Missing power tower or pole"
 msgstr "Falta torre eléctrica o poste de energía"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
 msgid "No street role"
 msgstr "Sin rol calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:590
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
 msgid "street role is not an highway"
 msgstr "Rol calle no es una carretera"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
 msgid "Roleless member"
 msgstr "Miembro sin rol"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:593
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
 msgid "Number twice in the street"
 msgstr "Dos números en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:594
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 msgid "Many street names"
 msgstr "Múltiples nombres de calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:595
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
 msgid "Many relations on one street"
 msgstr "Muchas relaciones en una calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:596
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid "House too far away from street"
 msgstr "Casa muy lejos de la calle"
 
@@ -395,35 +395,35 @@ msgstr "Inconsistencia del multipolígono naturaleza con miembros naturaleza"
 msgid "Inconsistant multipolygon member nature"
 msgstr "Inconsistencia del miembro multipolígono naturaleza"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:359
+#: ../analysers/analyser_osmosis_relation_restriction.py:362
 msgid "Restriction relation, wrong number of members"
 msgstr "Relación de restricción, número de miembros erróneo"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:360
+#: ../analysers/analyser_osmosis_relation_restriction.py:363
 msgid "Restriction relation, bad member type"
 msgstr "Relación de restricción, mal tipo de miembro"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:361
+#: ../analysers/analyser_osmosis_relation_restriction.py:364
 msgid "Unconnected restriction relation ways"
 msgstr "Vías de relación de restricción no conectadas"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:363
+#: ../analysers/analyser_osmosis_relation_restriction.py:366
 msgid "Restriction doesn't match topology"
 msgstr "Restricción no coincide con la tipología"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:259
+#: ../analysers/analyser_osmosis_roundabout_level.py:260
 msgid "Wrong highway on roundabout"
 msgstr "Carretera errónea en rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:260
+#: ../analysers/analyser_osmosis_roundabout_level.py:261
 msgid "Missing oneway"
 msgstr "Falta sentido único"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:261
+#: ../analysers/analyser_osmosis_roundabout_level.py:262
 msgid "Roundabout shortcut"
 msgstr "Acceso directo a la rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:262
+#: ../analysers/analyser_osmosis_roundabout_level.py:263
 msgid "Roundabout crossing"
 msgstr "Cruce en la rotonda"
 
@@ -445,7 +445,7 @@ msgstr "Prueba Soundex"
 msgid "Area intersection %s"
 msgstr "Intersección de área %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:135
 msgid "Typo in tag"
 msgstr "Error tipográfico en etiqueta"
 
@@ -493,7 +493,7 @@ msgstr "Construcción terminada"
 msgid "Bad date format"
 msgstr "Mal formato de fecha"
 
-#: ../plugins/Highway_Lanes.py:29
+#: ../plugins/Highway_Lanes.py:30
 msgid "Bad lanes value"
 msgstr "Valor malo de carriles"
 
@@ -750,7 +750,7 @@ msgstr "Cancha no integrada %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiples nombres para el mismo ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Etiqueta «addr:city» no coincide con una ciudad"
 
@@ -1029,15 +1029,15 @@ msgstr "Objeto etiquetado dos veces como vía y relación"
 msgid "Object tagged twice as node and relation"
 msgstr "Objeto etiquetado dos veces como nodo y relación"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:93
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Intersección de caminos y objetos de cuerpos de agua no relacionados"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:91
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Intersección de caminos y objetos de energía no relacionados"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:636
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Múltiples números «%(numbers)s» en la vía «%(way)s»"
@@ -1160,38 +1160,38 @@ msgstr "Reciclaje de vidrio BM, sugerencia de integración"
 msgid "BM glass recycling update"
 msgstr "Reciclaje de vidrio BM actualizado"
 
-#: ../plugins/Highway_Lanes.py:30
+#: ../plugins/Highway_Lanes.py:31
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
 msgstr "Conflicto entre el uso de *:lanes o *:lanes:(forward|backward|both_ways)"
 
-#: ../plugins/Highway_Lanes.py:31
+#: ../plugins/Highway_Lanes.py:32
 msgid "Conflict between lanes number"
 msgstr "Conflicto entre número de carriles"
 
-#: ../plugins/Highway_Lanes.py:32
+#: ../plugins/Highway_Lanes.py:33
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
 msgstr "Uso inválido de *:lanes:(backward|both_ways) en una carretera de sentido único"
 
-#: ../plugins/Highway_Lanes.py:33
+#: ../plugins/Highway_Lanes.py:34
 msgid "Unknown turn lanes value"
 msgstr "Valor de carriles de giro desconocido"
 
-#: ../plugins/Highway_Lanes.py:34
+#: ../plugins/Highway_Lanes.py:35
 msgid "Bad turn lanes order"
 msgstr "Orden de carriles de giro erróneo"
 
-#: ../plugins/Highway_Lanes.py:35
+#: ../plugins/Highway_Lanes.py:36
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
 msgstr "Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)"
 
-#: ../plugins/Highway_Lanes.py:36
+#: ../plugins/Highway_Lanes.py:37
 msgid "Bad access lanes value, should not be an integer but a restriction"
 msgstr "Valor de acceso a carriles erróneo, no debe ser un entero sino una restricción"
 
-#: ../plugins/Highway_Lanes.py:37
+#: ../plugins/Highway_Lanes.py:38
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Carriles de giro merge_to_* necesita una línea paralela en el lado bueno"
 
@@ -1257,7 +1257,7 @@ msgstr "Nodo con place=%s sin nombre"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "Falta guión después de «Saint(e)»"
 
-#: ../plugins/Name_Script.py:34
+#: ../plugins/Name_Script.py:35
 msgid "Some value chars does not match the language charset"
 msgstr "Algunos valor de caracteres no coincide con el conjunto de caracteres del idioma"
 
@@ -1348,15 +1348,15 @@ msgstr "Usar etiqueta construction para «%s»"
 msgid "\"%s\" can be set in specific tag"
 msgstr "«%s» puede ser establecido en una etiqueta específica"
 
-#: ../plugins/Name_Script.py:35
+#: ../plugins/Name_Script.py:36
 msgid "Non printable char"
 msgstr "Caracter no imprimible"
 
-#: ../plugins/Name_Script.py:36
+#: ../plugins/Name_Script.py:37
 msgid "Symbol char"
 msgstr "caracter símbolo"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:592
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Miembros sin addr:housenumber ni addr:housename"
 
@@ -1364,12 +1364,12 @@ msgstr "Miembros sin addr:housenumber ni addr:housename"
 msgid "Invalid multipolygon"
 msgstr "multipolígono inválido"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:177
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Interpolación en nodos de múltiples nombres de calles"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:182
-#: ../analysers/analyser_osmosis_addr_interpolation.py:183
+#: ../analysers/analyser_osmosis_addr_interpolation.py:184
+#: ../analysers/analyser_osmosis_addr_interpolation.py:185
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Alcance de interpolación en calles: %s"
@@ -1473,7 +1473,7 @@ msgstr "Acceso de vía no coincide con relación route=%s"
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relación de ruta de transporte público no está en relación route_master"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:602
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1605,7 +1605,7 @@ msgstr "Museo Aquitaine, sugerencia de integración"
 msgid "Invalid Opening Hours"
 msgstr "Horario de apertura invalido"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:599
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Missing highway in associatedStreet relation"
 msgstr ""
 
@@ -1657,14 +1657,14 @@ msgstr "Vía de agua intersecciona con vía de agua sin unión"
 msgid "Waterway overlaps"
 msgstr "Vías de agua superpuestas"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:108
-#: ../analysers/analyser_osmosis_highway_zone.py:109
+#: ../analysers/analyser_osmosis_highway_zone.py:110
+#: ../analysers/analyser_osmosis_highway_zone.py:111
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:362
+#: ../analysers/analyser_osmosis_relation_restriction.py:365
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "Relación de restricción, mala dirección de sentido único en miembro \"from\" a \"to\" "
 
@@ -1843,7 +1843,7 @@ msgstr "La URL no tiene un esquema válido"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "URL mala %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:94
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:95
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr ""
@@ -1896,7 +1896,7 @@ msgstr ""
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr "{0} señales de tráfico para {1} observadas alrededor pero sin etiquetas asociadas"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:131
+#: ../analysers/analyser_osmosis_boundary_relation.py:136
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
@@ -1928,23 +1928,23 @@ msgstr "aproximado {0}"
 msgid "{0} deviation of {1}m"
 msgstr "{0} desviación de {1} m"
 
-#: ../plugins/Highway_Lanes.py:74
+#: ../plugins/Highway_Lanes.py:75
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
 msgstr "Valor desconocido de carriles de giro «{0}»"
 
-#: ../plugins/Highway_Lanes.py:152
+#: ../plugins/Highway_Lanes.py:153
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr "lanes={0} no es entero"
 
-#: ../plugins/Highway_Lanes.py:208
+#: ../plugins/Highway_Lanes.py:209
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr "en sentido único, (lanes={0}) != (lanes:forward={1}) - (sin fullwidth forward={2})"
 
-#: ../plugins/Highway_Lanes.py:213
+#: ../plugins/Highway_Lanes.py:214
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -1952,20 +1952,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr "en dos sentidos, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (sin fullwidth={4}) - (sin fullwidth forward={5}) - (sin fullwidth backward={6}) - (sin fullwidth both_ways={7})"
 
-#: ../plugins/Highway_Lanes.py:215
+#: ../plugins/Highway_Lanes.py:216
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr "en dos sentidos, (lanes={0}) <= (lanes:forward={1}) - (sin fullwidth forward={2})"
 
-#: ../plugins/Highway_Lanes.py:217
+#: ../plugins/Highway_Lanes.py:218
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr "en dos sentidos, (lanes={0}) <= (lanes:backward={1}) - (sin fullwidth backward={2})"
 
-#: ../plugins/Highway_Lanes.py:219
+#: ../plugins/Highway_Lanes.py:220
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -1982,45 +1982,45 @@ msgstr ""
 msgid "Umbalanced {0}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:99 ../plugins/Name_Script.py:121
+#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:122
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
 msgstr "\"{0}\" inesperado caracter no imprimible ({1}, 0x{2:04x}) en la clave en posición {3}"
 
-#: ../plugins/Name_Script.py:104 ../plugins/Name_Script.py:125
+#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:126
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:109
+#: ../plugins/Name_Script.py:110
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:114
+#: ../plugins/Name_Script.py:115
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:139 ../plugins/Name_Script.py:161
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:144 ../plugins/Name_Script.py:166
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr ""
 
-#: ../plugins/Name_Script.py:147 ../plugins/Name_Script.py:169
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
@@ -2043,11 +2043,6 @@ msgstr ""
 
 #: ../plugins/Phone.py:57
 msgid "Bad separator for multiple values"
-msgstr ""
-
-#: ../plugins/Phone.py:122
-#, python-brace-format
-msgid "Not allowed char \"{0}\" in phone number"
 msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:88
@@ -2167,7 +2162,7 @@ msgstr ""
 msgid "{0} Street object {1} observed around but not associated tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_enforcement.py:55
+#: ../analysers/analyser_osmosis_relation_enforcement.py:57
 msgid "Speed camera should be on the highway or in an enforcement relation"
 msgstr ""
 
@@ -2175,42 +2170,42 @@ msgstr ""
 msgid "P+R parking in Île-de-France not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing municipality ref tag"
 msgstr "Falta la etiqueta ref de municipalidad"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:127
+#: ../analysers/analyser_osmosis_boundary_relation.py:132
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
 msgstr "Falta la etiqueta ref de municipalidad {0}"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:170
+#: ../analysers/analyser_osmosis_addr_interpolation.py:172
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:171
+#: ../analysers/analyser_osmosis_addr_interpolation.py:173
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:178
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:600
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "La etiqueta \"addr: street\" no coincide con el nombre de ninguna calle alrededor"
 
@@ -2229,13 +2224,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:66
-#, python-brace-format
-msgid "Bad topology way level {0}"
 msgstr ""
 
 #: ../plugins/TagFix_BadKey.py:31
@@ -2258,3 +2246,15 @@ msgstr "Valores duplicados"
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
 msgstr "Valores similares"
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:56
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:57
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:58
+#, python-brace-format
+msgid "Sudden highway type change (level {0})"
+msgstr ""
+
+#: ../plugins/Phone.py:122
+#, python-brace-format
+msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
+msgstr ""

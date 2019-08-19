@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-07-17 20:12+0000\n"
+"PO-Revision-Date: 2019-08-19 19:40+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -195,42 +195,42 @@ msgstr "维基百科，建议整合的城堡"
 msgid "Wikipedia, church integration suggestion"
 msgstr "维基百科，建议整合的教堂"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
 msgstr "调查点出界"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:185
+#: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "边界相交"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
 msgstr "单独的边界片段"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:117
+#: ../analysers/analyser_osmosis_boundary_relation.py:122
 msgid "Missing admin_centre role"
 msgstr "缺少admin_centre角色"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing name"
 msgstr "缺少名称"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:126
 msgid "Missing wikipedia tag"
 msgstr "缺少维基百科 tag"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:122
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
 msgid "Different population tag between relation and admin_centre"
 msgstr "relation与admin_centre的人口统计tag数值不符"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:123
+#: ../analysers/analyser_osmosis_boundary_relation.py:128
 msgid "Invalid role"
 msgstr "角色无效"
 
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:115
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:108
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:109
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:110
 msgid "Broken highway level continuity"
 msgstr "没有连续性的公路"
 
@@ -319,7 +319,7 @@ msgstr "小农场：考虑使用农家庭院或建筑"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "游泳池，水库，池塘一样natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:76
+#: ../analysers/analyser_osmosis_node_like_way.py:78
 msgid "Way node tagged like way"
 msgstr "节点标记的样子像线路"
 
@@ -347,31 +347,31 @@ msgstr "电力线路上的非电力节点"
 msgid "Missing power tower or pole"
 msgstr "缺少电塔或电杆"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
 msgid "No street role"
 msgstr "没有道路角色"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:590
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
 msgid "street role is not an highway"
 msgstr "街道角色不是公路"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
 msgid "Roleless member"
 msgstr "没有角色的成员"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:593
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
 msgid "Number twice in the street"
 msgstr "在街上两次"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:594
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 msgid "Many street names"
 msgstr "许多街道名称"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:595
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
 msgid "Many relations on one street"
 msgstr "一条街上有很多关系"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:596
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid "House too far away from street"
 msgstr "房子离街很远"
 
@@ -391,35 +391,35 @@ msgstr "不一致的多边形自然与成员性质"
 msgid "Inconsistant multipolygon member nature"
 msgstr "不一致的多边形成员性质"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:359
+#: ../analysers/analyser_osmosis_relation_restriction.py:362
 msgid "Restriction relation, wrong number of members"
 msgstr "限制关系，成员数量错误"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:360
+#: ../analysers/analyser_osmosis_relation_restriction.py:363
 msgid "Restriction relation, bad member type"
 msgstr "限制关系，不良的成员类型"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:361
+#: ../analysers/analyser_osmosis_relation_restriction.py:364
 msgid "Unconnected restriction relation ways"
 msgstr "不受限制的关系方式"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:363
+#: ../analysers/analyser_osmosis_relation_restriction.py:366
 msgid "Restriction doesn't match topology"
 msgstr "限制与拓扑不匹配"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:259
+#: ../analysers/analyser_osmosis_roundabout_level.py:260
 msgid "Wrong highway on roundabout"
 msgstr "错误的公路在环岛处"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:260
+#: ../analysers/analyser_osmosis_roundabout_level.py:261
 msgid "Missing oneway"
 msgstr "缺少单行道"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:261
+#: ../analysers/analyser_osmosis_roundabout_level.py:262
 msgid "Roundabout shortcut"
 msgstr "环岛的捷径"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:262
+#: ../analysers/analyser_osmosis_roundabout_level.py:263
 msgid "Roundabout crossing"
 msgstr "环岛交叉口"
 
@@ -441,7 +441,7 @@ msgstr "Soundex 测试"
 msgid "Area intersection %s"
 msgstr "区域交叉口 %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:135
 msgid "Typo in tag"
 msgstr "有错字的标签"
 
@@ -489,7 +489,7 @@ msgstr "完工"
 msgid "Bad date format"
 msgstr "不良的日期格式"
 
-#: ../plugins/Highway_Lanes.py:29
+#: ../plugins/Highway_Lanes.py:30
 msgid "Bad lanes value"
 msgstr "不良的车道值"
 
@@ -746,7 +746,7 @@ msgstr "未整合的%s沥青"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "同一个ref FANTOIR的多个名称"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "标签\"addr:city\"与城市不匹配"
 
@@ -1025,15 +1025,15 @@ msgstr "对象以线路和关系标记两次"
 msgid "Object tagged twice as node and relation"
 msgstr "对象以节点和关系标记两次"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:93
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "不相关的公路和水路对象的相交"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:91
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and power objects"
 msgstr "不相关的公路和电力对象的相交"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:636
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "多个数字“%(numbers)s”在方式“%(way)s”"
@@ -1156,38 +1156,38 @@ msgstr "建议整合BM玻璃回收"
 msgid "BM glass recycling update"
 msgstr "BM玻璃回收更新"
 
-#: ../plugins/Highway_Lanes.py:30
+#: ../plugins/Highway_Lanes.py:31
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
 msgstr "使用之间的冲突 *:lanes 或 *:lanes:(forward|backward|both_ways)"
 
-#: ../plugins/Highway_Lanes.py:31
+#: ../plugins/Highway_Lanes.py:32
 msgid "Conflict between lanes number"
 msgstr "车道号之间的冲突"
 
-#: ../plugins/Highway_Lanes.py:32
+#: ../plugins/Highway_Lanes.py:33
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
 msgstr "无效的使用 *:lanes:(backward|both_ways) 在单向公路上"
 
-#: ../plugins/Highway_Lanes.py:33
+#: ../plugins/Highway_Lanes.py:34
 msgid "Unknown turn lanes value"
 msgstr "未知车道值"
 
-#: ../plugins/Highway_Lanes.py:34
+#: ../plugins/Highway_Lanes.py:35
 msgid "Bad turn lanes order"
 msgstr "转弯车道顺序不良"
 
-#: ../plugins/Highway_Lanes.py:35
+#: ../plugins/Highway_Lanes.py:36
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
 msgstr "相同后缀的车道号之间的冲突('', forward, backward 或 both_ways)"
 
-#: ../plugins/Highway_Lanes.py:36
+#: ../plugins/Highway_Lanes.py:37
 msgid "Bad access lanes value, should not be an integer but a restriction"
 msgstr "进入车道值不良，不应该是一个整数，而应该是一个限制"
 
-#: ../plugins/Highway_Lanes.py:37
+#: ../plugins/Highway_Lanes.py:38
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "转车道merge_to_*需要旁边的车道"
 
@@ -1253,7 +1253,7 @@ msgstr "节点与place=%s没有名字"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "之后缺少连字符\"Saint(e)\""
 
-#: ../plugins/Name_Script.py:34
+#: ../plugins/Name_Script.py:35
 msgid "Some value chars does not match the language charset"
 msgstr "某些值字符与语言字符集不匹配"
 
@@ -1344,15 +1344,15 @@ msgstr "使用施工中标签 \"%s\""
 msgid "\"%s\" can be set in specific tag"
 msgstr "\"%s\" 可以在特定的标签中设置"
 
-#: ../plugins/Name_Script.py:35
+#: ../plugins/Name_Script.py:36
 msgid "Non printable char"
 msgstr "不可打印字符"
 
-#: ../plugins/Name_Script.py:36
+#: ../plugins/Name_Script.py:37
 msgid "Symbol char"
 msgstr "符号字符"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:592
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "没有成员addr:housenumber也不addr:housename"
 
@@ -1360,12 +1360,12 @@ msgstr "没有成员addr:housenumber也不addr:housename"
 msgid "Invalid multipolygon"
 msgstr "无效的多边形"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:177
 msgid "Interpolation on nodes of multiple street names"
 msgstr "在多个街道名称的节点上进行插值"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:182
-#: ../analysers/analyser_osmosis_addr_interpolation.py:183
+#: ../analysers/analyser_osmosis_addr_interpolation.py:184
+#: ../analysers/analyser_osmosis_addr_interpolation.py:185
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "插值跨度在街道上: %s"
@@ -1469,7 +1469,7 @@ msgstr "访问方式不匹配关系路线=%s"
 msgid "Public transport relation route not in route_master relation"
 msgstr "公共交通关系路线不在 route_master 关系中"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:602
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1601,7 +1601,7 @@ msgstr "建议整合的阿基坦博物馆"
 msgid "Invalid Opening Hours"
 msgstr "营业时间无效"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:599
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Missing highway in associatedStreet relation"
 msgstr "在相关的街道关系中缺少高速公路"
 
@@ -1653,14 +1653,14 @@ msgstr "水道相交却没有交界处"
 msgid "Waterway overlaps"
 msgstr "水路重叠"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:108
-#: ../analysers/analyser_osmosis_highway_zone.py:109
+#: ../analysers/analyser_osmosis_highway_zone.py:110
+#: ../analysers/analyser_osmosis_highway_zone.py:111
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
 msgstr "在街坊附近可能缺少标签 zone:maxspeed=XX:%s"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:362
+#: ../analysers/analyser_osmosis_relation_restriction.py:365
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "限制关系，“from”或“to”成员的单向方向错误"
 
@@ -1839,7 +1839,7 @@ msgstr "该链接没有有效的方案"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "不良的链接%(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:94
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:95
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr "历史纪念碑: {0} (positioned at {1} 置于 {2})"
@@ -1892,7 +1892,7 @@ msgstr "{0} 停止 {1}"
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr "{0} 交通信号灯 {1} 观察周围但不相关的标签"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:131
+#: ../analysers/analyser_osmosis_boundary_relation.py:136
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
@@ -1924,23 +1924,23 @@ msgstr "近似 {0}"
 msgid "{0} deviation of {1}m"
 msgstr "{0} 偏差 {1}m"
 
-#: ../plugins/Highway_Lanes.py:74
+#: ../plugins/Highway_Lanes.py:75
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
 msgstr "未知的转弯车道值 \"{0}\""
 
-#: ../plugins/Highway_Lanes.py:152
+#: ../plugins/Highway_Lanes.py:153
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr "lanes={0} 不是整数"
 
-#: ../plugins/Highway_Lanes.py:208
+#: ../plugins/Highway_Lanes.py:209
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr "在一个方向, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
-#: ../plugins/Highway_Lanes.py:213
+#: ../plugins/Highway_Lanes.py:214
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -1948,20 +1948,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr "在两个方向, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
-#: ../plugins/Highway_Lanes.py:215
+#: ../plugins/Highway_Lanes.py:216
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr "在两个方向, (lanes={0}) <= (lanes:forward={1}) - (非全宽 forward={2})"
 
-#: ../plugins/Highway_Lanes.py:217
+#: ../plugins/Highway_Lanes.py:218
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr "在两个方向, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
-#: ../plugins/Highway_Lanes.py:219
+#: ../plugins/Highway_Lanes.py:220
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -1978,45 +1978,45 @@ msgstr "不平衡 {0} 和 {1}"
 msgid "Umbalanced {0}"
 msgstr "不平衡 {0}"
 
-#: ../plugins/Name_Script.py:99 ../plugins/Name_Script.py:121
+#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:122
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
 msgstr "\"{0}\" 不寻常的不可打印字符 ({1}, 0x{2:04x}) 键的位置在 {3}"
 
-#: ../plugins/Name_Script.py:104 ../plugins/Name_Script.py:125
+#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:126
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
 "position {4}"
 msgstr "\"{0}\"=\"{1}\" 不寻常的不可打印字符 ({2}, 0x{3:04x}) 值的位置在 {4}"
 
-#: ../plugins/Name_Script.py:109
+#: ../plugins/Name_Script.py:110
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
 msgstr "\"{0}\" 不寻常的符号字符 ({1}, 0x{2:04x}) 键的位置在 {3}"
 
-#: ../plugins/Name_Script.py:114
+#: ../plugins/Name_Script.py:115
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
 msgstr "\"{0}\"=\"{1}\" 不寻常的符号字符 ({2}, 0x{3:04x}) 值的位置在 {4}"
 
-#: ../plugins/Name_Script.py:139 ../plugins/Name_Script.py:161
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
 msgstr "\"{0}\"=\"{1}\" 不寻常字符 \"{2}\" ({3}, 0x{4:04x}). 意味着 \"{5}\" ({6}, 0x{7:04x})?"
 
-#: ../plugins/Name_Script.py:144 ../plugins/Name_Script.py:166
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr "\"{0}\"=\"{1}\" 不寻常字符 \"{2}\" ({3}, 0x{4:04x})"
 
-#: ../plugins/Name_Script.py:147 ../plugins/Name_Script.py:169
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr "\"{0}\"=\"{1}\" 不寻常 \"{2}\""
@@ -2040,11 +2040,6 @@ msgstr "电话号码中不允许使用字符"
 #: ../plugins/Phone.py:57
 msgid "Bad separator for multiple values"
 msgstr "多个值的错误分隔符"
-
-#: ../plugins/Phone.py:122
-#, python-brace-format
-msgid "Not allowed char \"{0}\" in phone number"
-msgstr "电话号码中不允许使用字符“{0}”"
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
@@ -2163,7 +2158,7 @@ msgstr ""
 msgid "{0} Street object {1} observed around but not associated tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_enforcement.py:55
+#: ../analysers/analyser_osmosis_relation_enforcement.py:57
 msgid "Speed camera should be on the highway or in an enforcement relation"
 msgstr ""
 
@@ -2171,42 +2166,42 @@ msgstr ""
 msgid "P+R parking in Île-de-France not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing municipality ref tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:127
+#: ../analysers/analyser_osmosis_boundary_relation.py:132
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:170
+#: ../analysers/analyser_osmosis_addr_interpolation.py:172
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:171
+#: ../analysers/analyser_osmosis_addr_interpolation.py:173
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:178
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:600
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""
 
@@ -2225,13 +2220,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:66
-#, python-brace-format
-msgid "Bad topology way level {0}"
 msgstr ""
 
 #: ../plugins/TagFix_BadKey.py:31
@@ -2253,4 +2241,16 @@ msgstr ""
 
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:56
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:57
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:58
+#, python-brace-format
+msgid "Sudden highway type change (level {0})"
+msgstr ""
+
+#: ../plugins/Phone.py:122
+#, python-brace-format
+msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr ""

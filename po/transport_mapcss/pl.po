@@ -23,23 +23,23 @@ msgstr ""
 #: ../transport.validator.mapcss:83
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "Brak tagu \"public_transport:version\" dla relacji transportu publicznego"
 
 #: ../transport.validator.mapcss:92
 msgid "Missing network tag on a public_transport relation"
-msgstr ""
+msgstr "Brak tagu \"network\" dla relacji transportu publicznego"
 
 #: ../transport.validator.mapcss:101
 msgid "Missing operator tag on a public_transport relation"
-msgstr ""
+msgstr "Brak tagu \"operator\" dla relacji transportu publicznego"
 
 #: ../transport.validator.mapcss:110
 msgid "Missing ref tag for line number on a public_transport relation"
-msgstr ""
+msgstr "Brak tagu \"ref\" (numeru linii) dla relacji transportu publicznego"
 
 #: ../transport.validator.mapcss:119
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr ""
+msgstr "Brak tagu \"from\" lub \"to\" dla relacji transportu publicznego"
 
 #: ../transport.validator.mapcss:176
 msgid "The stops may not be in the right order"
@@ -53,11 +53,13 @@ msgstr "To przystanek czy dworzec autobusowy?"
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
+"Określ, czy jest to przystanek (platform), czy miejsce zatrzymania na drodze"
+" (stop_position)"
 
 #: ../transport.validator.mapcss:235
 msgid ""
 "The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
+msgstr "Dodaj highway=bus_stop lub railway=tram_stop"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
@@ -87,17 +89,19 @@ msgstr ""
 
 #: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "Brak tagu \"public_transport\" dla przystanku"
 
 #: ../transport.validator.mapcss:224
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
+"Określ, czy jest to peron (platform), czy miejsce zatrzymania na torach "
+"(stop_position)"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "Brak podstawowego znacznika przystanku"
 
 #: ../transport.validator.mapcss:129
 msgid ""
@@ -168,11 +172,11 @@ msgstr "Brak nazwy przystanku"
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
-msgstr ""
+msgstr "Sprawdź tag \"operator\": ten zarządca nie istnieje, może to literówka"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
-msgstr ""
+msgstr "Sprawdź tag \"network\": ta sieć nie istnieje, może to literówka"
 
 #: ../transport.validator.mapcss:207
 msgid ""
