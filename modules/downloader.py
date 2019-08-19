@@ -37,7 +37,9 @@ except:
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
-def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=(500, 502, 503, 504)):
+DEFAULT_RETRY_ON = (500, 502, 503, 504)
+
+def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT_RETRY_ON):
     session = requests.Session()
     retry = Retry(
         total=retries,
@@ -52,9 +54,11 @@ def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=(500, 5
     return session
 
 
-def get(url, headers={}):
+def get(url, headers={}, session=None):
     headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
-    return requests_retry_session().get(url, headers=headers, stream=True)
+    if not session:
+        session = requests_retry_session()
+    return session.get(url, headers=headers, stream=True)
 
 def http_get(url, tmp_file, date_string=None, get=get):
     headers = {}
