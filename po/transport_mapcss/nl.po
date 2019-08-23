@@ -185,7 +185,7 @@ msgstr " opening_hours tag ontbreekt"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Naam op een  public transport halte ontbreekt"
 
 #: ../transport.validator.mapcss:184
 msgid ""
@@ -201,3 +201,5 @@ msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"Een busstation is gebruikelijk een groot gebied waar veel bussen "
+"stoppen,controleer of je deze gebied kan tekenen"
