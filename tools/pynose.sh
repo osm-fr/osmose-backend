@@ -4,7 +4,7 @@ cd ..
 
 EXCLUDE_FILES=("plugins/Josm_de_openrailwaymap.py" "plugins/Josm_territories.py")
 
-PYTHON_FILES=($(ls plugins/*.py modules/*.py analysers/*.py))
+PYTHON_FILES=($(ls plugins/*.py plugins/tests/*.py modules/*.py analysers/*.py))
 
 for del in ${EXCLUDE_FILES[@]}; do
   # remove $del from array PYTHON_FILES
