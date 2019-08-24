@@ -21,6 +21,7 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
+from modules.Stablehash import stablehash
 
 sql10 = """
 SELECT
@@ -48,7 +49,7 @@ HAVING
 
 sql20 = """
 CREATE TEMP TABLE line_ends AS
-SELECT
+SELECT DISTINCT ON (ends(ways.nodes))
     ways.id AS wid,
     ends(ways.nodes) AS id,
     ways.tags->'power' AS power,
@@ -59,6 +60,8 @@ WHERE
     ways.tags != ''::hstore AND
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
+ORDER BY
+    ends(ways.nodes)
 """
 
 sql21 = """
@@ -207,7 +210,7 @@ HAVING
 """
 
 sql40 = """
-SELECT
+SELECT DISTINCT ON (nodes.id)
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
@@ -224,6 +227,8 @@ WHERE
     (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
     (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
     line_terminators.geom IS NULL
+ORDER BY
+    nodes.id
 """
 
 sql50 = """
@@ -317,7 +322,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
         self.classs[7] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Unmatched voltage of line on substation") }
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}]}
-        self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":5, "subclass": stablehash(res[1]), "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
