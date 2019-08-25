@@ -93,10 +93,7 @@ sql60 = """
 SELECT
     relations.id,
     ST_AsText(relation_locate(relations.id)),
-    coalesce(relations.tags->'name', relation_members.member_role),
-    relations.tags->'admin_level',
-    relation_members.member_role,
-    relation_members.member_type
+    string_agg(relation_members.member_role, ', ')
 FROM
     {0}relations AS relations
     JOIN relation_members ON
@@ -108,6 +105,9 @@ WHERE
     relations.tags?'boundary' AND
     relations.tags->'boundary' = 'administrative' AND
     relation_locate(relations.id) IS NOT NULL
+GROUP BY
+    relations.id,
+    relations.tags
 """
 
 class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
