@@ -24,10 +24,16 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql20 = """
 SELECT
-    MIN(way_ends.id),
-    nodes.id,
-    ST_AsText(nodes.geom),
-    MIN(way_ends.highway)
+    wid,
+    nid,
+    ST_AsText(geom),
+    highway
+FROM (
+SELECT
+    MIN(way_ends.id) AS wid,
+    nodes.id AS nid,
+    nodes.geom,
+    MIN(way_ends.highway) AS highway
 FROM
     {0}highway_ends AS way_ends
     JOIN highways ON
@@ -44,6 +50,15 @@ GROUP BY
     nodes.geom
 HAVING
     COUNT(*) = 1
+) AS t
+    LEFT JOIN ways AS ferry ON
+        ferry.linestring && t.geom AND
+        t.nid = ANY(ferry.nodes) AND
+        ferry.tags != ''::hstore AND
+        ferry.tags?'route' AND
+        ferry.tags->'route' = 'ferry'
+WHERE
+    ferry.id IS NULL
 """
 
 sql30 = """
