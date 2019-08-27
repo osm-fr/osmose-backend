@@ -95,7 +95,7 @@ FROM
 """
 
 sql40 = """
-SELECT
+SELECT DISTINCT ON (ways.id)
     ways.id,
     St_AsText(coalesce(nodes.geom, way_locate(ways.linestring)))
 FROM
@@ -109,6 +109,8 @@ FROM
 WHERE
     nodes.id IS NULL OR
     NOT nodes.tags?'addr:housenumber'
+ORDER BY
+    ways.id
 """
 
 sql50 = """

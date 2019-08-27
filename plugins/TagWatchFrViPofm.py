@@ -93,7 +93,7 @@ class TagWatchFrViPofm(Plugin):
             if k in self._update_ks_vr:
                 for v in self._update_ks_vr[k]:
                     if v.match(tags[k]):
-                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": stablehash(u"%s|%s" % (self._update_ks_vr, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
+                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": stablehash(u"%s|%s" % (v, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
 
         for kk in tags:
             for k in self._update_kr:
@@ -107,7 +107,7 @@ class TagWatchFrViPofm(Plugin):
                 if k.match(kk):
                     for v in self._update_kr_vr[k]:
                         if v.match(tags[kk]):
-                            err.append({"class": self._update_kr_vr[k][v][1], "zsubclass": stablehash(u"%s|%s" % (kk, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vr)", kk, tags[kk], self._update_kr_vr[k][v][0])})
+                            err.append({"class": self._update_kr_vr[k][v][1], "subclass": stablehash(u"%s|%s" % (kk, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule kr_vr)", kk, tags[kk], self._update_kr_vr[k][v][0])})
         return err
 
     def way(self, data, tags, nds):

@@ -999,7 +999,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.update_official:
             self.run(sql60 % {"official": table, "joinClause": joinClause}, lambda res: {
                 "class": self.update_official["class"],
-                "subclass": str(stablehash("%s%s"%(res[0],str(res[4])))),
+                "subclass": str(stablehash("%s%s"%(res[0],str(res[5])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
                 "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),

@@ -11,10 +11,15 @@ $$ LANGUAGE plpgsql
    RETURNS NULL ON NULL INPUT;
 
 
-CREATE TYPE id_geom AS (
-    id bigint,
-    geom geometry
-);
+DO $$ BEGIN
+    CREATE TYPE id_geom AS (
+        id bigint,
+        geom geometry
+    );
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
+
 
 CREATE OR REPLACE FUNCTION ends_geom(nodes bigint[], linestring geometry) RETURNS SETOF id_geom AS $$
 DECLARE

@@ -79,7 +79,7 @@ FROM
 WHERE
   (NOT tags?'highway' OR tags->'highway' != 'ford') AND
   (NOT tags?'ford' OR tags->'ford' = 'no') AND
-  (NOT tags?'leisure' OR tags->'leisure' = 'slipway')
+  (NOT tags?'leisure' OR tags->'leisure' != 'slipway')
 """
 
 class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):

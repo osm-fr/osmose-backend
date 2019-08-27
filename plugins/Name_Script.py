@@ -98,32 +98,38 @@ class Name_Script(Plugin):
             m = self.non_printable.search(key)
             if m:
                 err.append({"class": 50702, "subclass": 0 + stablehash(key), "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
-                continue
+                break
 
             m = self.non_printable.search(value)
             if m:
                 err.append({"class": 50702, "subclass": 1 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
-                continue
+                break
 
             m = self.other_symbol.search(key)
             if m:
                 err.append({"class": 50703, "subclass": 0 + stablehash(key), "text": T_f(u"\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
-                continue
+                break
 
             m = self.other_symbol.search(value)
             if m:
                 err.append({"class": 50703, "subclass": 1 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
-                continue
+                break
 
+            err_size = len(err)
             # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
             for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
                 m = key.find(c)
                 if m > 0:
                     err.append({"class": 50702, "subclass": 2 + stablehash(key), "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(c, ''), ord(c), m + 1)})
+                    break
 
                 m = value.find(c)
                 if m > 0:
                     err.append({"class": 50702, "subclass": 3 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(c, ''), ord(c), m + 1)})
+                    break
+
+            if err_size != len(err):
+                break
 
             if self.default:
                 if key in self.names:
@@ -146,6 +152,7 @@ class Name_Script(Plugin):
                                 })
                         else:
                             err.append({"class": 50701, "subclass": 0 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
+                        break
 
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
@@ -168,6 +175,7 @@ class Name_Script(Plugin):
                             })
                     else:
                         err.append({"class": 50701, "subclass": 1 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
+                    break
 
         return err
 

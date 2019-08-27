@@ -523,7 +523,7 @@ FROM
 # Check addr:street
 sqlD0 = """
 CREATE TEMP TABLE addr_street AS (
-SELECT
+SELECT DISTINCT ON (id)
     'N'::char(1) AS type,
     id,
     addr_street,
@@ -532,8 +532,10 @@ FROM
     nodes_addr
 WHERE
     addr_street IS NOT NULL
+ORDER BY
+    id
 ) UNION ALL (
-SELECT
+SELECT DISTINCT ON (id)
     'W'::char(1) AS type,
     id,
     addr_street,
@@ -542,6 +544,8 @@ FROM
     ways_addr
 WHERE
     addr_street IS NOT NULL
+ORDER BY
+    id
 )
 """
 
