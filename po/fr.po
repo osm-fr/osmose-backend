@@ -33,7 +33,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-19 19:40+0000\n"
+"PO-Revision-Date: 2019-08-27 18:39+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -294,7 +294,7 @@ msgstr "Bâtiment spécial (grand)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Voie cyclable en double, “highway=*” + “cycleway=track” en parallèle à “highway=cycleway”"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:184
+#: ../analysers/analyser_osmosis_highway_deadend.py:199
 msgid "Unconnected cycleway"
 msgstr "Voie cyclable non connectée"
 
@@ -355,47 +355,47 @@ msgstr "Groupe de nœuds orphelins"
 msgid "Invalid polygon"
 msgstr "Polygone invalide"
 
-#: ../analysers/analyser_osmosis_powerline.py:312
+#: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Lone power tower or pole"
 msgstr "Pylône ou poteau électrique isolé"
 
-#: ../analysers/analyser_osmosis_powerline.py:315
+#: ../analysers/analyser_osmosis_powerline.py:320
 msgid "Connection between different voltages"
 msgstr "Connexion électrique entre différentes tensions"
 
-#: ../analysers/analyser_osmosis_powerline.py:316
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Non power node on power way"
 msgstr "Nœud non-électrique sur ligne électrique"
 
-#: ../analysers/analyser_osmosis_powerline.py:317
+#: ../analysers/analyser_osmosis_powerline.py:322
 msgid "Missing power tower or pole"
 msgstr "Pylône ou poteau électrique manquant"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
 msgid "No street role"
 msgstr "Rôle “street” absent"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 msgid "street role is not an highway"
 msgstr "Rôle “street” non attribué à une voirie"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
 msgid "Roleless member"
 msgstr "Membre sans rôle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
 msgid "Number twice in the street"
 msgstr "Numéro en double dans la rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "Many street names"
 msgstr "Plusieurs noms pour la rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Many relations on one street"
 msgstr "Plusieurs relations pour la même rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "House too far away from street"
 msgstr "Trop grande distance du bâtiment à la rue"
 
@@ -465,7 +465,7 @@ msgstr "Similitude phonétique “Soundex”"
 msgid "Area intersection %s"
 msgstr "Intersection entre surfaces : %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:135
+#: ../analysers/analyser_osmosis_tag_typo.py:136
 msgid "Typo in tag"
 msgstr "Coquille dans l’attribut"
 
@@ -770,7 +770,7 @@ msgstr "Terrain de sport non intégré %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Noms multiples pour la même référence FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Attribut “addr:city” non concordant avec une ville"
 
@@ -1057,7 +1057,7 @@ msgstr "Intersection d’objets sans rapports relatifs à la voirie et aux cours
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Intersection d’objets sans rapports relatifs à la voirie et l’énergie"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:636
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Le numéro “%(numbers)s” apparaît plusieurs fois sur le chemin “%(way)s”"
@@ -1096,11 +1096,11 @@ msgstr "L’objet doit être à proximité de l’eau"
 msgid "Naptan import, survey needed."
 msgstr "Importation NaPTAN, sondage nécessaire"
 
-#: ../analysers/analyser_osmosis_powerline.py:313
+#: ../analysers/analyser_osmosis_powerline.py:318
 msgid "Unfinished power major line"
 msgstr "La ligne haute tension n’est pas terminée"
 
-#: ../analysers/analyser_osmosis_powerline.py:314
+#: ../analysers/analyser_osmosis_powerline.py:319
 msgid "Unfinished power minor line"
 msgstr "La ligne basse tension n’est pas terminée"
 
@@ -1244,7 +1244,7 @@ msgstr "Nœud dupliqué dans sa géométrie mais attributs différents"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Il manque peut-être un élément “highway”=“traffic_signals” à proximité"
 
-#: ../analysers/analyser_osmosis_powerline.py:318
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Unmatched voltage of line on substation"
 msgstr "Incohérence de tension entre la ligne et le poste électrique"
 
@@ -1376,7 +1376,7 @@ msgstr "Caractère non imprimable"
 msgid "Symbol char"
 msgstr "Caractère symbolique"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Membre sans “addr:housenumber” ni “addr:housename”"
 
@@ -1384,12 +1384,12 @@ msgstr "Membre sans “addr:housenumber” ni “addr:housename”"
 msgid "Invalid multipolygon"
 msgstr "Multipolygone invalide"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:177
+#: ../analysers/analyser_osmosis_addr_interpolation.py:179
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Interpolation de nœuds avec des noms de rue différents"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:184
-#: ../analysers/analyser_osmosis_addr_interpolation.py:185
+#: ../analysers/analyser_osmosis_addr_interpolation.py:186
+#: ../analysers/analyser_osmosis_addr_interpolation.py:187
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Interpolation sur rues : %s"
@@ -1411,7 +1411,7 @@ msgstr "Devrait être un polygone, faire partie d’un multipolygone ou ne pas a
 msgid "Almost junction, join or use noexit tag"
 msgstr "Jonction imparfaite, joindre le nœud ou utiliser l’attribut “noexit” si sans issue"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:186
+#: ../analysers/analyser_osmosis_highway_deadend.py:201
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Route à sens unique inaccessible ou parking manquant ou entrée de parking manquante"
 
@@ -1493,7 +1493,7 @@ msgstr "Accès à la voie ne correspondant pas à la relation “route”=“%s�
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation “route” de transport public non incluse dans une relation “route_master”"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:602
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1625,7 +1625,7 @@ msgstr "Musée en Aquitaine, proposition d’intégration"
 msgid "Invalid Opening Hours"
 msgstr "Horaires d’ouverture incorrects"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid "Missing highway in associatedStreet relation"
 msgstr "Voirie manquante dans une relation “associatedStreet”"
 
@@ -2002,14 +2002,14 @@ msgstr "{0} non apparié avec {1}"
 msgid "Umbalanced {0}"
 msgstr "{0} non apparié"
 
-#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:122
+#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:123
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
 msgstr "“{0}” : caractère non imprimable ({1}, 0x{2:04x}) inattendu dans la clé en position {3}"
 
-#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:126
+#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:128
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
@@ -2028,19 +2028,19 @@ msgid ""
 " {4}"
 msgstr "“{0}”=“{1}” : symbole ({2}, 0x{3:04x}) inattendu dans la valeur en position {4}"
 
-#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
+#: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
 msgstr "\"{0}\"=\"{1}\" : caractère \"{2}\" ({3}, 0x{4:04x}) inattendu, veut-il dire \"{5}\" ({6}, 0x{7:04x}) ?"
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:151 ../plugins/Name_Script.py:174
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr "\"{0}\"=\"{1}\" : caractère \"{2}\" ({3}, 0x{4:04x}) inattendu"
 
-#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
+#: ../plugins/Name_Script.py:154 ../plugins/Name_Script.py:177
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr "“{0}”=“{1}” : élément “{2}“ inattendu"
@@ -2100,7 +2100,7 @@ msgstr "clé d’attribut : {0} ⇒ {1} (règle ks)"
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
 msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vs)"
 
-#: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
 msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vr)"
@@ -2119,7 +2119,7 @@ msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Clôture avec attribut matériel, utilisez de préférence l’attribut “fence_type”"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:185
+#: ../analysers/analyser_osmosis_highway_deadend.py:200
 msgid "Unconnected highway"
 msgstr "Voirie non connectée"
 
@@ -2199,33 +2199,33 @@ msgstr "Attribut ref de la commune manquant"
 msgid "Missing municipality ref tag {0}"
 msgstr "Attribut ref de la commune manquant {0}"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr "Interpolation sur nœud sans attribut \"addr:housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr "\"addr:housenumber\" dans plusieurs interpolations"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation intersection"
 msgstr "Intersection d'interpolations"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:177
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr "Les extrémités de l'interpolation doivent avoir un attribut \"addr:housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:178
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr "Les extrémités de l'interpolation doivent avoir des valeurs d'attribut \"addr:housenumber\" différentes"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:178
+#: ../analysers/analyser_osmosis_addr_interpolation.py:180
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr "Interpolation sur un nœud de plusieurs relations \"associatedStreet\""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "L'attribut \"addr:street\" ne correspond pas à un nom de rue à proximité "
 
@@ -2277,4 +2277,9 @@ msgstr ""
 #: ../plugins/Phone.py:122
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:110
+#, python-brace-format
+msgid "tag value: {0}={1} => {2} (rule kr_vr)"
 msgstr ""

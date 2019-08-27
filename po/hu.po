@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-19 19:40+0000\n"
+"PO-Revision-Date: 2019-08-27 18:39+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -273,7 +273,7 @@ msgstr "Speciális épület (nagy)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Megkettőzött kerékpársáv: [highway=*]+[cycleway=track] és [highway=cycleway]"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:184
+#: ../analysers/analyser_osmosis_highway_deadend.py:199
 msgid "Unconnected cycleway"
 msgstr "Nem csatlakozó kerékpárút"
 
@@ -334,47 +334,47 @@ msgstr "Sok árva pont"
 msgid "Invalid polygon"
 msgstr "Érvénytelen poligon"
 
-#: ../analysers/analyser_osmosis_powerline.py:312
+#: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Lone power tower or pole"
 msgstr "Magában álló távvezeték- vagy villanyoszlop"
 
-#: ../analysers/analyser_osmosis_powerline.py:315
+#: ../analysers/analyser_osmosis_powerline.py:320
 msgid "Connection between different voltages"
 msgstr "Ellentmondás a különböző feszültségek között"
 
-#: ../analysers/analyser_osmosis_powerline.py:316
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Non power node on power way"
 msgstr "Távvezeték [power] vonalon nem távvezeték-típusú pont"
 
-#: ../analysers/analyser_osmosis_powerline.py:317
+#: ../analysers/analyser_osmosis_powerline.py:322
 msgid "Missing power tower or pole"
 msgstr "Hiányzó távvezeték- vagy villanyoszlop"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
 msgid "No street role"
 msgstr "Nincs útszerep"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 msgid "street role is not an highway"
 msgstr "az út szerep nem úté"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
 msgid "Roleless member"
 msgstr "Szerep nélküli tag"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
 msgid "Number twice in the street"
 msgstr "Kétszer szereplő házszám az utcában"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "Many street names"
 msgstr "Sok utcanév"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Many relations on one street"
 msgstr "Sok kapcsolat ugyanazon az úton"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "House too far away from street"
 msgstr "Ház túl messze az úttól"
 
@@ -444,7 +444,7 @@ msgstr "Soundex-ellenőrzés"
 msgid "Area intersection %s"
 msgstr "Egymást metsző területek %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:135
+#: ../analysers/analyser_osmosis_tag_typo.py:136
 msgid "Typo in tag"
 msgstr "Elírás a címkében"
 
@@ -749,7 +749,7 @@ msgstr "Sportpálya: nincs a térképen %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Több név a FANTOIR-címregiszter ugyanazon hivatkozáshoz (FR)"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Az [addr:city] címke nem felel meg a városnak"
 
@@ -1036,7 +1036,7 @@ msgstr "Egymást metsző, nem kapcsolódó út és vízfolyás"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Egymást metsző, nem kapcsolódó út- és villamosenergia-objektum"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:636
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Többszörös „%(numbers)s” számok a(z) „%(way)s” vonalon"
@@ -1075,11 +1075,11 @@ msgstr "Az objektumnak közel kell lennie a parthoz vagy vízhez"
 msgid "Naptan import, survey needed."
 msgstr "NaPTAN import: helyszíni felmérés szükséges (UK)"
 
-#: ../analysers/analyser_osmosis_powerline.py:313
+#: ../analysers/analyser_osmosis_powerline.py:318
 msgid "Unfinished power major line"
 msgstr "Befejezetlen távvezeték"
 
-#: ../analysers/analyser_osmosis_powerline.py:314
+#: ../analysers/analyser_osmosis_powerline.py:319
 msgid "Unfinished power minor line"
 msgstr "Befejezetlen villanyvezeték"
 
@@ -1223,7 +1223,7 @@ msgstr "Megkettőzött pontalakzat különböző címkékkel"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Esetlegesen hiányzó jelzőlámpa [highway=traffic_signals] a közelben"
 
-#: ../analysers/analyser_osmosis_powerline.py:318
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Unmatched voltage of line on substation"
 msgstr "Nem illeszkedő vezetékfeszültség [voltage] az alállomáson"
 
@@ -1355,7 +1355,7 @@ msgstr "Nem nyomtatható karakter"
 msgid "Symbol char"
 msgstr "Szimbólumkarakter"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "[addr:housenumber] vagy [addr:housename] nélküli tag"
 
@@ -1363,12 +1363,12 @@ msgstr "[addr:housenumber] vagy [addr:housename] nélküli tag"
 msgid "Invalid multipolygon"
 msgstr "Érvénytelen multipoligon"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:177
+#: ../analysers/analyser_osmosis_addr_interpolation.py:179
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Interpoláció több utcanév pontjain"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:184
-#: ../analysers/analyser_osmosis_addr_interpolation.py:185
+#: ../analysers/analyser_osmosis_addr_interpolation.py:186
+#: ../analysers/analyser_osmosis_addr_interpolation.py:187
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Interpolációs hiány következő utcákon: %s"
@@ -1390,7 +1390,7 @@ msgstr "Poligonnak, multipoligon részének vagy [area] címke nélkülinek kell
 msgid "Almost junction, join or use noexit tag"
 msgstr "Majdnem egy kereszteződés: kapcsold össze vagy használd a [noexit] címkét"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:186
+#: ../analysers/analyser_osmosis_highway_deadend.py:201
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Elérhetetlen egyirányú utca vagy hiányzó parkoló/parkolóbejárat"
 
@@ -1472,7 +1472,7 @@ msgstr "Nem illeszkedő úthasználat (way access) a [route=%s] kapcsolaton"
 msgid "Public transport relation route not in route_master relation"
 msgstr "Tömegközlekedési kapcsolat útvonal nem része semmilyen [route_master] kapcsolatnak"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:602
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1604,7 +1604,7 @@ msgstr "Aquitániai múzeum: javasolt hely a térképen"
 msgid "Invalid Opening Hours"
 msgstr "Érvénytelen nyitva tartás"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid "Missing highway in associatedStreet relation"
 msgstr "Hiányzik az út az [associatedStreet] kapcsolatból"
 
@@ -1981,14 +1981,14 @@ msgstr "Nem illenek össze: {0} és {1}"
 msgid "Umbalanced {0}"
 msgstr "Hiányzó {0}"
 
-#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:122
+#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:123
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
 msgstr "\"{0}\" furcsa, kinyomtathatatlan karakter ({1}, 0x{2:04x}) a kulcsban a következő pozíciónál: {3}"
 
-#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:126
+#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:128
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
@@ -2007,19 +2007,19 @@ msgid ""
 " {4}"
 msgstr "\"{0}\"=\"{1}\" furcsa érték ({2}, 0x{3:04x}) az értékben a következő pozíciónál: {4}"
 
-#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
+#: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
 msgstr "\"{0}\"=\"{1}\" furcsa karatker \"{2}\" ({3}, 0x{4:04x}). Esetleg ezt jelenti: \"{5}\" ({6}, 0x{7:04x})?"
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:151 ../plugins/Name_Script.py:174
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr "\"{0}\"=\"{1}\" furcsa karakter \"{2}\" ({3}, 0x{4:04x})"
 
-#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
+#: ../plugins/Name_Script.py:154 ../plugins/Name_Script.py:177
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr "\"{0}\"=\"{1}\" furcsa \"{2}\""
@@ -2079,7 +2079,7 @@ msgstr "címkekulcs: {0} => {1} (szabály: helyes kulcs)"
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
 msgstr "címkeérték: {0}={1} => {2} (szabály: helyes kulcs => helyes érték)"
 
-#: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
 msgstr "címkeérték: {0}={1} => {2} (szabály: helyes kulcs => érték írásmódja)"
@@ -2098,7 +2098,7 @@ msgstr "címkeérték: {0}={1} => {2} (szabály: kulcs írásmódja => helyes é
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Kerítés [material] címkével. Inkább [fence_type] címkét kellene használni"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:185
+#: ../analysers/analyser_osmosis_highway_deadend.py:200
 msgid "Unconnected highway"
 msgstr "Nem kapcsolódó út"
 
@@ -2178,33 +2178,33 @@ msgstr "Hiányzó települési hivatkozási címke"
 msgid "Missing municipality ref tag {0}"
 msgstr "Hiányzó települési hivatkozási címke: [{0}]"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr "Interpoláció pontokon [addr:housenumber] címke nélkül"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr "[addr:housenumber] több interpolációban is"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation intersection"
 msgstr "Egymást metsző interpolációk"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:177
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr "Az interpoláció végpontjain [addr:housenumber] címkének kell lennie"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:178
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr "Az interpoláció végpontjain különböző [addr:housenumber] címkéknek kell lenniük"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:178
+#: ../analysers/analyser_osmosis_addr_interpolation.py:180
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr "Interpoláció több [associatedStreet] kapcsolat pontjain"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "Az [addr:street] címke nem illeszkedik egyik környező utcához sem"
 
@@ -2256,4 +2256,9 @@ msgstr ""
 #: ../plugins/Phone.py:122
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:110
+#, python-brace-format
+msgid "tag value: {0}={1} => {2} (rule kr_vr)"
 msgstr ""

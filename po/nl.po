@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-22 17:11+0000\n"
-"Last-Translator: alain2003\n"
+"PO-Revision-Date: 2019-08-27 18:39+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -273,7 +273,7 @@ msgstr "Speciaal gebouw (groot)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Dubbele fietspaden, highway=*+cycleway=track en highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:184
+#: ../analysers/analyser_osmosis_highway_deadend.py:199
 msgid "Unconnected cycleway"
 msgstr "Niet verbonden fietspad"
 
@@ -334,47 +334,47 @@ msgstr "Alleenstaande knoop clusters"
 msgid "Invalid polygon"
 msgstr "Ongeldig polygoon"
 
-#: ../analysers/analyser_osmosis_powerline.py:312
+#: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Lone power tower or pole"
 msgstr "Geïsoleerd hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_powerline.py:315
+#: ../analysers/analyser_osmosis_powerline.py:320
 msgid "Connection between different voltages"
 msgstr "Verbinding tussen verschillende spanningen"
 
-#: ../analysers/analyser_osmosis_powerline.py:316
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Non power node on power way"
 msgstr "Geen spanningsknoop op spanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:317
+#: ../analysers/analyser_osmosis_powerline.py:322
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
 msgid "No street role"
 msgstr "Geen straat role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 msgid "street role is not an highway"
 msgstr "Straat role is niet een weg"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
 msgid "Roleless member"
 msgstr "Nummer zonder role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
 msgid "Number twice in the street"
 msgstr "Nummer dubbel in straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "Many street names"
 msgstr "Te veel straat namen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Many relations on one street"
 msgstr "Te veel relaties op één straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "House too far away from street"
 msgstr "Huis te ver weg van straat"
 
@@ -444,7 +444,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Gebied kruist %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:135
+#: ../analysers/analyser_osmosis_tag_typo.py:136
 msgid "Typo in tag"
 msgstr "typefout in tag"
 
@@ -749,7 +749,7 @@ msgstr "Sportveld niet geïntegreerd %s "
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Meerdere namen voor dezelfde ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Tag \"addr:city\" komt met geen enkele stad overeen"
 
@@ -1036,7 +1036,7 @@ msgstr "Kruising van ongerelateerde weg en waterweg objecten"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Kruising van ongerelateerde weg en energie objecten"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:636
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Meerdere nummers \"%(numbers)s\" in weg \"%(way)s\""
@@ -1075,11 +1075,11 @@ msgstr "Object moet dichtbij de kust of water"
 msgid "Naptan import, survey needed."
 msgstr "Naptan import, overzicht nodig."
 
-#: ../analysers/analyser_osmosis_powerline.py:313
+#: ../analysers/analyser_osmosis_powerline.py:318
 msgid "Unfinished power major line"
 msgstr "Onvoltooid grote hoogspanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:314
+#: ../analysers/analyser_osmosis_powerline.py:319
 msgid "Unfinished power minor line"
 msgstr "Onvoltooid kleine hoogspanningslijn"
 
@@ -1223,7 +1223,7 @@ msgstr "Dubbele knoop geometrie maar verschillende tags"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Mogelijk highway=traffic_signals dichtbij ontbreekt"
 
-#: ../analysers/analyser_osmosis_powerline.py:318
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Unmatched voltage of line on substation"
 msgstr "Spanning niet gelijk op de lijn van het substation"
 
@@ -1355,7 +1355,7 @@ msgstr "Niet afdrukbare karakter"
 msgid "Symbol char"
 msgstr "Symbool karakter"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Lid zonder addr:housenumber noch addr:housename"
 
@@ -1363,12 +1363,12 @@ msgstr "Lid zonder addr:housenumber noch addr:housename"
 msgid "Invalid multipolygon"
 msgstr "Ongeldig multipolygoon"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:177
+#: ../analysers/analyser_osmosis_addr_interpolation.py:179
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Interpolatie op nodes van meerdere straat namen"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:184
-#: ../analysers/analyser_osmosis_addr_interpolation.py:185
+#: ../analysers/analyser_osmosis_addr_interpolation.py:186
+#: ../analysers/analyser_osmosis_addr_interpolation.py:187
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Interpolatiebereik op straten:%s"
@@ -1390,7 +1390,7 @@ msgstr "Meot een polygoon zijn, een deel van een multipolygon of heeft geen area
 msgid "Almost junction, join or use noexit tag"
 msgstr "Bijna een kruising, voeg samen of gebruik noexit tag"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:186
+#: ../analysers/analyser_osmosis_highway_deadend.py:201
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "éérichingsweg ontoegangelijk of parking ontbreekt of parking ingang"
 
@@ -1472,7 +1472,7 @@ msgstr "verkeerde combinatie weg toegang relatie route=%s"
 msgid "Public transport relation route not in route_master relation"
 msgstr "Public transport relatie route niet in route_master relatie"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:602
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1604,7 +1604,7 @@ msgstr "Aquitaine museum, integratie suggestie"
 msgid "Invalid Opening Hours"
 msgstr "Ongeldige Opening Uren"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid "Missing highway in associatedStreet relation"
 msgstr "Ontbrekende weg in associatedStreet relatie"
 
@@ -1981,14 +1981,14 @@ msgstr "onevenwichtig {0} met {1}"
 msgid "Umbalanced {0}"
 msgstr "onevenwichtig {0}"
 
-#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:122
+#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:123
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
 msgstr "\"{0}\" onverwachte niet afdrukbare karakter ({1}, 0x{2:04x})  in key op positie  {3}"
 
-#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:126
+#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:128
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
@@ -2007,19 +2007,19 @@ msgid ""
 " {4}"
 msgstr "\"{0}\"=\"{1}\" onverwachte symbool karakter ({2}, 0x{3:04x}) in waarde op positie {4}"
 
-#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
+#: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
 msgstr "\"{0}\"=\"{1}\" onverwachte karakter \"{2}\" ({3}, 0x{4:04x}). Betekent \"{5}\" ({6}, 0x{7:04x})?"
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:151 ../plugins/Name_Script.py:174
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr "\"{0}\"=\"{1}\" onverwachte karakter \"{2}\" ({3}, 0x{4:04x})"
 
-#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
+#: ../plugins/Name_Script.py:154 ../plugins/Name_Script.py:177
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr "\"{0}\"=\"{1}\" onverwacht \"{2}\""
@@ -2079,7 +2079,7 @@ msgstr "tag key: {0} => {1} (rule ks)"
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
 msgstr "tag waarde: {0}={1} => {2} (rule ks_vs)"
 
-#: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
 msgstr "tag waarde: {0}={1} => {2} (rule ks_vr)"
@@ -2098,7 +2098,7 @@ msgstr "tag waarde: {0}={1} => {2} (rule kr_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Hek met material tag, gebruik beter fence_type tag"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:185
+#: ../analysers/analyser_osmosis_highway_deadend.py:200
 msgid "Unconnected highway"
 msgstr "Niet verbonden weg "
 
@@ -2178,33 +2178,33 @@ msgstr "Gemeente ref tag ontbreekt"
 msgid "Missing municipality ref tag {0}"
 msgstr "Gemeente ref tag ontbreekt {0}"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr "Interpolatie op nodes zonder tag \"addr:housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr "\"addr:housenumber\" in multiple interpolaties"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation intersection"
 msgstr "kruising van interpolatie"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:177
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr "Interpolatie einde moet een tag \"addr:housenumber\" hebben"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:178
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr "Interpolaties eindes moeten een veschillende tag hebben \"addr:housenumber\" values"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:178
+#: ../analysers/analyser_osmosis_addr_interpolation.py:180
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr "Interpolatie op nodes van meerdere \"associatedStreet\" relaties"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "Tag \"addr:street\" komt niet overeen met een straatnaam in de buurt"
 
@@ -2257,3 +2257,8 @@ msgstr "verkeerde weg type (level {0})"
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr "Niet toegestane karakter \"{0}\" in telefoonnummer tag \"{1}\""
+
+#: ../plugins/TagWatchFrViPofm.py:110
+#, python-brace-format
+msgid "tag value: {0}={1} => {2} (rule kr_vr)"
+msgstr ""

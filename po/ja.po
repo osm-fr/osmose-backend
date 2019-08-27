@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-19 19:40+0000\n"
+"PO-Revision-Date: 2019-08-27 18:39+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "特殊な建物 (巨大)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "highway=*+cycleway=trackとhighway=cyclewayの自転車道が重複している"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:184
+#: ../analysers/analyser_osmosis_highway_deadend.py:199
 msgid "Unconnected cycleway"
 msgstr "自転車道が接続していない"
 
@@ -335,47 +335,47 @@ msgstr "孤立したノード・クラスタ"
 msgid "Invalid polygon"
 msgstr "無効なポリゴン"
 
-#: ../analysers/analyser_osmosis_powerline.py:312
+#: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Lone power tower or pole"
 msgstr "送電塔や電柱が孤立している"
 
-#: ../analysers/analyser_osmosis_powerline.py:315
+#: ../analysers/analyser_osmosis_powerline.py:320
 msgid "Connection between different voltages"
 msgstr "異なる電圧同士を接続している"
 
-#: ../analysers/analyser_osmosis_powerline.py:316
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Non power node on power way"
 msgstr "送電線に電力以外のノードがある"
 
-#: ../analysers/analyser_osmosis_powerline.py:317
+#: ../analysers/analyser_osmosis_powerline.py:322
 msgid "Missing power tower or pole"
 msgstr "送電塔や電柱がない"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:603
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
 msgid "No street role"
 msgstr "通りのロールがない"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:604
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 msgid "street role is not an highway"
 msgstr "道路以外にstreet roleが付与されている"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:605
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
 msgid "Roleless member"
 msgstr "メンバーにロールがない"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
 msgid "Number twice in the street"
 msgstr "通りに同じ住居番号がある"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "Many street names"
 msgstr "通り名が多すぎる"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Many relations on one street"
 msgstr "1本の通りにリレーションが多い"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "House too far away from street"
 msgstr "住宅が道路から離れすぎている"
 
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:135
+#: ../analysers/analyser_osmosis_tag_typo.py:136
 msgid "Typo in tag"
 msgstr "タグ名に綴り間違がある"
 
@@ -750,7 +750,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -1037,7 +1037,7 @@ msgstr ""
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:636
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr ""
@@ -1076,11 +1076,11 @@ msgstr ""
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:313
+#: ../analysers/analyser_osmosis_powerline.py:318
 msgid "Unfinished power major line"
 msgstr "送電線が終わっていない"
 
-#: ../analysers/analyser_osmosis_powerline.py:314
+#: ../analysers/analyser_osmosis_powerline.py:319
 msgid "Unfinished power minor line"
 msgstr ""
 
@@ -1224,7 +1224,7 @@ msgstr "重複するノード：タグの異なる同一位置"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "近くにhighway=traffic_signalsが存在する可能性"
 
-#: ../analysers/analyser_osmosis_powerline.py:318
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Unmatched voltage of line on substation"
 msgstr "電圧の高すぎる変電所"
 
@@ -1356,7 +1356,7 @@ msgstr ""
 msgid "Symbol char"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "メンバーにaddr:housenumberがない"
 
@@ -1364,12 +1364,12 @@ msgstr "メンバーにaddr:housenumberがない"
 msgid "Invalid multipolygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:177
+#: ../analysers/analyser_osmosis_addr_interpolation.py:179
 msgid "Interpolation on nodes of multiple street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:184
-#: ../analysers/analyser_osmosis_addr_interpolation.py:185
+#: ../analysers/analyser_osmosis_addr_interpolation.py:186
+#: ../analysers/analyser_osmosis_addr_interpolation.py:187
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr ""
@@ -1391,7 +1391,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:186
+#: ../analysers/analyser_osmosis_highway_deadend.py:201
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:602
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1605,7 +1605,7 @@ msgstr ""
 msgid "Invalid Opening Hours"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid "Missing highway in associatedStreet relation"
 msgstr ""
 
@@ -1982,14 +1982,14 @@ msgstr ""
 msgid "Umbalanced {0}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:122
+#: ../plugins/Name_Script.py:100 ../plugins/Name_Script.py:123
 #, python-brace-format
 msgid ""
 "\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position "
 "{3}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:126
+#: ../plugins/Name_Script.py:105 ../plugins/Name_Script.py:128
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at "
@@ -2008,19 +2008,19 @@ msgid ""
 " {4}"
 msgstr ""
 
-#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
+#: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:151 ../plugins/Name_Script.py:174
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
 msgstr ""
 
-#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
+#: ../plugins/Name_Script.py:154 ../plugins/Name_Script.py:177
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected \"{2}\""
 msgstr ""
@@ -2080,7 +2080,7 @@ msgstr ""
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:96 ../plugins/TagWatchFrViPofm.py:110
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
 msgstr ""
@@ -2099,7 +2099,7 @@ msgstr ""
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:185
+#: ../analysers/analyser_osmosis_highway_deadend.py:200
 msgid "Unconnected highway"
 msgstr ""
 
@@ -2179,33 +2179,33 @@ msgstr ""
 msgid "Missing municipality ref tag {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:172
+#: ../analysers/analyser_osmosis_addr_interpolation.py:174
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:173
+#: ../analysers/analyser_osmosis_addr_interpolation.py:175
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:176
 msgid "Interpolation intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:177
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:178
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:178
+#: ../analysers/analyser_osmosis_addr_interpolation.py:180
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""
 
@@ -2257,4 +2257,9 @@ msgstr ""
 #: ../plugins/Phone.py:122
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:110
+#, python-brace-format
+msgid "tag value: {0}={1} => {2} (rule kr_vr)"
 msgstr ""
