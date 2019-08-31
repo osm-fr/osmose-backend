@@ -61,6 +61,10 @@ sql03 = """
 CREATE INDEX idx_interpolation_nodes_addr_housenumber ON interpolation_nodes((tags?'addr:housenumber')) WHERE tags?'addr:housenumber'
 """
 
+sql04 = """
+CREATE INDEX idx_interpolation_nodes_geom ON interpolation_nodes USING gist(geom)
+"""
+
 sql10 = """
 SELECT
     id,
@@ -101,6 +105,7 @@ SELECT DISTINCT ON (ways.id)
 FROM
     interpolations AS ways
     LEFT JOIN interpolation_nodes AS nodes ON
+        ways.linestring && nodes.geom AND
         ways.id = ANY (nodes.w_ids) AND
         (
             nodes.id = ways.nodes[1] OR
@@ -191,6 +196,7 @@ class Analyser_Osmosis_Addr_Interpolation(Analyser_Osmosis):
         self.run(sql01)
         self.run(sql02)
         self.run(sql03)
+        self.run(sql04)
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         self.run(sql30, self.callback30)
