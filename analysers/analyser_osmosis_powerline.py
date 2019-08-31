@@ -295,7 +295,7 @@ ORDER BY
 """
 
 sql60 = """
-SELECT
+SELECT DISTINCT ON (line_ends1.wid)
     line_ends1.wid,
     line_terminators.type_id,
     ST_AsText(line_ends1.geom)
@@ -307,6 +307,8 @@ WHERE
     line_terminators.power = 'substation' AND
     (line_terminators.substation IS NULL OR line_terminators.substation != 'minor_distribution') AND
     NOT line_ends1.voltage <@ line_terminators.voltage
+ORDER BY
+    line_ends1.wid
 """
 
 
