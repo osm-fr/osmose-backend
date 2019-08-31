@@ -1,0 +1,454 @@
+[
+    {
+        "NAT_ID": 0,
+        "title": "Sans nature",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 4,
+        "title": "Château d'eau - réservoir",
+        "tags_select": {
+            "man_made": "water_tower"
+        },
+        "tags_generate1": {
+            "man_made": "water_tower",
+            "antenna": "yes"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 8,
+        "title": "Intérieur galerie",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna",
+            "location": "underground"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 9,
+        "title": "Intérieur sous-terrain",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna",
+            "location": "underground"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 10,
+        "title": "Tunnel",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna",
+            "location": "underground"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 11,
+        "title": "Mât béton",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "material": "concrete"
+        }
+    },
+    {
+        "NAT_ID": 12,
+        "title": "Mât métallique",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "material": "steel"
+        }
+    },
+    {
+        "NAT_ID": 17,
+        "title": "Bâtiment",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 19,
+        "title": "Monument historique",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 20,
+        "title": "Monument religieux",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 21,
+        "title": "Pylône",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 22,
+        "title": "Pylône autoportant",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "tower:construction": "freestanding"
+        }
+    },
+    {
+        "NAT_ID": 23,
+        "title": "Pylône autostable",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "tower:construction": "lattice"
+        }
+    },
+    {
+        "NAT_ID": 24,
+        "title": "Pylône haubané",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "tower:construction": "guyed"
+        }
+    },
+    {
+        "NAT_ID": 25,
+        "title": "Pylône treillis",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "tower:construction": "lattice"
+        }
+    },
+    {
+        "NAT_ID": 26,
+        "title": "Pylône tubulaire",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {
+            "tower:construction": "freestanding"
+        }
+    },
+    {
+        "NAT_ID": 31,
+        "title": "Silo",
+        "tags_select": {
+            "man_made": "silo"
+        },
+        "tags_generate1": {
+            "man_made": "silo",
+            "antenna": "yes"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 32,
+        "title": "Ouvrage d'art (pont, viaduc)",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 33,
+        "title": "Tour hertzienne",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "communications_tower"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 34,
+        "title": "Dalle en béton",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 38,
+        "title": "Immeuble",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 39,
+        "title": "Local technique",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 40,
+        "title": "Sémaphore",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 41,
+        "title": "Phare",
+        "tags_select": {
+            "man_made": "lighthouse"
+        },
+        "tags_generate1": {
+            "man_made": "antenna",
+            "antenna": "yes"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 42,
+        "title": "Mât",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 43,
+        "title": "Fût",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 44,
+        "title": "Tour de contrôle",
+        "tags_select": {
+            "man_made": "tower",
+            "service": "aircraft_control"
+        },
+        "tags_generate1": {
+            "man_made": "tower",
+            "service": "aircraft_control"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 45,
+        "title": "Contre-poids au sol",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 46,
+        "title": "Contre-poids sur shelter",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 47,
+        "title": "Support DEFENSE",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 48,
+        "title": "pylône arbre",
+        "tags_select": [
+            {"man_made": "tower","tower:type": "communication"},
+            {"man_made": "mast","tower:type": "communication"},
+            {"man_made": "communications_tower"}
+        ],
+        "tags_generate1": {
+            "man_made": "mast",
+            "tower:type": "communication"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 49,
+        "title": "Ouvrage de signalisation (portique routier, panneau routier, panneau publicitaire)",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 50,
+        "title": "Balise ou bouée",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 51,
+        "title": "XXX",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 52,
+        "title": "Eolienne",
+        "tags_select": {
+            "power": "generator",
+            "generator:source": "wind"
+        },
+        "tags_generate1": {
+            "power": "generator",
+            "generator:source": "wind"
+        },
+        "tags_generate2": {}
+    },
+    {
+        "NAT_ID": 999999999,
+        "title": "Support non décrit",
+        "tags_select": {
+            "man_made": "antenna"
+        },
+        "tags_generate1": {
+            "man_made": "antenna"
+        },
+        "tags_generate2": {}
+    }
+]
