@@ -82,7 +82,7 @@ WHERE
 
 # ways with addr:housenumber or addr:housename and without addr:street and not member of a associatedStreet
 sql10 = """
-SELECT
+SELECT DISTINCT ON (id)
     id,
     ST_AsText(ST_Transform(way_locate(linestring_proj), 4326))
 FROM
@@ -90,11 +90,13 @@ FROM
 WHERE
     name IS NULL AND
     rid IS NULL
+ORDER BY
+    id
 """
 
 # same for nodes
 sql11 = """
-SELECT
+SELECT DISTINCT ON (id)
     id,
     ST_AsText(ST_Transform(geom_proj, 4326))
 FROM
@@ -102,6 +104,8 @@ FROM
 WHERE
     name IS NULL AND
     rid IS NULL
+ORDER BY
+    id
 """
 
 # No role street in relation
