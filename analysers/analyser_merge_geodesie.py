@@ -34,6 +34,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                     file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
+                where = lambda res: not('Point constaté détruit' in res['description'] or 'Point non retrouvé' in res['description']), # No more uniq ref
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),
