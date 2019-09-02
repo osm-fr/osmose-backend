@@ -80,7 +80,7 @@ SELECT
 FROM
     {0}{2} AS {2}
     JOIN {1}{3} AS {3} ON
-        ST_Intersects({2}.geom, {3}.geom) AND
+        ST_Contains({2}.geom, {3}.geom) AND
         (
             ({2}.name IS NULL AND {3}.name IS NULL) OR
             {2}.name = {3}.name
@@ -129,5 +129,5 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
     def apply(self, callback):
         ret = {"nodes_alb": self.node_full, "ways_alb": self.way_full, "relations_alb": self.relation_full}
-        for c in [["ways_alb", "nodes_alb", 1], ["ways_alb", "relations_alb", 2], ["relations_alb", "nodes_alb", 3]]:
+        for c in [["ways_alb", "nodes_alb", 1], ["relations_alb", "ways_alb", 2], ["relations_alb", "nodes_alb", 3]]:
             callback(c[0], c[1], ret[c[0]], ret[c[1]], c[2])
