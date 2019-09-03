@@ -259,13 +259,6 @@ int_
     | n=NEGATIVE_INT
     ;
 
-num
-    : n=POSITIVE_INT
-    | n=NEGATIVE_INT
-    | n=POSITIVE_FLOAT
-    | n=NEGATIVE_FLOAT
-    ;
-
 single_value
     : v=POSITIVE_INT
     | v=NEGATIVE_INT
