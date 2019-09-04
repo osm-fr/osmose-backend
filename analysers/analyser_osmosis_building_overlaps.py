@@ -22,6 +22,7 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
+from modules.Stablehash import stablehash
 
 sql20 = """
 CREATE TEMP TABLE bnodes AS
@@ -111,7 +112,7 @@ ORDER BY
 """
 
 sql60 = """
-SELECT DISTINCT ON(ST_Centroid(geom))
+SELECT
     ST_AsText(ST_Transform(ST_Centroid(geom), 4326)),
     ST_Area(geom)
 FROM
@@ -167,7 +168,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
-        self.callback60 = lambda res: {"class":5, "data":[self.positionAsText]}
+        self.callback60 = lambda res: {"class":5, "subclass": stablehash(res[0]), "data":[self.positionAsText]}
         if self.FR:
             self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
 

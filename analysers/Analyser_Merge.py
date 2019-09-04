@@ -193,7 +193,8 @@ SELECT
         ELSE ST_AsText(any_locate(osm_item.type, osm_item.id))
     END,
     osm_item.tags,
-    osm_item.geom
+    osm_item.geom,
+    osm_item.ref
 FROM
     osm_item
     LEFT JOIN %(official)s AS official ON
@@ -944,6 +945,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 # Invalid OSM
                 self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
                     "class": self.missing_osm["class"],
+                    "subclass": str(stablehash(res[4])) if self.mapping.osmRef != "NULL" else None,
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
 

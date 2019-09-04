@@ -96,5 +96,6 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
 
     def coord_fallback(self, fields):
         if not fields['longitude'] and fields['Coordonnées INSEE']:
-            fields['latitude'], fields['longitude'] = list(map(lambda s: float(s.strip()), fields['Coordonnées INSEE'].split(',')))
+            # It is too late to write to fields['longitude'] and fields['latitude']
+            fields['_y'], fields['_x'] = list(map(lambda s: float(s.strip()), fields['Coordonnées INSEE'].split(',')))
         return fields

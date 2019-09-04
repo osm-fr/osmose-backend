@@ -113,7 +113,7 @@ HAVING
 sql20 = """
 CREATE TEMP TABLE stop_platform AS
 (
-SELECT
+SELECT DISTINCT ON (relations.id, ways.id)
   relations.id,
   relation_members.member_type,
   ways.id AS mid,
@@ -130,8 +130,11 @@ WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
   (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
+ORDER BY
+  relations.id,
+  ways.id
 ) UNION ALL (
-SELECT
+SELECT DISTINCT ON (relations.id, nodes.id)
   relations.id,
   relation_members.member_type,
   nodes.id AS mid,
@@ -147,7 +150,10 @@ FROM
 WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
- (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
+  (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
+ORDER BY
+  relations.id,
+  nodes.id
 )
 """
 

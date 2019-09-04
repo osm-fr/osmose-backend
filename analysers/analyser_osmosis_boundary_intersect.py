@@ -24,6 +24,11 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE TEMP TABLE boundary AS
+SELECT
+    id,
+    linestring,
+    array_agg(boundary) AS boundaries
+FROM (
 (
 SELECT
     ways.id,
@@ -41,7 +46,7 @@ WHERE
     relations.tags->'type' = 'boundary' AND
     relations.tags?'boundary'
 )
-UNION
+UNION ALL
 (
 SELECT
     ways.id,
@@ -55,10 +60,10 @@ WHERE
     tags->'type' = 'boundary' AND
     tags?'boundary'
 )
-"""
-
-sql11 = """
-CREATE INDEX boundary_boundary ON boundary(boundary)
+) AS t
+GROUP BY
+    id,
+    linestring
 """
 
 sql12 = """
@@ -73,7 +78,7 @@ SELECT
 FROM
     boundary AS b1
     JOIN boundary AS b2 ON
-        b1.boundary = b2.boundary AND
+        b1.boundaries && b2.boundaries AND
         b1.linestring && b2.linestring AND
         b1.id < b2.id AND
         -- Ways not linked
@@ -91,6 +96,5 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
 
     def analyser_osmosis_common(self):
         self.run(sql10)
-        self.run(sql11)
         self.run(sql12)
         self.run(sql20, self.callback20)

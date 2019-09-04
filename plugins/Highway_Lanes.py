@@ -69,12 +69,12 @@ class Highway_Lanes(Plugin):
                     unknown = False
                     i = 0
                     for tt in ttt:
-                        for t in tt.split(";"):
+                        for t in set(tt.split(";")):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
-                                err.append({"class": 31606, "subclass": 0 + stablehash(tags_lanes[tl]), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
+                                err.append({"class": 31606, "subclass": 0 + stablehash(tl + '|' + tt + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
-                                err.append({"class": 31600, "subclass": 1 + stablehash(tags_lanes[tl])})
+                                err.append({"class": 31600, "subclass": 1 + stablehash(tl + '|' + tt + '|' + str(i))})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
@@ -97,7 +97,7 @@ class Highway_Lanes(Plugin):
                             (first_space == None or last_space == None or first_space <= last_space) and
                             (last_space == None or first_right == None or last_space < first_right) and
                             (last_left == None or first_right == None or last_left < first_right)):
-                            err.append({"class": 31607, "subclass": 1 + stablehash(tags_lanes[tl])})
+                            err.append({"class": 31607, "subclass": 1 + stablehash(tl)})
 
         # Check acces lanes values
 
