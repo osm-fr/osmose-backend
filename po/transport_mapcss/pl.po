@@ -135,11 +135,11 @@ msgstr ""
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr ""
+msgstr "Sprawdź tag colour"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Kod koloru powinien zaczynać się od \"#\" i mieć 3 lub 6 cyfr"
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
