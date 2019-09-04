@@ -215,30 +215,12 @@ class MapCSSListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MapCSSParser#declaration_value_function.
-    def enterDeclaration_value_function(self, ctx:MapCSSParser.Declaration_value_functionContext):
-        pass
-
-    # Exit a parse tree produced by MapCSSParser#declaration_value_function.
-    def exitDeclaration_value_function(self, ctx:MapCSSParser.Declaration_value_functionContext):
-        pass
-
-
     # Enter a parse tree produced by MapCSSParser#int_.
     def enterInt_(self, ctx:MapCSSParser.Int_Context):
         pass
 
     # Exit a parse tree produced by MapCSSParser#int_.
     def exitInt_(self, ctx:MapCSSParser.Int_Context):
-        pass
-
-
-    # Enter a parse tree produced by MapCSSParser#num.
-    def enterNum(self, ctx:MapCSSParser.NumContext):
-        pass
-
-    # Exit a parse tree produced by MapCSSParser#num.
-    def exitNum(self, ctx:MapCSSParser.NumContext):
         pass
 
 

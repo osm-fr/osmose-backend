@@ -247,11 +247,7 @@ declaration_property
 declaration_value
     : single_value
 /*    | EVAL  PAR_OPEN expr PAR_CLOSE*/
-    | declaration_value_function
-    ;
-
-declaration_value_function
-    : cssident PAR_OPEN (declaration_value (COMMA declaration_value)*)? PAR_CLOSE
+    | functionExpression
     ;
 
 int_

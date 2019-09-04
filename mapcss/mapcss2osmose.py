@@ -171,14 +171,14 @@ def booleanExpression_operator_to_function(t, c):
         ]}
     return t
 
-def declaration_value_function_param_regex(t, c):
+def functionExpression_param_regex(t, c):
     """
-    type = declaration_value_function
+    type = functionExpression
     Ensure params to regex functions are regex
     """
     if t['name'] in ('regexp_test', 'regexp_match'):
-        if t['params'][0]['type'] == 'single_value' and t['params'][0]['value']['type'] == 'quoted':
-            t['params'][0]['value'] = {'type': 'regexExpression', 'value': t['params'][0]['value']['value']}
+        if t['params'][0]['type'] == 'quoted':
+            t['params'][0] = {'type': 'regexExpression', 'value': t['params'][0]['value']}
     return t
 
 def pseudo_class_righthandtraffic(t, c):
@@ -355,7 +355,7 @@ rewrite_rules_change_before = [
     ('booleanExpression', booleanExpression_capture_first_operand),
     ('booleanExpression', booleanExpression_negated_operator),
     ('booleanExpression', booleanExpression_operator_to_function),
-    ('declaration_value_function', declaration_value_function_param_regex),
+    ('functionExpression', functionExpression_param_regex),
     ('pseudo_class', pseudo_class_righthandtraffic),
     # Safty
     ('rule', rule_declarations_order),
@@ -454,7 +454,7 @@ def segregate_selectors_type(rules):
                     out_rules[t][-1]['declarations'] = list(filter(lambda d:
                         not d['property'] or not (d['property'].startswith('assert') or d['property'].startswith('-osmoseAssert')) or
                         (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)) or
-                        (d['value']['type'] == 'declaration_value_function' and d['value']['params'][0]['value']['value'].startswith(t)),
+                        (d['value']['type'] == 'functionExpression' and d['value']['params'][0]['value'].startswith(t)),
                         out_rules[t][-1]['declarations']))
 
     return dict(filter(lambda kv: next(filter(lambda rule: not rule.get('_meta'), kv[1]), False), out_rules.items()))
@@ -593,15 +593,15 @@ def to_p(t):
         # Standard propoerties
         elif t['property'] == 'group':
             group = to_p(t['value'])
-            group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
-            group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
+            group_class = t['value']['params'][0] if t['value']['type'] == 'functionExpression' and t['value']['name'] == 'mapcss.tr' else t['value']
+            group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class['value'])
         elif t['property'] == '-osmoseItemClassLevel':
             item, class_id, level = t['value']['value']['value'].split('/')
             item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
         elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
             text = to_p(t['value'])
-            text_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
-            text_class = text_class['value']['value'] if text_class['type'] == 'single_value' and text_class['value']['type'] == 'quoted' else to_p(text_class)
+            text_class = t['value']['params'][0] if t['value']['type'] == 'functionExpression' and t['value']['name'] == 'mapcss.tr' else t['value']
+            text_class = text_class['value']['value'] if text_class['type'] == 'single_value' and text_class['value']['type'] == 'quoted' else to_p(text_class['value'])
             if not class_id:
                 if (group_class or text_class) in class_map:
                     class_id = class_map[group_class or text_class]
@@ -643,14 +643,6 @@ def to_p(t):
             raise NotImplementedError(t['property'])
     elif t['type'] == 'single_value':
         return to_p(t['value'])
-    elif t['type'] == 'declaration_value_function':
-        return (
-            ("mapcss.list_") if t['name'] == 'list' else
-            ("mapcss.any_") if t['name'] == 'any' else
-            ("mapcss." + t['name'])
-        ) + "(" + (
-            ("tags, " if t['name'] == 'tag' else "")
-        ) + ", ".join(map(to_p, t['params'])) + ")"
     elif t['type'] == 'booleanExpression':
         if not t['operator']:
             return to_p(t['operands'][0])
