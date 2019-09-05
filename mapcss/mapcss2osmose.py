@@ -181,6 +181,16 @@ def functionExpression_param_regex(t, c):
             t['params'][0] = {'type': 'regexExpression', 'value': t['params'][0]['value']}
     return t
 
+def functionExpression_regexp_flags(t, c):
+    """
+    type = functionExpression
+    Move regex flag from match function to regex object
+    """
+    if t['name'] in ('regexp_test', 'regexp_match') and len(t['params']) == 3:
+        flags = t['params'].pop()
+        t['params'][0]['params'][2]['flags'] = flags
+    return t
+
 def pseudo_class_righthandtraffic(t, c):
     """
     type = pseudo_class
@@ -357,6 +367,7 @@ rewrite_rules_change_before = [
     ('booleanExpression', booleanExpression_negated_operator),
     ('booleanExpression', booleanExpression_operator_to_function),
     ('functionExpression', functionExpression_param_regex),
+    ('functionExpression', functionExpression_regexp_flags),
     ('pseudo_class', pseudo_class_righthandtraffic),
     # Safty
     ('rule', rule_declarations_order),
@@ -674,9 +685,9 @@ def to_p(t):
         return "u'" + t['value'] + "'"
     elif t['type'] == 'regexExpression':
         if t['value'] in regex_store:
-            regex_var = regex_store[t['value']]
+            regex_var = regex_store[t['value'], t.get('flags')]
         else:
-            regex_var = regex_store[t['value']] = "re_%08x" % stablehash(t['value'])
+            regex_var = regex_store[t['value'], t.get('flags')] = "re_%08x" % stablehash(t['value'] + t.get('flags', ''))
         return "self." + regex_var
     elif t['type'] == 'functionExpression':
         return t['name'] + "(" + ", ".join(map(to_p, t['params'])) + ")"
@@ -785,7 +796,7 @@ class """ + prefix + class_name + """(Plugin):
         tags = capture_tags = {}
         """ + items.replace("\n", "\n        ") + """
         """ + "".join(map(lambda r: """
-        self.""" + r[1] + " = re.compile(r'" + r[0].replace('(?U)', '').replace("'", "\\'") + "')", sorted(regex_store.items(), key = lambda s: s[1]))) + """
+        self.""" + r[1] + " = re.compile(r'" + r[0].replace('(?U)', '').replace("'", "\\'") + "'" + (', ' + {'i': "re.I", 'm': "re.M", 's': "re.I"}[r[2]] if r[2] else '') + ")", map(lambda a: [a[0][0], a[1], a[0][1]], sorted(regex_store.items(), key = lambda s: s[1])))) + """
 
 """ + "".join(map(lambda t: """
     def """ + t + """(self, data, tags""" + {'node': "", 'way': ", nds", 'relation': ", members"}[t] + """):
