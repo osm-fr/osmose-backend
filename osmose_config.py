@@ -802,12 +802,12 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 
 #########################################################################
 
-canada_options = {'download_repo': OSMFR, 'language': 'en', 'addr:street_distance': 2000,
+canada_options = {'download_repo': OSMFR, 'addr:street_distance': 2000,
   'phone_code': '1', 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
   'exclude': [
     'osmosis_waterway',
 ]}
-canada_province = gen_country('north-america', 'canada', **canada_options)
+canada_province = gen_country('north-america', 'canada', language='en', **canada_options)
 
 canada_province("alberta", 391186, "CA-AB", proj=32610)
 canada_province("british_columbia", 390867, "CA-BC", proj=32609)
@@ -818,8 +818,7 @@ canada_province("northwest_territories", 391220, "CA-NT", proj=32612)
 canada_province("nova_scotia", 390558, "CA-NS", proj=32620)
 canada_province("nunavut", 390840, "CA-NU", proj=32616)
 
-canada_ontario_region = gen_country('north-america', 'canada/ontario', proj=32616, country_code='CA-ON', **canada_options)
-
+canada_ontario_region = gen_country('north-america', 'canada/ontario', proj=32616, country_code='CA-ON', language='en', **canada_options)
 canada_ontario_region('central_ontario', 9330364)
 canada_ontario_region('eastern_ontario', 9330323)
 canada_ontario_region('golden_horseshoe', 9330407)
@@ -828,7 +827,26 @@ canada_ontario_region('northwestern_ontario', 9330452)
 canada_ontario_region('southwestern_ontario', 9330436)
 
 canada_province("prince_edward_island", 391115, "CA-PE", proj=32620)
-canada_province("quebec", 61549, "CA-QC", proj=2138, language="fr")
+
+canada_quebec_region = gen_country('north-america', 'canada/quebec', proj=2138, country_code='CA-QC', language='fr', **canada_options)
+canada_quebec_region('abitibi_temiscamingue', 8107213, 'CA-QC-ABT')
+canada_quebec_region('bas_saint_laurent', 8137316, 'CA-QC-BSL')
+canada_quebec_region('capitale_nationale', 8114679, 'CA-QC-CAPN')
+canada_quebec_region('centre_du_quebec', 8100165, 'CA-QC-CQC')
+canada_quebec_region('chaudiere_appalaches', 8138409, 'CA-QC-CHAPP')
+canada_quebec_region('cote_nord', 8126390, 'CA-QC-CN')
+canada_quebec_region('estrie', 8098121, 'CA-QC-ESTR')
+canada_quebec_region('gaspesie_iles_de_la_madeleine', 7485821, 'CA-QC-GIM')
+canada_quebec_region('lanaudiere', 8098959, 'CA-QC-LAN')
+canada_quebec_region('laurentides', 8098885, 'CA-QC-LAUR')
+canada_quebec_region('laval', 3532125, 'CA-QC-LAV')
+canada_quebec_region('mauricie', 8098985, 'CA-QC-MAUR')
+canada_quebec_region('monteregie', 8093332, 'CA-QC-MGIE')
+canada_quebec_region('montreal', 1571328, 'CA-QC-MTL')
+canada_quebec_region('nord_du_quebec', 8118159, 'CA-QC-NQC')
+canada_quebec_region('outaouais', 8100164, 'CA-QC-OUT')
+canada_quebec_region('saguenay_lac_saint_jean', 8120111, 'CA-QC-SLSJ')
+
 canada_province("saskatchewan", 391178, "CA-SK", proj=32613)
 canada_province("yukon", 391455, "CA-YT", proj=32608)
 
