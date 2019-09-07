@@ -256,7 +256,9 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_departement("alsace/bas_rhin", 7415, "FR-67")
+france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
+    'merge_defibrillateurs_FR_basrhin'
+])
 france_departement("alsace/haut_rhin", 7403, "FR-68")
 
 include_aquitaine = [
@@ -532,6 +534,7 @@ france_local_db.analyser["merge_service_public_FR"] = "xxx"
 france_local_db.analyser["merge_pitch_FR"] = "xxx"
 france_local_db.analyser["merge_police_FR_gn"] = "xxx"
 france_local_db.analyser["merge_police_FR_pn"] = "xxx"
+france_local_db.analyser["merge_defibrillateurs_FR_basrhin"] = "xxx"
 france_local_db.analyser["merge_fuel_FR"] = "xxx"
 france_local_db.analyser["merge_healthcare_FR_finess"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
