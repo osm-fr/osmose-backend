@@ -1,36 +1,31 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 import json
+from io import open
 
-class Analyser_Merge_Radio_Support_FR(Analyser_Merge_Dynamic):
 
-    def __init__(self, config, logger = None):
-        Analyser_Merge_Dynamic.__init__(self, config, logger)
+class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
+    def __init__(self, config, logger, clas, NAT_IDs, tags_select):
+
+        self.missing_official = {"item":"8370", "class": 1+10*clas, "level": 3, "tag": ["merge"], "desc": T_(u"Radio support not integrated") }
+        self.possible_merge   = {"item":"8371", "class": 3+10*clas, "level": 3, "tag": ["merge"], "desc": T_(u"Radio support, integration suggestion") }
+        self.update_official  = {"item":"8372", "class": 4+10*clas, "level": 3, "tag": ["merge"], "desc": T_(u"Radio support update") }
 
         mapingfile = json.loads(open("merge_data/radio_support_FR.mapping.json").read())
-        for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Radio_Support_FR, r['NAT_ID'], r['NAT_ID'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
-
-
-class SubAnalyser_Merge_Radio_Support_FR(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, NAT_ID, title, tags_select, tags_generate1, tags_generate2):
-
-        self.missing_official = {"item":"10000", "class": 1+10*NAT_ID, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support ({0}) not integrated", title) }
-        self.possible_merge   = {"item":"10001", "class": 3+10*NAT_ID, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support ({0}), integration suggestion", title) }
-        self.update_official  = {"item":"10002", "class": 4+10*NAT_ID, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support ({0}) update", title) }
-
+        self.supportTags = {}
+        for x in mapingfile :
+            self.supportTags[x['NAT_ID']] = x
         self.communeNameIndexedByInsee = {}
-        with open("dictionaries/FR/BddCommunes", "r") as f :
+        with open("dictionaries/FR/BddCommunes", "r", encoding="utf-8") as f :
             for x in f :
                 x = x.split("\t")
                 code_insee = x[0]
-                name_insee = x[1].strip().decode('utf-8')
+                name_insee = x[1].strip()
                 self.communeNameIndexedByInsee[code_insee] = name_insee
                 
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+        Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/donnees-sur-les-installations-radioelectriques-de-plus-de-5-watts-1/",
             u"Données sur les installations radioélectriques de plus de 5 watts",
             CSV(Source(attribution = u"data.gouv.fr:ANFR", millesime = "08/2019",
@@ -39,7 +34,7 @@ class SubAnalyser_Merge_Radio_Support_FR(SubAnalyser_Merge_Dynamic):
             Load(
 ("CASE \"COR_CD_EW_LON\" WHEN 'W' THEN -1*(to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600) WHEN 'E' THEN to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600 END",), 
 ("CASE \"COR_CD_NS_LAT\" WHEN 'S' THEN -1*(to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600) WHEN 'N' THEN to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600 END",),
-                  select = {"NAT_ID": str(NAT_ID)},
+                  select = {"NAT_ID": NAT_IDs},
                   uniq = ("SUP_ID",)
                  ),
             Mapping(
@@ -49,16 +44,25 @@ class SubAnalyser_Merge_Radio_Support_FR(SubAnalyser_Merge_Dynamic):
                 conflationDistance = 50,
                 osmRef = "ref:FR:ANFR",
                 generate = Generate(
-                    static1 = tags_generate1,
-                    static2 = dict({"source": self.source}, **tags_generate2),
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:ANFR": "SUP_ID",
                         "owner": lambda fields: self.proprietaire[int(fields["TPO_ID"])] if fields["TPO_ID"] and int(fields["TPO_ID"]) in self.proprietaire else None,
-                        "height": lambda fields: fields["SUP_NM_HAUT"].replace(",", ".") if fields["SUP_NM_HAUT"] else None
-                    },
-                    mapping2 = {
+                        "height": lambda fields: fields["SUP_NM_HAUT"].replace(",", ".") if fields["SUP_NM_HAUT"] else None,
+                        "man_made": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["man_made"] if "man_made" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "location": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["location"] if "location" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "tower:type": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["tower:type"] if "tower:type" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "antenna": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["antenna"] if "antenna" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "service": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["service"] if "service" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "power": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["power"] if "power" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "generator:source": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["generator:source"] if "generator:source" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
                         },
-                text = lambda tags, fields: {"en": u"%s, address : %s, %s" % (title,
+                    mapping2 = {
+                        "material": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["material"] if "material" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        "tower:construction": lambda fields: self.supportTags[int(fields["NAT_ID"])]["tags_generate1"]["tower:construction"] if "tower:construction" in self.supportTags[int(fields["NAT_ID"])]["tags_generate1"] else None,
+                        },
+
+                text = lambda tags, fields: {"en": u"radio support : %s, address : %s, %s" % (self.supportTags[int(fields["NAT_ID"])]["title"],
                                                                               ", ".join(filter(lambda x: x != "None", [fields["ADR_LB_LIEU"], fields["ADR_LB_ADD1"], fields["ADR_LB_ADD2"], fields["ADR_LB_ADD3"],fields["ADR_NM_CP"]])),
                                                                               (lambda x: self.communeNameIndexedByInsee[x] if x in self.communeNameIndexedByInsee else x)(fields["COM_CD_INSEE"]))
                                              })))
@@ -134,3 +138,28 @@ class SubAnalyser_Merge_Radio_Support_FR(SubAnalyser_Merge_Dynamic):
         65 : u"ATC France",
         66 : u"Telco OI"
     }
+
+class Analyser_Merge_Tour_Mat_Pylone(_Analyser_Merge_Radio_Support_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 0, [u'11', u'12', u'21', u'22', u'23', u'24', u'25', u'26', u'33', u'42', u'44', u'47', u'48'], [{"man_made" : "tower","tower:type" : "communication"},{"man_made" : "mast","tower:type" : "communication"},{"man_made" : "communications_tower"},{"man_made": "tower", "service": "aircraft_control"}])
+
+class Analyser_Merge_Antenne(_Analyser_Merge_Radio_Support_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 1, [u'0', u'8', u'9', u'10', u'17', u'19', u'20', u'32', u'34', u'38', u'39', u'40', u'43', u'45', u'45', u'46', u'49', u'50', u'51', u'999999999'], {"man_made" : "antenna"})
+
+class Analyser_Merge_Chateau_Eau(_Analyser_Merge_Radio_Support_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 2, u'4', {"man_made" : "water_tower"})
+
+class Analyser_Merge_Silo(_Analyser_Merge_Radio_Support_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 2, u'31', {"man_made" : "silo"})
+
+class Analyser_Merge_Phare(_Analyser_Merge_Radio_Support_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 2, u'41', {"man_made" : "lighthouse"})
+
+class Analyser_Merge_Eolienne(_Analyser_Merge_Radio_Support_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 2, u'52', {"power" : "generator","generator:source" : "wind"})
+      
