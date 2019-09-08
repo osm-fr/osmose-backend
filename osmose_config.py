@@ -400,6 +400,7 @@ france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_street_number_toulouse',
+    'merge_defibrillateurs_FR_toulouse'
 ])
 france_departement("midi_pyrenees/gers", 7422, "FR-32")
 france_departement("midi_pyrenees/lot", 7454, "FR-46")
