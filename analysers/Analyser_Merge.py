@@ -410,8 +410,7 @@ class CSV(Parser):
     def header(self):
         self.f = self.source.open()
         if self.have_header:
-            line = self.f.readline().strip().strip(self.separator)
-            return csv.reader([line], delimiter=self.separator, quotechar=self.quote).next()
+            return csv.reader(self.f, delimiter=self.separator, quotechar=self.quote).next()
 
     def import_(self, table, srid, osmosis):
         self.f = self.f or self.source.open()
