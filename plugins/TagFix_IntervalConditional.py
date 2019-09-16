@@ -43,13 +43,9 @@ class TagFix_IntervalConditional(Plugin):
         if parsedData['otherIntervals'] == 'invalid':
             return { 'class': 32502, 'subclass': 2, 'text': T_(u'Conditional intervals tag is not valid') }
 
-        # Check presence of interval tag if interval:conditional is defined
-        if type(parsedData['otherIntervals']) is list and parsedData['defaultInterval'] == 'unset':
-            return { 'class': 32502, 'subclass': 3, 'text': T_(u'An interval:conditional tag is defined without a default interval tag') }
-
         # Check combination of opening_hours, interval and interval:conditional
         if 'opening_hours' in tags and type(parsedData['opens']) is dict and parsedData['allComputedIntervals'] == 'invalid':
-            return { 'class': 32502, 'subclass': 4, 'text': T_(u'Conditional intervals does not fit into opening hours') }
+            return { 'class': 32502, 'subclass': 3, 'text': T_(u'Conditional intervals does not fit into opening hours') }
 
 
     def relation(self, data, tags, members):
