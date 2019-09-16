@@ -62,7 +62,6 @@ class Test(TestPluginCommon):
 
         self.check_err(a.relation(None, {'interval': 'not minutes'}, None))
         self.check_err(a.relation(None, {'interval': '01:30', 'interval:conditional': 'Invalid conditional'}, None))
-        self.check_err(a.relation(None, {'interval:conditional': '15 @ (Mo-Sa 10:00-18:00)'}, None))
         self.check_err(a.relation(None, {'opening_hours': 'Mo-Fr 05:00-23:00', 'interval': '15', 'interval:conditional': '5 @ (Mo-Sa 12:00-15:00)'}, None))
 
         assert not a.relation(None, {'interval': '00:10'}, None)
