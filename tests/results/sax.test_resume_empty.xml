@@ -785,6 +785,7 @@
 <classtext lang="hu" title="A [tracktype] vagy [lanes] címkék mellől hiányzik a [highway] címke" />
 <classtext lang="it" title="Etichetta highway mancante per tracktype oppure lanes" />
 <classtext lang="nl" title="Tag highway ontbreekt voor tracktype of rijwegen" />
+<classtext lang="pl" title='Brak tagu "highway" dla "tracktype" lub "lanes"' />
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
@@ -889,6 +890,7 @@
 <classtext lang="hu" title="Hiányzik a [public_transport:version] címke a [public_transport] útvonalkapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta public_transport:version su una relazione di linea di tipo public_transport" />
 <classtext lang="nl" title="public_transport:version tag ontbreekt op een public_transport route relatie" />
+<classtext lang="pl" title='Brak tagu "public_transport:version" dla relacji transportu publicznego' />
 <classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="缺少public_transport：public_transport路径关系上的版本标记" />
 <classtext lang="zh_TW" title="public_transport 路線關聯遺失 public_transport:version 標籤" />
@@ -904,6 +906,7 @@
 <classtext lang="hu" title="Hiányzik a [network]hálózatcímke a [public_transport] kapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta network su una relazione di tipo public_transport" />
 <classtext lang="nl" title="network tag op public_transport relatie ontbreekt" />
+<classtext lang="pl" title='Brak tagu "network" dla relacji transportu publicznego' />
 <classtext lang="uk" title="Відсутній теґ network на зв'язку public_transport" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少网络标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失網路標籤" />
@@ -919,6 +922,7 @@
 <classtext lang="hu" title="Hiányzik az [operator] üzemeltető címke a [public_transport] kapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta operator su una relazione di tipo public_transport" />
 <classtext lang="nl" title="operator tag op public_transport relatie ontbreekt" />
+<classtext lang="pl" title='Brak tagu "operator" dla relacji transportu publicznego' />
 <classtext lang="uk" title="Відсутній теґ operator у зв'язку громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少运运营单位标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失營業者標籤" />
@@ -934,6 +938,7 @@
 <classtext lang="hu" title="Hiányzik a vonal számát jelölő [ref] címke a [public_transport] kapcsolatról" />
 <classtext lang="it" title="Manca l’etichetta ref per il numero di linea di una relazione di tipo public_transport" />
 <classtext lang="nl" title="ref tag voor lijn nummer ontbreekt op een public_transport relatie" />
+<classtext lang="pl" title='Brak tagu "ref" (numeru linii) dla relacji transportu publicznego' />
 <classtext lang="uk" title="Відсутній теґ ref для номеру лінії на зв'язку public_transport" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少线路编号的ref标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失路線號碼 ref 標籤" />
@@ -949,6 +954,7 @@
 <classtext lang="hu" title="Hiányzik a [from/to] címke a [public_transport] [route] kapcsolatról" />
 <classtext lang="it" title="Manca l‘etichetta from/to su una relazione di tipo public_transport" />
 <classtext lang="nl" title="from/to tag op een public_transport weg relatie ontbreekt " />
+<classtext lang="pl" title='Brak tagu "from" lub "to" dla relacji transportu publicznego' />
 <classtext lang="uk" title="Відсутній теґ from/to у зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport路径关系上缺少from/to标签" />
 <classtext lang="zh_TW" title="public_transport 路線關聯遺失 from/to 標籤" />
@@ -964,6 +970,7 @@
 <classtext lang="hu" title="Hiányzik a [public_transport] címke a tömegközlekedési megállóról" />
 <classtext lang="it" title="Manca l’etichetta public_transport sulla fermata di trasporto pubblico" />
 <classtext lang="nl" title="public_transport tag ontbreekt op een public transport halte" />
+<classtext lang="pl" title='Brak tagu "public_transport" dla przystanku' />
 <classtext lang="uk" title="Відсутній теґ public_transport на public_transport_stop" />
 <classtext lang="zh_CN" title="公共交通站点缺少public_transport标记" />
 <classtext lang="zh_TW" title="大眾運輸站點遺失 public_transport 標籤" />
@@ -978,6 +985,7 @@
 <classtext lang="hu" title="Hiányzik az örökségcímke a tömegközlekedési megállóról" />
 <classtext lang="it" title="Manca la vecchia etichetta sulla fermata di trasporto pubblico" />
 <classtext lang="nl" title="legacy tag op een  public transport halte ontbreekt" />
+<classtext lang="pl" title="Brak podstawowego znacznika przystanku" />
 <classtext lang="uk" title="Відсутній теґ legacy на public_transport_stop" />
 <classtext lang="zh_CN" title="在公共交通站点遗失遗留标记" />
 <classtext lang="zh_TW" title="大眾運輸站點遺失傳統標籤" />
@@ -1148,6 +1156,7 @@
 <classtext lang="hu" title="Ez a wikidata-érték megfelel egy üzletláncnak, így a [brand:wikidata] címkét kellene használni." />
 <classtext lang="it" title="Questo valore di wikidata corrisponde a una catena di negozi, dovrebbe stare nell’etichetta brand:wikidata." />
 <classtext lang="nl" title="Deze wikidata waarde vertegenwoordigt een winkelketen, het moet in een  brand:wikidata tag." />
+<classtext lang="pl" title='Ten tag wikidata odnosi się do sieci sklepów i powinien być umieszczony w "brand:wikidata"' />
 <classtext lang="uk" title="Це значення wikidata збігається з мережею магазинів, і має бути в тезі wikidata" />
 <classtext lang="zh_CN" title="这个维基数据值与连锁店相匹配，它应该是一个brand:wikidata标签。" />
 </class>
@@ -1162,7 +1171,7 @@
 <classtext lang="it" title="Combinazione di tag" />
 <classtext lang="lt" title="Žiūrėkite sudėtines žymas" />
 <classtext lang="nl" title="Bekijk meerdere tags" />
-<classtext lang="pl" title="Uważaj na wielokrotne tagi" />
+<classtext lang="pl" title="Przyjrzyj się grupie tagów" />
 <classtext lang="pt" title="Ver várias etiquetas" />
 <classtext lang="pt_BR" title="Ver várias etiqueta" />
 <classtext lang="uk" title="Переглянути декілька теґів" />
@@ -1179,7 +1188,7 @@
 <classtext lang="it" title="Combinazione di tag" />
 <classtext lang="lt" title="Žiūrėkite sudėtines žymas" />
 <classtext lang="nl" title="Bekijk meerdere tags" />
-<classtext lang="pl" title="Uważaj na wielokrotne tagi" />
+<classtext lang="pl" title="Przyjrzyj się grupie tagów" />
 <classtext lang="pt" title="Ver várias etiquetas" />
 <classtext lang="pt_BR" title="Ver várias etiqueta" />
 <classtext lang="uk" title="Переглянути декілька теґів" />
@@ -1214,6 +1223,7 @@
 <classtext lang="hu" title="{0.key}={0.value} a következővel: {1.key}={1.value}" />
 <classtext lang="it" title="{0.key}={0.value} con {1.key}={1.value}" />
 <classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
+<classtext lang="pl" title="{0.key}={0.value} z {1.key}={1.value}" />
 <classtext lang="uk" title="{0.key}={0.value} з {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
 </class>
@@ -1221,6 +1231,7 @@
 <classtext lang="en" title="Bad tag suffix" />
 <classtext lang="hu" title="Hibás címkeutótag" />
 <classtext lang="nl" title="Verkeerde tag  suffix" />
+<classtext lang="pl" title="Niepoprawny przyrostek klucza" />
 <classtext lang="uk" title="Помилковий суфікс теґу" />
 </class>
 <class item="3060" tag="value,fix:chair" id="30601" level="3">
@@ -1243,6 +1254,7 @@
 <classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
 <classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
 <classtext lang="nl" title="Kleur code moet starten met '#' gevolgd door 3 of 6 nummers" />
+<classtext lang="pl" title='Kod koloru powinien zaczynać się od "#" i mieć 3 lub 6 cyfr' />
 <classtext lang="uk" title="Код кольору повинен мати '#' далі 3 або 6 цифр" />
 <classtext lang="zh_CN" title="颜色代码应以“＃”开头，后跟3或6位数字" />
 </class>
@@ -1367,6 +1379,7 @@
 <classtext lang="hu" title="Ismeretlen érték a [turn:lanes] kulcs (bekanyarodósávok) mellett" />
 <classtext lang="it" title="Valore sconosciuto per le corsie di preselezione" />
 <classtext lang="nl" title="Onbekende omkeer rijstroken waarde" />
+<classtext lang="pl" title='Nieznana wartość tagu "lanes"' />
 <classtext lang="uk" title="Невідомі значення смуг повороту" />
 <classtext lang="zh_CN" title="未知车道值" />
 </class>
@@ -1641,6 +1654,7 @@
 <classtext lang="hu" title="Ez gyanús név egy konténernek" />
 <classtext lang="it" title="Nome sospetto per contenitore" />
 <classtext lang="nl" title="Verkeerde naam voor een container" />
+<classtext lang="pl" title="Podejrzana nazwa dla pojemnika" />
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
 </class>
@@ -1657,6 +1671,9 @@
 <classtext lang="nl" title="Ongeldige Opening Uren" />
 <classtext lang="uk" title='Помилковий "Час роботи"' />
 <classtext lang="zh_CN" title="营业时间无效" />
+</class>
+<class item="3250" tag="value,fix:chair,public_transport" id="32502" level="3">
+<classtext lang="en" title="Invalid Conditional Intervals" />
 </class>
 <class item="4010" tag="tag,highway,fix:chair" id="40101" level="2">
 <classtext lang="cs" title="{2.key}={2.value} se dává přednost před {1.key}={1.value}" />
@@ -1709,6 +1726,7 @@
 <classtext lang="hu" title="{0.key} a következőkkel: {1.key} és {2.key}" />
 <classtext lang="it" title="{0.key} con {1.key} e {2.key}" />
 <classtext lang="nl" title="{0.key} met {1.key} en {2.key}" />
+<classtext lang="pl" title="{0.key} z {1.key} i {2.key}" />
 <classtext lang="uk" title="{0.key} з {1.key} і {2.key}" />
 <classtext lang="zh_CN" title="{0.key} 和 {1.key} 以及 {2.key}" />
 </class>
@@ -1722,6 +1740,7 @@
 <classtext lang="hu" title="Felülvizsgálandó objektum" />
 <classtext lang="it" title="L’oggetto richiede una verifica" />
 <classtext lang="nl" title="Object nazien" />
+<classtext lang="pl" title="Obiekt wymaga przejrzenia" />
 <classtext lang="uk" title="Об'єкт потребує перегляду" />
 <classtext lang="zh_CN" title="对象需要审核" />
 </class>
@@ -1735,6 +1754,7 @@
 <classtext lang="hu" title="Az út besorolását felül kell vizsgálni" />
 <classtext lang="it" title="La classe della strada richiede una verifica" />
 <classtext lang="nl" title="Weg classificatie nazien" />
+<classtext lang="pl" title="Droga wymaga klasyfikacji" />
 <classtext lang="uk" title="Класифікація автошляху потребує перегляду" />
 <classtext lang="zh_CN" title="公路分类需要审查" />
 </class>
@@ -1749,6 +1769,7 @@
 <classtext lang="hu" title="Következetlen címkézés: {1.key}" />
 <classtext lang="it" title="Etichettatura inconsistente per {1.key}" />
 <classtext lang="nl" title="Inconsistente tagging van {1.key}" />
+<classtext lang="pl" title="Sprzeczne tagowanie: {1.key}" />
 <classtext lang="uk" title="Несумісне теґування від {1.key}" />
 <classtext lang="zh_CN" title="不一致的标记 {1.key}" />
 </class>
@@ -1935,6 +1956,7 @@
 <classtext lang="hu" title="Az értékmezőben néhány karakter nem felel meg a nyelv karakterkészletének" />
 <classtext lang="it" title="Alcuni caratteri del valore non corrispondono all’insieme dei caratteri della lingua" />
 <classtext lang="nl" title="Sommige karakter waarde komen niet overeen met de taal charset" />
+<classtext lang="pl" title="Niektóre znaki nie pasują do zestawu znaków tego języka" />
 <classtext lang="uk" title="Знаки не відповідають таблиці символів" />
 <classtext lang="zh_CN" title="某些值字符与语言字符集不匹配" />
 </class>
@@ -1981,6 +2003,7 @@
 <classtext lang="hu" title="A névben hiányzik egy idézőjel vagy egy zárójel" />
 <classtext lang="it" title="Numero dispari di virgolette o parentesi in nome" />
 <classtext lang="nl" title="Ongebalanceerd aanhalingsteken of Haakje in naam" />
+<classtext lang="pl" title="Nieparzysta liczba nawiasów lub cudzysłowów" />
 <classtext lang="uk" title='Незбалансован і "лапки" або дужка в назві' />
 <classtext lang="zh_CN" title="名称中的不平衡报价标记或括号" />
 </class>
@@ -1993,6 +2016,7 @@
 <classtext lang="hu" title="Furcsa központozás a névben" />
 <classtext lang="it" title="Punteggiatura inattesa in nome" />
 <classtext lang="nl" title="Onverwachte punctuatie in naam" />
+<classtext lang="pl" title="Nieoczekiwana interpunkcja w nazwie" />
 <classtext lang="uk" title="Несподівана пунктуація в назві" />
 <classtext lang="zh_CN" title="名称中出现意外的标点符号" />
 </class>
@@ -2035,6 +2059,7 @@
 <classtext lang="hu" title="A villamos transzformátornak mindig pontnak kell lennie" />
 <classtext lang="it" title="I trasformatori dovrebbero stare sempre su un nodo" />
 <classtext lang="nl" title="Elektriciteits Transformers moeten altijd op een node zijn" />
+<classtext lang="pl" title="Stacje transformatorowe powinny zawsze być jako punkt" />
 <classtext lang="uk" title="Трансформатор завжди позначається точкою" />
 <classtext lang="zh_CN" title="变压器应始终位于节点上" />
 </class>
@@ -2047,6 +2072,7 @@
 <classtext lang="hu" title="[voltage:primary=*] és [voltage:secondary=*] használata villamos transzformátoron (a [voltage=*] helyett)" />
 <classtext lang="it" title="Su un trasformatore usare voltage:primary=* e voltage:secondary=* invece di voltage" />
 <classtext lang="nl" title="Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage" />
+<classtext lang="pl" title='Użyj "voltage:primary" i "voltage:secondary" zamiast "voltage"' />
 <classtext lang="uk" title="На трансформаторі застосовуйте voltage:primary=* та voltage:secondary=* замість одного теґу напруги" />
 <classtext lang="zh_CN" title="在变压器上使用voltage:primary=*和voltage:secondary=*代替voltage" />
 </class>
@@ -2060,6 +2086,7 @@
 <classtext lang="hu" title="A transzformátoron kell lennie egy [frequency] címkének " />
 <classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
+<classtext lang="pl" title='Stacje transformatorowe powinny mieć tag "frequency"' />
 <classtext lang="uk" title="Трансформатор повинен мати теґ frequency" />
 <classtext lang="zh_CN" title="变压器应该有一个频率标签" />
 </class>
@@ -2069,6 +2096,7 @@
 <classtext lang="fr" title="Clôture avec attribut matériel, utilisez de préférence l’attribut “fence_type”" />
 <classtext lang="hu" title="Kerítés [material] címkével. Inkább [fence_type] címkét kellene használni" />
 <classtext lang="nl" title="Hek met material tag, gebruik beter fence_type tag" />
+<classtext lang="pl" title='Płot z tagiem "material", lepiej użyć "fence_type"' />
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
 </class>
