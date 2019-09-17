@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-27 18:39+0000\n"
+"PO-Revision-Date: 2019-09-17 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "نقطهٔ تحقیق و بررسی‌شده گم شده"
 msgid "Moved survey point"
 msgstr "نقطهٔ تحقیق و بررسی‌شده جابه‌جاست"
 
-#: ../analysers/analyser_merge_geodesie.py:66
+#: ../analysers/analyser_merge_geodesie.py:67
 msgid "Missing survey site"
 msgstr "مکان تحقیق و بررسی‌شده گم شده"
 
@@ -201,7 +201,7 @@ msgid "Survey point out of boundary"
 msgstr "نقطهٔ تحقیق و بررسی‌شده خارج از مرز است"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
-#: ../analysers/analyser_osmosis_boundary_intersect.py:89
+#: ../analysers/analyser_osmosis_boundary_intersect.py:94
 msgid "Boundary intersection"
 msgstr "روی هم افتادن مرزها"
 
@@ -239,23 +239,23 @@ msgstr "شکست در پیوستگی درجهٔ معبر"
 msgid "Merge building (triangle)"
 msgstr "ادغام ساختمان (مثلث)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "هم‌پوشانی ساختمان‌ها"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "هم‌پوشانی بزرگ ساختمان‌ها"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "ساختمان خیلی کوچک است"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "درز بین ساختمان‌ها"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "انبوهی از هم‌پوشانی بزرگ ساختمان‌ها"
 
@@ -332,47 +332,47 @@ msgstr "انبوهی از گره‌های یتیم"
 msgid "Invalid polygon"
 msgstr "چندضلعی نامعتبر"
 
-#: ../analysers/analyser_osmosis_powerline.py:317
+#: ../analysers/analyser_osmosis_powerline.py:319
 msgid "Lone power tower or pole"
 msgstr "دکل یا تیر برق تنها"
 
-#: ../analysers/analyser_osmosis_powerline.py:320
+#: ../analysers/analyser_osmosis_powerline.py:322
 msgid "Connection between different voltages"
 msgstr "اتصال بین ولتاژهای متفاوت"
 
-#: ../analysers/analyser_osmosis_powerline.py:321
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Non power node on power way"
 msgstr "گره نامرتبط روی راه power"
 
-#: ../analysers/analyser_osmosis_powerline.py:322
+#: ../analysers/analyser_osmosis_powerline.py:324
 msgid "Missing power tower or pole"
 msgstr "کمبود دکل یا تیر برق"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
 msgid "No street role"
 msgstr "کمبود نقش street "
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "street role is not an highway"
 msgstr "نقش street به چیزی غیر از معبر داده شده"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Roleless member"
 msgstr "عضو بی‌نقش"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:615
 msgid "Number twice in the street"
 msgstr "یک پلاک دو بار در خیابان آمده"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid "Many street names"
 msgstr "خیابان‌های بسیار"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid "Many relations on one street"
 msgstr "رابطه‌های بسیار بر روی یک خیابان"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "House too far away from street"
 msgstr "خانه از خیابان بسیار دور است"
 
@@ -747,7 +747,7 @@ msgstr "pitch یکپارچه نشده، %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "چندین نام برای ref یکسان FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:620
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "تگ addr:city با هیچ شهری همخوانی ندارد"
 
@@ -1002,7 +1002,7 @@ msgstr "فلکه در قالب محوطه"
 msgid "Level or repeat_on tag missing"
 msgstr "کمبود تگ Level یا repeat_on"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr ""
 
@@ -1034,7 +1034,7 @@ msgstr "تقاطع معبر و راه آبی نامرتبط"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "تقاطع معبر و تجهیزات برق که به هم ربطی ندارند"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:644
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "چند پلاک %(numbers)s در راه %(way)s"
@@ -1061,7 +1061,7 @@ msgstr "شامل car،‏ horse،‏ moped،‏ hazmat و مانند آن می�
 msgid "Inconsistent Access"
 msgstr "دسترسی ناسازگار است"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:264
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 msgid "Non route relation member in route_master relation"
 msgstr "عضو نامربوط به رابطهٔ route در رابطهٔ route_master"
 
@@ -1073,11 +1073,11 @@ msgstr "شیء باید نزدیک آب یا ساحل باشد"
 msgid "Naptan import, survey needed."
 msgstr "درون‌بُرد Naptan، تحقیق و بررسی نیاز دارد."
 
-#: ../analysers/analyser_osmosis_powerline.py:318
+#: ../analysers/analyser_osmosis_powerline.py:320
 msgid "Unfinished power major line"
 msgstr "power major line ناتمام مانده"
 
-#: ../analysers/analyser_osmosis_powerline.py:319
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Unfinished power minor line"
 msgstr "power minor line ناتمام مانده"
 
@@ -1221,7 +1221,7 @@ msgstr "هندسهٔ تکراری گره اما با تگ‌های متفاوت"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "کمبود احتمالی highway=traffic_signals در این نزدیکی"
 
-#: ../analysers/analyser_osmosis_powerline.py:323
+#: ../analysers/analyser_osmosis_powerline.py:325
 msgid "Unmatched voltage of line on substation"
 msgstr "ولتاژ ناهمخوان خط در ایستگاه فرعی"
 
@@ -1353,7 +1353,7 @@ msgstr "نویسهٔ نامرئی"
 msgid "Symbol char"
 msgstr "نویسهٔ نماد"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "عضوی که نه addr:housenumber دارد و نه addr:housename"
 
@@ -1361,12 +1361,12 @@ msgstr "عضوی که نه addr:housenumber دارد و نه addr:housename"
 msgid "Invalid multipolygon"
 msgstr "چندچندضلعی نامعتبر"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:179
+#: ../analysers/analyser_osmosis_addr_interpolation.py:184
 msgid "Interpolation on nodes of multiple street names"
 msgstr "درون‌یابی روی گره‌های مربوط به چند خیابان"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:186
-#: ../analysers/analyser_osmosis_addr_interpolation.py:187
+#: ../analysers/analyser_osmosis_addr_interpolation.py:191
+#: ../analysers/analyser_osmosis_addr_interpolation.py:192
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "گسترهٔ درون‌یابی روی خیابان‌های: %s"
@@ -1466,11 +1466,11 @@ msgstr "نام خیلی مشابه"
 msgid "Way access mismatch relation route=%s"
 msgstr "دسترسی راه با رابطهٔ route=%s همخوانی ندارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:265
+#: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
 msgstr "رابطهٔ مسیر حمل‌ونقل عمومی در رابطهٔ route_master نیامده"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1482,11 +1482,11 @@ msgstr "وقتی addr:housenumber یا addr:housename بدون addr:street،‏ 
 msgid "%s not integrated"
 msgstr "%s یکپارچه نشده"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:268
 msgid "The track of this route contains gaps"
 msgstr "مسیر این route شکاف‌هایی دارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:269
 msgid "The stop or platform is too far from the track of this route"
 msgstr "ایستگاه یا سکو خیلی از مسیر این route دور است"
 
@@ -1498,13 +1498,13 @@ msgstr "کمبود پیش‌شمارهٔ بین‌المللی"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "maxspeed و source:maxspeed ناسازگار"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:266
+#: ../analysers/analyser_osmosis_relation_public_transport.py:272
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های route و route_master باید یکسان باشد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:272
+#: ../analysers/analyser_osmosis_relation_public_transport.py:278
 #, python-format
 msgid "%s are different"
 msgstr "%s متفاوت هستند"
@@ -1602,7 +1602,7 @@ msgstr "museum (آکیتن)، پیشنهاد یکپارچگی"
 msgid "Invalid Opening Hours"
 msgstr "ساعت کاری نامعتبر"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:621
 msgid "Missing highway in associatedStreet relation"
 msgstr "کمبود معبر در رابطهٔ associatedStreet"
 
@@ -1915,12 +1915,12 @@ msgstr ""
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "Approximate {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:126
+#: ../analysers/analyser_osmosis_way_approximate.py:127
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr ""
@@ -2176,33 +2176,33 @@ msgstr ""
 msgid "Missing municipality ref tag {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:179
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:180
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:181
 msgid "Interpolation intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:177
+#: ../analysers/analyser_osmosis_addr_interpolation.py:182
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:178
+#: ../analysers/analyser_osmosis_addr_interpolation.py:183
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:180
+#: ../analysers/analyser_osmosis_addr_interpolation.py:185
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""
 
@@ -2259,4 +2259,20 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:28
+msgid "Invalid Conditional Intervals"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:40
+msgid "Invalid interval tag format"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:44
+msgid "Conditional intervals tag is not valid"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:48
+msgid "Conditional intervals does not fit into opening hours"
 msgstr ""

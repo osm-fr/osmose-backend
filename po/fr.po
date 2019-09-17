@@ -16,6 +16,7 @@
 # deuzeffe, 2019
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
+# Jorg722, 2019
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # Julien Lepiller <transifex@lepiller.eu>, 2018-2019
@@ -33,8 +34,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-27 18:39+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-09-06 18:57+0000\n"
+"Last-Translator: Jorg722\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -718,7 +719,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Invalid wikipedia suffix"
-msgstr ""
+msgstr "Suffixe Wikipédia invalide"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Duplicate wikipedia tag as suffix and prefix"
@@ -2244,7 +2245,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
-msgstr ""
+msgstr "Centrale électrique non intégrée, codée géographiquement au niveau municipal"
 
 #: ../plugins/TagFix_BadKey.py:31
 msgid "Bad tag suffix"
@@ -2257,15 +2258,15 @@ msgstr ""
 
 #: ../plugins/TagFix_Deprecated.py:78
 msgid "Deprecated value"
-msgstr ""
+msgstr "Valeur dépréciée"
 
 #: ../plugins/TagFix_DuplicateValue.py:32
 msgid "Duplicated values"
-msgstr ""
+msgstr "Valeurs dupliquées"
 
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
-msgstr ""
+msgstr "Valeurs similaires"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:56
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:57

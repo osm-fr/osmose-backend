@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-08-27 18:39+0000\n"
+"PO-Revision-Date: 2019-09-17 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "缺少调查点"
 msgid "Moved survey point"
 msgstr "移动调查点"
 
-#: ../analysers/analyser_merge_geodesie.py:66
+#: ../analysers/analyser_merge_geodesie.py:67
 msgid "Missing survey site"
 msgstr "缺失调查网站"
 
@@ -200,7 +200,7 @@ msgid "Survey point out of boundary"
 msgstr "调查点出界"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
-#: ../analysers/analyser_osmosis_boundary_intersect.py:89
+#: ../analysers/analyser_osmosis_boundary_intersect.py:94
 msgid "Boundary intersection"
 msgstr "边界相交"
 
@@ -238,23 +238,23 @@ msgstr "没有连续性的公路"
 msgid "Merge building (triangle)"
 msgstr "合并建筑 (三角形)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "建筑十字路口"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "大建筑十字路口"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "建筑太小"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "建筑间的间隙"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "大型建筑物交叉口群集"
 
@@ -331,47 +331,47 @@ msgstr "一群单独的节点"
 msgid "Invalid polygon"
 msgstr "无效的多边形"
 
-#: ../analysers/analyser_osmosis_powerline.py:317
+#: ../analysers/analyser_osmosis_powerline.py:319
 msgid "Lone power tower or pole"
 msgstr "单独的电力塔或电线杆"
 
-#: ../analysers/analyser_osmosis_powerline.py:320
+#: ../analysers/analyser_osmosis_powerline.py:322
 msgid "Connection between different voltages"
 msgstr "不同电压之间的连接"
 
-#: ../analysers/analyser_osmosis_powerline.py:321
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Non power node on power way"
 msgstr "电力线路上的非电力节点"
 
-#: ../analysers/analyser_osmosis_powerline.py:322
+#: ../analysers/analyser_osmosis_powerline.py:324
 msgid "Missing power tower or pole"
 msgstr "缺少电塔或电杆"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:607
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
 msgid "No street role"
 msgstr "没有道路角色"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid "street role is not an highway"
 msgstr "街道角色不是公路"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid "Roleless member"
 msgstr "没有角色的成员"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:611
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:615
 msgid "Number twice in the street"
 msgstr "在街上两次"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid "Many street names"
 msgstr "许多街道名称"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
 msgid "Many relations on one street"
 msgstr "一条街上有很多关系"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "House too far away from street"
 msgstr "房子离街很远"
 
@@ -746,7 +746,7 @@ msgstr "未整合的%s沥青"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "同一个ref FANTOIR的多个名称"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:620
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "标签\"addr:city\"与城市不匹配"
 
@@ -1001,7 +1001,7 @@ msgstr "环岛作为区域"
 msgid "Level or repeat_on tag missing"
 msgstr "Level或repeat_on标记丢失"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "建筑部分"
 
@@ -1033,7 +1033,7 @@ msgstr "不相关的公路和水路对象的相交"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "不相关的公路和电力对象的相交"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:640
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:644
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "多个数字“%(numbers)s”在方式“%(way)s”"
@@ -1060,7 +1060,7 @@ msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除
 msgid "Inconsistent Access"
 msgstr "访问不一致"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:264
+#: ../analysers/analyser_osmosis_relation_public_transport.py:270
 msgid "Non route relation member in route_master relation"
 msgstr "非路由关系成员在route_master关系中"
 
@@ -1072,11 +1072,11 @@ msgstr "物体必须靠近海岸或水域"
 msgid "Naptan import, survey needed."
 msgstr "Naptan进口，需要调查。"
 
-#: ../analysers/analyser_osmosis_powerline.py:318
+#: ../analysers/analyser_osmosis_powerline.py:320
 msgid "Unfinished power major line"
 msgstr "未完成的电力主线"
 
-#: ../analysers/analyser_osmosis_powerline.py:319
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Unfinished power minor line"
 msgstr "未完成的电力次要线路"
 
@@ -1220,7 +1220,7 @@ msgstr "重复的节点几何形状但不同的标签"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "可能缺少 highway=traffic_signals 附近"
 
-#: ../analysers/analyser_osmosis_powerline.py:323
+#: ../analysers/analyser_osmosis_powerline.py:325
 msgid "Unmatched voltage of line on substation"
 msgstr "变电站线路电压不匹配"
 
@@ -1352,7 +1352,7 @@ msgstr "不可打印字符"
 msgid "Symbol char"
 msgstr "符号字符"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "没有成员addr:housenumber也不addr:housename"
 
@@ -1360,12 +1360,12 @@ msgstr "没有成员addr:housenumber也不addr:housename"
 msgid "Invalid multipolygon"
 msgstr "无效的多边形"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:179
+#: ../analysers/analyser_osmosis_addr_interpolation.py:184
 msgid "Interpolation on nodes of multiple street names"
 msgstr "在多个街道名称的节点上进行插值"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:186
-#: ../analysers/analyser_osmosis_addr_interpolation.py:187
+#: ../analysers/analyser_osmosis_addr_interpolation.py:191
+#: ../analysers/analyser_osmosis_addr_interpolation.py:192
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "插值跨度在街道上: %s"
@@ -1465,11 +1465,11 @@ msgstr "关闭相似的名字"
 msgid "Way access mismatch relation route=%s"
 msgstr "访问方式不匹配关系路线=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:265
+#: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
 msgstr "公共交通关系路线不在 route_master 关系中"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:606
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:610
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1481,11 +1481,11 @@ msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr
 msgid "%s not integrated"
 msgstr "%s没有整合"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:262
+#: ../analysers/analyser_osmosis_relation_public_transport.py:268
 msgid "The track of this route contains gaps"
 msgstr "这条路线的轨迹包含空白"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:263
+#: ../analysers/analyser_osmosis_relation_public_transport.py:269
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
@@ -1497,13 +1497,13 @@ msgstr "缺少国际前缀"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "矛盾的最大速度和source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:266
+#: ../analysers/analyser_osmosis_relation_public_transport.py:272
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "网络，运营商，参考，颜色标签应该是相同的路线和route_master关系"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:272
+#: ../analysers/analyser_osmosis_relation_public_transport.py:278
 #, python-format
 msgid "%s are different"
 msgstr "%s是不同的"
@@ -1601,7 +1601,7 @@ msgstr "建议整合的阿基坦博物馆"
 msgid "Invalid Opening Hours"
 msgstr "营业时间无效"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:621
 msgid "Missing highway in associatedStreet relation"
 msgstr "在相关的街道关系中缺少高速公路"
 
@@ -1914,12 +1914,12 @@ msgstr "不符 motor_vehicle 值 ('{0}'!='{1}')"
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr "进车道 {0}(-{1}+{2}), 出车道 {3}(-{4}+{5})"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "Approximate {0}"
 msgstr "近似 {0}"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:126
+#: ../analysers/analyser_osmosis_way_approximate.py:127
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr "{0} 偏差 {1}m"
@@ -2175,33 +2175,33 @@ msgstr ""
 msgid "Missing municipality ref tag {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:174
+#: ../analysers/analyser_osmosis_addr_interpolation.py:179
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:175
+#: ../analysers/analyser_osmosis_addr_interpolation.py:180
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:176
+#: ../analysers/analyser_osmosis_addr_interpolation.py:181
 msgid "Interpolation intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:177
+#: ../analysers/analyser_osmosis_addr_interpolation.py:182
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:178
+#: ../analysers/analyser_osmosis_addr_interpolation.py:183
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:180
+#: ../analysers/analyser_osmosis_addr_interpolation.py:185
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr ""
 
@@ -2258,4 +2258,20 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:28
+msgid "Invalid Conditional Intervals"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:40
+msgid "Invalid interval tag format"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:44
+msgid "Conditional intervals tag is not valid"
+msgstr ""
+
+#: ../plugins/TagFix_IntervalConditional.py:48
+msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
