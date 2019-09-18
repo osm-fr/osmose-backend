@@ -25,7 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8321", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
+        self.missing_official = {"item":"8370", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux/information",

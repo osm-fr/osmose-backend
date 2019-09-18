@@ -25,14 +25,13 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8321", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
+        self.missing_official = {"item":"8370", "class": 30, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/batiments-publics-equipes-de-defibrillateurs-a-paris/",
             u"Défibrillateurs à Paris",
             CSV(Source(attribution = u"data.gouv.fr:Mairie de Paris", millesime = "23/04/2018",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d2b94d3d-977d-4dcb-ab8c-77e2568de736"),
-                quote=u'"',
                 separator = u";"),
             Load("longitude", "latitude"),
             Mapping(

@@ -25,7 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 
 class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8321", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
+        self.missing_official = {"item":"8370", "class": 20, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/donnee-thematique-localisation-des-defibrillateurs-automatiques-externes-dae-bas-rhin/",
@@ -38,7 +38,7 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),
-                conflationDistance = 500,
+                conflationDistance = 50,
                 generate = Generate(
                     static1 = {
                         "emergency": "defibrillator",
