@@ -357,7 +357,7 @@ include_ile_de_france = [
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
     'merge_bicycle_parking_FR_paris',
-    'merge_defibrillateurs_FR_paris'
+    'merge_defibrillators_FR_paris',
 ], exclude=[
     'merge_shop_FR',
 ])

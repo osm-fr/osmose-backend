@@ -23,7 +23,7 @@
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_defibrillateurs_FR_paris(Analyser_Merge):
+class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8321", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
 
@@ -45,7 +45,4 @@ class Analyser_Merge_defibrillateurs_FR_paris(Analyser_Merge):
                         "emergency": "defibrillator",
                     },
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": u"%s, %s, %s" % (fields["Type"], fields["Nom"], fields["Addresse"])}
-                )
-            )
-        )
+                text = lambda tags, fields: {"en": u"%s, %s, %s" % (fields["Type"], fields["Nom"], fields["Addresse"])},)))
