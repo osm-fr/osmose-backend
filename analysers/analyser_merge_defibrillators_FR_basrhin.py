@@ -23,7 +23,7 @@
 from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
-class Analyser_merge_defibrillateurs_FR_basrhin(Analyser_Merge):
+class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8321", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
 
@@ -44,7 +44,4 @@ class Analyser_merge_defibrillateurs_FR_basrhin(Analyser_Merge):
                         "emergency": "defibrillator",
                     },
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": u"%s, %s, %s" % (fields["LOCALISATI"], fields["PRECISIONS"], fields["HORAIRES"])}
-                )
-            )
-        )
+                text = lambda tags, fields: {"en": u"%s, %s, %s" % (fields["LOCALISATI"], fields["PRECISIONS"], fields["HORAIRES"])})))
