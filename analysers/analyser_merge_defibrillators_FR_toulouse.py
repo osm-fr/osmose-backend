@@ -23,7 +23,7 @@
 from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
-class Analyser_merge_defibrillateurs_FR_toulouse(Analyser_Merge):
+class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8321", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
 
@@ -43,7 +43,4 @@ class Analyser_merge_defibrillateurs_FR_toulouse(Analyser_Merge):
                     static1 = {
                         "emergency": "defibrillator",
                     },
-                    static2 = {"source": self.source},
-                )
-            )
-        )
+                    static2 = {"source": self.source},)))

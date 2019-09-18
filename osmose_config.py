@@ -364,7 +364,7 @@ france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de
 france_departement("ile_de_france/hauts_de_seine", 7449, "FR-92", include=include_ile_de_france + [
     # Hauts-de-Seine
     'merge_restriction_FR_92',
-    'merge_defibrillateurs_FR_issylesmoulineaux'
+    'merge_defibrillators_FR_issylesmoulineaux',
 ])
 france_departement("ile_de_france/seine_saint_denis", 7389, "FR-93", include=include_ile_de_france)
 france_departement("ile_de_france/val_de_marne", 7458, "FR-94", include=include_ile_de_france)
