@@ -33,7 +33,6 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {u"ref:FR:muséofile": "Identifiant"},
                     mapping2 = {"website": "URL",
-                                "phone": u"Téléphone",
                                 "phone": lambda res: "+33 " + res["Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}", res["Téléphone"]) else res["Téléphone"],
                                 "name": lambda res: res["Nom usage"] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
                                 "official_name" : lambda res: res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom usage"] and res["Nom officiel"].lower() != res["Nom usage"].lower() else None,
