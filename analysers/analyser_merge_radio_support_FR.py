@@ -1,9 +1,27 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+###########################################################################
+##                                                                       ##
+## Copyrights Jérôme Amagat 2019                                         ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from io import open
-
 
 class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
     def __init__(self, config, logger, clas, NAT_IDs, title, tags_select, tags_generate):
@@ -140,8 +158,6 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
         u"48" : u"pylône arbre"
     }
 
-    
-
 class Analyser_Merge_Tour_Mat_Pylone(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 0, [u'11', u'12', u'21', u'22', u'23', u'24', u'25', u'26', u'42', u'48'], u"Tour, mât et pylône",
@@ -174,4 +190,3 @@ class Analyser_Merge_Phare(_Analyser_Merge_Radio_Support_FR):
 class Analyser_Merge_Eolienne(_Analyser_Merge_Radio_Support_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Radio_Support_FR.__init__(self, config, logger, 6, u'52', u"Éolienne", {"power" : "generator","generator:source" : "wind"}, {"power" : "generator","generator:source" : "wind"})
-      
