@@ -1,6 +1,25 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+###########################################################################
+##                                                                       ##
+## Copyrights Jérôme Amagat 2019                                         ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
@@ -16,8 +35,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
             CSV(Source(attribution = u"Sandre", millesime = "09/2019",
                     fileUrl = u"http://services.sandre.eaufrance.fr/geo/odp_FRA?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
             Load("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
-                  select = {"DateMiseHorServiceOuvrageDepollution": None}
-                 ),
+                  select = {"DateMiseHorServiceOuvrageDepollution": None}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -30,4 +48,3 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
                     mapping1 = {"ref:sandre": "CdOuvrageDepollution",
                                 "start_date" : lambda fields: None if not fields.get(u"DateMiseServiceOuvrageDepollution") else fields[u"DateMiseServiceOuvrageDepollution"][0:4] if fields[u"DateMiseServiceOuvrageDepollution"].endswith('-01-01') or fields[u"DateMiseServiceOuvrageDepollution"].endswith('-12-31') else fields[u"DateMiseServiceOuvrageDepollution"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NomOuvrageDepollution"], fields["LbSystemeCollecte"], fields["NomAgglomerationAssainissement"]]))})))
-
