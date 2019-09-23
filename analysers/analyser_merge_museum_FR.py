@@ -1,6 +1,25 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+###########################################################################
+##                                                                       ##
+## Copyrights Jérôme Amagat 2019                                         ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 import re
 
@@ -26,7 +45,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"tourism": "museum"}),
-                conflationDistance = 50,
+                conflationDistance = 300,
                 osmRef = u"ref:FR:muséofile",
                 generate = Generate(
                     static1 = {"tourism": "museum"},
@@ -38,4 +57,3 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                                 "official_name" : lambda res: res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom usage"] and res["Nom officiel"].lower() != res["Nom usage"].lower() else None,
                                 },
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["Adresse"], fields["Code Postal"], fields["Ville"]]))})))
-
