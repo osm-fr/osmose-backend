@@ -114,6 +114,7 @@ Quick Osmose Frontend setup:
 ```
 git clone https://github.com/osm-fr/osmose-frontend.git
 cd osmose-frontend/docker
+curl http://osmose.openstreetmap.fr/export/osmose-menu.sql.bz2 | bzcat > osmose-menu.sql
 docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose-test.yml up
 ```
