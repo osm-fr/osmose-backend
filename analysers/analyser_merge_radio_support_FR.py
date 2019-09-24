@@ -61,17 +61,17 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:ANFR": "SUP_ID",
-                        "operator": lambda fields: self.proprietaire[int(fields["TPO_ID"])] if fields["TPO_ID"] and int(fields["TPO_ID"]) in self.proprietaire else None,
+                        "operator": lambda fields: self.owner[int(fields["TPO_ID"])] if fields["TPO_ID"] and int(fields["TPO_ID"]) in self.owner else None,
                         "height": lambda fields: fields["SUP_NM_HAUT"].replace(",", ".") if fields["SUP_NM_HAUT"] else None,
                         },
                     text = lambda tags, fields: {"en": u"%s, address : %s, %s%s" % ((lambda x: self.Tour_Mat_Pylone[fields["NAT_ID"]] if x == u"Tour, mât et pylône" else x)(title),
                                             ", ".join(filter(lambda x: x != "None", [fields["ADR_LB_LIEU"], fields["ADR_LB_ADD1"], fields["ADR_LB_ADD2"], fields["ADR_LB_ADD3"],fields["ADR_NM_CP"]])),
                                             (lambda x: self.communeNameIndexedByInsee[x] if x in self.communeNameIndexedByInsee else x)(fields["COM_CD_INSEE"]),
-                                            (lambda x: (u", operator : " + self.autre_proprietaire[int(x)]) if x and x != "None" and int(x) in self.autre_proprietaire else "")(fields["TPO_ID"])
+                                            (lambda x: (u", operator : " + self.other_owner[int(x)]) if x and x != "None" and int(x) in self.other_owner else "")(fields["TPO_ID"])
                                             )})))
 
-    # nombre : colonne TPO_ID dans SUP_SUPPORT.txt et valeur : SUP_PROPRIETAIRE.txt
-    proprietaire = {
+    # number : column TPO_ID in SUP_SUPPORT.txt and value : SUP_PROPRIETAIRE.txt
+    owner = {
         1 : u"ANFR",
         4 : u"Bouygues",
         10 : u"CROSS",
@@ -119,7 +119,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
         65 : u"ATC France",
         66 : u"Telco OI"
     }
-    autre_proprietaire = {
+    other_owner = {
         2 : u"Association",
         3 : u"Aviation Civile",
         5 : u"CCI,Ch Metiers,Port Aut,Aérop",
