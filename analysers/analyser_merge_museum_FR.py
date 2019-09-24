@@ -46,11 +46,11 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"tourism": "museum"}),
                 conflationDistance = 300,
-                osmRef = u"ref:FR:muséofile",
+                osmRef = u"ref:FR:museofile",
                 generate = Generate(
                     static1 = {"tourism": "museum"},
                     static2 = {"source": self.source},
-                    mapping1 = {u"ref:FR:muséofile": "Identifiant"},
+                    mapping1 = {u"ref:FR:museofile": "Identifiant"},
                     mapping2 = {"website": "URL",
                                 "phone": lambda res: "+33 " + res["Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}", res["Téléphone"]) else res["Téléphone"],
                                 "name": lambda res: res["Nom usage"] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
