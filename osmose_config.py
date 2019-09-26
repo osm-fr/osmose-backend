@@ -480,6 +480,9 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'merge_postal_code_FR',
     'merge_post_box_FR',
     'merge_shop_FR',
+    'merge_wastewater_plant_FR',
+    'merge_museum_FR',
+    'merge_radio_support_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom("guadeloupe", 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
@@ -497,6 +500,7 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
     'merge_police_FR_gn',
     'merge_police_FR_pn',
     'merge_postal_code_FR',
+    'merge_radio_support_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
@@ -547,6 +551,9 @@ france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
+france_local_db.analyser["merge_wastewater_plant_FR"] = "xxx"
+france_local_db.analyser["merge_museum_FR"] = "xxx"
+france_local_db.analyser["merge_radio_support_FR"] = "xxx"
 
 #########################################################################
 
