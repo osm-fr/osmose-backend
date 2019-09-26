@@ -35,7 +35,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
             CSV(Source(attribution = u"Sandre", millesime = "09/2019",
                     fileUrl = u"http://services.sandre.eaufrance.fr/geo/odp_FRA?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
             Load("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
-                  select = {"DateMiseHorServiceOuvrageDepollution": None}),
+                select = {"DateMiseHorServiceOuvrageDepollution": None}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -45,6 +45,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
                 generate = Generate(
                     static1 = {"man_made": "wastewater_plant"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:sandre": "CdOuvrageDepollution",
-                                "start_date" : lambda fields: None if not fields.get(u"DateMiseServiceOuvrageDepollution") else fields[u"DateMiseServiceOuvrageDepollution"][0:4] if fields[u"DateMiseServiceOuvrageDepollution"].endswith('-01-01') or fields[u"DateMiseServiceOuvrageDepollution"].endswith('-12-31') else fields[u"DateMiseServiceOuvrageDepollution"]},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NomOuvrageDepollution"], fields["LbSystemeCollecte"], fields["NomAgglomerationAssainissement"]]))})))
+                    mapping1 = {
+                        "ref:sandre": "CdOuvrageDepollution",
+                        "start_date" : lambda fields: None if not fields.get(u"DateMiseServiceOuvrageDepollution") else fields[u"DateMiseServiceOuvrageDepollution"][0:4] if fields[u"DateMiseServiceOuvrageDepollution"].endswith('-01-01') or fields[u"DateMiseServiceOuvrageDepollution"].endswith('-12-31') else fields[u"DateMiseServiceOuvrageDepollution"]},
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NomOuvrageDepollution"], fields["LbSystemeCollecte"], fields["NomAgglomerationAssainissement"]]))} )))
