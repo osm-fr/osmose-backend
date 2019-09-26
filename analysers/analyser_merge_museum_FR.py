@@ -43,7 +43,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                  ),
             Mapping(
                 select = Select(
-                    types = ["nodes", "ways"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"tourism": "museum"}),
                 conflationDistance = 300,
                 osmRef = u"ref:FR:museofile",
@@ -51,9 +51,9 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     static1 = {"tourism": "museum"},
                     static2 = {"source": self.source},
                     mapping1 = {u"ref:FR:museofile": "Identifiant"},
-                    mapping2 = {"website": "URL",
+                    mapping2 = {"website": lambda res: None if not res["URL"] else res["URL"] if res["URL"].startswith('http') else 'http://' + res["URL"],
                                 "phone": lambda res: "+33 " + res["Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}", res["Téléphone"]) else res["Téléphone"],
-                                "name": lambda res: res["Nom usage"] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
+                                "name": lambda res: res["Nom usage"][0].upper() + res["Nom usage"][1:] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
                                 "official_name" : lambda res: res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom usage"] and res["Nom officiel"].lower() != res["Nom usage"].lower() else None,
                                 },
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["Adresse"], fields["Code Postal"], fields["Ville"]]))})))
