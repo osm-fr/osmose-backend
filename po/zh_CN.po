@@ -2106,15 +2106,15 @@ msgstr "国际代码\"{0}\"后额外的"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
-msgstr ""
+msgstr "未整合IDF自行车租赁"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr ""
+msgstr "建议整合IDF自行车租赁"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr ""
+msgstr "IDF自行车更新"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
@@ -2160,7 +2160,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:57
 msgid "Speed camera should be on the highway or in an enforcement relation"
-msgstr ""
+msgstr "测速照相机应该在道路上或在限制关系中"
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
@@ -2220,7 +2220,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
-msgstr ""
+msgstr "发电站没有整合并在城市等级地理编码"
 
 #: ../plugins/TagFix_BadKey.py:31
 msgid "Bad tag suffix"
@@ -2233,15 +2233,15 @@ msgstr ""
 
 #: ../plugins/TagFix_Deprecated.py:78
 msgid "Deprecated value"
-msgstr ""
+msgstr "弃用的值"
 
 #: ../plugins/TagFix_DuplicateValue.py:32
 msgid "Duplicated values"
-msgstr ""
+msgstr "重复的值"
 
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
-msgstr ""
+msgstr "相似的值"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:56
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:57
@@ -2258,20 +2258,20 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
-msgstr ""
+msgstr "tag value: {0}={1} => {2} (rule kr_vr)"
 
 #: ../plugins/TagFix_IntervalConditional.py:28
 msgid "Invalid Conditional Intervals"
-msgstr ""
+msgstr "无效的条件间隔"
 
 #: ../plugins/TagFix_IntervalConditional.py:40
 msgid "Invalid interval tag format"
-msgstr ""
+msgstr "无效的间隔标签格式"
 
 #: ../plugins/TagFix_IntervalConditional.py:44
 msgid "Conditional intervals tag is not valid"
-msgstr ""
+msgstr "条件间隔标签无效"
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
-msgstr ""
+msgstr "条件间隔与开放时间冲突"
