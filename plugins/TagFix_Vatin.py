@@ -38,7 +38,7 @@ class TagFix_Vatin(Plugin):
 
     # https://it.wikipedia.org/wiki/Partita_IVA
     def it_vatin(self, vatin):
-        if (len(vatin) != 11):
+        if (len(vatin) != 11 or vatin.isdigit() == False):
             return False
 
         # A Luhn algorithm implementation
@@ -57,11 +57,9 @@ class TagFix_Vatin(Plugin):
 
     def node(self, data, tags):
         if "ref:vatin" in tags:
-            x = re.split("^([A-Z]{2})(.+)$", tags["ref:vatin"])
-            if (len(x) < 3):
-                return {"class": 99999, "subclass": 0 }
-            if x[1] == 'IT' and self.it_vatin(x[2]) == False:
-                return {"class": 99999, "subclass": 1 }
+            if tags["ref:vatin"].startswith("IT"):
+                if self.it_vatin(tags["ref:vatin"][2:]) == False:
+                    return {"class": 99999, "subclass": 1 }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -82,8 +80,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"ref:vatin": "IT11111111115"})
         assert not a.way(None, {"ref:vatin": "IT11111111115"}, None)
         assert not a.relation(None, {"ref:vatin": "IT11111111115"}, None)
-        assert not a.node(None, {"ref:vatin": "XXX"})
-        assert a.node(None, {"ref:vatin": "XX"})
-        assert a.node(None, {"ref:vatin": "11111111115"})
+        assert not a.node(None, {"ref:vatin": "DE115055186"})
         assert a.node(None, {"ref:vatin": "IT11111111111"})
+        assert a.node(None, {"ref:vatin": "ITAAAAAAAAAAA"})
 
