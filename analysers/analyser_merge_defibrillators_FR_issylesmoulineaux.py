@@ -47,4 +47,4 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                         "emergency": "defibrillator",
                     },
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": u"%s, %s, %s, %s" % (fields["titre"], fields["localisation"], fields["acces"], fields["horaires"], )})))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["titre"], fields["localisation"], fields["acces"], fields["horaires"]]))},)))

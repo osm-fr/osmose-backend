@@ -44,4 +44,4 @@ class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
                         "emergency": "defibrillator",
                     },
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": u"%s, %s, %s" % (fields["Type"], fields["Nom"], fields["Addresse"])},)))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["Type"], fields["Nom"], fields["Addresse"]]))},)))

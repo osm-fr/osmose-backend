@@ -44,4 +44,4 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
                         "emergency": "defibrillator",
                     },
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": u"%s, %s, %s" % (fields["LOCALISATI"], fields["PRECISIONS"], fields["HORAIRES"])})))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["LOCALISATI"], fields["PRECISIONS"], fields["HORAIRES"]]))},)))
