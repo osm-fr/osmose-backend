@@ -28,6 +28,7 @@ from .modules import downloader
 class Geocode_Addok_CSV(Source):
 
     def __init__(self, source, columns, logger, citycode = None, delimiter = ',', encoding = 'utf-8'):
+        Source.__init__(self)
         self.source = source
         self.columns = columns
         self.citycode = citycode
