@@ -256,7 +256,9 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_departement("alsace/bas_rhin", 7415, "FR-67")
+france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
+    'merge_defibrillators_FR_basrhin',
+])
 france_departement("alsace/haut_rhin", 7403, "FR-68")
 
 include_aquitaine = [
@@ -355,12 +357,14 @@ include_ile_de_france = [
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
     'merge_bicycle_parking_FR_paris',
+    'merge_defibrillators_FR_paris',
 ], exclude=[
     'merge_shop_FR',
 ])
 france_departement("ile_de_france/hauts_de_seine", 7449, "FR-92", include=include_ile_de_france + [
     # Hauts-de-Seine
     'merge_restriction_FR_92',
+    'merge_defibrillators_FR_issylesmoulineaux',
 ])
 france_departement("ile_de_france/seine_saint_denis", 7389, "FR-93", include=include_ile_de_france)
 france_departement("ile_de_france/val_de_marne", 7458, "FR-94", include=include_ile_de_france)
@@ -397,6 +401,7 @@ france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_street_number_toulouse',
+    'merge_defibrillators_FR_toulouse',
 ])
 france_departement("midi_pyrenees/gers", 7422, "FR-32")
 france_departement("midi_pyrenees/lot", 7454, "FR-46")
