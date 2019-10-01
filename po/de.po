@@ -8,6 +8,7 @@
 # Claudius Henrichs <claudius.h@gmx.de>, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2017
 # osmtools <osm@haraldhartmann.de>, 2017
+# Holger Bruch <holger.bruch@systect.de>, 2019
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
 # Sebastian Leske <sebastian.leske@sleske.name>, 2016
@@ -19,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-09-17 19:31+0000\n"
+"PO-Revision-Date: 2019-10-01 21:44+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -648,7 +649,7 @@ msgstr "In Frankreich liefern alle Apotheken verschriebene Medikamente"
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on junction"
-msgstr ""
+msgstr "Merkmal highway fehlt an Kreuzung"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Tag highway missing on oneway"
@@ -1009,7 +1010,7 @@ msgstr "Kreisverkehr als Bereich"
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Level or repeat_on tag missing"
-msgstr ""
+msgstr "Merkmal level oder repeat_on fehlt"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
@@ -1332,12 +1333,12 @@ msgstr ""
 #: ../plugins/TagFix_Note_Lang_fr.py:93
 #, python-format
 msgid "Use a tag to specify end : \"%s\""
-msgstr ""
+msgstr "Nutze ein Merkmal um das Ende anzugeben: \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
 msgid "Use start_date tag for \"%s\""
-msgstr ""
+msgstr "Nutze Merkmal start_hours für \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:101 ../plugins/TagFix_Note_Lang_fr.py:104
 #, python-format
@@ -1347,12 +1348,12 @@ msgstr "Nutze opening_hours Tag für \"%s\""
 #: ../plugins/TagFix_Note_Lang_fr.py:109
 #, python-format
 msgid "Use construction tag for \"%s\""
-msgstr ""
+msgstr "Nutze Merkmal construction für: \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:113 ../plugins/TagFix_Note_Lang_fr.py:116
 #, python-format
 msgid "\"%s\" can be set in specific tag"
-msgstr ""
+msgstr "\"%s\" kann in spezifischem Merkmal angegeben werden"
 
 #: ../plugins/Name_Script.py:36
 msgid "Non printable char"
@@ -1378,7 +1379,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_addr_interpolation.py:192
 #, python-format
 msgid "Interpolation span on streets: %s"
-msgstr ""
+msgstr "Interpoliere Bereich auf Straßen: %s"
 
 #: ../analysers/analyser_osmosis_relation_large.py:78
 #, python-format
@@ -1435,19 +1436,19 @@ msgstr "Verdächtiger Name für einen Container"
 #: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
-msgstr ""
+msgstr "Transformatorenstation von %s"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr ""
+msgstr "Transformatorenstation nicht integriert"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr ""
+msgstr "Transformatorenstation, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
-msgstr ""
+msgstr "Transformatorenstation Aktualisieurung"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
@@ -1464,7 +1465,7 @@ msgstr "Doppeltes Wikipedia-Merkmal"
 #: ../plugins/TagRemove_Roundabout_Ref.py:35
 #, python-format
 msgid "Should not contain tag ref=%s"
-msgstr ""
+msgstr "Sollte nicht Merkmal ref=%s enthalten"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:84
 msgid "Close similar name"
@@ -1538,7 +1539,7 @@ msgstr "maxheight Einschränkung nicht integriert"
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr ""
+msgstr "%s Toiletten nicht integriert"
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:64
 #, python-format
@@ -1621,7 +1622,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
-msgstr ""
+msgstr "Hochschule Aktualisierung"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
@@ -1790,7 +1791,7 @@ msgstr "Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "Objekt benötigt Überprüfung"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
@@ -1802,7 +1803,7 @@ msgstr "Umspannwerke sollten einen frequency Tag haben"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
-msgstr ""
+msgstr "Paris Fahrradabstellplatz nicht integriert"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
 msgid "Paris motorcycle parking not integrated"
@@ -1890,7 +1891,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "{0} Haltestellen Aktualisierung"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
@@ -1927,22 +1928,22 @@ msgstr ""
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "Ungefähr {0} "
 
 #: ../analysers/analyser_osmosis_way_approximate.py:127
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "{0} Abweichung von {1}m"
 
 #: ../plugins/Highway_Lanes.py:75
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
-msgstr ""
+msgstr "Unbekannter Wert für Abbiegespur \"{0}\""
 
 #: ../plugins/Highway_Lanes.py:153
 #, python-brace-format
 msgid "lanes={0} is not an integer"
-msgstr ""
+msgstr "lanes={0} ist keine Ganzzahl"
 
 #: ../plugins/Highway_Lanes.py:209
 #, python-brace-format
@@ -2124,7 +2125,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr ""
+msgstr "IDF Fahrrad Aktualisierung"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
@@ -2133,7 +2134,7 @@ msgstr ""
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
-msgstr ""
+msgstr "{0} ohne Merkmal \"{1}\" oder ungültig"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
@@ -2226,7 +2227,7 @@ msgstr "Kraftwerk %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without tag \"postal_code\""
-msgstr ""
+msgstr "admin_level 8 ohne Merkmal \"postal_code\""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
@@ -2247,11 +2248,11 @@ msgstr ""
 
 #: ../plugins/TagFix_DuplicateValue.py:32
 msgid "Duplicated values"
-msgstr ""
+msgstr "Doppelte Werte"
 
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
-msgstr ""
+msgstr "Ähnliche Werte"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:56
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:57
@@ -2276,7 +2277,7 @@ msgstr ""
 
 #: ../plugins/TagFix_IntervalConditional.py:40
 msgid "Invalid interval tag format"
-msgstr ""
+msgstr "Ungültiges Format für Merkmal interval"
 
 #: ../plugins/TagFix_IntervalConditional.py:44
 msgid "Conditional intervals tag is not valid"
@@ -2284,4 +2285,50 @@ msgstr ""
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_paris.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
+msgid "Defibrillator not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:29
+msgid "Museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:30
+msgid "Museum, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:29
+#, python-format
+msgid "Radio support (%s) not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:30
+#, python-format
+msgid "Radio support (%s), integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:31
+#, python-format
+msgid "Radio support (%s) update"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:28
+msgid "Wastewater plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:29
+msgid "Wastewater plant, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:30
+msgid "Wastewater plant update"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:37
+msgid "Invalid value of tag \"ref:vatin\""
 msgstr ""

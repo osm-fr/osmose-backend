@@ -6,6 +6,7 @@
 # Jan Vršovský <vrs@email.cz>, 2015
 # trendspotter <j.podhorecky@volny.cz>, 2019
 # trendspotter <j.podhorecky@volny.cz>, 2018
+# trendspotter <j.podhorecky@volny.cz>, 2019
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014-2015
 # Petr Schönmann <pschonmann@gmail.com>, 2018
 # TK, 2014-2017
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-09-17 19:31+0000\n"
+"PO-Revision-Date: 2019-10-01 21:44+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1839,12 +1840,12 @@ msgstr "URL obsahuje mezeru"
 
 #: ../plugins/Website.py:39
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "Adresa URL nemá platné schéma"
 
 #: ../plugins/Website.py:42
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
+msgstr "Chybné URL %(k)s=%(v)s"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:95
 #, python-brace-format
@@ -2030,7 +2031,7 @@ msgstr ""
 
 #: ../plugins/Phone.py:49
 msgid "Phone number does not match the expected format"
-msgstr ""
+msgstr "Telefonní číslo neodpovídá očekávanému formátu"
 
 #: ../plugins/Phone.py:53
 msgid "Local short code can't be internationalized"
@@ -2038,15 +2039,15 @@ msgstr ""
 
 #: ../plugins/Phone.py:55
 msgid "Bad international prefix"
-msgstr ""
+msgstr "Špatná mezinárodní předpona"
 
 #: ../plugins/Phone.py:56
 msgid "Unallowed char in phone number"
-msgstr ""
+msgstr "Nepovolené znaky v telefonním čísle"
 
 #: ../plugins/Phone.py:57
 msgid "Bad separator for multiple values"
-msgstr ""
+msgstr "Špatný oddělovač pro více hodnot"
 
 #: ../plugins/TagFix_Maxspeed.py:88
 #, python-brace-format
@@ -2104,7 +2105,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:200
 msgid "Unconnected highway"
-msgstr ""
+msgstr "Nespojená dálnice"
 
 #: ../plugins/Phone.py:51
 #, python-brace-format
@@ -2117,7 +2118,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr ""
+msgstr "Návrh integrace půjčovny kol IDF"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
@@ -2134,7 +2135,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
-msgstr ""
+msgstr "Historická památka bez značky „ref: mhs“ nebo neplatná"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without tag \"ref\" or invalid"
@@ -2142,7 +2143,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
-msgstr ""
+msgstr "Pošta bez značky \"ref:FR:LaPoste\" nebo neplatná"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
@@ -2154,11 +2155,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without tag \"uic_ref\" or invalid"
-msgstr ""
+msgstr "Železniční stanice bez značky \"uic_ref\" nebo neplatná"
 
 #: ../analysers/analyser_merge_school_FR.py:52
 msgid "School without tag \"ref:UAI\" or invalid"
-msgstr ""
+msgstr "Škola bez značky „ref:UAI“ nebo neplatná"
 
 #: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
@@ -2281,4 +2282,50 @@ msgstr ""
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_paris.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
+msgid "Defibrillator not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:29
+msgid "Museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:30
+msgid "Museum, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:29
+#, python-format
+msgid "Radio support (%s) not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:30
+#, python-format
+msgid "Radio support (%s), integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:31
+#, python-format
+msgid "Radio support (%s) update"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:28
+msgid "Wastewater plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:29
+msgid "Wastewater plant, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:30
+msgid "Wastewater plant update"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:37
+msgid "Invalid value of tag \"ref:vatin\""
 msgstr ""
