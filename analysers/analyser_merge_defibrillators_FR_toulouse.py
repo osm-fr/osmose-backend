@@ -31,8 +31,7 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-toulouse/",
             u"Localisation des défibrillateurs - Toulouse",
             GeoJSON(Source(attribution = u"data.gouv.fr:Toulouse métropole",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/0feb0a63-cb64-40a9-927f-628288f257e3"),
-                ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/0feb0a63-cb64-40a9-927f-628288f257e3")),
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
@@ -40,7 +39,5 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
-                    static2 = {"source": self.source},)))
+                    static1 = {"emergency": "defibrillator"},
+                    static2 = {"source": self.source} )))

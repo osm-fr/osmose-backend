@@ -31,8 +31,7 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/donnee-thematique-localisation-des-defibrillateurs-automatiques-externes-dae-bas-rhin/",
             u"DONNEE THEMATIQUE : Localisation des Défibrillateurs Automatiques Externes (DAE) - Bas-Rhin",
             GeoJSON(Source(attribution = u"data.gouv.fr:Service Départemental d'Incendie et de Secours du Bas-Rhin", millesime = "23/04/2018",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/40f84199-8b19-492d-9f61-45156ac73b63"),
-                    ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/40f84199-8b19-492d-9f61-45156ac73b63")),
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
@@ -40,8 +39,6 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["LOCALISATI"], fields["PRECISIONS"], fields["HORAIRES"]]))},)))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["LOCALISATI"], fields["PRECISIONS"], fields["HORAIRES"]]))} )))
