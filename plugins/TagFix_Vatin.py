@@ -60,6 +60,9 @@ class TagFix_Vatin(Plugin):
             if tags["ref:vatin"].startswith("IT"):
                 if self.it_vatin(tags["ref:vatin"][2:]) == False:
                     return {"class": 99999, "subclass": 1 }
+            else:
+                if len(tags["ref:vatin"]) < 3 or tags["ref:vatin"][0:2].isalpha() == False or tags["ref:vatin"].isupper() == False:
+                    return {"class": 99999, "subclass": 0 }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -81,6 +84,12 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"ref:vatin": "IT11111111115"}, None)
         assert not a.relation(None, {"ref:vatin": "IT11111111115"}, None)
         assert not a.node(None, {"ref:vatin": "DE115055186"})
+        # country code should be uppercase
+        assert a.node(None, {"ref:vatin": "it11111111111"})
+        # check digit is wrong
         assert a.node(None, {"ref:vatin": "IT11111111111"})
+        # only digits allowed in Italy
         assert a.node(None, {"ref:vatin": "ITAAAAAAAAAAA"})
+        # missing country code
+        assert a.node(None, {"ref:vatin": "11111111115"})
 
