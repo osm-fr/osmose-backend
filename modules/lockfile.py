@@ -77,7 +77,7 @@ class Test(unittest.TestCase):
     f1 = os.path.join(dir_tmp_tests, "lockfile1")
     f2 = os.path.join(dir_tmp_tests, "lockfile2")
 
-    def setup(self):
+    def setUp(self):
         import os
         if not os.path.exists(self.dir_tmp_tests):
             os.makedirs(self.dir_tmp_tests)
