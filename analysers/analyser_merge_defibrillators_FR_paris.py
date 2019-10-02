@@ -40,8 +40,6 @@ class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["Type"], fields["Nom"], fields["Addresse"]]))},)))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["Type"], fields["Nom"], fields["Addresse"]]))} )))

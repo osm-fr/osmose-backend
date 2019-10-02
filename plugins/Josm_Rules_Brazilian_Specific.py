@@ -13,7 +13,6 @@ class Josm_Rules_Brazilian_Specific(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9018001] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9018002] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'Brasil - Verificar')}
         self.errors[9018003] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'palavra abreviada em {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9018004] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de lazer')}
@@ -50,7 +49,6 @@ class Josm_Rules_Brazilian_Specific(Plugin):
         self.errors[9018042] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0} e {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
         self.errors[9018043] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', mapcss.tag(tags, u'addr:housenumber'))}
         self.errors[9018044] = {'item': 9018, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto contém Google como source')}
-        self.errors[9018045] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'rodovia com ref no nome')}
         self.errors[9018046] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'relação não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
         self.errors[9018047] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas em nós', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
         self.errors[9018048] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve possuir \'\'type=boundary\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
@@ -142,6 +140,7 @@ class Josm_Rules_Brazilian_Specific(Plugin):
         self.re_7633bf4e = re.compile(r'Rodovia ([A-Z]{2,3}-[0-9]{2,4})')
         self.re_793b22ec = re.compile(r'^(?i)(?u)c((â|a)me|ama)ra\b')
         self.re_7a246e93 = re.compile(r'^(100|18{0,1}|19[0-9])$')
+        self.re_7a5b2736 = re.compile(r'\.')
         self.re_7afc6883 = re.compile(r'^[A-Z]{4}$')
         self.re_7b7c453d = re.compile(r'^(?i)(?u)(AM(A|E)|(Posto|Unidade (Básica)?) de Sa(u|ú)de|UBS|PSF).*')
         self.re_7ec1fb9a = re.compile(r'(?i)^prefeitura\b')
@@ -162,8 +161,9 @@ class Josm_Rules_Brazilian_Specific(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, u'^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'BR'))
                 except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Brasil - Verificar")
                 # throwWarning:tr("{0} com logradouro ausente, errado ou abreviado","{0.key}")
-                err.append({'class': 9018001, 'subclass': 279840772, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9018002, 'subclass': 279840772, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[!highway][route!=road][!public_transport][type!~/route|street/][name][name=~/^(?i)(?u)(alameda|avenida|beco|estrada|ladeira|passarela|rodovia|rotatória|rua|travessa|trevo|viela|(anel|complexo|dispositivo) viário) .*/][name!~/^(?i)estrada de ferro/][inside("BR")]
         if (u'name' in keys):
@@ -857,6 +857,22 @@ class Josm_Rules_Brazilian_Specific(Plugin):
             if match:
                 # throwWarning:tr("não se deve utilizar {0} para demarcar áreas de cobertura de imagem","{0.key}")
                 err.append({'class': 9018023, 'subclass': 895278192, 'text': mapcss.tr(u'não se deve utilizar {0} para demarcar áreas de cobertura de imagem', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # node[man_made=tower]["tower:type"=lighting][inside("BR")]
+        if (u'man_made' in keys and u'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'tower') and mapcss._tag_capture(capture_tags, 1, tags, u'tower:type') == mapcss._value_capture(capture_tags, 1, u'lighting') and mapcss.inside(self.father.config.options, u'BR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("uso incorreto de {0}","{0.tag}")
+                # suggestAlternative:"man_made=mast"
+                # fixAdd:"man_made=mast"
+                err.append({'class': 9018064, 'subclass': 865785, 'text': mapcss.tr(u'uso incorreto de {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'man_made',u'mast']])
+                }})
 
         # *[tourism=motel][amenity!=love_hotel][inside("BR")]
         # *[name=~/(?i)\bmotel\b/][amenity!=love_hotel][inside("BR")]
@@ -1634,8 +1650,9 @@ class Josm_Rules_Brazilian_Specific(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_568a42f4), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'BR'))
                 except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Brasil - Verificar")
                 # throwWarning:tr("rodovia com ref no nome")
-                err.append({'class': 9018045, 'subclass': 457207682, 'text': mapcss.tr(u'rodovia com ref no nome')})
+                err.append({'class': 9018002, 'subclass': 457207682, 'text': mapcss.tr(u'rodovia com ref no nome')})
 
         # way[highway=cycleway][name][name!~/^(?i)ciclovia .*/][inside("BR")]
         # way[highway][highway!~/bridleway|bus_stop|cycleway|crossing|footway|give_way|motorway_junction|path|raceway|rest_area|services|speed_camera|steps|stop/][name][name!~/^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodoanel|Rodovia|Rotatória|Rótula|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*/][inside("BR")]
@@ -1650,8 +1667,9 @@ class Josm_Rules_Brazilian_Specific(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1054eb5a, u'bridleway|bus_stop|cycleway|crossing|footway|give_way|motorway_junction|path|raceway|rest_area|services|speed_camera|steps|stop'), mapcss._tag_capture(capture_tags, 1, tags, u'highway')) and mapcss._tag_capture(capture_tags, 2, tags, u'name') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_60ad6838, u'^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodoanel|Rodovia|Rotatória|Rótula|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 3, tags, u'name')) and mapcss.inside(self.father.config.options, u'BR'))
                 except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Brasil - Verificar")
                 # throwWarning:tr("{0} com logradouro ausente, errado ou abreviado","{0.key}")
-                err.append({'class': 9018001, 'subclass': 20071126, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9018002, 'subclass': 20071126, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *["addr:street"]["addr:street"!~/^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*/][inside("BR")]
         if (u'addr:street' in keys):
@@ -1661,8 +1679,21 @@ class Josm_Rules_Brazilian_Specific(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, u'^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'BR'))
                 except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Brasil - Verificar")
                 # throwWarning:tr("{0} com logradouro ausente, errado ou abreviado","{0.key}")
-                err.append({'class': 9018001, 'subclass': 279840772, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9018002, 'subclass': 279840772, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # way[highway][name][name=~/\./]
+        if (u'highway' in keys and u'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss._tag_capture(capture_tags, 1, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7a5b2736), mapcss._tag_capture(capture_tags, 2, tags, u'name')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Brasil - Verificar")
+                # throwWarning:tr("Rua com nome abreviado; procurar nome completo nas camadas de nomes")
+                err.append({'class': 9018002, 'subclass': 2131010585, 'text': mapcss.tr(u'Rua com nome abreviado; procurar nome completo nas camadas de nomes')})
 
         # *[!highway][route!=road][!public_transport][type!~/route|street/][name][name=~/^(?i)(?u)(alameda|avenida|beco|estrada|ladeira|passarela|rodovia|rotatória|rua|travessa|trevo|viela|(anel|complexo|dispositivo) viário) .*/][name!~/^(?i)estrada de ferro/][inside("BR")]
         if (u'name' in keys):
@@ -3135,8 +3166,9 @@ class Josm_Rules_Brazilian_Specific(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_073e5345), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'BR'))
                 except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Brasil - Verificar")
                 # throwWarning:tr("rodovia com ref no nome")
-                err.append({'class': 9018045, 'subclass': 1625358529, 'text': mapcss.tr(u'rodovia com ref no nome')})
+                err.append({'class': 9018002, 'subclass': 1625358529, 'text': mapcss.tr(u'rodovia com ref no nome')})
 
         # *["addr:street"]["addr:street"!~/^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*/][inside("BR")]
         if (u'addr:street' in keys):
@@ -3146,8 +3178,9 @@ class Josm_Rules_Brazilian_Specific(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:street') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, u'^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'BR'))
                 except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Brasil - Verificar")
                 # throwWarning:tr("{0} com logradouro ausente, errado ou abreviado","{0.key}")
-                err.append({'class': 9018001, 'subclass': 279840772, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9018002, 'subclass': 279840772, 'text': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[!highway][route!=road][!public_transport][type!~/route|street/][name][name=~/^(?i)(?u)(alameda|avenida|beco|estrada|ladeira|passarela|rodovia|rotatória|rua|travessa|trevo|viela|(anel|complexo|dispositivo) viário) .*/][name!~/^(?i)estrada de ferro/][inside("BR")]
         if (u'name' in keys):

@@ -31,13 +31,13 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
         self.update_official  = {"item":"8372", "class": 4+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s) update" % title) }
 
         self.communeNameIndexedByInsee = {}
-        with open("dictionaries/FR/BddCommunes", "r", encoding="utf-8") as f :
+        with open("dictionaries/FR/BddCommunes", "r", encoding="utf-8") as f:
             for x in f :
                 x = x.split("\t")
                 code_insee = x[0]
                 name_insee = x[1].strip()
                 self.communeNameIndexedByInsee[code_insee] = name_insee
-                
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/donnees-sur-les-installations-radioelectriques-de-plus-de-5-watts-1/",
             u"Données sur les installations radioélectriques de plus de 5 watts",
@@ -48,8 +48,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
 ("CASE \"COR_CD_EW_LON\" WHEN 'W' THEN -1*(to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600) WHEN 'E' THEN to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600 END",), 
 ("CASE \"COR_CD_NS_LAT\" WHEN 'S' THEN -1*(to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600) WHEN 'N' THEN to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600 END",),
                   select = {"NAT_ID": NAT_IDs},
-                  uniq = ("SUP_ID",)
-                 ),
+                  uniq = ("SUP_ID",)),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -64,11 +63,12 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
                         "operator": lambda fields: self.owner[int(fields["TPO_ID"])] if fields["TPO_ID"] and int(fields["TPO_ID"]) in self.owner else None,
                         "height": lambda fields: fields["SUP_NM_HAUT"].replace(",", ".") if fields["SUP_NM_HAUT"] else None,
                         },
-                    text = lambda tags, fields: {"en": u"%s, address : %s, %s%s" % ((lambda x: self.Tour_Mat_Pylone[fields["NAT_ID"]] if x == u"Tour, mât et pylône" else x)(title),
-                                            ", ".join(filter(lambda x: x != "None", [fields["ADR_LB_LIEU"], fields["ADR_LB_ADD1"], fields["ADR_LB_ADD2"], fields["ADR_LB_ADD3"],fields["ADR_NM_CP"]])),
-                                            (lambda x: self.communeNameIndexedByInsee[x] if x in self.communeNameIndexedByInsee else x)(fields["COM_CD_INSEE"]),
-                                            (lambda x: (u", operator : " + self.other_owner[int(x)]) if x and x != "None" and int(x) in self.other_owner else "")(fields["TPO_ID"])
-                                            )})))
+                    text = lambda tags, fields: {"en": u"%s, address : %s, %s%s" % (
+                        (lambda x: self.Tour_Mat_Pylone[fields["NAT_ID"]] if x == u"Tour, mât et pylône" else x)(title),
+                        ", ".join(filter(lambda x: x != "None", [fields["ADR_LB_LIEU"], fields["ADR_LB_ADD1"], fields["ADR_LB_ADD2"], fields["ADR_LB_ADD3"],fields["ADR_NM_CP"]])),
+                        (lambda x: self.communeNameIndexedByInsee[x] if x in self.communeNameIndexedByInsee else x)(fields["COM_CD_INSEE"]),
+                        (lambda x: (u", operator : " + self.other_owner[int(x)]) if x and x != "None" and int(x) in self.other_owner else "")(fields["TPO_ID"])
+                    )} )))
 
     # number : column TPO_ID in SUP_SUPPORT.txt and value : SUP_PROPRIETAIRE.txt
     owner = {
@@ -144,7 +144,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
         34 : u"Commune, communauté de commune",
         46 : u"Titulaire programme Radio/TV",
     }
-    
+
     Tour_Mat_Pylone = {
         u"11" : u"Mât béton",
         u"12" : u"Mât métallique",

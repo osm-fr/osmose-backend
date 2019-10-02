@@ -34,7 +34,7 @@ class TagFix_Vatin(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[99999] = {"item": 9999, "level": 3, "tag": ["ref"], "desc": T_(u'Invalid value of tag "ref:vatin"') }
+        self.errors[32601] = {"item": 3260, "level": 3, "tag": ["ref"], "desc": T_(u'Invalid value of tag "ref:vatin"') }
 
     # https://it.wikipedia.org/wiki/Partita_IVA
     def it_vatin(self, vatin):
@@ -59,10 +59,10 @@ class TagFix_Vatin(Plugin):
         if "ref:vatin" in tags:
             if tags["ref:vatin"].startswith("IT"):
                 if self.it_vatin(tags["ref:vatin"][2:]) == False:
-                    return {"class": 99999, "subclass": 1 }
+                    return {"class": 32601, "subclass": 1 }
             else:
                 if len(tags["ref:vatin"]) < 3 or tags["ref:vatin"][0:2].isalpha() == False or tags["ref:vatin"].isupper() == False:
-                    return {"class": 99999, "subclass": 0 }
+                    return {"class": 32601, "subclass": 0 }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

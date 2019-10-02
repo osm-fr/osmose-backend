@@ -25,25 +25,29 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = u"""
 SELECT
-    id,
-    ST_AsText(way_locate(linestring)) AS geom
+    ways.id,
+    ST_AsText(way_locate(ways.linestring)) AS geom
 FROM
     {1}highways AS ways
-    JOIN way_nodes ON
-        way_nodes.node_id = ANY (ways.nodes[2:array_length(ways.nodes, 1)]) AND -- not join twice the start/end node
-        way_nodes.way_id != ways.id
+    JOIN {2}highways AS conns ON
+        conns.linestring && ways.linestring AND
+        conns.nodes && ways.nodes AND
+        conns.id != ways.id AND
+        conns.level < 5 AND -- it's a car road
+        NOT conns.is_area AND
+        NOT conns.is_construction
 WHERE
     -- tags
     ways.level < 5 AND -- it's a car road
-    NOT is_roundabout AND
-    NOT is_area AND
-    NOT is_construction AND
+    NOT ways.is_roundabout AND
+    NOT ways.is_area AND
+    NOT ways.is_construction AND
     (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- no name or start with 'Rond' or 'Giratoire' (French)
     -- geometry
     ways.is_polygon AND -- It's a polygon
     ST_NPoints(ways.linestring) < 24 AND
-    ST_MaxDistance(ST_Transform(linestring,{0}),ST_Transform(linestring,{0})) < 70 AND -- The way diameter is less than 70m
-    ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.6 -- 90% of roundabout covert more than 60% bounding circle
+    ST_MaxDistance(ST_Transform(ways.linestring,{0}),ST_Transform(ways.linestring,{0})) < 70 AND -- The way diameter is less than 70m
+    ST_Area(ST_MakePolygon(ST_Transform(ways.linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(ways.linestring,{0}))) > 0.6 -- 90% of roundabout covert more than 60% bounding circle
 GROUP BY
     ways.id,
     geom
@@ -54,7 +58,7 @@ HAVING
 class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
     requires_tables_full = ['highways']
-    requires_tables_diff = ['touched_highways']
+    requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -64,8 +68,9 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         if "proj" in self.config.options:
-            self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
+            self.run(sql10.format(self.config.options.get("proj"), "", ""), self.callback10)
 
     def analyser_osmosis_diff(self):
         if "proj" in self.config.options:
-            self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
+            self.run(sql10.format(self.config.options.get("proj"), "touched_", ""), self.callback10)
+            self.run(sql10.format(self.config.options.get("proj"), "not_touched_", "touched_"), self.callback10)

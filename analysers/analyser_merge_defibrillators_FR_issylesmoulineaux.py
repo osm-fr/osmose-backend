@@ -35,16 +35,13 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                 separator = u";"),
             Load("coordonnees_geographiques", "coordonnees_geographiques",
                 xFunction = lambda x: x.split(",")[1].strip(),
-                yFunction = lambda y: y.split(",")[0].strip()
-                ),
+                yFunction = lambda y: y.split(",")[0].strip()),
             Mapping(
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["titre"], fields["localisation"], fields["acces"], fields["horaires"]]))},)))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["titre"], fields["localisation"], fields["acces"], fields["horaires"]]))} )))

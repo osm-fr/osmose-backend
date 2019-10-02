@@ -25,6 +25,7 @@ class Josm_numeric(Plugin):
         self.errors[9006019] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9006020] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
         self.errors[9006021] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'Unnecessary amount of decimal places')}
+        self.errors[9006022] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'Airport tagging')}
 
         self.re_035d45f0 = re.compile(r'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_066203d3 = re.compile(r'^[0-9]+$')
@@ -50,7 +51,10 @@ class Josm_numeric(Plugin):
         self.re_597f003d = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
         self.re_5a7f47b9 = re.compile(r'^-?[0-9]+\.[0-9][0-9][0-9]+$')
         self.re_63a07204 = re.compile(r'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$')
+        self.re_6aa93c30 = re.compile(r'^[A-Z]{3}$')
         self.re_762a1d1d = re.compile(r'^-?[0-9]+(\.[0-9]+)? ?m$')
+        self.re_7afc6883 = re.compile(r'^[A-Z]{4}$')
+        self.re_7b1365b7 = re.compile(r'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)')
         self.re_7f163374 = re.compile(r'^(1|2|3|4|5|6|7|8|9|10|11|12)$')
         self.re_7f19b94b = re.compile(r'^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$')
 
@@ -536,6 +540,7 @@ class Josm_numeric(Plugin):
             if match:
                 # group:tr("Unnecessary amount of decimal places")
                 # throwWarning:tr("{0}","{0.tag}")
+                # fixAdd:concat("ele=",round(tag("ele")*100)/100)
                 # assertMatch:"node ele=-12.6789"
                 # assertNoMatch:"node ele=1.12"
                 # assertNoMatch:"node ele=12"
@@ -543,7 +548,10 @@ class Josm_numeric(Plugin):
                 # assertMatch:"node ele=12.123"
                 # assertMatch:"node ele=12.1234"
                 # assertNoMatch:"node ele=high"
-                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'ele=', mapcss.round_(mapcss.tag(tags, u'ele')*100)/100)).split('=', 1)])
+                }})
 
         # node[fire_hydrant:pressure="#"]
         if (u'fire_hydrant:pressure' in keys):
@@ -566,6 +574,57 @@ class Josm_numeric(Plugin):
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # *[aeroway=helipad][iata][iata!~/^[A-Z]{3}$/]
+        # *[aeroway=aerodrome][iata][iata!~/^[A-Z]{3}$/]
+        if (u'aeroway' in keys and u'iata' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'iata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6aa93c30, u'^[A-Z]{3}$'), mapcss._tag_capture(capture_tags, 2, tags, u'iata')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'iata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6aa93c30, u'^[A-Z]{3}$'), mapcss._tag_capture(capture_tags, 2, tags, u'iata')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                err.append({'class': 9006022, 'subclass': 206938530, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
+        # *[aeroway=helipad][icao][icao!~/^[A-Z]{4}$/]
+        # *[aeroway=aerodrome][icao][icao!~/^[A-Z]{4}$/]
+        if (u'aeroway' in keys and u'icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7afc6883, u'^[A-Z]{4}$'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7afc6883, u'^[A-Z]{4}$'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                err.append({'class': 9006022, 'subclass': 311618853, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
+        # *[aeroway=helipad][icao][icao!~/^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)/]
+        # *[aeroway=aerodrome][icao][icao!~/^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)/]
+        if (u'aeroway' in keys and u'icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7b1365b7, u'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7b1365b7, u'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                err.append({'class': 9006022, 'subclass': 345477776, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
         return err
 
@@ -1059,7 +1118,11 @@ class Josm_numeric(Plugin):
             if match:
                 # group:tr("Unnecessary amount of decimal places")
                 # throwWarning:tr("{0}","{0.tag}")
-                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                # fixAdd:concat("ele=",round(tag("ele")*100)/100)
+                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'ele=', mapcss.round_(mapcss.tag(tags, u'ele')*100)/100)).split('=', 1)])
+                }})
 
         # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
         if (u'interval' in keys):
@@ -1079,6 +1142,67 @@ class Josm_numeric(Plugin):
                 # assertNoMatch:"way interval=20"
                 # assertNoMatch:"way interval=5"
                 err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # *[aeroway=helipad][iata][iata!~/^[A-Z]{3}$/]
+        # *[aeroway=aerodrome][iata][iata!~/^[A-Z]{3}$/]
+        if (u'aeroway' in keys and u'iata' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'iata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6aa93c30, u'^[A-Z]{3}$'), mapcss._tag_capture(capture_tags, 2, tags, u'iata')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'iata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6aa93c30, u'^[A-Z]{3}$'), mapcss._tag_capture(capture_tags, 2, tags, u'iata')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                # assertMatch:"way aeroway=aerodrome iata=BE"
+                # assertNoMatch:"way aeroway=aerodrome iata=BER"
+                # assertMatch:"way aeroway=aerodrome iata=BERL"
+                # assertMatch:"way aeroway=aerodrome iata=ber"
+                err.append({'class': 9006022, 'subclass': 206938530, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
+        # *[aeroway=helipad][icao][icao!~/^[A-Z]{4}$/]
+        # *[aeroway=aerodrome][icao][icao!~/^[A-Z]{4}$/]
+        if (u'aeroway' in keys and u'icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7afc6883, u'^[A-Z]{4}$'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7afc6883, u'^[A-Z]{4}$'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                # assertMatch:"way aeroway=aerodrome icao=EDD"
+                # assertNoMatch:"way aeroway=aerodrome icao=EDDB"
+                # assertMatch:"way aeroway=aerodrome icao=EDDBA"
+                # assertMatch:"way aeroway=aerodrome icao=eddb"
+                err.append({'class': 9006022, 'subclass': 311618853, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
+        # *[aeroway=helipad][icao][icao!~/^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)/]
+        # *[aeroway=aerodrome][icao][icao!~/^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)/]
+        if (u'aeroway' in keys and u'icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7b1365b7, u'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7b1365b7, u'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                # assertNoMatch:"way aeroway=aerodrome icao=EDDB"
+                # assertMatch:"way aeroway=aerodrome icao=EQQQ"
+                err.append({'class': 9006022, 'subclass': 345477776, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
         return err
 
@@ -1424,7 +1548,11 @@ class Josm_numeric(Plugin):
             if match:
                 # group:tr("Unnecessary amount of decimal places")
                 # throwWarning:tr("{0}","{0.tag}")
-                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                # fixAdd:concat("ele=",round(tag("ele")*100)/100)
+                err.append({'class': 9006021, 'subclass': 185098060, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'ele=', mapcss.round_(mapcss.tag(tags, u'ele')*100)/100)).split('=', 1)])
+                }})
 
         # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
         if (u'interval' in keys):
@@ -1436,6 +1564,57 @@ class Josm_numeric(Plugin):
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
+        # *[aeroway=helipad][iata][iata!~/^[A-Z]{3}$/]
+        # *[aeroway=aerodrome][iata][iata!~/^[A-Z]{3}$/]
+        if (u'aeroway' in keys and u'iata' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'iata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6aa93c30, u'^[A-Z]{3}$'), mapcss._tag_capture(capture_tags, 2, tags, u'iata')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'iata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6aa93c30, u'^[A-Z]{3}$'), mapcss._tag_capture(capture_tags, 2, tags, u'iata')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                err.append({'class': 9006022, 'subclass': 206938530, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
+        # *[aeroway=helipad][icao][icao!~/^[A-Z]{4}$/]
+        # *[aeroway=aerodrome][icao][icao!~/^[A-Z]{4}$/]
+        if (u'aeroway' in keys and u'icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7afc6883, u'^[A-Z]{4}$'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7afc6883, u'^[A-Z]{4}$'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                err.append({'class': 9006022, 'subclass': 311618853, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
+        # *[aeroway=helipad][icao][icao!~/^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)/]
+        # *[aeroway=aerodrome][icao][icao!~/^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)/]
+        if (u'aeroway' in keys and u'icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'helipad') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7b1365b7, u'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, u'icao') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7b1365b7, u'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)'), mapcss._tag_capture(capture_tags, 2, tags, u'icao')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Airport tagging")
+                # throwWarning:tr("wrong value: {0}","{1.tag}")
+                err.append({'class': 9006022, 'subclass': 345477776, 'text': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
         return err
 
@@ -1672,3 +1851,13 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'interval': u'123'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
         self.check_not_err(n.way(data, {u'interval': u'20'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
         self.check_not_err(n.way(data, {u'interval': u'5'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'iata': u'BE'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
+        self.check_not_err(n.way(data, {u'aeroway': u'aerodrome', u'iata': u'BER'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'iata': u'BERL'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'iata': u'ber'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EDD'}, [0]), expected={'class': 9006022, 'subclass': 311618853})
+        self.check_not_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EDDB'}, [0]), expected={'class': 9006022, 'subclass': 311618853})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EDDBA'}, [0]), expected={'class': 9006022, 'subclass': 311618853})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'eddb'}, [0]), expected={'class': 9006022, 'subclass': 311618853})
+        self.check_not_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EDDB'}, [0]), expected={'class': 9006022, 'subclass': 345477776})
+        self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EQQQ'}, [0]), expected={'class': 9006022, 'subclass': 345477776})
