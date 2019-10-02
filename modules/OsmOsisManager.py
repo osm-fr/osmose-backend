@@ -392,8 +392,6 @@ class OsmOsisManager:
 
       raise
 
-    shutil.rmtree(dir_country_tmp, ignore_errors=True)
-
   def check_change(self, conf):
     if not self.check_diff(conf):
       return False
