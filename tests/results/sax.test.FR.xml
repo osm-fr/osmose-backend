@@ -557,8 +557,11 @@
 <classtext lang="zh_CN" title="不良 tag" />
 </class>
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
+<classtext lang="de" title="Doppelte Werte" />
 <classtext lang="en" title="Duplicated values" />
 <classtext lang="es" title="Valores duplicados" />
+<classtext lang="fr" title="Valeurs dupliquées" />
+<classtext lang="gl" title="Valores duplicados" />
 <classtext lang="hu" title="Duplikált érték" />
 <classtext lang="nl" title="Dubbele waarden" />
 <classtext lang="pl" title="Zdublowane wartości" />
@@ -864,6 +867,7 @@
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
+<classtext lang="de" title="Merkmal highway fehlt an Kreuzung" />
 <classtext lang="en" title="Tag highway missing on junction" />
 <classtext lang="es" title="Falta etiqueta highway en cruce" />
 <classtext lang="fa" title="junction است اما تگ highway ندارد" />
@@ -991,6 +995,7 @@
 <class item="2120" tag="indoor" id="21201" level="3">
 <classtext lang="ca" title="Manca l'etiqueta «level» o «repeat_on»" />
 <classtext lang="cs" title="Chybí úroveň nebo tag repeat_on " />
+<classtext lang="de" title="Merkmal level oder repeat_on fehlt" />
 <classtext lang="en" title="Level or repeat_on tag missing" />
 <classtext lang="es" title="Falta etiqueta level o repeat_on" />
 <classtext lang="fa" title="کمبود تگ Level یا repeat_on" />
@@ -1242,6 +1247,7 @@
 <classtext lang="en" title="Invalid wikipedia suffix" />
 <classtext lang="es" title="Sufijo wikipedia inválido" />
 <classtext lang="fa" title="پیشوند نامعتبر برای ویکی‌پدیا" />
+<classtext lang="fr" title="Suffixe Wikipédia invalide" />
 <classtext lang="gl" title="Sufixo da wikipedia non válido" />
 <classtext lang="hu" title="Érvénytelen Wikipédia-utótag" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
@@ -1446,14 +1452,18 @@
 </class>
 <class item="3050" tag="tag,fix:chair" id="30501" level="1">
 <classtext lang="en" title="Bad tag suffix" />
+<classtext lang="gl" title="Sufixo da etiqueta erróneo" />
 <classtext lang="hu" title="Hibás címkeutótag" />
 <classtext lang="nl" title="Verkeerde tag  suffix" />
 <classtext lang="pl" title="Niepoprawny przyrostek klucza" />
 <classtext lang="uk" title="Помилковий суфікс теґу" />
 </class>
 <class item="3060" tag="value,fix:chair" id="30601" level="3">
+<classtext lang="de" title="Ähnliche Werte" />
 <classtext lang="en" title="Similar values" />
 <classtext lang="es" title="Valores similares" />
+<classtext lang="fr" title="Valeurs similaires" />
+<classtext lang="gl" title="Valores semellantes" />
 <classtext lang="hu" title="Hasonló értékek" />
 <classtext lang="nl" title="Vergelijkbare waarden" />
 <classtext lang="pl" title="Podobne wartości" />
@@ -1491,6 +1501,7 @@
 <classtext lang="zh_CN" title="链接包含空格" />
 </class>
 <class item="3093" tag="value,fix:chair" id="30932" level="2">
+<classtext lang="cs" title="Adresa URL nemá platné schéma" />
 <classtext lang="de" title="Der URL hat kein gültiges Schema" />
 <classtext lang="en" title="The URL does not have a valid scheme" />
 <classtext lang="es" title="La URL no tiene un esquema válido" />
@@ -1908,6 +1919,8 @@
 <class item="4010" tag="deprecated,value,fix:chair" id="40102" level="2">
 <classtext lang="en" title="Deprecated value" />
 <classtext lang="es" title="Valor obsoleto" />
+<classtext lang="fr" title="Valeur dépréciée" />
+<classtext lang="gl" title="Valor obsoleto" />
 <classtext lang="hu" title="Elavult érték" />
 <classtext lang="nl" title="Deprecated waarde" />
 <classtext lang="pl" title="Przestarzała wartość" />
@@ -1949,6 +1962,7 @@
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="cs" title="Objekt potřebuje revizi" />
+<classtext lang="de" title="Objekt benötigt Überprüfung" />
 <classtext lang="en" title="Object need review" />
 <classtext lang="es" title="Objeto necesita revisión" />
 <classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
@@ -1974,6 +1988,9 @@
 <classtext lang="pl" title="Droga wymaga klasyfikacji" />
 <classtext lang="uk" title="Класифікація автошляху потребує перегляду" />
 <classtext lang="zh_CN" title="公路分类需要审查" />
+</class>
+<class item="4061" tag="parking,amenity,fix:chair" id="40612" level="2">
+<classtext lang="en" title="Does this station still sell SP95, or has it been replaced by the SP95-E10?" />
 </class>
 <class item="4070" tag="tag,highway,fix:survey" id="40701" level="1">
 <classtext lang="cs" title="Nekonzistentní značky {1.key}" />
@@ -2819,7 +2836,7 @@
 <classtext lang="zh_CN" title="值拼写错误" />
 <classtext lang="zh_TW" title="數值拼字錯誤" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002019" level="2">
+<class item="9002" tag="tag,deprecated" id="9002019" level="3">
 <classtext lang="cs" title="špatná hodnota: {0.key}={0.value}" />
 <classtext lang="de" title="falscher Wert: {0.key}={0.value}" />
 <classtext lang="en" title="wrong value: {0.key}={0.value}" />
@@ -3122,6 +3139,25 @@
 <classtext lang="uk" title="помилковий теґ highway на точці" />
 <classtext lang="zh_CN" title="节点上的错误公路标签" />
 </class>
+<class item="9004" tag="tag,highway" id="9004010" level="3">
+<classtext lang="ca" title="{0.key}={0.value} a un node" />
+<classtext lang="cs" title="{0.key}={0.value} na uzlu" />
+<classtext lang="de" title="{0.key}={0.value} auf einem Punkt" />
+<classtext lang="en" title="{0.key}={0.value} on a node" />
+<classtext lang="es" title="{0.key}={0.value} en un nodo" />
+<classtext lang="fr" title="{0.key}={0.value} sur un nœud" />
+<classtext lang="hu" title="{0.key}={0.value} egy ponton" />
+<classtext lang="it" title="{0.key}={0.value} su un nodo" />
+<classtext lang="ja" title="{0.key}={0.value}がノード上にある" />
+<classtext lang="nl" title="{0.key}={0.value} op een knoop" />
+<classtext lang="pl" title="{0.key}={0.value} na węźle" />
+<classtext lang="pt" title="{0.key}={0.value} num nó" />
+<classtext lang="pt_BR" title="{0.key}={0.value} em um nó" />
+<classtext lang="ru" title="{0.key}={0.value} на точке" />
+<classtext lang="uk" title="{0.key}={0.value} на точці" />
+<classtext lang="zh_CN" title="{0.key}={0.value} 在节点上" />
+<classtext lang="zh_TW" title="{0.key}={0.value} 用在節點" />
+</class>
 <class item="9005" tag="tag,value" id="9005001" level="3">
 <classtext lang="ca" title="{0.key} amb valors múltiples" />
 <classtext lang="cs" title="{0.key} s vícenásobnou hodnotou" />
@@ -3376,6 +3412,12 @@
 <classtext lang="nl" title="Onnodig aantal decimalen" />
 <classtext lang="ru" title="Излишнее количество десятичных знаков" />
 <classtext lang="uk" title="Зайва кількість десяткових знаків" />
+</class>
+<class item="9006" tag="tag,value" id="9006022" level="3">
+<classtext lang="cs" title="Značení letiště" />
+<classtext lang="de" title="Flughafenerfassung" />
+<classtext lang="en" title="Airport tagging" />
+<classtext lang="ru" title="Теги аэропорта" />
 </class>
 <class item="9007" tag="tag,relation" id="9007001" level="3">
 <classtext lang="cs" title="Chybějící značka" />
