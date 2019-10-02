@@ -11,9 +11,9 @@ class Josm_FranceSpecificRules(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[2] = {'item': 9999, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Cette station vend-elle toujours du SP95, ou a-t\'il été remplacé par le SP95-E10 ?')}
         self.errors[20806] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'parking', u'amenity', u'fix:chair'), 'desc': mapcss.tr(u'Missing tag carpool on area')}
         self.errors[21600] = {'item': 2160, 'level': 3, 'tag': mapcss.list_(u'tag', u'railway'), 'desc': mapcss.tr(u'Missing tag gauge on rail')}
+        self.errors[40612] = {'item': 4061, 'level': 2, 'tag': mapcss.list_(u'parking', u'amenity', u'fix:chair'), 'desc': mapcss.tr(u'Does this station still sell SP95, or has it been replaced by the SP95-E10?')}
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
 
@@ -52,9 +52,11 @@ class Josm_FranceSpecificRules(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'fuel') and mapcss._tag_capture(capture_tags, 1, tags, u'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, u'yes') and not mapcss._tag_capture(capture_tags, 2, tags, u'fuel:e10') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("Cette station vend-elle toujours du SP95, ou a-t'il été remplacé par le SP95-E10 ?")
+                # -osmoseTags:list("parking","amenity","fix:chair")
+                # -osmoseItemClassLevel:"4061/40612/2"
+                # throwWarning:tr("Does this station still sell SP95, or has it been replaced by the SP95-E10?")
                 # suggestAlternative:"fuel:e10=yes/no"
-                err.append({'class': 2, 'subclass': 662274675, 'text': mapcss.tr(u'Cette station vend-elle toujours du SP95, ou a-t\'il été remplacé par le SP95-E10 ?')})
+                err.append({'class': 40612, 'subclass': 0, 'text': mapcss.tr(u'Does this station still sell SP95, or has it been replaced by the SP95-E10?')})
 
         return err
 
@@ -111,9 +113,11 @@ class Josm_FranceSpecificRules(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'fuel') and mapcss._tag_capture(capture_tags, 1, tags, u'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, u'yes') and not mapcss._tag_capture(capture_tags, 2, tags, u'fuel:e10') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("Cette station vend-elle toujours du SP95, ou a-t'il été remplacé par le SP95-E10 ?")
+                # -osmoseTags:list("parking","amenity","fix:chair")
+                # -osmoseItemClassLevel:"4061/40612/2"
+                # throwWarning:tr("Does this station still sell SP95, or has it been replaced by the SP95-E10?")
                 # suggestAlternative:"fuel:e10=yes/no"
-                err.append({'class': 2, 'subclass': 662274675, 'text': mapcss.tr(u'Cette station vend-elle toujours du SP95, ou a-t\'il été remplacé par le SP95-E10 ?')})
+                err.append({'class': 40612, 'subclass': 0, 'text': mapcss.tr(u'Does this station still sell SP95, or has it been replaced by the SP95-E10?')})
 
         return err
 
@@ -150,9 +154,11 @@ class Josm_FranceSpecificRules(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'fuel') and mapcss._tag_capture(capture_tags, 1, tags, u'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, u'yes') and not mapcss._tag_capture(capture_tags, 2, tags, u'fuel:e10') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("Cette station vend-elle toujours du SP95, ou a-t'il été remplacé par le SP95-E10 ?")
+                # -osmoseTags:list("parking","amenity","fix:chair")
+                # -osmoseItemClassLevel:"4061/40612/2"
+                # throwWarning:tr("Does this station still sell SP95, or has it been replaced by the SP95-E10?")
                 # suggestAlternative:"fuel:e10=yes/no"
-                err.append({'class': 2, 'subclass': 662274675, 'text': mapcss.tr(u'Cette station vend-elle toujours du SP95, ou a-t\'il été remplacé par le SP95-E10 ?')})
+                err.append({'class': 40612, 'subclass': 0, 'text': mapcss.tr(u'Does this station still sell SP95, or has it been replaced by the SP95-E10?')})
 
         return err
 

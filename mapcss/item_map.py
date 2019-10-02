@@ -1,8 +1,7 @@
 #-*- coding: utf-8 -*-
 item_map = \
-{'FranceSpecificRules': {'class': {"Cette station vend-elle toujours du SP95, ou a-t'il été remplacé par le SP95-E10 ?": 2,
-                                   'a': 1},
-                         'item': 9999,
+{'FranceSpecificRules': {'class': {},
+                         'item': 9019,
                          'prefix': 'Josm_',
                          'tags': []},
  'Rules_Brazilian-Specific': {'class': {'Brasil - Correções e melhorias': 9018006,
