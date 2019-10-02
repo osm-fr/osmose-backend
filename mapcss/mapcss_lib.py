@@ -461,6 +461,8 @@ def regexp_match(regexp, string):
 #regexp_match(regexp, string, flags)
 #    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. Flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5701] 
 
+#substring(str, idx)	
+#    return the substring of str, starting at index idx (0-indexed) [since 6534] 
 #substring(str, start, end)
 #    return the substring of str, starting at index start (inclusive) up to end (exclusive) (0-indexed) [since 6534] 
 def substring(string, start, end=None):
