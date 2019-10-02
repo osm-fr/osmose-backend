@@ -2173,8 +2173,8 @@ class Josm_combinations(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # throwWarning:tr("Combined foot- and cycleway without {1}.","{3.key}")
-                err.append({'class': 9001001, 'subclass': 1684739425, 'text': mapcss.tr(u'Combined foot- and cycleway without {1}.', mapcss._tag_uncapture(capture_tags, u'{3.key}'))})
+                # throwWarning:tr("Combined foot- and cycleway without {0}.","{3.key}")
+                err.append({'class': 9001001, 'subclass': 1684739425, 'text': mapcss.tr(u'Combined foot- and cycleway without {0}.', mapcss._tag_uncapture(capture_tags, u'{3.key}'))})
 
         return err
 
