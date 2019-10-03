@@ -297,7 +297,7 @@ class OsmOsisManager:
         elif line.startswith("maxInterval"):
             if "geofabrik" in conf.download["diff"]:
                 # on daily diffs provided by Geofabrik, we should apply only one diff at a time
-                sys.stdout.write("maxInterval=" + str(60*60*24/2)) # 1/2 day at most
+                sys.stdout.write("maxInterval=" + str(60*60*24//2)) # 1/2 day at most
             else:
                 sys.stdout.write("maxInterval=" + str(7*60*60*24)) # 7 day at most
         else:
