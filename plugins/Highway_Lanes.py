@@ -72,9 +72,9 @@ class Highway_Lanes(Plugin):
                         for t in set(tt.split(";")):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
-                                err.append({"class": 31606, "subclass": 0 + stablehash(tl + '|' + tt + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
+                                err.append({"class": 31606, "subclass": 0 + stablehash(tl + '|' + t + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
-                                err.append({"class": 31600, "subclass": 1 + stablehash(tl + '|' + tt + '|' + str(i))})
+                                err.append({"class": 31600, "subclass": 1 + stablehash(tl + '|' + t + '|' + str(i))})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
