@@ -50,7 +50,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
-                        "name": lambda res: res['stop_name'].split(' - ')[1] if len(res['stop_name'].split(' - ')) > 1 else None},
+                        "name": lambda res: self.replace(res['stop_name'].split(' - ')[1]) if len(res['stop_name'].split(' - ')) > 1 else None},
                     text = lambda tags, fields: T_f(u"{0} stop of {1}", place, fields["stop_name"]) )))
 
     def replace(self, string):
@@ -64,7 +64,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         u'Eglise': u'Église',
         u'Rte ': u'Route ',
         u'Bld ': u'Boulevard',
-        u'St ': u'Staint ',
+        u'St ': u'Saint ',
         u'Av. ': u'Avenue',
         u'Hôp.': u'Hôpital',
     }

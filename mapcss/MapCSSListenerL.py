@@ -122,22 +122,23 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#declaration.
     def enterDeclaration(self, ctx:MapCSSParser.DeclarationContext):
-        self.params_stack = []
-        self.params = []
+        self.stack.append({
+            'single_value': None,
+            'functionExpression': None
+        })
 
-        self.value = None
 
     # Exit a parse tree produced by MapCSSParser#declaration.
     def exitDeclaration(self, ctx:MapCSSParser.DeclarationContext):
-        if len(self.params) > 0: # Case of declaration_value_function
-            self.value = self.params[0]
-
+        v = self.stack.pop()
         self.declarations.append({
             'type': 'declaration',
             'text': ctx.getText(),
             'set': ctx.cssident() and ctx.cssident().getText(),
             'property': ctx.declaration_property() and ctx.declaration_property().getText(),
-            'value': self.value})
+            'value': v['single_value'] or v['functionExpression']
+        })
+#        print(self.declarations[-1])
 
 
     # Enter a parse tree produced by MapCSSParser#single_value.
@@ -150,21 +151,10 @@ class MapCSSListenerL(MapCSSListener):
     # Exit a parse tree produced by MapCSSParser#single_value.
     def exitSingle_value(self, ctx:MapCSSParser.Single_valueContext):
         v = self.stack.pop()
-        self.params.append({'type': 'single_value', 'value': (ctx.v and ctx.v.text) or v['quoted'] or v['osmtag']})
-
-
-    # Enter a parse tree produced by MapCSSParser#declaration_value_function.
-    def enterDeclaration_value_function(self, ctx:MapCSSParser.Declaration_value_functionContext):
-        self.params_stack.append(self.params)
-        self.params = []
-
-    # Exit a parse tree produced by MapCSSParser#declaration_value_function.
-    def exitDeclaration_value_function(self, ctx:MapCSSParser.Declaration_value_functionContext):
-        params = self.params
-        self.params = self.params_stack.pop()
-        self.params.append({'type': 'declaration_value_function',
-            'name': ctx.cssident().getText(),
-            'params': params})
+        self.stack[-1]['single_value'] = {
+            'type': 'single_value',
+            'value': (ctx.v and ctx.v.text) or v['quoted'] or v['osmtag']
+        }
 
 
     # Enter a parse tree produced by MapCSSParser#booleanExpression.

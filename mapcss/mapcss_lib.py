@@ -242,25 +242,26 @@ def at(asset_lat, asset_lon, lat, lon):
 #    the usual meaning, details 
 import math
 import random
-asin = math.asin
-atan = math.atan
-atan2 = math.atan2
-ceil = math.ceil
-cos = math.cos
-cosh = math.cosh
-exp = math.exp
-floor = math.floor
-log = math.log
+str_value_num_wrapper = lambda function: lambda s: str_value(function(s.to_n()))
+asin = str_value_num_wrapper(math.asin)
+atan = str_value_num_wrapper(math.atan)
+atan2 = str_value_num_wrapper(math.atan2)
+ceil = str_value_num_wrapper(math.ceil)
+cos = str_value_num_wrapper(math.cos)
+cosh = str_value_num_wrapper(math.cosh)
+exp = str_value_num_wrapper(math.exp)
+floor = str_value_num_wrapper(math.floor)
+log = str_value_num_wrapper(math.log)
 #max = max
 #min = min
 random = random.random
-round = lambda f: f.round
-signum = lambda x: (x > 0) - (x < 0)
-sin = math.sin
-sinh = math.sinh
-sqrt = math.sqrt
-tan = math.tan
-tanh = math.tanh
+round_ = str_value_num_wrapper(lambda f: round(f))
+signum = str_value_num_wrapper(lambda x: (x > 0) - (x < 0))
+sin = str_value_num_wrapper(math.sin)
+sinh = str_value_num_wrapper(math.sinh)
+sqrt = str_value_num_wrapper(math.sqrt)
+tan = str_value_num_wrapper(math.tan)
+tanh = str_value_num_wrapper(math.tanh)
 
 #cond(b, fst, snd)
 #b ? fst : snd
@@ -462,15 +463,11 @@ def regexp_match(regexp, string):
 #    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. Flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5701] 
 
 #substring(str, idx)
-#    return the substring of str, starting at index idx (0-indexed) [since 6534] 
-def substring(string, idx):
-    if string != None and idx != None:
-        return str_value(string[idx:])
-
+#    return the substring of str, starting at index idx (0-indexed) [since 6534]
 #substring(str, start, end)
-#    return the substring of str, starting at index start (inclusive) up to end (exclusive) (0-indexed) [since 6534] 
-def substring(string, start, end):
-    if string != None and start != None and end != None:
+#    return the substring of str, starting at index start (inclusive) up to end (exclusive) (0-indexed) [since 6534]
+def substring(string, start, end=None):
+    if string is not None and start is not None:
         return str_value(string[start:end])
 
 #replace(string, old, new)

@@ -34,7 +34,7 @@ class Josm_geometry(Plugin):
         # node[oneway]
         # node[bridge]
         # node[sidewalk]
-        # node[footway]
+        # node[footway][footway!=crossing]
         # node[man_made=embankment]
         # node[man_made=groyne]
         # node[man_made=cutline]
@@ -91,7 +91,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'footway') != mapcss._value_const_capture(capture_tags, 1, u'crossing', u'crossing'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -242,7 +242,7 @@ class Josm_geometry(Plugin):
                 # assertMatch:"node bridge=viaduct"
                 # assertMatch:"node bridge=yes"
                 # assertMatch:"node oneway=-1"
-                err.append({'class': 9003001, 'subclass': 2132549655, 'text': mapcss.tr(u'{0} on a node. Should be used on a way.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9003001, 'subclass': 431750003, 'text': mapcss.tr(u'{0} on a node. Should be used on a way.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # node[boundary=administrative]
         if (u'boundary' in keys):
@@ -659,6 +659,6 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {u'bridge': u'viaduct'}), expected={'class': 9003001, 'subclass': 2132549655})
-        self.check_err(n.node(data, {u'bridge': u'yes'}), expected={'class': 9003001, 'subclass': 2132549655})
-        self.check_err(n.node(data, {u'oneway': u'-1'}), expected={'class': 9003001, 'subclass': 2132549655})
+        self.check_err(n.node(data, {u'bridge': u'viaduct'}), expected={'class': 9003001, 'subclass': 431750003})
+        self.check_err(n.node(data, {u'bridge': u'yes'}), expected={'class': 9003001, 'subclass': 431750003})
+        self.check_err(n.node(data, {u'oneway': u'-1'}), expected={'class': 9003001, 'subclass': 431750003})

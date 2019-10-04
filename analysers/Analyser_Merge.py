@@ -944,7 +944,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 # Invalid OSM
                 self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
                     "class": self.missing_osm["class"],
-                    "subclass": str(stablehash(res[4])) if self.mapping.osmRef != "NULL" else None,
+                    "subclass": str(stablehash(res[5])) if self.mapping.osmRef != "NULL" else None,
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
 

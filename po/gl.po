@@ -6,12 +6,13 @@
 # ccpr1l <csdpe0810-tf@yahoo.es>, 2019
 # Navhy, 2019
 # Navhy, 2019
+# Iváns, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-09-17 19:31+0000\n"
+"PO-Revision-Date: 2019-10-01 21:44+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -2205,7 +2206,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "A etiqueta \"addr: street\" non coincide co nome de ningunha rúa darredor"
 
 #: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
@@ -2214,7 +2215,7 @@ msgstr ""
 #: ../analysers/analyser_merge_power_plant_FR.py:62
 #, python-format
 msgid "Power plant %s"
-msgstr ""
+msgstr "%s plantas de enerxía"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without tag \"postal_code\""
@@ -2226,24 +2227,24 @@ msgstr ""
 
 #: ../plugins/TagFix_BadKey.py:31
 msgid "Bad tag suffix"
-msgstr ""
+msgstr "Sufixo da etiqueta erróneo"
 
 #: ../plugins/TagFix_BadKey.py:68
 #, python-format
 msgid "Bad tag suffix %(k)s=%(v)s"
-msgstr ""
+msgstr "Sufixo da etiqueta erróneo %(k)s=%(v)s"
 
 #: ../plugins/TagFix_Deprecated.py:78
 msgid "Deprecated value"
-msgstr ""
+msgstr "Valor obsoleto"
 
 #: ../plugins/TagFix_DuplicateValue.py:32
 msgid "Duplicated values"
-msgstr ""
+msgstr "Valores duplicados"
 
 #: ../plugins/TagFix_DuplicateValue.py:33
 msgid "Similar values"
-msgstr ""
+msgstr "Valores semellantes"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:56
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:57
@@ -2276,4 +2277,50 @@ msgstr ""
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_paris.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
+msgid "Defibrillator not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:29
+msgid "Museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:30
+msgid "Museum, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:29
+#, python-format
+msgid "Radio support (%s) not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:30
+#, python-format
+msgid "Radio support (%s), integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:31
+#, python-format
+msgid "Radio support (%s) update"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:28
+msgid "Wastewater plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:29
+msgid "Wastewater plant, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:30
+msgid "Wastewater plant update"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:37
+msgid "Invalid value of tag \"ref:vatin\""
 msgstr ""

@@ -18,6 +18,7 @@ class Josm_highway(Plugin):
         self.errors[9004006] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'deprecated tagging')}
         self.errors[9004007] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), u'sidewalk=left|right|both|no')}
         self.errors[9004008] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'wrong highway tag on a node')}
+        self.errors[9004010] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
 
         self.re_015aabd5 = re.compile(r'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(r'^.*_link$')
@@ -61,6 +62,32 @@ class Josm_highway(Plugin):
                 # assertNoMatch:"node highway=traffic_signals"
                 # assertNoMatch:"node highway=turning_circle"
                 err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node')})
+
+        # node[footway=crossing]
+        if (u'footway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'crossing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} on a node","{0.tag}")
+                # suggestAlternative:"highway=crossing"
+                # suggestAlternative:"railway=crossing"
+                err.append({'class': 9004010, 'subclass': 1262520638, 'text': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
+        # node[cycleway=crossing]
+        if (u'cycleway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'cycleway') == mapcss._value_capture(capture_tags, 0, u'crossing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} on a node","{0.tag}")
+                # suggestAlternative:"highway=crossing + bicycle=yes"
+                # suggestAlternative:"railway=crossing + bicycle=yes"
+                err.append({'class': 9004010, 'subclass': 1385847744, 'text': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # node[railway!=crossing][crossing!=no].is_in_railway.is_in_minor_road!.is_in_major_road
         # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway

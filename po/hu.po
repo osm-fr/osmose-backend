@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-09-17 19:31+0000\n"
+"PO-Revision-Date: 2019-10-01 21:44+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -2277,4 +2277,50 @@ msgstr ""
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_paris.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
+msgid "Defibrillator not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:29
+msgid "Museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_museum_FR.py:30
+msgid "Museum, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:29
+#, python-format
+msgid "Radio support (%s) not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:30
+#, python-format
+msgid "Radio support (%s), integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_radio_support_FR.py:31
+#, python-format
+msgid "Radio support (%s) update"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:28
+msgid "Wastewater plant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:29
+msgid "Wastewater plant, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wastewater_plant_FR.py:30
+msgid "Wastewater plant update"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:37
+msgid "Invalid value of tag \"ref:vatin\""
 msgstr ""

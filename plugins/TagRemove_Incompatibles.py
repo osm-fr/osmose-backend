@@ -65,6 +65,8 @@ class TagRemove_Incompatibles(Plugin):
         if tags.get('railway') == 'tram_stop' and tags.get('highway') == 'bus_stop':
             del tags['railway']
             del tags['highway']
+        if tags.get('leisure') == 'nature_reserve' and 'natural' in tags:
+            del tags['natural']
         stags = set(tags)
         for i in range(0, len(self.CONFLICT)):
             conflict = stags.intersection(self.CONFLICT[i])
@@ -113,5 +115,6 @@ class Test(TestPluginCommon):
                   {"waterway": "dam", "highway": "road"},
                   {"landuse": "school", "amenity": "school"},
                   {"place": "square", "highway": "pedestrian"},
+                  {"leisure": "nature_reserve", "natural": "scrub"}
                  ]:
             assert not a.node(None, t), t

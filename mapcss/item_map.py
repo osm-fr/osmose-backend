@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 item_map = \
-{'FranceSpecificRules': {'class': {'a': 1},
-                         'item': 9999,
+{'FranceSpecificRules': {'class': {},
+                         'item': 9019,
                          'prefix': 'Josm_',
                          'tags': []},
  'Rules_Brazilian-Specific': {'class': {'Brasil - Correções e melhorias': 9018006,
@@ -207,6 +207,7 @@ item_map = \
                        'missing tag': 9004009,
                        'wrong crossing tag on a way': 9004002,
                        'wrong highway tag on a node': 9004008,
+                       '{0} on a node': 9004010,
                        '{0} used with {1}': 9004005},
              'item': 9004,
              'prefix': 'Josm_',
@@ -223,7 +224,8 @@ item_map = \
               'item': 9005,
               'prefix': 'Josm_',
               'tags': ['tag', 'value']},
- 'numeric': {'class': {'Unnecessary amount of decimal places': 9006021,
+ 'numeric': {'class': {'Airport tagging': 9006022,
+                       'Unnecessary amount of decimal places': 9006021,
                        'numerical key': 9006001,
                        'unusual value of {0}': 9006010,
                        'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit': 9006020,

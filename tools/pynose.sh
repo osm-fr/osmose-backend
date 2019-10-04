@@ -1,14 +1,18 @@
 #!/bin/bash
+set -e
+
 cd $(dirname $0)
 cd ..
 
 EXCLUDE_FILES=("plugins/Josm_de_openrailwaymap.py" "plugins/Josm_territories.py")
 
-PYTHON_FILES=($(ls plugins/*.py plugins/tests/*.py modules/*.py analysers/*.py))
+for dir in "plugins" "plugins/tests" "modules" "analysers"; do
+  PYTHON_FILES=($(ls $dir/*.py))
 
-for del in ${EXCLUDE_FILES[@]}; do
-  # remove $del from array PYTHON_FILES
-  PYTHON_FILES=("${PYTHON_FILES[@]/$del}")
+  for del in ${EXCLUDE_FILES[@]}; do
+    # remove $del from array PYTHON_FILES
+    PYTHON_FILES=("${PYTHON_FILES[@]/$del}")
+  done
+
+  python $(which nosetests) --testmatch='(?:\b)[Tt]est' ${PYTHON_FILES[@]}
 done
-
-python $(which nosetests) --testmatch='(?:\b)[Tt]est' ${PYTHON_FILES[@]}

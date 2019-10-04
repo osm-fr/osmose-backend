@@ -256,7 +256,9 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
-france_departement("alsace/bas_rhin", 7415, "FR-67")
+france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
+    'merge_defibrillators_FR_basrhin',
+])
 france_departement("alsace/haut_rhin", 7403, "FR-68")
 
 include_aquitaine = [
@@ -355,12 +357,14 @@ include_ile_de_france = [
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
     'merge_bicycle_parking_FR_paris',
+    'merge_defibrillators_FR_paris',
 ], exclude=[
     'merge_shop_FR',
 ])
 france_departement("ile_de_france/hauts_de_seine", 7449, "FR-92", include=include_ile_de_france + [
     # Hauts-de-Seine
     'merge_restriction_FR_92',
+    'merge_defibrillators_FR_issylesmoulineaux',
 ])
 france_departement("ile_de_france/seine_saint_denis", 7389, "FR-93", include=include_ile_de_france)
 france_departement("ile_de_france/val_de_marne", 7458, "FR-94", include=include_ile_de_france)
@@ -397,6 +401,7 @@ france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_street_number_toulouse',
+    'merge_defibrillators_FR_toulouse',
 ])
 france_departement("midi_pyrenees/gers", 7422, "FR-32")
 france_departement("midi_pyrenees/lot", 7454, "FR-46")
@@ -475,6 +480,9 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'merge_postal_code_FR',
     'merge_post_box_FR',
     'merge_shop_FR',
+    'merge_wastewater_plant_FR',
+    'merge_museum_FR',
+    'merge_radio_support_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom("guadeloupe", 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
@@ -492,6 +500,7 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
     'merge_police_FR_gn',
     'merge_police_FR_pn',
     'merge_postal_code_FR',
+    'merge_radio_support_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
@@ -542,6 +551,9 @@ france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
+france_local_db.analyser["merge_wastewater_plant_FR"] = "xxx"
+france_local_db.analyser["merge_museum_FR"] = "xxx"
+france_local_db.analyser["merge_radio_support_FR"] = "xxx"
 
 #########################################################################
 
@@ -580,7 +592,7 @@ default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, 
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
-default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
 default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
 default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
