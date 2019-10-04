@@ -51,7 +51,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     mapping1 = {u"ref:FR:museofile": "Identifiant"},
                     mapping2 = {
                         "website": lambda res: None if not res["URL"] else res["URL"] if res["URL"].startswith('http') else 'http://' + res["URL"],
-                        "phone": lambda res: "+33 " + res[u"Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$", res["Téléphone"]) else None,
+                        "phone": lambda res: "+33 " + res[u"Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$", res[u"Téléphone"]) else None,
                         "name": lambda res: res["Nom usage"][0].upper() + res["Nom usage"][1:] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
                         "official_name" : lambda res: res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom usage"] and res["Nom officiel"].lower() != res["Nom usage"].lower() else None},
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["Adresse"], fields["Code Postal"], fields["Ville"]]))} )))
