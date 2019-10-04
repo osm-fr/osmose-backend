@@ -21,6 +21,7 @@
 from plugins.Plugin import Plugin
 import re
 
+
 class TagFix_Vatin(Plugin):
 
     # ref:vatin is a tag to add the VAT identification number.
@@ -34,11 +35,12 @@ class TagFix_Vatin(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[32601] = {"item": 3260, "level": 3, "tag": ["ref"], "desc": T_(u'Invalid value of tag "ref:vatin"') }
+        self.errors[99998] = {"item": 9998, "level": 3, "tag": ["ref", "fix:chair"], "desc": T_(u'Invalid format of tag "ref:vatin"')}
+        self.errors[99999] = {"item": 9999, "level": 3, "tag": ["ref", "fix:chair"], "desc": T_(u'Invalid value of tag "ref:vatin"')}
 
     # https://it.wikipedia.org/wiki/Partita_IVA
     def it_vatin(self, vatin):
-        if (len(vatin) != 11 or vatin.isdigit() == False):
+        if (len(vatin) != 11 or vatin.isdigit() is False):
             return False
 
         # A Luhn algorithm implementation
@@ -58,11 +60,15 @@ class TagFix_Vatin(Plugin):
     def node(self, data, tags):
         if "ref:vatin" in tags:
             if tags["ref:vatin"].startswith("IT"):
-                if self.it_vatin(tags["ref:vatin"][2:]) == False:
-                    return {"class": 32601, "subclass": 1 }
+                if self.it_vatin(tags["ref:vatin"][2:]) is False:
+                    return {"class": 99998, "subclass": 1, "text": {"en": u"Invalid 'Partita IVA'"}}
             else:
-                if len(tags["ref:vatin"]) < 3 or tags["ref:vatin"][0:2].isalpha() == False or tags["ref:vatin"].isupper() == False:
-                    return {"class": 32601, "subclass": 0 }
+                if len(tags["ref:vatin"]) < 3:
+                    return {"class": 99999, "subclass": 0, "text": {"en": u"Value too short"}}
+                if tags["ref:vatin"][0:2].isalpha() is False:
+                    return {"class": 99999, "subclass": 2, "text": {"en": u"Country code is missing"}}
+                if tags["ref:vatin"].isupper() is False:
+                    return {"class": 99999, "subclass": 3, "text": {"en": u"Value is not uppercase"}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -92,4 +98,3 @@ class Test(TestPluginCommon):
         assert a.node(None, {"ref:vatin": "ITAAAAAAAAAAA"})
         # missing country code
         assert a.node(None, {"ref:vatin": "11111111115"})
-
