@@ -60,14 +60,14 @@ class TagFix_Vatin(Plugin):
         if "ref:vatin" in tags:
             if tags["ref:vatin"].startswith("IT"):
                 if self.it_vatin(tags["ref:vatin"][2:]) is False:
-                    return {"class": 99998, "subclass": 1, "text": {"en": u"Invalid 'Partita IVA'"}}
+                    return {"class": 32601, "subclass": 1, "text": {"en": u"Invalid 'VAT identification number'"}}
             else:
                 if len(tags["ref:vatin"]) < 3:
-                    return {"class": 99999, "subclass": 0, "text": {"en": u"Value too short"}}
+                    return {"class": 32601, "subclass": 0, "text": {"en": u"Value too short"}}
                 if tags["ref:vatin"][0:2].isalpha() is False:
-                    return {"class": 99999, "subclass": 2, "text": {"en": u"Country code is missing"}}
+                    return {"class": 32601, "subclass": 2, "text": {"en": u"Country code is missing"}}
                 if tags["ref:vatin"].isupper() is False:
-                    return {"class": 99999, "subclass": 3, "text": {"en": u"Value is not uppercase"}}
+                    return {"class": 32601, "subclass": 3, "text": {"en": u"Value is not uppercase"}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -97,3 +97,4 @@ class Test(TestPluginCommon):
         assert a.node(None, {"ref:vatin": "ITAAAAAAAAAAA"})
         # missing country code
         assert a.node(None, {"ref:vatin": "11111111115"})
+
