@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-01 21:44+0000\n"
+"PO-Revision-Date: 2019-10-05 18:12+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -424,7 +424,7 @@ msgstr "میان‌بُر در فلکه"
 msgid "Roundabout crossing"
 msgstr "قطع‌کردن فلکه"
 
-#: ../analysers/analyser_osmosis_roundabout.py:62
+#: ../analysers/analyser_osmosis_roundabout.py:66
 msgid "Missing junction=roundabout"
 msgstr "کمبود junction=roundabout"
 
@@ -858,12 +858,12 @@ msgstr "فاصله‌های پیاپی در نام"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "چندین مقدار روی تگ: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:79
+#: ../plugins/TagRemove_Incompatibles.py:81
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "تداخل بین تگ‌ها: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:82
+#: ../plugins/TagRemove_Incompatibles.py:84
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "تداخل بین تگ‌ها: bridge و tunnel"
 
@@ -1061,7 +1061,7 @@ msgstr "شامل car،‏ horse،‏ moped،‏ hazmat و مانند آن می�
 msgid "Inconsistent Access"
 msgstr "دسترسی ناسازگار است"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:270
+#: ../analysers/analyser_osmosis_relation_public_transport.py:266
 msgid "Non route relation member in route_master relation"
 msgstr "عضو نامربوط به رابطهٔ route در رابطهٔ route_master"
 
@@ -1192,7 +1192,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:85
+#: ../plugins/TagRemove_Incompatibles.py:87
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "تداخل بین تگ‌ها: crossing=no باید بدون تگ highway=crossing به‌کار برود"
@@ -1466,7 +1466,7 @@ msgstr "نام خیلی مشابه"
 msgid "Way access mismatch relation route=%s"
 msgstr "دسترسی راه با رابطهٔ route=%s همخوانی ندارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:271
+#: ../analysers/analyser_osmosis_relation_public_transport.py:267
 msgid "Public transport relation route not in route_master relation"
 msgstr "رابطهٔ مسیر حمل‌ونقل عمومی در رابطهٔ route_master نیامده"
 
@@ -1482,11 +1482,11 @@ msgstr "وقتی addr:housenumber یا addr:housename بدون addr:street،‏ 
 msgid "%s not integrated"
 msgstr "%s یکپارچه نشده"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:268
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid "The track of this route contains gaps"
 msgstr "مسیر این route شکاف‌هایی دارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:265
 msgid "The stop or platform is too far from the track of this route"
 msgstr "ایستگاه یا سکو خیلی از مسیر این route دور است"
 
@@ -1498,13 +1498,13 @@ msgstr "کمبود پیش‌شمارهٔ بین‌المللی"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "maxspeed و source:maxspeed ناسازگار"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:272
+#: ../analysers/analyser_osmosis_relation_public_transport.py:268
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های route و route_master باید یکسان باشد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:278
+#: ../analysers/analyser_osmosis_relation_public_transport.py:274
 #, python-format
 msgid "%s are different"
 msgstr "%s متفاوت هستند"
@@ -2319,6 +2319,9 @@ msgstr ""
 msgid "Wastewater plant update"
 msgstr ""
 
-#: ../plugins/TagFix_Vatin.py:37
 msgid "Invalid value of tag \"ref:vatin\""
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:38
+msgid "Invalid value format of tag \"ref:vatin\""
 msgstr ""

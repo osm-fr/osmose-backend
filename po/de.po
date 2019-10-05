@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-01 21:44+0000\n"
+"PO-Revision-Date: 2019-10-05 18:12+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -434,7 +434,7 @@ msgstr "Abkürzung in Kreisverkehr"
 msgid "Roundabout crossing"
 msgstr "Kreuzung in Kreisverkehr"
 
-#: ../analysers/analyser_osmosis_roundabout.py:62
+#: ../analysers/analyser_osmosis_roundabout.py:66
 msgid "Missing junction=roundabout"
 msgstr "Fehlendes junction=roundabout"
 
@@ -868,12 +868,12 @@ msgstr "Name enthält aufeinanderfolgende Leerzeichen"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Mehrere Werte auf Schlagwort: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:79
+#: ../plugins/TagRemove_Incompatibles.py:81
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Konflikt zwischen Merkmalen: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:82
+#: ../plugins/TagRemove_Incompatibles.py:84
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt zwischen Merkmalen: 'bridge' und 'tunnel'"
 
@@ -1071,7 +1071,7 @@ msgstr "Inklusive Autos, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrückli
 msgid "Inconsistent Access"
 msgstr "Inkonsistenter Zugang"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:270
+#: ../analysers/analyser_osmosis_relation_public_transport.py:266
 msgid "Non route relation member in route_master relation"
 msgstr "Nicht-Routen-Relation in einer Route-Master-Relation"
 
@@ -1202,7 +1202,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite"
 
-#: ../plugins/TagRemove_Incompatibles.py:85
+#: ../plugins/TagRemove_Incompatibles.py:87
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Konflikt zwischen Merkmalen: crossing=no kann nicht mit highway=crossing kombiniert werden"
@@ -1476,7 +1476,7 @@ msgstr "ähnlicher Name"
 msgid "Way access mismatch relation route=%s"
 msgstr "access-Wert des Way passt nicht zur Relation route=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:271
+#: ../analysers/analyser_osmosis_relation_public_transport.py:267
 msgid "Public transport relation route not in route_master relation"
 msgstr "public_transport Relation route nicht in route_master Relation"
 
@@ -1492,11 +1492,11 @@ msgstr "addr:housenumber oder addr:housename ohne addr:street, addr:district, ad
 msgid "%s not integrated"
 msgstr "%s nicht integriert"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:268
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid "The track of this route contains gaps"
 msgstr "Die Strecke dieser Route ist lückenhaft"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:265
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Der stop oder platform ist zu weit vom Fahrtweg der Route entfernt"
 
@@ -1508,13 +1508,13 @@ msgstr "Ländervorwahl fehlt"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Widerspruch zwischen maxspeed und source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:272
+#: ../analysers/analyser_osmosis_relation_public_transport.py:268
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "network, operator, ref, colour Tag sollten in route und route_master Relationen gleich sein"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:278
+#: ../analysers/analyser_osmosis_relation_public_transport.py:274
 #, python-format
 msgid "%s are different"
 msgstr "%s sind unterschiedlich"
@@ -2329,6 +2329,9 @@ msgstr ""
 msgid "Wastewater plant update"
 msgstr ""
 
-#: ../plugins/TagFix_Vatin.py:37
 msgid "Invalid value of tag \"ref:vatin\""
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:38
+msgid "Invalid value format of tag \"ref:vatin\""
 msgstr ""

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-01 21:44+0000\n"
+"PO-Revision-Date: 2019-10-05 18:12+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Wypożyczalnia rowerów CAPP niezintegrowana"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr "Kolegium niezintegrowane"
+msgstr "Szkoła policealna niezintegrowana"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
@@ -430,7 +430,7 @@ msgstr "Skrót na rondzie"
 msgid "Roundabout crossing"
 msgstr "Skrzyżowanie na rondzie"
 
-#: ../analysers/analyser_osmosis_roundabout.py:62
+#: ../analysers/analyser_osmosis_roundabout.py:66
 msgid "Missing junction=roundabout"
 msgstr "Brakuje junction=roundabout"
 
@@ -864,12 +864,12 @@ msgstr "Nazwa zawiera niepotrzebne spacje"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Różne wartości w tagu: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:79
+#: ../plugins/TagRemove_Incompatibles.py:81
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Konflikt pomiędzy tagami: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:82
+#: ../plugins/TagRemove_Incompatibles.py:84
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt pomiędzy tagami: 'bridge' i 'tunnel'"
 
@@ -1067,7 +1067,7 @@ msgstr "Włączając samochody, konie, motorowery, materiały niebezpieczne itd,
 msgid "Inconsistent Access"
 msgstr "Niepoprawny dostęp"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:270
+#: ../analysers/analyser_osmosis_relation_public_transport.py:266
 msgid "Non route relation member in route_master relation"
 msgstr "Relacja route_master zawiera element, który nie jest trasą"
 
@@ -1198,7 +1198,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:85
+#: ../plugins/TagRemove_Incompatibles.py:87
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Konflikt między tagami: crossing=no musi zostać użyty bez highway=crossing"
@@ -1472,7 +1472,7 @@ msgstr "Bardzo podobna nazwa"
 msgid "Way access mismatch relation route=%s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:271
+#: ../analysers/analyser_osmosis_relation_public_transport.py:267
 msgid "Public transport relation route not in route_master relation"
 msgstr "Brak relacji route_master dla relacji trasy transportu publicznego"
 
@@ -1488,11 +1488,11 @@ msgstr "'addr:housenumber' lub 'addr:housename' bez 'addr:street', 'addr:distric
 msgid "%s not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:268
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid "The track of this route contains gaps"
 msgstr "Przebieg tej trasy zawiera luki"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:265
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Przystanek jest zbyt daleko od przebiegu tej trasy"
 
@@ -1504,13 +1504,13 @@ msgstr "Brak międzynarodowego numeru kierunkowego"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Niezgodne maxspeed i source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:272
+#: ../analysers/analyser_osmosis_relation_public_transport.py:268
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "Tagi network, operator, ref, colour powinny być takie same w relacjach trasy jak i relacji route_master"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:278
+#: ../analysers/analyser_osmosis_relation_public_transport.py:274
 #, python-format
 msgid "%s are different"
 msgstr ""
@@ -1614,11 +1614,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
-msgstr ""
+msgstr "Szkoła policealna, propozycja integracji"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
-msgstr ""
+msgstr "Szkoła policealna, aktualizacja"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
@@ -2125,7 +2125,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
-msgstr "Koledż bez tagu \"ref:UAI\" lub tag niepoprawny"
+msgstr "Szkoła policealna bez tagu \"ref:UAI\" lub tag niepoprawny"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
@@ -2288,15 +2288,15 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
 msgid "Defibrillator not integrated"
-msgstr ""
+msgstr "Defibrylator niezintegrowany"
 
 #: ../analysers/analyser_merge_museum_FR.py:29
 msgid "Museum not integrated"
-msgstr ""
+msgstr "Muzeum niezintegrowane"
 
 #: ../analysers/analyser_merge_museum_FR.py:30
 msgid "Museum, integration suggestion"
-msgstr ""
+msgstr "Muzeum, propozycja integracji"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:29
 #, python-format
@@ -2325,6 +2325,9 @@ msgstr ""
 msgid "Wastewater plant update"
 msgstr ""
 
-#: ../plugins/TagFix_Vatin.py:37
 msgid "Invalid value of tag \"ref:vatin\""
+msgstr "Nieprawidłowa wartość tagu \"ref:vatin\""
+
+#: ../plugins/TagFix_Vatin.py:38
+msgid "Invalid value format of tag \"ref:vatin\""
 msgstr ""

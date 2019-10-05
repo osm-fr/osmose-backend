@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-01 21:44+0000\n"
+"PO-Revision-Date: 2019-10-05 18:12+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -423,7 +423,7 @@ msgstr "环岛的捷径"
 msgid "Roundabout crossing"
 msgstr "环岛交叉口"
 
-#: ../analysers/analyser_osmosis_roundabout.py:62
+#: ../analysers/analyser_osmosis_roundabout.py:66
 msgid "Missing junction=roundabout"
 msgstr "缺少junction=roundabout"
 
@@ -857,12 +857,12 @@ msgstr "名称包含连续的空格"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "多个值的标签：%(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:79
+#: ../plugins/TagRemove_Incompatibles.py:81
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "冲突标签：%s"
 
-#: ../plugins/TagRemove_Incompatibles.py:82
+#: ../plugins/TagRemove_Incompatibles.py:84
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "冲突标签：'bridge'和'tunnel'"
 
@@ -1060,7 +1060,7 @@ msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除
 msgid "Inconsistent Access"
 msgstr "访问不一致"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:270
+#: ../analysers/analyser_osmosis_relation_public_transport.py:266
 msgid "Non route relation member in route_master relation"
 msgstr "非路由关系成员在route_master关系中"
 
@@ -1191,7 +1191,7 @@ msgstr "进入车道值不良，不应该是一个整数，而应该是一个限
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "转车道merge_to_*需要旁边的车道"
 
-#: ../plugins/TagRemove_Incompatibles.py:85
+#: ../plugins/TagRemove_Incompatibles.py:87
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "冲突 tags: crossing=no 必须使用没有 highway=crossing"
@@ -1465,7 +1465,7 @@ msgstr "关闭相似的名字"
 msgid "Way access mismatch relation route=%s"
 msgstr "访问方式不匹配关系路线=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:271
+#: ../analysers/analyser_osmosis_relation_public_transport.py:267
 msgid "Public transport relation route not in route_master relation"
 msgstr "公共交通关系路线不在 route_master 关系中"
 
@@ -1481,11 +1481,11 @@ msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr
 msgid "%s not integrated"
 msgstr "%s没有整合"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:268
+#: ../analysers/analyser_osmosis_relation_public_transport.py:264
 msgid "The track of this route contains gaps"
 msgstr "这条路线的轨迹包含空白"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:265
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
@@ -1497,13 +1497,13 @@ msgstr "缺少国际前缀"
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "矛盾的最大速度和source:maxspeed"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:272
+#: ../analysers/analyser_osmosis_relation_public_transport.py:268
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "网络，运营商，参考，颜色标签应该是相同的路线和route_master关系"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:278
+#: ../analysers/analyser_osmosis_relation_public_transport.py:274
 #, python-format
 msgid "%s are different"
 msgstr "%s是不同的"
@@ -2318,6 +2318,9 @@ msgstr ""
 msgid "Wastewater plant update"
 msgstr ""
 
-#: ../plugins/TagFix_Vatin.py:37
 msgid "Invalid value of tag \"ref:vatin\""
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:38
+msgid "Invalid value format of tag \"ref:vatin\""
 msgstr ""
