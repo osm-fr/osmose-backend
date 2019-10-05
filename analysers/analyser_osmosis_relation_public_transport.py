@@ -206,13 +206,9 @@ FROM
 WHERE
   relations.tags->'type' = 'route_master' AND
   (
-    relation_members.member_type != 'R' OR
-    m.id IS NOT NULL
-  ) AND
-  coalesce(
-    any_locate(relation_members.member_type, relation_members.member_id),
-    relation_locate(relations.id)
-  ) IS NOT NULL
+    (relation_members.member_type != 'R' AND any_locate(relation_members.member_type, relation_members.member_id) IS NOT NULL) OR
+    (m.id IS NOT NULL AND relation_locate(relations.id) IS NOT NULL)
+  )
 """
 
 sql40 = """
@@ -234,7 +230,7 @@ WHERE
 """
 
 sql50 = """
-SELECT
+SELECT DISTINCT ON (parent.id, relation_members.member_id)
     parent.id,
     relation_members.member_id,
     ST_AsText(relation_locate(relations.id)),

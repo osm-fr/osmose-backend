@@ -254,6 +254,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'osmosis_highway_motorway',
     'osmosis_highway_zone',
     'merge_shop_FR',
+    'merge_power_substation_minor_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
@@ -550,7 +551,6 @@ france_local_db.analyser["merge_power_plant_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
-france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 france_local_db.analyser["merge_wastewater_plant_FR"] = "xxx"
 france_local_db.analyser["merge_museum_FR"] = "xxx"
 france_local_db.analyser["merge_radio_support_FR"] = "xxx"

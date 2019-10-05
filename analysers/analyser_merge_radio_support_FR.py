@@ -26,9 +26,9 @@ from io import open
 class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
     def __init__(self, config, logger, clas, NAT_IDs, title, tags_select, tags_generate):
 
-        self.missing_official = {"item":"8370", "class": 1+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s) not integrated" % title) }
-        self.possible_merge   = {"item":"8371", "class": 3+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s), integration suggestion" % title) }
-        self.update_official  = {"item":"8372", "class": 4+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s) update" % title) }
+        self.missing_official = {"item":"8390", "class": 1+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s) not integrated" % title) }
+        self.possible_merge   = {"item":"8391", "class": 3+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s), integration suggestion" % title) }
+        self.update_official  = {"item":"8392", "class": 4+10*clas, "level": 3, "tag": ["merge"], "desc": T_f(u"Radio support (%s) update" % title) }
 
         self.communeNameIndexedByInsee = {}
         with open("dictionaries/FR/BddCommunes", "r", encoding="utf-8") as f:

@@ -29,7 +29,7 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
             "Alert-C-point",
-            CSV(Source(fileUrl = u"http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/cederom_alert-c_v12.1.zip", zip = "Data/Mff/POINTS.DAT"),
+            CSV(Source(fileUrl = u"http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/cd_alert_c_v12.1.zip", zip = "Data/Mff/POINTS.DAT"),
                 separator = u";"),
             Load("XCOORD", "YCOORD",
                 xFunction = lambda x: float(x)/100000,
