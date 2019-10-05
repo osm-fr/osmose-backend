@@ -89,6 +89,7 @@ class Analyser_Merge_School_FR(Analyser_Merge):
 
     School_FR_loc = {
         "None": {"en": u"none", "fr": u"aucun"},
+        "NE SAIT PAS": {"en": u"none", "fr": u"aucun"},
         "BATIMENT": {"en": u"building", "fr": u"bâtiment"},
         "CENTRE_PARCELLE": {"en": u"parcel centre", "fr": u"centre de la parcelle"},
         "CENTRE_PARCELLE_PROJETE": {"en": u"parcel", "fr": u"parcelle"},
