@@ -318,6 +318,7 @@ france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=[
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
     'merge_street_number_rennes',
+    'merge_defibrillators_FR_montfort'
 ])
 france_departement("bretagne/finistere", 102430, "FR-29")
 france_departement("bretagne/morbihan", 7447, "FR-56")
