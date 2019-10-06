@@ -40,7 +40,7 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),
-                conflationDistance = 100,
+                conflationDistance = 50,
                 generate = Generate(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
