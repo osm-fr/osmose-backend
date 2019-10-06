@@ -25,7 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, 
 
 class Analyser_merge_defibrillators_FR_hautevienne(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8370", "class": 5, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
+        self.missing_official = {"item":"8370", "class": 60, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.sigena.fr/geonetwork/srv/fre/catalog.search#/metadata/1e113a13-1865-43da-b027-d8abeafbf2dd",
             u"défibrillateur automatisé externe DAE - Haute-Vienne",
