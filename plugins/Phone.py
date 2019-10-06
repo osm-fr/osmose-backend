@@ -151,7 +151,7 @@ class Phone(Plugin):
             if self.Format:
                 r = self.Format.match(phone)
                 if not r:
-                    err.append({"class": 30920, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "text": {"en": phone}})
+                    err.append({"class": 30920, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}})
                     continue
 
         return err
