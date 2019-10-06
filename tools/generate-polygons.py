@@ -48,7 +48,7 @@ for c in osmose_config.config.values():
     continue
 
   if not ("%s-%s-%s" % (x, y, z)) in r.text:
-    r = requests.post(relation_generation_url, params={"id": c.polygon_id}, data={"x": x, "y": y, "z": z})
+    requests.post(relation_generation_url, params={"id": c.polygon_id}, data={"x": x, "y": y, "z": z})
 
   r = requests.get(polygon_union_url, params={"id": c.polygon_id,
                                               "params": "%s-%s-%s" % (x,y,z)})
