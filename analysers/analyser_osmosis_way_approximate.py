@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
