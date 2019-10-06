@@ -93,10 +93,10 @@ class Highway_Lanes(Plugin):
                         first_right = self.index_(t, "r")
                         # Check right is on the right and left is on the left...
                         if not(
-                            (last_left == None or first_space == None or last_left < first_space) and
-                            (first_space == None or last_space == None or first_space <= last_space) and
-                            (last_space == None or first_right == None or last_space < first_right) and
-                            (last_left == None or first_right == None or last_left < first_right)):
+                                (last_left is None or first_space is None or last_left < first_space) and
+                                (first_space is None or last_space is None or first_space <= last_space) and
+                                (last_space is None or first_right is None or last_space < first_right) and
+                                (last_left is None or first_right is None or last_left < first_right)):
                             err.append({"class": 31607, "subclass": 1 + stablehash(tl)})
 
         # Check acces lanes values
@@ -165,14 +165,14 @@ class Highway_Lanes(Plugin):
             for star in sorted(number.keys()):
                 non_fullwidth_lanes_number_star = ((non_fullwidth_lanes_number.get(direction) or 0) if star != 'lanes' else 0)
                 non_fullwidth_lanes_number_tag = ((non_fullwidth_lanes_number.get(direction) or 0) if tag != 'lanes:lanes'+direction else 0)
-                if n_lanes.get(direction) != None and number[star].get(direction) != None and \
+                if n_lanes.get(direction) is not None and number[star].get(direction) is not None and \
                         number[star][direction] - non_fullwidth_lanes_number_star != \
                         n_lanes[direction] - non_fullwidth_lanes_number_tag:
                     err.append({"class": 31608, "subclass": 0 + stablehash(direction + '|' + star), "text": {
                         "en": "(lanes(%s)=%s) - (non fullwidth=%s) != (lanes(%s)=%s) - (non fullwidth=%s)" % (
                             star+":*"+direction, number[star][direction], non_fullwidth_lanes_number_star,
                             tag, n_lanes[direction], non_fullwidth_lanes_number_tag) }})
-                elif n_lanes.get(direction) == None and number[star].get(direction) != None:
+                elif n_lanes.get(direction) is None and number[star].get(direction) is not None:
                     # Fist loop, pick the star as tag and the number of lanes to compare to the others
                     n_lanes[direction] = number[star][direction]
                     tag = star+":lanes"+direction
@@ -205,18 +205,18 @@ class Highway_Lanes(Plugin):
         nfw_nl2 = non_fullwidth_lanes_number.get(':both_ways') or 0
 
         if oneway:
-            if nl != None and nlf != None and nl != nlf - nfw_nlf:
+            if nl is not None and nlf is not None and nl != nlf - nfw_nlf:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
-            elif nlb != None or nl2 != None:
+            elif nlb is not None or nl2 is not None:
                 err.append({"class": 31605, "subclass": 0})
         else:
-            if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
+            if nl is not None and nlf is not None and nlb is not None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})", nl, nlf, nlb, nl2, nfw_nl, nfw_nlf, nfw_nlb, nfw_nl2)})
-            elif nl != None and nlf != None and nl <= nlf - nfw_nlf:
+            elif nl is not None and nlf is not None and nl <= nlf - nfw_nlf:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
-            elif nl != None and nlb != None and nl <= nlb - nfw_nlb:
+            elif nl is not None and nlb is not None and nl <= nlb - nfw_nlb:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})", nl, nlb, nfw_nlb)})
-            elif nl != None and nl2 != None and nl < nl2 - nfw_nl2:
+            elif nl is not None and nl2 is not None and nl < nl2 - nfw_nl2:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})", nl, nl2, nfw_nl2)})
 
         if err != []:

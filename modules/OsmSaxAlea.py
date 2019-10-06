@@ -277,7 +277,7 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
 
     def _Get(self, start):        
         
-        if start == None:
+        if start is None:
             return None
         
         class _output:

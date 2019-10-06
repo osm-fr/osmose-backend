@@ -85,7 +85,7 @@ class Name_Script(Plugin):
         self.uniq_script = self.uniq_scripts.get(languages[0]) if languages and len(languages) == 1 else None
 
         for l, s in list(self.lang.items()):
-            if s == None:
+            if s is None:
                 del(self.lang[l])
             else:
                 self.lang[l] = regex.compile(r"[\p{Common}%s]" % s, flags=regex.V1)

@@ -67,7 +67,7 @@ class logger:
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             cerr = proc.stderr.readline().decode('utf-8').strip()
-            if cerr == '' and proc.poll() != None:
+            if cerr == '' and proc.poll() is not None:
                 break
             if cerr == '':
                 continue
@@ -83,7 +83,7 @@ class logger:
         proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             cerr = proc.stdout.readline().decode('utf-8').strip()
-            if cerr == '' and proc.poll() != None:
+            if cerr == '' and proc.poll() is not None:
                 break
             if cerr == '':
                 continue

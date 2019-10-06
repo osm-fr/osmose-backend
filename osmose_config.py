@@ -182,7 +182,7 @@ class default_simple(template_config):
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
-        part = part + '/' if part != None else ''
+        part = part + '/' if part is not None else ''
 
         if not download_country:
             download_country = country
@@ -230,7 +230,7 @@ def gen_country(area, path_base=None,
 
         path = path if isinstance(path, list) else [path]
         country = (country or path[-1]).replace('-', '_')
-        download_country = '/'.join(filter(lambda a: a != None, [path_base] + path))
+        download_country = '/'.join(filter(lambda a: a is not None, [path_base] + path))
 
         default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country)
 

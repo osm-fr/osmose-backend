@@ -30,15 +30,15 @@ class Analyser_Merge_College_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8031", "class": 102, "level": 3, "tag": ["merge"], "desc": T_(u"College, integration suggestion") }
         self.update_official  = {"item":"8032", "class": 103, "level": 3, "tag": ["merge"], "desc": T_(u"College update") }
         Analyser_Merge.__init__(self, config, logger,
-            u"https://www.data.gouv.fr/fr/datasets/etablissements-denseignement-superieur-2",
-            u"Etablissements d'enseignement supérieur",
-            CSV(Source(attribution = u"Etablissements d'enseignement supérieur", millesime = "09/2017",
+                                u"https://www.data.gouv.fr/fr/datasets/etablissements-denseignement-superieur-2",
+                                u"Etablissements d'enseignement supérieur",
+                                CSV(Source(attribution = u"Etablissements d'enseignement supérieur", millesime = "09/2017",
                     fileUrl = u"https://api.opendata.onisep.fr/downloads/57da952417293/57da952417293.csv", encoding = "utf-8-sig"),
                 separator = u';'),
-            Load("longitude (X)", "latitude (Y)",
+                                Load("longitude (X)", "latitude (Y)",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+                                Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"amenity": ["college", "university"]}),
@@ -52,4 +52,4 @@ class Analyser_Merge_College_FR(Analyser_Merge):
                         "operator:type": lambda res: "private" if res["statut"] in [u"Privé hors contrat", u"Privé reconnu", u"Privé sous contrat"] else None,
                         "short_name": "sigle"},
                     mapping2 = {"name": lambda res: res["nom"].replace(u"Ecole", u"École")},
-                    text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i != None, [fields["sigle"], fields["nom"].replace(u"Ecole", u"École")]))} )))
+                    text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i is not None, [fields["sigle"], fields["nom"].replace(u"Ecole", u"École")]))} )))

@@ -29,15 +29,15 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
         self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling, integration suggestion") }
         self.update_official  = {"item":"8122", "class": 24, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling update") }
         Analyser_Merge.__init__(self, config, logger,
-            u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
-            u"Colonnes aériennes de Nantes Métropole",
-            CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
+                                u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
+                                u"Colonnes aériennes de Nantes Métropole",
+                                CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
                     fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = u";"),
-            Load(u"location", u"location",
+                                Load(u"location", u"location",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0]),
                 select = {u"type_dechets": u"verre"}),
-            Mapping(
+                                Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "recycling"}),
@@ -50,4 +50,4 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:NM": u"id_colonne"},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != None, [fields[u"type_dechets"], fields[u"voie"], fields[u"obs"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x is not None, [fields[u"type_dechets"], fields[u"voie"], fields[u"obs"]]))} )))

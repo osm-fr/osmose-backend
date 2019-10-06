@@ -45,13 +45,13 @@ for line in fileinput.input():
   cur_timestamp = line[:19]
 
   if line[20:27] == "[0;31m":
-    if cur_task != None:
+    if cur_task is not None:
       end_task()
     cur_task = line[27:].strip()
     first_task_timestamp = line[:19]
 
   elif line[19] == " " and line[20] != " " and line[20] != "":
-    if cur_task != None:
+    if cur_task is not None:
       end_task()
     cur_task = line[20:].strip()
     first_task_timestamp = line[:19]
