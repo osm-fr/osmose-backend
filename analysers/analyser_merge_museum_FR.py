@@ -28,6 +28,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
 
         self.missing_official = {"item":"8010", "class": 31, "level": 3, "tag": ["merge"], "desc": T_(u"Museum not integrated") }
         self.possible_merge   = {"item":"8011", "class": 33, "level": 3, "tag": ["merge"], "desc": T_(u"Museum, integration suggestion") }
+        re_phone = re.compile(u"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$")
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/musees-de-france-base-museofile/",
@@ -51,7 +52,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     mapping1 = {u"ref:FR:museofile": "Identifiant"},
                     mapping2 = {
                         "website": lambda res: None if not res["URL"] else res["URL"] if res["URL"].startswith('http') else 'http://' + res["URL"],
-                        "phone": lambda res: "+33 " + res[u"Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$", res[u"Téléphone"]) else None,
+                        "phone": lambda res: u"+33 " + res[u"Téléphone"][1:] if res[u"Téléphone"] and re_phone.match(res[u"Téléphone"]) else None,
                         "name": lambda res: res["Nom usage"][0].upper() + res["Nom usage"][1:] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
                         "official_name" : lambda res: res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom usage"] and res["Nom officiel"].lower() != res["Nom usage"].lower() else None},
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["Adresse"], fields["Code Postal"], fields["Ville"]]))} )))
