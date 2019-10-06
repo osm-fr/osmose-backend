@@ -317,10 +317,13 @@ france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=[
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
     'merge_street_number_rennes',
-    'merge_defibrillators_FR_montfort'
+    'merge_defibrillators_FR_montfort',
+    'merge_defibrillators_FR_saintmalo',
 ])
 france_departement("bretagne/finistere", 102430, "FR-29")
-france_departement("bretagne/morbihan", 7447, "FR-56")
+france_departement("bretagne/morbihan", 7447, "FR-56", include=[
+    'merge_defibrillators_FR_lorient',
+])
 
 france_departement("centre/cher", 7456, "FR-18")
 france_departement("centre/eure_et_loir", 7374, "FR-28")
