@@ -409,6 +409,7 @@ france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_street_number_toulouse',
     'merge_defibrillators_FR_toulouse',
+    'merge_defibrillators_FR_cugnaux',
 ])
 france_departement("midi_pyrenees/gers", 7422, "FR-32", include=[
     'merge_defibrillators_FR_gers',
