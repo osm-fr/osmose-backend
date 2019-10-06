@@ -23,7 +23,6 @@
 # PAYS   : http://fr.wikipedia.org/wiki/ISO_3166-1
 
 import os
-import re
 from collections import OrderedDict
 import modules.config
 

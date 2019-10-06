@@ -32,10 +32,8 @@ import osmose_config as config
 
 import importlib
 import inspect
-import socket
 import subprocess
 import time
-import json
 import dateutil.parser
 import requests
 

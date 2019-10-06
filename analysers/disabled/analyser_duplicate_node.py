@@ -22,7 +22,6 @@
 
 from Analyser import Analyser
 
-import sys, re, urllib, time
 import psycopg2
 from modules import OsmSax
 

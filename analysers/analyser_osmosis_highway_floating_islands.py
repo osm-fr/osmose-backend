@@ -21,7 +21,6 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
-from .modules.Polygon import Polygon
 
 
 sql10 = """

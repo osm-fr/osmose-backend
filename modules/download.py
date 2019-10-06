@@ -23,7 +23,6 @@
 import subprocess
 import sys
 import os
-import requests
 from modules import OsmoseLog
 from modules import downloader
 
