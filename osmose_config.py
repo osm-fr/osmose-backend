@@ -436,7 +436,9 @@ france_departement("poitou_charentes/deux_sevres", 7455, "FR-79")
 france_departement("poitou_charentes/vienne", 7377, "FR-86")
 
 france_departement("provence_alpes_cote_d_azur/alpes_de_haute_provence", 7380, "FR-04")
-france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05")
+france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05", include=[
+  'merge_defibrillators_FR_hautesalpes',
+])
 france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06")
 france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
     # Arles
