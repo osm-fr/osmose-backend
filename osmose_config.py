@@ -386,7 +386,9 @@ france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66")
 
 france_departement("limousin/correze", 7464, "FR-19")
 france_departement("limousin/creuse", 7459, "FR-23")
-france_departement("limousin/haute_vienne", 7418, "FR-87")
+france_departement("limousin/haute_vienne", 7418, "FR-87", include=[
+    'merge_defibrillators_FR_hautevienne',
+])
 
 france_departement("lorraine/meurthe_et_moselle", 51856, "FR-54", include=[
     # Nancy
