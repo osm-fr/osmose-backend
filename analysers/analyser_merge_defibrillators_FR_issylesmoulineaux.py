@@ -43,8 +43,6 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["titre"], fields["localisation"], fields["acces"], fields["horaires"]]))},)))

@@ -30,8 +30,7 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-montfort-communaute-1/",
             u"Défibrillateurs Montfort Communauté ",
             CSV(Source(attribution = u"Défibrillateurs Montfort Communauté ",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/ad484c5d-0566-4bd4-9bb4-1ca418031968",),
-                ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/ad484c5d-0566-4bd4-9bb4-1ca418031968")),
             Load("X","Y"),
             Mapping(
                 select = Select(
@@ -39,8 +38,6 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["LOC"], fields["ACCES"], fields["DETAIL"], fields["ADRESSE"]]))},)))
