@@ -31,8 +31,7 @@ class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-9/",
             u"Défibrillateurs",
             GeoJSON(Source(attribution = u"Mairie de Cugnaux",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6820eaf-f988-47c4-bc6f-634e0a4da013"),
-                    ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6820eaf-f988-47c4-bc6f-634e0a4da013")),
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
@@ -40,7 +39,5 @@ class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
-                    static2 = {"source": self.source},)))
+                    static1 = {"emergency": "defibrillator"},
+                    static2 = {"source": self.source})))

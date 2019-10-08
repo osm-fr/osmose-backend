@@ -31,8 +31,7 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/inventaire-des-defibrillateurs-automatises-externes-dae-dans-le-gers/#",
             u"Inventaire des Défibrillateurs Automatisés Externes (DAE) dans le Gers",
             GeoJSON(Source(attribution = u"Région Occitanie / Pyrénées Méditerranée",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/cc36c26e-e782-47bf-8fd6-a03aa459e8d0"),
-                    ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/cc36c26e-e782-47bf-8fd6-a03aa459e8d0")),
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
@@ -40,8 +39,6 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["etablissement"], fields["horaire"], fields["detail"]]))},)))

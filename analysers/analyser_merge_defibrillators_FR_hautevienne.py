@@ -40,7 +40,5 @@ class Analyser_merge_defibrillators_FR_hautevienne(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},)))

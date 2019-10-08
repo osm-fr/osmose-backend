@@ -31,8 +31,7 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-appartenant-au-departement-des-hautes-alpes/",
             u"Localisation des défibrillateurs appartenant au département des Hautes Alpes ",
             SHP(Source(attribution = u"data.gouv.fr:Département des Hautes-Alpes",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/3ee14a1e-3a79-49fb-a803-6eab8a83e563", zip = "dept05_defibrillateurs.shp"),
-                ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/3ee14a1e-3a79-49fb-a803-6eab8a83e563", zip = "dept05_defibrillateurs.shp")),
             Load(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), srid = 2154),
             Mapping(
                 select = Select(
@@ -40,7 +39,5 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {
-                        "emergency": "defibrillator",
-                    },
+                    static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},)))
