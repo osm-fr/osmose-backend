@@ -298,7 +298,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None, universalNewLine = False):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -308,7 +308,6 @@ class Source:
         @param zip: extract file from zip
         @param gzip: uncompress as gzip
         @param filter: lambda expression applied on text file before loading
-        @param universalNewLine: for text file having new-line character in unquoted field
         """
         self.attribution = attribution
         self.millesime = millesime
@@ -319,7 +318,6 @@ class Source:
         self.zip = zip
         self.gzip = gzip
         self.filter = filter
-        self.universalNewLine = universalNewLine
 
         if self.file:
             if not os.path.isabs(self.file):
@@ -346,11 +344,11 @@ class Source:
             # Do nothing about ZIP
             return downloader.path(self.fileUrl, self.fileUrlCache)
 
-    def open(self):
+    def open(self, mode='rb'):
         if self.file:
             f = bz2.BZ2File(self.file)
         elif self.fileUrl:
-            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode=('rU' if self.universalNewLine else 'rb'))
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode=mode)
             if self.zip:
                 z = zipfile.ZipFile(f, 'r').open(self.zip)
                 f = io.BytesIO(z.read())
@@ -360,7 +358,7 @@ class Source:
                 f = io.BytesIO(d.read())
                 f.seek(0)
 
-        f = io.StringIO(f.read().encode("utf-8").decode(self.encoding) if self.universalNewLine else f.read().decode(self.encoding, 'ignore'))
+        f = io.StringIO(f.read().encode("utf-8").decode(self.encoding) if mode == 'rU' else f.read().decode(self.encoding, 'ignore'))
         f.seek(0)
         if self.filter:
             f = io.StringIO(self.filter(f.read()))
@@ -390,7 +388,7 @@ class Parser:
         pass
 
 class CSV(Parser):
-    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True):
+    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True, universalNewLine = False):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
@@ -400,6 +398,7 @@ class CSV(Parser):
         @param header: CSV have header row
         @param quote: one char string delimiter
         @param csv: load file as CSV on COPY command
+        @param universalNewLine: for text file having new-line character in unquoted field
         """
         self.source = source
         self.separator = separator
@@ -407,16 +406,21 @@ class CSV(Parser):
         self.have_header = header
         self.quote = quote
         self.csv = csv
+        self.universalNewLine = universalNewLine
 
         self.f = None
 
+    def _open(self):
+        mode='rU' if self.universalNewLine else 'rb'
+        self.f = self.f or self.source.open(mode=mode)
+
     def header(self):
-        self.f = self.source.open()
+        self._open()
         if self.have_header:
             return csv.reader(self.f, delimiter=self.separator, quotechar=self.quote).next()
 
     def import_(self, table, srid, osmosis):
-        self.f = self.f or self.source.open()
+        self._open()
         copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
             table,
             ("DELIMITER AS '%s'" % self.separator) if self.separator != None else "",
