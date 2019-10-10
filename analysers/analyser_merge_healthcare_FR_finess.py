@@ -68,14 +68,14 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             self.missing_osm = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_f(u"{0} without tag \"{1}\" or invalid", title, 'ref:FR:FINESS') }
         self.possible_merge = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_f(u"{0}, integration suggestion", title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
-                                           u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
-                                           u"FINESS Extraction du Fichier des établissements",
-                                           CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "03/2019", encoding='ISO-8859-15',
+            u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
+            u"FINESS Extraction du Fichier des établissements",
+            CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "03/2019", encoding='ISO-8859-15',
                     fileUrl = u'https://static.data.gouv.fr/resources/finess-extraction-du-fichier-des-etablissements/20190307-093304/etalab-cs1100507-stock-20190307-0422.csv')),
-                                           Load("coordxet", "coordyet", srid = srid,
+            Load("coordxet", "coordyet", srid = srid,
                 select = {"categagretab": categories},
                 where = lambda res: is_in(res["departement"])),
-                                           Mapping(
+            Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = tags_select),

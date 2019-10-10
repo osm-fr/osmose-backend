@@ -136,7 +136,7 @@ class ErrorFile:
         return list(map(lambda fix:
             list(map(lambda f:
                 None if f is None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
-                     fix)),
+                fix)),
             fixes))
 
     def filterfix(self, res, fixesType, fixes, geom):

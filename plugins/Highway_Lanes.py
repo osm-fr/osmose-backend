@@ -93,10 +93,10 @@ class Highway_Lanes(Plugin):
                         first_right = self.index_(t, "r")
                         # Check right is on the right and left is on the left...
                         if not(
-                                (last_left is None or first_space is None or last_left < first_space) and
-                                (first_space is None or last_space is None or first_space <= last_space) and
-                                (last_space is None or first_right is None or last_space < first_right) and
-                                (last_left is None or first_right is None or last_left < first_right)):
+                            (last_left is None or first_space is None or last_left < first_space) and
+                            (first_space is None or last_space is None or first_space <= last_space) and
+                            (last_space is None or first_right is None or last_space < first_right) and
+                            (last_left is None or first_right is None or last_left < first_right)):
                             err.append({"class": 31607, "subclass": 1 + stablehash(tl)})
 
         # Check acces lanes values
