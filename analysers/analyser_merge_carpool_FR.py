@@ -25,13 +25,13 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Carpool_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 31, "level": 3, "tag": ["merge", "parking", "carpool"], "desc": T_(u"Carpool parking not integrated") }
-        self.possible_merge   = {"item":"8131", "class": 33, "level": 3, "tag": ["merge", "parking", "carpool"], "desc": T_(u"Carpool parking integration suggestion") }
-        self.update_official  = {"item":"8132", "class": 34, "level": 3, "tag": ["merge", "parking", "carpool"], "desc": T_(u"Carpool parking update") }
+        self.missing_official = {"item":"8130", "class": 41, "level": 3, "tag": ["merge", "parking", "carpool"], "desc": T_(u"Carpool parking not integrated") }
+        self.possible_merge   = {"item":"8131", "class": 43, "level": 3, "tag": ["merge", "parking", "carpool"], "desc": T_(u"Carpool parking integration suggestion") }
+        self.update_official  = {"item":"8132", "class": 44, "level": 3, "tag": ["merge", "parking", "carpool"], "desc": T_(u"Carpool parking update") }
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/base-nationale-consolidee-des-lieux-de-covoiturage",
             u"Base nationale consolidée des lieux de covoiturage",
-            CSV(Source(attribution = u"Transport.data.gouv.fr", millesime = "09/2019",
+            CSV(Source(attribution = u"Transport.data.gouv.fr", millesime = "09/2019", encoding = "utf-8-sig", universalNewLine = True,
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/e0962ca4-2fb9-4257-a569-56704df3243d"), separator = u";"),
             Load("Xlong", "Ylat",
                 select = {
@@ -50,5 +50,5 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                         "name": "nom_lieu",
                         "capacity": "nbre_pl",
                         "capacity:disabled": "nbre_pmr",
-                        "lit": lambda res: "yes" if res["lumiere"] == "true" else ("no" if res["lumiere"] == false else None)},
-                    text = lambda tags, fields: {"en": u"Carpool parking %s" % fields[u"nom_lieu"]} )))
+                        "lit": lambda res: "yes" if res["lumiere"] == "true" else ("no" if res["lumiere"] == "false" else None)},
+                    text = lambda tags, fields: T_f(u"Carpool parking {0}", fields[u"nom_lieu"]) )))

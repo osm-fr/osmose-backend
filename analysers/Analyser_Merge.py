@@ -298,7 +298,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None, universalNewLine = False):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -308,6 +308,7 @@ class Source:
         @param zip: extract file from zip
         @param gzip: uncompress as gzip
         @param filter: lambda expression applied on text file before loading
+        @param universalNewLine: for text file having new-line character in unquoted field
         """
         self.attribution = attribution
         self.millesime = millesime
@@ -318,6 +319,7 @@ class Source:
         self.zip = zip
         self.gzip = gzip
         self.filter = filter
+        self.universalNewLine = universalNewLine
 
         if self.file:
             if not os.path.isabs(self.file):
@@ -348,7 +350,7 @@ class Source:
         if self.file:
             f = bz2.BZ2File(self.file)
         elif self.fileUrl:
-            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode=('rU' if self.universalNewLine else 'rb'))
             if self.zip:
                 z = zipfile.ZipFile(f, 'r').open(self.zip)
                 f = io.BytesIO(z.read())
@@ -357,7 +359,8 @@ class Source:
                 d = gzip.open(downloader.path(self.fileUrl, self.fileUrlCache), mode='r')
                 f = io.BytesIO(d.read())
                 f.seek(0)
-        f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
+
+        f = io.StringIO(f.read().encode("utf-8").decode(self.encoding) if self.universalNewLine else f.read().decode(self.encoding, 'ignore'))
         f.seek(0)
         if self.filter:
             f = io.StringIO(self.filter(f.read()))
