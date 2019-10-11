@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-05 18:12+0000\n"
+"PO-Revision-Date: 2019-10-11 19:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -898,7 +898,7 @@ msgstr "Ongeldig wikipedia suffix '%s'"
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Dubbele waardes %(key)s=%(val)s"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:30
+#: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "Postal code, integration suggestion"
 msgstr "Post code, integratie suggestie"
 
@@ -984,11 +984,11 @@ msgstr "Onnodig tag éénrichtingsweg"
 msgid "Geodesic support not integrated %s"
 msgstr "Geodesisch support niet geïntegreerd %s"
 
-#: ../analysers/analyser_merge_post_box_FR.py:29
+#: ../analysers/analyser_merge_post_box_FR.py:28
 msgid "Post box not integrated"
 msgstr "Post bus niet geïntegreerd"
 
-#: ../analysers/analyser_merge_post_box_FR.py:31
+#: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box, integration suggestion"
 msgstr "Postbus, integratie suggestie"
 
@@ -1425,28 +1425,28 @@ msgstr "Richting tag ontbreekt op halte"
 msgid "Suspicious name for a container"
 msgstr "Verkeerde naam voor een container"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:62
+#: ../analysers/analyser_merge_power_substation_FR.py:61
 #, python-format
 msgid "Power substation of %s"
 msgstr "Transformatorstation %s"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:29
+#: ../analysers/analyser_merge_power_substation_FR.py:28
 msgid "Power substation not integrated"
 msgstr "Transformatorstation niet geïntegreerd"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:31
+#: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation, integration suggestion"
 msgstr "Transformatorstation, integratie suggestie"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:32
+#: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation update"
 msgstr "Transformatorstation update "
 
-#: ../analysers/analyser_merge_power_tower_FR.py:29
+#: ../analysers/analyser_merge_power_tower_FR.py:28
 msgid "Power support not integrated"
 msgstr "Elektriciteitscentrale niet geïntegreerd"
 
-#: ../analysers/analyser_merge_power_tower_FR.py:31
+#: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support, integration suggestion"
 msgstr "Spanningsmast,integratie suggestie"
 
@@ -1479,7 +1479,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber of addr:housename zonder addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet moet in een associatedStreet relatie zijn"
 
-#: ../analysers/analyser_merge_shop_FR.py:45
+#: ../analysers/analyser_merge_shop_FR.py:43
 #, python-format
 msgid "%s not integrated"
 msgstr "%sniet geïntegreerd"
@@ -1511,13 +1511,13 @@ msgstr "network, operator, ref, colour tag moet dezelfde zijn op route en route_
 msgid "%s are different"
 msgstr "%s is verschillend"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:29
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:29
+#: ../analysers/analyser_merge_restriction_FR_92.py:28
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:28
 msgid "maxweight Restriction not integrated"
 msgstr "maximumgewicht Beperking niet geïntegreerd"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:59
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:53
+#: ../analysers/analyser_merge_restriction_FR_92.py:58
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:52
 msgid "maxheight Restriction not integrated"
 msgstr "maximumhoogte Beperking niet geïntegreerd"
 
@@ -1546,11 +1546,11 @@ msgstr "Afkorting van nummer moet in kleine letters zijn"
 msgid "Name present but missing main tag"
 msgstr "Naam aanwezig maar hoofd tag ontbreekt"
 
-#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:28
 msgid "Power minor_distribution substation not integrated"
 msgstr "Transformatorstation minor_distribution, niet geintegreerd "
 
-#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
 msgid "Power minor_distribution substation, integration suggestion"
 msgstr "Transformatorstation minor_distribution, integratie suggestie"
 
@@ -1616,17 +1616,17 @@ msgstr "College, integratie suggestie"
 msgid "College update"
 msgstr "College update"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} niet geïntegreerd"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:69
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}, integratie suggestie"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:112
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:111
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1890,7 +1890,7 @@ msgstr "{0} halte update "
 msgid "{0} stop {1}"
 msgstr "{0} halte {1}"
 
-#: ../analysers/analyser_merge_traffic_signs.py:80
+#: ../analysers/analyser_merge_traffic_signs.py:73
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
 msgstr "{0} Verkeersborden voor {1} waargenomen maar geen geassocieerde tags"
@@ -1917,12 +1917,12 @@ msgstr "Inconsistent motor_vehicle waarden ('{0}'!='{1}')"
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:126
+#: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-brace-format
 msgid "Approximate {0}"
 msgstr "bij benadering {0}"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:127
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr "{0} afwijking van {1}m"
@@ -2123,7 +2123,7 @@ msgstr "IDF fiets update"
 msgid "College without tag \"ref:UAI\" or invalid"
 msgstr "College zonder tag \"ref:UAI\" of ongeldig"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} zonder tag \"{1}\" of ongeldig"
@@ -2132,7 +2132,7 @@ msgstr "{0} zonder tag \"{1}\" of ongeldig"
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr "Historisch monument zonder tag \"ref:mhs\" of ongeldig"
 
-#: ../analysers/analyser_merge_post_box_FR.py:30
+#: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box without tag \"ref\" or invalid"
 msgstr "Post bus zonder tag \"ref\" of ongeldig"
 
@@ -2140,11 +2140,11 @@ msgstr "Post bus zonder tag \"ref\" of ongeldig"
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
 msgstr "Postkantoor zonder tag \"ref:FR:LaPoste\" of ongeldig"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:30
+#: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
 msgstr "Transformatorstation  zonder tag \"ref:FR:RTE\" of ongeldig "
 
-#: ../analysers/analyser_merge_power_tower_FR.py:30
+#: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support without tag \"ref\" or invalid"
 msgstr "Spanningsmast zonder tag \"ref\" of ongeldig"
 
@@ -2156,7 +2156,7 @@ msgstr "Treinstation zonder tag \"uic_ref\" of ongeldig"
 msgid "School without tag \"ref:UAI\" or invalid"
 msgstr "School zonder tag \"ref:UAI\" of ongeldig"
 
-#: ../analysers/analyser_merge_street_objects.py:47
+#: ../analysers/analyser_merge_street_objects.py:46
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
 msgstr "{0} Straat object {1} waargenomen maar geen geassocieerde tags"
@@ -2212,16 +2212,16 @@ msgstr "Tag \"addr:street\" komt niet overeen met een straatnaam in de buurt"
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "Verkeerd gebruik addr:interpolation in combinatie met andere tags"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:62
+#: ../analysers/analyser_merge_power_plant_FR.py:60
 #, python-format
 msgid "Power plant %s"
 msgstr "Energiecentrale %s"
 
-#: ../analysers/analyser_merge_postal_code_FR.py:29
+#: ../analysers/analyser_merge_postal_code_FR.py:28
 msgid "admin_level 8 without tag \"postal_code\""
 msgstr "admin_level 8 zonder \"postal_code\" tag"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:33
+#: ../analysers/analyser_merge_power_plant_FR.py:31
 msgid "Power plant not integrated, geocoded at municipality level"
 msgstr "Energiecentrale niet toegevoegd, geocoded op gemeentelijke level"
 
@@ -2280,8 +2280,15 @@ msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
 
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_gers.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_hautevienne.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_lorient.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_montfort.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:28
+#: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
 msgid "Defibrillator not integrated"
 msgstr ""
@@ -2326,4 +2333,20 @@ msgstr ""
 
 #: ../plugins/TagFix_Vatin.py:38
 msgid "Invalid value format of tag \"ref:vatin\""
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:63
+msgid "Invalid 'VAT identification number'"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:66
+msgid "Value too short"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:68
+msgid "Country code is missing"
+msgstr ""
+
+#: ../plugins/TagFix_Vatin.py:70
+msgid "Value is not uppercase"
 msgstr ""

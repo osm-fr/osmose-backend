@@ -1,12 +1,12 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Petr Schönmann <pschonmann@gmail.com>, 2018
-# trendspotter <j.podhorecky@volny.cz>, 2018
 # majkaz, 2019
+# trendspotter <j.podhorecky@volny.cz>, 2019
 # 
 msgid ""
 msgstr ""
-"Last-Translator: majkaz, 2019\n"
+"Last-Translator: trendspotter <j.podhorecky@volny.cz>, 2019\n"
 "Language-Team: Czech (https://www.transifex.com/openstreetmap-france/teams/17462/cs/)\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
@@ -149,27 +149,27 @@ msgstr ""
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Barevný kód by měl začínat znakem „#“ následovaným 3 nebo 6 číslicemi"
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
-msgstr ""
+msgstr "Barva linky veřejné dopravy by měla být zanesena v barevné značce"
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "Autobusová zastávka má být uzlem"
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "Interval je neplatný (zkuste několik minut)"
 
 #: ../transport.validator.mapcss:314
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "Délka je neplatná (zkuste několik minut)"
 
 #: ../transport.validator.mapcss:320
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "Chybějící značka intervalu pro určení hlavního intervalu"
 
 #: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"

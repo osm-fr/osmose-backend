@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-05 18:12+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-10-10 15:32+0000\n"
+"Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -814,7 +814,7 @@ msgstr "Niepoprawna data \"%s\""
 #: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
-msgstr "Niepoprawny numer \"%s\""
+msgstr "Niepoprawna wartość liczbowa \"%s\""
 
 #: ../plugins/Number.py:54
 #, python-format
@@ -1038,7 +1038,7 @@ msgstr "Niepołączona i przecinająca się droga z ciekiem"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and power objects"
-msgstr "Niepołączona i przecinająca się droga z energetyką"
+msgstr "Niepołączona i przecinająca się droga z obiektem elektroenergetycznym"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:644
 #, python-format
@@ -1089,11 +1089,11 @@ msgstr "Niedokończona pomocnicza linia energetyczna"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Highway intersecting small water piece"
-msgstr "Droga przecinająca pomniejszą przeszkodę wodną"
+msgstr "Droga przecinająca mały ciek"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid "Highway intersecting large water piece"
-msgstr "Droga przecinająca dużą przeszkodę wodną"
+msgstr "Droga przecinająca duży ciek"
 
 #: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
@@ -1361,7 +1361,7 @@ msgstr "Symbol w nazwie"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
 msgid "Member without addr:housenumber nor addr:housename"
-msgstr ""
+msgstr "Element relacji associatedStreet bez addr:housenumber"
 
 #: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid multipolygon"
@@ -1513,7 +1513,7 @@ msgstr "Tagi network, operator, ref, colour powinny być takie same w relacjach 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:274
 #, python-format
 msgid "%s are different"
-msgstr ""
+msgstr "tagi %s różnią się"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:29
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:29
@@ -1638,11 +1638,11 @@ msgstr "Grupa dróg niepodłączonych do głównej sieci dróg lub nieprawidłow
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:355
 msgid "Power object intersecting building"
-msgstr ""
+msgstr "Obiekt elektroenergetyczny przecinający budynek"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:356
 msgid "Power object and highway too close"
-msgstr ""
+msgstr "Obiekt elektroenergetyczny i droga za blisko siebie"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:357
 msgid "Highway intersecting highway without junction"
@@ -2330,4 +2330,4 @@ msgstr "Nieprawidłowa wartość tagu \"ref:vatin\""
 
 #: ../plugins/TagFix_Vatin.py:38
 msgid "Invalid value format of tag \"ref:vatin\""
-msgstr ""
+msgstr "Nieprawidłowy format wartości klucza \"ref:vatin\""
