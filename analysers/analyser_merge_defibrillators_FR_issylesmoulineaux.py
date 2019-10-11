@@ -38,7 +38,7 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                 yFunction = lambda y: y.split(",")[0].strip()),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(

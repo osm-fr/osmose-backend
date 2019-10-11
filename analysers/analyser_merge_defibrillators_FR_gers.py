@@ -35,7 +35,7 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(

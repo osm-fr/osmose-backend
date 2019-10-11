@@ -35,7 +35,7 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
             Load(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), srid = 2154),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(

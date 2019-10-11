@@ -37,7 +37,7 @@ class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
             Load("XCOORD", "YCOORD", srid = 2154),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
