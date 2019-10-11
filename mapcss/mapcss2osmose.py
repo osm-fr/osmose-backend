@@ -538,7 +538,7 @@ def to_p(t):
         elif not t['_require_set'].issubset(set_store):
             return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         elif not is_meta_rule:
-            main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z != None, s.get('_main_tags')))), t['selectors'])))
+            main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z is not None, s.get('_main_tags')))), t['selectors'])))
             main_tags_None = any(map(lambda s: len(s) == 0, main_tags))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
             declarations_text = list(filter(lambda a: a, map(to_p, t['declarations'])))

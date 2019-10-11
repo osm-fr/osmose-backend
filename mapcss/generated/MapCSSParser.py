@@ -2841,7 +2841,7 @@ class MapCSSParser ( Parser ):
 
 
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
-        if self._predicates == None:
+        if self._predicates is None:
             self._predicates = dict()
         self._predicates[29] = self.booleanExpression_sempred
         self._predicates[30] = self.valueExpression_sempred

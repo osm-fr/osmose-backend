@@ -313,7 +313,7 @@ class TestAnalyser(unittest.TestCase):
         if a != b:
             s = TestAnalyser.compare_dict(a, b)
             print(s)
-            assert s == None, "results differ"
+            assert s is None, "results differ"
             self.assertEquals(a, b, "results differ")
 
 

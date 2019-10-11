@@ -79,7 +79,7 @@ class ErrorFile:
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
-        if subclass != None:
+        if subclass is not None:
             self.outxml.startElement("error", {"class":str(classs), "subclass":str(int(subclass) % 2147483647)})
         else:
             self.outxml.startElement("error", {"class":str(classs)})
@@ -135,7 +135,7 @@ class ErrorFile:
             fixes = list(map(lambda x: [x], fixes))
         return list(map(lambda fix:
             list(map(lambda f:
-                None if f == None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
+                None if f is None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
                 fix)),
             fixes))
 
@@ -144,7 +144,7 @@ class ErrorFile:
         for fix in fixes:
             i = 0
             for f in fix:
-                if f != None and i < len(fixesType):
+                if f is not None and i < len(fixesType):
                     osm_obj = next((x for x in geom[fixesType[i]] if x['id'] == res[i]), None)
                     if osm_obj:
                         fix_tags = f['+'].keys() if '+' in f else []
@@ -163,7 +163,7 @@ class ErrorFile:
             self.outxml.startElement("fix", {})
             i = 0
             for f in fix:
-                if f != None and i < len(fixesType):
+                if f is not None and i < len(fixesType):
                     type = fixesType[i]
                     if type:
                         self.outxml.startElement(type, {'id': str(res[i])})

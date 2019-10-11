@@ -102,7 +102,7 @@ class Phone(Plugin):
             if u';' in phone:
                 continue  # Ignore multiple phone numbers
 
-            if self.suffix_separators != None:
+            if self.suffix_separators is not None:
                 phone = phone.split(self.suffix_separators, 1)[0]
 
             if self.values_separators:

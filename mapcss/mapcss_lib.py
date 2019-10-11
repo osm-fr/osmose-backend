@@ -40,7 +40,7 @@ class str_value_(unicode):
             return string
         else: # Keep None string value
             s = super(str_value_, cls).__new__(cls, string)
-            s.none = string == None
+            s.none = string is None
             return s
 
     def __radd__(self, o):
@@ -196,7 +196,7 @@ def _uncapture_param(capture, a):
         return k + '=' + v
 
 def _tag_uncapture(capture, string):
-    if string != None:
+    if string is not None:
         return uncapture_param_re.sub(lambda a: _uncapture_param(capture, a.group(1)), string)
 
 class RuleAbort(Exception):
@@ -207,19 +207,19 @@ class RuleAbort(Exception):
 
 
 def startswith(subject, string):
-    if subject != None and string != None:
+    if subject is not None and string is not None:
         return subject.startswith(string)
 
 def endswith(subject, string):
-    if subject != None and string != None:
+    if subject is not None and string is not None:
         return subject.endswith(string)
 
 def string_contains(subject, string):
-    if subject != None and string != None:
+    if subject is not None and string is not None:
         return string in subject
 
 def list_contains(subject, string):
-    if subject != None and string != None:
+    if subject is not None and string is not None:
         return string in subject
 
 def at(asset_lat, asset_lon, lat, lon):
@@ -288,7 +288,7 @@ def get(lst, n):
 #split(sep, str)
 #    splits string str at occurrences of the separator string sep, returns a list [since 5699] 
 def split(sep, string):
-    if sep != None and string != None:
+    if sep is not None and string is not None:
         return list(map(str_value, string.split(sep)))
 
 #prop(p_name)
@@ -308,7 +308,7 @@ def _re_search(r, s):
     return r.search(s)
 
 def tag(tags, key_name):
-    if tags != None and key_name != None:
+    if tags is not None and key_name is not None:
         if key_name.__class__ in (str, unicode, str_value_):
             return str_value(tags.get(key_name))
         else: # regex
@@ -318,7 +318,7 @@ def tag(tags, key_name):
     return None_value
 
 def _tag_capture(stock, index, tags, key_name):
-    if tags != None and key_name != None:
+    if tags is not None and key_name is not None:
         if index >= len(stock):
             stock[index] = [None, None]
 
@@ -373,13 +373,13 @@ def _value_const_capture(stock, index, value, const):
 #length(str)
 #    length of a string 
 def length(string):
-    if string != None:
+    if string is not None:
         return len(string)
 
 #count(lst)
 #    length of a list, i.e., counts its elements [since 7162] 
 def count(lst):
-    if lst != None:
+    if lst is not None:
         return len(lst)
 
 #length(lst)
@@ -388,43 +388,43 @@ def count(lst):
 #any(obj1, obj2, ...)
 #    returns the first object which is not null (formerly coalesce, [since 7164]) 
 def any_(*args):
-    if args != None:
+    if args is not None:
         return next(item for item in args if item is not None)
 
 #concat(str1, str2, ...)
 #    assemble the strings to one 
 def concat(*args):
-    if args != None:
+    if args is not None:
         return str_value(''.join(args))
 
 #join(sep, str1, str2, ...)
 #    join strings, whith sep as separator [since 6737] 
 def join(sep, *args):
-    if sep != None and args != None:
+    if sep is not None and args is not None:
         return str_value(sep.join(args))
 
 #join_list(sep, list_name)
 #    joins the elements of the list list_name to one string separated by the separator sep [since 8775] 
 def join_list(sep, list_name):
-    if sep != None and list_name != None:
+    if sep is not None and list_name is not None:
         return str_value(sep.join(list_name))
 
 #upper(str)
 #    converts string to upper case [since 11756] 
 def upper(string):
-    if string != None:
+    if string is not None:
         return str_value(string.upper())
 
 #lower(str)
 #    converts string to lower case [since 11756] 
 def lower(string):
-    if string != None:
+    if string is not None:
         return str_value(string.lower())
 
 #trim(str)
 #    remove leading and trailing whitespace from string [since 11756] 
 def trim(string):
-    if string != None:
+    if string is not None:
         return str_value(string.strip())
 
 #JOSM_search("...")
@@ -435,13 +435,13 @@ def JOSM_search(string):
 #tr(str, arg0, arg1, ...)
 #    translate from English to the current language (only for strings in the JOSM user interface) [since 6506] 
 def tr(string, *args):
-    if string != None:
+    if string is not None:
         return T_f(string, *args)
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699] 
 def regexp_test(regexp, string):
-    if regexp == None or string == None:
+    if regexp is None or string is None:
         return False
     else:
         return regexp.search(string)
@@ -451,7 +451,7 @@ def regexp_test(regexp, string):
 #regexp_match(regexp, string)
 #    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. [since 5701] 
 def regexp_match(regexp, string):
-    if regexp == None or string == None:
+    if regexp is None or string is None:
         return False
     else:
         a = regexp.findall(string)
@@ -473,7 +473,7 @@ def substring(string, start, end=None):
 #replace(string, old, new)
 #    Replaces any occurrence of the substring old within the string string with the text new 
 def replace(string, old, new):
-    if string != None and old != None and new != None:
+    if string is not None and old is not None and new is not None:
         return str_value(string.replace(old, new))
 
 #osm_id()
@@ -487,7 +487,7 @@ def replace(string, old, new):
 #URL_decode(str)
 #    percent-decode a string. [since 11756] 
 def URL_decode(string):
-    if string != None:
+    if string is not None:
         # An URL is an ASCII String
         try:
             return requests.utils.unquote_unreserved(string)

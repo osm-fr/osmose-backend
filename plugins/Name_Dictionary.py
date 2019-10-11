@@ -154,7 +154,7 @@ class P_Name_Dictionary(Plugin):
         for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
             if name in tags:
                 e = self._get_err(name, tags[name])
-                if e != None:
+                if e is not None:
                     err.append(e)
         return err
 

@@ -50,4 +50,4 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:NM": u"id_colonne"},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != None, [fields[u"type_dechets"], fields[u"voie"], fields[u"obs"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x is not None, [fields[u"type_dechets"], fields[u"voie"], fields[u"obs"]]))} )))

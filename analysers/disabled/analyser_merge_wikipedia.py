@@ -333,7 +333,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             Load(("ST_X(the_geom)",), ("ST_Y(the_geom)",),
                 create = self.create_table,
                 select = {"lang": wikiLang, "Country": wikiCountry},
-                where = (lambda res: not res["titel"].startswith("Liste ")) if starts == None else
+                where = (lambda res: not res["titel"].startswith("Liste ")) if starts is None else
                     (lambda res: res["titel"].startswith(starts)) ),
             Mapping(
                 select = Select(
@@ -345,7 +345,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
                     mapping1 = {"wikipedia": lambda fields: fields["lang"]+":"+fields["titel"]},
                     text = lambda tags, fields: {fields["lang"]: fields["titel"]} )))
 
-        if wikiTypes != None:
+        if wikiTypes is not None:
             self.load.select["types"] = wikiTypes # http://en.wikipedia.org/wiki/Wikipedia:GEO#type:T
 
         if isinstance(osmTags, dict):

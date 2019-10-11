@@ -60,8 +60,8 @@ class Analyser_Merge_School_FR(Analyser_Merge):
                     filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire")),
                  separator = u";"),
             Load("Position", "Position",
-                xFunction = lambda x: x != None and x.split(',')[1] or None,
-                yFunction = lambda y: y != None and y.split(',')[0] or None,
+                xFunction = lambda x: x is not None and x.split(',')[1] or None,
+                yFunction = lambda y: y is not None and y.split(',')[0] or None,
                 select = {"Code état établissement": ["1", "3"]},
                 where = lambda res: res["Code postal"] and self.is_in(res["Code postal"])),
             Mapping(

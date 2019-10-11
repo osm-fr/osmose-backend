@@ -367,7 +367,7 @@ class Source:
         if "%s" in self.attribution:
             return self.attribution % self.millesime
         else:
-            return " - ".join(filter(lambda x: x!= None, [self.attribution, self.millesime]))
+            return " - ".join(filter(lambda x: x is not None, [self.attribution, self.millesime]))
 
     def match_attribution(self, s):
         if "%s" not in self.attribution:
@@ -415,8 +415,8 @@ class CSV(Parser):
         self.f = self.f or self.source.open()
         copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
             table,
-            ("DELIMITER AS '%s'" % self.separator) if self.separator != None else "",
-            ("NULL AS '%s'" % self.null) if self.null != None else "",
+            ("DELIMITER AS '%s'" % self.separator) if self.separator is not None else "",
+            ("NULL AS '%s'" % self.null) if self.null is not None else "",
             "CSV" if self.csv else "",
             "HEADER" if self.csv and self.header else "",
             ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
@@ -590,11 +590,11 @@ class Load(object):
         where = []
         for k, v in self.select.items():
             if isinstance(v, list):
-                cond = "\"%s\" IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i != None, v))))
+                cond = "\"%s\" IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
                 if None in v:
                     cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
-            elif v == None or v == False:
+            elif v is None or v == False:
                 where.append("\"%s\" IS NULL" % k)
             elif v == True:
                 where.append("\"%s\" IS NOT NULL" % k)
@@ -687,7 +687,7 @@ class Load(object):
                             "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
                             "tags": tags[1],
                             "tags1": tags[0],
-                            "fields": dict(zip(dict(res).keys(), map(lambda s: (s == None and None) or u'{0}'.format(s), dict(res).values()))),
+                            "fields": dict(zip(dict(res).keys(), map(lambda s: (s is None and None) or u'{0}'.format(s), dict(res).values()))),
                             "lon": lonLat[0] if is_pip else None, "lat": lonLat[1] if is_pip else None
                         })
             if isinstance(self.x, tuple):
@@ -717,7 +717,7 @@ class Load(object):
             giscurs.close()
 
             osmosis.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
-            if self.bbox != None:
+            if self.bbox is not None:
                 osmosis.run("INSERT INTO meta VALUES ('%s', %s, '%s')" % (tableOfficial, time, self.bbox))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
@@ -780,7 +780,7 @@ class Generate:
             elif colomn and res[colomn]:
                 tags[tag] = res[colomn]
 
-        return dict(map(lambda kv: [kv[0], kv[1] != None and u'{0}'.format(kv[1]) or None], tags.items()))
+        return dict(map(lambda kv: [kv[0], kv[1] is not None and u'{0}'.format(kv[1]) or None], tags.items()))
 
     def tagFactory(self, res):
         tags = self.tagFactoryGroup(res, self.static1, self.mapping1)
@@ -845,11 +845,11 @@ class Analyser_Merge(Analyser_Osmosis):
         self.load.polygon_id = self.config.polygon_id
 
     def float_comma(self, val):
-        if val != None:
+        if val is not None:
             return float(val.replace(',', '.'))
 
     def degree(self, val):
-        if val != None and u'°' in val:
+        if val is not None and u'°' in val:
             # 01°13'23,8 -> 1,334388
             return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
         else:
