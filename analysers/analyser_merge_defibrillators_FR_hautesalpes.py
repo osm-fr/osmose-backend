@@ -40,4 +40,4 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     static1 = {"emergency": "defibrillator"},
-                    static2 = {"source": self.source},)))
+                    static2 = {"source": self.source} )))

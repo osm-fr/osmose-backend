@@ -31,8 +31,7 @@ class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-municipaux-dae-ville-de-lorient/",
             u"Localisation des défibrillateurs municipaux (DAE) - Ville de Lorient",
             GeoJSON(Source(attribution = u"Ville de Lorient",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/01f2a133-4929-4001-906c-412f682d0d59"),
-                    ),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/01f2a133-4929-4001-906c-412f682d0d59")),
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
@@ -42,4 +41,4 @@ class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
                 generate = Generate(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["emplacement"]]))},)))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["emplacement"]]))} )))
