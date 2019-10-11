@@ -70,12 +70,9 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
         raise SystemError
 
     # write the file
-    outfile = open(file_dl, "wb")
-    try:
+    with open(file_dl, "wb") as outfile:
         for data in answer.iter_content(chunk_size=None):
             outfile.write(data)
-    finally:
-        outfile.close()
 
     if not answer.headers.get('Content-Encoding') and file_size != os.path.getsize(file_dl):
         logger.log(u"error: Download file (%d) not of the expected size (%d) for %s" % (os.path.getsize(file_dl), file_size, url))
