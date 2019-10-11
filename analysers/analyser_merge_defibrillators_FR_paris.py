@@ -36,7 +36,7 @@ class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
             Load("longitude", "latitude"),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(

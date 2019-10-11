@@ -34,7 +34,7 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
             Load("X","Y"),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(
