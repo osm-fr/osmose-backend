@@ -5,13 +5,9 @@ from __future__ import print_function
 import argparse
 import collections
 import datetime
-import jenkinsapi
-import operator
 import os
-import pprint
 import re
 import sys
-import termcolor
 
 from jenkinsapi.jenkins import Jenkins
 from termcolor import colored

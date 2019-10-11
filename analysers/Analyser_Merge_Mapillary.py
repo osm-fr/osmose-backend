@@ -23,10 +23,8 @@
 import json
 from .Analyser_Merge import Source
 
-import time, os, shutil, hashlib, codecs, tempfile
 from io import open # In python3 only, this import is not required
 from backports import csv # In python3 only just "import csv"
-from modules import config
 from modules.PointInPolygon import PointInPolygon
 from modules import SourceVersion
 from modules import downloader

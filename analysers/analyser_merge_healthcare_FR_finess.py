@@ -24,7 +24,6 @@ import json
 from io import open # In python3 only, this import is not required
 from backports import csv # In python3 only just "import csv"
 import io
-from modules import downloader
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 

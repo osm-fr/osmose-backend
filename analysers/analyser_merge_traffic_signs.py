@@ -22,17 +22,10 @@
 
 import json
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
-from time import gmtime, strftime
 
-import time, os, shutil, hashlib, codecs, tempfile
 from io import open # In python3 only, this import is not required
-from backports import csv # In python3 only just "import csv"
-from modules import config
-from modules.PointInPolygon import PointInPolygon
-from modules import SourceVersion
-from modules import downloader
 
 
 class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):

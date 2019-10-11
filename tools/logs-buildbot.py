@@ -6,12 +6,9 @@ import argparse
 import collections
 import datetime
 import json
-import operator
 import os
-import pprint
 import re
 import sys
-import termcolor
 import requests
 
 from termcolor import colored

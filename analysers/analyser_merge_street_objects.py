@@ -26,7 +26,6 @@ from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
 
 from io import open # In python3 only, this import is not required
-from modules import config
 
 
 class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):

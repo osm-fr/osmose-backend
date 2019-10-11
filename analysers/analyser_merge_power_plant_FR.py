@@ -20,11 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from io import open # In python3 only, this import is not required
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
-from .modules import downloader
 from .modules import Stablehash
 
 
