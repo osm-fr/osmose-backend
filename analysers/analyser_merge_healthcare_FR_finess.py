@@ -90,7 +90,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
 class Source_Finess(Source):
     def open(self):
         # Cheat the parent open
-        self.encoding = self.encoding, 'UTF-8'
+        self.encoding = 'UTF-8'
         f = Source.open(self)
 
         csvreader = csv.reader(f, delimiter=u';')
