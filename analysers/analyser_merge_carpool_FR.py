@@ -32,7 +32,8 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/base-nationale-consolidee-des-lieux-de-covoiturage",
             u"Base nationale consolidée des lieux de covoiturage",
             CSV(Source(attribution = u"Transport.data.gouv.fr", millesime = "09/2019", encoding = "utf-8-sig",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/e0962ca4-2fb9-4257-a569-56704df3243d"), separator = u";", universalNewLine = True),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/e0962ca4-2fb9-4257-a569-56704df3243d",
+                    filter = lambda text: text.replace('\r', '\n')), separator = u";"),
             Load("Xlong", "Ylat",
                 select = {
                     "ouvert": u"true"}),
