@@ -258,19 +258,19 @@ def execc(conf, logger, options, osmosis_manager):
                                         'content': open(analyser_conf.dst, 'rb')
                                     })
                                     r.raise_for_status()
-
-                                    dt = r.text.strip()
-                                    if dt == "FAIL: Already up to date" and was_on_timeout:
-                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
-                                        # Log error, but do not set err_code
-                                    elif dt[-2:] != "OK":
-                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
-                                        err_code |= 4
-                                    else:
-                                        logger.sub().sub().log(dt)
+                                    logger.sub().sub().log(r.text.strip())
                                     update_finished = True
+                                except requests.exceptions.HTTPError as e:
+                                    if e.response.status_code == 504:
+                                        was_on_timeout = True
+                                        logger.sub().sub().sub().err('got a timeout')
+                                    else:
+                                        dt = r.text.strip()
+                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
+                                        if not (dt == "FAIL: Already up to date" and was_on_timeout):
+                                            err_code |= 4
                                 except Exception as e:
-                                    if isinstance(e, requests.exceptions.ConnectTimeout) or (isinstance(e, requests.exceptions.HTTPError) and e.response.status_code == 504):
+                                    if isinstance(e, requests.exceptions.ConnectTimeout):
                                         was_on_timeout = True
                                         logger.sub().sub().sub().err('got a timeout')
                                     else:
