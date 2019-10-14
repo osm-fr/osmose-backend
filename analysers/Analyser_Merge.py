@@ -124,9 +124,12 @@ GROUP BY
   geom
 """
 
-sql03 = """
-CREATE INDEX ir_%(official)s ON %(official)s(ref);
-CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom);
+sql03a = """
+CREATE INDEX ir_%(official)s ON %(official)s(ref)
+"""
+
+sql03b = """
+CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom)
 """
 
 sql10 = """
@@ -711,7 +714,8 @@ class Load(object):
                 self.bbox = giscurs.fetchone()[0]
             else:
                 self.bbox = None
-            osmosis.run(sql03 % {"official": tableOfficial})
+            osmosis.run(sql03a % {"official": tableOfficial})
+            osmosis.run(sql03b % {"official": tableOfficial})
 
             giscurs_getpoint.close()
             giscurs.close()
