@@ -708,7 +708,7 @@ class Load(object):
             else:
                 distinct = order_by = ""
             osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo) % {"table":table, "x":self.x, "y":self.y, "where":self.formatCSVSelect(), "distinct": distinct, "order_by": order_by}, insertOfficial)
-            giscurs.execute(sql02b.replace("%(official)s", tableOfficial))
+            osmosis.run(sql02b.replace("%(official)s", tableOfficial))
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
                 self.bbox = giscurs.fetchone()[0]
