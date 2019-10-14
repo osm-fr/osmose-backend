@@ -27,11 +27,11 @@ class Analyser_merge_defibrillators_FR_hautevienne(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8370", "class": 60, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            u"https://www.sigena.fr/geonetwork/srv/fre/catalog.search#/metadata/1e113a13-1865-43da-b027-d8abeafbf2dd",
+            u"https://www.data.gouv.fr/fr/datasets/defibrillateur-automatise-externe-dae-haute-vienne/",
             u"défibrillateur automatisé externe DAE - Haute-Vienne",
-            SHP(Source(attribution = u"Service Départemental d'Incendie et de Secours de la Haute-Vienne le 13-12-2018",
-                    fileUrl = u"https://catalogue.sigena.fr/rss/atomfeed/atomdata/1e113a13-1865-43da-b027-d8abeafbf2dd?format=shp&srs=2154&emprise=-1&territoire_type=&couchd_emplacement_stockage=dae_sdis87&bTerritoire=0&couche_type_stockage=1",
-                    zip = u"Telechargement_1557715540_4003/1e113a13-1865-43da-b027-d8abeafbf2dd_1557715540_3898/dae_sdis87.shp")),
+            SHP(Source(attribution = u"GéoLimousin",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/ff4418b6-87ac-489a-ba9d-7fdd03f4d116",
+                    zip = u"dae_sdis87.shp")),
             Load(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), srid = 2154),
             Mapping(
                 select = Select(
