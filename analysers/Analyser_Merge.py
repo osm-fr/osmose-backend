@@ -41,6 +41,12 @@ from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
 
+try:
+    from pyproj import Transformer
+except:
+    # No available in py2
+    Transformer = None
+
 
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
 
@@ -659,6 +665,11 @@ class Load(object):
         osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
+            if self.pip:
+                if Transformer:
+                    transformer = Transformer.from_crs(self.srid, 4326)
+                else: # py2 conditional
+                    transformer = None #
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema % {"schema": db_schema})
             osmosis.run(sql00 % {"official": tableOfficial})
@@ -674,9 +685,12 @@ class Load(object):
                 if not self.pip or (x and y):
                     is_pip = False
                     if self.pip:
-                        giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
-                        lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
-                        lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
+                        if transformer:
+                            lonLat = transformer.transform(x, y)
+                        else:
+                            giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
+                            lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
+                            lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                         is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
                     if not self.pip or is_pip:
                         for k in res.keys():
