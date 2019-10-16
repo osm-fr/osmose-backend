@@ -564,6 +564,7 @@ france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_wastewater_plant_FR"] = "xxx"
 france_local_db.analyser["merge_museum_FR"] = "xxx"
 france_local_db.analyser["merge_radio_support_FR"] = "xxx"
+france_local_db.analyser["merge_carpool_FR"] = "xxx"
 
 #########################################################################
 

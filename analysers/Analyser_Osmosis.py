@@ -394,7 +394,7 @@ WHERE
 """
         self.giscurs.execute(sql.format(table, type, id))
 
-    def run0(self, sql, callback = None):
+    def run00(self, sql, callback = None):
         if self.explain_sql:
             self.logger.log(sql.strip())
         if self.explain_sql and (sql.strip().startswith("SELECT") or sql.strip().startswith("CREATE UNLOGGED TABLE")) and not ';' in sql[:-1] and " AS " in sql:
@@ -423,6 +423,11 @@ WHERE
                         self.logger.err("ret=%s" % str(ret))
                         raise
 
+    def run0(self, sql, callback = None):
+        caller = getframeinfo(stack()[1][0])
+        self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
+        self.run00(sql, callback)
+
     def run(self, sql, callback = None):
         def callback_package(res):
             ret = callback(res)
@@ -447,10 +452,10 @@ WHERE
         caller = getframeinfo(stack()[1][0])
         if callback:
             self.logger.log(u"%s:%d xml generation" % (os.path.basename(caller.filename), caller.lineno))
-            self.run0(sql, callback_package)
+            self.run00(sql, callback_package)
         else:
             self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
-            self.run0(sql)
+            self.run00(sql)
 
 
     def node(self, res):
