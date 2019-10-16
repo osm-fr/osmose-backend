@@ -14,11 +14,11 @@ msgstr ""
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
-msgstr ""
+msgstr "Brak środka transportu, dodaj tag route=bus/tram/coach itp."
 
 #: ../transport.validator.mapcss:67
 msgid "Missing transportation mode, change tag route to route_master"
-msgstr ""
+msgstr "Zmień tag route na route_master"
 
 #: ../transport.validator.mapcss:83
 msgid ""
