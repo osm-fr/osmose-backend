@@ -263,16 +263,18 @@ def execc(conf, logger, options, osmosis_manager):
                                 except requests.exceptions.HTTPError as e:
                                     if e.response.status_code == 504:
                                         was_on_timeout = True
-                                        logger.sub().sub().sub().err('got a timeout')
+                                        logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
                                         logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
-                                        if not (dt == "FAIL: Already up to date" and was_on_timeout):
+                                        if was_on_timeout and dt == "FAIL: Already up to date":
+                                            update_finished = True
+                                        else:
                                             err_code |= 4
                                 except Exception as e:
                                     if isinstance(e, requests.exceptions.ConnectTimeout):
                                         was_on_timeout = True
-                                        logger.sub().sub().sub().err('got a timeout')
+                                        logger.sub().sub().sub().err('got a connection timeout')
                                     else:
                                         tb = traceback.format_exc()
                                         logger.sub().err('error on update...')
