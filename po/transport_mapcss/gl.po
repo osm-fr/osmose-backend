@@ -1,9 +1,10 @@
 # Translators:
-# Iván Seoane, 2019
+# Navhy, 2019
+# Iváns, 2019
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Iván Seoane, 2019\n"
+"Last-Translator: Iváns, 2019\n"
 "Language-Team: Galician (https://www.transifex.com/openstreetmap-france/teams/17462/gl/)\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -190,19 +191,25 @@ msgstr "Falla a etiqueta 'opening_hours'"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Falla o nome nunha paraxe de transporte público"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Verificar a etiqueta do operador: este operador non existe, pode ser un erro"
+" tipográfico (gralla)"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Verificar a etiqueta de rede: esta rede non existe, pode ser un erro "
+"tipográfico (gralla)"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"Unha estación de autobuses adoita ser unha área grande onde se deteñen "
+"moitos buses, verifica se podes debuxar esta área"
