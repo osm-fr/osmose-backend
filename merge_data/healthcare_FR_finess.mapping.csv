@@ -6,8 +6,6 @@
       "1103",
       "1104",
       "1106",
-      "1107",
-      "1109",
     ],
     "items": [
       8330,
@@ -26,8 +24,30 @@
   },
   {
     "categories": [
+     "1107",
+     "1110",
+    ],
+    "items": [
+      8330,
+      7220
+    ],
+    "classes": 10,
+    "level": 3,
+    "title": "Clinique",
+    "tags_select": {
+      "amenity": "clinic"
+    },
+    "tags_generate1": {
+      "amenity": "clinic"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "1109"
       "1110"
       "1111"
+      "2103"
       "2201",
       "2202",
       "2204",
