@@ -84,7 +84,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
                     static1 = tags_generate1,
                     static2 = dict({"source": self.source}, **tags_generate2),
                     mapping1 = {"ref:FR:FINESS": "nofinesset"},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i is not None, [fields["rslongue"], fields["complrs"], fields["compldistrib"], fields["numvoie"], fields["typvoie"], fields["voie"], fields["compvoie"], fields["lieuditbp"], fields["ligneacheminement"], fields["libcategetab"], fields["numuai"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i not in (None, 'None'), [fields["rslongue"], fields["complrs"], fields["compldistrib"], fields["numvoie"], fields["typvoie"], fields["voie"], fields["compvoie"], fields["lieuditbp"], fields["ligneacheminement"], fields["libcategetab"], fields["numuai"]]))} )))
 
 
 class Source_Finess(Source):
