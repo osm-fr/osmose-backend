@@ -32,7 +32,7 @@ class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
             CSV(Source(attribution = u"Ville de Saint-Malo",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/75e18892-529f-4037-b38f-a9e4d9c39a91",
                     encoding = "iso-8859-14"),
-                    separator = ";"),
+                    separator = u";"),
             Load("XCOORD", "YCOORD", srid = 2154),
             Mapping(
                 select = Select(
