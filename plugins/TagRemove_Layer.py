@@ -47,7 +47,7 @@ class TagRemove_Layer(Plugin):
             elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
                     return {"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}
-                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
+                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no" or tags.get(u"man_made") == "pier"):
                     if len(nds) > 3:
                         return {"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
