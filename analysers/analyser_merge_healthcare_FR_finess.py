@@ -21,7 +21,6 @@
 ###########################################################################
 
 import json
-from io import open # In python3 only, this import is not required
 from backports import csv # In python3 only just "import csv"
 import io
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
@@ -63,7 +62,7 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, srid, is_in, categories, items, missing_osm, classs, level, title, tags_select, tags_generate1, tags_generate2):
         self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_f(u"{0} not integrated", title) }
-        if missing_osm != False:
+        if missing_osm:
             self.missing_osm = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_f(u"{0} without tag \"{1}\" or invalid", title, 'ref:FR:FINESS') }
         self.possible_merge = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_f(u"{0}, integration suggestion", title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
