@@ -43,7 +43,7 @@ from modules import SourceVersion
 
 try:
     from pyproj import Transformer
-except:
+except ImportError:
     # No available in py2
     Transformer = None
 
