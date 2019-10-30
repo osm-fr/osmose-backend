@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="416087159">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1089490420">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1450,6 +1450,21 @@
 <classtext lang="uk" title="{0.key}={0.value} з {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
 </class>
+<class item="3032" tag="tag,highway,fix:chair" id="30329" level="2">
+<classtext lang="cs" title="{0.key}={0.value} s {1.key}={1.value}" />
+<classtext lang="de" title="{0.key}={0.value} mit {1.key}={1.value}" />
+<classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
+<classtext lang="es" title="{0.key}={0.value} con {1.key}={1.value}" />
+<classtext lang="fa" title="{0.key}={0.value} با {1.key}={1.value}" />
+<classtext lang="fr" title="{0.key}={0.value} avec {1.key}={1.value}" />
+<classtext lang="gl" title="{0.key}={0.value} con {1.key}={1.value}" />
+<classtext lang="hu" title="{0.key}={0.value} a következővel: {1.key}={1.value}" />
+<classtext lang="it" title="{0.key}={0.value} con {1.key}={1.value}" />
+<classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
+<classtext lang="pl" title="{0.key}={0.value} z {1.key}={1.value}" />
+<classtext lang="uk" title="{0.key}={0.value} з {1.key}={1.value}" />
+<classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
+</class>
 <class item="3050" tag="tag,fix:chair" id="30501" level="1">
 <classtext lang="en" title="Bad tag suffix" />
 <classtext lang="gl" title="Sufixo da etiqueta erróneo" />
@@ -1897,6 +1912,7 @@
 <classtext lang="hu" title="Érvénytelen nyitva tartás" />
 <classtext lang="it" title="Orari di apertura non validi" />
 <classtext lang="nl" title="Ongeldige Opening Uren" />
+<classtext lang="pl" title="Niepoprawny format godzin otwarcia" />
 <classtext lang="uk" title='Помилковий "Час роботи"' />
 <classtext lang="zh_CN" title="营业时间无效" />
 </class>
@@ -3417,7 +3433,10 @@
 <classtext lang="cs" title="Značení letiště" />
 <classtext lang="de" title="Flughafenerfassung" />
 <classtext lang="en" title="Airport tagging" />
+<classtext lang="fr" title="Marquage d''aéroport" />
+<classtext lang="nl" title="Luchthaven taggen" />
 <classtext lang="ru" title="Теги аэропорта" />
+<classtext lang="uk" title="Теґування аеропортів" />
 </class>
 <class item="9007" tag="tag,relation" id="9007001" level="3">
 <classtext lang="cs" title="Chybějící značka" />
@@ -3936,6 +3955,7 @@
 <classtext lang="hu" title="Hiányzik a közlekedési mód. Adjon hozzá egy [route=bus/coach/tram/stb.] címkét" />
 <classtext lang="it" title="Manca la modalità di trasporto, aggiungere l’etichetta route = bus/coach/tram/ecc." />
 <classtext lang="nl" title="Soort vervoermiddel ontbreekt , voeg een tag route = bus/coach/tram/etc" />
+<classtext lang="pl" title="Brak środka transportu, dodaj tag route=bus/tram/coach itp." />
 <classtext lang="uk" title="Відсутній режим транспортування, додайте теґ route=bus/coach/tram/тощо" />
 <classtext lang="zh_CN" title="缺少运输模式，请添加标签route = bus/coach/tram/etc" />
 <classtext lang="zh_TW" title="遺失交通模式，請加上標籤如 route = bus/coach/tran/etc" />
@@ -3951,6 +3971,7 @@
 <classtext lang="hu" title="Hiányzik a közlekedési mód. Módosítsa a [route] címkét erre: [route_master]" />
 <classtext lang="it" title="Manca la modalità di trasporto, cambiare l’etichetta da route a route_master" />
 <classtext lang="nl" title="Soort vervoermiddel ontbreekt , verander tag route in route_master" />
+<classtext lang="pl" title="Zmień tag route na route_master" />
 <classtext lang="uk" title="Відсутній режим транспортування, змініть теґ route на route_master" />
 <classtext lang="zh_CN" title="缺少运输模式，请将标签路线更改为route_master" />
 <classtext lang="zh_TW" title="遺失交通模式，請更改標籤從 route 到 route_master" />
@@ -3962,6 +3983,7 @@
 <classtext lang="en" title="Check the network tag" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014019" level="2">
+<classtext lang="cs" title="Autobusová zastávka má být uzlem" />
 <classtext lang="en" title="A bus stop is supposed to be a node" />
 <classtext lang="es" title="Una parada de autobús se supone que es un nodo" />
 <classtext lang="fr" title="Un arrêt de bus est censé être un nœud " />
@@ -3972,6 +3994,7 @@
 <classtext lang="uk" title="Зупинка автобуса повинна бути точкою" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014020" level="2">
+<classtext lang="cs" title="Barva linky veřejné dopravy by měla být zanesena v barevné značce" />
 <classtext lang="en" title="The color of the public transport line should be in a colour tag" />
 <classtext lang="es" title="El color de la línea de transporte público debe estar en la etiqueta colour." />
 <classtext lang="fr" title="La couleur de la ligne doit être dans un attribut 'colour'" />
@@ -3981,6 +4004,7 @@
 <classtext lang="uk" title="Колір лінії громадського транспорту повинен мати теґ colour" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014021" level="2">
+<classtext lang="cs" title="Interval je neplatný (zkuste několik minut)" />
 <classtext lang="en" title="The interval is invalid (try a number of minutes)" />
 <classtext lang="es" title="El intervalo no es válido (intente un número de minutos)" />
 <classtext lang="fr" title="La fréquence de passage est invalide (essayer un nombre en minutes)" />
@@ -3990,6 +4014,7 @@
 <classtext lang="uk" title="Недійсний інтервал (вкажіть кількість хвилин)" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014022" level="2">
+<classtext lang="cs" title="Délka je neplatná (zkuste několik minut)" />
 <classtext lang="en" title="The duration is invalid (try a number of minutes)" />
 <classtext lang="es" title="La duración no es válida (intente un número de minutos)" />
 <classtext lang="fr" title="La durée est invalide (essayer un nombre en minutes)" />
@@ -3999,6 +4024,7 @@
 <classtext lang="uk" title="Недійсна тривалість (вкажіть кількість хвилин)" />
 </class>
 <class item="9014" tag="tag,public_transport" id="9014023" level="2">
+<classtext lang="cs" title="Chybějící značka intervalu pro určení hlavního intervalu" />
 <classtext lang="en" title="Missing interval tag to specify the main interval" />
 <classtext lang="es" title="Falta etiqueta interval para especificar el intervalo principal" />
 <classtext lang="fr" title="Il manque l'attribut interval pour préciser la fréquence de passage principale" />
