@@ -192,19 +192,25 @@ msgstr "Falta etiqueta opening_hours"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Nombre perdido en una parada de transporte público"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Verifique la etiqueta del operador: este operador no existe, puede ser un "
+"error tipográfico"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Verifique la etiqueta de la red: esta red no existe, puede ser un error "
+"tipográfico"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"Una estación de autobuses es generalmente un área grande donde se detienen "
+"muchos autobuses, verifique si puede dibujar esta área"

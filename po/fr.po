@@ -34,8 +34,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-16 21:00+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-10-25 22:25+0000\n"
+"Last-Translator: deuzeffe\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -715,7 +715,7 @@ msgstr "Utilisez le titre lisible tel qu’il apparaît en tête de l’article 
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Missing primary Wikipedia tag"
-msgstr ""
+msgstr "Premier attribut Wikipedia manquant"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Invalid wikipedia suffix"
@@ -2241,7 +2241,7 @@ msgstr "Centrale électrique %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:28
 msgid "admin_level 8 without tag \"postal_code\""
-msgstr ""
+msgstr "Commune - admin_level 8 - sans attribut \"postal_code\""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:31
 msgid "Power plant not integrated, geocoded at municipality level"
@@ -2249,12 +2249,12 @@ msgstr "Centrale électrique non intégrée, codée géographiquement au niveau 
 
 #: ../plugins/TagFix_BadKey.py:31
 msgid "Bad tag suffix"
-msgstr ""
+msgstr "Mauvais suffixe d'attribut"
 
 #: ../plugins/TagFix_BadKey.py:68
 #, python-format
 msgid "Bad tag suffix %(k)s=%(v)s"
-msgstr ""
+msgstr "Mauvais suffixe d'attribut%(k)s=%(v)s"
 
 #: ../plugins/TagFix_Deprecated.py:78
 msgid "Deprecated value"
@@ -2273,33 +2273,33 @@ msgstr "Valeurs similaires"
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:58
 #, python-brace-format
 msgid "Sudden highway type change (level {0})"
-msgstr ""
+msgstr "Brusque changement de type de voirie (level {0})"
 
 #: ../plugins/Phone.py:122
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
-msgstr ""
+msgstr "Caractère \"{0}\" non autorisé l'attribut de numéro de téléphone \"{1}\""
 
 #: ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
-msgstr ""
+msgstr "Valeur d'attribut : {0}={1} => {2} (règle kr_vr)"
 
 #: ../plugins/TagFix_IntervalConditional.py:28
 msgid "Invalid Conditional Intervals"
-msgstr ""
+msgstr "Intervalles conditionnels invalides"
 
 #: ../plugins/TagFix_IntervalConditional.py:40
 msgid "Invalid interval tag format"
-msgstr ""
+msgstr "Format d'attribut d'intervalle invalide"
 
 #: ../plugins/TagFix_IntervalConditional.py:44
 msgid "Conditional intervals tag is not valid"
-msgstr ""
+msgstr "Attribut d'intervalles conditionnels invalides "
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
-msgstr ""
+msgstr "Les intervalles conditionnels ne correspondent pas avec les heures d'ouverture"
 
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:28
@@ -2313,79 +2313,79 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:28
 msgid "Defibrillator not integrated"
-msgstr ""
+msgstr "Défibrillateur non intégré "
 
 #: ../analysers/analyser_merge_museum_FR.py:29
 msgid "Museum not integrated"
-msgstr ""
+msgstr "Musée non intégré"
 
 #: ../analysers/analyser_merge_museum_FR.py:30
 msgid "Museum, integration suggestion"
-msgstr ""
+msgstr "Musée, suggestion d'intégration"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:29
 #, python-format
 msgid "Radio support (%s) not integrated"
-msgstr ""
+msgstr "Support radio (%s) non intégré"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:30
 #, python-format
 msgid "Radio support (%s), integration suggestion"
-msgstr ""
+msgstr "Support radio (%s), intégration possible"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:31
 #, python-format
 msgid "Radio support (%s) update"
-msgstr ""
+msgstr "Support radio (%s) à mettre à jour"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:28
 msgid "Wastewater plant not integrated"
-msgstr ""
+msgstr "Station d'épuration non intégrée"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:29
 msgid "Wastewater plant, integration suggestion"
-msgstr ""
+msgstr "Station d'épuration, intégration possible"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant update"
-msgstr ""
+msgstr "Station d'épuration à mettre à jour"
 
 msgid "Invalid value of tag \"ref:vatin\""
-msgstr ""
+msgstr "Mauvaise valeur de l'attribut \"ref:vatin\""
 
 #: ../plugins/TagFix_Vatin.py:38
 msgid "Invalid value format of tag \"ref:vatin\""
-msgstr ""
+msgstr "Mauvais format de la valeur de l'attribut \"ref:vatin\""
 
 #: ../plugins/TagFix_Vatin.py:63
 msgid "Invalid 'VAT identification number'"
-msgstr ""
+msgstr "\"VAT identification number\" invalide"
 
 #: ../plugins/TagFix_Vatin.py:66
 msgid "Value too short"
-msgstr ""
+msgstr "Valeur trop courte"
 
 #: ../plugins/TagFix_Vatin.py:68
 msgid "Country code is missing"
-msgstr ""
+msgstr "Code pays manquant"
 
 #: ../plugins/TagFix_Vatin.py:70
 msgid "Value is not uppercase"
-msgstr ""
+msgstr "La valeur n'est pas en majuscule"
 
 #: ../analysers/analyser_merge_carpool_FR.py:28
 msgid "Carpool parking not integrated"
-msgstr ""
+msgstr "Parking de covoiturage non intégré"
 
 #: ../analysers/analyser_merge_carpool_FR.py:29
 msgid "Carpool parking integration suggestion"
-msgstr ""
+msgstr "Parking de covoiturage, intégration possible"
 
 #: ../analysers/analyser_merge_carpool_FR.py:30
 msgid "Carpool parking update"
-msgstr ""
+msgstr "Parking de covoiturage à mettre à jour"
 
 #: ../analysers/analyser_merge_carpool_FR.py:55
 #, python-brace-format
 msgid "Carpool parking {0}"
-msgstr ""
+msgstr "Parking de covoiturage {0}"

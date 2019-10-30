@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-16 21:00+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-10-23 18:52+0000\n"
+"Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -941,7 +941,7 @@ msgstr "Winnica niezintegrowana"
 
 #: ../plugins/Name_Multilingual.py:37
 msgid "Multilingual not matching"
-msgstr "Wielojęzyczny nie pasuje"
+msgstr "Nazwy w lokalnych językach różnią się lub brakuje którejś z nich"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1056,12 +1056,12 @@ msgstr "access=yes|permissive zezwala na wszystkie środki transportu"
 #: ../plugins/TagFix_MultipleTag.py:129
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr "Włączając narciarstwo, konie, motorowery, materiały niebezpieczne itd, chyba że wyraźnie wyłączone"
+msgstr "Włączając narciarstwo, konie, motorowery, materiały niebezpieczne itd., chyba że wyraźnie wyłączone"
 
 #: ../plugins/TagFix_MultipleTag.py:131
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr "Włączając samochody, konie, motorowery, materiały niebezpieczne itd, chyba że wyraźnie wyłączone"
+msgstr "Włączając samochody, konie, motorowery, materiały niebezpieczne itd., chyba że wyraźnie wyłączone"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:61
 msgid "Inconsistent Access"
@@ -1293,7 +1293,7 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag_FR.py:62
 #: ../plugins/TagFix_MultipleTag_FR.py:64
 msgid "Add school:FR tag"
-msgstr ""
+msgstr "Dodaj tag school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:73
 msgid "FANTOIR numeric type is for ways"
@@ -1423,7 +1423,7 @@ msgstr "Prawdopodobnie brakuje tagu traffic_signals:direction lub przejścia na 
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:163
 msgid "Possible missing direction tag on stop or a give way"
-msgstr ""
+msgstr "Prawdopodobnie brakuje tagu direction dla highway=give_way / =stop"
 
 #: ../plugins/TagFix_MultipleTag.py:48
 msgid "Suspicious name for a container"
@@ -1508,7 +1508,7 @@ msgstr "Niezgodne maxspeed i source:maxspeed"
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
-msgstr "Tagi network, operator, ref, colour powinny być takie same w relacjach trasy jak i relacji route_master"
+msgstr "Tagi network, operator, ref, colour powinny być takie same w relacjach trasy, jak i relacji route_master"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:274
 #, python-format
@@ -1548,7 +1548,7 @@ msgstr "Skrót od \"numer\" (n°) powinien być małą literą"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
-msgstr "Sama nazwa bez podstawowego tagu (amenity, shop, itp.)"
+msgstr "Sama nazwa bez podstawowego tagu (amenity, shop itp.)"
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:28
 msgid "Power minor_distribution substation not integrated"
@@ -2341,19 +2341,19 @@ msgstr "Nieprawidłowy format wartości klucza \"ref:vatin\""
 
 #: ../plugins/TagFix_Vatin.py:63
 msgid "Invalid 'VAT identification number'"
-msgstr ""
+msgstr "Nieprawidłowy numer VAT"
 
 #: ../plugins/TagFix_Vatin.py:66
 msgid "Value too short"
-msgstr ""
+msgstr "Wartość jest za krótka"
 
 #: ../plugins/TagFix_Vatin.py:68
 msgid "Country code is missing"
-msgstr ""
+msgstr "Brakuje kodu kraju"
 
 #: ../plugins/TagFix_Vatin.py:70
 msgid "Value is not uppercase"
-msgstr ""
+msgstr "Wartość nie zaczyna się wielką literą"
 
 #: ../analysers/analyser_merge_carpool_FR.py:28
 msgid "Carpool parking not integrated"
