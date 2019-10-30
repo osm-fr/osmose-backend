@@ -119,21 +119,31 @@ ORDER BY
 """
 
 sql50 = """
+CREATE TEMP TABLE interpolations_ends AS
 SELECT
-    ways.id,
-    ST_AsText(nodes_s.geom)
+  ways.id,
+  nodes.tags->'addr:housenumber' AS housenumber,
+   ST_AsText(nodes.geom) AS geom
 FROM
-    interpolations AS ways
-    JOIN interpolation_nodes AS nodes_s ON
-        ways.id = ANY (nodes_s.w_ids) AND
-        nodes_s.id = ways.nodes[1] AND
-        nodes_s.tags?'addr:housenumber'
-    JOIN interpolation_nodes AS nodes_e ON
-        ways.id = ANY (nodes_e.w_ids) AND
-        nodes_e.id = ways.nodes[array_length(nodes,1)] AND
-        nodes_e.tags?'addr:housenumber'
-WHERE
-    nodes_s.tags->'addr:housenumber' = nodes_e.tags->'addr:housenumber'
+  interpolations AS ways
+  JOIN interpolation_nodes AS nodes ON
+    nodes.geom && ways.linestring AND
+    ways.id = ANY (nodes.w_ids) AND
+    (nodes.id = ways.nodes[1] OR nodes.id = ways.nodes[array_length(nodes,1)]) AND
+    nodes.tags?'addr:housenumber'
+"""
+
+sql51 = """
+SELECT
+  id,
+  ST_AsText(ST_GeometryN(ST_Collect(geom), 1))
+FROM
+  interpolations_ends
+GROUP BY
+  id,
+  housenumber
+HAVING
+  count(*) > 1
 """
 
 sql60 = """
@@ -201,6 +211,7 @@ class Analyser_Osmosis_Addr_Interpolation(Analyser_Osmosis):
         self.run(sql20, self.callback20)
         self.run(sql30, self.callback30)
         self.run(sql40, self.callback40)
-        self.run(sql50, self.callback50)
+        self.run(sql50)
+        self.run(sql51, self.callback50)
         self.run(sql60, self.callback60)
         self.run(sql70, self.callback70)

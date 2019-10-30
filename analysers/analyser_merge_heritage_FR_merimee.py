@@ -22,7 +22,6 @@
 
 import re
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
-from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from functools import reduce
 
 
@@ -66,13 +65,13 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Immeubles protégés au titre des Monuments Historiques",
-            CSV(Geocode_Addok_CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
+            CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
                     fileUrl = u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
                     filter = lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore'))),
-                columns = ['Adresse', 'Commune'], citycode = 'INSEE', delimiter = u';', logger = logger),
                 separator = u';'),
-            Load("longitude", "latitude",
-                map = self.coord_fallback,
+            Load("coordonnees_ban", "coordonnees_ban",
+                xFunction = lambda x: x and x.split(',')[1],
+                yFunction = lambda y: y and y.split(',')[0],
                 select = {u"Date de Protection": True}),
             Mapping(
                 select = Select(
@@ -93,9 +92,3 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
                     tag_keep_multiple_values = ["heritage:operator"],
                     text = lambda tags, fields: T_f(u"Historical monument: {0} (positioned at {1} with confidence {2})", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))
-
-    def coord_fallback(self, fields):
-        if not fields['longitude'] and fields['Coordonnées INSEE']:
-            # It is too late to write to fields['longitude'] and fields['latitude']
-            fields['_y'], fields['_x'] = list(map(lambda s: float(s.strip()), fields['Coordonnées INSEE'].split(',')))
-        return fields
