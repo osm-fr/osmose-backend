@@ -20,7 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 import re
 
 
@@ -112,46 +112,46 @@ class Phone(Plugin):
                         phone = phone.replace(sep, '; ')
                 if p != phone:
                     phone = phone.replace('  ', ' ')
-                    err.append({"class": 30926, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ').replace(',', ';')}})
+                    err.append({"class": 30926, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ').replace(',', ';')}})
                     continue
 
             phone_test = phone
             for c in '+0123456789 -./()':
                 phone_test = phone_test.replace(c, '')
             if len(phone_test) > 0:
-                err.append({"class": 30925, "subclass": stablehash(tag), "text": T_f(u"Not allowed char \"{0}\" in phone number tag \"{1}\"", phone_test, tag)})
+                err.append({"class": 30925, "subclass": stablehash64(tag), "text": T_f(u"Not allowed char \"{0}\" in phone number tag \"{1}\"", phone_test, tag)})
                 continue
 
             # Before local prefix
             if self.InternationalPrefix:
                 r = self.InternationalPrefix.match(phone)
                 if r:
-                    err.append({"class": 30924, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + r.group(1)}})
+                    err.append({"class": 30924, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + r.group(1)}})
                     continue
 
             if self.InternationalAndLocalPrefix:
                 r = self.InternationalAndLocalPrefix.match(phone)
                 if r:
-                    err.append({"class": 30921, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
+                    err.append({"class": 30921, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
                     continue
 
             if self.MissingInternationalPrefix:
                 r = self.MissingInternationalPrefix.match(phone)
                 if r:
-                    err.append({"class": 30923, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
+                    err.append({"class": 30923, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
                     continue
 
             if self.BadShort:
                 r = self.BadShort.match(phone)
                 if r:
-                    err.append({"class": 30922, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: r.group(1)}})
+                    err.append({"class": 30922, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: r.group(1)}})
                     continue
 
             # Last
             if self.Format:
                 r = self.Format.match(phone)
                 if not r:
-                    err.append({"class": 30920, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}})
+                    err.append({"class": 30920, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}})
                     continue
 
         return err

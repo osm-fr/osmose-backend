@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 
 class TagFix_BadKey(Plugin):
@@ -63,9 +63,9 @@ class TagFix_BadKey(Plugin):
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append({"class": 3050, "subclass": stablehash(k), "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append({"class": 30501, "subclass": stablehash(k), "text": T_("Bad tag suffix %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 30501, "subclass": stablehash64(k), "text": T_("Bad tag suffix %(k)s=%(v)s", {"k":k, "v":tags[k]})})
 
         return err
 

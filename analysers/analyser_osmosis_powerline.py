@@ -21,7 +21,7 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 sql10 = """
 SELECT
@@ -324,7 +324,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
         self.classs[7] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Unmatched voltage of line on substation") }
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}]}
-        self.callback50 = lambda res: {"class":5, "subclass": stablehash(res[1]), "data":[self.way_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":5, "subclass": stablehash64(res[1]), "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )

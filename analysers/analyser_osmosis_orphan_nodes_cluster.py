@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -54,4 +54,4 @@ class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
         self.classs[1] = {"item":"1080", "level": 1, "tag": ["geom", "building", "fix:chair"], "desc": T_(u"Orphan nodes cluster") }
 
     def analyser_osmosis_common(self):
-        self.run(sql10, lambda res: {"class":1, "subclass":stablehash(res[0]), "data":[self.positionAsText]} )
+        self.run(sql10, lambda res: {"class":1, "subclass":stablehash64(res[0]), "data":[self.positionAsText]} )

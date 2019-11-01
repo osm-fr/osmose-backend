@@ -21,7 +21,7 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 
 sql10 = """
@@ -187,7 +187,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Boundary intersection") }
         self.classs_change[3] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Lone boundary fragment") }
         self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
-        self.callback40 = lambda res: {"class":2, "subclass": stablehash(res[2]), "data":[self.relation_full, self.relation_full, self.positionAsText]}
+        self.callback40 = lambda res: {"class":2, "subclass": stablehash64(res[2]), "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
