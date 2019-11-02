@@ -8,6 +8,13 @@ and send results to frontend. This works as following:
   - analyses resultat are uploaded to the frontend
   - by default, temporary extract files and database are purged
 
+Analysers can be build on many ways:
+
+  - With [MapCSS](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) rules validating each OSM objects: [plugins/*.mapcss](plugins) and JOSM MapCSS [core](https://josm.openstreetmap.de/browser/josm/trunk/data/validator/) and some [contrib](https://josm.openstreetmap.de/wiki/Rules) rules.
+  - With Python code validating each OSM objects: [plugins](plugins).
+  - With SQL/PostGIS queries on Osmosis database: [analysers/analyser_osmosis_*.py].
+  - By configuring a OpenData and OSM objects comparator: [analysers/analyser_merge_*.py].
+
 ## Installation
 
 The default way to setup Osmose Backend is through Docker. Look at the
