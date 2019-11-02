@@ -1,5 +1,7 @@
 # Backend part of Osmose QA tool
 
+![Build Status](https://api.travis-ci.com/osm-fr/osmose-backend.svg?branch=master)
+
 This is the part of osmose [http://osmose.openstreetmap.fr] which analyses OSM
 and send results to frontend. This works as following:
 
