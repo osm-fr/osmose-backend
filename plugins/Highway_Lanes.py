@@ -21,7 +21,7 @@
 
 from plugins.Plugin import Plugin
 from modules.py3 import ilen
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 class Highway_Lanes(Plugin):
 
@@ -72,9 +72,9 @@ class Highway_Lanes(Plugin):
                         for t in set(tt.split(";")):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
-                                err.append({"class": 31606, "subclass": 0 + stablehash(tl + '|' + t + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
+                                err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
-                                err.append({"class": 31600, "subclass": 1 + stablehash(tl + '|' + t + '|' + str(i))})
+                                err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
@@ -97,7 +97,7 @@ class Highway_Lanes(Plugin):
                             (first_space is None or last_space is None or first_space <= last_space) and
                             (last_space is None or first_right is None or last_space < first_right) and
                             (last_left is None or first_right is None or last_left < first_right)):
-                            err.append({"class": 31607, "subclass": 1 + stablehash(tl)})
+                            err.append({"class": 31607, "subclass": 1 + stablehash64(tl)})
 
         # Check acces lanes values
 
@@ -114,7 +114,7 @@ class Highway_Lanes(Plugin):
                 if tag.startswith(base):
                     try:
                         int(tags_lanes[tag])
-                        err.append({"class": 31609, "subclass": 1 + stablehash(tag), "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
+                        err.append({"class": 31609, "subclass": 1 + stablehash64(tag), "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
                     except ValueError:
                         # Ok, should not be an integer
                         pass
@@ -133,7 +133,7 @@ class Highway_Lanes(Plugin):
             lb = star + ':backward' in tags_lanes
             l2 = star + ':both_ways' in tags_lanes
             if l and (lf or lb or l2):
-                err.append({"class": 31603, "subclass": 0 + stablehash(star), "text": {"en": star + ":*"}})
+                err.append({"class": 31603, "subclass": 0 + stablehash64(star), "text": {"en": star + ":*"}})
 
         if err != []:
             return err
@@ -150,7 +150,7 @@ class Highway_Lanes(Plugin):
                     elif len(parts) == 2 and parts[1] in ['forward', 'backward', 'both_ways']:
                         number['lanes'][':'+parts[1]] = n
                 except ValueError:
-                    err.append({"class": 31601, "subclass": 0 + stablehash(tag), "text": T_f(u"lanes={0} is not an integer", tags_lanes[tag])})
+                    err.append({"class": 31601, "subclass": 0 + stablehash64(tag), "text": T_f(u"lanes={0} is not an integer", tags_lanes[tag])})
 
         for star in stars:
             number[star] = {}
@@ -168,7 +168,7 @@ class Highway_Lanes(Plugin):
                 if n_lanes.get(direction) is not None and number[star].get(direction) is not None and \
                         number[star][direction] - non_fullwidth_lanes_number_star != \
                         n_lanes[direction] - non_fullwidth_lanes_number_tag:
-                    err.append({"class": 31608, "subclass": 0 + stablehash(direction + '|' + star), "text": {
+                    err.append({"class": 31608, "subclass": 0 + stablehash64(direction + '|' + star), "text": {
                         "en": "(lanes(%s)=%s) - (non fullwidth=%s) != (lanes(%s)=%s) - (non fullwidth=%s)" % (
                             star+":*"+direction, number[star][direction], non_fullwidth_lanes_number_star,
                             tag, n_lanes[direction], non_fullwidth_lanes_number_tag) }})

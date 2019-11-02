@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -140,7 +140,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.run(sql20.format("nodes"))
         self.run(sql30.format("nodes") % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
             "class":1,
-            "subclass": stablehash(res[1]),
+            "subclass": stablehash64(res[1]),
             "data":[self.node_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
@@ -148,7 +148,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.run(sql20.format("ways"))
         self.run(sql30.format("ways") % {"as_text": "way_locate(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
             "class":1,
-            "subclass": stablehash(res[1]),
+            "subclass": stablehash64(res[1]),
             "data":[self.way_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
@@ -156,6 +156,6 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.run(sql20.format("relations"))
         self.run(sql30.format("relations") % {"as_text": "relation_locate(id)", "table": "relations", "geo": "user"}, lambda res: {
             "class":1,
-            "subclass": stablehash(res[1]),
+            "subclass": stablehash64(res[1]),
             "data":[self.relation_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })

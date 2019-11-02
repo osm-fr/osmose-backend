@@ -20,7 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 class Highway_Parking_Lane(Plugin):
 
@@ -60,7 +60,7 @@ class Highway_Parking_Lane(Plugin):
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
             if side in tags and tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "fire_lane"):
-                err.append({"class": 31615, "subclass": stablehash(side)})
+                err.append({"class": 31615, "subclass": stablehash64(side)})
 
         return err
 

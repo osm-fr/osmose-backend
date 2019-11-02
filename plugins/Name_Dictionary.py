@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 import re
 import sys
@@ -127,13 +127,13 @@ class P_Name_Dictionary(Plugin):
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    return {"class": 703, "subclass": stablehash(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
+                    return {"class": 703, "subclass": stablehash64(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
                 else:
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
                 for x in self.DictEncoding:
                     if x in WordComplet:
-                        return {"class": 704, "subclass": stablehash(tag), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}}
+                        return {"class": 704, "subclass": stablehash64(tag), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}}
 
                 #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue

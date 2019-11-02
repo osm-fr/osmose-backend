@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 
 
@@ -147,7 +147,7 @@ class Name_Toponymy_FR(Plugin):
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return {"class": 906, "subclass": stablehash(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(sorted(set(words)))),
+            return {"class": 906, "subclass": stablehash64(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(sorted(set(words)))),
                      "fix": {"name": "".join(splitfix)} }
         return
 
