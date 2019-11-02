@@ -70,6 +70,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
             u"Bois": "biomass",
             u"Déchets ménagers": "waste", # For RTE waste is bio-power!
             u"Déchets papeterie": "biomass",
+            u"Gaz": "biogas",
         },
         u"Energies Marines": {None: ""},
         u"Eolien": {None: "wind"},
