@@ -4,13 +4,10 @@ Backend part of Osmose QA tool
 This is the part of osmose [http://osmose.openstreetmap.fr] which analyses OSM
 and send results to frontend. This works as following:
 
-  - an .osm.bz2 or .osm.pbf extract is downloaded from a path
-  - downloaded file is converted to .osm, with bunzip2 or osmconvert
-  - if necessary, an osmosis dump is generated in a local database
-  - analyses are run directly on .osm file, or on the database
-  - analyses are stored on a local webserver, and a link is sent to the
-    frontend so that it can download the results
-  - temporary extract files and database are purged
+  - an .osm.pbf extract is downloaded
+  - analyses are run directly on .osm.pbf file, or on the database
+  - analyses resultat are uploaded to the frontend
+  - by default, temporary extract files and database are purged
 
 Fetching josm translations
 --------------------------
