@@ -7,8 +7,8 @@ and send results to frontend. This works as following:
 
   - an .osm.pbf extract is downloaded
   - analyses are run directly on .osm.pbf file, or on the database
-  - analyses resultat are uploaded to the frontend
-  - by default, temporary extract files and database are purged
+  - analyses results are uploaded to the frontend
+  - by default, database is purged
 
 Analysers can be build on many ways:
 
@@ -22,7 +22,7 @@ Analysers can be build on many ways:
 The default way to setup Osmose Backend is through Docker. Look at the
 [docker/README.md](docker/README.md).
 
-You can also follow the old manual installation [INSTALL.md](INSTALL.md).
+You can also install manually on a debian distribution [INSTALL.md](INSTALL.md).
 
 ## Run
 
