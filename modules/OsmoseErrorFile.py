@@ -80,7 +80,7 @@ class ErrorFile:
             return
 
         if subclass is not None:
-            self.outxml.startElement("error", {"class":str(classs), "subclass":str(int(subclass) % 2147483647)})
+            self.outxml.startElement("error", {"class":str(classs), "subclass":str(subclass)})
         else:
             self.outxml.startElement("error", {"class":str(classs)})
         for type in geom:
