@@ -27,14 +27,14 @@ def stablehash32(s):
     Compute a stable positive integer hash on 32bits
     @param s: a string
     """
-    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2**31)
+    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % (2**31 - 1)) ## Keep -1 for retro compatibility
 
 def stablehash64(s):
     """
     Compute a stable positive integer hash on 64bits
     @param s: a string
     """
-    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2^63)
+    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2**63)
 
 def stablehash(s):
     return stablehash32(s)
