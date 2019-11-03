@@ -829,7 +829,7 @@
 <classtext lang="hu" title="Név van, de hiányzik a főcímke" />
 <classtext lang="it" title="Il nome è presente ma manca l’etichetta principale" />
 <classtext lang="nl" title="Naam aanwezig maar hoofd tag ontbreekt" />
-<classtext lang="pl" title="Sama nazwa bez podstawowego tagu (amenity, shop, itp.)" />
+<classtext lang="pl" title="Sama nazwa bez podstawowego tagu (amenity, shop itp.)" />
 <classtext lang="uk" title="Ім'я присутнє, але відсутній основний теґ" />
 <classtext lang="zh_CN" title="名称存在但缺少主标签" />
 </class>
@@ -1086,6 +1086,7 @@
 <classtext lang="en" title="Missing primary Wikipedia tag" />
 <classtext lang="es" title="Falta etiqueta wikipedia primaria" />
 <classtext lang="fa" title="کمبود تگ اصلی ویکی‌پدیا" />
+<classtext lang="fr" title="Premier attribut Wikipedia manquant" />
 <classtext lang="gl" title="Falla a etiqueta da Wikipedia primaria" />
 <classtext lang="hu" title="Hiányzó elsődleges [wikipedia] címke" />
 <classtext lang="it" title="Tag wikipedia principale mancante" />
@@ -1156,6 +1157,7 @@
 <classtext lang="cs" title="Tato značka wikidat odpovídá obchodnímu řetězci, měla by být použita ve značce brand:wikidata" />
 <classtext lang="de" title="Dieser wikidata Wert entspricht einer Ladenkette, dafür sollte der brand:wikidata Tag verwendet werden" />
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
+<classtext lang="es" title="Este valor de wikidata coincide con una cadena de tiendas, debe estar en una etiqueta brand:wikidata." />
 <classtext lang="fa" title="این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در یک تگ brand:wikidata بیاید." />
 <classtext lang="fr" title="L’attribut “wikidata” correspond à un nom de franchise, il devrait être dans l’attribut “brand:wikidata”." />
 <classtext lang="gl" title="Este valor da wikidata coincide cunha cadea de tendas, ten que estar nunha etiqueta 'brand:wikidata'" />
@@ -1250,6 +1252,7 @@
 </class>
 <class item="3050" tag="tag,fix:chair" id="30501" level="1">
 <classtext lang="en" title="Bad tag suffix" />
+<classtext lang="fr" title="Mauvais suffixe d'attribut" />
 <classtext lang="gl" title="Sufixo da etiqueta erróneo" />
 <classtext lang="hu" title="Hibás címkeutótag" />
 <classtext lang="nl" title="Verkeerde tag  suffix" />
@@ -1701,6 +1704,8 @@
 </class>
 <class item="3250" tag="value,fix:chair,public_transport" id="32502" level="3">
 <classtext lang="en" title="Invalid Conditional Intervals" />
+<classtext lang="fr" title="Intervalles conditionnels invalides" />
+<classtext lang="hu" title="Érvénytelen feltételes időközök" />
 </class>
 <class item="4010" tag="tag,highway,fix:chair" id="40101" level="2">
 <classtext lang="cs" title="{2.key}={2.value} se dává přednost před {1.key}={1.value}" />
@@ -2030,6 +2035,7 @@
 <class item="5070" tag="name,fix:chair" id="50704" level="2">
 <classtext lang="cs" title="Neukončené uvozovky nebo závorky ve jménu" />
 <classtext lang="en" title="Unbalanced Quotation mark or Bracket in name" />
+<classtext lang="es" title="Comillas o corchetes desequilibrados en el nombre" />
 <classtext lang="fa" title="تعداد نشانه‌های نقل‌قول یا پرانتز باز و بسته یکی نیست" />
 <classtext lang="fr" title="Guillemets, parenthèses ou crochets non appariés dans le nom" />
 <classtext lang="gl" title="Comillas desiguais ou corchetes no nome" />
@@ -2043,6 +2049,7 @@
 <class item="5070" tag="name,fix:chair" id="50705" level="2">
 <classtext lang="cs" title="Neočekávaná interpunkce v názvu" />
 <classtext lang="en" title="Unexpected punctuation in name" />
+<classtext lang="es" title="Puntuación inesperada en el nombre" />
 <classtext lang="fa" title="علائم نگارشی غیرمنتظره در نام" />
 <classtext lang="fr" title="Ponctuation inattendue dans le nom" />
 <classtext lang="gl" title="Puntuación non agardada no nome" />
@@ -2086,6 +2093,7 @@
 <class item="9100" tag="power,fix:chair,geom" id="91001" level="2">
 <classtext lang="cs" title="Transformátorové stanice by měly být vždy v uzlu" />
 <classtext lang="en" title="Power Transformers should always be on a node" />
+<classtext lang="es" title="Los transformadores de energía siempre deben ser un nodo" />
 <classtext lang="fa" title="ترانسفورماتور برق همیشه باید روی گره باشد" />
 <classtext lang="fr" title="Les transformateurs électriques doivent toujours être sur un nœud " />
 <classtext lang="gl" title="Os transformadores de enerxía sempre teñen que estar nun nó" />
@@ -2099,6 +2107,7 @@
 <class item="9100" tag="power,fix:chair,tag" id="91002" level="2">
 <classtext lang="cs" title="U transformátových stanic používejte místo voltage značky voltage:primary=* and voltage:secondary=*" />
 <classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
+<classtext lang="es" title="En los transformadores de energía use voltage:primary=* y voltage:secondary=* en lugar de voltage" />
 <classtext lang="fa" title="روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید" />
 <classtext lang="fr" title="Sur les transformateurs, distinguez “voltage:primary”=“*” et “”voltage:secondary”=”*” à la place d’un “voltage”=“*” unique" />
 <classtext lang="gl" title="Nos transformadores de enerxía emprégase 'voltage:primary=*' e 'voltage:secondary=*' no canto da voltaxe" />
@@ -2113,6 +2122,7 @@
 <classtext lang="cs" title="Transformátorová stanice by měla mít značku frequency" />
 <classtext lang="de" title="Umspannwerke sollten einen frequency Tag haben" />
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
+<classtext lang="es" title="Los transformadores de energía tienen que tener una etiqueta frequency" />
 <classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
 <classtext lang="fr" title="Les transformateurs devraient avoir un attribut “frequency”" />
 <classtext lang="gl" title="Os transformadores de enerxía teñen que ter unha etiqueta de frecuencia ('frequency')" />
@@ -2126,6 +2136,7 @@
 <class item="3032" tag="tag,highway,fix:chair" id="303210" level="1">
 <classtext lang="de" title="'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden" />
 <classtext lang="en" title="Fence with material tag, better use fence_type tag" />
+<classtext lang="es" title="Fence con etiqueta de material, mejor use la etiqueta fence_type" />
 <classtext lang="fr" title="Clôture avec attribut matériel, utilisez de préférence l’attribut “fence_type”" />
 <classtext lang="hu" title="Kerítés [material] címkével. Inkább [fence_type] címkét kellene használni" />
 <classtext lang="nl" title="Hek met material tag, gebruik beter fence_type tag" />
