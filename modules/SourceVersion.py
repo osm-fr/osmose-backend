@@ -56,8 +56,8 @@ from .PointInPolygon import PointInPolygon
 class Test(unittest.TestCase):
 
     def test(self):
-        self.assertEquals(version(1), 876922281)
-        self.assertEquals(version(PointInPolygon), 1157204887)
+        self.assertEqual(version(1), 876922281)
+        self.assertEqual(version(PointInPolygon), 1157204887)
 
         try:
             version("1")

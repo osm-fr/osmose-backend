@@ -102,8 +102,8 @@ class Test(TestPluginCommon):
             # Check the bad url's error and fix
             err = p.node(None, {"website": bad})
             self.check_err(err, ("website='%s'" % bad))
-            self.assertEquals(err[0]["fix"][0]["website"], "https://%s" % test_url)
-            self.assertEquals(err[0]["fix"][1]["website"], "http://%s" % test_url)
+            self.assertEqual(err[0]["fix"][0]["website"], "https://%s" % test_url)
+            self.assertEqual(err[0]["fix"][1]["website"], "http://%s" % test_url)
 
         # Verify we get no error for other correct URLs
         for good in (u"ftp://%s" % test_url,

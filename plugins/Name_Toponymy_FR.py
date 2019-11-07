@@ -175,4 +175,4 @@ class Test(TestPluginCommon):
 
         e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
         self.check_err(e)
-        self.assertEquals(e["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")
+        self.assertEqual(e["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")

@@ -106,7 +106,7 @@ class Test(TestPluginCommon):
             if f:
                 self.check_err(rdp, ("name='%s'" % n))
                 fix = rdp[0]["fix"]["name"]
-                self.assertEquals(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
+                self.assertEqual(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:
                 assert not rdp, ("name='%s'" % n)
 

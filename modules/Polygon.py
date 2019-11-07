@@ -65,10 +65,10 @@ class Test(unittest.TestCase):
         p = Polygon(1403916)
         b = p.bboxes()
         self.assertNotEquals(b, None)
-        self.assertEquals(len(b), 1)
+        self.assertEqual(len(b), 1)
 
         # Alaska
         p = Polygon(1116270)
         b = p.bboxes()
         self.assertNotEquals(b, None)
-        self.assertEquals(len(b), 2)
+        self.assertEqual(len(b), 2)

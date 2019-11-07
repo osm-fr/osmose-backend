@@ -314,7 +314,7 @@ class TestAnalyser(unittest.TestCase):
             s = TestAnalyser.compare_dict(a, b)
             print(s)
             assert s is None, "results differ"
-            self.assertEquals(a, b, "results differ")
+            self.assertEqual(a, b, "results differ")
 
 
     def load_errors(self):
@@ -352,7 +352,7 @@ class TestAnalyser(unittest.TestCase):
             xml_num = len(root_analyser.findall('error'))
 
         if num is not None:
-            self.assertEquals(xml_num, num, "Found %d errors instead of %d" % (xml_num, num))
+            self.assertEqual(xml_num, num, "Found %d errors instead of %d" % (xml_num, num))
         if min is not None:
             self.assertGreaterEqual(xml_num, min, "Found %d errors instead of >= %d" % (xml_num, min))
         if max is not None:
@@ -364,20 +364,20 @@ class TestAnalyser(unittest.TestCase):
 class Test(unittest.TestCase):
     def test_compare_dict(self):
         a = TestAnalyser
-        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1, 2:2}), u"")
-        self.assertEquals(a.compare_dict({1:1, 2:2}, {2:2, 1:1}), u"")
-        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:0, 2:2}), u"key '1' is different: '1' != '0' []")
-        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1, 3:3}), u"key '2' is missing from b []")
-        self.assertEquals(a.compare_dict({1:1,    }, {1:1, 2:2}), u"key '2' is missing from a []")
-        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1,    }), u"key '2' is missing from b []")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1, 2:2}), u"")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {2:2, 1:1}), u"")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:0, 2:2}), u"key '1' is different: '1' != '0' []")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1, 3:3}), u"key '2' is missing from b []")
+        self.assertEqual(a.compare_dict({1:1,    }, {1:1, 2:2}), u"key '2' is missing from a []")
+        self.assertEqual(a.compare_dict({1:1, 2:2}, {1:1,    }), u"key '2' is missing from b []")
 
-        self.assertEquals(a.compare_dict({1:[3,4], 2:2}, {1:[3,4], 2:2}), u"")
-        self.assertEquals(a.compare_dict({1:[3,4], 2:2}, {1:[3,5], 2:2}), u"key '1' is different: '4' != '5' [.1]")
-        self.assertEquals(a.compare_dict({1:[3  ], 2:2}, {1:[3,4], 2:2}), u"length are different: 1 != 2 [.1]")
-        self.assertEquals(a.compare_dict({1:[3,4], 2:2}, {1:[3  ], 2:2}), u"length are different: 2 != 1 [.1]")
+        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3,4], 2:2}), u"")
+        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3,5], 2:2}), u"key '1' is different: '4' != '5' [.1]")
+        self.assertEqual(a.compare_dict({1:[3  ], 2:2}, {1:[3,4], 2:2}), u"length are different: 1 != 2 [.1]")
+        self.assertEqual(a.compare_dict({1:[3,4], 2:2}, {1:[3  ], 2:2}), u"length are different: 2 != 1 [.1]")
 
-        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{3:4}, 2:2}), u"")
-        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{3:5}, 2:2}), u"key '3' is different: '4' != '5' [.1]")
-        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{4:5}, 2:2}), u"key '3' is missing from b [.1]")
-        self.assertEquals(a.compare_dict({1:{   }, 2:2}, {1:{3:4}, 2:2}), u"key '3' is missing from a [.1]")
-        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{   }, 2:2}), u"key '3' is missing from b [.1]")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{3:4}, 2:2}), u"")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{3:5}, 2:2}), u"key '3' is different: '4' != '5' [.1]")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{4:5}, 2:2}), u"key '3' is missing from b [.1]")
+        self.assertEqual(a.compare_dict({1:{   }, 2:2}, {1:{3:4}, 2:2}), u"key '3' is missing from a [.1]")
+        self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{   }, 2:2}), u"key '3' is missing from b [.1]")

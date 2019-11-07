@@ -57,12 +57,12 @@ class Test(unittest.TestCase):
 
     s = OsmState("tests/state1.txt")
     exp = datetime.datetime(2010, 10, 29, 23, 0, 0, 0, None)
-    self.assertEquals(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
+    self.assertEqual(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
 
     s = OsmState("tests/state2.txt")
     exp = datetime.datetime(2017, 9, 3, 16, 47, 2, 0, None)
-    self.assertEquals(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
+    self.assertEqual(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
 
     s = OsmState("tests/state3.txt")
     exp = datetime.datetime(2017, 9, 2, 20, 43, 2, 0, None)
-    self.assertEquals(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
+    self.assertEqual(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))

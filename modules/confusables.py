@@ -42,7 +42,7 @@ class Test(unittest.TestCase):
                           (u'2', None),
                           (u'𝟱', u'Ƽ'),
                         ]:
-            self.assertEquals(unconfuse(c, "Latin"), exp)
+            self.assertEqual(unconfuse(c, "Latin"), exp)
 
     def test_Cyrillic(self):
         for (c, exp) in [ (u'!', None),
@@ -53,7 +53,7 @@ class Test(unittest.TestCase):
                           (u'2', u'Ꙅ'),
                           (u'𝟱', None),
                         ]:
-            self.assertEquals(unconfuse(c, "Cyrillic"), exp)
+            self.assertEqual(unconfuse(c, "Cyrillic"), exp)
 
     def test_diff_char(self):
         # check that confusables_data doesn't propose the same character

@@ -39,7 +39,7 @@ class Test(unittest.TestCase):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
-        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
+        self.assertEqual(o1.num_nodes, 83)  # only nodes with tags are reported
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
+        self.assertEqual(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))

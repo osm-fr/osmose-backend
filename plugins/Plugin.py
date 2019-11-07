@@ -212,18 +212,18 @@ class Test(TestPluginCommon):
 
     def test(self):
         a = Plugin(None)
-        self.assertEquals(a.init(None), None)
-        self.assertEquals(a.errors, {})
-        self.assertEquals(a.node(None, None), None)
-        self.assertEquals(a.way(None, None, None), None)
-        self.assertEquals(a.relation(None, None, None), None)
-        self.assertEquals(a.end(None), None)
+        self.assertEqual(a.init(None), None)
+        self.assertEqual(a.errors, {})
+        self.assertEqual(a.node(None, None), None)
+        self.assertEqual(a.way(None, None, None), None)
+        self.assertEqual(a.relation(None, None, None), None)
+        self.assertEqual(a.end(None), None)
         for n in [(u"bpoue", u"bpoue"),
                   (u"bpoué", u"bpoue"),
                   (u"bpoùé", u"bpoue"),
                   (u"bpôùé", u"bpoue"),
                  ]:
-            self.assertEquals(a.ToolsStripAccents(n[0]), n[1], n)
+            self.assertEqual(a.ToolsStripAccents(n[0]), n[1], n)
 
         for n in [(u"1", u"beppu"),
                   (u"1", u"lhnsune"),
@@ -234,10 +234,10 @@ class Test(TestPluginCommon):
 
     def test_check_err(self):
         from nose.tools import assert_raises
-        self.assertEquals(self.check_err([{"class": 1, "subclass": 2}]), None)
-        self.assertEquals(self.check_err([{"class": 1, "subclass": 2, "text": {"en": "titi"}}]), None)
-        self.assertEquals(self.check_err([{"class": 1, "subclass": 2, "fix": {"name": "toto"}}]), None)
-        self.assertEquals(self.check_err([{"class": 1, "subclass": 2, "fix": {"+": {"name": "toto"}}}]), None)
+        self.assertEqual(self.check_err([{"class": 1, "subclass": 2}]), None)
+        self.assertEqual(self.check_err([{"class": 1, "subclass": 2, "text": {"en": "titi"}}]), None)
+        self.assertEqual(self.check_err([{"class": 1, "subclass": 2, "fix": {"name": "toto"}}]), None)
+        self.assertEqual(self.check_err([{"class": 1, "subclass": 2, "fix": {"+": {"name": "toto"}}}]), None)
 
         assert_raises(Exception, self.check_err, [{"unknown": "x"}])
         assert_raises(Exception, self.check_err, [{"class": "a", "subclass": 2}])
@@ -247,38 +247,38 @@ class Test(TestPluginCommon):
         assert_raises(Exception, self.check_err, ["unknown"])
 
     def test_check_dict(self):
-        self.assertEquals(self.check_dict({"a": "toto"}, None), None)
-        self.assertEquals(self.check_dict({"a": ["toto"]}, None), None)
-        self.assertEquals(self.check_dict({"a": ["toto", "titi"]}, None), None)
-        self.assertEquals(self.check_dict({"a": ["toto", {"a": "titi"}]}, None), None)
+        self.assertEqual(self.check_dict({"a": "toto"}, None), None)
+        self.assertEqual(self.check_dict({"a": ["toto"]}, None), None)
+        self.assertEqual(self.check_dict({"a": ["toto", "titi"]}, None), None)
+        self.assertEqual(self.check_dict({"a": ["toto", {"a": "titi"}]}, None), None)
 
     def test_check_array(self):
-        self.assertEquals(self.check_array("toto", None), None)
-        self.assertEquals(self.check_array(["toto"], None), None)
-        self.assertEquals(self.check_array(["toto", "titi"], None), None)
-        self.assertEquals(self.check_array(["toto", {"a": "titi"}], None), None)
-        self.assertEquals(self.check_array(["toto", ["a", "titi"]], None), None)
+        self.assertEqual(self.check_array("toto", None), None)
+        self.assertEqual(self.check_array(["toto"], None), None)
+        self.assertEqual(self.check_array(["toto", "titi"], None), None)
+        self.assertEqual(self.check_array(["toto", {"a": "titi"}], None), None)
+        self.assertEqual(self.check_array(["toto", ["a", "titi"]], None), None)
 
     def test_availableMethodes(self):
         class Plugin_with_node(Plugin):
             def node(self, node, tags):
                 pass # pragma: no cover
         a = Plugin_with_node(None)
-        self.assertEquals(a.availableMethodes(), ["node"])
+        self.assertEqual(a.availableMethodes(), ["node"])
 
         class Plugin_with_way(Plugin):
             def way(self, node, tags, nodes):
                 pass # pragma: no cover
         a = Plugin_with_way(None)
-        self.assertEquals(a.availableMethodes(), ["way"])
+        self.assertEqual(a.availableMethodes(), ["way"])
 
         class Plugin_with_relation(Plugin):
             def relation(self, relation, tags, members):
                 pass # pragma: no cover
         a = Plugin_with_relation(None)
-        self.assertEquals(a.availableMethodes(), ["relation"])
+        self.assertEqual(a.availableMethodes(), ["relation"])
 
         class Plugin_with_all(Plugin_with_node, Plugin_with_way, Plugin_with_relation):
             pass
         a = Plugin_with_all(None)
-        self.assertEquals(a.availableMethodes(), ["node", "way", "relation"])
+        self.assertEqual(a.availableMethodes(), ["node", "way", "relation"])
