@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
 <analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1089490420">
-<class item="7060" tag="source,fix:chair" id="1" level="3">
+<class id="1" item="7060" level="3" tag="source,fix:chair">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
 <classtext lang="en" title="ODbL migration damage" />
@@ -21,7 +21,7 @@
 <classtext lang="zh_CN" title="ODbL迁移损伤" />
 <classtext lang="zh_TW" title="ODbL 轉換毀損" />
 </class>
-<class item="2060" tag="addr,fix:survey" id="10" level="3">
+<class id="10" item="2060" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
@@ -39,7 +39,7 @@
 <classtext lang="zh_CN" title="无效的 addr:housenumber 值" />
 <classtext lang="zh_TW" title="無效的 addr:housenumber 數值" />
 </class>
-<class item="2060" tag="addr,fix:chair" id="14" level="3">
+<class id="14" item="2060" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="Chybný tag na vložené cestě" />
 <classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
@@ -53,7 +53,7 @@
 <classtext lang="uk" title="Недійсний теґ на лінії інтерполяції" />
 <classtext lang="zh_CN" title="插值线路中的标签无效" />
 </class>
-<class item="2060" tag="addr,fix:chair" id="15" level="3">
+<class id="15" item="2060" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="Chybná hodnota addr:interpolation nebo addr:inclusion" />
 <classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
@@ -67,7 +67,7 @@
 <classtext lang="uk" title="Недійсне значення addr:interpolation або addr:inclusion " />
 <classtext lang="zh_CN" title="无效的 addr:interpolation 或 addr:inclusion 值" />
 </class>
-<class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
+<class id="101" item="4020" level="3" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Etiqueta «junction=roundabout» innecessària" />
 <classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
 <classtext lang="de" title="Unnötiges Merkmal bei junction=roundabout" />
@@ -87,7 +87,7 @@
 <classtext lang="uk" title="Непотрібний теґ на junction=roundabout" />
 <classtext lang="zh_CN" title="junction=roundabout不需要的标签" />
 </class>
-<class item="1010" tag="geom,fix:chair" id="103" level="2">
+<class id="103" item="1010" level="2" tag="geom,fix:chair">
 <classtext lang="ca" title="Nodes duplicats" />
 <classtext lang="cs" title="Duplikované uzly" />
 <classtext lang="de" title="Duplizierte Knotenpunkte" />
@@ -108,7 +108,7 @@
 <classtext lang="zh_CN" title="重复的节点" />
 <classtext lang="zh_TW" title="重覆的 node" />
 </class>
-<class item="6020" tag="boundary,fix:chair" id="504" level="3">
+<class id="504" item="6020" level="3" tag="boundary,fix:chair">
 <classtext lang="ca" title="Via duplicada en la relació" />
 <classtext lang="cs" title="Duplicitní cesta v relaci" />
 <classtext lang="de" title="Doppelter Weg in Relation" />
@@ -129,7 +129,7 @@
 <classtext lang="uk" title="Дублювання лінії у зв'язку" />
 <classtext lang="zh_CN" title="关系中的重复方式" />
 </class>
-<class item="5010" tag="name,fix:chair" id="703" level="2">
+<class id="703" item="5010" level="2" tag="name,fix:chair">
 <classtext lang="ca" title="La paraula no es troba al diccionari" />
 <classtext lang="cs" title="Slovo nenalezeno ve slovníku" />
 <classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
@@ -150,7 +150,7 @@
 <classtext lang="uk" title="Слово не знайдено в словнику" />
 <classtext lang="zh_CN" title="词在词典中找不到" />
 </class>
-<class item="5010" tag="value,fix:chair" id="704" level="1">
+<class id="704" item="5010" level="1" tag="value,fix:chair">
 <classtext lang="ca" title="Problema de codificació" />
 <classtext lang="cs" title="Chyba kódování" />
 <classtext lang="de" title="Kodierungsproblem" />
@@ -173,7 +173,7 @@
 <classtext lang="zh_CN" title="编码问题" />
 <classtext lang="zh_TW" title="編碼問題" />
 </class>
-<class item="5030" tag="name,fix:survey" id="705" level="1">
+<class id="705" item="5030" level="1" tag="name,fix:survey">
 <classtext lang="ca" title="L'etiqueta name conté dos noms" />
 <classtext lang="cs" title="Značka name obsahuje několik jmen" />
 <classtext lang="de" title="Das Merkmal name enthält zwei Namen" />
@@ -194,7 +194,7 @@
 <classtext lang="uk" title="Іменний теґ з двома назвами" />
 <classtext lang="zh_CN" title="名称标签包含两个名称" />
 </class>
-<class item="3020" tag="source,fix:chair" id="706" level="1">
+<class id="706" item="3020" level="1" tag="source,fix:chair">
 <classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
 <classtext lang="de" title="Illegale oder unvollständige Quellangabe" />
 <classtext lang="en" title="Illegal or incomplete source tag" />
@@ -213,7 +213,7 @@
 <classtext lang="zh_CN" title="非法或不完整的来源标签" />
 <classtext lang="zh_TW" title="不合法或不完整的 source tag" />
 </class>
-<class item="2040" tag="source,fix:chair" id="707" level="3">
+<class id="707" item="2040" level="3" tag="source,fix:chair">
 <classtext lang="ca" title="Maca l'etiqueta source" />
 <classtext lang="cs" title="Chybějící značka zdroje" />
 <classtext lang="de" title="Fehlendes Merkmal source" />
@@ -233,7 +233,7 @@
 <classtext lang="zh_CN" title="缺少来源的 tag" />
 <classtext lang="zh_TW" title="缺少 source tag" />
 </class>
-<class item="5010" tag="name,fix:chair" id="803" level="1">
+<class id="803" item="5010" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Jména s velkými písmeny" />
 <classtext lang="de" title="Name in Großbuchstaben" />
 <classtext lang="en" title="Name with uppercase" />
@@ -251,7 +251,7 @@
 <classtext lang="uk" title="Ім'я у верхньому реґістрі" />
 <classtext lang="zh_CN" title="以大写字母命名" />
 </class>
-<class item="2020" tag="tag,fix:survey" id="804" level="3">
+<class id="804" item="2020" level="3" tag="tag,fix:survey">
 <classtext lang="ca" title="Manca l'altitud" />
 <classtext lang="cs" title="Chybějící nadm. výška" />
 <classtext lang="de" title="Fehlende Höhe" />
@@ -271,7 +271,7 @@
 <classtext lang="zh_CN" title="缺少高度" />
 <classtext lang="zh_TW" title="缺少高度" />
 </class>
-<class item="4030" tag="tag,fix:chair" id="900" level="1">
+<class id="900" item="4030" level="1" tag="tag,fix:chair">
 <classtext lang="ca" title="Conflicte d'etiquetes" />
 <classtext lang="cs" title="konflikt tagů" />
 <classtext lang="de" title="Merkmalkonflikt" />
@@ -291,7 +291,7 @@
 <classtext lang="uk" title="Конфлікт теґів" />
 <classtext lang="zh_CN" title="标签冲突" />
 </class>
-<class item="5010" tag="name,fix:chair" id="902" level="3">
+<class id="902" item="5010" level="3" tag="name,fix:chair">
 <classtext lang="cs" title="Chybný formát zápisu jména" />
 <classtext lang="de" title="Initialen mit Namen verbunden" />
 <classtext lang="en" title="Initial stuck to the name" />
@@ -309,7 +309,7 @@
 <classtext lang="uk" title="Початкове прикріплення до імені" />
 <classtext lang="zh_CN" title="初始坚持名称" />
 </class>
-<class item="5010" tag="name,fix:chair" id="903" level="2">
+<class id="903" item="5010" level="2" tag="name,fix:chair">
 <classtext lang="ca" title="Massa espais" />
 <classtext lang="cs" title="Příliš mnoho mezer" />
 <classtext lang="de" title="Zu viele Leerzeichen" />
@@ -330,7 +330,7 @@
 <classtext lang="uk" title="Забагато пробілів" />
 <classtext lang="zh_CN" title="太多空间" />
 </class>
-<class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
+<class id="1050" item="1050" level="1" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Rotonda inversa" />
 <classtext lang="cs" title="Reverzní kruhový objezd" />
 <classtext lang="de" title="Kreisverkehr umkehren" />
@@ -352,7 +352,7 @@
 <classtext lang="uk" title="Зворотній roundabout" />
 <classtext lang="zh_CN" title="相反环岛" />
 </class>
-<class item="1100" tag="geom,fix:imagery" id="1100" level="3">
+<class id="1100" item="1100" level="3" tag="geom,fix:imagery">
 <classtext lang="ca" title="Àrea sense tancar" />
 <classtext lang="cs" title="Neuzavřená oblast" />
 <classtext lang="de" title="Nicht geschlossene Fläche" />
@@ -373,7 +373,7 @@
 <classtext lang="zh_CN" title="未封闭区域" />
 <classtext lang="zh_TW" title="非閉合的 area" />
 </class>
-<class item="3040" tag="value,fix:chair" id="3040" level="1">
+<class id="3040" item="3040" level="1" tag="value,fix:chair">
 <classtext lang="ca" title="Valor incorrecte en una etiqueta" />
 <classtext lang="cs" title="Špatná hodnota u značky" />
 <classtext lang="de" title="Falscher Wert in einem Merkmal" />
@@ -393,7 +393,7 @@
 <classtext lang="uk" title="Помилкове значення теґу" />
 <classtext lang="zh_CN" title="不良的标签值" />
 </class>
-<class item="3050" tag="tag,fix:chair" id="3050" level="1">
+<class id="3050" item="3050" level="1" tag="tag,fix:chair">
 <classtext lang="ca" title="Etiqueta incorrecta" />
 <classtext lang="cs" title="Špatná značka" />
 <classtext lang="de" title="Ungültiges Merkmal" />
@@ -413,7 +413,7 @@
 <classtext lang="uk" title="Помилковий теґ" />
 <classtext lang="zh_CN" title="不良 tag" />
 </class>
-<class item="3060" tag="value,fix:chair" id="3060" level="3">
+<class id="3060" item="3060" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Doppelte Werte" />
 <classtext lang="en" title="Duplicated values" />
 <classtext lang="es" title="Valores duplicados" />
@@ -424,7 +424,7 @@
 <classtext lang="pl" title="Zdublowane wartości" />
 <classtext lang="uk" title="Дубльоване значення" />
 </class>
-<class item="3070" tag="value,fix:chair" id="3070" level="2">
+<class id="3070" item="3070" level="2" tag="value,fix:chair">
 <classtext lang="ca" title="Valors múltiples" />
 <classtext lang="cs" title="Několik hodnot" />
 <classtext lang="de" title="Mehrere Werte" />
@@ -444,7 +444,7 @@
 <classtext lang="uk" title="Декілька значень" />
 <classtext lang="zh_CN" title="多个值" />
 </class>
-<class item="3090" tag="value,fix:chair" id="3090" level="3">
+<class id="3090" item="3090" level="3" tag="value,fix:chair">
 <classtext lang="ca" title="Format de data incorrecte" />
 <classtext lang="cs" title="Chybný formát data" />
 <classtext lang="de" title="Falsches Datumsformat" />
@@ -466,7 +466,7 @@
 <classtext lang="uk" title="Помилковий формат дати" />
 <classtext lang="zh_CN" title="不良的日期格式" />
 </class>
-<class item="3091" tag="value,fix:chair" id="3091" level="2">
+<class id="3091" item="3091" level="2" tag="value,fix:chair">
 <classtext lang="ca" title="Valor numèric" />
 <classtext lang="cs" title="Číselná hodnota" />
 <classtext lang="de" title="Nummerischer Wert" />
@@ -487,7 +487,7 @@
 <classtext lang="uk" title="Числове значення" />
 <classtext lang="zh_CN" title="数值" />
 </class>
-<class item="4010" tag="deprecated,tag,fix:chair" id="4010" level="2">
+<class id="4010" item="4010" level="2" tag="deprecated,tag,fix:chair">
 <classtext lang="ca" title="Etiqueta en desús" />
 <classtext lang="cs" title="Již nepoužívaná značka" />
 <classtext lang="de" title="Veraltetes Merkmal" />
@@ -507,7 +507,7 @@
 <classtext lang="uk" title="Теґ, що не підтримується" />
 <classtext lang="zh_CN" title="已弃用的标签" />
 </class>
-<class item="4060" tag="waterway,fix:imagery" id="4060" level="2">
+<class id="4060" item="4060" level="2" tag="waterway,fix:imagery">
 <classtext lang="ca" title="Importació de l'OpenSeaMap posició molt aproximada." />
 <classtext lang="cs" title="import z OpenSeaMap, velmi nepřesná pozice" />
 <classtext lang="de" title="OpenSeaMap Import, nur ungefähre Position." />
@@ -528,7 +528,7 @@
 <classtext lang="uk" title="Імпорт OpenSeaMap, дуже наближене положення." />
 <classtext lang="zh_CN" title="OpenSeaMap导入，非常近似的位置。" />
 </class>
-<class item="4070" tag="tag,fix:survey" id="4070" level="2">
+<class id="4070" item="4070" level="2" tag="tag,fix:survey">
 <classtext lang="ca" title="Construcció finalitzada" />
 <classtext lang="cs" title="Dokončená konstrukce" />
 <classtext lang="de" title="Beendete Baustelle" />
@@ -548,7 +548,7 @@
 <classtext lang="uk" title="Завершене будівництво" />
 <classtext lang="zh_CN" title="完工" />
 </class>
-<class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
+<class id="11701" item="1170" level="2" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Chybná role pro multipolygon" />
 <classtext lang="de" title="Unpassende Rolle für Multipolygon" />
 <classtext lang="el" title="Ανεπαρκής ρόλος για πολύ-πολύγονο" />
@@ -567,7 +567,7 @@
 <classtext lang="uk" title="Хибна роль для мультиполігону" />
 <classtext lang="zh_CN" title="多面体作用不足" />
 </class>
-<class item="1170" tag="relation,multipolygon,fix:chair" id="11702" level="2">
+<class id="11702" item="1170" level="2" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Chybný člen pro multipolygon" />
 <classtext lang="de" title="Unpassendes Mitglied für Multipolygon" />
 <classtext lang="el" title="Ανεπαρκές μέλος για πολύ-πολύγονο" />
@@ -586,7 +586,7 @@
 <classtext lang="uk" title="Хибна роль для мультиполігону" />
 <classtext lang="zh_CN" title="多面体成员不足" />
 </class>
-<class item="1170" tag="relation,multipolygon,fix:imagery" id="11703" level="1">
+<class id="11703" item="1170" level="1" tag="relation,multipolygon,fix:imagery">
 <classtext lang="cs" title="Chybějící vnější role pro multipolygon" />
 <classtext lang="de" title="Fehlende outer-Rolle bei Multipolygon" />
 <classtext lang="en" title="Missing outer role for multipolygon" />
@@ -604,7 +604,7 @@
 <classtext lang="uk" title="Відсутня роль outer для мультиполігону" />
 <classtext lang="zh_CN" title="缺少multipolygon的outer角色" />
 </class>
-<class item="1170" tag="relation,multipolygon,fix:chair" id="11704" level="3">
+<class id="11704" item="1170" level="3" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Tento multipolygon je jednoduchý polygon" />
 <classtext lang="de" title="Dieses Multipolygon ist ein einfaches Polygon" />
 <classtext lang="el" title="Αυτό το πολύ-πολύγονο είναι ένα απλό πολύγονο" />
@@ -623,7 +623,7 @@
 <classtext lang="uk" title="Цей мультиполігон є простим полігоном" />
 <classtext lang="zh_CN" title="这个多面体是一个简单的多边形" />
 </class>
-<class item="1200" tag="relation,fix:chair" id="12001" level="2">
+<class id="12001" item="1200" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Relació d'un membre" />
 <classtext lang="cs" title="Relace s pouze 1 členem" />
 <classtext lang="de" title="Relation mit nur einem Mitglied" />
@@ -643,7 +643,7 @@
 <classtext lang="uk" title="зв'язок з 1-м членом" />
 <classtext lang="zh_CN" title="只有1个成员的关系" />
 </class>
-<class item="1220" tag="geom,waterway,fix:imagery" id="12200" level="2">
+<class id="12200" item="1220" level="2" tag="geom,waterway,fix:imagery">
 <classtext lang="ca" title="Via d'aigua tancada" />
 <classtext lang="cs" title="Uzavřená vodní cesta" />
 <classtext lang="de" title="Geschlossener Wasserweg" />
@@ -663,7 +663,7 @@
 <classtext lang="zh_CN" title="封闭的水路" />
 <classtext lang="zh_TW" title="閉合的水路" />
 </class>
-<class item="1240" tag="geom,fix:chair" id="12401" level="2">
+<class id="12401" item="1240" level="2" tag="geom,fix:chair">
 <classtext lang="ca" title="Via amb un node" />
 <classtext lang="cs" title="Cesta s jediným uzlem" />
 <classtext lang="de" title="Weg mit nur einem Knoten" />
@@ -683,7 +683,7 @@
 <classtext lang="uk" title="Лінія з однією точкою" />
 <classtext lang="zh_CN" title="一个节点的线路" />
 </class>
-<class item="2030" tag="tag,highway,cycleway,fix:survey" id="20301" level="1">
+<class id="20301" item="2030" level="1" tag="tag,highway,cycleway,fix:survey">
 <classtext lang="ca" title="Via ciclista oposada sense «oneway»" />
 <classtext lang="cs" title="Protisměrná cyklostezka bez jednosměrky" />
 <classtext lang="de" title="cycleway=opposite ohne Einbahnstraße" />
@@ -702,7 +702,7 @@
 <classtext lang="uk" title="протилежна велодоріжка без oneway" />
 <classtext lang="zh_CN" title="对面自行车道没有单行" />
 </class>
-<class item="2030" tag="tag,highway,cycleway,fix:survey" id="20302" level="1">
+<class id="20302" item="2030" level="1" tag="tag,highway,cycleway,fix:survey">
 <classtext lang="cs" title="Opposite nebo opposite lane stejným směrem jako je jednosměrka" />
 <classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
 <classtext lang="fr" title="Voie en sens opposé sur le même chemin en sens unique" />
@@ -713,7 +713,7 @@
 <classtext lang="uk" title="Протилежний напрям руху на шляху з одним напрямом" />
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
 </class>
-<class item="2060" tag="tag,addr" id="20601" level="3">
+<class id="20601" item="2060" level="3" tag="tag,addr">
 <classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 <classtext lang="fr" title="Mauvaise utilisation de &quot;addr:interpolation&quot; en combinaison avec d'autres attributs" />
 <classtext lang="hu" title="Más címkékkel együtt hibásan használt [addr:interpolation] címke" />
@@ -721,7 +721,7 @@
 <classtext lang="pl" title="Niewłaściwe użycie addr:interpolation w połączeniu z innymi tagami" />
 <classtext lang="uk" title="Зловживання addr:interpolation в комбінації з іншими теґами" />
 </class>
-<class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
+<class id="20800" item="2080" level="1" tag="tag,highway,roundabout,fix:chair">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
 <classtext lang="de" title="Merkmal highway fehlt an Kreuzung" />
@@ -741,7 +741,7 @@
 <classtext lang="uk" title="Теґ highway відсутній на junction" />
 <classtext lang="zh_CN" title="标记公路交界处遗失" />
 </class>
-<class item="2080" tag="tag,highway,fix:chair" id="20801" level="1">
+<class id="20801" item="2080" level="1" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="Na jednosměrce chybí značka highway" />
 <classtext lang="de" title="Merkmal highway fehlt an Einbahnstraße" />
 <classtext lang="en" title="Tag highway missing on oneway" />
@@ -760,7 +760,7 @@
 <classtext lang="uk" title="Теґ highway відсутній на oneway" />
 <classtext lang="zh_CN" title="标记公路缺少单行道" />
 </class>
-<class item="2080" tag="highway" id="20802" level="2">
+<class id="20802" item="2080" level="2" tag="highway">
 <classtext lang="cs" title="Chybějící tag ref pro nouzový přístupový bod" />
 <classtext lang="de" title="Fehlendes Merkmal ref=* an Rettungspunkt" />
 <classtext lang="en" title="Missing tag ref for emergency access point" />
@@ -778,7 +778,7 @@
 <classtext lang="uk" title="Відсутній теґ ref для точки доступу служби порятунку" />
 <classtext lang="zh_CN" title="缺少紧急访问点的标签ref" />
 </class>
-<class item="2080" tag="tag,highway,fix:chair" id="20803" level="2">
+<class id="20803" item="2080" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="Chybí tag highway pro tracktype nebo lanes" />
 <classtext lang="de" title="Tag highway fehlt für tracktype oder lanes" />
 <classtext lang="en" title="Tag highway missing for tracktype or lanes" />
@@ -793,7 +793,7 @@
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
-<class item="2080" tag="tag,highway,footway,fix:chair" id="20805" level="3">
+<class id="20805" item="2080" level="3" tag="tag,highway,footway,fix:chair">
 <classtext lang="ca" title="{0.key}={0.value} sense highway=footway|construction" />
 <classtext lang="cs" title="{0.key}={0.value} bez highway=footway|construction" />
 <classtext lang="de" title="{0.key}={0.value} ohne highway=footway|construction" />
@@ -815,10 +815,10 @@
 <classtext lang="zh_CN" title="{0.key}={0.value} 没有 highway=footway|construction" />
 <classtext lang="zh_TW" title="{0.key}={0.value} 沒有 highway=footway|construction" />
 </class>
-<class item="2080" tag="parking,amenity,fix:chair" id="20806" level="3">
+<class id="20806" item="2080" level="3" tag="parking,amenity,fix:chair">
 <classtext lang="en" title="Missing tag carpool on area" />
 </class>
-<class item="2110" tag="tag" id="21101" level="2">
+<class id="21101" item="2110" level="2" tag="tag">
 <classtext lang="cs" title="Název je přítomen, ale chybí hlavní značka" />
 <classtext lang="de" title="Name vorhanden aber Haupt-Tag fehlt" />
 <classtext lang="en" title="Name present but missing main tag" />
@@ -833,7 +833,7 @@
 <classtext lang="uk" title="Ім'я присутнє, але відсутній основний теґ" />
 <classtext lang="zh_CN" title="名称存在但缺少主标签" />
 </class>
-<class item="2110" tag="tag" id="21102" level="2">
+<class id="21102" item="2110" level="2" tag="tag">
 <classtext lang="cs" title="Chybí typ relace" />
 <classtext lang="de" title="Fehlender Relationstyp" />
 <classtext lang="en" title="Missing relation type" />
@@ -849,7 +849,7 @@
 <classtext lang="zh_CN" title="缺少关系类型" />
 <classtext lang="zh_TW" title="缺失關聯類型" />
 </class>
-<class item="2120" tag="indoor" id="21201" level="3">
+<class id="21201" item="2120" level="3" tag="indoor">
 <classtext lang="ca" title="Manca l'etiqueta «level» o «repeat_on»" />
 <classtext lang="cs" title="Chybí úroveň nebo tag repeat_on " />
 <classtext lang="de" title="Merkmal level oder repeat_on fehlt" />
@@ -866,7 +866,7 @@
 <classtext lang="uk" title="Відсутній теґ level або repeat_on" />
 <classtext lang="zh_CN" title="Level或repeat_on标记丢失" />
 </class>
-<class item="2120" tag="indoor" id="21202" level="3">
+<class id="21202" item="2120" level="3" tag="indoor">
 <classtext lang="cs" title="Chybí tag indoor nebo buildingpart" />
 <classtext lang="de" title="Tag indoor oder building:part fehlt" />
 <classtext lang="en" title="Indoor or buildingpart tag missing" />
@@ -884,7 +884,7 @@
 <classtext lang="uk" title="Відсутній теґ Indoor or buildingpart" />
 <classtext lang="zh_CN" title="室内或建筑物部分标签丢失" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21401" level="3">
+<class id="21401" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící tag public_transport:version na relaci public_transport" />
 <classtext lang="de" title="Fehlender public_transport:version Tag an einer public_transport Routen-Relation" />
 <classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
@@ -900,7 +900,7 @@
 <classtext lang="zh_CN" title="缺少public_transport：public_transport路径关系上的版本标记" />
 <classtext lang="zh_TW" title="public_transport 路線關聯遺失 public_transport:version 標籤" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21402" level="3">
+<class id="21402" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící tag network na relaci public_transport" />
 <classtext lang="de" title="Fehlender network Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing network tag on a public_transport relation" />
@@ -916,7 +916,7 @@
 <classtext lang="zh_CN" title="在public_transport关系中缺少网络标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失網路標籤" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21403" level="3">
+<class id="21403" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící tag operator na relaci public_transport" />
 <classtext lang="de" title="Fehlender operator Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing operator tag on a public_transport relation" />
@@ -932,7 +932,7 @@
 <classtext lang="zh_CN" title="在public_transport关系中缺少运运营单位标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失營業者標籤" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21404" level="3">
+<class id="21404" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící značka ref pro číslo linky u relace public_transport" />
 <classtext lang="de" title="Fehlender ref Tag für Liniennummer bei einer public_transport Relation" />
 <classtext lang="en" title="Missing ref tag for line number on a public_transport relation" />
@@ -948,7 +948,7 @@
 <classtext lang="zh_CN" title="在public_transport关系中缺少线路编号的ref标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失路線號碼 ref 標籤" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21405" level="3">
+<class id="21405" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící tag from/to na relaci trasy public_transport" />
 <classtext lang="de" title="Fehlender from/to Tag bei einer public_transport Routen-Relation" />
 <classtext lang="en" title="Missing from/to tag on a public_transport route relation" />
@@ -964,7 +964,7 @@
 <classtext lang="zh_CN" title="在public_transport路径关系上缺少from/to标签" />
 <classtext lang="zh_TW" title="public_transport 路線關聯遺失 from/to 標籤" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21411" level="3">
+<class id="21411" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící tag public_transport na zastávce hromadné dopravy" />
 <classtext lang="de" title="Fehlender public_transport Tag an einer Haltestelle" />
 <classtext lang="en" title="Missing public_transport tag on a public transport stop" />
@@ -980,7 +980,7 @@
 <classtext lang="zh_CN" title="公共交通站点缺少public_transport标记" />
 <classtext lang="zh_TW" title="大眾運輸站點遺失 public_transport 標籤" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21412" level="3">
+<class id="21412" item="2140" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Chybí starší tagování na zastávce veřejné dopravy" />
 <classtext lang="en" title="Missing legacy tag on a public transport stop" />
 <classtext lang="es" title="Falta etiqueta heredada en una parada de transporte público" />
@@ -995,10 +995,10 @@
 <classtext lang="zh_CN" title="在公共交通站点遗失遗留标记" />
 <classtext lang="zh_TW" title="大眾運輸站點遺失傳統標籤" />
 </class>
-<class item="2160" tag="tag,railway" id="21600" level="3">
+<class id="21600" item="2160" level="3" tag="tag,railway">
 <classtext lang="en" title="Missing tag gauge on rail" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
+<class id="30310" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
 <classtext lang="cs" title="Neni URL z Wikipedie" />
 <classtext lang="de" title="Keine Wikipedia-URL" />
@@ -1019,7 +1019,7 @@
 <classtext lang="zh_CN" title="不是维基百科的链接" />
 <classtext lang="zh_TW" title="不是一個正確維基百科的 URL" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30311" level="2">
+<class id="30311" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="URL de la Wikipedia en comptes del títol d'article" />
 <classtext lang="cs" title="URL z Wikipedie místo názvu článku" />
 <classtext lang="de" title="Wikipedia-URL statt Artikeltitel" />
@@ -1039,7 +1039,7 @@
 <classtext lang="zh_CN" title="维基百科链接不是指向条目标题" />
 <classtext lang="zh_TW" title="使用維基百科 URL 而非條目名稱" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30312" level="2">
+<class id="30312" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Manca la llengua de la Wikipedia abans del nom de l'article" />
 <classtext lang="cs" title="Chybějící jazyk Wikipedie před názvem článku" />
 <classtext lang="de" title="Wikipedia-Sprache fehlt vor Artikeltitel" />
@@ -1059,7 +1059,7 @@
 <classtext lang="uk" title="Відсутня мова Вікіпедії перед іменем статті" />
 <classtext lang="zh_CN" title="在文章标题之前缺少维基百科语言代码" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30313" level="2">
+<class id="30313" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Usa el títol humà de la pàgina Viquipèdia" />
 <classtext lang="cs" title="Použijte název článku wikipedie bez úprav" />
 <classtext lang="de" title="Wikipedia-Seitentitel in nicht-maschineller Schreibweise verwenden" />
@@ -1079,7 +1079,7 @@
 <classtext lang="uk" title="Незрозуміла назва сторінки Вікіпедія" />
 <classtext lang="zh_CN" title="使用人类维基百科页面标题" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
+<class id="30314" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Manca l'etiqueta Wikipedia primària" />
 <classtext lang="cs" title="Chybí primární značka pro Wikipedii" />
 <classtext lang="de" title="Fehlendes primäres Wikipedia-Merkmal" />
@@ -1098,7 +1098,7 @@
 <classtext lang="uk" title="Відсутній основний теґ Вікіпедія" />
 <classtext lang="zh_CN" title="缺少主要维基百科标签" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
+<class id="30315" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Sufix de wikipedia no vàlid" />
 <classtext lang="cs" title="Chybná přípona wikipedie" />
 <classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
@@ -1117,7 +1117,7 @@
 <classtext lang="uk" title="Недійсний суфікс Вікіпедія" />
 <classtext lang="zh_CN" title="无效的维基百科后缀" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30316" level="2">
+<class id="30316" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Etiqueta de Viquipèdia duplicada com a sufix i prefix" />
 <classtext lang="cs" title="Zdvojená značka wikipedie jako před i přípona" />
 <classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
@@ -1135,7 +1135,7 @@
 <classtext lang="uk" title="Дублювання теґу Вікіпедія як суфікс і префікс" />
 <classtext lang="zh_CN" title="复制维基百科标签作为后缀和前缀" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<class id="30317" item="3031" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
 <classtext lang="de" title="Gleiches Wikipedia-Thema in anderer Sprache" />
 <classtext lang="en" title="Same wikipedia topic on other language" />
@@ -1153,7 +1153,7 @@
 <classtext lang="uk" title="Одинаковий топік Вікіпедія іншою мовою" />
 <classtext lang="zh_CN" title="其他语言的维基百科话题也一样" />
 </class>
-<class item="3031" tag="value,wikidata,fix:chair" id="30318" level="2">
+<class id="30318" item="3031" level="2" tag="value,wikidata,fix:chair">
 <classtext lang="cs" title="Tato značka wikidat odpovídá obchodnímu řetězci, měla by být použita ve značce brand:wikidata" />
 <classtext lang="de" title="Dieser wikidata Wert entspricht einer Ladenkette, dafür sollte der brand:wikidata Tag verwendet werden" />
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
@@ -1168,7 +1168,7 @@
 <classtext lang="uk" title="Це значення wikidata збігається з мережею магазинів, і має бути в тезі wikidata" />
 <classtext lang="zh_CN" title="这个维基数据值与连锁店相匹配，它应该是一个brand:wikidata标签。" />
 </class>
-<class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
+<class id="30320" item="3032" level="1" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
@@ -1185,7 +1185,7 @@
 <classtext lang="uk" title="Переглянути декілька теґів" />
 <classtext lang="zh_CN" title="查看多个标签" />
 </class>
-<class item="3032" tag="tag,fix:chair" id="30323" level="3">
+<class id="30323" item="3032" level="3" tag="tag,fix:chair">
 <classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
@@ -1202,7 +1202,7 @@
 <classtext lang="uk" title="Переглянути декілька теґів" />
 <classtext lang="zh_CN" title="查看多个标签" />
 </class>
-<class item="3032" tag="tag,fix:chair" id="30327" level="2">
+<class id="30327" item="3032" level="2" tag="tag,fix:chair">
 <classtext lang="ca" title="Via d'aigua amb nivell" />
 <classtext lang="cs" title="vodní tok s úrovní" />
 <classtext lang="de" title="Wasserstraße mit Level" />
@@ -1220,7 +1220,7 @@
 <classtext lang="uk" title="Водний шлях з level" />
 <classtext lang="zh_CN" title="水平与等级" />
 </class>
-<class item="3032" tag="tag,highway,cycleway,fix:chair" id="30328" level="2">
+<class id="30328" item="3032" level="2" tag="tag,highway,cycleway,fix:chair">
 <classtext lang="cs" title="{0.key}={0.value} s {1.key}={1.value}" />
 <classtext lang="de" title="{0.key}={0.value} mit {1.key}={1.value}" />
 <classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
@@ -1235,7 +1235,7 @@
 <classtext lang="uk" title="{0.key}={0.value} з {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
 </class>
-<class item="3032" tag="tag,highway,fix:chair" id="30329" level="2">
+<class id="30329" item="3032" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="{0.key}={0.value} s {1.key}={1.value}" />
 <classtext lang="de" title="{0.key}={0.value} mit {1.key}={1.value}" />
 <classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
@@ -1250,7 +1250,7 @@
 <classtext lang="uk" title="{0.key}={0.value} з {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
 </class>
-<class item="3050" tag="tag,fix:chair" id="30501" level="1">
+<class id="30501" item="3050" level="1" tag="tag,fix:chair">
 <classtext lang="en" title="Bad tag suffix" />
 <classtext lang="fr" title="Mauvais suffixe d'attribut" />
 <classtext lang="gl" title="Sufixo da etiqueta erróneo" />
@@ -1259,7 +1259,7 @@
 <classtext lang="pl" title="Niepoprawny przyrostek klucza" />
 <classtext lang="uk" title="Помилковий суфікс теґу" />
 </class>
-<class item="3060" tag="value,fix:chair" id="30601" level="3">
+<class id="30601" item="3060" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Ähnliche Werte" />
 <classtext lang="en" title="Similar values" />
 <classtext lang="es" title="Valores similares" />
@@ -1270,10 +1270,10 @@
 <classtext lang="pl" title="Podobne wartości" />
 <classtext lang="uk" title="Cхожі значення" />
 </class>
-<class item="3080" tag="tag,tag,fix:chair,leisure,public equipment" id="30801" level="3">
+<class id="30801" item="3080" level="3" tag="tag,tag,fix:chair,leisure,public equipment">
 <classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
 </class>
-<class item="3091" tag="tag" id="30911" level="2">
+<class id="30911" item="3091" level="2" tag="tag">
 <classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
 <classtext lang="fa" title="کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید" />
@@ -1286,7 +1286,7 @@
 <classtext lang="uk" title="Код кольору повинен мати '#' далі 3 або 6 цифр" />
 <classtext lang="zh_CN" title="颜色代码应以“＃”开头，后跟3或6位数字" />
 </class>
-<class item="3093" tag="value,fix:chair" id="30931" level="2">
+<class id="30931" item="3093" level="2" tag="value,fix:chair">
 <classtext lang="cs" title="URL obsahuje mezeru" />
 <classtext lang="de" title="Der URL enthält ein Leerzeichen" />
 <classtext lang="en" title="The URL contains a space" />
@@ -1301,7 +1301,7 @@
 <classtext lang="uk" title="Веб-лінк містить пробіл" />
 <classtext lang="zh_CN" title="链接包含空格" />
 </class>
-<class item="3093" tag="value,fix:chair" id="30932" level="2">
+<class id="30932" item="3093" level="2" tag="value,fix:chair">
 <classtext lang="cs" title="Adresa URL nemá platné schéma" />
 <classtext lang="de" title="Der URL hat kein gültiges Schema" />
 <classtext lang="en" title="The URL does not have a valid scheme" />
@@ -1316,7 +1316,7 @@
 <classtext lang="uk" title="Веб-лінк не відповідає чинній схемі" />
 <classtext lang="zh_CN" title="该链接没有有效的方案" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31600" level="2">
+<class id="31600" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
 <classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
@@ -1329,7 +1329,7 @@
 <classtext lang="uk" title="Смуги повороту merge_to_* потребує сторону смуги з хорошого боку" />
 <classtext lang="zh_CN" title="转车道merge_to_*需要旁边的车道" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31601" level="2">
+<class id="31601" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="ca" title="Valor incorrecte de carrils" />
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
 <classtext lang="de" title="Falscher Wert für lanes" />
@@ -1350,7 +1350,7 @@
 <classtext lang="uk" title="Помилкове значення lanes" />
 <classtext lang="zh_CN" title="不良的车道值" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31603" level="2">
+<class id="31603" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Konflikt v použití *:lanes nebo *:lanes:(forward|backward|both_ways)" />
 <classtext lang="de" title="Konflikt bei Nutzung von *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="en" title="Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)" />
@@ -1365,7 +1365,7 @@
 <classtext lang="uk" title="Конфлікт в застосуванні *:lanes або *:lanes:(forward|backward|both_ways)" />
 <classtext lang="zh_CN" title="使用之间的冲突 *:lanes 或 *:lanes:(forward|backward|both_ways)" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31604" level="2">
+<class id="31604" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Konflikt v počtu pruhů" />
 <classtext lang="de" title="Konflikt bei Anzahl der Fahrspuren" />
 <classtext lang="en" title="Conflict between lanes number" />
@@ -1383,7 +1383,7 @@
 <classtext lang="uk" title="Конфлікт в кількості lanes" />
 <classtext lang="zh_CN" title="车道号之间的冲突" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31605" level="2">
+<class id="31605" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybné použití *:lanes:(backward|both_ways) na jednosměrce" />
 <classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
@@ -1397,7 +1397,7 @@
 <classtext lang="uk" title="Недійсне використання *:lanes:(backward|both_ways) на oneway highway" />
 <classtext lang="zh_CN" title="无效的使用 *:lanes:(backward|both_ways) 在单向公路上" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31606" level="2">
+<class id="31606" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Neznámá hodnota odbočovacích pruhů" />
 <classtext lang="de" title="Unbekannter Abbiegespurenwert" />
 <classtext lang="en" title="Unknown turn lanes value" />
@@ -1412,7 +1412,7 @@
 <classtext lang="uk" title="Невідомі значення смуг повороту" />
 <classtext lang="zh_CN" title="未知车道值" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31607" level="2">
+<class id="31607" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybné pořadí pruhů" />
 <classtext lang="de" title="Falsche Abbiegespurreihenfolge" />
 <classtext lang="en" title="Bad turn lanes order" />
@@ -1427,7 +1427,7 @@
 <classtext lang="uk" title="Помилковий порядок смуг повороту" />
 <classtext lang="zh_CN" title="转弯车道顺序不良" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31608" level="2">
+<class id="31608" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Konflikt mezi počtem pruhů pro stejný suffix ('', forward, backward or both_ways)" />
 <classtext lang="en" title="Conflict between lanes number of same sufix ('', forward, backward or both_ways)" />
 <classtext lang="es" title="Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)" />
@@ -1441,7 +1441,7 @@
 <classtext lang="uk" title="Конфлікт між кількістю lanes з одним суфіксом ('', forward, backward or both_ways)" />
 <classtext lang="zh_CN" title="相同后缀的车道号之间的冲突('', forward, backward 或 both_ways)" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31609" level="2">
+<class id="31609" item="3160" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybná hodnota přípojných pruhů, má být omezení a ne číslo" />
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
 <classtext lang="es" title="Valor de acceso a carriles erróneo, no debe ser un entero sino una restricción" />
@@ -1453,7 +1453,7 @@
 <classtext lang="uk" title="Помилкове значення смуг доступу, не має бути цілим числом, а обмеженням" />
 <classtext lang="zh_CN" title="进入车道值不良，不应该是一个整数，而应该是一个限制" />
 </class>
-<class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
+<class id="31611" item="3161" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Chybný parking:lane:[strana]" />
 <classtext lang="de" title="Falsches parking:lane:[Seite]" />
 <classtext lang="en" title="Bad parking:lane:[side]" />
@@ -1472,7 +1472,7 @@
 <classtext lang="uk" title="Помилковий parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良parking:lane:[side]" />
 </class>
-<class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
+<class id="31614" item="3161" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Příliš mnoho pruhů parking:lane:[strana]" />
 <classtext lang="de" title="Zu viele parking:lane:[Seite]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
@@ -1491,7 +1491,7 @@
 <classtext lang="uk" title="Забагато parking:lane:[side]" />
 <classtext lang="zh_CN" title="太多parking:lane:[side]" />
 </class>
-<class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
+<class id="31615" item="3161" level="3" tag="highway,parking,fix:chair">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
 <classtext lang="de" title="Falscher Wert für parking:lane:[Seite]" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
@@ -1510,7 +1510,7 @@
 <classtext lang="uk" title="Помилкове значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良的parking:lane:[side]值" />
 </class>
-<class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
+<class id="31616" item="3161" level="3" tag="highway,parking,fix:survey">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
 <classtext lang="de" title="parking:condition:[side] ohne Wert parking:lane:[side]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -1529,7 +1529,7 @@
 <classtext lang="uk" title="parking:condition:[side] без значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="parking:condition:[side] 无 parking:lane:[side] 值" />
 </class>
-<class item="3170" tag="relation,fix:chair" id="31700" level="2">
+<class id="31700" item="3170" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Rol no adient" />
 <classtext lang="cs" title="Nesprávná role" />
 <classtext lang="de" title="Unpassende Rolle" />
@@ -1548,7 +1548,7 @@
 <classtext lang="uk" title="Неадекватна роль" />
 <classtext lang="zh_CN" title="作用不足" />
 </class>
-<class item="3190" tag="postcode,fix:chair" id="31901" level="3">
+<class id="31901" item="3190" level="3" tag="postcode,fix:chair">
 <classtext lang="ca" title="Codi postal no vàlid" />
 <classtext lang="cs" title="Neplatné PSČ" />
 <classtext lang="de" title="Ungültige Postleitzahl" />
@@ -1568,7 +1568,7 @@
 <classtext lang="zh_CN" title="无效的邮政编码" />
 <classtext lang="zh_TW" title="無效的郵遞區號" />
 </class>
-<class item="3200" tag="tag,fix:chair" id="32001" level="3">
+<class id="32001" item="3200" level="3" tag="tag,fix:chair">
 <classtext lang="ca" title="Ús incorrecte de area=yes. L'objecte ja és un àrea per si mateix" />
 <classtext lang="cs" title="Špatné použití area=yes. Objekt je defaultně plochou." />
 <classtext lang="de" title="Falsche Verwendung von area=yes. Objekt ist bereits von Natur aus area" />
@@ -1588,7 +1588,7 @@
 <classtext lang="zh_CN" title="区域使用不area=yes，但对象本质上已经是一个区域" />
 <classtext lang="zh_TW" title="錯誤的 area=yes 用法，這個物件本來就是 area" />
 </class>
-<class item="3200" tag="tag,fix:chair" id="32002" level="3">
+<class id="32002" item="3200" level="3" tag="tag,fix:chair">
 <classtext lang="ca" title="«area=yes» en un objecte sense tipus" />
 <classtext lang="cs" title="area=yes na objektu bez druhu" />
 <classtext lang="de" title="area=yes auf Objekt ohne Art" />
@@ -1607,7 +1607,7 @@
 <classtext lang="uk" title="area=yes на об'єкті без опису" />
 <classtext lang="zh_CN" title="area=yes用在没有实物对象" />
 </class>
-<class item="3200" tag="tag,fix:chair" id="32003" level="3">
+<class id="32003" item="3200" level="3" tag="tag,fix:chair">
 <classtext lang="ca" title="Ús incorrecte de area=ho. L'objecte ha de ser una superfície" />
 <classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
 <classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Fläche sein" />
@@ -1626,7 +1626,7 @@
 <classtext lang="uk" title="Помилкове застосування area=no. Об'єкт має бути поверхнею" />
 <classtext lang="zh_CN" title="使用不当的area=no，对象必须是表面" />
 </class>
-<class item="3220" tag="highway,fix:chair" id="32200" level="2">
+<class id="32200" item="3220" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
 <classtext lang="de" title="access=yes|permissive erlaubt alle Transportmittel" />
 <classtext lang="en" title="access=yes|permissive allow all transport modes" />
@@ -1642,7 +1642,7 @@
 <classtext lang="uk" title="access=yes|permissive дозволяє усі види транспорту" />
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 </class>
-<class item="3220" tag="highway,fix:chair" id="32201" level="2">
+<class id="32201" item="3220" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
 <classtext lang="de" title="access=yes|permissive erlaubt alle Transportmittel" />
 <classtext lang="en" title="access=yes|permissive allow all transport modes" />
@@ -1658,7 +1658,7 @@
 <classtext lang="uk" title="access=yes|permissive дозволяє усі види транспорту" />
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 </class>
-<class item="3230" tag="highway,fix:chair" id="32301" level="2">
+<class id="32301" item="3230" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Pravděpodobně jen pro lahve, ne pro jakýkoli druh skla" />
 <classtext lang="de" title="Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas" />
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
@@ -1672,7 +1672,7 @@
 <classtext lang="uk" title="Ймовірно, лише для пляшок, а не для будь-якого типу скла" />
 <classtext lang="zh_CN" title="可能只适用于瓶子，而不适用于任何类型的玻璃" />
 </class>
-<class item="3230" tag="highway,fix:chair" id="32302" level="2">
+<class id="32302" item="3230" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Podezřelé jméno pro kontejner" />
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
@@ -1687,7 +1687,7 @@
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
 </class>
-<class item="3250" tag="value,fix:chair" id="32501" level="3">
+<class id="32501" item="3250" level="3" tag="value,fix:chair">
 <classtext lang="cs" title="Neplatná otevírací doba" />
 <classtext lang="de" title="Ungültige Öffnungszeiten" />
 <classtext lang="en" title="Invalid Opening Hours" />
@@ -1702,12 +1702,12 @@
 <classtext lang="uk" title='Помилковий "Час роботи"' />
 <classtext lang="zh_CN" title="营业时间无效" />
 </class>
-<class item="3250" tag="value,fix:chair,public_transport" id="32502" level="3">
+<class id="32502" item="3250" level="3" tag="value,fix:chair,public_transport">
 <classtext lang="en" title="Invalid Conditional Intervals" />
 <classtext lang="fr" title="Intervalles conditionnels invalides" />
 <classtext lang="hu" title="Érvénytelen feltételes időközök" />
 </class>
-<class item="4010" tag="tag,highway,fix:chair" id="40101" level="2">
+<class id="40101" item="4010" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="{2.key}={2.value} se dává přednost před {1.key}={1.value}" />
 <classtext lang="en" title="{2.key}={2.value} is preferred to {1.key}={1.value}" />
 <classtext lang="es" title="{2.key}={2.value} se prefiere a {1.key}={1.value}" />
@@ -1720,7 +1720,7 @@
 <classtext lang="uk" title="{2.key}={2.value} є кращим за {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{2.key}={2.value} 是优选的 {1.key}={1.value}" />
 </class>
-<class item="4010" tag="deprecated,value,fix:chair" id="40102" level="2">
+<class id="40102" item="4010" level="2" tag="deprecated,value,fix:chair">
 <classtext lang="en" title="Deprecated value" />
 <classtext lang="es" title="Valor obsoleto" />
 <classtext lang="fr" title="Valeur dépréciée" />
@@ -1730,7 +1730,7 @@
 <classtext lang="pl" title="Przestarzała wartość" />
 <classtext lang="uk" title="Значення, що не підтримується" />
 </class>
-<class item="4020" tag="highway,roundabout" id="40201" level="1">
+<class id="40201" item="4020" level="1" tag="highway,roundabout">
 <classtext lang="ca" title="Rotonda com a àrea" />
 <classtext lang="cs" title="Kruhový objezd jako plocha" />
 <classtext lang="de" title="Kreisverkehr als Bereich" />
@@ -1749,7 +1749,7 @@
 <classtext lang="uk" title="Кільцевий рух як ділянка" />
 <classtext lang="zh_CN" title="环岛作为区域" />
 </class>
-<class item="4030" tag="tag,highway,cycleway,fix:chair" id="40301" level="2">
+<class id="40301" item="4030" level="2" tag="tag,highway,cycleway,fix:chair">
 <classtext lang="cs" title="{0.key} s {1.key} a {2.key}" />
 <classtext lang="de" title="{0.key} mit {1.key} und {2.key}" />
 <classtext lang="en" title="{0.key} with {1.key} and {2.key}" />
@@ -1764,7 +1764,7 @@
 <classtext lang="uk" title="{0.key} з {1.key} і {2.key}" />
 <classtext lang="zh_CN" title="{0.key} 和 {1.key} 以及 {2.key}" />
 </class>
-<class item="4061" tag="fixme,fix:chair" id="40610" level="3">
+<class id="40610" item="4061" level="3" tag="fixme,fix:chair">
 <classtext lang="cs" title="Objekt potřebuje revizi" />
 <classtext lang="de" title="Objekt benötigt Überprüfung" />
 <classtext lang="en" title="Object need review" />
@@ -1779,7 +1779,7 @@
 <classtext lang="uk" title="Об'єкт потребує перегляду" />
 <classtext lang="zh_CN" title="对象需要审核" />
 </class>
-<class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
+<class id="40611" item="4061" level="2" tag="fixme,fix:chair,highway">
 <classtext lang="cs" title="Klasifikace cesty potřebuje revizi" />
 <classtext lang="en" title="Highway classification need review" />
 <classtext lang="es" title="La clasificación de carretera necesita revisión" />
@@ -1793,10 +1793,10 @@
 <classtext lang="uk" title="Класифікація автошляху потребує перегляду" />
 <classtext lang="zh_CN" title="公路分类需要审查" />
 </class>
-<class item="4061" tag="parking,amenity,fix:chair" id="40612" level="2">
+<class id="40612" item="4061" level="2" tag="parking,amenity,fix:chair">
 <classtext lang="en" title="Does this station still sell SP95, or has it been replaced by the SP95-E10?" />
 </class>
-<class item="4070" tag="tag,highway,fix:survey" id="40701" level="1">
+<class id="40701" item="4070" level="1" tag="tag,highway,fix:survey">
 <classtext lang="cs" title="Nekonzistentní značky {1.key}" />
 <classtext lang="de" title="Inkonsistentes Tagging von {1.key}" />
 <classtext lang="en" title="Inconsistent tagging of {1.key}" />
@@ -1811,7 +1811,7 @@
 <classtext lang="uk" title="Несумісне теґування від {1.key}" />
 <classtext lang="zh_CN" title="不一致的标记 {1.key}" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41100" level="2">
+<class id="41100" item="4110" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
 <classtext lang="de" title="Langes Fließgewässer über Grund und keine Brücke" />
 <classtext lang="en" title="Long Waterway above ground and no bridge" />
@@ -1828,7 +1828,7 @@
 <classtext lang="uk" title="Довгий водний шлях над землею та без bridge" />
 <classtext lang="zh_CN" title="长水路在空中但没有桥梁" />
 </class>
-<class item="4110" tag="landuse,fix:chair" id="41101" level="3">
+<class id="41101" item="4110" level="3" tag="landuse,fix:chair">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
 <classtext lang="de" title="Flächennutzungsmerkmal nicht auf Bodenlevel" />
 <classtext lang="en" title="Landuse feature not on ground" />
@@ -1846,7 +1846,7 @@
 <classtext lang="uk" title="Ознака landuse не на землі" />
 <classtext lang="zh_CN" title="土地用途不在地面上" />
 </class>
-<class item="4110" tag="natural,fix:chair" id="41102" level="3">
+<class id="41102" item="4110" level="3" tag="natural,fix:chair">
 <classtext lang="cs" title="Přírodní prvek pod úrovní země" />
 <classtext lang="de" title="Naturmerkmal unter Bodenlevel" />
 <classtext lang="en" title="Natural feature underground" />
@@ -1864,7 +1864,7 @@
 <classtext lang="uk" title="Ознака natural під землею" />
 <classtext lang="zh_CN" title="自然特征在地下" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41103" level="3">
+<class id="41103" item="4110" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="Highway pod zemí a žádný tunel" />
 <classtext lang="de" title="Straße unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Highway underground and no tunnel" />
@@ -1881,7 +1881,7 @@
 <classtext lang="uk" title="Шлях проходить під землею без тунелю" />
 <classtext lang="zh_CN" title="公路在地下但没有隧道" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41104" level="2">
+<class id="41104" item="4110" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="dlouhá Highway pod zemí a žádný tunel" />
 <classtext lang="de" title="Lange Straße unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Long Highway underground and no tunnel" />
@@ -1898,7 +1898,7 @@
 <classtext lang="uk" title="Довгий шлях проходить під землею без тунелю" />
 <classtext lang="zh_CN" title="长公路在地下但没有隧道" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41105" level="3">
+<class id="41105" item="4110" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="Highway nad zemí a žádný most" />
 <classtext lang="de" title="Straße über Grund und keine Brücke" />
 <classtext lang="en" title="Highway above ground and no bridge" />
@@ -1915,7 +1915,7 @@
 <classtext lang="uk" title="Шлях вище землі без мосту" />
 <classtext lang="zh_CN" title="公路在空中但没有桥梁" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41106" level="2">
+<class id="41106" item="4110" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="dlouhá Highway nad zemí a žádný most" />
 <classtext lang="de" title="Lange Straße über Grund und keine Brücke" />
 <classtext lang="en" title="Long Highway above ground and no bridge" />
@@ -1932,7 +1932,7 @@
 <classtext lang="uk" title="Довгий шлях вище землі без мосту" />
 <classtext lang="zh_CN" title="长公路在空中但没有桥梁" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41107" level="3">
+<class id="41107" item="4110" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="vodní tok pod zemí a žádný tunel" />
 <classtext lang="de" title="Fließgewässer unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Waterway underground and no tunnel" />
@@ -1949,7 +1949,7 @@
 <classtext lang="uk" title="Водний шлях під землею без tunnel" />
 <classtext lang="zh_CN" title="水路在地下但没有隧道" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41108" level="2">
+<class id="41108" item="4110" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="dlouhý vodní tok pod zemí a žádný tunel" />
 <classtext lang="de" title="Langes Fließgewässer unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Long Waterway underground and no tunnel" />
@@ -1966,7 +1966,7 @@
 <classtext lang="uk" title="Довгий водний шлях під землею і без tunnel" />
 <classtext lang="zh_CN" title="长水路在地下但没有隧道" />
 </class>
-<class item="4110" tag="highway,fix:chair" id="41109" level="3">
+<class id="41109" item="4110" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="vodní tok nad zemí a žádný most" />
 <classtext lang="de" title="Fließgewässer über Grund und keine Brücke" />
 <classtext lang="en" title="Waterway above ground and no bridge" />
@@ -1983,7 +1983,7 @@
 <classtext lang="uk" title="Водний шлях над землею без bridge" />
 <classtext lang="zh_CN" title="水路在空中但没有桥梁" />
 </class>
-<class item="5070" tag="name,fix:chair" id="50701" level="2">
+<class id="50701" item="5070" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Některé znaky hodnoty neodpovídají znakové sadě jazyka" />
 <classtext lang="de" title="Einzelne Zeichen des Wertes passen gehören nicht zum Zeichensatz der Sprache" />
 <classtext lang="en" title="Some value chars does not match the language charset" />
@@ -1998,7 +1998,7 @@
 <classtext lang="uk" title="Знаки не відповідають таблиці символів" />
 <classtext lang="zh_CN" title="某些值字符与语言字符集不匹配" />
 </class>
-<class item="5070" tag="name,fix:chair" id="50702" level="2">
+<class id="50702" item="5070" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Netisknutelný znak" />
 <classtext lang="de" title="Kein druckbares Zeichen" />
 <classtext lang="en" title="Non printable char" />
@@ -2015,7 +2015,7 @@
 <classtext lang="uk" title="Недрукований символ" />
 <classtext lang="zh_CN" title="不可打印字符" />
 </class>
-<class item="5070" tag="name,fix:chair" id="50703" level="2">
+<class id="50703" item="5070" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="znak symbol" />
 <classtext lang="de" title="Sonderzeichen" />
 <classtext lang="en" title="Symbol char" />
@@ -2032,7 +2032,7 @@
 <classtext lang="uk" title="Символьний знак" />
 <classtext lang="zh_CN" title="符号字符" />
 </class>
-<class item="5070" tag="name,fix:chair" id="50704" level="2">
+<class id="50704" item="5070" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Neukončené uvozovky nebo závorky ve jménu" />
 <classtext lang="en" title="Unbalanced Quotation mark or Bracket in name" />
 <classtext lang="es" title="Comillas o corchetes desequilibrados en el nombre" />
@@ -2046,7 +2046,7 @@
 <classtext lang="uk" title='Незбалансован і "лапки" або дужка в назві' />
 <classtext lang="zh_CN" title="名称中的不平衡报价标记或括号" />
 </class>
-<class item="5070" tag="name,fix:chair" id="50705" level="2">
+<class id="50705" item="5070" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Neočekávaná interpunkce v názvu" />
 <classtext lang="en" title="Unexpected punctuation in name" />
 <classtext lang="es" title="Puntuación inesperada en el nombre" />
@@ -2060,7 +2060,7 @@
 <classtext lang="uk" title="Несподівана пунктуація в назві" />
 <classtext lang="zh_CN" title="名称中出现意外的标点符号" />
 </class>
-<class item="5080" tag="name,fix:chair" id="50801" level="1">
+<class id="50801" item="5080" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Přípona názvu vesnice nebo lokality Severní, Jižní, Východní, Západní, Střední by měla být odstraněna z názvu katastru. Místo by mělo být integrováno pouze jednou." />
 <classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
 <classtext lang="fr" title="Les mentions Nord, Sud, Est, Ouest, Centre doivent être supprimées des noms des hameaux ou des lieux-dits du cadastre. Le nom du lieu ne doit être intégré qu’une seule fois" />
@@ -2071,7 +2071,7 @@
 <classtext lang="uk" title="Хутір або місцевість містить в назві суфікс північ-, південь-, схід-, захід-, центр-, і його слід видалити з назви кадастру. Місце має бути інтеґроване лише один раз." />
 <classtext lang="zh_CN" title="自然村或地区名称后缀Nord，Sud，Est，Ouest，Center应从Cadastre名称中删除。方位名应该只整合为一个。" />
 </class>
-<class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
+<class id="71301" item="7130" level="3" tag="tag,highway,maxheight,fix:survey">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
 <classtext lang="cs" title='Chybí značka "maxheight"' />
 <classtext lang="de" title="Fehlendes Merkmal maxheight" />
@@ -2090,7 +2090,7 @@
 <classtext lang="uk" title="Відсутній теґ maxheight" />
 <classtext lang="zh_CN" title="缺少maxheight标签" />
 </class>
-<class item="9100" tag="power,fix:chair,geom" id="91001" level="2">
+<class id="91001" item="9100" level="2" tag="power,fix:chair,geom">
 <classtext lang="cs" title="Transformátorové stanice by měly být vždy v uzlu" />
 <classtext lang="en" title="Power Transformers should always be on a node" />
 <classtext lang="es" title="Los transformadores de energía siempre deben ser un nodo" />
@@ -2104,7 +2104,7 @@
 <classtext lang="uk" title="Трансформатор завжди позначається точкою" />
 <classtext lang="zh_CN" title="变压器应始终位于节点上" />
 </class>
-<class item="9100" tag="power,fix:chair,tag" id="91002" level="2">
+<class id="91002" item="9100" level="2" tag="power,fix:chair,tag">
 <classtext lang="cs" title="U transformátových stanic používejte místo voltage značky voltage:primary=* and voltage:secondary=*" />
 <classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
 <classtext lang="es" title="En los transformadores de energía use voltage:primary=* y voltage:secondary=* en lugar de voltage" />
@@ -2118,7 +2118,7 @@
 <classtext lang="uk" title="На трансформаторі застосовуйте voltage:primary=* та voltage:secondary=* замість одного теґу напруги" />
 <classtext lang="zh_CN" title="在变压器上使用voltage:primary=*和voltage:secondary=*代替voltage" />
 </class>
-<class item="9100" tag="power,fix:chair,tag" id="91003" level="3">
+<class id="91003" item="9100" level="3" tag="power,fix:chair,tag">
 <classtext lang="cs" title="Transformátorová stanice by měla mít značku frequency" />
 <classtext lang="de" title="Umspannwerke sollten einen frequency Tag haben" />
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
@@ -2133,7 +2133,7 @@
 <classtext lang="uk" title="Трансформатор повинен мати теґ frequency" />
 <classtext lang="zh_CN" title="变压器应该有一个频率标签" />
 </class>
-<class item="3032" tag="tag,highway,fix:chair" id="303210" level="1">
+<class id="303210" item="3032" level="1" tag="tag,highway,fix:chair">
 <classtext lang="de" title="'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden" />
 <classtext lang="en" title="Fence with material tag, better use fence_type tag" />
 <classtext lang="es" title="Fence con etiqueta de material, mejor use la etiqueta fence_type" />
@@ -2144,7 +2144,7 @@
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
 </class>
-<class item="3032" tag="tag,highway" id="303241" level="1">
+<class id="303241" item="3032" level="1" tag="tag,highway">
 <classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
 <classtext lang="de" title="Widerspruch zwischen maxspeed und source:maxspeed" />
 <classtext lang="en" title="Discordant maxspeed and source:maxspeed" />
@@ -2159,7 +2159,7 @@
 <classtext lang="uk" title="Розбіжність maxspeed та source:maxspeed" />
 <classtext lang="zh_CN" title="矛盾的最大速度和source:maxspeed" />
 </class>
-<class item="9000" tag="tag,addr" id="9000003" level="3">
+<class id="9000003" item="9000" level="3" tag="tag,addr">
 <classtext lang="ca" title="El mateix valor de {0.key} i {1.key}" />
 <classtext lang="cs" title="Shodná hodnota {0.key} a {1.key}" />
 <classtext lang="de" title="Gleicher Wert von {0.key} und {1.key}" />
@@ -2177,7 +2177,7 @@
 <classtext lang="zh_CN" title="{0.key}与{1.key}值相同" />
 <classtext lang="zh_TW" title="{0.key} 和 {1.key} 的值相同" />
 </class>
-<class item="9000" tag="tag,addr" id="9000004" level="3">
+<class id="9000004" item="9000" level="3" tag="tag,addr">
 <classtext lang="cs" title="{0.key} bez čísla" />
 <classtext lang="de" title="{0.key} ohne Nummer" />
 <classtext lang="en" title="{0.key} without number" />
@@ -2189,7 +2189,7 @@
 <classtext lang="ru" title="{0.key} без номера" />
 <classtext lang="uk" title="{0.key} без номера" />
 </class>
-<class item="9001" tag="tag" id="9001001" level="3">
+<class id="9001001" item="9001" level="3" tag="tag">
 <classtext lang="cs" title="Chybějící značka" />
 <classtext lang="de" title="fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
@@ -2208,7 +2208,7 @@
 <classtext lang="zh_CN" title="标签丢失" />
 <classtext lang="zh_TW" title="缺少標籤" />
 </class>
-<class item="9001" tag="tag" id="9001002" level="3">
+<class id="9001002" item="9001" level="3" tag="tag">
 <classtext lang="cs" title="podezřelá kombinace značek" />
 <classtext lang="de" title="verdächtige Merkmalskombination" />
 <classtext lang="en" title="suspicious tag combination" />
@@ -2227,7 +2227,7 @@
 <classtext lang="zh_CN" title="可疑的标签组合" />
 <classtext lang="zh_TW" title="合併標籤時有問題" />
 </class>
-<class item="9001" tag="tag" id="9001003" level="3">
+<class id="9001003" item="9001" level="3" tag="tag">
 <classtext lang="cs" title="{0.key} na relaci bez {1.key}={1.value}" />
 <classtext lang="de" title="{0.key} auf einer Relation ohne {1.key}={1.value}" />
 <classtext lang="en" title="{0.key} on a relation without {1.key}={1.value}" />
@@ -2245,7 +2245,7 @@
 <classtext lang="zh_CN" title="{0.key}在没有{1.key}={1.value}的一个关系上" />
 <classtext lang="zh_TW" title="{0.key} 在關聯上但沒有 {1.key}={1.value}" />
 </class>
-<class item="9001" tag="tag" id="9001004" level="3">
+<class id="9001004" item="9001" level="3" tag="tag">
 <classtext lang="ca" title="ús incomplet de {0.key} a una via sense {1.key}" />
 <classtext lang="cs" title="nekompletní použití {0.key} na cestě bez {1.key}" />
 <classtext lang="de" title="unvollständige Nutzung von {0.key} auf einer Linie ohne {1.key}" />
@@ -2264,7 +2264,7 @@
 <classtext lang="zh_CN" title="某一路径上{0.key}使用不完全，没有{1.key}" />
 <classtext lang="zh_TW" title="不完整的用法：{0.key} 用在路徑上但缺少 {1.key}" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002001" level="3">
+<class id="9002001" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="zastaralé značení" />
 <classtext lang="de" title="veraltete Merkmale" />
 <classtext lang="en" title="deprecated tagging" />
@@ -2282,7 +2282,7 @@
 <classtext lang="zh_CN" title="已弃用的标签" />
 <classtext lang="zh_TW" title="不建議的標籤" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002002" level="3">
+<class id="9002002" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="''access=designated'' no té massa sentit, utilitzeu una etiqueta més específica, p.ex. ''bicycle=designated''" />
 <classtext lang="cs" title="''access=designated'' nemá žádný význam, použijte nějakou konkrétní značku, např. ''bicycle=designated''" />
 <classtext lang="de" title="''access=designated'' ist nichtssagend, ein präziseres Merkmal sollte verwendet werden, z.B. ''bicycle=designated''" />
@@ -2301,7 +2301,7 @@
 <classtext lang="zh_CN" title="“access=designated”无意义，使用更特定的标签，例如“bicycle=designated”" />
 <classtext lang="zh_TW" title="「access=designated」太沒意義：使用更明確的標籤，像是「bicycle=designated」" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002003" level="3">
+<class id="9002003" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="''access=official'' no especifica el tipus oficial de transport, utilitzeu ''bicycle=official'' per exemple" />
 <classtext lang="cs" title='"access=official" nespecifikuje oficiální způsob dopravy, použijte např. "bicycle=official"' />
 <classtext lang="de" title="''access=official'' beschreibt keine offizielle Transportart; alternativ ''bicycle=official'' benutzen" />
@@ -2320,7 +2320,7 @@
 <classtext lang="zh_CN" title="“access=official”无法注明官方的交通运输模式，可以使用“bicycle=official”" />
 <classtext lang="zh_TW" title="「access=official」不是具體的正式運輸模式：該用「bicycle=official」之類的" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002004" level="3">
+<class id="9002004" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{0.key}={0.value} no és específic. Al contrari que ''{0.value}'', aporteu més informació sobre el que cal corregir." />
 <classtext lang="cs" title='{0.key}={0.value} je nejasné. Namísto "{0.value}" uveďte více informací o tom, co přesně by mělo být opraveno.' />
 <classtext lang="de" title="{0.key}={0.value} ist unbestimmt. Anstatt von ''{0.value}'' geben Sie bitte konkret an, was behoben werden soll." />
@@ -2339,7 +2339,7 @@
 <classtext lang="uk" title="{0.key}={0.value} є неспецифічним. Замість ''{0.value}'' вкажіть докладнішу інформацію про те, що дійсно потрібно виправити." />
 <classtext lang="zh_CN" title="{0.key}={0.value}不特定。请给出更多关于修复的信息而不是“{0.value}”。" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002005" level="3">
+<class id="9002005" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="Utilització incorrecta de l''etiqueta {0.key}. Suprimiu {0.key}={0.value}, perquè és evident que manca el nom, fins i tot sense una altra etiqueta." />
 <classtext lang="cs" title="Špatné použití značky {0.key}. Odstraňte {0.key}={0.value}, protože je jasné, že název chybí i bez přidané značky." />
 <classtext lang="de" title="Falsche Verwendung von Merkmal {0.key}. Entfernen Sie {0.key}={0.value}, weil klar ist, dass der Name auch ohne ein zusätzliches Merkmal noch fehlt." />
@@ -2357,7 +2357,7 @@
 <classtext lang="uk" title="Неправильне використання теґу {0.key}. Вилучіть {0.key}={0.value}, оскільки ясно, що назва відсутня, навіть без додаткових теґів." />
 <classtext lang="zh_CN" title="标签{0.key}使用错误。去除{0.key}={0.value}，因为即使没有附加标签，该名称也缺省。" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002006" level="3">
+<class id="9002006" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="{0.key}={0.value} je nekonkrétní. Použijte spíše klíč fixme s informací, co má být opraveno, v hodnotě fixme." />
 <classtext lang="de" title="{0.key}={0.value} ist unbestimmt. Verwenden Sie stattdessen den Schlüssel fixme mit der Information, was genau verbessert werden soll, im Wert von fixme." />
 <classtext lang="en" title="{0.key}={0.value} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme." />
@@ -2374,7 +2374,7 @@
 <classtext lang="uk" title="{0.key}={0.value} – не визначений. Замість цього використовуйте ключ fixme, в значенні якого вкажіть інформацію про те, що потрібно виправити." />
 <classtext lang="zh_CN" title="{0.key}={0.value}不特定。使用键fixme并在fixme的值中填写有关修复的具体信息。" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002007" level="3">
+<class id="9002007" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{0.key}={0.value} no és específic. Si us plau substituïu ''{0.value}'' per un valor específic." />
 <classtext lang="cs" title="{0.key}={0.value} je neurčité. Nahraďte, prosím, ''{0.value}'' konkrétní hodnotou." />
 <classtext lang="de" title="{0.key}={0.value} is ungenau. Bitte ersetze ''{0.value}'' durch einen speziellen Wert." />
@@ -2394,7 +2394,7 @@
 <classtext lang="zh_CN" title="{0.key}={0.value}不特定。请用特定值替换“{0.value}”。" />
 <classtext lang="zh_TW" title="{0.key}={0.value} 不明確：請將 {0.value} 換成特定的數值。" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002008" level="3">
+<class id="9002008" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{0.key} ha de ser substituït per {1.key}" />
 <classtext lang="cs" title="{0.key} by mělo být nahrazeno {1.key}" />
 <classtext lang="de" title="{0.key} sollte mit {1.key} ersetzt werden" />
@@ -2413,7 +2413,7 @@
 <classtext lang="zh_CN" title="{0.key} 应替换为 {1.key}" />
 <classtext lang="zh_TW" title="{0.key} 應該換成 {1.key}" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002009" level="3">
+<class id="9002009" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{1.key} = {1.value}; suprimeix {1.key}" />
 <classtext lang="cs" title="{1.key} = {1.value}; odstraňte {1.key}" />
 <classtext lang="de" title="{1.key} = {1.value}; entfernen {1.key}" />
@@ -2432,7 +2432,7 @@
 <classtext lang="zh_CN" title="{1.key} = {1.value}; 去除{1.key}" />
 <classtext lang="zh_TW" title="{1.key} = {1.value}； 移除 {1.key}" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002010" level="3">
+<class id="9002010" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="Etiqueta no especificada {0.key}={0.value}" />
 <classtext lang="cs" title="Nekonkrétní značka {0.key}={0.value}" />
 <classtext lang="de" title="Unbestimmtes Merkmal {0.key}={0.value}" />
@@ -2451,7 +2451,7 @@
 <classtext lang="zh_CN" title="不具体的标签 {0.key}={0.value}" />
 <classtext lang="zh_TW" title="不明確的標籤 {0.key}={0.value}" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002011" level="3">
+<class id="9002011" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="clau amb caràcter estrany" />
 <classtext lang="cs" title="klíč s neobvyklým znakem" />
 <classtext lang="de" title="Schlüssel mit ungewöhnlichem Zeichen" />
@@ -2471,7 +2471,7 @@
 <classtext lang="zh_CN" title="键值中的生僻字符" />
 <classtext lang="zh_TW" title="設定鍵有特殊字元" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002012" level="3">
+<class id="9002012" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="clau massa curta" />
 <classtext lang="cs" title="neobvyklá klávesová zkratka" />
 <classtext lang="de" title="ungewöhnlich kurzer Schlüssel" />
@@ -2490,7 +2490,7 @@
 <classtext lang="uk" title="незвично короткий ключ" />
 <classtext lang="zh_CN" title="不常见的短键" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002013" level="3">
+<class id="9002013" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="{0.key}={0.value} je nepřesné. Použijte zvláštní značky pro každý určitý typ, např. payment:bitcoin=yes nebo payment:litecoin=yes." />
 <classtext lang="de" title="{0.key}={0.value} ist ungenau. Separate Schlüssel für jeden spezifischen Typ verwenden, z.B. payment:bitcoin=yes oder payment:litecoin=yes." />
 <classtext lang="en" title="{0.key}={0.value} is inaccurate. Use separate tags for each specific type, e.g. payment:bitcoin=yes or payment:litecoin=yes." />
@@ -2503,7 +2503,7 @@
 <classtext lang="ru" title="Тег {0.key}={0.value} неточный. Используйте отдельные теги для каждого конкретного типа, например, payment:bitcoin=yes или payment:litecoin=yes." />
 <classtext lang="uk" title="{0.key}={0.value} є неточним. Використовуйте окремі теґи для кожного типу, на приклад payment:bitcoin=yes або payment:litecoin=yes." />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002014" level="3">
+<class id="9002014" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="pochybný klíč (končící číslem)" />
 <classtext lang="de" title="fragwürdiger Schlüssel (endet mit einer Zahl)" />
 <classtext lang="en" title="questionable key (ending with a number)" />
@@ -2521,7 +2521,7 @@
 <classtext lang="uk" title="сумнівний ключ (з цифрою в кінці)" />
 <classtext lang="zh_CN" title="可疑的键（以数字结尾）" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002015" level="3">
+<class id="9002015" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{0.key}={0.value} no és específic. Si us plau canvieu ''{0.value}''per ''costat esquerre (left)'', ''costat dret (right)'' o ''ambdós (both)''." />
 <classtext lang="cs" title="{0.key}={0.value} je neurčité. Prosím, nahraďte ''{0.value}'' textem ''left'', ''right'' nebo ''both''." />
 <classtext lang="de" title="{0.key}={0.value} ist unbestimmt. Bitte ersetzen Sie ''{0.value}'' durch ''left'', ''right'' oder ''both''." />
@@ -2541,7 +2541,7 @@
 <classtext lang="zh_CN" title="{0.key}={0.value}不特定。请用“left”、“right”或“both”替换“{0.value}”。" />
 <classtext lang="zh_TW" title="{0.key}={0.value} 不明確：請將 {0.value} 換成 left、right 或 both。" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002016" level="3">
+<class id="9002016" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{0.key}={0.value} no es recomana. Utilitzeu la funció Vies inverses del menú Eines." />
 <classtext lang="cs" title="{0.key}={0.value} není doporučeno. Použijte funkci otočení cesty z menu nástrojů." />
 <classtext lang="de" title="{0.key}={0.value} wird nicht empfohlen. Verwenden Sie die Funktion Linienrichtung umkehren aus dem Menü Werkzeuge." />
@@ -2559,7 +2559,7 @@
 <classtext lang="uk" title="{0.key}={0.value} не рекомендується. Скористайтесь пунктом «Змініти напрямок» з меню «Інструменти»." />
 <classtext lang="zh_CN" title="不建议使用{0.key}={0.value}。请使用工具菜单中的反转路径。" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002017" level="3">
+<class id="9002017" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="Klíč {1.key} má neobvyklou hodnotu." />
 <classtext lang="de" title="Der Schlüssel {1.key} hat einen ungewöhnlichen Wert." />
 <classtext lang="en" title="The key {1.key} has an uncommon value." />
@@ -2577,7 +2577,7 @@
 <classtext lang="uk" title="Ключ {1.key} має дивне значення." />
 <classtext lang="zh_CN" title="键{1.key}具有反常的值" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002018" level="2">
+<class id="9002018" item="9002" level="2" tag="tag,deprecated">
 <classtext lang="cs" title="hodnota s chybou" />
 <classtext lang="de" title="falsch geschriebener Wert" />
 <classtext lang="en" title="misspelled value" />
@@ -2594,7 +2594,7 @@
 <classtext lang="zh_CN" title="值拼写错误" />
 <classtext lang="zh_TW" title="數值拼字錯誤" />
 </class>
-<class item="9002" tag="tag,deprecated" id="9002019" level="3">
+<class id="9002019" item="9002" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="špatná hodnota: {0.key}={0.value}" />
 <classtext lang="de" title="falscher Wert: {0.key}={0.value}" />
 <classtext lang="en" title="wrong value: {0.key}={0.value}" />
@@ -2611,7 +2611,7 @@
 <classtext lang="zh_CN" title="错误的值：{0.key}={0.value}" />
 <classtext lang="zh_TW" title="錯誤的值：{0.key}={0.value}" />
 </class>
-<class item="9003" tag="geom" id="9003001" level="3">
+<class id="9003001" item="9003" level="3" tag="geom">
 <classtext lang="ca" title="{0.key}={0.value} a un node. Ha de ser utilitzat a una via." />
 <classtext lang="cs" title="{0.key}={0.value} na uzlu. Mělo by být použito na cestě." />
 <classtext lang="de" title="{0.key}={0.value} auf einem Punkt. Sollte auf einer Linie verwendet werden." />
@@ -2630,7 +2630,7 @@
 <classtext lang="uk" title="{0.key}={0.value} на точці. Слід застосовувати до лінії." />
 <classtext lang="zh_CN" title="{0.key}={0.value} 在节点上。应用于路径上。" />
 </class>
-<class item="9003" tag="geom" id="9003002" level="3">
+<class id="9003002" item="9003" level="3" tag="geom">
 <classtext lang="cs" title="{0.key}={0.value} na uzlu. Mělo by být použito na cestě nebo relaci." />
 <classtext lang="de" title="{0.key}={0.value} auf einem Punkt. Sollte auf einer Linie oder Relation verwendet werden." />
 <classtext lang="en" title="{0.key}={0.value} on a node. Should be used on a way or relation." />
@@ -2647,7 +2647,7 @@
 <classtext lang="ru" title="Тег {0.key}={0.value} на точке. Его следует использовать на линии или отношении." />
 <classtext lang="uk" title="{0.key}={0.value} на точці. Потрібно застосовувати для ліній та звʼязків." />
 </class>
-<class item="9003" tag="geom" id="9003003" level="3">
+<class id="9003003" item="9003" level="3" tag="geom">
 <classtext lang="ca" title="{0.key}={0.value} a un node. Ha de ser utilitzat a una àrea." />
 <classtext lang="cs" title="{0.key}={0.value} na uzlu. Mělo by být nakresleno jako plocha." />
 <classtext lang="de" title="{0.key}={0.value} auf einem Punkt. Sollte als eine Fläche gezeichnet werden." />
@@ -2665,7 +2665,7 @@
 <classtext lang="uk" title="{0.key}={0.value} на точці. Слід застосовувати до полігону." />
 <classtext lang="zh_CN" title="{0.key}={0.value} 在节点上。应绘为区域。" />
 </class>
-<class item="9003" tag="geom" id="9003004" level="2">
+<class id="9003004" item="9003" level="2" tag="geom">
 <classtext lang="cs" title="{0.key}={0.value} na uzlu. Mělo by být použito v relaci" />
 <classtext lang="de" title="{0.key}={0.value} auf einem Punkt. Sollte in einer Relation verwendet werden" />
 <classtext lang="en" title="{0.key}={0.value} on a node. Should be used in a relation" />
@@ -2681,7 +2681,7 @@
 <classtext lang="uk" title="{0.key}={0.value} на точці. Повинен використовуватись для звʼязку" />
 <classtext lang="zh_CN" title="在点上的{0.key}={0.value}。其应运用于关系中" />
 </class>
-<class item="9003" tag="geom" id="9003006" level="3">
+<class id="9003006" item="9003" level="3" tag="geom">
 <classtext lang="ca" title="{0.key} a un node" />
 <classtext lang="cs" title="{0.key} na uzlu" />
 <classtext lang="de" title="{0.key} auf einem Punkt" />
@@ -2700,7 +2700,7 @@
 <classtext lang="zh_CN" title="{0.key} 在节点上" />
 <classtext lang="zh_TW" title="{0.key} 用在節點" />
 </class>
-<class item="9003" tag="geom" id="9003007" level="3">
+<class id="9003007" item="9003" level="3" tag="geom">
 <classtext lang="ca" title="{0.key}={0.value} a una via. Ha de ser utilitzat a un node." />
 <classtext lang="cs" title="{0.key}={0.value} na cestě. Mělo by být použito na uzlu." />
 <classtext lang="de" title="{0.key}={0.value} auf einer Linie. Sollte auf einem Punkt verwendet werden." />
@@ -2719,7 +2719,7 @@
 <classtext lang="uk" title="{0.key}={0.value} на лінії, замість точки." />
 <classtext lang="zh_CN" title="{0.key}={0.value} 在路径上。应用于节点上。" />
 </class>
-<class item="9003" tag="geom" id="9003008" level="2">
+<class id="9003008" item="9003" level="2" tag="geom">
 <classtext lang="ca" title="{0.key}={0.value} a una via. S''ha d''utilitzar a una relació" />
 <classtext lang="cs" title="{0.key}={0.value} na cestě. Mělo by být použito v relaci" />
 <classtext lang="de" title="{0.key}={0.value} auf einer Linie. Sollte in einer Relation verwendet werden" />
@@ -2738,7 +2738,7 @@
 <classtext lang="uk" title="{0.key}={0.value} на лінії, а повинен бути на зв’язку" />
 <classtext lang="zh_CN" title="{0.key}={0.value} 在路径上。应用于关系中。" />
 </class>
-<class item="9003" tag="geom" id="9003009" level="2">
+<class id="9003009" item="9003" level="2" tag="geom">
 <classtext lang="cs" title="Objekt na pozici 0.00E 0.00N. Na tomto místě ale nic není, kromě meteorologické bóje, který již byla zmapována dříve." />
 <classtext lang="de" title="Objekt an Position 0.00E 0.00N. Hier ist nichts an dieser Position außer einer, bereits gemappten, Wetter-Boje." />
 <classtext lang="en" title="Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy." />
@@ -2754,7 +2754,7 @@
 <classtext lang="uk" title="Об’єкт з позицією 0.00E 0.00N. У цьому місці немає нічого, окрім вже позначеного метеорологічного буя." />
 <classtext lang="zh_CN" title="对象在位置0.00E 0.00N。此处没有任何东西，除了一个已绘制的气象浮筏。" />
 </class>
-<class item="9003" tag="geom" id="9003010" level="2">
+<class id="9003010" item="9003" level="2" tag="geom">
 <classtext lang="cs" title="Cesta s {0.key}={0.value} není uzavřena." />
 <classtext lang="de" title="Linie mit {0.key}={0.value} nicht geschlossen." />
 <classtext lang="en" title="Way with {0.key}={0.value} not closed." />
@@ -2768,7 +2768,7 @@
 <classtext lang="ru" title="Линия с тегом {0.key}={0.value} не замкнута." />
 <classtext lang="uk" title="Лінія з теґом {0.key}={0.value} не є замкненою." />
 </class>
-<class item="9004" tag="tag,highway" id="9004001" level="3">
+<class id="9004001" item="9004" level="3" tag="tag,highway">
 <classtext lang="ca" title="nom abreviat del carrer" />
 <classtext lang="cs" title="zkrácený název ulice" />
 <classtext lang="de" title="Abgekürzter Straßenname" />
@@ -2788,7 +2788,7 @@
 <classtext lang="zh_CN" title="缩写的街道名称" />
 <classtext lang="zh_TW" title="街道名簡稱" />
 </class>
-<class item="9004" tag="tag,highway" id="9004002" level="3">
+<class id="9004002" item="9004" level="3" tag="tag,highway">
 <classtext lang="ca" title="etiqueta incorrecta de cruïlla a una via" />
 <classtext lang="cs" title="špatná značka přechodu/přejezdu na cestě" />
 <classtext lang="de" title="Falsches Übergangs-Merkmal auf einer Linie" />
@@ -2807,7 +2807,7 @@
 <classtext lang="uk" title="помилковий теґ crossing на лінії" />
 <classtext lang="zh_CN" title="在路径上的穿越标签错误" />
 </class>
-<class item="9004" tag="tag,highway" id="9004004" level="3">
+<class id="9004004" item="9004" level="3" tag="tag,highway">
 <classtext lang="cs" title="Nespecifikovaný typ silnice" />
 <classtext lang="de" title="Unbestimmter Straßentyp" />
 <classtext lang="el" title="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
@@ -2824,7 +2824,7 @@
 <classtext lang="uk" title="Невизначений тип дороги" />
 <classtext lang="zh_CN" title="不特定的道路种类" />
 </class>
-<class item="9004" tag="tag,highway" id="9004005" level="3">
+<class id="9004005" item="9004" level="3" tag="tag,highway">
 <classtext lang="ca" title="{0.value} usat amb {1.key}={1.value}" />
 <classtext lang="cs" title="{0.value} použito s {1.key}={1.value}" />
 <classtext lang="de" title="{0.value} zusammen mit {1.key}={1.value}" />
@@ -2842,7 +2842,7 @@
 <classtext lang="uk" title="{0.value} використаний разом з {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{0.value}与{1.key}={1.value}一同使用" />
 </class>
-<class item="9004" tag="tag,highway" id="9004006" level="3">
+<class id="9004006" item="9004" level="3" tag="tag,highway">
 <classtext lang="cs" title="zastaralé značení" />
 <classtext lang="de" title="veraltete Merkmale" />
 <classtext lang="en" title="deprecated tagging" />
@@ -2860,7 +2860,7 @@
 <classtext lang="zh_CN" title="已弃用的标签" />
 <classtext lang="zh_TW" title="不建議的標籤" />
 </class>
-<class item="9004" tag="tag,highway" id="9004007" level="3">
+<class id="9004007" item="9004" level="3" tag="tag,highway">
 <classtext lang="ca" title="El valor de ''{0.key}'' ha de ser ''{1.value}'' o ''{2.value}''. Per a voreres utilitzeu''sidewalk=left|right|both|no''." />
 <classtext lang="cs" title="Hodnota ''{0.key}'' by měla být buď ''{1.value}'' nebo ''{2.value}''. Pro chodník pak použijte ''sidewalk=left|right|both|no''." />
 <classtext lang="de" title="Der Wert von ''{0.key}'' sollte entweder ''{1.value}'' oder ''{2.value}'' sein. Für Fußwege nutze stattdessen ''sidewalk=left|right|both|no''." />
@@ -2878,7 +2878,7 @@
 <classtext lang="uk" title="Значення ''{0.key}'' повинно бути ''{1.value}'' або ''{2.value}''. Для тротуарів використовуйте ''sidewalk=left|right|both|no''." />
 <classtext lang="zh_CN" title="“{0.key}”的值应为“{1.value}”或“{2.value}”中其一。对于人行道，使用“sidewalk=left|right|both|no”。" />
 </class>
-<class item="9004" tag="tag,highway" id="9004008" level="3">
+<class id="9004008" item="9004" level="3" tag="tag,highway">
 <classtext lang="ca" title="etiqueta de via errònia a un node" />
 <classtext lang="cs" title='nesprávná značka "highway" na uzlu' />
 <classtext lang="de" title="Falsches Straßenmerkmal auf einem Punkt" />
@@ -2897,7 +2897,7 @@
 <classtext lang="uk" title="помилковий теґ highway на точці" />
 <classtext lang="zh_CN" title="节点上的错误公路标签" />
 </class>
-<class item="9004" tag="tag,highway" id="9004010" level="3">
+<class id="9004010" item="9004" level="3" tag="tag,highway">
 <classtext lang="ca" title="{0.key}={0.value} a un node" />
 <classtext lang="cs" title="{0.key}={0.value} na uzlu" />
 <classtext lang="de" title="{0.key}={0.value} auf einem Punkt" />
@@ -2916,7 +2916,7 @@
 <classtext lang="zh_CN" title="{0.key}={0.value} 在节点上" />
 <classtext lang="zh_TW" title="{0.key}={0.value} 用在節點" />
 </class>
-<class item="9005" tag="tag,value" id="9005001" level="3">
+<class id="9005001" item="9005" level="3" tag="tag,value">
 <classtext lang="ca" title="{0.key} amb valors múltiples" />
 <classtext lang="cs" title="{0.key} s vícenásobnou hodnotou" />
 <classtext lang="de" title="{0.key} mit mehreren Werten" />
@@ -2935,7 +2935,7 @@
 <classtext lang="uk" title="{0.key} багатозначний теґ" />
 <classtext lang="zh_CN" title="{0.key}具有多重值" />
 </class>
-<class item="9005" tag="tag,value" id="9005002" level="3">
+<class id="9005002" item="9005" level="3" tag="tag,value">
 <classtext lang="ca" title="valor buit en ''{0.key}'' separat per punt i coma" />
 <classtext lang="cs" title="prázdná hodnota ve středníkem odděleném ''{0.key}''" />
 <classtext lang="de" title="Leerer Wert in Semikolon-getrenntem ''{0.key}''" />
@@ -2952,7 +2952,7 @@
 <classtext lang="uk" title="пусте значення в рядку з розділювачами (;) ''{0.key}''" />
 <classtext lang="zh_CN" title="分号隔开的“{0.key}”中有空值" />
 </class>
-<class item="9006" tag="tag,value" id="9006001" level="3">
+<class id="9006001" item="9006" level="3" tag="tag,value">
 <classtext lang="ca" title="clau numèrica" />
 <classtext lang="cs" title="číselný klíč" />
 <classtext lang="de" title="Numerischer Schlüssel" />
@@ -2970,7 +2970,7 @@
 <classtext lang="uk" title="числовий ключ" />
 <classtext lang="zh_CN" title="用数字表示的键" />
 </class>
-<class item="9006" tag="tag,value" id="9006002" level="3">
+<class id="9006002" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="{0.key} hodnota se znaménkem +" />
 <classtext lang="de" title="{0.key} Wert mit Pluszeichen" />
 <classtext lang="en" title="{0.key} value with + sign" />
@@ -2985,7 +2985,7 @@
 <classtext lang="ru" title="{0.key} значение со знаком +" />
 <classtext lang="uk" title="{0.key} значення зі знаком +" />
 </class>
-<class item="9006" tag="tag,value" id="9006003" level="3">
+<class id="9006003" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="{0.key} by měla být celočíselná hodnota mezi -5 a 5" />
 <classtext lang="de" title="{0.key} sollte ein Ganzzahlwert zwischen -5 und 5 sein" />
 <classtext lang="en" title="{0.key} should be an integer value between -5 and 5" />
@@ -3000,7 +3000,7 @@
 <classtext lang="ru" title="{0.key} должно быть целым числом между -5 и 5" />
 <classtext lang="uk" title="{0.key} повинно бути цілим числом між -5 та 5" />
 </class>
-<class item="9006" tag="tag,value" id="9006004" level="3">
+<class id="9006004" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="{0.key} by měla mít jen čísla s volitelným přírůstkem o 0.5" />
 <classtext lang="de" title="{0.key} sollte nur Zahlen mit optionalen 0.5-Schritten aufweisen" />
 <classtext lang="en" title="{0.key} should have numbers only with optional .5 increments" />
@@ -3016,7 +3016,7 @@
 <classtext lang="uk" title="̱{0.key} повине бути тільки числом (з необовʼязковим кроком 0.5)" />
 <classtext lang="zh_CN" title="{0.key}应仅有可选的步进为.5的数字" />
 </class>
-<class item="9006" tag="tag,value" id="9006008" level="3">
+<class id="9006008" item="9006" level="3" tag="tag,value">
 <classtext lang="ca" title="{0.key} ha de ser un valor numèric" />
 <classtext lang="cs" title="{0.key} musí být číselná hodnota" />
 <classtext lang="de" title="{0.key} muss eine Zahl sein" />
@@ -3035,7 +3035,7 @@
 <classtext lang="uk" title="{0.key} має бути числовим значенням" />
 <classtext lang="zh_CN" title="{0.key}必须为一数值" />
 </class>
-<class item="9006" tag="tag,value" id="9006009" level="2">
+<class id="9006009" item="9006" level="2" tag="tag,value">
 <classtext lang="ca" title="{0.key} ha de ser un nombre sencer i positiu" />
 <classtext lang="cs" title="{0.key} musí být celé kladné číslo" />
 <classtext lang="de" title="{0.key} muss eine positive Ganzzahl sein" />
@@ -3053,7 +3053,7 @@
 <classtext lang="uk" title="{0.key} має бути цілим позитивним числом" />
 <classtext lang="zh_CN" title="{0.key}必须为一正整数" />
 </class>
-<class item="9006" tag="tag,value" id="9006010" level="3">
+<class id="9006010" item="9006" level="3" tag="tag,value">
 <classtext lang="ca" title="valor no usual per a {0.key}" />
 <classtext lang="cs" title="neobvyklá hodnota {0.key}" />
 <classtext lang="de" title="ungewöhnlicher Wert von {0.key}" />
@@ -3070,7 +3070,7 @@
 <classtext lang="uk" title="незвичайне значення {0.key}" />
 <classtext lang="zh_CN" title="{0.key}的值反常" />
 </class>
-<class item="9006" tag="tag,value" id="9006011" level="3">
+<class id="9006011" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="{0.key} musí být číselná hodnota v metrech a bez uvedených jednotek" />
 <classtext lang="de" title="{0.key} muss ein numerischer Wert sein, in Metern und ohne Einheiten" />
 <classtext lang="en" title="{0.key} must be a numeric value, in meters and without units" />
@@ -3086,7 +3086,7 @@
 <classtext lang="uk" title="{0.key} повинне бути числом в метрах, без зазначення одиниць виміру" />
 <classtext lang="zh_CN" title="{0.key}必须为一数值，以米计量且无单位" />
 </class>
-<class item="9006" tag="tag,value" id="9006013" level="3">
+<class id="9006013" item="9006" level="3" tag="tag,value">
 <classtext lang="ca" title="el voltatge ha d''estar en volts sense unitat/delimitador/espais" />
 <classtext lang="cs" title="napětí má být ve voltech bez jakýchkoliv jednotek,oddělovačů či mezer" />
 <classtext lang="de" title="Spannung sollte in Volt ohne Einheitensymbol oder Leerzeichen angegeben werden" />
@@ -3104,7 +3104,7 @@
 <classtext lang="uk" title="напруга повинна зазначатись у вольтах без пробілів/роздільників/одиниць виміру" />
 <classtext lang="zh_CN" title="电压应以伏特计量，不含有单位/分隔符/空格" />
 </class>
-<class item="9006" tag="tag,value" id="9006017" level="3">
+<class id="9006017" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="neobvyklá hodnota {0.key}: jako desetinný oddělovač použijte tečku a nikoliv čárku" />
 <classtext lang="de" title="ungewöhnlicher Wert von {0.key}: nutze . anstelle von , als Dezimaltrennzeichen" />
 <classtext lang="en" title="unusual value of {0.key}: use . instead of , as decimal separator" />
@@ -3118,7 +3118,7 @@
 <classtext lang="ru" title="необычное значение {0.key}: используйте . вместо , в качестве десятичного разделителя" />
 <classtext lang="uk" title='неочікуване значення {0.key}: використовуйте "."(крапку) замість "," (коми) як десятковий розділювач' />
 </class>
-<class item="9006" tag="tag,value" id="9006018" level="3">
+<class id="9006018" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="neobvyklá hodnota {0.key}: metr je výchozí jednotkou; desetinný oddělovač je tečka; uvádíte-li jednotky oddělte je mezerou" />
 <classtext lang="de" title="ungewöhnlicher Wert von {0.key}: Meter ist Standard; Punkt ist Dezimaltrennzeichen; bei Einheiten setzte ein Leerzeichen vor die Einheit" />
 <classtext lang="en" title="unusual value of {0.key}: meters is default; point is decimal separator; if units, put space then unit" />
@@ -3132,7 +3132,7 @@
 <classtext lang="ru" title="необычное значение {0.key}: по умолчанию метры; точка в качестве десятичного разделителя; при указании единицы измерения добавьте перед ней пробел" />
 <classtext lang="uk" title='неочікуване значення {0.key}: типово в метрах; використовуйте "."(крапку) як десятковий розділювач; перед одиницями виміру ставте пробіл' />
 </class>
-<class item="9006" tag="tag,value" id="9006019" level="3">
+<class id="9006019" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="neobvyklá hodnota {0.key}: tuna je výchozí jednotkou; desetinný oddělovač je tečka; uvádíte-li jednotky oddělte je mezerou" />
 <classtext lang="de" title="ungewöhnlicher Wert von {0.key}: Tonne ist Standard; Punkt ist Dezimaltrennzeichen; bei Einheiten setzte ein Leerzeichen vor die Einheit" />
 <classtext lang="en" title="unusual value of {0.key}: tonne is default; point is decimal separator; if units, put space then unit" />
@@ -3146,7 +3146,7 @@
 <classtext lang="ru" title="необычное значение {0.key}: по умолчанию тонны; точка в качестве десятичного разделителя; при указании единицы измерения добавьте перед ней пробел" />
 <classtext lang="uk" title='неочікуване значення {0.key}: типово в тонах; використовуйте "."(крапку) як десятковий розділювач; перед одиницями виміру ставте пробіл' />
 </class>
-<class item="9006" tag="tag,value" id="9006020" level="3">
+<class id="9006020" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="neobvyklá hodnota {0.key}: kilometr je výchozí jednotkou; desetinný oddělovač je tečka; uvádíte-li jednotky oddělte je mezerou" />
 <classtext lang="de" title="ungewöhnlicher Wert von {0.key}: Kilometer ist Standard; Punkt ist Dezimaltrennzeichen; bei Einheiten setzte ein Leerzeichen vor die Einheit" />
 <classtext lang="en" title="unusual value of {0.key}: kilometers is default; point is decimal separator; if units, put space then unit" />
@@ -3160,7 +3160,7 @@
 <classtext lang="ru" title="необычное значение {0.key}: по умолчанию километры; точка в качестве десятичного разделителя; при указании единицы измерения добавьте перед ней пробел" />
 <classtext lang="uk" title='неочікуване значення {0.key}: типово в кілометрах; використовуйте "."(крапку) як десятковий розділювач; перед одиницями виміру ставте пробіл' />
 </class>
-<class item="9006" tag="tag,value" id="9006021" level="3">
+<class id="9006021" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="Nepotřebný počet desetinných míst" />
 <classtext lang="de" title="Überflüssige Anzahl von Dezimalstellen" />
 <classtext lang="en" title="Unnecessary amount of decimal places" />
@@ -3171,16 +3171,13 @@
 <classtext lang="ru" title="Излишнее количество десятичных знаков" />
 <classtext lang="uk" title="Зайва кількість десяткових знаків" />
 </class>
-<class item="9006" tag="tag,value" id="9006022" level="3">
+<class id="9006022" item="9006" level="3" tag="tag,value">
 <classtext lang="cs" title="Značení letiště" />
 <classtext lang="de" title="Flughafenerfassung" />
 <classtext lang="en" title="Airport tagging" />
-<classtext lang="fr" title="Marquage d''aéroport" />
-<classtext lang="nl" title="Luchthaven taggen" />
 <classtext lang="ru" title="Теги аэропорта" />
-<classtext lang="uk" title="Теґування аеропортів" />
 </class>
-<class item="9007" tag="tag,relation" id="9007001" level="3">
+<class id="9007001" item="9007" level="3" tag="tag,relation">
 <classtext lang="cs" title="Chybějící značka" />
 <classtext lang="de" title="fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
@@ -3199,7 +3196,7 @@
 <classtext lang="zh_CN" title="标签丢失" />
 <classtext lang="zh_TW" title="缺少標籤" />
 </class>
-<class item="9007" tag="tag,relation" id="9007002" level="2">
+<class id="9007002" item="9007" level="2" tag="tag,relation">
 <classtext lang="ca" title="relació sense tipus" />
 <classtext lang="cs" title='relace bez "type"' />
 <classtext lang="de" title="Relation ohne Typ" />
@@ -3218,7 +3215,7 @@
 <classtext lang="zh_CN" title="没有类型的关系" />
 <classtext lang="zh_TW" title="關聯沒有類型 (type)" />
 </class>
-<class item="9008" tag="tag" id="9008005" level="3">
+<class id="9008005" item="9008" level="3" tag="tag">
 <classtext lang="cs" title="{0.key}={0.value}" />
 <classtext lang="de" title="{0.key}={0.value}" />
 <classtext lang="en" title="{0.key}={0.value}" />
@@ -3235,7 +3232,7 @@
 <classtext lang="zh_CN" title="{0.key}={0.value}" />
 <classtext lang="zh_TW" title="{0.key}={0.value}" />
 </class>
-<class item="9009" tag="tag" id="9009001" level="3">
+<class id="9009001" item="9009" level="3" tag="tag">
 <classtext lang="cs" title="zastaralé značení" />
 <classtext lang="de" title="veraltete Merkmale" />
 <classtext lang="en" title="deprecated tagging" />
@@ -3253,7 +3250,7 @@
 <classtext lang="zh_CN" title="已弃用的标签" />
 <classtext lang="zh_TW" title="不建議的標籤" />
 </class>
-<class item="9009" tag="tag" id="9009002" level="2">
+<class id="9009002" item="9009" level="2" tag="tag">
 <classtext lang="ca" title="el nom del carrer conté ss" />
 <classtext lang="cs" title="název ulice obsahuje ss" />
 <classtext lang="de" title="Straßenname enthält ss" />
@@ -3272,7 +3269,7 @@
 <classtext lang="zh_CN" title="街道名称中含有 ss" />
 <classtext lang="zh_TW" title="街道名稱含有 ss" />
 </class>
-<class item="9009" tag="tag" id="9009003" level="2">
+<class id="9009003" item="9009" level="2" tag="tag">
 <classtext lang="cs" title="název ulice obsahuje ß" />
 <classtext lang="de" title="Straßenname enthält ß" />
 <classtext lang="en" title="street name contains ß" />
@@ -3289,7 +3286,7 @@
 <classtext lang="zh_CN" title="街道名含有ß" />
 <classtext lang="zh_TW" title="街道名稱含有 ß" />
 </class>
-<class item="9010" tag="tag" id="9010001" level="3">
+<class id="9010001" item="9010" level="3" tag="tag">
 <classtext lang="cs" title="zbytečná značka" />
 <classtext lang="de" title="unnötiges Merkmal" />
 <classtext lang="en" title="unnecessary tag" />
@@ -3306,7 +3303,7 @@
 <classtext lang="zh_CN" title="多余的标签" />
 <classtext lang="zh_TW" title="不需要的標籤" />
 </class>
-<class item="9010" tag="tag" id="9010002" level="3">
+<class id="9010002" item="9010" level="3" tag="tag">
 <classtext lang="cs" title="{0.key}={0.value} nedává smysl" />
 <classtext lang="de" title="{0.key}={0.value} ergibt keinen Sinn" />
 <classtext lang="en" title="{0.key}={0.value} makes no sense" />
@@ -3323,7 +3320,7 @@
 <classtext lang="zh_CN" title="{0.key}={0.value}无意义" />
 <classtext lang="zh_TW" title="{0.key}={0.value} 不合理" />
 </class>
-<class item="9010" tag="tag" id="9010003" level="3">
+<class id="9010003" item="9010" level="3" tag="tag">
 <classtext lang="cs" title="popisný název" />
 <classtext lang="de" title="Beschreibender Name" />
 <classtext lang="en" title="descriptive name" />
@@ -3335,7 +3332,7 @@
 <classtext lang="ru" title="описательное имя" />
 <classtext lang="uk" title="опис замість назви" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011001" level="2">
+<class id="9011001" item="9011" level="2" tag="tag,wikipedia">
 <classtext lang="cs" title="Značka wikipedia nemá zadaný žádný jazyk. Použijte''wikipedia''=''jazyk:název stránky''" />
 <classtext lang="de" title="Wikipedia-Merkmal hat kein Sprachkürzel, ''wikipedia''=''sprache:seitentitel'' nutzen" />
 <classtext lang="en" title="wikipedia tag has no language given, use ''wikipedia''=''language:page title''" />
@@ -3353,7 +3350,7 @@
 <classtext lang="zh_CN" title="维基百科标签没有指定的语言，使用''wikipedia''=''语言:页面标题''" />
 <classtext lang="zh_TW" title="維基百科標籤沒有指定語言，請使用 ''wikipedia''=''語言:條目標題''" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011002" level="3">
+<class id="9011002" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Značka wikipedia má neznámou předponu jazyka." />
 <classtext lang="de" title="Wikipedia-Merkmal hat einen unbekanntes Sprachkürzel." />
 <classtext lang="en" title="wikipedia tag has an unknown language prefix" />
@@ -3371,7 +3368,7 @@
 <classtext lang="zh_CN" title="维基百科标签有未知的语言前缀" />
 <classtext lang="zh_TW" title="維基百科標籤用了不明的語言代碼" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011003" level="3">
+<class id="9011003" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="zastaralé značení" />
 <classtext lang="de" title="veraltete Merkmale" />
 <classtext lang="en" title="deprecated tagging" />
@@ -3389,7 +3386,7 @@
 <classtext lang="zh_CN" title="已弃用的标签" />
 <classtext lang="zh_TW" title="不建議的標籤" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011004" level="3">
+<class id="9011004" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Jazyk Wikipedie ''be-x-old'' je zastaralý. Použijte radši ''be-tarask''." />
 <classtext lang="de" title="Wikipedia-Sprache ''be-x-old'' ist veraltet, stattdessen ''be-tarask'' nutzen" />
 <classtext lang="en" title="wikipedia ''be-x-old'' language is obsolete, use ''be-tarask'' instead" />
@@ -3407,7 +3404,7 @@
 <classtext lang="zh_CN" title="维基百科“be-x-old”语言过时，使用“be-tarask”" />
 <classtext lang="zh_TW" title="維基百科的 ''be-x-old'' 語言代碼已經過時，請用 ''be-tarask'' 替換" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011005" level="3">
+<class id="9011005" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Jazyk Wikipedie ''cz'' je neplatný. Použijte radši ''cs''." />
 <classtext lang="de" title="Wikipedia-Sprache ''cz'' ist ungültig, stattdessen ''cs'' nutzen" />
 <classtext lang="en" title="wikipedia ''cz'' language is invalid, use ''cs'' instead" />
@@ -3425,7 +3422,7 @@
 <classtext lang="zh_CN" title="维基百科“cz”语言无效，使用“cs”" />
 <classtext lang="zh_TW" title="維基百科的 ''cz'' 語言代碼無效，請用 ''cs'' 替換" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011006" level="2">
+<class id="9011006" item="9011" level="2" tag="tag,wikipedia">
 <classtext lang="cs" title="Značka {0.key} by neměla obsahovat hodnoty s zakódovaným URL, jako třeba ''%27''." />
 <classtext lang="de" title="{0.key}-Merkmal sollte keine URL-Kodierungswerte wie ''%27'' enthalten" />
 <classtext lang="en" title="{0.key} tag should not have URL-encoded values like ''%27''" />
@@ -3442,7 +3439,7 @@
 <classtext lang="zh_CN" title="{0.key}标签不应有类似''%27''的URL编码值" />
 <classtext lang="zh_TW" title="{0.key} 標籤的值必須是 URL 格式，像是 ''%27''" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011007" level="3">
+<class id="9011007" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Název stránky Wikipedie by za kódem jazyka neměl začínat mezerou." />
 <classtext lang="de" title="Wikipediatitel sollte nach dem Sprachkürzel nicht mit einem Leerzeichen beginnen" />
 <classtext lang="en" title="wikipedia title should not start with a space after language code" />
@@ -3460,7 +3457,7 @@
 <classtext lang="zh_CN" title="在语言码后的维基百科标题不应以空格开头" />
 <classtext lang="zh_TW" title="語言代碼之後的維基百科的條目標題不可以用空白開頭" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011008" level="3">
+<class id="9011008" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Název stránky Wikipedie by neměl mít předponu ''wiki/''." />
 <classtext lang="de" title="Wikipediatitel sollte kein Präfix ''wiki/'' haben" />
 <classtext lang="en" title="wikipedia title should not have ''wiki/'' prefix" />
@@ -3478,7 +3475,7 @@
 <classtext lang="zh_CN" title="维基百科标题不应有“wiki/”前缀" />
 <classtext lang="zh_TW" title="維基百科條目標題不可以用 ''wiki/'' 開頭" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011009" level="3">
+<class id="9011009" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Název stránky Wikipedie by měl mít první písmeno velké." />
 <classtext lang="de" title="Wikipedia-Seitentitel sollte mit einem Großbuchstaben beginnen" />
 <classtext lang="en" title="wikipedia page title should have first letter capitalized" />
@@ -3496,7 +3493,7 @@
 <classtext lang="zh_CN" title="维基百科页面标题首字母应大写" />
 <classtext lang="zh_TW" title="維基百科頁面標題的第一個字母應該大寫" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011010" level="3">
+<class id="9011010" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Název stránky Wikipedie by měl obsahovat mezery a nikoliv podtržítka (''_''→'' '')." />
 <classtext lang="de" title="Wikipedia-Seitentitel sollte Leerzeichen statt Unterstrichen haben (''_''→'' '')" />
 <classtext lang="en" title="wikipedia page title should have spaces instead of underscores (''_''→'' '')" />
@@ -3514,7 +3511,7 @@
 <classtext lang="zh_CN" title="维基百科页面标题应有空格而不是(''_''→'' '')" />
 <classtext lang="zh_TW" title="維基百科的頁面標題應該用空白替換底線 (''_''→'' '')" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011011" level="3">
+<class id="9011011" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Jazyk Wikipedie je asi zdvojený, např. cs:cs:Něco" />
 <classtext lang="de" title="Wikipedia-Sprache scheint verdoppelt, z.B. en:en:Foo" />
 <classtext lang="en" title="wikipedia language seems to be duplicated, e.g. en:en:Foo" />
@@ -3533,7 +3530,7 @@
 <classtext lang="zh_CN" title="维基百科语言似乎重复，例如en:en:Foo" />
 <classtext lang="zh_TW" title="維基百科的語言代碼重複了，例如：en:en:Foo" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011012" level="2">
+<class id="9011012" item="9011" level="2" tag="tag,wikipedia">
 <classtext lang="cs" title="Značka wikidata musí být ve tvaru Qnnnn, kde n je číslice." />
 <classtext lang="de" title="Wikidata-Merkmal muss im Qnnnn-Format sein (n = Zahl)" />
 <classtext lang="en" title="wikidata tag must be in Qnnnn format, where n is a digit" />
@@ -3551,7 +3548,7 @@
 <classtext lang="zh_CN" title="维基数据标签必须符合Qnnnn格式（n为数字）" />
 <classtext lang="zh_TW" title="維基百科標籤必須是 Qnnnn 格式，n 為 0 到 9 數字" />
 </class>
-<class item="9011" tag="tag,wikipedia" id="9011014" level="3">
+<class id="9011014" item="9011" level="3" tag="tag,wikipedia">
 <classtext lang="cs" title="Značka wikipedia není přidána, ale je přidána značka ''{1.key}''. Ujistěte se, že spolu se značkou wikidata používáte značku wikipedia=jazyk:stránka" />
 <classtext lang="de" title="Wikipedia-Merkmal ist nicht gesetzt, aber das Merkmal ''{1.key}''. Bitte sicherstellen, dass wikipedia=sprache:wert zusammen mit dem Wikidata-Merkmal genutzt wird." />
 <classtext lang="en" title="wikipedia tag is not set, but a ''{1.key}'' tag is. Make sure to use wikipedia=language:value together with wikidata tag." />
@@ -3569,28 +3566,28 @@
 <classtext lang="uk" title='теґ wikipedia не встановлено, проте є теґ "{1.key}". Переконайтесь, що ви використовуєте wikipedia=код мови:назва сторінки разом з wikidata' />
 <classtext lang="zh_CN" title="维基百科标签未设定，但“{1.key}”标签已设定。确保将wikipedia=语言:值与维基数据标签一同使用。" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012001" level="3">
+<class id="9012001" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="Multi-colour {0.value} without {2.key}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012002" level="3">
+<class id="9012002" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="Unrecognized {0.key}: {0.value}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012003" level="3">
+<class id="9012003" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="{0.value} have no IALA or system defind ({1.key})" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012004" level="3">
+<class id="9012004" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="Probably wrong category on {0.value}, {2.value} colour mean {3.value} in {1.value}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012005" level="3">
+<class id="9012005" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="Probably wrong category on {0.value}, the colour combination {1.value} usually mean {2.value}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012006" level="3">
+<class id="9012006" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="{0.value} have no {1.key}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012007" level="3">
+<class id="9012007" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="{0.key} set without {1.key}={1.value}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012008" level="3">
+<class id="9012008" item="9012" level="3" tag="tag,seamark">
 <classtext lang="ca" title="{0.key} sense {1.key}" />
 <classtext lang="cs" title="{0.key} bez {1.key}" />
 <classtext lang="de" title="{0.key} ohne {1.key}" />
@@ -3612,22 +3609,22 @@
 <classtext lang="zh_CN" title="{0.key} 没有 {1.key}" />
 <classtext lang="zh_TW" title="{0.key} 沒有 {1.key}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012009" level="3">
+<class id="9012009" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="In {0.value} {2.key}={2.value} require {1.key}={1.value}" />
 </class>
-<class item="9012" tag="tag,seamark" id="9012010" level="3">
+<class id="9012010" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="{0.value} sign require {1.key} set to left or right" />
 </class>
-<class item="9013" tag="tag,sport" id="9013001" level="3">
+<class id="9013001" item="9013" level="3" tag="tag,sport">
 <classtext lang="en" title="Way contains ''{0.key}'' but not ''{1.key}''." />
 </class>
-<class item="9013" tag="tag,sport" id="9013002" level="3">
+<class id="9013002" item="9013" level="3" tag="tag,sport">
 <classtext lang="en" title="Way contains ''{0.key}'' but is neither a track nor a path." />
 </class>
-<class item="9013" tag="tag,sport" id="9013003" level="3">
+<class id="9013003" item="9013" level="3" tag="tag,sport">
 <classtext lang="en" title="Invalid ''{0.key}'' value: ''{0.value}''" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014002" level="2">
+<class id="9014002" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Je toto autobusová zastávka nebo autobusová stanice ?" />
 <classtext lang="de" title="Ist das eine Bushaltestelle oder ein Busbahnhof?" />
 <classtext lang="en" title="Is it a bus stop or a bus station?" />
@@ -3643,7 +3640,7 @@
 <classtext lang="zh_CN" title="它是一个公交站还是一个公交总站？" />
 <classtext lang="zh_TW" title="這是公車站牌還是公車轉運站" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014006" level="3">
+<class id="9014006" item="9014" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Zkontroluj zda může být poznámka smazána" />
 <classtext lang="en" title="Check if the note can be deleted" />
 <classtext lang="es" title="Comprobar si la nota puede borrarse" />
@@ -3658,7 +3655,7 @@
 <classtext lang="zh_CN" title="检查笔记是否可以删除" />
 <classtext lang="zh_TW" title="檢查註解是否能移除" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014007" level="3">
+<class id="9014007" item="9014" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Značka network by měla být na dopravních linkách, nikoliv na zastávkách" />
 <classtext lang="en" title="The network should be on the transport lines and not on the stops" />
 <classtext lang="es" title="La red debe estar en las líneas de transporte y no en las paradas" />
@@ -3672,7 +3669,7 @@
 <classtext lang="zh_CN" title="交通系统network标签应该在交通线路上，而不是在停靠点上" />
 <classtext lang="zh_TW" title="網路應該在交通路線上而不是站牌" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014008" level="3">
+<class id="9014008" item="9014" level="3" tag="tag,public_transport">
 <classtext lang="cs" title="Značka operator by měla být na dopravních linkách, nikoliv na zastávkách" />
 <classtext lang="en" title="The operator should be on the transport lines and not on the stops" />
 <classtext lang="es" title="El operador debe estar en las líneas de transporte y no en las paradas" />
@@ -3686,7 +3683,7 @@
 <classtext lang="zh_CN" title="运营商标签应该在交通线路上，而不是在停靠站上" />
 <classtext lang="zh_TW" title="營運者應該在交通路線上而不是站牌" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014009" level="2">
+<class id="9014009" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící způsob dopravy, přidej značku route = bus/coach/tram/apod." />
 <classtext lang="de" title="Fehlendes Verkehrsmittel, ergänze den Tag route = bus/coach/tram/etc" />
 <classtext lang="en" title="Missing transportation mode, add a tag route = bus/coach/tram/etc" />
@@ -3702,7 +3699,7 @@
 <classtext lang="zh_CN" title="缺少运输模式，请添加标签route = bus/coach/tram/etc" />
 <classtext lang="zh_TW" title="遺失交通模式，請加上標籤如 route = bus/coach/tran/etc" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014010" level="2">
+<class id="9014010" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící způsob dopravy, změň značku route na route_master" />
 <classtext lang="de" title="Fehlendes Verkehrsmittel, ändere Tag route in route_master" />
 <classtext lang="en" title="Missing transportation mode, change tag route to route_master" />
@@ -3718,13 +3715,13 @@
 <classtext lang="zh_CN" title="缺少运输模式，请将标签路线更改为route_master" />
 <classtext lang="zh_TW" title="遺失交通模式，請更改標籤從 route 到 route_master" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014013" level="2">
+<class id="9014013" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="en" title="Check the operator tag" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014014" level="2">
+<class id="9014014" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="en" title="Check the network tag" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014019" level="2">
+<class id="9014019" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Autobusová zastávka má být uzlem" />
 <classtext lang="en" title="A bus stop is supposed to be a node" />
 <classtext lang="es" title="Una parada de autobús se supone que es un nodo" />
@@ -3735,7 +3732,7 @@
 <classtext lang="pl" title="Przystanek autobusowy powinien być węzłem" />
 <classtext lang="uk" title="Зупинка автобуса повинна бути точкою" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014020" level="2">
+<class id="9014020" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Barva linky veřejné dopravy by měla být zanesena v barevné značce" />
 <classtext lang="en" title="The color of the public transport line should be in a colour tag" />
 <classtext lang="es" title="El color de la línea de transporte público debe estar en la etiqueta colour." />
@@ -3745,7 +3742,7 @@
 <classtext lang="nl" title="De kluer van een openbaar vervoer lijn moet in een colour tag" />
 <classtext lang="uk" title="Колір лінії громадського транспорту повинен мати теґ colour" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014021" level="2">
+<class id="9014021" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Interval je neplatný (zkuste několik minut)" />
 <classtext lang="en" title="The interval is invalid (try a number of minutes)" />
 <classtext lang="es" title="El intervalo no es válido (intente un número de minutos)" />
@@ -3755,7 +3752,7 @@
 <classtext lang="nl" title="De interval is ongeldig (probeer een nummer of minuten)" />
 <classtext lang="uk" title="Недійсний інтервал (вкажіть кількість хвилин)" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014022" level="2">
+<class id="9014022" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Délka je neplatná (zkuste několik minut)" />
 <classtext lang="en" title="The duration is invalid (try a number of minutes)" />
 <classtext lang="es" title="La duración no es válida (intente un número de minutos)" />
@@ -3765,7 +3762,7 @@
 <classtext lang="nl" title="De duur is ongeldig (probeer een nummer of minuten) " />
 <classtext lang="uk" title="Недійсна тривалість (вкажіть кількість хвилин)" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014023" level="2">
+<class id="9014023" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Chybějící značka intervalu pro určení hlavního intervalu" />
 <classtext lang="en" title="Missing interval tag to specify the main interval" />
 <classtext lang="es" title="Falta etiqueta interval para especificar el intervalo principal" />
@@ -3775,7 +3772,7 @@
 <classtext lang="nl" title="Ontbrekende interval tag om de hoofdinterval te specificeren" />
 <classtext lang="uk" title="Відсутній теґ interval для вказання основного інтервалу" />
 </class>
-<class item="9014" tag="tag,public_transport" id="9014024" level="2">
+<class id="9014024" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="en" title="Missing opening_hours tag" />
 <classtext lang="es" title="Falta etiqueta opening_hours" />
 <classtext lang="fr" title="Attribut opening_hours (heures de service) manquant" />
@@ -3785,133 +3782,133 @@
 <classtext lang="pl" title="Brak znacznika opening_hours" />
 <classtext lang="uk" title="Відсутній теґ opening_hours" />
 </class>
-<class item="9015" tag="tag,railway" id="9015001" level="2">
+<class id="9015001" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Track tagged with usage=* AND service=* - remove one of these tags" />
 </class>
-<class item="9015" tag="tag,railway" id="9015002" level="2">
+<class id="9015002" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Station mapped as a way, but should be mapped as a node" />
 </class>
-<class item="9015" tag="tag,railway" id="9015004" level="2">
+<class id="9015004" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Key traffic_mode is deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015005" level="2">
+<class id="9015005" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="usage=freight is deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015007" level="2">
+<class id="9015007" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="track numbers inside a station should be railway:track_ref, not name" />
 </class>
-<class item="9015" tag="tag,railway" id="9015008" level="2">
+<class id="9015008" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="platforms should have the numbers in ref, not railway:track_ref" />
 </class>
-<class item="9015" tag="tag,railway" id="9015009" level="2">
+<class id="9015009" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="track names or refs should not include the word 'track', tag those numbers as railway:track_ref" />
 </class>
-<class item="9015" tag="tag,railway" id="9015010" level="2">
+<class id="9015010" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="platform names or refs should not include the word 'track', write that as 'description', put the bare numbers in 'ref', separated by ';'" />
 </class>
-<class item="9015" tag="tag,railway" id="9015011" level="2">
+<class id="9015011" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="power:type=overhead is deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015012" level="2">
+<class id="9015012" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="power:type=overhead is deprecated, conflict between power:type=overhead and electrified=*" />
 </class>
-<class item="9015" tag="tag,railway" id="9015013" level="2">
+<class id="9015013" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="power:type is deprecated, change to proper electrified value" />
 </class>
-<class item="9015" tag="tag,railway" id="9015014" level="2">
+<class id="9015014" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="priority on railway objects is deprecated, remove it" />
 </class>
-<class item="9015" tag="tag,railway" id="9015015" level="3">
+<class id="9015015" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="tracks=1 not necessary if detail=track is tagged." />
 </class>
-<class item="9015" tag="tag,railway" id="9015016" level="3">
+<class id="9015016" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="If tracks are tagged with service=*, they should be mapped as one way per track." />
 </class>
-<class item="9015" tag="tag,railway" id="9015017" level="2">
+<class id="9015017" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Crossings and level crossings should be mapped as nodes" />
 </class>
-<class item="9015" tag="tag,railway" id="9015018" level="3">
+<class id="9015018" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="radio=GSM-R is deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015019" level="3">
+<class id="9015019" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="radio=* is deprecated, change to proper railway:radio value" />
 </class>
-<class item="9015" tag="tag,railway" id="9015020" level="3">
+<class id="9015020" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="track tagged with 'tunnel' in name, consider using tunnel:name instead and put the track name into name" />
 </class>
-<class item="9015" tag="tag,railway" id="9015021" level="3">
+<class id="9015021" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="track tagged with 'tunnel' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia" />
 </class>
-<class item="9015" tag="tag,railway" id="9015022" level="3">
+<class id="9015022" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="track tagged with 'bridge' in name, consider using bridge:name instead and put the track name into name" />
 </class>
-<class item="9015" tag="tag,railway" id="9015023" level="3">
+<class id="9015023" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="track tagged with 'bridge' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia" />
 </class>
-<class item="9015" tag="tag,railway" id="9015024" level="3">
+<class id="9015024" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="lanes=* is used for highways, not railways" />
 </class>
-<class item="9015" tag="tag,railway" id="9015025" level="3">
+<class id="9015025" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="maxspeed=signals is deprecated, tag the highest possible speed instead" />
 </class>
-<class item="9015" tag="tag,railway" id="9015026" level="3">
+<class id="9015026" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="maxspeed should contain the value as it is shown on the line with mph as unit" />
 </class>
-<class item="9015" tag="tag,railway" id="9015027" level="3">
+<class id="9015027" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="{0.key}={0.value} without {0.value}:railway" />
 </class>
-<class item="9015" tag="tag,railway" id="9015028" level="3">
+<class id="9015028" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="Milestone without position, add railway:position=*" />
 </class>
-<class item="9015" tag="tag,railway" id="9015029" level="3">
+<class id="9015029" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="supervised=* is deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015030" level="3">
+<class id="9015030" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="signal specification given but node is not tagged as signal or equivalent type" />
 </class>
-<class item="9015" tag="tag,railway" id="9015031" level="2">
+<class id="9015031" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="A sign cannot have different states." />
 </class>
-<class item="9015" tag="tag,railway" id="9015032" level="2">
+<class id="9015032" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="railway=flat_crossing is deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015033" level="3">
+<class id="9015033" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption" />
 </class>
-<class item="9015" tag="tag,railway" id="9015034" level="3">
+<class id="9015034" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="railway:signal:stop:description is deprecated, replace by appropiate railway:signal:stop:caption value" />
 </class>
-<class item="9015" tag="tag,railway" id="9015035" level="2">
+<class id="9015035" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="main and combined signal at the same place" />
 </class>
-<class item="9015" tag="tag,railway" id="9015036" level="2">
+<class id="9015036" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="signals should be tagged with ref, not railway:ref" />
 </class>
-<class item="9015" tag="tag,railway" id="9015037" level="2">
+<class id="9015037" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="signals should have a railway:signal:direction=* tag" />
 </class>
-<class item="9015" tag="tag,railway" id="9015038" level="3">
+<class id="9015038" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="signal names should be prefixed with an operator or country prefix" />
 </class>
-<class item="9015" tag="tag,railway" id="9015039" level="3">
+<class id="9015039" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="{0.value} identification should be tagged as ref, not as name" />
 </class>
-<class item="9015" tag="tag,railway" id="9015040" level="2">
+<class id="9015040" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Tagging for resetting switch is deprecated, change railway:switch=* to proper value" />
 </class>
-<class item="9015" tag="tag,railway" id="9015041" level="3">
+<class id="9015041" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="controlled_area relations are deprecated" />
 </class>
-<class item="9015" tag="tag,railway" id="9015042" level="2">
+<class id="9015042" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="interlocking relation without type=railway" />
 </class>
-<class item="9015" tag="tag,railway" id="9015043" level="2">
+<class id="9015043" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="interlocking relation with type other than railway" />
 </class>
-<class item="9015" tag="tag,railway" id="9015044" level="3">
+<class id="9015044" item="9015" level="3" tag="tag,railway">
 <classtext lang="en" title="{0.key}={0.value} without name" />
 </class>
-<class item="5010" tag="name,fix:chair" id="50109001" level="2">
+<class id="50109001" item="5010" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Ve jménu Farsi zjištěna arabská písmena" />
 <classtext lang="de" title="Arabischer Buchstabe in Farsi Namen erkannt" />
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
@@ -3926,31 +3923,31 @@
 <classtext lang="uk" title="Арабська буква виявлена в назві на фарсі" />
 <classtext lang="zh_CN" title="在波斯语名称中检测到阿拉伯字母" />
 </class>
-<class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
+<class id="259473529" item="3030" level="2" tag="typo-tag,fix:chair">
 <classtext lang="en" title="typo-tag" />
 </class>
-<class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
+<class id="301849747" item="3030" level="2" tag="deprecated,fix:chair">
 <classtext lang="en" title="deprecated" />
 </class>
-<class item="3030" tag="value,fix:chair" id="467520078" level="2">
+<class id="467520078" item="3030" level="2" tag="value,fix:chair">
 <classtext lang="en" title="value" />
 </class>
-<class item="3030" tag="shop,fix:chair" id="737787355" level="2">
+<class id="737787355" item="3030" level="2" tag="shop,fix:chair">
 <classtext lang="en" title="shop" />
 </class>
-<class item="3030" tag="tag,fix:chair" id="837055326" level="2">
+<class id="837055326" item="3030" level="2" tag="tag,fix:chair">
 <classtext lang="en" title="tag" />
 </class>
-<class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
+<class id="1100242374" item="3030" level="2" tag="ref,fix:chair">
 <classtext lang="en" title="ref" />
 </class>
-<class item="3030" tag="typo,fix:chair" id="1258610297" level="2">
+<class id="1258610297" item="3030" level="2" tag="typo,fix:chair">
 <classtext lang="en" title="typo" />
 </class>
-<class item="3030" tag="name,fix:chair" id="1398494170" level="2">
+<class id="1398494170" item="3030" level="2" tag="name,fix:chair">
 <classtext lang="en" title="name" />
 </class>
-<class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
+<class id="2006017393" item="3030" level="2" tag="type-tag,fix:chair">
 <classtext lang="en" title="type-tag" />
 </class>
 <delete type="node" id="1" />
