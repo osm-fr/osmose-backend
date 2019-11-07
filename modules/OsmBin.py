@@ -466,7 +466,7 @@ if __name__=="__main__":
 ###########################################################################
 import unittest
 
-class TestCountObjects:
+class MockCountObjects:
     def __init__(self):
         self.num_nodes = 0
         self.num_ways = 0
@@ -537,7 +537,7 @@ class Test(unittest.TestCase):
             assert not res
 
     def test_copy_relation(self):
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         self.a.CopyRelationTo(o1)
         self.assertEquals(o1.num_nodes, 0)
         self.assertEquals(o1.num_ways, 0)

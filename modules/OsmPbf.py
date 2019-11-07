@@ -22,11 +22,11 @@
 try:
     from . import OsmPbf_libosmbf
     OsmPbfReader = OsmPbf_libosmbf.OsmPbfReader
-    TestCountObjects = OsmPbf_libosmbf.TestCountObjects
+    MockCountObjects = OsmPbf_libosmbf.MockCountObjects
 except ImportError:
     from . import OsmPbf_imposm
     OsmPbfReader = OsmPbf_imposm.OsmPbfReader
-    TestCountObjects = OsmPbf_imposm.TestCountObjects
+    MockCountObjects = OsmPbf_imposm.MockCountObjects
 
 ###########################################################################
 import unittest
@@ -37,7 +37,7 @@ class Test(unittest.TestCase):
         import dateutil
 
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
         self.assertEquals(o1.num_ways, 625)

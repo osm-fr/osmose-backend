@@ -178,7 +178,7 @@ class OsmPbfReader:
 ###########################################################################
 import unittest
 
-class TestCountObjects:
+class MockCountObjects:
     def __init__(self):
         self.num_nodes = 0
         self.num_ways = 0
@@ -197,7 +197,7 @@ class TestCountObjects:
 class Test(unittest.TestCase):
     def test_copy_all(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
         self.assertEquals(o1.num_ways, 625)
@@ -206,7 +206,7 @@ class Test(unittest.TestCase):
 
     def test_copy_all_no_state_txt(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", None)
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
         self.assertEquals(o1.num_ways, 625)
@@ -215,7 +215,7 @@ class Test(unittest.TestCase):
 
     def test_copy_all_pbf_timestamp(self):
         i1 = OsmPbfReader("tests/gibraltar.osm.pbf", None)
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 850)  # only nodes with tags are reported
         self.assertEquals(o1.num_ways, 3833)
@@ -224,7 +224,7 @@ class Test(unittest.TestCase):
 
     def test_copy_way(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyWayTo(o1)
         self.assertEquals(o1.num_nodes, 0)
         self.assertEquals(o1.num_ways, 625)
@@ -232,7 +232,7 @@ class Test(unittest.TestCase):
 
     def test_copy_relation(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyRelationTo(o1)
         self.assertEquals(o1.num_nodes, 0)
         self.assertEquals(o1.num_ways, 0)
