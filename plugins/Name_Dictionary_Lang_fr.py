@@ -118,6 +118,7 @@ class Test(TestPluginCommon):
         self.check_err(a.relation(None, {"name": u"Rue Saint-AndrÃ©"}, None))
 
         # code that is not reachable in normal cases
-        from nose.tools import assert_raises
+        import pytest
         a.DictCorrections["buebdgxrtsuei"] = None
-        assert_raises(Exception, a.node, None, {"name": "ceci est buebdgxrtsuei"})
+        with pytest.raises(Exception):
+            a.node({"name": "ceci est buebdgxrtsuei"})

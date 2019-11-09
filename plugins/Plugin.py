@@ -233,18 +233,23 @@ class Test(TestPluginCommon):
             self.assertNotEqual(stablehash(n[0]), stablehash(n[1]))
 
     def test_check_err(self):
-        from nose.tools import assert_raises
+        import pytest
         self.assertEqual(self.check_err([{"class": 1, "subclass": 2}]), None)
         self.assertEqual(self.check_err([{"class": 1, "subclass": 2, "text": {"en": "titi"}}]), None)
         self.assertEqual(self.check_err([{"class": 1, "subclass": 2, "fix": {"name": "toto"}}]), None)
         self.assertEqual(self.check_err([{"class": 1, "subclass": 2, "fix": {"+": {"name": "toto"}}}]), None)
 
-        assert_raises(Exception, self.check_err, [{"unknown": "x"}])
-        assert_raises(Exception, self.check_err, [{"class": "a", "subclass": 2}])
-        assert_raises(Exception, self.check_err, [{"class": 1, "subclass": "b"}])
-        assert_raises(Exception, self.check_err, [{"class": 1, "subclass": 2, "text": "toto"}])
+        with pytest.raises(Exception):
+            self.check_err([{"unknown": "x"}])
+        with pytest.raises(Exception):
+            self.check_err([{"class": "a", "subclass": 2}])
+        with pytest.raises(Exception):
+            self.check_err([{"class": 1, "subclass": "b"}])
+        with pytest.raises(Exception):
+            self.check_err([{"class": 1, "subclass": 2, "text": "toto"}])
 
-        assert_raises(Exception, self.check_err, ["unknown"])
+        with pytest.raises(Exception):
+            self.check_err(["unknown"])
 
     def test_check_dict(self):
         self.assertEqual(self.check_dict({"a": "toto"}, None), None)
