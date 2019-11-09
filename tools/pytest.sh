@@ -6,4 +6,4 @@ cd ..
 
 # pytest is configured by pytest.ini and conftest.py
 
-python $(which pytest)
+python3 $(which pytest)
