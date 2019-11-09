@@ -1,8 +1,8 @@
-dist: xenial
+dist: bionic
 language: python
 python:
-  - "2.7_with_system_site_packages"
-#  - "3.5_with_system_site_packages"
+#  - "2.7_with_system_site_packages"
+  - "3.6_with_system_site_packages"
 services:
   - postgresql
 addons:
@@ -24,11 +24,6 @@ addons:
     - make
     - pkg-config
     - protobuf-compiler
-before_install:
-  # from https://github.com/travis-ci/travis-ci/issues/9624
-  - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
-  - sudo service postgresql restart
-  - sleep 1
 install:
   - pip install -r requirements.txt -r requirements-dev.txt -r requirements-dev-python3.txt
 before_script:

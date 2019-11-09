@@ -491,7 +491,7 @@ WHERE
         for type, id in map(lambda r: (r[0], r[1:]), res):
             self.typeMapping[type](int(id))
 
-    re_points = re.compile("[\(,][^\(,\)]*[\),]")
+    re_points = re.compile(r"[\(,][^\(,\)]*[\),]")
 
     def get_points(self, text):
         pts = []
