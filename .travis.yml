@@ -13,8 +13,9 @@ addons:
     - postgresql-10-postgis-2.4-scripts
     # for python2
     - python-imposm-parser
+    - python-pytest
     # for python3
-    - python3-nose
+    - python3-pytest
     # for osm pbf parser
     - g++
     - libboost-python-dev
@@ -46,4 +47,4 @@ before_script:
   # compile osm pbf parser
   - cd modules/osm_pbf_parser && make && cd ../../
 script:
-  - ./tools/pynose.sh
+  - ./tools/pytest.sh
