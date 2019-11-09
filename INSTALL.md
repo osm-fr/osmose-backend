@@ -60,9 +60,9 @@ make
 Installation Database
 ---------------------
 
-Setup system dependencies (Debian Stretch)
+Setup system dependencies (Debian Buster)
 ```
-apt install postgresql-9.6 postgresql-contrib-9.6 postgresql-9.6-postgis-2.1
+apt install postgresql-11 postgresql-11-postgis-2.5
 ```
 
 As postgres user:
@@ -81,9 +81,9 @@ psql -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
 Dependencies
 ------------
 
-Java JRE for osmosis (Ubuntu Server 14.04):
+Java JRE for osmosis:
 ```
-apt install openjdk-7-jre-headless
+apt install openjdk-11-jre-headless
 ```
 
 osmosis is installed in osmosis/osmosis-0.47/.
