@@ -46,6 +46,11 @@ To run tests, additional packages are needed.
 pip install -r requirements-dev.txt
 ```
 
+Tests can then be run with:
+```
+pytest-3
+```
+
 ### Compile the OMS PBF parser
 
 Build the native python module lib to parse .osm.pbf files:
@@ -129,6 +134,6 @@ psql -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
 
 Finally run the tests:
 ```
-nosetests analysers/Analyser_Osmosis.py
-nosetests analysers/analyser_sax.py
+pytest-3 analysers/Analyser_Osmosis.py
+pytest-3 analysers/analyser_sax.py
 ```
