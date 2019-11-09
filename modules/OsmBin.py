@@ -466,7 +466,7 @@ if __name__=="__main__":
 ###########################################################################
 import unittest
 
-class TestCountObjects:
+class MockCountObjects:
     def __init__(self):
         self.num_nodes = 0
         self.num_ways = 0
@@ -502,24 +502,24 @@ class Test(unittest.TestCase):
             assert res
             assert res["lat"]
             assert res["lon"]
-            self.assertEquals(res["id"], id)
+            self.assertEqual(res["id"], id)
             if expected:
-                self.assertEquals(res["lat"], expected["lat"])
-                self.assertEquals(res["lon"], expected["lon"])
+                self.assertEqual(res["lat"], expected["lat"])
+                self.assertEqual(res["lon"], expected["lon"])
         else:
             if res:
-                self.assertEquals(res["lat"], _Bytes4ToCoord(_IntToBytes4(0)))
-                self.assertEquals(res["lon"], _Bytes4ToCoord(_IntToBytes4(0)))
+                self.assertEqual(res["lat"], _Bytes4ToCoord(_IntToBytes4(0)))
+                self.assertEqual(res["lon"], _Bytes4ToCoord(_IntToBytes4(0)))
 
     def check_way(self, func, id, exists=True, expected=None):
         res = func(id)
         if exists:
             assert res
             assert res["nd"]
-            self.assertEquals(res["tag"], {})
-            self.assertEquals(res["id"], id)
+            self.assertEqual(res["tag"], {})
+            self.assertEqual(res["id"], id)
             if expected:
-                self.assertEquals(res["nd"], expected["nd"])
+                self.assertEqual(res["nd"], expected["nd"])
         else:
             assert not res
 
@@ -529,19 +529,19 @@ class Test(unittest.TestCase):
             assert res
             assert res["member"]
             assert isinstance(res["tag"], dict)
-            self.assertEquals(res["id"], id)
+            self.assertEqual(res["id"], id)
             if expected:
-                self.assertEquals(res["member"], expected["member"])
-                self.assertEquals(res["tag"], expected["tag"])
+                self.assertEqual(res["member"], expected["member"])
+                self.assertEqual(res["tag"], expected["tag"])
         else:
             assert not res
 
     def test_copy_relation(self):
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         self.a.CopyRelationTo(o1)
-        self.assertEquals(o1.num_nodes, 0)
-        self.assertEquals(o1.num_ways, 0)
-        self.assertEquals(o1.num_rels, 16)
+        self.assertEqual(o1.num_nodes, 0)
+        self.assertEqual(o1.num_ways, 0)
+        self.assertEqual(o1.num_rels, 16)
 
     def test_node(self):
         del self.a
@@ -601,39 +601,39 @@ class Test(unittest.TestCase):
     def test_relation_full(self):
         res = self.a.RelationFullRecur(529891)
         assert res
-        self.assertEquals(res[0]["type"], "relation")
-        self.assertEquals(res[0]["data"]["id"], 529891)
-        self.assertEquals(res[1]["type"], "node")
-        self.assertEquals(res[1]["data"]["id"], 670634766)
-        self.assertEquals(res[2]["type"], "node")
-        self.assertEquals(res[2]["data"]["id"], 670634768)
+        self.assertEqual(res[0]["type"], "relation")
+        self.assertEqual(res[0]["data"]["id"], 529891)
+        self.assertEqual(res[1]["type"], "node")
+        self.assertEqual(res[1]["data"]["id"], 670634766)
+        self.assertEqual(res[2]["type"], "node")
+        self.assertEqual(res[2]["data"]["id"], 670634768)
 
         self.a.Update("tests/saint_barthelemy.osc.gz")
         res = self.a.RelationFullRecur(7800)
         assert res
-        self.assertEquals(res[0]["type"], "relation")
-        self.assertEquals(res[0]["data"]["id"], 7800)
-        self.assertEquals(res[1]["type"], "node")
-        self.assertEquals(res[1]["data"]["id"], 78)
-        self.assertEquals(res[2]["type"], "node")
-        self.assertEquals(res[2]["data"]["id"], 79)
-        self.assertEquals(res[3]["type"], "way")
-        self.assertEquals(res[3]["data"]["id"], 780)
-        self.assertEquals(res[4]["type"], "node")
-        self.assertEquals(res[4]["data"]["id"], 78)
-        self.assertEquals(res[5]["type"], "node")
-        self.assertEquals(res[5]["data"]["id"], 79)
+        self.assertEqual(res[0]["type"], "relation")
+        self.assertEqual(res[0]["data"]["id"], 7800)
+        self.assertEqual(res[1]["type"], "node")
+        self.assertEqual(res[1]["data"]["id"], 78)
+        self.assertEqual(res[2]["type"], "node")
+        self.assertEqual(res[2]["data"]["id"], 79)
+        self.assertEqual(res[3]["type"], "way")
+        self.assertEqual(res[3]["data"]["id"], 780)
+        self.assertEqual(res[4]["type"], "node")
+        self.assertEqual(res[4]["data"]["id"], 78)
+        self.assertEqual(res[5]["type"], "node")
+        self.assertEqual(res[5]["data"]["id"], 79)
 
     def test_relation_full_missing(self):
         with self.assertRaises(MissingDataError) as cm:
             self.a.RelationFullRecur(47796)
-        self.assertEquals(str(cm.exception), "MissingDataError(missing way 82217912)")
+        self.assertEqual(str(cm.exception), "MissingDataError(missing way 82217912)")
 
     def test_relation_full_loop(self):
         self.a.Update("tests/saint_barthelemy.osc.gz")
         with self.assertRaises(RelationLoopError) as cm:
             self.a.RelationFullRecur(7801)
-        self.assertEquals(str(cm.exception), "RelationLoopError(member loop [7801, 7802, 7801])")
+        self.assertEqual(str(cm.exception), "RelationLoopError(member loop [7801, 7802, 7801])")
 
     def test_update(self):
         self.check_node(self.a.NodeGet, 2619283352, expected={"lat": 17.9005419, "lon": -62.8327042})

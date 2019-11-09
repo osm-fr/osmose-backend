@@ -83,14 +83,14 @@ class Test(TestPluginCommon):
 
             if f:
                 fix1 = rdp["fix"]["~"]["name"]
-                self.assertEquals(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+                self.assertEqual(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
             elif gen_err and r:
                 fix1 = rdp["fix"]["-"]
-                self.assertEquals(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+                self.assertEqual(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
 
             if r:
                 fix2 = rdp["fix"]["+"]["ref"]
-                self.assertEquals(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
+                self.assertEqual(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
 
             assert not a.way(None, {"name": n, "highway": "H", "ref": "N10"}, None)
             assert not a.way(None, {"name": n}, None)

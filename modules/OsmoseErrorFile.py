@@ -193,7 +193,7 @@ class Test(unittest.TestCase):
         d = self.a.fixdiff(b)
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(d)
-        self.assertEquals(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
+        self.assertEqual(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
 
     def test(self):
         self.check([[None]], [[None]] )

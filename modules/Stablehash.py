@@ -55,5 +55,5 @@ class Test(unittest.TestCase):
         h1 = stablehash( "toto")
         h2 = stablehash(u"toto")
         h3 = stablehash(u"é")
-        self.assertEquals(h1, h2)
-        self.assertNotEquals(h1, h3)
+        self.assertEqual(h1, h2)
+        self.assertNotEqual(h1, h3)

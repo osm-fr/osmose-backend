@@ -193,7 +193,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
@@ -221,7 +221,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
@@ -245,7 +245,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
@@ -272,7 +272,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)

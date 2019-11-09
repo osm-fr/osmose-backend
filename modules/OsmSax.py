@@ -398,7 +398,7 @@ def RelationToXml(data, full = False):
 ###########################################################################
 import unittest
 
-class TestCountObjects:
+class MockCountObjects:
     def __init__(self):
         self.num_nodes = 0
         self.num_ways = 0
@@ -416,48 +416,48 @@ class TestCountObjects:
 class Test(unittest.TestCase):
     def test_bz2(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 8076)
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
-        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
+        self.assertEqual(o1.num_nodes, 8076)
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
+        self.assertEqual(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
 
     def test_gz(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 8076)
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
+        self.assertEqual(o1.num_nodes, 8076)
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
 
     def test_gz_no_state_txt(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", None)
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 8076)
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
-        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
+        self.assertEqual(o1.num_nodes, 8076)
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
+        self.assertEqual(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
 
     def test_file(self):
         f = gzip.open("tests/saint_barthelemy.osm.gz")
         i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 8076)
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
+        self.assertEqual(o1.num_nodes, 8076)
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
 
     def test_subprocess(self):
         import io
         f = io.BytesIO(subprocess.check_output(["gunzip", "-c", "tests/saint_barthelemy.osm.gz"]))
         i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 8076)
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
+        self.assertEqual(o1.num_nodes, 8076)
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
 
 
     def test_stream_io(self):
@@ -465,9 +465,9 @@ class Test(unittest.TestCase):
         f = gzip.open("tests/saint_barthelemy.osm.gz")
         io = io.BytesIO(f.read())
         i1 = OsmSaxReader(io, "tests/saint_barthelemy.state.txt")
-        o1 = TestCountObjects()
+        o1 = MockCountObjects()
         i1.CopyTo(o1)
-        self.assertEquals(o1.num_nodes, 8076)
-        self.assertEquals(o1.num_ways, 625)
-        self.assertEquals(o1.num_rels, 16)
+        self.assertEqual(o1.num_nodes, 8076)
+        self.assertEqual(o1.num_ways, 625)
+        self.assertEqual(o1.num_rels, 16)
         io.close()

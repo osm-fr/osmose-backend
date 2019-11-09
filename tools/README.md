@@ -49,9 +49,9 @@ This directory contains some helper tools.
   as ignoring reports about calls to `T_*`.
 
 
-* **pynose.sh**
+* **pytest.sh**
 
-  This script is the entry-point for travis to execute tests using the nose python testing framework. 
+  This script is the entry-point for travis to execute tests using the pytest python testing framework.
 
 
 * **slave_kill_osmose_python.sh**

@@ -527,10 +527,10 @@ class TestAnalyserOsmosis(TestAnalyser):
         import modules.OsmOsisManager
         (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
         if not skip_db:
-            from nose import SkipTest
+            import pytest
             osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, cls.logger)
             if not osmosis_manager.check_database():
-                raise SkipTest("database not present")
+                pytest.skip("database not present")
             osmosis_manager.init_database(conf)
 
         # create directory for results
