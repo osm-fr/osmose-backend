@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1089490420">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="567909968">
 <class id="1" item="7060" level="3" tag="source,fix:chair">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -4372,71 +4372,6 @@
 <tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
 <tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
 </node>
-</error>
-<error class="802" subclass="2">
-<location lat="17.8957043" lon="-62.8508372" />
-<node id="489348725" lat="17.8957043" lon="-62.8508372" version="4" timestamp="2014-01-04T21:57:02Z" changeset="19813735" uid="10610" user="RedFox">
-<tag k="addr:postcode" v="97133" />
-<tag k="name" v="Gustavia" />
-<tag k="name:el" v="Γουσταβία" />
-<tag k="name:ru" v="Густавия" />
-<tag k="place" v="town" />
-<tag k="population" v="9035" />
-<tag k="ref:INSEE" v="97701" />
-<tag k="source:population" v="INSEE 2014" />
-<tag k="wikipedia" v="fr:Gustavia (Saint-Barthélemy)" />
-</node>
-<text lang="en" value="OSM=Gustavia =&gt; COG=Saint-Barthélemy" />
-<fixes>
-<fix>
-<node id="489348725">
-<tag action="modify" k="name" v="Saint-Barthélemy" />
-</node>
-</fix>
-</fixes>
-</error>
-<error class="801" subclass="0">
-<location lat="17.8962582" lon="-62.8299256" />
-<node id="489460194" lat="17.8962582" lon="-62.8299256" version="13" timestamp="2014-01-05T14:23:56Z" changeset="19823745" uid="10610" user="RedFox">
-<tag k="addr:postcode" v="97133" />
-<tag k="alt_name" v="Saint-Barth" />
-<tag k="alt_name:en" v="Saint Barts" />
-<tag k="currency" v="EUR" />
-<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
-<tag k="int_name" v="Saint-Barthélemy" />
-<tag k="is_in:country" v="France" />
-<tag k="is_in:country_code" v="FR" />
-<tag k="is_in:sea" v="Caribbean" />
-<tag k="ISO3166-1" v="BL" />
-<tag k="ISO3166-1:alpha2" v="BL" />
-<tag k="ISO3166-1:alpha3" v="BLM" />
-<tag k="ISO3166-1:numeric" v="652" />
-<tag k="ISO3166-2" v="FR-BL" />
-<tag k="name" v="Saint-Barthélemy" />
-<tag k="name:be" v="Сен-Бартэлемі" />
-<tag k="name:ca" v="Saint-Barthélemy" />
-<tag k="name:de" v="Sankt Bartholomäus" />
-<tag k="name:el" v="Άγιος Βαρθολομαίος" />
-<tag k="name:en" v="Saint Barthélemy" />
-<tag k="name:es" v="San Bartolomé" />
-<tag k="name:fi" v="Saint-Barthélemy" />
-<tag k="name:fr" v="Saint-Barthélemy" />
-<tag k="name:he" v="סן ברתלמי" />
-<tag k="name:nl" v="Saint-Barthélemy" />
-<tag k="name:no" v="Saint-Barthélemy" />
-<tag k="name:ru" v="Сен-Бартельми" />
-<tag k="name:sr" v="Свети Бартоломеј" />
-<tag k="name:sv" v="Saint Barthelemy" />
-<tag k="name:uk" v="Сен-Бартельмі" />
-<tag k="name:zh" v="圣巴泰勒米岛" />
-<tag k="place" v="state" />
-<tag k="population" v="9035" />
-<tag k="ref:INSEE" v="97-7" />
-<tag k="source:population" v="INSEE 2014" />
-<tag k="timezone" v="America/St_Barthelemy" />
-<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
-</node>
-<text lang="en" value="97-7" />
 </error>
 <error class="9002001" subclass="355584917">
 <location lat="17.8962582" lon="-62.8299256" />
