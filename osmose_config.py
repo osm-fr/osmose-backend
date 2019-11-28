@@ -177,6 +177,7 @@ class default_simple(template_config):
         self.analyser["merge_street_objects"] = "xxx"
         self.analyser["osmosis_relation_enforcement"] = "xxx"
         self.analyser["osmosis_addr_interpolation"] = "xxx"
+        self.analyser["osmosis_camp_pitch_out_of_camp_site"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
