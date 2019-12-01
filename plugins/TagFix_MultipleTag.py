@@ -26,6 +26,8 @@ class TagFix_MultipleTag(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        self.country = self.father.config.options.get("country")
+
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Watch multiple tags") }
         self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
         self.errors[30327] = { "item": 3032, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Waterway with level") }
@@ -44,7 +46,8 @@ class TagFix_MultipleTag(Plugin):
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.errors[32200] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
         self.errors[32201] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
-        self.errors[32301] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Probably only for bottles, not any type of glass") }
+        if not self.country or not self.country.startswith("CZ"):
+            self.errors[32301] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Probably only for bottles, not any type of glass") }
         self.errors[32302] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Suspicious name for a container") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
@@ -69,8 +72,9 @@ class TagFix_MultipleTag(Plugin):
         if tags.get('highway') == 'emergency_access_point' and not tags.get('ref'):
             err.append({"class": 20802, "subclass": 1})
 
-        if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("recycling:glass") == "yes":
-            err.append({"class": 32301, "fix": {"-": ["recycling:glass"], "+": {"recycling:glass_bottles": "yes"}}})
+        if not self.country or not self.country.startswith("CZ"):
+            if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("recycling:glass") == "yes":
+                err.append({"class": 32301, "fix": {"-": ["recycling:glass"], "+": {"recycling:glass_bottles": "yes"}}})
         if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("name"):
             err.append({"class": 32302})
 
