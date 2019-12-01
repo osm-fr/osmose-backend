@@ -4,11 +4,11 @@ Install
 Installation Python
 -------------------
 
-Osmose QA backend requires python > 2.7.
+Osmose QA backend requires python > 3.6.
 
-Setup system dependencies (Debian Stretch)
+Setup system dependencies (Debian Buster)
 ```
-apt install git postgis python
+apt install git postgis python3
 ```
 
 You can install python dependencies in the system or in a virtualenv.
@@ -16,11 +16,6 @@ You can install python dependencies in the system or in a virtualenv.
 ### Alt: Python dependencies in the system
 
 In the system install the following packages:
-```
-apt install python-dateutil python-polib python-psycopg2 python-shapely python-regex python-requests
-```
-
-If you want to install for python3, use the following packages instead:
 ```
 apt install python3-dateutil python3-polib python3-psycopg2 python3-shapely python3-regex python3-requests
 ```
@@ -31,12 +26,12 @@ Alternatively instal python-virtualenv and create a new virtualenv.
 
 Setup system dependencies (Debian Stretch)
 ```
-apt install build-essential python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev
+apt install build-essential python3-dev python3-virtualenv libpq-dev protobuf-compiler libprotobuf-dev
 ```
 
 Create a python virtualenv, active it and install python dependencies
 ```
-virtualenv --python=python2.7 osmose-backend-venv
+virtualenv --python=python3 osmose-backend-venv
 source osmose-backend-venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -55,7 +50,7 @@ pytest-3
 
 Build the native python module lib to parse .osm.pbf files:
 ```
-apt install g++ libboost-python-dev libosmpbf-dev make pkg-config
+apt install g++ libboost-python-dev libosmpbf-dev make pkg-config python3-dev
 
 cd modules/osm_pbf_parser/
 make
@@ -65,9 +60,9 @@ make
 Installation Database
 ---------------------
 
-Setup system dependencies (Debian Stretch)
+Setup system dependencies (Debian Buster)
 ```
-apt install postgresql-9.6 postgresql-contrib-9.6 postgresql-9.6-postgis-2.1
+apt install postgresql-11 postgresql-11-postgis-2.5
 ```
 
 As postgres user:
@@ -86,9 +81,9 @@ psql -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
 Dependencies
 ------------
 
-Java JRE for osmosis (Ubuntu Server 14.04):
+Java JRE for osmosis:
 ```
-apt install openjdk-7-jre-headless
+apt install openjdk-11-jre-headless
 ```
 
 osmosis is installed in osmosis/osmosis-0.47/.
