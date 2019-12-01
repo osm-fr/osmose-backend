@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-30 18:59+0000\n"
+"PO-Revision-Date: 2019-12-01 21:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -428,7 +428,7 @@ msgid "Missing junction=roundabout"
 msgstr "缺少junction=roundabout"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Reverse roundabout"
 msgstr "相反环岛"
 
@@ -616,7 +616,7 @@ msgstr "已弃用的标签"
 #: ../plugins/TagFix_MultipleTag_FR.py:32
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:31
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:31
-#: ../plugins/TagFix_MultipleTag.py:29 ../plugins/TagFix_MultipleTag.py:30
+#: ../plugins/TagFix_MultipleTag.py:31 ../plugins/TagFix_MultipleTag.py:32
 msgid "Watch multiple tags"
 msgstr "查看多个标签"
 
@@ -636,11 +636,11 @@ msgstr "无效的参考"
 msgid "In France all pharmacies deliver drugs under prescription"
 msgstr "在法国所有的药店按处方提供药物"
 
-#: ../plugins/TagFix_MultipleTag.py:33
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Tag highway missing on junction"
 msgstr "标记公路交界处遗失"
 
-#: ../plugins/TagFix_MultipleTag.py:34
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Tag highway missing on oneway"
 msgstr "标记公路缺少单行道"
 
@@ -648,7 +648,7 @@ msgstr "标记公路缺少单行道"
 msgid "Opposite cycleway without oneway"
 msgstr "对面自行车道没有单行"
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing maxheight tag"
 msgstr "缺少maxheight标签"
 
@@ -871,12 +871,12 @@ msgstr "冲突标签：'bridge'和'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s太高了，应该用ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:88
+#: ../plugins/TagFix_MultipleTag.py:92
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "在这个国家的迷你环岛通常是这样“%s”"
 
-#: ../plugins/TagFix_MultipleTag.py:100
+#: ../plugins/TagFix_MultipleTag.py:104
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "使用标签“toll”而不是“fee”"
 
@@ -964,7 +964,7 @@ msgstr "长水路在地下但没有隧道"
 msgid "Waterway above ground and no bridge"
 msgstr "水路在空中但没有桥梁"
 
-#: ../plugins/TagFix_MultipleTag.py:31
+#: ../plugins/TagFix_MultipleTag.py:33
 msgid "Waterway with level"
 msgstr "水平与等级"
 
@@ -993,11 +993,11 @@ msgstr "建议整合的邮政信筒"
 msgid "Bridge structure missing"
 msgstr "桥梁结构缺失"
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:42
 msgid "Roundabout as area"
 msgstr "环岛作为区域"
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:43
 msgid "Level or repeat_on tag missing"
 msgstr "Level或repeat_on标记丢失"
 
@@ -1005,11 +1005,11 @@ msgstr "Level或repeat_on标记丢失"
 msgid "Building in parts"
 msgstr "建筑部分"
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag.py:44
 msgid "Indoor or buildingpart tag missing"
 msgstr "室内或建筑物部分标签丢失"
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:45
 msgid "Missing tag ref for emergency access point"
 msgstr "缺少紧急访问点的标签ref"
 
@@ -1042,16 +1042,16 @@ msgstr "多个数字“%(numbers)s”在方式“%(way)s”"
 msgid "Name with uppercase"
 msgstr "以大写字母命名"
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
+#: ../plugins/TagFix_MultipleTag.py:47 ../plugins/TagFix_MultipleTag.py:48
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive允许所有运输模式"
 
-#: ../plugins/TagFix_MultipleTag.py:129
+#: ../plugins/TagFix_MultipleTag.py:133
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "包括滑雪，马，轻便摩托车，危险品等，除非明确排除"
 
-#: ../plugins/TagFix_MultipleTag.py:131
+#: ../plugins/TagFix_MultipleTag.py:135
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除"
@@ -1394,11 +1394,11 @@ msgstr "一种方式无法访问或缺少停车或停车入口"
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "高速公路没有ref, nat_ref, int_ref 或 noref 标签"
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "标签公路路线或车道丢失"
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Missing relation type"
 msgstr "缺少关系类型"
 
@@ -1417,7 +1417,7 @@ msgstr "可能缺少 traffic_signals:direction 标记或交通信号"
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "可能缺少停车方向标记或让路"
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag.py:51
 msgid "Suspicious name for a container"
 msgstr "容器的可疑名称"
 
@@ -1538,7 +1538,7 @@ msgstr "行政边界之间的空洞，在admin_level%s"
 msgid "Abbreviation of number should be in lowercase"
 msgstr "数字的缩写应该是小写"
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag.py:39
 msgid "Name present but missing main tag"
 msgstr "名称存在但缺少主标签"
 
@@ -1774,7 +1774,7 @@ msgstr "警察/“宪兵”更新"
 msgid "Missing access way to parking"
 msgstr "缺少进入停车场的方式"
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:50
 msgid "Probably only for bottles, not any type of glass"
 msgstr "可能只适用于瓶子，而不适用于任何类型的玻璃"
 
@@ -2091,7 +2091,7 @@ msgstr "tag key: {0} => {1} (rule kr)"
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr "tag value: {0}={1} => {2} (rule kr_vs)"
 
-#: ../plugins/TagFix_MultipleTag.py:32
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "使用材质标签的栅栏，最好使用fence_type标签"
 
@@ -2369,4 +2369,8 @@ msgstr ""
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
+msgid "Camp pitchs outside a camp site"
 msgstr ""

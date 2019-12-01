@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-30 18:59+0000\n"
+"PO-Revision-Date: 2019-12-01 21:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -429,7 +429,7 @@ msgid "Missing junction=roundabout"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Reverse roundabout"
 msgstr "Αντίθετος κυκλικός κόμβος"
 
@@ -617,7 +617,7 @@ msgstr "Παρωχημένη ετικέτα"
 #: ../plugins/TagFix_MultipleTag_FR.py:32
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:31
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:31
-#: ../plugins/TagFix_MultipleTag.py:29 ../plugins/TagFix_MultipleTag.py:30
+#: ../plugins/TagFix_MultipleTag.py:31 ../plugins/TagFix_MultipleTag.py:32
 msgid "Watch multiple tags"
 msgstr ""
 
@@ -637,11 +637,11 @@ msgstr ""
 msgid "In France all pharmacies deliver drugs under prescription"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:33
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Tag highway missing on junction"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:34
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Tag highway missing on oneway"
 msgstr ""
 
@@ -649,7 +649,7 @@ msgstr ""
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing maxheight tag"
 msgstr ""
 
@@ -872,12 +872,12 @@ msgstr "Διένεξη μεταξύ ετικετών: 'bridge' και 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:88
+#: ../plugins/TagFix_MultipleTag.py:92
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:100
+#: ../plugins/TagFix_MultipleTag.py:104
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Χρησιμοποιήστε την ετικέτα \"toll\" αντί για \"fee\""
 
@@ -965,7 +965,7 @@ msgstr ""
 msgid "Waterway above ground and no bridge"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:31
+#: ../plugins/TagFix_MultipleTag.py:33
 msgid "Waterway with level"
 msgstr ""
 
@@ -994,11 +994,11 @@ msgstr ""
 msgid "Bridge structure missing"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:42
 msgid "Roundabout as area"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:43
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
@@ -1006,11 +1006,11 @@ msgstr ""
 msgid "Building in parts"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag.py:44
 msgid "Indoor or buildingpart tag missing"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:45
 msgid "Missing tag ref for emergency access point"
 msgstr ""
 
@@ -1043,16 +1043,16 @@ msgstr ""
 msgid "Name with uppercase"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
+#: ../plugins/TagFix_MultipleTag.py:47 ../plugins/TagFix_MultipleTag.py:48
 msgid "access=yes|permissive allow all transport modes"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:129
+#: ../plugins/TagFix_MultipleTag.py:133
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:131
+#: ../plugins/TagFix_MultipleTag.py:135
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
@@ -1395,11 +1395,11 @@ msgstr ""
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Tag highway missing for tracktype or lanes"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Missing relation type"
 msgstr ""
 
@@ -1418,7 +1418,7 @@ msgstr ""
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag.py:51
 msgid "Suspicious name for a container"
 msgstr ""
 
@@ -1539,7 +1539,7 @@ msgstr ""
 msgid "Abbreviation of number should be in lowercase"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag.py:39
 msgid "Name present but missing main tag"
 msgstr ""
 
@@ -1775,7 +1775,7 @@ msgstr ""
 msgid "Missing access way to parking"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:50
 msgid "Probably only for bottles, not any type of glass"
 msgstr ""
 
@@ -2092,7 +2092,7 @@ msgstr ""
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:32
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
@@ -2370,4 +2370,8 @@ msgstr ""
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
+msgid "Camp pitchs outside a camp site"
 msgstr ""

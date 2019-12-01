@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-17 01:26+0000\n"
-"Last-Translator: alain2003\n"
+"PO-Revision-Date: 2019-12-01 21:16+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,11 +61,11 @@ msgstr "Hydrant, integratie suggestie"
 msgid "Crossing level not integrated"
 msgstr "Overweg niveau niet geïntegreerd"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:31
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument not integrated"
 msgstr "Historisch monument niet geïntegreerd"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument, integration suggestion"
 msgstr "Historisch monument, integratie suggestie"
 
@@ -431,7 +431,7 @@ msgid "Missing junction=roundabout"
 msgstr "junction=roundabout ontbreekt"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Reverse roundabout"
 msgstr "Omgekeerde rotonde"
 
@@ -619,7 +619,7 @@ msgstr "Deprecated tag"
 #: ../plugins/TagFix_MultipleTag_FR.py:32
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:31
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:31
-#: ../plugins/TagFix_MultipleTag.py:29 ../plugins/TagFix_MultipleTag.py:30
+#: ../plugins/TagFix_MultipleTag.py:31 ../plugins/TagFix_MultipleTag.py:32
 msgid "Watch multiple tags"
 msgstr "Bekijk meerdere tags"
 
@@ -639,19 +639,19 @@ msgstr "Ongeldig referentie"
 msgid "In France all pharmacies deliver drugs under prescription"
 msgstr "In Frankrijk verkopen alle aphotekers medicatie op voorschrift"
 
-#: ../plugins/TagFix_MultipleTag.py:33
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Tag highway missing on junction"
 msgstr "Tag highway ontbreekt op een splitsing"
 
-#: ../plugins/TagFix_MultipleTag.py:34
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Tag highway missing on oneway"
 msgstr "Tag highway ontbreekt op een éénrichtingsweg"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:119
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:151
 msgid "Opposite cycleway without oneway"
 msgstr "Tegenovergestelde richting van fietspad zonder éénrichtingsweg"
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing maxheight tag"
 msgstr "maxheight tag ontbreekt"
 
@@ -874,12 +874,12 @@ msgstr "Conflict tussen tags: 'brug' en 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s is echt hoog, kijk naar ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:88
+#: ../plugins/TagFix_MultipleTag.py:92
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "mini rotonde is in deze land gewoonlijk \"%s\" "
 
-#: ../plugins/TagFix_MultipleTag.py:100
+#: ../plugins/TagFix_MultipleTag.py:104
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Gebruik tag \"toll\" in de plaats van \"fee\""
 
@@ -967,7 +967,7 @@ msgstr "Lange Waterweg ondergronds en geen tunnel"
 msgid "Waterway above ground and no bridge"
 msgstr "Waterweg bovengronds en geen brug"
 
-#: ../plugins/TagFix_MultipleTag.py:31
+#: ../plugins/TagFix_MultipleTag.py:33
 msgid "Waterway with level"
 msgstr "Waterweg met niveau"
 
@@ -996,11 +996,11 @@ msgstr "Postbus, integratie suggestie"
 msgid "Bridge structure missing"
 msgstr "Brug structuur ontbreekt"
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:42
 msgid "Roundabout as area"
 msgstr "Rotonde als een gebied"
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:43
 msgid "Level or repeat_on tag missing"
 msgstr "Niveau of repeat_on tag ontbreekt"
 
@@ -1008,11 +1008,11 @@ msgstr "Niveau of repeat_on tag ontbreekt"
 msgid "Building in parts"
 msgstr "Gebouw in stukken"
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag.py:44
 msgid "Indoor or buildingpart tag missing"
 msgstr "Indoor of stukken van gebouw tag ontbreekt"
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:45
 msgid "Missing tag ref for emergency access point"
 msgstr "Ontbrekende tag ref spoed toegans punten"
 
@@ -1045,16 +1045,16 @@ msgstr "Meerdere nummers \"%(numbers)s\" in weg \"%(way)s\""
 msgid "Name with uppercase"
 msgstr "Naam in hoofdletters"
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
+#: ../plugins/TagFix_MultipleTag.py:47 ../plugins/TagFix_MultipleTag.py:48
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive staat alle transportmiddelen toe"
 
-#: ../plugins/TagFix_MultipleTag.py:129
+#: ../plugins/TagFix_MultipleTag.py:133
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusief ski, paard, bromfiets, hazmat en ga zo maar door, tenzij uitdrukkelijk uitgesloten"
 
-#: ../plugins/TagFix_MultipleTag.py:131
+#: ../plugins/TagFix_MultipleTag.py:135
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusief auto, paard, bromfiets, hazmat en ga zo maar door, tenzij uitdrukkelijk uitgesloten"
@@ -1095,7 +1095,7 @@ msgstr "Weg kruist een grote waterweg"
 msgid "Paris Autolib' car rental update"
 msgstr "Paris Autolib' autoverhuur update"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:34
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
 msgid "Historical monument update"
 msgstr "Historisch monument update"
 
@@ -1295,7 +1295,6 @@ msgstr "school:FR tag toevoegen"
 msgid "FANTOIR numeric type is for ways"
 msgstr "FANTOIR numeriek type is voor wegen"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:77
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling or "
 "neighbourhood"
@@ -1363,12 +1362,12 @@ msgstr "Lid zonder addr:housenumber noch addr:housename"
 msgid "Invalid multipolygon"
 msgstr "Ongeldig multipolygoon"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:184
+#: ../analysers/analyser_osmosis_addr_interpolation.py:194
 msgid "Interpolation on nodes of multiple street names"
 msgstr "Interpolatie op nodes van meerdere straat namen"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:191
-#: ../analysers/analyser_osmosis_addr_interpolation.py:192
+#: ../analysers/analyser_osmosis_addr_interpolation.py:201
+#: ../analysers/analyser_osmosis_addr_interpolation.py:202
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr "Interpolatiebereik op straten:%s"
@@ -1398,11 +1397,11 @@ msgstr "éérichingsweg ontoegangelijk of parking ontbreekt of parking ingang"
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Weg zonder ref, nat_ref, int_ref of noref tag"
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "Tag highway ontbreekt voor tracktype of rijwegen"
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Missing relation type"
 msgstr "Relatie type ontbreekt"
 
@@ -1421,7 +1420,7 @@ msgstr "Mogelijk ontbreken van traffic_signals:richting tag of kriusing op verke
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Richting tag ontbreekt op halte"
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag.py:51
 msgid "Suspicious name for a container"
 msgstr "Verkeerde naam voor een container"
 
@@ -1542,7 +1541,7 @@ msgstr "Niet gesloten administratieve grenzen van  admin_level %s"
 msgid "Abbreviation of number should be in lowercase"
 msgstr "Afkorting van nummer moet in kleine letters zijn"
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag.py:39
 msgid "Name present but missing main tag"
 msgstr "Naam aanwezig maar hoofd tag ontbreekt"
 
@@ -1736,26 +1735,27 @@ msgstr "Directe of teveel toegang tot een weg"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "Ongebalanceerd aanhalingsteken of Haakje in naam"
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:149
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:181
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr "Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:59
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:62
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0} zonder {1}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:95
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:98
+#: ../plugins/Bicycle.py:130
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} met {1}"
 
-#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:43
+#: ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:46
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} met {1} en {2}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:76
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:79
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "voorkeur {0} op {1}"
@@ -1777,7 +1777,7 @@ msgstr "Politie/\"Gendarmerie\" update"
 msgid "Missing access way to parking"
 msgstr "Toegangsweg tot parking ontbreekt"
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:50
 msgid "Probably only for bottles, not any type of glass"
 msgstr "Waarschijnlijk alleen voor flessen, niet voor elke type van glas"
 
@@ -1842,7 +1842,7 @@ msgstr "De URL heeft geen geldige schema"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "Verkeerde URL %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:95
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:94
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr "Historisch monument: {0} (geplaatst op {1} met vertrouwen {2})"
@@ -2094,7 +2094,7 @@ msgstr "tag key: {0} => {1} (rule kr)"
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr "tag waarde: {0}={1} => {2} (rule kr_vs)"
 
-#: ../plugins/TagFix_MultipleTag.py:32
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Hek met material tag, gebruik beter fence_type tag"
 
@@ -2128,7 +2128,7 @@ msgstr "College zonder tag \"ref:UAI\" of ongeldig"
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} zonder tag \"{1}\" of ongeldig"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:32
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr "Historisch monument zonder tag \"ref:mhs\" of ongeldig"
 
@@ -2178,29 +2178,29 @@ msgstr "Gemeente ref tag ontbreekt"
 msgid "Missing municipality ref tag {0}"
 msgstr "Gemeente ref tag ontbreekt {0}"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:179
+#: ../analysers/analyser_osmosis_addr_interpolation.py:189
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
 msgstr "Interpolatie op nodes zonder tag \"addr:housenumber\""
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:180
+#: ../analysers/analyser_osmosis_addr_interpolation.py:190
 msgid "\"addr:housenumber\" in multiple interpolations"
 msgstr "\"addr:housenumber\" in multiple interpolaties"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:181
+#: ../analysers/analyser_osmosis_addr_interpolation.py:191
 msgid "Interpolation intersection"
 msgstr "kruising van interpolatie"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:182
+#: ../analysers/analyser_osmosis_addr_interpolation.py:192
 msgid "Interpolation ends should have tag \"addr:housenumber\""
 msgstr "Interpolatie einde moet een tag \"addr:housenumber\" hebben"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:183
+#: ../analysers/analyser_osmosis_addr_interpolation.py:193
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
 msgstr "Interpolaties eindes moeten een veschillende tag hebben \"addr:housenumber\" values"
 
-#: ../analysers/analyser_osmosis_addr_interpolation.py:185
+#: ../analysers/analyser_osmosis_addr_interpolation.py:195
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr "Interpolatie op nodes van meerdere \"associatedStreet\" relaties"
 
@@ -2265,19 +2265,19 @@ msgstr "tag waarde: {0}={1} => {2} (rule kr_vr)"
 
 #: ../plugins/TagFix_IntervalConditional.py:28
 msgid "Invalid Conditional Intervals"
-msgstr ""
+msgstr "Ongeldige voorwaardelijke Intervals"
 
 #: ../plugins/TagFix_IntervalConditional.py:40
 msgid "Invalid interval tag format"
-msgstr ""
+msgstr "Ongeldige interval tag formaat"
 
 #: ../plugins/TagFix_IntervalConditional.py:44
 msgid "Conditional intervals tag is not valid"
-msgstr ""
+msgstr "voorwaardelijke intervals tag is net geldig"
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
-msgstr ""
+msgstr "voorwaardelijke intervals passen niet bij openingsuren"
 
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:28
@@ -2329,11 +2329,11 @@ msgid "Wastewater plant update"
 msgstr "Afvalzuiveringstation update"
 
 msgid "Invalid value of tag \"ref:vatin\""
-msgstr "Ongeldige waarde van tag \"ref:vatin\""
+msgstr "Ongeldige waarde van \"ref:vatin\" tag"
 
 #: ../plugins/TagFix_Vatin.py:38
 msgid "Invalid value format of tag \"ref:vatin\""
-msgstr "Ongeldige waarde formaat van tag \"ref:vatin\" "
+msgstr "Ongeldige formaat waarde  van \"ref:vatin\"  tag"
 
 #: ../plugins/TagFix_Vatin.py:63
 msgid "Invalid 'VAT identification number'"
@@ -2367,3 +2367,13 @@ msgstr "Carpool parking update"
 #, python-brace-format
 msgid "Carpool parking {0}"
 msgstr "Carpool parking {0}"
+
+#: ../plugins/TagFix_MultipleTag_FR.py:77
+msgid ""
+"FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
+"neighbourhood"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
+msgid "Camp pitchs outside a camp site"
+msgstr ""

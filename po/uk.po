@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-10-30 18:59+0000\n"
+"PO-Revision-Date: 2019-12-01 21:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -430,7 +430,7 @@ msgid "Missing junction=roundabout"
 msgstr "Відсутній junction=roundabout"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Reverse roundabout"
 msgstr "Зворотній roundabout"
 
@@ -618,7 +618,7 @@ msgstr "Теґ, що не підтримується"
 #: ../plugins/TagFix_MultipleTag_FR.py:32
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:31
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:31
-#: ../plugins/TagFix_MultipleTag.py:29 ../plugins/TagFix_MultipleTag.py:30
+#: ../plugins/TagFix_MultipleTag.py:31 ../plugins/TagFix_MultipleTag.py:32
 msgid "Watch multiple tags"
 msgstr "Переглянути декілька теґів"
 
@@ -638,11 +638,11 @@ msgstr "Недійсна характеристика"
 msgid "In France all pharmacies deliver drugs under prescription"
 msgstr "у Франції всі аптеки поставляють ліки за рецептом"
 
-#: ../plugins/TagFix_MultipleTag.py:33
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Tag highway missing on junction"
 msgstr "Теґ highway відсутній на junction"
 
-#: ../plugins/TagFix_MultipleTag.py:34
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Tag highway missing on oneway"
 msgstr "Теґ highway відсутній на oneway"
 
@@ -650,7 +650,7 @@ msgstr "Теґ highway відсутній на oneway"
 msgid "Opposite cycleway without oneway"
 msgstr "протилежна велодоріжка без oneway"
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing maxheight tag"
 msgstr "Відсутній теґ maxheight"
 
@@ -873,12 +873,12 @@ msgstr "Конфлікт між теґами: 'bridge' та 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s насправді висока, погляньте на ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:88
+#: ../plugins/TagFix_MultipleTag.py:92
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Міні-кільцевий рух в цій країні є звичайним \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:100
+#: ../plugins/TagFix_MultipleTag.py:104
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr " Вжито теґ \"toll\" замість \"fee\""
 
@@ -966,7 +966,7 @@ msgstr "Довгий водний шлях під землею і без tunnel"
 msgid "Waterway above ground and no bridge"
 msgstr "Водний шлях над землею без bridge"
 
-#: ../plugins/TagFix_MultipleTag.py:31
+#: ../plugins/TagFix_MultipleTag.py:33
 msgid "Waterway with level"
 msgstr "Водний шлях з level"
 
@@ -995,11 +995,11 @@ msgstr "Поштова скринька, пропозиція з інтеґра�
 msgid "Bridge structure missing"
 msgstr "Відсутня структура мосту"
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:42
 msgid "Roundabout as area"
 msgstr "Кільцевий рух як ділянка"
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:43
 msgid "Level or repeat_on tag missing"
 msgstr "Відсутній теґ level або repeat_on"
 
@@ -1007,11 +1007,11 @@ msgstr "Відсутній теґ level або repeat_on"
 msgid "Building in parts"
 msgstr "Будівля з частин"
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag.py:44
 msgid "Indoor or buildingpart tag missing"
 msgstr "Відсутній теґ Indoor or buildingpart"
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:45
 msgid "Missing tag ref for emergency access point"
 msgstr "Відсутній теґ ref для точки доступу служби порятунку"
 
@@ -1044,16 +1044,16 @@ msgstr "Декілька номерів \"%(numbers)s\" на лінії \"%(way)
 msgid "Name with uppercase"
 msgstr "Ім'я у верхньому реґістрі"
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
+#: ../plugins/TagFix_MultipleTag.py:47 ../plugins/TagFix_MultipleTag.py:48
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive дозволяє усі види транспорту"
 
-#: ../plugins/TagFix_MultipleTag.py:129
+#: ../plugins/TagFix_MultipleTag.py:133
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Включаючи ski, horse, moped, hazmat і т. д., крім чітко виключених"
 
-#: ../plugins/TagFix_MultipleTag.py:131
+#: ../plugins/TagFix_MultipleTag.py:135
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Включаючи car, horse, moped, hazmat і т. д., крім чітко виключених"
@@ -1396,11 +1396,11 @@ msgstr "Один шлях недоступний або відсутній па�
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Автомагістраль без ref, nat_ref, int_ref або noref теґів"
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "Відсутній теґ highway для tracktype або lanes"
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Missing relation type"
 msgstr "Відсутній тип зв'язку"
 
@@ -1419,7 +1419,7 @@ msgstr "Можливо відсутній теґ traffic_signals:direction аб�
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Можливо відсутній теґ direction на зупинці або give way"
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag.py:51
 msgid "Suspicious name for a container"
 msgstr "Підозріле ім'я для контейнера"
 
@@ -1540,7 +1540,7 @@ msgstr "Прогалина у адміністративному кордоні 
 msgid "Abbreviation of number should be in lowercase"
 msgstr "Абревіатура номера повинна бути в нижньому реґістрі"
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag.py:39
 msgid "Name present but missing main tag"
 msgstr "Ім'я присутнє, але відсутній основний теґ"
 
@@ -1776,7 +1776,7 @@ msgstr "Поліція/\"Жандармерія\", оновлення"
 msgid "Missing access way to parking"
 msgstr "Відсутній шлях доступу до паркінґу"
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:50
 msgid "Probably only for bottles, not any type of glass"
 msgstr "Ймовірно, лише для пляшок, а не для будь-якого типу скла"
 
@@ -2093,7 +2093,7 @@ msgstr "ключ теґу: {0} => {1} (rule kr)"
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr "значення теґу: {0}={1} => {2} (rule kr_vs)"
 
-#: ../plugins/TagFix_MultipleTag.py:32
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Огорожа з теґом матеріалу, краще застосувати теґ fence_type"
 
@@ -2371,4 +2371,8 @@ msgstr ""
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
+msgid "Camp pitchs outside a camp site"
 msgstr ""
