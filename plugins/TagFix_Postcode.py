@@ -71,7 +71,11 @@ class TagFix_Postcode(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": T_(u"Invalid postcode") }
+        self.errors[31901] = self.def_class(item = 3190, level = 3, tags = ['postcode', 'fix:chair'],
+            title = T_('Invalid postcode'),
+            detail = T_(
+'''Check postcode as decribed on
+[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)'''))
 
         self.Country = None
         if self.father.config.options.get("country"):

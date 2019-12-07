@@ -231,7 +231,26 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
         # Check langues for country are writen with alphabets
         self.scripts = 'language' in config.options and languages.scripts(config.options['language'])
         if self.scripts and len(self.scripts) == 1 and (self.scripts[0] == 'Latin' or self.scripts[0].startswith('[A-Za-z')):
-            self.classs[1] = {"item":"5050", "level": 2, "tag": ["name", "fix:survey"], "desc": T_(u"Soundex test") } # FIXME "menu":"test soundex"
+            self.classs[1] = self.def_class(item = 5050, level = 2, tags = ['name', 'fix:survey'],
+                title = T_('Soundex test'),
+                detail = T_(
+'''A street name "sounds" like a other street name already known but is
+not spelled on the same way.'''),
+                fix = T_(
+'''After you have checked that it is a mistake, change the name.'''),
+                trap = T_(
+'''* The "Rue Desjardins" can be called like that, even though offers
+"Rue des Jardins",
+* Beware of homonyms, a local glorious man can be called "Jean Monet",
+his name not need be transformed into "Jean Monnet",
+* The "Rond-Point des Allées" is perhaps not the "Rond-Point des Alliés",
+* The "Rue de Ballevue" may be the right name for this street.'''),
+                example = T_(
+'''* Rue Piere Curie ==> Rue Pierre Curie
+* Rue du Général de Gaules ==> Rue du Général de Gaulle
+* Mac Donald ==> McDonald's'''))
+
+
         else:
             self.scripts = None
 

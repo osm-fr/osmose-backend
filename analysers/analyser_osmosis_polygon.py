@@ -77,8 +77,21 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1040", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Invalid polygon") }
-        self.classs_change[2] = {"item":"1040", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Invalid multipolygon") }
+        doc = dict(
+            detail = T_(
+'''The polygon intersects itself. The marker points directly to the
+error area of the crossing.'''),
+            fix = T_(
+'''Find where the polygon intersects itself (ie it forms an '8') and
+correct geometry for a single loop (a '0') or by removing nodes or
+changing the order of these nodes, by adding new nodes or by creating
+multiple polygons.'''),
+            trap = T_(
+'''Make sure the nodes to move do not belong to other way.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)'''))
+        self.classs_change[1] = self.def_class(item = 1040, level = 1, tags = ['geom', 'fix:chair'], title = T_('Invalid polygon'), **doc)
+        self.classs_change[2] = self.def_class(item = 1040, level = 1, tags = ['geom', 'fix:chair'], title = T_('Invalid multipolygon'), **doc)
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": res[2]}}
         self.callback20 = lambda res: {"class":2, "data":[self.relation, self.positionAsText], "text": {"en": res[2]}}
 

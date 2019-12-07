@@ -134,7 +134,12 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3150", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Typo in tag") }
+        self.classs[1] = self.def_class(item = 3150, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Typo in tag'),
+            detail = T_(
+'''The tag is misspelled. Detection is based on statistics.'''),
+            trap = T_(
+'''Check that the correction does not change the intent of the tag.'''))
 
     def analyser_osmosis_common(self):
         self.run(sql10.format("nodes"))

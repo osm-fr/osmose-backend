@@ -122,7 +122,21 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
                       (30, "highway", highway_values),
                     )
         for t in self.tags:
-            self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway", "fix:imagery"], "desc": T_f(u"Approximate {0}", t[1]) }
+            self.classs_change[t[0]] = self.def_class(item = 1190, level = 3, tags = ['geom', 'highway', 'railway', 'fix:imagery'],
+                title = T_f('Approximate {0}', t[1]),
+                detail = T_(
+'''Geometry seems to be draw crudely, there is a discrepancy between the
+drawing and the real way especially in the curve. Use an imagerie.'''),
+                fix = T_(
+'''After checking (orthophotos), add nodes or move existing nodes.'''),
+                trap = T_(
+'''On service ways, train stations, train workshops that may be either a
+false positive'''),
+                example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)
+
+`railway=rail` crudely drawn.'''))
+
         self.callback10 = lambda res: {"class":res[4], "subclass":res[5], "data":[self.way_full, self.positionAsText], "text": T_f(u"{0} deviation of {1}m", res[3], res[2])}
 
     def analyser_osmosis_full(self):

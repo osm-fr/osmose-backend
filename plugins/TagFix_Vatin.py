@@ -35,7 +35,8 @@ class TagFix_Vatin(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[32601] = {"item": 3260, "level": 3, "tag": ["ref", "fix:chair"], "desc": T_(u'Invalid value format of tag "ref:vatin"')}
+        self.errors[32601] = self.def_class(item = 3260, level = 3, tags = ['ref', 'fix:chair'],
+            title = T_('Invalid value format of tag `ref:vatin`'))
 
     # https://it.wikipedia.org/wiki/Partita_IVA
     def it_vatin(self, vatin):

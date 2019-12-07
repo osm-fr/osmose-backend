@@ -157,10 +157,27 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible crossing=traffic_signals") }
-        self.classs_change[2] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible missing highway=traffic_signals nearby") }
-        self.classs_change[3] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing traffic_signals:direction tag or crossing on traffic signals") }
-        self.classs_change[4] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing direction tag on stop or a give way") }
+        doc = dict(
+            detail = T_(
+'''An other node very close have already the tag
+`crossing=traffic_signals`.'''),
+            fix = T_(
+'''It is very likely that the traffic signals on the junction are
+inconsistent with each other, see also
+[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtraffic_signals).'''))
+        self.classs_change[1] = self.def_class(item = 2090, level = 3, tags = ['tag', 'highway', 'fix:imagery'],
+            title = T_('Possible crossing=traffic_signals'),
+            **doc)
+        self.classs_change[2] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:imagery'],
+            title = T_('Possible missing highway=traffic_signals nearby'),
+            **doc)
+        self.classs_change[3] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Possible missing traffic_signals:direction tag or crossing on traffic signals'),
+            **doc)
+        self.classs_change[4] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Possible missing direction tag on stop or a give way'),
+            **doc)
+
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
             [{"+":{"crossing":"traffic_signals"}}],
             [{"+":{"crossing":"traffic_signals"}}, {"-":["crossing"]}]

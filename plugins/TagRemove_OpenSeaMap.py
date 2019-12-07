@@ -28,7 +28,13 @@ class TagRemove_OpenSeaMap(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[4060] = { "item": 4060, "level": 2, "tag": ["waterway", "fix:imagery"], "desc": T_(u"OpenSeaMap import, very approximative position.") }
+        self.errors[4060] = self.def_class(item = 4060, level = 2, tags = ['waterway', 'fix:imagery'],
+            title = T_('OpenSeaMap import, very approximative position.'),
+            detail = T_(
+'''Seamark was imported but need manual review `seamark:fixme=*`.'''),
+            fix = T_(
+'''Move the seamark on real position and remove the tag
+`seamark:fixme=*`.'''))
 
     def node(self, data, tags):
         if "seamark:fixme" in tags:

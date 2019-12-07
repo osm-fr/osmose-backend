@@ -104,9 +104,19 @@ class Analyser_Osmosis_Highway_Tunnel_Bridge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway", "fix:survey"], "desc": T_(u"Bridge structure missing") }
-        #self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
-        #self.classs_change[3] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "layer", "fix:imagery"], "desc": T_(u"Missing layer tag around bridge") }
+        self.classs_change[1] = self.def_class(item = 7012, level = 3, tags = ['tag', 'highway', 'fix:survey'],
+            title = T_('Bridge structure missing'),
+            detail = T_(
+'''The length of the bridge makes it deserve a more detailed tag than
+`bridge=yes`.'''),
+            fix = T_(
+'''See the possible [types of
+bridges](https://wiki.openstreetmap.org/wiki/Key:bridge).'''))
+        #self.classs_change[2] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', "fix:survey"],
+        #    title = T_('Missing maxheight tag'))
+        #self.classs_change[3] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'layer', "fix:imagery"],
+        #    title = T_('Missing layer tag around bridge'))
+
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"+":{"bridge:structure":"beam"}}, {"+":{"bridge:structure":"suspension"}}] }
         #self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }
         #self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }

@@ -60,7 +60,19 @@ class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1180", "level": 2, "tag": ["geom", "highway", "cycleway", "fix:chair"], "desc": T_(u"Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway") }
+        self.classs[1] = self.def_class(item = 1180, level = 2, tags = ['geom', 'highway', 'cycleway', 'fix:chair'],
+            title = T_('Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`'),
+            detail = T_(
+'''Double cycleway mapping. `highway=*`+`cycleway=track` parallel to an
+`highway=cycleway`'''),
+            fix = T_(
+'''When the cycle way is explicited. The `cycleway=track` must be removed
+from the main highway.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)
+
+Double mapping of the bike lane. '''))
+
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):

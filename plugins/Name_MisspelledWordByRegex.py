@@ -26,7 +26,10 @@ class P_Name_MisspelledWordByRegex(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[701] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written word") }
+        self.errors[701] = self.def_class(item = 5010, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Badly written word'),
+            detail = T_(
+'''Often a lack of accent on a capital letter (eg. Ecole for École)'''))
 
     def node(self, data, tags):
         if u"name" not in tags:

@@ -261,11 +261,17 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"The track of this route contains gaps") }
-        self.classs[2] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"The stop or platform is too far from the track of this route") }
-        self.classs[3] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Non route relation member in route_master relation") }
-        self.classs[4] = {"item": "1260", "level": 2, "tag": ["public_transport"], "desc": T_(u"Public transport relation route not in route_master relation") }
-        self.classs[5] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"network, operator, ref, colour tag should be the same on route and route_master relations") }
+        self.classs[1] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('The track of this route contains gaps'))
+        self.classs[2] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('The stop or platform is too far from the track of this route'))
+        self.classs[3] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('Non route relation member in route_master relation'))
+        self.classs[4] = self.def_class(item = 1260, level = 2, tags = ['public_transport'],
+            title = T_('Public transport relation route not in route_master relation'))
+        self.classs[5] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('network, operator, ref, colour tag should be the same on route and route_master relations'))
+
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.any_full, self.positionAsText]}

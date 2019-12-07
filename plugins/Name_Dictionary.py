@@ -29,8 +29,12 @@ class P_Name_Dictionary(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
-        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
+        self.errors[703] = self.def_class(item = 5010, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Word not found in dictionary'),
+            fix = T_(
+'''Probably missing a capital.'''))
+        self.errors[704] = self.def_class(item = 5010, level = 1, tags = ['value', 'fix:chair'],
+            title = T_('Encoding problem'))
 
         self.DictKnownWords = [""]
         self.DictCorrections = {}

@@ -31,7 +31,9 @@ class TagFix_Brand(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3130] = { "item": 3130, "level": 3, "tag": ["name", "tag"], "desc": {"en": u"Tag name is a brand", "fr": u"Le tag name est une marque"} }
+        self.errors[3130] = self.def_class(item = 3130, level = 3, tags = ['name', 'tag'],
+            title = T_('Tag name is a brand'))
+
         self.Brand = self.BRAND.split("\n")
 
     def node(self, data, tags):

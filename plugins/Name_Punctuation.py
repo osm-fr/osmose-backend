@@ -26,7 +26,8 @@ class Name_Punctuation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50705] = {"item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Unexpected punctuation in name") }
+        self.errors[50705] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Unexpected punctuation in name'))
 
     def node(self, data, tags):
         if 'name' not in tags:

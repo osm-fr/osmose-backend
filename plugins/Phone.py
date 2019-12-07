@@ -46,15 +46,22 @@ class Phone(Plugin):
         self.suffix_separators = self.father.config.options.get("suffix_separators")
 
         if self.format:
-            self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Phone number does not match the expected format")}
+            self.errors[30920] = self.def_class(item = 3092, level = 2, tags = ['value', 'fix:chair'],
+                title = T_('Phone number does not match the expected format'))
         if self.local_prefix:
-            self.errors[30921] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Extra \"{0}\" after international code", self.local_prefix)}
+            self.errors[30921] = self.def_class(item = 3092, level = 2, tags = ['value', 'fix:chair'],
+                title = T_f('Extra "{0}" after international code', self.local_prefix))
         if self.size_short:
-            self.errors[30922] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Local short code can't be internationalized")}
-        self.errors[30923] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Missing international prefix")}
-        self.errors[30924] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Bad international prefix")}
-        self.errors[30925] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Unallowed char in phone number")}
-        self.errors[30926] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Bad separator for multiple values")}
+            self.errors[30922] = self.def_class(item = 3092, level = 2, tags = ['value', 'fix:chair'],
+                title = T_f('Local short code can not be internationalized'))
+        self.errors[30923] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Missing international prefix'))
+        self.errors[30924] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Bad international prefix'))
+        self.errors[30925] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Unallowed char in phone number'))
+        self.errors[30926] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Bad separator for multiple values'))
 
         country = self.father.config.options.get("country")
 

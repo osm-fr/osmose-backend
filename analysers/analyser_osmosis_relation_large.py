@@ -69,7 +69,14 @@ class Analyser_Osmosis_Relation_Large(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1160", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Large relation") }
+        self.classs[1] = self.def_class(item = 1160, level = 1, tags = ['relation', 'geom', 'fix:chair'],
+            title = T_('Large relation'),
+            detail = T_(
+'''A relation whose members should be close is geographically
+spread.'''),
+            trap = T_(
+'''[The relationships are not
+classes](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categories).'''))
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {

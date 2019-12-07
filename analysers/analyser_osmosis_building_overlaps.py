@@ -158,13 +158,42 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and ("country" in config.options and config.options["country"].startswith("FR") or "test" in config.options)
-        self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building intersection") }
-        self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Large building intersection") }
-        self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building too small") }
-        self.classs_change[4] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Gap between buildings") }
-        self.classs_change[5] = {"item":"0", "level": 1, "tag": ["building", "fix:chair"], "desc": T_(u"Large building intersection cluster") }
+        detail = T_(
+'''In France, probably a building imported from cadastre without the
+[controls
+needed](https://wiki.openstreetmap.org/wiki/France/Cadastre/Import_semi-automatique_des_b%C3%A2timents#Traitements_des_b.C3.A2timents_avec_JOSM_avant_envoi_vers_serveur_OSM).
+Error is frequent on areas where lots of building are drawn manually,
+such as the HOT activations.
+''')
+        self.classs_change[1] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
+            title = T_('Building intersection'),
+            detail = self.merge_doc(detail, T_(
+'''The intersection surface is probably due to inaccuracies in the
+cadastre/import tools.''')))
+        self.classs_change[2] = self.def_class(item = 0, level = 2, tags = ['building', 'geom', 'fix:chair'],
+            title = T_('Large building intersection'),
+            detail = self.merge_doc(detail, T_(
+'''A large overlap. Requires a visual check (Bing, cadastre, on
+site).''')))
+        self.classs_change[3] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
+            title = T_('Building too small'),
+            detail = self.merge_doc(detail, T_(
+'''There is no intersection, but the surface is too small to be a
+building.''')))
+        self.classs_change[4] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
+            title = T_('Gap between buildings'),
+            detail = self.merge_doc(detail, T_(
+'''Space separation is probably due to inaccuracies in the
+cadastre/import tools.''')))
+        self.classs_change[5] = self.def_class(item = 0, level = 1, tags = ['building', 'fix:chair'],
+            title = T_('Large building intersection cluster'),
+            detail = self.merge_doc(detail, T_(
+'''Group of important overlaps. Major problem like a double import.''')))
         if self.FR:
-            self.classs_change[6] = {"item":"1", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building in parts") }
+            self.classs_change[6] = self.def_class(item =  1, level = 3, tags = ['building', 'geom', 'fix:chair'],
+                title = T_(u"Building in parts"),
+                detail = detail)
+
         self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}

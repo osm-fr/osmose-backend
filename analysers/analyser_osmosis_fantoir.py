@@ -104,7 +104,8 @@ class Analyser_Osmosis_Fantoir(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[11] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_f(u"Multiple name for the same ref FANTOIR") }
+        self.classs[11] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Multiple name for the same ref FANTOIR'))
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":11, "data":[self.array_full, self.positionAsText],

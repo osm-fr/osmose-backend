@@ -44,7 +44,12 @@ class P_Name_PoorlyWrittenWayType(Plugin):
     def init(self, logger, toponymie = False):
         Plugin.init(self, logger)
         self.toponymie = toponymie
-        self.errors[702] = { "item": 5020, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written way type") }
+        self.errors[702] = self.def_class(item = 5020, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Badly written way type'),
+            detail = T_(
+'''An abbreviation is present.'''),
+            fix = T_(
+'''Write the type of the way with all letters.'''))
 
     def way(self, data, tags, nds):
         if u"name" not in tags or u"highway" not in tags:

@@ -29,8 +29,21 @@ class TagFix_DuplicateValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3060]  = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated values") }
-        self.errors[30601] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Similar values") }
+        doc = dict(
+            detail = T_(
+'''The tag contains two values (separated by ';') which are very
+similar.'''),
+            fix = T_(
+'''Delete one value.'''),
+            trap = T_(
+'''In some case all values maybe required.'''))
+        self.errors[3060]  = self.def_class(item = 3060, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Duplicated values'),
+            **doc)
+        self.errors[30601] = self.def_class(item = 3060, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Similar values'),
+            **doc)
+
         self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'collection_times', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'is_in', 'position'))
         self.BlackListRegex = set((
             re.compile('seamark:.+:colour'),

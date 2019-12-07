@@ -347,17 +347,31 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting building") }
-        self.classs_change[2] = {"item":"1070", "level": 2, "tag": ["tree", "building", "geom", "fix:imagery"], "desc": T_(u"Tree intersecting building") }
-        self.classs_change[3] = {"item":"1070", "level": 2, "tag": ["highway", "tree", "geom", "fix:imagery"], "desc": T_(u"Tree and highway too close") }
-        self.classs_change[4] = {"item":"1070", "level": 3, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting small water piece") }
-        self.classs_change[5] = {"item":"1070", "level": 2, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting large water piece") }
-        self.classs_change[6] = {"item":"1070", "level": 2, "tag": ["power", "building", "geom", "fix:imagery"], "desc": T_(u"Power object intersecting building") }
-        self.classs_change[7] = {"item":"1070", "level": 2, "tag": ["highway", "power", "geom", "fix:imagery"], "desc": T_(u"Power object and highway too close") }
-        self.classs_change[8] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting highway without junction") }
-        self.classs_change[9] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway overlaps") }
-        self.classs_change[10] = {"item":"1070", "level": 3, "tag": ["waterway", "geom", "fix:imagery"], "desc": T_(u"Waterway intersecting waterway without junction") }
-        self.classs_change[11] = {"item":"1070", "level": 3, "tag": ["waterway", "geom", "fix:imagery"], "desc": T_(u"Waterway overlaps") }
+        doc = dict(
+            detail = T_(
+'''Objects that can not overlapped are on same location.'''),
+            fix = T_(
+'''Move an object or check the tags.'''),
+            trap = T_(
+'''The object may be missing a tag e.g. `tunnel=*`, `bridge=*`,
+`covered=*` or consider `layer=*` on the buidling where a road or railway
+enters a structure. Warning, information sources can be contradictory in
+time or with spatial offset.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)
+
+Intersection lane / building.'''))
+        self.classs_change[1] = self.def_class(item = 1070, level = 2, tags = ['highway', 'building', 'geom', 'fix:imagery'], title = T_(u'Highway intersecting building'), **doc)
+        self.classs_change[2] = self.def_class(item = 1070, level = 2, tags = ['tree', 'building', 'geom', 'fix:imagery'], title = T_(u'Tree intersecting building'), **doc)
+        self.classs_change[3] = self.def_class(item = 1070, level = 2, tags = ['highway', 'tree', 'geom', 'fix:imagery'], title = T_(u'Tree and highway too close'), **doc)
+        self.classs_change[4] = self.def_class(item = 1070, level = 3, tags = ['highway', 'waterway', 'geom', 'fix:imagery'], title = T_(u'Highway intersecting small water piece'), **doc)
+        self.classs_change[5] = self.def_class(item = 1070, level = 2, tags = ['highway', 'waterway', 'geom', 'fix:imagery'], title = T_(u'Highway intersecting large water piece'), **doc)
+        self.classs_change[6] = self.def_class(item = 1070, level = 2, tags = ['power', 'building', 'geom', 'fix:imagery'], title = T_(u'Power object intersecting building'), **doc)
+        self.classs_change[7] = self.def_class(item = 1070, level = 2, tags = ['highway', 'power', 'geom', 'fix:imagery'], title = T_(u'Power object and highway too close'), **doc)
+        self.classs_change[8] = self.def_class(item = 1070, level = 2, tags = ['highway', 'geom', 'fix:imagery'], title = T_(u'Highway intersecting highway without junction'), **doc)
+        self.classs_change[9] = self.def_class(item = 1070, level = 2, tags = ['highway', 'geom', 'fix:imagery'], title = T_(u'Highway overlaps'), **doc)
+        self.classs_change[10] = self.def_class(item = 1070, level = 3, tags = ['waterway', 'geom', 'fix:imagery'], title = T_(u'Waterway intersecting waterway without junction'), **doc)
+        self.classs_change[11] = self.def_class(item = 1070, level = 3, tags = ['waterway', 'geom', 'fix:imagery'], title = T_(u'Waterway overlaps'), **doc)
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}

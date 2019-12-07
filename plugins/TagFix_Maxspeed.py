@@ -73,7 +73,8 @@ class TagFix_Maxspeed(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[303241] = { 'item': 3032, 'level': 1, 'tag': ['tag', 'highway'], 'desc': T_f(u'Discordant maxspeed and source:maxspeed') }
+        self.errors[303241] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway'],
+            title = T_('Discordant maxspeed and source:maxspeed'))
 
 
     def way(self, data, tags, nds):

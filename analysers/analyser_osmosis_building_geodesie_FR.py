@@ -101,7 +101,23 @@ class Analyser_Osmosis_Building_Geodesie_FR(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"7010", "level": 3, "tag": ["building", "fix:chair"], "desc": T_(u"Geodesic mark without building") }
+        self.classs_change[1] = self.def_class(item = 7010, level = 3, tags = ['building', 'fix:chair'],
+            title = T_('Geodesic mark without building'),
+            detail = T_(
+'''A survey point has a name that underlying meaning is located on a
+building (belltower, water tower, tower), but the node is not inside a
+building polygon (`building=*`).'''),
+            fix = T_(
+'''If the building footprint is present but is misplaced because of a
+shift in the source data (cadastre, orthophotograhies), replace the
+layout of buildings to correct this issue. Otherwise, the building must
+be draw.'''),
+            trap = T_(
+'''Do not move the geodetic point, because it a reference (see the
+[import of these geodetic
+markers](https://wiki.openstreetmap.org/wiki/France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)).
+It could be that all the surrounding buildings are shifted.'''))
+
         self.callback10 = lambda res: {"class":1,
             "data":[self.node_full, self.positionAsText],
             "text":{"en":res[2]} }

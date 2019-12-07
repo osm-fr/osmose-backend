@@ -74,8 +74,15 @@ HAVING
 class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway", "fix:imagery"], "desc": T_(u"Missing way on level crossing") }
-        self.classs[3] = {"item":"7090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Lone highway or barrier node") }
+        self.classs_change[1] = self.def_class(item = 7090, level = 2, tags = ['railway', 'highway', 'fix:imagery'],
+            title = T_('Missing way on level crossing'),
+            detail = T_(
+'''Crossing for which it lacks the road or railway. '''))
+        self.classs[3] = self.def_class(item = 7090, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Lone highway or barrier node'),
+            fix = T_(
+'''The node must be common to rail and road.'''))
+
         self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText]}
 

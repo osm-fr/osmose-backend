@@ -27,8 +27,22 @@ class TagFix_BadKey(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3050]  = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad key") }
-        self.errors[30501] = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad key suffix") }
+        doc = dict(
+            detail = T_(
+'''The key of tag contains characters not recommended. The key is
+composed of alphanumeric characters: 0-9, a-z (preferably lower case),
+separator '_' or ':'. See
+[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags).'''),
+            fix = T_(
+'''Check the key tag, and correct.'''),
+            trap = T_(
+'''There certainly false positives.'''))
+        self.errors[3050]  = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Bad key'),
+            **doc)
+        self.errors[30501] = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Bad key suffix'),
+            **doc)
 
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")

@@ -29,12 +29,31 @@ class TagFix_MultipleTag_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30321] = { "item": 3032, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
-        self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name", "fix:chair"], "desc": T_(u"Improve name from the land registry") }
-        self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed", "fix:survey"], "desc": T_(u"incoherent maxspeed") }
-        self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Invalid reference") }
-        self.errors[30326] = { "item": 2100, "level": 3, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drugs under prescription") }
-        self.errors[206013] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"FANTOIR object type not match OSM feature") }
+        self.errors[30321] = self.def_class(item = 3032, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Watch multiple tags'))
+        self.errors[50201] = self.def_class(item = 5020, level = 2, tags = ['tag', 'name', 'fix:chair'],
+            title = T_('Improve name from the land registry'),
+            detail = T_(
+'''The name was copied from the land register (cadastre), but it is not
+written in a form actually used.'''),
+            fix = T_(
+'''Eg. replace "Chemin Rural dit des Vignes" by "Chemin des Vignes".'''))
+        self.errors[30324] = self.def_class(item = 3032, level = 2, tags = ['highway', 'maxspeed', 'fix:survey'],
+            title = T_('incoherent maxspeed'))
+        self.errors[30325] = self.def_class(item = 3032, level = 2, tags = ['highway', 'ref', 'fix:chair'],
+            title = T_('Invalid reference'))
+        self.errors[30326] = self.def_class(item = 2100, level = 3, tags = ['fix:chair'],
+            title = T_('In France all pharmacies deliver drugs under prescription'),
+            detail = T_(
+'''All French pharmacies sell on prescription by a doctor. It require a
+tag `dispensing=yes` in addition to `amenity=pharmacy`.'''),
+            fix = T_(
+'''Add tag `dispensing=yes`.'''),
+            trap = T_(
+'''Chemist shot ("parapharmacie" in French) do not fall into this
+classification. They do not have a specific tag for the moment.'''))
+        self.errors[206013] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('FANTOIR object type not match OSM feature'))
 
         self.school = {
             u"elementaire": u"élémentaire",

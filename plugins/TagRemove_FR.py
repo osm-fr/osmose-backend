@@ -28,7 +28,12 @@ class TagRemove_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[41001] = { "item": 4100, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Misused tag in this country") }
+        self.errors[41001] = self.def_class(item = 4100, level = 3, tags = ['tag', 'fix:chair'],
+            title = T_('Misused tag in this country'),
+            detail = T_(
+'''`designation=*` is a United Kingdom-specific tag.'''),
+            fix = T_(
+'''Translate it to another tag or remove.'''))
 
     def node(self, data, tags):
         if "designation" in tags:

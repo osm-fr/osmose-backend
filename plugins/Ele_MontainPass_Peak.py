@@ -26,7 +26,14 @@ class Ele_MontainPass_Peak(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[804] = { "item": 2020, "level": 3, "tag": ["tag", "fix:survey"], "desc": T_(u"Missing altitude") }
+        self.errors[804] = self.def_class(item = 2020, level = 3, tags = ['tag', 'fix:survey'],
+            title = T_('Missing altitude'),
+            detail = T_(
+'''Some elements, including the peak (natural=peak) and mountain_pass
+(mountain_pass=yes), has an evelation. This is shown in OSM with tag
+ele=* in meters.'''),
+            fix = T_(
+'''Complete the tag ele=* missing.'''))
 
     def node(self, data, tags):
         err = []

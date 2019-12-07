@@ -32,9 +32,32 @@ class Name_Script(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Some value chars does not match the language charset") }
-        self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Non printable char") }
-        self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Symbol char") }
+        self.errors[50701] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Some value chars does not match the language charset'),
+            detail = T_(
+'''Words are not written in the appropriate alphabet of the
+language.'''),
+            fix = T_(
+'''Usually, a wrong language has been chosen. Sometimes the word has been
+transliterated, and needs to be changed back to the original alphabet.
+`name:ar=Salaam` should be either `name:en=Salaam` (if known by
+untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`
+(original).'''))
+        self.errors[50702] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Non printable char'),
+            detail = T_(
+'''A non-printable character such as linefeed (0x000a) has been
+used.'''),
+            fix = T_(
+'''Remove the character.'''))
+        self.errors[50703] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Symbol char'),
+            detail = T_(
+'''A symbol is used instead of a letter from the appropriate
+alphabet.'''),
+            fix = T_(
+'''Change the character into a punctuation mark or something else more
+appropriate.'''))
 
         country = self.father.config.options.get("country")
 

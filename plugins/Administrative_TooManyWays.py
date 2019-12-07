@@ -26,7 +26,20 @@ class Administrative_TooManyWays(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary", "fix:chair"], "desc": T_(u"Duplicated way in relation") }
+        self.errors[504] = self.def_class(item = 6020, level = 3, tags = ['boundary', 'fix:chair'],
+            title = T_('Duplicated way in relation'),
+            detail = T_(
+'''In a relation, a way should be present only once.'''),
+            fix = T_(
+'''Most often, this is an user issue that add several times the same way.
+The editor JOSM can easily visualize the relationships and see duplicates
+(in color).'''),
+            trap = T_(
+'''Double check the ways roles in the relation before deleting.
+
+Caution: in a route, a path can be taken several times. The multiple
+presence of this path in the relation `type=route` is not then an issue.
+Then ensure the roles `forward` and `backward`.'''))
 
     def relation(self, data, tags, members):
 
