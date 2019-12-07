@@ -38,7 +38,25 @@ class TagFix_MultipleTag(Plugin):
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         self.errors[21101] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Name present but missing main tag") }
         self.errors[21102] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Missing relation type") }
-        self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
+        self.errors[1050] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_('Reverse roundabout'),
+            detail = T_(
+'''The circulation of the roundabout is draw clockwise, but in countries
+where they drive on the right the sense of roundabouts is
+counterclockwise, and vice versa for the other countries.'''),
+            fix = T_(
+'''For the mini roundabouts `highway=mini_roundabout`: the tag
+`direction=*` indicates the direction, in countries driven on the right,
+the default is `direction=anticlockwise`, in this case it is useless as
+tag.'''),
+            trap = T_(
+'''Make sure that it is a roundabout (for example, no a side way in
+oposite direction around a square or a central roundabout, ordriveways
+separated by traffic islands at an intersection without cross).'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)
+
+Clockwise rotation.'''))
         self.errors[40201] = { "item": 4020, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
         self.errors[21201] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Level or repeat_on tag missing") }
         self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Indoor or buildingpart tag missing") }

@@ -27,10 +27,25 @@ from functools import reduce
 
 class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_f(u"Historical monument not integrated") }
-        self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument without tag \"ref:mhs\" or invalid") }
-        self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument, integration suggestion") }
-        self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument update") }
+        self.config = config
+        doc = dict(
+            detail = T_(
+'''A historical monument is here but is not mapped. The list of monuments
+comes from the database "Merimee Inventory of monuments" in France by the
+Ministry of Culture.'''),
+            fix = T_(
+'''See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on
+wiki. Add a node or to integrate tags something already existing.'''),
+            trap = T_(
+'''The position of the markers is made by address geocoding, it may be
+located elsewhere. The marker can be a very rough position, located as
+low accuracy to the town. Carefully check the contents of the proposed
+tags, can be curious or unsuitable values. Do not overide tags of UNESCO
+World Heritage.'''))
+        self.missing_official = self.def_class(item = 8010, id = 1, level = 3, tags = ['merge', 'building'], title = T_('Historical monument not integrated'), **doc)
+        self.missing_osm      = self.def_class(item = 7080, id = 2, level = 3, tags = ['merge'], title = T_('Historical monument without tag "ref:mhs" or invalid'), **doc)
+        self.possible_merge   = self.def_class(item = 8011, id = 3, level = 3, tags = ['merge'], title = T_('Historical monument, integration suggestion'), **doc)
+        self.update_official  = self.def_class(item = 8012, id = 4, level = 3, tags = ['merge'], title = T_('Historical monument update'), **doc)
 
         def parseDPRO(dpro):
             ret = None;

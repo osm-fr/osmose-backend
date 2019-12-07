@@ -81,6 +81,8 @@ class template_config:
     db_schema_path = None
     db_persistent = False
 
+    source_url = 'https://github.com/osm-fr/osmose-backend/blob/master/'
+
     def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):
         config[country] = self
         self.country          = country

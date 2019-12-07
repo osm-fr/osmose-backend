@@ -41,7 +41,24 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1050", "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
+        self.classs_change[1] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_('Reverse roundabout'),
+            detail = T_(
+'''The circulation of the roundabout is draw clockwise, but in countries
+where they driveon the right the sense of roundabouts is
+counterclockwise, and vice versa for the other countries.'''),
+            fix = T_(
+'''For roundabout `junction=roundabout`: change the direction by
+reversing the order of nodes in the path. In JOSM, select the roundabout
+and use the tool reverse path (shortcut: 'R').'''),
+            trap = T_(
+'''Make sure that it is a roundabout (for example, no a side way in
+oposite direction around a square or a central roundabout, or driveways
+separated by traffic islands at an intersection without cross).'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)
+
+Clockwise rotation.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
         if self.config.options.get("driving_side") == "left":
             self.driving_side = "NOT "

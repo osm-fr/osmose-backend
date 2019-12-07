@@ -313,11 +313,18 @@ ANALYZE {0}.buildings;
         for id_ in classs:
             data = classs[id_]
             self.error_file.classs(
-                id_,
-                data["item"],
-                data.get("level"),
-                data.get("tag"),
-                data["desc"])
+                id = id_,
+                item = data['item'],
+                level = data['level'],
+                tags = data.get('tags', data.get('tag')),
+                title = data.get('title', data.get('desc')),
+                detail = data.get('detail'),
+                fix = data.get('fix'),
+                trap = data.get('trap'),
+                example = data.get('example'),
+                source = data.get('source'),
+                resource = data.get('resource'),
+            )
 
 
     def analyser_osmosis_common(self):

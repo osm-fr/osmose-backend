@@ -25,6 +25,8 @@ except ImportError:
     import __builtin__ as builtins
 
 import hashlib
+import os
+from inspect import getframeinfo, stack
 from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
 from modules import SourceVersion
@@ -62,6 +64,22 @@ class Analyser(object):
 
     def timestamp(self):
         return None
+
+    def def_class(self, **kwargs):
+        # Check keys
+        diff_keys = set(kwargs.keys()) - set(['item', 'id', 'level', 'tags', 'title', 'detail', 'fix', 'trap', 'example', 'source', 'ressource'])
+        if len(diff_keys) > 0:
+            raise Exception('Unknow key ' + ', '.join(diff_keys))
+
+        if 'source' not in kwargs:
+            caller = getframeinfo(stack()[1][0])
+            kwargs['source'] = '{0}/analysers/{1}#L{2}'.format(self.config.source_url, os.path.basename(caller.filename), caller.lineno)
+
+        return kwargs
+
+    def merge_doc(self, *docs):
+        langs = set(sum(map(lambda d: list(d.keys()), docs), []))
+        return dict(map(lambda l: [l, '\n'.join(map(lambda d: d.get(l, d.get('en')), docs))], langs))
 
     def open_error_file(self):
         if self.config.dst:

@@ -21,6 +21,9 @@
 
 from modules.Stablehash import stablehash
 
+import os
+from inspect import getframeinfo, stack
+
 
 class Plugin(object):
 
@@ -88,6 +91,13 @@ class Plugin(object):
         @param logger:
         """
         pass
+
+    def def_class(self, **kwargs):
+        if 'source' not in kwargs:
+            caller = getframeinfo(stack()[1][0])
+            kwargs['source'] = '{0}/plugins/{1}#L{2}'.format(self.father.config.source_url, os.path.basename(caller.filename), caller.lineno)
+
+        return self.father.def_class(**kwargs)
 
     def ToolsStripAccents(self, mot):
         mot = mot.replace(u"à", u"a").replace(u"â", u"a")

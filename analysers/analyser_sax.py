@@ -489,11 +489,18 @@ class Analyser_Sax(Analyser):
         # Create classes in issues file
         for (cl, item) in sorted(self._Err.items()):
             self.error_file.classs(
-                cl,
-                item["item"],
-                item.get("level"),
-                item.get("tag"),
-                item['desc'])
+                id = cl,
+                item = item['item'],
+                level = item['level'],
+                tags = item.get('tags', item.get('tag')),
+                title = item.get('title', item.get('desc')),
+                detail = item.get('detail'),
+                fix = item.get('fix'),
+                trap = item.get('trap'),
+                example = item.get('example'),
+                source = item.get('source'),
+                resource = item.get('resource'),
+            )
 
     ################################################################################
 

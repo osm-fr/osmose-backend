@@ -836,25 +836,28 @@ class Analyser_Merge(Analyser_Osmosis):
         self.mapping = mapping
 
         if hasattr(self, 'missing_official'):
-            self.classs[self.missing_official["class"]] = self.missing_official
+            self.classs[self.missing_official.get('id', self.missing_official.get('class'))] = self.missing_official
         else:
             self.missing_official = None
         if hasattr(self, 'missing_osm'):
-            self.classs[self.missing_osm["class"]] = self.missing_osm
+            self.classs[self.missing_osm.get('id', self.missing_osm.get('class'))] = self.missing_osm
         else:
             self.missing_osm = None
         if hasattr(self, 'possible_merge'):
-            self.classs[self.possible_merge["class"]] = self.possible_merge
+            self.classs[self.possible_merge.get('id', self.possible_merge.get('class'))] = self.possible_merge
         else:
             self.possible_merge = None
         if hasattr(self, 'moved_official'):
-            self.classs[self.moved_official["class"]] = self.moved_official
+            self.classs[self.moved_official.get('id', self.moved_official.get('class'))] = self.moved_official
         else:
             self.moved_official = None
         if hasattr(self, 'update_official'):
-            self.classs[self.update_official["class"]] = self.update_official
+            self.classs[self.update_official.get('id', self.update_official.get('class'))] = self.update_official
         else:
             self.update_official = None
+
+        for (id, c) in self.classs.items():
+            c['resource'] = url
 
         if not isinstance(self.mapping.select.tags, list):
             self.mapping.select.tags = [self.mapping.select.tags]
@@ -941,7 +944,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run(sql11)
         if self.missing_official:
             self.run(sql12, lambda res: {
-                "class": self.missing_official["class"],
+                "class": self.missing_official.get('id', self.missing_official.get('class')),
                 "subclass": str(stablehash64("%s%s%s"%(res[0],res[1],res[3]))),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
@@ -960,7 +963,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 } )
                 # Invalid OSM
                 self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
-                    "class": self.missing_osm["class"],
+                    "class": self.missing_osm.get('id', self.missing_osm.get('class')),
                     "subclass": str(stablehash64(res[5])) if self.mapping.osmRef != "NULL" else None,
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
@@ -976,7 +979,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     possible_merge_joinClause.append("missing_official.tags->'%(tag)s' = missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
-                    "class": self.possible_merge["class"],
+                    "class": self.possible_merge.get('id', self.possible_merge.get('class')),
                     "subclass": str(stablehash64("%s%s"%(res[0],str(res[3])))),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
@@ -1009,14 +1012,14 @@ class Analyser_Merge(Analyser_Osmosis):
         # Moved official
         if self.moved_official:
             self.run(sql50 % {"official": table, "joinClause": joinClause}, lambda res: {
-                "class": self.moved_official["class"],
+                "class": self.moved_official.get('id', self.moved_official.get('class')),
                 "data": [self.node_full, self.positionAsText],
             } )
 
         # Update official
         if self.update_official:
             self.run(sql60 % {"official": table, "joinClause": joinClause}, lambda res: {
-                "class": self.update_official["class"],
+                "class": self.update_official.get('id', self.update_official.get('class')),
                 "subclass": str(stablehash64("%s%s"%(res[0],str(res[5])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
