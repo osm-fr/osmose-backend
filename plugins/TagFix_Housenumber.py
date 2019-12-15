@@ -53,6 +53,9 @@ class TagFix_Housenumber(Plugin):
         self.housenumberRegexByCountry["LU"] = re.compile("^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
         # Allow "snc" (Senza numero civico) in Italy
         self.housenumberRegexByCountry["IT"] = re.compile("(:?^[1-9])|(^snc$)")
+        # https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
+        # 7.3.2 huisnummer, 7.3.3 huisletter and 7.3.4 huisnummertoevoeging
+        self.housenumberRegexByCountry["NL"] = re.compile(r"^[1-9][0-9]{0,4}[0-9A-Za-z]{0,4}$")
 
     def node(self, data, tags):
         err = []
@@ -160,3 +163,19 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"addr:housenumber": "42"})
         assert not a.node(None, {"addr:housenumber": "snc"})
+
+    def test_NL(self):
+        a = TagFix_Housenumber(None)
+        class _config:
+            options = {"country": "NL"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"addr:housenumber": "42"})
+        assert not a.node(None, {"addr:housenumber": "18A"})
+        assert not a.node(None, {"addr:housenumber": "53218Ab7Z"})
+        assert a.node(None, {"addr:housenumber": "1;2"})
+        assert a.node(None, {"addr:housenumber": "7 bis"})
+
