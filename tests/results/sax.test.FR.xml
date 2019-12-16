@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="567909968">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1178931249">
 <class id="1" item="7060" level="3" tag="source,fix:chair">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -537,24 +537,7 @@
 <classtext lang="zh_CN" title="不良的标签值" />
 </class>
 <class id="3050" item="3050" level="1" tag="tag,fix:chair">
-<classtext lang="ca" title="Etiqueta incorrecta" />
-<classtext lang="cs" title="Špatná značka" />
-<classtext lang="de" title="Ungültiges Merkmal" />
-<classtext lang="el" title="Λάθος ετικέτα" />
-<classtext lang="en" title="Bad tag" />
-<classtext lang="es" title="Mal etiquetado" />
-<classtext lang="fa" title="تگ بد" />
-<classtext lang="fr" title="Mauvais attribut" />
-<classtext lang="gl" title="Etiquetaxe errónea" />
-<classtext lang="hu" title="Hibás címke" />
-<classtext lang="it" title="Tag errato" />
-<classtext lang="lt" title="Neteisinga žyma" />
-<classtext lang="nl" title="Verkeerde tag " />
-<classtext lang="pl" title="Zły tag" />
-<classtext lang="pt" title="Etiqueta incorreta" />
-<classtext lang="pt_BR" title="Etiqueta incorreta" />
-<classtext lang="uk" title="Помилковий теґ" />
-<classtext lang="zh_CN" title="不良 tag" />
+<classtext lang="en" title="Bad key" />
 </class>
 <class id="3060" item="3060" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Doppelte Werte" />
@@ -1021,7 +1004,7 @@
 <classtext lang="it" title="Etichette indoor o buildingpart mancanti" />
 <classtext lang="lt" title="Trūksta žymos indoor ar buildingpart" />
 <classtext lang="nl" title="Indoor of stukken van gebouw tag ontbreekt" />
-<classtext lang="pl" title="Brakuje tagu indoor lub bulidingpart" />
+<classtext lang="pl" title="Brakuje tagu indoor lub building:part" />
 <classtext lang="pt" title="Falta etiqueta indoor ou buildingpart" />
 <classtext lang="pt_BR" title="Falta etiqueta indoor ou buildingpart" />
 <classtext lang="uk" title="Відсутній теґ Indoor or buildingpart" />
@@ -1468,13 +1451,7 @@
 <classtext lang="zh_CN" title="{0.key}={0.value} 和 {1.key}={1.value}" />
 </class>
 <class id="30501" item="3050" level="1" tag="tag,fix:chair">
-<classtext lang="en" title="Bad tag suffix" />
-<classtext lang="fr" title="Mauvais suffixe d'attribut" />
-<classtext lang="gl" title="Sufixo da etiqueta erróneo" />
-<classtext lang="hu" title="Hibás címkeutótag" />
-<classtext lang="nl" title="Verkeerde tag  suffix" />
-<classtext lang="pl" title="Niepoprawny przyrostek klucza" />
-<classtext lang="uk" title="Помилковий суфікс теґу" />
+<classtext lang="en" title="Bad key suffix" />
 </class>
 <class id="30601" item="3060" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Ähnliche Werte" />
@@ -1921,8 +1898,10 @@
 </class>
 <class id="32502" item="3250" level="3" tag="value,fix:chair,public_transport">
 <classtext lang="en" title="Invalid Conditional Intervals" />
+<classtext lang="es" title="Intervalos condicionales inválidos" />
 <classtext lang="fr" title="Intervalles conditionnels invalides" />
 <classtext lang="hu" title="Érvénytelen feltételes időközök" />
+<classtext lang="nl" title="Ongeldige voorwaardelijke Intervals" />
 </class>
 <class id="40101" item="4010" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="{2.key}={2.value} se dává přednost před {1.key}={1.value}" />
