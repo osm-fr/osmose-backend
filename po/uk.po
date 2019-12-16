@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Andrey Golovin, 2018
+# frodrigo <fred.rodrigo@gmail.com>, 2019
 # Ігор Варварчук <182050@i.ua>, 2019
 # Ігор Варварчук <182050@i.ua>, 2018-2019
 msgid ""
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-12-01 21:16+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-12-07 15:55+0000\n"
+"Last-Translator: frodrigo <fred.rodrigo@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1882,7 +1883,7 @@ msgstr "{0} зупинка з {1}"
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-brace-format
 msgid "{0} stop update"
-msgstr "{0} stop update"
+msgstr "{0} зупинка оновлення"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-brace-format
@@ -2250,7 +2251,7 @@ msgstr "Cхожі значення"
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:58
 #, python-brace-format
 msgid "Sudden highway type change (level {0})"
-msgstr ""
+msgstr "Помилкова топологія лінії {0} рівня"
 
 #: ../plugins/Phone.py:122
 #, python-brace-format
