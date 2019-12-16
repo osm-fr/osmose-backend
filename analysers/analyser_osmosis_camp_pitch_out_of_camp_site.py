@@ -58,7 +58,7 @@ WHERE
   site.id IS NULL
 """
 
-class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
+class Analyser_Osmosis_Camp_Pitch_Out_Of_Camp_Site(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

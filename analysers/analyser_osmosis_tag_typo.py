@@ -75,6 +75,7 @@ FROM
             'static_caravans', 'static_caravan',
             'loc_ref', 'lock_ref',
             'charge', 'change',
+            'mail', 'email',
             'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9' -- Tiger mess
         ) AND
         NOT key LIKE 'AND_%'
@@ -142,6 +143,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.node_full, None, None, None, None, self.positionAsText],
+            "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10.format("ways"))
@@ -150,6 +152,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.way_full, None, None, None, None, self.positionAsText],
+            "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10.format("relations"))
@@ -158,4 +161,5 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.relation_full, None, None, None, None, self.positionAsText],
+            "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
