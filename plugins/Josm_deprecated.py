@@ -32,7 +32,6 @@ class Josm_deprecated(Plugin):
         self.errors[9002019] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
 
         self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
-        self.re_05edd24e = re.compile(r'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$')
         self.re_0c5b5730 = re.compile(r'color:')
         self.re_0f294fdf = re.compile(r'^[1-9][0-9]*$')
         self.re_1f92073a = re.compile(r'^(?i)fixme$')
@@ -42,6 +41,7 @@ class Josm_deprecated(Plugin):
         self.re_3185ac6d = re.compile(r'^note_[0-9]$')
         self.re_34c15d62 = re.compile(r'^..$')
         self.re_493fd1a6 = re.compile(r'^is_in:.*$')
+        self.re_51df498f = re.compile(r'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|slipway|yes)$')
         self.re_554de4c7 = re.compile(r':color')
         self.re_5ee0acf2 = re.compile(r'josm\/ignore')
         self.re_6029fe03 = re.compile(r'^diaper:')
@@ -436,6 +436,42 @@ class Josm_deprecated(Plugin):
                 err.append({'class': 9002001, 'subclass': 1423074682, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'power',u'substation']])
+                }})
+
+        # *[location=rooftop]
+        if (u'location' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'location') == mapcss._value_capture(capture_tags, 0, u'rooftop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location=roof"
+                # fixAdd:"location=roof"
+                err.append({'class': 9002001, 'subclass': 1028577225, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'location',u'roof']])
+                }})
+
+        # *[generator:location]
+        if (u'generator:location' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'generator:location'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"location"
+                # fixChangeKey:"generator:location => location"
+                err.append({'class': 9002001, 'subclass': 900615917, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'location', mapcss.tag(tags, u'generator:location')]]),
+                    '-': ([
+                    u'generator:location'])
                 }})
 
         # *[generator:method=dam]
@@ -1074,6 +1110,9 @@ class Josm_deprecated(Plugin):
                     u'parking'])
                 }})
 
+        # *[manhole=plain]
+        # *[manhole=unknown]
+        # *[manhole=yes]
         # *[police=yes]
         # *[traffic_calming=yes]
         # *[access=restricted]
@@ -1086,8 +1125,20 @@ class Josm_deprecated(Plugin):
         # *[craft=yes]
         # *[service=yes]
         # *[place=yes]
-        if (u'access' in keys) or (u'aerialway' in keys) or (u'amenity' in keys) or (u'barrier' in keys) or (u'craft' in keys) or (u'leisure' in keys) or (u'place' in keys) or (u'police' in keys) or (u'service' in keys) or (u'shop' in keys) or (u'traffic_calming' in keys):
+        if (u'access' in keys) or (u'aerialway' in keys) or (u'amenity' in keys) or (u'barrier' in keys) or (u'craft' in keys) or (u'leisure' in keys) or (u'manhole' in keys) or (u'place' in keys) or (u'police' in keys) or (u'service' in keys) or (u'shop' in keys) or (u'traffic_calming' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'plain'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'unknown'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'yes'))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'police') == mapcss._value_capture(capture_tags, 0, u'yes'))
@@ -1138,7 +1189,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}={1} is unspecific. Please replace ''{1}'' by a specific value.","{0.key}","{0.value}")
-                err.append({'class': 9002007, 'subclass': 1089883099, 'text': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
+                err.append({'class': 9002007, 'subclass': 1532935474, 'text': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
 
         # *[place_name][!name]
         if (u'place_name' in keys):
@@ -1421,18 +1472,18 @@ class Josm_deprecated(Plugin):
         # *[roof:color][roof:colour]!.sameroofcolor
         # Use undeclared class sameroofcolor
 
-        # *[/:color/][!building:color][!roof:color]
+        # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_554de4c7) and not mapcss._tag_capture(capture_tags, 1, tags, u'building:color') and not mapcss._tag_capture(capture_tags, 2, tags, u'roof:color'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_554de4c7) and not mapcss._tag_capture(capture_tags, 1, tags, u'building:color') and not mapcss._tag_capture(capture_tags, 2, tags, u'roof:color') and not mapcss._tag_capture(capture_tags, 3, tags, u'gpxd:color'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:":colour"
-                err.append({'class': 9002001, 'subclass': 238251143, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9002001, 'subclass': 1632389707, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[/color:/]
         if True:
@@ -3929,6 +3980,118 @@ class Josm_deprecated(Plugin):
                     u'crossing'])
                 }})
 
+        # *[recycling:metal]
+        if (u'recycling:metal' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'recycling:metal'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"recycling:scrap_metal"
+                # fixChangeKey:"recycling:metal => recycling:scrap_metal"
+                err.append({'class': 9002001, 'subclass': 474491272, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'recycling:scrap_metal', mapcss.tag(tags, u'recycling:metal')]]),
+                    '-': ([
+                    u'recycling:metal'])
+                }})
+
+        # *[shop=dog_grooming]
+        if (u'shop' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'dog_grooming'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"shop=pet_grooming"
+                # fixAdd:"shop=pet_grooming"
+                err.append({'class': 9002001, 'subclass': 1073412885, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'shop',u'pet_grooming']])
+                }})
+
+        # *[tower:type=anchor]
+        # *[tower:type=suspension]
+        if (u'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tower:type') == mapcss._value_capture(capture_tags, 0, u'anchor'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tower:type') == mapcss._value_capture(capture_tags, 0, u'suspension'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("line_attachment=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixChangeKey:"tower:type => line_attachment"
+                err.append({'class': 9002001, 'subclass': 180380605, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'line_attachment', mapcss.tag(tags, u'tower:type')]]),
+                    '-': ([
+                    u'tower:type'])
+                }})
+
+        # node[pole:type=anchor]
+        # node[pole:type=suspension]
+        if (u'pole:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'pole:type') == mapcss._value_capture(capture_tags, 0, u'anchor'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'pole:type') == mapcss._value_capture(capture_tags, 0, u'suspension'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("line_attachment=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixChangeKey:"pole:type => line_attachment"
+                err.append({'class': 9002001, 'subclass': 1925507031, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'line_attachment', mapcss.tag(tags, u'pole:type')]]),
+                    '-': ([
+                    u'pole:type'])
+                }})
+
+        # node[man_made=pipeline_marker]
+        # node[pipeline=marker]
+        # node[power=marker]
+        # node[cable=marker]
+        if (u'cable' in keys) or (u'man_made' in keys) or (u'pipeline' in keys) or (u'power' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'pipeline_marker'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'pipeline') == mapcss._value_capture(capture_tags, 0, u'marker'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'marker'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'cable') == mapcss._value_capture(capture_tags, 0, u'marker'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"marker=* + utility=*"
+                err.append({'class': 9002001, 'subclass': 296597752, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
         return err
 
     def way(self, data, tags, nds):
@@ -4323,6 +4486,42 @@ class Josm_deprecated(Plugin):
                 err.append({'class': 9002001, 'subclass': 1423074682, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'power',u'substation']])
+                }})
+
+        # *[location=rooftop]
+        if (u'location' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'location') == mapcss._value_capture(capture_tags, 0, u'rooftop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location=roof"
+                # fixAdd:"location=roof"
+                err.append({'class': 9002001, 'subclass': 1028577225, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'location',u'roof']])
+                }})
+
+        # *[generator:location]
+        if (u'generator:location' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'generator:location'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"location"
+                # fixChangeKey:"generator:location => location"
+                err.append({'class': 9002001, 'subclass': 900615917, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'location', mapcss.tag(tags, u'generator:location')]]),
+                    '-': ([
+                    u'generator:location'])
                 }})
 
         # *[generator:method=dam]
@@ -4960,6 +5159,9 @@ class Josm_deprecated(Plugin):
                     u'parking'])
                 }})
 
+        # *[manhole=plain]
+        # *[manhole=unknown]
+        # *[manhole=yes]
         # *[police=yes]
         # *[traffic_calming=yes]
         # *[access=restricted]
@@ -4972,8 +5174,20 @@ class Josm_deprecated(Plugin):
         # *[craft=yes]
         # *[service=yes]
         # *[place=yes]
-        if (u'access' in keys) or (u'aerialway' in keys) or (u'amenity' in keys) or (u'barrier' in keys) or (u'craft' in keys) or (u'leisure' in keys) or (u'place' in keys) or (u'police' in keys) or (u'service' in keys) or (u'shop' in keys) or (u'traffic_calming' in keys):
+        if (u'access' in keys) or (u'aerialway' in keys) or (u'amenity' in keys) or (u'barrier' in keys) or (u'craft' in keys) or (u'leisure' in keys) or (u'manhole' in keys) or (u'place' in keys) or (u'police' in keys) or (u'service' in keys) or (u'shop' in keys) or (u'traffic_calming' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'plain'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'unknown'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'yes'))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'police') == mapcss._value_capture(capture_tags, 0, u'yes'))
@@ -5024,7 +5238,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}={1} is unspecific. Please replace ''{1}'' by a specific value.","{0.key}","{0.value}")
-                err.append({'class': 9002007, 'subclass': 1089883099, 'text': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
+                err.append({'class': 9002007, 'subclass': 1532935474, 'text': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
 
         # *[place_name][!name]
         if (u'place_name' in keys):
@@ -5352,12 +5566,12 @@ class Josm_deprecated(Plugin):
         # *[roof:color][roof:colour]!.sameroofcolor
         # Use undeclared class sameroofcolor
 
-        # *[/:color/][!building:color][!roof:color]
+        # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_554de4c7) and not mapcss._tag_capture(capture_tags, 1, tags, u'building:color') and not mapcss._tag_capture(capture_tags, 2, tags, u'roof:color'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_554de4c7) and not mapcss._tag_capture(capture_tags, 1, tags, u'building:color') and not mapcss._tag_capture(capture_tags, 2, tags, u'roof:color') and not mapcss._tag_capture(capture_tags, 3, tags, u'gpxd:color'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -5366,7 +5580,7 @@ class Josm_deprecated(Plugin):
                 # assertNoMatch:"way color=red"
                 # assertMatch:"way cycleway:surface:color=grey"
                 # assertNoMatch:"way roof:color=grey"
-                err.append({'class': 9002001, 'subclass': 238251143, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9002001, 'subclass': 1632389707, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[/color:/]
         if True:
@@ -6378,14 +6592,14 @@ class Josm_deprecated(Plugin):
                     [u'service',u'drive-through']])
                 }})
 
-        # way[highway=service][service][service!~/^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$/]
+        # way[highway=service][service][service!~/^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|slipway|yes)$/]
         # way[railway=rail][service][service!~/^(crossover|siding|spur|yard)$/]
         # way[waterway=canal][service][service!~/^(irrigation|transportation|water_power)$/]
         if (u'highway' in keys and u'service' in keys) or (u'railway' in keys and u'service' in keys) or (u'service' in keys and u'waterway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_05edd24e, u'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$'), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_51df498f, u'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|slipway|yes)$'), mapcss._tag_capture(capture_tags, 2, tags, u'service')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -6397,7 +6611,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("The key {0} has an uncommon value.","{1.key}")
-                err.append({'class': 9002017, 'subclass': 275832859, 'text': mapcss.tr(u'The key {0} has an uncommon value.', mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9002017, 'subclass': 1887619180, 'text': mapcss.tr(u'The key {0} has an uncommon value.', mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # *[name:botanical]
         if (u'name:botanical' in keys):
@@ -7843,6 +8057,80 @@ class Josm_deprecated(Plugin):
                     u'crossing'])
                 }})
 
+        # *[recycling:metal]
+        if (u'recycling:metal' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'recycling:metal'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"recycling:scrap_metal"
+                # fixChangeKey:"recycling:metal => recycling:scrap_metal"
+                err.append({'class': 9002001, 'subclass': 474491272, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'recycling:scrap_metal', mapcss.tag(tags, u'recycling:metal')]]),
+                    '-': ([
+                    u'recycling:metal'])
+                }})
+
+        # *[shop=dog_grooming]
+        if (u'shop' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'dog_grooming'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"shop=pet_grooming"
+                # fixAdd:"shop=pet_grooming"
+                err.append({'class': 9002001, 'subclass': 1073412885, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'shop',u'pet_grooming']])
+                }})
+
+        # *[tower:type=anchor]
+        # *[tower:type=suspension]
+        if (u'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tower:type') == mapcss._value_capture(capture_tags, 0, u'anchor'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tower:type') == mapcss._value_capture(capture_tags, 0, u'suspension'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("line_attachment=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixChangeKey:"tower:type => line_attachment"
+                err.append({'class': 9002001, 'subclass': 180380605, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'line_attachment', mapcss.tag(tags, u'tower:type')]]),
+                    '-': ([
+                    u'tower:type'])
+                }})
+
+        # way[barrier=embankment]
+        if (u'barrier' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'barrier') == mapcss._value_capture(capture_tags, 0, u'embankment'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"embankment=yes"
+                # suggestAlternative:"man_made=embankment"
+                err.append({'class': 9002001, 'subclass': 2131554464, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
         return err
 
     def relation(self, data, tags, members):
@@ -8209,6 +8497,42 @@ class Josm_deprecated(Plugin):
                 err.append({'class': 9002001, 'subclass': 1423074682, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'power',u'substation']])
+                }})
+
+        # *[location=rooftop]
+        if (u'location' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'location') == mapcss._value_capture(capture_tags, 0, u'rooftop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location=roof"
+                # fixAdd:"location=roof"
+                err.append({'class': 9002001, 'subclass': 1028577225, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'location',u'roof']])
+                }})
+
+        # *[generator:location]
+        if (u'generator:location' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'generator:location'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"location"
+                # fixChangeKey:"generator:location => location"
+                err.append({'class': 9002001, 'subclass': 900615917, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'location', mapcss.tag(tags, u'generator:location')]]),
+                    '-': ([
+                    u'generator:location'])
                 }})
 
         # *[generator:method=dam]
@@ -8827,6 +9151,9 @@ class Josm_deprecated(Plugin):
                     u'parking'])
                 }})
 
+        # *[manhole=plain]
+        # *[manhole=unknown]
+        # *[manhole=yes]
         # *[police=yes]
         # *[traffic_calming=yes]
         # *[access=restricted]
@@ -8839,8 +9166,20 @@ class Josm_deprecated(Plugin):
         # *[craft=yes]
         # *[service=yes]
         # *[place=yes]
-        if (u'access' in keys) or (u'aerialway' in keys) or (u'amenity' in keys) or (u'barrier' in keys) or (u'craft' in keys) or (u'leisure' in keys) or (u'place' in keys) or (u'police' in keys) or (u'service' in keys) or (u'shop' in keys) or (u'traffic_calming' in keys):
+        if (u'access' in keys) or (u'aerialway' in keys) or (u'amenity' in keys) or (u'barrier' in keys) or (u'craft' in keys) or (u'leisure' in keys) or (u'manhole' in keys) or (u'place' in keys) or (u'police' in keys) or (u'service' in keys) or (u'shop' in keys) or (u'traffic_calming' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'plain'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'unknown'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'manhole') == mapcss._value_capture(capture_tags, 0, u'yes'))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'police') == mapcss._value_capture(capture_tags, 0, u'yes'))
@@ -8891,7 +9230,7 @@ class Josm_deprecated(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}={1} is unspecific. Please replace ''{1}'' by a specific value.","{0.key}","{0.value}")
-                err.append({'class': 9002007, 'subclass': 1089883099, 'text': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
+                err.append({'class': 9002007, 'subclass': 1532935474, 'text': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
 
         # *[place_name][!name]
         if (u'place_name' in keys):
@@ -9174,18 +9513,18 @@ class Josm_deprecated(Plugin):
         # *[roof:color][roof:colour]!.sameroofcolor
         # Use undeclared class sameroofcolor
 
-        # *[/:color/][!building:color][!roof:color]
+        # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_554de4c7) and not mapcss._tag_capture(capture_tags, 1, tags, u'building:color') and not mapcss._tag_capture(capture_tags, 2, tags, u'roof:color'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_554de4c7) and not mapcss._tag_capture(capture_tags, 1, tags, u'building:color') and not mapcss._tag_capture(capture_tags, 2, tags, u'roof:color') and not mapcss._tag_capture(capture_tags, 3, tags, u'gpxd:color'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:":colour"
-                err.append({'class': 9002001, 'subclass': 238251143, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9002001, 'subclass': 1632389707, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[/color:/]
         if True:
@@ -11313,6 +11652,66 @@ class Josm_deprecated(Plugin):
                     u'crossing'])
                 }})
 
+        # *[recycling:metal]
+        if (u'recycling:metal' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'recycling:metal'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"recycling:scrap_metal"
+                # fixChangeKey:"recycling:metal => recycling:scrap_metal"
+                err.append({'class': 9002001, 'subclass': 474491272, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'recycling:scrap_metal', mapcss.tag(tags, u'recycling:metal')]]),
+                    '-': ([
+                    u'recycling:metal'])
+                }})
+
+        # *[shop=dog_grooming]
+        if (u'shop' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'shop') == mapcss._value_capture(capture_tags, 0, u'dog_grooming'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"shop=pet_grooming"
+                # fixAdd:"shop=pet_grooming"
+                err.append({'class': 9002001, 'subclass': 1073412885, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'shop',u'pet_grooming']])
+                }})
+
+        # *[tower:type=anchor]
+        # *[tower:type=suspension]
+        if (u'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tower:type') == mapcss._value_capture(capture_tags, 0, u'anchor'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'tower:type') == mapcss._value_capture(capture_tags, 0, u'suspension'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("line_attachment=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixChangeKey:"tower:type => line_attachment"
+                err.append({'class': 9002001, 'subclass': 180380605, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'line_attachment', mapcss.tag(tags, u'tower:type')]]),
+                    '-': ([
+                    u'tower:type'])
+                }})
+
         return err
 
 
@@ -11359,9 +11758,9 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'color': u'red', u'colour': u'red'}, [0]), expected={'class': 9002001, 'subclass': 1825345743})
         self.check_err(n.way(data, {u'color': u'red', u'colour': u'green'}, [0]), expected={'class': 9002001, 'subclass': 1064658218})
         self.check_not_err(n.way(data, {u'color': u'red', u'colour': u'red'}, [0]), expected={'class': 9002001, 'subclass': 1064658218})
-        self.check_not_err(n.way(data, {u'color': u'red'}, [0]), expected={'class': 9002001, 'subclass': 238251143})
-        self.check_err(n.way(data, {u'cycleway:surface:color': u'grey'}, [0]), expected={'class': 9002001, 'subclass': 238251143})
-        self.check_not_err(n.way(data, {u'roof:color': u'grey'}, [0]), expected={'class': 9002001, 'subclass': 238251143})
+        self.check_not_err(n.way(data, {u'color': u'red'}, [0]), expected={'class': 9002001, 'subclass': 1632389707})
+        self.check_err(n.way(data, {u'cycleway:surface:color': u'grey'}, [0]), expected={'class': 9002001, 'subclass': 1632389707})
+        self.check_not_err(n.way(data, {u'roof:color': u'grey'}, [0]), expected={'class': 9002001, 'subclass': 1632389707})
         self.check_err(n.way(data, {u'color:back': u'grey'}, [0]), expected={'class': 9002001, 'subclass': 1390370717})
         self.check_not_err(n.way(data, {u'color': u'red'}, [0]), expected={'class': 9002001, 'subclass': 1390370717})
         self.check_err(n.way(data, {u'to': u'bar'}, [0]), expected={'class': 9002012, 'subclass': 73953777})

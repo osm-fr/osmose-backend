@@ -1398,21 +1398,23 @@ class Josm_openrailwaymap(Plugin):
                     u'wikipedia'])
                 }})
 
-        # way[railway][lanes]
+        # way[railway][!highway][lanes]
         if (u'lanes' in keys and u'railway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'lanes'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and mapcss._tag_capture(capture_tags, 2, tags, u'lanes'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"lanes=* is used for highways, not railways"
                 # suggestAlternative:"tracks"
                 # fixChangeKey:"lanes=>tracks"
+                # assertNoMatch:"way railway=abandoned highway=tertiary lanes=3"
                 # assertMatch:"way railway=rail lanes=2"
                 # assertNoMatch:"way railway=rail tracks=1"
+                # assertNoMatch:"way railway=razed highway=tertiary lanes=3"
                 # assertMatch:"way railway=subway lanes=2 tracks=2"
-                err.append({'class': 9015024, 'subclass': 1292450822, 'text': {'en': u'lanes=* is used for highways, not railways'}, 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9015024, 'subclass': 245965100, 'text': {'en': u'lanes=* is used for highways, not railways'}, 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'tracks', mapcss.tag(tags, u'lanes')]]),
                     '-': ([
@@ -1771,9 +1773,11 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'railway': u'rail', u'wikipedia': u'Bay bridge'}, [0]), expected={'class': 9015023, 'subclass': 1594751596})
         self.check_err(n.way(data, {u'railway': u'rail', u'wikipedia': u'Baz viaduct'}, [0]), expected={'class': 9015023, 'subclass': 1594751596})
         self.check_err(n.way(data, {u'railway': u'rail', u'wikipedia': u'Foobrücke'}, [0]), expected={'class': 9015023, 'subclass': 1594751596})
-        self.check_err(n.way(data, {u'lanes': u'2', u'railway': u'rail'}, [0]), expected={'class': 9015024, 'subclass': 1292450822})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'tracks': u'1'}, [0]), expected={'class': 9015024, 'subclass': 1292450822})
-        self.check_err(n.way(data, {u'lanes': u'2', u'railway': u'subway', u'tracks': u'2'}, [0]), expected={'class': 9015024, 'subclass': 1292450822})
+        self.check_not_err(n.way(data, {u'highway': u'tertiary', u'lanes': u'3', u'railway': u'abandoned'}, [0]), expected={'class': 9015024, 'subclass': 245965100})
+        self.check_err(n.way(data, {u'lanes': u'2', u'railway': u'rail'}, [0]), expected={'class': 9015024, 'subclass': 245965100})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'tracks': u'1'}, [0]), expected={'class': 9015024, 'subclass': 245965100})
+        self.check_not_err(n.way(data, {u'highway': u'tertiary', u'lanes': u'3', u'railway': u'razed'}, [0]), expected={'class': 9015024, 'subclass': 245965100})
+        self.check_err(n.way(data, {u'lanes': u'2', u'railway': u'subway', u'tracks': u'2'}, [0]), expected={'class': 9015024, 'subclass': 245965100})
         self.check_err(n.way(data, {u'maxspeed': u'signals', u'railway': u'rail'}, [0]), expected={'class': 9015025, 'subclass': 650821308})
         self.check_not_err(n.way(data, {u'maxspeed': u'100', u'railway': u'subway'}, [0]), expected={'class': 9015025, 'subclass': 650821308})
         self.check_not_err(n.way(data, {u'maxspeed': u'161', u'mph:maxspeed': u'50 mph', u'railway': u'rail'}, [0]), expected={'class': 9015026, 'subclass': 317587071})
