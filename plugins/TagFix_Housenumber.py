@@ -53,9 +53,21 @@ class TagFix_Housenumber(Plugin):
         self.housenumberRegexByCountry["LU"] = re.compile("^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
         # Allow "snc" (Senza numero civico) in Italy
         self.housenumberRegexByCountry["IT"] = re.compile("(:?^[1-9])|(^snc$)")
-        # https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
-        # 7.3.2 huisnummer, 7.3.3 huisletter and 7.3.4 huisnummertoevoeging
-        self.housenumberRegexByCountry["NL"] = re.compile(r"^[1-9][0-9]{0,4}[0-9A-Za-z]{0,4}$")
+        # Baseline:
+        #   https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
+        #   (7.3.2 huisnummer, 7.3.3 huisletter and 7.3.4 huisnummertoevoeging)
+        # Exceptions to the rule:
+        #   https://nl.wikipedia.org/wiki/Huisnummer
+        # This pattern isn't exhaustive, but it should catch most weirdness.
+        self.housenumberRegexByCountry["NL"] = re.compile(
+                # Houseboats, 't/o X' stands for 'opposite X', where 'X' is an address on shore
+                r"^(t/o )?"
+                # 'Pekela'-style exception, leading letter (e.g., 'C54')
+                "(([A-Z][1-9][0-9]{0,3})|"
+                # Normal base numbers, no leading zero, not exceeding 5 digits.
+                "([1-9][0-9]{0,4}))"
+                # Up to three optional extensions (can have leading zeroes in the extension part, e.g., '2K-008')
+                "([ -]?(([0-9]{1,4})|([A-Za-z]{1,5}))){0,3}$")
 
     def node(self, data, tags):
         err = []
@@ -175,7 +187,47 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"addr:housenumber": "42"})
         assert not a.node(None, {"addr:housenumber": "18A"})
-        assert not a.node(None, {"addr:housenumber": "53218Ab7Z"})
-        assert a.node(None, {"addr:housenumber": "1;2"})
-        assert a.node(None, {"addr:housenumber": "7 bis"})
+        assert not a.node(None, {"addr:housenumber": "123-24"})
+        assert not a.node(None, {"addr:housenumber": "2K-008"})
+        assert not a.node(None, {"addr:housenumber": "10t-13"})
+        assert not a.node(None, {"addr:housenumber": "13-bv"})
+        assert not a.node(None, {"addr:housenumber": "13 bv"})
+        assert not a.node(None, {"addr:housenumber": "1-TRAF"})
+        assert not a.node(None, {"addr:housenumber": "19p-8"})
+        assert not a.node(None, {"addr:housenumber": "44d-G"})
+        assert not a.node(None, {"addr:housenumber": "3-0072"})
 
+        # Pekela
+        assert not a.node(None, {"addr:housenumber": "B54"})
+
+        # Graan voor Visch, Hoofddorp
+        assert not a.node(None, {"addr:housenumber": "19601U"})
+
+        # Woonboot
+        assert not a.node(None, {"addr:housenumber": "t/o 56"})
+
+        # Utrecht
+        assert not a.node(None, {"addr:housenumber": "113B Bis A"})
+
+        assert not a.node(None, {"addr:housenumber": "7 bis"})
+
+        assert a.node(None, {"addr:housenumber": "1;2"})
+        assert a.node(None, {"addr:housenumber": " 1 "})
+        assert a.node(None, {"addr:housenumber": "1 "})
+        assert a.node(None, {"addr:housenumber": " 1"})
+
+        # Non-ASCII numerics.
+        assert a.node(None, {"addr:housenumber": "１"})
+
+        # Non-ASCII letters.
+        assert a.node(None, {"addr:housenumber": "1Ｂ"})
+
+        assert a.node(None, {"addr:housenumber": "123--A3"})
+        assert a.node(None, {"addr:housenumber": "123 -A3"})
+        assert a.node(None, {"addr:housenumber": "123  A3"})
+
+        # Mixed up tags.
+        assert a.node(None, {"addr:housenumber": "Dorpsstraat"})
+
+        # Trolls, bogus input.
+        assert a.node(None, {"addr:housenumber": "1234567890abcdefghijklmnopqrstuvwxyz"})
