@@ -81,6 +81,10 @@ class TagFix_MultipleTag(Plugin):
         if tags.get("barrier") == "fence" and "fence_type" not in tags and "material" in tags:
             err.append({"class": 303210})
 
+        if tags.get("barrier") == "kerb" and tags.get("highway") == "crossing":
+            err.append({"class": 30320, "subclass": 1001, "text": T_(u"Use kerb=* to describe the kerb at a crossing, not barrier=kerb"),
+                       "fix": ({"-": {"barrier": "kerb"}} if "kerb" in tags else {"-": {"barrier": "kerb"}, "+": {"kerb": "yes"}})})
+
         return err
 
     def node(self, data, tags):
