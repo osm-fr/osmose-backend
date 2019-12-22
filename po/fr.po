@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-12-01 21:16+0000\n"
+"PO-Revision-Date: 2019-12-16 20:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -466,7 +466,7 @@ msgstr "Similitude phonétique “Soundex”"
 msgid "Area intersection %s"
 msgstr "Intersection entre surfaces : %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:136
+#: ../analysers/analyser_osmosis_tag_typo.py:137
 msgid "Typo in tag"
 msgstr "Coquille dans l’attribut"
 
@@ -626,10 +626,6 @@ msgstr "Cours d’eau fermé"
 msgid "Way with one node"
 msgstr "Chemin avec un seul nœud"
 
-#: ../plugins/TagFix_BadKey.py:30
-msgid "Bad tag"
-msgstr "Mauvais attribut"
-
 #: ../plugins/TagFix_BadValue.py:30
 msgid "Bad value in a tag"
 msgstr "Mauvaise valeur pour un attribut"
@@ -719,7 +715,7 @@ msgstr "Premier attribut Wikipedia manquant"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Invalid wikipedia suffix"
-msgstr "Suffixe Wikipédia invalide"
+msgstr "Suffixe Wikipédia non valide"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Duplicate wikipedia tag as suffix and prefix"
@@ -789,7 +785,7 @@ msgstr "Wallonie, arrêt de bus/tram non intégré"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonie, arrêt de bus/tram : proposition d’intégration"
+msgstr "Wallonie, arrêt de bus/tram : proposition d’intégration"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -837,7 +833,7 @@ msgstr "Nombre incorrect “%s”"
 #: ../plugins/Number.py:54
 #, python-format
 msgid "%s is really slow"
-msgstr "%s, c’est vraiment lent !"
+msgstr "%s, c’est vraiment lent !"
 
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
@@ -855,12 +851,12 @@ msgstr "Mauvaise valeur pour “%(key)s”=“%(val)s”"
 #: ../plugins/TagFix_Deprecated.py:87
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr "L’attribut “%(tag)s” est désapprouvé : %(depr)s"
+msgstr "L’attribut “%(tag)s” est désapprouvé : %(depr)s"
 
 #: ../plugins/TagFix_DuplicateValue.py:95
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
-msgstr "Valeurs similaires dupliquées “%(key)s”=“%(val)s”"
+msgstr "Valeurs similaires en doublon “%(key)s”=“%(val)s”"
 
 #: ../plugins/TagFix_Postcode.py:95
 #, python-format
@@ -880,12 +876,12 @@ msgstr "L’attribut “name” contient des espaces successives"
 #: ../plugins/TagFix_MultipleValue.py:92
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
-msgstr "Multiples valeurs sur l’attribut “%(key)s=%(val)s”"
+msgstr "Multiples valeurs sur l’attribut “%(key)s”=“%(val)s”"
 
 #: ../plugins/TagRemove_Incompatibles.py:81
 #, python-format
 msgid "Conflict between tags: %s"
-msgstr "Conflit entre attributs : %s"
+msgstr "Conflit entre attributs : %s"
 
 #: ../plugins/TagRemove_Incompatibles.py:84
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -938,7 +934,7 @@ msgstr "Noms dans la langue locale et dans la langue par défaut différents"
 
 #: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
-msgstr "Objet avec tag \"name\" localisé mais sans tag \"name\" par défaut"
+msgstr "Objet avec attribut “name:*” localisé mais sans attribut “name” par défaut"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
@@ -1219,7 +1215,7 @@ msgstr "La voie de rabattement “merge_to_*” vers une voie fusionnée plus lo
 #: ../plugins/TagRemove_Incompatibles.py:87
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr "Conflit entre attributs : “crossing”=“no” devrait être utilisé sans “highway”=“crossing”"
+msgstr "Conflit entre attributs : “crossing”=“no” devrait être utilisé sans “highway”=“crossing”"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:139
 msgid "Bad lanes number or lanes:turn before and after this node"
@@ -1276,7 +1272,7 @@ msgstr "Nœud avec “place”=“%s” mais sans nom"
 
 #: ../plugins/Name_Saint_FR.py:40
 msgid "Missing hyphen after \"Saint(e)\""
-msgstr "Trait d’union manquant après « Saint(e) »"
+msgstr "Trait d’union manquant après « Saint(e) »"
 
 #: ../plugins/Name_Script.py:35
 msgid "Some value chars does not match the language charset"
@@ -1285,7 +1281,7 @@ msgstr "Certains caractères en valeur ne correspondent pas à l’écriture de 
 #: ../plugins/Name_Toponymy_FR.py:150
 #, python-format
 msgid "Missing capital letter for: %s"
-msgstr "Lettre majuscule manquante pour : %s"
+msgstr "Lettre majuscule manquante pour : %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1320,7 +1316,7 @@ msgstr "Le type FANTOIR numérique est destiné à marquer la voirie"
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling or "
 "neighbourhood"
-msgstr "Les types FANTOIR B ou W sont destinés à marquer les lieux-dits, hameaux, habitats isolés ou voisinages"
+msgstr "Les types FANTOIR « B » ou « W » sont destinés à marquer les lieux-dits, hameaux, habitats isolés ou voisinages"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:89
 msgid "A living_street in France is a Zone 20"
@@ -1332,21 +1328,21 @@ msgstr "Une zone 20 en France est une “living_street”"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:94
 msgid "A Zone 20 is limited to 20 km/h"
-msgstr "Une zone 20 est limitée à 20  km/h"
+msgstr "Une zone 20 est limitée à 20 km/h"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:96
 msgid "A zone 30 is limited to 30 km/h"
-msgstr "Une zone 30 est limitée à 30  km/h"
+msgstr "Une zone 30 est limitée à 30 km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:83 ../plugins/TagFix_Note_Lang_fr.py:87
 #, python-format
 msgid "note tag need FIXME : \"%s\""
-msgstr "L’attribut “note” nécessite plutôt un “FIXME” : “%s”"
+msgstr "L’attribut “note” nécessite plutôt un “FIXME” : “%s”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93
 #, python-format
 msgid "Use a tag to specify end : \"%s\""
-msgstr "Utilisez un attribut pour indiquer la fin : “%s”"
+msgstr "Utilisez un attribut pour indiquer la fin : “%s”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
@@ -1392,7 +1388,7 @@ msgstr "Interpolation de nœuds avec des noms de rue différents"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:202
 #, python-format
 msgid "Interpolation span on streets: %s"
-msgstr "Interpolation sur rues : %s"
+msgstr "Interpolation sur rues : %s"
 
 #: ../analysers/analyser_osmosis_relation_large.py:78
 #, python-format
@@ -1430,7 +1426,7 @@ msgstr "Type de relation manquante"
 #: ../plugins/TagFix_Deprecated.py:89
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
-msgstr "L’attribut “%(tag)s”=“%(value)s” est désapprouvé : %(depr)s"
+msgstr "L’attribut “%(tag)s”=“%(value)s” est désapprouvé : %(depr)s"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
@@ -1552,7 +1548,7 @@ msgstr "Restriction de hauteur “maxheight” non intégrée"
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr "Toilettes %s non intégrés"
+msgstr "Toilettes %s non intégrées"
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:64
 #, python-format
@@ -1839,17 +1835,17 @@ msgstr "Lettre arabe détectée dans le nom persan"
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr "En persan, la lettre arabe {0} devrait être remplacée par {1}"
+msgstr "En persan, la lettre arabe « {0} » devrait être remplacée par « {1} »"
 
 #: ../plugins/Colour.py:14
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr "Le code couleur devrait commencer par un '#' suivi de 3 ou 6 chiffres hexadécimaux"
+msgstr "Le code couleur devrait commencer par un « # » suivi de 3 ou 6 chiffres hexadécimaux"
 
 #: ../plugins/Colour.py:53 ../plugins/Colour.py:82 ../plugins/Colour.py:127
 #: ../plugins/Colour.py:161 ../plugins/Colour.py:200 ../plugins/Colour.py:229
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr "Le code couleur “{0}” devrait commencer par un '#' suivi de 3 ou 6 chiffres"
+msgstr "Le code couleur “{0}” devrait commencer par un « # » suivi de 3 ou 6 chiffres"
 
 #: ../plugins/Website.py:38
 msgid "The URL contains a space"
@@ -1857,7 +1853,7 @@ msgstr "L’URL contient une espace"
 
 #: ../plugins/Website.py:39
 msgid "The URL does not have a valid scheme"
-msgstr "L’URL ne débute pas par un schéma reconnu"
+msgstr "L’URL ne débute pas par un protocole reconnu"
 
 #: ../plugins/Website.py:42
 #, python-format
@@ -1867,7 +1863,7 @@ msgstr "Mauvaise URL “%(k)s”=“%(v)s”"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:94
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr "Monument historique : {0} (positionné en {1} avec une confiance {2})"
+msgstr "Monument historique : {0} (positionné en {1} avec une confiance {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
@@ -1915,7 +1911,7 @@ msgstr "arrêt {0} de {1}"
 #: ../analysers/analyser_merge_traffic_signs.py:73
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr "{0} signalisations trouvées pour {1} observées autour mais pas d’attributs associés"
+msgstr "{0} signalisations trouvées pour {1} observées autour mais sans attribut associé"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:136
 #, python-brace-format
@@ -1927,7 +1923,7 @@ msgstr "Population du rôle “admin_centre” ({0}) supérieure à celle de la 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr "Noms multiples pour la même référence FANTOIR {0} : {1}"
+msgstr "Noms multiples pour la même référence FANTOIR {0} : {1}"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:63
 #, python-brace-format
@@ -1937,7 +1933,7 @@ msgstr "Valeurs de “motor_vehicle” inconsistantes (“{0}” ≠ “{1}”)"
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:147
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr "voies entrantes {0}(−{1}+{2}), voies sortantes {3}(−{4}+{5})"
+msgstr "voies entrantes {0}(−{1} + {2}), voies sortantes {3}(−{4} + {5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-brace-format
@@ -1947,7 +1943,7 @@ msgstr "{0} approximatif"
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr "{0}, déviation de {1} m"
+msgstr "{0}, déviation de {1} m"
 
 #: ../plugins/Highway_Lanes.py:75
 #, python-brace-format
@@ -1963,7 +1959,7 @@ msgstr "“lanes”=“{0}” n’est pas un entier"
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr "chemin en sens unique, (lanes={0}) ≠ (lanes:forward={1}) − (non fullwidth forward={2})"
+msgstr "chemin en sens unique, (lanes = {0}) ≠ (lanes:forward = {1}) − (non fullwidth forward = {2})"
 
 #: ../plugins/Highway_Lanes.py:214
 #, python-brace-format
@@ -1971,27 +1967,27 @@ msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
 "(lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - "
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
-msgstr "chemin en double sens, (lanes={0}) ≠ (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) − (non fullwidth={4}) − (non fullwidth forward={5}) − (non fullwidth backward={6}) − (non fullwidth both_ways={7})"
+msgstr "chemin en double sens, (lanes = {0}) ≠ (lanes:forward = {1}) + (lanes:backward = {2}) + (lanes:both_ways = {3}) − (non fullwidth = {4}) − (non fullwidth forward = {5}) − (non fullwidth backward = {6}) − (non fullwidth both_ways = {7})"
 
 #: ../plugins/Highway_Lanes.py:216
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
-msgstr "chemin en double sens, (lanes={0}) ≤ (lanes:forward={1}) − (non fullwidth forward={2})"
+msgstr "chemin en double sens, (lanes = {0}) ≤ (lanes:forward = {1}) − (non fullwidth forward = {2})"
 
 #: ../plugins/Highway_Lanes.py:218
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
-msgstr "chemin en double sens, (lanes={0}) ≤ (lanes:backward={1}) − (non fullwidth forward={2})"
+msgstr "chemin en double sens, (lanes = {0}) ≤ (lanes:backward = {1}) − (non fullwidth forward = {2})"
 
 #: ../plugins/Highway_Lanes.py:220
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
 "both_ways={2})"
-msgstr "chemin en double sens, (lanes={0}) < (lanes:both_ways={1}) − (non fullwidth both_ways={2})"
+msgstr "chemin en double sens, (lanes = {0}) < (lanes:both_ways = {1}) − (non fullwidth both_ways = {2})"
 
 #: ../plugins/Name_Quotation.py:52
 #, python-brace-format
@@ -2020,26 +2016,26 @@ msgstr "“{0}”=“{1}” : caractère non imprimable ({2}, 0x{3:04x}) inatten
 #: ../plugins/Name_Script.py:110
 #, python-brace-format
 msgid "\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}"
-msgstr "“{0}” : symbole ({1}, 0x{2:04x}) inattendu dans la clé en position {3}"
+msgstr "“{0}” : symbole ({1}, 0x{2:04x}) inattendu dans la clé en position {3}"
 
 #: ../plugins/Name_Script.py:115
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position"
 " {4}"
-msgstr "“{0}”=“{1}” : symbole ({2}, 0x{3:04x}) inattendu dans la valeur en position {4}"
+msgstr "“{0}”=“{1}” : symbole ({2}, 0x{3:04x}) inattendu dans la valeur en position {4}"
 
 #: ../plugins/Name_Script.py:146 ../plugins/Name_Script.py:169
 #, python-brace-format
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr "\"{0}\"=\"{1}\" : caractère \"{2}\" ({3}, 0x{4:04x}) inattendu, veut-il dire \"{5}\" ({6}, 0x{7:04x}) ?"
+msgstr "“{0}”=“{1}” : caractère « {2} » ({3}, 0x{4:04x}) inattendu, veut-il dire “{5}” ({6}, 0x{7:04x}) ?"
 
 #: ../plugins/Name_Script.py:151 ../plugins/Name_Script.py:174
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr "\"{0}\"=\"{1}\" : caractère \"{2}\" ({3}, 0x{4:04x}) inattendu"
+msgstr "“{0}”=“{1}” : caractère « {2} » ({3}, 0x{4:04x}) inattendu"
 
 #: ../plugins/Name_Script.py:154 ../plugins/Name_Script.py:177
 #, python-brace-format
@@ -2094,27 +2090,27 @@ msgstr "Attribut “denotation”=“{0}” erroné"
 #: ../plugins/TagWatchFrViPofm.py:90
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
-msgstr "clé d’attribut : {0} ⇒ {1} (règle ks)"
+msgstr "clé d’attribut : {0} ⇒ {1} (règle ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:92
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
-msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vs)"
+msgstr "clé d’attribut : “{0}”=“{1}” ⇒ “{2}” (règle “ks_vs”)"
 
 #: ../plugins/TagWatchFrViPofm.py:96
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
-msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vr)"
+msgstr "clé d’attribut : “{0}”=“{1}” ⇒ “{2}” (règle “ks_vr”)"
 
 #: ../plugins/TagWatchFrViPofm.py:101
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
-msgstr "clé d’attribut : {0} ⇒ {1} (règle kr)"
+msgstr "clé d’attribut : “{0}” ⇒ “{1}” (règle “kr”)"
 
 #: ../plugins/TagWatchFrViPofm.py:105
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
-msgstr "clé d’attribut : {0}={1} ⇒ {2} (règle ks_vs)"
+msgstr "clé d’attribut : “{0}”=“{1}” ⇒ “{2}” (règle “ks_vs”)"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Fence with material tag, better use fence_type tag"
@@ -2131,15 +2127,15 @@ msgstr "“{0}” en trop après le code international"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:28
 msgid "IDF bicycle rental not integrated"
-msgstr "Location de vélo de IDF non intégrée"
+msgstr "Location de vélo en IDF non intégrée"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:29
 msgid "IDF bicycle rental integration suggestion"
-msgstr "Location de vélo de IDF proposition d’intégration"
+msgstr "Location de vélo en IDF proposition d’intégration"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle update"
-msgstr "Location de vélo de IDF mise à jour"
+msgstr "Location de vélo en IDF mise à jour"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without tag \"ref:UAI\" or invalid"
@@ -2181,7 +2177,7 @@ msgstr "École sans attribut “ref:UAI” ou incorrect"
 #: ../analysers/analyser_merge_street_objects.py:46
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr "{0} objet de rue {1} observé autour mais pas d’attributs associés"
+msgstr "{0} objet de rue {1} observé autour mais aucun attribut associé"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:57
 msgid "Speed camera should be on the highway or in an enforcement relation"
@@ -2189,7 +2185,7 @@ msgstr "Le radar de vitesse devrait être sur la route ou dans une relation enfo
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:27
 msgid "P+R parking in Île-de-France not integrated"
-msgstr "P+R parking-relais en Île-de-France non intégré"
+msgstr "Parking-relais P+R en Île-de-France non intégré"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing municipality ref tag"
@@ -2202,37 +2198,37 @@ msgstr "Attribut ref de la commune manquant {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:189
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
-msgstr "Interpolation sur nœud sans attribut \"addr:housenumber\""
+msgstr "Interpolation sur nœud sans attribut “addr:housenumber”"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:190
 msgid "\"addr:housenumber\" in multiple interpolations"
-msgstr "\"addr:housenumber\" dans plusieurs interpolations"
+msgstr "“addr:housenumber” dans plusieurs interpolations"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:191
 msgid "Interpolation intersection"
-msgstr "Intersection d'interpolations"
+msgstr "Intersection d’interpolations"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:192
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr "Les extrémités de l'interpolation doivent avoir un attribut \"addr:housenumber\""
+msgstr "Les extrémités de l’interpolation doivent avoir un attribut “addr:housenumber”"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:193
 msgid ""
 "Interpolation ends should have have different tag \"addr:housenumber\" "
 "values"
-msgstr "Les extrémités de l'interpolation doivent avoir des valeurs d'attribut \"addr:housenumber\" différentes"
+msgstr "Les extrémités de l’interpolation doivent avoir des valeurs d’attribut “addr:housenumber” différentes"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:195
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
-msgstr "Interpolation sur un nœud de plusieurs relations \"associatedStreet\""
+msgstr "Interpolation sur un nœud de plusieurs relations “associatedStreet”"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr "L'attribut \"addr:street\" ne correspond pas à un nom de rue à proximité "
+msgstr "L’attribut “addr:street” ne correspond à aucun nom de rue à proximité "
 
 #: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
-msgstr "Mauvaise utilisation de \"addr:interpolation\" en combinaison avec d'autres attributs"
+msgstr "Mauvaise utilisation de “addr:interpolation” en combinaison avec d’autres attributs"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:60
 #, python-format
@@ -2241,20 +2237,16 @@ msgstr "Centrale électrique %s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:28
 msgid "admin_level 8 without tag \"postal_code\""
-msgstr "Commune - admin_level 8 - sans attribut \"postal_code\""
+msgstr "Commune (“admin_level”=“8”) sans attribut “postal_code”"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:31
 msgid "Power plant not integrated, geocoded at municipality level"
 msgstr "Centrale électrique non intégrée, codée géographiquement au niveau municipal"
 
-#: ../plugins/TagFix_BadKey.py:31
-msgid "Bad tag suffix"
-msgstr "Mauvais suffixe d'attribut"
-
 #: ../plugins/TagFix_BadKey.py:68
 #, python-format
 msgid "Bad tag suffix %(k)s=%(v)s"
-msgstr "Mauvais suffixe d'attribut%(k)s=%(v)s"
+msgstr "Mauvais suffixe d’attribut “%(k)s”=“%(v)s”"
 
 #: ../plugins/TagFix_Deprecated.py:78
 msgid "Deprecated value"
@@ -2273,17 +2265,17 @@ msgstr "Valeurs similaires"
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:58
 #, python-brace-format
 msgid "Sudden highway type change (level {0})"
-msgstr "Brusque changement de type de voirie (level {0})"
+msgstr "Brusque changement de type de voirie (“level”=“{0}”)"
 
 #: ../plugins/Phone.py:122
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
-msgstr "Caractère \"{0}\" non autorisé l'attribut de numéro de téléphone \"{1}\""
+msgstr "Caractère « {0} » non autorisé dans l’attribut du numéro de téléphone « {1} »"
 
 #: ../plugins/TagWatchFrViPofm.py:110
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
-msgstr "Valeur d'attribut : {0}={1} => {2} (règle kr_vr)"
+msgstr "Valeur d’attribut : “{0}”=“{1}” ⇒ “{2}” (règle “kr_vr”)"
 
 #: ../plugins/TagFix_IntervalConditional.py:28
 msgid "Invalid Conditional Intervals"
@@ -2291,15 +2283,15 @@ msgstr "Intervalles conditionnels invalides"
 
 #: ../plugins/TagFix_IntervalConditional.py:40
 msgid "Invalid interval tag format"
-msgstr "Format d'attribut d'intervalle invalide"
+msgstr "Format d’attribut d’intervalle non valide"
 
 #: ../plugins/TagFix_IntervalConditional.py:44
 msgid "Conditional intervals tag is not valid"
-msgstr "Attribut d'intervalles conditionnels invalides "
+msgstr "Attribut d’intervalles conditionnels non valide"
 
 #: ../plugins/TagFix_IntervalConditional.py:48
 msgid "Conditional intervals does not fit into opening hours"
-msgstr "Les intervalles conditionnels ne correspondent pas avec les heures d'ouverture"
+msgstr "Les intervalles conditionnels ne correspondent pas avec les heures d’ouverture"
 
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:28
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:28
@@ -2321,7 +2313,7 @@ msgstr "Musée non intégré"
 
 #: ../analysers/analyser_merge_museum_FR.py:30
 msgid "Museum, integration suggestion"
-msgstr "Musée, suggestion d'intégration"
+msgstr "Musée, suggestion d’intégration"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:29
 #, python-format
@@ -2340,26 +2332,26 @@ msgstr "Support radio (%s) à mettre à jour"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:28
 msgid "Wastewater plant not integrated"
-msgstr "Station d'épuration non intégrée"
+msgstr "Station d’épuration non intégrée"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:29
 msgid "Wastewater plant, integration suggestion"
-msgstr "Station d'épuration, intégration possible"
+msgstr "Station d’épuration, intégration possible"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant update"
-msgstr "Station d'épuration à mettre à jour"
+msgstr "Station d’épuration à mettre à jour"
 
 msgid "Invalid value of tag \"ref:vatin\""
-msgstr "Mauvaise valeur de l'attribut \"ref:vatin\""
+msgstr "Mauvaise valeur de l’attribut “ref:vatin”"
 
 #: ../plugins/TagFix_Vatin.py:38
 msgid "Invalid value format of tag \"ref:vatin\""
-msgstr "Mauvais format de la valeur de l'attribut \"ref:vatin\""
+msgstr "Mauvais format de la valeur de l’attribut “ref:vatin”"
 
 #: ../plugins/TagFix_Vatin.py:63
 msgid "Invalid 'VAT identification number'"
-msgstr "\"VAT identification number\" invalide"
+msgstr "Numéro d’identification de TVA non valide"
 
 #: ../plugins/TagFix_Vatin.py:66
 msgid "Value too short"
@@ -2371,7 +2363,7 @@ msgstr "Code pays manquant"
 
 #: ../plugins/TagFix_Vatin.py:70
 msgid "Value is not uppercase"
-msgstr "La valeur n'est pas en majuscule"
+msgstr "La valeur n’est pas en majuscule"
 
 #: ../analysers/analyser_merge_carpool_FR.py:28
 msgid "Carpool parking not integrated"
@@ -2394,8 +2386,16 @@ msgstr "Parking de covoiturage {0}"
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
-msgstr "Les codes FANTOIR B à W sont pour les attributs : locality, hamlet, isolated_dwelling, islet ou neighbourhood "
+msgstr "Les codes FANTOIR « B » à « W » sont pour les attributs : “locality”, “hamlet”, “isolated_dwelling”, “islet” ou “neighbourhood”"
 
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
 msgid "Camp pitchs outside a camp site"
+msgstr "Emplacements de camping à l’extérieur d’un camping "
+
+#: ../plugins/TagFix_BadKey.py:30
+msgid "Bad key"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:31
+msgid "Bad key suffix"
 msgstr ""

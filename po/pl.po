@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-12-02 14:37+0000\n"
+"PO-Revision-Date: 2019-12-17 00:32+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -448,7 +448,7 @@ msgstr "Test Soundex"
 msgid "Area intersection %s"
 msgstr "Obszar przecina %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:136
+#: ../analysers/analyser_osmosis_tag_typo.py:137
 msgid "Typo in tag"
 msgstr "Literówka w tagu"
 
@@ -607,10 +607,6 @@ msgstr "Zamknięty ciek"
 #: ../plugins/Structural_WayOneNode.py:29
 msgid "Way with one node"
 msgstr "Droga z jednym węzłem"
-
-#: ../plugins/TagFix_BadKey.py:30
-msgid "Bad tag"
-msgstr "Zły tag"
 
 #: ../plugins/TagFix_BadValue.py:30
 msgid "Bad value in a tag"
@@ -2229,10 +2225,6 @@ msgstr "admin_level=8 bez tagu \"postal_code\""
 msgid "Power plant not integrated, geocoded at municipality level"
 msgstr "Elektrownia niezintegrowana, geokodowana na poziomie gminy"
 
-#: ../plugins/TagFix_BadKey.py:31
-msgid "Bad tag suffix"
-msgstr "Niepoprawny przyrostek klucza"
-
 #: ../plugins/TagFix_BadKey.py:68
 #, python-format
 msgid "Bad tag suffix %(k)s=%(v)s"
@@ -2381,3 +2373,11 @@ msgstr ""
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
 msgid "Camp pitchs outside a camp site"
 msgstr "tourism=camp_pitch poza kempingiem"
+
+#: ../plugins/TagFix_BadKey.py:30
+msgid "Bad key"
+msgstr "Niepoprawny klucz"
+
+#: ../plugins/TagFix_BadKey.py:31
+msgid "Bad key suffix"
+msgstr "Niepoprawny przyrostek klucza"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-12-01 21:16+0000\n"
+"PO-Revision-Date: 2019-12-16 20:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -443,7 +443,7 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:136
+#: ../analysers/analyser_osmosis_tag_typo.py:137
 msgid "Typo in tag"
 msgstr "Error tipogràfic en l'etiqueta"
 
@@ -602,10 +602,6 @@ msgstr "Via d'aigua tancada"
 #: ../plugins/Structural_WayOneNode.py:29
 msgid "Way with one node"
 msgstr "Via amb un node"
-
-#: ../plugins/TagFix_BadKey.py:30
-msgid "Bad tag"
-msgstr "Etiqueta incorrecta"
 
 #: ../plugins/TagFix_BadValue.py:30
 msgid "Bad value in a tag"
@@ -2224,10 +2220,6 @@ msgstr ""
 msgid "Power plant not integrated, geocoded at municipality level"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:31
-msgid "Bad tag suffix"
-msgstr ""
-
 #: ../plugins/TagFix_BadKey.py:68
 #, python-format
 msgid "Bad tag suffix %(k)s=%(v)s"
@@ -2375,4 +2367,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:65
 msgid "Camp pitchs outside a camp site"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:30
+msgid "Bad key"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:31
+msgid "Bad key suffix"
 msgstr ""
