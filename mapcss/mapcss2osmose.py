@@ -739,7 +739,7 @@ def main(_, mapcss):
     if class_name in item_map:
         i = item_map[class_name]
         item_default = i['item']
-        class_map = i.get('class', {})
+        class_map = i.get('class') or {None: 0}
         subclass_blacklist = i.get('subclass_blacklist', [])
         only_for = i.get('only_for', [])
         not_for = i.get('not_for', [])

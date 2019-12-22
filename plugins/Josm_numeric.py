@@ -415,6 +415,7 @@ class Josm_numeric(Plugin):
 
         # *[direction][direction<0]
         # *[direction][direction>=360]
+        # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if (u'direction' in keys):
             match = False
             if not match:
@@ -425,26 +426,17 @@ class Josm_numeric(Plugin):
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= mapcss._value_capture(capture_tags, 1, 360))
                 except mapcss.RuleAbort: pass
-            if match:
-                # throwWarning:tr("unusual value of {0}","{0.key}")
-                # assertMatch:"node direction=-10"
-                # assertNoMatch:"node direction=0"
-                # assertMatch:"node direction=360"
-                err.append({'class': 9006010, 'subclass': 76996599, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
-
-        # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
-        if (u'direction' in keys):
-            match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_63a07204, u'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$'), mapcss._tag_capture(capture_tags, 1, tags, u'direction')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
+                # assertMatch:"node direction=-10"
                 # assertNoMatch:"node direction=0"
                 # assertNoMatch:"node direction=0-360"
                 # assertMatch:"node direction=1360"
-                # assertNoMatch:"node direction=360"
+                # assertMatch:"node direction=360"
                 # assertNoMatch:"node direction=45"
                 # assertMatch:"node direction=45-100;190-250;300"
                 # assertNoMatch:"node direction=45-100;190-250;300-360"
@@ -463,7 +455,7 @@ class Josm_numeric(Plugin):
                 # assertMatch:"node direction=rome"
                 # assertNoMatch:"node direction=up"
                 # assertNoMatch:"node direction=west"
-                err.append({'class': 9006010, 'subclass': 1961301012, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006010, 'subclass': 47483638, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if (u'ele' in keys):
@@ -1038,6 +1030,7 @@ class Josm_numeric(Plugin):
 
         # *[direction][direction<0]
         # *[direction][direction>=360]
+        # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if (u'direction' in keys):
             match = False
             if not match:
@@ -1048,20 +1041,13 @@ class Josm_numeric(Plugin):
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= mapcss._value_capture(capture_tags, 1, 360))
                 except mapcss.RuleAbort: pass
-            if match:
-                # throwWarning:tr("unusual value of {0}","{0.key}")
-                err.append({'class': 9006010, 'subclass': 76996599, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
-
-        # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
-        if (u'direction' in keys):
-            match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_63a07204, u'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$'), mapcss._tag_capture(capture_tags, 1, tags, u'direction')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
-                err.append({'class': 9006010, 'subclass': 1961301012, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006010, 'subclass': 47483638, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if (u'ele' in keys):
@@ -1468,6 +1454,7 @@ class Josm_numeric(Plugin):
 
         # *[direction][direction<0]
         # *[direction][direction>=360]
+        # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if (u'direction' in keys):
             match = False
             if not match:
@@ -1478,20 +1465,13 @@ class Josm_numeric(Plugin):
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= mapcss._value_capture(capture_tags, 1, 360))
                 except mapcss.RuleAbort: pass
-            if match:
-                # throwWarning:tr("unusual value of {0}","{0.key}")
-                err.append({'class': 9006010, 'subclass': 76996599, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
-
-        # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
-        if (u'direction' in keys):
-            match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_63a07204, u'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$'), mapcss._tag_capture(capture_tags, 1, tags, u'direction')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
-                err.append({'class': 9006010, 'subclass': 1961301012, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006010, 'subclass': 47483638, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if (u'ele' in keys):
@@ -1727,31 +1707,29 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {u'admin_level': u'0'}), expected={'class': 9006010, 'subclass': 1514270237})
         self.check_err(n.node(data, {u'admin_level': u'13'}), expected={'class': 9006010, 'subclass': 1514270237})
         self.check_not_err(n.node(data, {u'admin_level': u'5'}), expected={'class': 9006010, 'subclass': 1514270237})
-        self.check_err(n.node(data, {u'direction': u'-10'}), expected={'class': 9006010, 'subclass': 76996599})
-        self.check_not_err(n.node(data, {u'direction': u'0'}), expected={'class': 9006010, 'subclass': 76996599})
-        self.check_err(n.node(data, {u'direction': u'360'}), expected={'class': 9006010, 'subclass': 76996599})
-        self.check_not_err(n.node(data, {u'direction': u'0'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'0-360'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'1360'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'360'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'45'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'45-100;190-250;300'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'45-100;190-250;300-360'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'C'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'N'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'NE-S'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'NNE'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'NNNE'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'anti-clockwise'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'anticlockwise'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'down'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'forward'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'north-down'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'north-east'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'north-south'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_err(n.node(data, {u'direction': u'rome'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'up'}), expected={'class': 9006010, 'subclass': 1961301012})
-        self.check_not_err(n.node(data, {u'direction': u'west'}), expected={'class': 9006010, 'subclass': 1961301012})
+        self.check_err(n.node(data, {u'direction': u'-10'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'0'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'0-360'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'1360'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'360'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'45'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'45-100;190-250;300'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'45-100;190-250;300-360'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'C'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'N'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'NE-S'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'NNE'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'NNNE'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'anti-clockwise'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'anticlockwise'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'down'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'forward'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'north-down'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'north-east'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'north-south'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_err(n.node(data, {u'direction': u'rome'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'up'}), expected={'class': 9006010, 'subclass': 47483638})
+        self.check_not_err(n.node(data, {u'direction': u'west'}), expected={'class': 9006010, 'subclass': 47483638})
         self.check_err(n.node(data, {u'ele': u'-12.1 m'}), expected={'class': 9006011, 'subclass': 1672584043})
         self.check_err(n.node(data, {u'ele': u'12 m'}), expected={'class': 9006011, 'subclass': 1672584043})
         self.check_not_err(n.node(data, {u'ele': u'12'}), expected={'class': 9006011, 'subclass': 1672584043})
