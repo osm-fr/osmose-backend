@@ -3527,23 +3527,8 @@
 <classtext lang="zh_CN" title="维基数据标签必须符合Qnnnn格式（n为数字）" />
 <classtext lang="zh_TW" title="維基百科標籤必須是 Qnnnn 格式，n 為 0 到 9 數字" />
 </class>
-<class id="9011014" item="9011" level="3" tag="tag,wikipedia">
-<classtext lang="cs" title="Značka wikipedia není přidána, ale je přidána značka ''{1.key}''. Ujistěte se, že spolu se značkou wikidata používáte značku wikipedia=jazyk:stránka" />
-<classtext lang="de" title="Wikipedia-Merkmal ist nicht gesetzt, aber das Merkmal ''{1.key}''. Bitte sicherstellen, dass wikipedia=sprache:wert zusammen mit dem Wikidata-Merkmal genutzt wird." />
-<classtext lang="en" title="wikipedia tag is not set, but a ''{1.key}'' tag is. Make sure to use wikipedia=language:value together with wikidata tag." />
-<classtext lang="es" title="La etiqueta de Wikipedia no está establecida, pero hay una etiqueta ''{1.key}''. Asegúrese de utilizar wikipedia=idioma:valor junto con la etiqueta de wikidata." />
-<classtext lang="fr" title='Le tag wikipedia n est pas défini, mais le tag "{1.key}" l est. Assurez vous d utiliser wikipedia=langage:value avec le tag wikidata' />
-<classtext lang="hu" title="a Wikidata címke nincs beállítva, de van „{1.key}” címke. Győződj meg róla, hogy a wikidata címkét együtt használod a wikipedia=nyelv:cím címkével." />
-<classtext lang="it" title="l’etichetta wikipedia non è impostata ma c’è un’etichetta ''{1.key}''. Assicurarsi di usare wikipedia=lingua:valore insieme all’etichetta wikidata." />
-<classtext lang="ja" title="wikipediaタグがセットされていませんが、 ''{1.key}'' があります。wikipedia=言語:値 がwikidateタグと一緒に使われていることを確認してください。" />
-<classtext lang="lt" title="žyma wikipedia nenustatyta, bet žyma „{1.key}“ yra. Naudokite wikipedia=kalba:reikšmė kartu su žyma wikidata ." />
-<classtext lang="nl" title="Tag voor Wikipedia is niet ingesteld, maar een tag ''{1.key}'' wel.  Zorg er voor wikipedia=language:value te gebruiken samen met de tag voor wikidata." />
-<classtext lang="pl" title='znacznik wikipedia nie jest dodany, ale jest "{1.key}". Trzeba dodawać wikipedia=język:strona razem ze znacznikiem wikidata.' />
-<classtext lang="pt" title="Não existe a etiqueta wikipedia, mas existe a ''{1.key}''. Certifique que usa wikipedia=idioma:página junto com a etiqueta wikidata." />
-<classtext lang="pt_BR" title="a etiqueta wikipedia não está definida, mas a etiqueta ''{1.key}'' está. Certifique-se de usar wikipedia=linguagem:valor junto com a etiqueta wikidata." />
-<classtext lang="ru" title="тег wikipedia не задан, но имеется тег ''{1.key}''. Убедитесь в использовании wikipedia=language:value совместно с тегом wikidata." />
-<classtext lang="uk" title='теґ wikipedia не встановлено, проте є теґ "{1.key}". Переконайтесь, що ви використовуєте wikipedia=код мови:назва сторінки разом з wikidata' />
-<classtext lang="zh_CN" title="维基百科标签未设定，但“{1.key}”标签已设定。确保将wikipedia=语言:值与维基数据标签一同使用。" />
+<class id="9011015" item="9011" level="3" tag="tag,wikipedia">
+<classtext lang="en" title="''{1.key}'' tag is set, but no ''{0.key}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article." />
 </class>
 <class id="9012001" item="9012" level="3" tag="tag,seamark">
 <classtext lang="en" title="Multi-colour {0.value} without {2.key}" />
@@ -3694,12 +3679,6 @@
 <classtext lang="zh_CN" title="缺少运输模式，请将标签路线更改为route_master" />
 <classtext lang="zh_TW" title="遺失交通模式，請更改標籤從 route 到 route_master" />
 </class>
-<class id="9014013" item="9014" level="2" tag="tag,public_transport">
-<classtext lang="en" title="Check the operator tag" />
-</class>
-<class id="9014014" item="9014" level="2" tag="tag,public_transport">
-<classtext lang="en" title="Check the network tag" />
-</class>
 <class id="9014019" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="cs" title="Autobusová zastávka má být uzlem" />
 <classtext lang="en" title="A bus stop is supposed to be a node" />
@@ -3760,6 +3739,24 @@
 <classtext lang="nl" title=" opening_hours tag ontbreekt" />
 <classtext lang="pl" title="Brak znacznika opening_hours" />
 <classtext lang="uk" title="Відсутній теґ opening_hours" />
+</class>
+<class id="9014025" item="9014" level="2" tag="tag,public_transport">
+<classtext lang="en" title="Check the operator tag : this operator does not exist, it may be a typo" />
+<classtext lang="es" title="Verifique la etiqueta del operador: este operador no existe, puede ser un error tipográfico" />
+<classtext lang="fr" title="Vérifier l'opérateur renseigné dans l'attribut &quot;operator&quot; : ce transporteur n'existe pas, c'est peut-être une faute d'orthographe" />
+<classtext lang="gl" title="Verificar a etiqueta do operador: este operador non existe, pode ser un erro tipográfico (gralla)" />
+<classtext lang="hu" title="Ellenőrizze az [operator] címkét: ilyen üzemeltető nem létezik, talán elírás történt" />
+<classtext lang="nl" title="Check dee operator tag : deze beheerder bestaaat niet, het is wellicht een typefout" />
+<classtext lang="pl" title='Sprawdź tag "operator": ten zarządca nie istnieje, może to literówka' />
+</class>
+<class id="9014026" item="9014" level="2" tag="tag,public_transport">
+<classtext lang="en" title="Check the network tag : this network does not exist, it may be a typo" />
+<classtext lang="es" title="Verifique la etiqueta de la red: esta red no existe, puede ser un error tipográfico" />
+<classtext lang="fr" title="Vérifier le réseau renseigné dans l'attribut &quot;network&quot; : ce réseau n'existe pas, c'est peut-être une faute d'orthographe" />
+<classtext lang="gl" title="Verificar a etiqueta de rede: esta rede non existe, pode ser un erro tipográfico (gralla)" />
+<classtext lang="hu" title="Ellenőrizze a [network] címkét: ilyen hálózat nem létezik, talán elírás történt" />
+<classtext lang="nl" title="Check deze network tag : deze netwerk bestaaat niet, het is wellicht een typefout" />
+<classtext lang="pl" title='Sprawdź tag "network": ta sieć nie istnieje, może to literówka' />
 </class>
 <class id="9015001" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Track tagged with usage=* AND service=* - remove one of these tags" />
