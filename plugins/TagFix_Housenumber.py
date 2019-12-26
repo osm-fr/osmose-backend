@@ -66,8 +66,8 @@ class TagFix_Housenumber(Plugin):
                 "(([A-Z][1-9][0-9]{0,3})|"
                 # Normal base numbers, no leading zero, not exceeding 5 digits.
                 "([1-9][0-9]{0,4}))"
-                # Up to three optional extensions (can have leading zeroes in the extension part, e.g., '2K-008')
-                "([ -]?(([0-9]{1,4})|([A-Za-z]{1,5}))){0,3}$")
+                # Up to four optional extensions (can have leading zeroes in the extension part, e.g., '2K-008')
+                "([ -/]?(([0-9]{1,4})|([A-Za-z]{1,5}))){0,4}$")
 
     def node(self, data, tags):
         err = []
@@ -196,6 +196,12 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"addr:housenumber": "19p-8"})
         assert not a.node(None, {"addr:housenumber": "44d-G"})
         assert not a.node(None, {"addr:housenumber": "3-0072"})
+
+        # Groningen-style extension.
+        assert not a.node(None, {"addr:housenumber": "16/1"})
+
+        # Naval base in Den Helder
+        assert not a.node(None, {"addr:housenumber": "100D-G29B"})
 
         # Pekela
         assert not a.node(None, {"addr:housenumber": "B54"})
