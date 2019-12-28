@@ -266,10 +266,10 @@ def execc(conf, logger, options, osmosis_manager):
                                         logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
-                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
-                                        if was_on_timeout and dt == "FAIL: Already up to date":
+                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt))
+                                        if dt == "FAIL: Already up to date":
                                             update_finished = True
-                                        else:
+                                        if not was_on_timeout:
                                             err_code |= 4
                                 except Exception as e:
                                     if isinstance(e, requests.exceptions.ConnectTimeout):
