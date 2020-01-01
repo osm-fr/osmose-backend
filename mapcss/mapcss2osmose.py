@@ -588,7 +588,7 @@ def to_p(t):
         return ("not " if t['not'] else "") + to_p(t['predicate']) + (" in ('yes', 'true', '1')" if t['question_mark'] else "")
     elif t['type'] == 'pseudo_class':
         if t['pseudo_class'] in ('closed', 'closed2'):
-            return "nds[0] == nds[-1]"
+            return "nds[0] != nds[-1]" if t['not_class'] else "nds[0] == nds[-1]"
         else:
             raise NotImplementedError(t)
     elif t['type'] == 'declaration':
