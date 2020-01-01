@@ -548,7 +548,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'tower') and nds[0] == nds[-1])
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'tower') and nds[0] != nds[-1])
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -641,7 +641,7 @@ class Josm_geometry(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'island') and nds[0] == nds[-1])
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'island') and nds[0] != nds[-1])
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Way with {0} not closed.","{0.tag}")
