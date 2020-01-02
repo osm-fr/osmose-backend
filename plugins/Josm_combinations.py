@@ -2114,7 +2114,7 @@ class Josm_combinations(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'water') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_521b2098, u'water|bay|strait'), mapcss._tag_capture(capture_tags, 1, tags, u'natural')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') != mapcss._value_const_capture(capture_tags, 2, u'intermittent', u'intermittent') and mapcss._tag_capture(capture_tags, 3, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 3, u'lavoir', u'lavoir') and nds[0] == nds[-1])
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'water') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_521b2098, u'water|bay|strait'), mapcss._tag_capture(capture_tags, 1, tags, u'natural')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') != mapcss._value_const_capture(capture_tags, 2, u'intermittent', u'intermittent') and mapcss._tag_capture(capture_tags, 3, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 3, u'lavoir', u'lavoir') and nds[0] != nds[-1])
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")

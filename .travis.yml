@@ -24,7 +24,7 @@ addons:
     - pkg-config
     - protobuf-compiler
 install:
-  - pip install -r requirements.txt -r requirements-dev.txt -r requirements-dev-python3.txt
+  - pip install -r requirements.txt -r requirements-dev.txt
 before_script:
   # configure database
   - psql -c 'CREATE USER osmose;' -U postgres
