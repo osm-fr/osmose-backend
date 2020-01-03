@@ -25,7 +25,9 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 
 class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant not integrated") }
+        self.missing_official = self.def_class(item = 8240, id = 1, level = 3, tags = ['merge', 'amenity'],
+            title = T_('Restaurant not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
             u"Liste des restaurants en Aquitaine",

@@ -26,9 +26,12 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Police_FR_gn(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8190", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Police/\"Gendarmerie\" not integrated") }
-        self.possible_merge   = {"item":"8191", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Police/\"Gendarmerie\", integration suggestion") }
-        self.update_official  = {"item":"8192", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Police/\"Gendarmerie\" update") }
+        self.missing_official = self.def_class(item = 8190, id = 1, level = 3, tags = ['merge'],
+            title = T_('Police/"Gendarmerie" not integrated'))
+        self.possible_merge   = self.def_class(item = 8191, id = 3, level = 3, tags = ['merge'],
+            title = T_('Police/"Gendarmerie", integration suggestion'))
+        self.update_official  = self.def_class(item = 8192, id = 4, level = 3, tags = ['merge'],
+            title = T_('Police/"Gendarmerie" update'))
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/",

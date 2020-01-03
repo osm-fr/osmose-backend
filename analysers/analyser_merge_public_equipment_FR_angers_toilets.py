@@ -25,7 +25,9 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Equipment_FR_Angers_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 8, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Angers") }
+        self.missing_official = self.def_class(item = 8180, id = 8, level = 3, tags = ['merge', 'public equipment'],
+            title = T_f('{0} toilets not integrated', 'Angers'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://data.angers.fr/explore/dataset/sanitaires-publics-angers/",
             u"Toilettes publiques",

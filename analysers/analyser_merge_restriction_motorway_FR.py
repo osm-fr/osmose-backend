@@ -25,7 +25,9 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8320", "class": 1, "level": 3, "tag": ["merge", "maxweight"], "desc": T_(u"maxweight Restriction not integrated") }
+        self.missing_official = self.def_class(item = 8320, id = 1, level = 3, tags = ['merge', 'maxweight'],
+            title = T_('maxweight Restriction not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://professionnels.ign.fr/route500",
             u"ROUTE 500®",
@@ -49,7 +51,9 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
 
 class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8320", "class": 2, "level": 3, "tag": ["merge", "maxheight"], "desc": T_(u"maxheight Restriction not integrated") }
+        self.missing_official = self.def_class(item = 8320, id = 2, level = 3, tags = ['merge', 'maxheight'],
+            title = T_('maxheight Restriction not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://professionnels.ign.fr/route500",
             u"ROUTE 500®",

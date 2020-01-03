@@ -22,19 +22,19 @@
 
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
-
-class Analyser_Merge_Geodesie(Analyser_Merge):
-    def __init__(self, config, logger = None):
-        doc = dict(
-            detail = T_(
+doc = dict(
+    detail = T_(
 '''[WikiProject_France/Repères_Géodésiques](https://wiki.openstreetmap.org/wiki/WikiProject_France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)
 French survey point imported in OSM but not found.'''),
-            fix = T_(
+    fix = T_(
 '''Restore node or relation.'''),
-            trap = T_(
+    trap = T_(
 '''Offered fix reimport the missing sites as point, but if was a
 relation. Must be converted manually, keep the tags and put survey points
 in relation.'''))
+
+class Analyser_Merge_Geodesie(Analyser_Merge):
+    def __init__(self, config, logger = None):
         self.missing_official = self.def_class(item = 8070, id = 1, level = 3, tags = ['merge'],
             title = T_('Missing survey point'),
             **doc)
@@ -79,7 +79,10 @@ in relation.'''))
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = self.def_class(item ="8070", "class": 2, level = 3, tags = ["merge"], title = T_(u"Missing survey site") }
+        self.missing_official = self.def_class(item = 8070, id = 2, level = 3, tags = ['merge'],
+            title = T_('Missing survey site'),
+            **doc)
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques-site",

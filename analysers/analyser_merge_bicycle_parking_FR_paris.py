@@ -40,9 +40,9 @@ tag_mapping = {
 
 class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 21, "level": 3, "tag":
-                                 ["merge", "public equipment", "cycle"],
-                                 "desc": T_(u"Paris bicycle parking not integrated") }
+        self.missing_official = self.def_class(item = 8150, id = 21, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+            title = T_('Paris bicycle parking not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             u"Stationnement sur voie publique - emplacements vélos",
@@ -70,9 +70,9 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
 
 class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 31, "level": 3, "tag":
-                                 ["merge", "public equipment", "motorcycle"],
-                                 "desc": T_(u"Paris motorcycle parking not integrated") }
+        self.missing_official = self.def_class(item = 8150, id = 31, level = 3, tags = ['merge', 'public equipment', 'motorcycle'],
+            title = T_('Paris motorcycle parking not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             u"Stationnement sur voie publique - emplacements motos",
@@ -102,9 +102,9 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
 
 class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 41, "level": 3, "tag":
-                                 ["merge", "public equipment", "bicycle", "motorcycle"],
-                                 "desc": T_(u"Paris shared motorcycle/motorcycle parking not integrated") }
+        self.missing_official = self.def_class(item = 8150, id = 41, level = 3, tags = ['merge', 'public equipment', 'bicycle', 'motorcycle'],
+            title = T_('Paris shared motorcycle/motorcycle parking not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             u"Stationnement sur voie publique - emplacements deux roues",

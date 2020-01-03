@@ -25,9 +25,12 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
 
-        self.missing_official = {"item":"8380", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Wastewater plant not integrated") }
-        self.possible_merge   = {"item":"8381", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Wastewater plant, integration suggestion") }
-        self.update_official  = {"item":"8382", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Wastewater plant update") }
+        self.missing_official = self.def_class(item = 8380, id = 1, level = 3, tags = ['merge'],
+            title = T_('Wastewater plant not integrated'))
+        self.possible_merge   = self.def_class(item = 8381, id = 3, level = 3, tags = ['merge'],
+            title = T_('Wastewater plant, integration suggestion'))
+        self.update_official  = self.def_class(item = 8382, id = 4, level = 3, tags = ['merge'],
+            title = T_('Wastewater plant update'))
 
         Analyser_Merge.__init__(self, config, logger,
             u"http://www.sandre.eaufrance.fr/atlas/srv/fre/catalog.search#/metadata/ebef2115-bee5-40bb-b5cc-4593d82ba334",

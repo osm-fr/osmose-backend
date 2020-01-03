@@ -24,7 +24,9 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 751, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"P+R parking in Île-de-France not integrated") }
+        self.missing_official = self.def_class(item = 8130, id = 751, level = 3, tags = ['merge', 'parking'],
+            title = T_('P+R parking in Île-de-France not integrated'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.stif.info/explore/dataset/parcs-relais-idf/information/",
             u"Parcs Relais en Île-de-France",

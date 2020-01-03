@@ -26,9 +26,13 @@ from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select,
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
     def __init__(self, config, logger = None):
         place = "TransGironde"
-        self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop not integrated", place) }
-        self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop, integration suggestion", place) }
-        self.update_official  = {"item":"8042", "class": 44, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop update", place) }
+        self.missing_official = self.def_class(item = 8040, id = 41, level = 3, tags = ['merge', 'public transport'],
+            title = T_f('{0} stop not integrated', place))
+        self.possible_merge   = self.def_class(item = 8041, id = 43, level = 3, tags = ['merge', 'public transport'],
+            title = T_f('{0} stop, integration suggestion', place))
+        self.update_official  = self.def_class(item = 8042, id = 44, level = 3, tags = ['merge', 'public transport'],
+            title = T_f('{0} stop update', place))
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",

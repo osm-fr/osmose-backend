@@ -28,7 +28,8 @@ from .modules import Stablehash
 
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8270", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power plant not integrated, geocoded at municipality level") }
+        self.missing_official = self.def_class(item = 8270 , id = 1, level = 3, tags = ['merge', 'power'],
+            title = T_('Power plant not integrated, geocoded at municipality level'))
 
         Analyser_Merge.__init__(self, config, logger,
             u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",

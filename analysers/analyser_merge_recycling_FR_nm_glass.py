@@ -25,9 +25,13 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8120", "class": 21, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling, integration suggestion") }
-        self.update_official  = {"item":"8122", "class": 24, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling update") }
+        self.missing_official = self.def_class(item = 8120, id = 21, level = 3, tags = ['merge', 'recycling'],
+            title = T_('NM glass recycling not integrated'))
+        self.possible_merge   = self.def_class(item = 8121, id = 23, level = 3, tags = ['merge', 'recycling'],
+            title = T_('NM glass recycling, integration suggestion'))
+        self.update_official  = self.def_class(item = 8122, id = 24, level = 3, tags = ['merge', 'recycling'],
+            title = T_('NM glass recycling update'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
             u"Colonnes aériennes de Nantes Métropole",

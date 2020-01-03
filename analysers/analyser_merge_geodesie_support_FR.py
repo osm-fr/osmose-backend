@@ -46,7 +46,9 @@ class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, item, classs, level, topic, osmTags, defaultTags):
-        self.missing_official = {"item": item, "class": classs, "level": level, "tag": ["merge"], "desc": T_(u"Geodesic support not integrated %s", topic.replace("^", "").replace("|", ", ")) }
+        self.missing_official = self.def_class(item = item, id = classs, level = level, tags = ['merge'],
+            title = T_f('Geodesic support not integrated {0}', topic.replace('^', '').replace('|', ', ')))
+
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques",

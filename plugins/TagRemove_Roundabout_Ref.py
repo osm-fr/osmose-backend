@@ -30,7 +30,7 @@ class TagRemove_Roundabout_Ref(Plugin):
         Plugin.init(self, logger)
         self.errors[102] = self.def_class(item = 4020, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Unneeded tag on junction=roundabout'),
-            detail = T(
+            detail = T_(
 '''The tags `oneway=*` and `ref=*` are not necessary on the roundabouts.
 The tag `name=*` must be present if this is the name of the roundabout
 and not a road connected, same thing for `ref=*`.'''))

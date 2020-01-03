@@ -26,8 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, 
 class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
     def __init__(self, config, logger = None):
         place = "TBM"
-        self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop not integrated", place) }
-        self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop, integration suggestion", place) }
+        self.missing_official = self.def_class(item = 8040, id = 51, level = 3, tags = ['merge', 'public transport'],
+            title = T_f('{0} stop not integrated', place))
+        self.possible_merge   = self.def_class(item = 8041, id = 53, level = 3, tags = ['merge', 'public transport'],
+            title = T_f('{0} stop, integration suggestion', place))
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://data.bordeaux-metropole.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",

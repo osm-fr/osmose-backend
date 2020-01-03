@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 
 class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Aquitaine museum not integrated") }
-        self.possible_merge   = {"item":"8011", "class": 13, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Aquitaine museum, integration suggestion") }
+        self.missing_official = self.def_class(item = 8010, id = 11, level = 3, tags = ['merge', 'tourism'],
+            title = T_('Aquitaine museum not integrated'))
+        self.possible_merge   = self.def_class(item = 8011, id = 13, level = 3, tags = ['merge', 'tourism'],
+            title = T_('Aquitaine museum, integration suggestion'))
+
         Analyser_Merge.__init__(self, config, logger,
             u"http://catalogue.datalocale.fr/dataset/liste-musees-aquitaine",
             u"Liste des musées et centres d'interprétation de Gironde",
