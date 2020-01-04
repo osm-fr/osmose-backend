@@ -20,6 +20,10 @@
 ###########################################################################
 
 from modules.Stablehash import stablehash
+from analysers.Analyser import Analyser
+
+import os
+from inspect import getframeinfo, stack
 
 
 class Plugin(object):
@@ -88,6 +92,14 @@ class Plugin(object):
         @param logger:
         """
         pass
+
+    def def_class(self, **kwargs):
+        return Analyser.def_class_(self.father and self.father.config or None, **kwargs)
+
+
+    def merge_doc(self, *docs):
+        return Analyser.merge_doc(*docs)
+
 
     def ToolsStripAccents(self, mot):
         mot = mot.replace(u"à", u"a").replace(u"â", u"a")

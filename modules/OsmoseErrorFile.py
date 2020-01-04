@@ -64,16 +64,34 @@ class ErrorFile:
     def analyser_end(self):
         self.outxml.endElement(self.mode)
 
-    def classs(self, id, item, level, tag, langs):
-        options = {"id":str(id), "item": str(item)}
+    def classs(self, id, item, level, tags, title, detail = None, fix = None, trap = None, example = None, source = None, resource = None):
+        options = {
+            'id': str(id),
+            'item': str(item),
+        }
+        if source:
+            options['source'] = str(source)
+        if resource:
+            options['resource'] = str(resource)
         if level:
-            options["level"] = str(level)
-        if tag:
-            options["tag"] = ",".join(tag)
-        self.outxml.startElement("class", options)
-        for lang in sorted(langs.keys()):
-            self.outxml.Element("classtext", {"lang":lang, "title":langs[lang]})
-        self.outxml.endElement("class")
+            options['level'] = str(level)
+        if tags:
+            options['tag'] = ','.join(tags)
+        self.outxml.startElement('class', options)
+        for (key, value) in [
+            ('classtext', title),
+            ('detail', detail),
+            ('fix', fix),
+            ('trap', trap),
+            ('example', example),
+        ]:
+            if value:
+                for lang in sorted(value.keys()):
+                    self.outxml.Element(key, {
+                        'lang': lang,
+                        'title': value[lang]
+                    })
+        self.outxml.endElement('class')
 
     def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
