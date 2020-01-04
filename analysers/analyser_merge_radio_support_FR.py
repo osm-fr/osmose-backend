@@ -25,7 +25,7 @@ from io import open
 
 class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
     def __init__(self, config, logger, clas, NAT_IDs, title, tags_select, tags_generate):
-
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8390, id = 1+10*clas, level = 3, tags = ['merge'],
             title = T_f('Radio support ({0}) not integrated', title))
         self.possible_merge   = self.def_class(item = 8391, id = 3+10*clas, level = 3, tags = ['merge'],
@@ -41,7 +41,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
                 name_insee = x[1].strip()
                 self.communeNameIndexedByInsee[code_insee] = name_insee
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/donnees-sur-les-installations-radioelectriques-de-plus-de-5-watts-1/",
             u"Données sur les installations radioélectriques de plus de 5 watts",
             CSV(Source(attribution = u"data.gouv.fr:ANFR", millesime = "08/2019",

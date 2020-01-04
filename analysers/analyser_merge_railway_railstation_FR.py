@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select,
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8050, id = 1, level = 3, tags = ['merge', 'railway'],
             title = T_('Railway station not integrated'))
         self.missing_osm = self.def_class(item = 7100, id = 2, level = 3, tags = ['merge', 'railway'],
@@ -32,7 +33,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         self.possible_merge = self.def_class(item = 8051, id = 3, level = 3, tags = ['merge', 'railway'],
             title = T_('Railway station, integration suggestion'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
             u"Horaires prévus des trains TER",
             GTFS(Source(attribution = u"SNCF", millesime = "08/2017",

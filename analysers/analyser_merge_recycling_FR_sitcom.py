@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 2042, id = 31, level = 3, tags = ['merge', 'recycling'],
             title = T_('SITCOM recycling not integrated'))
         self.possible_merge   = self.def_class(item = 2044, id = 33, level = 3, tags = ['merge', 'recycling'],
@@ -32,7 +33,7 @@ class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
         self.update_official  = self.def_class(item = 2045, id = 34, level = 3, tags = ['merge', 'recycling'],
             title = T_('SITCOM recycling update'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://www.sitcom40.fr/",
             u"Emplacements d'apport volontaire",
             CSV(Source(attribution = u"Sitcom Côte Sud Landes", millesime = "07/2017",

@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = '8120', id = 11, level = 3, tags = ['merge', 'recycling'],
             title = T_('CAPP glass recycling not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=8",
             u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
             # Dod_Bav_CC43.csv is in WGS84

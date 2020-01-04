@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8060, id = 1, level = 3, tags = ['merge', 'railway'],
             title = T_('Crossing level not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
             u"Passages à niveau",
             CSV(Source(attribution = u"data.gouv.fr:RFF", millesime = "01/2014",

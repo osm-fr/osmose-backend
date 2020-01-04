@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_osm = self.def_class(item = 7190, id = 2, level = 3, tags = ['merge', 'power'],
             title = T_('Power substation without tag "ref:FR:RTE" or invalid'))
         self.possible_merge = self.def_class(item = 8281, id = 3, level = 3, tags = ['merge', 'power'],
@@ -34,7 +35,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
         self.missing_official = self.def_class(item = 8280, id = 1, level = 3, tags = ['merge', 'power'],
             title = T_('Power substation not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
             u"Postes électriques RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",

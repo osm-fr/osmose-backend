@@ -25,14 +25,14 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 
-
     def __init__(self, config, logger, item, clas, level, select, osmTags, defaultTag, defaultTagMapping = {}):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = item, id = clas, level = level, tags = ['merge'],
             title = T_('Public service not integrated'),
             trap = T_(
 '''The location can be quite rough.'''))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
             CSV(Source(attribution = u"Service-Public.fr", millesime = "08/2018",

@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8320, id = 3, level = 3, tags = ['merge', 'maxweight'],
             title = T_('maxweight Restriction not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/gabarits-et-limitation-de-poids-des-ponts/",
             u"Gabarits et limitation de poids des ponts",
             CSV(Source(attribution = u"Département des Hauts-de-Seine", millesime = "04/2017",
@@ -57,10 +58,11 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
 
 class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8320, id = 4, level = 3, tags = ['merge', 'maxheight'],
             title = T_('maxheight Restriction not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/gabarits-et-limitation-de-poids-des-ponts/",
             u"Gabarits et limitation de poids des ponts",
             CSV(Source(attribution = u"Département des Hauts-de-Seine", millesime = "04/2017",

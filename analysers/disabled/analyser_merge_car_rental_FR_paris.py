@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8160, id = 1, level = 3, tags = ['merge', 'public equipment'],
             title = T_('Paris Autolib\' car rental not integrated'))
         self.missing_osm = self.def_class(item = 7140, id = 2, level = 3, tags = ['merge', 'public equipment'],
@@ -34,7 +35,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
         self.update_official = self.def_class(item = 8162, id = 4, level = 3, tags = ['merge', 'public equipment'],
             title = T_('Paris Autolib\' car rental update'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
             u"Stations et espaces AutoLib de la métropole parisienne",
             CSV(Source(attribution = u"Mairie de Paris", millesime = "03/2016",

@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select
 
 class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
     def __init__(self, config, logger, level, title, osmTags, osmTypes, c, tcd, stcd, threshold):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 7110, id = tcd*100+stcd, level = level, tags = ['merge', 'highway'],
             title = title,
             detail = T_(
@@ -32,7 +33,7 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
             trap = T_(
 '''TMC data may be wrong or poorly located.'''))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
             "Alert-C-point",
             CSV(Source(fileUrl = u"http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/cd_alert_c_v12.1.zip", zip = "Data/Mff/POINTS.DAT"),

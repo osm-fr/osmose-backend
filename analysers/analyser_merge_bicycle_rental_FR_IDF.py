@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 
 class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8160, id = 11, level = 3, tags = ['merge', 'public equipment', 'cycle'],
             title = T_('IDF bicycle rental not integrated'))
         self.possible_merge   = self.def_class(item = 8161, id = 13, level = 3, tags = ['merge', 'public equipment', 'cycle'],
@@ -32,7 +33,7 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
         self.update_official  = self.def_class(item = 8162, id = 14, level = 3, tags = ['merge', 'public equipment', 'cycle'],
             title = T_('IDF bicycle update'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/",
             u"Vélib' - Disponibilité temps réel",
             GeoJSON(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2019",

@@ -26,13 +26,14 @@ import re
 
 class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8240, id = 11, level = 3, tags = ['merge', 'amenity'],
             title = T_('Restaurant not integrated'))
 
         start_restaurant = re.compile("^(hôtel-)?restaurant ", flags=re.IGNORECASE)
         final_name = re.compile("/.*$")
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/restaurants-od71",
             u"Les restaurants en Saône-et-Loire - CG71",
             CSV(Source(attribution = u"Département de Saône-et-Loire", millesime = "03/2013",

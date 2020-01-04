@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8370, id = 80, level = 3, tags = ['merge'],
             title = T_('Defibrillator not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-1/",
             u"Ville de Saint-Malo",
             CSV(Source(attribution = u"Ville de Saint-Malo",

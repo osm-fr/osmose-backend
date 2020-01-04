@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8120, id = 21, level = 3, tags = ['merge', 'recycling'],
             title = T_('CAPP clothes recycling not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=7",
             u"Point d'apport volontaire du textile : Relais 64 sur la CAPP",
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",

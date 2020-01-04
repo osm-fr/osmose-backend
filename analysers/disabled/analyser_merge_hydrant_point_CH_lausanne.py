@@ -25,9 +25,10 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant not integrated") }
         self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html",
             u"Bornes hydrantes",
             CSV(Source(attribution = u"Ville de Lausanne - 2013 - Eauservice",

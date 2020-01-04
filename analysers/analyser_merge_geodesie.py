@@ -35,6 +35,7 @@ in relation.'''))
 
 class Analyser_Merge_Geodesie(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8070, id = 1, level = 3, tags = ['merge'],
             title = T_('Missing survey point'),
             **doc)
@@ -42,7 +43,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             title = T_('Moved survey poin'),
             **doc)
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques",
             CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
@@ -79,11 +80,12 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8070, id = 2, level = 3, tags = ['merge'],
             title = T_('Missing survey site'),
             **doc)
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques-site",
             CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",

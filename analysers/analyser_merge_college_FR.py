@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_College_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8030, id = 100, level = 3, tags = ['merge'],
             title = T_('College not integrated'))
         self.missing_osm = self.def_class(item = 7070, id = 101, level = 3, tags = ['merge'],
@@ -34,7 +35,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
         self.update_official = self.def_class(item = 8032, id = 103, level = 3, tags = ['merge'],
             title = T_('College update'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/etablissements-denseignement-superieur-2",
             u"Etablissements d'enseignement supérieur",
             CSV(Source(attribution = u"Etablissements d'enseignement supérieur", millesime = "09/2017",

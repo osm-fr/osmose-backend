@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 
 class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8240, id = 1, level = 3, tags = ['merge', 'amenity'],
             title = T_('Restaurant not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
             u"Liste des restaurants en Aquitaine",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",

@@ -43,10 +43,11 @@ class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, layer):
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.missing_official = self.def_class(item = 8360, id = classs, level = level, tags = ['merge', 'leisure'],
             title = T_f('{0} Street object {1} observed around but not associated tags', ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title))
 
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+        self.init(
             "www.mapillary.com",
             u"Street Objects from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),

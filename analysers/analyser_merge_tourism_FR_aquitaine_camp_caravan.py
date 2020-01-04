@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 
 class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8140, id = 1, level = 3, tags = ['merge', 'tourism'],
             title = T_('Aquitaine caravan site not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://catalogue.datalocale.fr/dataset/liste-aires-campingcars-aquitaine",
             u"Liste des aires de camping-cars en Aquitaine",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
@@ -53,10 +54,11 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
 
 class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8140, id = 11, level = 3, tags = ['merge', 'tourism'],
             title = T_('Aquitaine camp site not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://catalogue.datalocale.fr/dataset/liste-campings-aquitaine",
             u"Liste des campings en Aquitaine",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",

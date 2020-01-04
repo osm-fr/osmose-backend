@@ -44,10 +44,11 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.missing_official = self.def_class(item = 8170, id = classs, level = 3, tags = ['merge', 'leisure'],
             title = T_f('Pitch not integrated {0}', topic))
 
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+        self.init(
             u"http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
             u"Recensement des équipements sportifs, espaces et sites de pratiques",
             CSV(Source(attribution = u"Le ministère de la ville, de la jeunesse et des sports", millesime = "01/2018",

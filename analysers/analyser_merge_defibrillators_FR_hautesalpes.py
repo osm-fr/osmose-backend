@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, 
 
 class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8370, id = 50, level = 3, tags = ['merge'],
             title = T_('Defibrillator not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-appartenant-au-departement-des-hautes-alpes/",
             u"Localisation des défibrillateurs appartenant au département des Hautes Alpes ",
             SHP(Source(attribution = u"data.gouv.fr:Département des Hautes-Alpes",

@@ -26,6 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_School_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
 
         if config.db_schema == 'france_guadeloupe':
             classs = 10
@@ -64,7 +65,7 @@ adminstrative schools for a single physical school.''')
             title = T_('School update'),
             trap = trap)
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/",
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
             CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "03/2018",

@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8290, id = 1, level = 3, tags = ['merge', 'power'],
             title = T_('Power support not integrated'))
         self.missing_osm      = self.def_class(item = 7200, id = 2, level = 3, tags = ['merge', 'power'],
@@ -32,7 +33,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
         self.possible_merge   = self.def_class(item = 8291, id = 3, level = 3, tags = ['merge', 'power'],
             title = T_('Power support, integration suggestion'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte",
             u"Pylones RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",

@@ -25,13 +25,14 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
+        Analyser_Merge.__init__(self, config, logger)
         place = "RATP"
         self.missing_official = self.def_class(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
             title = T_f('{0} stop not integrated', place))
         self.possible_merge   = self.def_class(item = 8041, id = 3+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
             title = T_f('{0} stop, integration suggestion', place))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
             u"Positions géographiques des stations du réseau RATP",
             CSV(Source(attribution = u"RATP", millesime = "07/2012",

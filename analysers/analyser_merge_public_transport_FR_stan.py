@@ -25,13 +25,14 @@ from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select,
 
 class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         place = "STAN"
         self.missing_official = self.def_class(item = 8040, id = 91, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop not integrated', place))
         self.possible_merge   = self.def_class(item = 8041, id = 93, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop, integration suggestion', place))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://opendata.grandnancy.eu/jeux-de-donnees/detail-dune-fiche-de-donnees/?tx_icsoddatastore_pi1%5Buid%5D=108&tx_icsoddatastore_pi1%5BreturnID%5D=447",
             u"Réseau Stan: horaires et lignes",
             GTFS(Source(attribution = u"Métropole du Grand Nancy", millesime = "06/2017",

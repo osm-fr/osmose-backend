@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select,
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         place = "TransGironde"
         self.missing_official = self.def_class(item = 8040, id = 41, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop not integrated', place))
@@ -33,7 +34,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         self.update_official  = self.def_class(item = 8042, id = 44, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop update', place))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",
             GTFS(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2016",

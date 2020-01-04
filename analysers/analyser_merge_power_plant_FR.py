@@ -28,10 +28,11 @@ from .modules import Stablehash
 
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8270 , id = 1, level = 3, tags = ['merge', 'power'],
             title = T_('Power plant not integrated, geocoded at municipality level'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
             u"Registre national des installations de production d'électricité et de stockage",
             CSV(Geocode_Addok_CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2019",

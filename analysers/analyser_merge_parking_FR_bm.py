@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Sel
 
 class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 31, level = 3, tags = ['merge', 'parking'],
             title = T_('BM parking not integrated'))
         self.possible_merge   = self.def_class(item = 8131, id = 33, level = 3, tags = ['merge', 'parking'],
@@ -32,7 +33,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
         self.update_official  = self.def_class(item = 8132, id = 34, level = 3, tags = ['merge', 'parking'],
             title = T_('BM parking update'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://data.bordeaux-metropole.fr/data.php?themes=10", # joins on http://data.bordeaux-metropole.fr/data.php?themes=1
             u"Parking données techniques 2016", # joins on "Équipement public"
             CSV(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
@@ -64,10 +65,11 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
 
 class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 21, level = 3, tags = ['merge', 'parking'],
             title = T_('BM parking disabled not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://data.bordeaux-metropole.fr/data.php?themes=8",
             u"Place de stationnement PMR",
             SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",

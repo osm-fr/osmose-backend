@@ -25,6 +25,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Carpool_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 41, level = 3, tags = ['merge', 'parking', 'carpool'],
             title = T_('Carpool parking not integrated'))
         self.possible_merge   = self.def_class(item = 8131, id = 43, level = 3, tags = ['merge', 'parking', 'carpool'],
@@ -32,7 +33,7 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
         self.update_official  = self.def_class(item = 8132, id = 44, level = 3, tags = ['merge', 'parking', 'carpool'],
             title = T_('Carpool parking update'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/base-nationale-consolidee-des-lieux-de-covoiturage",
             u"Base nationale consolidée des lieux de covoiturage",
             CSV(Source(attribution = u"Transport.data.gouv.fr", millesime = "09/2019", encoding = "utf-8-sig",

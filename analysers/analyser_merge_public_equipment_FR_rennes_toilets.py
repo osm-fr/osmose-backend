@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8180, id =2, level = 3, tags = ['merge', 'public equipment'],
             title = T_f('{0} toilets not integrated', 'Rennes'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
             u"Toilettes publiques",
             CSV(Source(attribution = u"Ville de Rennes", millesime = "07/2017",

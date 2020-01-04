@@ -27,7 +27,8 @@ from functools import reduce
 
 class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.config = config
+        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge.__init__(self, config, logger)
         doc = dict(
             detail = T_(
 '''A historical monument is here but is not mapped. The list of monuments
@@ -81,7 +82,7 @@ World Heritage.'''))
             u"Normandie;Calvados;Falaise;Vestiges de l'enceinte fortifiée;\"13e siècle;17e siècle\";;\"Restes de la porte Lecomte : inscription par arrêté du 31 mai 1927 ; Porte des Cordeliers : classement par arrêté du 13 mars 1930 ; Vestiges de l'enceinte fortifiée : de la porte du Château à la porte de Guibray : rue Porte-du-Château 10, 8 (cad. B 67, 68) , rue Blâcher 32, 28, 22, 10, 6 (cad. D 87, 92, 96, 105, 108 à 110). De la porte Guibray à la porte Marescot : rue Amiral-Courbet (cad. D 521, 519, 513, 514, 515, 512, 509). De la porte Marescot à la porte Lecomte : rue Georges-Clémenceau (cad. B 801) , rue Victor-Hugo 15, 17, 19, 21, 23, 25 (cad. B 604, 608, 612, 615) , rue du Sergent-Goubin (cad. B 625). De la porte Lecomte à la route de Caen : rue du Sergent Goubin 24, 22, 20, 2 (cad. B 566, 569, 562, 563, 559, 556, 557, 1058 à 1060) , rue Gambetta 18, 14, 12 (cad. B 1045, 1048, 994, 997). De la route de Caen à la porte Philippe-Jean : rue Frédéric-Gaberon (cad. E 235) , rue des Cordeliers (cad. E 247) , rue du Camp-Ferme (cad. E 354, 364, 365, 370, 383). De la porte Philippe-Jean auchâteau : place Guillaume-le-Conquérant et rue de la Porte-Philippe-Jean (cad. E 585, 572, 578) , place Guillaume-le-Conquérant (cad. E 594, 610, 612, 613) : inscription par arrêté du 19 juin 1951\";\"1927/05/31 : inscrit MH ; 1930/03/13 : classé MH ; 1951/06/19 : inscrit MH\";\"propriété de la commune ; propriété d'une personne privée\";\"Porte-du-Château (rue) ; Blâcher (rue) ; Amiral-Courbet (rue) ; Georges-Clémenceau (rue) ; Victor-Hugo (rue) ; Sergent-Goubin (rue du) ; Gambetta (rue) ; Frédéric-Gaberon (rue) ; Cordeliers (rue des) ; Camp-Ferme (rue du) ; Guillaume-le-Conquérant (place)\";14258;;Recensement immeubles MH;PA00111315;48.8957800281, -0.193401711782;14;Basse-Normandie;basse normandie",
         ]
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Immeubles protégés au titre des Monuments Historiques",
             CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
