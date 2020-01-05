@@ -29,7 +29,8 @@ class TagFix_Wikidata(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30318] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikidata', 'fix:chair'],
-            title = T_('This wikidata value matches a chain store, it should be in a brand:wikidata tag.'))
+            title = T_('This wikidata value matches a chain store, it should be in a brand:wikidata tag.'),
+            resource = 'https://www.wikidata.org/wiki/Q507619')
 
         self.black_list = self.black_list()
 

@@ -42,6 +42,7 @@ similar.'''),
             **doc)
         self.errors[30601] = self.def_class(item = 3060, level = 3, tags = ['value', 'fix:chair'],
             title = T_('Similar values'),
+            resource = 'https://en.wikipedia.org/wiki/Levenshtein_distance',
             **doc)
 
         self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'collection_times', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'is_in', 'position'))

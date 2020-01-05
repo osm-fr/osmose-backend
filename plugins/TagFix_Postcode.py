@@ -75,7 +75,8 @@ class TagFix_Postcode(Plugin):
             title = T_('Invalid postcode'),
             detail = T_(
 '''Check postcode as decribed on
-[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)'''))
+[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)'''),
+            resource = 'https://en.wikipedia.org/wiki/List_of_postal_codes')
 
         self.Country = None
         if self.father.config.options.get("country"):

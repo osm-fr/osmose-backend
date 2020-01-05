@@ -57,7 +57,8 @@ used.'''),
 alphabet.'''),
             fix = T_(
 '''Change the character into a punctuation mark or something else more
-appropriate.'''))
+appropriate.'''),
+            resource = 'http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]')
 
         country = self.father.config.options.get("country")
 

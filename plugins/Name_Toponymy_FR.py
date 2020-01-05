@@ -34,7 +34,8 @@ class Name_Toponymy_FR(Plugin):
             detail = T_(
 '''Apply of "[charte de
 toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)" of
-IGN (French geographic name conventions)'''))
+IGN (French geographic name conventions)'''),
+            resource = 'http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf')
 
         ## http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf
 
