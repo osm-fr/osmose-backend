@@ -1,41 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-04-11T18:26:15Z">
-<analyser timestamp="2015-04-11T18:26:15Z">
-<class item="3210" tag="highway,tag,fix:chair" id="2" level="2">
-<classtext lang="cs" title="noexit na cestě s více exity" />
-<classtext lang="en" title="noexit on way with multiple exits" />
-<classtext lang="es" title="noexit en vía con múltiples salidas" />
-<classtext lang="fr" title="noexit sur un way avec multiples embranchements" />
-<classtext lang="it" title="noexit su strada con uscite multiple" />
-<classtext lang="pl" title="noexit na drodze z kilkoma wyjściami" />
+<analysers>
+<analyser timestamp="1970-01-01T00:00:00Z" analyser_version="494101385">
+<class id="2" item="3210" source="None/analysers/analyser_osmosis_highway_noexit.py#L90" level="2" tag="highway,tag,fix:chair">
+<classtext lang="en" title="Noexit on way with multiple exits" />
 </class>
-<class item="3210" tag="highway,tag,fix:chair" id="1" level="2">
-<classtext lang="cs" title="noexit na uzlu s exit" />
-<classtext lang="en" title="noexit on node with exit" />
-<classtext lang="es" title="noexit en el nodo con salida" />
-<classtext lang="fr" title="Noexit sur un nœud qui n'est pas sans issue" />
-<classtext lang="it" title="noexit su di un nodo con uscita" />
-<classtext lang="pl" title="noexit na węźle który nie jest końcowy" />
+<class id="1" item="3210" source="None/analysers/analyser_osmosis_highway_noexit.py#L88" level="2" tag="highway,tag,fix:chair">
+<classtext lang="en" title="Noexit on node with exit" />
 </class>
-<error class="1" subclass="2">
-<node version="1" user="toto" lat="43.5738441546" lon="7.1352332297" id="140">
-<tag k="noexit" v="yes" />
-</node>
-<location lat="43.5738441546" lon="7.1352332297" />
-<fixes>
-<fix>
-<node id="140">
-<tag action="delete" k="noexit" />
-</node>
-</fix>
-</fixes>
-</error>
 <error class="2">
-<location lat="43.58698923085" lon="7.13208912621" />
-<way user="toto" version="1" id="77">
+<way id="77" version="1" user="toto">
 <tag k="noexit" v="yes" />
 <tag k="highway" v="residential" />
 </way>
+<location lat="43.58698923085" lon="7.13208912621" />
 <fixes>
 <fix>
 <way id="77">
@@ -45,16 +22,29 @@
 </fixes>
 </error>
 <error class="2">
-<location lat="43.56376388279" lon="7.05560008059" />
-<way user="toto" version="1" id="329">
+<way id="329" version="1" user="toto">
 <tag k="noexit" v="yes" />
 <tag k="highway" v="residential" />
 </way>
+<location lat="43.56376388279" lon="7.05560008059" />
 <fixes>
 <fix>
 <way id="329">
 <tag action="delete" k="noexit" />
 </way>
+</fix>
+</fixes>
+</error>
+<error class="1" subclass="2">
+<node id="140" lat="43.5738441546" lon="7.1352332297" version="1" user="toto">
+<tag k="noexit" v="yes" />
+</node>
+<location lat="43.5738441546" lon="7.1352332297" />
+<fixes>
+<fix>
+<node id="140">
+<tag action="delete" k="noexit" />
+</node>
 </fix>
 </fixes>
 </error>
