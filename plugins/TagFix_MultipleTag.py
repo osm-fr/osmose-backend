@@ -57,7 +57,7 @@ class TagFix_MultipleTag(Plugin):
 '''Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a
 bridge.'''))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
-            title = T_('Name present but missing main tag'),
+            title = T_('Untagged named object'),
             detail = self.merge_doc(T_(
 '''The object is missing any tag which defines what kind of feature is
 it. Considered main tags are (with derived `disused:` and
