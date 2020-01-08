@@ -359,11 +359,27 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction relation, wrong number of members") }
-        self.classs_change[2] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:chair"], "desc": T_(u"Restriction relation, bad member type") }
-        self.classs_change[3] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:chair"], "desc": T_(u"Unconnected restriction relation ways") }
-        self.classs_change[4] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction relation, bad oneway direction on \"from\" or \"to\" member") }
-        self.classs_change[5] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction doesn't match topology") }
+        self.classs_change[1] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:survey'],
+            title = T_('Restriction relation, wrong number of members'),
+            detail = T_(
+'''Some required member are missing, eg. there is a `from` and `via`
+role, but missing the `to` role.'''))
+        self.classs_change[2] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:chair'],
+            title = T_('Restriction relation, bad member type'))
+        self.classs_change[3] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:chair'],
+            title = T_('Unconnected restriction relation ways'),
+            fix = T_(
+'''The ways in the restriction must be continuous.'''))
+        self.classs_change[4] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:survey'],
+            title = T_('Restriction relation, bad oneway direction on "from" or "to" member'),
+            detail = T_(
+'''Impossible to reach the restriction by respecting the oneway.'''))
+        self.classs_change[5] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:survey'],
+            title = T_('Restriction doesn\'t match topology'),
+            detail = T_(
+'''The shape of the paths described by the way does not correspond to the
+restriction.'''))
+
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText] }
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.way_full, self.positionAsText] }
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText] }

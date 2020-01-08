@@ -26,7 +26,16 @@ class Structural_Useless_Relation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[12001] = { "item": 1200, "level": 2, "tag": ["relation", "fix:chair"], "desc": T_(u"1-member relation") }
+        self.errors[12001] = self.def_class(item = 1200, level = 2, tags = ['relation', 'fix:chair'],
+            title = T_('1-member relation'),
+            detail = T_(
+'''The relation only contains one member.'''),
+            fix = T_(
+'''Check if no member is missing, check the history, check if there is
+another similar relation with more members. A one-member relation may
+sometimes be justified.'''),
+            trap = T_(
+'''Do not remove a relation without understanding why it is there.'''))
 
     def relation(self, data, tags, members):
         if len(members) == 1:

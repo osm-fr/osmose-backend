@@ -31,8 +31,23 @@ class Source(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": T_(u"Illegal or incomplete source tag") }
-        self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"Missing source tag") }
+        self.errors[706] = self.def_class(item = 3020, level = 1, tags = ['source', 'fix:chair'],
+            title = T_('Illegal or incomplete source tag'),
+            detail = T_(
+'''The `source` tag is incorrect. For example, an illegal source like
+Google.'''),
+            fix = T_(
+'''Correct the source and the location of the object if necessary. If the
+source is illegal, promptly notify the contributor to remove
+contributions.'''))
+        self.errors[707] = self.def_class(item = 2040, level = 3, tags = ['source', 'fix:chair'],
+            title = T_('Missing source tag'),
+            detail = T_(
+'''An administrative boundary does not contain tag `source=*` sourcing
+the origin.'''),
+            fix = T_(
+'''If the limit comes from the French Cadastre, add the appropriate
+`source=*`.'''))
 
     def check(self, tags):
         if u"source" not in tags and u"ref" not in tags:

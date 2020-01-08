@@ -59,7 +59,13 @@ class TagFix_MultipleValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3070] = { "item": 3070, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Multiple values") }
+        self.errors[3070] = self.def_class(item = 3070, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('Multiple values'),
+            detail = T_(
+'''The tag contains multiple values.'''),
+            fix = T_(
+'''Check the accuracy of the values, if necessary, delete the obsolete
+values.'''))
 
         self.SimpleValuedTag = set((
                     'addr:street', 'admin_level', 'amenity', 'attraction',

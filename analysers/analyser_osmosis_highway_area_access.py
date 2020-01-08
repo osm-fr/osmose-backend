@@ -58,7 +58,10 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"2130", "level": 3, "tag": ["highway", "routing"], "desc": T_f(u"Inconsistent Access") }
+        self.classs_change[1] = self.def_class(item = 2130, level = 3, tags = ['highway', 'routing'],
+            title = T_('Inconsistent Access'),
+            detail = T_(
+'''Inconsistent `motor_vehicle` values (`destination`!=)'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_f(u"Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
 

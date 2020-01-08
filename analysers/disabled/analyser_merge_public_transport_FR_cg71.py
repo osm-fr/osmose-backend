@@ -25,10 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         place = "CG71"
         self.missing_official = {"item":"8040", "class": 61, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop not integrated", place) }
         self.possible_merge   = {"item":"8041", "class": 63, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop, integration suggestion", place) }
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
             u"Localisation des arrêts de bus et car - CG71",
             CSV(Source(attribution = u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité", millesime = "02/2015",

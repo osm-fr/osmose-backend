@@ -27,15 +27,46 @@ class Highway_Lanes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad lanes value") }
-        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)") }
-        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between lanes number") }
-        self.errors[31605] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Invalid usage of *:lanes:(backward|both_ways) on oneway highway") }
-        self.errors[31606] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Unknown turn lanes value") }
-        self.errors[31607] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad turn lanes order") }
-        self.errors[31608] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between lanes number of same sufix ('', forward, backward or both_ways)") }
-        self.errors[31609] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad access lanes value, should not be an integer but a restriction") }
-        self.errors[31600] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Turn lanes merge_to_* need an aside lane on good side") }
+        self.errors[31601] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad lanes value'),
+            detail = T_(
+'''Non-numeric value, `lanes=*` must have an integer value.'''))
+        self.errors[31603] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)'),
+            detail = T_(
+'''You can not set at the same time a tag and the variante with this
+prefix `forward`, `backward`, `both_ways`.'''))
+        self.errors[31604] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflict between lanes number'))
+        self.errors[31605] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Invalid usage of *:lanes:(backward|both_ways) on oneway highway'),
+            detail = T_(
+'''You can not set opposite lanes data on a one way.'''))
+        self.errors[31606] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Unknown turn lanes value'),
+            detail = T_(
+'''[Valide
+values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)'''))
+        self.errors[31607] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad turn lanes order'),
+            detail = T_(
+'''Right must be on the right and left on the left.'''))
+        self.errors[31608] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflict between lanes number of same sufix ("", forward, backward or both_ways)'),
+            detail = T_(
+'''The number of lanes defined by many lane tags are not the same for a
+given direction.'''))
+        self.errors[31609] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad access lanes value, should not be an integer but a restriction'),
+            detail = T_(
+'''`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is
+the number of lanes.'''))
+        self.errors[31600] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Turn lanes merge_to_* need an aside lane on good side'),
+            detail = T_(
+'''The `merge_to_right` or `merge_to_left` lane must be on the same way
+as the destination lane and the `merge_to_right` must be on the *left
+side* and `the merge_to_left` on the *right side*.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:

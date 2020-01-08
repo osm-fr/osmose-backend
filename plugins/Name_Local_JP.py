@@ -29,9 +29,12 @@ class Name_Local_JP(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50604] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Default and local language name not the same") }
-        self.errors[50605] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Local language name without default name") }
-        self.errors[50606] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Language name without default name") }
+        self.errors[50604] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Default and local language name not the same'))
+        self.errors[50605] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Local language name without default name'))
+        self.errors[50606] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Language name without default name'))
 
         self.LocalName = re.compile("^name:[a-z][a-z](_.*$|$)")
 

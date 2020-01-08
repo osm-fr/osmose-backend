@@ -47,7 +47,9 @@ class Analyser_Osmosis_Highway_Without_Ref(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[20804] = {"item":"2080", "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Motorway without ref, nat_ref, int_ref or noref tag") }
+        self.classs[20804] = self.def_class(item = 2080, level = 2, tags = ['highway', 'ref', 'fix:chair'],
+            title = T_('Motorway without ref, nat_ref, int_ref or noref tag'))
+
         self.callback10 = lambda res: {"class":20804, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):

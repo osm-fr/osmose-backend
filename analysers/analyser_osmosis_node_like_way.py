@@ -75,7 +75,13 @@ class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"4090", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Way node tagged like way") }
+        self.classs_change[1] = self.def_class(item = 4090, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Way node tagged like way'),
+            detail = T_(
+'''Way node tagged like way. Probably due to a wrong selection when
+editing, nodes in the way have the same tags that way.'''),
+            fix = T_(
+'''Check and remove tag from node.'''))
         self.callback10 = lambda res: {"class":1, "data":[None, self.way_full, self.node_full, self.positionAsText], "fix":[ [None, None, {"-": res[0]}] ]}
 
     def analyser_osmosis_full(self):

@@ -30,7 +30,8 @@ class TagRemove_Naptan(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[40601] = { "item": 4060, "level": 2, "tag": ["public_transport", "fix:survey"], "desc": T_(u"Naptan import, survey needed.") }
+        self.errors[40601] = self.def_class(item = 4060, level = 2, tags = ['public_transport', 'fix:survey'],
+            title = T_('Naptan import, survey needed.'))
 
     def node(self, data, tags):
         if tags.get('naptan:verified') == 'no':

@@ -62,11 +62,16 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, srid, is_in, categories, items, missing_osm, classs, level, title, tags_select, tags_generate1, tags_generate2):
-        self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_f(u"{0} not integrated", title) }
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
+        self.missing_official = self.def_class(item =str(items[0]), id = classs+1, level = level, tags = ['merge'],
+            title = T_f('{0} not integrated', title))
         if missing_osm != False:
-            self.missing_osm = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_f(u"{0} without tag \"{1}\" or invalid", title, 'ref:FR:FINESS') }
-        self.possible_merge = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_f(u"{0}, integration suggestion", title) }
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+            self.missing_osm = self.def_class(item =str(items[1]), id = classs+2, level = level, tags = ['merge'],
+                title = T_f('{0} without tag "{1}" or invalid', title, 'ref:FR:FINESS'))
+        self.possible_merge = self.def_class(item =str(items[0]+1), id = classs+3, level = level, tags = ['merge'],
+            title = T_f(u'{0}, integration suggestion', title))
+
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",
             CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "03/2019", encoding='ISO-8859-15',

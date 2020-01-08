@@ -120,9 +120,25 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1140", "level": 3, "tag": ["fix:chair"], "desc": T_(u"Missing tag or role on node") }
-        self.classs_change[2] = {"item":"1140", "level": 3, "tag": ["fix:chair"], "desc": T_(u"Missing tag or role on way") }
-        self.classs_change[3] = {"item":"1140", "level": 3, "tag": ["fix:chair"], "desc": T_(u"Missing tag or role on relation") }
+        doc = dict(
+            detail = T_(
+'''An objet without relevant tag (no other tag than `source`,
+`created_by`, `note:qadastre` nor `name`) nor a relation member with a
+role.'''),
+            fix = T_(
+'''Add tags, role into a relation or delete.'''),
+            trap = T_(
+'''The object is sometimes duplicate.'''))
+
+        self.classs_change[1] = self.def_class(item = 1140, level = 3, tags = ['fix:chair'],
+            title = T_('Missing tag or role on node'),
+            **doc)
+        self.classs_change[2] = self.def_class(item = 1140, level = 3, tags = ['fix:chair'],
+            title = T_('Missing tag or role on way'),
+            **doc)
+        self.classs_change[3] = self.def_class(item = 1140, level = 3, tags = ['fix:chair'],
+            title = T_('Missing tag or role on relation'),
+            **doc)
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full if res[1] else None, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.relation_full if res[1] else None, self.positionAsText]}

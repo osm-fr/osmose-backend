@@ -62,7 +62,11 @@ class TagWatchFrViPofm(Plugin):
                     c0 = res[2].strip()
                     tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
                     c = stablehash(c0)
-                    self.errors[c] = { "item": 3030, "level": 2, "tag": tags, "desc": {"en": c0} }
+                    self.errors[c] = self.def_class(item = 3030, level = 2, tags = tags,
+                        title = {'en': c0},
+                        detail = T_(
+'''Simple and frequent errors, the list is available
+[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner).'''))
                     if u"=" in res[0]:
                         k = res[0].split(u"=")[0].strip()
                         v = res[0].split(u"=")[1].strip()

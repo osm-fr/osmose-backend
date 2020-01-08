@@ -32,7 +32,16 @@ class TagFix_Note_Lang_fr(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3110] = {"item": 3110, "level": 3, "tag": ["fixme", "fix:chair"], "desc": T_(u"Possible improvement for note or comment tag") }
+        self.errors[3110] = self.def_class(item = 3110, level = 3, tags = ['fixme', 'fix:chair'],
+            title = T_('Possible improvement for note or comment tag'),
+            detail = T_(
+'''Analyzes the tag `note=*` with French and English keywords.'''),
+            fix = T_(
+'''Use a more appropriate tag as `description=*`, `opening_hours=*` or
+`fixme=*` so it can be found more easily.'''),
+            trap = T_(
+'''The analysis can provide crazy result.'''))
+
         self.FixmeFull = (
             "fix me", "grosso modo", "note de memoire", )
         self.FixmeWord = (

@@ -196,9 +196,26 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway", "fix:chair"], "desc": T_(u"Unconnected cycleway") }
-        self.classs_change[2] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Unconnected highway") }
-        self.classs[3] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"One way inaccessible or missing parking or parking entrance") }
+        detail = T_(
+'''The end of the way is not connected to another way.''')
+        self.classs_change[1] = self.def_class(item = 1210, level = 1, tags = ['highway', 'cycleway', 'fix:chair'],
+            title = T_('Unconnected cycleway'),
+            detail = self.merge_doc(detail, T_(
+'''The end of a `highway=cycleway` must be connected to the rest of the
+road network to ensure continuity, especially for routes planner''')),
+            fix = T_(
+'''Connect the `cycleway` to the road, even with a little virtual
+path.'''))
+        self.classs_change[2] = self.def_class(item = 1210, level = 1, tags = ['highway', 'fix:chair'],
+            title = T_('Unconnected highway'),
+            detail = self.merge_doc(detail, T_(
+'''Highway from `motorway` to `tertiary` are important ways. They should
+lead to somewhere and in particular to a network of minor roads.''')),
+            fix = T_(
+'''Review the classification of road or draw the local road network.'''))
+        self.classs[3] = self.def_class(item =1210, level = 1, tags = ["highway", "fix:chair"],
+            title = T_('One way inaccessible or missing parking or parking entrance'))
+
         self.callback20 = lambda res: {"class":1 if res[3]=='cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):

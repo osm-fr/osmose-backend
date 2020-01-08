@@ -26,6 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_School_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
 
         if config.db_schema == 'france_guadeloupe':
             classs = 10
@@ -48,11 +49,23 @@ class Analyser_Merge_School_FR(Analyser_Merge):
             officialName = u"Métropole"
             self.is_in = lambda code_postal: code_postal[0:2] != "97"
 
-        self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"School not integrated") }
-        self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without tag \"ref:UAI\" or invalid") }
-        self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
-        self.update_official  = {"item":"8032", "class": classs+4, "level": 3, "tag": ["merge"], "desc": T_(u"School update") }
-        Analyser_Merge.__init__(self, config, logger,
+        trap = T_(
+'''Check the location. Warning data from the Ministry may have several
+adminstrative schools for a single physical school.''')
+        self.missing_official = self.def_class(item = 8030, id = classs+1, level = 3, tags = ['merge'],
+            title = T_('School not integrated'),
+            trap = trap)
+        self.missing_osm = self.def_class(item = 7070, id = classs+2, level = 3, tags = ['merge'],
+            title = T_('School without tag \"ref:UAI\" or invalid'),
+            trap = trap)
+        self.possible_merge = self.def_class(item = 8031, id = classs+3, level = 3, tags = ['merge'],
+            title = T_('School, integration suggestion'),
+            trap = trap)
+        self.update_official = self.def_class(item = 8032, id = classs+4, level = 3, tags = ['merge'],
+            title = T_('School update'),
+            trap = trap)
+
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/",
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
             CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "03/2018",

@@ -26,10 +26,24 @@ class Structural_Multipolygon(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[11701] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inadequate role for multipolygon") }
-        self.errors[11702] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inadequate member for multipolygon") }
-        self.errors[11703] = { "item": 1170, "level": 1, "tag": ["relation", "multipolygon", "fix:imagery"], "desc": T_(u"Missing outer role for multipolygon") }
-        self.errors[11704] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"This multipolygon is a simple polygon") }
+        self.errors[11701] = self.def_class(item = 1170, level = 2, tags = ['relation', 'multipolygon', 'fix:chair'],
+            title = T_('Inadequate role for multipolygon'),
+            detail = T_(
+'''Possible roles are `outer`, `inner` or nothing (not recommended).'''))
+        self.errors[11702] = self.def_class(item = 1170, level = 2, tags = ['relation', 'multipolygon', 'fix:chair'],
+            title = T_('Inadequate member for multipolygon'),
+            detail = T_(
+'''Members must be ways.'''))
+        self.errors[11703] = self.def_class(item = 1170, level = 1, tags = ['relation', 'multipolygon', 'fix:imagery'],
+            title = T_('Missing outer role for multipolygon'),
+            detail = T_(
+'''At least one outer ring must be present.'''),
+            fix = T_(
+'''Find the way outside, it may be deleted, check the history.'''))
+        self.errors[11704] = self.def_class(item = 1170, level = 3, tags = ['relation', 'multipolygon', 'fix:chair'],
+            title = T_('This multipolygon is a simple polygon'),
+            detail = T_(
+'''Multipolygon relation actually defines a simple polygon.'''))
 
     def relation(self, data, tags, members):
         if tags.get('type') != 'multipolygon':

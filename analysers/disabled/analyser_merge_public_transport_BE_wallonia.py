@@ -25,9 +25,10 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = {"item":"8040", "class": 71, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 73, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             Source(
                 url = u"http://opendata.awt.be/dataset/tec",
                 name = u"Données TEC",

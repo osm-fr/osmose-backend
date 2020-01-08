@@ -105,9 +105,27 @@ class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1120", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
-        self.classs[2] = {"item":"1120", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
-        self.classs[3] = {"item":"1120", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
+        doc = dict(
+            title = T_('Broken highway level continuity'),
+            detail = T_(
+'''Check the continuity of the highway types. The classification of a
+highway should normally be consistent along the entire path. For example
+a `highway=tertiary` should remain `highway=tertiary` until it intersects
+with a road of higher classification.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)
+
+`highway=secondary` should not becoming a residential.'''))
+        self.classs[1] = self.def_class(item = 1120, level = 1, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
+            detail = {'en':
+'''motorway, motorway_link, trunk, trunk_link, primary,
+primary_link'''}))
+        self.classs[2] = self.def_class(item = 1120, level = 2, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
+            detail = {'en':
+'''secondary, secondary_link'''}))
+        self.classs[3] = self.def_class(item = 1120, level = 2, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
+            detail = {'en':
+'''tertiary, tertiary_link'''}))
 
     def analyser_osmosis_common(self):
         self.run(sql13)

@@ -28,10 +28,27 @@ class Highway_Parking_Lane(Plugin):
         Plugin.init(self, logger)
         self.parking_lane = "parking:lane:"
         self.parking_condition = "parking:condition:"
-        self.errors[31611] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:imagery"], "desc": T_(u"Bad parking:lane:[side]") }
-        self.errors[31614] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:imagery"], "desc": T_(u"Too many parking:lane:[side]") }
-        self.errors[31615] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:chair"], "desc": T_(u"Bad parking:lane:[side] value") }
-        self.errors[31616] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:survey"], "desc": T_(u"parking:condition:[side] without parking:lane:[side] value") }
+        self.errors[31611] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
+            title = T_('Bad parking:lane:[side]'),
+            detail = T_(
+'''The side was not recognized, see
+`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`.'''),
+            fix = T_(
+'''Use `left`, `right` or `both`.'''))
+        self.errors[31614] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
+            title = T_('Too many parking:lane:[side]'),
+            detail = T_(
+'''There are more types of parking for sides than a street have
+sides.'''))
+        self.errors[31615] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:chair'],
+            title = T_('Bad parking:lane:[side] value'),
+            fix = T_(
+'''See values at
+`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`.'''))
+        self.errors[31616] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
+            title = T_('parking:condition:[side] without parking:lane:[side] value'),
+            detail = T_(
+'''A parking condition is present but without parking kind.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:

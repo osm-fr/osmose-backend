@@ -25,11 +25,15 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8290", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support not integrated") }
-        self.missing_osm      = {"item":"7200", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support without tag \"ref\" or invalid") }
-        self.possible_merge   = {"item":"8291", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support, integration suggestion") }
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8290, id = 1, level = 3, tags = ['merge', 'power'],
+            title = T_('Power support not integrated'))
+        self.missing_osm      = self.def_class(item = 7200, id = 2, level = 3, tags = ['merge', 'power'],
+            title = T_('Power support without tag "ref" or invalid'))
+        self.possible_merge   = self.def_class(item = 8291, id = 3, level = 3, tags = ['merge', 'power'],
+            title = T_('Power support, integration suggestion'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte",
             u"Pylones RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",

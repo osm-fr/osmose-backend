@@ -47,7 +47,9 @@ class Analyser_Osmosis_Building_3nodes(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Merge building (triangle)") }
+        self.classs_change[1] = self.def_class(item = 1, level = 3, tags = ['building', 'fix:imagery'],
+            title = T_('Merge building (triangle)'))
+
         self.callback70 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_full(self):

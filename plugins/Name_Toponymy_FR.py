@@ -29,7 +29,13 @@ class Name_Toponymy_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[906] = { "item": 5040, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Toponymy") }
+        self.errors[906] = self.def_class(item = 5040, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Toponymy'),
+            detail = T_(
+'''Apply of "[charte de
+toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)" of
+IGN (French geographic name conventions)'''),
+            resource = 'http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf')
 
         ## http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf
 

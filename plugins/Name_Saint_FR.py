@@ -28,7 +28,19 @@ class Name_Saint_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3033] = { "item": 3033, "level": 3, "tag": ["name", "fix:chair"], "desc": T_(u"Saint") }
+        self.errors[3033] = self.def_class(item = 3033, level = 3, tags = ['name', 'fix:chair'],
+            title = {'en': 'Saint'},
+            detail = T_(
+'''In France the rule is that a hyphen is used when we refer to a a holy
+thing ("Saint-*" in French).'''),
+            fix = T_(
+'''Add a hyphen.'''),
+            trap = T_(
+'''This rule does not apply in particular to the Belgium.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)
+
+Name should be the "Saint-Esprit".'''))
 
         import re
         self.Saint = re.compile(u".*((Sainte?) +).+")

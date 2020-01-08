@@ -25,7 +25,8 @@ class TagFix_IntervalConditional(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[32502] = { 'item': 3250, 'level': 3, 'tag': ['value', 'fix:chair', 'public_transport'], 'desc': T_(u'Invalid Conditional Intervals') }
+        self.errors[32502] = self.def_class(item = 3250, level = 3, tags = ['value', 'fix:chair', 'public_transport'],
+            title = T_('Invalid Conditional Intervals'))
         self._th = Main()
 
     def check_tags(self, tags):

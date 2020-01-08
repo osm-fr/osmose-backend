@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8150, di = 1, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+            title = T_('Bordeaux bicycle parking not integrated'))
+
+        self.init(
             u"http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
             u"Mobiliers urbains : Stationnement deux-roues",
             CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2019",

@@ -31,9 +31,21 @@ class TagFix_Housenumber(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[10] = {"item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"Invalid addr:housenumber value")}
-        self.errors[14] = {"item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid tag on interpolation way")}
-        self.errors[15] = {"item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation or addr:inclusion value")}
+        self.errors[10] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:survey'],
+            title = T_('Invalid addr:housenumber value'))
+        self.errors[14] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Invalid tag on interpolation way'),
+            detail = T_(
+'''Interpolation way only valid with addr:interpolation=* and optional
+addr:inclusion=*.'''))
+        self.errors[15] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Invalid addr:interpolation or addr:inclusion value'),
+            detail = T_(
+'''* Tag `addr:interpolation=*` is only valid with values: `even`, `odd`,
+`all`, `alphabetic` and Number.
+* Tag `addr:inclusion=*` is only valid with values: `actual`, `estimate`
+and `potential`.'''))
+
         self.Country = None
         if self.father.config.options.get("country"):
             self.Country = self.father.config.options.get("country")[0:2]

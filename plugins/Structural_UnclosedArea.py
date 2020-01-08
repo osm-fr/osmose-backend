@@ -25,7 +25,15 @@ class Structural_UnclosedArea(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[1100] = { "item": 1100, "level": 3, "tag": ["geom", "fix:imagery"], "desc": T_(u"Unclosed area") }
+        self.errors[1100] = self.def_class(item = 1100, level = 3, tags = ['geom', 'fix:imagery'],
+            title = T_('Unclosed area'),
+            detail = T_(
+'''A way has the tag area=yes, but is not closed.'''),
+            fix = T_(
+'''If the object is not a surface, remove the tag `area=yes`, otherwise
+ensure that the way is a loop.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)'''))
 
     def way(self, data, tags, nds):
         if "area" not in tags or tags["area"] == "no":

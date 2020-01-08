@@ -27,32 +27,94 @@ class TagFix_MultipleTag(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.country = self.father.config.options.get("country")
+        main_tags = ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction', 'information')
 
-        self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Watch multiple tags") }
-        self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
-        self.errors[30327] = { "item": 3032, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Waterway with level") }
-        self.errors[303210] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Fence with material tag, better use fence_type tag") }
-        self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction") }
-        self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
-        self.errors[20803] = { "item": 2080, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing for tracktype or lanes") }
-        self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
-        self.errors[21101] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Name present but missing main tag") }
-        self.errors[21102] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Missing relation type") }
-        self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
-        self.errors[40201] = { "item": 4020, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
-        self.errors[21201] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Level or repeat_on tag missing") }
-        self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Indoor or buildingpart tag missing") }
-        self.errors[20802] = { "item": 2080, "level": 2, "tag": ["highway"], "desc": T_(u"Missing tag ref for emergency access point") }
-#        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
-        self.errors[32200] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
-        self.errors[32201] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
+        self.errors[30320] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Watch multiple tags'))
+        self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
+            title = T_('Watch multiple tags'))
+        self.errors[30327] = self.def_class(item = 3032, level = 2, tags = ['tag', 'fix:chair'],
+            title = T_('Waterway with level'))
+        self.errors[303210] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Fence with material tag, better use fence_type tag'))
+        self.errors[20800] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'roundabout', 'fix:chair'],
+            title = T_('Tag highway missing on junction'),
+            detail = T_(
+'''The way have a tag `junction=*` but without `highway=*`.'''),
+            trap = T_(
+'''Check if it is really an highway and it is not already mapped.'''))
+        self.errors[20801] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Tag highway missing on oneway'),
+            detail = T_(
+'''The way have a tag `oneway=*` but without `highway=*`.'''),
+            trap = T_(
+'''Check if it is really an highway and it is not already mapped.'''))
+        self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
+            title = T_('Tag highway missing for tracktype or lanes'))
+        self.errors[71301] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', 'fix:survey'],
+            title = T_('Missing maxheight tag'),
+            detail = T_(
+'''Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a
+bridge.'''))
+        self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
+            title = T_('Name present but missing main tag'),
+            detail = self.merge_doc(T_(
+'''The object is missing any tag which defines what kind of feature is
+it. Considered main tags are (with derived `disused:` and
+`abandoned:`):''',
+              {'en': ', '.join(main_tags)})),
+            fix = T_(
+'''Add a top level tag to state what kind of thing is it.'''))
+        self.errors[21102] = self.def_class(item = 2110, level = 2, tags = ['tag'],
+            title = T_('Missing relation type'))
+        self.errors[1050] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_('Reverse roundabout'),
+            detail = T_(
+'''The circulation of the roundabout is draw clockwise, but in countries
+where they drive on the right the sense of roundabouts is
+counterclockwise, and vice versa for the other countries.'''),
+            fix = T_(
+'''For the mini roundabouts `highway=mini_roundabout`: the tag
+`direction=*` indicates the direction, in countries driven on the right,
+the default is `direction=anticlockwise`, in this case it is useless as
+tag.'''),
+            trap = T_(
+'''Make sure that it is a roundabout (for example, no a side way in
+oposite direction around a square or a central roundabout, ordriveways
+separated by traffic islands at an intersection without cross).'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)
+
+Clockwise rotation.'''))
+        self.errors[40201] = self.def_class(item = 4020, level = 1, tags = ['highway', 'roundabout'],
+            title = T_('Roundabout as area'))
+        self.errors[21201] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
+            title = T_('Level or repeat_on tag missing'))
+        self.errors[21202] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
+            title = T_('Indoor or buildingpart tag missing'))
+        self.errors[20802] = self.def_class(item = 2080, level = 2, tags = ['highway'],
+            title = T_('Missing tag ref for emergency access point'))
+#        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],
+#            title = T_('Bad power line kind'))
+        self.errors[32200] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('access=yes|permissive allow all transport modes'),
+            detail = T_(
+'''`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
+        self.errors[32201] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('access=yes|permissive allow all transport modes'),
+            detail = T_(
+'''`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
+
         if not self.country or not self.country.startswith("CZ"):
-            self.errors[32301] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Probably only for bottles, not any type of glass") }
-        self.errors[32302] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Suspicious name for a container") }
+            self.errors[32301] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
+                title = T_('Probably only for bottles, not any type of glass'))
+        self.errors[32302] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Suspicious name for a container'))
+
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
-        for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction', 'information'):
+        for i in main_tags:
             name_parent.append(i)
             name_parent.append("disused:" + i)
             name_parent.append("abandoned:" + i)

@@ -257,10 +257,46 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Wrong highway on roundabout") }
-        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Missing oneway") }
-        self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:imagery"], "desc": T_(u"Roundabout shortcut") }
-        self.classs[4] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Roundabout crossing") }
+        self.classs[1] = self.def_class(item = 3010, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_('Wrong highway on roundabout'),
+            detail = T_(
+'''It must match the highest level of connected routes, except `motorway`
+and `trunk`.'''),
+            fix = T_(
+'''Adjust the tag `highway=*` of the roundabout.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)
+
+Highway level should be secondary.'''))
+        self.classs[2] = self.def_class(item = 2030, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_('Missing oneway'),
+            detail = T_(
+'''Short ways are connected to roundabout and join together. It is often
+a sign of roundabout insertion way. These segments are often
+one-way.'''),
+            fix = T_(
+'''After verifying that it is an access roads to the roundabout and they
+were well oriented, set the tag `oneway=yes` on the two segments.'''),
+            trap = T_(
+'''* If a way is prolonged after joining the second segment, cut the way
+before putting the tag oneway.
+* Two roundabout close can be connected by a small lane in both
+directions.'''))
+
+        self.classs[3] = self.def_class(item = 3010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
+            title = T_('Roundabout shortcut'),
+            detail = T_(
+'''Several roads connect to one node of the roundabout. In this case
+input and output flow of vehicles bypassing the priority rules of
+traffic.'''),
+            fix = T_(
+'''Separate the junction nodes into several separate ones .'''))
+        self.classs[4] = self.def_class(item = 3010, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_('Roundabout crossing'),
+            detail = T_(
+'''Way through the roundabout without stopping.'''),
+            fix = T_(
+'''Check if it is really a roundabout and cut the way.'''))
 
     def analyser_osmosis_common(self):
         self.run(sql10)

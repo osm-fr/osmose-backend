@@ -28,7 +28,21 @@ class Name_Multiple(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[705] = { "item": 5030, "level": 1, "tag": ["name", "fix:survey"], "desc": T_(u"The name tag contains two names") }
+        self.errors[705] = self.def_class(item = 5030, level = 1, tags = ['name', 'fix:survey'],
+            title = T_('The name tag contains two names'),
+            detail = T_(
+'''The tag `name=*` contains two street names, separated by a semicolon,
+a "/" or a "\\". This issue was probably produced by the fusion of two
+way and the concatenation of the names of the streets.'''),
+            fix = T_(
+'''* If duplicate, delete a one.
+* Otherwise, a survey is required: check if it is a street whose name
+changes at a crossroads, if this is the case, cut the street and set the
+proper names of both part.'''),
+            trap = T_(
+'''Some streets have not the same names on the each side, especially if
+the houses by both sides are on different city. In this case, you can use
+the tag `name:left=*` and `name:right=*`.'''))
 
         self.NoExtra = False
         self.HighwayOnly = False

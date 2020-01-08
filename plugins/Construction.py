@@ -29,7 +29,13 @@ class Construction(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[4070] = { "item": 4070, "level": 2, "tag": ["tag", "fix:survey"], "desc": T_(u"Finished construction") }
+        self.errors[4070] = self.def_class(item = 4070, level = 2, tags = ['tag', 'fix:survey'],
+            title = T_('Finished construction'),
+            detail = T_(
+'''The tag `opening_date=*`, `check_date=*`, `open_date=*`,
+`construction:date=*`, `temporary:date_on=*`, `date_on=*` are not present
+and the object is in construction for more than two years or dates is
+exceeded.'''))
 
         self.tag_construction = ["highway", "landuse", "building"]
         self.tag_date = ["opening_date", "open_date", "construction:date", "temporary:date_on", "date_on"]

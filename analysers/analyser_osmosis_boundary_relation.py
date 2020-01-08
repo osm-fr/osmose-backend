@@ -119,13 +119,27 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         if self.municipality_ref and not isinstance(self.municipality_ref, list):
             self.municipality_ref = [self.municipality_ref]
 
-        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_f(u"Missing admin_centre role") }
-        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_f(u"Missing name") }
+        self.classs_change[1] = self.def_class(item = 7120, level = 2, tags = ['boundary', 'fix:chair'],
+            title = T_('Missing `admin_centre` role'))
+        self.classs_change[2] = self.def_class(item = 7120, level = 1, tags = ['boundary', 'name', 'fix:chair'],
+            title = T_('Missing `name`'))
         if self.municipality_ref:
-            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_f(u"Missing municipality ref tag") }
-        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc": T_f(u"Missing wikipedia tag") }
-        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc": T_(u"Different population tag between relation and admin_centre") }
-        self.classs_change[6] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Invalid role") }
+            self.classs_change[3] = self.def_class(item = 7120, level = 2, tags = ['boundary', 'ref', 'fix:chair'],
+                title = T_f('Missing municipality ref tag'))
+        self.classs_change[4] = self.def_class(item = 7120, level = 2, tags = ['boundary', 'wikipedia', 'fix:chair'],
+            title = T_('Missing wikipedia tag'))
+        self.classs_change[5] = self.def_class(item = 7120, level = 3, tags = ['boundary', 'fix:chair'],
+            title = T_('Different population tag between relation and admin_centre'),
+            detail = T_(
+'''The admin_centre `population` is greater than the relation
+`population`.'''))
+        self.classs_change[6] = self.def_class(item = 7120, level = 2, tags = ['boundary', 'fix:chair'],
+            title = T_('Invalid role'),
+            detail = T_(
+'''See [possible
+roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary
+relation.'''))
+
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText], "fix":{"name": res[2]} if res[2] else None}
         if self.municipality_ref:

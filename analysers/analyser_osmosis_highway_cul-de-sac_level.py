@@ -53,9 +53,28 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1090", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_f(u"Sudden highway type change (level {0})", 1) }
-        self.classs[2] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Sudden highway type change (level {0})", 2) }
-        self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Sudden highway type change (level {0})", 3) }
+        doc = dict(
+            detail = T_(
+'''A way connects directly to the street classification much
+smaller.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)
+
+Secondary connecting directly to the residentials.'''))
+
+        self.classs[1] = self.def_class(item = 1090, level = 1, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
+            title = T_f('Sudden highway type change (level {0})', 1),
+            detail = {'en':
+'''motorway, primary, trunk'''}))
+        self.classs[2] = self.def_class(item = 1090, level = 2, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
+            title = T_f('Sudden highway type change (level {0})', 2),
+            detail = {'en':
+'''motorway_link, primary_link, trunk_link, secondary,
+secondary_link'''}))
+        self.classs[3] = self.def_class(item = 1090, level = 2, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
+            title = T_f('Sudden highway type change (level {0})', 3),
+            detail = {'en':
+'''tertiary, tertiary_link'''}))
 
     def analyser_osmosis_common(self):
         self.run(sql40, lambda res: {"class":res[3], "data":[self.way, self.node, self.positionAsText]} )

@@ -164,11 +164,21 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry and tags") }
-        self.classs_change[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry but different tags") }
-        self.classs_change[3] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry and tags") }
-        self.classs_change[4] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry but different tags") }
-        self.classs[5] = {"item":"1230", "level": 3, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node without tag") }
+        self.classs_change[1] = self.def_class(item = 1230, level = 1, tags = ['geom', 'fix:chair'],
+            title = T_('Duplicated way geometry and tags'),
+            fix = T_(
+'''Delete one of the two objects.'''))
+        self.classs_change[2] = self.def_class(item = 1230, level = 2, tags = ['geom', 'fix:chair'],
+            title = T_('Duplicated way geometry but different tags'),
+            fix = T_(
+'''Compare tags and delete object or merge them.'''))
+        self.classs_change[3] = self.def_class(item = 1230, level = 1, tags = ['geom', 'fix:chair'],
+            title = T_('Duplicated node geometry and tags'))
+        self.classs_change[4] = self.def_class(item = 1230, level = 2, tags = ['geom', 'fix:chair'],
+            title = T_('Duplicated node geometry but different tags'))
+        self.classs[5] = self.def_class(item = 1230, level = 3, tags = ['geom', 'fix:chair'],
+            title = T_('Duplicated node without tag'))
+
         self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
         self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3 if res[3] else 4, "data":[self.node_full, self.node_full, self.positionAsText]}

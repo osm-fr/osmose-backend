@@ -25,9 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 
 class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8370", "class": 90, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8370, id = 90, level = 3, tags = ['merge'],
+            title = T_('Defibrillator not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-9/",
             u"Défibrillateurs",
             GeoJSON(Source(attribution = u"Mairie de Cugnaux",

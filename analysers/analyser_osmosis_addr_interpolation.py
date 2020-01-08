@@ -186,13 +186,21 @@ class Analyser_Osmosis_Addr_Interpolation(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[100] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes without tag \"addr:housenumber\"") }
-        self.classs[101] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"\"addr:housenumber\" in multiple interpolations") }
-        self.classs[102] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation intersection") }
-        self.classs[103] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation ends should have tag \"addr:housenumber\"") }
-        self.classs[104] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation ends should have have different tag \"addr:housenumber\" values") }
-        self.classs[16] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
-        self.classs[17] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple \"associatedStreet\" relations") }
+        self.classs[100] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Interpolation on nodes without tag "addr:housenumber"'))
+        self.classs[101] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('"addr:housenumber" in multiple interpolations'))
+        self.classs[102] = self.def_class(item = 2060, level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('Interpolation intersection'))
+        self.classs[103] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Interpolation ends should have tag "addr:housenumber"'))
+        self.classs[104] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Interpolation ends should have different tag "addr:housenumber" values'))
+        self.classs[16] = self.def_class(item ="2060", level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('Interpolation on nodes of multiple street names'))
+        self.classs[17] = self.def_class(item ="2060", level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('Interpolation on nodes of multiple "associatedStreet" relations'))
+
         self.callback10 = lambda res: {"class":100, "subclass":0, "data":[self.node_full, self.positionAsText] }
         self.callback20 = lambda res: {"class":101, "subclass":0, "data":[self.node_full, self.positionAsText] }
         self.callback30 = lambda res: {"class":102, "subclass":0, "data":[self.way_full, self.way_full, self.positionAsText] }

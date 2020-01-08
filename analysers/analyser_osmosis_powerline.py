@@ -316,13 +316,35 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Lone power tower or pole") }
-        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power", "fix:imagery"], "desc": T_(u"Unfinished power major line") }
-        self.classs[6] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Unfinished power minor line") }
-        self.classs[3] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Connection between different voltages") }
-        self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Non power node on power way") }
-        self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
-        self.classs[7] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Unmatched voltage of line on substation") }
+        self.classs[1] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
+            title = T_('Lone power tower or pole'),
+            fix = T_(
+'''This tower should probably be connected to a power line.'''))
+        self.classs[2] = self.def_class(item = 7040, level = 2, tags = ['power', 'fix:imagery'],
+            title = T_('Unfinished power major line'),
+            detail = T_(
+'''The line ends in a vacuum, and should be connected to another line or
+a transformer `power=substation` or a generator `power=generator`.'''))
+        self.classs[6] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
+            title = T_('Unfinished power minor line'))
+        self.classs[3] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
+            title = T_('Connection between different voltages'),
+            detail = T_(
+'''Two lines meet in one point, but inconsistent with voltages from the
+tag `voltage=*`.'''))
+        self.classs_change[4] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
+            title = T_('Non power node on power way'),
+            fix = T_(
+'''If this node is a tower or pole, use the tag `power=tower` or
+`power=pole` else remove it.'''))
+        self.classs_change[5] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
+            title = T_('Missing power tower or pole'),
+            detail = T_(
+'''According to the statistical frequency of the poles on the power line,
+it should miss one pole nearby.'''))
+        self.classs[7] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
+            title = T_('Unmatched voltage of line on substation'))
+
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}]}
         self.callback50 = lambda res: {"class":5, "subclass": stablehash64(res[1]), "data":[self.way_full, self.positionAsText]}
 

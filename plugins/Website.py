@@ -35,8 +35,10 @@ class Website(Plugin):
         # From RFC 1738 paragraph 2.1
         self.HasScheme = re.compile(r"^[a-zA-Z0-9.+-]+://")
 
-        self.errors[30931] = {"item": 3093, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"The URL contains a space")}
-        self.errors[30932] = {"item": 3093, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"The URL does not have a valid scheme")}
+        self.errors[30931] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('The URL contains a space'))
+        self.errors[30932] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('The URL does not have a valid scheme'))
 
     def _bad_url(self, tag, tags):
         return T_("Bad URL %(k)s=%(v)s", {"k": tag, "v": tags[tag]})

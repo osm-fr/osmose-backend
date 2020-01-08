@@ -27,7 +27,8 @@ class Addr_Interpolation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[20601] = { 'item': 2060, 'level': 3, 'tag': ['tag', 'addr'], 'desc': T_(u'Misusing addr:interpolation in combination with other tags') }
+        self.errors[20601] = self.def_class(item = 2060, level = 3, tags = ['tag', 'addr'],
+            title = T_('Misusing addr:interpolation in combination with other tags'))
 
     ALLOWED = set(['addr:interpolation', 'source', 'addr:inclusion', 'addr:street', 'addr:postcode', 'addr:country', 'id_origin', 'addr:state', 'addr:county', 'attribution', 'addr:city', 'addr:province', 'created_by', 'fixme', 'addr:suburb', 'is_in:city', 'note'])
 

@@ -74,8 +74,16 @@ class TagFix_Deprecated(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[4010] = {"item": 4010, "level": 2, "tag": ["deprecated", "tag", "fix:chair"], "desc": T_(u"Deprecated tag") }
-        self.errors[40102] = {"item": 4010, "level": 2, "tag": ["deprecated", "value", "fix:chair"], "desc": T_(u"Deprecated value") }
+        detail = T_(
+'''The tag or combination key/value is no longer used. List of deprecated
+features comes from [Deprecated
+features](https://wiki.openstreetmap.org/wiki/Deprecated_features)''')
+        self.errors[4010] = self.def_class(item = 4010, level = 2, tags = ['deprecated', 'tag', 'fix:chair'],
+            title = T_('Deprecated tag'),
+            detail = detail)
+        self.errors[40102] = self.def_class(item = 4010, level = 2, tags = ['deprecated', 'value', 'fix:chair'],
+            title = T_('Deprecated value'),
+            detail = detail)
 
         self.Deprecated = self.deprecated_list()
         self.DeprecatedSet = set(self.Deprecated)

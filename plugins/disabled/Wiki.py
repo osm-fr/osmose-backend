@@ -27,7 +27,8 @@ class Wiki(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3140] = {"item": 3140, "level": 2, "tag": ["tag"], "desc": {"en": u"Object taggin type", "fr": u"Type d'objet pour un tag"} }
+        self.errors[3140] = self.def_class(item = 3140, level = 2, tags = ['tag'],
+            title = T_('Object taggin type'))
 
         # Taginfo wiki extract database
         # http://taginfo.openstreetmap.org/download/taginfo-wiki.db.bz2

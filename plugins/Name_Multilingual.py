@@ -34,7 +34,8 @@ class Name_Multilingual(Plugin):
         if not(language and self.father.config.options.get("multilingual-style")):
             return False
 
-        self.errors[50604] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual not matching") }
+        self.errors[50604] = self.def_class(item = 5060, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Multilingual not matching'))
         self.lang = lang = self.father.config.options.get("language")
         style = self.father.config.options.get("multilingual-style")
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])

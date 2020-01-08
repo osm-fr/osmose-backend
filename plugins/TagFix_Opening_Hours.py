@@ -33,7 +33,8 @@ class TagFix_Opening_Hours(Plugin):
         if not module_oh_sanitizer:
             return False
         Plugin.init(self, logger)
-        self.errors[32501] = {"item": 3250, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Invalid Opening Hours")}
+        self.errors[32501] = self.def_class(item = 3250, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Invalid Opening Hours'))
 
     def sanitize_tags(self, tags):
         if 'opening_hours' not in tags:

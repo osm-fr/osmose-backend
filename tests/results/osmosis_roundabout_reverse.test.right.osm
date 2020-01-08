@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-06-24T18:24:25Z">
-<analyser timestamp="2014-06-24T18:24:25Z" analyser_version="1071606862">
-<class item="1050" tag="highway,roundabout,fix:chair" id="1" level="1">
-<classtext lang="fr" title="Rond-point à l'envers" />
+<analysers>
+<analyser timestamp="1970-01-01T00:00:00Z" analyser_version="763855597">
+<class id="1" item="1050" source="None/analysers/analyser_osmosis_roundabout_reverse.py#L61" level="1" tag="highway,roundabout,fix:chair">
+<classtext lang="ca" title="Rotonda inversa" />
+<classtext lang="cs" title="Reverzní kruhový objezd" />
+<classtext lang="de" title="Kreisverkehr umkehren" />
+<classtext lang="el" title="Αντίθετος κυκλικός κόμβος" />
 <classtext lang="en" title="Reverse roundabout" />
-<classtext lang="nl" title="Omgekeerde rotonde" />
-<classtext lang="pt" title="Rotunda Reversa" />
-<classtext lang="it" title="Rotatoria inversa" />
-<classtext lang="pl" title="Odwrócone rondo" />
 <classtext lang="es" title="Rotonda invertida" />
+<classtext lang="fa" title="فلکهٔ برعکس" />
+<classtext lang="fr" title="Giratoire à l’envers" />
+<classtext lang="gl" title="Rotonda invertida" />
+<classtext lang="hu" title="Fordított körforgalom" />
+<classtext lang="it" title="Rotatoria inversa" />
+<classtext lang="ja" title="ラウンドアバウトの走行方向逆転" />
+<classtext lang="lt" title="Apgręžtas žiedas" />
+<classtext lang="nl" title="Omgekeerde rotonde" />
+<classtext lang="pl" title="Odwrócone rondo" />
+<classtext lang="pt" title="Rotunda invertida" />
+<classtext lang="pt_BR" title="Rotatória invertida" />
+<classtext lang="ru" title="Обратный круговое движение" />
+<classtext lang="uk" title="Зворотній roundabout" />
+<classtext lang="zh_CN" title="相反环岛" />
+<detail lang="en" title="The circulation of the roundabout is draw clockwise, but in countries&#10;where they driveon the right the sense of roundabouts is&#10;counterclockwise, and vice versa for the other countries." />
+<fix lang="en" title="For roundabout `junction=roundabout`: change the direction by&#10;reversing the order of nodes in the path. In JOSM, select the roundabout&#10;and use the tool reverse path (shortcut: 'R')." />
+<trap lang="en" title="Make sure that it is a roundabout (for example, no a side way in&#10;oposite direction around a square or a central roundabout, or driveways&#10;separated by traffic islands at an intersection without cross)." />
+<example lang="en" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Clockwise rotation." />
 </class>
 <error class="1">
-<location lat="43.9533100018163" lon="6.36976238744323" />
-<way user="toto" version="1" id="1">
-<tag k="junction" v="roundabout" />
+<way id="1" version="1" user="toto">
 <tag k="highway" v="residential" />
+<tag k="junction" v="roundabout" />
 </way>
+<location lat="43.9533100018163" lon="6.36976238744323" />
 </error>
 </analyser>
 </analysers>

@@ -25,6 +25,8 @@ except ImportError:
     import __builtin__ as builtins
 
 import hashlib
+import os
+from inspect import getframeinfo, stack
 from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
 from modules import SourceVersion
@@ -62,6 +64,37 @@ class Analyser(object):
 
     def timestamp(self):
         return None
+
+    @classmethod
+    def def_class_(cls, config, **kwargs):
+        # Check keys
+        diff_keys = set(kwargs.keys()) - set(['item', 'id', 'level', 'tags', 'title', 'detail', 'fix', 'trap', 'example', 'source', 'resource'])
+        if len(diff_keys) > 0:
+            raise Exception('Unknow key ' + ', '.join(diff_keys))
+
+        if 'source' not in kwargs:
+            caller = getframeinfo(stack()[2][0])
+            kwargs['source'] = '{0}/analysers/{1}#L{2}'.format(config and hasattr(config, 'source_url') and config.source_url or None, os.path.basename(caller.filename), caller.lineno)
+
+        return kwargs
+
+    def def_class(self, **kwargs):
+        return self.def_class_(self.config, **kwargs)
+
+    @classmethod
+    def merge_doc(cls, *docs):
+        langs = set(sum(map(lambda d: list(d.keys()), docs), []))
+        return dict(map(lambda l: [l, '\n\n'.join(map(lambda d: d.get(l, d.get('en')), docs))], langs))
+
+    @classmethod
+    def merge_docs(cls, base, **docs):
+        base = dict(base)
+        for key in docs.keys():
+            if key in base and key in docs:
+                base[key] = cls.merge_doc(base[key], docs[key])
+            elif key in docs:
+                base[key] = docs[key]
+        return base
 
     def open_error_file(self):
         if self.config.dst:
@@ -261,20 +294,22 @@ class TestAnalyser(unittest.TestCase):
         # remove translations other than fr/en
         if isinstance(a["analysers"][name_analyser]["class"], list):
             for c in a["analysers"][name_analyser]["class"]:
-                if isinstance(c["classtext"], list):
-                    for t in range(len(c["classtext"])-1, -1, -1):
-                        if c["classtext"][t]["@lang"] not in ("en"):
-                            del c["classtext"][t]
-                    if len(c["classtext"]) == 1:
-                        c["classtext"] = c["classtext"][0]
+                for k in ('classtext', 'detail', 'fix', 'trap', 'example'):
+                    if k in c and isinstance(c[k], list):
+                        for t in range(len(c[k])-1, -1, -1):
+                            if c[k][t]["@lang"] not in ("en"):
+                                del c[k][t]
+                        if len(c[k]) == 1:
+                            c[k] = c[k][0]
         else:
             c = a["analysers"][name_analyser]["class"]
-            if isinstance(c["classtext"], list):
-                for t in range(len(c["classtext"])-1, -1, -1):
-                    if c["classtext"][t]["@lang"] not in ("en"):
-                        del c["classtext"][t]
-                if len(c["classtext"]) == 1:
-                    c["classtext"] = c["classtext"][0]
+            for k in ('classtext', 'detail', 'fix', 'trap', 'example'):
+                if k in c and isinstance(c[k], list):
+                    for t in range(len(c[k])-1, -1, -1):
+                        if c[k][t]["@lang"] not in ("en"):
+                            del c[k][t]
+                    if len(c[k]) == 1:
+                        c[k] = c[k][0]
 
         if "error" in a["analysers"][name_analyser]:
             if not isinstance(a["analysers"][name_analyser]["error"], list):
@@ -381,3 +416,11 @@ class Test(unittest.TestCase):
         self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{4:5}, 2:2}), u"key '3' is missing from b [.1]")
         self.assertEqual(a.compare_dict({1:{   }, 2:2}, {1:{3:4}, 2:2}), u"key '3' is missing from a [.1]")
         self.assertEqual(a.compare_dict({1:{3:4}, 2:2}, {1:{   }, 2:2}), u"key '3' is missing from b [.1]")
+
+    def test_merge_doc(self):
+        self.assertEqual(Analyser.merge_doc({'en': 'a'}, {'en': 'b'}), {'en': 'a\n\nb'})
+        self.assertEqual(Analyser.merge_doc({'en': '1', 'fr': '2'}, {'en': '3'}), {'en': '1\n\n3', 'fr': '2\n\n3'})
+        self.assertEqual(Analyser.merge_doc({'en': '1', 'fr': '2'}, {'en': '3', 'fr': '4'}), {'en': '1\n\n3', 'fr': '2\n\n4'})
+
+        self.assertEqual(Analyser.merge_docs({'A': {'en': 'a'}}, B = {'en': 'b'}), {'A': {'en': 'a'}, 'B': {'en': 'b'}})
+        self.assertEqual(Analyser.merge_docs({'Z': {'en': 'a'}}, Z = {'en': 'b'}), {'Z': {'en': 'a\n\nb'}})
