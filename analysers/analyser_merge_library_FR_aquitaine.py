@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 
 class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8230", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library not integrated") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8230, id = 1, level = 3, tags = ['merge', 'amenity'],
+            title = T_('Library not integrated'))
+
+        self.init(
             u"http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
             u"Liste des bibliothèques et médiathèques en Aquitaine",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",

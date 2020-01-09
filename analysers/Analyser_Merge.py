@@ -24,7 +24,6 @@ import io
 import bz2
 import gzip
 from backports import csv # In python3 only just "import csv"
-import hashlib
 import inspect
 import psycopg2.extras
 import psycopg2.extensions
@@ -37,10 +36,16 @@ import json
 import re
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
-from modules.Stablehash import stablehash, hexastablehash
+from modules.Stablehash import stablehash64, hexastablehash
 from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
+
+try:
+    from pyproj import Transformer
+except ImportError:
+    # No available in py2
+    Transformer = None
 
 
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
@@ -125,9 +130,12 @@ GROUP BY
   geom
 """
 
-sql03 = """
-CREATE INDEX ir_%(official)s ON %(official)s(ref);
-CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom);
+sql03a = """
+CREATE INDEX ir_%(official)s ON %(official)s(ref)
+"""
+
+sql03b = """
+CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom)
 """
 
 sql10 = """
@@ -368,7 +376,7 @@ class Source:
         if "%s" in self.attribution:
             return self.attribution % self.millesime
         else:
-            return " - ".join(filter(lambda x: x!= None, [self.attribution, self.millesime]))
+            return " - ".join(filter(lambda x: x is not None, [self.attribution, self.millesime]))
 
     def match_attribution(self, s):
         if "%s" not in self.attribution:
@@ -416,8 +424,8 @@ class CSV(Parser):
         self.f = self.f or self.source.open()
         copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
             table,
-            ("DELIMITER AS '%s'" % self.separator) if self.separator != None else "",
-            ("NULL AS '%s'" % self.null) if self.null != None else "",
+            ("DELIMITER AS '%s'" % self.separator) if self.separator is not None else "",
+            ("NULL AS '%s'" % self.null) if self.null is not None else "",
             "CSV" if self.csv else "",
             "HEADER" if self.csv and self.header else "",
             ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
@@ -591,11 +599,11 @@ class Load(object):
         where = []
         for k, v in self.select.items():
             if isinstance(v, list):
-                cond = "\"%s\" IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i != None, v))))
+                cond = "\"%s\" IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
                 if None in v:
                     cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
-            elif v == None or v == False:
+            elif v is None or v == False:
                 where.append("\"%s\" IS NULL" % k)
             elif v == True:
                 where.append("\"%s\" IS NOT NULL" % k)
@@ -657,6 +665,11 @@ class Load(object):
         osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
+            if self.pip:
+                if Transformer:
+                    transformer = Transformer.from_crs(self.srid, 4326)
+                else: # py2 conditional
+                    transformer = None #
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema % {"schema": db_schema})
             osmosis.run(sql00 % {"official": tableOfficial})
@@ -672,9 +685,12 @@ class Load(object):
                 if not self.pip or (x and y):
                     is_pip = False
                     if self.pip:
-                        giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
-                        lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
-                        lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
+                        if transformer:
+                            lonLat = transformer.transform(x, y)
+                        else:
+                            giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
+                            lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
+                            lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                         is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
                     if not self.pip or is_pip:
                         for k in res.keys():
@@ -688,7 +704,7 @@ class Load(object):
                             "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
                             "tags": tags[1],
                             "tags1": tags[0],
-                            "fields": dict(zip(dict(res).keys(), map(lambda s: (s == None and None) or u'{0}'.format(s), dict(res).values()))),
+                            "fields": dict(zip(dict(res).keys(), map(lambda s: (s is None and None) or u'{0}'.format(s), dict(res).values()))),
                             "lon": lonLat[0] if is_pip else None, "lat": lonLat[1] if is_pip else None
                         })
             if isinstance(self.x, tuple):
@@ -706,19 +722,20 @@ class Load(object):
             else:
                 distinct = order_by = ""
             osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo) % {"table":table, "x":self.x, "y":self.y, "where":self.formatCSVSelect(), "distinct": distinct, "order_by": order_by}, insertOfficial)
-            giscurs.execute(sql02b.replace("%(official)s", tableOfficial))
+            osmosis.run(sql02b.replace("%(official)s", tableOfficial))
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
                 self.bbox = giscurs.fetchone()[0]
             else:
                 self.bbox = None
-            osmosis.run(sql03 % {"official": tableOfficial})
+            osmosis.run(sql03a % {"official": tableOfficial})
+            osmosis.run(sql03b % {"official": tableOfficial})
 
             giscurs_getpoint.close()
             giscurs.close()
 
             osmosis.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
-            if self.bbox != None:
+            if self.bbox is not None:
                 osmosis.run("INSERT INTO meta VALUES ('%s', %s, '%s')" % (tableOfficial, time, self.bbox))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
@@ -781,7 +798,7 @@ class Generate:
             elif colomn and res[colomn]:
                 tags[tag] = res[colomn]
 
-        return dict(map(lambda kv: [kv[0], kv[1] != None and u'{0}'.format(kv[1]) or None], tags.items()))
+        return dict(map(lambda kv: [kv[0], kv[1] is not None and u'{0}'.format(kv[1]) or None], tags.items()))
 
     def tagFactory(self, res):
         tags = self.tagFactoryGroup(res, self.static1, self.mapping1)
@@ -806,12 +823,14 @@ class Mapping:
 
 class Analyser_Merge(Analyser_Osmosis):
 
-    def __init__(self, config, logger, url, name, parser, load = Load(), mapping = Mapping()):
+    def __init__(self, config, logger):
+        Analyser_Osmosis.__init__(self, config, logger)
+
+    def init(self, url, name, parser, load = Load(), mapping = Mapping()):
         """
         @param url: remote URL of data source, webpage
         @param name: official name of the data set
         """
-        Analyser_Osmosis.__init__(self, config, logger)
         self.url = url
         self.name = name
         self.parser = parser
@@ -819,25 +838,28 @@ class Analyser_Merge(Analyser_Osmosis):
         self.mapping = mapping
 
         if hasattr(self, 'missing_official'):
-            self.classs[self.missing_official["class"]] = self.missing_official
+            self.classs[self.missing_official['id']] = self.missing_official
         else:
             self.missing_official = None
         if hasattr(self, 'missing_osm'):
-            self.classs[self.missing_osm["class"]] = self.missing_osm
+            self.classs[self.missing_osm['id']] = self.missing_osm
         else:
             self.missing_osm = None
         if hasattr(self, 'possible_merge'):
-            self.classs[self.possible_merge["class"]] = self.possible_merge
+            self.classs[self.possible_merge['id']] = self.possible_merge
         else:
             self.possible_merge = None
         if hasattr(self, 'moved_official'):
-            self.classs[self.moved_official["class"]] = self.moved_official
+            self.classs[self.moved_official['id']] = self.moved_official
         else:
             self.moved_official = None
         if hasattr(self, 'update_official'):
-            self.classs[self.update_official["class"]] = self.update_official
+            self.classs[self.update_official['id']] = self.update_official
         else:
             self.update_official = None
+
+        for (id, c) in self.classs.items():
+            c['resource'] = url
 
         if not isinstance(self.mapping.select.tags, list):
             self.mapping.select.tags = [self.mapping.select.tags]
@@ -846,11 +868,11 @@ class Analyser_Merge(Analyser_Osmosis):
         self.load.polygon_id = self.config.polygon_id
 
     def float_comma(self, val):
-        if val != None:
+        if val is not None:
             return float(val.replace(',', '.'))
 
     def degree(self, val):
-        if val != None and u'°' in val:
+        if val is not None and u'°' in val:
             # 01°13'23,8 -> 1,334388
             return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
         else:
@@ -924,8 +946,8 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run(sql11)
         if self.missing_official:
             self.run(sql12, lambda res: {
-                "class": self.missing_official["class"],
-                "subclass": str(stablehash("%s%s%s"%(res[0],res[1],res[3]))),
+                "class": self.missing_official['id'],
+                "subclass": str(stablehash64("%s%s%s"%(res[0],res[1],sorted(res[3].items())))),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
@@ -938,13 +960,13 @@ class Analyser_Merge(Analyser_Osmosis):
             if self.missing_osm:
                 # Missing OSM
                 self.run(sql22, lambda res: {
-                    "class": self.missing_osm["class"],
+                    "class": self.missing_osm['id'],
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
                 # Invalid OSM
                 self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
-                    "class": self.missing_osm["class"],
-                    "subclass": str(stablehash(res[5])) if self.mapping.osmRef != "NULL" else None,
+                    "class": self.missing_osm['id'],
+                    "subclass": str(stablehash64(res[5])) if self.mapping.osmRef != "NULL" else None,
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
 
@@ -959,8 +981,8 @@ class Analyser_Merge(Analyser_Osmosis):
                     possible_merge_joinClause.append("missing_official.tags->'%(tag)s' = missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
-                    "class": self.possible_merge["class"],
-                    "subclass": str(stablehash("%s%s"%(res[0],str(res[3])))),
+                    "class": self.possible_merge['id'],
+                    "subclass": str(stablehash64("%s%s"%(res[0],sorted(res[3].items())))),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                     "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
@@ -992,15 +1014,15 @@ class Analyser_Merge(Analyser_Osmosis):
         # Moved official
         if self.moved_official:
             self.run(sql50 % {"official": table, "joinClause": joinClause}, lambda res: {
-                "class": self.moved_official["class"],
+                "class": self.moved_official['id'],
                 "data": [self.node_full, self.positionAsText],
             } )
 
         # Update official
         if self.update_official:
             self.run(sql60 % {"official": table, "joinClause": joinClause}, lambda res: {
-                "class": self.update_official["class"],
-                "subclass": str(stablehash("%s%s"%(res[0],str(res[5])))),
+                "class": self.update_official['id'],
+                "subclass": str(stablehash64("%s%s"%(res[0],sorted(res[5].items())))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
                 "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),

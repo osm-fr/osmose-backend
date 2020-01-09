@@ -21,21 +21,52 @@
 
 from plugins.Plugin import Plugin
 from modules.py3 import ilen
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 class Highway_Lanes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad lanes value") }
-        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)") }
-        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between lanes number") }
-        self.errors[31605] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Invalid usage of *:lanes:(backward|both_ways) on oneway highway") }
-        self.errors[31606] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Unknown turn lanes value") }
-        self.errors[31607] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad turn lanes order") }
-        self.errors[31608] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between lanes number of same sufix ('', forward, backward or both_ways)") }
-        self.errors[31609] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad access lanes value, should not be an integer but a restriction") }
-        self.errors[31600] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Turn lanes merge_to_* need an aside lane on good side") }
+        self.errors[31601] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad lanes value'),
+            detail = T_(
+'''Non-numeric value, `lanes=*` must have an integer value.'''))
+        self.errors[31603] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)'),
+            detail = T_(
+'''You can not set at the same time a tag and the variante with this
+prefix `forward`, `backward`, `both_ways`.'''))
+        self.errors[31604] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflict between lanes number'))
+        self.errors[31605] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Invalid usage of *:lanes:(backward|both_ways) on oneway highway'),
+            detail = T_(
+'''You can not set opposite lanes data on a one way.'''))
+        self.errors[31606] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Unknown turn lanes value'),
+            detail = T_(
+'''[Valide
+values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)'''))
+        self.errors[31607] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad turn lanes order'),
+            detail = T_(
+'''Right must be on the right and left on the left.'''))
+        self.errors[31608] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflict between lanes number of same sufix ("", forward, backward or both_ways)'),
+            detail = T_(
+'''The number of lanes defined by many lane tags are not the same for a
+given direction.'''))
+        self.errors[31609] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad access lanes value, should not be an integer but a restriction'),
+            detail = T_(
+'''`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is
+the number of lanes.'''))
+        self.errors[31600] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Turn lanes merge_to_* need an aside lane on good side'),
+            detail = T_(
+'''The `merge_to_right` or `merge_to_left` lane must be on the same way
+as the destination lane and the `merge_to_right` must be on the *left
+side* and `the merge_to_left` on the *right side*.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -72,9 +103,9 @@ class Highway_Lanes(Plugin):
                         for t in set(tt.split(";")):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
-                                err.append({"class": 31606, "subclass": 0 + stablehash(tl + '|' + tt + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
+                                err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
-                                err.append({"class": 31600, "subclass": 1 + stablehash(tl + '|' + tt + '|' + str(i))})
+                                err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
@@ -93,11 +124,11 @@ class Highway_Lanes(Plugin):
                         first_right = self.index_(t, "r")
                         # Check right is on the right and left is on the left...
                         if not(
-                            (last_left == None or first_space == None or last_left < first_space) and
-                            (first_space == None or last_space == None or first_space <= last_space) and
-                            (last_space == None or first_right == None or last_space < first_right) and
-                            (last_left == None or first_right == None or last_left < first_right)):
-                            err.append({"class": 31607, "subclass": 1 + stablehash(tl)})
+                            (last_left is None or first_space is None or last_left < first_space) and
+                            (first_space is None or last_space is None or first_space <= last_space) and
+                            (last_space is None or first_right is None or last_space < first_right) and
+                            (last_left is None or first_right is None or last_left < first_right)):
+                            err.append({"class": 31607, "subclass": 1 + stablehash64(tl)})
 
         # Check acces lanes values
 
@@ -114,7 +145,7 @@ class Highway_Lanes(Plugin):
                 if tag.startswith(base):
                     try:
                         int(tags_lanes[tag])
-                        err.append({"class": 31609, "subclass": 1 + stablehash(tag), "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
+                        err.append({"class": 31609, "subclass": 1 + stablehash64(tag), "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
                     except ValueError:
                         # Ok, should not be an integer
                         pass
@@ -133,7 +164,7 @@ class Highway_Lanes(Plugin):
             lb = star + ':backward' in tags_lanes
             l2 = star + ':both_ways' in tags_lanes
             if l and (lf or lb or l2):
-                err.append({"class": 31603, "subclass": 0 + stablehash(star), "text": {"en": star + ":*"}})
+                err.append({"class": 31603, "subclass": 0 + stablehash64(star), "text": {"en": star + ":*"}})
 
         if err != []:
             return err
@@ -150,7 +181,7 @@ class Highway_Lanes(Plugin):
                     elif len(parts) == 2 and parts[1] in ['forward', 'backward', 'both_ways']:
                         number['lanes'][':'+parts[1]] = n
                 except ValueError:
-                    err.append({"class": 31601, "subclass": 0 + stablehash(tag), "text": T_f(u"lanes={0} is not an integer", tags_lanes[tag])})
+                    err.append({"class": 31601, "subclass": 0 + stablehash64(tag), "text": T_f(u"lanes={0} is not an integer", tags_lanes[tag])})
 
         for star in stars:
             number[star] = {}
@@ -165,14 +196,14 @@ class Highway_Lanes(Plugin):
             for star in sorted(number.keys()):
                 non_fullwidth_lanes_number_star = ((non_fullwidth_lanes_number.get(direction) or 0) if star != 'lanes' else 0)
                 non_fullwidth_lanes_number_tag = ((non_fullwidth_lanes_number.get(direction) or 0) if tag != 'lanes:lanes'+direction else 0)
-                if n_lanes.get(direction) != None and number[star].get(direction) != None and \
+                if n_lanes.get(direction) is not None and number[star].get(direction) is not None and \
                         number[star][direction] - non_fullwidth_lanes_number_star != \
                         n_lanes[direction] - non_fullwidth_lanes_number_tag:
-                    err.append({"class": 31608, "subclass": 0 + stablehash(direction + '|' + star), "text": {
+                    err.append({"class": 31608, "subclass": 0 + stablehash64(direction + '|' + star), "text": {
                         "en": "(lanes(%s)=%s) - (non fullwidth=%s) != (lanes(%s)=%s) - (non fullwidth=%s)" % (
                             star+":*"+direction, number[star][direction], non_fullwidth_lanes_number_star,
                             tag, n_lanes[direction], non_fullwidth_lanes_number_tag) }})
-                elif n_lanes.get(direction) == None and number[star].get(direction) != None:
+                elif n_lanes.get(direction) is None and number[star].get(direction) is not None:
                     # Fist loop, pick the star as tag and the number of lanes to compare to the others
                     n_lanes[direction] = number[star][direction]
                     tag = star+":lanes"+direction
@@ -205,18 +236,18 @@ class Highway_Lanes(Plugin):
         nfw_nl2 = non_fullwidth_lanes_number.get(':both_ways') or 0
 
         if oneway:
-            if nl != None and nlf != None and nl != nlf - nfw_nlf:
+            if nl is not None and nlf is not None and nl != nlf - nfw_nlf:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
-            elif nlb != None or nl2 != None:
+            elif nlb is not None or nl2 is not None:
                 err.append({"class": 31605, "subclass": 0})
         else:
-            if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
+            if nl is not None and nlf is not None and nlb is not None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})", nl, nlf, nlb, nl2, nfw_nl, nfw_nlf, nfw_nlb, nfw_nl2)})
-            elif nl != None and nlf != None and nl <= nlf - nfw_nlf:
+            elif nl is not None and nlf is not None and nl <= nlf - nfw_nlf:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
-            elif nl != None and nlb != None and nl <= nlb - nfw_nlb:
+            elif nl is not None and nlb is not None and nl <= nlb - nfw_nlb:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})", nl, nlb, nfw_nlb)})
-            elif nl != None and nl2 != None and nl < nl2 - nfw_nl2:
+            elif nl is not None and nl2 is not None and nl < nl2 - nfw_nl2:
                 err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})", nl, nl2, nfw_nl2)})
 
         if err != []:

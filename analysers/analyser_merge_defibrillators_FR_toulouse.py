@@ -20,22 +20,24 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8370", "class": 40, "level": 3, "tag": ["merge"], "desc": T_(u"Defibrillator not integrated") }
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8370, id = 40, level = 3, tags = ['merge'],
+            title = T_('Defibrillator not integrated'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-toulouse/",
             u"Localisation des défibrillateurs - Toulouse",
-            GeoJSON(Source(attribution = u"data.gouv.fr:Toulouse métropole",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/0feb0a63-cb64-40a9-927f-628288f257e3")),
-            Load("geom_x", "geom_y"),
+            SHP(Source(attribution = u"data.gouv.fr:Toulouse métropole",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/15cbc8a3-411b-4690-894a-d84a7e6cac7b", zip = "defibrillateurs.shp")),
+            Load(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",)),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
                 generate = Generate(

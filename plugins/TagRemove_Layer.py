@@ -26,16 +26,26 @@ class TagRemove_Layer(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[41101] = {"item": 4110, "level": 3, "tag": ["landuse", "fix:chair"], "desc": T_(u"Landuse feature not on ground") }
-        self.errors[41102] = {"item": 4110, "level": 3, "tag": ["natural", "fix:chair"], "desc": T_(u"Natural feature underground") }
-        self.errors[41103] = {"item": 4110, "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Highway underground and no tunnel") }
-        self.errors[41104] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Long Highway underground and no tunnel") }
-        self.errors[41105] = {"item": 4110, "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Highway above ground and no bridge") }
-        self.errors[41106] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Long Highway above ground and no bridge") }
-        self.errors[41107] = {"item": 4110, "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Waterway underground and no tunnel") }
-        self.errors[41108] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Long Waterway underground and no tunnel") }
-        self.errors[41109] = {"item": 4110, "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Waterway above ground and no bridge") }
-        self.errors[41100] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Long Waterway above ground and no bridge") }
+        self.errors[41101] = self.def_class(item = 4110, level = 3, tags = ['landuse', 'fix:chair'],
+            title = T_('Landuse feature not on ground'))
+        self.errors[41102] = self.def_class(item = 4110, level = 3, tags = ['natural', 'fix:chair'],
+            title = T_('Natural feature underground'))
+        self.errors[41103] = self.def_class(item = 4110, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Highway underground and no tunnel'))
+        self.errors[41104] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Long Highway underground and no tunnel'))
+        self.errors[41105] = self.def_class(item = 4110, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Highway above ground and no bridge'))
+        self.errors[41106] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Long Highway above ground and no bridge'))
+        self.errors[41107] = self.def_class(item = 4110, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Waterway underground and no tunnel'))
+        self.errors[41108] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Long Waterway underground and no tunnel'))
+        self.errors[41109] = self.def_class(item = 4110, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Waterway above ground and no bridge'))
+        self.errors[41100] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Long Waterway above ground and no bridge'))
 
     def way(self, data, tags, nds):
         if tags.get(u"layer") and tags.get(u"layer") != "0":
@@ -47,7 +57,7 @@ class TagRemove_Layer(Plugin):
             elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
                     return {"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}
-                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
+                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no") and tags.get(u"man_made") != "pier":
                     if len(nds) > 3:
                         return {"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:

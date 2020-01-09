@@ -64,23 +64,41 @@ class ErrorFile:
     def analyser_end(self):
         self.outxml.endElement(self.mode)
 
-    def classs(self, id, item, level, tag, langs):
-        options = {"id":str(id), "item": str(item)}
+    def classs(self, id, item, level, tags, title, detail = None, fix = None, trap = None, example = None, source = None, resource = None):
+        options = {
+            'id': str(id),
+            'item': str(item),
+        }
+        if source:
+            options['source'] = str(source)
+        if resource:
+            options['resource'] = str(resource)
         if level:
-            options["level"] = str(level)
-        if tag:
-            options["tag"] = ",".join(tag)
-        self.outxml.startElement("class", options)
-        for lang in sorted(langs.keys()):
-            self.outxml.Element("classtext", {"lang":lang, "title":langs[lang]})
-        self.outxml.endElement("class")
+            options['level'] = str(level)
+        if tags:
+            options['tag'] = ','.join(tags)
+        self.outxml.startElement('class', options)
+        for (key, value) in [
+            ('classtext', title),
+            ('detail', detail),
+            ('fix', fix),
+            ('trap', trap),
+            ('example', example),
+        ]:
+            if value:
+                for lang in sorted(value.keys()):
+                    self.outxml.Element(key, {
+                        'lang': lang,
+                        'title': value[lang]
+                    })
+        self.outxml.endElement('class')
 
     def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
-        if subclass != None:
-            self.outxml.startElement("error", {"class":str(classs), "subclass":str(int(subclass) % 2147483647)})
+        if subclass is not None:
+            self.outxml.startElement("error", {"class":str(classs), "subclass":str(subclass)})
         else:
             self.outxml.startElement("error", {"class":str(classs)})
         for type in geom:
@@ -135,7 +153,7 @@ class ErrorFile:
             fixes = list(map(lambda x: [x], fixes))
         return list(map(lambda fix:
             list(map(lambda f:
-                None if f == None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
+                None if f is None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
                 fix)),
             fixes))
 
@@ -144,7 +162,7 @@ class ErrorFile:
         for fix in fixes:
             i = 0
             for f in fix:
-                if f != None and i < len(fixesType):
+                if f is not None and i < len(fixesType):
                     osm_obj = next((x for x in geom[fixesType[i]] if x['id'] == res[i]), None)
                     if osm_obj:
                         fix_tags = f['+'].keys() if '+' in f else []
@@ -163,7 +181,7 @@ class ErrorFile:
             self.outxml.startElement("fix", {})
             i = 0
             for f in fix:
-                if f != None and i < len(fixesType):
+                if f is not None and i < len(fixesType):
                     type = fixesType[i]
                     if type:
                         self.outxml.startElement(type, {'id': str(res[i])})
@@ -193,7 +211,7 @@ class Test(unittest.TestCase):
         d = self.a.fixdiff(b)
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(d)
-        self.assertEquals(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
+        self.assertEqual(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
 
     def test(self):
         self.check([[None]], [[None]] )

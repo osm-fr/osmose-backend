@@ -74,6 +74,22 @@ way[highway=cycleway][cycleway=track] {
     fixRemove: "cycleway";
 }
 
+way[bicycle=~/no|use_sidepath/][cycleway][cycleway!~/no|none|separate/],
+way[bicycle=~/no|use_sidepath/][cycleway:left][cycleway:left!~/no|none|separate/],
+way[bicycle=~/no|use_sidepath/][cycleway:right][cycleway:right!~/no|none|separate/]
+{
+    throwWarning: tr("{0} with {1}", "{0.tag}", "{1.tag}");
+    -osmoseItemClassLevel: "3032/30329/2";
+    -osmoseTags: list("fix:chair");
+
+    assertMatch: "way bicycle=no cycleway=track";
+    assertMatch: "way bicycle=use_sidepath cycleway:left=lane";
+    assertNoMatch: "way bicycle=no cycleway:right=no";
+    assertNoMatch: "way bicycle=use_sidepath cycleway:left=none";
+    assertNoMatch: "way highway=cycleway cycleway=separate";
+    assertNoMatch: "way highway=residential bicycle=use_sidepath";
+}
+
 way[cycleway=~/opposite|opposite_lane/][!oneway],
 way[cycleway=~/opposite|opposite_lane/][oneway=no] {
     throwError: tr("Opposite cycleway without oneway");

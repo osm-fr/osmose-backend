@@ -25,9 +25,10 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.missing_official = {"item":"8040", "class": 71, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 73, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             Source(
                 url = u"http://opendata.awt.be/dataset/tec",
                 name = u"Données TEC",
@@ -67,7 +68,7 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
                         "source": u"tec-wl.be - 07-2014"},
                     mapping1 = {
                         "ref": lambda res: res["Stop identifier"][0:7],
-                        "name": lambda res: res["Description (Dutch)"].strip() if res["Description (Dutch)"] == res["Description (French)"] else "% - %" % (res["Description (French)"].strip(), res["Description (Dutch)"].strip()),
+                        "name": lambda res: res["Description (Dutch)"].strip() if res["Description (Dutch)"] == res["Description (French)"] else "%s - %s" % (res["Description (French)"].strip(), res["Description (Dutch)"].strip()),
                         "name:fr": lambda res: res["Description (French)"].strip() if res["Description (Dutch)"] != res["Description (French)"] else None,
                         "name:nl": lambda res: res["Description (Dutch)"].strip() if res["Description (Dutch)"] != res["Description (French)"] else None,
                         "uic_ref": "UIC",

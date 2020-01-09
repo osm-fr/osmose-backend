@@ -150,7 +150,8 @@ class Analyser_Osmosis_Water(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1221", "level": 2, "tag": ["water", "fix:imagery"], "desc": T_(u"Object must be close to coast or water") }
+        self.classs_change[1] = self.def_class(item = 1221, level = 2, tags = ['water', 'fix:imagery'],
+            title = T_('Object must be close to coast or water'))
         self.callback10 = lambda res: {"class":1, "data":[self.any_full, self.positionAsText]}
 
     def analyser_osmosis_full(self):

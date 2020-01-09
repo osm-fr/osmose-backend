@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Bordeaux") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8180, id = 1, level = 3, tags = ['merge', 'public equipment'],
+            title = T_f('{0} toilets not integrated', 'Bordeaux'))
+
+        self.init(
             u"http://opendata.bordeaux.fr/content/toilettes-publiques",
             u"Toilettes publiques",
             CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2019",

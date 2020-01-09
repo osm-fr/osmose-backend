@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 item_map = \
-{'FranceSpecificRules': {'class': {},
+{'FranceSpecificRules': {'class': {None: 0},
                          'item': 9019,
                          'prefix': 'Josm_',
                          'tags': []},
@@ -317,7 +317,9 @@ item_map = \
  'transport': {'class': {'A bus stop is supposed to be a node': 9014019,
                          'Check if the note can be deleted': 9014006,
                          'Check the network tag': 9014014,
+                         'Check the network tag : this network does not exist, it may be a typo': 9014026,
                          'Check the operator tag': 9014013,
+                         'Check the operator tag : this operator does not exist, it may be a typo': 9014025,
                          'Is it a bus stop or a bus station?': 9014002,
                          'Missing from/to tag on a public_transport route relation': 9014018,
                          'Missing interval tag to specify the main interval': 9014023,
@@ -346,7 +348,8 @@ item_map = \
                  'item': 9010,
                  'prefix': 'Josm_',
                  'tags': ['tag']},
- 'wikipedia': {'class': {'deprecated tagging': 9011003,
+ 'wikipedia': {'class': {"''{0}'' tag is set, but no ''{1}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article.": 9011015,
+                         'deprecated tagging': 9011003,
                          'missing tag': 9011013,
                          'wikidata tag must be in Qnnnn format, where n is a digit': 9011012,
                          "wikipedia ''{0}'' language is invalid, use ''{1}'' instead": 9011005,

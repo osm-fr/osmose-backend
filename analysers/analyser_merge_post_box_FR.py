@@ -20,17 +20,20 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8025", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box not integrated") }
-        self.missing_osm      = {"item":"7051", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box without tag \"ref\" or invalid") }
-        self.possible_merge   = {"item":"8026", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box, integration suggestion") }
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8025, id = 1, level = 3, tags = ['merge', 'post'],
+            title = T_('Post box not integrated'))
+        self.missing_osm = self.def_class(item = 7051, id = 2, level = 3, tags = ['merge', 'post'],
+            title = T_('Post box without tag "ref" or invalid'))
+        self.possible_merge = self.def_class(item = 8026, id = 3, level = 3, tags = ['merge', 'post'],
+            title = T_('Post box, integration suggestion'))
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
             CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "05/2016",

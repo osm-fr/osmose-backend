@@ -25,16 +25,40 @@ import unicodedata
 from modules.languages import language2scripts, gen_regex
 from modules import confusables
 from modules.py3 import ilen
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 
 class Name_Script(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Some value chars does not match the language charset") }
-        self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Non printable char") }
-        self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Symbol char") }
+        self.errors[50701] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Some value chars does not match the language charset'),
+            detail = T_(
+'''Words are not written in the appropriate alphabet of the
+language.'''),
+            fix = T_(
+'''Usually, a wrong language has been chosen. Sometimes the word has been
+transliterated, and needs to be changed back to the original alphabet.
+`name:ar=Salaam` should be either `name:en=Salaam` (if known by
+untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`
+(original).'''))
+        self.errors[50702] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Non printable char'),
+            detail = T_(
+'''A non-printable character such as linefeed (0x000a) has been
+used.'''),
+            fix = T_(
+'''Remove the character.'''))
+        self.errors[50703] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Symbol char'),
+            detail = T_(
+'''A symbol is used instead of a letter from the appropriate
+alphabet.'''),
+            fix = T_(
+'''Change the character into a punctuation mark or something else more
+appropriate.'''),
+            resource = 'http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]')
 
         country = self.father.config.options.get("country")
 
@@ -85,7 +109,7 @@ class Name_Script(Plugin):
         self.uniq_script = self.uniq_scripts.get(languages[0]) if languages and len(languages) == 1 else None
 
         for l, s in list(self.lang.items()):
-            if s == None:
+            if s is None:
                 del(self.lang[l])
             else:
                 self.lang[l] = regex.compile(r"[\p{Common}%s]" % s, flags=regex.V1)
@@ -97,22 +121,22 @@ class Name_Script(Plugin):
         for key, value in tags.items():
             m = self.non_printable.search(key)
             if m:
-                err.append({"class": 50702, "subclass": 0 + stablehash(key), "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50702, "subclass": 0 + stablehash64(key), "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
 
             m = self.non_printable.search(value)
             if m:
-                err.append({"class": 50702, "subclass": 1 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50702, "subclass": 1 + stablehash64(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
 
             m = self.other_symbol.search(key)
             if m:
-                err.append({"class": 50703, "subclass": 0 + stablehash(key), "text": T_f(u"\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50703, "subclass": 0 + stablehash64(key), "text": T_f(u"\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
 
             m = self.other_symbol.search(value)
             if m:
-                err.append({"class": 50703, "subclass": 1 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50703, "subclass": 1 + stablehash64(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 break
 
             err_size = len(err)
@@ -120,12 +144,12 @@ class Name_Script(Plugin):
             for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
                 m = key.find(c)
                 if m > 0:
-                    err.append({"class": 50702, "subclass": 2 + stablehash(key), "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(c, ''), ord(c), m + 1)})
+                    err.append({"class": 50702, "subclass": 2 + stablehash64(key), "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(c, ''), ord(c), m + 1)})
                     break
 
                 m = value.find(c)
                 if m > 0:
-                    err.append({"class": 50702, "subclass": 3 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(c, ''), ord(c), m + 1)})
+                    err.append({"class": 50702, "subclass": 3 + stablehash64(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(c, ''), ord(c), m + 1)})
                     break
 
             if err_size != len(err):
@@ -142,16 +166,16 @@ class Name_Script(Plugin):
                             c = s[0]
                             u = self.uniq_script and confusables.unconfuse(c, self.uniq_script)
                             if u:
-                                err.append({"class": 50701, "subclass": 0 + stablehash(key),
+                                err.append({"class": 50701, "subclass": 0 + stablehash64(key),
                                     "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" ({6}, 0x{7:04x})?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
                                     "fix": {key: value.replace(c, u)}
                                 })
                             else:
-                                err.append({"class": 50701, "subclass": 0 + stablehash(key),
+                                err.append({"class": 50701, "subclass": 0 + stablehash64(key),
                                     "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})", key, value, s, unicodedata.name(c, ''), ord(c))
                                 })
                         else:
-                            err.append({"class": 50701, "subclass": 0 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
+                            err.append({"class": 50701, "subclass": 0 + stablehash64(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
                         break
 
             l = key.split(':')
@@ -165,16 +189,16 @@ class Name_Script(Plugin):
                         c = s[0]
                         u = self.uniq_scripts.get(l[1]) and confusables.unconfuse(c, self.uniq_scripts.get(l[1]))
                         if u:
-                            err.append({"class": 50701, "subclass": 1 + stablehash(key),
+                            err.append({"class": 50701, "subclass": 1 + stablehash64(key),
                                 "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" ({6}, 0x{7:04x})?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
                                 "fix": {key: value.replace(c, u)}
                             })
                         else:
-                            err.append({"class": 50701, "subclass": 1 + stablehash(key),
+                            err.append({"class": 50701, "subclass": 1 + stablehash64(key),
                                 "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})", key, value, s, unicodedata.name(c, ''), ord(c))
                             })
                     else:
-                        err.append({"class": 50701, "subclass": 1 + stablehash(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
+                        err.append({"class": 50701, "subclass": 1 + stablehash64(key), "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
                     break
 
         return err

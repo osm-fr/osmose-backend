@@ -23,7 +23,6 @@
 # PAYS   : http://fr.wikipedia.org/wiki/ISO_3166-1
 
 import os
-import re
 from collections import OrderedDict
 import modules.config
 
@@ -81,6 +80,8 @@ class template_config:
     db_schema   = None
     db_schema_path = None
     db_persistent = False
+
+    source_url = 'https://github.com/osm-fr/osmose-backend/blob/master'
 
     def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):
         config[country] = self
@@ -178,11 +179,12 @@ class default_simple(template_config):
         self.analyser["merge_street_objects"] = "xxx"
         self.analyser["osmosis_relation_enforcement"] = "xxx"
         self.analyser["osmosis_addr_interpolation"] = "xxx"
+        self.analyser["osmosis_camp_pitch_out_of_camp_site"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
-        part = part + '/' if part != None else ''
+        part = part + '/' if part is not None else ''
 
         if not download_country:
             download_country = country
@@ -230,7 +232,7 @@ def gen_country(area, path_base=None,
 
         path = path if isinstance(path, list) else [path]
         country = (country or path[-1]).replace('-', '_')
-        download_country = '/'.join(filter(lambda a: a != None, [path_base] + path))
+        download_country = '/'.join(filter(lambda a: a is not None, [path_base] + path))
 
         default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country)
 
@@ -317,9 +319,13 @@ france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=[
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
     'merge_street_number_rennes',
+    'merge_defibrillators_FR_montfort',
+    'merge_defibrillators_FR_saintmalo',
 ])
 france_departement("bretagne/finistere", 102430, "FR-29")
-france_departement("bretagne/morbihan", 7447, "FR-56")
+france_departement("bretagne/morbihan", 7447, "FR-56", include=[
+    'merge_defibrillators_FR_lorient',
+])
 
 france_departement("centre/cher", 7456, "FR-18")
 france_departement("centre/eure_et_loir", 7374, "FR-28")
@@ -385,7 +391,9 @@ france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66")
 
 france_departement("limousin/correze", 7464, "FR-19")
 france_departement("limousin/creuse", 7459, "FR-23")
-france_departement("limousin/haute_vienne", 7418, "FR-87")
+france_departement("limousin/haute_vienne", 7418, "FR-87", include=[
+    'merge_defibrillators_FR_hautevienne',
+])
 
 france_departement("lorraine/meurthe_et_moselle", 51856, "FR-54", include=[
     # Nancy
@@ -402,8 +410,11 @@ france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     'merge_public_equipment_FR_toulouse_toilets',
     'merge_street_number_toulouse',
     'merge_defibrillators_FR_toulouse',
+    'merge_defibrillators_FR_cugnaux',
 ])
-france_departement("midi_pyrenees/gers", 7422, "FR-32")
+france_departement("midi_pyrenees/gers", 7422, "FR-32", include=[
+    'merge_defibrillators_FR_gers',
+])
 france_departement("midi_pyrenees/lot", 7454, "FR-46")
 france_departement("midi_pyrenees/hautes_pyrenees", 7467, "FR-65")
 france_departement("midi_pyrenees/tarn", 7442, "FR-81")
@@ -436,7 +447,9 @@ france_departement("poitou_charentes/deux_sevres", 7455, "FR-79")
 france_departement("poitou_charentes/vienne", 7377, "FR-86")
 
 france_departement("provence_alpes_cote_d_azur/alpes_de_haute_provence", 7380, "FR-04")
-france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05")
+france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05", include=[
+  'merge_defibrillators_FR_hautesalpes',
+])
 france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06")
 france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
     # Arles
@@ -554,6 +567,7 @@ france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 france_local_db.analyser["merge_wastewater_plant_FR"] = "xxx"
 france_local_db.analyser["merge_museum_FR"] = "xxx"
 france_local_db.analyser["merge_radio_support_FR"] = "xxx"
+france_local_db.analyser["merge_carpool_FR"] = "xxx"
 
 #########################################################################
 

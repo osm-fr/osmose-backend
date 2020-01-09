@@ -26,7 +26,13 @@ class TagRemove_Incompatibles(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Tag conflict") }
+        self.errors[900] = self.def_class(item = 4030, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Tag conflict'),
+            detail = T_(
+'''The object contains two incompatible tags.'''),
+            trap = T_(
+'''Sometimes the object needs both tags.'''))
+
         self.CONFLICT = {}
         self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'railway', 'waterway', 'landuse'])
         self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'])

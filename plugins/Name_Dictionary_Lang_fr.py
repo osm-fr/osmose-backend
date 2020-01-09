@@ -106,7 +106,7 @@ class Test(TestPluginCommon):
             if f:
                 self.check_err(rdp, ("name='%s'" % n))
                 fix = rdp[0]["fix"]["name"]
-                self.assertEquals(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
+                self.assertEqual(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:
                 assert not rdp, ("name='%s'" % n)
 
@@ -118,6 +118,7 @@ class Test(TestPluginCommon):
         self.check_err(a.relation(None, {"name": u"Rue Saint-AndrÃ©"}, None))
 
         # code that is not reachable in normal cases
-        from nose.tools import assert_raises
+        import pytest
         a.DictCorrections["buebdgxrtsuei"] = None
-        assert_raises(Exception, a.node, None, {"name": "ceci est buebdgxrtsuei"})
+        with pytest.raises(Exception):
+            a.node({"name": "ceci est buebdgxrtsuei"})

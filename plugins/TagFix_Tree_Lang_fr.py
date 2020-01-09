@@ -62,7 +62,15 @@ class TagFix_Tree_Lang_fr(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3120] = {"item": 3120, "level": 3, "tag": ["natural", "fix:imagery"], "desc": T_f(u"Tree tagging") }
+        self.errors[3120] = self.def_class(item = 3120, level = 3, tags = ['natural', 'fix:imagery'],
+            title = T_('Tree tagging'),
+            detail = T_(
+'''To characterize the trees `natural=tree`, there are two main tag:
+`type` and `species`.'''),
+            fix = T_(
+'''Put the right data in the correct tag, in this case species.'''),
+            trap = T_(
+'''Specify the language for the tag `species`: `species:en=oak`'''))
 
         self.Tree = {}
         self.liste_des_arbres_fruitiers()

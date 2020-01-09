@@ -538,7 +538,7 @@ def to_p(t):
         elif not t['_require_set'].issubset(set_store):
             return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         elif not is_meta_rule:
-            main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z != None, s.get('_main_tags')))), t['selectors'])))
+            main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z is not None, s.get('_main_tags')))), t['selectors'])))
             main_tags_None = any(map(lambda s: len(s) == 0, main_tags))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
             declarations_text = list(filter(lambda a: a, map(to_p, t['declarations'])))
@@ -588,7 +588,7 @@ def to_p(t):
         return ("not " if t['not'] else "") + to_p(t['predicate']) + (" in ('yes', 'true', '1')" if t['question_mark'] else "")
     elif t['type'] == 'pseudo_class':
         if t['pseudo_class'] in ('closed', 'closed2'):
-            return "nds[0] == nds[-1]"
+            return "nds[0] != nds[-1]" if t['not_class'] else "nds[0] == nds[-1]"
         else:
             raise NotImplementedError(t)
     elif t['type'] == 'declaration':
@@ -739,7 +739,7 @@ def main(_, mapcss):
     if class_name in item_map:
         i = item_map[class_name]
         item_default = i['item']
-        class_map = i.get('class', {})
+        class_map = i.get('class') or {None: 0}
         subclass_blacklist = i.get('subclass_blacklist', [])
         only_for = i.get('only_for', [])
         not_for = i.get('not_for', [])

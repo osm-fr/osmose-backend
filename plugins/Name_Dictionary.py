@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 import re
 import sys
@@ -29,8 +29,12 @@ class P_Name_Dictionary(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
-        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
+        self.errors[703] = self.def_class(item = 5010, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Word not found in dictionary'),
+            fix = T_(
+'''Probably missing a capital.'''))
+        self.errors[704] = self.def_class(item = 5010, level = 1, tags = ['value', 'fix:chair'],
+            title = T_('Encoding problem'))
 
         self.DictKnownWords = [""]
         self.DictCorrections = {}
@@ -127,13 +131,13 @@ class P_Name_Dictionary(Plugin):
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    return {"class": 703, "subclass": stablehash(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
+                    return {"class": 703, "subclass": stablehash64(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
                 else:
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
                 for x in self.DictEncoding:
                     if x in WordComplet:
-                        return {"class": 704, "subclass": stablehash(tag), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}}
+                        return {"class": 704, "subclass": stablehash64(tag), "fix": {"name": initialName.replace(x, self.DictEncoding[x])}}
 
                 #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue
@@ -154,7 +158,7 @@ class P_Name_Dictionary(Plugin):
         for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
             if name in tags:
                 e = self._get_err(name, tags[name])
-                if e != None:
+                if e is not None:
                     err.append(e)
         return err
 

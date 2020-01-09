@@ -175,7 +175,7 @@ class Analyser_Sax(Analyser):
         if tags == {}:
             return
 
-        # On execute les jobs
+        # Running jobs
         for meth in self.pluginsNodeMethodes:
             res = meth(data, tags)
             if res:
@@ -184,7 +184,7 @@ class Analyser_Sax(Analyser):
                 else:
                     err += res
 
-        # Enregistrement des erreurs
+        # Write the issues
         if err:
             if not "uid" in data and not "user" in data:
                 data = self.NodeGet(data["id"]) or data
@@ -234,7 +234,7 @@ class Analyser_Sax(Analyser):
         tags = data[u"tag"]
         nds  = data[u"nd"]
 
-        # On execute les jobs
+        # Run jobs
         for meth in self.pluginsWayMethodes:
             res = meth(data, tags, nds)
             if res:
@@ -243,7 +243,7 @@ class Analyser_Sax(Analyser):
                 else:
                     err += res
 
-        # Enregistrement des erreurs
+        # Write the issues
         if err:
             if not "uid" in data and not "user" in data:
                 tmp_data = self.WayGet(data["id"]) or data
@@ -322,12 +322,11 @@ class Analyser_Sax(Analyser):
                 self.error_file.relation_delete(data["id"])
 
         # Initialisation
-
         err  = []
         tags = data[u"tag"]
         members = data[u"member"]
 
-        # On execute les jobs
+        # Run jobs
         for meth in self.pluginsRelationMethodes:
             res = meth(data, tags, members)
             if res:
@@ -336,7 +335,7 @@ class Analyser_Sax(Analyser):
                 else:
                     err += res
 
-        # Enregistrement des erreurs
+        # Write the issues
         if err and data[u"member"]:
             if not "uid" in data and not "user" in data:
                 data = self.RelationGet(data["id"]) or data
@@ -457,7 +456,7 @@ class Analyser_Sax(Analyser):
                         self._sublog(u"skip "+plugin[:-3])
                         continue
 
-                # Initialisation du plugin
+                # Plugin Initialisation
                 pluginInstance = pluginClazz(self)
                 if pluginInstance.init(self.logger.sub().sub()) == False:
                     self._sublog(u"self-disabled "+plugin[:-3])
@@ -468,7 +467,7 @@ class Analyser_Sax(Analyser):
                     pluginAvailableMethodes = pluginInstance.availableMethodes()
                     self.plugins[pluginName] = pluginInstance
 
-                    # Récupération des fonctions à appeler
+                    # Fetch functions to call
                     if "node" in pluginAvailableMethodes:
                         self.pluginsNodeMethodes.append(pluginInstance.node)
                     if "way" in pluginAvailableMethodes:
@@ -476,7 +475,7 @@ class Analyser_Sax(Analyser):
                     if "relation" in pluginAvailableMethodes:
                         self.pluginsRelationMethodes.append(pluginInstance.relation)
 
-                    # Liste des erreurs générées
+                    # Liste generated issues
                     for (cl, v) in self.plugins[pluginName].errors.items():
                         if cl in self._Err:
                             raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
@@ -487,14 +486,21 @@ class Analyser_Sax(Analyser):
     def _load_output(self, change):
         self.error_file.analyser(self.timestamp(), self.analyser_version(), change=change)
 
-        # Création des classes dans le fichier des erreurs
+        # Create classes in issues file
         for (cl, item) in sorted(self._Err.items()):
             self.error_file.classs(
-                cl,
-                item["item"],
-                item.get("level"),
-                item.get("tag"),
-                item['desc'])
+                id = cl,
+                item = item['item'],
+                level = item['level'],
+                tags = item.get('tags', item.get('tag')),
+                title = item.get('title', item.get('desc')),
+                detail = item.get('detail'),
+                fix = item.get('fix'),
+                trap = item.get('trap'),
+                example = item.get('example'),
+                source = item.get('source'),
+                resource = item.get('resource'),
+            )
 
     ################################################################################
 
@@ -506,7 +512,7 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _close_plugins(self):
-        # Fermeture des plugins
+        # Close plugins
         self._log(u"Unloading plugins")
         for y in sorted(self.plugins.keys()):
             self._sublog(u"end "+y)
@@ -549,6 +555,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             dst = None
             polygon_id = None
             reader = TestAnalyserOsmosis.MockupReader()
+            source_url = 'http://example.com'
         self.config = config()
 
         # create directory for results

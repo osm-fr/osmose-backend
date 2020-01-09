@@ -20,15 +20,29 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 
 class TagFix_BadKey(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3050]  = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad tag") }
-        self.errors[30501] = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad tag suffix") }
+        doc = dict(
+            detail = T_(
+'''The key of tag contains characters not recommended. The key is
+composed of alphanumeric characters: 0-9, a-z (preferably lower case),
+separator '_' or ':'. See
+[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags).'''),
+            fix = T_(
+'''Check the key tag, and correct.'''),
+            trap = T_(
+'''There certainly false positives.'''))
+        self.errors[3050]  = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Bad key'),
+            **doc)
+        self.errors[30501] = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Bad key suffix'),
+            **doc)
 
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
@@ -63,9 +77,9 @@ class TagFix_BadKey(Plugin):
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append({"class": 3050, "subclass": stablehash(k), "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append({"class": 30501, "subclass": stablehash(k), "text": T_("Bad tag suffix %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 30501, "subclass": stablehash64(k), "text": T_("Bad tag suffix %(k)s=%(v)s", {"k":k, "v":tags[k]})})
 
         return err
 

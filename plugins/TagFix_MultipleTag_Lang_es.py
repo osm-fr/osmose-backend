@@ -28,7 +28,8 @@ class TagFix_MultipleTag_Lang_es(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30326] = { "item": 3032, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
+        self.errors[30326] = self.def_class(item = 3032, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Watch multiple tags'))
 
         import re
         self.Panaderia = re.compile(u"panader.a (.*)", re.IGNORECASE)

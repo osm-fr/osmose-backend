@@ -313,11 +313,18 @@ ANALYZE {0}.buildings;
         for id_ in classs:
             data = classs[id_]
             self.error_file.classs(
-                id_,
-                data["item"],
-                data.get("level"),
-                data.get("tag"),
-                data["desc"])
+                id = id_,
+                item = data['item'],
+                level = data['level'],
+                tags = data.get('tags'),
+                title = data.get('title'),
+                detail = data.get('detail'),
+                fix = data.get('fix'),
+                trap = data.get('trap'),
+                example = data.get('example'),
+                source = data.get('source'),
+                resource = data.get('resource'),
+            )
 
 
     def analyser_osmosis_common(self):
@@ -394,7 +401,7 @@ WHERE
 """
         self.giscurs.execute(sql.format(table, type, id))
 
-    def run0(self, sql, callback = None):
+    def run00(self, sql, callback = None):
         if self.explain_sql:
             self.logger.log(sql.strip())
         if self.explain_sql and (sql.strip().startswith("SELECT") or sql.strip().startswith("CREATE UNLOGGED TABLE")) and not ';' in sql[:-1] and " AS " in sql:
@@ -423,6 +430,11 @@ WHERE
                         self.logger.err("ret=%s" % str(ret))
                         raise
 
+    def run0(self, sql, callback = None):
+        caller = getframeinfo(stack()[1][0])
+        self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
+        self.run00(sql, callback)
+
     def run(self, sql, callback = None):
         def callback_package(res):
             ret = callback(res)
@@ -432,9 +444,9 @@ WHERE
                 if "data" in ret:
                     self.geom = defaultdict(list)
                     for (i, d) in enumerate(ret["data"]):
-                        if d != None:
+                        if d is not None:
                             d(res[i])
-                    ret["fixType"] = list(map(lambda datai: self.FixTypeTable[datai] if datai != None and datai in self.FixTypeTable else None, ret["data"]))
+                    ret["fixType"] = list(map(lambda datai: self.FixTypeTable[datai] if datai is not None and datai in self.FixTypeTable else None, ret["data"]))
                 self.error_file.error(
                     ret["class"],
                     ret.get("subclass"),
@@ -447,10 +459,10 @@ WHERE
         caller = getframeinfo(stack()[1][0])
         if callback:
             self.logger.log(u"%s:%d xml generation" % (os.path.basename(caller.filename), caller.lineno))
-            self.run0(sql, callback_package)
+            self.run00(sql, callback_package)
         else:
             self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
-            self.run0(sql)
+            self.run00(sql)
 
 
     def node(self, res):
@@ -486,7 +498,7 @@ WHERE
         for type, id in map(lambda r: (r[0], r[1:]), res):
             self.typeMapping[type](int(id))
 
-    re_points = re.compile("[\(,][^\(,\)]*[\),]")
+    re_points = re.compile(r"[\(,][^\(,\)]*[\),]")
 
     def get_points(self, text):
         pts = []
@@ -496,7 +508,7 @@ WHERE
         return pts
 
     def positionAsText(self, res):
-        if res == None:
+        if res is None:
             self.logger.err("NULL location provided")
             return []
         for loc in self.get_points(res):
@@ -522,10 +534,10 @@ class TestAnalyserOsmosis(TestAnalyser):
         import modules.OsmOsisManager
         (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
         if not skip_db:
-            from nose import SkipTest
+            import pytest
             osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, cls.logger)
             if not osmosis_manager.check_database():
-                raise SkipTest("database not present")
+                pytest.skip("database not present")
             osmosis_manager.init_database(conf)
 
         # create directory for results

@@ -22,17 +22,10 @@
 
 import json
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
-from time import gmtime, strftime
 
-import time, os, shutil, hashlib, codecs, tempfile
 from io import open # In python3 only, this import is not required
-from backports import csv # In python3 only just "import csv"
-from modules import config
-from modules.PointInPolygon import PointInPolygon
-from modules import SourceVersion
-from modules import downloader
 
 
 class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
@@ -77,8 +70,11 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, layer):
-        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_f(u"{0} Traffic signs for {1} observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
+        self.missing_official = self.def_class(item = 8300, id = classs, level = level, tags = ['merge', 'leisure'],
+            title = T_f('{0} Traffic signs for {1} observed around but not associated tags', ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title))
+
+        self.init(
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),

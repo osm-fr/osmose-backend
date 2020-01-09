@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 
 
@@ -29,7 +29,13 @@ class Name_Toponymy_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[906] = { "item": 5040, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Toponymy") }
+        self.errors[906] = self.def_class(item = 5040, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Toponymy'),
+            detail = T_(
+'''Apply of "[charte de
+toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)" of
+IGN (French geographic name conventions)'''),
+            resource = 'http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf')
 
         ## http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf
 
@@ -147,7 +153,7 @@ class Name_Toponymy_FR(Plugin):
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return {"class": 906, "subclass": stablehash(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(sorted(set(words)))),
+            return {"class": 906, "subclass": stablehash64(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(sorted(set(words)))),
                      "fix": {"name": "".join(splitfix)} }
         return
 
@@ -175,4 +181,4 @@ class Test(TestPluginCommon):
 
         e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
         self.check_err(e)
-        self.assertEquals(e["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")
+        self.assertEqual(e["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")

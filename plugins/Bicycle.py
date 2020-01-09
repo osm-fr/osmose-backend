@@ -15,10 +15,13 @@ class Bicycle(Plugin):
         self.errors[20302] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite or opposite lane in the same way of the oneway')}
         self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'footway', u'fix:chair'), 'desc': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'highway=footway|construction')}
         self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
+        self.errors[30329] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
         self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), 'desc': mapcss.tr(u'{0} is preferred to {1}', mapcss._tag_uncapture(capture_tags, u'{2.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
         self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1} and {2}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
 
         self.re_1825c777 = re.compile(r'footway|construction')
+        self.re_5b286a0d = re.compile(r'no|use_sidepath')
+        self.re_6781a1fd = re.compile(r'no|none|separate')
         self.re_67b51e41 = re.compile(r'opposite|opposite_lane')
 
 
@@ -97,6 +100,35 @@ class Bicycle(Plugin):
                     u'cycleway'])
                 }})
 
+        # way[bicycle=~/no|use_sidepath/][cycleway][cycleway!~/no|none|separate/]
+        # way[bicycle=~/no|use_sidepath/][cycleway:left][cycleway:left!~/no|none|separate/]
+        # way[bicycle=~/no|use_sidepath/][cycleway:right][cycleway:right!~/no|none|separate/]
+        if (u'bicycle' in keys and u'cycleway' in keys) or (u'bicycle' in keys and u'cycleway:left' in keys) or (u'bicycle' in keys and u'cycleway:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, u'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, u'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, u'cycleway')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, u'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway:left') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, u'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, u'cycleway:left')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, u'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway:right') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, u'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, u'cycleway:right')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("fix:chair")
+                # -osmoseItemClassLevel:"3032/30329/2"
+                # throwWarning:tr("{0} with {1}","{0.tag}","{1.tag}")
+                # assertNoMatch:"way bicycle=no cycleway:right=no"
+                # assertMatch:"way bicycle=no cycleway=track"
+                # assertMatch:"way bicycle=use_sidepath cycleway:left=lane"
+                # assertNoMatch:"way bicycle=use_sidepath cycleway:left=none"
+                # assertNoMatch:"way highway=cycleway cycleway=separate"
+                # assertNoMatch:"way highway=residential bicycle=use_sidepath"
+                err.append({'class': 30329, 'subclass': 0, 'text': mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+
         # way[cycleway=~/opposite|opposite_lane/][!oneway]
         # way[cycleway=~/opposite|opposite_lane/][oneway=no]
         if (u'cycleway' in keys) or (u'cycleway' in keys and u'oneway' in keys):
@@ -171,6 +203,12 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'footway': u'sidewalk', u'highway': u'path'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {u'highway': u'service', u'psv': u'no', u'service': u'psv'}, [0]), expected={'class': 40101, 'subclass': 0})
         self.check_not_err(n.way(data, {u'highway': u'service', u'psv': u'yes', u'service': u'psv'}, [0]), expected={'class': 40101, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'bicycle': u'no', u'cycleway:right': u'no'}, [0]), expected={'class': 30329, 'subclass': 0})
+        self.check_err(n.way(data, {u'bicycle': u'no', u'cycleway': u'track'}, [0]), expected={'class': 30329, 'subclass': 0})
+        self.check_err(n.way(data, {u'bicycle': u'use_sidepath', u'cycleway:left': u'lane'}, [0]), expected={'class': 30329, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'bicycle': u'use_sidepath', u'cycleway:left': u'none'}, [0]), expected={'class': 30329, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'cycleway': u'separate', u'highway': u'cycleway'}, [0]), expected={'class': 30329, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'bicycle': u'use_sidepath', u'highway': u'residential'}, [0]), expected={'class': 30329, 'subclass': 0})
         self.check_not_err(n.way(data, {u'cycleway': u'lane', u'oneway': u'yes'}, [0]), expected={'class': 20301, 'subclass': 0})
         self.check_not_err(n.way(data, {u'cycleway': u'opposite', u'oneway': u'yes'}, [0]), expected={'class': 20301, 'subclass': 0})
         self.check_err(n.way(data, {u'cycleway': u'opposite'}, [0]), expected={'class': 20301, 'subclass': 0})

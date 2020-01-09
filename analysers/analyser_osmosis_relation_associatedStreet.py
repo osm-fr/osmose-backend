@@ -607,19 +607,45 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber or addr:housename without addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation") }
-        self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"No street role") }
-        self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"street role is not an highway") }
-        self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Roleless member") }
-        self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Member without addr:housenumber nor addr:housename") }
-        self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"Number twice in the street") }
-        self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Many street names") }
-        self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Many relations on one street") }
-        self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom", "fix:chair"], "desc": T_(u"House too far away from street") }
+        self.classs[1] = self.def_class(item = 2060, level = 3, tags = ['addr', 'relation', 'fix:chair'],
+            title = T_('addr:housenumber or addr:housename without addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation'),
+            detail = T_(
+'''There is only a part of the required tag `addr:*=*`. They do not
+provide a consistent address.'''))
+        self.classs_change[2] = self.def_class(item = 2060, level = 2, tags = ['addr', 'relation', 'fix:chair'],
+            title = T_('No street role'),
+            detail = T_(
+'''The street is not present in relation with the role `street`.'''))
+        self.classs_change[3] = self.def_class(item = 2060, level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('street role is not an highway'),
+            detail = T_(
+'''The street must be a highway.'''))
+        self.classs_change[4] = self.def_class(item = 2060, level = 3, tags = ['addr', 'relation', 'fix:chair'],
+            title = T_('Roleless member'),
+            detail = T_(
+'''A member without role is present in the relation.'''))
+        self.classs_change[5] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
+            title = T_('Member without addr:housenumber nor addr:housename'),
+            detail = T_(
+'''Address without number is present.'''))
+        self.classs[6] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:survey'],
+            title = T_('Number twice in the street'))
+        self.classs[7] = self.def_class(item = 2060, level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('Many street names'))
+        self.classs[8] = self.def_class(item = 2060, level = 2, tags = ['addr', 'relation', 'fix:chair'],
+            title = T_('Many relations on one street'))
+        self.classs[9] = self.def_class(item = 2060, level = 2, tags = ['addr', 'geom', 'fix:chair'],
+            title = T_('House too far away from street'))
         if self.config.options.get("addr:city-admin_level"):
-            self.classs[12] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Tag \"addr:city\" not matching a city") }
-        self.classs[18] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Missing highway in associatedStreet relation") }
-        self.classs[19] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Tag \"addr:street\" not matching a street name around") }
+            self.classs[12] = self.def_class(item = 2060, level = 2, tags = ['addr', 'fix:chair'],
+                title = T_('Tag "addr:city" not matching a city'))
+        self.classs[18] = self.def_class(item ="2060", level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('Missing highway in associatedStreet relation'),
+            fix = T_(
+'''Extend the relation to include the way with the same name.'''))
+        self.classs[19] = self.def_class(item ="2060", level = 2, tags = ['addr', 'fix:chair'],
+            title = T_('Tag "addr:street" not matching a street name around'))
+
         self.callback20 = lambda res: res[1] and {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}

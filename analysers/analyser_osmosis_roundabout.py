@@ -63,7 +63,20 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         if "proj" in self.config.options:
-            self.classs_change[1] = {"item":"2010", "level": 1, "tag": ["highway", "roundabout", "fix:imagery"], "desc": T_(u"Missing junction=roundabout") }
+            self.classs_change[1] = self.def_class(item = 2010, level = 1, tags = ['highway', 'roundabout', 'fix:imagery'],
+                title = T_('Missing `junction=roundabout`'),
+                detail = T_(
+'''This looks like a roundabout, but the tag `junction=roundabout` is not
+present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)
+for more info.'''),
+                fix = T_(
+'''If it is really a roundabout, add the tag `junction=roundabout`,
+verify that the path is in the counter-clockwise when driving side is on
+right, and remove the tag `oneway=yes` if present.'''),
+                trap = T_(
+'''Ensure that it is a roundabout, using satellite imagery or a local
+survey.'''))
+
             self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
     def analyser_osmosis_full(self):

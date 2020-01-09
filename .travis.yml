@@ -1,8 +1,7 @@
-dist: xenial
+dist: bionic
 language: python
 python:
-  - "2.7_with_system_site_packages"
-#  - "3.5_with_system_site_packages"
+  - "3.6_with_system_site_packages"
 services:
   - postgresql
 addons:
@@ -13,8 +12,9 @@ addons:
     - postgresql-10-postgis-2.4-scripts
     # for python2
     - python-imposm-parser
+    - python-pytest
     # for python3
-    - python3-nose
+    - python3-pytest
     # for osm pbf parser
     - g++
     - libboost-python-dev
@@ -23,13 +23,8 @@ addons:
     - make
     - pkg-config
     - protobuf-compiler
-before_install:
-  # from https://github.com/travis-ci/travis-ci/issues/9624
-  - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
-  - sudo service postgresql restart
-  - sleep 1
 install:
-  - pip install -r requirements.txt -r requirements-dev.txt -r requirements-dev-python3.txt
+  - pip install -r requirements.txt -r requirements-dev.txt
 before_script:
   # configure database
   - psql -c 'CREATE USER osmose;' -U postgres
@@ -46,4 +41,4 @@ before_script:
   # compile osm pbf parser
   - cd modules/osm_pbf_parser && make && cd ../../
 script:
-  - ./tools/pynose.sh
+  - ./tools/pytest.sh

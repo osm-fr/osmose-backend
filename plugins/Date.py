@@ -28,7 +28,12 @@ class Date(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3090] = { "item": 3090, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Bad date format") }
+        self.errors[3090] = self.def_class(item = 3090, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Bad date format'),
+            detail = T_(
+'''The date entered is not in expected format as definited in
+[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)'''))
+
         self.tag_date = [
             "date", "start_date", "end_date", "paved:date", "date_closed", "built_date",
             "opening_date", "check_date", "open_date", "construction:date", "temporary:date_on",  # Construction

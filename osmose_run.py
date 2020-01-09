@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 ###########################################################################
@@ -32,10 +32,8 @@ import osmose_config as config
 
 import importlib
 import inspect
-import socket
 import subprocess
 import time
-import json
 import dateutil.parser
 import requests
 
@@ -180,6 +178,8 @@ def execc(conf, logger, options, osmosis_manager):
             analyser_conf.options = conf.analyser_options
             analyser_conf.polygon_id = conf.polygon_id
 
+            analyser_conf.source_url = conf.source_url
+
             if options.change and xml_change:
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:
@@ -260,21 +260,23 @@ def execc(conf, logger, options, osmosis_manager):
                                         'content': open(analyser_conf.dst, 'rb')
                                     })
                                     r.raise_for_status()
-
-                                    dt = r.text.strip()
-                                    if dt == "FAIL: Already up to date" and was_on_timeout:
-                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
-                                        # Log error, but do not set err_code
-                                    elif dt[-2:] != "OK":
-                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
-                                        err_code |= 4
-                                    else:
-                                        logger.sub().sub().log(dt)
+                                    logger.sub().sub().log(r.text.strip())
                                     update_finished = True
-                                except Exception as e:
-                                    if isinstance(e, requests.exceptions.ConnectTimeout) or (isinstance(e, requests.exceptions.HTTPError) and e.response.status_code == 504):
+                                except requests.exceptions.HTTPError as e:
+                                    if e.response.status_code == 504:
                                         was_on_timeout = True
-                                        logger.sub().sub().sub().err('got a timeout')
+                                        logger.sub().sub().sub().err('got an HTTP timeout status')
+                                    else:
+                                        dt = r.text.strip()
+                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt))
+                                        if dt == "FAIL: Already up to date":
+                                            update_finished = True
+                                        if not was_on_timeout:
+                                            err_code |= 4
+                                except Exception as e:
+                                    if isinstance(e, requests.exceptions.ConnectTimeout):
+                                        was_on_timeout = True
+                                        logger.sub().sub().sub().err('got a connection timeout')
                                     else:
                                         tb = traceback.format_exc()
                                         logger.sub().err('error on update...')

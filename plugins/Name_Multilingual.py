@@ -34,7 +34,8 @@ class Name_Multilingual(Plugin):
         if not(language and self.father.config.options.get("multilingual-style")):
             return False
 
-        self.errors[50604] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual not matching") }
+        self.errors[50604] = self.def_class(item = 5060, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Multilingual not matching'))
         self.lang = lang = self.father.config.options.get("language")
         style = self.father.config.options.get("multilingual-style")
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
@@ -164,11 +165,11 @@ class Name_Multilingual(Plugin):
             if not self.char_common.match(c):
                 for (l, re) in self.char_ma:
                     if re.match(c):
-                        if min_max[l]['min'] == None:
+                        if min_max[l]['min'] is None:
                             min_max[l]['min'] = i
                         min_max[l]['max'] = i
 
-        min_max_filtered = list(filter(lambda l_mm: l_mm[1]['min'] != None, min_max.items()))
+        min_max_filtered = list(filter(lambda l_mm: l_mm[1]['min'] is not None, min_max.items()))
         if len(min_max_filtered) == 0:
             return # No text detected
         min_max_sorted = sorted(min_max_filtered, key = lambda v: v[1]['min'])

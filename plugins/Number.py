@@ -26,7 +26,14 @@ class Number(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3091] = { "item": 3091, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Numerical value") }
+        self.errors[3091] = self.def_class(item = 3091, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('Numerical value'),
+            detail = T_(
+'''The tag expects a numeric value. Decimals are set with one point and
+not a comma.'''),
+            fix = T_(
+'''Change to numeric value and/or the comma to point.'''))
+
         self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population", "admin_level", "ele"]
         self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]

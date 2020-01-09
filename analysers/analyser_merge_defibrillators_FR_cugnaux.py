@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Nicolas Bétheuil 2019                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,24 +20,26 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
-class Structural_OneWayBloquant(Plugin):
+class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
+    def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8370, id = 90, level = 3, tags = ['merge'],
+            title = T_('Defibrillator not integrated'))
 
-    #err_107_fr = (u"Way à sens unique sans entrée-sortie", u"oneway bloquant")
-    #err_107_en = (u"One-way Way without entrance-exit", u"blocking one-way")
-
-    def way(self, data, tags, nds):
-        return
-
-        if u"oneway" not in tags:
-            return
-
-        if tags[u"oneway"] not in [u"yes", u"1", u"true", u"-1"]:
-            return
-
-        err = []
-        if len(self.father._reader.NodeWaysId(nds[0])) == 1 or len(self.father._reader.NodeWaysId(nds[-1])) == 1:
-            err.append((107, 0, {}))
-        return err
+        self.init(
+            u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-9/",
+            u"Défibrillateurs",
+            GeoJSON(Source(attribution = u"Mairie de Cugnaux",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6820eaf-f988-47c4-bc6f-634e0a4da013")),
+            Load("geom_x", "geom_y"),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways", "relations"],
+                    tags = {"emergency": "defibrillator"}),
+                conflationDistance = 50,
+                generate = Generate(
+                    static1 = {"emergency": "defibrillator"},
+                    static2 = {"source": self.source} )))

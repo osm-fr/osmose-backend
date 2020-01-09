@@ -95,7 +95,8 @@ class Analyser_Osmosis_Highway_Almost_Junction(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1270", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Almost junction, join or use noexit tag") }
+        self.classs[1] = self.def_class(item = 1270 , level = 1, tags = ['highway', 'fix:chair'],
+            title = T_('Almost junction, join or use noexit tag'))
 
     def analyser_osmosis_common(self):
         self.run(sql12.format(self.config.options.get("proj")))

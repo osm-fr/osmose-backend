@@ -277,7 +277,7 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
 
     def _Get(self, start):        
         
-        if start == None:
+        if start is None:
             return None
         
         class _output:
@@ -324,12 +324,12 @@ class Test(unittest.TestCase):
         res = func(id)
         if exists:
             assert res
-            self.assertEquals(res["id"], id)
+            self.assertEqual(res["id"], id)
             assert res["changeset"]
             assert res["timestamp"]
             assert res["uid"]
             assert res["user"]
-            self.assertEquals(type(res["tag"]), type(dict()))
+            self.assertEqual(type(res["tag"]), type(dict()))
         else:
             assert not res
 

@@ -28,7 +28,8 @@ class TagFix_MultipleTag_Lang_fr(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3032] = { "item": 3032, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
+        self.errors[3032] = self.def_class(item = 3032, level = 1, tags = ['tag', 'fix:chair'],
+            title = T_('Watch multiple tags'))
 
         import re
         self.Eglise = re.compile(u"(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)

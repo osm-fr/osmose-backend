@@ -136,7 +136,7 @@ class OsmOsisManager:
     giscurs = gisconn.cursor()
     for extension in ["hstore"] + self.conf.db_extension_check:
       giscurs.execute("SELECT installed_version FROM pg_available_extensions WHERE name = %s", [extension])
-      if giscurs.rowcount != 1 or giscurs.fetchone()[0] == None:
+      if giscurs.rowcount != 1 or giscurs.fetchone()[0] is None:
         self.logger.err(u"missing extension: "+extension)
         return False
 
@@ -365,7 +365,7 @@ class OsmOsisManager:
         osm_state = OsmState(os.path.join(diff_path, "state.txt"))
         cur_ts = datetime.datetime.today()
         print("state: ", nb_iter, " - ", osm_state.timestamp(), end=' ')
-        if prev_state_ts != None:
+        if prev_state_ts is not None:
           print("   ", prev_state_ts - osm_state.timestamp())
         if osm_state.timestamp() > (cur_ts - datetime.timedelta(days=1)):
           is_uptodate = True

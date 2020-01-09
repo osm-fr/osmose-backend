@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -51,7 +51,17 @@ class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1080", "level": 1, "tag": ["geom", "building", "fix:chair"], "desc": T_(u"Orphan nodes cluster") }
+        self.classs[1] = self.def_class(item = 1080, level = 1, tags = ['geom', 'building', 'fix:chair'],
+            title = T_('Orphan nodes cluster'),
+            detail = T_(
+'''Group of nodes without tag and not part of a way.'''),
+            fix = T_(
+'''Find the origin of these nodes. Probably in trouble in import.
+Contact the contributor submiting the nodes.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)
+
+Group of orphan nodes.'''))
 
     def analyser_osmosis_common(self):
-        self.run(sql10, lambda res: {"class":1, "subclass":stablehash(res[0]), "data":[self.positionAsText]} )
+        self.run(sql10, lambda res: {"class":1, "subclass":stablehash64(res[0]), "data":[self.positionAsText]} )

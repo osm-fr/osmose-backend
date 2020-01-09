@@ -191,10 +191,14 @@ msgstr "Naam op een  public transport halte ontbreekt"
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Check dee operator tag : deze beheerder bestaaat niet, het is wellicht een "
+"typefout"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Check deze network tag : deze netwerk bestaaat niet, het is wellicht een "
+"typefout"
 
 #: ../transport.validator.mapcss:207
 msgid ""

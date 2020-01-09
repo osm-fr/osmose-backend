@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 4, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Toulouse") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8180, id = 4, level = 3, tags = ['merge', 'public equipment'],
+            title = T_f('{0} toilets not integrated', 'Toulouse'))
+
+        self.init(
             u"https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
             u"Toilettes publiques",
             CSV(Source(attribution = u"Toulouse Métropole", millesime = "12/2017",

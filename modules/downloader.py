@@ -179,21 +179,21 @@ class Test(unittest.TestCase):
         os.remove(dst1)
         dst2 = update_cache(self.url, 0)
         assert dst2
-        self.assertEquals(dst1, dst2)
+        self.assertEqual(dst1, dst2)
         self.check_file_content(dst2)
         dst2_mtime = os.stat(dst2).st_mtime
 
         # check that file is not downloaded again with delay > 0
         dst3 = update_cache(self.url, 2)
         assert dst3
-        self.assertEquals(dst1, dst3)
+        self.assertEqual(dst1, dst3)
         dst3_mtime = os.stat(dst3).st_mtime
-        self.assertEquals(dst2_mtime, dst3_mtime)
+        self.assertEqual(dst2_mtime, dst3_mtime)
 
         # check that file is downloaded again with delay = 0
         dst4 = update_cache(self.url, 0)
         assert dst4
-        self.assertEquals(dst1, dst4)
+        self.assertEqual(dst1, dst4)
         dst4_mtime = os.stat(dst4).st_mtime
         self.assertLess(dst2_mtime, dst4_mtime)
 
@@ -202,7 +202,7 @@ class Test(unittest.TestCase):
         os.utime(dst4, (old_time, old_time))
         dst5 = update_cache(self.url, 5)
         assert dst5
-        self.assertEquals(dst1, dst5)
+        self.assertEqual(dst1, dst5)
         dst5_mtime = os.stat(dst5).st_mtime
         self.assertLess(dst4_mtime, dst5_mtime)
 
@@ -216,7 +216,7 @@ class Test(unittest.TestCase):
         dst = urlmtime(self.url, 10)
         assert dst
         exp_mtime = os.stat(update_cache(self.url, 100)).st_mtime
-        self.assertEquals(dst, exp_mtime)
+        self.assertEqual(dst, exp_mtime)
 
     def test_urlopen(self):
         dst = urlopen(self.url, 10)
@@ -229,7 +229,7 @@ class Test(unittest.TestCase):
         self.assertIsInstance(dst, unicode)
         self.check_content(dst)
         exp_content = open(update_cache(self.url, 100), "r", encoding="utf-8").read()
-        self.assertEquals(dst, exp_content, "urlread doesn't give expected result")
+        self.assertEqual(dst, exp_content, "urlread doesn't give expected result")
 
     def test_urlread_fr(self):
         dst = urlread(self.url_fr, 10)
@@ -237,4 +237,4 @@ class Test(unittest.TestCase):
         self.assertIsInstance(dst, unicode)
         self.check_content(dst)
         exp_content = open(update_cache(self.url_fr, 100), "r", encoding="utf-8").read()
-        self.assertEquals(dst, exp_content, "urlread doesn't give expected result")
+        self.assertEqual(dst, exp_content, "urlread doesn't give expected result")

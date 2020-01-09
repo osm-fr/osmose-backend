@@ -28,14 +28,19 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Poste_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office not integrated") }
-        self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office without tag \"ref:FR:LaPoste\" or invalid") }
-        self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office, integration suggestion") }
-        self.update_official  = {"item":"8022", "class": 4, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office update") }
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8020, id = 1, level = 3, tags = ['merge', 'post'],
+            title = T_('Post office not integrated'))
+        self.missing_osm = self.def_class(item = 7050, id = 2, level = 3, tags = ['merge', 'post'],
+            title = T_('Post office without tag "ref:FR:LaPoste" or invalid'))
+        self.possible_merge = self.def_class(item = 8021, id = 3, level = 3, tags = ['merge', 'post'],
+            title = T_('Post office, integration suggestion'))
+        self.update_official = self.def_class(item = 8022, id = 4, level = 3, tags = ['merge', 'post'],
+            title = T_('Post office update'))
 
         self.APBP = re.compile(' (AP|BP|RP)$')
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont",
             u"Liste des services disponibles en bureaux de poste, agences postales et relais poste",
             CSV(Source(attribution = u"LaPoste", millesime = "03/2019",

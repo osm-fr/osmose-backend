@@ -22,16 +22,35 @@
 
 import re
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
-from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from functools import reduce
 
 
 class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_f(u"Historical monument not integrated") }
-        self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument without tag \"ref:mhs\" or invalid") }
-        self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument, integration suggestion") }
-        self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument update") }
+        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge.__init__(self, config, logger)
+        doc = dict(
+            detail = T_(
+'''A historical monument is here but is not mapped. The list of monuments
+comes from the database "Merimee Inventory of monuments" in France by the
+Ministry of Culture.'''),
+            fix = T_(
+'''See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on
+wiki. Add a node or to integrate tags something already existing.'''),
+            trap = T_(
+'''The position of the markers is made by address geocoding, it may be
+located elsewhere. The marker can be a very rough position, located as
+low accuracy to the town. Carefully check the contents of the proposed
+tags, can be curious or unsuitable values. Do not overide tags of UNESCO
+World Heritage.'''))
+        self.missing_official = self.def_class(item = 8010, id = 1, level = 3, tags = ['merge', 'building'],
+            title = T_('Historical monument not integrated'), **doc)
+        self.missing_osm = self.def_class(item = 7080, id = 2, level = 3, tags = ['merge'],
+            title = T_('Historical monument without tag "ref:mhs" or invalid'), **doc)
+        self.possible_merge = self.def_class(item = 8011, id = 3, level = 3, tags = ['merge'],
+            title = T_('Historical monument, integration suggestion'), **doc)
+        self.update_official = self.def_class(item = 8012, id = 4, level = 3, tags = ['merge'],
+            title = T_('Historical monument update'), **doc)
 
         def parseDPRO(dpro):
             ret = None;
@@ -63,16 +82,16 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
             u"Normandie;Calvados;Falaise;Vestiges de l'enceinte fortifiée;\"13e siècle;17e siècle\";;\"Restes de la porte Lecomte : inscription par arrêté du 31 mai 1927 ; Porte des Cordeliers : classement par arrêté du 13 mars 1930 ; Vestiges de l'enceinte fortifiée : de la porte du Château à la porte de Guibray : rue Porte-du-Château 10, 8 (cad. B 67, 68) , rue Blâcher 32, 28, 22, 10, 6 (cad. D 87, 92, 96, 105, 108 à 110). De la porte Guibray à la porte Marescot : rue Amiral-Courbet (cad. D 521, 519, 513, 514, 515, 512, 509). De la porte Marescot à la porte Lecomte : rue Georges-Clémenceau (cad. B 801) , rue Victor-Hugo 15, 17, 19, 21, 23, 25 (cad. B 604, 608, 612, 615) , rue du Sergent-Goubin (cad. B 625). De la porte Lecomte à la route de Caen : rue du Sergent Goubin 24, 22, 20, 2 (cad. B 566, 569, 562, 563, 559, 556, 557, 1058 à 1060) , rue Gambetta 18, 14, 12 (cad. B 1045, 1048, 994, 997). De la route de Caen à la porte Philippe-Jean : rue Frédéric-Gaberon (cad. E 235) , rue des Cordeliers (cad. E 247) , rue du Camp-Ferme (cad. E 354, 364, 365, 370, 383). De la porte Philippe-Jean auchâteau : place Guillaume-le-Conquérant et rue de la Porte-Philippe-Jean (cad. E 585, 572, 578) , place Guillaume-le-Conquérant (cad. E 594, 610, 612, 613) : inscription par arrêté du 19 juin 1951\";\"1927/05/31 : inscrit MH ; 1930/03/13 : classé MH ; 1951/06/19 : inscrit MH\";\"propriété de la commune ; propriété d'une personne privée\";\"Porte-du-Château (rue) ; Blâcher (rue) ; Amiral-Courbet (rue) ; Georges-Clémenceau (rue) ; Victor-Hugo (rue) ; Sergent-Goubin (rue du) ; Gambetta (rue) ; Frédéric-Gaberon (rue) ; Cordeliers (rue des) ; Camp-Ferme (rue du) ; Guillaume-le-Conquérant (place)\";14258;;Recensement immeubles MH;PA00111315;48.8957800281, -0.193401711782;14;Basse-Normandie;basse normandie",
         ]
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Immeubles protégés au titre des Monuments Historiques",
-            CSV(Geocode_Addok_CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
+            CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
                     fileUrl = u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
                     filter = lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore'))),
-                columns = ['Adresse', 'Commune'], citycode = 'INSEE', delimiter = u';', logger = logger),
                 separator = u';'),
-            Load("longitude", "latitude",
-                map = self.coord_fallback,
+            Load("coordonnees_ban", "coordonnees_ban",
+                xFunction = lambda x: x and x.split(',')[1],
+                yFunction = lambda y: y and y.split(',')[0],
                 select = {u"Date de Protection": True}),
             Mapping(
                 select = Select(
@@ -93,9 +112,3 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
                     tag_keep_multiple_values = ["heritage:operator"],
                     text = lambda tags, fields: T_f(u"Historical monument: {0} (positioned at {1} with confidence {2})", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))
-
-    def coord_fallback(self, fields):
-        if not fields['longitude'] and fields['Coordonnées INSEE']:
-            # It is too late to write to fields['longitude'] and fields['latitude']
-            fields['_y'], fields['_x'] = list(map(lambda s: float(s.strip()), fields['Coordonnées INSEE'].split(',')))
-        return fields

@@ -26,7 +26,6 @@ from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
 
 from io import open # In python3 only, this import is not required
-from modules import config
 
 
 class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
@@ -44,8 +43,11 @@ class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, layer):
-        self.missing_official = {"item":"8360", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_f(u"{0} Street object {1} observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
+        self.missing_official = self.def_class(item = 8360, id = classs, level = level, tags = ['merge', 'leisure'],
+            title = T_f('{0} Street object {1} observed around but not associated tags', ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title))
+
+        self.init(
             "www.mapillary.com",
             u"Street Objects from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),

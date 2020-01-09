@@ -26,7 +26,8 @@ class Structural_WayOneNode(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[12401] = { "item": 1240, "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Way with one node") }
+        self.errors[12401] = self.def_class(item = 1240, level = 2, tags = ['geom', 'fix:chair'],
+            title = T_('Way with one node'))
 
     def way(self, data, tags, nds):
         if len(nds) == 1:

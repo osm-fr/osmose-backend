@@ -44,8 +44,11 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
-        self.missing_official = {"item":"8170", "class": classs, "level": 3, "tag": ["merge", "leisure"], "desc": T_(u"Pitch not integrated %s", topic) }
-        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
+        self.missing_official = self.def_class(item = 8170, id = classs, level = 3, tags = ['merge', 'leisure'],
+            title = T_f('Pitch not integrated {0}', topic))
+
+        self.init(
             u"http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
             u"Recensement des équipements sportifs, espaces et sites de pratiques",
             CSV(Source(attribution = u"Le ministère de la ville, de la jeunesse et des sports", millesime = "01/2018",
@@ -63,7 +66,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     static1 = dict(dict(**osmTags), **defaultTags),
                     static2 = {"source": self.source},
                     mapping1 = {"surface": self.surface},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i != None, [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i is not None, [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
 
     def validLatLon(self, row):
         if abs(float(row["EquGpsX"])) <= 180 and abs(float(row["EquGpsY"])) <= 90:

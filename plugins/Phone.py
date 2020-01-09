@@ -20,7 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 import re
 
 
@@ -46,15 +46,22 @@ class Phone(Plugin):
         self.suffix_separators = self.father.config.options.get("suffix_separators")
 
         if self.format:
-            self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Phone number does not match the expected format")}
+            self.errors[30920] = self.def_class(item = 3092, level = 2, tags = ['value', 'fix:chair'],
+                title = T_('Phone number does not match the expected format'))
         if self.local_prefix:
-            self.errors[30921] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Extra \"{0}\" after international code", self.local_prefix)}
+            self.errors[30921] = self.def_class(item = 3092, level = 2, tags = ['value', 'fix:chair'],
+                title = T_f('Extra "{0}" after international code', self.local_prefix))
         if self.size_short:
-            self.errors[30922] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_f(u"Local short code can't be internationalized")}
-        self.errors[30923] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Missing international prefix")}
-        self.errors[30924] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Bad international prefix")}
-        self.errors[30925] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Unallowed char in phone number")}
-        self.errors[30926] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_f(u"Bad separator for multiple values")}
+            self.errors[30922] = self.def_class(item = 3092, level = 2, tags = ['value', 'fix:chair'],
+                title = T_f('Local short code can not be internationalized'))
+        self.errors[30923] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Missing international prefix'))
+        self.errors[30924] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Bad international prefix'))
+        self.errors[30925] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Unallowed char in phone number'))
+        self.errors[30926] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
+            title = T_('Bad separator for multiple values'))
 
         country = self.father.config.options.get("country")
 
@@ -102,7 +109,7 @@ class Phone(Plugin):
             if u';' in phone:
                 continue  # Ignore multiple phone numbers
 
-            if self.suffix_separators != None:
+            if self.suffix_separators is not None:
                 phone = phone.split(self.suffix_separators, 1)[0]
 
             if self.values_separators:
@@ -112,46 +119,46 @@ class Phone(Plugin):
                         phone = phone.replace(sep, '; ')
                 if p != phone:
                     phone = phone.replace('  ', ' ')
-                    err.append({"class": 30926, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ').replace(',', ';')}})
+                    err.append({"class": 30926, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ').replace(',', ';')}})
                     continue
 
             phone_test = phone
             for c in '+0123456789 -./()':
                 phone_test = phone_test.replace(c, '')
             if len(phone_test) > 0:
-                err.append({"class": 30925, "subclass": stablehash(tag), "text": T_f(u"Not allowed char \"{0}\" in phone number tag \"{1}\"", phone_test, tag)})
+                err.append({"class": 30925, "subclass": stablehash64(tag), "text": T_f(u"Not allowed char \"{0}\" in phone number tag \"{1}\"", phone_test, tag)})
                 continue
 
             # Before local prefix
             if self.InternationalPrefix:
                 r = self.InternationalPrefix.match(phone)
                 if r:
-                    err.append({"class": 30924, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + r.group(1)}})
+                    err.append({"class": 30924, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + r.group(1)}})
                     continue
 
             if self.InternationalAndLocalPrefix:
                 r = self.InternationalAndLocalPrefix.match(phone)
                 if r:
-                    err.append({"class": 30921, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
+                    err.append({"class": 30921, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
                     continue
 
             if self.MissingInternationalPrefix:
                 r = self.MissingInternationalPrefix.match(phone)
                 if r:
-                    err.append({"class": 30923, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
+                    err.append({"class": 30923, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: "+" + self.code + " " + r.group(1)}})
                     continue
 
             if self.BadShort:
                 r = self.BadShort.match(phone)
                 if r:
-                    err.append({"class": 30922, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: r.group(1)}})
+                    err.append({"class": 30922, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}, "fix": {tag: r.group(1)}})
                     continue
 
             # Last
             if self.Format:
                 r = self.Format.match(phone)
                 if not r:
-                    err.append({"class": 30920, "subclass": stablehash(tag), "text": {'en': u'='.join([tag, phone])}, "text": {"en": phone}})
+                    err.append({"class": 30920, "subclass": stablehash64(tag), "text": {'en': u'='.join([tag, phone])}})
                     continue
 
         return err
@@ -193,7 +200,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
@@ -221,7 +228,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
@@ -245,7 +252,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
@@ -272,7 +279,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err[0]["fix"]["phone"], good)
+            self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)

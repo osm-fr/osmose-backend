@@ -131,8 +131,22 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway", "fix:imagery"], "desc": T_(u"Riverbank without river") }
-        self.classs_change[2] = {"item":"1220", "level": 3, "tag": ["waterway", "fix:imagery"], "desc": T_(u"Unconnected waterway or wrong way flow") }
+        self.classs_change[1] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
+            title = T_('Riverbank without river'),
+            detail = T_(
+'''There is one `waterway=riverbank` but there is no `waterway=river`
+inside it.'''),
+            fix = T_(
+'''After checking, create a "river" line inside te "riverbank"
+polygon.'''))
+        self.classs_change[2] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
+            title = T_('Unconnected waterway or wrong way flow'),
+            detail = T_(
+'''A `waterway=river` or a `waterway=stream` is an oriented way. The
+water must flow into another waterway or meet a `natural=coastline`.'''),
+            fix = T_(
+'''Link the waterway or invert its flow direction.'''))
+
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 

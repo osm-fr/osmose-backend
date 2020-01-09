@@ -62,8 +62,15 @@ class Analyser_OsmBin_Open_Relations(Analyser):
     def analyser(self, osmbin_path="/data/work/osmbin/data/"):
         timestamp = datetime.datetime.now()
         self.error_file.analyser(timestamp, self.analyser_version())
-        self.error_file.classs(1, 6010, 3, ["geom","boundary"], T_(u"Open relation type=boundary"))
-        self.error_file.classs(5, 1170, 2, ["geom"], T_(u"Open relation type=multipolygon"))
+        doc6010 = dict(
+            detail = T_(
+'''A relation that should be a closed polygon and it is not. An issue is
+reported at each end of open part.'''))
+        self.error_file.classs(id = 1, item = 6010, level = 3, tags = ['geom', 'boundary'],
+            title = T_('Open relation type=boundary'),
+            **doc6010)
+        self.error_file.classs(id = 5, item = 1170, level = 2, tags = ['geom'],
+            title = T_('Open relation type=multipolygon'))
         for admin_level in range(0, 15):
             if admin_level <= 6:
                 level = 1
@@ -71,7 +78,9 @@ class Analyser_OsmBin_Open_Relations(Analyser):
                 level = 2
             else:
                 level = 3
-            self.error_file.classs(100 + admin_level, 6010, level, ["geom","boundary"], T_(u"Open relation type=boundary admin_level=%d", admin_level))
+            self.error_file.classs(id = 100 + admin_level, item = 6010, level = level, tags = ['geom', 'boundary'],
+                title = T_f('Open relation type=boundary admin_level={0}', admin_level),
+                **doc6010)
 
         self.classs = {"boundary": 1, "multipolygon": 5}
 

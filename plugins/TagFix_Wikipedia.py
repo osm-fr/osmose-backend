@@ -21,7 +21,7 @@
 
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 import urllib
 import json
 
@@ -31,14 +31,58 @@ class TagFix_Wikipedia(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Not a Wikipedia URL") }
-        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Wikipedia URL instead of article title") }
-        self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing Wikipedia language before article title") }
-        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Use human Wikipedia page title") }
-        self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing primary Wikipedia tag") }
-        self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Invalid wikipedia suffix") }
-        self.errors[30316] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Duplicate wikipedia tag as suffix and prefix") }
-        self.errors[30317] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Same wikipedia topic on other language") }
+
+        detail = T_(
+'''Replace the faulty value by the value displayed at the top of the
+article on Wikipedia, preceded by the language code and the separator ':'
+(in the absence of linguistic code, the item will be searched by default
+on the English Wikipedia, but it is advisable in this case to explicitly
+indicate the lingusitique code "en" if the article mentioned is in
+English, the language codes supported are those editions of Wikipedia in
+some cases they are different from the standard language codes BCP47 used
+a suffixes in other key OSM as "name:[LANG]=*").''')
+        self.errors[30310] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Not a Wikipedia URL'),
+            detail = detail)
+        self.errors[30311] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Wikipedia URL instead of article title'),
+            detail = self.merge_doc(T_(
+'''The tag `wikipedia=*` should include the title of the article
+mentioned and not the URL of the page.'''),
+                detail))
+        self.errors[30312] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Missing Wikipedia language before article title'),
+            detail = self.merge_doc(T_(
+'''The title must be preceded by the term "en:" when the article is on
+the English Wikipedia or the linguistic code of the Wikipedia site.'''),
+                detail),
+            example = {'en':
+'''`wikipedia=en:Paris`'''})
+        self.errors[30313] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Use human Wikipedia page title'),
+            detail = self.merge_doc(T_(
+'''Spaces must not be replaced by underscore but be like in the name of
+the article. Same for accented letters. Letter must be readable.'''),
+                detail),
+            example = {'en':
+'''`wikipedia=ru:Москва` and not
+`wikipedia=ru:%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0` nor
+`wikipedia=http://ru.wikipedia.org/wiki/Москва`.'''})
+        self.errors[30314] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Missing primary Wikipedia tag'),
+            detail = self.merge_doc(T_(
+'''A `wikipedia=*` must be present before using tags
+`wikipedia:LANG=*`.'''),
+                detail))
+        self.errors[30315] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Invalid wikipedia suffix'),
+            detail = detail)
+        self.errors[30316] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Duplicate wikipedia tag as suffix and prefix'),
+            detail = detail)
+        self.errors[30317] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
+            title = T_('Same wikipedia topic on other language'),
+            detail = detail)
 
         import re
         self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
@@ -100,7 +144,7 @@ class TagFix_Wikipedia(Plugin):
                         interwiki = None
 
                 if interwiki and suffix in interwiki and interwiki[suffix] == self.human_readable(tags[tag]):
-                    err.append({"class": 30317, "subclass": stablehash(tag), "fix": [
+                    err.append({"class": 30317, "subclass": stablehash64(tag), "fix": [
                         {'-': [tag]},
                         {'-': [tag], '~': {wikipediaTag: suffix+':'+interwiki[suffix]}}
                     ]})
@@ -120,7 +164,7 @@ class TagFix_Wikipedia(Plugin):
                         value = self.human_readable(tags[tag])
                     missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
-                err.append({"class": 30315, "subclass": stablehash(tag), "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
+                err.append({"class": 30315, "subclass": stablehash64(tag), "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
 
         if missing_primary != []:
             if self.Language:
@@ -145,7 +189,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def check(self, tags, has_error, fix=None):
         errors = self.analyser.analyse(tags)
-        errors_msg = [self.analyser.errors[e["class"]]["desc"]["en"] for e in errors]+[e["text"]["en"] for e in errors if "text" in e]
+        errors_msg = [self.analyser.errors[e["class"]]["title"]["en"] for e in errors]+[e["text"]["en"] for e in errors if "text" in e]
         errors_fix = []
         for e in errors:
             if isinstance(e.get("fix"), list):

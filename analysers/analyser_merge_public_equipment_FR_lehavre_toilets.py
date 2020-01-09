@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 
 class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 7, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Le Havre") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8180, id = 7, level = 3, tags = ['merge', 'public equipment'],
+            title = T_f('{0} toilets not integrated', 'Le Havre'))
+
+        self.init(
             u"https://data.agglo-lehavre.fr/",
             u"Toilettes publiques",
             GeoJSON(Source(attribution = u"Ville du Havre", millesime = "12/2017",

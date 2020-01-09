@@ -81,7 +81,14 @@ class Analyser_Osmosis_Polygon_Overlaps(Analyser_Osmosis):
                     )
 
         for t in self.tags:
-            self.classs[t[0]] = {"item":"1150", "level": 3, "tag": ["landuse", "geom", "fix:imagery"], "desc": T_(u"Area intersection %s", t[1]) }
+            self.classs[t[0]] = self.def_class(item = 1150, level = 3, tags = ['landuse', 'geom', 'fix:imagery'],
+                title = T_f('Area intersection `{0}`', t[1]),
+                detail = T_(
+'''Same surfaces type overlapped (`waterway`, `natural` or
+`landuse`.)'''),
+                fix = T_(
+'''Separate the surface or merge, pay attention on other tags'''))
+
         self.callback10 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):

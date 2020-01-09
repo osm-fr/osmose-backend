@@ -27,13 +27,39 @@ class Administrative_INSEE_Name(Plugin):
     only_for = ["FR", "NC"]
 
     def init(self, logger):
-        """
-        Chargement du dictionnaires des noms de communes de l'INSEE
-        """
         Plugin.init(self, logger)
-        self.errors[800] = { "item": 6030, "level": 1, "tag": ["place", "fix:survey"], "desc": T_(u"Place node without name tag") }
-        self.errors[801] = { "item": 6040, "level": 1, "tag": ["place", "fix:chair"], "desc": T_(u"INSEE code cannot be found in INSEE database") }
-        self.errors[802] = { "item": 6040, "level": 1, "tag": ["place", "fix:chair"], "desc": T_(u"Municipality name does not match INSEE code") }
+        self.errors[800] = self.def_class(item = 6030, level = 1, tags = ['place', 'fix:survey'],
+            title = T_('Place node without name tag'),
+            detail = T_(
+'''The tag `place=*` must always be used in combination with the tag
+`name=*`.'''),
+            fix = T_(
+'''For cities/towns, it is sometimes possible to find the name of the
+village based on the boundary relationship and/or if the ref code if is
+entered.'''),
+            trap = T_(
+'''The tag `place=*` is often misused, see
+[`place`](https://wiki.openstreetmap.org/wiki/Key:place). It should not
+be associated with tags such as `amenity`, `highway`. When the case, the
+tag `place=*` should be removed.'''))
+        doc = dict(
+            detail = T_(
+'''Check of tags `ref:INSEE` and `name` are consistent with the [COG
+database](https://www.insee.fr/fr/information/2560452).'''),
+            fix = T_(
+'''Correct INSEE the value or the name as appropriate.'''),
+            trap = T_(
+'''The names on `place=*` may differ from the COG of INSEE, especially
+for merged city. It also happens in several occasions that local
+authorities are at odds with INSEE. In this case, that's always been a
+priority for the field on OSM.'''))
+
+        self.errors[801] = self.def_class(item = 6040, level = 1, tags = ['place', 'fix:chair'],
+            title = T_('INSEE code cannot be found in INSEE database'),
+            **doc)
+        self.errors[802] = self.def_class(item = 6040, level = 1, tags = ['place', 'fix:chair'],
+            title = T_('Municipality name does not match INSEE code'),
+            **doc)
 
         lst = self.father.ToolsReadList("dictionaries/FR/BddCommunes")
         self.communeNameIndexedByInsee = {}
@@ -70,9 +96,6 @@ class Administrative_INSEE_Name(Plugin):
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
                 return {"class": 800, "subclass": 0, "text": T_(u"Node with place=%s without name", tags[u"place"])}
-            if u"ref:INSEE" in tags:
-                # Si en plus on a un ref:Insee, on verifie la coohérance des noms
-                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"] if u"alt_name" in tags else None)
 
     def relation(self, relation, tags, members):
         if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":
@@ -98,14 +121,6 @@ class Test(TestPluginCommon):
             dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         a = Administrative_INSEE_Name(analysers.analyser_sax.Analyser_Sax(config()))
         a.init(None)
-
-        for t in [{"place": "yes"},
-                  {"place": "yes", "name": "Ici", "ref:INSEE": "90"},
-                  {"place": "yes", "name": u"Bat", "ref:INSEE": "01040"},
-                  {"place": "yes", "name": u"Beréziat", "ref:INSEE": "01040"},
-                  {"place": "yes", "name": u"Béréziàt", "ref:INSEE": "01040"},
-                 ]:
-            self.check_err(a.node(None, t), t)
 
         for t in [{"highway": "primary"},
                   {"place": "yes", "name": "Ici"},

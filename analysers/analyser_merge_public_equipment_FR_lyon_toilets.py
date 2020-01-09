@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 
 class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 3, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Lyon") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8180, id = 3, level = 3, tags = ['merge', 'public equipment'],
+            title = T_f('{0} toilets not integrated', 'Lyon'))
+
+        self.init(
             u"https://data.grandlyon.com/equipements/toilettes-publiques-sur-le-territoire-du-grand-lyon/",
             u"Toilettes publiques",
             GeoJSON(Source(attribution = u"Métropole de Lyon", millesime = "12/2017",

@@ -26,7 +26,12 @@ class TagRemove_Roundabout(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[101] = { "item": 4020, "level": 3, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Unneeded tag on junction=roundabout") }
+        self.errors[101] = self.def_class(item = 4020, level = 3, tags = ['highway', 'roundabout', 'fix:chair'],
+            title = T_("Unneeded tag on junction=roundabout"),
+            detail = T_(
+'''The tags `oneway=*` and `ref=*` are not necessary on the roundabouts.
+The tag `name=*` must be present if this is the name of the roundabout
+and not a road connected, same thing for `ref=*`.'''))
 
     def way(self, data, tags, nds):
         if tags.get("junction") == "roundabout" and u"oneway" in tags:

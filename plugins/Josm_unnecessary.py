@@ -40,6 +40,7 @@ class Josm_unnecessary(Plugin):
         self.re_577104db = re.compile(r'^(?i)(kiosk)$')
         self.re_5b729ae4 = re.compile(r'^(?i)(toilets?)$')
         self.re_644827a8 = re.compile(r'^(?i)(jalan)$')
+        self.re_69efe08d = re.compile(r'^(gpx|gpxx|gpxd):')
         self.re_6d34128b = re.compile(r'^(?i)(АГЗС|АЗС)$')
         self.re_702b1034 = re.compile(r'^(?i)(path)$')
         self.re_73411d88 = re.compile(r'^(?i)(mosque|cami|masjid|مسجد)$')
@@ -374,6 +375,25 @@ class Josm_unnecessary(Plugin):
                 # group:tr("descriptive name")
                 # throwWarning:tr("{0}","{0.tag}")
                 err.append({'class': 9010003, 'subclass': 1173941116, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
+        # *[/^(gpx|gpxx|gpxd):/]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_69efe08d))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} should not be uploaded","{0.key}")
+                # fixRemove:"{0.key}"
+                # assertMatch:"node gpx:time=2018-01-01T12:00:00Z"
+                # assertMatch:"node gpxd:color=#FF0000"
+                # assertNoMatch:"node source=gpx:foo"
+                err.append({'class': 9010001, 'subclass': 764820177, 'text': mapcss.tr(u'{0} should not be uploaded', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, u'{0.key}')])
+                }})
 
         return err
 
@@ -748,6 +768,22 @@ class Josm_unnecessary(Plugin):
                 # assertMatch:"way name=house building=yes"
                 err.append({'class': 9010003, 'subclass': 1173941116, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
+        # *[/^(gpx|gpxx|gpxd):/]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_69efe08d))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} should not be uploaded","{0.key}")
+                # fixRemove:"{0.key}"
+                err.append({'class': 9010001, 'subclass': 764820177, 'text': mapcss.tr(u'{0} should not be uploaded', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, u'{0.key}')])
+                }})
+
         return err
 
     def relation(self, data, tags, members):
@@ -1055,6 +1091,22 @@ class Josm_unnecessary(Plugin):
                 # throwWarning:tr("{0}","{0.tag}")
                 err.append({'class': 9010003, 'subclass': 1173941116, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
+        # *[/^(gpx|gpxx|gpxd):/]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_69efe08d))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} should not be uploaded","{0.key}")
+                # fixRemove:"{0.key}"
+                err.append({'class': 9010001, 'subclass': 764820177, 'text': mapcss.tr(u'{0} should not be uploaded', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, u'{0.key}')])
+                }})
+
         return err
 
 
@@ -1079,6 +1131,9 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'parking'}), expected={'class': 9010003, 'subclass': 14385755})
         self.check_not_err(n.node(data, {u'name': u'shop', u'shop': u'no'}), expected={'class': 9010003, 'subclass': 14385755})
         self.check_err(n.node(data, {u'name': u'shop', u'shop': u'whatever'}), expected={'class': 9010003, 'subclass': 14385755})
+        self.check_err(n.node(data, {u'gpx:time': u'2018-01-01T12:00:00Z'}), expected={'class': 9010001, 'subclass': 764820177})
+        self.check_err(n.node(data, {u'gpxd:color': u'#FF0000'}), expected={'class': 9010001, 'subclass': 764820177})
+        self.check_not_err(n.node(data, {u'source': u'gpx:foo'}), expected={'class': 9010001, 'subclass': 764820177})
         self.check_err(n.way(data, {u'bridge': u'no'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
         self.check_not_err(n.way(data, {u'access': u'no', u'highway': u'motorway', u'motor_vehicle': u'yes'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
         self.check_err(n.way(data, {u'highway': u'motorway', u'motor_vehicle': u'yes'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})

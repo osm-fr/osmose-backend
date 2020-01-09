@@ -21,7 +21,7 @@
 
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash, stablehash64
 import re
 from collections import defaultdict
 
@@ -62,7 +62,11 @@ class TagWatchFrViPofm(Plugin):
                     c0 = res[2].strip()
                     tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
                     c = stablehash(c0)
-                    self.errors[c] = { "item": 3030, "level": 2, "tag": tags, "desc": {"en": c0} }
+                    self.errors[c] = self.def_class(item = 3030, level = 2, tags = tags,
+                        title = {'en': c0},
+                        detail = T_(
+'''Simple and frequent errors, the list is available
+[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner).'''))
                     if u"=" in res[0]:
                         k = res[0].split(u"=")[0].strip()
                         v = res[0].split(u"=")[1].strip()
@@ -87,27 +91,27 @@ class TagWatchFrViPofm(Plugin):
         err = []
         for k in tags:
             if k in self._update_ks:
-                err.append({"class": self._update_ks[k][1], "subclass": stablehash(u"%s|%s" % (self._update_ks, k)), "text": T_f(u"tag key: {0} => {1} (rule ks)", k, self._update_ks[k][0])})
+                err.append({"class": self._update_ks[k][1], "subclass": stablehash64(u"%s|%s" % (self._update_ks, k)), "text": T_f(u"tag key: {0} => {1} (rule ks)", k, self._update_ks[k][0])})
             if k in self._update_ks_vs and tags[k] in self._update_ks_vs[k]:
-                err.append({"class": self._update_ks_vs[k][tags[k]][1], "subclass": stablehash(u"%s|%s" % (self._update_ks, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vs)", k, tags[k],self._update_ks_vs[k][tags[k]][0])})
+                err.append({"class": self._update_ks_vs[k][tags[k]][1], "subclass": stablehash64(u"%s|%s" % (self._update_ks, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vs)", k, tags[k],self._update_ks_vs[k][tags[k]][0])})
             if k in self._update_ks_vr:
                 for v in self._update_ks_vr[k]:
                     if v.match(tags[k]):
-                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": stablehash(u"%s|%s" % (v, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
+                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": stablehash64(u"%s|%s" % (v, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
 
         for kk in tags:
             for k in self._update_kr:
                 if k.match(kk):
-                    err.append({"class": self._update_kr[k][1], "subclass": stablehash(u"%s|%s" % (kk, k)), "text": T_f(u"tag key: {0} => {1} (rule kr)", kk, self._update_kr[k][0])})
+                    err.append({"class": self._update_kr[k][1], "subclass": stablehash64(u"%s|%s" % (kk, k)), "text": T_f(u"tag key: {0} => {1} (rule kr)", kk, self._update_kr[k][0])})
             for k in self._update_kr_vs:
                 if k.match(kk):
                     if tags[kk] in self._update_kr_vs[k]:
-                        err.append({"class": self._update_kr_vs[k][tags[kk]][1], "subclass": stablehash(u"%s|%s" % (kk, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule kr_vs)", kk, tags[kk], self._update_kr_vs[k][tags[kk]][0])})
+                        err.append({"class": self._update_kr_vs[k][tags[kk]][1], "subclass": stablehash64(u"%s|%s" % (kk, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule kr_vs)", kk, tags[kk], self._update_kr_vs[k][tags[kk]][0])})
             for k in self._update_kr_vr:
                 if k.match(kk):
                     for v in self._update_kr_vr[k]:
                         if v.match(tags[kk]):
-                            err.append({"class": self._update_kr_vr[k][v][1], "subclass": stablehash(u"%s|%s" % (kk, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule kr_vr)", kk, tags[kk], self._update_kr_vr[k][v][0])})
+                            err.append({"class": self._update_kr_vr[k][v][1], "subclass": stablehash64(u"%s|%s" % (kk, k)), "text": T_f(u"tag value: {0}={1} => {2} (rule kr_vr)", kk, tags[kk], self._update_kr_vr[k][v][0])})
         return err
 
     def way(self, data, tags, nds):

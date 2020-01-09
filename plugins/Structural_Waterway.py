@@ -25,7 +25,12 @@ class Structural_Waterway(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[12200] = { "item": 1220, "level": 2, "tag": ["geom", "waterway", "fix:imagery"], "desc": T_(u"Closed waterway") }
+        self.errors[12200] = self.def_class(item = 1220, level = 2, tags = ['geom', 'waterway', 'fix:imagery'],
+            title = T_('Closed waterway'),
+            detail = T_(
+'''A waterway cannot flow in closed loop.'''),
+            fix = T_(
+'''It is probably a river bank `waterway=riverbank`.'''))
 
     def way(self, data, tags, nds):
         if "waterway" not in tags or tags["waterway"] in ("riverbank", "dock", "dam", "boatyard", "lock", "reflecting_pool", "offshore_field", "fuel"):

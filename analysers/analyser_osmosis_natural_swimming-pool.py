@@ -78,7 +78,20 @@ class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3080", "level": 3, "tag": ["tag", "fix:imagery"], "desc": T_(u"Swimming-pool, reservoir, pond as natural=water") }
+        self.classs[1] = self.def_class(item = 3080, level = 3, tags = ['tag', 'fix:imagery'],
+            title = T_('Swimming-pool, reservoir, pond as natural=water'),
+            detail = T_(
+'''When importing layer of water from cadastre, the tag water pools have
+not been corrected.'''),
+            fix = T_(
+'''Change tags `natural=water` in `leisure=swimming_pool` +
+`access=private` for a private pool or `amenity=swimming_pool` for a
+public pool. There is also other kinds of smal water place like
+`landuse=reservoir`, `landuse=basin` or `landuse=pond`.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)
+
+Wrong tag for private swimming pool.'''))
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[

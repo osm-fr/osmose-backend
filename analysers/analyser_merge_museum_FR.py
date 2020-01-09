@@ -25,11 +25,15 @@ import re
 
 class Analyser_Merge_Museum_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8010, id = 31, level = 3, tags = ['merge'],
+            title = T_('Museum not integrated'))
+        self.possible_merge   = self.def_class(item = 8011, id = 33, level = 3, tags = ['merge'],
+            title = T_('Museum, integration suggestion'))
 
-        self.missing_official = {"item":"8010", "class": 31, "level": 3, "tag": ["merge"], "desc": T_(u"Museum not integrated") }
-        self.possible_merge   = {"item":"8011", "class": 33, "level": 3, "tag": ["merge"], "desc": T_(u"Museum, integration suggestion") }
+        re_phone = re.compile(u"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$")
 
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"https://www.data.gouv.fr/fr/datasets/musees-de-france-base-museofile/",
             u"Musées de France : base Muséofile",
             CSV(Source(attribution = u"Ministère de la Culture - Muséofile", millesime = "09/2019",
@@ -51,7 +55,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     mapping1 = {u"ref:FR:museofile": "Identifiant"},
                     mapping2 = {
                         "website": lambda res: None if not res["URL"] else res["URL"] if res["URL"].startswith('http') else 'http://' + res["URL"],
-                        "phone": lambda res: "+33 " + res[u"Téléphone"][1:] if re.match(r"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$", res["Téléphone"]) else None,
-                        "name": lambda res: res["Nom usage"][0].upper() + res["Nom usage"][1:] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:],
+                        "phone": lambda res: u"+33 " + res[u"Téléphone"][1:] if res[u"Téléphone"] and re_phone.match(res[u"Téléphone"]) else None,
+                        "name": lambda res: res["Nom usage"][0].upper() + res["Nom usage"][1:] if res["Nom usage"] else res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom officiel"] else None,
                         "official_name" : lambda res: res["Nom officiel"][0].upper() + res["Nom officiel"][1:] if res["Nom usage"] and res["Nom officiel"].lower() != res["Nom usage"].lower() else None},
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["Adresse"], fields["Code Postal"], fields["Ville"]]))} )))

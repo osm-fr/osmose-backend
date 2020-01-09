@@ -9,3 +9,4 @@ lark-parser >=  0.6, < 0.7
 requests
 backports.csv
 transporthours
+pyproj

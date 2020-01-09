@@ -28,7 +28,10 @@ class Name_UpperCaseNumber(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[905] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Abbreviation of number should be in lowercase") }
+        self.errors[905] = self.def_class(item = 5010, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Abbreviation of number should be in lowercase'),
+            detail = T_(
+'''Number written in capital letters: "N°" in place of "n°".'''))
 
         import re
         self.ReNUpperCase  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")

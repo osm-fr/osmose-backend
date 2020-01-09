@@ -81,7 +81,8 @@ class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
         self.alphabet = 'language' in config.options and languages.languages_are_alphabets(config.options['language'])
 
         if self.alphabet:
-            self.classs_change[1] = {"item":"5080", "level": 1, "tag": ["highway", "name"], "desc": T_(u"Close similar name") }
+            self.classs_change[1] = self.def_class(item = 5080, level = 1, tags = ['highway', 'name'],
+                title = T_('Close similar name'))
 
     def analyser_osmosis_full(self):
         if self.alphabet:

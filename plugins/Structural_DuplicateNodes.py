@@ -29,7 +29,28 @@ class Structural_DuplicateNodes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[103] = { "item": 1010, "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated nodes") }
+        self.errors[103] = self.def_class(item = 1010, level = 2, tags = ['geom', 'fix:chair'],
+            title = T_('Duplicated nodes'),
+            detail = T_(
+'''A path passes several times by the same node.'''),
+            fix = T_(
+'''There are several types of issues:
+
+* A way that makes one or more loops; the way must be split into several
+sections.
+* A path that goes back on itself (often at one end); the path must be
+cut to isolate the wrong section and recreated properly afterwards.
+
+There are certainly many other cases. In general, it is better to make
+several roads / areas than a single complex one so that tools working
+with OSM data can function properly.'''),
+            trap = T_(
+'''These errors require a good command of your editing tool. Some
+corrections are not necessarily intuitive.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)
+
+Double polygon connected by a string to remove.'''))
 
     def way(self, data, tags, nds):
         c = {}

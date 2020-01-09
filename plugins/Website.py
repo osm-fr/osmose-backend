@@ -20,7 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 
 
 class Website(Plugin):
@@ -35,8 +35,10 @@ class Website(Plugin):
         # From RFC 1738 paragraph 2.1
         self.HasScheme = re.compile(r"^[a-zA-Z0-9.+-]+://")
 
-        self.errors[30931] = {"item": 3093, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"The URL contains a space")}
-        self.errors[30932] = {"item": 3093, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"The URL does not have a valid scheme")}
+        self.errors[30931] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('The URL contains a space'))
+        self.errors[30932] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('The URL does not have a valid scheme'))
 
     def _bad_url(self, tag, tags):
         return T_("Bad URL %(k)s=%(v)s", {"k": tag, "v": tags[tag]})
@@ -54,7 +56,7 @@ class Website(Plugin):
                 if ' ' in url:
                     # We don't know how to fix such a URL: Remove everything
                     # after the space? Encode the space?
-                    err.append({"class": 30931, "subclass": stablehash(tag), "text": self._bad_url(tag, tags)})
+                    err.append({"class": 30931, "subclass": stablehash64(tag), "text": self._bad_url(tag, tags)})
                     continue
                 stripped = True
 
@@ -67,10 +69,10 @@ class Website(Plugin):
             elif ':' in url or '//' in url:
                 # The URL already contains some sort of broken scheme
                 # so it's too complex for us to fix
-                err.append({"class": 30932, "subclass": stablehash(tag), "text": self._bad_url(tag, tags)})
+                err.append({"class": 30932, "subclass": stablehash64(tag), "text": self._bad_url(tag, tags)})
                 continue
 
-            err.append({"class": 30932, "subclass": stablehash(tag), "fix": [
+            err.append({"class": 30932, "subclass": stablehash64(tag), "fix": [
                 {tag: "https://" + url},
                 {tag: "http://" + url}
             ]})
@@ -102,8 +104,8 @@ class Test(TestPluginCommon):
             # Check the bad url's error and fix
             err = p.node(None, {"website": bad})
             self.check_err(err, ("website='%s'" % bad))
-            self.assertEquals(err[0]["fix"][0]["website"], "https://%s" % test_url)
-            self.assertEquals(err[0]["fix"][1]["website"], "http://%s" % test_url)
+            self.assertEqual(err[0]["fix"][0]["website"], "https://%s" % test_url)
+            self.assertEqual(err[0]["fix"][1]["website"], "http://%s" % test_url)
 
         # Verify we get no error for other correct URLs
         for good in (u"ftp://%s" % test_url,

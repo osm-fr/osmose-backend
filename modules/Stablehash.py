@@ -22,13 +22,22 @@
 import hashlib
 
 
-def stablehash(s):
+def stablehash32(s):
     """
     Compute a stable positive integer hash on 32bits
     @param s: a string
     """
-    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
+    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % (2**31 - 1)) ## Keep -1 for retro compatibility
 
+def stablehash64(s):
+    """
+    Compute a stable positive integer hash on 64bits
+    @param s: a string
+    """
+    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2**63)
+
+def stablehash(s):
+    return stablehash32(s)
 
 def hexastablehash(s):
     """
@@ -46,5 +55,5 @@ class Test(unittest.TestCase):
         h1 = stablehash( "toto")
         h2 = stablehash(u"toto")
         h3 = stablehash(u"é")
-        self.assertEquals(h1, h2)
-        self.assertNotEquals(h1, h3)
+        self.assertEqual(h1, h2)
+        self.assertNotEqual(h1, h3)

@@ -26,8 +26,13 @@ class TagRemove_Fixme(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[40610] = { "item": 4061, "level": 3, "tag": ["fixme", "fix:chair"], "desc": T_(u"Object need review") }
-        self.errors[40611] = { "item": 4061, "level": 2, "tag": ["fixme", "fix:chair", "highway"], "desc": T_(u"Highway classification need review") }
+        self.errors[40610] = self.def_class(item = 4061, level = 3, tags = ['fixme', 'fix:chair'],
+            title = T_('Object need review'))
+        self.errors[40611] = self.def_class(item = 4061, level = 2, tags = ['fixme', 'fix:chair', 'highway'],
+            title = T_('Highway classification need review'),
+            detail = T_(
+'''`highway=road` has been used, choose a correct value, such as
+`highway=unclassified`.'''))
 
     def node(self, data, tags):
         if "fixme" in tags or "FIXME" in tags:

@@ -21,7 +21,6 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
-from .modules.Polygon import Polygon
 
 
 sql10 = """
@@ -109,7 +108,10 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[4] = {"item":"1210", "level": 1, "tag": ["highway"], "desc": T_(u"Small highway group apart from the main network or with insufficient access upstream") }
+        self.classs[4] = self.def_class(item = 1210, level = 1, tags = ['highway'],
+            title = T_('Small highway group apart from the main network or with insufficient access upstream'),
+            detail = T_(
+'''The end of the way is not connected to another way.'''))
         self.callback10 = lambda res: {"class":4, "subclass":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):

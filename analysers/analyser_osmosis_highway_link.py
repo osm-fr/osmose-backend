@@ -127,9 +127,24 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1110", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad *_link highway") }
-        self.classs_change[2] = {"item":"1110", "level": 1, "tag": ["highway", "fix:imagery"], "desc": T_(u"Highway too long for a *_link") }
-        self.classs[3] = {"item":"1110", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad *_link highway") }
+        self.classs[1] = self.def_class(item = 1110, level = 1, tags = ['highway', 'fix:chair'],
+            title = T_('Bad *_link highway'),
+            detail = T_(
+'''Check the consistency of highway type for
+`highway=trunk_link|primary_link|secondary_link`.'''),
+            fix = T_(
+'''Change classification of `*_link` to match the way which is
+connected.'''),
+            example = T_(
+'''![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.png)
+
+`highway=trunk_link` linking `highway=primary`.'''))
+        self.classs_change[2] = self.def_class(item = 1110, level = 1, tags = ['highway', 'fix:imagery'],
+            title = T_('Highway too long for a *_link'),
+            fix = T_(
+'''Check if the highway is a `*_link`, else remove `*_link`. Be sure to check both ends of the way.'''))
+        self.classs[3] = self.def_class(item = 1110, level = 1, tags = ['highway', 'fix:chair'],
+            title = T_('Bad *_link highway'))
         self.callback40 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):

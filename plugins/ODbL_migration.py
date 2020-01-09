@@ -28,7 +28,14 @@ class ODbL_migration(Plugin):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
             return False
-        self.errors[1] = { "item": 7060, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"ODbL migration damage") }
+        self.errors[1] = self.def_class(item = 7060, level = 3, tags = ['source', 'fix:chair'],
+            title = T_('ODbL migration damage'),
+            detail = T_(
+'''The last contributor to the object is the ODbL migration robot. The
+result of the edition of this robot is a degradation of the object to
+make it compatible with ODbL.'''),
+            fix = T_(
+'''Complete the object and check immediate surroundings.'''))
 
     def node(self, data, tags):
         if data.get('user') == 'OSMF Redaction Account' or data.get('uid') == 722137:

@@ -25,8 +25,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 1, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking not integrated") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
+            title = T_('CAPP parking not integrated'))
+
+        self.init(
             u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
             u"Parkings sur la CAPP",
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
@@ -54,8 +57,11 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
 
 class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 11, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled not integrated") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8130, id = 11, level = 3, tags = ['merge', 'parking'],
+            title = T_('CAPP parking disabled not integrated'))
+
+        self.init(
             u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
             u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",

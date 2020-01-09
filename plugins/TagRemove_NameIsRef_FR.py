@@ -29,7 +29,13 @@ class TagRemove_NameIsRef_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[904] = { "item": 4040, "level": 1, "tag": ["name", "highway", "ref", "fix:chair"], "desc": T_(u"Highway reference in name tag") }
+        self.errors[904] = self.def_class(item = 4040, level = 1, tags = ['name', 'highway', 'ref', 'fix:chair'],
+            title = T_('Highway reference in name tag'),
+            detail = T_(
+'''Reference road (eg. D 73) is in the tag `name=*` and not in the tag
+`ref=*`.'''),
+            fix = T_(
+'''Transfer the value from the tag `name=*` to the tag `ref=*`.'''))
 
         #self.ReRefRoute = re.compile(u"^[NDCEAM] ?[0-9]+(| ?[a-z]| ?bis)$")
         self.ReRefRoute1 = re.compile(u"(?:^|.*[^RV] +)([RV]?([NDCEAM] ?[0-9]+[^ ]*)).*")
@@ -83,14 +89,14 @@ class Test(TestPluginCommon):
 
             if f:
                 fix1 = rdp["fix"]["~"]["name"]
-                self.assertEquals(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+                self.assertEqual(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
             elif gen_err and r:
                 fix1 = rdp["fix"]["-"]
-                self.assertEquals(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+                self.assertEqual(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
 
             if r:
                 fix2 = rdp["fix"]["+"]["ref"]
-                self.assertEquals(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
+                self.assertEqual(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
 
             assert not a.way(None, {"name": n, "highway": "H", "ref": "N10"}, None)
             assert not a.way(None, {"name": n}, None)

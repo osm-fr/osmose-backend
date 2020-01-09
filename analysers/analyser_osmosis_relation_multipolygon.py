@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -195,18 +195,40 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1170", "level": 3, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Double inner polygon") }
-        self.classs_change[2] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon nature with members nature") }
-        self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon member nature") }
-        self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon, part of multipolygon or not having area tag") }
+        self.classs_change[1] = self.def_class(item = 1170, level = 3, tags = ['relation', 'fix:chair', 'geom'],
+            title = T_('Double inner polygon'),
+            detail = T_(
+'''The geometry of the inner of the multipolygon is duplicated. One in
+relation without tag and another with tags not part of the relation.'''),
+            fix = T_(
+'''Remove the ring without tag. Add in the relation the one with the tags
+as `inner` role.'''))
+        self.classs_change[2] = self.def_class(item = 1170, level = 2, tags = ['relation', 'fix:chair', 'multipolygon'],
+            title = T_('Inconsistant multipolygon nature with members nature'),
+            detail = T_(
+'''Multipolygon defines a nature that is different from that specified in
+the outers roles.'''))
+        self.classs_change[3] = self.def_class(item = 1170, level = 2, tags = ['relation', 'fix:chair', 'multipolygon'],
+            title = T_('Inconsistant multipolygon member nature'),
+            detail = T_(
+'''Multipolygon does not define nature, several found on the outer role
+members.'''))
+        self.classs_change[4] = self.def_class(item = 1170, level = 1, tags = ['relation', 'fix:chair', 'geom'],
+            title = T_('Should be polygon, part of multipolygon or not having area tag'),
+            detail = T_(
+'''The nature of the way indicates that it is a surface, the way would be
+a polygon or a part of a multipolygon as outer role.'''),
+            fix = T_(
+'''Close the way to make a polygon or add to a multipolygon.'''))
+
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.way_full, self.way_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "subclass":stablehash(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
+        self.callback20 = lambda res: {"class":2, "subclass":stablehash64(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s,%s)"%k, filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
         }
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.relation_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s)"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
-        self.callback40 = lambda res: {"class":4, "subclass":stablehash(res[9]), "data":[self.way_full, self.positionAsText],
+        self.callback40 = lambda res: {"class":4, "subclass":stablehash64(res[9]), "data":[self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 

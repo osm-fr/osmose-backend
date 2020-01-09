@@ -33,7 +33,10 @@ class Name_UpperCase(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[803] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Name with uppercase") }
+        self.errors[803] = self.def_class(item = 5010, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Name with uppercase'),
+            detail = T_(
+'''Word in capital letters.'''))
         self.UpperTitleCase = re.compile(u".*[\p{Lu}\p{Lt}]{5,}")
         self.RomanNumber = re.compile(u".*[IVXCDLM]{5,}")
 

@@ -26,7 +26,8 @@ class Structural_Restriction(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31801] = {"item": 3180, "level": 2, "tag": ["relation", "restriction"], "desc": T_(u"Useless turn restriction") }
+        self.errors[31801] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction'],
+            title = T_('Useless turn restriction'))
         self.Country = self.father.config.options.get("country")
 
     def relation(self, data, tags, members):

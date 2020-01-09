@@ -25,9 +25,13 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 
 class Analyser_Merge_Tourism_FR_Aquitaine_information(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 21, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Aquitaine tourism information not integrated") }
-        self.possible_merge   = {"item":"8011", "class": 23, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Aquitaine tourism information, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger,
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8010, id = 21, level = 3, tags = ['merge', 'tourism'],
+            title = T_('Aquitaine tourism information not integrated'))
+        self.possible_merge   = self.def_class(item = 8011, id = 23, level = 3, tags = ['merge', 'tourism'],
+            title = T_('Aquitaine tourism information, integration suggestion'))
+
+        self.init(
             u"http://catalogue.datalocale.fr/dataset/liste-points-infos-tourisme-aquitaine",
             u"Liste des points infos tourisme en Aquitaine ",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",

@@ -37,9 +37,12 @@ class Name_Local(Plugin):
             # more than one language
             return False # Checked by Name_Multilingual
 
-        self.errors[50601] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Default and local language name not the same") }
-        self.errors[50602] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Local language name without default name") }
-        self.errors[50603] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Language name without default name") }
+        self.errors[50601] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Default and local language name not the same'))
+        self.errors[50602] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Local language name without default name'))
+        self.errors[50603] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
+            title = T_('Language name without default name'))
 
         self.Language = self.father.config.options.get("language")
         self.LocalName = re.compile("^name:[a-z][a-z](_.*$|$)")

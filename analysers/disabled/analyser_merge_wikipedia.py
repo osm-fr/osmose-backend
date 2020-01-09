@@ -324,8 +324,9 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
     """
 
     def __init__(self, config, classs, desc, wikiTypes, wikiCountry, wikiLang, starts, osmTags, osmTypes, conflationDistance, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
         self.possible_merge   = {"item":"8101", "class": classs, "level": 3, "tag": ["merge", "wikipedia"], "desc":desc }
-        Analyser_Merge.__init__(self, config, logger,
+        self.init(
             u"http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/",
             "Wikipedia-World",
             CSV(Source(file = "wikipedia_point_fr.csv.bz2"),
@@ -333,7 +334,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             Load(("ST_X(the_geom)",), ("ST_Y(the_geom)",),
                 create = self.create_table,
                 select = {"lang": wikiLang, "Country": wikiCountry},
-                where = (lambda res: not res["titel"].startswith("Liste ")) if starts == None else
+                where = (lambda res: not res["titel"].startswith("Liste ")) if starts is None else
                     (lambda res: res["titel"].startswith(starts)) ),
             Mapping(
                 select = Select(
@@ -345,7 +346,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
                     mapping1 = {"wikipedia": lambda fields: fields["lang"]+":"+fields["titel"]},
                     text = lambda tags, fields: {fields["lang"]: fields["titel"]} )))
 
-        if wikiTypes != None:
+        if wikiTypes is not None:
             self.load.select["types"] = wikiTypes # http://en.wikipedia.org/wiki/Wikipedia:GEO#type:T
 
         if isinstance(osmTags, dict):

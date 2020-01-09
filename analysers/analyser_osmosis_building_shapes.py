@@ -61,8 +61,16 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         if "proj" in self.config.options:
-            self.classs_change[1] = {"item":"7011", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Special building (round)") }
-            self.classs_change[2] = {"item":"7011", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Special building (large)") }
+            detail = T_(
+'''The form of a building is characteristic and as such would be
+tagged.''')
+            self.classs_change[1] = self.def_class(item = 7011, level = 3, tags = ['building', 'fix:imagery'],
+                title = T_('Special building (round)'),
+                detail = detail)
+            self.classs_change[2] = self.def_class(item = 7011, level = 3, tags = ['building', 'fix:imagery'],
+                title = T_('Special building (large)'),
+                detail = detail)
+
             self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
                 {"+":{"man_made":"water_tower"}},
                 {"+":{"man_made":"reservoir_covered"}},

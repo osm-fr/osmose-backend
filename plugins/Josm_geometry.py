@@ -474,6 +474,7 @@ class Josm_geometry(Plugin):
         err = []
 
 
+        # way[line_attachment]
         # way[emergency=fire_hydrant]
         # way[entrance]
         # way[door]
@@ -499,8 +500,12 @@ class Josm_geometry(Plugin):
         # way[highway=turning_loop]
         # way[highway=turning_circle]
         # way[highway=motorway_junction]
-        if (u'aeroway' in keys) or (u'amenity' in keys) or (u'door' in keys) or (u'emergency' in keys) or (u'entrance' in keys) or (u'highway' in keys) or (u'man_made' in keys) or (u'natural' in keys) or (u'power' in keys) or (u'railway' in keys):
+        if (u'aeroway' in keys) or (u'amenity' in keys) or (u'door' in keys) or (u'emergency' in keys) or (u'entrance' in keys) or (u'highway' in keys) or (u'line_attachment' in keys) or (u'man_made' in keys) or (u'natural' in keys) or (u'power' in keys) or (u'railway' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'line_attachment'))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == mapcss._value_capture(capture_tags, 0, u'fire_hydrant'))
@@ -543,7 +548,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'tower') and nds[0] == nds[-1])
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'tower') and nds[0] != nds[-1])
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -603,7 +608,7 @@ class Josm_geometry(Plugin):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
-                err.append({'class': 9003007, 'subclass': 1144340551, 'text': mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9003007, 'subclass': 1746469597, 'text': mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # way[restriction][restriction=~/^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$/]
         # way[type=multipolygon]
@@ -636,7 +641,7 @@ class Josm_geometry(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'island') and nds[0] == nds[-1])
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'island') and nds[0] != nds[-1])
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Way with {0} not closed.","{0.tag}")
