@@ -61,6 +61,8 @@ class TagRemove_Incompatibles(Plugin):
             ],
             'amenity': [
                 ['stables', 'leisure', 'horse_riding'],
+                ['drinking_water', 'natural', 'spring'],
+                ['drinking_water', 'man_made', 'water_tap'],
             ],
         }.items()
 
