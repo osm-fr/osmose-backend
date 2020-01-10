@@ -56,7 +56,7 @@ class Analyser_Osmosis_Relation_Enforcement(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = self.def_class(item = 1280, level = 3, tags = ['highway', 'fix:chair'],
             title = T_('Disconnected speed camera'),
-            fix = T_('Map as a node on the highway or use an enforcement relation'))
+            fix = T_('Speed camera should be mapped as a node on the highway or use an enforcement relation.'))
 
     def analyser_osmosis_common(self):
         self.run(sql00, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]})
