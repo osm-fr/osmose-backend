@@ -75,7 +75,7 @@ class Source_Mapillary(Source):
         b = b + 1
         self.logger.log('Batch {0}/{1}: {2}'.format(b, ceil(len(traffic_signs) / 10.0), ','.join(traffic_signs_)))
         for bbox in bboxes:
-          url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers={layer}&per_page=1000&start_time={start_time}&values={values}'.format(bbox=','.join(map(str, bbox)), layer=self.layer, client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time=start_time, values=','.join(traffic_signs_))
+          url = 'https://a.mapillary.com/v3/map_features?bbox={bbox}&client_id={client_id}&layers={layer}&per_page=1000&start_time={start_time}&values={values}&sort_by=key'.format(bbox=','.join(map(str, bbox)), layer=self.layer, client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time=start_time, values=','.join(traffic_signs_))
           self.logger.log(url)
           with open(tmp_file, 'a') as csvfile:
             writer = csv.writer(csvfile)
