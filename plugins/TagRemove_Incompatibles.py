@@ -58,6 +58,7 @@ class TagRemove_Incompatibles(Plugin):
             ],
             'natural': [
                 ['water', 'leisure', 'marina'],
+                ['water', 'leisure', 'swimming_area'],
             ],
             'amenity': [
                 ['stables', 'leisure', 'horse_riding'],
