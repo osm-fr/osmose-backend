@@ -283,3 +283,30 @@ class Test(TestPluginCommon):
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+
+    def test_IT(self):
+        p = Phone(None)
+        class _config:
+            options = {"country": "IT", "phone_code": "39", "phone_len": [6, 11], "phone_len_short": [2, 3, 4], "phone_international": "00", "phone_format": r"^[+]%s[- ]*[038][0-9]+(?:[- ][0-9]+)?(?:(?:[- ][0-9]+)|$)$"}
+        class father:
+            config = _config()
+        p.father = father()
+        p.init(None)
+
+        for (bad, good) in (
+            (u"800 123", u"+39 800 123"),
+            (u"0212345", u"+39 0212345"),
+            (u"02 12345", u"+39 02 12345"),
+            (u"0171 1234567", u"+39 0171 1234567"),
+            (u"01711234567", u"+39 01711234567"),
+            (u"003901711234567", u"+3901711234567"),
+            (u"333 123456", u"+39 333 123456"),
+            (u"333 123 4567", u"+39 333 123 4567"),
+        ):
+            # Check the bad number's error and fix
+            err = p.node(None, {"phone": bad})
+            self.check_err(err, ("phone='%s'" % bad))
+            self.assertEqual(err[0]["fix"]["phone"], good)
+
+            # The correct number does not need fixing
+            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
