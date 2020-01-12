@@ -51,7 +51,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
             fix = T_('Map the corresponding object if the imagery is up-to-date and object detection is correct.'))
 
         self.init(
-            "www.mapillary.com",
+            "https://www.mapillary.com",
             u"Street Objects from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
             Load("X", "Y",

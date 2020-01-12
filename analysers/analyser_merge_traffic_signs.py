@@ -78,7 +78,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
             fix = T_('Add the appropriate highway tagging if the imagery is up-to-date and sign detection is correct.'))
 
         self.init(
-            "www.mapillary.com",
+            "https://www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
             Load("X", "Y",
