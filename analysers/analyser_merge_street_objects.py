@@ -67,6 +67,6 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
                     mapping1 = {
                       "mapillary": "image_key",
                       "survey:date": lambda res: res["last_seen_at"][0:10]},
-                text = lambda tags, fields: {"en": (
-                    "Observed between %s and %s" % (fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
-                    "Observed on %s" % (fields["first_seen_at"][0:10],))} )))
+                text = lambda tags, fields:
+                    T_f('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
+                    T_f('Observed on {0}', fields["first_seen_at"][0:10]) )))
