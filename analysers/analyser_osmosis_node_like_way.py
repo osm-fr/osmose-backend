@@ -52,7 +52,7 @@ FROM
         JOIN {1}nodes AS nodes ON
             nodes.id = way_nodes.node_id AND
             nodes.tags != ''::hstore AND
-            nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
+            nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made'] AND
             NOT nodes.tags ?| ARRAY['proposed', 'construction']
     ORDER BY
       1 -- Just to force the query planner to does not merge sub and main request
@@ -60,13 +60,13 @@ FROM
     JOIN {0}ways AS ways ON
         ways.id = nodes.way_id AND
         ways.tags != ''::hstore AND
-        ways.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
+        ways.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made'] AND
         NOT ways.tags ?| ARRAY['proposed', 'construction']
 WHERE
-    slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) @>
-    slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) OR
-    slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) <@
-    slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'])
+    slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made']) @>
+    slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made']) OR
+    slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made']) <@
+    slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building', 'man_made'])
 ORDER BY
     nodes.id
 """
