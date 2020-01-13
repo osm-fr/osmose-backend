@@ -27,22 +27,24 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge):
     def __init__(self, config, logger=None):
         Analyser_Merge.__init__(self, config, logger)
         doc = dict(
-            detail=T_(
-                '''A car charging station may be here but is not mapped. The list of the charging stations
-    comes from a database published by Etalab. This database brings together information
-    published by the various local authorities and networks in France.'''),
-            fix=T_(
-                '''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)
-    on the  wiki. Add a node or add tags if already existing.'''),
-            trap=T_(
-                '''The initial information corresponds to recharging points and not to stations,
-    so some values are worth checking in the field.'''))
-        self.missing_official = self.def_class(item=9990, id=1, level=3, tags=['merge'],
-                                               title=T_('Car charging station not integrated'), **doc)
-        self.possible_merge = self.def_class(item=9991, id=3, level=3, tags=['merge'],
-                                             title=T_('Car charging station, integration suggestion'), **doc)
-        self.update_official = self.def_class(item=9992, id=4, level=3, tags=['merge'],
-                                              title=T_('Car charging station  update'), **doc)
+            detail = T_(
+'''A car charging station may be here but is not mapped. The list of the
+charging stations comes from a database published by Etalab. This database
+brings together information published by the various local authorities and
+networks in France.'''),
+            fix = T_(
+'''See [the
+mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)
+on the  wiki. Add a node or add tags if already existing.'''),
+            trap = T_(
+'''The initial information corresponds to recharging points and not to
+stations, so some values are worth checking in the field.'''))
+        self.missing_official = self.def_class(item = 9990, id = 1, level = 3, tags = ['merge'],
+            title = T_('Car charging station not integrated'), **doc)
+        self.possible_merge = self.def_class(item = 9991, id = 3, level = 3, tags = ['merge'],
+            title = T_('Car charging station, integration suggestion'), **doc)
+        self.update_official = self.def_class(item = 9992, id = 4, level = 3, tags = ['merge'],
+            title = T_('Car charging station  update'), **doc)
 
         self.init(
             "https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/",
