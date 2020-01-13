@@ -1,10 +1,10 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
-# Ігор Варварчук <182050@i.ua>, 2019
+# Ігор Варварчук <182050@i.ua>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ігор Варварчук <182050@i.ua>, 2019\n"
+"Last-Translator: Ігор Варварчук <182050@i.ua>, 2020\n"
 "Language-Team: Ukrainian (https://www.transifex.com/openstreetmap-france/teams/17462/uk/)\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
@@ -176,19 +176,25 @@ msgstr "Відсутній теґ opening_hours"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Відсутня назва зупинки громадського транспорту"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Перевірте теґ operator: такого оператора не існує, або може бути "
+"орфоргафічною помилкою"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Перевірте теґ network: цієї мережі не існує, або може бути орфоргафічною "
+"помилкою"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"Автобусна станція -  це, як правило, велика територія, де зупиняється багато"
+" автобусів, перевірте, чи можна накреслити цю зону"
