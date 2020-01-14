@@ -40,7 +40,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             title = T_('Missing survey point'),
             **doc)
         self.moved_official = self.def_class(item = 8070, id = 3, level = 3, tags = ['merge'],
-            title = T_('Moved survey poin'),
+            title = T_('Moved survey point'),
             **doc)
 
         self.init(
