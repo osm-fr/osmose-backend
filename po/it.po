@@ -5,7 +5,7 @@
 # Translators:
 # canfe <canfe.news@gmail.com>, 2019
 # frodrigo <fred.rodrigo@gmail.com>, 2019
-# Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019
+# Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019-2020
 # Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
 # Marco <marcxosm@gmail.com>, 2018-2019
 # Marco <marcxosm@gmail.com>, 2017-2018
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-13 21:11+0000\n"
+"PO-Revision-Date: 2020-01-15 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1803,39 +1803,39 @@ msgstr "{0} fermata {1}"
 
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Segnali stradali per {1} osservati nelle vicinanze, ma nessuna etichetta corrispondente"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:150
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
-msgstr ""
+msgstr "Popolazione sul ruolo admin_centre ({0}) maggiore di quella sulla relazione ({1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:112
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr ""
+msgstr "Nome multiplo per lo stesso ref FANTOIR {0}: {1}"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:66
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Valori di motor_vehicle non coerenti ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr ""
+msgstr "lanes in ingresso {0}(-{1}+{2}), lanes in uscita {3}(-{4}+{5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "{0} approssimativo"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:140
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "Deviazione di {0} di {1}m"
 
 #: ../plugins/Highway_Lanes.py:106
 #, python-brace-format
@@ -2011,7 +2011,7 @@ msgstr "Strada scollegata"
 #: ../plugins/Phone.py:53
 #, python-brace-format
 msgid "Extra \"{0}\" after international code"
-msgstr ""
+msgstr "\"{0}\" extra dopo il prefisso internazionale"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 msgid "IDF bicycle rental not integrated"
@@ -2064,7 +2064,7 @@ msgstr ""
 
 #, python-brace-format
 msgid "{0} Street object {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Oggetti stradali per {1} osservati nelle vicinanze, ma nessuna etichetta corrispondente"
 
 #: ../analysers/analyser_merge_parking_FR_IDF.py:29
 msgid "P+R parking in Île-de-France not integrated"
@@ -2144,7 +2144,7 @@ msgstr ""
 msgid "Sudden highway type change (level {0})"
 msgstr ""
 
-#: ../plugins/Phone.py:129
+#: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr ""
@@ -2285,7 +2285,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:43
-msgid "Moved survey poin"
+msgid "Moved survey point"
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51
@@ -3829,7 +3829,7 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:75
 #, python-brace-format
 msgid "Unmapped {0}"
-msgstr ""
+msgstr "{0} non mappato"
 
 #: ../analysers/analyser_merge_street_objects.py:49
 #, python-brace-format

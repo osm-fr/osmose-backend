@@ -1,9 +1,10 @@
 # Translators:
 # Marco <marcxosm@gmail.com>, 2018
+# Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Marco <marcxosm@gmail.com>, 2018\n"
+"Last-Translator: Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/openstreetmap-france/teams/17462/it/)\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -180,7 +181,7 @@ msgstr ""
 
 #: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"
-msgstr ""
+msgstr "Etichetta opening_hours mancante"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"

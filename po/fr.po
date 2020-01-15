@@ -13,7 +13,7 @@
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016,2019
 # Gilles MOREL <contact@gilles-morel.fr>, 2018
-# deuzeffe, 2019
+# deuzeffe, 2019-2020
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
 # Jorg722, 2019
@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-13 21:11+0000\n"
+"PO-Revision-Date: 2020-01-15 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -2164,7 +2164,7 @@ msgstr "Valeurs similaires"
 msgid "Sudden highway type change (level {0})"
 msgstr "Brusque changement de type de voirie (“level”=“{0}”)"
 
-#: ../plugins/Phone.py:129
+#: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr "Caractère « {0} » non autorisé dans l’attribut du numéro de téléphone « {1} »"
@@ -2305,7 +2305,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:43
-msgid "Moved survey poin"
+msgid "Moved survey point"
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51
@@ -2338,7 +2338,7 @@ msgstr ""
 #: ../analysers/analyser_merge_pitch_FR.py:49
 #, python-brace-format
 msgid "Pitch not integrated {0}"
-msgstr ""
+msgstr "Équipement sportif non intégré {0}"
 
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:30
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:30
@@ -2350,12 +2350,12 @@ msgstr ""
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:30
 #, python-brace-format
 msgid "{0} toilets not integrated"
-msgstr ""
+msgstr "{0} toilettes non intégrées"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:30
 #, python-brace-format
 msgid "Radio support ({0}) not integrated"
-msgstr ""
+msgstr "Support radio ({0}) non intégré"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:32
 #, python-brace-format
@@ -2365,7 +2365,7 @@ msgstr ""
 #: ../analysers/analyser_merge_radio_support_FR.py:34
 #, python-brace-format
 msgid "Radio support ({0}) update"
-msgstr ""
+msgstr "Support radio  ({0}) à mettre à jour"
 
 #: ../analysers/analyser_merge_school_FR.py:53
 msgid ""
@@ -2380,7 +2380,7 @@ msgstr ""
 #: ../analysers/analyser_merge_street_number.py:31
 #, python-brace-format
 msgid "Missing address {0}"
-msgstr ""
+msgstr "Adresse manquante {0}"
 
 #: ../analysers/analyser_merge_street_number.py:33
 msgid ""
@@ -2413,11 +2413,11 @@ msgstr ""
 #: ../analysers/analyser_osmbin_open_relations.py:82
 #, python-brace-format
 msgid "Open relation type=boundary admin_level={0}"
-msgstr ""
+msgstr "Relation type=boundary avec admin_level={0} ouverte"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:198
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
-msgstr ""
+msgstr "Les extrémités de l’interpolation doivent avoir des valeurs d’attribut “addr:housenumber” différentes"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
@@ -2472,11 +2472,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing `admin_centre` role"
-msgstr ""
+msgstr "Rôle `admin_centre` absent"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing `name`"
-msgstr ""
+msgstr "`name` manquant"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:134
 msgid ""

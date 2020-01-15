@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-13 21:11+0000\n"
+"PO-Revision-Date: 2020-01-15 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -570,7 +570,7 @@ msgstr "зв'язок з 1-м членом"
 
 #: ../plugins/Structural_Waterway.py:29
 msgid "Closed waterway"
-msgstr "Закритий waterway"
+msgstr "Зациклений водний шлях"
 
 #: ../plugins/Structural_WayOneNode.py:30
 msgid "Way with one node"
@@ -2142,7 +2142,7 @@ msgstr "Cхожі значення"
 msgid "Sudden highway type change (level {0})"
 msgstr "Помилкова топологія лінії {0} рівня"
 
-#: ../plugins/Phone.py:129
+#: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr "Недійсний символ \"{0}\" в теґу номера телефону \"{1}\""
@@ -2283,7 +2283,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:43
-msgid "Moved survey poin"
+msgid "Moved survey point"
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51

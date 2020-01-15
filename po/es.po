@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-13 21:11+0000\n"
+"PO-Revision-Date: 2020-01-15 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -2143,7 +2143,7 @@ msgstr "Valores similares"
 msgid "Sudden highway type change (level {0})"
 msgstr ""
 
-#: ../plugins/Phone.py:129
+#: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr ""
@@ -2274,7 +2274,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:30
 msgid "Restore node or relation."
-msgstr ""
+msgstr "Restaurar nodo o relación."
 
 #: ../analysers/analyser_merge_geodesie.py:32
 msgid ""
@@ -2284,7 +2284,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:43
-msgid "Moved survey poin"
+msgid "Moved survey point"
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51
@@ -2329,22 +2329,22 @@ msgstr ""
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:30
 #, python-brace-format
 msgid "{0} toilets not integrated"
-msgstr ""
+msgstr "{0} baños no integrados"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:30
 #, python-brace-format
 msgid "Radio support ({0}) not integrated"
-msgstr ""
+msgstr "Soporte radio ({0}) no integrado"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:32
 #, python-brace-format
 msgid "Radio support ({0}), integration suggestion"
-msgstr ""
+msgstr "Soporte radio ({0}), sugerencia de integración"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:34
 #, python-brace-format
 msgid "Radio support ({0}) update"
-msgstr ""
+msgstr "Actualización de soporte radio ({0})"
 
 #: ../analysers/analyser_merge_school_FR.py:53
 msgid ""
@@ -2354,12 +2354,12 @@ msgstr ""
 
 #: ../analysers/analyser_merge_service_public_FR.py:33
 msgid "The location can be quite rough."
-msgstr ""
+msgstr "La ubicación puede ser bastante peligrosa."
 
 #: ../analysers/analyser_merge_street_number.py:31
 #, python-brace-format
 msgid "Missing address {0}"
-msgstr ""
+msgstr "Falta dirección {0}"
 
 #: ../analysers/analyser_merge_street_number.py:33
 msgid ""
@@ -2369,19 +2369,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_street_number.py:36
 msgid "Add or move a number, check the field."
-msgstr ""
+msgstr "Agregue o mueva un número, verifique el campo."
 
 #: ../analysers/analyser_merge_street_number.py:38
 msgid "Pay attention to the data freshness."
-msgstr ""
+msgstr "Presta atención a la actualización de datos."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:32
 msgid "TMC data refers to a not found element of the road network. "
-msgstr ""
+msgstr "Los datos de TMC se refieren a un elemento no encontrado de la red de carreteras."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:34
 msgid "TMC data may be wrong or poorly located."
-msgstr ""
+msgstr "Los datos de TMC pueden estar incorrectos o mal ubicados."
 
 #: ../analysers/analyser_osmbin_open_relations.py:67
 msgid ""
@@ -2392,11 +2392,11 @@ msgstr ""
 #: ../analysers/analyser_osmbin_open_relations.py:82
 #, python-brace-format
 msgid "Open relation type=boundary admin_level={0}"
-msgstr ""
+msgstr "Relación abierta type=boundary admin_level={0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:198
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
-msgstr ""
+msgstr "Los extremos de la interpolación deben tener valores diferentes en la etiqueta \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
@@ -2410,7 +2410,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:196
 msgid "An area is marked as belonging to several city at once."
-msgstr ""
+msgstr "Un área se marca como perteneciente a varias ciudades a la vez."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:198
 msgid "Check how this area should be owned."
@@ -2420,19 +2420,19 @@ msgstr ""
 msgid ""
 "Unconnected boundary fragment, a way with a boundary tag not part of a\n"
 "boundary relation."
-msgstr ""
+msgstr "Fragmento de límite no conectado, una forma con una etiqueta de límite que \nno forma parte de una relación de frontera."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:205
 msgid "Delete the way, remove boundary tag or add to a relation."
-msgstr ""
+msgstr "Borra el camino, quita la etiqueta de límite o agregue a una relación."
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:67
 msgid "An area is marked as not belonging to any city."
-msgstr ""
+msgstr "Un área está marcada como no perteneciente a ninguna ciudad."
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:97
 msgid "Borders crossing."
-msgstr ""
+msgstr "Cruce de fronteras."
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:99
 msgid "Check the type of border and keep the best or merged."
@@ -2440,7 +2440,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:101
 msgid "The borders are part of relationships, they normally form loops."
-msgstr ""
+msgstr "Los bordes son parte de las relaciones, normalmente forman bucles."
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:103
 msgid ""
@@ -2451,24 +2451,24 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing `admin_centre` role"
-msgstr ""
+msgstr "Falta rol `admin_centre`"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing `name`"
-msgstr ""
+msgstr "Falta  `name`"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:134
 msgid ""
 "The admin_centre `population` is greater than the relation\n"
 "`population`."
-msgstr ""
+msgstr "`population` en admin_centre es mayor que `population` en la \nrelación."
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:139
 msgid ""
 "See [possible\n"
 "roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary\n"
 "relation."
-msgstr ""
+msgstr "Ver [posibles\nroles](https://wiki.openstreetmap.org/wiki/Relation:boundary) en relación de \nfrontera."
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:107
 msgid ""
@@ -2569,11 +2569,11 @@ msgstr ""
 #: ../analysers/analyser_osmosis_double_tagging.py:104
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:170
 msgid "Delete one of the two objects."
-msgstr ""
+msgstr "Borrar uno de los dos objetos."
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:174
 msgid "Compare tags and delete object or merge them."
@@ -2909,7 +2909,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:376
 msgid "Impossible to reach the restriction by respecting the oneway."
-msgstr ""
+msgstr "Imposible alcanzar la restricción respetando el oneway."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:380
 msgid ""
@@ -2976,7 +2976,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout.py:67
 msgid "Missing `junction=roundabout`"
-msgstr ""
+msgstr "Falta `junction=roundabout`"
 
 #: ../analysers/analyser_osmosis_roundabout.py:69
 msgid ""
@@ -3025,7 +3025,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
 "\n"
 "Clockwise rotation."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n\nRotación en el sentido de las agujas del reloj."
 
 #: ../analysers/analyser_osmosis_soundex.py:237
 msgid ""
@@ -3075,7 +3075,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_useless.py:131
 msgid "The object is sometimes duplicate."
-msgstr ""
+msgstr "El objeto a veces está duplicado."
 
 #: ../analysers/analyser_osmosis_waterway.py:137
 msgid ""
@@ -3240,7 +3240,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:53
 msgid "Right must be on the right and left on the left."
-msgstr ""
+msgstr "La derecha debe estar a la derecha y la izquierda a la izquierda."
 
 #: ../plugins/Highway_Lanes.py:55
 msgid ""
@@ -3275,7 +3275,7 @@ msgstr ""
 
 #: ../plugins/Highway_Parking_Lane.py:37
 msgid "Use `left`, `right` or `both`."
-msgstr ""
+msgstr "Use `left`, `right` o `both`."
 
 #: ../plugins/Highway_Parking_Lane.py:41
 msgid ""
@@ -3325,7 +3325,7 @@ msgstr ""
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:50
 msgid "An abbreviation is present."
-msgstr ""
+msgstr "Una abreviatura está presente."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:52
 msgid "Write the type of the way with all letters."
@@ -3343,11 +3343,11 @@ msgstr ""
 
 #: ../plugins/Name_Saint_FR.py:37
 msgid "Add a hyphen."
-msgstr ""
+msgstr "Agrega un guión."
 
 #: ../plugins/Name_Saint_FR.py:39
 msgid "This rule does not apply in particular to the Belgium."
-msgstr ""
+msgstr "Esta regla no se aplica en particular a Bélgica."
 
 #: ../plugins/Name_Saint_FR.py:41
 msgid ""
@@ -3406,7 +3406,7 @@ msgstr ""
 
 #: ../plugins/Name_UpperCase.py:39
 msgid "Word in capital letters."
-msgstr ""
+msgstr "Palabra en mayúsculas."
 
 #: ../plugins/Number.py:32
 msgid ""
@@ -3676,7 +3676,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleValue.py:65
 msgid "The tag contains multiple values."
-msgstr ""
+msgstr "La etiqueta contiene múltiples valores."
 
 #: ../plugins/TagFix_MultipleValue.py:67
 msgid ""

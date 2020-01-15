@@ -6,13 +6,13 @@
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
 # ali zaroili <ali.zaroili@gmail.com>, 2016-2018
-# alain2003, 2014,2017-2019
+# alain2003, 2014,2017-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-13 21:11+0000\n"
+"PO-Revision-Date: 2020-01-15 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -2142,7 +2142,7 @@ msgstr "Vergelijkbare waarden"
 msgid "Sudden highway type change (level {0})"
 msgstr "verkeerde weg type (level {0})"
 
-#: ../plugins/Phone.py:129
+#: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr "Niet toegestane karakter \"{0}\" in telefoonnummer tag \"{1}\""
@@ -2273,7 +2273,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:30
 msgid "Restore node or relation."
-msgstr ""
+msgstr "Herstel node of relatie."
 
 #: ../analysers/analyser_merge_geodesie.py:32
 msgid ""
@@ -2283,7 +2283,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:43
-msgid "Moved survey poin"
+msgid "Moved survey point"
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51
@@ -2328,22 +2328,22 @@ msgstr ""
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:30
 #, python-brace-format
 msgid "{0} toilets not integrated"
-msgstr ""
+msgstr "{0}  toiletten niet geïntegreerd"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:30
 #, python-brace-format
 msgid "Radio support ({0}) not integrated"
-msgstr ""
+msgstr "Zendmast support ({0}) niet geïntegreerd"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:32
 #, python-brace-format
 msgid "Radio support ({0}), integration suggestion"
-msgstr ""
+msgstr "Zendmast support ({0}), integratie suggestie"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:34
 #, python-brace-format
 msgid "Radio support ({0}) update"
-msgstr ""
+msgstr "Zendmast support ({0}) update"
 
 #: ../analysers/analyser_merge_school_FR.py:53
 msgid ""
@@ -2358,7 +2358,7 @@ msgstr ""
 #: ../analysers/analyser_merge_street_number.py:31
 #, python-brace-format
 msgid "Missing address {0}"
-msgstr ""
+msgstr "Ontbrekende adres {0}"
 
 #: ../analysers/analyser_merge_street_number.py:33
 msgid ""
@@ -2391,7 +2391,7 @@ msgstr ""
 #: ../analysers/analyser_osmbin_open_relations.py:82
 #, python-brace-format
 msgid "Open relation type=boundary admin_level={0}"
-msgstr ""
+msgstr "Open relatie type=boundary admin_level={0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:198
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
@@ -2431,7 +2431,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:97
 msgid "Borders crossing."
-msgstr ""
+msgstr "Kruisende grenzen"
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:99
 msgid "Check the type of border and keep the best or merged."
@@ -2450,11 +2450,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing `admin_centre` role"
-msgstr ""
+msgstr "`admin_centre` role ontbreekt"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing `name`"
-msgstr ""
+msgstr "Naam `ontbreekt`"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:134
 msgid ""
@@ -2538,7 +2538,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_cycleway_track.py:64
 msgid ""
 "Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`"
-msgstr ""
+msgstr "Dubbele fietspaden,  `highway=*`+`cycleway=track` en `highway=cycleway`"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:66
 msgid ""
@@ -3873,11 +3873,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:371
 msgid "Highway intersecting highway"
-msgstr ""
+msgstr "Weg kruist water "
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Waterway intersecting waterway"
-msgstr ""
+msgstr "Waterweg kruist een waterweg"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:58
 msgid "Disconnected speed camera"
@@ -3891,16 +3891,16 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:54
 msgid "Unexpected symbol in name"
-msgstr ""
+msgstr "Onverwachte symbool in naam"
 
 #: ../plugins/TagFix_BadValue.py:31
 msgid "Bad tag value"
-msgstr ""
+msgstr "Verkeerde tag waarde"
 
 #: ../plugins/TagFix_BadValue.py:96 ../plugins/TagFix_BadValue.py:101
 #, python-format
 msgid "Bad tag value: \"%(key)s=%(val)s\""
-msgstr ""
+msgstr "Verkeerde tag waarde: \"%(key)s=%(val)s\""
 
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid "Untagged named object"
