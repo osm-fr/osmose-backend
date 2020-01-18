@@ -36,7 +36,7 @@ comes from the database "Merimee Inventory of monuments" in France by the
 Ministry of Culture.'''),
             fix = T_(
 '''See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on
-wiki. Add a node or to integrate tags something already existing.'''),
+wiki. Add a node or to integrate tags if something already existing.'''),
             trap = T_(
 '''The position of the markers is made by address geocoding, it may be
 located elsewhere. The marker can be a very rough position, located as
