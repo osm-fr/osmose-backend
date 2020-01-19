@@ -308,7 +308,7 @@
 <classtext lang="ja" title="分類が不明なタグ" />
 <classtext lang="lt" title="Žymų konfliktas" />
 <classtext lang="nl" title="Tag conflict" />
-<classtext lang="pl" title="Konflikt tagów" />
+<classtext lang="pl" title="Sprzeczność tagów" />
 <classtext lang="pt" title="Conflito de etiqueta" />
 <classtext lang="pt_BR" title="Conflito de etiqueta" />
 <classtext lang="uk" title="Конфлікт теґів" />
@@ -406,29 +406,15 @@
 <example lang="en" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
 </class>
 <class id="3040" item="3040" source="http://example.com/analysers/TagFix_BadValue.py#L31" level="1" tag="value,fix:chair">
-<classtext lang="ca" title="Valor incorrecte en una etiqueta" />
-<classtext lang="cs" title="Špatná hodnota u značky" />
-<classtext lang="de" title="Falscher Wert in einem Merkmal" />
-<classtext lang="el" title="Λάθος τιμή σε μία ετικέτα" />
-<classtext lang="en" title="Bad value in a tag" />
-<classtext lang="es" title="Valor malo en una etiqueta" />
-<classtext lang="fa" title="مقدار بد برای تگ" />
-<classtext lang="fr" title="Mauvaise valeur pour un attribut" />
-<classtext lang="gl" title="Valor erróneo nunha etiqueta" />
-<classtext lang="hu" title="Hibás érték a címkében" />
-<classtext lang="it" title="Valore errato in un tag" />
-<classtext lang="lt" title="Bloga žymos reikšmė" />
-<classtext lang="nl" title="Verkeerde waarde in een tag" />
-<classtext lang="pl" title="Zła wartość tagu" />
-<classtext lang="pt" title="Valor de etiqueta incorreto" />
-<classtext lang="pt_BR" title="Valor de etiqueta incorreto" />
-<classtext lang="uk" title="Помилкове значення теґу" />
-<classtext lang="zh_CN" title="不良的标签值" />
+<classtext lang="en" title="Bad tag value" />
 </class>
 <class id="3050" item="3050" source="http://example.com/analysers/TagFix_BadKey.py#L42" level="1" tag="tag,fix:chair">
 <classtext lang="en" title="Bad key" />
+<classtext lang="es" title="Clave errónea" />
 <classtext lang="fr" title="Mauvaise clé" />
+<classtext lang="hu" title="Hibás kulcs" />
 <classtext lang="pl" title="Niepoprawny klucz" />
+<classtext lang="uk" title="Помилковий ключ" />
 <detail lang="en" title="The key of tag contains characters not recommended. The key is&#10;composed of alphanumeric characters: 0-9, a-z (preferably lower case),&#10;separator '_' or ':'. See&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
 <fix lang="en" title="Check the key tag, and correct." />
 <trap lang="en" title="There certainly false positives." />
@@ -865,20 +851,8 @@
 <classtext lang="en" title="Missing tag carpool on area" />
 </class>
 <class id="21101" item="2110" source="http://example.com/analysers/TagFix_MultipleTag.py#L67" level="2" tag="tag">
-<classtext lang="cs" title="Název je přítomen, ale chybí hlavní značka" />
-<classtext lang="de" title="Name vorhanden aber Haupt-Tag fehlt" />
-<classtext lang="en" title="Name present but missing main tag" />
-<classtext lang="es" title="El nombre está presente pero falta la etiqueta principal" />
-<classtext lang="fa" title="نام دارد اما تگ اصلی ذکر نشده" />
-<classtext lang="fr" title="Nom présent mais attribut principal manquant" />
-<classtext lang="gl" title="O nome está posto pero falla a etiqueta principal" />
-<classtext lang="hu" title="Név van, de hiányzik a főcímke" />
-<classtext lang="it" title="Il nome è presente ma manca l’etichetta principale" />
-<classtext lang="nl" title="Naam aanwezig maar hoofd tag ontbreekt" />
-<classtext lang="pl" title="Sama nazwa bez podstawowego tagu (amenity, shop itp.)" />
-<classtext lang="uk" title="Ім'я присутнє, але відсутній основний теґ" />
-<classtext lang="zh_CN" title="名称存在但缺少主标签" />
-<detail lang="en" title="The object is missing any tag which defines what kind of feature is&#10;it. Considered main tags are (with derived `disused:` and&#10;`abandoned:`):" />
+<classtext lang="en" title="Untagged named object" />
+<detail lang="en" title="The object is missing any tag which defines what kind of feature is&#10;it. Considered main tags are (with derived `disused:`, `abandoned:` and&#10;`historic:`):" />
 <fix lang="en" title="Add a top level tag to state what kind of thing is it." />
 </class>
 <class id="21102" item="2110" source="http://example.com/analysers/TagFix_MultipleTag.py#L69" level="2" tag="tag">
@@ -1310,8 +1284,11 @@
 </class>
 <class id="30501" item="3050" source="http://example.com/analysers/TagFix_BadKey.py#L45" level="1" tag="tag,fix:chair">
 <classtext lang="en" title="Bad key suffix" />
+<classtext lang="es" title="Sufijo clave erróneo" />
 <classtext lang="fr" title="Mauvais suffixe de clé" />
+<classtext lang="hu" title="Hibás kulcsutótag" />
 <classtext lang="pl" title="Niepoprawny przyrostek klucza" />
+<classtext lang="uk" title="Помилковий суфікс ключа" />
 <detail lang="en" title="The key of tag contains characters not recommended. The key is&#10;composed of alphanumeric characters: 0-9, a-z (preferably lower case),&#10;separator '_' or ':'. See&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
 <fix lang="en" title="Check the key tag, and correct." />
 <trap lang="en" title="There certainly false positives." />
@@ -1336,6 +1313,7 @@
 <class id="30911" item="3091" level="2" tag="tag">
 <classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
+<classtext lang="es" title="El código de color debe comenzar con '#' seguido de 3 o 6 dígitos" />
 <classtext lang="fa" title="کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید" />
 <classtext lang="fr" title="Le code couleur devrait commencer par un « # » suivi de 3 ou 6 chiffres hexadécimaux" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
@@ -1424,6 +1402,7 @@
 <classtext lang="it" title="Uso di *:lanes e *:lanes:(forward|backward|both_ways) in conflitto " />
 <classtext lang="ja" title="*:lanes と *:lanes: が競合している:&#10;(forward|backward|both_ways)" />
 <classtext lang="nl" title="Conflict tussen het gebruik van *:lanes or *:lanes:(forward|backward|both_ways)" />
+<classtext lang="pl" title="Sprzeczność w użyciu *:lanes lub *:lanes:(forward|backward|both_ways)" />
 <classtext lang="uk" title="Конфлікт в застосуванні *:lanes або *:lanes:(forward|backward|both_ways)" />
 <classtext lang="zh_CN" title="使用之间的冲突 *:lanes 或 *:lanes:(forward|backward|both_ways)" />
 <detail lang="en" title="You can not set at the same time a tag and the variante with this&#10;prefix `forward`, `backward`, `both_ways`." />
@@ -1440,7 +1419,7 @@
 <classtext lang="it" title="Numero di corsie in conflitto" />
 <classtext lang="ja" title="車線の数に差異が存在" />
 <classtext lang="nl" title="Conflict tussen rijstroken" />
-<classtext lang="pl" title="Konflikt między liczbą pasów" />
+<classtext lang="pl" title="Sprzeczność w liczbie pasów" />
 <classtext lang="pt" title="Conflito entre número de faixas de circulação" />
 <classtext lang="pt_BR" title="Conflito entre número de faixas de circulação" />
 <classtext lang="uk" title="Конфлікт в кількості lanes" />
@@ -1457,6 +1436,7 @@
 <classtext lang="hu" title="A [*:lanes:(backward|both_ways)] érvénytelen használata egyirányú úton" />
 <classtext lang="it" title="Uso non valido di *:lanes:(backward|both_ways)  su strada a senso unico" />
 <classtext lang="nl" title="Ongeldig gebruik van *:lanes:(backward|both_ways) op éénrichtingsweg" />
+<classtext lang="pl" title="Niepoprawne użycie *:lanes:(backward|both_ways) na drodze jednokierunkowej" />
 <classtext lang="uk" title="Недійсне використання *:lanes:(backward|both_ways) на oneway highway" />
 <classtext lang="zh_CN" title="无效的使用 *:lanes:(backward|both_ways) 在单向公路上" />
 <detail lang="en" title="You can not set opposite lanes data on a one way." />
@@ -1775,6 +1755,7 @@
 <classtext lang="fr" title="Intervalles conditionnels invalides" />
 <classtext lang="hu" title="Érvénytelen feltételes időközök" />
 <classtext lang="nl" title="Ongeldige voorwaardelijke Intervals" />
+<classtext lang="uk" title="Недійсні умовні інтервали" />
 </class>
 <class id="40101" item="4010" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="{2.key}={2.value} se dává přednost před {1.key}={1.value}" />
@@ -2091,21 +2072,7 @@
 <fix lang="en" title="Remove the character." />
 </class>
 <class id="50703" item="5070" source="http://example.com/analysers/Name_Script.py#L61" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
-<classtext lang="cs" title="znak symbol" />
-<classtext lang="de" title="Sonderzeichen" />
-<classtext lang="en" title="Symbol char" />
-<classtext lang="es" title="caracter símbolo" />
-<classtext lang="fa" title="نویسهٔ نماد" />
-<classtext lang="fr" title="Caractère symbolique" />
-<classtext lang="gl" title="Carácter símbólico" />
-<classtext lang="hu" title="Szimbólumkarakter" />
-<classtext lang="it" title="Carattere simbolo" />
-<classtext lang="nl" title="Symbool karakter" />
-<classtext lang="pl" title="Symbol w nazwie" />
-<classtext lang="pt" title="Caractere de símbolo" />
-<classtext lang="pt_BR" title="Caractere de símbolo" />
-<classtext lang="uk" title="Символьний знак" />
-<classtext lang="zh_CN" title="符号字符" />
+<classtext lang="en" title="Unexpected symbol in name" />
 <detail lang="en" title="A symbol is used instead of a letter from the appropriate&#10;alphabet." />
 <fix lang="en" title="Change the character into a punctuation mark or something else more&#10;appropriate." />
 </class>
@@ -2129,6 +2096,7 @@
 <class id="50801" item="5080" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Přípona názvu vesnice nebo lokality Severní, Jižní, Východní, Západní, Střední by měla být odstraněna z názvu katastru. Místo by mělo být integrováno pouze jednou." />
 <classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
+<classtext lang="es" title="El sufijo de nombre de aldea o localidad Nord, Sud, Est, Ouest, Center debe eliminarse del nombre del catastro. El lugar debe integrarse solo una vez." />
 <classtext lang="fr" title="Les mentions Nord, Sud, Est, Ouest, Centre doivent être supprimées des noms des hameaux ou des lieux-dits du cadastre. Le nom du lieu ne doit être intégré qu’une seule fois" />
 <classtext lang="gl" title="O sufixo &quot;Nord, Sud, Est, Ouest, Center&quot; do nome de 'Hamlet' ou 'Locality' ten que eliminarse do nome do Catastro. O lugar ten que estar integrado unha soa vez." />
 <classtext lang="hu" title="A falucskához vagy dűlőhöz, lakatlan helyhez tartozó Nord, Sud, Est, Ouest, Centre utótagot el kell távolítani a földhivatali (cadastre) névből. A hely csak egyszer szerepelhet a térképen." />
@@ -3848,6 +3816,7 @@
 <classtext lang="hu" title="Ellenőrizze az [operator] címkét: ilyen üzemeltető nem létezik, talán elírás történt" />
 <classtext lang="nl" title="Check dee operator tag : deze beheerder bestaaat niet, het is wellicht een typefout" />
 <classtext lang="pl" title='Sprawdź tag "operator": ten zarządca nie istnieje, może to literówka' />
+<classtext lang="uk" title="Перевірте теґ operator: такого оператора не існує, або може бути орфоргафічною помилкою" />
 </class>
 <class id="9014026" item="9014" level="2" tag="tag,public_transport">
 <classtext lang="en" title="Check the network tag : this network does not exist, it may be a typo" />
@@ -3857,6 +3826,7 @@
 <classtext lang="hu" title="Ellenőrizze a [network] címkét: ilyen hálózat nem létezik, talán elírás történt" />
 <classtext lang="nl" title="Check deze network tag : deze netwerk bestaaat niet, het is wellicht een typefout" />
 <classtext lang="pl" title='Sprawdź tag "network": ta sieć nie istnieje, może to literówka' />
+<classtext lang="uk" title="Перевірте теґ network: цієї мережі не існує, або може бути орфоргафічною помилкою" />
 </class>
 <class id="9015001" item="9015" level="2" tag="tag,railway">
 <classtext lang="en" title="Track tagged with usage=* AND service=* - remove one of these tags" />
@@ -4727,6 +4697,7 @@
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
 <text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
 <text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : élément “́́“ inattendu" />
+<text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 <text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
 <text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
 <text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды" 不寻常 "́́"' />

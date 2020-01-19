@@ -45,6 +45,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['industrial', 'amenity', 'recycling'],
                 ['retail', 'amenity', 'marketplace'],
                 ['water', 'amenity', 'fountain'], # ?
+                ['military', 'aeroway', 'aerodrome'],
             ],
             'place': [
                 ['square', 'area', 'yes'],
@@ -57,9 +58,12 @@ class TagRemove_Incompatibles(Plugin):
             ],
             'natural': [
                 ['water', 'leisure', 'marina'],
+                ['water', 'leisure', 'swimming_area'],
             ],
             'amenity': [
                 ['stables', 'leisure', 'horse_riding'],
+                ['drinking_water', 'natural', 'spring'],
+                ['drinking_water', 'man_made', 'water_tap'],
             ],
         }.items()
 

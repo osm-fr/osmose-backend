@@ -51,7 +51,7 @@ class Analyser_Merge_School_FR(Analyser_Merge):
 
         trap = T_(
 '''Check the location. Warning data from the Ministry may have several
-adminstrative schools for a single physical school.''')
+administrative schools for a single physical school.''')
         self.missing_official = self.def_class(item = 8030, id = classs+1, level = 3, tags = ['merge'],
             title = T_('School not integrated'),
             trap = trap)
