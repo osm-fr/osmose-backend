@@ -2293,7 +2293,7 @@ msgstr ""
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:38
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
-"wiki. Add a node or to integrate tags something already existing."
+"wiki. Add a node or to integrate tags if something already existing."
 msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:41
@@ -2340,7 +2340,7 @@ msgstr ""
 #: ../analysers/analyser_merge_school_FR.py:53
 msgid ""
 "Check the location. Warning data from the Ministry may have several\n"
-"adminstrative schools for a single physical school."
+"administrative schools for a single physical school."
 msgstr ""
 
 #: ../analysers/analyser_merge_service_public_FR.py:33

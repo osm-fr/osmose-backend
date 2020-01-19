@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-15 19:56+0000\n"
+"PO-Revision-Date: 2020-01-19 19:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -2299,7 +2299,7 @@ msgstr ""
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:38
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
-"wiki. Add a node or to integrate tags something already existing."
+"wiki. Add a node or to integrate tags if something already existing."
 msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:41
@@ -2346,7 +2346,7 @@ msgstr ""
 #: ../analysers/analyser_merge_school_FR.py:53
 msgid ""
 "Check the location. Warning data from the Ministry may have several\n"
-"adminstrative schools for a single physical school."
+"administrative schools for a single physical school."
 msgstr ""
 
 #: ../analysers/analyser_merge_service_public_FR.py:33

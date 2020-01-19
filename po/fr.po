@@ -7,7 +7,7 @@
 # Binnette <binnette@gmail.com>, 2019
 # Codain, 2017-2018
 # deuzeffe, 2018
-# frodrigo <fred.rodrigo@gmail.com>, 2014-2019
+# frodrigo <fred.rodrigo@gmail.com>, 2014-2020
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-15 19:56+0000\n"
+"PO-Revision-Date: 2020-01-19 19:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -2295,7 +2295,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:30
 msgid "Restore node or relation."
-msgstr ""
+msgstr "Rétablissez le nœud ou la relation."
 
 #: ../analysers/analyser_merge_geodesie.py:32
 msgid ""
@@ -2306,24 +2306,24 @@ msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:43
 msgid "Moved survey point"
-msgstr ""
+msgstr "Repère géodésique déplacé"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51
 #, python-brace-format
 msgid "Geodesic support not integrated {0}"
-msgstr ""
+msgstr "Support géodésique non intégré {0}"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:34
 msgid ""
 "A historical monument is here but is not mapped. The list of monuments\n"
 "comes from the database \"Merimee Inventory of monuments\" in France by the\n"
 "Ministry of Culture."
-msgstr ""
+msgstr "Un monument historique est présent mais n'est pas intégré. La liste des monuments\nprovient de la base de données \"Inventaire Mérimée des monuments\" en France\npar le Ministère de la Culture."
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:38
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
-"wiki. Add a node or to integrate tags something already existing."
+"wiki. Add a node or to integrate tags if something already existing."
 msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:41
@@ -2333,7 +2333,7 @@ msgid ""
 "low accuracy to the town. Carefully check the contents of the proposed\n"
 "tags, can be curious or unsuitable values. Do not overide tags of UNESCO\n"
 "World Heritage."
-msgstr ""
+msgstr "La position du marqueur provient d'une adresse géocodée. Il peut être\nsitué ailleurs. Le marqueur peut être a une position très approximative, située \nde façon très imprécise dans la ville. Vérifiez scrupuleusement le contenu des attributs\nproposés, les valeurs peuvent être bizarres ou inadaptées. Ne pas modifier les attributs du UNESCO\nWorld Heritage."
 
 #: ../analysers/analyser_merge_pitch_FR.py:49
 #, python-brace-format
@@ -2360,7 +2360,7 @@ msgstr "Support radio ({0}) non intégré"
 #: ../analysers/analyser_merge_radio_support_FR.py:32
 #, python-brace-format
 msgid "Radio support ({0}), integration suggestion"
-msgstr ""
+msgstr "Support radio ({0}), intégration possible"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:34
 #, python-brace-format
@@ -2370,12 +2370,12 @@ msgstr "Support radio  ({0}) à mettre à jour"
 #: ../analysers/analyser_merge_school_FR.py:53
 msgid ""
 "Check the location. Warning data from the Ministry may have several\n"
-"adminstrative schools for a single physical school."
+"administrative schools for a single physical school."
 msgstr ""
 
 #: ../analysers/analyser_merge_service_public_FR.py:33
 msgid "The location can be quite rough."
-msgstr ""
+msgstr "L'emplacement peut être assez approximatif."
 
 #: ../analysers/analyser_merge_street_number.py:31
 #, python-brace-format
@@ -2386,15 +2386,15 @@ msgstr "Adresse manquante {0}"
 msgid ""
 "Address in an OpenData set was not found. Only the position and\n"
 "street numbers are checked."
-msgstr ""
+msgstr "L'adresse n'a pas été trouvée dans un jeu de données ouvertes. Seule la position\nainsi que le numéro dans la rue ont été vérifiés."
 
 #: ../analysers/analyser_merge_street_number.py:36
 msgid "Add or move a number, check the field."
-msgstr ""
+msgstr "Ajoutez ou déplacez un nombre. Vérifiez le champ."
 
 #: ../analysers/analyser_merge_street_number.py:38
 msgid "Pay attention to the data freshness."
-msgstr ""
+msgstr "Faites attention à la fraîcheur des données."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:32
 msgid "TMC data refers to a not found element of the road network. "
@@ -2408,7 +2408,7 @@ msgstr ""
 msgid ""
 "A relation that should be a closed polygon and it is not. An issue is\n"
 "reported at each end of open part."
-msgstr ""
+msgstr "Relation qui devrait un polygone fermé et qui ne l'est pas. Un signalement est\nfait à chaque extrémité d'une partie ouverte."
 
 #: ../analysers/analyser_osmbin_open_relations.py:82
 #, python-brace-format
@@ -2421,35 +2421,35 @@ msgstr "Les extrémités de l’interpolation doivent avoir des valeurs d’attr
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
-msgstr ""
+msgstr "Vérifiez la position du nœud de rôle admin_centre et des limites administratives. "
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:191
 msgid ""
 "The geodesic markers should not be moved. These are reference points.\n"
 "Some geodesic markers are really out of boundary."
-msgstr ""
+msgstr "Les repères géodésiques ne devraient pas être déplacés. Ce sont des points de référence.\nDes repères géodésiques sont vraiment en dehors de la limite."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:196
 msgid "An area is marked as belonging to several city at once."
-msgstr ""
+msgstr "Une zone est marquée comme appartenant à plusieurs villes à la fois."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:198
 msgid "Check how this area should be owned."
-msgstr ""
+msgstr "Vérifiez comment doit être partagée cette zone."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:202
 msgid ""
 "Unconnected boundary fragment, a way with a boundary tag not part of a\n"
 "boundary relation."
-msgstr ""
+msgstr "Fragment de frontière isolé, un chemin tagué comme une frontière ne fait pas partie \nd'une relation de type frontière. "
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:205
 msgid "Delete the way, remove boundary tag or add to a relation."
-msgstr ""
+msgstr "Supprimer le chemin, retirer l'attribut de limite ou l'intégrer à une relation."
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:67
 msgid "An area is marked as not belonging to any city."
-msgstr ""
+msgstr "Une zone est marquée comme n'appartenant à aucune commune. "
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:97
 msgid "Borders crossing."
@@ -2602,7 +2602,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:64
 msgid "Inconsistent `motor_vehicle` values (`destination`!=)"
-msgstr ""
+msgstr "Valeurs incohérentes de `motor_vehicle` (`destination`!=)"
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:111
 msgid ""
@@ -2610,7 +2610,7 @@ msgid ""
 "highway should normally be consistent along the entire path. For example\n"
 "a `highway=tertiary` should remain `highway=tertiary` until it intersects\n"
 "with a road of higher classification."
-msgstr ""
+msgstr "Vérifiez la continuité des types de voirie. la classification\nd'une voirie doit normalement être cohérente tout au long du chemin. Par exemple\nune `highway=tertiary` doit rester une `highway=tertiary` jusqu\"à son intersection\navec une route d'une classe supérieure."
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:116
 msgid ""
@@ -2783,7 +2783,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:85
 #, python-brace-format
 msgid "Area intersection `{0}`"
-msgstr ""
+msgstr "Intersection entre surfaces `{0}`"
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:87
 msgid ""
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Vatin.py:39
 msgid "Invalid value format of tag `ref:vatin`"
-msgstr ""
+msgstr "Mauvais format de la valeur de l’attribut `ref:vatin`"
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid ""
@@ -3849,7 +3849,7 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:75
 #, python-brace-format
 msgid "Unmapped {0}"
-msgstr ""
+msgstr "{0} non cartographié"
 
 #: ../analysers/analyser_merge_street_objects.py:49
 #, python-brace-format
@@ -3895,11 +3895,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:371
 msgid "Highway intersecting highway"
-msgstr ""
+msgstr "Intersection de routes"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Waterway intersecting waterway"
-msgstr ""
+msgstr "Intersection de cours d’eau"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:58
 msgid "Disconnected speed camera"
@@ -3913,16 +3913,16 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:54
 msgid "Unexpected symbol in name"
-msgstr ""
+msgstr "Symbole inattendue dans le nom"
 
 #: ../plugins/TagFix_BadValue.py:31
 msgid "Bad tag value"
-msgstr ""
+msgstr "Mauvaise valeur"
 
 #: ../plugins/TagFix_BadValue.py:96 ../plugins/TagFix_BadValue.py:101
 #, python-format
 msgid "Bad tag value: \"%(key)s=%(val)s\""
-msgstr ""
+msgstr "Mauvaise valeur: \"%(key)s\"=\"%(val)s\""
 
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid "Untagged named object"
