@@ -50,22 +50,23 @@ stations, so some values are worth checking in the field.'''))
             "https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/",
             "Stations de recharge pour véhicules électriques",
             CSV(Source(attribution="data.gouv.fr:Etalab", millesime="01/2020",
-                       fileUrl="https://raw.githubusercontent.com/Jungle-Bus/ref-fr-IRVE/gh-pages/opendata_stations.csv")),
+                       fileUrl="https://raw.githubusercontent.com/Jungle-Bus/ref-EU-EVSE/gh-pages/opendata_stations.csv")),
             Load("Xlongitude", "Ylatitude"),
             Mapping(
                 select=Select(
                     types=["nodes", "ways"],
                     tags={"amenity": "charging_station"}),
                 conflationDistance=100,
-                osmRef="ref:FR:IRVE",
+                osmRef="ref:EU:EVSE",
                 generate=Generate(
                     static1={
                         "amenity": "charging_station",
-                        "car": "yes"},
+                        "motorcar": "yes"},
                     mapping1={
                         "operator": "n_operateur",
                         "network": "n_enseigne",
                         "owner": "n_amenageur",
+                        "ref:EU:EVSE": "id_station"
                     },
                     mapping2={
                         # "source": "source_grouped",
