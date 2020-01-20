@@ -28,7 +28,7 @@ class TagFix_BadValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3040] = self.def_class(item = 3040, level = 1, tags = ['value', 'fix:chair'],
-            title = T_('Bad value in a tag'))
+            title = T_('Bad tag value'))
 
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
@@ -93,12 +93,12 @@ class TagFix_BadValue(Plugin):
                     if tags[k] in self.exceptions_open[k]:
                         # no error if in exception list
                         continue
-                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Bad value for %(key)s=%(val)s", {"key": k, "val": tags[k]})})
+                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Bad tag value: \"%(key)s=%(val)s\"", {"key": k, "val": tags[k]})})
 
         keys = set(keyss) & self.check_list_closed
         for k in keys:
             if tags[k] not in self.allow_closed[k]:
-                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Bad value for %(key)s=%(val)s", {"key": k, "val": tags[k]})})
+                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Bad tag value: \"%(key)s=%(val)s\"", {"key": k, "val": tags[k]})})
 
         return err
 

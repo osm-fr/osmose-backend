@@ -57,11 +57,11 @@ class TagFix_MultipleTag(Plugin):
 '''Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a
 bridge.'''))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
-            title = T_('Name present but missing main tag'),
+            title = T_('Untagged named object'),
             detail = self.merge_doc(T_(
 '''The object is missing any tag which defines what kind of feature is
-it. Considered main tags are (with derived `disused:` and
-`abandoned:`):''',
+it. Considered main tags are (with derived `disused:`, `abandoned:` and
+`historic:`):''',
               {'en': ', '.join(main_tags)})),
             fix = T_(
 '''Add a top level tag to state what kind of thing is it.'''))
@@ -118,6 +118,7 @@ Clockwise rotation.'''))
             name_parent.append(i)
             name_parent.append("disused:" + i)
             name_parent.append("abandoned:" + i)
+            name_parent.append("historic:" + i)
         self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
@@ -246,6 +247,7 @@ class Test(TestPluginCommon):
         assert a.node(None, {"name": "foo"})
         assert not a.node(None, {"name": "foo", "disused:highway": "bar"})
         assert not a.node(None, {"name": "foo", "abandoned:highway": "bar"})
+        assert not a.node(None, {"name": "foo", "historic:railway": "station"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 

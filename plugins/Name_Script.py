@@ -51,7 +51,7 @@ used.'''),
             fix = T_(
 '''Remove the character.'''))
         self.errors[50703] = self.def_class(item = 5070, level = 2, tags = ['name', 'fix:chair'],
-            title = T_('Symbol char'),
+            title = T_('Unexpected symbol in name'),
             detail = T_(
 '''A symbol is used instead of a letter from the appropriate
 alphabet.'''),
