@@ -73,7 +73,8 @@
       "object--traffic-light--general-horizontal",
       "object--traffic-light--general-single",
       "object--traffic-light--general-upright",
-      "object--traffic-light--other"
+      "object--traffic-light--other",
+      "object--traffic-light--pedestrians"
     ],
     "select_tags": [
       {
@@ -90,6 +91,27 @@
     ],
     "generate_tags": {
       "highway": "traffic_signals"
+    }
+  },
+  {
+    "class": 6,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 30,
+    "title": "phone booth",
+    "object": [
+      "object--phone-booth"
+    ],
+    "select_tags": [
+      {
+        "amenity": "telephone"
+      }
+    ],
+    "generate_tags": {
+      "amenity": "telephone",
+      "covered": "booth"
     }
   }
 ]
