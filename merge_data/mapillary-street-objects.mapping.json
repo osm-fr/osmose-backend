@@ -73,7 +73,8 @@
       "object--traffic-light--general-horizontal",
       "object--traffic-light--general-single",
       "object--traffic-light--general-upright",
-      "object--traffic-light--other"
+      "object--traffic-light--other",
+      "object--traffic-light--pedestrians"
     ],
     "select_tags": [
       {
