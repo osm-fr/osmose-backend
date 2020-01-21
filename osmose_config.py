@@ -1597,9 +1597,10 @@ del(ogf.analyser["osmosis_soundex"])
 # Merge analysers are uploaded to a different frontend server
 for country in config.keys():
   config[country].analyser_updt_url = {}
-  for k in config[country].analyser.keys():
-    if k.startswith("merge_"):
-      config[country].analyser_updt_url[k] = [modules.config.url_frontend_update, modules.config.url_frontend_opendata_update]
+#   NOTE: commented, as opendata.osmose causes timeout issues
+#   for k in config[country].analyser.keys():
+#     if k.startswith("merge_"):
+#       config[country].analyser_updt_url[k] = [modules.config.url_frontend_update, modules.config.url_frontend_opendata_update]
 
 #########################################################################
 # Passwords are stored in separate file, not on git repository
