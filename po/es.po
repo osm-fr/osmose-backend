@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-19 19:16+0000\n"
+"PO-Revision-Date: 2020-01-21 20:40+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -2614,19 +2614,19 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_deadend.py:200
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:114
 msgid "The end of the way is not connected to another way."
-msgstr ""
+msgstr "El final de la vía no está conectado a otra vía."
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:204
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner"
-msgstr ""
+msgstr "El final de una `highway=cycleway` debe estar conectado al resto de la\n red de carreteras para garantizar la continuidad, especialmente para el planificador de rutas"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:207
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
-msgstr ""
+msgstr "Conecte la `cycleway` a la carretera, incluso con una pequeña ruta virtual."
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:212
 msgid ""
@@ -2636,7 +2636,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:215
 msgid "Review the classification of road or draw the local road network."
-msgstr ""
+msgstr "Revise la clasificación de la carretera o dibuje la red local de carreteras."
 
 #: ../analysers/analyser_osmosis_highway_features.py:80
 msgid "Crossing for which it lacks the road or railway. "
@@ -2644,13 +2644,13 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_features.py:84
 msgid "The node must be common to rail and road."
-msgstr ""
+msgstr "El nodo debe ser común al ferrocarril y la carretera."
 
 #: ../analysers/analyser_osmosis_highway_link.py:133
 msgid ""
 "Check the consistency of highway type for\n"
 "`highway=trunk_link|primary_link|secondary_link`."
-msgstr ""
+msgstr "Verifique la consistencia del tipo de carretera\n`highway=trunk_link|primary_link|secondary_link`."
 
 #: ../analysers/analyser_osmosis_highway_link.py:136
 msgid ""
@@ -2663,21 +2663,21 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.png)\n"
 "\n"
 "`highway=trunk_link` linking `highway=primary`."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.png)\n\n`highway=trunk_link` que une `highway=primary`."
 
 #: ../analysers/analyser_osmosis_highway_link.py:145
 msgid ""
 "Check if the highway is a `*_link`, else remove `*_link`. Be sure to check "
 "both ends of the way."
-msgstr ""
+msgstr "Compruebe si la carretera es un `*_link`, de lo contrario, quita el `*_link`. Asegúrese de revisar ambos extremos de la vía."
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:88
 msgid "Noexit on node with exit"
-msgstr ""
+msgstr "Noexit en el nodo con salida"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:90
 msgid "Noexit on way with multiple exits"
-msgstr ""
+msgstr "Noexit en vía con múltiples salidas"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
@@ -2905,7 +2905,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:372
 msgid "The ways in the restriction must be continuous."
-msgstr ""
+msgstr "Las vías en la restricción deben ser continuas."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:376
 msgid "Impossible to reach the restriction by respecting the oneway."
@@ -2915,24 +2915,24 @@ msgstr "Imposible alcanzar la restricción respetando el oneway."
 msgid ""
 "The shape of the paths described by the way does not correspond to the\n"
 "restriction."
-msgstr ""
+msgstr "La forma de los caminos descritos por la vía no corresponde a la \nrestricción."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:263
 msgid ""
 "It must match the highest level of connected routes, except `motorway`\n"
 "and `trunk`."
-msgstr ""
+msgstr "Debe coincidir con el nivel más alto de rutas conectadas, excepto `motorway`\ny `trunk`."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:266
 msgid "Adjust the tag `highway=*` of the roundabout."
-msgstr ""
+msgstr "Ajuste la etiqueta `highway=*`  de la rotonda."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:268
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n"
 "\n"
 "Highway level should be secondary."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/3/3a/Osmose-eg-error-3010.png)\n\nEl nivel de la carretera debe ser secundario."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:274
 msgid ""
@@ -3329,17 +3329,17 @@ msgstr "Una abreviatura está presente."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:52
 msgid "Write the type of the way with all letters."
-msgstr ""
+msgstr "Escribe el tipo de vía con todas las letras."
 
 #: ../plugins/Name_Quotation.py:30
 msgid "Unbalanced quotation mark or bracket in name"
-msgstr ""
+msgstr "Comillas o Corchetes desequilibrados en el nombre"
 
 #: ../plugins/Name_Saint_FR.py:34
 msgid ""
 "In France the rule is that a hyphen is used when we refer to a a holy\n"
 "thing (\"Saint-*\" in French)."
-msgstr ""
+msgstr "En Francia, la regla es que se usa un guión cuando nos referimos a algo sagrado (\"Saint-*\" in French)."
 
 #: ../plugins/Name_Saint_FR.py:37
 msgid "Add a hyphen."
@@ -3354,13 +3354,13 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)\n"
 "\n"
 "Name should be the \"Saint-Esprit\"."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)\n\nEl nombre debe ser \"Saint-Esprit\"."
 
 #: ../plugins/Name_Script.py:38
 msgid ""
 "Words are not written in the appropriate alphabet of the\n"
 "language."
-msgstr ""
+msgstr "Las palabras no están escritas en el alfabeto apropiado del\nidioma."
 
 #: ../plugins/Name_Script.py:41
 msgid ""
@@ -3379,13 +3379,13 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:52
 msgid "Remove the character."
-msgstr ""
+msgstr "Quitar el caracter."
 
 #: ../plugins/Name_Script.py:56
 msgid ""
 "A symbol is used instead of a letter from the appropriate\n"
 "alphabet."
-msgstr ""
+msgstr "Se utiliza un símbolo en lugar de una letra del alfabeto apropiado."
 
 #: ../plugins/Name_Script.py:59
 msgid ""
@@ -3427,17 +3427,17 @@ msgstr ""
 
 #: ../plugins/ODbL_migration.py:38
 msgid "Complete the object and check immediate surroundings."
-msgstr ""
+msgstr "Complete el objeto y verifique los alrededores cercanos."
 
 #: ../plugins/Phone.py:56
 msgid "Local short code can not be internationalized"
-msgstr ""
+msgstr "El código corto local no puede internacionalizarse"
 
 #: ../plugins/Source.py:37
 msgid ""
 "The `source` tag is incorrect. For example, an illegal source like\n"
 "Google."
-msgstr ""
+msgstr "La etiqueta `source` es incorrecta. Por ejemplo, una fuente ilegal \ncomo Google"
 
 #: ../plugins/Source.py:40
 msgid ""
@@ -3487,31 +3487,31 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)\n"
 "\n"
 "Double polygon connected by a string to remove."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)\n\nPolígono doble conectado por una cadena para quitar."
 
 #: ../plugins/Structural_Multipolygon.py:32
 msgid "Possible roles are `outer`, `inner` or nothing (not recommended)."
-msgstr ""
+msgstr "Los roles posibles son `outer`, `inner` o nada (no recomendado)."
 
 #: ../plugins/Structural_Multipolygon.py:36
 msgid "Members must be ways."
-msgstr ""
+msgstr "Los miembros deben ser formas."
 
 #: ../plugins/Structural_Multipolygon.py:40
 msgid "At least one outer ring must be present."
-msgstr ""
+msgstr "Al menos un anillo exterior debe estar presente."
 
 #: ../plugins/Structural_Multipolygon.py:42
 msgid "Find the way outside, it may be deleted, check the history."
-msgstr ""
+msgstr "Encuentra la vía al exterior, puede ser eliminado, revisa el historial."
 
 #: ../plugins/Structural_Multipolygon.py:46
 msgid "Multipolygon relation actually defines a simple polygon."
-msgstr ""
+msgstr "La relación multipolígono en realidad define un polígono simple."
 
 #: ../plugins/Structural_UnclosedArea.py:31
 msgid "A way has the tag area=yes, but is not closed."
-msgstr ""
+msgstr "Una vía tiene la etiqueta area=yes, pero no está cerrada."
 
 #: ../plugins/Structural_UnclosedArea.py:33
 msgid ""
@@ -3912,4 +3912,16 @@ msgid ""
 "The object is missing any tag which defines what kind of feature is\n"
 "it. Considered main tags are (with derived `disused:`, `abandoned:` and\n"
 "`historic:`):"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_traffic_signs.py:98
+#, python-brace-format
+msgid "Observed between {0} and {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_traffic_signs.py:99
+#, python-brace-format
+msgid "Observed on {0}"
 msgstr ""

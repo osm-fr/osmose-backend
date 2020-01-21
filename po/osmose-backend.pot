@@ -3914,3 +3914,15 @@ msgid ""
 "it. Considered main tags are (with derived `disused:`, `abandoned:` and\n"
 "`historic:`):"
 msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_traffic_signs.py:98
+#, python-brace-format
+msgid "Observed between {0} and {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_traffic_signs.py:99
+#, python-brace-format
+msgid "Observed on {0}"
+msgstr ""
