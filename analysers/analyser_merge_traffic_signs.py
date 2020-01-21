@@ -78,7 +78,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
             fix = T_('Add the appropriate highway tagging if the imagery is up-to-date and sign detection is correct.'))
 
         self.init(
-            "www.mapillary.com",
+            "https://www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
             Load("X", "Y",
@@ -94,6 +94,6 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     mapping1 = {
                       "mapillary": "image_key",
                       "survey:date": lambda res: res["last_seen_at"][0:10]},
-                text = lambda tags, fields: {"en": (
-                    "Observed between %s and %s" % (fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
-                    "Observed on %s" % (fields["first_seen_at"][0:10],))} )))
+                text = lambda tags, fields:
+                    T_f('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
+                    T_f('Observed on {0}', fields["first_seen_at"][0:10]) )))
