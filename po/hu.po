@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-21 20:40+0000\n"
+"PO-Revision-Date: 2020-01-23 21:51+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -3923,4 +3923,37 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:99
 #, python-brace-format
 msgid "Observed on {0}"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:31
+msgid ""
+"A car charging station may be here but is not mapped. The list of the\n"
+"charging stations comes from a database published by Etalab. This database\n"
+"brings together information published by the various local authorities and\n"
+"networks in France."
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:36
+msgid ""
+"See [the\n"
+"mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)\n"
+"on the  wiki. Add a node or add tags if already existing."
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:40
+msgid ""
+"The initial information corresponds to recharging points and not to\n"
+"stations, so some values are worth checking in the field."
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:43
+msgid "Car charging station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:45
+msgid "Car charging station, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:47
+msgid "Car charging station  update"
 msgstr ""
