@@ -39,11 +39,11 @@ on the  wiki. Add a node or add tags if already existing.'''),
             trap = T_(
 '''The initial information corresponds to recharging points and not to
 stations, so some values are worth checking in the field.'''))
-        self.missing_official = self.def_class(item = 9990, id = 1, level = 3, tags = ['merge'],
+        self.missing_official = self.def_class(item = 8410, id = 1, level = 3, tags = ['merge'],
             title = T_('Car charging station not integrated'), **doc)
-        self.possible_merge = self.def_class(item = 9991, id = 3, level = 3, tags = ['merge'],
+        self.possible_merge = self.def_class(item = 8411, id = 3, level = 3, tags = ['merge'],
             title = T_('Car charging station, integration suggestion'), **doc)
-        self.update_official = self.def_class(item = 9992, id = 4, level = 3, tags = ['merge'],
+        self.update_official = self.def_class(item = 8412, id = 4, level = 3, tags = ['merge'],
             title = T_('Car charging station  update'), **doc)
 
         self.init(
