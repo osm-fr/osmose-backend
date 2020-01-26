@@ -29,7 +29,7 @@ class TagFix_Area(Plugin):
         self.errors[32001] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Bad usage of area=yes. Object is already an area by nature'))
         self.errors[32002] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
-            title = T_('area=yes on object without kind'))
+            title = T_('area=yes on object without main tag'))
         self.errors[32003] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Bad usage of area=no. Object must be a surface'))
         self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'power', 'public_transport', 'sport', 'tourism', 'waterway'))
