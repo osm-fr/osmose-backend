@@ -28,6 +28,7 @@ CREATE TEMP TABLE {0}highway AS
 SELECT
     id,
     linestring,
+    ST_Transform(linestring, {1}) AS linestring_proj,
     nodes,
     tags->'highway' AS highway,
     coalesce(tags->'level', '0') AS level,
@@ -137,7 +138,8 @@ FROM
         highway.highway NOT IN ('footway', 'path', 'steps', 'elevator', 'corridor') AND
         highway.level = '0' AND
         highway.layer = '0' AND
-        ST_Crosses(building.linestring, highway.linestring)
+        ST_Crosses(building.polygon_proj, highway.linestring_proj) AND
+        ST_Dimension(ST_Intersection(building.polygon_proj, highway.linestring_proj)) >= 1 -- The cross is more than a point
 WHERE
     building.wall AND
     NOT building.layer
@@ -382,7 +384,7 @@ Intersection lane / building.'''))
         self.callback60 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
-        self.run(sql00.format(""))
+        self.run(sql00.format("", self.config.options.get("proj")))
         self.run(sql01.format(""))
         self.run(sql02)
         self.run(sql03)
@@ -403,7 +405,7 @@ Intersection lane / building.'''))
         self.run(sql61.format("", ""), self.callback60)
 
     def analyser_osmosis_diff(self):
-        self.run(sql00.format(""))
+        self.run(sql00.format("", self.config.options.get("proj")))
         self.run(sql01.format(""))
         self.run(sql02)
         self.run(sql03)
