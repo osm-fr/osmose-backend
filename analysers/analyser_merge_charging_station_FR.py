@@ -83,6 +83,8 @@ stations, so some values are worth checking in the field.'''))
                     text=lambda tags, fields: {"en": "%s, %s" % (fields["n_station"], fields["ad_station"])})))
 
         def guess_fee(text_fee):
+            if text_fee is None:
+                return None
             if "payant" in text_fee.lower():
                 return "yes"
             if "gratuit" in text_fee.lower():
@@ -92,6 +94,8 @@ stations, so some values are worth checking in the field.'''))
             return None
 
         def guess_opening_hours(text_opening_hours):
+            if text_opening_hours is None:
+                return None
             if "24/24" in text_opening_hours:
                 return "24/7"
             if "24h/24" in text_opening_hours:
