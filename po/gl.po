@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-23 21:51+0000\n"
+"PO-Revision-Date: 2020-02-01 22:20+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -254,7 +254,7 @@ msgstr "Edificio especial (redondo)"
 msgid "Special building (large)"
 msgstr "Edificio especial (grande)"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:202
+#: ../analysers/analyser_osmosis_highway_deadend.py:204
 msgid "Unconnected cycleway"
 msgstr "Senda ciclista non conectada"
 
@@ -283,15 +283,15 @@ msgstr "*_link de estrada errónea"
 msgid "Highway too long for a *_link"
 msgstr "Estrada moi longa para unha *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:364
+#: ../analysers/analyser_osmosis_highway_vs_building.py:366
 msgid "Highway intersecting building"
 msgstr "A estrada intersecta cun edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:365
+#: ../analysers/analyser_osmosis_highway_vs_building.py:367
 msgid "Tree intersecting building"
 msgstr "A árbore intersecta cun edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:366
+#: ../analysers/analyser_osmosis_highway_vs_building.py:368
 msgid "Tree and highway too close"
 msgstr "Árbore e estrada moi preto"
 
@@ -744,7 +744,6 @@ msgstr "O mesmo eido da wikipedia noutra lingua"
 msgid "Bad usage of area=yes. Object is already an area by nature"
 msgstr "Emprego erróneo da 'area=yes'. O obxecto xa é unha área por natureza"
 
-#: ../plugins/TagFix_Area.py:32
 msgid "area=yes on object without kind"
 msgstr "'area=yes' nun obxecto sen clase"
 
@@ -1036,11 +1035,11 @@ msgstr "Liña principal de enerxía non rematada"
 msgid "Unfinished power minor line"
 msgstr "Liña menor de enerxía non rematada"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:367
+#: ../analysers/analyser_osmosis_highway_vs_building.py:369
 msgid "Highway intersecting small water piece"
 msgstr "A estrada intersecta cunha pequena peza de auga"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:368
+#: ../analysers/analyser_osmosis_highway_vs_building.py:370
 msgid "Highway intersecting large water piece"
 msgstr "A estrada intersecta cunha longa peza de auga"
 
@@ -1327,7 +1326,7 @@ msgstr "Tería que ser un polígono, forma parte dun multipolígono ou non ter u
 msgid "Almost junction, join or use noexit tag"
 msgstr "Case cruzamento, unir ou empregar a etiqueta 'noexit'"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:217
+#: ../analysers/analyser_osmosis_highway_deadend.py:219
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Sentido único inaccesíbel ou falla vía de aparcadoiro ou entrada do aparcadoiro"
 
@@ -1400,7 +1399,7 @@ msgstr "Non ten que conter a etiqueta ref=%s"
 msgid "Close similar name"
 msgstr "Nome moi semellante"
 
-#: ../analysers/analyser_osmosis_relation_route_access.py:91
+#: ../analysers/analyser_osmosis_relation_route_access.py:96
 #, python-format
 msgid "Way access mismatch relation route=%s"
 msgstr "O acceso da vía non coincide ca relación route=%s"
@@ -1556,19 +1555,19 @@ msgid ""
 "upstream"
 msgstr "Agrupamento de estradas pequenas, á parte da rede principal ou con acceso non suficiente en sentido contrario"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:369
+#: ../analysers/analyser_osmosis_highway_vs_building.py:371
 msgid "Power object intersecting building"
 msgstr "O obxecto de enerxía intersecta cun edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:370
+#: ../analysers/analyser_osmosis_highway_vs_building.py:372
 msgid "Power object and highway too close"
 msgstr "O obxecto de enerxía e a estrada están moi preto"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:372
+#: ../analysers/analyser_osmosis_highway_vs_building.py:374
 msgid "Highway overlaps"
 msgstr "Sobresposicións da estrada"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:374
+#: ../analysers/analyser_osmosis_highway_vs_building.py:376
 msgid "Waterway overlaps"
 msgstr "Sobresposicións da canle fluvial"
 
@@ -1710,7 +1709,7 @@ msgstr "Aparcadoiro de bicicletas de París non integrado"
 msgid "Paris motorcycle parking not integrated"
 msgstr "Aparcadoiro de motos de París non integrado"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:109
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "Aparcadoiro de ciclomotores partillados de París non integrado"
 
@@ -2002,7 +2001,7 @@ msgstr "etiqueta valor: {0}={1} => {2} (regra kr_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:210
+#: ../analysers/analyser_osmosis_highway_deadend.py:212
 msgid "Unconnected highway"
 msgstr ""
 
@@ -2610,30 +2609,30 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:200
+#: ../analysers/analyser_osmosis_highway_deadend.py:202
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:114
 msgid "The end of the way is not connected to another way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:204
+#: ../analysers/analyser_osmosis_highway_deadend.py:206
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:207
+#: ../analysers/analyser_osmosis_highway_deadend.py:209
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:212
+#: ../analysers/analyser_osmosis_highway_deadend.py:214
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:215
+#: ../analysers/analyser_osmosis_highway_deadend.py:217
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -2703,7 +2702,7 @@ msgid ""
 "bridges](https://wiki.openstreetmap.org/wiki/Key:bridge)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:361
+#: ../analysers/analyser_osmosis_highway_vs_building.py:363
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
 "\n"
@@ -3851,19 +3850,19 @@ msgid ""
 "detection is correct."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:354
 msgid ""
 "Two features overlap with no shared node to indicate a physical connection "
 "or tagging to indicate a vertical separation."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:354
+#: ../analysers/analyser_osmosis_highway_vs_building.py:356
 msgid ""
 "Move a feature if it's in the wrong place. Connect the features if "
 "appropriate or update the tags if not."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:356
+#: ../analysers/analyser_osmosis_highway_vs_building.py:358
 msgid ""
 "A feature may be missing a tag e.g. `tunnel=*`, `bridge=*`,\n"
 "`covered=*` or consider `layer=*` on the buidling where a road or railway\n"
@@ -3871,11 +3870,11 @@ msgid ""
 "time or with spatial offset."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:371
+#: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Highway intersecting highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:373
+#: ../analysers/analyser_osmosis_highway_vs_building.py:375
 msgid "Waterway intersecting waterway"
 msgstr ""
 
@@ -3956,4 +3955,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_charging_station_FR.py:47
 msgid "Car charging station  update"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:32
+msgid "area=yes on object without main tag"
 msgstr ""

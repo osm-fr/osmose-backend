@@ -34,8 +34,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-23 21:51+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-01-30 22:14+0000\n"
+"Last-Translator: deuzeffe\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2324,7 +2324,7 @@ msgstr "Un monument historique est présent mais n'est pas intégré. La liste d
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add a node or to integrate tags if something already existing."
-msgstr ""
+msgstr "Voir [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) sur\nle wiki. Ajouter un nœud ou compléter les attributs si un objet est \ndéjà présent."
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:41
 msgid ""
@@ -2482,7 +2482,7 @@ msgstr "`name` manquant"
 msgid ""
 "The admin_centre `population` is greater than the relation\n"
 "`population`."
-msgstr ""
+msgstr "La `population` de l'admin_centre est plus grande que \nla `population` de la relation."
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:139
 msgid ""
@@ -2527,7 +2527,7 @@ msgstr ""
 msgid ""
 "The intersection surface is probably due to inaccuracies in the\n"
 "cadastre/import tools."
-msgstr ""
+msgstr "L'intersection entre les surfaces est probablement due à\nl'imprécision des outils d'importation du cadastre."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:176
 msgid ""
@@ -2539,7 +2539,7 @@ msgstr ""
 msgid ""
 "There is no intersection, but the surface is too small to be a\n"
 "building."
-msgstr ""
+msgstr "Il n'y a pas d'intersection, mais la surface est trop petite pour être\nune construction."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:186
 msgid ""
