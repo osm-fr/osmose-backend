@@ -32,8 +32,8 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/donnee-thematique-localisation-des-defibrillateurs-automatiques-externes-dae-bas-rhin/",
             u"DONNEE THEMATIQUE : Localisation des Défibrillateurs Automatiques Externes (DAE) - Bas-Rhin",
-            GeoJSON(Source(attribution = u"data.gouv.fr:Service Départemental d'Incendie et de Secours du Bas-Rhin", millesime = "23/04/2018",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/40f84199-8b19-492d-9f61-45156ac73b63")),
+            GeoJSON(Source(attribution = u"data.gouv.fr:Service Départemental d'Incendie et de Secours du Bas-Rhin", millesime = "27/01/2020",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/b84312e9-b198-4f1d-b2ad-8e4df5b7cb5b")),
             Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
