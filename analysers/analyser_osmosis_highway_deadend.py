@@ -42,7 +42,9 @@ FROM
         NOT highways.is_construction
     JOIN nodes ON
         nodes.id = way_ends.nid AND
-        (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle')
+        (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle') AND
+        (NOT nodes.tags?'entrance' OR nodes.tags->'entrance' != 'no') AND
+        (NOT nodes.tags?'noexit' OR nodes.tags->'noexit' != 'no')
 WHERE
     way_ends.level < 3 OR way_ends.highway = 'cycleway'
 GROUP BY

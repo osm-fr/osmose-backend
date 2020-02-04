@@ -94,6 +94,11 @@ class Plugin(object):
         pass
 
     def def_class(self, **kwargs):
+        if 'source' not in kwargs and self.father and self.father.config:
+            config = self.father.config
+            caller = getframeinfo(stack()[1][0])
+            kwargs['source'] = '{0}/plugins/{1}#L{2}'.format(config and hasattr(config, 'source_url') and config.source_url or None, os.path.basename(caller.filename), caller.lineno)
+
         return Analyser.def_class_(self.father and self.father.config or None, **kwargs)
 
 

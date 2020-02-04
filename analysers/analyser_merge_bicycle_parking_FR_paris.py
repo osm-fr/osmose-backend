@@ -30,10 +30,10 @@ STANDS_TYPES = {
 }
 tag_mapping = {
     "capacity": (
-        lambda res: None if res["PLACAL"] in (None, "0") else res["PLACAL"]
+        lambda res: None if res["Place calculée"] in (None, "0", "-1") else res["Place calculée"]
     ),
     "bicycle_parking": (
-        lambda res: STANDS_TYPES.get(res['TYPEMOB'], None)
+        lambda res: STANDS_TYPES.get(res['Type mobilier'], None)
     )
 }
 
@@ -97,9 +97,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                 generate = Generate(
                     static1 = {"amenity": "motorcycle_parking"},
                     static2 = {"source": self.source},
-                    mapping1 = {
-                        "capacity": lambda res: None if res["PLACAL"] in (None, "0") else res["PLACAL"],
-                    })))
+                    mapping1 = tag_mapping )))
 
 
 class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):

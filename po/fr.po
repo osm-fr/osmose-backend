@@ -34,8 +34,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-01-19 19:16+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-01-30 22:14+0000\n"
+"Last-Translator: deuzeffe\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2324,7 +2324,7 @@ msgstr "Un monument historique est présent mais n'est pas intégré. La liste d
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add a node or to integrate tags if something already existing."
-msgstr ""
+msgstr "Voir [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) sur\nle wiki. Ajouter un nœud ou compléter les attributs si un objet est \ndéjà présent."
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:41
 msgid ""
@@ -2482,7 +2482,7 @@ msgstr "`name` manquant"
 msgid ""
 "The admin_centre `population` is greater than the relation\n"
 "`population`."
-msgstr ""
+msgstr "La `population` de l'admin_centre est plus grande que \nla `population` de la relation."
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:139
 msgid ""
@@ -2527,7 +2527,7 @@ msgstr ""
 msgid ""
 "The intersection surface is probably due to inaccuracies in the\n"
 "cadastre/import tools."
-msgstr ""
+msgstr "L'intersection entre les surfaces est probablement due à\nl'imprécision des outils d'importation du cadastre."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:176
 msgid ""
@@ -2539,7 +2539,7 @@ msgstr ""
 msgid ""
 "There is no intersection, but the surface is too small to be a\n"
 "building."
-msgstr ""
+msgstr "Il n'y a pas d'intersection, mais la surface est trop petite pour être\nune construction."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:186
 msgid ""
@@ -3933,4 +3933,49 @@ msgid ""
 "The object is missing any tag which defines what kind of feature is\n"
 "it. Considered main tags are (with derived `disused:`, `abandoned:` and\n"
 "`historic:`):"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_traffic_signs.py:98
+#, python-brace-format
+msgid "Observed between {0} and {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_traffic_signs.py:99
+#, python-brace-format
+msgid "Observed on {0}"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:31
+msgid ""
+"A car charging station may be here but is not mapped. The list of the\n"
+"charging stations comes from a database published by Etalab. This database\n"
+"brings together information published by the various local authorities and\n"
+"networks in France."
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:36
+msgid ""
+"See [the\n"
+"mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)\n"
+"on the  wiki. Add a node or add tags if already existing."
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:40
+msgid ""
+"The initial information corresponds to recharging points and not to\n"
+"stations, so some values are worth checking in the field."
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:43
+msgid "Car charging station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:45
+msgid "Car charging station, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:47
+msgid "Car charging station  update"
 msgstr ""

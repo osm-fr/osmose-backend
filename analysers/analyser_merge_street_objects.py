@@ -51,7 +51,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
             fix = T_('Map the corresponding object if the imagery is up-to-date and object detection is correct.'))
 
         self.init(
-            "www.mapillary.com",
+            "https://www.mapillary.com",
             u"Street Objects from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
             Load("X", "Y",
@@ -67,6 +67,6 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
                     mapping1 = {
                       "mapillary": "image_key",
                       "survey:date": lambda res: res["last_seen_at"][0:10]},
-                text = lambda tags, fields: {"en": (
-                    "Observed between %s and %s" % (fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
-                    "Observed on %s" % (fields["first_seen_at"][0:10],))} )))
+                text = lambda tags, fields:
+                    T_f('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
+                    T_f('Observed on {0}', fields["first_seen_at"][0:10]) )))

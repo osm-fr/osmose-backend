@@ -40,6 +40,11 @@ FROM
       ways.tags->'route' != 'ferry'
     ) AND
     (
+      NOT ways.tags?'building' OR
+      ways.tags->'building' = 'no'
+    ) AND
+    NOT ways.tags?'amenity' AND
+    (
       NOT ways.tags?'highway' OR
       ways.tags->'{3}' IN ({4}) OR
       (
