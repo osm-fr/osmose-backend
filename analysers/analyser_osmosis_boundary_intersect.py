@@ -94,11 +94,11 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
         self.classs[1] = self.def_class(item = 1060, level = 2, tags = ['boundary', 'geom', 'fix:chair'],
             title = T_('Boundary intersection'),
             detail = T_(
-'''Borders crossing.'''),
+'''Borders crossing each other.'''),
             fix = T_(
 '''Check the type of border and keep the best or merged.'''),
             trap = T_(
-'''The borders are part of relationships, they normally form loops.'''),
+'''The borders are part of relations, they normally doing a loops.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)
 
