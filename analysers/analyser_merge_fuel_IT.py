@@ -58,8 +58,9 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["Indirizzo"], fields["Comune"])} )))
 
     # First Char Uppercase
+    # quotes (") removal
     # commas (,) removal
     # extra spaces trim
     def nomalizeString(self, str):
-        return " ".join(map(lambda x: x.capitalize(), str.replace(",", " ").split()))
+        return " ".join(map(lambda x: x.capitalize(), str.replace("\"", " ").replace(",", " ").split()))
 
