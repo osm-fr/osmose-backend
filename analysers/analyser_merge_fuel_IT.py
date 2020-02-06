@@ -47,7 +47,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "fuel"}),
                 osmRef = "ref:mise",
-                conflationDistance = 300,
+                conflationDistance = 50,
                 generate = Generate(
                     static1 = {"amenity": "fuel"},
                     static2 = {"source": self.source},
