@@ -46,13 +46,13 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "fuel"}),
-                osmRef = "ref:MISE",
+                osmRef = "ref:mise",
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = {"amenity": "fuel"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:MISE": u"idImpianto",
+                        "ref:mise": u"idImpianto",
                         "operator": lambda res: nomalizeString(res[u"Gestore"]),
                         "brand": u"Bandiera"},
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["Indirizzo"], fields["Comune"])} )))
