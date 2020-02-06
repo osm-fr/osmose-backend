@@ -34,32 +34,23 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
             title = T_('Gas station update'))
 
         self.init(
-            u"https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti",
-            u"MISE - Ministero Sviluppo Economico",
-            CSV(Source(attribution = u"MISE - Ministero Sviluppo Economico",
-                    fileUrl = u"https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv",
-                    encoding = "utf-8"),
-                    separator = u";"),
-            Load("Longitudine", "Latitudine",
-                where = lambda row: row["Bandiera"] != u"Pompe Bianche"),
+            'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
+            'MISE - Ministero Sviluppo Economico',
+            CSV(Source(attribution = u'MISE - Ministero Sviluppo Economico', fileUrl = u'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
+                separator = ';', skip_first_lines = 1, quote = '~'),
+            Load('Longitudine', 'Latitudine',
+                where = lambda row: row['Bandiera'] != u'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] !='NULL'),
             Mapping(
                 select = Select(
-                    types = ["nodes", "ways"],
-                    tags = {"amenity": "fuel"}),
-                osmRef = "ref:mise",
+                    types = ['nodes', 'ways'],
+                    tags = {'amenity': 'fuel'}),
+                osmRef = 'ref:mise',
                 conflationDistance = 50,
                 generate = Generate(
-                    static1 = {"amenity": "fuel"},
-                    static2 = {"source": self.source},
+                    static1 = {'amenity': 'fuel'},
+                    static2 = {'source': self.source},
                     mapping1 = {
-                        "ref:mise": u"idImpianto",
-                        "operator": lambda res: nomalizeString(res[u"Gestore"]),
-                        "brand": u"Bandiera"},
-                text = lambda tags, fields: {"en": u"%s, %s" % (fields["Indirizzo"], fields["Comune"])} )))
-
-    # First Char Uppercase
-    # commas (,) removal
-    # extra spaces trim
-    def nomalizeString(self, str):
-        return " ".join(map(lambda x: x.capitalize(), str.replace(",", " ").split()))
-
+                        'ref:mise': 'idImpianto',
+                        'operator': lambda res: res[u'Gestore'].strip().replace('"', ' ').replace(',', ' ').replace('  ', ' ').title(),
+                        'brand': 'Bandiera'},
+                text = lambda tags, fields: {'en': u'%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
