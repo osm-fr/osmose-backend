@@ -26,14 +26,21 @@ class TagFix_Area(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'power', 'public_transport', 'sport', 'tourism', 'waterway'))
+        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'landuse', 'natural', 'office', 'place', 'shop', 'indoor'))
         self.errors[32001] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Bad usage of area=yes. Object is already an area by nature'))
         self.errors[32002] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
-            title = T_('area=yes on object without main tag'))
+            title = T_('Untagged area object'),
+            detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`.'),
+            fix = self.merge_doc(
+              T_('Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:'),
+              {'en': ', '.join(map(lambda x: f'`{x}`', self.area_yes_good))}
+            ),
+            trap = T_f('It may be more appropriate to remove the `{0}` tag if it\'s inaccurate.', 'area=yes')
+        )
         self.errors[32003] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Bad usage of area=no. Object must be a surface'))
-        self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'power', 'public_transport', 'sport', 'tourism', 'waterway'))
-        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'landuse', 'natural', 'office', 'place', 'shop', 'indoor'))
 
     def way(self, data, tags, nds):
         err = []
