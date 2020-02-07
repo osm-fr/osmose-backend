@@ -30,37 +30,54 @@ class TagFix_Deprecated(Plugin):
     def cleanWiki(self, src):
         if src is None:
             return src
-        src = src.replace("'''", "").replace("{{tag|", "").replace("{{Tag|", "").replace("}}", "").replace("<br/>", " ").replace("<br />", " ")
-        src = re.sub(r'([a-z])\|\|?([a-z*])', '\\1=\\2', src)
-        src = src.replace("|", "")
-        src = re.sub(r' +', ' ', src).strip()
-        return src
 
+        # Remove bold and newlines
+        src = src.replace("'''", "").replace("<br/>", " ").replace("<br />", " ")
+
+        # Remove excess whitespace
+        return " ".join(src.split())
 
     def deprecated_list(self):
-        data = urlread(u"https://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw&force_cache_20180805", 1)
-        #data = open("Deprecated_features?action=raw").read()
-        data = data.split("{{Deprecated features/item")
-        dkey = re.compile(r"^\s*\|\s*dkey\s*=")
-        dvalue = re.compile(r"\s*dvalue\s*=")
-        suggestion = re.compile(r"^\s*\|\s*suggestion\s*=")
+        wikiRoot = 'https://wiki.openstreetmap.org/wiki'
+        data = urlread(f'{wikiRoot}/Template:Deprecated_features?action=raw', 1)
+        data = data.split(r'{{Deprecated features/item')
+
         dataMult = []
         for feature in data[1:]:
-            deprecated_key = None
-            deprecated_value = None
-            deprecated_suggestion = None
-            for line in feature.split("\n"):
-                if dkey.match(line):
-                    deprecated_key = line.split("|")[1].split("=")[1].strip()
-                    t = line.split("|")
-                    if len(t) > 2:
-                        if dvalue.match(t[2]):
-                            deprecated_value = t[2].split("=")[1].strip()
+            # Eliminate any whitespace around pipe characters (this also eliminates newlines)
+            feature = re.sub(r'\s*\|\s*', '|', feature)
 
-                if suggestion.match(line):
-                    deprecated_suggestion = line.split("=")[1].strip()
+            # Eliminate templates to prevent unexpected pipe characters
+            feature = re.sub(r'{{{lang\|}}}', '', feature, flags=re.I)
+            # Tag template can take one or two params, with trailing | possible
+            feature = re.sub(
+                r'{{Tag\|(.+?)\|?}}',
+                lambda x : f'`{ x[1].replace("|", "=") }`',
+                feature,
+                flags=re.I
+            )
 
-                dataMult.append((deprecated_key, deprecated_value, deprecated_suggestion))
+            # Resolve interwiki links now
+            feature = re.sub(
+                r'\[\[(.+?)\]\]',
+                lambda x : f'[{x[1]}]({wikiRoot}/{x[1].replace(" ", "_")})',
+                feature
+            )
+
+            extracted = [None, None, None]
+            for param in feature.split('|'):
+                if '=' not in param:
+                    continue
+
+                k, v = param.split('=', 1)
+                if (k == 'dkey'):
+                    extracted[0] = v
+                elif (k == 'dvalue'):
+                    extracted[1] = v
+                elif (k == 'suggestion'):
+                    extracted[2] = v
+
+            dataMult.append(extracted)
 
         deprecated = {}
         for line in dataMult:
@@ -92,9 +109,17 @@ features](https://wiki.openstreetmap.org/wiki/Deprecated_features)''')
         err = []
         for k in set(tags).intersection(self.DeprecatedSet):
             if None in self.Deprecated[k]:
-                err.append({"class": 4010, "subclass": stablehash(k), "text": T_("Tag %(tag)s is deprecated: %(depr)s", {"tag": k, "depr": self.Deprecated[k][None]})})
+                err.append({
+                    "class": 4010,
+                    "subclass": stablehash(k),
+                    "text": T_f('The tag `{0}` is deprecated in favour of {1}', k, self.Deprecated[k][None])
+                })
             elif tags[k] in self.Deprecated[k]:
-                err.append({"class": 40102, "subclass": stablehash(k), "text": T_("Tag %(tag)s=%(value)s is deprecated: %(depr)s", {"tag": k, "value": tags[k], "depr": self.Deprecated[k][tags[k]]})})
+                err.append({
+                    "class": 40102,
+                    "subclass": stablehash(k),
+                    "text": T_f('The tag `{0}` is deprecated in favour of {1}', "=".join([k, tags[k]]), self.Deprecated[k][tags[k]])
+                })
         return err
 
     def way(self, data, tags, nds):
