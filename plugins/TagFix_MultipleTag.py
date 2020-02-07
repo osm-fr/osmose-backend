@@ -63,7 +63,7 @@ bridge.'''))
                 T_('Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):'),
                 {'en': ', '.join(map(lambda x: f'`{x}`', main_tags))}
             ),
-            trap = T_f('It may be more appropriate to remove the `{0}` tag if it\'s inaccurate.', 'name')
+            trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
         )
         self.errors[21102] = self.def_class(item = 2110, level = 2, tags = ['tag'],
             title = T_('Missing relation type'),

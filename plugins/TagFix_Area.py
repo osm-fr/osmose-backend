@@ -40,7 +40,7 @@ class TagFix_Area(Plugin):
               T_('Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:'),
               {'en': ', '.join(map(lambda x: f'`{x}`', self.area_yes_good))}
             ),
-            trap = T_f('It may be more appropriate to remove the `{0}` tag if it\'s inaccurate.', 'area=yes')
+            trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
         )
         self.errors[32003] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Redundant area negation'),
