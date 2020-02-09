@@ -62,9 +62,13 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = self.def_class(item = 3161, level = 1, tags = ['highway', 'fix:chair'],
-          title = T_('Missing access way to parking'))
+            title = T_('Missing access way to parking'),
+            detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.')
+        )
         self.classs[2] = self.def_class(item = 3161, level = 3, tags = ['highway', 'fix:chair'],
-          title = T_('Missing access way to parking'))
+            title = T_('Missing access way to parking'),
+            detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.')
+        )
 
     def analyser_osmosis_common(self):
         self.run(sql10.format(""))
