@@ -61,7 +61,7 @@ bridge.'''))
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag.'),
             fix = self.merge_doc(
                 T_('Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):'),
-                {'en': ', '.join(map(lambda x: f'`{x}`', main_tags))}
+                {'en': ', '.join(map(lambda x: '`{}`'.format(x), main_tags))}
             ),
             trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
         )

@@ -38,7 +38,7 @@ class TagFix_Area(Plugin):
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`.'),
             fix = self.merge_doc(
               T_('Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:'),
-              {'en': ', '.join(map(lambda x: f'`{x}`', self.area_yes_good))}
+              {'en': ', '.join(map(lambda x: '`{}`'.format(x), self.area_yes_good))}
             ),
             trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
         )
@@ -57,7 +57,7 @@ class TagFix_Area(Plugin):
                 err.append({
                     "class": 32001,
                     "subclass": 1,
-                    "text": T_f('Tags, {0}, already make this an area.', '/'.join(map(lambda x: f'`{x}`', tagged_as_bad)))
+                    "text": T_f('Tags, {0}, already make this an area.', '/'.join(map(lambda x: '`{}`'.format(x), tagged_as_bad)))
                 })
             elif not (len(key_set & self.area_yes_good) > 0 or tags.get("railway") == "platform"):
                 err.append({"class": 32002, "subclass": 1})
