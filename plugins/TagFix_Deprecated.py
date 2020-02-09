@@ -26,67 +26,62 @@ import re
 
 
 class TagFix_Deprecated(Plugin):
-
-    def cleanWiki(self, src):
-        if src is None:
-            return src
-
-        # Remove bold and newlines
-        src = src.replace("'''", "").replace("<br/>", " ").replace("<br />", " ")
-
-        # Remove excess whitespace
-        return " ".join(src.split())
-
     def deprecated_list(self):
         wikiRoot = 'https://wiki.openstreetmap.org/wiki'
-        data = urlread(f'{wikiRoot}/Template:Deprecated_features?action=raw', 1)
-        data = data.split(r'{{Deprecated features/item')
+        data = urlread(wikiRoot + '/Template:Deprecated_features?action=raw', 1)
 
-        dataMult = []
-        for feature in data[1:]:
-            # Eliminate any whitespace around pipe characters (this also eliminates newlines)
-            feature = re.sub(r'\s*\|\s*', '|', feature)
+        # Tidy data up for processing
+        # Eliminate wiki bold formatting
+        data = data.replace("'''", "")
 
-            # Eliminate templates to prevent unexpected pipe characters
-            feature = re.sub(r'{{{lang\|}}}', '', feature, flags=re.I)
-            # Tag template can take one or two params, with trailing | possible
-            feature = re.sub(
-                r'{{Tag\|(.+?)\|?}}',
-                lambda x : f'`{ x[1].replace("|", "=") }`',
-                feature,
-                flags=re.I
-            )
+        # Remove HTML newlines
+        data = re.sub(r'<br\s*/>', ' ', data)
 
-            # Resolve interwiki links now
-            feature = re.sub(
-                r'\[\[(.+?)\]\]',
-                lambda x : f'[{x[1]}]({wikiRoot}/{x[1].replace(" ", "_")})',
-                feature
-            )
+        # Remove excess whitespace (also removes all newlines)
+        data = " ".join(data.split())
 
-            extracted = [None, None, None]
+        # Eliminate any whitespace around pipe characters
+        # This makes reading the template parameters simple
+        data = re.sub(r'\s?\|\s?', '|', data)
+
+        # Eliminate templates to prevent unexpected pipe characters
+        data = re.sub(r'{{{\s?lang\s?\|?\s?}}}', '', data, flags=re.I)
+        # Tag template can take one or two params, with trailing | possible
+        data = re.sub(
+            r'{{Tag\s?\|(.+?)\|?\s?}}',
+            lambda x : '`{}`'.format(x[1].replace("|", "=")),
+            data,
+            flags=re.I
+        )
+
+        # Resolve interwiki links now
+        data = re.sub(
+            r'\[\[(.+?)\]\]',
+            lambda x : '[{}]({}/{})'.format(x[1], wikiRoot, x[1].replace(" ", "_")),
+            data
+        )
+
+        deprecated = {}
+        for feature in data.split(r'{{Deprecated features/item')[1:]:
+            src_key, src_val, dest = None, None, None
             for param in feature.split('|'):
                 if '=' not in param:
                     continue
 
                 k, v = param.split('=', 1)
-                if (k == 'dkey'):
-                    extracted[0] = v
-                elif (k == 'dvalue'):
-                    extracted[1] = v
-                elif (k == 'suggestion'):
-                    extracted[2] = v
+                # k will always start with the param because we removed whitespace around | earlier
+                # We don't use == because there could be space before the = character
+                if (k.startswith('dkey')):
+                    src_key = v
+                elif (k.startswith('dvalue')):
+                    src_val = v
+                elif (k.startswith('suggestion')):
+                    dest = v
 
-            dataMult.append(extracted)
+            # Sanity check in case formatting changes or something
+            if any((src_key, src_val, dest)):
+                deprecated.setdefault(src_key, {})[src_val] = dest
 
-        deprecated = {}
-        for line in dataMult:
-            src_key = self.cleanWiki(line[0])
-            src_val = self.cleanWiki(line[1])
-            dest = self.cleanWiki(line[2])
-            if src_key not in deprecated:
-                deprecated[src_key] = {}
-            deprecated[src_key][src_val] = dest
         return deprecated
 
     def init(self, logger):
