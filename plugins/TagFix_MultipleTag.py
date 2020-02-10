@@ -58,15 +58,17 @@ class TagFix_MultipleTag(Plugin):
 bridge.'''))
         self.errors[21101] = self.def_class(item = 2110, level = 2, tags = ['tag'],
             title = T_('Untagged named object'),
-            detail = self.merge_doc(T_(
-'''The object is missing any tag which defines what kind of feature is
-it. Considered main tags are (with derived `disused:`, `abandoned:` and
-`historic:`):''',
-              {'en': ', '.join(main_tags)})),
-            fix = T_(
-'''Add a top level tag to state what kind of thing is it.'''))
+            detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag.'),
+            fix = self.merge_doc(
+                T_('Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):'),
+                {'en': ', '.join(map(lambda x: '`{}`'.format(x), main_tags))}
+            ),
+            trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
+        )
         self.errors[21102] = self.def_class(item = 2110, level = 2, tags = ['tag'],
-            title = T_('Missing relation type'))
+            title = T_('Missing relation type'),
+            detail = T_('The relation is missing a `type` tag to define what it represents.')
+        )
         self.errors[1050] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Reverse roundabout'),
             detail = T_(
