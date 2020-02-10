@@ -49,7 +49,7 @@ class TagFix_Deprecated(Plugin):
         # Tag template can take one or two params, with trailing | possible
         data = re.sub(
             r'{{Tag\s?\|(.+?)\|?\s?}}',
-            lambda x : '`{}`'.format(x[1].replace("|", "=")),
+            lambda x : '`{}`'.format(x.group(1).replace("|", "=")),
             data,
             flags=re.I
         )
@@ -57,7 +57,7 @@ class TagFix_Deprecated(Plugin):
         # Resolve interwiki links now
         data = re.sub(
             r'\[\[(.+?)\]\]',
-            lambda x : '[{}]({}/{})'.format(x[1], wikiRoot, x[1].replace(" ", "_")),
+            lambda x : '[{}]({}/{})'.format(x.group(1), wikiRoot, x.group(1).replace(" ", "_")),
             data
         )
 
