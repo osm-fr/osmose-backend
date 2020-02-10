@@ -1,10 +1,11 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Christian Ostermann, 2019
+# ToniE <osm-ToniE@web.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Christian Ostermann, 2019\n"
+"Last-Translator: ToniE <osm-ToniE@web.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -58,6 +59,8 @@ msgstr "Ist das eine Bushaltestelle oder ein Busbahnhof?"
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
+"Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf der"
+" Fahrbahn ist (stop_position)"
 
 #: ../transport.validator.mapcss:235
 msgid ""
@@ -103,6 +106,8 @@ msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
+"Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf den"
+" Schienen ist (stop_position)"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"

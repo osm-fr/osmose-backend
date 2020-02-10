@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-01 22:20+0000\n"
+"PO-Revision-Date: 2020-02-10 20:19+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -317,15 +317,15 @@ msgstr "Μη έγκυρο πολύγωνο"
 msgid "Lone power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:331
+#: ../analysers/analyser_osmosis_powerline.py:343
 msgid "Connection between different voltages"
 msgstr "Σύνδεση μεταξύ διαφορετικών τάσεων"
 
-#: ../analysers/analyser_osmosis_powerline.py:336
+#: ../analysers/analyser_osmosis_powerline.py:346
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:341
+#: ../analysers/analyser_osmosis_powerline.py:354
 msgid "Missing power tower or pole"
 msgstr ""
 
@@ -406,7 +406,7 @@ msgid "Roundabout crossing"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:45
-#: ../plugins/TagFix_MultipleTag.py:71
+#: ../plugins/TagFix_MultipleTag.py:73
 msgid "Reverse roundabout"
 msgstr "Αντίθετος κυκλικός κόμβος"
 
@@ -731,22 +731,12 @@ msgid "Wallonia stop, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
+#: ../analysers/analyser_merge_fuel_IT.py:30
 msgid "Gas station not integrated"
 msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:84
 msgid "Same wikipedia topic on other language"
-msgstr ""
-
-#: ../plugins/TagFix_Area.py:30
-msgid "Bad usage of area=yes. Object is already an area by nature"
-msgstr ""
-
-msgid "area=yes on object without kind"
-msgstr ""
-
-#: ../plugins/TagFix_Area.py:34
-msgid "Bad usage of area=no. Object must be a surface"
 msgstr ""
 
 #: ../plugins/TagFix_BadKey.py:80
@@ -825,12 +815,12 @@ msgstr "Διένεξη μεταξύ ετικετών: 'bridge' και 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:155
+#: ../plugins/TagFix_MultipleTag.py:157
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:167
+#: ../plugins/TagFix_MultipleTag.py:169
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Χρησιμοποιήστε την ετικέτα \"toll\" αντί για \"fee\""
 
@@ -946,11 +936,11 @@ msgstr ""
 msgid "Bridge structure missing"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:90
+#: ../plugins/TagFix_MultipleTag.py:92
 msgid "Roundabout as area"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:92
+#: ../plugins/TagFix_MultipleTag.py:94
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
@@ -958,11 +948,11 @@ msgstr ""
 msgid "Building in parts"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:94
+#: ../plugins/TagFix_MultipleTag.py:96
 msgid "Indoor or buildingpart tag missing"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:96
+#: ../plugins/TagFix_MultipleTag.py:98
 msgid "Missing tag ref for emergency access point"
 msgstr ""
 
@@ -995,16 +985,16 @@ msgstr ""
 msgid "Name with uppercase"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:100 ../plugins/TagFix_MultipleTag.py:104
+#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:106
 msgid "access=yes|permissive allow all transport modes"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:196
+#: ../plugins/TagFix_MultipleTag.py:198
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:198
+#: ../plugins/TagFix_MultipleTag.py:200
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
@@ -1025,11 +1015,11 @@ msgstr ""
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:324
+#: ../analysers/analyser_osmosis_powerline.py:327
 msgid "Unfinished power major line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:329
+#: ../analysers/analyser_osmosis_powerline.py:335
 msgid "Unfinished power minor line"
 msgstr ""
 
@@ -1167,7 +1157,7 @@ msgstr ""
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:346
+#: ../analysers/analyser_osmosis_powerline.py:359
 msgid "Unmatched voltage of line on substation"
 msgstr ""
 
@@ -1180,10 +1170,12 @@ msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:32
+#: ../analysers/analyser_merge_fuel_IT.py:32
 msgid "Gas station integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:34
+#: ../analysers/analyser_merge_fuel_IT.py:34
 msgid "Gas station update"
 msgstr ""
 
@@ -1355,7 +1347,7 @@ msgstr ""
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:112
+#: ../plugins/TagFix_MultipleTag.py:114
 msgid "Suspicious name for a container"
 msgstr ""
 
@@ -1679,11 +1671,11 @@ msgid "Police/\"Gendarmerie\" update"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_parking_highway.py:65
-#: ../analysers/analyser_osmosis_parking_highway.py:67
+#: ../analysers/analyser_osmosis_parking_highway.py:69
 msgid "Missing access way to parking"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:110
+#: ../plugins/TagFix_MultipleTag.py:112
 msgid "Probably only for bottles, not any type of glass"
 msgstr ""
 
@@ -2426,16 +2418,8 @@ msgstr ""
 msgid "An area is marked as not belonging to any city."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_intersect.py:97
-msgid "Borders crossing."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_boundary_intersect.py:99
 msgid "Check the type of border and keep the best or merged."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_boundary_intersect.py:101
-msgid "The borders are part of relationships, they normally form loops."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:103
@@ -2457,13 +2441,6 @@ msgstr ""
 msgid ""
 "The admin_centre `population` is greater than the relation\n"
 "`population`."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_boundary_relation.py:139
-msgid ""
-"See [possible\n"
-"roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary\n"
-"relation."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:107
@@ -2504,12 +2481,6 @@ msgid ""
 "cadastre/import tools."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
-msgid ""
-"A large overlap. Requires a visual check (Bing, cadastre, on\n"
-"site)."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:181
 msgid ""
 "There is no intersection, but the surface is too small to be a\n"
@@ -2524,12 +2495,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:191
 msgid "Group of important overlaps. Major problem like a double import."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_shapes.py:65
-msgid ""
-"The form of a building is characteristic and as such would be\n"
-"tagged."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:64
@@ -2797,30 +2762,6 @@ msgstr ""
 msgid "This tower should probably be connected to a power line."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:326
-msgid ""
-"The line ends in a vacuum, and should be connected to another line or\n"
-"a transformer `power=substation` or a generator `power=generator`."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_powerline.py:333
-msgid ""
-"Two lines meet in one point, but inconsistent with voltages from the\n"
-"tag `voltage=*`."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_powerline.py:338
-msgid ""
-"If this node is a tower or pole, use the tag `power=tower` or\n"
-"`power=pole` else remove it."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_powerline.py:343
-msgid ""
-"According to the statistical frequency of the poles on the power line,\n"
-"it should miss one pole nearby."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid ""
 "There is only a part of the required tag `addr:*=*`. They do not\n"
@@ -3016,7 +2957,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:59
-#: ../plugins/TagFix_MultipleTag.py:86
+#: ../plugins/TagFix_MultipleTag.py:88
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
 "\n"
@@ -3638,18 +3579,14 @@ msgid ""
 "bridge."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:67
-msgid "Add a top level tag to state what kind of thing is it."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag.py:73
+#: ../plugins/TagFix_MultipleTag.py:75
 msgid ""
 "The circulation of the roundabout is draw clockwise, but in countries\n"
 "where they drive on the right the sense of roundabouts is\n"
 "counterclockwise, and vice versa for the other countries."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:77
+#: ../plugins/TagFix_MultipleTag.py:79
 msgid ""
 "For the mini roundabouts `highway=mini_roundabout`: the tag\n"
 "`direction=*` indicates the direction, in countries driven on the right,\n"
@@ -3657,14 +3594,14 @@ msgid ""
 "tag."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:82
+#: ../plugins/TagFix_MultipleTag.py:84
 msgid ""
 "Make sure that it is a roundabout (for example, no a side way in\n"
 "oposite direction around a square or a central roundabout, ordriveways\n"
 "separated by traffic islands at an intersection without cross)."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:106
+#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:108
 msgid ""
 "`access=yes` means wide open to all transport mode, look at "
 "[access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
@@ -3903,13 +3840,6 @@ msgstr ""
 msgid "Untagged named object"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:62
-msgid ""
-"The object is missing any tag which defines what kind of feature is\n"
-"it. Considered main tags are (with derived `disused:`, `abandoned:` and\n"
-"`historic:`):"
-msgstr ""
-
 #: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:98
 #, python-brace-format
@@ -3955,6 +3885,139 @@ msgstr ""
 msgid "Car charging station  update"
 msgstr ""
 
+#: ../analysers/analyser_osmosis_boundary_intersect.py:97
+msgid "Borders crossing each other."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_intersect.py:101
+msgid "The borders are part of relations, they normally doing a loops."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:139
+msgid ""
+"See [possible\n"
+"roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary\n"
+"relations."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:176
+msgid ""
+"A large overlap. Requires a visual check (Bing, cadastre or\n"
+"survey)."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_shapes.py:65
+msgid ""
+"The shape of the building is characteristic and as such would be\n"
+"tagged."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:66
+#: ../analysers/analyser_osmosis_parking_highway.py:70
+msgid ""
+"There should be a `highway` feature leading to this parking facility to "
+"allow for correct routing."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:324
+#: ../analysers/analyser_osmosis_powerline.py:332
+#: ../analysers/analyser_osmosis_powerline.py:340
+msgid ""
+"It's possible that disused power features could be disconnected from the network.\n"
+"In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:329
+#: ../analysers/analyser_osmosis_powerline.py:337
+msgid ""
+"The line ends in a vacuum, and should be connected to another line or\n"
+"a transformer (`power=transformer`) or a generator (`power=generator`)."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:344
+msgid ""
+"Two power lines meet at this point, but have inconsistent voltages "
+"(`voltage=*`)."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:348
+msgid ""
+"Power lines can only form a straight line between supports and therefore shouldn't\n"
+"have additional nodes that aren't tagged as a `power` feature."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:351
+msgid ""
+"If this node is a tower or pole, use the tag `power=tower` or\n"
+"`power=pole`. Otherwise remove it."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:356
+msgid ""
+"Based on the statistical frequency of the poles on this power line,\n"
+"there's likely an unmapped pole nearby."
+msgstr ""
+
 #: ../plugins/TagFix_Area.py:32
-msgid "area=yes on object without main tag"
+msgid "Redundant area tagging"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:33
+msgid "This feature is already implicitly an area due to another tag."
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:34 ../plugins/TagFix_Area.py:48
+#, python-brace-format
+msgid "Remove the `{0}` tag."
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:37
+msgid "Untagged area object"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:38
+msgid ""
+"The object is missing any tag which defines what kind of feature it is. This"
+" is unexpected for something tagged with `area=yes`."
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:40
+msgid ""
+"Add a top level tag to state what this feature is. Considered acceptable "
+"`area=yes` features are:"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:43 ../plugins/TagFix_MultipleTag.py:66
+msgid ""
+"It may be more appropriate to remove the object completely if it isn't "
+"useful."
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:46
+msgid "Redundant area negation"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:47
+msgid "This feature is already implicitly not an area."
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:60
+#, python-brace-format
+msgid "Tags, {0}, already make this an area."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:61
+msgid ""
+"The object is missing any tag which defines what kind of feature it is. This"
+" is unexpected for something with a `name` tag."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:63
+msgid ""
+"Add a top level tag to state what this feature is. Considered top level tags"
+" are (with derived `disused:`, `abandoned:` and `historic:` variants):"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:70
+msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
