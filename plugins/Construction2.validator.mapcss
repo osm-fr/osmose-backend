@@ -33,8 +33,8 @@ meta[lang=fr] {
 
 way[highway][construction][highway!=construction][construction!=minor],
 way[highway][proposed][highway!=proposed],
-way[railway][construction][railway!=construction|abandoned|razed|dismantled][construction!=minor],
-way[railway][proposed][railway!=proposed|abandoned|razed|dismantled|disused] {
+way[railway][construction][railway!=construction][railway!=abandoned][railway!=razed][railway!=dismantled][construction!=minor],
+way[railway][proposed][railway!=proposed][railway!=abandoned][railway!=razed][railway!=dismantled][railway!=disused] {
     throwError: tr("Inconsistent tagging of {0}", "{1.key}");
     -osmoseItemClassLevel: "4070/40701/1";
 
