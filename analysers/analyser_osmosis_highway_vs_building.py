@@ -58,7 +58,6 @@ WHERE
 
 sql01 = """
 CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring);
-CREATE INDEX idx_{0}highway_linestring_proj ON {0}highway USING gist(linestring_proj);
 """
 
 sql02 = """

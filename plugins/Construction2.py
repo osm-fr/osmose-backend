@@ -23,8 +23,8 @@ class Construction2(Plugin):
 
         # way[highway][construction][highway!=construction][construction!=minor]
         # way[highway][proposed][highway!=proposed]
-        # way[railway][construction][railway!=construction][construction!=minor]
-        # way[railway][proposed][railway!=proposed]
+        # way[railway][construction][railway!=construction][railway!=abandoned][railway!=razed][railway!=dismantled][construction!=minor]
+        # way[railway][proposed][railway!=proposed][railway!=abandoned][railway!=razed][railway!=dismantled][railway!=disused]
         if (u'construction' in keys and u'highway' in keys) or (u'construction' in keys and u'railway' in keys) or (u'highway' in keys and u'proposed' in keys) or (u'proposed' in keys and u'railway' in keys):
             match = False
             if not match:
@@ -37,11 +37,11 @@ class Construction2(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'construction') and mapcss._tag_capture(capture_tags, 2, tags, u'railway') != mapcss._value_const_capture(capture_tags, 2, u'construction', u'construction') and mapcss._tag_capture(capture_tags, 3, tags, u'construction') != mapcss._value_const_capture(capture_tags, 3, u'minor', u'minor'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'construction') and mapcss._tag_capture(capture_tags, 2, tags, u'railway') != mapcss._value_const_capture(capture_tags, 2, u'construction', u'construction') and mapcss._tag_capture(capture_tags, 3, tags, u'railway') != mapcss._value_const_capture(capture_tags, 3, u'abandoned', u'abandoned') and mapcss._tag_capture(capture_tags, 4, tags, u'railway') != mapcss._value_const_capture(capture_tags, 4, u'razed', u'razed') and mapcss._tag_capture(capture_tags, 5, tags, u'railway') != mapcss._value_const_capture(capture_tags, 5, u'dismantled', u'dismantled') and mapcss._tag_capture(capture_tags, 6, tags, u'construction') != mapcss._value_const_capture(capture_tags, 6, u'minor', u'minor'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'proposed') and mapcss._tag_capture(capture_tags, 2, tags, u'railway') != mapcss._value_const_capture(capture_tags, 2, u'proposed', u'proposed'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'proposed') and mapcss._tag_capture(capture_tags, 2, tags, u'railway') != mapcss._value_const_capture(capture_tags, 2, u'proposed', u'proposed') and mapcss._tag_capture(capture_tags, 3, tags, u'railway') != mapcss._value_const_capture(capture_tags, 3, u'abandoned', u'abandoned') and mapcss._tag_capture(capture_tags, 4, tags, u'railway') != mapcss._value_const_capture(capture_tags, 4, u'razed', u'razed') and mapcss._tag_capture(capture_tags, 5, tags, u'railway') != mapcss._value_const_capture(capture_tags, 5, u'dismantled', u'dismantled') and mapcss._tag_capture(capture_tags, 6, tags, u'railway') != mapcss._value_const_capture(capture_tags, 6, u'disused', u'disused'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4070/40701/1"
