@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="275769694">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1229176898">
 <class id="1" item="7060" source="http://example.com/plugins/ODbL_migration.py#L38" level="3" tag="source,fix:chair">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -359,7 +359,7 @@
 <classtext lang="uk" title="Забагато пробілів" />
 <classtext lang="zh_CN" title="太多空间" />
 </class>
-<class id="1050" item="1050" source="http://example.com/plugins/TagFix_MultipleTag.py#L88" level="1" tag="highway,roundabout,fix:chair">
+<class id="1050" item="1050" source="http://example.com/plugins/TagFix_MultipleTag.py#L90" level="1" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Rotonda inversa" />
 <classtext lang="cs" title="Reverzní kruhový objezd" />
 <classtext lang="de" title="Kreisverkehr umkehren" />
@@ -385,6 +385,7 @@
 <trap lang="en" title="Make sure that it is a roundabout (for example, no a side way in&#10;oposite direction around a square or a central roundabout, ordriveways&#10;separated by traffic islands at an intersection without cross)." />
 <example lang="en" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Clockwise rotation." />
 <example lang="es" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Rotación en el sentido de las agujas del reloj." />
+<example lang="hu" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Óramutató járásával megegyező irány." />
 </class>
 <class id="1100" item="1100" source="http://example.com/plugins/Structural_UnclosedArea.py#L36" level="3" tag="geom,fix:imagery">
 <classtext lang="ca" title="Àrea sense tancar" />
@@ -463,6 +464,7 @@
 <detail lang="en" title="The tag contains multiple values." />
 <detail lang="es" title="La etiqueta contiene múltiples valores." />
 <fix lang="en" title="Check the accuracy of the values, if necessary, delete the obsolete&#10;values." />
+<fix lang="hu" title="Ellenőrizze az értékek pontosságát, szükség szerint törölje az elavult értékeket." />
 </class>
 <class id="3090" item="3090" source="http://example.com/plugins/Date.py#L35" level="3" tag="value,fix:chair">
 <classtext lang="ca" title="Format de data incorrecte" />
@@ -509,6 +511,7 @@
 <classtext lang="zh_CN" title="数值" />
 <detail lang="en" title="The tag expects a numeric value. Decimals are set with one point and&#10;not a comma." />
 <fix lang="en" title="Change to numeric value and/or the comma to point." />
+<fix lang="hu" title="Módosítsa a szám értékét és/vagy a vesszőt pontra." />
 </class>
 <class id="4010" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L83" level="2" tag="deprecated,tag,fix:chair">
 <classtext lang="ca" title="Etiqueta en desús" />
@@ -703,6 +706,7 @@
 <classtext lang="zh_CN" title="封闭的水路" />
 <classtext lang="zh_TW" title="閉合的水路" />
 <detail lang="en" title="A waterway cannot flow in closed loop." />
+<detail lang="hu" title="Vízfolyás nem folyhat körbe." />
 <fix lang="en" title="It is probably a river bank `waterway=riverbank`." />
 </class>
 <class id="12401" item="1240" source="http://example.com/plugins/Structural_WayOneNode.py#L30" level="2" tag="geom,fix:chair">
@@ -806,7 +810,7 @@
 <detail lang="en" title="The way have a tag `oneway=*` but without `highway=*`." />
 <trap lang="en" title="Check if it is really an highway and it is not already mapped." />
 </class>
-<class id="20802" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L96" level="2" tag="highway">
+<class id="20802" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L98" level="2" tag="highway">
 <classtext lang="cs" title="Chybějící tag ref pro nouzový přístupový bod" />
 <classtext lang="de" title="Fehlendes Merkmal ref=* an Rettungspunkt" />
 <classtext lang="en" title="Missing tag ref for emergency access point" />
@@ -864,12 +868,13 @@
 <class id="20806" item="2080" level="3" tag="parking,amenity,fix:chair">
 <classtext lang="en" title="Missing tag carpool on area" />
 </class>
-<class id="21101" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L67" level="2" tag="tag">
+<class id="21101" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L66" level="2" tag="tag">
 <classtext lang="en" title="Untagged named object" />
-<detail lang="en" title="The object is missing any tag which defines what kind of feature is&#10;it. Considered main tags are (with derived `disused:`, `abandoned:` and&#10;`historic:`):" />
-<fix lang="en" title="Add a top level tag to state what kind of thing is it." />
+<detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag." />
+<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 </class>
-<class id="21102" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L69" level="2" tag="tag">
+<class id="21102" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L70" level="2" tag="tag">
 <classtext lang="cs" title="Chybí typ relace" />
 <classtext lang="de" title="Fehlender Relationstyp" />
 <classtext lang="en" title="Missing relation type" />
@@ -884,8 +889,9 @@
 <classtext lang="uk" title="Відсутній тип зв'язку" />
 <classtext lang="zh_CN" title="缺少关系类型" />
 <classtext lang="zh_TW" title="缺失關聯類型" />
+<detail lang="en" title="The relation is missing a `type` tag to define what it represents." />
 </class>
-<class id="21201" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L92" level="3" tag="indoor">
+<class id="21201" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L94" level="3" tag="indoor">
 <classtext lang="ca" title="Manca l'etiqueta «level» o «repeat_on»" />
 <classtext lang="cs" title="Chybí úroveň nebo tag repeat_on " />
 <classtext lang="de" title="Merkmal level oder repeat_on fehlt" />
@@ -902,7 +908,7 @@
 <classtext lang="uk" title="Відсутній теґ level або repeat_on" />
 <classtext lang="zh_CN" title="Level或repeat_on标记丢失" />
 </class>
-<class id="21202" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L94" level="3" tag="indoor">
+<class id="21202" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L96" level="3" tag="indoor">
 <classtext lang="cs" title="Chybí tag indoor nebo buildingpart" />
 <classtext lang="de" title="Tag indoor oder building:part fehlt" />
 <classtext lang="en" title="Indoor or buildingpart tag missing" />
@@ -1629,49 +1635,23 @@
 <classtext lang="zh_TW" title="無效的郵遞區號" />
 <detail lang="en" title="Check postcode as decribed on&#10;[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)" />
 </class>
-<class id="32001" item="3200" source="http://example.com/plugins/TagFix_Area.py#L30" level="3" tag="tag,fix:chair">
-<classtext lang="ca" title="Ús incorrecte de area=yes. L'objecte ja és un àrea per si mateix" />
-<classtext lang="cs" title="Špatné použití area=yes. Objekt je defaultně plochou." />
-<classtext lang="de" title="Falsche Verwendung von area=yes. Objekt ist bereits von Natur aus area" />
-<classtext lang="en" title="Bad usage of area=yes. Object is already an area by nature" />
-<classtext lang="es" title="Mal uso de area=yes. El objeto ya es un área por naturaleza" />
-<classtext lang="fa" title="کاربرد بد از area=yes. این شیء به خودی خود یک محوطه محسوب می‌شود" />
-<classtext lang="fr" title="“area=yes” superflu, l’objet est une surface par nature" />
-<classtext lang="gl" title="Emprego erróneo da 'area=yes'. O obxecto xa é unha área por natureza" />
-<classtext lang="hu" title="Hibás [area=yes] használat. Az objektum jellegénél fogva amúgyis terület" />
-<classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
-<classtext lang="lt" title="Blogas area=yes naudojimas. Objektas savo esme ir taip yra plotas" />
-<classtext lang="nl" title="Verkeerde gebruik van area=yes. Object is al een area uit zichzelf" />
-<classtext lang="pl" title='Złe użycie area=yes. Obiekt jest obecnie obszarem dzięki użyciu "landuse", "nature", "building" itp.' />
-<classtext lang="pt" title="Utilização desnecessária de area=yes. O objeto é uma área por por si só." />
-<classtext lang="pt_BR" title="Utilização desnecessária de area=yes. O objeto é uma área por por si só." />
-<classtext lang="uk" title="Помилкове застосування area=yes. Об'єкт вже є територією за природою" />
-<classtext lang="zh_CN" title="区域使用不area=yes，但对象本质上已经是一个区域" />
-<classtext lang="zh_TW" title="錯誤的 area=yes 用法，這個物件本來就是 area" />
+<class id="32001" item="3200" source="http://example.com/plugins/TagFix_Area.py#L34" level="3" tag="tag,fix:chair">
+<classtext lang="en" title="Redundant area tagging" />
+<detail lang="en" title="This feature is already implicitly an area due to another tag." />
+<fix lang="en" title="Remove the `area=yes` tag." />
 </class>
-<class id="32002" item="3200" source="http://example.com/plugins/TagFix_Area.py#L32" level="3" tag="tag,fix:chair">
-<classtext lang="en" title="area=yes on object without main tag" />
+<class id="32002" item="3200" source="http://example.com/plugins/TagFix_Area.py#L43" level="3" tag="tag,fix:chair">
+<classtext lang="en" title="Untagged area object" />
+<detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`." />
+<fix lang="en" title="Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `power`, `public_transport`, `sport`, `tourism`, `waterway`" />
+<trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 </class>
-<class id="32003" item="3200" source="http://example.com/plugins/TagFix_Area.py#L34" level="3" tag="tag,fix:chair">
-<classtext lang="ca" title="Ús incorrecte de area=ho. L'objecte ha de ser una superfície" />
-<classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
-<classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Fläche sein" />
-<classtext lang="en" title="Bad usage of area=no. Object must be a surface" />
-<classtext lang="es" title="Mal uso de area=no. El objeto debe ser una superficie" />
-<classtext lang="fa" title="کاربرد بد از area=no. این شیء باید محوطه باشد" />
-<classtext lang="fr" title="Mauvais usage de “area”=“no”. L’objet doit être une surface." />
-<classtext lang="gl" title="Emprego erróneo da 'area=no'. O obxecto ten que ser unha área" />
-<classtext lang="hu" title="Hibás [area=no] használat. Az objektumnak felületnek kell lennie" />
-<classtext lang="it" title="Utilizzo scorretto di area=no. L'oggetto deve essere una superficie" />
-<classtext lang="lt" title="Blogas area=no naudojimas. Objektas privalo būti paviršiumi" />
-<classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
-<classtext lang="pl" title="Złe użycie area=no. Obiekt musi być powierzchnią" />
-<classtext lang="pt" title="Utilização errada de area=yes. O objeto tem de ser uma superfície" />
-<classtext lang="pt_BR" title="Utilização errada de area=yes. O objeto tem de ser uma superfície" />
-<classtext lang="uk" title="Помилкове застосування area=no. Об'єкт має бути поверхнею" />
-<classtext lang="zh_CN" title="使用不当的area=no，对象必须是表面" />
+<class id="32003" item="3200" source="http://example.com/plugins/TagFix_Area.py#L48" level="3" tag="tag,fix:chair">
+<classtext lang="en" title="Redundant area negation" />
+<detail lang="en" title="This feature is already implicitly not an area." />
+<fix lang="en" title="Remove the `area=no` tag." />
 </class>
-<class id="32200" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L102" level="2" tag="highway,fix:chair">
+<class id="32200" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L104" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
 <classtext lang="de" title="access=yes|permissive erlaubt alle Transportmittel" />
 <classtext lang="en" title="access=yes|permissive allow all transport modes" />
@@ -1688,7 +1668,7 @@
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 <detail lang="en" title="`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
 </class>
-<class id="32201" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L106" level="2" tag="highway,fix:chair">
+<class id="32201" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L108" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
 <classtext lang="de" title="access=yes|permissive erlaubt alle Transportmittel" />
 <classtext lang="en" title="access=yes|permissive allow all transport modes" />
@@ -1705,7 +1685,7 @@
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 <detail lang="en" title="`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
 </class>
-<class id="32301" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L110" level="2" tag="highway,fix:chair">
+<class id="32301" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L112" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Pravděpodobně jen pro lahve, ne pro jakýkoli druh skla" />
 <classtext lang="de" title="Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas" />
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
@@ -1719,7 +1699,7 @@
 <classtext lang="uk" title="Ймовірно, лише для пляшок, а не для будь-якого типу скла" />
 <classtext lang="zh_CN" title="可能只适用于瓶子，而不适用于任何类型的玻璃" />
 </class>
-<class id="32302" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L112" level="2" tag="highway,fix:chair">
+<class id="32302" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L114" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Podezřelé jméno pro kontejner" />
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
@@ -1781,7 +1761,7 @@
 <classtext lang="uk" title="Значення, що не підтримується" />
 <detail lang="en" title="The tag or combination key/value is no longer used. List of deprecated&#10;features comes from [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 </class>
-<class id="40201" item="4020" source="http://example.com/plugins/TagFix_MultipleTag.py#L90" level="1" tag="highway,roundabout">
+<class id="40201" item="4020" source="http://example.com/plugins/TagFix_MultipleTag.py#L92" level="1" tag="highway,roundabout">
 <classtext lang="ca" title="Rotonda com a àrea" />
 <classtext lang="cs" title="Kruhový objezd jako plocha" />
 <classtext lang="de" title="Kreisverkehr als Bereich" />
@@ -2072,6 +2052,7 @@
 <detail lang="en" title="A non-printable character such as linefeed (0x000a) has been&#10;used." />
 <fix lang="en" title="Remove the character." />
 <fix lang="es" title="Quitar el caracter." />
+<fix lang="hu" title="Távolítsa el a karaktert." />
 </class>
 <class id="50703" item="5070" source="http://example.com/plugins/Name_Script.py#L61" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
 <classtext lang="en" title="Unexpected symbol in name" />
@@ -4208,23 +4189,23 @@
 <tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
 </node>
 <text lang="en" value="is_in:country is deprecated" />
-<text lang="ru" value="is_in:country устарел" />
-<text lang="nl" value="is_in:country is vervallen" />
-<text lang="el" value="is_in:country είναι παρωχημένο" />
-<text lang="fr" value="is_in:country est déprécié" />
-<text lang="zh_TW" value="is_in:country 已經廢棄" />
-<text lang="es" value="is_in:country está obsoleto" />
-<text lang="pt_BR" value="is_in:country é obsoleto" />
-<text lang="pl" value="is_in:country jest przestarzały" />
+<text lang="ja" value="is_in:countryは推奨されていません" />
 <text lang="pt" value="''is_in:country'' está em desuso" />
-<text lang="it" value="is_in:country è deprecata" />
+<text lang="ru" value="is_in:country устарел" />
+<text lang="fr" value="is_in:country est déprécié" />
 <text lang="de" value="is_in:country ist veraltet" />
-<text lang="uk" value="is_in:country заборонено" />
+<text lang="it" value="is_in:country è deprecata" />
+<text lang="es" value="is_in:country está obsoleto" />
 <text lang="cs" value="is_in:country je zavržen" />
 <text lang="lt" value="is_in:country pasenusi" />
-<text lang="ja" value="is_in:countryは推奨されていません" />
+<text lang="zh_TW" value="is_in:country 已經廢棄" />
 <text lang="hu" value="is_in:country elavult" />
+<text lang="pl" value="is_in:country jest przestarzały" />
+<text lang="uk" value="is_in:country заборонено" />
 <text lang="zh_CN" value="is_in:country 已过时" />
+<text lang="nl" value="is_in:country is vervallen" />
+<text lang="pt_BR" value="is_in:country é obsoleto" />
+<text lang="el" value="is_in:country είναι παρωχημένο" />
 <text lang="ca" value="is_in:country és obsolet" />
 <fixes>
 <fix>
@@ -4250,12 +4231,12 @@
 <tag k="name" v="Le Bête à Z'Ailes - Baz Bar" />
 </node>
 <text lang="en" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unexpected &quot;̂̀&quot;" />
-<text lang="nl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; onverwacht &quot;̂̀&quot;" />
 <text lang="fr" value="“name”=“Le Bête à Z'Ailes - Baz Bar” : élément “̂̀“ inattendu" />
 <text lang="es" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
-<text lang="uk" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; несподіваний &quot;̂̀&quot;" />
 <text lang="hu" value="„name”=„Le Bête à Z'Ailes - Baz Bar” furcsa „̂̀”" />
+<text lang="uk" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; несподіваний &quot;̂̀&quot;" />
 <text lang="zh_CN" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; 不寻常 &quot;̂̀&quot;" />
+<text lang="nl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; onverwacht &quot;̂̀&quot;" />
 </error>
 <error class="9001001" subclass="1989483685">
 <location lat="17.9032984" lon="-62.8512634" />
@@ -4265,24 +4246,24 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="power=generator without generator:source" />
-<text lang="ru" value="power=generator без generator:source" />
-<text lang="nl" value="power=generator zonder generator:source" />
-<text lang="fr" value="power=generator sans generator:source" />
-<text lang="zh_TW" value="power=generator 沒有 generator:source" />
-<text lang="es" value="power=generator sin generator:source" />
-<text lang="pt_BR" value="power=generator sem generator:source" />
-<text lang="pl" value="power=generator bez generator:source" />
-<text lang="pt" value="power=generator sem generator:source" />
-<text lang="it" value="power=generator senza generator:source" />
-<text lang="de" value="power=generator ohne generator:source" />
-<text lang="uk" value="power=generator без generator:source" />
-<text lang="gl" value="power=generator sen generator:source" />
-<text lang="cs" value="power=generator bez generator:source" />
-<text lang="lt" value="power=generator be generator:source" />
 <text lang="ja" value="power=generatorがあるのにgenerator:sourceがない" />
+<text lang="pt" value="power=generator sem generator:source" />
+<text lang="ru" value="power=generator без generator:source" />
+<text lang="fr" value="power=generator sans generator:source" />
+<text lang="de" value="power=generator ohne generator:source" />
+<text lang="it" value="power=generator senza generator:source" />
+<text lang="es" value="power=generator sin generator:source" />
+<text lang="cs" value="power=generator bez generator:source" />
+<text lang="gl" value="power=generator sen generator:source" />
+<text lang="lt" value="power=generator be generator:source" />
+<text lang="zh_TW" value="power=generator 沒有 generator:source" />
 <text lang="hu" value="[power=generator], [generator:source] nélkül" />
+<text lang="pl" value="power=generator bez generator:source" />
+<text lang="uk" value="power=generator без generator:source" />
 <text lang="zh_CN" value="power=generator 没有 generator:source" />
 <text lang="fa" value="power=generator بدون generator:source" />
+<text lang="nl" value="power=generator zonder generator:source" />
+<text lang="pt_BR" value="power=generator sem generator:source" />
 <text lang="ca" value="power=generator sense generator:source" />
 </error>
 <error class="9002001" subclass="34751027">
@@ -4293,23 +4274,23 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="power_source is deprecated" />
-<text lang="ru" value="power_source устарел" />
-<text lang="nl" value="power_source is vervallen" />
-<text lang="el" value="power_source είναι παρωχημένο" />
-<text lang="fr" value="power_source est déprécié" />
-<text lang="zh_TW" value="power_source 已經廢棄" />
-<text lang="es" value="power_source está obsoleto" />
-<text lang="pt_BR" value="power_source é obsoleto" />
-<text lang="pl" value="power_source jest przestarzały" />
+<text lang="ja" value="power_sourceは推奨されていません" />
 <text lang="pt" value="''power_source'' está em desuso" />
-<text lang="it" value="power_source è deprecata" />
+<text lang="ru" value="power_source устарел" />
+<text lang="fr" value="power_source est déprécié" />
 <text lang="de" value="power_source ist veraltet" />
-<text lang="uk" value="power_source заборонено" />
+<text lang="it" value="power_source è deprecata" />
+<text lang="es" value="power_source está obsoleto" />
 <text lang="cs" value="power_source je zavržen" />
 <text lang="lt" value="power_source pasenusi" />
-<text lang="ja" value="power_sourceは推奨されていません" />
+<text lang="zh_TW" value="power_source 已經廢棄" />
 <text lang="hu" value="power_source elavult" />
+<text lang="pl" value="power_source jest przestarzały" />
+<text lang="uk" value="power_source заборонено" />
 <text lang="zh_CN" value="power_source 已过时" />
+<text lang="nl" value="power_source is vervallen" />
+<text lang="pt_BR" value="power_source é obsoleto" />
+<text lang="el" value="power_source είναι παρωχημένο" />
 <text lang="ca" value="power_source és obsolet" />
 </error>
 <error class="4010" subclass="1468904873">
@@ -4320,22 +4301,22 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="Tag power_source is deprecated: generator:source" />
-<text lang="nl" value="Tag power_source is deprecated: generator:source" />
-<text lang="fr" value="L’attribut “power_source” est désapprouvé : generator:source" />
-<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
-<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
-<text lang="pt_BR" value="Etiqueta power_source está em desuso: generator:source" />
-<text lang="pl" value="Tag power_source jest przestarzały, użyj generator:source" />
 <text lang="pt" value="Etiqueta power_source está em desuso: generator:source" />
-<text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
+<text lang="fr" value="L’attribut “power_source” est désapprouvé : generator:source" />
 <text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
-<text lang="uk" value="Теґ power_source не підтримується: generator:source" />
-<text lang="gl" value="A etiqueta power_source está obsoleta: generator:source" />
+<text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
+<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 <text lang="cs" value="Značka power_source je zastaralá: generator:source" />
+<text lang="gl" value="A etiqueta power_source está obsoleta: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
+<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
 <text lang="hu" value="A(z) power_source címke elavult: generator:source" />
+<text lang="pl" value="Tag power_source jest przestarzały, użyj generator:source" />
+<text lang="uk" value="Теґ power_source не підтримується: generator:source" />
 <text lang="zh_CN" value="标签power_source已弃用：generator:source" />
 <text lang="fa" value="استفاده از تگ power_source نکوهش شده: generator:source" />
+<text lang="nl" value="Tag power_source is deprecated: generator:source" />
+<text lang="pt_BR" value="Etiqueta power_source está em desuso: generator:source" />
 <text lang="ca" value="L'etiqueta power_source és en desús: generator:source" />
 </error>
 <error class="4060" subclass="0">
@@ -4820,20 +4801,20 @@
 <nd ref="602655289" />
 </way>
 <text lang="en" value="Unspecific highway type" />
-<text lang="ru" value="Неуточнённый тип дороги" />
-<text lang="nl" value="Niet gespecificeerd type highway" />
-<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
-<text lang="fr" value="Type de route imprécis" />
-<text lang="es" value="Tipo de vía no especificada" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
-<text lang="pl" value="Nieznana wartość highway" />
 <text lang="pt" value="Tipo de estrada/rua não especificada" />
-<text lang="it" value="Tipo di strada non specificato" />
+<text lang="ru" value="Неуточнённый тип дороги" />
+<text lang="fr" value="Type de route imprécis" />
 <text lang="de" value="Unbestimmter Straßentyp" />
-<text lang="uk" value="Невизначений тип дороги" />
+<text lang="it" value="Tipo di strada non specificato" />
+<text lang="es" value="Tipo de vía no especificada" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
 <text lang="hu" value="Nem konkrét úttípus" />
+<text lang="pl" value="Nieznana wartość highway" />
+<text lang="uk" value="Невизначений тип дороги" />
 <text lang="zh_CN" value="不特定的道路种类" />
+<text lang="nl" value="Niet gespecificeerd type highway" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
+<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -4870,20 +4851,20 @@
 <nd ref="602655388" />
 </way>
 <text lang="en" value="Unspecific highway type" />
-<text lang="ru" value="Неуточнённый тип дороги" />
-<text lang="nl" value="Niet gespecificeerd type highway" />
-<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
-<text lang="fr" value="Type de route imprécis" />
-<text lang="es" value="Tipo de vía no especificada" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
-<text lang="pl" value="Nieznana wartość highway" />
 <text lang="pt" value="Tipo de estrada/rua não especificada" />
-<text lang="it" value="Tipo di strada non specificato" />
+<text lang="ru" value="Неуточнённый тип дороги" />
+<text lang="fr" value="Type de route imprécis" />
 <text lang="de" value="Unbestimmter Straßentyp" />
-<text lang="uk" value="Невизначений тип дороги" />
+<text lang="it" value="Tipo di strada non specificato" />
+<text lang="es" value="Tipo de vía no especificada" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
 <text lang="hu" value="Nem konkrét úttípus" />
+<text lang="pl" value="Nieznana wartość highway" />
+<text lang="uk" value="Невизначений тип дороги" />
 <text lang="zh_CN" value="不特定的道路种类" />
+<text lang="nl" value="Niet gespecificeerd type highway" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
+<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -5102,21 +5083,21 @@
 <member type="node" ref="489460194" role="label" />
 </relation>
 <text lang="en" value="boundary together with addr:*" />
-<text lang="ru" value="boundary совместно с addr:*" />
-<text lang="nl" value="boundary samen met addr:*" />
-<text lang="fr" value="boundary en combinaison avec addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
-<text lang="es" value="boundary junto con addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
-<text lang="pl" value="boundary razem z addr:*" />
 <text lang="pt" value="boundary junto com addr:*" />
-<text lang="it" value="boundary insieme con addr:*" />
+<text lang="ru" value="boundary совместно с addr:*" />
+<text lang="fr" value="boundary en combinaison avec addr:*" />
 <text lang="de" value="boundary zusammen mit addr:*" />
-<text lang="uk" value="boundary разом з addr:*" />
+<text lang="it" value="boundary insieme con addr:*" />
+<text lang="es" value="boundary junto con addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
+<text lang="pl" value="boundary razem z addr:*" />
+<text lang="uk" value="boundary разом з addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
+<text lang="nl" value="boundary samen met addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
 </error>
 <error class="9001001" subclass="1096267911">
@@ -5156,17 +5137,17 @@
 <member type="way" ref="70236587" role="inner" />
 </relation>
 <text lang="en" value="boat without waterway, natural=water, landuse=^(basin|reservoir)$ or ford=yes" />
-<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
-<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
-<text lang="fr" value="boat sans waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
-<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
-<text lang="pl" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ lub ford=yes" />
 <text lang="pt" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
-<text lang="it" value="boat senza waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
+<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
+<text lang="fr" value="boat sans waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
 <text lang="de" value="boat ohne waterway, natural=water, landuse=^(basin|reservoir)$ oder ford=yes" />
-<text lang="uk" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ або ford=yes" />
+<text lang="it" value="boat senza waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
+<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
 <text lang="cs" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ nebo ford=yes" />
 <text lang="hu" value="waterway, natural=water, landuse=^(basin|reservoir)$ vagy ford=yes nélküli boat" />
+<text lang="pl" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ lub ford=yes" />
+<text lang="uk" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ або ford=yes" />
+<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
 </error>
 <error class="50701" subclass="6689005421143404454">
 <location lat="0" lon="0" />
@@ -5211,12 +5192,12 @@
 <member type="relation" ref="2324452" role="subarea" />
 </relation>
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
-<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
 <text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : élément “́́“ inattendu" />
 <text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
-<text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
 <text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
+<text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
 <text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды" 不寻常 "́́"' />
+<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
 </error>
 <error class="9007001" subclass="881372982">
 <location lat="0" lon="0" />
@@ -5289,22 +5270,22 @@
 <member type="way" ref="255316718" role="outer" />
 </relation>
 <text lang="en" value="boundary relation without boundary tag" />
-<text lang="ru" value="boundary отношение без тега boundary" />
-<text lang="nl" value="boundary relatie zonder boundary tag" />
-<text lang="fr" value="boundary relation sans boundary attribut" />
-<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
-<text lang="es" value="relación boundary sin etiqueta boundary" />
-<text lang="pt_BR" value="boundary relação sem boundary tag" />
-<text lang="pl" value="boundary relacji bez znacznika boundary" />
+<text lang="ja" value="boundaryリレーションにboundaryタグがない" />
 <text lang="pt" value="boundary relação sem a etiqueta boundary" />
-<text lang="it" value="relazione boundary senza etichetta boundary" />
+<text lang="ru" value="boundary отношение без тега boundary" />
+<text lang="fr" value="boundary relation sans boundary attribut" />
 <text lang="de" value="boundary Relation ohne boundary Merkmal" />
-<text lang="uk" value="boundary зв’язок без теґу boundary" />
+<text lang="it" value="relazione boundary senza etichetta boundary" />
+<text lang="es" value="relación boundary sin etiqueta boundary" />
 <text lang="cs" value="boundary relace bez boundary značky" />
 <text lang="lt" value="boundary ryšys be boundary žymos" />
-<text lang="ja" value="boundaryリレーションにboundaryタグがない" />
+<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
 <text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
+<text lang="pl" value="boundary relacji bez znacznika boundary" />
+<text lang="uk" value="boundary зв’язок без теґу boundary" />
 <text lang="zh_CN" value="boundary关系没有boundary标签" />
+<text lang="nl" value="boundary relatie zonder boundary tag" />
+<text lang="pt_BR" value="boundary relação sem boundary tag" />
 <text lang="ca" value="boundary relació sense l''etiqueta boundary" />
 </error>
 <error class="9001002" subclass="2039567622">
@@ -5354,21 +5335,21 @@
 <member type="node" ref="271047515" role="label" />
 </relation>
 <text lang="en" value="boundary together with addr:*" />
-<text lang="ru" value="boundary совместно с addr:*" />
-<text lang="nl" value="boundary samen met addr:*" />
-<text lang="fr" value="boundary en combinaison avec addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
-<text lang="es" value="boundary junto con addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
-<text lang="pl" value="boundary razem z addr:*" />
 <text lang="pt" value="boundary junto com addr:*" />
-<text lang="it" value="boundary insieme con addr:*" />
+<text lang="ru" value="boundary совместно с addr:*" />
+<text lang="fr" value="boundary en combinaison avec addr:*" />
 <text lang="de" value="boundary zusammen mit addr:*" />
-<text lang="uk" value="boundary разом з addr:*" />
+<text lang="it" value="boundary insieme con addr:*" />
+<text lang="es" value="boundary junto con addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
+<text lang="pl" value="boundary razem z addr:*" />
+<text lang="uk" value="boundary разом з addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
+<text lang="nl" value="boundary samen met addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
 </error>
 </analyser>
