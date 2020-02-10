@@ -319,29 +319,42 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs[1] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
             title = T_('Lone power tower or pole'),
             fix = T_(
-'''This tower should probably be connected to a power line.'''))
+'''This tower should probably be connected to a power line.'''),
+            trap = T_(
+'''It's possible that disused power features could be disconnected from the network.
+In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[2] = self.def_class(item = 7040, level = 2, tags = ['power', 'fix:imagery'],
             title = T_('Unfinished power major line'),
             detail = T_(
 '''The line ends in a vacuum, and should be connected to another line or
-a transformer `power=substation` or a generator `power=generator`.'''))
+a transformer (`power=transformer`) or a generator (`power=generator`).'''),
+            trap = T_(
+'''It's possible that disused power features could be disconnected from the network.
+In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[6] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
-            title = T_('Unfinished power minor line'))
+            title = T_('Unfinished power minor line'),
+            detail = T_(
+'''The line ends in a vacuum, and should be connected to another line or
+a transformer (`power=transformer`) or a generator (`power=generator`).'''),
+            trap = T_(
+'''It's possible that disused power features could be disconnected from the network.
+In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[3] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
             title = T_('Connection between different voltages'),
-            detail = T_(
-'''Two lines meet in one point, but inconsistent with voltages from the
-tag `voltage=*`.'''))
+            detail = T_('Two power lines meet at this point, but have inconsistent voltages (`voltage=*`).'))
         self.classs_change[4] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
             title = T_('Non power node on power way'),
+            detail = T_(
+'''Power lines can only form a straight line between supports and therefore shouldn't
+have additional nodes that aren't tagged as a `power` feature.'''),
             fix = T_(
 '''If this node is a tower or pole, use the tag `power=tower` or
-`power=pole` else remove it.'''))
+`power=pole`. Otherwise remove it.'''))
         self.classs_change[5] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
             title = T_('Missing power tower or pole'),
             detail = T_(
-'''According to the statistical frequency of the poles on the power line,
-it should miss one pole nearby.'''))
+'''Based on the statistical frequency of the poles on this power line,
+there's likely an unmapped pole nearby.'''))
         self.classs[7] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
             title = T_('Unmatched voltage of line on substation'))
 
