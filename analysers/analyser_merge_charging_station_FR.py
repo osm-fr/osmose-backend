@@ -77,7 +77,7 @@ stations, so some values are worth checking in the field.'''))
                         "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields["nb_chademo_grouped"] != "0" else None,
                         "socket:typee": lambda fields: fields["nb_EF_grouped"] if fields["nb_EF_grouped"] != "0" else None,
                         "socket:type3": lambda fields: fields["nb_T3_grouped"] if fields["nb_T3_grouped"] != "0" else None,
-                        "fee": lambda fields: guess_fee(fields["acces_recharge_grouped"]),
+                        "fee": lambda fields: guess_fee(fields["access_recharge_grouped"]),
                         "opening_hours": lambda fields: guess_opening_hours(fields["accessibilité_grouped"]),
                     },
                     text=lambda tags, fields: {"en": "%s, %s" % (fields["n_station"], fields["ad_station"])})))
