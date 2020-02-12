@@ -43,4 +43,4 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
                 generate = Generate(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["LOC"], fields["ACCES"], fields["DETAIL"], fields["ADRESSE"]]))} )))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["LOC"], fields["ACCESS"], fields["DETAIL"], fields["ADRESSE"]]))} )))
