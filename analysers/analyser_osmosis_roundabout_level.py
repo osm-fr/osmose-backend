@@ -153,7 +153,7 @@ WHERE
 """
 
 sql20 = """
-CREATE TEMP TABLE roundabout_acces AS
+CREATE TEMP TABLE roundabout_access AS
 SELECT
     roundabout.id AS ra_id,
     ways.id AS a_id,
@@ -174,7 +174,7 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id)
+CREATE INDEX roundabout_access_idx ON roundabout_access(ra_id)
 """
 
 sql22 = """
@@ -183,8 +183,8 @@ SELECT
     COALESCE(ra1.n_ids[2], ra1.n_ids[1]),
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
 FROM
-    roundabout_acces AS ra1
-    JOIN roundabout_acces AS ra2 ON
+    roundabout_access AS ra1
+    JOIN roundabout_access AS ra2 ON
         ra1.ra_id = ra2.ra_id AND
         ra1.a_id != ra2.a_id
 WHERE
