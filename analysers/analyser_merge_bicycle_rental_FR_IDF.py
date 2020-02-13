@@ -27,11 +27,11 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8160, id = 11, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_('IDF bicycle rental not integrated'))
+            title = T_f('{0} bicycle rental not integrated', 'IDF'))
         self.possible_merge   = self.def_class(item = 8161, id = 13, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_('IDF bicycle rental integration suggestion'))
+            title = T_f('{0} bicycle rental integration suggestion', 'IDF'))
         self.update_official  = self.def_class(item = 8162, id = 14, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_('IDF bicycle update'))
+            title = T_f('{0} bicycle update', 'IDF'))
 
         self.init(
             u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/",
