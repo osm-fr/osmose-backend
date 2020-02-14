@@ -48,7 +48,7 @@ class TagFix_Deprecated(Plugin):
         data = re.sub(r'{{{\s?lang\s?\|?\s?}}}', '', data, flags=re.I)
         # Tag template can take one or two params, with trailing | possible
         data = re.sub(
-            r'{{Tag\s?\|(.+?)\|?\s?}}',
+            r'{{(?:Tag|Key)\s?\|(.+?)\|?\s?}}',
             lambda x : '`{}`'.format(x.group(1).replace("|", "=")),
             data,
             flags=re.I
@@ -63,6 +63,10 @@ class TagFix_Deprecated(Plugin):
 
         deprecated = {}
         for feature in data.split(r'{{Deprecated features/item')[1:]:
+            # Unaccounted for template present in this feature
+            if r'{{' in feature:
+                continue
+
             src_key, src_val, dest = None, None, None
             for param in feature.split('|'):
                 if '=' not in param:
