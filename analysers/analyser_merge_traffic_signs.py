@@ -74,7 +74,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
 
         missing_tags = []
         for selection in selectTags:
-            missing_tags.append('+'.join(
+            missing_tags.append(' + '.join(
                 ['`{}={}`'.format(kv[0], kv[1] if kv[1] else '*') for kv in selection.items()]
             ))
 
