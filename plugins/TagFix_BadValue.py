@@ -28,7 +28,15 @@ class TagFix_BadValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3040] = self.def_class(item = 3040, level = 1, tags = ['value', 'fix:chair'],
-            title = T_('Bad tag value'))
+            title = T_('Bad tag value'),
+            detail = T_(
+'''This feature is tagged with a value which does not match the typical format used for tags with distinct values
+ (lowercase alphanumeric characters with no spaces). It's most likely not an expected tagging.'''),
+            fix = T_('Check the value of the tag in question and update the tagging to reflect what this feature is.'),
+            trap = T_(
+'''It\'s possible a mapper was trying to map a feature with no existing agreed upon tagging.
+However, this should probably still conform to the typical format used for values of the given tag.''')
+        )
 
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
