@@ -158,6 +158,7 @@ class TestAnalyser(unittest.TestCase):
         analyser_conf.polygon_id = None
         analyser_conf.options = conf.analyser_options
         analyser_conf.dst = dst
+        analyser_conf.db_user = conf.db_user
 
         return (conf, analyser_conf)
 
