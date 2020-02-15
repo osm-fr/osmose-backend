@@ -71,6 +71,7 @@
 <classtext lang="uk" title="Недійсне значення addr:interpolation або addr:inclusion " />
 <classtext lang="zh_CN" title="无效的 addr:interpolation 或 addr:inclusion 值" />
 <detail lang="en" title="* Tag `addr:interpolation=*` is only valid with values: `even`, `odd`,&#10;`all`, `alphabetic` and Number.&#10;* Tag `addr:inclusion=*` is only valid with values: `actual`, `estimate`&#10;and `potential`." />
+<detail lang="uk" title="* Теґ `addr:interpolation=*` дійсний лише зі значеннями: `even`, `odd`,&#10;`all`, `alphabetic` та числом.&#10;* Теґ `addr:inclusion=*` дійсний лише зі значеннями: `actual`, `estimate`&#10;та `potential`." />
 </class>
 <class id="101" item="4020" source="http://example.com/plugins/TagRemove_Roundabout.py#L34" level="3" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Etiqueta «junction=roundabout» innecessària" />
@@ -114,10 +115,12 @@
 <classtext lang="zh_CN" title="重复的节点" />
 <classtext lang="zh_TW" title="重覆的 node" />
 <detail lang="en" title="A path passes several times by the same node." />
+<detail lang="uk" title="Стежка кілька разів проходить через одну і ту ж точку." />
 <fix lang="en" title="There are several types of issues:&#10;&#10;* A way that makes one or more loops; the way must be split into several&#10;sections.&#10;* A path that goes back on itself (often at one end); the path must be&#10;cut to isolate the wrong section and recreated properly afterwards.&#10;&#10;There are certainly many other cases. In general, it is better to make&#10;several roads / areas than a single complex one so that tools working&#10;with OSM data can function properly." />
 <trap lang="en" title="These errors require a good command of your editing tool. Some&#10;corrections are not necessarily intuitive." />
 <example lang="en" title="![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)&#10;&#10;Double polygon connected by a string to remove." />
 <example lang="es" title="![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)&#10;&#10;Polígono doble conectado por una cadena para quitar." />
+<example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)&#10;&#10;Подвійні стрілки з'єднаних полігонів видаляються." />
 </class>
 <class id="504" item="6020" source="http://example.com/plugins/Administrative_TooManyWays.py#L42" level="3" tag="boundary,fix:chair">
 <classtext lang="ca" title="Via duplicada en la relació" />
@@ -135,12 +138,14 @@
 <classtext lang="nl" title="Dubbele wegen in relatie" />
 <classtext lang="pl" title="Powielona droga w relacji" />
 <classtext lang="pt" title="Via duplicada na relação relação" />
-<classtext lang="pt_BR" title="Via duplicada na relação relação" />
+<classtext lang="pt_BR" title="Via duplicada na relação" />
 <classtext lang="ru" title="Дублированный путь в отношении" />
 <classtext lang="uk" title="Дублювання лінії у зв'язку" />
 <classtext lang="zh_CN" title="关系中的重复方式" />
 <detail lang="en" title="In a relation, a way should be present only once." />
+<detail lang="es" title="En una relación, una vía debería estar presente sólo una vez." />
 <fix lang="en" title="Most often, this is an user issue that add several times the same way.&#10;The editor JOSM can easily visualize the relationships and see duplicates&#10;(in color)." />
+<fix lang="uk" title="Найчастіше це помилка користувача, який додає кілька разів один&#10;відрізок. Редактор JOSM може легко візуалізувати зв'язки і відобразити&#10;дублікати (в кольорі)." />
 <trap lang="en" title="Double check the ways roles in the relation before deleting.&#10;&#10;Caution: in a route, a path can be taken several times. The multiple&#10;presence of this path in the relation `type=route` is not then an issue.&#10;Then ensure the roles `forward` and `backward`." />
 </class>
 <class id="703" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L35" level="2" tag="name,fix:chair">
@@ -164,6 +169,9 @@
 <classtext lang="uk" title="Слово не знайдено в словнику" />
 <classtext lang="zh_CN" title="词在词典中找不到" />
 <fix lang="en" title="Probably missing a capital." />
+<fix lang="es" title="Probablemente le falta una mayúscula." />
+<fix lang="eu" title="Seguruaski hizki larri bat falta da." />
+<fix lang="uk" title="Ймовірно, пропущена велика літера." />
 </class>
 <class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L37" level="1" tag="value,fix:chair">
 <classtext lang="ca" title="Problema de codificació" />
@@ -195,6 +203,7 @@
 <classtext lang="el" title="Η ετικέτα ονόματος περιέχει δύο ονόματα" />
 <classtext lang="en" title="The name tag contains two names" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
+<classtext lang="eu" title="Izenaren etiketak bi izen ditu" />
 <classtext lang="fa" title="تگ نام حاوی دو نام است" />
 <classtext lang="fr" title="L’attribut “name” contient deux noms" />
 <classtext lang="gl" title="O nome da etiqueta contén dous nomes" />
@@ -255,12 +264,14 @@
 <classtext lang="zh_TW" title="缺少 source tag" />
 <detail lang="en" title="An administrative boundary does not contain tag `source=*` sourcing&#10;the origin." />
 <fix lang="en" title="If the limit comes from the French Cadastre, add the appropriate&#10;`source=*`." />
+<fix lang="es" title="Si el límite proviene del Catastro francés, añada el `source=*&#10; apropiado." />
 </class>
 <class id="803" item="5010" source="http://example.com/plugins/Name_UpperCase.py#L39" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Jména s velkými písmeny" />
 <classtext lang="de" title="Name in Großbuchstaben" />
 <classtext lang="en" title="Name with uppercase" />
 <classtext lang="es" title="Nombre con mayúscula" />
+<classtext lang="eu" title="Izena maiuskulaz" />
 <classtext lang="fa" title="نام با حروف بزرگ" />
 <classtext lang="fr" title="Le nom contient des majuscules" />
 <classtext lang="gl" title="Nome con maiúscula" />
@@ -275,6 +286,8 @@
 <classtext lang="zh_CN" title="以大写字母命名" />
 <detail lang="en" title="Word in capital letters." />
 <detail lang="es" title="Palabra en mayúsculas." />
+<detail lang="eu" title="Hitza hizki larriz." />
+<detail lang="uk" title="Слово з великих літер" />
 </class>
 <class id="804" item="2020" source="http://example.com/plugins/Ele_MontainPass_Peak.py#L36" level="3" tag="tag,fix:survey">
 <classtext lang="ca" title="Manca l'altitud" />
@@ -282,6 +295,7 @@
 <classtext lang="de" title="Fehlende Höhe" />
 <classtext lang="en" title="Missing altitude" />
 <classtext lang="es" title="Falta altitud" />
+<classtext lang="eu" title="Garaiera faltan" />
 <classtext lang="fa" title="کمبود ارتفاع " />
 <classtext lang="fr" title="Altitude manquante" />
 <classtext lang="gl" title="Falla a altitude" />
@@ -296,7 +310,10 @@
 <classtext lang="zh_CN" title="缺少高度" />
 <classtext lang="zh_TW" title="缺少高度" />
 <detail lang="en" title="Some elements, including the peak (natural=peak) and mountain_pass&#10;(mountain_pass=yes), has an evelation. This is shown in OSM with tag&#10;ele=* in meters." />
+<detail lang="uk" title="Деякі елементи, включаючи вершину (natural=peak) та mountain_pass&#10;(mountain_pass=yes), мають висоту. В OSM це показується теґом&#10;ele=* в метрах." />
 <fix lang="en" title="Complete the tag ele=* missing." />
+<fix lang="es" title="Completa la etiqueta ele=* que falta." />
+<fix lang="uk" title="Відсутній завершальний теґ ele=*." />
 </class>
 <class id="900" item="4030" source="http://example.com/plugins/TagRemove_Incompatibles.py#L34" level="1" tag="tag,fix:chair">
 <classtext lang="ca" title="Conflicte d'etiquetes" />
@@ -304,6 +321,7 @@
 <classtext lang="de" title="Merkmalkonflikt" />
 <classtext lang="en" title="Tag conflict" />
 <classtext lang="es" title="Conflicto de etiqueta" />
+<classtext lang="eu" title="Etiketa gatazka" />
 <classtext lang="fa" title="تداخل تگی" />
 <classtext lang="fr" title="Attribut en conflit" />
 <classtext lang="gl" title="Conflito de etiqueta" />
@@ -318,7 +336,11 @@
 <classtext lang="uk" title="Конфлікт теґів" />
 <classtext lang="zh_CN" title="标签冲突" />
 <detail lang="en" title="The object contains two incompatible tags." />
+<detail lang="es" title="El objeto contiene dos etiquetas incompatibles." />
+<detail lang="eu" title="Objektuak bi etiketa bateraezin ditu." />
+<detail lang="uk" title="Об'єкт містить два несумісні теґи." />
 <trap lang="en" title="Sometimes the object needs both tags." />
+<trap lang="eu" title="Batzuetan objektuak bi etiketak behar ditu." />
 </class>
 <class id="902" item="5010" source="http://example.com/plugins/Name_Initials.py#L30" level="3" tag="name,fix:chair">
 <classtext lang="cs" title="Chybný formát zápisu jména" />
@@ -345,6 +367,7 @@
 <classtext lang="el" title="Πολλά διάκενα" />
 <classtext lang="en" title="Too many spaces" />
 <classtext lang="es" title="Demasiados espacios" />
+<classtext lang="eu" title="Zuriune gehiegi" />
 <classtext lang="fa" title="فاصله‌های بیش از حد" />
 <classtext lang="fr" title="Espaces en trop" />
 <classtext lang="gl" title="Moitos espazos" />
@@ -366,6 +389,7 @@
 <classtext lang="el" title="Αντίθετος κυκλικός κόμβος" />
 <classtext lang="en" title="Reverse roundabout" />
 <classtext lang="es" title="Rotonda invertida" />
+<classtext lang="eu" title="Alderantzizko biribilgunea" />
 <classtext lang="fa" title="فلکهٔ برعکس" />
 <classtext lang="fr" title="Giratoire à l’envers" />
 <classtext lang="gl" title="Rotonda invertida" />
@@ -382,10 +406,13 @@
 <classtext lang="zh_CN" title="相反环岛" />
 <detail lang="en" title="The circulation of the roundabout is draw clockwise, but in countries&#10;where they drive on the right the sense of roundabouts is&#10;counterclockwise, and vice versa for the other countries." />
 <fix lang="en" title="For the mini roundabouts `highway=mini_roundabout`: the tag&#10;`direction=*` indicates the direction, in countries driven on the right,&#10;the default is `direction=anticlockwise`, in this case it is useless as&#10;tag." />
+<fix lang="uk" title="Для міні колового руху `highway=mini_roundabout`: теґ&#10;`direction=*` вказує напрямок, у країнах з правостороннім рухом,&#10;по замовчуванню це `direction=anticlockwise`, в даному випадку є зайвим&#10;теґом." />
 <trap lang="en" title="Make sure that it is a roundabout (for example, no a side way in&#10;oposite direction around a square or a central roundabout, ordriveways&#10;separated by traffic islands at an intersection without cross)." />
+<trap lang="uk" title="Впевніться, що це коловий рух (наприклад, немає бічного шляху в&#10;протилежному напрямі навколо площі або центрального кільця, чи&#10;проїжджих частин, розділених острівцями безпеки на перетині без&#10;перехрестя)." />
 <example lang="en" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Clockwise rotation." />
 <example lang="es" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Rotación en el sentido de las agujas del reloj." />
 <example lang="hu" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Óramutató járásával megegyező irány." />
+<example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Рух за годинниковою стрілкою." />
 </class>
 <class id="1100" item="1100" source="http://example.com/plugins/Structural_UnclosedArea.py#L36" level="3" tag="geom,fix:imagery">
 <classtext lang="ca" title="Àrea sense tancar" />
@@ -394,6 +421,7 @@
 <classtext lang="el" title="Ανοικτή περιοχή" />
 <classtext lang="en" title="Unclosed area" />
 <classtext lang="es" title="Área no cerrada" />
+<classtext lang="eu" title="Itxi gabeko eremua" />
 <classtext lang="fa" title="محوطهٔ نبسته" />
 <classtext lang="fr" title="Surface non fermée" />
 <classtext lang="gl" title="Área non pechada" />
@@ -409,13 +437,19 @@
 <classtext lang="zh_TW" title="非閉合的 area" />
 <detail lang="en" title="A way has the tag area=yes, but is not closed." />
 <detail lang="es" title="Una vía tiene la etiqueta area=yes, pero no está cerrada." />
+<detail lang="pl" title="Linia ma tag area=yes, ale nie jest zamknięta." />
+<detail lang="uk" title="Лінія з теґом area=yes, незамкнена." />
 <fix lang="en" title="If the object is not a surface, remove the tag `area=yes`, otherwise&#10;ensure that the way is a loop." />
 <example lang="en" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
+<example lang="es" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
+<example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
 </class>
 <class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L31" level="1" tag="value,fix:chair">
 <classtext lang="en" title="Bad tag value" />
+<classtext lang="eu" title="Etiketa balio okerra" />
 <classtext lang="fr" title="Mauvaise valeur" />
 <classtext lang="nl" title="Verkeerde tag waarde" />
+<classtext lang="uk" title="Недійсне значення теґу" />
 </class>
 <class id="3050" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L42" level="1" tag="tag,fix:chair">
 <classtext lang="en" title="Bad key" />
@@ -426,12 +460,16 @@
 <classtext lang="uk" title="Помилковий ключ" />
 <detail lang="en" title="The key of tag contains characters not recommended. The key is&#10;composed of alphanumeric characters: 0-9, a-z (preferably lower case),&#10;separator '_' or ':'. See&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
 <fix lang="en" title="Check the key tag, and correct." />
+<fix lang="uk" title="Перевірте ключ теґу та виправте" />
 <trap lang="en" title="There certainly false positives." />
+<trap lang="eu" title="Ziurrekin positibo faltsuak daude." />
+<trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
 </class>
 <class id="3060" item="3060" source="http://example.com/plugins/TagFix_DuplicateValue.py#L42" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Doppelte Werte" />
 <classtext lang="en" title="Duplicated values" />
 <classtext lang="es" title="Valores duplicados" />
+<classtext lang="eu" title="Bikoiztutako balioak" />
 <classtext lang="fr" title="Valeurs dupliquées" />
 <classtext lang="gl" title="Valores duplicados" />
 <classtext lang="hu" title="Duplikált érték" />
@@ -440,7 +478,11 @@
 <classtext lang="uk" title="Дубльоване значення" />
 <detail lang="en" title="The tag contains two values (separated by ';') which are very&#10;similar." />
 <fix lang="en" title="Delete one value." />
+<fix lang="eu" title="Ezabatu balio bat." />
+<fix lang="uk" title="Видаліть одне значення." />
 <trap lang="en" title="In some case all values maybe required." />
+<trap lang="eu" title="Kasu batzuetan balio guztiak beharrezkoak dira." />
+<trap lang="uk" title="У деяких випадках, можливо, потрібні всі значення." />
 </class>
 <class id="3070" item="3070" source="http://example.com/plugins/TagFix_MultipleValue.py#L68" level="2" tag="value,fix:chair">
 <classtext lang="ca" title="Valors múltiples" />
@@ -449,6 +491,7 @@
 <classtext lang="el" title="Πολλαπλές τιμές" />
 <classtext lang="en" title="Multiple values" />
 <classtext lang="es" title="Valores múltiples" />
+<classtext lang="eu" title="Balio anitzak" />
 <classtext lang="fa" title="چندین مقدار" />
 <classtext lang="fr" title="Valeurs multiples" />
 <classtext lang="gl" title="Valores múltiplos" />
@@ -463,8 +506,11 @@
 <classtext lang="zh_CN" title="多个值" />
 <detail lang="en" title="The tag contains multiple values." />
 <detail lang="es" title="La etiqueta contiene múltiples valores." />
+<detail lang="eu" title="Etiketak balio anitzak ditu." />
+<detail lang="uk" title="Теґ містить кілька значень." />
 <fix lang="en" title="Check the accuracy of the values, if necessary, delete the obsolete&#10;values." />
 <fix lang="hu" title="Ellenőrizze az értékek pontosságát, szükség szerint törölje az elavult értékeket." />
+<fix lang="uk" title="Перевірте точність значень, при необхідності, видаліть застарілі&#10;значення." />
 </class>
 <class id="3090" item="3090" source="http://example.com/plugins/Date.py#L35" level="3" tag="value,fix:chair">
 <classtext lang="ca" title="Format de data incorrecte" />
@@ -472,7 +518,8 @@
 <classtext lang="de" title="Falsches Datumsformat" />
 <classtext lang="el" title="Λάθος μορφή ημερομηνίας" />
 <classtext lang="en" title="Bad date format" />
-<classtext lang="es" title="Mal formato de fecha" />
+<classtext lang="es" title="Formato de fecha incorrecto." />
+<classtext lang="eu" title="Dataren formatu txarra" />
 <classtext lang="fa" title="قالب تاریخ بد است" />
 <classtext lang="fr" title="Format de date invalide" />
 <classtext lang="gl" title="Formato de data erróneo" />
@@ -496,6 +543,7 @@
 <classtext lang="el" title="Αριθμητική τιμή" />
 <classtext lang="en" title="Numerical value" />
 <classtext lang="es" title="Valor numérico" />
+<classtext lang="eu" title="Zenbakizko balioa" />
 <classtext lang="fa" title="مقدار عددی" />
 <classtext lang="fr" title="Valeur numérique" />
 <classtext lang="gl" title="Valor numérico" />
@@ -512,14 +560,16 @@
 <detail lang="en" title="The tag expects a numeric value. Decimals are set with one point and&#10;not a comma." />
 <fix lang="en" title="Change to numeric value and/or the comma to point." />
 <fix lang="hu" title="Módosítsa a szám értékét és/vagy a vesszőt pontra." />
+<fix lang="uk" title="Замініть числовим значенням і/або кому на крапку." />
 </class>
-<class id="4010" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L83" level="2" tag="deprecated,tag,fix:chair">
+<class id="4010" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L99" level="2" tag="deprecated,tag,fix:chair">
 <classtext lang="ca" title="Etiqueta en desús" />
 <classtext lang="cs" title="Již nepoužívaná značka" />
 <classtext lang="de" title="Veraltetes Merkmal" />
 <classtext lang="el" title="Παρωχημένη ετικέτα" />
 <classtext lang="en" title="Deprecated tag" />
 <classtext lang="es" title="Etiqueta deprecada" />
+<classtext lang="eu" title="Etiketa zaharkitua" />
 <classtext lang="fa" title="تگ نکوهیده" />
 <classtext lang="fr" title="Attribut déprécié" />
 <classtext lang="gl" title="Etiqueta vella e obsoleta" />
@@ -555,6 +605,7 @@
 <classtext lang="uk" title="Імпорт OpenSeaMap, дуже наближене положення." />
 <classtext lang="zh_CN" title="OpenSeaMap导入，非常近似的位置。" />
 <detail lang="en" title="Seamark was imported but need manual review `seamark:fixme=*`." />
+<detail lang="uk" title="Seamark був імпортований, але потрібно переглянути вручну `seamark:fixme=*`." />
 <fix lang="en" title="Move the seamark on real position and remove the tag&#10;`seamark:fixme=*`." />
 </class>
 <class id="4070" item="4070" source="http://example.com/plugins/Construction.py#L38" level="2" tag="tag,fix:survey">
@@ -619,6 +670,7 @@
 <classtext lang="zh_CN" title="多面体成员不足" />
 <detail lang="en" title="Members must be ways." />
 <detail lang="es" title="Los miembros deben ser formas." />
+<detail lang="uk" title="Члени мають бути лініями." />
 </class>
 <class id="11703" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L42" level="1" tag="relation,multipolygon,fix:imagery">
 <classtext lang="cs" title="Chybějící vnější role pro multipolygon" />
@@ -639,6 +691,7 @@
 <classtext lang="zh_CN" title="缺少multipolygon的outer角色" />
 <detail lang="en" title="At least one outer ring must be present." />
 <detail lang="es" title="Al menos un anillo exterior debe estar presente." />
+<detail lang="uk" title="Повинне бути хоча б одне зовнішнє кільце." />
 <fix lang="en" title="Find the way outside, it may be deleted, check the history." />
 <fix lang="es" title="Encuentra la vía al exterior, puede ser eliminado, revisa el historial." />
 </class>
@@ -662,6 +715,7 @@
 <classtext lang="zh_CN" title="这个多面体是一个简单的多边形" />
 <detail lang="en" title="Multipolygon relation actually defines a simple polygon." />
 <detail lang="es" title="La relación multipolígono en realidad define un polígono simple." />
+<detail lang="uk" title="Зв'язок мультиполігону фактично є звичайним полігоном." />
 </class>
 <class id="12001" item="1200" source="http://example.com/plugins/Structural_Useless_Relation.py#L38" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Relació d'un membre" />
@@ -683,8 +737,12 @@
 <classtext lang="uk" title="зв'язок з 1-м членом" />
 <classtext lang="zh_CN" title="只有1个成员的关系" />
 <detail lang="en" title="The relation only contains one member." />
+<detail lang="es" title="La relación solo contiene un miembro." />
+<detail lang="uk" title="Зв'язок містить лише одного члена." />
 <fix lang="en" title="Check if no member is missing, check the history, check if there is&#10;another similar relation with more members. A one-member relation may&#10;sometimes be justified." />
+<fix lang="es" title="Verifique si no falta ningún miembro, verifique el historial, verifique si &#10;existe otra relación similar con más miembros. Una relación de un miembro &#10;a veces puede estar justificada." />
 <trap lang="en" title="Do not remove a relation without understanding why it is there." />
+<trap lang="es" title="No elimine una relación sin comprender por qué está allí." />
 </class>
 <class id="12200" item="1220" source="http://example.com/plugins/Structural_Waterway.py#L33" level="2" tag="geom,waterway,fix:imagery">
 <classtext lang="ca" title="Via d'aigua tancada" />
@@ -706,8 +764,13 @@
 <classtext lang="zh_CN" title="封闭的水路" />
 <classtext lang="zh_TW" title="閉合的水路" />
 <detail lang="en" title="A waterway cannot flow in closed loop." />
+<detail lang="es" title="Una vía fluvial no puede fluir en circuito cerrado." />
 <detail lang="hu" title="Vízfolyás nem folyhat körbe." />
+<detail lang="pl" title="Ciek nie może płynąć w zamkniętej pętli." />
+<detail lang="uk" title="Водний шлях не може протікати по колу." />
 <fix lang="en" title="It is probably a river bank `waterway=riverbank`." />
+<fix lang="es" title="Probablemente sea la orilla del río `waterway=riverbank`." />
+<fix lang="uk" title="Це ймовірно берег річки `waterway=riverbank`." />
 </class>
 <class id="12401" item="1240" source="http://example.com/plugins/Structural_WayOneNode.py#L30" level="2" tag="geom,fix:chair">
 <classtext lang="ca" title="Via amb un node" />
@@ -870,6 +933,7 @@
 </class>
 <class id="21101" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L66" level="2" tag="tag">
 <classtext lang="en" title="Untagged named object" />
+<classtext lang="uk" title="Об'єкт з іменем без теґів" />
 <detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag." />
 <fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
@@ -1061,6 +1125,7 @@
 <classtext lang="zh_CN" title="不是维基百科的链接" />
 <classtext lang="zh_TW" title="不是一個正確維基百科的 URL" />
 <detail lang="en" title="Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
 <class id="30311" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L52" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="URL de la Wikipedia en comptes del títol d'article" />
@@ -1082,6 +1147,7 @@
 <classtext lang="zh_CN" title="维基百科链接不是指向条目标题" />
 <classtext lang="zh_TW" title="使用維基百科 URL 而非條目名稱" />
 <detail lang="en" title="The tag `wikipedia=*` should include the title of the article&#10;mentioned and not the URL of the page.&#10;&#10;Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="The tag `wikipedia=*` should include the title of the article&#10;mentioned and not the URL of the page.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
 <class id="30312" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L60" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Manca la llengua de la Wikipedia abans del nom de l'article" />
@@ -1103,6 +1169,7 @@
 <classtext lang="uk" title="Відсутня мова Вікіпедії перед іменем статті" />
 <classtext lang="zh_CN" title="在文章标题之前缺少维基百科语言代码" />
 <detail lang="en" title="The title must be preceded by the term &quot;en:&quot; when the article is on&#10;the English Wikipedia or the linguistic code of the Wikipedia site.&#10;&#10;Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="The title must be preceded by the term &quot;en:&quot; when the article is on&#10;the English Wikipedia or the linguistic code of the Wikipedia site.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 <example lang="en" title="`wikipedia=en:Paris`" />
 </class>
 <class id="30313" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L70" level="2" tag="value,wikipedia,fix:chair">
@@ -1125,6 +1192,7 @@
 <classtext lang="uk" title="Незрозуміла назва сторінки Вікіпедія" />
 <classtext lang="zh_CN" title="使用人类维基百科页面标题" />
 <detail lang="en" title="Spaces must not be replaced by underscore but be like in the name of&#10;the article. Same for accented letters. Letter must be readable.&#10;&#10;Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="Spaces must not be replaced by underscore but be like in the name of&#10;the article. Same for accented letters. Letter must be readable.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 <example lang="en" title="`wikipedia=ru:Москва` and not&#10;`wikipedia=ru:%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0` nor&#10;`wikipedia=http://ru.wikipedia.org/wiki/Москва`." />
 </class>
 <class id="30314" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L76" level="2" tag="value,wikipedia,fix:chair">
@@ -1146,6 +1214,7 @@
 <classtext lang="uk" title="Відсутній основний теґ Вікіпедія" />
 <classtext lang="zh_CN" title="缺少主要维基百科标签" />
 <detail lang="en" title="A `wikipedia=*` must be present before using tags&#10;`wikipedia:LANG=*`.&#10;&#10;Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="A `wikipedia=*` must be present before using tags&#10;`wikipedia:LANG=*`.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
 <class id="30315" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L79" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Sufix de wikipedia no vàlid" />
@@ -1166,6 +1235,7 @@
 <classtext lang="uk" title="Недійсний суфікс Вікіпедія" />
 <classtext lang="zh_CN" title="无效的维基百科后缀" />
 <detail lang="en" title="Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
 <class id="30316" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L82" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Etiqueta de Viquipèdia duplicada com a sufix i prefix" />
@@ -1185,6 +1255,7 @@
 <classtext lang="uk" title="Дублювання теґу Вікіпедія як суфікс і префікс" />
 <classtext lang="zh_CN" title="复制维基百科标签作为后缀和前缀" />
 <detail lang="en" title="Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
 <class id="30317" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L85" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
@@ -1204,6 +1275,7 @@
 <classtext lang="uk" title="Одинаковий топік Вікіпедія іншою мовою" />
 <classtext lang="zh_CN" title="其他语言的维基百科话题也一样" />
 <detail lang="en" title="Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
+<detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
 <class id="30318" item="3031" source="http://example.com/plugins/TagFix_Wikidata.py#L33" resource="https://www.wikidata.org/wiki/Q507619" level="2" tag="value,wikidata,fix:chair">
 <classtext lang="cs" title="Tato značka wikidat odpovídá obchodnímu řetězci, měla by být použita ve značce brand:wikidata" />
@@ -1311,12 +1383,16 @@
 <classtext lang="uk" title="Помилковий суфікс ключа" />
 <detail lang="en" title="The key of tag contains characters not recommended. The key is&#10;composed of alphanumeric characters: 0-9, a-z (preferably lower case),&#10;separator '_' or ':'. See&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
 <fix lang="en" title="Check the key tag, and correct." />
+<fix lang="uk" title="Перевірте ключ теґу та виправте" />
 <trap lang="en" title="There certainly false positives." />
+<trap lang="eu" title="Ziurrekin positibo faltsuak daude." />
+<trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
 </class>
 <class id="30601" item="3060" source="http://example.com/plugins/TagFix_DuplicateValue.py#L46" resource="https://en.wikipedia.org/wiki/Levenshtein_distance" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Ähnliche Werte" />
 <classtext lang="en" title="Similar values" />
 <classtext lang="es" title="Valores similares" />
+<classtext lang="eu" title="Antzeko balioak" />
 <classtext lang="fr" title="Valeurs similaires" />
 <classtext lang="gl" title="Valores semellantes" />
 <classtext lang="hu" title="Hasonló értékek" />
@@ -1325,7 +1401,11 @@
 <classtext lang="uk" title="Cхожі значення" />
 <detail lang="en" title="The tag contains two values (separated by ';') which are very&#10;similar." />
 <fix lang="en" title="Delete one value." />
+<fix lang="eu" title="Ezabatu balio bat." />
+<fix lang="uk" title="Видаліть одне значення." />
 <trap lang="en" title="In some case all values maybe required." />
+<trap lang="eu" title="Kasu batzuetan balio guztiak beharrezkoak dira." />
+<trap lang="uk" title="У деяких випадках, можливо, потрібні всі значення." />
 </class>
 <class id="30801" item="3080" level="3" tag="tag,tag,fix:chair,leisure,public equipment">
 <classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
@@ -1349,6 +1429,7 @@
 <classtext lang="de" title="Der URL enthält ein Leerzeichen" />
 <classtext lang="en" title="The URL contains a space" />
 <classtext lang="es" title="La URL contiene un espacio" />
+<classtext lang="eu" title="URLak zuriune bat du" />
 <classtext lang="fa" title="در URL فاصله وجود دارد" />
 <classtext lang="fr" title="L’URL contient une espace" />
 <classtext lang="gl" title="A URL contén un espazo" />
@@ -1393,7 +1474,7 @@
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
 <classtext lang="de" title="Falscher Wert für lanes" />
 <classtext lang="en" title="Bad lanes value" />
-<classtext lang="es" title="Valor malo de carriles" />
+<classtext lang="es" title="Valor de carriles incorrecto." />
 <classtext lang="fa" title="مقدار lanes بد است" />
 <classtext lang="fr" title="Mauvaise valeur de “lanes”" />
 <classtext lang="gl" title="Valor dos carrís erróneo" />
@@ -1460,6 +1541,7 @@
 <classtext lang="uk" title="Недійсне використання *:lanes:(backward|both_ways) на oneway highway" />
 <classtext lang="zh_CN" title="无效的使用 *:lanes:(backward|both_ways) 在单向公路上" />
 <detail lang="en" title="You can not set opposite lanes data on a one way." />
+<detail lang="es" title="No se puede definir datos de carriles opuestos en una vía." />
 </class>
 <class id="31606" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L49" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Neznámá hodnota odbočovacích pruhů" />
@@ -1532,6 +1614,8 @@
 <detail lang="en" title="The side was not recognized, see&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
 <fix lang="en" title="Use `left`, `right` or `both`." />
 <fix lang="es" title="Use `left`, `right` o `both`." />
+<fix lang="eu" title="Erabili `left`, `right` edo `both`." />
+<fix lang="uk" title="Застосовуйте `left`, `right` чи `both`." />
 </class>
 <class id="31614" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L42" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Příliš mnoho pruhů parking:lane:[strana]" />
@@ -1612,7 +1696,9 @@
 <classtext lang="uk" title="Неадекватна роль" />
 <classtext lang="zh_CN" title="作用不足" />
 <detail lang="en" title="The role is not a keyword as expected." />
+<detail lang="uk" title="Роль не є очікуваним ключовим словом." />
 <fix lang="en" title="Determine the right role, possibly set the value of the role in a&#10;tag." />
+<fix lang="uk" title="Визначте правильну роль, можливо встановіть значення ролі в&#10;теґ." />
 </class>
 <class id="31901" item="3190" source="http://example.com/plugins/TagFix_Postcode.py#L79" resource="https://en.wikipedia.org/wiki/List_of_postal_codes" level="3" tag="postcode,fix:chair">
 <classtext lang="ca" title="Codi postal no vàlid" />
@@ -1634,6 +1720,7 @@
 <classtext lang="zh_CN" title="无效的邮政编码" />
 <classtext lang="zh_TW" title="無效的郵遞區號" />
 <detail lang="en" title="Check postcode as decribed on&#10;[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)" />
+<detail lang="uk" title="Перевірте індекс, описаний в&#10;[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)" />
 </class>
 <class id="32001" item="3200" source="http://example.com/plugins/TagFix_Area.py#L34" level="3" tag="tag,fix:chair">
 <classtext lang="en" title="Redundant area tagging" />
@@ -1667,6 +1754,7 @@
 <classtext lang="uk" title="access=yes|permissive дозволяє усі види транспорту" />
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 <detail lang="en" title="`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
+<detail lang="uk" title="`access=yes` означає - відкритий для всіх видів транспорту, дивіться [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
 </class>
 <class id="32201" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L108" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
@@ -1684,11 +1772,13 @@
 <classtext lang="uk" title="access=yes|permissive дозволяє усі види транспорту" />
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 <detail lang="en" title="`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
+<detail lang="uk" title="`access=yes` означає - відкритий для всіх видів транспорту, дивіться [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
 </class>
 <class id="32301" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L112" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Pravděpodobně jen pro lahve, ne pro jakýkoli druh skla" />
 <classtext lang="de" title="Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas" />
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
+<classtext lang="es" title="Probablemente sólo para botellas, no cualquier tipo de vidrio" />
 <classtext lang="fa" title="احتمالا فقط برای بطری‌هاست و برای هیچ نوع شیشه‌ای نیست" />
 <classtext lang="fr" title="Probablement seulement pour les bouteilles, pas pour tout type de verre" />
 <classtext lang="gl" title="Seica só é para botellas, non para calquera tipo de vidro" />
@@ -1750,9 +1840,10 @@
 <classtext lang="uk" title="{2.key}={2.value} є кращим за {1.key}={1.value}" />
 <classtext lang="zh_CN" title="{2.key}={2.value} 是优选的 {1.key}={1.value}" />
 </class>
-<class id="40102" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L86" level="2" tag="deprecated,value,fix:chair">
+<class id="40102" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L102" level="2" tag="deprecated,value,fix:chair">
 <classtext lang="en" title="Deprecated value" />
 <classtext lang="es" title="Valor obsoleto" />
+<classtext lang="eu" title="Balio zaharkitua" />
 <classtext lang="fr" title="Valeur dépréciée" />
 <classtext lang="gl" title="Valor obsoleto" />
 <classtext lang="hu" title="Elavult érték" />
@@ -1800,6 +1891,7 @@
 <classtext lang="de" title="Objekt benötigt Überprüfung" />
 <classtext lang="en" title="Object need review" />
 <classtext lang="es" title="Objeto necesita revisión" />
+<classtext lang="eu" title="Objektuak berrikuspena behar du" />
 <classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
 <classtext lang="fr" title="Objet à contrôler" />
 <classtext lang="gl" title="O obxecto precisa dunha revisión" />
@@ -2050,21 +2142,27 @@
 <classtext lang="uk" title="Недрукований символ" />
 <classtext lang="zh_CN" title="不可打印字符" />
 <detail lang="en" title="A non-printable character such as linefeed (0x000a) has been&#10;used." />
+<detail lang="es" title="Ha sido usado un caracter no imprimible como una línea de salida (0x000a)." />
+<detail lang="uk" title="Недрукований символ, як linefeed (0x000a) був&#10;використаний." />
 <fix lang="en" title="Remove the character." />
 <fix lang="es" title="Quitar el caracter." />
 <fix lang="hu" title="Távolítsa el a karaktert." />
+<fix lang="uk" title="Видаліть символ." />
 </class>
 <class id="50703" item="5070" source="http://example.com/plugins/Name_Script.py#L61" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
 <classtext lang="en" title="Unexpected symbol in name" />
 <classtext lang="fr" title="Symbole inattendue dans le nom" />
 <classtext lang="nl" title="Onverwachte symbool in naam" />
+<classtext lang="uk" title="Несподіваний символ в назві" />
 <detail lang="en" title="A symbol is used instead of a letter from the appropriate&#10;alphabet." />
 <detail lang="es" title="Se utiliza un símbolo en lugar de una letra del alfabeto apropiado." />
+<detail lang="uk" title="Використаний символ замість літери відповідної&#10;абетки." />
 <fix lang="en" title="Change the character into a punctuation mark or something else more&#10;appropriate." />
 </class>
 <class id="50704" item="5070" source="http://example.com/plugins/Name_Quotation.py#L31" resource="https://en.wikipedia.org/wiki/Bracket#Encoding_in_digital_media" level="2" tag="name,fix:chair">
 <classtext lang="en" title="Unbalanced quotation mark or bracket in name" />
 <classtext lang="es" title="Comillas o Corchetes desequilibrados en el nombre" />
+<classtext lang="uk" title="Незбалансовані лапки або дужки в назві" />
 </class>
 <class id="50705" item="5070" source="http://example.com/plugins/Name_Punctuation.py#L30" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Neočekávaná interpunkce v názvu" />
@@ -2111,6 +2209,7 @@
 <classtext lang="uk" title="Відсутній теґ maxheight" />
 <classtext lang="zh_CN" title="缺少maxheight标签" />
 <detail lang="en" title="Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a&#10;bridge." />
+<detail lang="uk" title="Відсутній `maxheight=*` або `maxheight:*` для тунелю або шляху під&#10;мостом." />
 </class>
 <class id="91001" item="9100" level="2" tag="power,fix:chair,geom">
 <classtext lang="cs" title="Transformátorové stanice by měly být vždy v uzlu" />
@@ -3200,6 +3299,7 @@
 <classtext lang="cs" title="Značení letiště" />
 <classtext lang="de" title="Flughafenerfassung" />
 <classtext lang="en" title="Airport tagging" />
+<classtext lang="es" title="Etiquetado de aeropuerto" />
 <classtext lang="fr" title="Marquage d''aéroport" />
 <classtext lang="nl" title="Luchthaven taggen" />
 <classtext lang="ru" title="Теги аэропорта" />
@@ -3580,6 +3680,7 @@
 <classtext lang="cs" title="Je nastavena značka ''{1.key}'', ale není značka ''{0.key}''. Ujistěte se, že nastavujete ''wikipedia=jazyk:hodnota'' pro hlavní článek a volitelně ''wikipedia:jazyk=hodnota'' pro doplňkové články, které nejsou jen překladem hlavního článku." />
 <classtext lang="de" title="Merkmal ''{1.key}'' ist gesetzt, aber es gibt kein Merkmal ''{0.key}''. Bitte sicherstellen, dass ''wikipedia=language:value'' für den Hauptartikel gesetzt ist und das optionale ''wikipedia:language=value'' nur für zusätzliche Artikel, die nicht nur andere Sprachvarianten des Hauptartikels sind." />
 <classtext lang="en" title="''{1.key}'' tag is set, but no ''{0.key}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article." />
+<classtext lang="es" title="Se establece la etiqueta ''{1.key}'', pero no hay etiqueta ''{0.key}''. Asegúrese de establecer ''wikipedia=language:value'' para el artículo principal y opcional ''wikipedia:language=value'' solo para artículos adicionales que no sean solo otras variantes de idioma del artículo principal." />
 <classtext lang="fr" title="Le tag ''{1.key}'' est défini, mais pas ''{0.key}''. Assurez-vous de définir ''wikipedia=langue:valeur'' pour l''article principal et en option ''wikipedia:langue=valeur'' seulement pour les articles supplémentaires qui ne sont pas seulement d''autres variantes linguistiques de l''article principal." />
 <classtext lang="nl" title="tag ''{1.key}'' is ingesteld, maar geen tag ''{0.key}''. Zorg er voor dat ''wikipedia=language:value'' is ingesteld voor het hoofdartikel en optioneel ''wikipedia:language=value'' alleen voor aanvullende artikelen die niet slechts andere taalvarianten van het hoofdartikel zijn." />
 <classtext lang="ru" title="Задан тег ''{1.key}'', но не тег ''{0.key}''. Убедитесь, что задан ''wikipedia=language:значение'' для главной статьи и необязательный ''wikipedia:language=значение'' только для дополнительных статей, не являющихся просто вариантами главной статьи на другом языке." />
@@ -3960,38 +4061,47 @@
 <class id="259473529" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="typo-tag,fix:chair">
 <classtext lang="en" title="typo-tag" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="301849747" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="deprecated,fix:chair">
 <classtext lang="en" title="deprecated" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="467520078" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="value,fix:chair">
 <classtext lang="en" title="value" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="737787355" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="shop,fix:chair">
 <classtext lang="en" title="shop" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="837055326" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="tag,fix:chair">
 <classtext lang="en" title="tag" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="1100242374" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="ref,fix:chair">
 <classtext lang="en" title="ref" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="1258610297" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="typo,fix:chair">
 <classtext lang="en" title="typo" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="1398494170" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="name,fix:chair">
 <classtext lang="en" title="name" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <class id="2006017393" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L69" level="2" tag="type-tag,fix:chair">
 <classtext lang="en" title="type-tag" />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
+<detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
 <delete type="node" id="1" />
 <delete type="way" id="1000" />
