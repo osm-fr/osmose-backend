@@ -27,18 +27,18 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8160, id = 1, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_('BM bicycle rental not integrated'))
+            title = T_f('{0} bicycle rental not integrated', 'BM'))
         self.possible_merge   = self.def_class(item = 8161, id = 3, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_('BM bicycle rental integration suggestion'))
+            title = T_f('{0} bicycle rental integration suggestion', 'BM'))
         self.update_official  = self.def_class(item = 8162, id = 4, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_('BM bicycle update'))
+            title = T_f('{0} bicycle update', 'BM'))
 
         self.init(
-            u"http://data.bordeaux-metropole.fr/data.php?themes=10",
-            u"Station VCUB",
-            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p',
+            'Station VCUB',
+            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
+                fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'tb_stvel_p.shp')),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",)),
             Mapping(
                 select = Select(
                     types = ["nodes"],
@@ -51,8 +51,8 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
                         "network": "VCUB"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": "NOM",
-                        "ref": "NUMSTAT",
-                        "capacity": "NBSUPPOR",
-                        "vending": lambda res: "subscription" if res["TERMBANC"] == "OUI" else None,
-                        "description": lambda res: "VCUB+" if res["TARIF"] == "VLS PLUS" else None} )))
+                        "name": "nom",
+                        "ref": "numstat",
+                        "capacity": "nbsuppor",
+                        "vending": lambda res: "subscription" if res["termbanc"] == "OUI" else None,
+                        "description": lambda res: "VCUB+" if res["tarif"] == "VLS PLUS" else None} )))

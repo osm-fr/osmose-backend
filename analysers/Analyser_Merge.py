@@ -395,7 +395,7 @@ class Parser:
         pass
 
 class CSV(Parser):
-    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True):
+    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True, skip_first_lines = 0):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
@@ -405,6 +405,7 @@ class CSV(Parser):
         @param header: CSV have header row
         @param quote: one char string delimiter
         @param csv: load file as CSV on COPY command
+        @param skip_first_lines: skip lines before reading CSV content
         """
         self.source = source
         self.separator = separator
@@ -412,16 +413,21 @@ class CSV(Parser):
         self.have_header = header
         self.quote = quote
         self.csv = csv
+        self.skip_first_lines = skip_first_lines
 
         self.f = None
 
     def header(self):
         self.f = self.source.open()
+        for _ in range(self.skip_first_lines):
+            self.f.__next__()
         if self.have_header:
             return csv.reader(self.f, delimiter=self.separator, quotechar=self.quote).next()
 
     def import_(self, table, srid, osmosis):
         self.f = self.f or self.source.open()
+        for _ in range(self.skip_first_lines):
+            self.f.__next__()
         copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
             table,
             ("DELIMITER AS '%s'" % self.separator) if self.separator is not None else "",
