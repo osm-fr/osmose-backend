@@ -101,12 +101,12 @@ However, this should probably still conform to the typical format used for value
                     if tags[k] in self.exceptions_open[k]:
                         # no error if in exception list
                         continue
-                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Bad tag value: \"%(key)s=%(val)s\"", {"key": k, "val": tags[k]})})
+                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         keys = set(keyss) & self.check_list_closed
         for k in keys:
             if tags[k] not in self.allow_closed[k]:
-                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Bad tag value: \"%(key)s=%(val)s\"", {"key": k, "val": tags[k]})})
+                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         return err
 

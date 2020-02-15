@@ -57,12 +57,12 @@ class Name_UpperCase(Plugin):
             # first check if the name *might* match
             if self.UpperTitleCase.match(tags[u"name"]) and not self.RomanNumber.match(tags[u"name"]):
                 if self.whitelist is None:
-                    err.append({"class": 803, "text":{"en":tags[u"name"]}})
+                    err.append({"class": 803, "text": T_f("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
                 else:
                     # Check if we match the whitelist and if so re-try
                     name = " ".join(i for i in tags[u"name"].split() if not i in self.whitelist)
                     if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
-                        err.append({"class": 803, "text":{"en":tags[u"name"]}})
+                        err.append({"class": 803, "text": T_f("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
         return err
 
     def way(self, data, tags, nds):
