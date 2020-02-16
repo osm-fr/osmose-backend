@@ -33,12 +33,12 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
             title = T_f('{0} stop, integration suggestion', place))
 
         self.init(
-            u"http://data.bordeaux-metropole.fr/data.php?themes=10",
-            u"Arrêt physique sur le réseau",
-            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "07/2016",
-                fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
-                select = {"RESEAU": [None, "BUS"]}),
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p',
+            'Arrêt physique sur le réseau',
+            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
+                fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'tb_arret_p.shp')),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",),
+                select = {"reseau": [None, "BUS"]}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -52,6 +52,6 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                         "network": "TBM"},
                     static2 = {"source": self.source},
                     mapping2 = {
-                        "name": lambda res: res['NOMARRET'],
-                        "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},
-                    text = lambda tags, fields: T_f(u"{0} stop {1}", place, fields["NOMARRET"]) )))
+                        "name": lambda res: res['nomarret'],
+                        "shelter": lambda res: "yes" if res["mobilie1"] and "abribus" in res["mobilie1"].lower() else "no" if res["mobilie1"] and "poteau" in res["mobilie1"].lower() else None},
+                    text = lambda tags, fields: T_f(u"{0} stop {1}", place, fields["nomarret"]) )))
