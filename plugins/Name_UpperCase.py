@@ -39,7 +39,7 @@ class Name_UpperCase(Plugin):
 '''This feature is tagged with a name which contains a fully uppercase word (or words).
  This is not expected for the majority of named features.'''),
             trap = T_(
-'''While uncommon, it isn\'t impossible for a name to have uppercase words.
+'''While uncommon, it is possible for a name to have uppercase words.
  This is particularly the case for corporate/branded locations as well as acronyms.''')
         )
         self.UpperTitleCase = re.compile(u".*[\p{Lu}\p{Lt}]{5,}")
