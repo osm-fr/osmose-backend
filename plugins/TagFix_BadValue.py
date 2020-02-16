@@ -34,7 +34,7 @@ class TagFix_BadValue(Plugin):
  (lowercase alphanumeric characters with no spaces). It's most likely not an expected tagging.'''),
             fix = T_('Check the value of the tag in question and update the tagging to reflect what this feature is.'),
             trap = T_(
-'''It\'s possible a mapper was trying to map a feature with no existing agreed upon tagging.
+'''It's possible a mapper was trying to map a feature with no existing agreed upon tagging.
 However, this should probably still conform to the typical format used for values of the given tag.''')
         )
 
