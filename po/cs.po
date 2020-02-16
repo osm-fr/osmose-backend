@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Jakub Jelen <jakuje@gmail.com>, 2020
 # Jan Vršovský <vrs@email.cz>, 2015
 # trendspotter <j.podhorecky@volny.cz>, 2019
 # trendspotter <j.podhorecky@volny.cz>, 2018
@@ -17,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-10 20:19+0000\n"
+"PO-Revision-Date: 2020-02-16 10:21+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -581,7 +582,7 @@ msgstr "Uzavřená vodní cesta"
 msgid "Way with one node"
 msgstr "Cesta s jediným uzlem"
 
-#: ../plugins/TagFix_Deprecated.py:82
+#: ../plugins/TagFix_Deprecated.py:98
 msgid "Deprecated tag"
 msgstr "Již nepoužívaná značka"
 
@@ -778,7 +779,6 @@ msgstr "Jméno končí mezerou"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Špatná hodnota pro %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:95
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Značka %(tag)s je zastaralá: %(depr)s"
@@ -1050,33 +1050,9 @@ msgstr "Aktualizace historického monumentu"
 msgid "Post office update"
 msgstr "Aktualizace pošty"
 
-#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
-msgid "NM glass recycling not integrated"
-msgstr "recyklace skla NM není integrována"
-
-#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:32
-msgid "NM glass recycling, integration suggestion"
-msgstr "recyklace skla NM, návrh na integraci"
-
-#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:34
-msgid "NM glass recycling update"
-msgstr "aktualizace recyklace skla NM"
-
 #: ../analysers/analyser_merge_school_FR.py:65
 msgid "School update"
 msgstr "Aktualizace školy"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
-msgid "BM bicycle rental not integrated"
-msgstr "půjčovna kol BM není integrována"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:32
-msgid "BM bicycle rental integration suggestion"
-msgstr "půjčovna kol BM, návrh na integraci"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:34
-msgid "BM bicycle update"
-msgstr "aktualizace kol BM"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking not integrated"
@@ -1093,18 +1069,6 @@ msgstr "aktualizace parkování BM"
 #: ../analysers/analyser_merge_parking_FR_bm.py:70
 msgid "BM parking disabled not integrated"
 msgstr "parkování BM není integrováno"
-
-#: ../analysers/analyser_merge_recycling_FR_bm.py:30
-msgid "BM glass recycling not integrated"
-msgstr "recyklace skla BM není integrována"
-
-#: ../analysers/analyser_merge_recycling_FR_bm.py:32
-msgid "BM glass recycling, integration suggestion"
-msgstr "recyklace skla BM, návrh na integraci"
-
-#: ../analysers/analyser_merge_recycling_FR_bm.py:34
-msgid "BM glass recycling update"
-msgstr "aktualizace recyklace skla BM"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid ""
@@ -1339,7 +1303,6 @@ msgstr "Chybí tag highway pro tracktype nebo lanes"
 msgid "Missing relation type"
 msgstr "Chybí typ relace"
 
-#: ../plugins/TagFix_Deprecated.py:97
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "Tag %(tag)s=%(value)s je zastaralý: %(depr)s"
@@ -1750,7 +1713,7 @@ msgstr "Chybné URL %(k)s=%(v)s"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:114
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "Historický památník: {0} (umístěný na {1} s jistotou {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:31
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:31
@@ -1761,7 +1724,7 @@ msgstr ""
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:30
 #, python-brace-format
 msgid "{0} stop not integrated"
-msgstr ""
+msgstr "{0}  zastávka není připojena"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:33
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:33
@@ -1772,7 +1735,7 @@ msgstr ""
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:31
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
-msgstr ""
+msgstr "{0} zastávka, doporučené připojení"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:61
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:57
@@ -1782,64 +1745,64 @@ msgstr ""
 #: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:54
 #, python-brace-format
 msgid "{0} stop of {1}"
-msgstr ""
+msgstr "{0} zastávka linky {1} "
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:35
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:35
 #, python-brace-format
 msgid "{0} stop update"
-msgstr ""
+msgstr "{0} aktualizace zastávky"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:57
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "{0} zastávka {1}"
 
 #, python-brace-format
 msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr ""
+msgstr "{0} Dopravní značky pro {1} byly spatřeny kolem, ale ne patřičné tagy"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:150
 #, python-brace-format
 msgid ""
 "Population on admin_centre role ({0}) greater than population on the "
 "relation ({1})"
-msgstr ""
+msgstr "Populace na roli admin_centre ({0}) je větší než populace na relaci ({1})"
 
 #: ../analysers/analyser_osmosis_fantoir.py:112
 #, python-brace-format
 msgid "Multiple name for the same ref FANTOIR {0}: {1}"
-msgstr ""
+msgstr "Více jmen pro stejnou referenci FANTOIR {0}:{1}"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:66
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Nekonsistentní hodnoty pro motor_vehicle ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
 #, python-brace-format
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
-msgstr ""
+msgstr "počet pruhů dovnitř {0}(-{1}+{2}), ven {3}(-{4}+{5})"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-brace-format
 msgid "Approximate {0}"
-msgstr ""
+msgstr "Odhad {0}"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:140
 #, python-brace-format
 msgid "{0} deviation of {1}m"
-msgstr ""
+msgstr "{0} odchylka {1}m"
 
 #: ../plugins/Highway_Lanes.py:106
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
-msgstr ""
+msgstr "Neznámá hodnota pro odbočovací pruhy \"{0}\""
 
 #: ../plugins/Highway_Lanes.py:184
 #, python-brace-format
 msgid "lanes={0} is not an integer"
-msgstr ""
+msgstr "lanes={0} není číslo"
 
 #: ../plugins/Highway_Lanes.py:240
 #, python-brace-format
@@ -2007,18 +1970,6 @@ msgstr "Nespojená dálnice"
 msgid "Extra \"{0}\" after international code"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
-msgid "IDF bicycle rental not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:32
-msgid "IDF bicycle rental integration suggestion"
-msgstr "Návrh integrace půjčovny kol IDF"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:34
-msgid "IDF bicycle update"
-msgstr ""
-
 #: ../analysers/analyser_merge_college_FR.py:32
 msgid "College without tag \"ref:UAI\" or invalid"
 msgstr ""
@@ -2119,7 +2070,7 @@ msgstr ""
 msgid "Bad tag suffix %(k)s=%(v)s"
 msgstr ""
 
-#: ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:101
 msgid "Deprecated value"
 msgstr ""
 
@@ -3507,7 +3458,7 @@ msgstr ""
 msgid "There certainly false positives."
 msgstr ""
 
-#: ../plugins/TagFix_Deprecated.py:78
+#: ../plugins/TagFix_Deprecated.py:94
 msgid ""
 "The tag or combination key/value is no longer used. List of deprecated\n"
 "features comes from [Deprecated\n"
@@ -3874,21 +3825,15 @@ msgid ""
 "on the  wiki. Add a node or add tags if already existing."
 msgstr ""
 
-#: ../analysers/analyser_merge_charging_station_FR.py:40
-msgid ""
-"The initial information corresponds to recharging points and not to\n"
-"stations, so some values are worth checking in the field."
-msgstr ""
-
-#: ../analysers/analyser_merge_charging_station_FR.py:43
+#: ../analysers/analyser_merge_charging_station_FR.py:44
 msgid "Car charging station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_charging_station_FR.py:45
+#: ../analysers/analyser_merge_charging_station_FR.py:46
 msgid "Car charging station, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_charging_station_FR.py:47
+#: ../analysers/analyser_merge_charging_station_FR.py:48
 msgid "Car charging station  update"
 msgstr ""
 
@@ -4027,4 +3972,52 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:70
 msgid "The relation is missing a `type` tag to define what it represents."
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
+#, python-brace-format
+msgid "{0} bicycle rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:32
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:32
+#, python-brace-format
+msgid "{0} bicycle rental integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:34
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:34
+#, python-brace-format
+msgid "{0} bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:40
+msgid ""
+"The initial information corresponds to recharging pools and devices and not to\n"
+"stations, so some values are worth checking in the field. For instance, an open data point\n"
+"with `capacity=6` can sometimes match to 3 charging station with `capacity=2`"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:30
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
+#, python-brace-format
+msgid "{0} glass recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:32
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:32
+#, python-brace-format
+msgid "{0} glass recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:34
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:34
+#, python-brace-format
+msgid "{0} glass recycling update"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:114 ../plugins/TagFix_Deprecated.py:120
+#, python-brace-format
+msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr ""

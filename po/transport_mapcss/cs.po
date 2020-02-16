@@ -3,10 +3,11 @@
 # Petr Schönmann <pschonmann@gmail.com>, 2018
 # majkaz, 2019
 # trendspotter <j.podhorecky@volny.cz>, 2019
+# TK, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: trendspotter <j.podhorecky@volny.cz>, 2019\n"
+"Last-Translator: TK, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/openstreetmap-france/teams/17462/cs/)\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
@@ -117,35 +118,37 @@ msgstr "Chybí starší tagování na zastávce veřejné dopravy"
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "Tag network by měl být stejný pro route i route_master :  {0} vs {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
-msgstr ""
+msgstr "Tag operator by měl být stejný pro route i route_master : {0} vs {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
-msgstr ""
+msgstr "Tag ref by měl být stejný pro route i route_master : {0} vs {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "Tag colour by měl být stejný pro route i route_master : {0} vs {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
 msgstr ""
+"Režim veřejné dopravy by měl být stejný pro route i route_master : {0} vs "
+"{1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr ""
+msgstr "Zkontrolujte tag colour"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
@@ -173,23 +176,28 @@ msgstr "Chybějící značka intervalu pro určení hlavního intervalu"
 
 #: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"
-msgstr ""
+msgstr "Chybějící tag opening_hours"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Chybějící jméno na zastávce veřejné dopravy"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Zkontrolujte tag operator: tento provozovatel neexistuje, možná se jedná o "
+"překlep."
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Zkontrolujte tag network: tato síť neexistuje, možná se jedná o překlep."
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"Autobusová stanice je obvykle velká oblast, kde zastavuje mnoho autobusů, "
+"zkontrolujte, jestli lze tuto oblast nakreslit"

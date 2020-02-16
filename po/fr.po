@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Antonin Curtit, 2020
-# Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
+# Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017,2020
 # Binnette <binnette@gmail.com>, 2019
 # Codain, 2017-2018
 # deuzeffe, 2018
@@ -21,6 +21,7 @@
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # Julien Lepiller <transifex@lepiller.eu>, 2018-2019
+# Noémie <nlehuby@zaclys.net>, 2020
 # operon, 2014-2015
 # operon, 2015,2017
 # operon, 2014
@@ -35,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-10 20:19+0000\n"
+"PO-Revision-Date: 2020-02-16 10:21+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -599,7 +600,7 @@ msgstr "Cours d’eau fermé"
 msgid "Way with one node"
 msgstr "Chemin avec un seul nœud"
 
-#: ../plugins/TagFix_Deprecated.py:82
+#: ../plugins/TagFix_Deprecated.py:98
 msgid "Deprecated tag"
 msgstr "Attribut déprécié"
 
@@ -796,7 +797,6 @@ msgstr "Le nom finit par une espace"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Mauvaise valeur pour “%(key)s”=“%(val)s”"
 
-#: ../plugins/TagFix_Deprecated.py:95
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "L’attribut “%(tag)s” est désapprouvé : %(depr)s"
@@ -1068,33 +1068,9 @@ msgstr "Monument historique mis à jour"
 msgid "Post office update"
 msgstr "Bureau de poste mis à jour"
 
-#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
-msgid "NM glass recycling not integrated"
-msgstr "Recyclage de verre de NM non intégré"
-
-#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:32
-msgid "NM glass recycling, integration suggestion"
-msgstr "Recyclage de verre de NM, proposition d’intégration"
-
-#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:34
-msgid "NM glass recycling update"
-msgstr "Recyclage de verre de NM mis à jour"
-
 #: ../analysers/analyser_merge_school_FR.py:65
 msgid "School update"
 msgstr "École mise à jour"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
-msgid "BM bicycle rental not integrated"
-msgstr "Location de vélo de BM non intégrée"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:32
-msgid "BM bicycle rental integration suggestion"
-msgstr "Location de vélo de BM proposition d’intégration"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:34
-msgid "BM bicycle update"
-msgstr "Location de vélo de BM mise à jour"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking not integrated"
@@ -1111,18 +1087,6 @@ msgstr "Parking de BM mis à jour"
 #: ../analysers/analyser_merge_parking_FR_bm.py:70
 msgid "BM parking disabled not integrated"
 msgstr "Parking de BM handicapés non intégré"
-
-#: ../analysers/analyser_merge_recycling_FR_bm.py:30
-msgid "BM glass recycling not integrated"
-msgstr "Recyclage de verre de BM non intégré"
-
-#: ../analysers/analyser_merge_recycling_FR_bm.py:32
-msgid "BM glass recycling, integration suggestion"
-msgstr "Recyclage de verre de BM, proposition d’intégration"
-
-#: ../analysers/analyser_merge_recycling_FR_bm.py:34
-msgid "BM glass recycling update"
-msgstr "Recyclage de verre de BM mis à jour"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid ""
@@ -1357,7 +1321,6 @@ msgstr "Attribut “highway” manquant sur “tracktypes” ou “lanes”"
 msgid "Missing relation type"
 msgstr "Type de relation manquante"
 
-#: ../plugins/TagFix_Deprecated.py:97
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "L’attribut “%(tag)s”=“%(value)s” est désapprouvé : %(depr)s"
@@ -2025,18 +1988,6 @@ msgstr "Voirie non connectée"
 msgid "Extra \"{0}\" after international code"
 msgstr "“{0}” en trop après le code international"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
-msgid "IDF bicycle rental not integrated"
-msgstr "Location de vélo en IDF non intégrée"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:32
-msgid "IDF bicycle rental integration suggestion"
-msgstr "Location de vélo en IDF proposition d’intégration"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:34
-msgid "IDF bicycle update"
-msgstr "Location de vélo en IDF mise à jour"
-
 #: ../analysers/analyser_merge_college_FR.py:32
 msgid "College without tag \"ref:UAI\" or invalid"
 msgstr "Établissement d’enseignement supérieur sans attribut “ref:UAI” ou incorrect."
@@ -2137,7 +2088,7 @@ msgstr "Centrale électrique non intégrée, codée géographiquement au niveau 
 msgid "Bad tag suffix %(k)s=%(v)s"
 msgstr "Mauvais suffixe d’attribut “%(k)s”=“%(v)s”"
 
-#: ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:101
 msgid "Deprecated value"
 msgstr "Valeur dépréciée"
 
@@ -2993,7 +2944,7 @@ msgstr ""
 msgid ""
 "A street name \"sounds\" like a other street name already known but is\n"
 "not spelled on the same way."
-msgstr ""
+msgstr "Un nom de rue \"sonne\" de manière identique qu'un autre nom de rue déjà présent, mais pas épelé de la même façon."
 
 #: ../analysers/analyser_osmosis_soundex.py:240
 msgid "After you have checked that it is a mistake, change the name."
@@ -3037,7 +2988,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_useless.py:131
 msgid "The object is sometimes duplicate."
-msgstr ""
+msgstr "L'objet est quelquefois dupliqué."
 
 #: ../analysers/analyser_osmosis_waterway.py:137
 msgid ""
@@ -3418,11 +3369,11 @@ msgstr ""
 msgid ""
 "If the limit comes from the French Cadastre, add the appropriate\n"
 "`source=*`."
-msgstr ""
+msgstr "Si la limite provient du Cadastre Français, ajoutez le tag `source=*` approprié. "
 
 #: ../plugins/Structural_DuplicateNodes.py:35
 msgid "A path passes several times by the same node."
-msgstr ""
+msgstr "Un chemin passe plusieurs fois par le même nœud."
 
 #: ../plugins/Structural_DuplicateNodes.py:37
 msgid ""
@@ -3525,7 +3476,7 @@ msgstr ""
 msgid "There certainly false positives."
 msgstr ""
 
-#: ../plugins/TagFix_Deprecated.py:78
+#: ../plugins/TagFix_Deprecated.py:94
 msgid ""
 "The tag or combination key/value is no longer used. List of deprecated\n"
 "features comes from [Deprecated\n"
@@ -3883,32 +3834,26 @@ msgid ""
 "charging stations comes from a database published by Etalab. This database\n"
 "brings together information published by the various local authorities and\n"
 "networks in France."
-msgstr ""
+msgstr "Une borne de recharge électrique se trouve sûrement ici et n'est pas encore cartographiée. La liste des bornes vient d'une base publiée par Etalab. Cette base agrège les informations fournies par plusieurs collectivités et réseaux en France."
 
 #: ../analysers/analyser_merge_charging_station_FR.py:36
 msgid ""
 "See [the\n"
 "mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)\n"
 "on the  wiki. Add a node or add tags if already existing."
-msgstr ""
+msgstr "Voir [les correspondances avec l'open data\nmapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques) sur\nle wiki. Ajouter un nœud ou compléter les attributs si un objet est \ndéjà présent."
 
-#: ../analysers/analyser_merge_charging_station_FR.py:40
-msgid ""
-"The initial information corresponds to recharging points and not to\n"
-"stations, so some values are worth checking in the field."
-msgstr ""
-
-#: ../analysers/analyser_merge_charging_station_FR.py:43
+#: ../analysers/analyser_merge_charging_station_FR.py:44
 msgid "Car charging station not integrated"
-msgstr ""
+msgstr "Borne de recharge électrique non intégrée"
 
-#: ../analysers/analyser_merge_charging_station_FR.py:45
+#: ../analysers/analyser_merge_charging_station_FR.py:46
 msgid "Car charging station, integration suggestion"
-msgstr ""
+msgstr "Borne de recharge électrique, proposition d'intégration"
 
-#: ../analysers/analyser_merge_charging_station_FR.py:47
+#: ../analysers/analyser_merge_charging_station_FR.py:48
 msgid "Car charging station  update"
-msgstr ""
+msgstr "Borne de recharge électrique à mettre à jour"
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:97
 msgid "Borders crossing each other."
@@ -4045,4 +3990,52 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:70
 msgid "The relation is missing a `type` tag to define what it represents."
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
+#, python-brace-format
+msgid "{0} bicycle rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:32
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:32
+#, python-brace-format
+msgid "{0} bicycle rental integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:34
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:34
+#, python-brace-format
+msgid "{0} bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:40
+msgid ""
+"The initial information corresponds to recharging pools and devices and not to\n"
+"stations, so some values are worth checking in the field. For instance, an open data point\n"
+"with `capacity=6` can sometimes match to 3 charging station with `capacity=2`"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:30
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
+#, python-brace-format
+msgid "{0} glass recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:32
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:32
+#, python-brace-format
+msgid "{0} glass recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:34
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:34
+#, python-brace-format
+msgid "{0} glass recycling update"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:114 ../plugins/TagFix_Deprecated.py:120
+#, python-brace-format
+msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr ""
