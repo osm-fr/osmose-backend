@@ -100,7 +100,7 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         for route_type, access in self.map.items():
-            self.run(sql10.format('', '', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('', '', route_type, access['access_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
 
     def analyser_osmosis_diff(self):
         for route_type, access in self.map.items():
