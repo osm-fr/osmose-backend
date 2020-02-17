@@ -36,7 +36,12 @@ class Name_UpperCase(Plugin):
         self.errors[803] = self.def_class(item = 5010, level = 1, tags = ['name', 'fix:chair'],
             title = T_('Name with uppercase'),
             detail = T_(
-'''Word in capital letters.'''))
+'''This feature is tagged with a name which contains a fully uppercase word (or words).
+ This is not expected for the majority of named features.'''),
+            trap = T_(
+'''While uncommon, it is possible for a name to have uppercase words.
+ This is particularly the case for corporate/branded locations as well as acronyms.''')
+        )
         self.UpperTitleCase = re.compile(u".*[\p{Lu}\p{Lt}]{5,}")
         self.RomanNumber = re.compile(u".*[IVXCDLM]{5,}")
 
@@ -52,12 +57,12 @@ class Name_UpperCase(Plugin):
             # first check if the name *might* match
             if self.UpperTitleCase.match(tags[u"name"]) and not self.RomanNumber.match(tags[u"name"]):
                 if self.whitelist is None:
-                    err.append({"class": 803, "text":{"en":tags[u"name"]}})
+                    err.append({"class": 803, "text": T_f("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
                 else:
                     # Check if we match the whitelist and if so re-try
                     name = " ".join(i for i in tags[u"name"].split() if not i in self.whitelist)
                     if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
-                        err.append({"class": 803, "text":{"en":tags[u"name"]}})
+                        err.append({"class": 803, "text": T_f("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
         return err
 
     def way(self, data, tags, nds):
