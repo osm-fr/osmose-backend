@@ -10,9 +10,8 @@ addons:
     packages:
     - postgresql-10-postgis-2.4
     - postgresql-10-postgis-2.4-scripts
-    # for python2
-    - python-imposm-parser
-    - python-pytest
+    # for shp2pgsql
+    - postgis
     # for python3
     - python3-pytest
     # for osm pbf parser
