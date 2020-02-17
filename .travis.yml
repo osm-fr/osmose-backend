@@ -44,5 +44,8 @@ env:
   - TEST_SUITE=sax
   - TEST_SUITE=merge
   - TEST_SUITE=other
+jobs:
+  allow_failures:
+    - env: TEST_SUITE=merge
 script:
   - ./tools/pytest.sh $TEST_SUITE
