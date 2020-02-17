@@ -100,9 +100,9 @@ class Test(TestPluginCommon):
                   "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate",
                   "railway:memor2+", "railway:tbl1+",
                  ]:
-            assert not a.node(None, {k: 1}), ("key='%s'" % k)
+            assert not a.node(None, {k: '1'}), ("key='%s'" % k)
 
         for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'",
                   "railway:memor2++", "railway:memor2+87",
                  ]:
-            self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
+            self.check_err(a.node(None, {k: '1'}), ("key='%s'" % k))
