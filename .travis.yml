@@ -10,9 +10,8 @@ addons:
     packages:
     - postgresql-10-postgis-2.4
     - postgresql-10-postgis-2.4-scripts
-    # for python2
-    - python-imposm-parser
-    - python-pytest
+    # for shp2pgsql
+    - postgis
     # for python3
     - python3-pytest
     # for osm pbf parser
@@ -40,5 +39,12 @@ before_script:
   - sudo chown $USER /data/work/$USER /data/work/$USER/cache
   # compile osm pbf parser
   - cd modules/osm_pbf_parser && make && cd ../../
+env:
+  - TEST_SUITE=sax
+  - TEST_SUITE=merge
+  - TEST_SUITE=other
+jobs:
+  allow_failures:
+    - env: TEST_SUITE=merge
 script:
-  - ./tools/pytest.sh
+  - ./tools/pytest.sh $TEST_SUITE
