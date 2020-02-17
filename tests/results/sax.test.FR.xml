@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1229176898">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1485626375">
 <class id="1" item="7060" source="http://example.com/plugins/ODbL_migration.py#L38" level="3" tag="source,fix:chair">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -136,6 +136,7 @@
 <classtext lang="zh_CN" title="重复的节点" />
 <classtext lang="zh_TW" title="重覆的 node" />
 <detail lang="en" title="A path passes several times by the same node." />
+<detail lang="fr" title="Un chemin passe plusieurs fois par le même nœud." />
 <detail lang="uk" title="Стежка кілька разів проходить через одну і ту ж точку." />
 <fix lang="en" title="There are several types of issues:&#10;&#10;* A way that makes one or more loops; the way must be split into several&#10;sections.&#10;* A path that goes back on itself (often at one end); the path must be&#10;cut to isolate the wrong section and recreated properly afterwards.&#10;&#10;There are certainly many other cases. In general, it is better to make&#10;several roads / areas than a single complex one so that tools working&#10;with OSM data can function properly." />
 <trap lang="en" title="These errors require a good command of your editing tool. Some&#10;corrections are not necessarily intuitive." />
@@ -286,6 +287,7 @@
 <detail lang="en" title="An administrative boundary does not contain tag `source=*` sourcing&#10;the origin." />
 <fix lang="en" title="If the limit comes from the French Cadastre, add the appropriate&#10;`source=*`." />
 <fix lang="es" title="Si el límite proviene del Catastro francés, añada el `source=*&#10; apropiado." />
+<fix lang="fr" title="Si la limite provient du Cadastre Français, ajoutez le tag `source=*` approprié. " />
 </class>
 <class id="800" item="6030" source="http://example.com/plugins/Administrative_INSEE_Name.py#L44" level="1" tag="place,fix:survey">
 <classtext lang="ca" title="Node de lloc sense etiqueta name" />
@@ -363,7 +365,7 @@
 <fix lang="es" title="Corregir INSEE el valor o el nombre según haga falta." />
 <trap lang="en" title="The names on `place=*` may differ from the COG of INSEE, especially&#10;for merged city. It also happens in several occasions that local&#10;authorities are at odds with INSEE. In this case, that's always been a&#10;priority for the field on OSM." />
 </class>
-<class id="803" item="5010" source="http://example.com/plugins/Name_UpperCase.py#L39" level="1" tag="name,fix:chair">
+<class id="803" item="5010" source="http://example.com/plugins/Name_UpperCase.py#L43" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Jména s velkými písmeny" />
 <classtext lang="de" title="Name in Großbuchstaben" />
 <classtext lang="en" title="Name with uppercase" />
@@ -381,10 +383,8 @@
 <classtext lang="pt_BR" title="Nome em maiúsculas" />
 <classtext lang="uk" title="Ім'я у верхньому реґістрі" />
 <classtext lang="zh_CN" title="以大写字母命名" />
-<detail lang="en" title="Word in capital letters." />
-<detail lang="es" title="Palabra en mayúsculas." />
-<detail lang="eu" title="Hitza hizki larriz." />
-<detail lang="uk" title="Слово з великих літер" />
+<detail lang="en" title="This feature is tagged with a name which contains a fully uppercase word (or words).&#10; This is not expected for the majority of named features." />
+<trap lang="en" title="While uncommon, it is possible for a name to have uppercase words.&#10; This is particularly the case for corporate/branded locations as well as acronyms." />
 </class>
 <class id="804" item="2020" source="http://example.com/plugins/Ele_MontainPass_Peak.py#L36" level="3" tag="tag,fix:survey">
 <classtext lang="ca" title="Manca l'altitud" />
@@ -603,12 +603,15 @@
 <example lang="es" title='![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)&#10;&#10;El nombre debe ser "Saint-Esprit".' />
 <example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-3033.png)&#10;&#10;Ім'я має бути &quot;Saint-Esprit&quot;." />
 </class>
-<class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L31" level="1" tag="value,fix:chair">
+<class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L38" level="1" tag="value,fix:chair">
 <classtext lang="en" title="Bad tag value" />
 <classtext lang="eu" title="Etiketa balio okerra" />
 <classtext lang="fr" title="Mauvaise valeur" />
 <classtext lang="nl" title="Verkeerde tag waarde" />
 <classtext lang="uk" title="Недійсне значення теґу" />
+<detail lang="en" title="This feature is tagged with a value which does not match the typical format used for tags with distinct values&#10; (lowercase alphanumeric characters with no spaces). It's most likely not an expected tagging." />
+<fix lang="en" title="Check the value of the tag in question and update the tagging to reflect what this feature is." />
+<trap lang="en" title="It's possible a mapper was trying to map a feature with no existing agreed upon tagging.&#10;However, this should probably still conform to the typical format used for values of the given tag." />
 </class>
 <class id="3050" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L42" level="1" tag="tag,fix:chair">
 <classtext lang="en" title="Bad key" />
@@ -693,7 +696,7 @@
 <classtext lang="ru" title="Недопустимый формат даты" />
 <classtext lang="uk" title="Помилковий формат дати" />
 <classtext lang="zh_CN" title="不良的日期格式" />
-<detail lang="en" title="The date entered is not in expected format as definited in&#10;[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)" />
+<detail lang="en" title="The date entered is not in the expected format described at&#10;[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)" />
 </class>
 <class id="3091" item="3091" source="http://example.com/plugins/Number.py#L35" level="2" tag="value,fix:chair">
 <classtext lang="ca" title="Valor numèric" />
@@ -1112,6 +1115,7 @@
 <classtext lang="uk" title="Відсутній тип зв'язку" />
 <classtext lang="zh_CN" title="缺少关系类型" />
 <classtext lang="zh_TW" title="缺失關聯類型" />
+<detail lang="de" title="Der Relation fehlt ein `type` tag um zu definieren was es representiert." />
 <detail lang="en" title="The relation is missing a `type` tag to define what it represents." />
 </class>
 <class id="21201" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L94" level="3" tag="indoor">
@@ -1161,6 +1165,7 @@
 <classtext lang="it" title="Manca l’etichetta public_transport:version su una relazione di linea di tipo public_transport" />
 <classtext lang="nl" title="public_transport:version tag ontbreekt op een public_transport route relatie" />
 <classtext lang="pl" title='Brak tagu "public_transport:version" dla relacji transportu publicznego' />
+<classtext lang="ru" title="Отсутствует тег public_transport:version в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="缺少public_transport：public_transport路径关系上的版本标记" />
 <classtext lang="zh_TW" title="public_transport 路線關聯遺失 public_transport:version 標籤" />
@@ -1177,6 +1182,7 @@
 <classtext lang="it" title="Manca l’etichetta network su una relazione di tipo public_transport" />
 <classtext lang="nl" title="network tag op public_transport relatie ontbreekt" />
 <classtext lang="pl" title='Brak tagu "network" dla relacji transportu publicznego' />
+<classtext lang="ru" title="Отсутствует тег network в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ network на зв'язку public_transport" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少网络标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失網路標籤" />
@@ -1193,6 +1199,7 @@
 <classtext lang="it" title="Manca l’etichetta operator su una relazione di tipo public_transport" />
 <classtext lang="nl" title="operator tag op public_transport relatie ontbreekt" />
 <classtext lang="pl" title='Brak tagu "operator" dla relacji transportu publicznego' />
+<classtext lang="ru" title="Отсутствует тег operator в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ operator у зв'язку громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少运运营单位标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失營業者標籤" />
@@ -1209,6 +1216,7 @@
 <classtext lang="it" title="Manca l’etichetta ref per il numero di linea di una relazione di tipo public_transport" />
 <classtext lang="nl" title="ref tag voor lijn nummer ontbreekt op een public_transport relatie" />
 <classtext lang="pl" title='Brak tagu "ref" (numeru linii) dla relacji transportu publicznego' />
+<classtext lang="ru" title="Отсутствует тег ref  для номера маршрута в отношение public_transport" />
 <classtext lang="uk" title="Відсутній теґ ref для номеру лінії на зв'язку public_transport" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少线路编号的ref标记" />
 <classtext lang="zh_TW" title="public_transport 關聯遺失路線號碼 ref 標籤" />
@@ -1225,6 +1233,7 @@
 <classtext lang="it" title="Manca l‘etichetta from/to su una relazione di tipo public_transport" />
 <classtext lang="nl" title="from/to tag op een public_transport weg relatie ontbreekt " />
 <classtext lang="pl" title='Brak tagu "from" lub "to" dla relacji transportu publicznego' />
+<classtext lang="ru" title="Отсутствуют теги form/to в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ from/to у зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport路径关系上缺少from/to标签" />
 <classtext lang="zh_TW" title="public_transport 路線關聯遺失 from/to 標籤" />
@@ -1241,6 +1250,7 @@
 <classtext lang="it" title="Manca l’etichetta public_transport sulla fermata di trasporto pubblico" />
 <classtext lang="nl" title="public_transport tag ontbreekt op een public transport halte" />
 <classtext lang="pl" title='Brak tagu "public_transport" dla przystanku' />
+<classtext lang="ru" title="Отсутствует тег public_transport на месте остановки общественного транспорта" />
 <classtext lang="uk" title="Відсутній теґ public_transport на public_transport_stop" />
 <classtext lang="zh_CN" title="公共交通站点缺少public_transport标记" />
 <classtext lang="zh_TW" title="大眾運輸站點遺失 public_transport 標籤" />
@@ -2078,6 +2088,7 @@
 <classtext lang="zh_CN" title="{2.key}={2.value} 是优选的 {1.key}={1.value}" />
 </class>
 <class id="40102" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L102" level="2" tag="deprecated,value,fix:chair">
+<classtext lang="de" title="Veralteter Wert" />
 <classtext lang="en" title="Deprecated value" />
 <classtext lang="es" title="Valor obsoleto" />
 <classtext lang="eu" title="Balio zaharkitua" />
@@ -2491,6 +2502,7 @@
 </class>
 <class id="91001" item="9100" level="2" tag="power,fix:chair,geom">
 <classtext lang="cs" title="Transformátorové stanice by měly být vždy v uzlu" />
+<classtext lang="de" title="Umspannwerke sollten immer auf einem Punkt sein" />
 <classtext lang="en" title="Power Transformers should always be on a node" />
 <classtext lang="es" title="Los transformadores de energía siempre deben ser un nodo" />
 <classtext lang="fa" title="ترانسفورماتور برق همیشه باید روی گره باشد" />
@@ -4058,6 +4070,7 @@
 <classtext lang="cs" title="Zkontroluj zda může být poznámka smazána" />
 <classtext lang="en" title="Check if the note can be deleted" />
 <classtext lang="es" title="Comprobar si la nota puede borrarse" />
+<classtext lang="eu" title="Egiaztatu ea oharra ezabatu daiteken" />
 <classtext lang="fa" title="بررسی کنید آیا یادداشت را می‌توان حذف کرد" />
 <classtext lang="fr" title="Vérifier si la note peut être supprimée" />
 <classtext lang="gl" title="Comprobar se a nota pode eliminarse" />
@@ -4133,6 +4146,7 @@
 <classtext lang="cs" title="Autobusová zastávka má být uzlem" />
 <classtext lang="en" title="A bus stop is supposed to be a node" />
 <classtext lang="es" title="Una parada de autobús se supone que es un nodo" />
+<classtext lang="eu" title="Autobus geltokia nodo bat izan beharko luke" />
 <classtext lang="fr" title="Un arrêt de bus est censé être un nœud " />
 <classtext lang="gl" title="Unha paraxe de bus suponse que é un nó" />
 <classtext lang="hu" title="A buszmegálló feltételezhetően egy pont" />
@@ -4181,6 +4195,7 @@
 <classtext lang="uk" title="Відсутній теґ interval для вказання основного інтервалу" />
 </class>
 <class id="9014024" item="9014" level="2" tag="tag,public_transport">
+<classtext lang="cs" title="Chybějící tag opening_hours" />
 <classtext lang="en" title="Missing opening_hours tag" />
 <classtext lang="es" title="Falta etiqueta opening_hours" />
 <classtext lang="fr" title="Attribut opening_hours (heures de service) manquant" />
@@ -4192,6 +4207,7 @@
 <classtext lang="uk" title="Відсутній теґ opening_hours" />
 </class>
 <class id="9014025" item="9014" level="2" tag="tag,public_transport">
+<classtext lang="cs" title="Zkontrolujte tag operator: tento provozovatel neexistuje, možná se jedná o překlep." />
 <classtext lang="en" title="Check the operator tag : this operator does not exist, it may be a typo" />
 <classtext lang="es" title="Verifique la etiqueta del operador: este operador no existe, puede ser un error tipográfico" />
 <classtext lang="fr" title="Vérifier l'opérateur renseigné dans l'attribut &quot;operator&quot; : ce transporteur n'existe pas, c'est peut-être une faute d'orthographe" />
@@ -4202,6 +4218,7 @@
 <classtext lang="uk" title="Перевірте теґ operator: такого оператора не існує, або може бути орфоргафічною помилкою" />
 </class>
 <class id="9014026" item="9014" level="2" tag="tag,public_transport">
+<classtext lang="cs" title="Zkontrolujte tag network: tato síť neexistuje, možná se jedná o překlep." />
 <classtext lang="en" title="Check the network tag : this network does not exist, it may be a typo" />
 <classtext lang="es" title="Verifique la etiqueta de la red: esta red no existe, puede ser un error tipográfico" />
 <classtext lang="fr" title="Vérifier le réseau renseigné dans l'attribut &quot;network&quot; : ce réseau n'existe pas, c'est peut-être une faute d'orthographe" />
