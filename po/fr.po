@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-16 10:21+0000\n"
+"PO-Revision-Date: 2020-02-17 20:49+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -132,10 +132,6 @@ msgstr "École, proposition d’intégration"
 #: ../analysers/analyser_merge_service_public_FR.py:31
 msgid "Public service not integrated"
 msgstr "Service public non intégré"
-
-#, python-format
-msgid "Missing address %s"
-msgstr "Adresse manquante %s"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:56
 msgid "Bridge missing (TMC)"
@@ -440,10 +436,6 @@ msgstr "Giratoire à l’envers"
 msgid "Soundex test"
 msgstr "Similitude phonétique “Soundex”"
 
-#, python-format
-msgid "Area intersection %s"
-msgstr "Intersection entre surfaces : %s"
-
 #: ../analysers/analyser_osmosis_tag_typo.py:138
 msgid "Typo in tag"
 msgstr "Coquille dans l’attribut"
@@ -728,10 +720,6 @@ msgstr "Location de voiture Autolib’ à Paris sans attribut “ref:FR:Paris:DS
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Suggestion d’intégration de location de voiture Autolib’ à Paris"
 
-#, python-format
-msgid "Pitch not integrated %s"
-msgstr "Terrain de sport non intégré %s"
-
 #: ../analysers/analyser_osmosis_fantoir.py:108
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Noms multiples pour la même référence FANTOIR"
@@ -765,26 +753,6 @@ msgstr "Station-service non intégrée"
 msgid "Same wikipedia topic on other language"
 msgstr "Sujet Wikipédia identique dans une autre langue"
 
-#: ../plugins/TagFix_BadKey.py:80
-#, python-format
-msgid "Bad tag %(k)s=%(v)s"
-msgstr "Mauvais attribut “%(k)s”=“%(v)s”"
-
-#: ../plugins/Date.py:90 ../plugins/Date.py:92
-#, python-format
-msgid "Incorrect date \"%s\""
-msgstr "Date incorrecte “%s”"
-
-#: ../plugins/Number.py:56
-#, python-format
-msgid "Incorrect number \"%s\""
-msgstr "Nombre incorrect “%s”"
-
-#: ../plugins/Number.py:61
-#, python-format
-msgid "%s is really slow"
-msgstr "%s, c’est vraiment lent !"
-
 #: ../plugins/Name_Spaces.py:44
 msgid "Name begins with a space"
 msgstr "Le nom commence par une espace"
@@ -792,14 +760,6 @@ msgstr "Le nom commence par une espace"
 #: ../plugins/Name_Spaces.py:42
 msgid "Name ends with a space"
 msgstr "Le nom finit par une espace"
-
-#, python-format
-msgid "Bad value for %(key)s=%(val)s"
-msgstr "Mauvaise valeur pour “%(key)s”=“%(val)s”"
-
-#, python-format
-msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr "L’attribut “%(tag)s” est désapprouvé : %(depr)s"
 
 #: ../plugins/TagFix_DuplicateValue.py:109
 #, python-format
@@ -821,11 +781,6 @@ msgstr "Code postal au niveau de la rue  “%(postcode)s” incorrect pour le co
 msgid "Name contains successive spaces"
 msgstr "L’attribut “name” contient des espaces successives"
 
-#: ../plugins/TagFix_MultipleValue.py:98
-#, python-format
-msgid "Multiple values on tag: %(key)s=%(val)s"
-msgstr "Multiples valeurs sur l’attribut “%(key)s”=“%(val)s”"
-
 #: ../plugins/TagRemove_Incompatibles.py:91
 #, python-format
 msgid "Conflict between tags: %s"
@@ -834,11 +789,6 @@ msgstr "Conflit entre attributs : %s"
 #: ../plugins/TagRemove_Incompatibles.py:94
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflit entre attributs : “bridge” et “tunnel”"
-
-#: ../plugins/Number.py:58
-#, python-format
-msgid "height=%s is really tall, look at ele=*"
-msgstr "attribut “height”=“%s” de valeur très élevée, envisagez d’utiliser “ele”=“*”"
 
 #: ../plugins/TagFix_MultipleTag.py:157
 #, python-format
@@ -944,10 +894,6 @@ msgstr "Long cours d’eau au dessus du sol et sans pont"
 #: ../plugins/TagRemove_Roundabout.py:38
 msgid "Unnecessary tag oneway"
 msgstr "Attribut “oneway” superflu"
-
-#, python-format
-msgid "Geodesic support not integrated %s"
-msgstr "Support géodésique non intégré %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box not integrated"
@@ -1321,10 +1267,6 @@ msgstr "Attribut “highway” manquant sur “tracktypes” ou “lanes”"
 msgid "Missing relation type"
 msgstr "Type de relation manquante"
 
-#, python-format
-msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
-msgstr "L’attribut “%(tag)s”=“%(value)s” est désapprouvé : %(depr)s"
-
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:175
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
@@ -1393,10 +1335,6 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "Un élément marqué avec “addr:housenumber” ou “addr:housename”, mais sans autre “addr:street”, “addr:district”, “addr:neighborhood”, “addr:quarter”, “addr:suburb”, “addr:place” ni “addr:hamlet”, doit être membre d’une relation “associatedStreet”"
 
-#, python-format
-msgid "%s not integrated"
-msgstr "%s non intégré"
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:265
 msgid "The track of this route contains gaps"
 msgstr "Le trajet de cette route est discontinu"
@@ -1434,10 +1372,6 @@ msgstr "Restriction de poids “maxweight” non intégrée"
 msgid "maxheight Restriction not integrated"
 msgstr "Restriction de hauteur “maxheight” non intégrée"
 
-#, python-format
-msgid "%s toilets not integrated"
-msgstr "Toilettes %s non intégrées"
-
 #: ../analysers/analyser_osmosis_boundary_hole.py:65
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
@@ -1462,10 +1396,6 @@ msgstr "Relation “type”=“boundary” ouverte"
 #: ../analysers/analyser_osmbin_open_relations.py:73
 msgid "Open relation type=multipolygon"
 msgstr "Relation “type”=“multipolygon” ouverte"
-
-#, python-format
-msgid "Open relation type=boundary admin_level=%d"
-msgstr "Relation “type”=“boundary” avec “admin_level”=“%d” ouverte"
 
 #: ../plugins/Construction2.py:14 ../plugins/Construction2.py:52
 #, python-brace-format
@@ -1575,11 +1505,6 @@ msgstr "Les mentions Nord, Sud, Est, Ouest, Centre doivent être supprimées des
 msgid "Unexpected punctuation in name"
 msgstr "Ponctuation inattendue dans le nom"
 
-#: ../plugins/Name_Punctuation.py:38
-#, python-format
-msgid "Unexpected char %s"
-msgstr "Caractère %s inattendu"
-
 #: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
 msgid "Power Transformers should always be on a node"
 msgstr "Les transformateurs électriques doivent toujours être sur un nœud "
@@ -1600,20 +1525,20 @@ msgstr "L’attribut “wikidata” correspond à un nom de franchise, il devrai
 msgid "Please also check the wikipedia tag."
 msgstr "Vérifiez également l’attribut “wikipedia”."
 
-#: ../analysers/analyser_merge_cadastre_FR.py:30
-#: ../analysers/analyser_merge_cadastre_FR.py:52
+#: ../analysers/disabled/analyser_merge_cadastre_FR.py:30
+#: ../analysers/disabled/analyser_merge_cadastre_FR.py:52
 msgid "Misc not integrated"
 msgstr "Divers non intégré"
 
-#: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
+#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:30
 msgid "SITCOM recycling not integrated"
 msgstr "Point de collecte du SITCOM non intégré"
 
-#: ../analysers/analyser_merge_recycling_FR_sitcom.py:32
+#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:32
 msgid "SITCOM recycling, integration suggestion"
 msgstr "Point de collecte du SITCOM, intégration possible"
 
-#: ../analysers/analyser_merge_recycling_FR_sitcom.py:34
+#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:34
 msgid "SITCOM recycling update"
 msgstr "Point de collecte du SITCOM mis à jour"
 
@@ -1775,10 +1700,6 @@ msgstr "arrêt {0} mis à jour"
 #, python-brace-format
 msgid "{0} stop {1}"
 msgstr "arrêt {0} de {1}"
-
-#, python-brace-format
-msgid "{0} Traffic signs for {1} observed around but not associated tags"
-msgstr "{0} signalisations trouvées pour {1} observées autour mais sans attribut associé"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:150
 #, python-brace-format
@@ -2025,10 +1946,6 @@ msgstr "Gare ferroviaire sans attribut “uic_ref” ou incorrect"
 msgid "School without tag \"ref:UAI\" or invalid"
 msgstr "École sans attribut “ref:UAI” ou incorrect"
 
-#, python-brace-format
-msgid "{0} Street object {1} observed around but not associated tags"
-msgstr "{0} objet de rue {1} observé autour mais aucun attribut associé"
-
 #: ../analysers/analyser_merge_parking_FR_IDF.py:29
 msgid "P+R parking in Île-de-France not integrated"
 msgstr "Parking-relais P+R en Île-de-France non intégré"
@@ -2082,11 +1999,6 @@ msgstr "Commune (“admin_level”=“8”) sans attribut “postal_code”"
 #: ../analysers/analyser_merge_power_plant_FR.py:33
 msgid "Power plant not integrated, geocoded at municipality level"
 msgstr "Centrale électrique non intégrée, codée géographiquement au niveau municipal"
-
-#: ../plugins/TagFix_BadKey.py:82
-#, python-format
-msgid "Bad tag suffix %(k)s=%(v)s"
-msgstr "Mauvais suffixe d’attribut “%(k)s”=“%(v)s”"
 
 #: ../plugins/TagFix_Deprecated.py:101
 msgid "Deprecated value"
@@ -2154,18 +2066,6 @@ msgstr "Musée non intégré"
 #: ../analysers/analyser_merge_museum_FR.py:32
 msgid "Museum, integration suggestion"
 msgstr "Musée, suggestion d’intégration"
-
-#, python-format
-msgid "Radio support (%s) not integrated"
-msgstr "Support radio (%s) non intégré"
-
-#, python-format
-msgid "Radio support (%s), integration suggestion"
-msgstr "Support radio (%s), intégration possible"
-
-#, python-format
-msgid "Radio support (%s) update"
-msgstr "Support radio (%s) à mettre à jour"
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:29
 msgid "Wastewater plant not integrated"
@@ -3102,12 +3002,6 @@ msgid ""
 "exceeded."
 msgstr ""
 
-#: ../plugins/Date.py:34
-msgid ""
-"The date entered is not in expected format as definited in\n"
-"[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
-msgstr ""
-
 #: ../plugins/disabled/Structural_Restriction2.py:36
 msgid "Useless `no_u_turn` restriction, it's already forbidden by local law"
 msgstr ""
@@ -3315,10 +3209,6 @@ msgstr ""
 
 #: ../plugins/Name_UpperCaseNumber.py:34
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
-msgstr ""
-
-#: ../plugins/Name_UpperCase.py:39
-msgid "Word in capital letters."
 msgstr ""
 
 #: ../plugins/Number.py:32
@@ -3734,7 +3624,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_merge_street_objects.py:48
-#: ../analysers/analyser_merge_traffic_signs.py:75
+#: ../analysers/analyser_merge_traffic_signs.py:82
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "{0} non cartographié"
@@ -3750,12 +3640,7 @@ msgid ""
 "detection is correct."
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:76
-#, python-brace-format
-msgid "Traffic sign ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
-msgstr ""
-
-#: ../analysers/analyser_merge_traffic_signs.py:78
+#: ../analysers/analyser_merge_traffic_signs.py:84
 msgid ""
 "Add the appropriate highway tagging if the imagery is up-to-date and sign "
 "detection is correct."
@@ -3807,23 +3692,18 @@ msgstr "Symbole inattendue dans le nom"
 msgid "Bad tag value"
 msgstr "Mauvaise valeur"
 
-#: ../plugins/TagFix_BadValue.py:96 ../plugins/TagFix_BadValue.py:101
-#, python-format
-msgid "Bad tag value: \"%(key)s=%(val)s\""
-msgstr "Mauvaise valeur: \"%(key)s\"=\"%(val)s\""
-
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid "Untagged named object"
 msgstr ""
 
 #: ../analysers/analyser_merge_street_objects.py:71
-#: ../analysers/analyser_merge_traffic_signs.py:98
+#: ../analysers/analyser_merge_traffic_signs.py:104
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
 #: ../analysers/analyser_merge_street_objects.py:72
-#: ../analysers/analyser_merge_traffic_signs.py:99
+#: ../analysers/analyser_merge_traffic_signs.py:105
 #, python-brace-format
 msgid "Observed on {0}"
 msgstr ""
@@ -4038,4 +3918,72 @@ msgstr ""
 #: ../plugins/TagFix_Deprecated.py:114 ../plugins/TagFix_Deprecated.py:120
 #, python-brace-format
 msgid "The tag `{0}` is deprecated in favour of {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_traffic_signs.py:83
+#, python-brace-format
+msgid ""
+"Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
+msgstr ""
+
+#: ../plugins/Date.py:34
+msgid ""
+"The date entered is not in the expected format described at\n"
+"[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
+msgstr ""
+
+#: ../plugins/Date.py:90 ../plugins/Date.py:92 ../plugins/Name_UpperCase.py:60
+#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:56
+#: ../plugins/Phone.py:126 ../plugins/Phone.py:140 ../plugins/Phone.py:146
+#: ../plugins/Phone.py:152 ../plugins/Phone.py:158 ../plugins/Phone.py:165
+#: ../plugins/TagFix_BadKey.py:80 ../plugins/TagFix_BadKey.py:82
+#: ../plugins/TagFix_BadValue.py:104 ../plugins/TagFix_BadValue.py:109
+#: ../plugins/TagFix_MultipleValue.py:98
+#, python-brace-format
+msgid "Concerns tag: `{0}`"
+msgstr ""
+
+#: ../plugins/Name_Punctuation.py:38
+#, python-brace-format
+msgid "Unexpected character: `{0}`"
+msgstr ""
+
+#: ../plugins/Name_UpperCase.py:39
+msgid ""
+"This feature is tagged with a name which contains a fully uppercase word (or words).\n"
+" This is not expected for the majority of named features."
+msgstr ""
+
+#: ../plugins/Name_UpperCase.py:42
+msgid ""
+"While uncommon, it is possible for a name to have uppercase words.\n"
+" This is particularly the case for corporate/branded locations as well as acronyms."
+msgstr ""
+
+#: ../plugins/Number.py:58
+#, python-format
+msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgstr ""
+
+#: ../plugins/Number.py:61
+#, python-brace-format
+msgid "`maxspeed={0}` is really slow"
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:33
+msgid ""
+"This feature is tagged with a value which does not match the typical format used for tags with distinct values\n"
+" (lowercase alphanumeric characters with no spaces). It's most likely not an expected tagging."
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:35
+msgid ""
+"Check the value of the tag in question and update the tagging to reflect "
+"what this feature is."
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:37
+msgid ""
+"It's possible a mapper was trying to map a feature with no existing agreed upon tagging.\n"
+"However, this should probably still conform to the typical format used for values of the given tag."
 msgstr ""
