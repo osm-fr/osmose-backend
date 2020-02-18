@@ -27,11 +27,11 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 31, level = 3, tags = ['merge', 'parking'],
-            title = T_('BM parking not integrated'))
+            title = T_f('{0} parking not integrated', 'BM'))
         self.possible_merge   = self.def_class(item = 8131, id = 33, level = 3, tags = ['merge', 'parking'],
-            title = T_('BM parking integration suggestion'))
+            title = T_f('{0} parking integration suggestion', 'BM'))
         self.update_official  = self.def_class(item = 8132, id = 34, level = 3, tags = ['merge', 'parking'],
-            title = T_('BM parking update'))
+            title = T_f('{0} parking update', 'BM'))
 
         self.init(
             u"http://data.bordeaux-metropole.fr/data.php?themes=10", # joins on http://data.bordeaux-metropole.fr/data.php?themes=1
@@ -67,7 +67,7 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 21, level = 3, tags = ['merge', 'parking'],
-            title = T_('BM parking disabled not integrated'))
+            title = T_f('{0} parking for disabled not integrated', 'BM'))
 
         self.init(
             u"http://data.bordeaux-metropole.fr/data.php?themes=8",
