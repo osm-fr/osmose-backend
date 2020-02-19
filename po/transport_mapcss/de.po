@@ -1,17 +1,19 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Christian Ostermann, 2019
+# ToniE <osm-ToniE@web.de>, 2020
+# Manfred Brandl <manfred@brandl.net>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Christian Ostermann, 2019\n"
+"Last-Translator: Manfred Brandl <manfred@brandl.net>, 2020\n"
 "Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../transport.validator.mapcss:15
 msgid "Uncompromising validation of transit data"
-msgstr ""
+msgstr "Kompromisslose Validieren von Daten des öffentlichen Verkehrs"
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
@@ -58,6 +60,8 @@ msgstr "Ist das eine Bushaltestelle oder ein Busbahnhof?"
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
+"Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf der"
+" Fahrbahn ist (stop_position)"
 
 #: ../transport.validator.mapcss:235
 msgid ""
@@ -70,15 +74,19 @@ msgstr "Ist das eine Bushaltestelle? Wenn ja, Tag highway=bus_stop hinzufügen"
 
 #: ../transport.validator.mapcss:253
 msgid "Check if the note can be deleted"
-msgstr ""
+msgstr "Prüfe ob die Notiz gelöscht werden kann"
 
 #: ../transport.validator.mapcss:258
 msgid "The network should be on the transport lines and not on the stops"
 msgstr ""
+"Der Verkehrsverbund soll in den Linien und nicht an den Haltestellen "
+"enthalten sein"
 
 #: ../transport.validator.mapcss:264
 msgid "The operator should be on the transport lines and not on the stops"
 msgstr ""
+"Das Verkehrsunternehmen soll in den Linien und nicht an den Haltestellen "
+"enthalten sein"
 
 #: ../transport.validator.mapcss:275
 msgid ""
@@ -103,6 +111,8 @@ msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
+"Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf den"
+" Schienen ist (stop_position)"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"
@@ -153,18 +163,20 @@ msgstr "Der Farbcode sollte aus '#' und 3 oder 6 Ziffern bestehen"
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
+"Die Farbe der Linie des öffentlichen Verkehrs soll in der Eigenschaft "
+"\"Colour\" enthalten sein"
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "Eine Bushaltestelle soll ein Knoten sein"
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "Das Intervall ist ungültig (Nimm die Anzahl der Minuten)"
 
 #: ../transport.validator.mapcss:314
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "Die Dauer ist ungültig (Nimm die Anzahl der Minuten)"
 
 #: ../transport.validator.mapcss:320
 msgid "Missing interval tag to specify the main interval"
@@ -172,11 +184,11 @@ msgstr ""
 
 #: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"
-msgstr ""
+msgstr "Fehlende Eigenschaft \"opening_hours\""
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Haltestelle ohne Namen"
 
 #: ../transport.validator.mapcss:184
 msgid ""

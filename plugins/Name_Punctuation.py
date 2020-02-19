@@ -35,7 +35,7 @@ class Name_Punctuation(Plugin):
 
         for q in [u"?", u"¿", u"؟", u"՞", u";", u"？", u"፧", u"꘏"]:
             if q in tags["name"]:
-                return [{"class": 50705, "subclass": 0, "text": T_(u"Unexpected char %s", q)}]
+                return [{"class": 50705, "subclass": 0, "text": T_f("Unexpected character: `{0}`", q)}]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

@@ -37,8 +37,9 @@ networks in France.'''),
 mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Bornes_de_Recharge_pour_V%C3%A9hicules_%C3%89lectriques)
 on the  wiki. Add a node or add tags if already existing.'''),
             trap = T_(
-'''The initial information corresponds to recharging points and not to
-stations, so some values are worth checking in the field.'''))
+'''The initial information corresponds to recharging pools and devices and not to
+stations, so some values are worth checking in the field. For instance, an open data point
+with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''))
         self.missing_official = self.def_class(item = 8410, id = 1, level = 3, tags = ['merge'],
             title = T_('Car charging station not integrated'), **doc)
         self.possible_merge = self.def_class(item = 8411, id = 3, level = 3, tags = ['merge'],
@@ -94,6 +95,7 @@ stations, so some values are worth checking in the field.'''))
             return None
 
         def guess_opening_hours(text_opening_hours):
+
             if text_opening_hours is None:
                 return None
             if "24/24" in text_opening_hours:

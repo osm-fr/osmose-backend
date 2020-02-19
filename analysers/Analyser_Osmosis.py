@@ -137,6 +137,7 @@ WHERE
 
 CREATE INDEX idx_buildings_linestring ON {0}.buildings USING GIST(linestring);
 CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestring) WHERE wall;
+CREATE INDEX idx_buildings_polygon_proj ON {0}.buildings USING gist(polygon_proj);
 ANALYZE {0}.buildings;
 """
 

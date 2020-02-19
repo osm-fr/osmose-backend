@@ -62,7 +62,7 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         if "proj" in self.config.options:
             detail = T_(
-'''The form of a building is characteristic and as such would be
+'''The shape of the building is characteristic and as such would be
 tagged.''')
             self.classs_change[1] = self.def_class(item = 7011, level = 3, tags = ['building', 'fix:imagery'],
                 title = T_('Special building (round)'),

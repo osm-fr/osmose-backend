@@ -1,203 +1,181 @@
 # Translators:
-# frodrigo <fred.rodrigo@gmail.com>, 2018
-# Petr Schönmann <pschonmann@gmail.com>, 2018
-# majkaz, 2019
-# trendspotter <j.podhorecky@volny.cz>, 2019
-# TK, 2020
+# Minh Nguyễn <minh@nguyen.cincinnati.oh.us>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: TK, 2020\n"
-"Language-Team: Czech (https://www.transifex.com/openstreetmap-france/teams/17462/cs/)\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Last-Translator: Minh Nguyễn <minh@nguyen.cincinnati.oh.us>, 2020\n"
+"Language-Team: Vietnamese (https://www.transifex.com/openstreetmap-france/teams/17462/vi/)\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../transport.validator.mapcss:15
 msgid "Uncompromising validation of transit data"
-msgstr "Nekompromisní validace údajů o tranzitu"
+msgstr ""
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
-msgstr "Chybějící způsob dopravy, přidej značku route = bus/coach/tram/apod."
+msgstr ""
 
 #: ../transport.validator.mapcss:67
 msgid "Missing transportation mode, change tag route to route_master"
-msgstr "Chybějící způsob dopravy, změň značku route na route_master"
+msgstr ""
 
 #: ../transport.validator.mapcss:83
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr "Chybějící tag public_transport:version na relaci public_transport"
+msgstr ""
 
 #: ../transport.validator.mapcss:92
 msgid "Missing network tag on a public_transport relation"
-msgstr "Chybějící tag network na relaci public_transport"
+msgstr ""
 
 #: ../transport.validator.mapcss:101
 msgid "Missing operator tag on a public_transport relation"
-msgstr "Chybějící tag operator na relaci public_transport"
+msgstr ""
 
 #: ../transport.validator.mapcss:110
 msgid "Missing ref tag for line number on a public_transport relation"
-msgstr "Chybějící značka ref pro číslo linky u relace public_transport"
+msgstr ""
 
 #: ../transport.validator.mapcss:119
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Chybějící tag from/to na relaci trasy public_transport"
+msgstr ""
 
 #: ../transport.validator.mapcss:176
 msgid "The stops may not be in the right order"
-msgstr "Zastávky pravděpodobně nejsou ve správném pořadí"
+msgstr ""
 
 #: ../transport.validator.mapcss:201
 msgid "Is it a bus stop or a bus station?"
-msgstr "Je toto autobusová zastávka nebo autobusová stanice ?"
+msgstr "Có phải trạm dừng xe buýt hoặc ga xe buýt?"
 
 #: ../transport.validator.mapcss:213
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
-"Specifikuj, zda se jedná o zastávku (platform) nebo místo zastavení "
-"(stop_position)"
 
 #: ../transport.validator.mapcss:235
 msgid ""
 "The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
 msgstr ""
-"Chybí značka staršího značení, přidej značku highway=bus_stop / "
-"railway=tram_stop"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
-msgstr "Je to autobusová zastávka ? Přidej tag highway=bus_stop"
+msgstr ""
 
 #: ../transport.validator.mapcss:253
 msgid "Check if the note can be deleted"
-msgstr "Zkontroluj zda může být poznámka smazána"
+msgstr "Kiểm tra có thể xóa ghi chú"
 
 #: ../transport.validator.mapcss:258
 msgid "The network should be on the transport lines and not on the stops"
 msgstr ""
-"Značka network by měla být na dopravních linkách, nikoliv na zastávkách"
 
 #: ../transport.validator.mapcss:264
 msgid "The operator should be on the transport lines and not on the stops"
 msgstr ""
-"Značka operator by měla být na dopravních linkách, nikoliv na zastávkách"
 
 #: ../transport.validator.mapcss:275
 msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
 msgstr ""
-"Varianta cesty nepatří do žádné trasy, přidejte ji do route_master relation"
 
 #: ../transport.validator.mapcss:289
 msgid "The stop is not served by any line, add it to a route relation"
 msgstr ""
-"Zastávka není obsluhována žádnou linkou, přidejte ji do route relace "
-"příslušné dopravní linky"
 
 #: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "Chybějící tag public_transport na zastávce hromadné dopravy"
+msgstr ""
 
 #: ../transport.validator.mapcss:224
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
-"Specifikuj, zda se jedná o zastávku (platform) nebo místo zastavení "
-"(stop_position)"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"
-msgstr "Chybí starší tagování na zastávce veřejné dopravy"
+msgstr ""
 
 #: ../transport.validator.mapcss:129
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr "Tag network by měl být stejný pro route i route_master :  {0} vs {1}"
+msgstr ""
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
-msgstr "Tag operator by měl být stejný pro route i route_master : {0} vs {1}"
+msgstr ""
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
-msgstr "Tag ref by měl být stejný pro route i route_master : {0} vs {1}"
+msgstr ""
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr "Tag colour by měl být stejný pro route i route_master : {0} vs {1}"
+msgstr ""
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
 msgstr ""
-"Režim veřejné dopravy by měl být stejný pro route i route_master : {0} vs "
-"{1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr "Zkontrolujte tag colour"
+msgstr "Kiểm tra thẻ colour (màu sắc)"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr "Barevný kód by měl začínat znakem „#“ následovaným 3 nebo 6 číslicemi"
+msgstr ""
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
-msgstr "Barva linky veřejné dopravy by měla být zanesena v barevné značce"
+msgstr ""
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr "Autobusová zastávka má být uzlem"
+msgstr ""
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr "Interval je neplatný (zkuste několik minut)"
+msgstr ""
 
 #: ../transport.validator.mapcss:314
 msgid "The duration is invalid (try a number of minutes)"
-msgstr "Délka je neplatná (zkuste několik minut)"
+msgstr ""
 
 #: ../transport.validator.mapcss:320
 msgid "Missing interval tag to specify the main interval"
-msgstr "Chybějící značka intervalu pro určení hlavního intervalu"
+msgstr ""
 
 #: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"
-msgstr "Chybějící tag opening_hours"
+msgstr ""
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr "Chybějící jméno na zastávce veřejné dopravy"
+msgstr ""
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
-"Zkontrolujte tag operator: tento provozovatel neexistuje, možná se jedná o "
-"překlep."
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
-"Zkontrolujte tag network: tato síť neexistuje, možná se jedná o překlep."
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
-"Autobusová stanice je obvykle velká oblast, kde zastavuje mnoho autobusů, "
-"zkontrolujte, jestli lze tuto oblast nakreslit"

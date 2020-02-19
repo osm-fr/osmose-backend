@@ -158,6 +158,7 @@ class TestAnalyser(unittest.TestCase):
         analyser_conf.polygon_id = None
         analyser_conf.options = conf.analyser_options
         analyser_conf.dst = dst
+        analyser_conf.db_user = conf.db_user
 
         return (conf, analyser_conf)
 
@@ -301,6 +302,9 @@ class TestAnalyser(unittest.TestCase):
                                 del c[k][t]
                         if len(c[k]) == 1:
                             c[k] = c[k][0]
+                if "source" in c:
+                    # remove line part
+                    c["source"] = c["source"].split("#")[0]
         else:
             c = a["analysers"][name_analyser]["class"]
             for k in ('classtext', 'detail', 'fix', 'trap', 'example'):
@@ -310,6 +314,9 @@ class TestAnalyser(unittest.TestCase):
                             del c[k][t]
                     if len(c[k]) == 1:
                         c[k] = c[k][0]
+            if "source" in c:
+                # remove line part
+                c["source"] = c["source"].split("#")[0]
 
         if "error" in a["analysers"][name_analyser]:
             if not isinstance(a["analysers"][name_analyser]["error"], list):

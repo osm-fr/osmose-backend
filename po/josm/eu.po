@@ -1,4 +1,4 @@
-# Ukrainian translation for josm
+# Basque translation for josm
 # Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the josm package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
@@ -8,30 +8,29 @@ msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-12 03:36+0100\n"
-"PO-Revision-Date: 2020-02-09 08:39+0000\n"
-"Last-Translator: andygol <Unknown>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2018-05-18 08:09+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2020-02-13 05:25+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2020-02-13 04:36+0000\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: uk\n"
+"Language: eu\n"
 
 #: ../core/data/validator/addresses.mapcss:3
 msgid "Even housenumber in odd address interpolation."
-msgstr "Парний номер будинку в інтерполяції непарних адрес."
+msgstr ""
 
 #: ../core/data/validator/addresses.mapcss:6
 msgid "Odd housenumber in even address interpolation."
-msgstr "Непарний номер будинку в інтерполяції парних адрес."
+msgstr ""
 
 #: ../core/data/validator/addresses.mapcss:9
 #, java-format
 msgid "Way with {0}. Tag each housenumber separately if possible."
-msgstr "Лінія з {0}. За можливості позначте адресу кожного будинку окремо."
+msgstr ""
 
 #: ../core/data/validator/addresses.mapcss:14
 #, java-format
@@ -39,18 +38,17 @@ msgid ""
 "Object has no {0}, however, it has {1} and {2} whose value looks like a "
 "housenumber."
 msgstr ""
-"Обʼєкт не має {0}, проте, він має {1} та {2}, що виглядають як номер будинку."
 
 #: ../core/data/validator/addresses.mapcss:23
 #: ../core/data/validator/combinations.mapcss:481
 #, java-format
 msgid "Same value of {0} and {1}"
-msgstr "Те ж саме значення {0} і {1}"
+msgstr ""
 
 #: ../core/data/validator/addresses.mapcss:33
 #, java-format
 msgid "{0} without number"
-msgstr "{0} без номера"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:77
 #: ../core/data/validator/combinations.mapcss:91
@@ -66,7 +64,7 @@ msgstr "{0} без номера"
 #: ../core/data/validator/territories.mapcss:41
 #, java-format
 msgid "{0} without {1}"
-msgstr "{0} без {1}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:78
 #: ../core/data/validator/combinations.mapcss:92
@@ -101,7 +99,7 @@ msgstr "{0} без {1}"
 #: ../core/data/validator/religion.mapcss:5
 #: ../core/data/validator/wikipedia.mapcss:140
 msgid "missing tag"
-msgstr "відсутній теґ"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:131
 #: ../core/data/validator/combinations.mapcss:206
@@ -109,18 +107,18 @@ msgstr "відсутній теґ"
 #: ../core/data/validator/combinations.mapcss:462
 #, java-format
 msgid "{0} without {1} or {2}"
-msgstr "{0} без {1} чи {2}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:233
 #, java-format
 msgid "{0} without {1}, {2}, {3} or {4}"
-msgstr "{0} без {1}, {2}, {3} або {4}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:240
 #: ../core/data/validator/combinations.mapcss:247
 #, java-format
 msgid "{0} without {1}, {2} or {3}"
-msgstr "{0} без {1}, {2} або {3}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:265
 #: ../core/data/validator/combinations.mapcss:273
@@ -151,7 +149,7 @@ msgstr "{0} без {1}, {2} або {3}"
 #: ../core/data/validator/highway.mapcss:162
 #, java-format
 msgid "{0} together with {1}"
-msgstr "{0} разом з {1}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:266
 #: ../core/data/validator/combinations.mapcss:274
@@ -195,39 +193,39 @@ msgstr "{0} разом з {1}"
 #: ../core/data/validator/combinations.mapcss:680
 #: ../core/data/validator/highway.mapcss:164
 msgid "suspicious tag combination"
-msgstr "підозріла комбінація теґів"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:317
 #, java-format
 msgid "{0} together with {1} and {2}"
-msgstr "{0} разом з {1} та {2}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:332
 #, java-format
 msgid "two objects, one with {0} and one with {1} + {2} + {3}"
-msgstr "два обʼєкти, один з {0} та інший з {1} + {2} + {3}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:338
 #, java-format
 msgid "{0} on an inner multipolygon ring without further tags"
-msgstr "{0} на внутрішньому контурі мультиполігона без додаткових теґів"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:350
 #: ../core/data/validator/combinations.mapcss:361
 #, java-format
 msgid "incomplete object: only {0}"
-msgstr "неповний об’єкт: тільки {0}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:356
 #: ../core/data/validator/combinations.mapcss:366
 #, java-format
 msgid "incomplete object: only {0} and {1}"
-msgstr "неповний об’єкт: тільки {0} та {1}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:375
 #, java-format
 msgid "{0} together with addr:*"
-msgstr "{0} разом з addr:*"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:386
 #: ../core/data/validator/combinations.mapcss:395
@@ -236,45 +234,45 @@ msgstr "{0} разом з addr:*"
 #: ../core/data/validator/deprecated.mapcss:662
 #, java-format
 msgid "{0} together with {1} and conflicting values"
-msgstr "{0} разом з {1} та суперечливими значеннями"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:418
 #, java-format
 msgid "{0} on suspicious object"
-msgstr "{0} на сумнівному об’єкті"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:442
 msgid "natural water used for swimming pool"
-msgstr "natural=water у плавальних басейнах"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:449
 msgid "sport without physical feature"
-msgstr "теґ sport без фізичного об’єкта"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:468
 #, java-format
 msgid "alternative name without {0}"
-msgstr "альтернативна назва без {0}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:474
 #, java-format
 msgid "incomplete usage of {0} on a way without {1}"
-msgstr "неповне використання {0} на лінії без {1}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:488
 #, java-format
 msgid "Same value of {0}, {1} and {2}"
-msgstr "Те ж саме значення {0}, {1} і {2}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:496
 #, java-format
 msgid "{0} and {1} together with {2} and conflicting values"
-msgstr "{0} і {1} разом з {2} і значеннями, що спричиняють конфлікт"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:514
 #, java-format
 msgid "{0} on a relation without {1}"
-msgstr "{0} на звʼязку без {1}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:519
 #, java-format
@@ -283,9 +281,6 @@ msgid ""
 "underground. Remove {1} or add a tunnel tag if applicable. Also check "
 "crossing bridges and their {1} tags."
 msgstr ""
-"Довгий водний шлях з {0}, але без теґу, що визначає його, як тунель або "
-"таким, що є під землею. Вилучіть {1} або додайте теґ tunnel, якщо можливо. "
-"Також перевірте перетини з мостами та їх {1} теґи."
 
 #: ../core/data/validator/combinations.mapcss:523
 #, java-format
@@ -294,61 +289,58 @@ msgid ""
 "underground. Remove {1} or add a tunnel tag if applicable. Also check "
 "crossing bridges and their {1} tags."
 msgstr ""
-"Короткий водний шлях з {0}, але без теґу, що визначає його як тунель або "
-"таким, що є під землею. Вилучіть {1} або додайте теґ tunnel, якщо можливо. "
-"Також перевірте перетини з мостами та їх {1} теґи."
 
 #: ../core/data/validator/combinations.mapcss:534
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {1} and {2}"
-msgstr "{0} разом з {1} та {2}. Вилучіть {1} та {2}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:563
 #, java-format
 msgid "Different number of lanes in the keys {0} and {1}"
-msgstr "Різна кількість смуг для ругу в ключах {0} та {1}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:581
 #, java-format
 msgid "possibly missing {0} tag"
-msgstr "можливо, пропущено теґ {0}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:587
 #, java-format
 msgid "street with odd number of {0}, but without {1} and {2} or {3}"
-msgstr "вулиця з непарними номерами {0}, але без {1} і {2} або {3}"
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:598
 #, java-format
 msgid "{0} together with {1}. Tag each hydrant separately."
-msgstr "{0} разом з {1}. Позначайте кожен гідрант окремо."
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:603
 #, java-format
 msgid "{0} together with {1} on a node. Remove {0}."
-msgstr "{0} разом з {1} на точці. Вилучить {0}."
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:628
 #, java-format
 msgid ""
 "A linear object {0} without {1} has a tag indicating that it is an area."
-msgstr "Лінійний об’єкт {0} без {1} має теґ що описує його як полігон."
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:640
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
-msgstr "{0} разом з {1}. Вилучіть {1}."
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:649
 #, java-format
 msgid "Combined foot- and cycleway without {0}."
-msgstr "Суміщений вело-пішохідний шлях без {0}."
+msgstr ""
 
 #: ../core/data/validator/combinations.mapcss:669
 #: ../core/data/validator/combinations.mapcss:679
 #, java-format
 msgid "{0} together with {1}. Probably {2} is meant."
-msgstr "{0} разом з {1}. Можливо значить {2}."
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:2
 #: ../core/data/validator/deprecated.mapcss:12
@@ -555,7 +547,7 @@ msgstr "{0} разом з {1}. Можливо значить {2}."
 #: ../core/data/validator/territories.mapcss:3
 #, java-format
 msgid "{0} is deprecated"
-msgstr "{0} заборонено"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:3
 #: ../core/data/validator/deprecated.mapcss:14
@@ -785,13 +777,12 @@ msgstr "{0} заборонено"
 #: ../core/data/validator/territories.mapcss:30
 #: ../core/data/validator/wikipedia.mapcss:22
 msgid "deprecated tagging"
-msgstr "небажане (застаріле) теґування"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:318
 #, java-format
 msgid "''{0}'' is meaningless, use more specific tags, e.g. ''{1}''"
 msgstr ""
-"''{0}'' не має сенсу, використовуйте більш конкретні теґи, наприклад ''{1}''"
 
 #: ../core/data/validator/deprecated.mapcss:322
 #, java-format
@@ -799,8 +790,6 @@ msgid ""
 "''{0}'' does not specify the official mode of transportation, use ''{1}'' "
 "for example"
 msgstr ""
-"''{0}'' не уточнює офіційний вид перевезень, використовуйте, наприклад "
-"''{1}''"
 
 #: ../core/data/validator/deprecated.mapcss:328
 #, java-format
@@ -808,8 +797,6 @@ msgid ""
 "{0}={1} is unspecific. Instead of ''{1}'' please give more information about "
 "what exactly should be fixed."
 msgstr ""
-"{0}={1} є неспецифічним. Замість ''{1}'' вкажіть докладнішу інформацію про "
-"те, що дійсно потрібно виправити."
 
 #: ../core/data/validator/deprecated.mapcss:333
 #, java-format
@@ -817,8 +804,6 @@ msgid ""
 "Wrong usage of {0} tag. Remove {1}, because it is clear that the name is "
 "missing even without an additional tag."
 msgstr ""
-"Неправильне використання теґу {0}. Вилучіть {1}, оскільки ясно, що назва "
-"відсутня, навіть без додаткових теґів."
 
 #: ../core/data/validator/deprecated.mapcss:342
 #, java-format
@@ -826,46 +811,38 @@ msgid ""
 "{0} is unspecific. Instead use the key fixme with the information what "
 "exactly should be fixed in the value of fixme."
 msgstr ""
-"{0} – не визначений. Замість цього використовуйте ключ fixme, в значенні "
-"якого вкажіть інформацію про те, що потрібно виправити."
 
 #: ../core/data/validator/deprecated.mapcss:407
 #, java-format
 msgid "{0} is deprecated. Please use instead a multipolygon."
-msgstr "{0} є застрілим. Використовуйте замість цього мультиполігон."
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:445
 #, java-format
 msgid ""
 "{0} is deprecated. Please specify interval by using opening_hours syntax"
 msgstr ""
-"{0} є застарілим. Будь ласка, вказуйте час роботи, використовуючи синтаксис "
-"opening_hours"
 
 #: ../core/data/validator/deprecated.mapcss:451
 #, java-format
 msgid ""
 "{0} is deprecated. Please delete this object and use a private layer instead"
 msgstr ""
-"{0} є застарілим. Будь ласка, вилучіть цей об’єкт та використовуйте "
-"приватний шар"
 
 #: ../core/data/validator/deprecated.mapcss:490
 #, java-format
 msgid "{0}={1} is unspecific. Please replace ''{1}'' by a specific value."
 msgstr ""
-"{0}={1} є неспецифічним. Будь ласка, вкажіть замість ''{1}'' конкретніше "
-"значення."
 
 #: ../core/data/validator/deprecated.mapcss:495
 #, java-format
 msgid "{0} should be replaced with {1}"
-msgstr "{0} потрібно замінити на {1}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:499
 #, java-format
 msgid "{0} = {1}; remove {0}"
-msgstr "{0} = {1}; видаліть {0}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:504
 #, java-format
@@ -873,31 +850,27 @@ msgid ""
 "{0}={1} is unspecific. Please replace ''{1}'' by ''left'', ''right'' or "
 "''both''."
 msgstr ""
-"{0}={1} не визначено. Будь ласка, замініть ''{1}'' на ''left'', ''right'' "
-"або ''both''."
 
 #: ../core/data/validator/deprecated.mapcss:555
 #, java-format
 msgid "Unspecific tag {0}"
-msgstr "Незрозумілий теґ {0}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:560
 #, java-format
 msgid "Definition of {0} is unclear"
-msgstr "Визначення {0} є неточним"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:561
 #, java-format
 msgid "{0} + {1} + {2}"
-msgstr "{0} + {1} + {2}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:583
 #, java-format
 msgid ""
 "{0} is not recommended. Use the Reverse Ways function from the Tools menu."
 msgstr ""
-"{0} не рекомендується. Скористайтесь пунктом «Змініти напрямок» з меню "
-"«Інструменти»."
 
 #: ../core/data/validator/deprecated.mapcss:688
 #: ../core/data/validator/deprecated.mapcss:1031
@@ -915,15 +888,15 @@ msgstr ""
 #: ../core/data/validator/unnecessary.mapcss:159
 #, java-format
 msgid "{0}"
-msgstr "{0}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:689
 msgid "key with uncommon character"
-msgstr "Ключ з незвичайним символом"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:698
 msgid "uncommon short key"
-msgstr "незвично короткий ключ"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:727
 #: ../core/data/validator/deprecated.mapcss:730
@@ -933,8 +906,6 @@ msgstr "незвично короткий ключ"
 msgid ""
 "{0} is inaccurate. Use separate tags for each specific type, e.g. {1} or {2}."
 msgstr ""
-"{0} є неточним. Використовуйте окремі теґи для кожного типу, на приклад {1} "
-"або {2}."
 
 #: ../core/data/validator/deprecated.mapcss:886
 #: ../core/data/validator/deprecated.mapcss:1175
@@ -943,22 +914,21 @@ msgstr ""
 #: ../core/data/validator/deprecated.mapcss:1253
 #, java-format
 msgid "{0} is deprecated for {1}"
-msgstr "{0} є застарілим для {1}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:1009
 #, java-format
 msgid "{0} is deprecated. Use the {1}: key prefix instead."
 msgstr ""
-"{0} є застрілим. Використовуйте {1}: префікс для ключа замість цього."
 
 #: ../core/data/validator/deprecated.mapcss:1032
 msgid "questionable key (ending with a number)"
-msgstr "сумнівний ключ (з цифрою в кінці)"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:1102
 #, java-format
 msgid "The key {0} has an uncommon value."
-msgstr "Ключ {0} має дивне значення."
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:1208
 #: ../core/data/validator/deprecated.mapcss:1214
@@ -968,7 +938,7 @@ msgstr "Ключ {0} має дивне значення."
 #: ../core/data/validator/deprecated.mapcss:1294
 #: ../core/data/validator/deprecated.mapcss:1369
 msgid "misspelled value"
-msgstr "значення з помилкою"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:1236
 #: ../core/data/validator/deprecated.mapcss:1245
@@ -978,13 +948,13 @@ msgstr "значення з помилкою"
 #: ../core/data/validator/numeric.mapcss:395
 #, java-format
 msgid "wrong value: {0}"
-msgstr "невірне значення: {0}"
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:1309
 #: ../core/data/validator/deprecated.mapcss:1317
 #, java-format
 msgid "{0} is not a building type."
-msgstr "{0} не є будинком."
+msgstr ""
 
 #: ../core/data/validator/deprecated.mapcss:1898
 #: ../core/data/validator/numeric.mapcss:173
@@ -998,68 +968,66 @@ msgstr "{0} не є будинком."
 #: ../core/data/validator/numeric.mapcss:403
 #, java-format
 msgid "unusual value of {0}"
-msgstr "незвичайне значення {0}"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:43
 #, java-format
 msgid "{0} on a node. Should be used on a way."
-msgstr "{0} на точці. Слід застосовувати до лінії."
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:52
 #, java-format
 msgid "{0} on a node. Should be used on a way or relation."
-msgstr "{0} на точці. Потрібно застосовувати для ліній та звʼязків."
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:86
 #, java-format
 msgid "{0} on a node. Should be drawn as an area."
-msgstr "{0} на точці. Слід застосовувати до полігону."
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:94
 #, java-format
 msgid "{0} on a node. Should be used in a relation"
-msgstr "{0} на точці. Повинен використовуватись для звʼязку"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:124
 #, java-format
 msgid "{0} on a way. Should be used on a node."
-msgstr "{0} на лінії, замість точки."
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:132
 #, java-format
 msgid "{0} on a way. Should be used in a relation"
-msgstr "{0} на лінії, а повинен бути на зв’язку"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:148
 msgid "node connects highway and building"
-msgstr "точка приєднує дорогу до будівлі"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:153
 msgid ""
 "Object at Position 0.00E 0.00N. There is nothing at this position except an "
 "already mapped weather buoy."
 msgstr ""
-"Об’єкт з позицією 0.00E 0.00N. У цьому місці немає нічого, окрім вже "
-"позначеного метеорологічного буя."
 
 #: ../core/data/validator/geometry.mapcss:159
 #: ../core/data/validator/highway.mapcss:50
 #: ../core/data/validator/highway.mapcss:55
 #, java-format
 msgid "{0} on a node"
-msgstr "{0} на точці"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:166
 msgid "Building inside building"
-msgstr "Будівля всередині іншої будівлі"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:177
 msgid "Overlapping Water Areas"
-msgstr "Перетин/накладення водойм"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:181
 msgid "Overlapping Areas"
-msgstr "Полігони, що перекриваються"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:186
 #: ../core/data/validator/geometry.mapcss:187
@@ -1075,78 +1043,74 @@ msgstr "Полігони, що перекриваються"
 #: ../core/data/validator/geometry.mapcss:218
 #, java-format
 msgid "{0} inside {1}"
-msgstr "{0} в середині {1}"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:192
 msgid "Overlapping Identical Natural Areas"
-msgstr "Перекриття ідентичних природних ділянок"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:196
 msgid "Overlapping Identical Landuses"
-msgstr "Перекриття ідентичних ділянок землекористування"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:271
 msgid "isolated node which must be connected to a way"
-msgstr "відокремлена точка, що повинна бути приєднана до лінії"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:280
 msgid "node connects waterway and bridge"
-msgstr "точка є спільною для мосту та водного шляху"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:286
 #: ../core/data/validator/geometry.mapcss:299
 #, java-format
 msgid "{0} node connected to a highway"
-msgstr "точка {0} приєднана до дороги"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:304
 msgid "suspicious roundabout direction"
-msgstr "сумнівний напрям кругового руху"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:309
 #, java-format
 msgid "{0} on a large area"
-msgstr "{0} на великій площі"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:315
 #, java-format
 msgid "{0} on a small area"
-msgstr "{0} на маленькій площі"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:322
 #, java-format
 msgid "Way with {0} not closed."
-msgstr "Лінія з теґом {0} не є замкненою."
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:327
 msgid "Too large building"
-msgstr "Завелика будівля"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:337
 msgid ""
 "Node connects a power line or cable with an object which is not related to "
 "the power infrastructure."
 msgstr ""
-"Точка зʼєднує лінію електромереж або кабель з обʼєктом, який не повʼязаний є "
-"електроенергетикою."
 
 #: ../core/data/validator/geometry.mapcss:342
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
 msgstr ""
-"Кінець водного шляху не зʼєднується з іншим водним шляхом, або його напрямок "
-"помилковий"
 
 #: ../core/data/validator/geometry.mapcss:348
 #, java-format
 msgid "Coastline inside {1}"
-msgstr "Берегова лінія в середині {1}"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:355
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
-msgstr "{0} повинен бути точкою перетину {1} ​​і {2}"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:364
 #, java-format
@@ -1154,23 +1118,19 @@ msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
 "instead."
 msgstr ""
-"{0} – теґ для лінійних водних обʼєктів. Для позначення полігональних водних "
-"обʼєктів використовуйте {1} + {2}."
 
 #: ../core/data/validator/geometry.mapcss:378
 msgid "Ferry route is not connected to the road network or branches."
 msgstr ""
-"Поромний маршрут не пов’язаний з дорожньою мережею або його відгалуженнями."
 
 #: ../core/data/validator/geometry.mapcss:386
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr ""
-"Поромний маршрут не пов’язаний з поромним терміналом або його відгалуженнями."
 
 #: ../core/data/validator/geometry.mapcss:391
 #, java-format
 msgid "{0} outside of {1}"
-msgstr "{0} за межами {1}"
+msgstr ""
 
 #: ../core/data/validator/geometry.mapcss:409
 msgid "incorrect drain flow direction"
@@ -1178,40 +1138,38 @@ msgstr ""
 
 #: ../core/data/validator/highway.mapcss:12
 msgid "abbreviated street name"
-msgstr "скорочене позначення вулиці"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:20
 msgid "wrong highway tag on a node"
-msgstr "помилковий теґ highway на точці"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:43
 msgid "wrong crossing tag on a way"
-msgstr "помилковий теґ crossing на лінії"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:61
 msgid "Unnamed unclassified highway"
-msgstr "Дороги без класифікації, що не мають назви"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:72
 msgid "highway without a reference"
-msgstr "Дороги без номера (ref)"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:82
 msgid "Unspecific highway type"
-msgstr "Невизначений тип дороги"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:92
 #, java-format
 msgid "{0} used with {1}"
-msgstr "{0} використаний разом з {1}"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:110
 #: ../core/data/validator/highway.mapcss:116
 #, java-format
 msgid "{0} is deprecated, use {1} instead. Also check similar tags like {2}"
 msgstr ""
-"{0} є застарілим, використовуйте {1}. Крім того, перевірте подібні теґи, "
-"такі як {2}"
 
 #: ../core/data/validator/highway.mapcss:139
 #, java-format
@@ -1219,47 +1177,45 @@ msgid ""
 "Value of ''{0}'' should either be ''{1}'' or ''{2}''. For sidewalks use "
 "''{3}'' instead."
 msgstr ""
-"Значення ''{0}'' повинно бути ''{1}'' або ''{2}''. Для тротуарів "
-"використовуйте ''{3}''."
 
 #: ../core/data/validator/highway.mapcss:151
 #, java-format
 msgid "pedestrian railway crossing without {0}"
-msgstr "пішохідний перехід через залізничні колії без {0}"
+msgstr ""
 
 #: ../core/data/validator/highway.mapcss:156
 #, java-format
 msgid "railway crossing without {0}"
-msgstr "залізничний переїзд без {0}"
+msgstr ""
 
 #: ../core/data/validator/multiple.mapcss:10
 #, java-format
 msgid "{0} with multiple values"
-msgstr "{0} багатозначний теґ"
+msgstr ""
 
 #: ../core/data/validator/multiple.mapcss:37
 #, java-format
 msgid "empty value in semicolon-separated ''{0}''"
-msgstr "пусте значення в рядку з розділювачами (;) ''{0}''"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:4
 msgid "numerical key"
-msgstr "числовий ключ"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:10
 #, java-format
 msgid "{0} value with + sign"
-msgstr "{0} значення зі знаком +"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:19
 #, java-format
 msgid "{0} should be an integer value between -5 and 5"
-msgstr "{0} повинно бути цілим числом між -5 та 5"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:33
 #, java-format
 msgid "{0} should have numbers only with optional .5 increments"
-msgstr "̱{0} повине бути тільки числом (з необовʼязковим кроком 0.5)"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:58
 #: ../core/data/validator/numeric.mapcss:81
@@ -1271,8 +1227,6 @@ msgstr "̱{0} повине бути тільки числом (з необовʼ
 #, java-format
 msgid "unusual value of {0}: use . instead of , as decimal separator"
 msgstr ""
-"неочікуване значення {0}: використовуйте \".\"(крапку) замість \",\" (коми) "
-"як десятковий розділювач"
 
 #: ../core/data/validator/numeric.mapcss:70
 #: ../core/data/validator/numeric.mapcss:93
@@ -1283,8 +1237,6 @@ msgid ""
 "unusual value of {0}: meters is default; point is decimal separator; if "
 "units, put space then unit"
 msgstr ""
-"неочікуване значення {0}: типово в метрах; використовуйте \".\"(крапку) як "
-"десятковий розділювач; перед одиницями виміру ставте пробіл"
 
 #: ../core/data/validator/numeric.mapcss:161
 #, java-format
@@ -1292,8 +1244,6 @@ msgid ""
 "unusual value of {0}: tonne is default; point is decimal separator; if "
 "units, put space then unit"
 msgstr ""
-"неочікуване значення {0}: типово в тонах; використовуйте \".\"(крапку) як "
-"десятковий розділювач; перед одиницями виміру ставте пробіл"
 
 #: ../core/data/validator/numeric.mapcss:200
 #, java-format
@@ -1301,34 +1251,30 @@ msgid ""
 "unusual value of {0}: kilometers is default; point is decimal separator; if "
 "units, put space then unit"
 msgstr ""
-"неочікуване значення {0}: типово в кілометрах; використовуйте \".\"(крапку) "
-"як десятковий розділювач; перед одиницями виміру ставте пробіл"
 
 #: ../core/data/validator/numeric.mapcss:209
 msgid "voltage should be in volts with no units/delimiter/spaces"
 msgstr ""
-"напруга повинна зазначатись у вольтах без пробілів/роздільників/одиниць "
-"виміру"
 
 #: ../core/data/validator/numeric.mapcss:252
 #, java-format
 msgid "{0} must be a numeric value"
-msgstr "{0} має бути числовим значенням"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:260
 #, java-format
 msgid "{0} must be a positive integer number"
-msgstr "{0} має бути цілим позитивним числом"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:310
 #: ../core/data/validator/numeric.mapcss:333
 #, java-format
 msgid "{0} must be a numeric value, in meters and without units"
-msgstr "{0} повинне бути числом в метрах, без зазначення одиниць виміру"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:346
 msgid "Unnecessary amount of decimal places"
-msgstr "Зайва кількість десяткових знаків"
+msgstr ""
 
 #: ../core/data/validator/numeric.mapcss:378
 #: ../core/data/validator/numeric.mapcss:387
@@ -1336,55 +1282,55 @@ msgstr "Зайва кількість десяткових знаків"
 #: ../core/data/validator/territories.mapcss:37
 #: ../core/data/validator/territories.mapcss:42
 msgid "Airport tagging"
-msgstr "Теґування аеропортів"
+msgstr ""
 
 #: ../core/data/validator/relation.mapcss:4
 msgid "relation without type"
-msgstr "зв’язок без типу"
+msgstr ""
 
 #: ../core/data/validator/relation.mapcss:18
 #, java-format
 msgid "{0} relation without {0} tag"
-msgstr "{0} зв’язок без теґу {0}"
+msgstr ""
 
 #: ../core/data/validator/relation.mapcss:42
 #, java-format
 msgid "way with {0} is part of a bicycle route relation"
-msgstr "лінія з {0} є частиною звʼязку веломаршруту"
+msgstr ""
 
 #: ../core/data/validator/religion.mapcss:4
 msgid "religion without denomination"
-msgstr "теґ religion без теґу denomination"
+msgstr ""
 
 #: ../core/data/validator/religion.mapcss:12
 msgid "unknown christian denomination"
-msgstr "невідоме християнське віросповідання"
+msgstr ""
 
 #: ../core/data/validator/religion.mapcss:19
 msgid "unknown muslim denomination"
-msgstr "невідоме мусульманське віросповідання"
+msgstr ""
 
 #: ../core/data/validator/religion.mapcss:26
 msgid "unknown jewish denomination"
-msgstr "невідоме іудейське віросповідання"
+msgstr ""
 
 #: ../core/data/validator/territories.mapcss:12
 msgid "street name contains ss"
-msgstr "назва вулиці містить ss"
+msgstr ""
 
 #: ../core/data/validator/territories.mapcss:21
 msgid "street name contains ß"
-msgstr "назва вулиці містить ß"
+msgstr ""
 
 #: ../core/data/validator/territories.mapcss:28
 #, java-format
 msgid "{0} is deprecated in {1}"
-msgstr "{0} є застарілим в {1}"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:8
 #, java-format
 msgid "{0} is unnecessary"
-msgstr "{0} є непотрібним"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:9
 #: ../core/data/validator/unnecessary.mapcss:25
@@ -1396,7 +1342,7 @@ msgstr "{0} є непотрібним"
 #: ../core/data/validator/unnecessary.mapcss:90
 #: ../core/data/validator/unnecessary.mapcss:173
 msgid "unnecessary tag"
-msgstr "непотрібний теґ"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:24
 #: ../core/data/validator/unnecessary.mapcss:34
@@ -1405,72 +1351,66 @@ msgstr "непотрібний теґ"
 #: ../core/data/validator/unnecessary.mapcss:89
 #, java-format
 msgid "{0} is unnecessary for {1}"
-msgstr "{0} є непотрібним для {1}"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:58
 #, java-format
 msgid "{0} makes no sense"
-msgstr "{0} не має сенсу"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:66
 msgid "Nodes duplicating parent way tags"
-msgstr "Точки дублюють теґи батьківської лінії"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:71
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {0}."
-msgstr "{0} разом з {1} та {2}. Вилучіть {0}."
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:83
 #, java-format
 msgid ""
 "{0} is unnecessary for {1}. The flow direction is defined by the way "
 "direction."
-msgstr "{0} не потрібен для {1}. Напрямок визначається напрямком лінії."
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:128
 #: ../core/data/validator/unnecessary.mapcss:160
 msgid "descriptive name"
-msgstr "опис замість назви"
+msgstr ""
 
 #: ../core/data/validator/unnecessary.mapcss:172
 #, java-format
 msgid "{0} should not be uploaded"
-msgstr "̱{0} не слід завантажувати"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:5
 msgid ""
 "wikipedia tag has no language given, use ''wikipedia''=''language:page "
 "title''"
 msgstr ""
-"у теґа wikipedia не вказано мову, використовуйте формат ''wikipedia'' = "
-"''код мови:назва сторінки''"
 
 #: ../core/data/validator/wikipedia.mapcss:13
 msgid "wikipedia tag has an unknown language prefix"
-msgstr "у теґа wikipedia вказано невідомий префікс мови"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:20
 msgid "wikipedia tag format is deprecated"
-msgstr "застарілий формат теґу wikipedia"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:21
 msgid "''wikipedia''=''language:page title''"
-msgstr "''wikipedia''=''мова:назва сторінки''"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:28
 #, java-format
 msgid "wikipedia ''{0}'' language is obsolete, use ''{1}'' instead"
 msgstr ""
-"мовний код \"{0}\" теґу wikipedia є застарілим, використовуйте \"{1}\" "
-"замість нього"
 
 #: ../core/data/validator/wikipedia.mapcss:35
 #, java-format
 msgid "wikipedia ''{0}'' language is invalid, use ''{1}'' instead"
 msgstr ""
-"мовний код \"{0}\" теґу wikipedia є помилковим, використовуйте \"{1}\" "
-"замість нього"
 
 #: ../core/data/validator/wikipedia.mapcss:42
 #: ../core/data/validator/wikipedia.mapcss:49
@@ -1478,45 +1418,38 @@ msgstr ""
 #, java-format
 msgid "{0} tag should not have URL-encoded values like ''%27''"
 msgstr ""
-"значення теґу {0} не повинно містити URL-кодованих символів, наприклад "
-"\"%27\""
 
 #: ../core/data/validator/wikipedia.mapcss:64
 msgid "wikipedia title should not start with a space after language code"
 msgstr ""
-"Назва сторінки у Вікіпедії не повинна відокремлюватись пробілом від коду мови"
 
 #: ../core/data/validator/wikipedia.mapcss:71
 #, java-format
 msgid "wikipedia title should not have ''{0}'' prefix"
-msgstr "Назва сторінки у Вікіпедії не повинна мати префікс \"{0}\""
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:81
 msgid "wikipedia page title should have first letter capitalized"
-msgstr "Назва сторінки у Вікіпедії повинна починатись з великої літери"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:90
 msgid ""
 "wikipedia page title should have spaces instead of underscores (''_''→'' '')"
 msgstr ""
-"Назва сторінки у Вікіпедії повинна мати пробіли замість символів "
-"підкреслювання (\"_\"→\" \")"
 
 #: ../core/data/validator/wikipedia.mapcss:119
 msgid "wikipedia language seems to be duplicated, e.g. en:en:Foo"
-msgstr "Дублювання коду мови в значені теґа wikipedia – en:en:Foo"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:128
 msgid "wikidata tag must be in Qnnnn format, where n is a digit"
-msgstr "Формат теґу wikidata – Qnnn, де n – цифри"
+msgstr ""
 
 #: ../core/data/validator/wikipedia.mapcss:139
 msgid ""
 "wikipedia tag is set, but there is no wikidata tag. Wikipedia plugin might "
 "help with wikidata id lookups"
 msgstr ""
-"теґ wikipedia встановлено, але відсутній теґ wikidata. Втулок wikipedia може "
-"допомогти з пошуком ідентифікатора Вікіданих"
 
 #: ../core/data/validator/wikipedia.mapcss:149
 #, java-format
@@ -1526,37 +1459,32 @@ msgid ""
 "''wikipedia:language=value'' only for additional articles that are not just "
 "other language variants of the main article."
 msgstr ""
-"Встановлено  теґ ''{0}'', але відсутній теґ ''{1}''. Переконайтеся що ви "
-"встановили ''wikipedia=мова:назва сторінки'' для основної статті, не "
-"обов''язково можна додати ''wikipedia:мова=назва сторінки'', але тільки у "
-"випадках, коли ця стаття не просто стаття іншою мовою, а й містить додаткову "
-"інформацію."
 
 #: ../core/styles/standard/elemstyles.mapcss:28
 msgid "Hide icons at low zoom"
-msgstr "Приховувати значки на малому масштабі"
+msgstr ""
 
 #: ../core/styles/standard/elemstyles.mapcss:34
 msgid "Less obtrusive node symbols at low zoom"
-msgstr "Менш нав’язливі символи точок при малих масштабах"
+msgstr ""
 
 #: ../core/styles/standard/elemstyles.mapcss:40
 msgid "Hide tagged waynodes at low zoom"
-msgstr "Приховувати протеґовані точки ліній на мілких масштабах"
+msgstr ""
 
 #: ../core/styles/standard/elemstyles.mapcss:46
 msgid "Display street labels (at high zoom)"
-msgstr "Показувати назви вулиць (на великих масштабах)"
+msgstr ""
 
 #: ../core/styles/standard/elemstyles.mapcss:52
 msgid "Use alternative turn restriction icon set"
-msgstr "Використовувати альтернативний набір значків"
+msgstr ""
 
 #: ../core/styles/standard/elemstyles.mapcss:58
 msgid "Display fill colour of areas with place=*"
-msgstr "Показувати заповнення кольором полігонів place=*"
+msgstr ""
 
 #: ../core/styles/standard/elemstyles.mapcss:64
 msgid "Areas are drawn with fill only around their inner edges"
-msgstr "Показувати зафарбовування полігонів тільки біля їх внутрішніх меж"
+msgstr ""
 

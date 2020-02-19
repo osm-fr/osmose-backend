@@ -395,7 +395,7 @@ class Parser:
         pass
 
 class CSV(Parser):
-    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True):
+    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True, skip_first_lines = 0):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
@@ -405,6 +405,7 @@ class CSV(Parser):
         @param header: CSV have header row
         @param quote: one char string delimiter
         @param csv: load file as CSV on COPY command
+        @param skip_first_lines: skip lines before reading CSV content
         """
         self.source = source
         self.separator = separator
@@ -412,16 +413,21 @@ class CSV(Parser):
         self.have_header = header
         self.quote = quote
         self.csv = csv
+        self.skip_first_lines = skip_first_lines
 
         self.f = None
 
     def header(self):
         self.f = self.source.open()
+        for _ in range(self.skip_first_lines):
+            self.f.__next__()
         if self.have_header:
             return csv.reader(self.f, delimiter=self.separator, quotechar=self.quote).next()
 
     def import_(self, table, srid, osmosis):
         self.f = self.f or self.source.open()
+        for _ in range(self.skip_first_lines):
+            self.f.__next__()
         copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
             table,
             ("DELIMITER AS '%s'" % self.separator) if self.separator is not None else "",
@@ -1122,3 +1128,48 @@ class Analyser_Merge(Analyser_Osmosis):
               elif v:
                   clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
         return " AND ".join(clauses)
+
+###########################################################################
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    from modules import config
+    default_xml_res_path = config.dir_tmp + "/tests/osmosis/"
+
+    @classmethod
+    def setup_class(cls):
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis.test.osm",
+                                         cls.default_xml_res_path + "osmosis.test.xml",
+                                         {"test": True,
+                                          "addr:city-admin_level": "8,9",
+                                          "driving_side": "left",
+                                          "proj": 2969})
+
+        cls.analyser_conf.country = "FR"
+        cls.analyser_conf.dst_dir = cls.conf.dir_results
+
+        import modules.OsmOsisManager
+        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema or cls.conf.country, cls.conf.db_persistent, cls.logger)
+
+    def test_merge(self):
+        # run all available merge analysers, for basic SQL check
+        import importlib, inspect, os, sys
+
+        for fn in sorted(os.listdir("analysers/")):
+            if not fn.startswith("analyser_merge_") or not fn.endswith(".py"):
+                continue
+            analyser = importlib.import_module("analysers." + fn[:-3], package=".")
+            for name, obj in inspect.getmembers(analyser):
+                if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+
+                    self.analyser_conf.dst = (self.default_xml_res_path +
+                                              "normal/%s.xml" % name)
+                    self.xml_res_file = self.analyser_conf.dst
+
+                    with obj(self.analyser_conf, self.logger) as analyser_obj:
+                        analyser_obj.analyser()
+
+                    self.root_err = self.load_errors()
+                    self.check_num_err(min=0, max=5)

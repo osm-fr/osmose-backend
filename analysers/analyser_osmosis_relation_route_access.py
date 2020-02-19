@@ -74,20 +74,20 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
         self.map = {
             'bicycle': {
                 'class': 1,
-                'acces_tag': 'bicycle',
-                'no_acces': "'no', 'false', 'private', 'discouraged'",
+                'access_tag': 'bicycle',
+                'no_access': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'footway', 'pedestrian', 'trunk', 'motorway', 'trunk_link', 'motorway_link'",
                 'highway_overide_access': "'yes', 'permissive', 'true', 'designated', 'shoulder', 'dismount'"},
             'foot': {
                 'class': 2,
-                'acces_tag': 'foot',
-                'no_acces': "'no', 'false', 'private', 'discouraged'",
+                'access_tag': 'foot',
+                'no_access': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'trunk', 'motorway', 'trunk_link', 'motorway_link'", # 'cycleway' default for foot depends on country
                 'highway_overide_access': "'yes', 'permissive', 'true', 'designated'"},
             'hiking': { # Same as foot
                 'class': 3,
-                'acces_tag': 'foot',
-                'no_acces': "'no', 'false', 'private', 'discouraged'",
+                'access_tag': 'foot',
+                'no_access': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'trunk', 'motorway', 'trunk_link', 'motorway_link'", # 'cycleway' default for foot depends on country
                 'highway_overide_access': "'yes', 'permissive', 'true', 'designated'"},
         }
@@ -100,9 +100,9 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         for route_type, access in self.map.items():
-            self.run(sql10.format('', '', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('', '', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
 
     def analyser_osmosis_diff(self):
         for route_type, access in self.map.items():
-            self.run(sql10.format('', 'touched_', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
-            self.run(sql10.format('touched_', 'not_touched_', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('', 'touched_', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('touched_', 'not_touched_', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))

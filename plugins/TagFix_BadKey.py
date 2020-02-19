@@ -77,9 +77,9 @@ separator '_' or ':'. See
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append({"class": 30501, "subclass": stablehash64(k), "text": T_("Bad tag suffix %(k)s=%(v)s", {"k":k, "v":tags[k]})})
+                err.append({"class": 30501, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         return err
 
@@ -100,9 +100,9 @@ class Test(TestPluginCommon):
                   "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate",
                   "railway:memor2+", "railway:tbl1+",
                  ]:
-            assert not a.node(None, {k: 1}), ("key='%s'" % k)
+            assert not a.node(None, {k: '1'}), ("key='%s'" % k)
 
         for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'",
                   "railway:memor2++", "railway:memor2+87",
                  ]:
-            self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
+            self.check_err(a.node(None, {k: '1'}), ("key='%s'" % k))

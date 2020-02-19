@@ -173,8 +173,8 @@ cadastre/import tools.''')))
         self.classs_change[2] = self.def_class(item = 0, level = 2, tags = ['building', 'geom', 'fix:chair'],
             title = T_('Large building intersection'),
             detail = self.merge_doc(detail, T_(
-'''A large overlap. Requires a visual check (Bing, cadastre, on
-site).''')))
+'''A large overlap. Requires a visual check (Bing, cadastre or
+survey).''')))
         self.classs_change[3] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
             title = T_('Building too small'),
             detail = self.merge_doc(detail, T_(

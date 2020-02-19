@@ -130,7 +130,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                             (last_left is None or first_right is None or last_left < first_right)):
                             err.append({"class": 31607, "subclass": 1 + stablehash64(tl)})
 
-        # Check acces lanes values
+        # Check access lanes values
 
         # Count for non fullwidth lanes
         non_fullwidth_lanes_number = {}

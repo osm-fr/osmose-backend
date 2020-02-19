@@ -68,7 +68,7 @@ class TagRemove_Incompatibles(Plugin):
         }.items()
 
     def node(self, data, tags):
-        if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'construction', 'platform'):
+        if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'dismantled', 'construction', 'platform'):
             del tags['railway']
         if tags.get('waterway') == 'dam':
             del tags['waterway']

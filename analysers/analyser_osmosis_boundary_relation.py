@@ -138,7 +138,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             detail = T_(
 '''See [possible
 roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary
-relation.'''))
+relations.'''))
 
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText], "fix":{"name": res[2]} if res[2] else None}

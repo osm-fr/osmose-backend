@@ -20,19 +20,20 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, SHP, Load, Mapping, Generate
+from .Analyser_Merge import Source, CSV, Load, Mapping, Generate
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
 class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Street_Number.__init__(self, config, 3, "Bordeaux", logger,
-            u"http://data.bordeaux-metropole.fr/data.php?themes=8",
-            u"Numéro de voirie de Bordeaux Métropole",
-            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                    fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=20&format=2", zip = "FV_NUMVO_P.shp", encoding = "ISO-8859-15"),
-                edit = lambda sql: sql.replace(u'"numero" float8', '"numero" integer').replace(u'"NUMERO" float8', '"NUMERO" integer')),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
+        _Analyser_Merge_Street_Number.__init__(self, config, 3, 'Bordeaux', logger,
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/fv_adresse_p',
+            'Numéro de voirie de Bordeaux Métropole',
+            CSV(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
+                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/fv_adresse_p/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=,')),
+            Load('Geo Point', 'Geo Point',
+                xFunction = lambda x: x.split(",")[1],
+                yFunction = lambda y: y.split(",")[0]),
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},

@@ -27,19 +27,19 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8120, id = 1, level = 3, tags = ['merge', 'recycling'],
-            title = T_('BM glass recycling not integrated'))
+            title = T_f('{0} glass recycling not integrated', 'BM'))
         self.possible_merge   = self.def_class(item = 8121, id = 3, level = 3, tags = ['merge', 'recycling'],
-            title = T_('BM glass recycling, integration suggestion'))
+            title = T_f('{0} glass recycling, integration suggestion', 'BM'))
         self.update_official  = self.def_class(item = 8122, id = 4, level = 3, tags = ['merge', 'recycling'],
-            title = T_('BM glass recycling update'))
+            title = T_f('{0} glass recycling update', 'BM'))
 
         self.init(
-            u"http://data.bordeaux-metropole.fr/data.php?themes=5",
-            u"Emplacements d'apport volontaire",
-            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                    fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
-                select = {"IDENT": "%"}),
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p',
+            'Emplacements d''apport volontaire',
+            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
+                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'en_empac_p.shp')),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",),
+                select = {"ident": "%"}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -52,4 +52,4 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:CUB": "IDENT"} )))
+                    mapping1 = {"ref:FR:CUB": "ident"} )))
