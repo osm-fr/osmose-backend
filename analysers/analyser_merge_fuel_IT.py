@@ -32,6 +32,8 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
             title = T_('Gas station integration suggestion'))
         self.update_official  = self.def_class(item = 8202, id = 4, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station update'))
+        self.missing_osm      = self.def_class(item = 8203, id = 5, level = 3, tags = ['merge', 'highway'],
+            title = T_('Gas station without tag "ref:mise" or invalid'))
 
         self.init(
             'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
@@ -51,6 +53,18 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:mise': 'idImpianto',
-                        'operator': lambda res: res[u'Gestore'].strip().replace('"', ' ').replace(',', ' ').replace('  ', ' ').title(),
+                        'operator': lambda res: normalizeString(res[u'Gestore']),
                         'brand': 'Bandiera'},
                 text = lambda tags, fields: {'en': u'%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
+
+    # First Char Uppercase
+    # quotes (") removal
+    # commas (,) removal
+    # extra spaces trim
+    # special case stopwords
+    def normalizeString(self, str):
+        search = [ 'A', 'E', 'ED', 'DI', 'DIS-CAR', 'SOCIETA\'', 'RESPONSABILITA\'', 'SNC', 'SAS' ]
+        replace = [ 'a', 'e', 'ed', 'di', 'Dis-car', 'Società', 'Responsabilità', 'S.N.C.', 'S.A.S.' ]
+        return ' '.join(map(lambda x: replace[search.index(x)] if x in search
+            else x.title(), str.replace('"', ' ').replace(',', ' ').split()))
+
