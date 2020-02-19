@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
@@ -32,9 +32,10 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/inventaire-des-defibrillateurs-automatises-externes-dae-dans-le-gers/#",
             u"Inventaire des Défibrillateurs Automatisés Externes (DAE) dans le Gers",
-            GeoJSON(Source(attribution = u"Région Occitanie / Pyrénées Méditerranée",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/cc36c26e-e782-47bf-8fd6-a03aa459e8d0")),
-            Load("geom_x", "geom_y"),
+            SHP(Source(attribution = u"Région Occitanie / Pyrénées Méditerranée",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d81ffeca-921b-4455-b889-f1019da423e1",
+                    zip = "inventaire-des-defibrillateurs-automatises-externes-dans-le-gers.shp")),
+            Load(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), srid = 2154),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
