@@ -65,5 +65,5 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
     WORDS_MAP = {'A': 'a', 'E': 'e', 'ED': 'ed', 'DI': 'di', 'DIS-CAR':'Dis-car', 'SOCIETA\'': 'Società',
         'RESPONSABILITA\'': 'Responsabilità', 'SNC': 'S.N.C.', 'SAS': 'S.A.S.'}
     def normalizeString(self, s):
-        s = s.replace('"', ' ').replace(',', ' ').replace('  ', ' ').title()
-        return ' '.join(map(lambda x: self.WORDS_MAP.get(x, x), s.split()))
+        s = s.replace('"', ' ').replace(',', ' ')
+        return ' '.join(map(lambda x: self.WORDS_MAP.get(x, x.title()), s.split()))
