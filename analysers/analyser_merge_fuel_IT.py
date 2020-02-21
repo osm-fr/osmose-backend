@@ -28,12 +28,12 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8200, id = 1, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station not integrated'))
+        self.missing_osm      = self.def_class(item = 7250, id = 2, level = 3, tags = ['merge', 'highway'],
+            title = T_('Gas station without tag `ref:mise` or invalid'))
         self.possible_merge   = self.def_class(item = 8201, id = 3, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station integration suggestion'))
         self.update_official  = self.def_class(item = 8202, id = 4, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station update'))
-        self.missing_osm      = self.def_class(item = 8203, id = 5, level = 3, tags = ['merge', 'highway'],
-            title = T_('Gas station without tag "ref:mise" or invalid'))
 
         self.init(
             'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
