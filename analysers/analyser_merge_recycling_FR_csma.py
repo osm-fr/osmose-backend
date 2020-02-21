@@ -26,11 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8120, id = 1, level = 3, tags = ['merge', 'recycling'],
+        self.missing_official = self.def_class(item = 8120, id = 30, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} recycling not integrated', 'CSMA'))
-        self.possible_merge   = self.def_class(item = 8121, id = 3, level = 3, tags = ['merge', 'recycling'],
+        self.possible_merge   = self.def_class(item = 8121, id = 31, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} recycling, integration suggestion', 'CSMA'))
-        self.update_official  = self.def_class(item = 8122, id = 4, level = 3, tags = ['merge', 'recycling'],
+        self.update_official  = self.def_class(item = 8122, id = 32, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} recycling update', 'CSMA'))
 
         self.init(
