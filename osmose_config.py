@@ -428,6 +428,8 @@ france_departement("pays_de_la_loire/loire_atlantique", 7432, "FR-44", include=[
     'merge_recycling_FR_nm_glass',
     'merge_public_equipment_FR_nantes_toilets',
     'merge_street_number_nantes',
+    'merge_recycling_FR_csma',
+    'merge_waste_disposal_FR_csma',
 ])
 france_departement("pays_de_la_loire/maine_et_loire", 7409, "FR-49", include=[
     # Angers
