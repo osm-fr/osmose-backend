@@ -27,11 +27,16 @@ class Number(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3091] = self.def_class(item = 3091, level = 2, tags = ['value', 'fix:chair'],
-            title = T_('Numerical value'),
+            title = T_('Invalid numerical value'),
             detail = T_(
 '''The tag expects a numeric value with decimals using a period character and not a comma. \
 For guidelines on numeric values with units see [the wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units).'''),
             fix = T_('Make sure the relevant tag value is numeric and in the expected format (with valid units if required).')
+        )
+        self.errors[3092] = self.def_class(item = 3091, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('Extreme numerical value'),
+            detail = T_('The feature is tagged with an uncommonly high or low numeric value for the specified tag.'),
+            fix = T_('Check that the value is accurate. Consider whether another tag should be used if the value is valid.')
         )
 
         self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population", "admin_level", "ele"]
@@ -55,10 +60,10 @@ For guidelines on numeric values with units see [the wiki](https://wiki.openstre
                 ):
                     return {"class": 3091, "subclass": 1, "text": T_f("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
                 elif m and i == "height" and float(m.group(1)) > 500:
-                    return {"class": 3091, "subclass": 2, "text": T_(u"`height=%s` is really tall, consider changing to `ele=*`", m.group(1)),
+                    return {"class": 3092, "subclass": 1, "text": T_f("Concerns tag: `{0}`. Consider tag: `{1}`", '='.join([i, tags[i]]), 'ele=*'),
                              "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
                 elif m and i == "maxspeed" and float(m.group(1)) < 5 and not "waterway" in tags:
-                    return {"class": 3091, "subclass": 3, "text": T_f("`maxspeed={0}` is really slow", m.group(1))}
+                    return {"class": 3092, "subclass": 2, "text": T_f("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
