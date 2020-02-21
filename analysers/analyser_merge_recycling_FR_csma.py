@@ -40,8 +40,7 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
                     fileUrl = "http://www.stemani.fr/public/PAV_CSMA.csv")),
             Load("X", "Y",
                  xFunction = self.float_comma,
-                 yFunction = self.float_comma,
-                ),
+                 yFunction = self.float_comma),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -60,9 +59,5 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
                                "operator" : lambda fields : "Clisson Sèvre et Maine Agglo" if fields["detail"] != "vêtements"
                                    else "le Relais",
                                "opening_hours": lambda fields : "24/7" if "Déchèterie" not in fields["adresse"] and
-                                   "Pôle environnement" not in fields["adresse"] else None,
-                               "text": lambda fields : {"en": "%s" %(fields["adresse"])}
-
-                               }
-                    
-                     )))
+                                   "Pôle environnement" not in fields["adresse"] else None,},
+                    text = lambda tags, fields : {"en": "%s" %(fields["adresse"])} )))
