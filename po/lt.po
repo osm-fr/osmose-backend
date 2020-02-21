@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-17 20:49+0000\n"
+"PO-Revision-Date: 2020-02-21 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -409,7 +409,7 @@ msgstr "Apgręžtas žiedas"
 msgid "Soundex test"
 msgstr "Soundex testas"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:138
+#: ../analysers/analyser_osmosis_tag_typo.py:139
 msgid "Typo in tag"
 msgstr "Rinkimo klaida žymoje"
 
@@ -991,22 +991,6 @@ msgstr "Pašto atnaujinimas"
 msgid "School update"
 msgstr "Mokyklų atnaujinimas"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:30
-msgid "BM parking not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_parking_FR_bm.py:32
-msgid "BM parking integration suggestion"
-msgstr ""
-
-#: ../analysers/analyser_merge_parking_FR_bm.py:34
-msgid "BM parking update"
-msgstr ""
-
-#: ../analysers/analyser_merge_parking_FR_bm.py:70
-msgid "BM parking disabled not integrated"
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:35
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
@@ -1078,12 +1062,12 @@ msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:32
-#: ../analysers/analyser_merge_fuel_IT.py:32
+#: ../analysers/analyser_merge_fuel_IT.py:34
 msgid "Gas station integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:34
-#: ../analysers/analyser_merge_fuel_IT.py:34
+#: ../analysers/analyser_merge_fuel_IT.py:36
 msgid "Gas station update"
 msgstr ""
 
@@ -2022,7 +2006,6 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_gers.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:30
-#: ../analysers/analyser_merge_defibrillators_FR_hautevienne.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:30
@@ -2840,11 +2823,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:140
+#: ../analysers/analyser_osmosis_tag_typo.py:141
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:142
+#: ../analysers/analyser_osmosis_tag_typo.py:143
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3959,4 +3942,28 @@ msgstr ""
 msgid ""
 "It's possible a mapper was trying to map a feature with no existing agreed upon tagging.\n"
 "However, this should probably still conform to the typical format used for values of the given tag."
+msgstr ""
+
+#: ../analysers/analyser_merge_fuel_IT.py:32
+msgid "Gas station without tag `ref:mise` or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:30
+#, python-brace-format
+msgid "{0} parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:32
+#, python-brace-format
+msgid "{0} parking integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:34
+#, python-brace-format
+msgid "{0} parking update"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:70
+#, python-brace-format
+msgid "{0} parking for disabled not integrated"
 msgstr ""
