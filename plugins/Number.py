@@ -29,10 +29,10 @@ class Number(Plugin):
         self.errors[3091] = self.def_class(item = 3091, level = 2, tags = ['value', 'fix:chair'],
             title = T_('Numerical value'),
             detail = T_(
-'''The tag expects a numeric value. Decimals are set with one point and
-not a comma.'''),
-            fix = T_(
-'''Change to numeric value and/or the comma to point.'''))
+'''The tag expects a numeric value with decimals using a period character and not a comma. \
+For guidelines on numeric values with units see [the wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units).'''),
+            fix = T_('Make sure the relevant tag value is numeric and in the expected format (with valid units if required).')
+        )
 
         self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population", "admin_level", "ele"]
         self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
