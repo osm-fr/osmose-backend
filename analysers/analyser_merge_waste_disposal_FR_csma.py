@@ -34,10 +34,10 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
             title = T_f('{0} waste disposal update', 'CSMA'))
 
         self.init(
-            "http://www.stemani.fr/public/PAV_CSMA.csv",
+            "https://environnement.clissonsevremaine.fr/",
             "Points d'apport volontaire",
             CSV(Source(attribution = "Clisson Sèvre et Maine Agglo", millesime = "05/2019",
-                    fileUrl = "http://www.stemani.fr/public/PAV_CSMA.csv")),
+                    file = "PAV_CSMA.csv.bz2")),
             Load("X", "Y",
                  xFunction = self.float_comma,
                  yFunction = self.float_comma,
