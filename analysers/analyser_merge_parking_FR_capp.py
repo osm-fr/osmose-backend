@@ -27,7 +27,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
-            title = T_('CAPP parking not integrated'))
+            title = T_f('{0} parking not integrated', 'CAPP'))
 
         self.init(
             u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
@@ -59,7 +59,7 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 11, level = 3, tags = ['merge', 'parking'],
-            title = T_('CAPP parking disabled not integrated'))
+            title = T_f('{0} parking for disabled not integrated', 'CAPP'))
 
         self.init(
             u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
