@@ -54,7 +54,8 @@ FROM
            ways.tags->'{3}' NOT IN ({6})
         )
       )
-    )
+    ) AND
+    NOT ways.tags?'{3}:conditional'
 WHERE
   relations.tags != ''::hstore AND
   relations.tags?'type' AND

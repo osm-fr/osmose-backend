@@ -1,0 +1,23 @@
+[
+  {
+    "class": 1001,
+    "level": 3,
+    "otype": [
+      "nodes",
+      "ways"
+    ],
+    "conflation": 30,
+    "title": "drinking water",
+    "object": [
+      "drinking_water"
+    ],
+    "select_tags": [
+      {
+        "amenity": "drinking_water"
+      }
+    ],
+    "generate_tags": {
+      "amenity": "drinking_water"
+    }
+  }
+]

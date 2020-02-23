@@ -177,6 +177,7 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_floating_islands"] = "xxx"
         self.analyser["merge_traffic_signs"] = "xxx"
         self.analyser["merge_street_objects"] = "xxx"
+        self.analyser["merge_street_objects2"] = "xxx"
         self.analyser["osmosis_relation_enforcement"] = "xxx"
         self.analyser["osmosis_addr_interpolation"] = "xxx"
         self.analyser["osmosis_camp_pitch_out_of_camp_site"] = "xxx"

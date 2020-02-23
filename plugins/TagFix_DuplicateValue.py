@@ -45,7 +45,7 @@ similar.'''),
             resource = 'https://en.wikipedia.org/wiki/Levenshtein_distance',
             **doc)
 
-        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'collection_times', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'is_in', 'position'))
+        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'service_times', 'collection_times', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'is_in', 'position', 'tmc'))
         self.BlackListRegex = set((
             re.compile('seamark:.+:colour'),
             re.compile('.+_ref'), re.compile('ref:.+'),
@@ -57,6 +57,9 @@ similar.'''),
             re.compile('maxheight(:.+)?'),
             re.compile('maxwidth(:.+)?'),
             re.compile('maxweight(:.+)?'),
+            re.compile('lacounty:.+'),
+            re.compile('.+:conditional'),
+            re.compile('railway:signal:.+'),
        ))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python

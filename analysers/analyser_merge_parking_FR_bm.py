@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
@@ -34,14 +34,11 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
             title = T_f('{0} parking update', 'BM'))
 
         self.init(
-            u"http://data.bordeaux-metropole.fr/data.php?themes=10", # joins on http://data.bordeaux-metropole.fr/data.php?themes=1
-            u"Parking données techniques 2016", # joins on "Équipement public"
-            CSV(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                    # ogr2ogr -f CSV -lco GEOMETRY=AS_XY TO_EQPUB_P.csv TO_EQPUB_P.shp
-                    # csvjoin -e ISO-8859-15 -c 'IDENT EQUIPEMENT PUBLIC,IDENT' -d ',' PARKINGS_DONNEES_2016.csv TO_EQPUB_P.csv > parking_FR_bm.csv
-                    file = "parking_FR_bm.csv.bz2")),
-            Load("X", "Y", srid = 2154,
-                select = {u"Propriétaire": [u"Bordeaux Métropole", u"CHU"]}),
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p',
+            'Parking hors voirie',
+            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
+                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'st_park_p.shp')),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",)),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -52,15 +49,15 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
                     static1 = {"amenity": "parking"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:CUB": "IDENT",
-                        "start_date": "Année de mise en service",
-                        "parking": lambda res: "surface" if "surface" in res["Type de construction"].lower() else "underground" if u"enterré" in res["Type de construction"].lower() else None,
-                        "levels": "Nombre de niveaux",
-                        "capacity": "Total places VL",
-                        "capacity:disabled": " Dont places PMR",
-                        "name": "Nom du parking",
-                        "operator": "Exploitant"},
-                    text = lambda tags, fields: {"en": u"Parking %s" % fields[u"Nom du parking"]} )))
+                        "ref:FR:CUB": "ident",
+                        "start_date": "an_serv",
+                        "parking": lambda res: "surface" if "surface" in res["type"].lower() else "underground" if u"enterré" in res["type"].lower() else None,
+                        "levels": "nb_niv",
+                        "capacity": "np_total",
+                        "capacity:disabled": "np_pmr",
+                        "name": "nom",
+                        "operator": "exploit"},
+                    text = lambda tags, fields: {"en": u"Parking %s" % fields[u"nom"]} )))
 
 
 class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
