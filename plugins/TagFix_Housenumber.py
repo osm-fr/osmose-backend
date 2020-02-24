@@ -46,32 +46,33 @@ addr:inclusion=*.'''))
 * Tag `addr:inclusion=*` is only valid with values: `actual`, `estimate`
 and `potential`.'''))
 
-        self.Country = None
+        country = None
         if self.father.config.options.get("country"):
-            self.Country = self.father.config.options.get("country")[0:2]
-
-        # By default, validate that house number starts with 1-9
-        self.housenumberRegexByCountry = defaultdict(lambda: re.compile("^[1-9]"))
+            country = self.father.config.options.get("country")[0:2]
 
         # More specific rules by country
-
-        # From open data from cantons Zurich and Bern. See also https://github.com/ltog/osmi-addresses/issues/93
-        # Plus allows commas with multiple numbers
-        ch_number = "[1-9][0-9]{0,3}( ?[a-zA-Z])?"
-        self.housenumberRegexByCountry["CH"] = re.compile("^(:?{0})(:?,{0})?$".format(ch_number))
-        # https://wiki.openstreetmap.org/wiki/Cs:WikiProject_Czech_Republic/Address_system
-        self.housenumberRegexByCountry["CZ"] = re.compile("^(ev\.)?[1-9]")
-        # From open data from CACLR, https://data.public.lu/en/datasets/registre-national-des-localites-et-des-rues/
-        self.housenumberRegexByCountry["LU"] = re.compile("^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
-        # Allow "snc" (Senza numero civico) in Italy
-        self.housenumberRegexByCountry["IT"] = re.compile("(:?^[1-9])|(^snc$)")
-        # Baseline:
-        #   https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
-        #   (7.3.2 huisnummer, 7.3.3 huisletter and 7.3.4 huisnummertoevoeging)
-        # Exceptions to the rule:
-        #   https://nl.wikipedia.org/wiki/Huisnummer
-        # This pattern isn't exhaustive, but it should catch most weirdness.
-        self.housenumberRegexByCountry["NL"] = re.compile(
+        if country == 'CH':
+            # From open data from cantons Zurich and Bern. See also https://github.com/ltog/osmi-addresses/issues/93
+            # Plus allows commas with multiple numbers
+            ch_number = "[1-9][0-9]{0,3}( ?[a-zA-Z])?"
+            self.housenumber = re.compile("^(:?{0})(:?,{0})?$".format(ch_number))
+        elif country == 'CZ':
+            # https://wiki.openstreetmap.org/wiki/Cs:WikiProject_Czech_Republic/Address_system
+            self.housenumber = re.compile("^(ev\.)?[1-9]")
+        elif country == 'LU':
+            # From open data from CACLR, https://data.public.lu/en/datasets/registre-national-des-localites-et-des-rues/
+            self.housenumber = re.compile("^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
+        elif country == 'IT':
+            # Allow "snc" (Senza numero civico) in Italy
+            self.housenumber = re.compile("(:?^[1-9])|(^snc$)")
+        elif country == 'NL':
+            # Baseline:
+            #   https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
+            #   (7.3.2 huisnummer, 7.3.3 huisletter and 7.3.4 huisnummertoevoeging)
+            # Exceptions to the rule:
+            #   https://nl.wikipedia.org/wiki/Huisnummer
+            # This pattern isn't exhaustive, but it should catch most weirdness.
+            self.housenumber = re.compile(
                 # Houseboats, 't/o X' stands for 'opposite X', where 'X' is an address on shore
                 r"^(t/o )?"
                 # 'Pekela'-style exception, leading letter (e.g., 'C54')
@@ -80,10 +81,13 @@ and `potential`.'''))
                 "([1-9][0-9]{0,4}))"
                 # Up to four optional extensions (can have leading zeroes in the extension part, e.g., '2K-008')
                 "([ -/]?(([0-9]{1,4})|([A-Za-z]{1,5}))){0,4}$")
+        else:
+            # By default, validate that house number starts with 1-9
+            self.housenumber = re.compile("^[1-9]")
 
     def node(self, data, tags):
         err = []
-        if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not (self.housenumberRegexByCountry[self.Country].match(tags["addr:housenumber"]))):
+        if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not (self.housenumber.match(tags["addr:housenumber"]))):
             err.append({"class": 10, "subclass": 1})
 
         return err

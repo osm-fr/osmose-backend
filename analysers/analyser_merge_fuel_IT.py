@@ -28,6 +28,8 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8200, id = 1, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station not integrated'))
+        self.missing_osm      = self.def_class(item = 7250, id = 2, level = 3, tags = ['merge', 'highway'],
+            title = T_('Gas station without tag `ref:mise` or invalid'))
         self.possible_merge   = self.def_class(item = 8201, id = 3, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station integration suggestion'))
         self.update_official  = self.def_class(item = 8202, id = 4, level = 3, tags = ['merge', 'highway'],
@@ -51,6 +53,17 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:mise': 'idImpianto',
-                        'operator': lambda res: res[u'Gestore'].strip().replace('"', ' ').replace(',', ' ').replace('  ', ' ').title(),
+                        'operator': lambda res: self.normalizeString(res['Gestore']),
                         'brand': 'Bandiera'},
                 text = lambda tags, fields: {'en': u'%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
+
+    # First Char Uppercase
+    # quotes (") removal
+    # commas (,) removal
+    # extra spaces trim
+    # special case stopwords
+    WORDS_MAP = {'A': 'a', 'E': 'e', 'ED': 'ed', 'DI': 'di', 'DIS-CAR':'Dis-car', 'SOCIETA\'': 'Società',
+        'RESPONSABILITA\'': 'Responsabilità', 'SNC': 'S.N.C.', 'SAS': 'S.A.S.'}
+    def normalizeString(self, s):
+        s = s.replace('"', ' ').replace(',', ' ')
+        return ' '.join(map(lambda x: self.WORDS_MAP.get(x, x.title()), s.split()))

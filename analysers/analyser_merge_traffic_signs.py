@@ -65,11 +65,11 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
                 r['select_tags'] = list(map(lambda select: self.dict_replace(select, '{speed_limit_unit}', unit), r['select_tags']))
                 r['generate_tags'] = self.dict_replace(r['generate_tags'], '{speed_limit_unit}', unit)
 
-                self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'trafficsigns')
+                self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'map_features', 'trafficsigns')
 
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, layer):
+    def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, source, layer):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
 
         missing_tags = []
@@ -86,7 +86,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
-            CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, layer = layer)),
+            CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, source = source, layer = layer)),
             Load("X", "Y",
                 select = {"value": object}),
             Mapping(

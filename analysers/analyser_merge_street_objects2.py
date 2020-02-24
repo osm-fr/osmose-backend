@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2019                                      ##
+## Copyrights Frédéric Rodrigo 2020                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -28,20 +28,20 @@ from .Analyser_Merge_Mapillary import Source_Mapillary
 from io import open # In python3 only, this import is not required
 
 
-class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
+class Analyser_Merge_Street_Objects2(Analyser_Merge_Dynamic):
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
         if "country" not in self.config.options:
             return
 
-        mapping = 'merge_data/mapillary-street-objects.mapping.json'
+        mapping = 'merge_data/mapillary-street-tags.mapping.json'
         mapingfile = json.loads(open(mapping).read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Street_Objects, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'map_features', 'points')
+            self.classFactory(SubAnalyser_Merge_Street_Objects2, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'image_detections', 'tags')
 
 
-class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
+class SubAnalyser_Merge_Street_Objects2(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, source, layer):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.missing_official = self.def_class(item = 8360, id = classs, level = level, tags = ['merge', 'leisure'],

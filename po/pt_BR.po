@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-17 20:49+0000\n"
+"PO-Revision-Date: 2020-02-23 21:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -66,14 +66,6 @@ msgstr "Monumento histórico não integrado"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:51
 msgid "Historical monument, integration suggestion"
 msgstr "Monumento histórico, sugestão de integração"
-
-#: ../analysers/analyser_merge_parking_FR_capp.py:30
-msgid "CAPP parking not integrated"
-msgstr "Estacionamento CAPP não integrado"
-
-#: ../analysers/analyser_merge_parking_FR_capp.py:62
-msgid "CAPP parking disabled not integrated"
-msgstr "Estacionamento CAPP para deficientes não integrado"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office not integrated"
@@ -414,7 +406,7 @@ msgstr "Rotatória invertida"
 msgid "Soundex test"
 msgstr "Teste Soundex"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:138
+#: ../analysers/analyser_osmosis_tag_typo.py:139
 msgid "Typo in tag"
 msgstr "Erro na etiqueta"
 
@@ -739,7 +731,7 @@ msgstr "Nome começa com espaço em branco"
 msgid "Name ends with a space"
 msgstr "Nome termina com espaço em branco"
 
-#: ../plugins/TagFix_DuplicateValue.py:109
+#: ../plugins/TagFix_DuplicateValue.py:112
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Valores similares duplicados %(key)s=%(val)s"
@@ -787,7 +779,7 @@ msgstr "Usar wikipedia=%s:*"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Sufixo '%s' de wikipedia inválido"
 
-#: ../plugins/TagFix_DuplicateValue.py:102
+#: ../plugins/TagFix_DuplicateValue.py:105
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Valores duplicados %(key)s=%(val)s"
@@ -996,22 +988,6 @@ msgstr ""
 msgid "School update"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:30
-msgid "BM parking not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_parking_FR_bm.py:32
-msgid "BM parking integration suggestion"
-msgstr ""
-
-#: ../analysers/analyser_merge_parking_FR_bm.py:34
-msgid "BM parking update"
-msgstr ""
-
-#: ../analysers/analyser_merge_parking_FR_bm.py:70
-msgid "BM parking disabled not integrated"
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:35
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
@@ -1083,12 +1059,12 @@ msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:32
-#: ../analysers/analyser_merge_fuel_IT.py:32
+#: ../analysers/analyser_merge_fuel_IT.py:34
 msgid "Gas station integration suggestion"
 msgstr "Sugestão de integração de posto de combustível"
 
 #: ../analysers/analyser_merge_fuel_FR.py:34
-#: ../analysers/analyser_merge_fuel_IT.py:34
+#: ../analysers/analyser_merge_fuel_IT.py:36
 msgid "Gas station update"
 msgstr "Atualização de posto de combustível"
 
@@ -1297,7 +1273,7 @@ msgstr ""
 msgid "Close similar name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_route_access.py:96
+#: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-format
 msgid "Way access mismatch relation route=%s"
 msgstr ""
@@ -2027,7 +2003,6 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_gers.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:30
-#: ../analysers/analyser_merge_defibrillators_FR_hautevienne.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:30
@@ -2845,11 +2820,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:140
+#: ../analysers/analyser_osmosis_tag_typo.py:141
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:142
+#: ../analysers/analyser_osmosis_tag_typo.py:143
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3601,17 +3576,20 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr ""
 
+#: ../analysers/analyser_merge_street_objects2.py:48
 #: ../analysers/analyser_merge_street_objects.py:48
 #: ../analysers/analyser_merge_traffic_signs.py:82
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr ""
 
+#: ../analysers/analyser_merge_street_objects2.py:49
 #: ../analysers/analyser_merge_street_objects.py:49
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr ""
 
+#: ../analysers/analyser_merge_street_objects2.py:51
 #: ../analysers/analyser_merge_street_objects.py:51
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
@@ -3674,12 +3652,14 @@ msgstr ""
 msgid "Untagged named object"
 msgstr ""
 
+#: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:104
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
+#: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:105
 #, python-brace-format
@@ -3964,4 +3944,60 @@ msgstr ""
 msgid ""
 "It's possible a mapper was trying to map a feature with no existing agreed upon tagging.\n"
 "However, this should probably still conform to the typical format used for values of the given tag."
+msgstr ""
+
+#: ../analysers/analyser_merge_fuel_IT.py:32
+msgid "Gas station without tag `ref:mise` or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:30
+#: ../analysers/analyser_merge_parking_FR_capp.py:30
+#, python-brace-format
+msgid "{0} parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:32
+#, python-brace-format
+msgid "{0} parking integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:34
+#, python-brace-format
+msgid "{0} parking update"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:67
+#: ../analysers/analyser_merge_parking_FR_capp.py:62
+#, python-brace-format
+msgid "{0} parking for disabled not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_csma.py:30
+#, python-brace-format
+msgid "{0} recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_csma.py:32
+#, python-brace-format
+msgid "{0} recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_csma.py:34
+#, python-brace-format
+msgid "{0} recycling update"
+msgstr ""
+
+#: ../analysers/analyser_merge_waste_disposal_FR_csma.py:30
+#, python-brace-format
+msgid "{0} waste disposal not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_waste_disposal_FR_csma.py:32
+#, python-brace-format
+msgid "{0} waste disposal, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_waste_disposal_FR_csma.py:34
+#, python-brace-format
+msgid "{0} waste disposal update"
 msgstr ""
