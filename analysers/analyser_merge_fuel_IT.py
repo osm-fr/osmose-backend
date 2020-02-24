@@ -59,11 +59,12 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
 
     # First Char Uppercase
     # quotes (") removal
-    # commas (,) removal
+    # asterisk (*) removal
     # extra spaces trim
     # special case stopwords
-    WORDS_MAP = {'A': 'a', 'E': 'e', 'ED': 'ed', 'DI': 'di', 'DIS-CAR':'Dis-car', 'SOCIETA\'': 'Società',
-        'RESPONSABILITA\'': 'Responsabilità', 'SNC': 'S.N.C.', 'SAS': 'S.A.S.'}
+    WORDS_MAP = {'A': 'a', 'E': 'e', 'ED': 'ed', 'DI': 'di', 'DEI': 'dei', 'IN': 'in', 'SOCIETA\'': 'Società', 'SIGLA': 'sigla',
+        'RESPONSABILITA\'': 'Responsabilità', 'SNC': 'S.N.C.', 'SAS': 'S.A.S.', 'S.P.A.': 'S.p.A.', 'SRL': 'S.R.L.', 'F.LLI': 'F.lli'}
     def normalizeString(self, s):
-        s = s.replace('"', ' ').replace(',', ' ')
-        return ' '.join(map(lambda x: self.WORDS_MAP.get(x, x.title()), s.split()))
+        s = s.replace('"', ' ').replace('*', ' ').upper()
+        s = ' '.join(map(lambda x: self.WORDS_MAP.get(x, x.title()), s.split()))
+        return s[:1].upper() + s[1:]
