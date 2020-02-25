@@ -57,6 +57,6 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
                         "recycling:paper": lambda fields: "yes" if fields["detail"] == "Papier" else None,
                         "recycling:clothes": lambda fields: "yes" if fields["detail"] == "Vêtements" else None,
                         "location": lambda fields: "underground" if fields["type"] == "Colonne enterrée" else None,
-                        "operator" : lambda fields : "Clisson Sèvre et Maine Agglo" if fields["detail"] != "vêtements" else "le Relais",
+                        "operator" : lambda fields : "Clisson Sèvre et Maine Agglo" if fields["detail"] != "Vêtements" else "le Relais",
                         "opening_hours": lambda fields : "24/7" if "Déchèterie" not in fields["adresse"] and "Pôle environnement" not in fields["adresse"] else None,},
                     text = lambda tags, fields : {"en": "%s - %s" %(fields["detail"], fields["adresse"])} )))
