@@ -62,9 +62,9 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
     # asterisk (*) removal
     # extra spaces trim
     # special case stopwords
-    WORDS_MAP = {'A': 'a', 'E': 'e', 'ED': 'ed', 'DI': 'di', 'DEI': 'dei', 'IN': 'in', 'SOCIETA\'': 'Società', 'SIGLA': 'sigla',
-        'RESPONSABILITA\'': 'Responsabilità', 'SNC': 'S.N.C.', 'SAS': 'S.A.S.', 'S.P.A.': 'S.p.A.', 'SRL': 'S.R.L.', 'F.LLI': 'F.lli'}
+    WORDS_MAP = {'A': 'a', 'E': 'e', 'Ed': 'ed', 'Di': 'di', 'Dei': 'dei', 'In': 'in', 'Societa\'': 'Società', 'Sigla': 'sigla',
+        'Responsabilita\'': 'Responsabilità', 'Snc': 'S.N.C.', 'Sas': 'S.A.S.', 'S.P.A.': 'S.p.A.', 'Srl': 'S.R.L.', 'F.Lli': 'F.lli'}
     def normalizeString(self, s):
-        s = s.replace('"', ' ').replace('*', ' ').upper()
-        s = ' '.join(map(lambda x: self.WORDS_MAP.get(x, x.title()), s.split()))
+        s = s.replace('"', ' ').replace('*', ' ').title()
+        s = ' '.join(map(lambda x: self.WORDS_MAP.get(x, x), s.split()))
         return s[:1].upper() + s[1:]
