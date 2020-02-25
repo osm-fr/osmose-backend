@@ -40,7 +40,8 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
                     file = "PAV_CSMA.csv.bz2")),
             Load("X", "Y",
                  xFunction = self.float_comma,
-                 yFunction = self.float_comma),
+                 yFunction = self.float_comma,
+                 select = {"detail" : ["Verre", "Papier", "Vêtements"]}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
