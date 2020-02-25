@@ -40,7 +40,8 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
                     file = "PAV_CSMA.csv.bz2")),
             Load("X", "Y",
                  xFunction = self.float_comma,
-                 yFunction = self.float_comma),
+                 yFunction = self.float_comma,
+                 select = {"detail" : ["Verre", "Papier", "Vêtements"]}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -58,4 +59,4 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
                         "location": lambda fields: "underground" if fields["type"] == "Colonne enterrée" else None,
                         "operator" : lambda fields : "Clisson Sèvre et Maine Agglo" if fields["detail"] != "vêtements" else "le Relais",
                         "opening_hours": lambda fields : "24/7" if "Déchèterie" not in fields["adresse"] and "Pôle environnement" not in fields["adresse"] else None,},
-                    text = lambda tags, fields : {"en": "%s" %(fields["adresse"])} )))
+                    text = lambda tags, fields : {"en": "%s - %s" %(fields["detail"], fields["adresse"])} )))
