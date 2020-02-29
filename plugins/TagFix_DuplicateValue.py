@@ -47,11 +47,11 @@ similar.'''),
 
         self.BlackList = set((
             'ref', 'created_by', 'is_in',
-            'CLC:id', 'GNS:id', 'tmc',
+            'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid',
             'opening_hours', 'service_times', 'collection_times',
             'phone', 'contact:phone', 'fax', 'contact:fax',
             'url',
-            'technology', 'cables', 'position',
+            'technology', 'cables', 'position', 'passenger',
             'healthcare:speciality',
         ))
         self.BlackListRegex = set((
