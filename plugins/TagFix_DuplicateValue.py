@@ -106,7 +106,7 @@ similar.'''),
             v = tags[k]
             if k == 'source':
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise') # France
-                v = v.replace('GSImaps/ort', '').replace('GSImaps/std', '') # Japan
+                v = v.replace('GSImaps/ort', 'GSImaps/std') # Japan
             if ';' in v:
                 vs = list(filter(lambda w: len(w) > 0, map(lambda w: w.strip(), v.split(';'))))
                 if len(vs) != len(set(vs)):
@@ -143,6 +143,7 @@ class Test(TestPluginCommon):
                   {"oneway":"yes;yes;yes;yes;-1;-1;no;no"},
                   {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
                   {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
+                  {"source":"GSImaps/ort;GSImaps/std"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
