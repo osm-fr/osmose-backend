@@ -51,7 +51,7 @@ similar.'''),
             'opening_hours', 'service_times', 'collection_times',
             'phone', 'contact:phone', 'fax', 'contact:fax',
             'url',
-            'technology', 'cables', 'position', 'passenger',
+            'technology', 'cables', 'position', 'passenger', 'couplings:diameters',
             'healthcare:speciality',
         ))
         self.BlackListRegex = set((
