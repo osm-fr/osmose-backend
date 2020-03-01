@@ -58,4 +58,4 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
                     mapping1 = {
                         "location": lambda fields: "underground" if fields["type"] == "Colonne enterrée" else None,
                         "opening_hours": lambda fields : "24/7" if "Déchèterie" not in fields["adresse"] and "Pôle environnement" not in fields["adresse"] else None},
-                    text = lambda tags, fields: {"en": "%s" %(fields["adresse"])} )))
+                    text = lambda tags, fields : {"en": "%s - %s" %(fields["detail"], fields["adresse"])} )))
