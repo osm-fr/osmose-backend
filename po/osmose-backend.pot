@@ -503,10 +503,6 @@ msgstr ""
 msgid "Missing altitude"
 msgstr ""
 
-#: ../plugins/Number.py:30
-msgid "Numerical value"
-msgstr ""
-
 #: ../plugins/ODbL_migration.py:32
 msgid "ODbL migration damage"
 msgstr ""
@@ -724,7 +720,7 @@ msgstr ""
 msgid "Name ends with a space"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:112
+#: ../plugins/TagFix_DuplicateValue.py:121
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr ""
@@ -771,7 +767,7 @@ msgstr ""
 msgid "Invalid wikipedia suffix '%s'"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:105
+#: ../plugins/TagFix_DuplicateValue.py:114
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr ""
@@ -3161,16 +3157,6 @@ msgstr ""
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
 msgstr ""
 
-#: ../plugins/Number.py:32
-msgid ""
-"The tag expects a numeric value. Decimals are set with one point and\n"
-"not a comma."
-msgstr ""
-
-#: ../plugins/Number.py:35
-msgid "Change to numeric value and/or the comma to point."
-msgstr ""
-
 #: ../plugins/ODbL_migration.py:34
 msgid ""
 "The last contributor to the object is the ODbL migration robot. The\n"
@@ -3896,7 +3882,7 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Date.py:90 ../plugins/Date.py:92 ../plugins/Name_UpperCase.py:60
-#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:56
+#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:68
 #: ../plugins/Phone.py:126 ../plugins/Phone.py:140 ../plugins/Phone.py:146
 #: ../plugins/Phone.py:152 ../plugins/Phone.py:158 ../plugins/Phone.py:165
 #: ../plugins/TagFix_BadKey.py:80 ../plugins/TagFix_BadKey.py:82
@@ -3925,14 +3911,9 @@ msgid ""
 "acronyms."
 msgstr ""
 
-#: ../plugins/Number.py:58
+#: ../plugins/Number.py:70
 #, python-format
 msgid "`height=%s` is really tall, consider changing to `ele=*`"
-msgstr ""
-
-#: ../plugins/Number.py:61
-#, python-brace-format
-msgid "`maxspeed={0}` is really slow"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -4011,4 +3992,42 @@ msgstr ""
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:34
 #, python-brace-format
 msgid "{0} waste disposal update"
+msgstr ""
+
+#: ../plugins/Number.py:30
+msgid "Invalid numerical value"
+msgstr ""
+
+#: ../plugins/Number.py:32
+msgid ""
+"The tag expects a numeric value with decimals using a period character\n"
+"and not a comma. \\ For guidelines on numeric values with units see [the\n"
+"wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)."
+msgstr ""
+
+#: ../plugins/Number.py:36
+msgid ""
+"Make sure the relevant tag value is numeric and in the expected format\n"
+"(with valid units if required)."
+msgstr ""
+
+#: ../plugins/Number.py:40
+msgid "Suspicious numerical value"
+msgstr ""
+
+#: ../plugins/Number.py:42
+msgid ""
+"The feature is tagged with an uncommonly high or low numeric value for\n"
+"the specified tag."
+msgstr ""
+
+#: ../plugins/Number.py:45
+msgid ""
+"Check that the value is accurate. Consider whether another tag should\n"
+"be used if the value is valid."
+msgstr ""
+
+#: ../plugins/Number.py:73
+#, python-brace-format
+msgid "`{0}` is really slow"
 msgstr ""

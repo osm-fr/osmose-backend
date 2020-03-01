@@ -7,13 +7,14 @@
 # 藤本理弘 <mfujimot@gmail.com>, 2014-2015
 # Satoshi IIDA <nyampire@gmail.com>, 2014,2016
 # Satoshi IIDA <nyampire@gmail.com>, 2016
+# Tom Konda <tom.konda.dev@gmail.com>, 2020
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-23 21:36+0000\n"
+"PO-Revision-Date: 2020-03-01 18:07+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -427,7 +428,7 @@ msgstr "川がないのに川岸がある"
 
 #: ../analysers/analyser_osmosis_waterway.py:143
 msgid "Unconnected waterway or wrong way flow"
-msgstr ""
+msgstr "接続されていない水路または水の流れが誤った方向"
 
 #: ../plugins/Administrative_INSEE_Name.py:32
 msgid "Place node without name tag"
@@ -509,10 +510,6 @@ msgstr ""
 msgid "Missing altitude"
 msgstr ""
 
-#: ../plugins/Number.py:30
-msgid "Numerical value"
-msgstr "値に数字が存在"
-
 #: ../plugins/ODbL_migration.py:32
 msgid "ODbL migration damage"
 msgstr "ODbL移行ダメージ"
@@ -551,7 +548,7 @@ msgstr ""
 
 #: ../plugins/Structural_Useless_Relation.py:30
 msgid "1-member relation"
-msgstr ""
+msgstr "メンバー1つのリレーション"
 
 #: ../plugins/Structural_Waterway.py:29
 msgid "Closed waterway"
@@ -563,7 +560,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Deprecated.py:98
 msgid "Deprecated tag"
-msgstr ""
+msgstr "非推奨のタグ"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:32
@@ -614,7 +611,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Postcode.py:75
 msgid "Invalid postcode"
-msgstr ""
+msgstr "無効な郵便番号"
 
 #: ../plugins/TagFix_Role.py:31
 msgid "Inadequate role"
@@ -724,13 +721,13 @@ msgstr ""
 
 #: ../plugins/Name_Spaces.py:44
 msgid "Name begins with a space"
-msgstr ""
+msgstr "名前が空白で始まっている"
 
 #: ../plugins/Name_Spaces.py:42
 msgid "Name ends with a space"
-msgstr ""
+msgstr "名前が空白で終わっている"
 
-#: ../plugins/TagFix_DuplicateValue.py:112
+#: ../plugins/TagFix_DuplicateValue.py:121
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr ""
@@ -778,7 +775,7 @@ msgstr ""
 msgid "Invalid wikipedia suffix '%s'"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:105
+#: ../plugins/TagFix_DuplicateValue.py:114
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr ""
@@ -1202,7 +1199,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:99
 msgid "Almost junction, join or use noexit tag"
-msgstr ""
+msgstr "交差点に酷似しています。接続するかnoexitタグを使用してください"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:219
 msgid "One way inaccessible or missing parking or parking entrance"
@@ -1539,7 +1536,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_parking_highway.py:65
 #: ../analysers/analyser_osmosis_parking_highway.py:69
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "駐車場にアクセスする道路がない"
 
 #: ../plugins/TagFix_MultipleTag.py:112
 msgid "Probably only for bottles, not any type of glass"
@@ -1547,7 +1544,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Object need review"
-msgstr ""
+msgstr "レビューが必要なオブジェクト"
 
 #: ../plugins/TagRemove_Fixme.py:32
 msgid "Highway classification need review"
@@ -1595,7 +1592,7 @@ msgstr ""
 
 #: ../plugins/Website.py:39
 msgid "The URL contains a space"
-msgstr ""
+msgstr "URLに空白が含まれている"
 
 #: ../plugins/Website.py:41
 msgid "The URL does not have a valid scheme"
@@ -1934,7 +1931,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:647
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "\"addr:street\"タグが周辺の通りの名前と一致しない"
 
 #: ../plugins/Addr_Interpolation.py:31
 msgid "Misusing addr:interpolation in combination with other tags"
@@ -1955,7 +1952,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Deprecated.py:101
 msgid "Deprecated value"
-msgstr ""
+msgstr "非推奨の値"
 
 #: ../plugins/TagFix_DuplicateValue.py:41
 msgid "Duplicated values"
@@ -2551,7 +2548,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:85
 #, python-brace-format
 msgid "Area intersection `{0}`"
-msgstr ""
+msgstr "`{0}`エリア同士の交差"
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:87
 msgid ""
@@ -3163,16 +3160,6 @@ msgstr ""
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
 msgstr ""
 
-#: ../plugins/Number.py:32
-msgid ""
-"The tag expects a numeric value. Decimals are set with one point and\n"
-"not a comma."
-msgstr ""
-
-#: ../plugins/Number.py:35
-msgid "Change to numeric value and/or the comma to point."
-msgstr ""
-
 #: ../plugins/ODbL_migration.py:34
 msgid ""
 "The last contributor to the object is the ODbL migration robot. The\n"
@@ -3623,7 +3610,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Highway intersecting highway"
-msgstr ""
+msgstr "道路同士で交差している"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:375
 msgid "Waterway intersecting waterway"
@@ -3645,11 +3632,11 @@ msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:31
 msgid "Bad tag value"
-msgstr ""
+msgstr "タグの値の誤り"
 
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid "Untagged named object"
-msgstr ""
+msgstr "タグがない名前のついたオブジェクト"
 
 #: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
@@ -3780,7 +3767,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Area.py:37
 msgid "Untagged area object"
-msgstr ""
+msgstr "タグがないエリアオブジェクト "
 
 #: ../plugins/TagFix_Area.py:38
 msgid ""
@@ -3890,7 +3877,7 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Date.py:90 ../plugins/Date.py:92 ../plugins/Name_UpperCase.py:60
-#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:56
+#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:68
 #: ../plugins/Phone.py:126 ../plugins/Phone.py:140 ../plugins/Phone.py:146
 #: ../plugins/Phone.py:152 ../plugins/Phone.py:158 ../plugins/Phone.py:165
 #: ../plugins/TagFix_BadKey.py:80 ../plugins/TagFix_BadKey.py:82
@@ -3917,14 +3904,9 @@ msgid ""
 " This is particularly the case for corporate/branded locations as well as acronyms."
 msgstr ""
 
-#: ../plugins/Number.py:58
+#: ../plugins/Number.py:70
 #, python-format
 msgid "`height=%s` is really tall, consider changing to `ele=*`"
-msgstr ""
-
-#: ../plugins/Number.py:61
-#, python-brace-format
-msgid "`maxspeed={0}` is really slow"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3999,4 +3981,42 @@ msgstr ""
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:34
 #, python-brace-format
 msgid "{0} waste disposal update"
+msgstr ""
+
+#: ../plugins/Number.py:30
+msgid "Invalid numerical value"
+msgstr ""
+
+#: ../plugins/Number.py:32
+msgid ""
+"The tag expects a numeric value with decimals using a period character\n"
+"and not a comma. \\ For guidelines on numeric values with units see [the\n"
+"wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)."
+msgstr ""
+
+#: ../plugins/Number.py:36
+msgid ""
+"Make sure the relevant tag value is numeric and in the expected format\n"
+"(with valid units if required)."
+msgstr ""
+
+#: ../plugins/Number.py:40
+msgid "Suspicious numerical value"
+msgstr ""
+
+#: ../plugins/Number.py:42
+msgid ""
+"The feature is tagged with an uncommonly high or low numeric value for\n"
+"the specified tag."
+msgstr ""
+
+#: ../plugins/Number.py:45
+msgid ""
+"Check that the value is accurate. Consider whether another tag should\n"
+"be used if the value is valid."
+msgstr ""
+
+#: ../plugins/Number.py:73
+#, python-brace-format
+msgid "`{0}` is really slow"
 msgstr ""
