@@ -162,6 +162,8 @@ administrative schools for a single physical school.''')
         "335": None,
         "336": None,
         "340": u"collège",
+        "342": None,
+        "344": None,
         "349": None,
         "350": u"collège",
         "352": u"collège",
