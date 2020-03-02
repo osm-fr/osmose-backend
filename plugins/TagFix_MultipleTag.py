@@ -99,13 +99,17 @@ Clockwise rotation.'''))
 #        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],
 #            title = T_('Bad power line kind'))
         self.errors[32200] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('access=yes|permissive allow all transport modes'),
+            title = T_('Overly permissive access'),
             detail = T_(
-'''`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
+'''The tags `access=yes` and `access=permissive` mark a feature as wide open to all transport modes. \
+This is almost never the case and more specific tags should be used instead. \
+For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
         self.errors[32201] = self.def_class(item = 3220, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('access=yes|permissive allow all transport modes'),
+            title = T_('Overly permissive access'),
             detail = T_(
-'''`access=yes` means wide open to all transport mode, look at [access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
+'''The tags `access=yes` and `access=permissive` mark a feature as wide open to all transport modes. \
+This is almost never the case and more specific tags should be used instead. \
+For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions).'''))
 
         if not self.country or not self.country.startswith("CZ"):
             self.errors[32301] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
