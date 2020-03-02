@@ -183,7 +183,7 @@ If geometry is correct and there's some vertical difference then make use of the
             fix = T_('Connect the buildings by joining nodes where appropriate.'))
         self.classs_change[5] = self.def_class(item = 0, level = 1, tags = ['building', 'fix:chair'],
             title = T_('Large building intersection cluster'),
-            fix = self.merge_doc(fix, '\n\n', T_(
+            fix = self.merge_doc(fix, T_(
 '''Large intersections may also be a duplicated mapping - in which case delete the less accurate element.''')))
         if self.FR:
             self.classs_change[6] = self.def_class(item =  1, level = 3, tags = ['building', 'geom', 'fix:chair'],
