@@ -1,16 +1,16 @@
 # Translators:
-# maro21 OSM, 2019
+# maro21 OSM, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: maro21 OSM, 2019\n"
+"Last-Translator: maro21 OSM, 2020\n"
 "Language-Team: Polish (https://www.transifex.com/openstreetmap-france/teams/17462/pl/)\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: ../transport.validator.mapcss:15
 msgid "Uncompromising validation of transit data"
-msgstr ""
+msgstr "Bezkompromisowa walidacja danych przewozowych"
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
@@ -43,7 +43,7 @@ msgstr "Brak tagu \"from\" lub \"to\" dla relacji transportu publicznego"
 
 #: ../transport.validator.mapcss:176
 msgid "The stops may not be in the right order"
-msgstr ""
+msgstr "Przystanki mogą być w niewłaściwej kolejności"
 
 #: ../transport.validator.mapcss:201
 msgid "Is it a bus stop or a bus station?"
@@ -72,20 +72,28 @@ msgstr "Sprawdź, czy tag note może być usunięty"
 #: ../transport.validator.mapcss:258
 msgid "The network should be on the transport lines and not on the stops"
 msgstr ""
+"Tag network powinien być na liniach transportu publicznego, nie na "
+"przystankach (dotyczy Francji)"
 
 #: ../transport.validator.mapcss:264
 msgid "The operator should be on the transport lines and not on the stops"
 msgstr ""
+"Tag operator powinien być na liniach transportu publicznego, nie na "
+"przystankach (dotyczy Francji)"
 
 #: ../transport.validator.mapcss:275
 msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
 msgstr ""
+"Ten wariant linii transportu publicznego nie jest przyporządkowany do żadnej"
+" linii, dodaj go do relacji route_master"
 
 #: ../transport.validator.mapcss:289
 msgid "The stop is not served by any line, add it to a route relation"
 msgstr ""
+"Ten przystanek nie jest obsługiwany przez żadną linię, dodaj go do relacji "
+"trasy"
 
 #: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
 msgid "Missing public_transport tag on a public transport stop"
@@ -108,30 +116,40 @@ msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"Tag network powinien być taki sam dla relacji route jak i route_master: {0} "
+"vs {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
+"Tag operator powinien być taki sam dla relacji route jak i route_master: {0}"
+" vs {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr ""
+"Tag ref powinien być taki sam dla relacji route jak i route_master: {0} vs "
+"{1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"Tag colour powinien być taki sam dla relacji route jak i route_master: {0} "
+"vs {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
 msgstr ""
+"Środek transportu powinien być taki sam dla relacji route jak i "
+"route_master: {0} vs {1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
@@ -144,6 +162,8 @@ msgstr "Kod koloru powinien zaczynać się od \"#\" i mieć 3 lub 6 cyfr"
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
+"Kolor dla linii transportu publicznego powinien być w tagu \"colour\", nie "
+"\"color\""
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
@@ -151,15 +171,16 @@ msgstr "Przystanek autobusowy powinien być węzłem"
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "Przedział jest niepoprawny (wpisz liczbę minut, np. 15 lub 00:15:00)"
 
 #: ../transport.validator.mapcss:314
 msgid "The duration is invalid (try a number of minutes)"
 msgstr ""
+"Czas trwania jest niepoprawny (wpisz liczbę minut, np. 15 lub 00:15:00)"
 
 #: ../transport.validator.mapcss:320
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "Brak tagu \"interval\". Określ podstawowy przedział"
 
 #: ../transport.validator.mapcss:326
 msgid "Missing opening_hours tag"

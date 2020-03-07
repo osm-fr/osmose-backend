@@ -10,6 +10,7 @@
 # Ferdi S. <ferdi98701@gmail.com>, 2020
 # osmtools <osm@haraldhartmann.de>, 2017
 # Holger Bruch <holger.bruch@systect.de>, 2019
+# kjon kjon <kjon@gmx.de>, 2020
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
 # Sebastian Leske <sebastian.leske@sleske.name>, 2016
@@ -21,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-01 18:07+0000\n"
+"PO-Revision-Date: 2020-03-07 16:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -223,23 +224,23 @@ msgstr "Kontinuität des Straßentyps unterbrochen"
 msgid "Merge building (triangle)"
 msgstr "Gebäude(dreieck) zusammenführen"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:169
+#: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building intersection"
 msgstr "Überschneidung von Gebäuden"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:174
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Large building intersection"
 msgstr "Große Überschneidung von Gebäuden"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:179
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
 msgstr "Gebäudefläche zu klein"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:184
+#: ../analysers/analyser_osmosis_building_overlaps.py:180
 msgid "Gap between buildings"
 msgstr "Lücke zwischen Gebäuden"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:189
+#: ../analysers/analyser_osmosis_building_overlaps.py:185
 msgid "Large building intersection cluster"
 msgstr "Gruppe von Überschneidungen von Gebäuden"
 
@@ -763,12 +764,12 @@ msgstr "Konflikt zwischen Merkmalen: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt zwischen Merkmalen: 'bridge' und 'tunnel'"
 
-#: ../plugins/TagFix_MultipleTag.py:157
+#: ../plugins/TagFix_MultipleTag.py:161
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist üblicherweise \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:169
+#: ../plugins/TagFix_MultipleTag.py:173
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Merkmal \"toll\" statt \"fee\" verwenden"
 
@@ -888,7 +889,7 @@ msgstr "Kreisverkehr als Bereich"
 msgid "Level or repeat_on tag missing"
 msgstr "Merkmal level oder repeat_on fehlt"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:194
+#: ../analysers/analyser_osmosis_building_overlaps.py:190
 msgid "Building in parts"
 msgstr "Gebäude in Teilen"
 
@@ -929,16 +930,12 @@ msgstr "Mehrfach Hausnummer \"%(numbers)s\" in Straße \"%(way)s\""
 msgid "Name with uppercase"
 msgstr "Name in Großbuchstaben"
 
-#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:106
-msgid "access=yes|permissive allow all transport modes"
-msgstr "access=yes|permissive erlaubt alle Transportmittel"
-
-#: ../plugins/TagFix_MultipleTag.py:198
+#: ../plugins/TagFix_MultipleTag.py:202
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inklusive Ski, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
 
-#: ../plugins/TagFix_MultipleTag.py:200
+#: ../plugins/TagFix_MultipleTag.py:204
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inklusive Autos, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
@@ -1234,7 +1231,7 @@ msgstr "Möglicherweise fehlender 'traffic_signals:direction'- oder 'crossing'-T
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Möglicherweise fehlender direction-Tag an Stop- oder Vorfahrtschild"
 
-#: ../plugins/TagFix_MultipleTag.py:114
+#: ../plugins/TagFix_MultipleTag.py:118
 msgid "Suspicious name for a container"
 msgstr "Verdächtiger Name für einen Container"
 
@@ -1348,11 +1345,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmbin_open_relations.py:70
 msgid "Open relation type=boundary"
-msgstr ""
+msgstr "Offener Ring bei Relation type=boundary"
 
 #: ../analysers/analyser_osmbin_open_relations.py:73
 msgid "Open relation type=multipolygon"
-msgstr ""
+msgstr "Offener Ring bei Relation type=multipolygon"
 
 #: ../plugins/Construction2.py:14 ../plugins/Construction2.py:52
 #, python-brace-format
@@ -1407,12 +1404,12 @@ msgstr "Hochschule Aktualisierung"
 #: ../analysers/analyser_merge_shop_FR.py:45
 #, python-brace-format
 msgid "{0} not integrated"
-msgstr ""
+msgstr "{0} nicht integriert"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:72
 #, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr ""
+msgstr "{0}, Integrationsvorschlag"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:112
 msgid ""
@@ -1545,7 +1542,7 @@ msgstr "Polizei/Gendarmerie Update"
 msgid "Missing access way to parking"
 msgstr "Fehlender Zufahrtweg zum Parkplatz"
 
-#: ../plugins/TagFix_MultipleTag.py:112
+#: ../plugins/TagFix_MultipleTag.py:116
 msgid "Probably only for bottles, not any type of glass"
 msgstr "Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas"
 
@@ -1555,7 +1552,7 @@ msgstr "Objekt benötigt Überprüfung"
 
 #: ../plugins/TagRemove_Fixme.py:32
 msgid "Highway classification need review"
-msgstr ""
+msgstr "Straßenklassifikation sollte geprüft werden"
 
 #: ../plugins/Power.py:16 ../plugins/Power.py:52
 msgid "Power Transformers should have a frequency tag"
@@ -1595,7 +1592,7 @@ msgstr ""
 #: ../plugins/Colour.py:161 ../plugins/Colour.py:200 ../plugins/Colour.py:229
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Der {0} Farbcode sollte starten mit '#' gefolgt von 3 oder 6 Ziffern"
 
 #: ../plugins/Website.py:39
 msgid "The URL contains a space"
@@ -1673,7 +1670,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_area_access.py:66
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Unterschiedliche Werte für motor_vehicle ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
 #, python-brace-format
@@ -1797,7 +1794,7 @@ msgstr "Falsche Ländervorwahl"
 
 #: ../plugins/Phone.py:62
 msgid "Unallowed char in phone number"
-msgstr ""
+msgstr "Unzulässiges Zeichen in Telefonnummer"
 
 #: ../plugins/Phone.py:64
 msgid "Bad separator for multiple values"
@@ -1938,7 +1935,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:647
 msgid "Tag \"addr:street\" not matching a street name around"
-msgstr ""
+msgstr "Tag \"addr:street\" passt nicht zu Straßennamen in Umgebung"
 
 #: ../plugins/Addr_Interpolation.py:31
 msgid "Misusing addr:interpolation in combination with other tags"
@@ -1979,7 +1976,7 @@ msgstr ""
 #: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
-msgstr ""
+msgstr "Unzulässiges Zeichen \"{0}\" in Telefonnummer \"{1}\""
 
 #: ../plugins/TagWatchFrViPofm.py:114
 #, python-brace-format
@@ -2045,7 +2042,7 @@ msgstr "Wert zu kurz"
 
 #: ../plugins/TagFix_Vatin.py:69
 msgid "Country code is missing"
-msgstr ""
+msgstr "Ländercode fehlt"
 
 #: ../plugins/TagFix_Vatin.py:71
 msgid "Value is not uppercase"
@@ -2298,37 +2295,6 @@ msgid ""
 "It could be that all the surrounding buildings are shifted."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
-msgid ""
-"In France, probably a building imported from cadastre without the\n"
-"[controls\n"
-"needed](https://wiki.openstreetmap.org/wiki/France/Cadastre/Import_semi-automatique_des_b%C3%A2timents#Traitements_des_b.C3.A2timents_avec_JOSM_avant_envoi_vers_serveur_OSM).\n"
-"Error is frequent on areas where lots of building are drawn manually,\n"
-"such as the HOT activations.\n"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
-msgid ""
-"The intersection surface is probably due to inaccuracies in the\n"
-"cadastre/import tools."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:181
-msgid ""
-"There is no intersection, but the surface is too small to be a\n"
-"building."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:186
-msgid ""
-"Space separation is probably due to inaccuracies in the\n"
-"cadastre/import tools."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:191
-msgid "Group of important overlaps. Major problem like a double import."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_cycleway_track.py:64
 msgid ""
 "Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`"
@@ -2437,7 +2403,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_features.py:84
 msgid "The node must be common to rail and road."
-msgstr ""
+msgstr "Knoten muss für Schiene und Straße identisch sein."
 
 #: ../analysers/analyser_osmosis_highway_link.py:133
 msgid ""
@@ -2466,30 +2432,30 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:88
 msgid "Noexit on node with exit"
-msgstr ""
+msgstr "noexit an Knoten mit Ausgang"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:90
 msgid "Noexit on way with multiple exits"
-msgstr ""
+msgstr "noexit an Weg mit mehreren Ausgängen"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
 "An other node very close have already the tag\n"
 "`crossing=traffic_signals`."
-msgstr ""
+msgstr "Ein Knoten in unmittelbarer Nähe hat bereits das Tag\n`crossing=traffic_signals`."
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:165
 msgid ""
 "It is very likely that the traffic signals on the junction are\n"
 "inconsistent with each other, see also\n"
 "[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtraffic_signals)."
-msgstr ""
+msgstr "Die Ampeln der Kreuzung passen möglicherweise\nnicht zueinander, siehe \n[highway=traffic_signals](https://wiki.openstreetmap.org/wiki/Tag:highway%3Dtraffic_signals)."
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:110
 msgid ""
 "The length of the bridge makes it deserve a more detailed tag than\n"
 "`bridge=yes`."
-msgstr ""
+msgstr "Aufgrund der Länge sollte die Brücke detaillierter beschrieben werden als\n`bridge=yes`."
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:113
 msgid ""
@@ -2745,34 +2711,34 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout.py:67
 msgid "Missing `junction=roundabout`"
-msgstr ""
+msgstr "`junction=roundabout` fehlt"
 
 #: ../analysers/analyser_osmosis_roundabout.py:69
 msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
-msgstr ""
+msgstr "Dies sieht wie ein Kreisverkehr aus, aber das Tag junction=roundabout fehlt.\nSiehe [Kreisverkehr](https://wiki.openstreetmap.org/wiki/DE:Roundabout) für weitere Informationen."
 
 #: ../analysers/analyser_osmosis_roundabout.py:73
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
 "verify that the path is in the counter-clockwise when driving side is on\n"
 "right, and remove the tag `oneway=yes` if present."
-msgstr ""
+msgstr "Wenn es sich wirklich um einen Kreisverkehr handelt, ergänze `junction=roundabout`, achte auf die korrekte Fahrtrichtung und entferne `oneway=yes`, falls vorhanden."
 
 #: ../analysers/analyser_osmosis_roundabout.py:77
 msgid ""
 "Ensure that it is a roundabout, using satellite imagery or a local\n"
 "survey."
-msgstr ""
+msgstr "Stelle sicher, dass es sich um einen Kreisverkehr handelt, indem Du die Situation vor Ort oder mit Luftbildern prüfst."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:47
 msgid ""
 "The circulation of the roundabout is draw clockwise, but in countries\n"
 "where they driveon the right the sense of roundabouts is\n"
 "counterclockwise, and vice versa for the other countries."
-msgstr ""
+msgstr "Die Fahrtrichtung von Kreisverkehren verläuft in Ländern mit Linksverkehr im Uhrzeigersinn, in Ländern mit Rechtsverkehr gegen den Uhrzeigersinn."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:51
 msgid ""
@@ -3413,12 +3379,6 @@ msgid ""
 "separated by traffic islands at an intersection without cross)."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:108
-msgid ""
-"`access=yes` means wide open to all transport mode, look at "
-"[access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
-msgstr ""
-
 #: ../plugins/TagFix_MultipleValue.py:65
 msgid "The tag contains multiple values."
 msgstr ""
@@ -3699,12 +3659,6 @@ msgid ""
 "See [possible\n"
 "roles](https://wiki.openstreetmap.org/wiki/Relation:boundary) on boundary\n"
 "relations."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
-msgid ""
-"A large overlap. Requires a visual check (Bing, cadastre or\n"
-"survey)."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_building_shapes.py:65
@@ -4026,4 +3980,54 @@ msgstr ""
 #: ../plugins/Number.py:73
 #, python-brace-format
 msgid "`{0}` is really slow"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
+msgid ""
+"Fix geometry so that buildings don't overlap, but share nodes if physically "
+"joined. If geometry is correct and there's some vertical difference then "
+"make use of the `layer` tag to indicate this."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:187
+msgid ""
+"Large intersections may also be a duplicated mapping - in which case delete "
+"the less accurate elements."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
+msgid "The area of this feature is too small to possibly be a building."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:176
+msgid ""
+"- Correct the gometry if inaccurately mapped. - Correct the tagging if this "
+"isn't a building. - Delete the feature if it's invalid."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:182
+msgid ""
+"It looks like these buildings should be physically joined, but they don't "
+"share nodes to indicate this."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:183
+msgid "Connect the buildings by joining nodes where appropriate."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:191
+msgid "Merge the building parts together as appropriate."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:108
+msgid "Overly permissive access"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:110
+msgid ""
+"The tags `access=yes` and `access=permissive` mark a feature as wide open to"
+" all transport modes. This is almost never the case and more specific tags "
+"should be used instead. For further detail, see [the "
+"wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
 msgstr ""
