@@ -30,8 +30,6 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
             title = T_f('{0} recycling not integrated', 'CSMA'))
         self.possible_merge   = self.def_class(item = 8121, id = 31, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} recycling, integration suggestion', 'CSMA'))
-        self.update_official  = self.def_class(item = 8122, id = 32, level = 3, tags = ['merge', 'recycling'],
-            title = T_f('{0} recycling update', 'CSMA'))
 
         self.init(
             "https://environnement.clissonsevremaine.fr/",
