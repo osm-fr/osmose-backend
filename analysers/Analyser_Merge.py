@@ -508,7 +508,11 @@ class GeoJSON(Parser):
 
     def header(self):
         self.json = self.extractor(json.loads(self.source.open().read()))
-        columns = list(flattenjson(self.json['features'][0]['properties']).keys())
+        columns = set()
+        # Read all entries because structure can vary
+        for feature in self.json['features']:
+            columns = columns.union(list(flattenjson(feature['properties']).keys()))
+        columns = list(columns)
         columns.append(u"geom_x")
         columns.append(u"geom_y")
         return columns
