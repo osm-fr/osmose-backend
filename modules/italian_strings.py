@@ -19,22 +19,36 @@
 ##                                                                       ##
 ###########################################################################
 
+import datetime
+
 
 WORDS_MAP = {
- 'A': 'a',
- 'E': 'e',
- 'Ed': 'ed',
- 'Di': 'di',
- 'Dei': 'dei',
- 'In': 'in',
- 'Societa\'': 'Società',
- 'Sigla': 'sigla',
- 'Responsabilita\'': 'Responsabilità',
- 'Snc': 'S.N.C.',
- 'Sas': 'S.A.S.',
- 'S.P.A.': 'S.p.A.',
- 'Srl': 'S.R.L.',
- 'F.Lli': 'F.lli'
+  'A': 'a',
+  'Dei': 'dei',
+  'Del': 'del',
+  'Di': 'di',
+  'Dott.Ri': 'Dott.ri',
+  'Dott.Ssa': 'Dott.ssa',
+  'Dott.Sse': 'Dott.sse',
+  'Dr.I': 'Dott.ri',
+  'Dr.Ssa': 'Dott.ssa',
+  'Ed': 'ed',
+  'E': 'e',
+  'F.Lli': 'F.lli',
+  'In': 'in',
+  'Responsabilita\'': 'Responsabilità',
+  'Sas': 'S.A.S.',
+  'Sigla': 'sigla',
+  'Snc': 'S.N.C.',
+  'Societa\'': 'Società',
+  'S.P.A.': 'S.p.A.',
+  'Spa': 'S.p.A.',
+  'Srl': 'S.R.L.',
+  'Vii': 'VII',
+  'Vi': 'VI',
+  'Xiv': 'XIV',
+  'Xxiii': 'XXIII',
+  'Xx': 'XX',
 }
 
 # First Char Uppercase
@@ -48,6 +62,20 @@ def normalize(s):
     s = s.replace('"', ' ').replace('*', ' ').title()
     s = ' '.join(map(lambda x: WORDS_MAP.get(x, x), s.split()))
     return s[:1].upper() + s[1:]
+
+
+def osmRefVatin(s):
+    if len(s) != 11 or s.isdigit() is False:
+        return None
+    return 'IT' + s
+
+
+def osmStartDate(s):
+    try:
+        dt = datetime.datetime.strptime(s, '%d/%m/%Y')
+        return dt.date().__str__()
+    except ValueError:
+        return None
 
 ###########################################################################
 import unittest
@@ -72,6 +100,12 @@ class Test(unittest.TestCase):
             ('SERVIZI E GESTIONI ZENIT S.R.L. IN SIGLA - ZENIT S.R.L.', 'Servizi e Gestioni Zenit S.R.L. in sigla - Zenit S.R.L.'),
             ('ITALIANA CARBURANTI S.P.A.', 'Italiana Carburanti S.p.A.'),
             ('SERVIZI & GESTIONI ITALIA srl', 'Servizi & Gestioni Italia S.R.L.'),
+            ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.')
                         ]:
             self.assertEqual(normalize(s), t)
+
+
+    def test_date_formatter(self):
+        self.assertEqual(osmStartDate('27/04/1990'), '1990-04-27')
+        self.assertEqual(osmStartDate('31/04/1990'), None)
 
