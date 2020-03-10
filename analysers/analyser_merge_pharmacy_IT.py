@@ -39,10 +39,10 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
         self.init(
             'http://www.dati.salute.gov.it/dataset/farmacie.jsp',
             'Ministero della Salute',
-            CSV(Source(attribution = u'Ministero della Salute', fileUrl = u'http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV'),
+            CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV'),
                 separator = ';', skip_first_lines = 1, quote = '~'),
             Load('LONGITUDINE', 'LATITUDINE',
-                where = lambda row: row['DATAFINEVALIDITA'] == u'-' and row['LONGITUDINE'] != 'NULL' and row['LATITUDINE'] != 'NULL'),
+                where = lambda row: row['DATAFINEVALIDITA'] == '-'),
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
@@ -59,5 +59,5 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
                         'ref:vatin': lambda res: italian_strings.osmRefVatin(res['PARTITAIVA']),
                         'start_date': lambda res: italian_strings.osmStartDate(res['DATAINIZIOVALIDITA'])},
                     mapping2 = {'operator': lambda res: italian_strings.normalize(res['DESCRIZIONEFARMACIA'])},
-                text = lambda tags, fields: {'en': u'%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
+                text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
 
