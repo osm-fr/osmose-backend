@@ -21,6 +21,7 @@
 ###########################################################################
 
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from modules import italian_strings
 
 
 class Analyser_Merge_Fuel_IT(Analyser_Merge):
@@ -53,18 +54,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:mise': 'idImpianto',
-                        'operator': lambda res: self.normalizeString(res['Gestore']),
+                        'operator': lambda res: italian_strings.normalize(res['Gestore']),
                         'brand': 'Bandiera'},
                 text = lambda tags, fields: {'en': u'%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
 
-    # First Char Uppercase
-    # quotes (") removal
-    # asterisk (*) removal
-    # extra spaces trim
-    # special case stopwords
-    WORDS_MAP = {'A': 'a', 'E': 'e', 'Ed': 'ed', 'Di': 'di', 'Dei': 'dei', 'In': 'in', 'Societa\'': 'Società', 'Sigla': 'sigla',
-        'Responsabilita\'': 'Responsabilità', 'Snc': 'S.N.C.', 'Sas': 'S.A.S.', 'S.P.A.': 'S.p.A.', 'Srl': 'S.R.L.', 'F.Lli': 'F.lli'}
-    def normalizeString(self, s):
-        s = s.replace('"', ' ').replace('*', ' ').title()
-        s = ' '.join(map(lambda x: self.WORDS_MAP.get(x, x), s.split()))
-        return s[:1].upper() + s[1:]
