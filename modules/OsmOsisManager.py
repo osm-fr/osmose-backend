@@ -140,24 +140,6 @@ class OsmOsisManager:
         self.logger.err(u"missing extension: "+extension)
         return False
 
-    if not self.db_persistent:
-      for table in ["geometry_columns", "spatial_ref_sys"]:
-        giscurs.execute("SELECT tablename FROM pg_tables WHERE tablename = %s", [table])
-        if giscurs.rowcount != 1:
-          # On PostGIS 2.0, geometry_columns has been moved to a view
-          giscurs.execute("SELECT viewname FROM pg_views WHERE viewname = %s", [table])
-          if giscurs.rowcount != 1:
-            self.logger.err(u"missing table: "+table)
-            return False
-          else:
-            # No need to check permissions for views
-            continue
-        for perm in ["select", "update", "delete"]:
-          giscurs.execute("SELECT has_table_privilege(%s, %s)", [table,  perm])
-          if giscurs.fetchone()[0] == False:
-            self.logger.err(u"missing permission %s on table: %s" % (perm, table))
-            return False
-
     giscurs.close()
     self.osmosis_close()
 

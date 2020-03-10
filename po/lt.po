@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-02-23 21:36+0000\n"
+"PO-Revision-Date: 2020-03-07 16:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -211,23 +211,23 @@ msgstr "Pertrauktas kelio tęstinumas"
 msgid "Merge building (triangle)"
 msgstr "Sulieti pastatą (trikampis)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:169
+#: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building intersection"
 msgstr "Pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:174
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Large building intersection"
 msgstr "Didelis pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:179
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
 msgstr "Pastatas per mažas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:184
+#: ../analysers/analyser_osmosis_building_overlaps.py:180
 msgid "Gap between buildings"
 msgstr "Tarpas tarp pastatų"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:189
+#: ../analysers/analyser_osmosis_building_overlaps.py:185
 msgid "Large building intersection cluster"
 msgstr "Didelių pastatų susikirtimų grupė"
 
@@ -505,10 +505,6 @@ msgstr "Toponimika"
 msgid "Missing altitude"
 msgstr "Trūksta aukščio"
 
-#: ../plugins/Number.py:30
-msgid "Numerical value"
-msgstr "Skaitinė reikšmė"
-
 #: ../plugins/ODbL_migration.py:32
 msgid "ODbL migration damage"
 msgstr "ODbL migravimo žala"
@@ -726,7 +722,7 @@ msgstr "Pavadinimas prasideda tarpu"
 msgid "Name ends with a space"
 msgstr "Pavadinimas baigiasi tarpu"
 
-#: ../plugins/TagFix_DuplicateValue.py:112
+#: ../plugins/TagFix_DuplicateValue.py:121
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Dubliuotos panašios %(key)s=%(val)s reikšmės"
@@ -755,12 +751,12 @@ msgstr "Konfliktas tarp žymų: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konfliktas tarp žymų: „bridge“ ir „tunnel“"
 
-#: ../plugins/TagFix_MultipleTag.py:157
+#: ../plugins/TagFix_MultipleTag.py:161
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Mini žiedo kryptis šioje šalyje paprastai yra „%s“"
 
-#: ../plugins/TagFix_MultipleTag.py:169
+#: ../plugins/TagFix_MultipleTag.py:173
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Naudokite žymą „toll“ vietoje „fee“"
 
@@ -774,7 +770,7 @@ msgstr "Naudokite wikipedia=%s:*"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Neteisinga Vikipedijos priesaga „%s“"
 
-#: ../plugins/TagFix_DuplicateValue.py:105
+#: ../plugins/TagFix_DuplicateValue.py:114
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Dubliuotos %(key)s=%(val)s reikšmės"
@@ -880,7 +876,7 @@ msgstr "Žiedas kaip plotas"
 msgid "Level or repeat_on tag missing"
 msgstr "Trūksta lygio ar repeat_on žymos"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:194
+#: ../analysers/analyser_osmosis_building_overlaps.py:190
 msgid "Building in parts"
 msgstr "Pastatas dalimis"
 
@@ -921,16 +917,12 @@ msgstr "Keli numeriai „%(numbers)s“ kelyje „%(way)s“"
 msgid "Name with uppercase"
 msgstr "Pavadinimas su didžiosiomis"
 
-#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:106
-msgid "access=yes|permissive allow all transport modes"
-msgstr "access=yes|permissive leidžia visas transporto rūšis"
-
-#: ../plugins/TagFix_MultipleTag.py:198
+#: ../plugins/TagFix_MultipleTag.py:202
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Įskaitant slides, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
 
-#: ../plugins/TagFix_MultipleTag.py:200
+#: ../plugins/TagFix_MultipleTag.py:204
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Įskaitant automobilius, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
@@ -1226,7 +1218,7 @@ msgstr ""
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:114
+#: ../plugins/TagFix_MultipleTag.py:118
 msgid "Suspicious name for a container"
 msgstr ""
 
@@ -1537,7 +1529,7 @@ msgstr ""
 msgid "Missing access way to parking"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:112
+#: ../plugins/TagFix_MultipleTag.py:116
 msgid "Probably only for bottles, not any type of glass"
 msgstr ""
 
@@ -2288,37 +2280,6 @@ msgid ""
 "[import of these geodetic\n"
 "markers](https://wiki.openstreetmap.org/wiki/France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)).\n"
 "It could be that all the surrounding buildings are shifted."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
-msgid ""
-"In France, probably a building imported from cadastre without the\n"
-"[controls\n"
-"needed](https://wiki.openstreetmap.org/wiki/France/Cadastre/Import_semi-automatique_des_b%C3%A2timents#Traitements_des_b.C3.A2timents_avec_JOSM_avant_envoi_vers_serveur_OSM).\n"
-"Error is frequent on areas where lots of building are drawn manually,\n"
-"such as the HOT activations.\n"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
-msgid ""
-"The intersection surface is probably due to inaccuracies in the\n"
-"cadastre/import tools."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:181
-msgid ""
-"There is no intersection, but the surface is too small to be a\n"
-"building."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:186
-msgid ""
-"Space separation is probably due to inaccuracies in the\n"
-"cadastre/import tools."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:191
-msgid "Group of important overlaps. Major problem like a double import."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:64
@@ -3159,16 +3120,6 @@ msgstr ""
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
 msgstr ""
 
-#: ../plugins/Number.py:32
-msgid ""
-"The tag expects a numeric value. Decimals are set with one point and\n"
-"not a comma."
-msgstr ""
-
-#: ../plugins/Number.py:35
-msgid "Change to numeric value and/or the comma to point."
-msgstr ""
-
 #: ../plugins/ODbL_migration.py:34
 msgid ""
 "The last contributor to the object is the ODbL migration robot. The\n"
@@ -3413,12 +3364,6 @@ msgid ""
 "Make sure that it is a roundabout (for example, no a side way in\n"
 "oposite direction around a square or a central roundabout, ordriveways\n"
 "separated by traffic islands at an intersection without cross)."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:108
-msgid ""
-"`access=yes` means wide open to all transport mode, look at "
-"[access](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleValue.py:65
@@ -3703,12 +3648,6 @@ msgid ""
 "relations."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
-msgid ""
-"A large overlap. Requires a visual check (Bing, cadastre or\n"
-"survey)."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_building_shapes.py:65
 msgid ""
 "The shape of the building is characteristic and as such would be\n"
@@ -3886,7 +3825,7 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Date.py:90 ../plugins/Date.py:92 ../plugins/Name_UpperCase.py:60
-#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:56
+#: ../plugins/Name_UpperCase.py:65 ../plugins/Number.py:68
 #: ../plugins/Phone.py:126 ../plugins/Phone.py:140 ../plugins/Phone.py:146
 #: ../plugins/Phone.py:152 ../plugins/Phone.py:158 ../plugins/Phone.py:165
 #: ../plugins/TagFix_BadKey.py:80 ../plugins/TagFix_BadKey.py:82
@@ -3913,14 +3852,9 @@ msgid ""
 " This is particularly the case for corporate/branded locations as well as acronyms."
 msgstr ""
 
-#: ../plugins/Number.py:58
+#: ../plugins/Number.py:70
 #, python-format
 msgid "`height=%s` is really tall, consider changing to `ele=*`"
-msgstr ""
-
-#: ../plugins/Number.py:61
-#, python-brace-format
-msgid "`maxspeed={0}` is really slow"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3995,4 +3929,92 @@ msgstr ""
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:34
 #, python-brace-format
 msgid "{0} waste disposal update"
+msgstr ""
+
+#: ../plugins/Number.py:30
+msgid "Invalid numerical value"
+msgstr ""
+
+#: ../plugins/Number.py:32
+msgid ""
+"The tag expects a numeric value with decimals using a period character\n"
+"and not a comma. \\ For guidelines on numeric values with units see [the\n"
+"wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)."
+msgstr ""
+
+#: ../plugins/Number.py:36
+msgid ""
+"Make sure the relevant tag value is numeric and in the expected format\n"
+"(with valid units if required)."
+msgstr ""
+
+#: ../plugins/Number.py:40
+msgid "Suspicious numerical value"
+msgstr ""
+
+#: ../plugins/Number.py:42
+msgid ""
+"The feature is tagged with an uncommonly high or low numeric value for\n"
+"the specified tag."
+msgstr ""
+
+#: ../plugins/Number.py:45
+msgid ""
+"Check that the value is accurate. Consider whether another tag should\n"
+"be used if the value is valid."
+msgstr ""
+
+#: ../plugins/Number.py:73
+#, python-brace-format
+msgid "`{0}` is really slow"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
+msgid ""
+"Fix geometry so that buildings don't overlap, but share nodes if physically "
+"joined. If geometry is correct and there's some vertical difference then "
+"make use of the `layer` tag to indicate this."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:187
+msgid ""
+"Large intersections may also be a duplicated mapping - in which case delete "
+"the less accurate elements."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
+msgid "The area of this feature is too small to possibly be a building."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:176
+msgid ""
+"- Correct the gometry if inaccurately mapped. - Correct the tagging if this "
+"isn't a building. - Delete the feature if it's invalid."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:182
+msgid ""
+"It looks like these buildings should be physically joined, but they don't "
+"share nodes to indicate this."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:183
+msgid "Connect the buildings by joining nodes where appropriate."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:191
+msgid "Merge the building parts together as appropriate."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:108
+msgid "Overly permissive access"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:110
+msgid ""
+"The tags `access=yes` and `access=permissive` mark a feature as wide open to"
+" all transport modes. This is almost never the case and more specific tags "
+"should be used instead. For further detail, see [the "
+"wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
 msgstr ""

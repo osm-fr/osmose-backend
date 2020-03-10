@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Fuel_FR(Analyser_Merge):
@@ -36,10 +36,10 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
         self.init(
             u"http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
-            CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "08/04/2018",
-                    file = "fuel_FR.csv.bz2")),
-            Load("lon", "lat",
-                where = lambda row: row["lat"] != "48.858858899999994" and row["lon"] != "2.3470599"),
+            GeoJSON(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "03/2020",
+                    fileUrl = u"https://files.pavie.info/depot/remote/carburants_gouv.geojson"),
+                extractor = lambda geojson: geojson),
+            Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -51,20 +51,19 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:prix-carburants": "id",
-                        "fuel:e85": lambda res: "yes" if res["E85"] == "x" else Generate.delete_tag,
-                        "fuel:lpg": lambda res: "yes" if res["GPLc"] == "x" else Generate.delete_tag,
-                        "fuel:e10": lambda res: "yes" if res["E10"] == "x" else Generate.delete_tag,
-                        "fuel:octane_95": lambda res: "yes" if res["SP95"] == "x" else Generate.delete_tag,
-                        "fuel:octane_98": lambda res: "yes" if res["SP98"] == "x" else Generate.delete_tag,
-                        "fuel:diesel": lambda res: "yes" if res["Gazole"] == "x" else Generate.delete_tag,
-                        "vending_machine": lambda res: "fuel" if res["Automate CB"] == "x" else None,
-                        "opening_hours": lambda res: "24/7" if res["debut"] != "" and res["debut"] == res["fin"] and res["saufjour"] == "" else None,
-                        "toilets": lambda res: "yes" if res["Toilettes publiques"] == "x" else None,
-                        "compressed_air": lambda res: "yes" if res["Station de gonflage"] == "x" else None,
+                        "fuel:e85": lambda res: "yes" if res["prices.E85"] else Generate.delete_tag,
+                        "fuel:lpg": lambda res: "yes" if res["prices.GPLc"] else Generate.delete_tag,
+                        "fuel:e10": lambda res: "yes" if res["prices.E10"] else Generate.delete_tag,
+                        "fuel:octane_95": lambda res: "yes" if res["prices.SP95"] else Generate.delete_tag,
+                        "fuel:octane_98": lambda res: "yes" if res["prices.SP98"] else Generate.delete_tag,
+                        "fuel:diesel": lambda res: "yes" if res["prices.Gazole"] else Generate.delete_tag,
+                        "vending_machine": lambda res: "fuel" if res["services"] and "Automate CB 24/24" in res["services"] else None,
+                        "toilets": lambda res: "yes" if res["services"] and "Toilettes publiques" in res["services"] else None,
+                        "compressed_air": lambda res: "yes" if res["services"] and "Station de gonflage" in res["services"] else None,
                         "shop": lambda res: ";".join(filter(lambda x: x, (
-                            "convenience" if res["Boutique alimentaire"] == "x" else None,
-                            "gas" if res["Vente de gaz domestique"] == "x" else None,
+                            "convenience" if res["services"] and "Boutique alimentaire" in res["services"] else None,
+                            "gas" if res["services"] and "Vente de gaz domestique (Butane, Propane)" in res["services"] else None,
                             ))),
-                        "hgv:lanes": lambda res: "yes" if res["Piste poids lourds"] == "x" else None,
-                        "vending": lambda res: "fuel" if res["Automate CB"] == "x" else None},
-                text = lambda tags, fields: {"en": u"%s, %s" % (fields["adresse"], fields["ville"])} )))
+                        "hgv:lanes": lambda res: "yes" if res["services"] and "Piste poids lourds" in res["services"] else None,
+                        "vending": lambda res: "fuel" if res["services"] and "Automate CB 24/24" in res["services"] else None},
+                text = lambda tags, fields: {"en": u"%s, %s" % (fields["addr"], fields["city"])} )))
