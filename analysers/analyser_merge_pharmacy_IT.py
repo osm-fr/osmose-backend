@@ -42,7 +42,9 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV'),
                 separator = ';', quote = '"'),
             Load('LONGITUDINE', 'LATITUDINE',
-                where = lambda row: row['DATAFINEVALIDITA'] == '-'),
+                xFunction = lambda x: x and x.replace(',', '.'),
+                yFunction = lambda y: y and y.replace(',', '.'),
+                where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
