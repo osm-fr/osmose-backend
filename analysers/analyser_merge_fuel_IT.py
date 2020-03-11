@@ -39,10 +39,10 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
         self.init(
             'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
             'MISE - Ministero Sviluppo Economico',
-            CSV(Source(attribution = u'MISE - Ministero Sviluppo Economico', fileUrl = u'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
+            CSV(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
                 separator = ';', skip_first_lines = 1, quote = '~'),
             Load('Longitudine', 'Latitudine',
-                where = lambda row: row['Bandiera'] != u'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] !='NULL'),
+                where = lambda row: row['Bandiera'] != 'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
@@ -56,5 +56,5 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                         'ref:mise': 'idImpianto',
                         'operator': lambda res: italian_strings.normalize(res['Gestore']),
                         'brand': 'Bandiera'},
-                text = lambda tags, fields: {'en': u'%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
+                text = lambda tags, fields: {'en': '%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
 
