@@ -37,7 +37,7 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             title = T_('Pharmacy update'))
 
         self.init(
-            'www.dati.salute.gov.it/dataset/parafarmacie.jsp',
+            'http://www.dati.salute.gov.it/dataset/parafarmacie.jsp',
             'Ministero della Salute',
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_7_download_itemDownload0_upFile.CSV'),
                 separator = ';', skip_first_lines = 1, quote = '~'),
