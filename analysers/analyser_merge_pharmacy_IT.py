@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyright 2020                                                        ##
+## Copyrights Francesco Ansanelli 2020                                   ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -40,10 +40,10 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
             'http://www.dati.salute.gov.it/dataset/farmacie.jsp',
             'Ministero della Salute',
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV'),
-                separator = ';', quote = '"'),
+                separator = ';'),
             Load('LONGITUDINE', 'LATITUDINE',
-                xFunction = lambda x: x and x.replace(',', '.'),
-                yFunction = lambda y: y and y.replace(',', '.'),
+                xFunction = self.float_comma,
+                yFunction = self.float_comma,
                 where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
             Mapping(
                 select = Select(

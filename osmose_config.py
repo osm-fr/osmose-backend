@@ -1206,7 +1206,9 @@ br_region(["north", "tocantins"], 336819, "BR-TO")
 
 it_region = gen_country('europe', 'italy', download_repo=OSMFR, language='it', proj=23032, municipality_ref='ref:ISTAT',
     phone_code='39', phone_len=[6, 11], phone_len_short=[3, 4], phone_international='00', phone_format=r"^(?:(?:[+]%s[- ]*[03])|[18])[0-9]+(?:[- ][0-9]+)?(?:(?:[- ][0-9]+)|$)$", include=[
-    'merge_fuel_IT', 'merge_pharmacy_IT', 'merge_parapharmacy_IT',
+    'merge_fuel_IT',
+    'merge_pharmacy_IT',
+    'merge_parapharmacy_IT',
 ])
 
 it_region("abruzzo", 53937, "IT-65")
