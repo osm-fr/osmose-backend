@@ -40,7 +40,7 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             'http://www.dati.salute.gov.it/dataset/parafarmacie.jsp',
             'Ministero della Salute',
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_7_download_itemDownload0_upFile.CSV'),
-                separator = ';', skip_first_lines = 1, quote = '~'),
+                separator = ';', quote = '"'),
             Load('LONGITUDINE', 'LATITUDINE',
                 where = lambda row: row['DATAFINEVALIDITA'] == '-'),
             Mapping(
