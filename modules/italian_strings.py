@@ -19,8 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-import datetime
-
 
 WORDS_MAP = {
   'A': 'a',
@@ -70,13 +68,6 @@ def osmRefVatin(s):
     return 'IT' + s
 
 
-def osmStartDate(s):
-    try:
-        dt = datetime.datetime.strptime(s, '%d/%m/%Y')
-        return dt.date().__str__()
-    except ValueError:
-        return None
-
 ###########################################################################
 import unittest
 
@@ -103,9 +94,4 @@ class Test(unittest.TestCase):
             ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.')
                         ]:
             self.assertEqual(normalize(s), t)
-
-
-    def test_date_formatter(self):
-        self.assertEqual(osmStartDate('27/04/1990'), '1990-04-27')
-        self.assertEqual(osmStartDate('31/04/1990'), None)
 

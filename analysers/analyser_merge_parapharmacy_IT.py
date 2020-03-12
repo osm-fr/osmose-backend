@@ -59,7 +59,7 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
                     mapping1 = {
                         'ref:msal': 'CODICEIDENTIFICATIVOSITO',
                         'ref:vatin': lambda res: italian_strings.osmRefVatin(res['PARTITAIVA']),
-                        'start_date': lambda res: italian_strings.osmStartDate(res['DATAINIZIOVALIDITA'])},
+                        'start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])},
                     mapping2 = {'operator': lambda res: italian_strings.normalize(res['DENOMINAZIONESITOLOGISTICO'])},
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
 
