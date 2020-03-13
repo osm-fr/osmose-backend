@@ -60,13 +60,6 @@ msgstr ""
 "Specifikuj, zda se jedná o zastávku (platform) nebo místo zastavení "
 "(stop_position)"
 
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-"Chybí značka staršího značení, přidej značku highway=bus_stop / "
-"railway=tram_stop"
-
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr "Je to autobusová zastávka ? Přidej tag highway=bus_stop"
@@ -166,15 +159,15 @@ msgstr "Autobusová zastávka má být uzlem"
 msgid "The interval is invalid (try a number of minutes)"
 msgstr "Interval je neplatný (zkuste několik minut)"
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "Délka je neplatná (zkuste několik minut)"
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr "Chybějící značka intervalu pro určení hlavního intervalu"
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr "Chybějící tag opening_hours"
 
@@ -201,3 +194,7 @@ msgid ""
 msgstr ""
 "Autobusová stanice je obvykle velká oblast, kde zastavuje mnoho autobusů, "
 "zkontrolujte, jestli lze tuto oblast nakreslit"
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
+msgstr ""

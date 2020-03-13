@@ -3,10 +3,11 @@
 # Christian Ostermann, 2019
 # ToniE <osm-ToniE@web.de>, 2020
 # Manfred Brandl <manfred@brandl.net>, 2020
+# kjon kjon <kjon@gmx.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Manfred Brandl <manfred@brandl.net>, 2020\n"
+"Last-Translator: kjon kjon <kjon@gmx.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -62,13 +63,6 @@ msgid ""
 msgstr ""
 "Gebe bitte an, ob das eine Haltestelle (platform) oder eine Position auf der"
 " Fahrbahn ist (stop_position)"
-
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-"Eine notwendige Eigenschaft fehlt, bitte erfasse die Eigenschaft "
-"highway=bus_stop / railway=tram_stop"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
@@ -178,15 +172,15 @@ msgstr "Eine Bushaltestelle soll ein Knoten sein"
 msgid "The interval is invalid (try a number of minutes)"
 msgstr "Das Intervall ist ungültig (Nimm die Anzahl der Minuten)"
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "Die Dauer ist ungültig (Nimm die Anzahl der Minuten)"
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr "Eigenschaft interval zur Angabe des Hauptintervalls fehlt"
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr "Fehlende Eigenschaft \"opening_hours\""
 
@@ -214,3 +208,9 @@ msgid ""
 msgstr ""
 "Ein Busbahnhof ist normalerweise eine größere Fläche an der viele Busse "
 "halten, vielleicht kannst du die Fläche zeichnen"
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
+msgstr ""
+"Ist dies eine Bus- oder Tramhaltestelle? Ergänze ein Tag, um die Art des "
+"Bahnsteigs zu präzisieren"
