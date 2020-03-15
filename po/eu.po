@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-07 16:46+0000\n"
+"PO-Revision-Date: 2020-03-15 18:18+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Basque (http://www.transifex.com/openstreetmap-france/osmose/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1435,8 +1435,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:42
-#: ../plugins/Name_Cadastre_FR.py:67
+#: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:43
+#: ../plugins/Name_Cadastre_FR.py:68
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -3909,11 +3909,6 @@ msgstr ""
 #: ../analysers/analyser_merge_recycling_FR_csma.py:32
 #, python-brace-format
 msgid "{0} recycling, integration suggestion"
-msgstr ""
-
-#: ../analysers/analyser_merge_recycling_FR_csma.py:34
-#, python-brace-format
-msgid "{0} recycling update"
 msgstr ""
 
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:30

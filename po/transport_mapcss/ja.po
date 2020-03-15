@@ -98,25 +98,25 @@ msgstr "公共交通機関の停止場所に旧式のタグがない"
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "networkタグはrouteとroute_masterで同じであるべきです: {0} vs {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
-msgstr ""
+msgstr "operatorタグはrouteとroute_masterで同じであるべきです: {0} vs {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
-msgstr ""
+msgstr "refタグはrouteとroute_masterで同じであるべきです: {0} vs {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "colourタグはrouteとroute_masterで同じであるべきです: {0} vs {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""

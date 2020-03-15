@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-07 21:03+0000\n"
+"PO-Revision-Date: 2020-03-15 15:52+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1270,7 +1270,7 @@ msgstr "Bardzo podobna nazwa"
 #: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-format
 msgid "Way access mismatch relation route=%s"
-msgstr ""
+msgstr "Niedopasowany dostęp do drogi dla relacji route=%s"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
@@ -3759,7 +3759,7 @@ msgstr "Tag {0} mówi już o tym, że to obszar."
 msgid ""
 "The object is missing any tag which defines what kind of feature it is. This"
 " is unexpected for something with a `name` tag."
-msgstr ""
+msgstr "Temu obiektowi brakuje podstawowego tagu, który opisuje, czym jest."
 
 #: ../plugins/TagFix_MultipleTag.py:63
 msgid ""
