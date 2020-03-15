@@ -19,17 +19,14 @@
 ##                                                                       ##
 ###########################################################################
 
+from functools import reduce
 
-WORDS_MAP = {
+
+COMMON_WORDS_MAP = {
   'A': 'a',
   'Dei': 'dei',
   'Del': 'del',
   'Di': 'di',
-  'Dott.Ri': 'Dott.ri',
-  'Dott.Ssa': 'Dott.ssa',
-  'Dott.Sse': 'Dott.sse',
-  'Dr.I': 'Dott.ri',
-  'Dr.Ssa': 'Dott.ssa',
   'Ed': 'ed',
   'E': 'e',
   'F.Lli': 'F.lli',
@@ -42,12 +39,27 @@ WORDS_MAP = {
   'S.P.A.': 'S.p.A.',
   'Spa': 'S.p.A.',
   'Srl': 'S.R.L.',
+}
+
+
+TITLES_MAP = {
+  'Dott.Ri': 'Dott.ri',
+  'Dott.Ssa': 'Dott.ssa',
+  'Dott.Sse': 'Dott.sse',
+  'Dr.I': 'Dott.ri',
+  'Dr.Ssa': 'Dott.ssa',
+}
+
+
+ROMAN_NUMBERS_MAP = {
   'Vii': 'VII',
   'Vi': 'VI',
   'Xiv': 'XIV',
   'Xxiii': 'XXIII',
   'Xx': 'XX',
 }
+
+PHARMACY_WORDS_MAP = reduce(lambda x, y: dict(x, **y), (COMMON_WORDS_MAP, TITLES_MAP, ROMAN_NUMBERS_MAP))
 
 # First Char Uppercase
 # quotes (") removal
@@ -56,10 +68,18 @@ WORDS_MAP = {
 # special case stopwords
 
 
-def normalize(s):
+def normalize(s, replace_map = {}):
     s = s.replace('"', ' ').replace('*', ' ').title()
-    s = ' '.join(map(lambda x: WORDS_MAP.get(x, x), s.split()))
+    s = ' '.join(map(lambda x: replace_map.get(x, x), s.split()))
     return s[:1].upper() + s[1:]
+
+
+def normalize_common(s):
+    return normalize(s, COMMON_WORDS_MAP)
+
+
+def normalize_pharmacy(s):
+    return normalize(s, PHARMACY_WORDS_MAP)
 
 
 def osmRefVatin(s):
@@ -91,7 +111,11 @@ class Test(unittest.TestCase):
             ('SERVIZI E GESTIONI ZENIT S.R.L. IN SIGLA - ZENIT S.R.L.', 'Servizi e Gestioni Zenit S.R.L. in sigla - Zenit S.R.L.'),
             ('ITALIANA CARBURANTI S.P.A.', 'Italiana Carburanti S.p.A.'),
             ('SERVIZI & GESTIONI ITALIA srl', 'Servizi & Gestioni Italia S.R.L.'),
-            ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.')
-                        ]:
-            self.assertEqual(normalize(s), t)
+            ]:
+            self.assertEqual(normalize_common(s), t)
+
+        for (s, t) in [
+             ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.'),
+            ]:
+            self.assertEqual(normalize_pharmacy(s), t)
 

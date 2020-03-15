@@ -54,7 +54,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:mise': 'idImpianto',
-                        'operator': lambda res: italian_strings.normalize(res['Gestore']),
+                        'operator': lambda res: italian_strings.normalize_common(res['Gestore']),
                         'brand': 'Bandiera'},
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
 
