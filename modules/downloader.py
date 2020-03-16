@@ -55,7 +55,7 @@ def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT
 
 
 def get(url, headers={}, session=None):
-    headers['User-Agent'] = 'Wget/1.9.1 - http://osmose.openstreetmap.fr'  # Add "Wget" for Dropbox user-agent checker
+    headers['User-Agent'] = 'python-requests - http://osmose.openstreetmap.fr'  # "Wget" user-agent may be banned (dati.salute.gov.it)
     if not session:
         session = requests_retry_session()
     return session.get(url, headers=headers, stream=True)

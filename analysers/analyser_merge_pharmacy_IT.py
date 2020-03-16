@@ -24,37 +24,42 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 from modules import italian_strings
 
 
-class Analyser_Merge_Fuel_IT(Analyser_Merge):
+class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8200, id = 11, level = 3, tags = ['merge', 'highway'],
-            title = T_('Gas station not integrated'))
+        self.missing_official = self.def_class(item = 7150, id = 11, level = 3, tags = ['merge', 'highway'],
+            title = T_('Pharmacy not integrated'))
         self.missing_osm      = self.def_class(item = 7250, id = 12, level = 3, tags = ['merge', 'highway'],
-            title = T_('Gas station without tag `ref:mise` or invalid'))
-        self.possible_merge   = self.def_class(item = 8201, id = 13, level = 3, tags = ['merge', 'highway'],
-            title = T_('Gas station integration suggestion'))
-        self.update_official  = self.def_class(item = 8202, id = 14, level = 3, tags = ['merge', 'highway'],
-            title = T_('Gas station update'))
+            title = T_('Pharmacy without tag `ref:msal` or invalid'))
+        self.possible_merge   = self.def_class(item = 7151, id = 13, level = 3, tags = ['merge', 'highway'],
+            title = T_('Pharmacy integration suggestion'))
+        self.update_official  = self.def_class(item = 7152, id = 14, level = 3, tags = ['merge', 'highway'],
+            title = T_('Pharmacy update'))
 
         self.init(
-            'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
-            'MISE - Ministero Sviluppo Economico',
-            CSV(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
-                separator = ';', skip_first_lines = 1, quote = '~'),
-            Load('Longitudine', 'Latitudine',
-                where = lambda row: row['Bandiera'] != 'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
+            'http://www.dati.salute.gov.it/dataset/farmacie.jsp',
+            'Ministero della Salute',
+            CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV'),
+                separator = ';'),
+            Load('LONGITUDINE', 'LATITUDINE',
+                xFunction = self.float_comma,
+                yFunction = self.float_comma,
+                where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
-                    tags = {'amenity': 'fuel'}),
-                osmRef = 'ref:mise',
-                conflationDistance = 50,
+                    tags = {'amenity': 'pharmacy'}),
+                osmRef = 'ref:msal',
+                conflationDistance = 80,
                 generate = Generate(
-                    static1 = {'amenity': 'fuel'},
+                    static1 = {
+                        'amenity': 'pharmacy',
+                        'dispensing': 'yes'},
                     static2 = {'source': self.source},
                     mapping1 = {
-                        'ref:mise': 'idImpianto',
-                        'operator': lambda res: italian_strings.normalize_common(res['Gestore']),
-                        'brand': 'Bandiera'},
-                text = lambda tags, fields: {'en': '%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
+                        'ref:msal': 'CODICEIDENTIFICATIVOFARMACIA',
+                        'ref:vatin': lambda res: italian_strings.osmRefVatin(res['PARTITAIVA']),
+                        'start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])},
+                    mapping2 = {'operator': lambda res: italian_strings.normalize_pharmacy(res['DESCRIZIONEFARMACIA'])},
+                text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
 
