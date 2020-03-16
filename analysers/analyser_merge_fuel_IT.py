@@ -21,7 +21,9 @@
 ###########################################################################
 
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .modules import downloader
 from .modules import italian_strings
+import csv
 
 
 OCTANE_95  = 1 << 0# fuel:octane_95=yes
@@ -51,11 +53,8 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
         self.init(
             'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
             'MISE - Ministero Sviluppo Economico',
-            CSV(
-                Source_Fuel(
-                    (attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv'),
-                    (attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'))
-                ), separator = ';', quote = '~'),
+            CSV(Source_Fuel(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
+                    fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv')),
             Load('Longitudine', 'Latitudine',
                 where = lambda row: row['Bandiera'] != 'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
             Mapping(
@@ -85,20 +84,30 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
 
 
-class Source_Fuel(Source, Source2):
+class Source_Fuel(Source):
+    def __init__(self, source, fileUrl):
+        self.source = source
+        self.fileUrl = fileUrl
+
+    def __getattr__(self, name):
+        return getattr(self.source, name)
+
     def open(self):
-        # Cheat the parent open
-        self.encoding = 'UTF-8'
-        f = Source.open(self)
+        return open(downloader.update_cache('join://' + self.source.fileUrl, 60, self.fetch))
+
+    def fetch(self, url, tmp_file, date_string=None):
+        f = downloader.urlopen(self.fileUrl, 60)
 
         #         0              1      2      3      4
         #idImpianto;descCarburante;prezzo;isSelf;dtComu
         csvreader = csv.reader(f, delimiter=';')
+        next(csvreader) # Skip date
+        next(csvreader) # Skip header
 
         impianti = {}
         for row in csvreader:
             impianto = impianti.get(row[0], 0)
-            carburante = self.evaluate_fuel(row[1])
+            carburante = self.FUEL_TYPE_MAP.get(row[1].upper())
             if (impianto & carburante) != 0:
                 continue
             if self.diff_days(self.date_format(row[4], '%d/%m/%Y %H:%M:%S')) > 30:
@@ -106,11 +115,11 @@ class Source_Fuel(Source, Source2):
             impianto |= carburante
             impianti[row[0]] = impianto
 
-        csvfile = io.StringIO()
+        csvfile = open(tmp_file, 'w', encoding='utf-8')
         writer = csv.writer(csvfile)
 
-        f = Source2.open(self)
-        csvreader = csv.reader(f, delimiter=';')
+        f = self.source.open(self)
+        csvreader = csv.reader(f, delimiter=';', quote = '~')
         for row in csvreader:
             if row[0] == 'idImpianto':
                 writer.writerow(row + ';Carburanti')
@@ -118,57 +127,53 @@ class Source_Fuel(Source, Source2):
                 impianto = impianti.get(row[0])
                 if impianto:
                     writer.writerow(row + ';' + impianto)
-        csvfile.seek(0)
-        return csvfile
+
+        return True
 
 
-FUEL_TYPE_MAP = {
-    'BENZINA':                  OCTANE_95,
-    'BENZINA 100 OTTANI':       OCTANE_100,
-    'BENZINA ENERGY 98 OTTANI': OCTANE_98,
-    'BENZINA PLUS 98':          OCTANE_98,
-    'BENZINA SHELL V POWER':    OCTANE_100,
-    'BENZINA SPECIALE':         OCTANE_100,
-    'BENZINA WR 100':           OCTANE_100,
-    'BLU DIESEL ALPINO':        DIESEL_CL2,
-    'BLUE DIESEL':              GTL_DIESEL,
-    'BLUE SUPER':               OCTANE_100,
-    'DIESEL E+10':              GTL_DIESEL,# repsol
-    'DIESELMAX':                GTL_DIESEL,
-    'DIESEL SHELL V POWER':     GTL_DIESEL,
-    'E-DIESEL':                 HGV_DIESEL,# esso
-    'EXCELLIUM DIESEL':         GTL_DIESEL,
-    'F101':                     OCTANE_100,
-    'GASOLIO':                  DIESEL,
-    'GASOLIO ALPINO':           DIESEL_CL2,
-    'GASOLIO ARTICO':           DIESEL_CL2,
-    'GASOLIO ECOPLUS':          DIESEL,
-    'GASOLIO ENERGY D':         HGV_DIESEL,
-    'GASOLIO GELO':             DIESEL_CL2,
-    'GASOLIO ORO DIESEL':       GTL_DIESEL,
-    'GASOLIO PREMIUM':          GTL_DIESEL,
-    'GASOLIO SPECIALE':         GTL_DIESEL,
-    'GNL':                      LNG,
-    'GP DIESEL':                GTL_DIESEL,
-    'GPL':                      LPG,
-    'HI-Q DIESEL':              GTL_DIESEL,
-    'HIQ PERFORM+':             OCTANE_100,
-    'L-GNC':                    LNG,
-    'MAGIC DIESEL':             HGV_DIESEL,
-    'METANO':                   CNG,
-    'R100':                     OCTANE_100,# repsol
-    'S-DIESEL':                 GTL_DIESEL,# ?
-    'SUPREME DIESEL':           GTL_DIESEL,# esso
-    'V-POWER':                  OCTANE_100,
-    'V-POWER DIESEL' :          GTL_DIESEL,
-}
+    FUEL_TYPE_MAP = {
+        'BENZINA':                  OCTANE_95,
+        'BENZINA 100 OTTANI':       OCTANE_100,
+        'BENZINA ENERGY 98 OTTANI': OCTANE_98,
+        'BENZINA PLUS 98':          OCTANE_98,
+        'BENZINA SHELL V POWER':    OCTANE_100,
+        'BENZINA SPECIALE':         OCTANE_100,
+        'BENZINA WR 100':           OCTANE_100,
+        'BLU DIESEL ALPINO':        DIESEL_CL2,
+        'BLUE DIESEL':              GTL_DIESEL,
+        'BLUE SUPER':               OCTANE_100,
+        'DIESEL E+10':              GTL_DIESEL,# repsol
+        'DIESELMAX':                GTL_DIESEL,
+        'DIESEL SHELL V POWER':     GTL_DIESEL,
+        'E-DIESEL':                 HGV_DIESEL,# esso
+        'EXCELLIUM DIESEL':         GTL_DIESEL,
+        'F101':                     OCTANE_100,
+        'GASOLIO':                  DIESEL,
+        'GASOLIO ALPINO':           DIESEL_CL2,
+        'GASOLIO ARTICO':           DIESEL_CL2,
+        'GASOLIO ECOPLUS':          DIESEL,
+        'GASOLIO ENERGY D':         HGV_DIESEL,
+        'GASOLIO GELO':             DIESEL_CL2,
+        'GASOLIO ORO DIESEL':       GTL_DIESEL,
+        'GASOLIO PREMIUM':          GTL_DIESEL,
+        'GASOLIO SPECIALE':         GTL_DIESEL,
+        'GNL':                      LNG,
+        'GP DIESEL':                GTL_DIESEL,
+        'GPL':                      LPG,
+        'HI-Q DIESEL':              GTL_DIESEL,
+        'HIQ PERFORM+':             OCTANE_100,
+        'L-GNC':                    LNG,
+        'MAGIC DIESEL':             HGV_DIESEL,
+        'METANO':                   CNG,
+        'R100':                     OCTANE_100,# repsol
+        'S-DIESEL':                 GTL_DIESEL,# ?
+        'SUPREME DIESEL':           GTL_DIESEL,# esso
+        'V-POWER':                  OCTANE_100,
+        'V-POWER DIESEL' :          GTL_DIESEL,
+    }
 
 
-def evaluate_fuel(self, s):
-    return FUEL_TYPE_MAP.get(s.upper())
-
-
-def diff_days(self, date_string):
-    d1 = datetime.datetime.strptime(date_string, '%Y-%m-%d').date()
-    d2 = datetime.date.today()
-    return abs((d2 - d1).days)
+    def diff_days(self, date_string):
+        d1 = datetime.datetime.strptime(date_string, '%Y-%m-%d').date()
+        d2 = datetime.date.today()
+        return abs((d2 - d1).days)
