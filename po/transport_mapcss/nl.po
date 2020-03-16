@@ -61,13 +61,6 @@ msgstr ""
 "Specifieer of het om een halte (platform) of om een stoppositie op de weg "
 "gaat (stop_position)."
 
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-"De legacy tag ontbreekt, voeg de tag highway=bus_stop / railway=tram_stop "
-"toe"
-
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr "Is dit een bushalte?   tag highway=bus_stop toevoegen"
@@ -171,15 +164,15 @@ msgstr "Een bushalte wordt verondersteld een node te zijn"
 msgid "The interval is invalid (try a number of minutes)"
 msgstr "De interval is ongeldig (probeer een nummer of minuten)"
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "De duur is ongeldig (probeer een nummer of minuten) "
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr "Ontbrekende interval tag om de hoofdinterval te specificeren"
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr " opening_hours tag ontbreekt"
 
@@ -207,3 +200,7 @@ msgid ""
 msgstr ""
 "Een busstation is gebruikelijk een groot gebied waar veel bussen "
 "stoppen,controleer of je deze gebied kan tekenen"
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
+msgstr ""

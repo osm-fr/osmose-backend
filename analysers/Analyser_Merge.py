@@ -22,6 +22,7 @@
 
 import io
 import bz2
+import datetime
 import gzip
 from backports import csv # In python3 only just "import csv"
 import inspect
@@ -888,6 +889,13 @@ class Analyser_Merge(Analyser_Osmosis):
         else:
             return val
 
+    def date_format(self, date_string, format='%d/%m/%Y'):
+        try:
+            dt = datetime.datetime.strptime(date_string, format)
+            return str(dt.date())
+        except ValueError:
+            return None
+
     def source(self, a):
         return a.parser.source.as_tag_value()
 
@@ -1177,3 +1185,8 @@ class Test(TestAnalyserOsmosis):
 
                     self.root_err = self.load_errors()
                     self.check_num_err(min=0, max=5)
+
+    def test_date_formatter(self):
+        self.assertEqual(self.date_format('27/04/1990'), '1990-04-27')
+        self.assertEqual(self.date_format('04/27/1990', '%m/%d/%Y'), '1990-04-27')
+        self.assertEqual(self.date_format('31/04/1990'), None)

@@ -2,11 +2,11 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Philippe Verdy, 2019
 # deuzeffe, 2019
-# Noémie <nlehuby@zaclys.net>, 2019
+# Noémie <nlehuby@zaclys.net>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Noémie <nlehuby@zaclys.net>, 2019\n"
+"Last-Translator: Noémie <nlehuby@zaclys.net>, 2020\n"
 "Language-Team: French (https://www.transifex.com/openstreetmap-france/teams/17462/fr/)\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -64,13 +64,6 @@ msgid ""
 msgstr ""
 "Préciser s’il s’agit d’une station (“platform”) ou d’un emplacement sur la "
 "route (“stop_position”)"
-
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-"L’attribut historique est manquant, ajouter “highway=bus_stop” ou "
-"“railway=tram_stop”"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
@@ -180,17 +173,17 @@ msgstr "Un arrêt de bus est censé être un nœud "
 msgid "The interval is invalid (try a number of minutes)"
 msgstr "La fréquence de passage est invalide (essayer un nombre en minutes)"
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "La durée est invalide (essayer un nombre en minutes)"
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr ""
 "Il manque l'attribut interval pour préciser la fréquence de passage "
 "principale"
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr "Attribut opening_hours (heures de service) manquant"
 
@@ -218,3 +211,9 @@ msgid ""
 msgstr ""
 "Une gare routière est normalement une large zone où s'arrêtent de nombreux "
 "bus. Vérifier si un polygone peut être dessiné pour la représenter"
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
+msgstr ""
+"Est-ce un arrêt de bus ou de tramway ? Ajouter un attribut pour préciser le "
+"type d'arrêt."

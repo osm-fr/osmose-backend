@@ -60,11 +60,6 @@ msgstr ""
 "مشخص کنید آیا ایستگاه است (سکو، platform) یا نقطه‌ای در جاده (stop_position،"
 " محل توقف وسیله)"
 
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr "کمبود تگ قدیم، تگ highway=bus_stop یا railway=tram_stop را اضافه کنید"
-
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr "ایستگاه اتوبوس است؟ تگ highway=bus_stop را بدهید"
@@ -159,15 +154,15 @@ msgstr ""
 msgid "The interval is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr ""
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr ""
 
@@ -188,4 +183,8 @@ msgstr ""
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
+msgstr ""
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""

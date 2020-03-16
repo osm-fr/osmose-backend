@@ -54,11 +54,6 @@ msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
 
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr ""
@@ -149,15 +144,15 @@ msgstr "Autobus geltokia nodo bat izan beharko luke"
 msgid "The interval is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr ""
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr ""
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr ""
 
@@ -178,4 +173,8 @@ msgstr ""
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
+msgstr ""
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""

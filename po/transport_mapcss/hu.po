@@ -64,13 +64,6 @@ msgstr ""
 "Határozza meg, hogy ez egy megálló/peron [platform] vagy a jármű "
 "megállásának helye az úton [stop_position]"
 
-#: ../transport.validator.mapcss:235
-msgid ""
-"The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop"
-msgstr ""
-"Hiányzik az örökségcímke. Adja hozzá valamelyiket: [highway=bus_stop] vagy  "
-"[railway=tram_stop]"
-
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
 msgstr "Ez egy buszmegálló? Adja hozzá a [highway=bus_stop] címkét"
@@ -186,15 +179,15 @@ msgstr ""
 "Érvénytelen [interval] követési időköz (próbálja meg a percek számát "
 "megadni)"
 
-#: ../transport.validator.mapcss:314
+#: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
 msgstr "Érvénytelen időtartam (próbálja meg a percek számát megadni)"
 
-#: ../transport.validator.mapcss:320
+#: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
 msgstr "Hiányzik az [interval] címke a fő követési időköz meghatározásához"
 
-#: ../transport.validator.mapcss:326
+#: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
 msgstr "Hiányzik az [opening_hours] nyitva tartás címke"
 
@@ -222,3 +215,7 @@ msgid ""
 msgstr ""
 "A buszállomás általában egy nagyobb terület, ahol sok busz megáll. "
 "Ellenőrizze, hogy meg tudja-e rajzolni ezt a területet"
+
+#: ../transport.validator.mapcss:235
+msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
+msgstr ""
