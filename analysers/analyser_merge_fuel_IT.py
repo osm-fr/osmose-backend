@@ -39,18 +39,6 @@ LPG        = 1 << 8# fuel:lpg=yes
 CNG        = 1 << 9# fuel:cng=yes
 
 
-OCTANE_95  = 1 << 0# fuel:octane_95=yes
-OCTANE_98  = 1 << 1# fuel:octane_98=yes
-OCTANE_100 = 1 << 2# fuel:octane_100=yes
-DIESEL     = 1 << 3# fuel:diesel=yes
-DIESEL_CL2 = 1 << 4# fuel:diesel:class2=yes
-GTL_DIESEL = 1 << 5# fuel:GTL_diesel=yes
-HGV_DIESEL = 1 << 6# fuel:HGV_diesel=yes
-LNG        = 1 << 7# fuel:lng=yes
-LPG        = 1 << 8# fuel:lpg=yes
-CNG        = 1 << 9# fuel:cng=yes
-
-
 class Analyser_Merge_Fuel_IT(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
