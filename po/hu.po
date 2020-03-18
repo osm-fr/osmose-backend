@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-15 18:18+0000\n"
+"PO-Revision-Date: 2020-03-18 19:24+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -709,7 +709,7 @@ msgid "Wallonia stop, integration suggestion"
 msgstr "Wallonia tömegközlekedési megálló: kiegészítési javaslat"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
-#: ../analysers/analyser_merge_fuel_IT.py:30
+#: ../analysers/analyser_merge_fuel_IT.py:31
 msgid "Gas station not integrated"
 msgstr "Benzinkút: nincs a térképen"
 
@@ -1049,12 +1049,12 @@ msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr "Érvénytelen érték az [addr:interpolation] vagy az [addr:inclusion] kulcs mellett"
 
 #: ../analysers/analyser_merge_fuel_FR.py:32
-#: ../analysers/analyser_merge_fuel_IT.py:34
+#: ../analysers/analyser_merge_fuel_IT.py:35
 msgid "Gas station integration suggestion"
 msgstr "Benzinkút: kiegészítési javaslat"
 
 #: ../analysers/analyser_merge_fuel_FR.py:34
-#: ../analysers/analyser_merge_fuel_IT.py:36
+#: ../analysers/analyser_merge_fuel_IT.py:37
 msgid "Gas station update"
 msgstr "Benzinkút: frissítendő"
 
@@ -3878,7 +3878,7 @@ msgid ""
 "However, this should probably still conform to the typical format used for values of the given tag."
 msgstr ""
 
-#: ../analysers/analyser_merge_fuel_IT.py:32
+#: ../analysers/analyser_merge_fuel_IT.py:33
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
@@ -4015,4 +4015,24 @@ msgid ""
 " all transport modes. This is almost never the case and more specific tags "
 "should be used instead. For further detail, see [the "
 "wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)."
+msgstr ""
+
+#: ../analysers/analyser_merge_parapharmacy_IT.py:31
+#: ../analysers/analyser_merge_pharmacy_IT.py:31
+msgid "Pharmacy not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_parapharmacy_IT.py:33
+#: ../analysers/analyser_merge_pharmacy_IT.py:33
+msgid "Pharmacy without tag `ref:msal` or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_parapharmacy_IT.py:35
+#: ../analysers/analyser_merge_pharmacy_IT.py:35
+msgid "Pharmacy integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_parapharmacy_IT.py:37
+#: ../analysers/analyser_merge_pharmacy_IT.py:37
+msgid "Pharmacy update"
 msgstr ""
