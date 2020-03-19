@@ -27,13 +27,11 @@ from .modules import italian_strings
 class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 7150, id = 11, level = 3, tags = ['merge', 'highway'],
+        self.missing_official = self.def_class(item = 8210, id = 11, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy not integrated'))
-        self.missing_osm      = self.def_class(item = 7250, id = 12, level = 3, tags = ['merge', 'highway'],
-            title = T_('Pharmacy without tag `ref:msal` or invalid'))
-        self.possible_merge   = self.def_class(item = 7151, id = 13, level = 3, tags = ['merge', 'highway'],
+        self.possible_merge   = self.def_class(item = 8211, id = 13, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy integration suggestion'))
-        self.update_official  = self.def_class(item = 7152, id = 14, level = 3, tags = ['merge', 'highway'],
+        self.update_official  = self.def_class(item = 8211, id = 14, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy update'))
 
         self.init(
