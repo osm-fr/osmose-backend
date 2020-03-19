@@ -29,6 +29,8 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8210, id = 11, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy not integrated'))
+        self.missing_osm      = self.def_class(item = 8212, id = 12, level = 3, tags = ['merge', 'highway'],
+            title = T_('Pharmacy without tag `ref:msal` or invalid'))
         self.possible_merge   = self.def_class(item = 8211, id = 13, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy integration suggestion'))
         self.update_official  = self.def_class(item = 8211, id = 14, level = 3, tags = ['merge', 'highway'],
@@ -48,6 +50,7 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
                     types = ['nodes', 'ways'],
                     tags = {'amenity': 'pharmacy'}),
                 osmRef = 'ref:msal',
+                extraJoin = "dispensing",
                 conflationDistance = 80,
                 generate = Generate(
                     static1 = {
