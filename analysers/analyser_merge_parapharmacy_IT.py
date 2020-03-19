@@ -33,7 +33,7 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             title = T_('Pharmacy without tag `ref:msal` or invalid'))
         self.possible_merge   = self.def_class(item = 8211, id = 23, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy integration suggestion'))
-        self.update_official  = self.def_class(item = 8211, id = 24, level = 3, tags = ['merge', 'highway'],
+        self.update_official  = self.def_class(item = 8212, id = 24, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy update'))
 
         self.init(
@@ -63,4 +63,3 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
                         'start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])},
                     mapping2 = {'operator': lambda res: italian_strings.normalize_pharmacy(res['DENOMINAZIONESITOLOGISTICO'])},
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
-
