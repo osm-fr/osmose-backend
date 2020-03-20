@@ -48,9 +48,10 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
-                    tags = {'amenity': 'pharmacy'}),
+                    tags = {
+                        'amenity': 'pharmacy',
+                        'dispensing': 'no'}),
                 osmRef = 'ref:msal',
-                extraJoin = "dispensing",
                 conflationDistance = 80,
                 generate = Generate(
                     static1 = {
