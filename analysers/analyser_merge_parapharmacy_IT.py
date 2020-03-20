@@ -27,13 +27,13 @@ from .modules import italian_strings
 class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 7150, id = 21, level = 3, tags = ['merge', 'highway'],
+        self.missing_official = self.def_class(item = 8210, id = 21, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy not integrated'))
         self.missing_osm      = self.def_class(item = 7250, id = 22, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy without tag `ref:msal` or invalid'))
-        self.possible_merge   = self.def_class(item = 7151, id = 23, level = 3, tags = ['merge', 'highway'],
+        self.possible_merge   = self.def_class(item = 8211, id = 23, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy integration suggestion'))
-        self.update_official  = self.def_class(item = 7152, id = 24, level = 3, tags = ['merge', 'highway'],
+        self.update_official  = self.def_class(item = 8212, id = 24, level = 3, tags = ['merge', 'highway'],
             title = T_('Pharmacy update'))
 
         self.init(
@@ -48,7 +48,9 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
-                    tags = {'amenity': 'pharmacy'}),
+                    tags = {
+                        'amenity': 'pharmacy',
+                        'dispensing': 'no'}),
                 osmRef = 'ref:msal',
                 conflationDistance = 80,
                 generate = Generate(
@@ -62,4 +64,3 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
                         'start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])},
                     mapping2 = {'operator': lambda res: italian_strings.normalize_pharmacy(res['DENOMINAZIONESITOLOGISTICO'])},
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
-
