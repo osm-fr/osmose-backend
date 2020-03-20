@@ -134,7 +134,7 @@ msgstr "カラーコードは'#'から始まり、続けて16進数の3または
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
-msgstr ""
+msgstr "公共交通機関のラインカラーはcolourタグにあるべきです"
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
