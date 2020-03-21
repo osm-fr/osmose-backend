@@ -164,7 +164,7 @@
     "missing_osm": false,
     "classes": 50,
     "level": 3,
-    "title": "Etablissement d'Hébergement pour Personnes Âgées",
+    "title": "Établissement d'Hébergement pour Personnes Âgées",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -186,7 +186,7 @@
     "missing_osm": false,
     "classes": 60,
     "level": 3,
-    "title": "Etablissement de l'Aide Sociale à l'Enfance",
+    "title": "Établissement de l'Aide Sociale à l'Enfance",
     "tags_select": {
       "amenity": "social_facility"
     },
