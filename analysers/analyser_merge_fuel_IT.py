@@ -24,6 +24,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 from .modules import downloader
 from .modules import italian_strings
 import csv
+import datetime
 
 
 OCTANE_95  = 1 << 0# fuel:octane_95=yes
@@ -70,16 +71,16 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                         'ref:mise': 'idImpianto',
                         'operator': lambda res: italian_strings.normalize_common(res['Gestore']),
                         'brand': 'Bandiera',
-                        'fuel:octane_95': lambda res: 'yes' if (res['Carburanti'] & OCTANE_95) != 0 else None,
-                        'fuel:octane_98': lambda res: 'yes' if (res['Carburanti'] & OCTANE_98) != 0 else None,
-                        'fuel:octane_100': lambda res: 'yes' if (res['Carburanti'] & OCTANE_100) != 0 else None,
-                        'fuel:diesel': lambda res: 'yes' if (res['Carburanti'] & DIESEL) != 0 else None,
-                        'fuel:diesel:class2': lambda res: 'yes' if (res['Carburanti'] & DIESEL_CL2) != 0 else None,
-                        'fuel:GTL_diesel': lambda res: 'yes' if (res['Carburanti'] & GTL_DIESEL) != 0 else None,
-                        'fuel:HGV_diesel': lambda res: 'yes' if (res['Carburanti'] & HGV_DIESEL) != 0 else None,
-                        'fuel:lng': lambda res: 'yes' if (res['Carburanti'] & LNG) != 0 else None,
-                        'fuel:lpg': lambda res: 'yes' if (res['Carburanti'] & LPG) != 0 else None,
-                        'fuel:cng': lambda res: 'yes' if (res['Carburanti'] & CNG) != 0 else None,
+                        'fuel:octane_95': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_95) != 0 else None,
+                        'fuel:octane_98': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_98) != 0 else None,
+                        'fuel:octane_100': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_100) != 0 else None,
+                        'fuel:diesel': lambda res: 'yes' if (int(res['Carburanti']) & DIESEL) != 0 else None,
+                        'fuel:diesel:class2': lambda res: 'yes' if (int(res['Carburanti']) & DIESEL_CL2) != 0 else None,
+                        'fuel:GTL_diesel': lambda res: 'yes' if (int(res['Carburanti']) & GTL_DIESEL) != 0 else None,
+                        'fuel:HGV_diesel': lambda res: 'yes' if (int(res['Carburanti']) & HGV_DIESEL) != 0 else None,
+                        'fuel:lng': lambda res: 'yes' if (int(res['Carburanti']) & LNG) != 0 else None,
+                        'fuel:lpg': lambda res: 'yes' if (int(res['Carburanti']) & LPG) != 0 else None,
+                        'fuel:cng': lambda res: 'yes' if (int(res['Carburanti']) & CNG) != 0 else None,
                     },
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
 
@@ -110,7 +111,8 @@ class Source_Fuel(Source):
             carburante = self.FUEL_TYPE_MAP.get(row[1].upper())
             if (impianto & carburante) != 0:
                 continue
-            if self.diff_days(self.date_format(row[4], '%d/%m/%Y %H:%M:%S')) > 30:
+            dt_price = self.date_format(row[4], '%d/%m/%Y %H:%M:%S')
+            if not dt_price or self.diff_days(dt_price) > 30:
                 continue
             impianto |= carburante
             impianti[row[0]] = impianto
@@ -118,18 +120,18 @@ class Source_Fuel(Source):
         csvfile = open(tmp_file, 'w', encoding='utf-8')
         writer = csv.writer(csvfile)
 
-        f = self.source.open(self)
-        csvreader = csv.reader(f, delimiter=';', quote = '~')
+        f = self.source.open()
+        csvreader = csv.reader(f, delimiter=';', quotechar = '~')
+        next(csvreader) # Skip date
+        header = next(csvreader)
+        writer.writerow(header + ['Carburanti'])
         for row in csvreader:
-            if row[0] == 'idImpianto':
-                writer.writerow(row + ';Carburanti')
-            else:
-                impianto = impianti.get(row[0])
-                if impianto:
-                    writer.writerow(row + ';' + impianto)
+            impianto = impianti.get(row[0])
+            if impianto:
+                writer.writerow(row + [ impianto ])
 
-        return True
-
+        csvfile.seek(0)
+        return csvfile
 
     FUEL_TYPE_MAP = {
         'BENZINA':                  OCTANE_95,
@@ -177,3 +179,11 @@ class Source_Fuel(Source):
         d1 = datetime.datetime.strptime(date_string, '%Y-%m-%d').date()
         d2 = datetime.date.today()
         return abs((d2 - d1).days)
+
+
+    def date_format(self, date_string, format='%d/%m/%Y'):
+        try:
+            dt = datetime.datetime.strptime(date_string, format)
+            return str(dt.date())
+        except ValueError:
+            return None
