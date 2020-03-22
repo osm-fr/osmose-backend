@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-18 19:24+0000\n"
+"PO-Revision-Date: 2020-03-22 13:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -733,7 +733,7 @@ msgid "Wallonia stop, integration suggestion"
 msgstr "Wallonie, arrêt de bus/tram : proposition d’intégration"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
-#: ../analysers/analyser_merge_fuel_IT.py:31
+#: ../analysers/analyser_merge_fuel_IT.py:46
 msgid "Gas station not integrated"
 msgstr "Station-service non intégrée"
 
@@ -1073,12 +1073,12 @@ msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr "Valeur incorrecte pour “addr:interpolation” ou “addr:inclusion”"
 
 #: ../analysers/analyser_merge_fuel_FR.py:32
-#: ../analysers/analyser_merge_fuel_IT.py:35
+#: ../analysers/analyser_merge_fuel_IT.py:50
 msgid "Gas station integration suggestion"
 msgstr "Station-service, proposition d’intégration"
 
 #: ../analysers/analyser_merge_fuel_FR.py:34
-#: ../analysers/analyser_merge_fuel_IT.py:37
+#: ../analysers/analyser_merge_fuel_IT.py:52
 msgid "Gas station update"
 msgstr "Station-service, mise à jour"
 
@@ -1287,7 +1287,6 @@ msgstr "Ne devrait pas comporter l’attribut “ref”=“%s”"
 msgid "Close similar name"
 msgstr "Nom proche similaire"
 
-#: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-format
 msgid "Way access mismatch relation route=%s"
 msgstr "Accès à la voie ne correspondant pas à la relation “route”=“%s”"
@@ -3902,7 +3901,7 @@ msgid ""
 "However, this should probably still conform to the typical format used for values of the given tag."
 msgstr ""
 
-#: ../analysers/analyser_merge_fuel_IT.py:33
+#: ../analysers/analyser_merge_fuel_IT.py:48
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
@@ -4059,4 +4058,9 @@ msgstr ""
 #: ../analysers/analyser_merge_parapharmacy_IT.py:37
 #: ../analysers/analyser_merge_pharmacy_IT.py:37
 msgid "Pharmacy update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_route_access.py:97
+#, python-brace-format
+msgid "Way access mismatch relation route={0}"
 msgstr ""
