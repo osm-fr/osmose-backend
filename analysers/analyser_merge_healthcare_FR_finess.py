@@ -77,7 +77,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             CSV(Source_Finess(attribution = 'Le ministère des solidarités et de la santé', millesime = '03/2020', encoding = 'ISO-8859-1',
                     fileUrl = 'https://www.data.gouv.fr/fr/datasets/r/e58dd347-8149-4b94-b585-a930540b3cad')),
             Load("coordxet", "coordyet", srid = srid,
-                select = {"categagretab": categories},
+                select = {"categetab": categories},
                 where = lambda res: is_in(res["departement"])),
             Mapping(
                 select = Select(
