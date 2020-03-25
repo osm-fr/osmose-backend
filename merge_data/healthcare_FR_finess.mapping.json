@@ -138,6 +138,27 @@
   },
   {
     "categories": [
+      "632"
+    ],
+    "items": [
+      8210,
+      7150
+    ],
+    "classes": 90,
+    "level": 3,
+    "title": "Structure dispensatrice d'oxygène à usage médical",
+    "tags_select": {
+      "shop": "medical_supply"
+    },
+    "tags_generate1": {
+      "shop": "medical_supply",
+      "medical_supply": "respiratory",
+      "type:FR:FINESS": "632"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
       "252",
       "253",
       "255",
