@@ -213,7 +213,49 @@
   {
     "categories": [
       "202",
-      "500",
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 120,
+    "level": 3,
+    "title": "Résidences autonomie",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "assisted_living",
+      "social_facility:for": "senior"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "500"
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 110,
+    "level": 3,
+    "title": "Etablissement d'hébergement pour personnes âgées dépendantes (EHPAD)",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "nursing_home",
+      "social_facility:for": "senior"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
       "501",
       "502"
     ],
@@ -224,7 +266,7 @@
     "missing_osm": false,
     "classes": 50,
     "level": 3,
-    "title": "Établissement d'Hébergement pour Personnes Âgées",
+    "title": "Etablissement d'hébergement pour personnes âgées (EHPA)",
     "tags_select": {
       "amenity": "social_facility"
     },
