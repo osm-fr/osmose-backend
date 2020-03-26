@@ -399,7 +399,7 @@ msgstr ""
 msgid "Soundex test"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:139
+#: ../analysers/analyser_osmosis_tag_typo.py:140
 msgid "Typo in tag"
 msgstr ""
 
@@ -2775,11 +2775,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:141
+#: ../analysers/analyser_osmosis_tag_typo.py:142
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:143
+#: ../analysers/analyser_osmosis_tag_typo.py:144
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
