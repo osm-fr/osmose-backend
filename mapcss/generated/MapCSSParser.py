@@ -1,9 +1,13 @@
-# Generated from MapCSS.g4 by ANTLR 4.7.1
+# Generated from MapCSS.g4 by ANTLR 4.8
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
-from typing.io import TextIO
 import sys
+if sys.version_info[1] > 5:
+	from typing import TextIO
+else:
+	from typing.io import TextIO
+
 
 def serializedATN():
     with StringIO() as buf:
@@ -353,9 +357,10 @@ class MapCSSParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.7.1")
+        self.checkVersion("4.8")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
+
 
 
 
@@ -416,6 +421,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class EntryContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -455,6 +461,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Rule_Context(ParserRuleContext):
 
@@ -534,6 +541,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class SelectorContext(ParserRuleContext):
 
@@ -657,6 +665,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Simple_selector_operatorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -719,6 +728,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Link_selectorContext(ParserRuleContext):
 
@@ -814,6 +824,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Layer_id_selectorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -864,6 +875,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Simple_selectorContext(ParserRuleContext):
 
@@ -979,6 +991,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Zoom_selectorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1017,6 +1030,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class QuotedContext(ParserRuleContext):
 
@@ -1066,6 +1080,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class CssidentContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1074,6 +1089,9 @@ class MapCSSParser ( Parser ):
 
         def NCOMPONENT(self):
             return self.getToken(MapCSSParser.NCOMPONENT, 0)
+
+        def OP_MINUS(self):
+            return self.getToken(MapCSSParser.OP_MINUS, 0)
 
         def getRuleIndex(self):
             return MapCSSParser.RULE_cssident
@@ -1114,6 +1132,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class OsmtagContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1125,6 +1144,21 @@ class MapCSSParser ( Parser ):
                 return self.getTokens(MapCSSParser.NCOMPONENT)
             else:
                 return self.getToken(MapCSSParser.NCOMPONENT, i)
+
+        def OP_MINUS(self):
+            return self.getToken(MapCSSParser.OP_MINUS, 0)
+
+        def COLON(self, i:int=None):
+            if i is None:
+                return self.getTokens(MapCSSParser.COLON)
+            else:
+                return self.getToken(MapCSSParser.COLON, i)
+
+        def DOT(self, i:int=None):
+            if i is None:
+                return self.getTokens(MapCSSParser.DOT)
+            else:
+                return self.getToken(MapCSSParser.DOT, i)
 
         def getRuleIndex(self):
             return MapCSSParser.RULE_osmtag
@@ -1183,6 +1217,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Attribute_selectorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1232,6 +1267,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class PredicateContext(ParserRuleContext):
 
@@ -1289,6 +1325,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Predicate_simpleContext(ParserRuleContext):
 
@@ -1394,6 +1431,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Class_selectorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1458,6 +1496,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Pseudo_class_selectorContext(ParserRuleContext):
 
@@ -1534,6 +1573,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Type_selectorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1589,6 +1629,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Declaration_blockContext(ParserRuleContext):
 
@@ -1655,6 +1696,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class DeclarationsContext(ParserRuleContext):
 
@@ -1728,6 +1770,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class DeclarationContext(ParserRuleContext):
 
@@ -1814,6 +1857,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Declaration_propertyContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1853,6 +1897,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Declaration_valueContext(ParserRuleContext):
 
@@ -1911,6 +1956,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class Int_Context(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1966,6 +2012,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class Single_valueContext(ParserRuleContext):
 
@@ -2057,6 +2104,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class BooleanOperatorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -2110,6 +2158,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class NumericOperatorContext(ParserRuleContext):
 
@@ -2170,6 +2219,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class ValueOperatorContext(ParserRuleContext):
 
@@ -2251,6 +2301,7 @@ class MapCSSParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class RegexOperatorContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -2298,6 +2349,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class BooleanExpressionContext(ParserRuleContext):
 
@@ -2445,6 +2497,7 @@ class MapCSSParser ( Parser ):
             self.unrollRecursionContexts(_parentctx)
         return localctx
 
+
     class ValueExpressionContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -2571,6 +2624,7 @@ class MapCSSParser ( Parser ):
             self.unrollRecursionContexts(_parentctx)
         return localctx
 
+
     class RegexExpressionContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -2626,6 +2680,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class FunctionExpressionContext(ParserRuleContext):
 
@@ -2711,6 +2766,7 @@ class MapCSSParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class PrimaryExpressionContext(ParserRuleContext):
 
@@ -2841,7 +2897,7 @@ class MapCSSParser ( Parser ):
 
 
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
-        if self._predicates is None:
+        if self._predicates == None:
             self._predicates = dict()
         self._predicates[29] = self.booleanExpression_sempred
         self._predicates[30] = self.valueExpression_sempred
