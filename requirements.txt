@@ -9,7 +9,7 @@ transporthours
 pyproj >= 2.1.0
 Unidecode
 osmium
-git+git://github.com/dfaure/PyKOpeningHours.git@v1.3.6
+git+https://invent.kde.org/libraries/kopeninghours.git@83f1435
 libarchive
 
 # Tests
