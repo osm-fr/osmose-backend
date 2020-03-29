@@ -95,6 +95,9 @@ class Josm_highway(Plugin):
         # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
         # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
 
+        # node[highway=crossing][barrier=kerb].is_in_major_road
+        # Use undeclared class is_in_major_road
+
         return err
 
     def way(self, data, tags, nds):

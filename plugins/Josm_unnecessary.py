@@ -26,7 +26,6 @@ class Josm_unnecessary(Plugin):
         self.re_1e5aeb3d = re.compile(r'^(footway|pedestrian)$')
         self.re_2335ac87 = re.compile(r'^(?i)(house|casa|maison|rumah|vivienda)$')
         self.re_251cae80 = re.compile(r'^(?i)(parking|parkplatz)$')
-        self.re_2a48de72 = re.compile(r'^(?i)(mairie|rathaus)$')
         self.re_2b5b04af = re.compile(r'^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$')
         self.re_337f006b = re.compile(r'^(?i)(school|école|Школа)$')
         self.re_33dfa05b = re.compile(r'^(?i)(church|église|biserica)$')
@@ -129,6 +128,8 @@ class Josm_unnecessary(Plugin):
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{1.tag}")
                 # fixRemove:"{0.key}"
+                # assertNoMatch:"node gnis:Class=\"Populated Place\" place=locality"
+                # assertMatch:"node gnis:Class=\"Populated Place\" place=village"
                 err.append({'class': 9010001, 'subclass': 1667787383, 'text': mapcss.tr(u'{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, u'{0.key}')])
@@ -201,7 +202,6 @@ class Josm_unnecessary(Plugin):
         # *[name][name=~/^(?i)(silo)$/][building=silo]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][amenity=grave_yard]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][landuse=cemetery]
-        # *[name][name=~/^(?i)(mairie|rathaus)$/][amenity=townhall]
         # *[name][name=~/^(?i)(monument aux morts|war memorial)$/][historic=memorial][memorial=war_memorial]
         # *[name][name=~/^(?i)(school|école|Школа)$/][building=school]
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity=school]
@@ -297,10 +297,6 @@ class Josm_unnecessary(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2a48de72), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'townhall'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76f94888), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'historic') == mapcss._value_capture(capture_tags, 2, u'memorial') and mapcss._tag_capture(capture_tags, 3, tags, u'memorial') == mapcss._value_capture(capture_tags, 3, u'war_memorial'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -354,7 +350,7 @@ class Josm_unnecessary(Plugin):
                 # assertMatch:"node name=parking amenity=parking"
                 # assertNoMatch:"node name=shop shop=no"
                 # assertMatch:"node name=shop shop=whatever"
-                err.append({'class': 9010003, 'subclass': 14385755, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 1361203443, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'name'])
                 }})
@@ -578,7 +574,6 @@ class Josm_unnecessary(Plugin):
         # *[name][name=~/^(?i)(silo)$/][building=silo]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][amenity=grave_yard]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][landuse=cemetery]
-        # *[name][name=~/^(?i)(mairie|rathaus)$/][amenity=townhall]
         # *[name][name=~/^(?i)(monument aux morts|war memorial)$/][historic=memorial][memorial=war_memorial]
         # *[name][name=~/^(?i)(school|école|Школа)$/][building=school]
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity=school]
@@ -674,10 +669,6 @@ class Josm_unnecessary(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2a48de72), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'townhall'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76f94888), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'historic') == mapcss._value_capture(capture_tags, 2, u'memorial') and mapcss._tag_capture(capture_tags, 3, tags, u'memorial') == mapcss._value_capture(capture_tags, 3, u'war_memorial'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -740,7 +731,7 @@ class Josm_unnecessary(Plugin):
                 # assertNoMatch:"way name=parking"
                 # assertNoMatch:"way name=shop leisure=playground"
                 # assertMatch:"way name=silo man_made=silo"
-                err.append({'class': 9010003, 'subclass': 14385755, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 1361203443, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'name'])
                 }})
@@ -920,7 +911,6 @@ class Josm_unnecessary(Plugin):
         # *[name][name=~/^(?i)(silo)$/][building=silo]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][amenity=grave_yard]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][landuse=cemetery]
-        # *[name][name=~/^(?i)(mairie|rathaus)$/][amenity=townhall]
         # *[name][name=~/^(?i)(monument aux morts|war memorial)$/][historic=memorial][memorial=war_memorial]
         # *[name][name=~/^(?i)(school|école|Школа)$/][building=school]
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity=school]
@@ -1016,10 +1006,6 @@ class Josm_unnecessary(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2a48de72), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'townhall'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76f94888), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'historic') == mapcss._value_capture(capture_tags, 2, u'memorial') and mapcss._tag_capture(capture_tags, 3, tags, u'memorial') == mapcss._value_capture(capture_tags, 3, u'war_memorial'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -1069,7 +1055,7 @@ class Josm_unnecessary(Plugin):
                 # assertMatch:"relation name=PLAYGROUND leisure=playground type=multipolygon"
                 # assertMatch:"relation name=Parking amenity=parking type=multipolygon"
                 # assertMatch:"relation name=parking amenity=parking type=multipolygon"
-                err.append({'class': 9010003, 'subclass': 14385755, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 1361203443, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'name'])
                 }})
@@ -1124,13 +1110,15 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Megaparking'}), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.node(data, {u'leisure': u'playground', u'name': u'PLaYGrOUNd'}), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking'}), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking_with_suffix'}), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'parking'}), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.node(data, {u'name': u'shop', u'shop': u'no'}), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.node(data, {u'name': u'shop', u'shop': u'whatever'}), expected={'class': 9010003, 'subclass': 14385755})
+        self.check_not_err(n.node(data, {u'gnis:Class': u'Populated Place', u'place': u'locality'}), expected={'class': 9010001, 'subclass': 1667787383})
+        self.check_err(n.node(data, {u'gnis:Class': u'Populated Place', u'place': u'village'}), expected={'class': 9010001, 'subclass': 1667787383})
+        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Megaparking'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.node(data, {u'leisure': u'playground', u'name': u'PLaYGrOUNd'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking_with_suffix'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'parking'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.node(data, {u'name': u'shop', u'shop': u'no'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.node(data, {u'name': u'shop', u'shop': u'whatever'}), expected={'class': 9010003, 'subclass': 1361203443})
         self.check_err(n.node(data, {u'gpx:time': u'2018-01-01T12:00:00Z'}), expected={'class': 9010001, 'subclass': 764820177})
         self.check_err(n.node(data, {u'gpxd:color': u'#FF0000'}), expected={'class': 9010001, 'subclass': 764820177})
         self.check_not_err(n.node(data, {u'source': u'gpx:foo'}), expected={'class': 9010001, 'subclass': 764820177})
@@ -1143,28 +1131,28 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'foot': u'designated', u'highway': u'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 92001477})
         self.check_not_err(n.way(data, {u'emergency': u'designated'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {u'emergency': u'permissive'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
-        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'silo', u'man_made': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'cemetery'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'building': u'yes', u'name': u'kiosk', u'shop': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.way(data, {u'name': u'parking'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_not_err(n.way(data, {u'leisure': u'playground', u'name': u'shop'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.way(data, {u'man_made': u'silo', u'name': u'silo'}, [0]), expected={'class': 9010003, 'subclass': 14385755})
+        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'silo', u'man_made': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'cemetery'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'building': u'yes', u'name': u'kiosk', u'shop': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.way(data, {u'name': u'parking'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.way(data, {u'leisure': u'playground', u'name': u'shop'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'man_made': u'silo', u'name': u'silo'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
         self.check_not_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
         self.check_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
         self.check_not_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
         self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
         self.check_not_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
         self.check_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_err(n.relation(data, {u'leisure': u'playground', u'name': u'PLAYGROUND', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'Parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 14385755})
-        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 14385755})
+        self.check_err(n.relation(data, {u'leisure': u'playground', u'name': u'PLAYGROUND', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'Parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1361203443})

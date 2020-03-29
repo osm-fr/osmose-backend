@@ -26,6 +26,7 @@ class Josm_wikipedia(Plugin):
         self.errors[9011015] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'\'\'{0}\'\' tag is set, but no \'\'{1}\'\' tag. Make sure to set \'\'wikipedia=language:value\'\' for the main article and optional \'\'wikipedia:language=value\'\' only for additional articles that are not just other language variants of the main article.', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
 
         self.re_034ab801 = re.compile(r'^cz:')
+        self.re_04adb5d2 = re.compile(r'(?i).*%[0-9A-F][0-9A-F]')
         self.re_07f8e639 = re.compile(r'(?i)^[-a-z]{2,12}:')
         self.re_08b52119 = re.compile(r'(?i)^[-a-z]{2,12}:.*_')
         self.re_091c4afa = re.compile(r'(?i)^[-a-z]{2,12}:https?:\/\/')
@@ -48,6 +49,7 @@ class Josm_wikipedia(Plugin):
         self.re_6a4abd53 = re.compile(r'^be-x-old:(.+)$')
         self.re_6a7e1973 = re.compile(r'(?i)^([-a-z]+:)(.)(.*)$')
         self.re_79319bf9 = re.compile(r'^wikipedia:')
+        self.re_79a96753 = re.compile(r'^wikipedia:[-a-z]{2,12}$')
 
 
     def node(self, data, tags):
@@ -170,6 +172,19 @@ class Josm_wikipedia(Plugin):
                     '+': dict([
                     (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_676bdf5d, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2)), u'_', u' ')))).split('=', 1)])
                 }})
+
+        # *[/^wikipedia:[-a-z]{2,12}$/][/^wikipedia:[-a-z]{2,12}$/=~/(?i).*%[0-9A-F][0-9A-F]/]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753) and mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753)))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
+                # assertMatch:"node wikipedia:de=Foo%27s"
+                # assertNoMatch:"node wikipedia:de=Foo"
+                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if (u'wikipedia' in keys):
@@ -508,6 +523,17 @@ class Josm_wikipedia(Plugin):
                     (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_676bdf5d, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2)), u'_', u' ')))).split('=', 1)])
                 }})
 
+        # *[/^wikipedia:[-a-z]{2,12}$/][/^wikipedia:[-a-z]{2,12}$/=~/(?i).*%[0-9A-F][0-9A-F]/]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753) and mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753)))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
+                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if (u'wikipedia' in keys):
             match = False
@@ -823,6 +849,17 @@ class Josm_wikipedia(Plugin):
                     (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_676bdf5d, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.URL_decode(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2)), u'_', u' ')))).split('=', 1)])
                 }})
 
+        # *[/^wikipedia:[-a-z]{2,12}$/][/^wikipedia:[-a-z]{2,12}$/=~/(?i).*%[0-9A-F][0-9A-F]/]
+        if True:
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753) and mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753)))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
+                err.append({'class': 9011006, 'subclass': 556604422, 'text': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if (u'wikipedia' in keys):
             match = False
@@ -1062,6 +1099,8 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'wikimedia_commons': u'File:Foo'}), expected={'class': 9011006, 'subclass': 1999051286})
         self.check_err(n.node(data, {u'wikipedia': u'en:Foo%27s'}), expected={'class': 9011006, 'subclass': 83644825})
         self.check_not_err(n.node(data, {u'wikipedia': u'en:Foo'}), expected={'class': 9011006, 'subclass': 83644825})
+        self.check_err(n.node(data, {u'wikipedia:de': u'Foo%27s'}), expected={'class': 9011006, 'subclass': 556604422})
+        self.check_not_err(n.node(data, {u'wikipedia:de': u'Foo'}), expected={'class': 9011006, 'subclass': 556604422})
         self.check_err(n.node(data, {u'wikipedia': u'en: foo'}), expected={'class': 9011007, 'subclass': 1273458928})
         self.check_not_err(n.node(data, {u'wikipedia': u'en:foo'}), expected={'class': 9011007, 'subclass': 1273458928})
         self.check_not_err(n.node(data, {u'wikipedia': u'en:foo'}), expected={'class': 9011008, 'subclass': 696665203})
