@@ -353,6 +353,13 @@ def _value_const_capture(stock, index, value, const):
     _value_capture(stock, index, const)
     return value
 
+def _match_regex(tags, key_regex):
+    if key_regex is not None:
+        for k in tags.keys():
+            if _re_search(key_regex, k):
+                return str_value(tags[k])
+    return None_value
+
 #parent_tag(key_name)
 #    get the value of the key key_name from the object's parent 
 #parent_tags(key_name)

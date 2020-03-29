@@ -158,15 +158,18 @@ def booleanExpression_operator_to_function(t, c):
     type = booleanExpression
     Replace operator by a function call
     """
+    operands_0 = t['operands'][0]
+    if operands_0['type'] == 'regexExpression':
+        operands_0 = {'type': 'functionExpression', 'name': '_match_regex', 'params': ['tags', operands_0]}
     if t['operator'] == '=~':
         t = {'type': 'functionExpression', 'name': booleanExpression_operator_to_function_map[t['operator']], 'params': [
             t['operands'][1],
-            t['operands'][0]
+            operands_0
         ]}
     elif t['operator'] in booleanExpression_operator_to_function_map.keys():
         # Direct prams order
         t = {'type': 'functionExpression', 'name': booleanExpression_operator_to_function_map[t['operator']], 'params': [
-            t['operands'][0],
+            operands_0,
             t['operands'][1]
         ]}
     return t
