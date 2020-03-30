@@ -3,15 +3,18 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Name_MisspelledWordByRegex_Lang_fa(Plugin):
+
+class Name_MisspelledWordByRegex_Lang_fa(PluginMapCSS):
+
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[50109001] = {'item': 5010, 'level': 2, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'Arabic letter detected in Farsi name')}
+        self.errors[50109001] = self.def_class(item = 5010, level = 2, tags = mapcss.list_(u'name', u'fix:chair'), title = mapcss.tr(u'Arabic letter detected in Farsi name'))
 
         self.re_4234bf3b = re.compile(r'ك')
         self.re_5eeade1c = re.compile(r'ي')

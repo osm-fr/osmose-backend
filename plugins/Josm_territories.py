@@ -3,17 +3,21 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_territories(Plugin):
+
+class Josm_territories(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/territories.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9009001] = {'item': 9009, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'deprecated tagging')}
-        self.errors[9009002] = {'item': 9009, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'street name contains ss')}
-        self.errors[9009003] = {'item': 9009, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'street name contains ß')}
+        self.errors[9009001] = self.def_class(item = 9009, level = 3, tags = ["tag"], title = mapcss.tr(u'deprecated tagging'))
+        self.errors[9009002] = self.def_class(item = 9009, level = 2, tags = ["tag"], title = mapcss.tr(u'street name contains ss'))
+        self.errors[9009003] = self.def_class(item = 9009, level = 2, tags = ["tag"], title = mapcss.tr(u'street name contains ß'))
 
         self.re_3d3faeb5 = re.compile(r'(?i).*Straße.*')
         self.re_559797c8 = re.compile(r'(?i).*Strasser.*')

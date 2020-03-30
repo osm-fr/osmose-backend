@@ -3,17 +3,20 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_mtb(Plugin):
+
+class Josm_mtb(PluginMapCSS):
+
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9013001] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but not \'\'{1}\'\'.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9013002] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but is neither a track nor a path.', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9013003] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Invalid \'\'{0}\'\' value: \'\'{1}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
+        self.errors[9013001] = self.def_class(item = 9013, level = 3, tags = ["tag", "sport"], title = mapcss.tr(u'Way contains \'\'{0}\'\' but not \'\'{1}\'\'.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9013002] = self.def_class(item = 9013, level = 3, tags = ["tag", "sport"], title = mapcss.tr(u'Way contains \'\'{0}\'\' but is neither a track nor a path.', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9013003] = self.def_class(item = 9013, level = 3, tags = ["tag", "sport"], title = mapcss.tr(u'Invalid \'\'{0}\'\' value: \'\'{1}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
 
         self.re_1b95e3e9 = re.compile(r'^[0-6][-+]?$')
         self.re_3d3b0752 = re.compile(r'^[0-5]$')

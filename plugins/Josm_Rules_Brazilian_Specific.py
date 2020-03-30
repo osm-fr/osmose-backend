@@ -3,62 +3,66 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_Rules_Brazilian_Specific(Plugin):
+
+class Josm_Rules_Brazilian_Specific(PluginMapCSS):
+
+    MAPCSS_URL = 'https://github.com/OSMBrasil/validador-josm/blob/master/Rules_Brazilian-Specific.validator.mapcss'
 
     only_for = ['BR']
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9018002] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'Brasil - Verificar')}
-        self.errors[9018003] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'palavra abreviada em {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018004] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de lazer')}
-        self.errors[9018005] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de saúde')}
-        self.errors[9018006] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'Brasil - Correções e melhorias')}
-        self.errors[9018007] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto com nomenclatura incorreta')}
-        self.errors[9018008] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} não deve ser utilizado em nó; utilizar a restrição na via', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018009] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018010] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} sem pelo menos uma das tags: {1} ou {2}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
-        self.errors[9018012] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} sem nome', mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9018013] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve conter apenas o nome da cidade', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018014] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} com valor = {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9018016] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'SAMU classificado de forma errada')}
-        self.errors[9018017] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018018] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'adicionar {0} ao {1}', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9018019] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve ser utilizado com {1}={0} ou {2}={0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
-        self.errors[9018020] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve estar incluído em {1}, separado por \'\';\'\' caso necessário', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018021] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'especificar valor correto para {0} ao invés de \'\'{1}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss.tag(tags, u'landuse'))}
-        self.errors[9018022] = {'item': 9018, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'chave inválida: {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018023] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'não se deve utilizar {0} para demarcar áreas de cobertura de imagem', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018026] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'possível ausência de tag {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018027] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018029] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
-        self.errors[9018030] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'utilizar prefixo em português (pt:) para {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018031] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'nome utilizado de forma incorreta')}
-        self.errors[9018032] = {'item': 9018, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'nó não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9018033] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve possuir {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018034] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'valor incorreto para {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018035] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'ausência de boundary=protected_area')}
-        self.errors[9018036] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve ser usado apenas em ways', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018037] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'utilize \'\'destination\'\' no caminho de saída ao invés de \'\'exit_to\'\'')}
-        self.errors[9018039] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018041] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018042] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0} e {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018043] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', mapcss.tag(tags, u'addr:housenumber'))}
-        self.errors[9018044] = {'item': 9018, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'objeto contém Google como source')}
-        self.errors[9018046] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'relação não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018047] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas em nós', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9018048] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve possuir \'\'type=boundary\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018049] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve ser utilizado junto com {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9018051] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'não classificar via como {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9018052] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} com nome supérfluo/incompleto', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9018053] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} não deve possuir {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[9018056] = {'item': 9018, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas no nó de saída da rodovia', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9018063] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'uso incorreto de {0} com {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[9018064] = {'item': 9018, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'uso incorreto de {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
+        self.errors[9018002] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'Brasil - Verificar'))
+        self.errors[9018003] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'palavra abreviada em {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018004] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'nome supérfluo/incompleto de local de lazer'))
+        self.errors[9018005] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'nome supérfluo/incompleto de local de saúde'))
+        self.errors[9018006] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'Brasil - Correções e melhorias'))
+        self.errors[9018007] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'objeto com nomenclatura incorreta'))
+        self.errors[9018008] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} não deve ser utilizado em nó; utilizar a restrição na via', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018009] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018010] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} sem pelo menos uma das tags: {1} ou {2}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}')))
+        self.errors[9018012] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} sem nome', mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9018013] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve conter apenas o nome da cidade', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018014] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} com valor = {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9018016] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'SAMU classificado de forma errada'))
+        self.errors[9018017] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'objeto não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018018] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'adicionar {0} ao {1}', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9018019] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve ser utilizado com {1}={0} ou {2}={0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}')))
+        self.errors[9018020] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve estar incluído em {1}, separado por \'\';\'\' caso necessário', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018021] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'especificar valor correto para {0} ao invés de \'\'{1}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss.tag(tags, u'landuse')))
+        self.errors[9018022] = self.def_class(item = 9018, level = 2, tags = ["tag"], title = mapcss.tr(u'chave inválida: {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018023] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'não se deve utilizar {0} para demarcar áreas de cobertura de imagem', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018026] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'possível ausência de tag {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018027] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018029] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, u'{2.key}')))
+        self.errors[9018030] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'utilizar prefixo em português (pt:) para {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018031] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'nome utilizado de forma incorreta'))
+        self.errors[9018032] = self.def_class(item = 9018, level = 2, tags = ["tag"], title = mapcss.tr(u'nó não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9018033] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve possuir {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018034] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'valor incorreto para {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018035] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'ausência de boundary=protected_area'))
+        self.errors[9018036] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve ser usado apenas em ways', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018037] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'utilize \'\'destination\'\' no caminho de saída ao invés de \'\'exit_to\'\''))
+        self.errors[9018039] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018041] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'objeto incompleto: possui apenas {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018042] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'objeto incompleto: possui apenas {0} e {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018043] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', mapcss.tag(tags, u'addr:housenumber')))
+        self.errors[9018044] = self.def_class(item = 9018, level = 2, tags = ["tag"], title = mapcss.tr(u'objeto contém Google como source'))
+        self.errors[9018046] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'relação não deve possuir {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018047] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve ser utilizado apenas em nós', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9018048] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve possuir \'\'type=boundary\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018049] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} deve ser utilizado junto com {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9018051] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'não classificar via como {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9018052] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} com nome supérfluo/incompleto', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9018053] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} não deve possuir {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[9018056] = self.def_class(item = 9018, level = 2, tags = ["tag"], title = mapcss.tr(u'{0} deve ser utilizado apenas no nó de saída da rodovia', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9018063] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'uso incorreto de {0} com {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[9018064] = self.def_class(item = 9018, level = 3, tags = ["tag"], title = mapcss.tr(u'uso incorreto de {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
 
         self.re_01454d46 = re.compile(r'(?i)\bmotel\b')
         self.re_044c8944 = re.compile(r'^(?i)(?u)(SENAC|SENAI|Serviço Nacional de Aprendizagem)')

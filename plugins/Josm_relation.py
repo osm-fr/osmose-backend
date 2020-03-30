@@ -3,16 +3,20 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_relation(Plugin):
+
+class Josm_relation(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/relation.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9007001] = {'item': 9007, 'level': 3, 'tag': ["tag", "relation"], 'desc': mapcss.tr(u'missing tag')}
-        self.errors[9007002] = {'item': 9007, 'level': 2, 'tag': ["tag", "relation"], 'desc': mapcss.tr(u'relation without type')}
+        self.errors[9007001] = self.def_class(item = 9007, level = 3, tags = ["tag", "relation"], title = mapcss.tr(u'missing tag'))
+        self.errors[9007002] = self.def_class(item = 9007, level = 2, tags = ["tag", "relation"], title = mapcss.tr(u'relation without type'))
 
         self.re_67b11051 = re.compile(r'^restriction')
 

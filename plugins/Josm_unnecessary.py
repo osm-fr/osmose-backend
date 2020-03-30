@@ -3,17 +3,21 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_unnecessary(Plugin):
+
+class Josm_unnecessary(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/unnecessary.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9010001] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'unnecessary tag')}
-        self.errors[9010002] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} makes no sense', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9010003] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'descriptive name')}
+        self.errors[9010001] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'unnecessary tag'))
+        self.errors[9010002] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} makes no sense', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9010003] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'descriptive name'))
 
         self.re_017d2728 = re.compile(r'^(?i)(restaurant)$')
         self.re_053f39fb = re.compile(r'^(?i)(house|casa|rumah|vivienda)$')

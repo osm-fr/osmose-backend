@@ -3,15 +3,18 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Colour(Plugin):
+
+class Colour(PluginMapCSS):
+
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[30911] = {'item': 3091, 'level': 2, 'tag': mapcss.list_(u'tag'), 'desc': mapcss.tr(u'Colour code should start with \'#\' followed by 3 or 6 digits')}
+        self.errors[30911] = self.def_class(item = 3091, level = 2, tags = mapcss.list_(u'tag'), title = mapcss.tr(u'Colour code should start with \'#\' followed by 3 or 6 digits'))
 
         self.re_1b3f6ace = re.compile(r'^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$')
         self.re_30dca0d4 = re.compile(r'^#')

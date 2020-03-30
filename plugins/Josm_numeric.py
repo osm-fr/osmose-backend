@@ -3,29 +3,33 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_numeric(Plugin):
+
+class Josm_numeric(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9006001] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'numerical key')}
-        self.errors[9006002] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} value with + sign', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006003] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} should be an integer value between -5 and 5', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006004] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006008] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} must be a numeric value', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006009] = {'item': 9006, 'level': 2, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} must be a positive integer number', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006010] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006011] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006013] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'voltage should be in volts with no units/delimiter/spaces')}
-        self.errors[9006017] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006018] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006019] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006020] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9006021] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'Unnecessary amount of decimal places')}
-        self.errors[9006022] = {'item': 9006, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'Airport tagging')}
+        self.errors[9006001] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'numerical key'))
+        self.errors[9006002] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} value with + sign', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006003] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} should be an integer value between -5 and 5', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006004] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006008] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} must be a numeric value', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006009] = self.def_class(item = 9006, level = 2, tags = ["tag", "value"], title = mapcss.tr(u'{0} must be a positive integer number', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006010] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006011] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} must be a numeric value, in meters and without units', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006013] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'voltage should be in volts with no units/delimiter/spaces'))
+        self.errors[9006017] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006018] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006019] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006020] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006021] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'Unnecessary amount of decimal places'))
+        self.errors[9006022] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'Airport tagging'))
 
         self.re_035d45f0 = re.compile(r'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_066203d3 = re.compile(r'^[0-9]+$')

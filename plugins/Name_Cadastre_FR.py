@@ -3,15 +3,18 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Name_Cadastre_FR(Plugin):
+
+class Name_Cadastre_FR(PluginMapCSS):
+
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[50801] = {'item': 5080, 'level': 1, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')}
+        self.errors[50801] = self.def_class(item = 5080, level = 1, tags = mapcss.list_(u'name', u'fix:chair'), title = mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.'))
 
         self.re_5d724bf1 = re.compile(r'.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$')
 

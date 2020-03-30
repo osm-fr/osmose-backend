@@ -3,18 +3,22 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_combinations(Plugin):
+
+class Josm_combinations(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/combinations.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9001001] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'missing tag')}
-        self.errors[9001002] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'suspicious tag combination')}
-        self.errors[9001003] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} on a relation without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[9001004] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'incomplete usage of {0} on a way without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
+        self.errors[9001001] = self.def_class(item = 9001, level = 3, tags = ["tag"], title = mapcss.tr(u'missing tag'))
+        self.errors[9001002] = self.def_class(item = 9001, level = 3, tags = ["tag"], title = mapcss.tr(u'suspicious tag combination'))
+        self.errors[9001003] = self.def_class(item = 9001, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} on a relation without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[9001004] = self.def_class(item = 9001, level = 3, tags = ["tag"], title = mapcss.tr(u'incomplete usage of {0} on a way without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
 
         self.re_050395e0 = re.compile(r'^maxspeed:?')
         self.re_0737b0c4 = re.compile(r'^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$')

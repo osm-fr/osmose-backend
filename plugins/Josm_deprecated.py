@@ -3,34 +3,38 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_deprecated(Plugin):
+
+class Josm_deprecated(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9002001] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'deprecated tagging')}
-        self.errors[9002002] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'\'\'{0}\'\' is meaningless, use more specific tags, e.g. \'\'{1}\'\'', u'access=designated', u'bicycle=designated')}
-        self.errors[9002003] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'\'\'{0}\'\' does not specify the official mode of transportation, use \'\'{1}\'\' for example', u'access=official', u'bicycle=official')}
-        self.errors[9002004] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0}={1} is unspecific. Instead of \'\'{1}\'\' please give more information about what exactly should be fixed.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9002005] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9002006] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9002007] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9002008] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0} should be replaced with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9002009] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0} = {1}; remove {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))}
-        self.errors[9002010] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'Unspecific tag {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9002011] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'key with uncommon character')}
-        self.errors[9002012] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'uncommon short key')}
-        self.errors[9002013] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0} is inaccurate. Use separate tags for each specific type, e.g. {1} or {2}.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'payment:bitcoin=yes', u'payment:litecoin=yes')}
-        self.errors[9002014] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'questionable key (ending with a number)')}
-        self.errors[9002015] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by \'\'left\'\', \'\'right\'\' or \'\'both\'\'.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9002016] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'{0} is not recommended. Use the Reverse Ways function from the Tools menu.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9002017] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'The key {0} has an uncommon value.', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9002018] = {'item': 9002, 'level': 2, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'misspelled value')}
-        self.errors[9002019] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9002020] = {'item': 9002, 'level': 3, 'tag': ["tag", "deprecated"], 'desc': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
+        self.errors[9002001] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'deprecated tagging'))
+        self.errors[9002002] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'\'\'{0}\'\' is meaningless, use more specific tags, e.g. \'\'{1}\'\'', u'access=designated', u'bicycle=designated'))
+        self.errors[9002003] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'\'\'{0}\'\' does not specify the official mode of transportation, use \'\'{1}\'\' for example', u'access=official', u'bicycle=official'))
+        self.errors[9002004] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0}={1} is unspecific. Instead of \'\'{1}\'\' please give more information about what exactly should be fixed.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9002005] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9002006] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9002007] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9002008] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0} should be replaced with {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9002009] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0} = {1}; remove {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}')))
+        self.errors[9002010] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'Unspecific tag {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9002011] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'key with uncommon character'))
+        self.errors[9002012] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'uncommon short key'))
+        self.errors[9002013] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0} is inaccurate. Use separate tags for each specific type, e.g. {1} or {2}.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'payment:bitcoin=yes', u'payment:litecoin=yes'))
+        self.errors[9002014] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'questionable key (ending with a number)'))
+        self.errors[9002015] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by \'\'left\'\', \'\'right\'\' or \'\'both\'\'.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9002016] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'{0} is not recommended. Use the Reverse Ways function from the Tools menu.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9002017] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'The key {0} has an uncommon value.', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9002018] = self.def_class(item = 9002, level = 2, tags = ["tag", "deprecated"], title = mapcss.tr(u'misspelled value'))
+        self.errors[9002019] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'wrong value: {0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9002020] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
 
         self.re_01eb1711 = re.compile(r'^(yes|both|no)$')
         self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
