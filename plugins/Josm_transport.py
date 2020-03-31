@@ -104,18 +104,18 @@ class Josm_transport(PluginMapCSS):
                     [u'public_transport',u'stop_position']])
                 }})
 
-        # node[public_transport=platform][!highway][!railway][!bus]
+        # node[public_transport=platform][!highway][!railway][!bus][!tram][!ferry]
         if (u'public_transport' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'tram') and not mapcss._tag_capture(capture_tags, 5, tags, u'ferry'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
                 # -osmoseItemClassLevel:"2140/21412:1/3"
-                # throwError:tr("The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop")
-                err.append({'class': 21412, 'subclass': 1, 'text': mapcss.tr(u'The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop')})
+                # throwError:tr("Is this a bus or tram stop ? Add a tag to precise the kind of platform")
+                err.append({'class': 21412, 'subclass': 1, 'text': mapcss.tr(u'Is this a bus or tram stop ? Add a tag to precise the kind of platform')})
 
         # node[public_transport=platform][!highway][!railway][bus=yes]
         if (u'bus' in keys and u'public_transport' in keys):

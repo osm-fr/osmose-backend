@@ -741,7 +741,7 @@ def main(_, mapcss):
     global item_default, class_map, subclass_blacklist, class_index, meta_tags
     if class_name in item_map:
         i = item_map[class_name]
-        item_default = i['item']
+        item_default = i.get('item')
         class_map = i.get('class') or {None: 0}
         subclass_blacklist = i.get('subclass_blacklist', [])
         mapcss_url = i.get('url_display', i.get('url'))
