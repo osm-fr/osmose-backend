@@ -3,18 +3,22 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_addresses(Plugin):
+
+class Josm_addresses(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/addresses.mapcss'
 
 
     not_for = ['CA']
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9000003] = {'item': 9000, 'level': 3, 'tag': ["tag", "addr"], 'desc': mapcss.tr(u'Same value of {0} and {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
-        self.errors[9000004] = {'item': 9000, 'level': 3, 'tag': ["tag", "addr"], 'desc': mapcss.tr(u'{0} without number', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
+        self.errors[9000003] = self.def_class(item = 9000, level = 3, tags = ["tag", "addr"], title = mapcss.tr(u'Same value of {0} and {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[9000004] = self.def_class(item = 9000, level = 3, tags = ["tag", "addr"], title = mapcss.tr(u'{0} without number', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
 
         self.re_4983542e = re.compile(r'[0-9]')
 

@@ -3,15 +3,19 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_SuspiciousSwimming_Pool(Plugin):
+
+class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/wiki/Rules/SuspiciousSwimming_Pool'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[30801] = {'item': 3080, 'level': 3, 'tag': ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), 'desc': mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre')}
+        self.errors[30801] = self.def_class(item = 3080, level = 3, tags = ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), title = mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre'))
 
 
 

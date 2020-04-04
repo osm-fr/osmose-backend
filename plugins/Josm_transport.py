@@ -3,35 +3,39 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_transport(Plugin):
+
+class Josm_transport(PluginMapCSS):
+
+    MAPCSS_URL = 'https://github.com/Jungle-Bus/transport_mapcss/blob/master/transport.validator.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[21401] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing public_transport:version tag on a public_transport route relation')}
-        self.errors[21402] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing network tag on a public_transport relation')}
-        self.errors[21403] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing operator tag on a public_transport relation')}
-        self.errors[21404] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing ref tag for line number on a public_transport relation')}
-        self.errors[21405] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing from/to tag on a public_transport route relation')}
-        self.errors[21411] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing public_transport tag on a public transport stop')}
-        self.errors[21412] = {'item': 2140, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing legacy tag on a public transport stop')}
-        self.errors[9014002] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Is it a bus stop or a bus station?')}
-        self.errors[9014006] = {'item': 9014, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check if the note can be deleted')}
-        self.errors[9014007] = {'item': 9014, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The network should be on the transport lines and not on the stops')}
-        self.errors[9014008] = {'item': 9014, 'level': 3, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The operator should be on the transport lines and not on the stops')}
-        self.errors[9014009] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing transportation mode, add a tag route = bus/coach/tram/etc')}
-        self.errors[9014010] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing transportation mode, change tag route to route_master')}
-        self.errors[9014019] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'A bus stop is supposed to be a node')}
-        self.errors[9014020] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The color of the public transport line should be in a colour tag')}
-        self.errors[9014021] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The interval is invalid (try a number of minutes)')}
-        self.errors[9014022] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'The duration is invalid (try a number of minutes)')}
-        self.errors[9014023] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing interval tag to specify the main interval')}
-        self.errors[9014024] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Missing opening_hours tag')}
-        self.errors[9014025] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check the operator tag : this operator does not exist, it may be a typo')}
-        self.errors[9014026] = {'item': 9014, 'level': 2, 'tag': mapcss.list_(u'tag', u'public_transport'), 'desc': mapcss.tr(u'Check the network tag : this network does not exist, it may be a typo')}
+        self.errors[21401] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing public_transport:version tag on a public_transport route relation'))
+        self.errors[21402] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing network tag on a public_transport relation'))
+        self.errors[21403] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing operator tag on a public_transport relation'))
+        self.errors[21404] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing ref tag for line number on a public_transport relation'))
+        self.errors[21405] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing from/to tag on a public_transport route relation'))
+        self.errors[21411] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing public_transport tag on a public transport stop'))
+        self.errors[21412] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing legacy tag on a public transport stop'))
+        self.errors[9014002] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Is it a bus stop or a bus station?'))
+        self.errors[9014006] = self.def_class(item = 9014, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Check if the note can be deleted'))
+        self.errors[9014007] = self.def_class(item = 9014, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The network should be on the transport lines and not on the stops'))
+        self.errors[9014008] = self.def_class(item = 9014, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The operator should be on the transport lines and not on the stops'))
+        self.errors[9014009] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing transportation mode, add a tag route = bus/coach/tram/etc'))
+        self.errors[9014010] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing transportation mode, change tag route to route_master'))
+        self.errors[9014019] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'A bus stop is supposed to be a node'))
+        self.errors[9014020] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The color of the public transport line should be in a colour tag'))
+        self.errors[9014021] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The interval is invalid (try a number of minutes)'))
+        self.errors[9014022] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The duration is invalid (try a number of minutes)'))
+        self.errors[9014023] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing interval tag to specify the main interval'))
+        self.errors[9014024] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing opening_hours tag'))
+        self.errors[9014025] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Check the operator tag : this operator does not exist, it may be a typo'))
+        self.errors[9014026] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Check the network tag : this network does not exist, it may be a typo'))
 
         self.re_181de9b6 = re.compile(r'^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$')
         self.re_25554804 = re.compile(r'STIF|Kéolis|Véolia')
@@ -100,18 +104,18 @@ class Josm_transport(Plugin):
                     [u'public_transport',u'stop_position']])
                 }})
 
-        # node[public_transport=platform][!highway][!railway][!bus]
+        # node[public_transport=platform][!highway][!railway][!bus][!tram][!ferry]
         if (u'public_transport' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'tram') and not mapcss._tag_capture(capture_tags, 5, tags, u'ferry'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
                 # -osmoseItemClassLevel:"2140/21412:1/3"
-                # throwError:tr("The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop")
-                err.append({'class': 21412, 'subclass': 1, 'text': mapcss.tr(u'The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop')})
+                # throwError:tr("Is this a bus or tram stop ? Add a tag to precise the kind of platform")
+                err.append({'class': 21412, 'subclass': 1, 'text': mapcss.tr(u'Is this a bus or tram stop ? Add a tag to precise the kind of platform')})
 
         # node[public_transport=platform][!highway][!railway][bus=yes]
         if (u'bus' in keys and u'public_transport' in keys):

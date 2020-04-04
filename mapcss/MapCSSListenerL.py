@@ -90,14 +90,14 @@ class MapCSSListenerL(MapCSSListener):
         self.stack.append({
             'quoted': None,
             'osmtag': None,
-            'regexExpression': None
+            'regexExpression': []
         })
 
     # Exit a parse tree produced by MapCSSParser#predicate_simple.
     def exitPredicate_simple(self, ctx:MapCSSParser.Predicate_simpleContext):
         v = self.stack.pop()
         self.stack[-1]['predicate_simple'] = {'type': 'predicate_simple',
-            'predicate': v['osmtag'] or v['quoted'] or v['regexExpression'],
+            'predicate': v['osmtag'] or v['quoted'] or v['regexExpression'][0],
             'not': not(not(ctx.OP_NOT())),
             'question_mark': not(not(ctx.QUESTION_MARK()))}
 
@@ -159,10 +159,11 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#booleanExpression.
     def enterBooleanExpression(self, ctx:MapCSSParser.BooleanExpressionContext):
+        operands = []
         self.stack.append({
-            'booleanExpressions': [],
-            'valueExpressions': [],
-            'regexExpression': None,
+            'booleanExpressions': operands,
+            'valueExpressions': operands,
+            'regexExpression': operands,
             'functionExpression': None,
         })
 
@@ -174,11 +175,9 @@ class MapCSSListenerL(MapCSSListener):
             'operator': None if v['functionExpression'] else
                 (ctx.op and ctx.op.text) or
                 (ctx.booleanOperator() or ctx.valueOperator() or ctx.regexOperator()).getText(),
-            'operands': v['booleanExpressions'] + v['valueExpressions'] + (
-                (v['regexExpression'] and [v['regexExpression']]) or
+            'operands': v['booleanExpressions'] or # Juste get operands array
                 (v['functionExpression'] and [v['functionExpression']]) or
                 []
-            )
         })
 
 
@@ -245,10 +244,10 @@ class MapCSSListenerL(MapCSSListener):
     # Exit a parse tree produced by MapCSSParser#regexExpression.
     def exitRegexExpression(self, ctx:MapCSSParser.RegexExpressionContext):
         v = self.stack.pop()
-        self.stack[-1]['regexExpression'] = {
+        self.stack[-1]['regexExpression'].append({
             'type': 'regexExpression',
             'value': ctx.REGEXP() and ctx.REGEXP().getText()[1:-1] or v['quoted']
-        }
+        })
 
 
     # Enter a parse tree produced by MapCSSParser#functionExpression.
@@ -272,7 +271,7 @@ class MapCSSListenerL(MapCSSListener):
         self.stack.append({
             'quoted': None,
             'osmtag': None,
-            'regexExpression': None
+            'regexExpression': []
         })
 
     # Exit a parse tree produced by MapCSSParser#primaryExpression.
@@ -281,5 +280,5 @@ class MapCSSListenerL(MapCSSListener):
         self.stack[-1]['primaryExpression'] = {
             'type': 'primaryExpression',
             'derefered': not(not(ctx.OP_MUL())),
-            'value': (ctx.v and ctx.v.text) or v['osmtag'] or v['quoted'] or v['regexExpression']
+            'value': (ctx.v and ctx.v.text) or v['osmtag'] or v['quoted'] or v['regexExpression'][0]
         }

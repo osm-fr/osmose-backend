@@ -2,13 +2,6 @@
 import requests.utils
 import re
 
-try:
-    unicode # Python 2
-except:
-    unicode = str
-    long = int
-
-
 # Utils
 
 def memoize(f):
@@ -34,7 +27,7 @@ def memoizeN(f):
 def str_value(string):
     return str_value_(string)
 
-class str_value_(unicode):
+class str_value_(str):
     def __new__(cls, string):
         if string.__class__ == str_value_:
             return string
@@ -46,7 +39,7 @@ class str_value_(unicode):
     def __radd__(self, o):
         if self.none:
             return None_value
-        if o.__class__ in (int, long):
+        if o.__class__ == int:
             return str_value(o + self.to_n())
         else:
             return str_value(o) + self
@@ -54,7 +47,7 @@ class str_value_(unicode):
     def __add__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(self.to_n() + o)
         else:
             return str_value(super(str_value_, self).__add__(o))
@@ -62,7 +55,7 @@ class str_value_(unicode):
     def __rsub__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(o - self.to_n())
         else:
             raise NotImplementedError
@@ -70,7 +63,7 @@ class str_value_(unicode):
     def __sub__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(self.to_n() - o)
         else:
             raise NotImplementedError
@@ -78,7 +71,7 @@ class str_value_(unicode):
     def __rmul__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(o * self.to_n())
         else:
             raise NotImplementedError
@@ -86,7 +79,7 @@ class str_value_(unicode):
     def __mul__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(self.to_n() * o)
         else:
             raise NotImplementedError
@@ -94,7 +87,7 @@ class str_value_(unicode):
     def __rdiv__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(float(o) / self.to_n())
         else:
             raise NotImplementedError
@@ -102,17 +95,15 @@ class str_value_(unicode):
     def __truediv__(self, o):
         if self.none:
             return None_value
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return str_value(float(self.to_n()) / o)
         else:
             raise NotImplementedError
 
-    __div__ = __truediv__  # Python 2 compatibility
-
     def __lt__(self, o):
         if self.none:
             return False
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return self.to_n() < o
         else:
             return super(str_value_, self).__lt__(o)
@@ -120,7 +111,7 @@ class str_value_(unicode):
     def __le__(self, o):
         if self.none:
             return False
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return self.to_n() <= o
         else:
             return super(str_value_, self).__le__(o)
@@ -128,7 +119,7 @@ class str_value_(unicode):
     def __eq__(self, o):
         if self.none:
             return False
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return self.to_n() == o
         else:
             return super(str_value_, self).__eq__(o)
@@ -136,7 +127,7 @@ class str_value_(unicode):
     def __ne__(self, o):
         if self.none:
             return True
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return self.to_n() != o
         else:
             return super(str_value_, self).__ne__(o)
@@ -144,7 +135,7 @@ class str_value_(unicode):
     def __gt__(self, o):
         if self.none:
             return False
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return self.to_n() > o
         else:
             return super(str_value_, self).__gt__(o)
@@ -152,7 +143,7 @@ class str_value_(unicode):
     def __ge__(self, o):
         if self.none:
             return False
-        elif o.__class__ in (int, long):
+        elif o.__class__ == int:
             return self.to_n() >= o
         else:
             return super(str_value_, self).__ge__(o)
@@ -162,8 +153,6 @@ class str_value_(unicode):
             return False
         else:
             return len(self) > 0
-
-    __nonzero__ = __bool__  # Python 2 compatibility
 
     def to_n(self):
         try:
@@ -176,7 +165,7 @@ class str_value_(unicode):
 
     # Required in Pyhton 3 the make the class hashable
     def __hash__(self):
-        return unicode.__hash__(self)
+        return str.__hash__(self)
 
 None_value = str_value(None)
 
@@ -309,7 +298,7 @@ def _re_search(r, s):
 
 def tag(tags, key_name):
     if tags is not None and key_name is not None:
-        if key_name.__class__ in (str, unicode, str_value_):
+        if key_name.__class__ in (str, str_value_):
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
@@ -322,7 +311,7 @@ def _tag_capture(stock, index, tags, key_name):
         if index >= len(stock):
             stock[index] = [None, None]
 
-        if key_name.__class__ in (str, unicode, str_value_):
+        if key_name.__class__ in (str, str_value_):
             stock[index][0] = key_name
             if not stock[index][1]:
                 stock[index][1] = tags.get(key_name)
@@ -341,7 +330,7 @@ def _tag_capture(stock, index, tags, key_name):
 def _value_capture(stock, index, value):
     if index >= len(stock):
         stock[index] = [None, None]
-    if value.__class__ in (str, unicode, str_value_):
+    if value.__class__ in (str, str_value_):
         # If not a string, let the tag capture fill the value part
         stock[index][1] = value
     elif value.__class__ in (int, float):
@@ -352,6 +341,13 @@ def _value_capture(stock, index, value):
 def _value_const_capture(stock, index, value, const):
     _value_capture(stock, index, const)
     return value
+
+def _match_regex(tags, key_regex):
+    if key_regex is not None:
+        for k in tags.keys():
+            if _re_search(key_regex, k):
+                return str_value(tags[k])
+    return None_value
 
 #parent_tag(key_name)
 #    get the value of the key key_name from the object's parent 

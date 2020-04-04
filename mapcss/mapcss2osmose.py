@@ -158,15 +158,18 @@ def booleanExpression_operator_to_function(t, c):
     type = booleanExpression
     Replace operator by a function call
     """
+    operands_0 = t['operands'][0]
+    if operands_0['type'] == 'regexExpression':
+        operands_0 = {'type': 'functionExpression', 'name': '_match_regex', 'params': ['tags', operands_0]}
     if t['operator'] == '=~':
         t = {'type': 'functionExpression', 'name': booleanExpression_operator_to_function_map[t['operator']], 'params': [
             t['operands'][1],
-            t['operands'][0]
+            operands_0
         ]}
     elif t['operator'] in booleanExpression_operator_to_function_map.keys():
         # Direct prams order
         t = {'type': 'functionExpression', 'name': booleanExpression_operator_to_function_map[t['operator']], 'params': [
-            t['operands'][0],
+            operands_0,
             t['operands'][1]
         ]}
     return t
@@ -702,7 +705,7 @@ def to_p(t):
 def build_items(class_):
     out = []
     for _, c in sorted(class_.items(), key = lambda a: a[0]):
-        out.append("self.errors[" + str(c['class']) + "] = {'item': " + str(c['item']) + ", 'level': " + str(c['level']) + ", 'tag': " + c['tags'] + ", 'desc': " + c['desc'] + "}")
+        out.append("self.errors[" + str(c['class']) + "] = self.def_class(item = " + str(c['item']) + ", level = " + str(c['level']) + ", tags = " + c['tags'] + ", title = " + c['desc'] + ")")
     return "\n".join(out)
 
 context_map = {
@@ -738,9 +741,10 @@ def main(_, mapcss):
     global item_default, class_map, subclass_blacklist, class_index, meta_tags
     if class_name in item_map:
         i = item_map[class_name]
-        item_default = i['item']
+        item_default = i.get('item')
         class_map = i.get('class') or {None: 0}
         subclass_blacklist = i.get('subclass_blacklist', [])
+        mapcss_url = i.get('url_display', i.get('url'))
         only_for = i.get('only_for', [])
         not_for = i.get('not_for', [])
         prefix = i.get('prefix', '')
@@ -750,6 +754,7 @@ def main(_, mapcss):
         item_default = 0
         class_map = {}
         subclass_blacklist = []
+        mapcss_url = None
         only_for = []
         not_for = []
         prefix = ''
@@ -786,13 +791,16 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class """ + prefix + class_name + """(Plugin):
+
+class """ + prefix + class_name + """(PluginMapCSS):
+""" + ("\n    MAPCSS_URL = '" + mapcss_url + "'" if mapcss_url else "") + """
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
 """ + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
         """ + items.replace("\n", "\n        ") + """
         """ + "".join(map(lambda r: """

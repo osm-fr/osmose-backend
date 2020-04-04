@@ -3,23 +3,27 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_geometry(Plugin):
+
+class Josm_geometry(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9003001] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003002] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way or relation.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003003] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003004] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003006] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9003007] = {'item': 9003, 'level': 3, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003008] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
-        self.errors[9003009] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.')}
-        self.errors[9003010] = {'item': 9003, 'level': 2, 'tag': ["geom"], 'desc': mapcss.tr(u'Way with {0} not closed.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
+        self.errors[9003001] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be used on a way.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9003002] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be used on a way or relation.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9003003] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9003004] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9003006] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9003007] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9003008] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9003009] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.'))
+        self.errors[9003010] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'Way with {0} not closed.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
 
         self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
 

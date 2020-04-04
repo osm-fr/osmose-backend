@@ -3,16 +3,20 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_multiple(Plugin):
+
+class Josm_multiple(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/multiple.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9005001] = {'item': 9005, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} with multiple values', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
-        self.errors[9005002] = {'item': 9005, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'))}
+        self.errors[9005001] = self.def_class(item = 9005, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} with multiple values', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9005002] = self.def_class(item = 9005, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
 
         self.re_53db61ac = re.compile(r'.+;(.+)?')
         self.re_579c7c6a = re.compile(r'^(;.*|.*;;.*|.*;)$')

@@ -3,15 +3,18 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Construction2(Plugin):
+
+class Construction2(PluginMapCSS):
+
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'fix:survey'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
+        self.errors[40701] = self.def_class(item = 4070, level = 1, tags = mapcss.list_(u'tag', u'highway', u'fix:survey'), title = mapcss.tr(u'Inconsistent tagging of {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
 
 
 

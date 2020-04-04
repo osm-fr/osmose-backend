@@ -36,7 +36,7 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
         self.init(
             u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/",
             u"Vélib' - Disponibilité temps réel",
-            GeoJSON(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2019",
+            GeoJSON(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2020",
                 fileUrl = u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=geojson&timezone=Europe/Berlin")),
             Load("geom_x", "geom_y"),
             Mapping(
@@ -51,5 +51,5 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
                         "operator": "Smovengo"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": "station_name",
-                        "capacity": lambda res: res["nbedock"] if res["nbedock"] != "0" else None} )))
+                        "name": "name",
+                        "capacity": lambda res: res["capacity"] if res["capacity"] != "0" else None} )))

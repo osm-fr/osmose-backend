@@ -3,17 +3,21 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_territories(Plugin):
+
+class Josm_territories(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/territories.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9009001] = {'item': 9009, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'deprecated tagging')}
-        self.errors[9009002] = {'item': 9009, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'street name contains ss')}
-        self.errors[9009003] = {'item': 9009, 'level': 2, 'tag': ["tag"], 'desc': mapcss.tr(u'street name contains ß')}
+        self.errors[9009001] = self.def_class(item = 9009, level = 3, tags = ["tag"], title = mapcss.tr(u'deprecated tagging'))
+        self.errors[9009002] = self.def_class(item = 9009, level = 2, tags = ["tag"], title = mapcss.tr(u'street name contains ss'))
+        self.errors[9009003] = self.def_class(item = 9009, level = 2, tags = ["tag"], title = mapcss.tr(u'street name contains ß'))
 
         self.re_3d3faeb5 = re.compile(r'(?i).*Straße.*')
         self.re_559797c8 = re.compile(r'(?i).*Strasser.*')
@@ -25,23 +29,6 @@ class Josm_territories(Plugin):
         keys = tags.keys()
         err = []
 
-
-        # *[operator=ERDF][inside("FR")]
-        if (u'operator' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("deprecated tagging")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
-                # suggestAlternative:"operator=Enedis"
-                # fixAdd:"operator=Enedis"
-                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    [u'operator',u'Enedis']])
-                }})
 
         # *[addr:street=~/(?i).*Strasse.*/][addr:street!~/(?i).*Strasser.*/][inside("DE,AT")]
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
@@ -82,23 +69,6 @@ class Josm_territories(Plugin):
         keys = tags.keys()
         err = []
 
-
-        # *[operator=ERDF][inside("FR")]
-        if (u'operator' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("deprecated tagging")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
-                # suggestAlternative:"operator=Enedis"
-                # fixAdd:"operator=Enedis"
-                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    [u'operator',u'Enedis']])
-                }})
 
         # *[addr:street=~/(?i).*Strasse.*/][addr:street!~/(?i).*Strasser.*/][inside("DE,AT")]
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
@@ -145,23 +115,6 @@ class Josm_territories(Plugin):
         keys = tags.keys()
         err = []
 
-
-        # *[operator=ERDF][inside("FR")]
-        if (u'operator' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("deprecated tagging")
-                # throwWarning:tr("{0} is deprecated","{0.tag}")
-                # suggestAlternative:"operator=Enedis"
-                # fixAdd:"operator=Enedis"
-                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    [u'operator',u'Enedis']])
-                }})
 
         # *[addr:street=~/(?i).*Strasse.*/][addr:street!~/(?i).*Strasser.*/][inside("DE,AT")]
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]

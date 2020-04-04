@@ -3,56 +3,60 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_openrailwaymap(Plugin):
+
+class Josm_openrailwaymap(PluginMapCSS):
+
+    MAPCSS_URL = 'https://www.openrailwaymap.org/validator/openrailwaymap.validator.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9015001] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Track tagged with usage=* AND service=* - remove one of these tags'}}
-        self.errors[9015002] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Station mapped as a way, but should be mapped as a node'}}
-        self.errors[9015004] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Key traffic_mode is deprecated'}}
-        self.errors[9015005] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'usage=freight is deprecated'}}
-        self.errors[9015007] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'track numbers inside a station should be railway:track_ref, not name'}}
-        self.errors[9015008] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'platforms should have the numbers in ref, not railway:track_ref'}}
-        self.errors[9015009] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'track names or refs should not include the word \'track\', tag those numbers as railway:track_ref'}}
-        self.errors[9015010] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'platform names or refs should not include the word \'track\', write that as \'description\', put the bare numbers in \'ref\', separated by \';\''}}
-        self.errors[9015011] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'power:type=overhead is deprecated'}}
-        self.errors[9015012] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': mapcss.tr(u'power:type=overhead is deprecated, conflict between {0} and {1}', u'power:type=overhead', u'electrified=*')}
-        self.errors[9015013] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'power:type is deprecated, change to proper electrified value'}}
-        self.errors[9015014] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'priority on railway objects is deprecated, remove it'}}
-        self.errors[9015015] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'tracks=1 not necessary if detail=track is tagged.'}}
-        self.errors[9015016] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'If tracks are tagged with service=*, they should be mapped as one way per track.'}}
-        self.errors[9015017] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Crossings and level crossings should be mapped as nodes'}}
-        self.errors[9015018] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'radio=GSM-R is deprecated'}}
-        self.errors[9015019] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'radio=* is deprecated, change to proper railway:radio value'}}
-        self.errors[9015020] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'track tagged with \'tunnel\' in name, consider using tunnel:name instead and put the track name into name'}}
-        self.errors[9015021] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'track tagged with \'tunnel\' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia'}}
-        self.errors[9015022] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'track tagged with \'bridge\' in name, consider using bridge:name instead and put the track name into name'}}
-        self.errors[9015023] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'track tagged with \'bridge\' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia'}}
-        self.errors[9015024] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'lanes=* is used for highways, not railways'}}
-        self.errors[9015025] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'maxspeed=signals is deprecated, tag the highest possible speed instead'}}
-        self.errors[9015026] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'maxspeed should contain the value as it is shown on the line with mph as unit'}}
-        self.errors[9015027] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': mapcss.tr(u'{0}={1} without {2}:railway', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9015028] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'Milestone without position, add railway:position=*'}}
-        self.errors[9015029] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'supervised=* is deprecated'}}
-        self.errors[9015030] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'signal specification given but node is not tagged as signal or equivalent type'}}
-        self.errors[9015031] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'A sign cannot have different states.'}}
-        self.errors[9015032] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'railway=flat_crossing is deprecated'}}
-        self.errors[9015033] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption'}}
-        self.errors[9015034] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'railway:signal:stop:description is deprecated, replace by appropiate railway:signal:stop:caption value'}}
-        self.errors[9015035] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'main and combined signal at the same place'}}
-        self.errors[9015036] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'signals should be tagged with ref, not railway:ref'}}
-        self.errors[9015037] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'signals should have a railway:signal:direction=* tag'}}
-        self.errors[9015038] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'signal names should be prefixed with an operator or country prefix'}}
-        self.errors[9015039] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': mapcss.tr(u'{0} identification should be tagged as ref, not as name', mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
-        self.errors[9015040] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Tagging for resetting switch is deprecated, change railway:switch=* to proper value'}}
-        self.errors[9015041] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': {'en': u'controlled_area relations are deprecated'}}
-        self.errors[9015042] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'interlocking relation without type=railway'}}
-        self.errors[9015043] = {'item': 9015, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'interlocking relation with type other than railway'}}
-        self.errors[9015044] = {'item': 9015, 'level': 3, 'tag': ["tag", "railway"], 'desc': mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
+        self.errors[9015001] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Track tagged with usage=* AND service=* - remove one of these tags'})
+        self.errors[9015002] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Station mapped as a way, but should be mapped as a node'})
+        self.errors[9015004] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Key traffic_mode is deprecated'})
+        self.errors[9015005] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'usage=freight is deprecated'})
+        self.errors[9015007] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'track numbers inside a station should be railway:track_ref, not name'})
+        self.errors[9015008] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'platforms should have the numbers in ref, not railway:track_ref'})
+        self.errors[9015009] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'track names or refs should not include the word \'track\', tag those numbers as railway:track_ref'})
+        self.errors[9015010] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'platform names or refs should not include the word \'track\', write that as \'description\', put the bare numbers in \'ref\', separated by \';\''})
+        self.errors[9015011] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'power:type=overhead is deprecated'})
+        self.errors[9015012] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = mapcss.tr(u'power:type=overhead is deprecated, conflict between {0} and {1}', u'power:type=overhead', u'electrified=*'))
+        self.errors[9015013] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'power:type is deprecated, change to proper electrified value'})
+        self.errors[9015014] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'priority on railway objects is deprecated, remove it'})
+        self.errors[9015015] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'tracks=1 not necessary if detail=track is tagged.'})
+        self.errors[9015016] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'If tracks are tagged with service=*, they should be mapped as one way per track.'})
+        self.errors[9015017] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Crossings and level crossings should be mapped as nodes'})
+        self.errors[9015018] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'radio=GSM-R is deprecated'})
+        self.errors[9015019] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'radio=* is deprecated, change to proper railway:radio value'})
+        self.errors[9015020] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'track tagged with \'tunnel\' in name, consider using tunnel:name instead and put the track name into name'})
+        self.errors[9015021] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'track tagged with \'tunnel\' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia'})
+        self.errors[9015022] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'track tagged with \'bridge\' in name, consider using bridge:name instead and put the track name into name'})
+        self.errors[9015023] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'track tagged with \'bridge\' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia'})
+        self.errors[9015024] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'lanes=* is used for highways, not railways'})
+        self.errors[9015025] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'maxspeed=signals is deprecated, tag the highest possible speed instead'})
+        self.errors[9015026] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'maxspeed should contain the value as it is shown on the line with mph as unit'})
+        self.errors[9015027] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr(u'{0}={1} without {2}:railway', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9015028] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'Milestone without position, add railway:position=*'})
+        self.errors[9015029] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'supervised=* is deprecated'})
+        self.errors[9015030] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'signal specification given but node is not tagged as signal or equivalent type'})
+        self.errors[9015031] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'A sign cannot have different states.'})
+        self.errors[9015032] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'railway=flat_crossing is deprecated'})
+        self.errors[9015033] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption'})
+        self.errors[9015034] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'railway:signal:stop:description is deprecated, replace by appropiate railway:signal:stop:caption value'})
+        self.errors[9015035] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'main and combined signal at the same place'})
+        self.errors[9015036] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'signals should be tagged with ref, not railway:ref'})
+        self.errors[9015037] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'signals should have a railway:signal:direction=* tag'})
+        self.errors[9015038] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'signal names should be prefixed with an operator or country prefix'})
+        self.errors[9015039] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr(u'{0} identification should be tagged as ref, not as name', mapcss._tag_uncapture(capture_tags, u'{0.value}')))
+        self.errors[9015040] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Tagging for resetting switch is deprecated, change railway:switch=* to proper value'})
+        self.errors[9015041] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': u'controlled_area relations are deprecated'})
+        self.errors[9015042] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'interlocking relation without type=railway'})
+        self.errors[9015043] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'interlocking relation with type other than railway'})
+        self.errors[9015044] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_0e3375d5 = re.compile(r'[Vv]iadu[ck]t')

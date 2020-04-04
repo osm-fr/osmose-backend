@@ -63,6 +63,7 @@ language2scripts = {
   'ko': ['Hangul'],
   'kw': ['Latin'],
   'ky': ['Cyrillic'],
+  'lb': ['Latin'],
   'lo': ['Lao'],
   'lt': ['Latin'],
   'lv': ['Latin'],

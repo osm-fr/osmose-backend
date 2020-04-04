@@ -3,17 +3,21 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_ru_housenumber(Plugin):
+
+class Josm_ru_housenumber(PluginMapCSS):
+
+    MAPCSS_URL = 'https://github.com/zlant/Josm-HnumbValidator/blob/master/ru-housenumber.validator.mapcss'
 
     only_for = ['RU']
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9017001] = {'item': 9017, 'level': 3, 'tag': ["tag", "addr"], 'desc': mapcss.tr(u'Номера домов не соответствующие принятому соглашению')}
+        self.errors[9017001] = self.def_class(item = 9017, level = 3, tags = ["tag", "addr"], title = mapcss.tr(u'Номера домов не соответствующие принятому соглашению'))
 
         self.re_62d22c1b = re.compile(r'^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$')
 

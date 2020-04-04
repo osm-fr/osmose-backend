@@ -3,21 +3,24 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Bicycle(Plugin):
+
+class Bicycle(PluginMapCSS):
+
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[20301] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite cycleway without oneway')}
-        self.errors[20302] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite or opposite lane in the same way of the oneway')}
-        self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'footway', u'fix:chair'), 'desc': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'highway=footway|construction')}
-        self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[30329] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), 'desc': mapcss.tr(u'{0} is preferred to {1}', mapcss._tag_uncapture(capture_tags, u'{2.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1} and {2}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
+        self.errors[20301] = self.def_class(item = 2030, level = 1, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), title = mapcss.tr(u'Opposite cycleway without oneway'))
+        self.errors[20302] = self.def_class(item = 2030, level = 1, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), title = mapcss.tr(u'Opposite or opposite lane in the same way of the oneway'))
+        self.errors[20805] = self.def_class(item = 2080, level = 3, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'footway', u'fix:chair'), title = mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'highway=footway|construction'))
+        self.errors[30328] = self.def_class(item = 3032, level = 2, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), title = mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[30329] = self.def_class(item = 3032, level = 2, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), title = mapcss.tr(u'{0} with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[40101] = self.def_class(item = 4010, level = 2, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), title = mapcss.tr(u'{0} is preferred to {1}', mapcss._tag_uncapture(capture_tags, u'{2.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), title = mapcss.tr(u'{0} with {1} and {2}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{2.key}')))
 
         self.re_1825c777 = re.compile(r'footway|construction')
         self.re_5b286a0d = re.compile(r'no|use_sidepath')

@@ -293,6 +293,7 @@ booleanExpression
     | booleanExpression booleanOperator booleanExpression
     | valueExpression valueOperator valueExpression
     | valueExpression regexOperator regexExpression
+    | regexExpression regexOperator regexExpression
     | functionExpression
     ;
 

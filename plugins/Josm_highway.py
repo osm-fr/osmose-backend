@@ -3,22 +3,26 @@ from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin, with_options
+from plugins.Plugin import with_options
+from plugins.PluginMapCSS import PluginMapCSS
 
-class Josm_highway(Plugin):
+
+class Josm_highway(PluginMapCSS):
+
+    MAPCSS_URL = 'https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss'
 
 
     def init(self, logger):
-        Plugin.init(self, logger)
+        super().init(logger)
         tags = capture_tags = {}
-        self.errors[9004001] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'abbreviated street name')}
-        self.errors[9004002] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'wrong crossing tag on a way')}
-        self.errors[9004004] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'Unspecific highway type')}
-        self.errors[9004005] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'{0} used with {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))}
-        self.errors[9004006] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'deprecated tagging')}
-        self.errors[9004007] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), u'sidewalk=left|right|both|no')}
-        self.errors[9004008] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'wrong highway tag on a node')}
-        self.errors[9004010] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))}
+        self.errors[9004001] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'abbreviated street name'))
+        self.errors[9004002] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'wrong crossing tag on a way'))
+        self.errors[9004004] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'Unspecific highway type'))
+        self.errors[9004005] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'{0} used with {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
+        self.errors[9004006] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'deprecated tagging'))
+        self.errors[9004007] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), u'sidewalk=left|right|both|no'))
+        self.errors[9004008] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'wrong highway tag on a node'))
+        self.errors[9004010] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
 
         self.re_015aabd5 = re.compile(r'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(r'^.*_link$')
@@ -94,6 +98,9 @@ class Josm_highway(Plugin):
 
         # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
         # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+
+        # node[highway=crossing][barrier=kerb].is_in_major_road
+        # Use undeclared class is_in_major_road
 
         return err
 
