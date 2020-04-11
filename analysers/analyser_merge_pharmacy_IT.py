@@ -60,7 +60,10 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:msal': 'CODICEIDENTIFICATIVOFARMACIA',
-                        'ref:vatin': lambda res: italian_strings.osmRefVatin(res['PARTITAIVA']),
-                        'start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])},
-                    mapping2 = {'operator': lambda res: italian_strings.normalize_pharmacy(res['DESCRIZIONEFARMACIA'])},
+                        'ref:vatin': lambda res: italian_strings.osmRefVatin(res['PARTITAIVA'])
+                    },
+                    mapping2 = {
+                        'operator': lambda res: italian_strings.normalize_pharmacy(res['DESCRIZIONEFARMACIA']),
+                        'source:start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])
+                    },
                 text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
