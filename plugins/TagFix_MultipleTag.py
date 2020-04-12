@@ -40,13 +40,13 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20800] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'roundabout', 'fix:chair'],
             title = T_('Tag highway missing on junction'),
             detail = T_(
-'''The way have a tag `junction=*` but without `highway=*`.'''),
+'''The way has a tag `junction=*` but without `highway=*`.'''),
             trap = T_(
 '''Check if it is really an highway and it is not already mapped.'''))
         self.errors[20801] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing on oneway'),
             detail = T_(
-'''The way have a tag `oneway=*` but without `highway=*`.'''),
+'''The way has a tag `oneway=*` but without `highway=*`.'''),
             trap = T_(
 '''Check if it is really an highway and it is not already mapped.'''))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
