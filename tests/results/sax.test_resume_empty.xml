@@ -861,8 +861,7 @@
 <classtext lang="pt_BR" title="Falta etiqueta da rodovia no entroncamento" />
 <classtext lang="uk" title="Теґ highway відсутній на junction" />
 <classtext lang="zh_CN" title="标记公路交界处遗失" />
-<detail lang="en" title="The way have a tag `junction=*` but without `highway=*`." />
-<detail lang="pl" title="Ta droga ma tag `junction=*`, ale bez `highway=*`." />
+<detail lang="en" title="The way has a tag `junction=*` but without `highway=*`." />
 <trap lang="en" title="Check if it is really an highway and it is not already mapped." />
 <trap lang="pl" title="Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana." />
 </class>
@@ -884,7 +883,7 @@
 <classtext lang="pt_BR" title="Falta etiqueta da rodovia em sentido único" />
 <classtext lang="uk" title="Теґ highway відсутній на oneway" />
 <classtext lang="zh_CN" title="标记公路缺少单行道" />
-<detail lang="en" title="The way have a tag `oneway=*` but without `highway=*`." />
+<detail lang="en" title="The way has a tag `oneway=*` but without `highway=*`." />
 <trap lang="en" title="Check if it is really an highway and it is not already mapped." />
 <trap lang="pl" title="Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana." />
 </class>
@@ -2290,10 +2289,12 @@
 <classtext lang="zh_CN" title="不可打印字符" />
 <detail lang="en" title="A non-printable character such as linefeed (0x000a) has been&#10;used." />
 <detail lang="es" title="Ha sido usado un caracter no imprimible como una línea de salida (0x000a)." />
+<detail lang="ja" title="ラインフィード(0x000a)のような表示不能な文字が使われています。" />
 <detail lang="uk" title="Недрукований символ, як linefeed (0x000a) був&#10;використаний." />
 <fix lang="en" title="Remove the character." />
 <fix lang="es" title="Quitar el caracter." />
 <fix lang="hu" title="Távolítsa el a karaktert." />
+<fix lang="ja" title="文字を削除します。" />
 <fix lang="uk" title="Видаліть символ." />
 </class>
 <class id="50703" item="5070" source="http://example.com/plugins/Name_Script.py#L61" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
@@ -2508,6 +2509,7 @@
 <classtext lang="fr" title="{0.key} sur une relation sans {1.key}={1.value}" />
 <classtext lang="hu" title="{0.key} egy kapcsolaton {1.key}={1.value} nélkül" />
 <classtext lang="it" title="{0.key} su una relazione senza {1.key}={1.value}" />
+<classtext lang="ja" title="リレーションに{0.key}があるのに{1.key}={1.value}がない" />
 <classtext lang="lt" title="{0.key} ant ryšio be {1.key}={1.value}" />
 <classtext lang="nl" title="{0.key} op een relatie zonder {1.key}={1.value}" />
 <classtext lang="pl" title="{0.key} na relacji bez {1.key}={1.value}" />
@@ -2527,6 +2529,7 @@
 <classtext lang="fr" title="usage partiel de {0.key} sur un chemin sans {1.key}" />
 <classtext lang="hu" title="a(z) {0.key} hiányos használata egy vonalon {1.key} nélkül" />
 <classtext lang="it" title="uso di {0.key} incompleto con un tracciato senza {1.key}" />
+<classtext lang="ja" title="ウェイに{1.key}が無い{0.key}は不完全な使用法です" />
 <classtext lang="lt" title="nepilnas {0.key} naudojimas ant kelio be {1.key}" />
 <classtext lang="nl" title="onvolledig gebruik van {0.key} op een weg zonder {1.key}" />
 <classtext lang="pl" title="niepełne użycie {0.key} na drodze bez {1.key}" />
@@ -2773,7 +2776,7 @@
 <classtext lang="hu" title="{0.key}={0.value} pontatlan. Külön címkéket kell használni minden adott típusra, például payment:bitcoin=yes vagy payment:litecoin=yes." />
 <classtext lang="it" title="{0.key}={0.value} è inaccurato. Usare etichette separate per ogni tipo, ad esempio payment:bitcoin=yes o payment:litecoin=yes." />
 <classtext lang="nl" title="{0.key}={0.value} is onnauwkeurig. Gebruik afzonderlijke tags voor elk specifiek type, bijv. payment:bitcoin=yes of payment:litecoin=yes." />
-<classtext lang="pl" title="{0.key}={0.value} jest niedokładne. Użyj osobnych tagów dla każdego określonego typu, np. payment:bitcoin=yes or payment:litecoin=yes." />
+<classtext lang="pl" title="{0.key}={0.value} jest niedokładne. Użyj osobnych znaczników dla każdego określonego typu, np. payment:bitcoin=yes lub payment:litecoin=yes." />
 <classtext lang="ru" title="Тег {0.key}={0.value} неточный. Используйте отдельные теги для каждого конкретного типа, например, payment:bitcoin=yes или payment:litecoin=yes." />
 <classtext lang="uk" title="{0.key}={0.value} є неточним. Використовуйте окремі теґи для кожного типу, на приклад payment:bitcoin=yes або payment:litecoin=yes." />
 </class>
@@ -2894,6 +2897,7 @@
 <classtext lang="fr" title="valeur inhabituelle de {0.key}" />
 <classtext lang="hu" title="{0.key} értéke szokatlan" />
 <classtext lang="it" title="valore inusuale di {0.key}" />
+<classtext lang="ja" title="{0.key}は異常値です" />
 <classtext lang="nl" title="ongebruikelijke waarde van {0.key}" />
 <classtext lang="pl" title="Niespotykana wartość {0.key}" />
 <classtext lang="pt" title="valor incomum de  {0.key}" />
@@ -2964,8 +2968,9 @@
 <classtext lang="fr" title="{0.key}={0.value} sur un noeud. Devrait être utilisé dans une relation" />
 <classtext lang="hu" title="{0.key}={0.value} egy ponton. Kapcsolatban kéne használni." />
 <classtext lang="it" title="{0.key}={0.value} su un nodo. Andrebbe usato su una relazione" />
+<classtext lang="ja" title="{0.key}={0.value}がノードに設定されています。リレーションに使用されるべきです" />
 <classtext lang="nl" title="{0.key}={0.value} op een knoop. Zou moeten worden gebruikt op een relatie" />
-<classtext lang="pl" title="{0.key}={0.value} na węźle. Powinno być użyte w relacji." />
+<classtext lang="pl" title="{0.key}={0.value} na węźle. Powinno być użyte w relacji" />
 <classtext lang="pt" title="{0.key}={0.value} num nó. Deve ser usado numa relação" />
 <classtext lang="pt_BR" title="{0.key}={0.value} está em um nó. Deve ser utilizado em uma relação" />
 <classtext lang="ru" title="{0.key}={0.value} на точке. Должен использоваться на отношении" />
@@ -3022,7 +3027,7 @@
 <classtext lang="ja" title="{0.key}={0.value}はウェイ上にあります。リレーションの中で使用してください" />
 <classtext lang="lt" title="{0.key}={0.value} ant kelio. Turėtų būti naudojama ryšyje." />
 <classtext lang="nl" title="{0.key}={0.value} op een weg. Zou moeten worden gebruikt in een relatie" />
-<classtext lang="pl" title="{0.key}={0.value} na drodze. Powinno być użyte w relacji." />
+<classtext lang="pl" title="{0.key}={0.value} na drodze. Powinno być użyte w relacji" />
 <classtext lang="pt" title="{0.key}={0.value} numa linha. Deve ser usado numa relação" />
 <classtext lang="pt_BR" title="{0.key}={0.value} em uma via. Deveria ser utilizado em uma relação" />
 <classtext lang="ru" title="{0.key}={0.value} на линии. Должен использоваться в отношении" />
@@ -3054,6 +3059,7 @@
 <classtext lang="fr" title="Chemin avec {0.key}={0.value} non fermé." />
 <classtext lang="hu" title="Nincs bezárva a(z) {0.key}={0.value} címkéjű vonal." />
 <classtext lang="it" title="Way con {0.key}={0.value} non chiusa." />
+<classtext lang="ja" title="{0.key}={0.value}のウェイが閉じていません。" />
 <classtext lang="nl" title="Weg met {0.key}={0.value} niet gesloten." />
 <classtext lang="pl" title="Linia z {0.key}={0.value} nie jest zamknięta." />
 <classtext lang="pt" title="Via com {0.key}={0.value} não fechada." />
@@ -3361,6 +3367,7 @@
 <classtext lang="fr" title="valeur inhabituelle de {0.key}" />
 <classtext lang="hu" title="{0.key} értéke szokatlan" />
 <classtext lang="it" title="valore inusuale di {0.key}" />
+<classtext lang="ja" title="{0.key}は異常値です" />
 <classtext lang="nl" title="ongebruikelijke waarde van {0.key}" />
 <classtext lang="pl" title="Niespotykana wartość {0.key}" />
 <classtext lang="pt" title="valor incomum de  {0.key}" />
@@ -3480,6 +3487,7 @@
 <classtext lang="en" title="Airport tagging" />
 <classtext lang="es" title="Etiquetado de aeropuerto" />
 <classtext lang="fr" title="Marquage d''aéroport" />
+<classtext lang="ja" title="空港関係のタグ付け" />
 <classtext lang="nl" title="Luchthaven taggen" />
 <classtext lang="ru" title="Теги аэропорта" />
 <classtext lang="uk" title="Теґування аеропортів" />
@@ -3779,6 +3787,7 @@
 <classtext lang="fr" title='Le titre wikipedia ne doit pas avoir de préfixe "wiki/"' />
 <classtext lang="hu" title="a wikipédia cím nem tartalmazhat ''wiki/'' előtagot" />
 <classtext lang="it" title="il titolo wikipedia non dovrebbe avere il prefisso ''wiki/''" />
+<classtext lang="ja" title="Wikipediaのページ名は''wiki/''の接頭辞を持つべきではありません" />
 <classtext lang="lt" title="wikipedia pavadinimas neturi turėti prefikso „wiki/“" />
 <classtext lang="nl" title="Titel voor Wikipedia zou geen voorvoegsel ''wiki/'' moeten hebben" />
 <classtext lang="pl" title='tytuł strony Wikipedii nie powinien mieć prefiksu "wiki/"' />
