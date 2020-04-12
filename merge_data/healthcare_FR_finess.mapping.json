@@ -127,7 +127,6 @@
       "healthcare": "centre"
     },
     "tags_generate2": {
-      "healthcare:speciality": "general",
       "short_name": "MSP",
       "alt_name": "Maison de santé pluriprofessionnelle"
     }
