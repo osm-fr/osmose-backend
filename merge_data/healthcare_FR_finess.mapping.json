@@ -91,7 +91,6 @@
 	"433",
 	"438",
 	"444",
-	"603",
 	"604",
 	"636"
     ],
@@ -108,6 +107,29 @@
     "tags_generate1": {},
     "tags_generate2": {
       "healthcare": "yes"
+    }
+  },
+  {
+    "categories": [
+	"603"
+    ],
+    "items": [
+      8400
+    ],
+    "missing_osm": false,
+    "classes": 20,
+    "level": 3,
+    "title": "Maison de santé",
+    "tags_select": {
+      "healthcare": "centre"
+    },
+    "tags_generate1": {
+      "healthcare": "centre"
+    },
+    "tags_generate2": {
+      "healthcare:speciality": "general",
+      "short_name": "MSP",
+      "alt_name": "Maison de santé pluriprofessionnelle"
     }
   },
   {
