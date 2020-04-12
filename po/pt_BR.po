@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-22 13:34+0000\n"
+"PO-Revision-Date: 2020-04-12 15:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -406,7 +406,7 @@ msgstr "Rotatória invertida"
 msgid "Soundex test"
 msgstr "Teste Soundex"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:139
+#: ../analysers/analyser_osmosis_tag_typo.py:140
 msgid "Typo in tag"
 msgstr "Erro na etiqueta"
 
@@ -593,7 +593,7 @@ msgstr "Falta etiqueta da rodovia no entroncamento"
 msgid "Tag highway missing on oneway"
 msgstr "Falta etiqueta da rodovia em sentido único"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:151
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:154
 msgid "Opposite cycleway without oneway"
 msgstr "Ciclovia oposta sem sentido único"
 
@@ -1342,7 +1342,7 @@ msgstr ""
 msgid "Open relation type=multipolygon"
 msgstr ""
 
-#: ../plugins/Construction2.py:14 ../plugins/Construction2.py:52
+#: ../plugins/Construction2.py:17 ../plugins/Construction2.py:55
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr ""
@@ -1439,8 +1439,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:43
-#: ../plugins/Name_Cadastre_FR.py:68
+#: ../plugins/Name_Cadastre_FR.py:17 ../plugins/Name_Cadastre_FR.py:46
+#: ../plugins/Name_Cadastre_FR.py:71
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1450,11 +1450,11 @@ msgstr ""
 msgid "Unexpected punctuation in name"
 msgstr ""
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
+#: ../plugins/Power.py:17 ../plugins/Power.py:76 ../plugins/Power.py:97
 msgid "Power Transformers should always be on a node"
 msgstr ""
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:37
+#: ../plugins/Power.py:18 ../plugins/Power.py:40
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -1491,27 +1491,27 @@ msgstr ""
 msgid "Direct or too permissive access to motorway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:181
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:184
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:62
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:65
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:98
-#: ../plugins/Bicycle.py:130
+#: ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:101
+#: ../plugins/Bicycle.py:133
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:46
+#: ../plugins/Bicycle.py:23 ../plugins/Bicycle.py:49
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:79
+#: ../plugins/Bicycle.py:22 ../plugins/Bicycle.py:82
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr ""
@@ -1545,7 +1545,7 @@ msgstr ""
 msgid "Highway classification need review"
 msgstr ""
 
-#: ../plugins/Power.py:16 ../plugins/Power.py:52
+#: ../plugins/Power.py:19 ../plugins/Power.py:55
 msgid "Power Transformers should have a frequency tag"
 msgstr ""
 
@@ -1561,26 +1561,26 @@ msgstr ""
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:14
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:17
 msgid "Arabic letter detected in Farsi name"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:49
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:74
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:126
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:156
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:178
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr ""
 
-#: ../plugins/Colour.py:14
+#: ../plugins/Colour.py:17
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""
 
-#: ../plugins/Colour.py:53 ../plugins/Colour.py:82 ../plugins/Colour.py:127
-#: ../plugins/Colour.py:161 ../plugins/Colour.py:200 ../plugins/Colour.py:229
+#: ../plugins/Colour.py:56 ../plugins/Colour.py:85 ../plugins/Colour.py:130
+#: ../plugins/Colour.py:164 ../plugins/Colour.py:203 ../plugins/Colour.py:232
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""
@@ -2780,11 +2780,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:141
+#: ../analysers/analyser_osmosis_tag_typo.py:142
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:143
+#: ../analysers/analyser_osmosis_tag_typo.py:144
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3330,16 +3330,8 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:43
-msgid "The way have a tag `junction=*` but without `highway=*`."
-msgstr ""
-
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:51
 msgid "Check if it is really an highway and it is not already mapped."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag.py:49
-msgid "The way have a tag `oneway=*` but without `highway=*`."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:57
@@ -4041,4 +4033,12 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-brace-format
 msgid "Way access mismatch relation route={0}"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:43
+msgid "The way has a tag `junction=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:49
+msgid "The way has a tag `oneway=*` but without `highway=*`."
 msgstr ""

@@ -3326,16 +3326,8 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:43
-msgid "The way have a tag `junction=*` but without `highway=*`."
-msgstr ""
-
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:51
 msgid "Check if it is really an highway and it is not already mapped."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag.py:49
-msgid "The way have a tag `oneway=*` but without `highway=*`."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:57
@@ -4050,4 +4042,12 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-brace-format
 msgid "Way access mismatch relation route={0}"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:43
+msgid "The way has a tag `junction=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:49
+msgid "The way has a tag `oneway=*` but without `highway=*`."
 msgstr ""
