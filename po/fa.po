@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-03-22 13:34+0000\n"
+"PO-Revision-Date: 2020-04-12 15:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -402,7 +402,7 @@ msgstr "فلکهٔ برعکس"
 msgid "Soundex test"
 msgstr "Soundex test"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:139
+#: ../analysers/analyser_osmosis_tag_typo.py:140
 msgid "Typo in tag"
 msgstr "غلط املایی در تگ"
 
@@ -589,7 +589,7 @@ msgstr "junction است اما تگ highway ندارد"
 msgid "Tag highway missing on oneway"
 msgstr "oneway هست اما تگ highway نیست"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:151
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:154
 msgid "Opposite cycleway without oneway"
 msgstr "cycleway=opposite بدون oneway"
 
@@ -1338,7 +1338,7 @@ msgstr "رابطهٔ باز type=boundary"
 msgid "Open relation type=multipolygon"
 msgstr "رابطهٔ باز type=multipolygon"
 
-#: ../plugins/Construction2.py:14 ../plugins/Construction2.py:52
+#: ../plugins/Construction2.py:17 ../plugins/Construction2.py:55
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "ناسازگاری در تگ‌گذاری {0}"
@@ -1435,8 +1435,8 @@ msgstr "رابطهٔ restriction: جهت oneway روی عضو from یا to در�
 msgid "Useless turn restriction"
 msgstr "محدودیت بی‌فایده برای دورزدن"
 
-#: ../plugins/Name_Cadastre_FR.py:14 ../plugins/Name_Cadastre_FR.py:43
-#: ../plugins/Name_Cadastre_FR.py:68
+#: ../plugins/Name_Cadastre_FR.py:17 ../plugins/Name_Cadastre_FR.py:46
+#: ../plugins/Name_Cadastre_FR.py:71
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1446,11 +1446,11 @@ msgstr ""
 msgid "Unexpected punctuation in name"
 msgstr "علائم نگارشی غیرمنتظره در نام"
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:73 ../plugins/Power.py:94
+#: ../plugins/Power.py:17 ../plugins/Power.py:76 ../plugins/Power.py:97
 msgid "Power Transformers should always be on a node"
 msgstr "ترانسفورماتور برق همیشه باید روی گره باشد"
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:37
+#: ../plugins/Power.py:18 ../plugins/Power.py:40
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -1487,27 +1487,27 @@ msgstr "بازیافت SITCOM، به‌روزآوری"
 msgid "Direct or too permissive access to motorway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:181
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:184
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:62
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:65
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0} بدون {1}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:98
-#: ../plugins/Bicycle.py:130
+#: ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:101
+#: ../plugins/Bicycle.py:133
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} با {1}"
 
-#: ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:46
+#: ../plugins/Bicycle.py:23 ../plugins/Bicycle.py:49
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} با {1} و {2}"
 
-#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:79
+#: ../plugins/Bicycle.py:22 ../plugins/Bicycle.py:82
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} بهتر از {1} است"
@@ -1541,7 +1541,7 @@ msgstr "چیزی نیاز به بازبینی دارد"
 msgid "Highway classification need review"
 msgstr "درجه‌بندی معبر نیاز به بازبینی دارد"
 
-#: ../plugins/Power.py:16 ../plugins/Power.py:52
+#: ../plugins/Power.py:19 ../plugins/Power.py:55
 msgid "Power Transformers should have a frequency tag"
 msgstr "ترانسفورماتورهای برق باید تگ frequency داشته باشند"
 
@@ -1557,26 +1557,26 @@ msgstr "پارکینگ موتورسیکلت پاریس یکپارچه نشده"
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "موتورسیکلت اشتراکی/پارکینگ موتورسیکلت پاریس یکپارچه نشده"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:14
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:17
 msgid "Arabic letter detected in Farsi name"
 msgstr "حرف عربی در نام فارسی"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:46
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:71
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:101
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:123
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:153
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:175
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:49
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:74
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:126
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:156
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:178
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "در کلمات فارسی، باید به‌جای {0} از {1} استفاده کرد."
 
-#: ../plugins/Colour.py:14
+#: ../plugins/Colour.py:17
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr "کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید"
 
-#: ../plugins/Colour.py:53 ../plugins/Colour.py:82 ../plugins/Colour.py:127
-#: ../plugins/Colour.py:161 ../plugins/Colour.py:200 ../plugins/Colour.py:229
+#: ../plugins/Colour.py:56 ../plugins/Colour.py:85 ../plugins/Colour.py:130
+#: ../plugins/Colour.py:164 ../plugins/Colour.py:203 ../plugins/Colour.py:232
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr "کد رنگ {0} باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید"
@@ -2776,11 +2776,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:141
+#: ../analysers/analyser_osmosis_tag_typo.py:142
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:143
+#: ../analysers/analyser_osmosis_tag_typo.py:144
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3326,16 +3326,8 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:43
-msgid "The way have a tag `junction=*` but without `highway=*`."
-msgstr ""
-
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:51
 msgid "Check if it is really an highway and it is not already mapped."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag.py:49
-msgid "The way have a tag `oneway=*` but without `highway=*`."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:57
@@ -4037,4 +4029,12 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-brace-format
 msgid "Way access mismatch relation route={0}"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:43
+msgid "The way has a tag `junction=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:49
+msgid "The way has a tag `oneway=*` but without `highway=*`."
 msgstr ""
