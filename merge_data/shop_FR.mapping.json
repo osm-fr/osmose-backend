@@ -252,10 +252,17 @@
     "match": [
       {
         "shop": "bakery"
+      },
+      {
+        "shop": "pastry"
+      },
+      {
+        "shop": "chocolate"
       }
     ],
     "generate": {
-      "shop": "bakery"
+      "shop": "bakery;pastry;chocolate",
+      "fixme": "select a shop type"
     }
   },
   {
@@ -545,10 +552,14 @@
     "match": [
       {
         "shop": "bag"
+      },
+      {
+        "shop": "leather"
       }
     ],
     "generate": {
-      "shop": "bag"
+      "shop": "bag;leather",
+      "fixme": "select a shop type"
     }
   },
   {
@@ -600,10 +611,13 @@
       },
       {
         "shop": "pet"
+      },
+      {
+        "shop": "garden_centre"
       }
     ],
     "generate": {
-      "shop": "florist;pet",
+      "shop": "florist;pet;garden_centre",
       "fixme": "select a shop type"
     }
   },
@@ -650,10 +664,17 @@
     "match": [
       {
         "shop": "second_hand"
+      },
+      {
+        "shop": "antiques"
+      },
+      {
+        "books": "antiquarian"
       }
     ],
     "generate": {
-      "shop": "second_hand"
+      "shop": "second_hand;antiques",
+      "fixme": "select a shop type"
     }
   },
   {
@@ -849,6 +870,9 @@
     "match": [
       {
         "shop": "travel_agency"
+      },
+      {
+        "office": "travel_agent"
       }
     ],
     "generate": {
