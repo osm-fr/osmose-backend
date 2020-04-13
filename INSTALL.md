@@ -84,7 +84,7 @@ Java JRE for osmosis:
 apt install openjdk-11-jre-headless
 ```
 
-osmosis is installed in osmosis/osmosis-0.47/.
+osmosis is installed in osmosis/osmosis-0.47.4/.
 osmconvert is installed in osmconvert/.
 
 

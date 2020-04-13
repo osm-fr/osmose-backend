@@ -1,3 +1,47 @@
+0.47.4 (2020-04-07)
+Refactored with BaseXMLReader and WorkingTaskManagerFactory classes (#60)
+
+0.47.3 (2020-03-24)
+Updated protobuf package to 3.11.4 (#58)
+Replaced custom MultiMemberGZIPInputStream with java.util.zip.GZIPInputStream (#59)
+
+0.47.2 (2020-03-10)
+Removed explicit dependency on xerces in favor of JDK version (PR #51)
+Added $gnupgUserDir to Docker setup (PR #56)
+
+0.47.1 (2020-03-08)
+Update APIDB schema to remove users.nearby column (PR #54)
+
+0.47
+Build using Java 11 now that Java has moved to a 6 month release cycle with no (free) long term support.
+Use https for all replication URLs.
+Use single-threaded PBF reading by default.
+Add support for PBF way location attributes.
+Remove customdb dataset implementation.  It performed poorly and was superseded long ago by pgsimple/pgsnapshot.
+Fix munin replication lag shell script.
+Modify --write-apidb to commit every 10000 to allow large databases to be populated.
+Fix --write-apidb-change to correctly write way history.
+
+0.46
+Require Java 8 as a minimum.
+Leverage Java 7 Autocloseable functionality and remove Releasable interface.
+Apply minor code cleanups contributed by devfactory.com.
+Add tests for pgsimple tasks.
+Introduce docker-based build environment.
+Introduce Travis CI testing.
+Add support for reading protobuf from InputStream.  Useful when using Osmosis as a library.
+Upgrade to protobuf 3.
+Make compression optional in EntitySorter.
+
+0.45
+Add postgresSchema option to pgsnapshot tasks.
+Verify XML parser on startup to verify support for multi-char unicode characters.
+Upgrade to latest version of Netty.
+Various dependency version updates.
+Fix incorrect plexus classworlds version in Windows launch script.
+Upgrade to PostGIS 2.x library.
+Add tests for pgsimple database.
+
 0.44
 Improve default settings and performance of pgsnapshot load scripts.
 Fix remaining 64-bit id tracking problems.
@@ -221,11 +265,11 @@ Removed the old postgresql tasks.
 Removed "simple" from the names of the simple pgsql tasks.
 Added plugin support allowing new tasks in external jar files to be registered with osmosis.
 Added command line checks to ensure all task and option arguments are recognised, any misspelt arguments will now raise an error.
-Removed all static methods from the task registrar and task manager factory classes to avoid global data and simplify testing. 
+Removed all static methods from the task registrar and task manager factory classes to avoid global data and simplify testing.
 Added the --node-key and --node-key-value tasks.
 
 0.28
-Added a maximum file download count feature to the change downloader to limit processing overhead when synchronising long time intervals. 
+Added a maximum file download count feature to the change downloader to limit processing overhead when synchronising long time intervals.
 Fixed a major error in the TaskRegistrar from 0.27 where multiple tasks had the same name preventing osmosis from launching.
 
 0.27
@@ -233,7 +277,7 @@ Added change downloader tasks providing the basis for automatic synchronisation 
 
 0.26
 Removed the bdb dataset implementation.
-Fixed an incorrect constant bug in the mysql tile calculator causing incorrect tile values to be generated.  
+Fixed an incorrect constant bug in the mysql tile calculator causing incorrect tile values to be generated.
 
 0.25
 Added a new osmosis-extract-mysql application for extracting regular changesets from mysql.

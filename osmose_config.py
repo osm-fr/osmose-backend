@@ -43,8 +43,8 @@ class template_config:
     bin_osmosis    = modules.config.bin_osmosis
     osmosis_pre_scripts = [
         dir_scripts + "/osmosis/pgsnapshot_schema_0.6.sql",
-#       dir_scripts + "/osmosis/osmosis-0.47/script/pgsnapshot_schema_0.6_bbox.sql",
-        dir_scripts + "/osmosis/osmosis-0.47/script/pgsnapshot_schema_0.6_linestring.sql",
+#       dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_bbox.sql",
+        dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_linestring.sql",
         dir_scripts + "/osmosis/CreateMetainfo.sql",
     ]
     osmosis_import_scripts = [
@@ -56,14 +56,14 @@ class template_config:
     ]
     osmosis_change_init_post_scripts = [  # Scripts to run on database initialisation
         dir_scripts + "/osmosis/pgsimple_schema_0.6_action_drop.sql",
-        dir_scripts + "/osmosis/osmosis-0.47/script/pgsnapshot_schema_0.6_action.sql",
+        dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_action.sql",
     ]
     osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/CreateTouched.sql",
     ]
     osmosis_resume_init_post_scripts = [  # Scripts to run on database initialisation
         dir_scripts + "/osmosis/pgsimple_schema_0.6_action_drop.sql",
-        dir_scripts + "/osmosis/osmosis-0.47/script/pgsnapshot_schema_0.6_action.sql",
+        dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_action.sql",
     ]
     osmosis_resume_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/ActionFromTimestamp.sql",
