@@ -69,7 +69,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",
-            CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "03/2019", encoding='ISO-8859-15',
+            CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "03/2020", encoding='ISO-8859-15',
                     fileUrl = u'https://static.data.gouv.fr/resources/finess-extraction-du-fichier-des-etablissements/20190307-093304/etalab-cs1100507-stock-20190307-0422.csv')),
             Load("coordxet", "coordyet", srid = srid,
                 select = {"categagretab": categories},
