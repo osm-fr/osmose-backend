@@ -89,17 +89,17 @@ class TagFix_Note_Lang_fr(Plugin):
             if 'FIXME' not in tags and ('note' not in tags or 'fixme' not in tags['note'].lower()):
                 for w in self.FixmeFull:
                     if w in tt:
-                        return {"class": 3110, "subclass": 100, "text": T_(u"note tag need FIXME : \"%s\"", tags[t]),
+                        return {"class": 3110, "subclass": 100, "text": T_(u"note tag needs FIXME: \"%s\"", tags[t]),
                                  "fix": {"note": "FIXME %s" % tags[t]}}
                 for w in self.FixmeWord:
                     if w in words:
-                        return {"class": 3110, "subclass": 101, "text": T_(u"note tag need FIXME : \"%s\"", tags[t]),
+                        return {"class": 3110, "subclass": 101, "text": T_(u"note tag needs FIXME: \"%s\"", tags[t]),
                                  "fix": {"note": "FIXME %s" % tags[t]}}
             # Destruction
             if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
                 for w in self.Destruction:
                     if w in tt:
-                        return {"class": 3110, "subclass": 500, "text": T_(u"Use a tag to specify end : \"%s\"", tags[t])}
+                        return {"class": 3110, "subclass": 500, "text": T_(u"Use a tag to specify end: \"%s\"", tags[t])}
             # start_date
             if 'start_date' not in tags:
                 if self.Date.match(tt) or "siecle" in tt:
