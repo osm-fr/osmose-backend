@@ -89,7 +89,16 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
                     static1 = tags_generate1,
                     static2 = dict({"source": self.source}, **tags_generate2),
                     mapping1 = {"ref:FR:FINESS": "nofinesset"},
+                    mapping2 = {
+                        "type:FR:FINESS": "categetab",
+                        "phone": lambda fields: self.phone(fields["telephone"]),
+                        "fax": lambda fields: self.phone(fields["telecopie"]),
+                    },
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i not in (None, 'None'), [fields["rs"], fields["rslongue"], fields["complrs"], fields["compldistrib"], fields["numvoie"], fields["typvoie"], fields["voie"], fields["compvoie"], fields["lieuditbp"], fields["ligneacheminement"], fields["libcategetab"], fields["numuai"]]))} )))
+
+    def phone(self, number):
+        if number and len(number) == 10 and number[0] == "0":
+            return "+33" + number[1:]
 
 
 class Source_Finess(Source):
