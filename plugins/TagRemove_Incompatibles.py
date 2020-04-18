@@ -47,6 +47,9 @@ class TagRemove_Incompatibles(Plugin):
                 ['water', 'amenity', 'fountain'], # ?
                 ['military', 'aeroway', 'aerodrome'],
             ],
+            'water': [
+                 ['pond', 'leisure', 'fishing'],
+            ],
             'place': [
                 ['square', 'area', 'yes'],
                 ['square', 'highway', 'pedestrian'],
