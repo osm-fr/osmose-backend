@@ -29,7 +29,7 @@ class historic_wayside_cross_material(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[800] = self.def_class(item = 9200, level = 1, tags = ['historic', 'fix:survey'],
-            title = T_('Wayside_cross node without material tag'),
+            title = T_('Wayside cross node without `material` tag'),
             detail = T_(
 '''The tag `historic=wayside_cross` can always be used in combination with
 the tag `material=*`.'''),
@@ -37,7 +37,7 @@ the tag `material=*`.'''),
 '''Fill the tag `material=*` as specific as possible.'''),
             trap = T_(
 '''The tag `historic=wayside_cross` is sometimes misused. Please x-check
-if historic=wayside_shrine or summit:cross=yes is mor appropiate.'''))
+if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate.'''))
         doc = dict(
             detail = T_(
 '''Check if tag `material=*` is filled for `historic=wayside_cross` objects.'''),
@@ -45,15 +45,10 @@ if historic=wayside_shrine or summit:cross=yes is mor appropiate.'''))
 '''Add tag `material=*` or change object type as appropriate.'''),
             trap = T_(
 '''The tag `historic=wayside_cross` is sometimes misused. Please x-check
-if historic=wayside_shrine or summit:cross=yes is mor appropiate'''))
+if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate'''))
 
 
     def node(self, data, tags):
         keys = tags.keys()
-        if u"historic" in tags:
-            if u"wayside_cross" in keys:
-                if u"material" not in tags:
-                    return {"class": 800, "subclass": 0, "text": T_(u"Node with historic=%s without material tag", tags[u"historic"])}
-
-
-
+        if "historic" in tags and "wayside_cross" in keys and "material" not in tags:
+           return {"class": 800, "subclass": 0, "text": T_("Node with `historic=wayside_cross` without `material=*` tag")}
