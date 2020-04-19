@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-12 15:53+0000\n"
+"PO-Revision-Date: 2020-04-19 14:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -743,12 +743,12 @@ msgstr ""
 msgid "Name contains successive spaces"
 msgstr "Το όνομα περιέχει συνεχόμενα κενά"
 
-#: ../plugins/TagRemove_Incompatibles.py:91
+#: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Διένεξη μεταξύ ετικετών: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:94
+#: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Διένεξη μεταξύ ετικετών: 'bridge' και 'tunnel'"
 
@@ -1005,7 +1005,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:97
+#: ../plugins/TagRemove_Incompatibles.py:100
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1122,16 +1122,6 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:115
 msgid "A zone 30 is limited to 30 km/h"
-msgstr ""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
-#, python-format
-msgid "note tag need FIXME : \"%s\""
-msgstr ""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:102
-#, python-format
-msgid "Use a tag to specify end : \"%s\""
 msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:106
@@ -1259,10 +1249,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
-msgstr ""
-
-#, python-format
-msgid "Way access mismatch relation route=%s"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:271
@@ -2970,12 +2956,6 @@ msgid ""
 "given direction."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:62
-msgid ""
-"`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is\n"
-"the number of lanes."
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:67
 msgid ""
 "The `merge_to_right` or `merge_to_left` lane must be on the same way\n"
@@ -4037,4 +4017,20 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:49
 msgid "The way has a tag `oneway=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:62
+msgid ""
+"`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is\n"
+"the number of lanes."
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
+#, python-format
+msgid "note tag needs FIXME: \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:102
+#, python-format
+msgid "Use a tag to specify end: \"%s\""
 msgstr ""

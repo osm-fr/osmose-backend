@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-13 13:43+0000\n"
-"Last-Translator: Ігор Варварчук <182050@i.ua>\n"
+"PO-Revision-Date: 2020-04-19 14:53+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -745,12 +745,12 @@ msgstr "Недійсний індекс вулиці %(postcode)s для кра�
 msgid "Name contains successive spaces"
 msgstr "Ім'я містить послідовні пробіли"
 
-#: ../plugins/TagRemove_Incompatibles.py:91
+#: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Конфлікт між теґами: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:94
+#: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Конфлікт між теґами: 'bridge' та 'tunnel'"
 
@@ -1007,7 +1007,7 @@ msgstr "Помилкове значення смуг доступу, не має
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Смуги повороту merge_to_* потребує сторону смуги з хорошого боку"
 
-#: ../plugins/TagRemove_Incompatibles.py:97
+#: ../plugins/TagRemove_Incompatibles.py:100
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Конфлікт між теґами: crossing=no має вживатися без highway=crossing"
@@ -1125,16 +1125,6 @@ msgstr "Зона 20 обмежена до 20 км/год"
 #: ../plugins/TagFix_MultipleTag_FR.py:115
 msgid "A zone 30 is limited to 30 km/h"
 msgstr "Зона 30 обмежена до 30 км/год"
-
-#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
-#, python-format
-msgid "note tag need FIXME : \"%s\""
-msgstr "теґ нотатки потребує FIXME : \"%s\""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:102
-#, python-format
-msgid "Use a tag to specify end : \"%s\""
-msgstr "Застосуйте теґ для уточнення кінця: \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:106
 #, python-format
@@ -1262,10 +1252,6 @@ msgstr "Не повинен міститися теґ ref=%s"
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
 msgstr "Закрити подібне ім'я"
-
-#, python-format
-msgid "Way access mismatch relation route=%s"
-msgstr "Значення access лінії не відповідає зв'язку route=%s"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
@@ -2972,12 +2958,6 @@ msgid ""
 "given direction."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:62
-msgid ""
-"`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is\n"
-"the number of lanes."
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:67
 msgid ""
 "The `merge_to_right` or `merge_to_left` lane must be on the same way\n"
@@ -4039,4 +4019,20 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:49
 msgid "The way has a tag `oneway=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:62
+msgid ""
+"`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is\n"
+"the number of lanes."
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
+#, python-format
+msgid "note tag needs FIXME: \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:102
+#, python-format
+msgid "Use a tag to specify end: \"%s\""
 msgstr ""

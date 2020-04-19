@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-12 15:53+0000\n"
+"PO-Revision-Date: 2020-04-19 14:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -749,12 +749,12 @@ msgstr "Niepoprawny poziom ulicy kodu pocztowego %(postcode)s dla kodu kraju %(c
 msgid "Name contains successive spaces"
 msgstr "Nazwa zawiera niepotrzebne spacje"
 
-#: ../plugins/TagRemove_Incompatibles.py:91
+#: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Sprzeczność między tagami: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:94
+#: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Sprzeczność między tagami: 'bridge' i 'tunnel'"
 
@@ -1005,13 +1005,13 @@ msgstr "Zła kolejność pasów do skrętu"
 
 #: ../plugins/Highway_Lanes.py:60
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr ""
+msgstr "Zła wartość dostępu dla \"*:lanes\" – to powinny być wartości typu \"yes\"/\"no\", a nie liczba"
 
 #: ../plugins/Highway_Lanes.py:65
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:97
+#: ../plugins/TagRemove_Incompatibles.py:100
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Sprzeczność między tagami: crossing=no należy używać bez highway=crossing"
@@ -1042,11 +1042,11 @@ msgstr "Prawdopodobnie brakuje highway=traffic_signals w pobliżu"
 
 #: ../analysers/analyser_osmosis_powerline.py:359
 msgid "Unmatched voltage of line on substation"
-msgstr ""
+msgstr "Niedopasowane napięcie linii na podstacji"
 
 #: ../plugins/TagFix_Housenumber.py:37
 msgid "Invalid tag on interpolation way"
-msgstr ""
+msgstr "Niepoprawny tag interpolation"
 
 #: ../plugins/TagFix_Housenumber.py:42
 msgid "Invalid addr:interpolation or addr:inclusion value"
@@ -1086,7 +1086,7 @@ msgstr "Brak wielkiej litery dla: %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
-msgstr ""
+msgstr "Tag source zawiera \"AAAA\""
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
@@ -1095,7 +1095,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
-msgstr ""
+msgstr "Pomnik wojenny to nie historic=monument"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:64
 msgid "Put a tag for a village hall or a community center"
@@ -1112,48 +1112,38 @@ msgstr "Dodaj tag school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:92
 msgid "FANTOIR numeric type is for ways"
-msgstr ""
+msgstr "Wartość liczbowa tagu FANTOIR jest dla dróg"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:108
 msgid "A living_street in France is a Zone 20"
-msgstr ""
+msgstr "Strefa zamieszkania we Francji to Strefa 20"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:110
 msgid "A Zone 20 in France is a living_street"
-msgstr ""
+msgstr "Strefa 20 we Francji to strefa zamieszkania (living_street)"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:113
 msgid "A Zone 20 is limited to 20 km/h"
-msgstr ""
+msgstr "Strefa 20 ma ograniczenie prędkości 20 km/h"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:115
 msgid "A zone 30 is limited to 30 km/h"
-msgstr ""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
-#, python-format
-msgid "note tag need FIXME : \"%s\""
-msgstr ""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:102
-#, python-format
-msgid "Use a tag to specify end : \"%s\""
-msgstr ""
+msgstr "Strefa 30 ma ograniczenie prędkości 30 km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:106
 #, python-format
 msgid "Use start_date tag for \"%s\""
-msgstr ""
+msgstr "Użyj tagu start_date dla \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:110 ../plugins/TagFix_Note_Lang_fr.py:113
 #, python-format
 msgid "Use opening_hours tag for \"%s\""
-msgstr ""
+msgstr "Użyj tagu opening_hours dla \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:118
 #, python-format
 msgid "Use construction tag for \"%s\""
-msgstr ""
+msgstr "Użyj tagu construction dla \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:122 ../plugins/TagFix_Note_Lang_fr.py:125
 #, python-format
@@ -1174,7 +1164,7 @@ msgstr "Niepoprawny multipolygon"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:200
 msgid "Interpolation on nodes of multiple street names"
-msgstr ""
+msgstr "Interpolacja na węzłach z różnymi nazwami ulic"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
@@ -1266,10 +1256,6 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
 msgstr "Bardzo podobna nazwa"
-
-#, python-format
-msgid "Way access mismatch relation route=%s"
-msgstr "Niedopasowany dostęp do drogi dla relacji route=%s"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
@@ -1439,7 +1425,7 @@ msgstr "Zły kierunek drogi jednokierunkowej na drodze \"from\" lub \"to\""
 
 #: ../plugins/disabled/Structural_Restriction.py:30
 msgid "Useless turn restriction"
-msgstr ""
+msgstr "Zbędne ograniczenie skrętu"
 
 #: ../plugins/Name_Cadastre_FR.py:17 ../plugins/Name_Cadastre_FR.py:46
 #: ../plugins/Name_Cadastre_FR.py:71
@@ -1470,7 +1456,7 @@ msgstr "Ten tag wikidata odnosi się do sieci sklepów i powinien być umieszczo
 
 #: ../plugins/TagFix_Wikidata.py:50
 msgid "Please also check the wikipedia tag."
-msgstr ""
+msgstr "Sprawdź także tag \"wikipedia\""
 
 #: ../analysers/disabled/analyser_merge_cadastre_FR.py:30
 #: ../analysers/disabled/analyser_merge_cadastre_FR.py:52
@@ -1908,11 +1894,11 @@ msgstr "Brak tagu ref dla gminy {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:190
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
-msgstr ""
+msgstr "Interpolacja na węzłach bez tagu \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:192
 msgid "\"addr:housenumber\" in multiple interpolations"
-msgstr ""
+msgstr "\"addr:housenumber\" w wielu interpolacjach"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:194
 msgid "Interpolation intersection"
@@ -1920,11 +1906,11 @@ msgstr "Przecinające się interpolacje adresów"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:196
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr ""
+msgstr "Końce linii z interpolacją powinny mieć tag \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:202
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
-msgstr ""
+msgstr "Interpolacja na węzłach z różnymi relacjami \"associatedStreet\""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:647
 msgid "Tag \"addr:street\" not matching a street name around"
@@ -1986,11 +1972,11 @@ msgstr "Niepoprawny format tagu interval"
 
 #: ../plugins/TagFix_IntervalConditional.py:45
 msgid "Conditional intervals tag is not valid"
-msgstr ""
+msgstr "Tag przedziałów warunkowych jest niepoprawny"
 
 #: ../plugins/TagFix_IntervalConditional.py:49
 msgid "Conditional intervals does not fit into opening hours"
-msgstr ""
+msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:30
@@ -2043,26 +2029,26 @@ msgstr "Wartość nie zaczyna się wielką literą"
 
 #: ../analysers/analyser_merge_carpool_FR.py:30
 msgid "Carpool parking not integrated"
-msgstr ""
+msgstr "Parking do carpoolingu niezintegrowany"
 
 #: ../analysers/analyser_merge_carpool_FR.py:32
 msgid "Carpool parking integration suggestion"
-msgstr ""
+msgstr "Parking do carpoolingu, propozycja integracji"
 
 #: ../analysers/analyser_merge_carpool_FR.py:34
 msgid "Carpool parking update"
-msgstr ""
+msgstr "Parking do carpoolingu, aktualizacja"
 
 #: ../analysers/analyser_merge_carpool_FR.py:60
 #, python-brace-format
 msgid "Carpool parking {0}"
-msgstr ""
+msgstr "Parking do carpoolingu {0}"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:96
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
-msgstr ""
+msgstr "Wartość tagu FANTOIR od B do W jest dla miejsc locality, hamlet, isolated_dwelling, islet lub neighbourhood"
 
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:66
 msgid "Camp pitchs outside a camp site"
@@ -2206,7 +2192,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:198
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
-msgstr ""
+msgstr "Końce linii z interpolacją powinny mieć różne wartości \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
@@ -2711,7 +2697,7 @@ msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
-msgstr "Wygląda to na rondo, ale brakuje tagu `[junction=roundabout](https://wiki.openstreetmap.org/wiki/Pl:Tag:junction%3Droundabout)`."
+msgstr "Wygląda to na rondo, ale brakuje tagu [`junction=roundabout`](https://wiki.openstreetmap.org/wiki/Pl:Tag:junction%3Droundabout)."
 
 #: ../analysers/analyser_osmosis_roundabout.py:73
 msgid ""
@@ -2975,12 +2961,6 @@ msgid ""
 "The number of lanes defined by many lane tags are not the same for a\n"
 "given direction."
 msgstr "Liczba pasów zdefiniowanych przez różne tagi nie jest taka sama dla danego kierunku."
-
-#: ../plugins/Highway_Lanes.py:62
-msgid ""
-"`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is\n"
-"the number of lanes."
-msgstr ""
 
 #: ../plugins/Highway_Lanes.py:67
 msgid ""
@@ -3466,7 +3446,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_FR.py:34
 msgid "`designation=*` is a United Kingdom-specific tag."
-msgstr "`[designation](https://wiki.openstreetmap.org/wiki/Pl:Key:designation)=*` to specyficzny tag dla Wielkiej Brytanii."
+msgstr "[`designation=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:designation) to specyficzny tag dla Wielkiej Brytanii."
 
 #: ../plugins/TagRemove_FR.py:36
 msgid "Translate it to another tag or remove."
@@ -4039,8 +4019,24 @@ msgstr "Niedopasowany dostęp do drogi dla relacji route={0}"
 
 #: ../plugins/TagFix_MultipleTag.py:43
 msgid "The way has a tag `junction=*` but without `highway=*`."
-msgstr ""
+msgstr "Ta droga ma tag `junction=*`, ale bez `highway=*`."
 
 #: ../plugins/TagFix_MultipleTag.py:49
 msgid "The way has a tag `oneway=*` but without `highway=*`."
+msgstr "Ta droga ma tag `oneway=*`, ale bez `highway=*`."
+
+#: ../plugins/Highway_Lanes.py:62
+msgid ""
+"`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is\n"
+"the number of lanes."
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
+#, python-format
+msgid "note tag needs FIXME: \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:102
+#, python-format
+msgid "Use a tag to specify end: \"%s\""
 msgstr ""

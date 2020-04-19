@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-12 15:53+0000\n"
+"PO-Revision-Date: 2020-04-19 14:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -745,12 +745,12 @@ msgstr "ongeldige straatniveau postcode %(postcode)s voor landcode code %(countr
 msgid "Name contains successive spaces"
 msgstr "Naam bevat opeenvolgende ruimtes"
 
-#: ../plugins/TagRemove_Incompatibles.py:91
+#: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflict tussen tags: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:94
+#: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflict tussen tags: 'brug' en 'tunnel'"
 
@@ -1007,7 +1007,7 @@ msgstr "Verkeerde rijstroken toegang waarde, moet niet een geheel getal maar een
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Afslag rijstroken merge_to_ * heeft een zijrijstrook nodig op de goede zij"
 
-#: ../plugins/TagRemove_Incompatibles.py:97
+#: ../plugins/TagRemove_Incompatibles.py:100
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflict tussen tags: crossing=no moet gebruikt worden zonder highway=crossing"
@@ -1125,16 +1125,6 @@ msgstr "Een zone 20 is beperkt tot 20 km/h"
 #: ../plugins/TagFix_MultipleTag_FR.py:115
 msgid "A zone 30 is limited to 30 km/h"
 msgstr "Een zone 30 is beperkt tot 30 km/h"
-
-#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
-#, python-format
-msgid "note tag need FIXME : \"%s\""
-msgstr "nota tag vereist FIXME : \"%s\""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:102
-#, python-format
-msgid "Use a tag to specify end : \"%s\""
-msgstr "Gebruik een tag om het einde aan te geven: \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:106
 #, python-format
@@ -1262,10 +1252,6 @@ msgstr "Kan geen tag ref=%s bevatten"
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
 msgstr "Bijna dezelfde naam"
-
-#, python-format
-msgid "Way access mismatch relation route=%s"
-msgstr "verkeerde combinatie weg toegang relatie route=%s"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
@@ -2972,12 +2958,6 @@ msgid ""
 "given direction."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:62
-msgid ""
-"`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is\n"
-"the number of lanes."
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:67
 msgid ""
 "The `merge_to_right` or `merge_to_left` lane must be on the same way\n"
@@ -4039,4 +4019,20 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:49
 msgid "The way has a tag `oneway=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:62
+msgid ""
+"`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is\n"
+"the number of lanes."
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
+#, python-format
+msgid "note tag needs FIXME: \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:102
+#, python-format
+msgid "Use a tag to specify end: \"%s\""
 msgstr ""

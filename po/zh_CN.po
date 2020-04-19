@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-12 15:53+0000\n"
+"PO-Revision-Date: 2020-04-19 14:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -742,12 +742,12 @@ msgstr "国家/地区代码%(country)s的无效的街道级邮政编码%(postcod
 msgid "Name contains successive spaces"
 msgstr "名称包含连续的空格"
 
-#: ../plugins/TagRemove_Incompatibles.py:91
+#: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "冲突标签：%s"
 
-#: ../plugins/TagRemove_Incompatibles.py:94
+#: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "冲突标签：'bridge'和'tunnel'"
 
@@ -1004,7 +1004,7 @@ msgstr "进入车道值不良，不应该是一个整数，而应该是一个限
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "转车道merge_to_*需要旁边的车道"
 
-#: ../plugins/TagRemove_Incompatibles.py:97
+#: ../plugins/TagRemove_Incompatibles.py:100
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "冲突 tags: crossing=no 必须使用没有 highway=crossing"
@@ -1122,16 +1122,6 @@ msgstr "20区限制在20公里/小时"
 #: ../plugins/TagFix_MultipleTag_FR.py:115
 msgid "A zone 30 is limited to 30 km/h"
 msgstr "30区限制在30公里/小时"
-
-#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
-#, python-format
-msgid "note tag need FIXME : \"%s\""
-msgstr "注意标签需要修复 : \"%s\""
-
-#: ../plugins/TagFix_Note_Lang_fr.py:102
-#, python-format
-msgid "Use a tag to specify end : \"%s\""
-msgstr "使用标签来指定结束 : \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:106
 #, python-format
@@ -1259,10 +1249,6 @@ msgstr "不应该包含标签ref=%s"
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
 msgstr "关闭相似的名字"
-
-#, python-format
-msgid "Way access mismatch relation route=%s"
-msgstr "访问方式不匹配关系路线=%s"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:271
 msgid "Public transport relation route not in route_master relation"
@@ -2969,12 +2955,6 @@ msgid ""
 "given direction."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:62
-msgid ""
-"`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is\n"
-"the number of lanes."
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:67
 msgid ""
 "The `merge_to_right` or `merge_to_left` lane must be on the same way\n"
@@ -4036,4 +4016,20 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:49
 msgid "The way has a tag `oneway=*` but without `highway=*`."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:62
+msgid ""
+"`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is\n"
+"the number of lanes."
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
+#, python-format
+msgid "note tag needs FIXME: \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_Lang_fr.py:102
+#, python-format
+msgid "Use a tag to specify end: \"%s\""
 msgstr ""
