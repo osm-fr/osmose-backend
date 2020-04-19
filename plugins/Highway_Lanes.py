@@ -59,7 +59,7 @@ given direction.'''))
         self.errors[31609] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Bad access lanes value, should not be an integer but a restriction'),
             detail = T_(
-'''`psv:lanes=*` is an access restriction tags, while `lanes:psv=*` is
+'''`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is
 the number of lanes.'''))
         self.errors[31600] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Turn lanes merge_to_* need an aside lane on good side'),

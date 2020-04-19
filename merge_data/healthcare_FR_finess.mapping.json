@@ -281,7 +281,7 @@
     "missing_osm": false,
     "classes": 110,
     "level": 3,
-    "title": "Etablissement d'hébergement pour personnes âgées dépendantes (EHPAD)",
+    "title": "Établissement d'hébergement pour personnes âgées dépendantes (EHPAD)",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -304,7 +304,7 @@
     "missing_osm": false,
     "classes": 50,
     "level": 3,
-    "title": "Etablissement d'hébergement pour personnes âgées (EHPA)",
+    "title": "Établissement d'hébergement pour personnes âgées (EHPA)",
     "tags_select": {
       "amenity": "social_facility"
     },
