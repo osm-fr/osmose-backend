@@ -49,6 +49,6 @@ if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate'''))
 
 
     def node(self, data, tags):
-        keys = tags.keys()
-        if "historic" in tags and "wayside_cross" in keys and "material" not in tags:
-           return {"class": 800, "subclass": 0, "text": T_("Node with `historic=wayside_cross` without `material=*` tag")}
+        if tags["historic"]=="wayside_cross" and "material" not in tags:
+           return {"class": 800, "subclass": 0, "text": title}
+    
