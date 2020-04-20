@@ -2,7 +2,9 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights:                                                           ##
+##            Etienne Chové <chove@crans.org> 2009                       ##
+##            Morray 2020                                                ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,7 +24,7 @@
 from plugins.Plugin import Plugin
 
 
-class historic_wayside_cross_material(Plugin):
+class Historic_Wayside_cross_without_material(Plugin):
 
     only_for = ["DE", "AT", "CH"]
 
@@ -42,7 +44,9 @@ if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate.'''))
             detail = T_(
 '''Check if tag `material=*` is filled for `historic=wayside_cross` objects.'''),
             fix = T_(
-'''Add tag `material=*` or change object type as appropriate.'''),
+'''Add tag `material=*` or change object type as appropriate. Also take the 
+oportunity to add other meta-data as `religion`, `denomination`, `start_date`, 
+`inscritption`, ...'''),
             trap = T_(
 '''The tag `historic=wayside_cross` is sometimes misused. Please x-check
 if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate'''))
