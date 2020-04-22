@@ -91,6 +91,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
                     mapping1 = {"ref:FR:FINESS": "nofinesset"},
                     mapping2 = {
                         "type:FR:FINESS": "categetab",
+                        "ref:FR:SIRET": "siret",
                         "phone": lambda fields: self.phone(fields["telephone"]),
                         "fax": lambda fields: self.phone(fields["telecopie"]),
                     },
