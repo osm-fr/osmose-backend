@@ -1275,7 +1275,8 @@ cz_kraj("zlinsky", 442449, "CZ-ZL")
 
 #########################################################################
 
-pl_province = gen_country('europe', 'poland', download_repo=OSMFR, language='pl', proj=32634)
+pl_province = gen_country('europe', 'poland', download_repo=OSMFR, language='pl', proj=32634,
+    phone_code='48', phone_len=9, phone_international='00')
 
 pl_province("dolnoslaskie", 224457, "PL-DS")
 pl_province("kujawsko_pomorskie", 223407, "PL-KP")
