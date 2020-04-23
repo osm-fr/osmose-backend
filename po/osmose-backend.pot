@@ -4047,3 +4047,42 @@ msgstr ""
 #, python-format
 msgid "Use a tag to specify end: \"%s\""
 msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:32
+msgid "Wayside cross node without `material` tag"
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:34
+msgid ""
+"The tag `historic=wayside_cross` can always be used in combination with\n"
+"the tag `material=*`."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:37
+msgid "Fill the tag `material=*` as specific as possible."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:39
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:43
+msgid ""
+"Check if tag `material=*` is filled for `historic=wayside_cross` objects."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:45
+msgid ""
+"Add tag `material=*` or change object type as appropriate. Also take the \n"
+"oportunity to add other meta-data as `religion`, `denomination`, "
+"`start_date`, \n"
+"`inscritption`, ..."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:49
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate"
+msgstr ""

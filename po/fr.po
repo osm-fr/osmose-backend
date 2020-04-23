@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Adrien Pavie <panieravide@riseup.net>, 2020
 # Antonin Curtit, 2020
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017,2020
 # Binnette <binnette@gmail.com>, 2019
@@ -21,6 +22,7 @@
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # Julien Lepiller <transifex@lepiller.eu>, 2018-2019
+# Marc M <marc_marc_irc@hotmail.com>, 2020
 # Noémie <nlehuby@zaclys.net>, 2020
 # operon, 2014-2015
 # operon, 2015,2017
@@ -36,7 +38,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-19 14:53+0000\n"
+"PO-Revision-Date: 2020-04-23 20:29+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -2097,7 +2099,7 @@ msgid ""
 "Offered fix reimport the missing sites as point, but if was a\n"
 "relation. Must be converted manually, keep the tags and put survey points\n"
 "in relation."
-msgstr ""
+msgstr "Le correctif proposé réimporte les sites manquants comme point, mais c'était une relation Doit être converti manuellement, conserver les attributs et mettez les points géodésiques dans une relation."
 
 #: ../analysers/analyser_merge_geodesie.py:43
 msgid "Moved survey point"
@@ -2193,11 +2195,11 @@ msgstr "Faites attention à la fraîcheur des données."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:32
 msgid "TMC data refers to a not found element of the road network. "
-msgstr ""
+msgstr "les données TMC font références à un élément introuvable du réseau routier"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:34
 msgid "TMC data may be wrong or poorly located."
-msgstr ""
+msgstr "la donnée TMC data peut être erronée ou mal située."
 
 #: ../analysers/analyser_osmbin_open_relations.py:67
 msgid ""
@@ -2276,7 +2278,7 @@ msgid ""
 "A survey point has a name that underlying meaning is located on a\n"
 "building (belltower, water tower, tower), but the node is not inside a\n"
 "building polygon (`building=*`)."
-msgstr ""
+msgstr "Un point géodésique porte un nom dont la signification sous-jacente est d'être située sur un bâtiment (clocher, château d'eau, tour), mais le nœud n'est pas à l'intérieur d'un polygone de bâtiment (`building=*`)."
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:111
 msgid ""
@@ -2284,7 +2286,7 @@ msgid ""
 "shift in the source data (cadastre, orthophotograhies), replace the\n"
 "layout of buildings to correct this issue. Otherwise, the building must\n"
 "be draw."
-msgstr ""
+msgstr "Si l'empreinte du bâtiment est présente mais qu'elle est mal placée en raison d'un décalage des données sources (cadastre, orthophotographies), remplacez la disposition des bâtiments pour corriger ce signalement. Dans le cas contraire, le bâtiment doit être dessiné."
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:116
 msgid ""
@@ -2309,7 +2311,7 @@ msgstr "Voie cyclable en double, \"highway=*\" + \"cycleway=track\" en parallèl
 msgid ""
 "When the cycle way is explicited. The `cycleway=track` must be removed\n"
 "from the main highway."
-msgstr ""
+msgstr "Lorsque la voie cyclable est explicitée, le \"cycleway=track\" doit être supprimée de la voirie principale."
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:72
 msgid ""
@@ -2335,7 +2337,7 @@ msgstr "Supprimez l'un des deux objets."
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:174
 msgid "Compare tags and delete object or merge them."
-msgstr ""
+msgstr "Comparez les attributs et supprimer l'objet ou fusionnez les."
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:64
 msgid "Inconsistent `motor_vehicle` values (`destination`!=)"
@@ -3047,7 +3049,7 @@ msgstr ""
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:50
 msgid "An abbreviation is present."
-msgstr ""
+msgstr "Une abréviation est présente."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:52
 msgid "Write the type of the way with all letters."
@@ -3065,11 +3067,11 @@ msgstr ""
 
 #: ../plugins/Name_Saint_FR.py:37
 msgid "Add a hyphen."
-msgstr ""
+msgstr "Ajouter un tiret."
 
 #: ../plugins/Name_Saint_FR.py:39
 msgid "This rule does not apply in particular to the Belgium."
-msgstr ""
+msgstr "Cette règle ne s'applique pas en particulier à la Belgique."
 
 #: ../plugins/Name_Saint_FR.py:41
 msgid ""
@@ -3101,7 +3103,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:52
 msgid "Remove the character."
-msgstr ""
+msgstr "Supprimer le caractère."
 
 #: ../plugins/Name_Script.py:56
 msgid ""
@@ -4059,4 +4061,42 @@ msgstr ""
 #: ../plugins/TagFix_Note_Lang_fr.py:102
 #, python-format
 msgid "Use a tag to specify end: \"%s\""
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:32
+msgid "Wayside cross node without `material` tag"
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:34
+msgid ""
+"The tag `historic=wayside_cross` can always be used in combination with\n"
+"the tag `material=*`."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:37
+msgid "Fill the tag `material=*` as specific as possible."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:39
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:43
+msgid ""
+"Check if tag `material=*` is filled for `historic=wayside_cross` objects."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:45
+msgid ""
+"Add tag `material=*` or change object type as appropriate. Also take the \n"
+"oportunity to add other meta-data as `religion`, `denomination`, `start_date`, \n"
+"`inscritption`, ..."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:49
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate"
 msgstr ""

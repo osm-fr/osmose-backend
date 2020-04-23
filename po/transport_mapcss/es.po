@@ -1,11 +1,11 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Franco, 2018
-# Jorge Sanz <sanchi2@gmail.com>, 2019
+# Jorge Sanz <sanchi2@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jorge Sanz <sanchi2@gmail.com>, 2019\n"
+"Last-Translator: Jorge Sanz <sanchi2@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/openstreetmap-france/teams/17462/es/)\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -211,3 +211,5 @@ msgstr ""
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
+"¿Es una parada de autobús o tranvía? Agregue una etiqueta para precisar el "
+"tipo de plataforma"

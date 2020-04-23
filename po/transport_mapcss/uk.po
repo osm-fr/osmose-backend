@@ -195,4 +195,4 @@ msgstr ""
 
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
-msgstr ""
+msgstr "Це зупинка автобуса чи трамваю? Додайте теґ точного виду платформи"

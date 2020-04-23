@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-19 14:53+0000\n"
+"PO-Revision-Date: 2020-04-23 20:29+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -4035,4 +4035,42 @@ msgstr ""
 #: ../plugins/TagFix_Note_Lang_fr.py:102
 #, python-format
 msgid "Use a tag to specify end: \"%s\""
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:32
+msgid "Wayside cross node without `material` tag"
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:34
+msgid ""
+"The tag `historic=wayside_cross` can always be used in combination with\n"
+"the tag `material=*`."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:37
+msgid "Fill the tag `material=*` as specific as possible."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:39
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:43
+msgid ""
+"Check if tag `material=*` is filled for `historic=wayside_cross` objects."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:45
+msgid ""
+"Add tag `material=*` or change object type as appropriate. Also take the \n"
+"oportunity to add other meta-data as `religion`, `denomination`, `start_date`, \n"
+"`inscritption`, ..."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:49
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate"
 msgstr ""

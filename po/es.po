@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-19 14:53+0000\n"
+"PO-Revision-Date: 2020-04-23 20:29+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -979,7 +979,7 @@ msgstr "Oficina de correo actualizado"
 
 #: ../analysers/analyser_merge_school_FR.py:65
 msgid "School update"
-msgstr "Escuela actualizada"
+msgstr "Actualización de escuela"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid ""
@@ -1376,7 +1376,7 @@ msgstr "Universidad, sugerencia de integración"
 
 #: ../analysers/analyser_merge_college_FR.py:36
 msgid "College update"
-msgstr "Universidad actualizada"
+msgstr "Actualización de universidad"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #: ../analysers/analyser_merge_shop_FR.py:45
@@ -1588,7 +1588,7 @@ msgstr "URL mala %(k)s=%(v)s"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:114
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
-msgstr ""
+msgstr "Monumento histórico: {0} (posicionado en {1} con confianza {2})"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:31
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:31
@@ -1631,7 +1631,7 @@ msgstr "{0} actualizaciones de parada"
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:57
 #, python-brace-format
 msgid "{0} stop {1}"
-msgstr ""
+msgstr "{0} parada {1}"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:150
 #, python-brace-format
@@ -1750,12 +1750,12 @@ msgstr "\"{0}\"=\"{1}\" inesperado caracter simbólico ({2}, 0x{3:04x}) en el va
 msgid ""
 "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" "
 "({6}, 0x{7:04x})?"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" caracter inesperado \"{2}\" ({3}, 0x{4:04x}). ¿Significa \"{5}\" ({6}, 0x{7:04x})?"
 
 #: ../plugins/Name_Script.py:175 ../plugins/Name_Script.py:198
 #, python-brace-format
 msgid "\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})"
-msgstr ""
+msgstr "\"{0}\"=\"{1}\" caracter inesperado \"{2}\" ({3}, 0x{4:04x})"
 
 #: ../plugins/Name_Script.py:178 ../plugins/Name_Script.py:201
 #, python-brace-format
@@ -1848,7 +1848,7 @@ msgstr "Colegio sin etiqueta \"ref:UAI\" o inválida"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:70
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
-msgstr ""
+msgstr "{0} sin etiqueta \"{1}\" o invalida"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:49
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
@@ -1893,11 +1893,11 @@ msgstr "Falta la etiqueta ref de municipalidad {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:190
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
-msgstr ""
+msgstr "Interpolación en nodos sin etiqueta \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:192
 msgid "\"addr:housenumber\" in multiple interpolations"
-msgstr ""
+msgstr "\"addr: housenumber\" en interpolaciones múltiples"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:194
 msgid "Interpolation intersection"
@@ -1905,7 +1905,7 @@ msgstr "Intersección de interpolación"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:196
 msgid "Interpolation ends should have tag \"addr:housenumber\""
-msgstr ""
+msgstr "Los extremos de la interpolación deben tener la etiqueta \"addr:housenumber\""
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:202
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
@@ -1917,7 +1917,7 @@ msgstr "La etiqueta \"addr: street\" no coincide con el nombre de ninguna calle 
 
 #: ../plugins/Addr_Interpolation.py:31
 msgid "Misusing addr:interpolation in combination with other tags"
-msgstr ""
+msgstr "Uso indebido de addr:interpolación en combinación con otras etiquetas"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:62
 #, python-format
@@ -1949,17 +1949,17 @@ msgstr "Valores similares"
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:75
 #, python-brace-format
 msgid "Sudden highway type change (level {0})"
-msgstr ""
+msgstr "Cambio repentino de tipo de carretera (nivel {0})"
 
 #: ../plugins/Phone.py:133
 #, python-brace-format
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
-msgstr ""
+msgstr "Carácter \"{0}\" no permitido en etiqueta número de teléfono \"{1}\""
 
 #: ../plugins/TagWatchFrViPofm.py:114
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
-msgstr ""
+msgstr "etiqueta valor: {0}={1} => {2} (regla kr_vr)"
 
 #: ../plugins/TagFix_IntervalConditional.py:29
 msgid "Invalid Conditional Intervals"
@@ -1975,7 +1975,7 @@ msgstr "Etiqueta no válida de intervalos condicionales"
 
 #: ../plugins/TagFix_IntervalConditional.py:49
 msgid "Conditional intervals does not fit into opening hours"
-msgstr ""
+msgstr "Los intervalos condicionales no se ajustan al horario de apertura."
 
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:30
@@ -2032,7 +2032,7 @@ msgstr "Estacionamiento de transporte compartido no integrado"
 
 #: ../analysers/analyser_merge_carpool_FR.py:32
 msgid "Carpool parking integration suggestion"
-msgstr ""
+msgstr "Aparcamiento compartido, Sugerencia de integración"
 
 #: ../analysers/analyser_merge_carpool_FR.py:34
 msgid "Carpool parking update"
@@ -2988,11 +2988,11 @@ msgstr ""
 msgid ""
 "See values at\n"
 "`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`."
-msgstr ""
+msgstr "Ver valores en\n`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`."
 
 #: ../plugins/Highway_Parking_Lane.py:51
 msgid "A parking condition is present but without parking kind."
-msgstr ""
+msgstr "Una condición de aparcamiento está presente pero sin tipo de aparcamiento."
 
 #: ../plugins/Name_Dictionary.py:35
 msgid "Probably missing a capital."
@@ -3265,7 +3265,7 @@ msgstr ""
 
 #: ../plugins/TagFix_DuplicateValue.py:37
 msgid "Delete one value."
-msgstr ""
+msgstr "Borrar un valor."
 
 #: ../plugins/TagFix_DuplicateValue.py:39
 msgid "In some case all values maybe required."
@@ -3299,11 +3299,11 @@ msgstr ""
 msgid ""
 "All French pharmacies sell on prescription by a doctor. It require a\n"
 "tag `dispensing=yes` in addition to `amenity=pharmacy`."
-msgstr ""
+msgstr "Todas las farmacias francesas venden con receta médica de un médico. Requiere una\netiqueta `dispensing=yes` además de `amenity=pharmacy`."
 
 #: ../plugins/TagFix_MultipleTag_FR.py:51
 msgid "Add tag `dispensing=yes`."
-msgstr ""
+msgstr "Añadir etiqueta `dispensing=yes`."
 
 #: ../plugins/TagFix_MultipleTag_FR.py:53
 msgid ""
@@ -3435,13 +3435,13 @@ msgstr ""
 msgid ""
 "A `wikipedia=*` must be present before using tags\n"
 "`wikipedia:LANG=*`."
-msgstr ""
+msgstr "Un `wikipedia=*` debe estar presenta antes de usar etiquetas\n`wikipedia:LANG=*`."
 
 #: ../plugins/TagRemove_Fixme.py:34
 msgid ""
 "`highway=road` has been used, choose a correct value, such as\n"
 "`highway=unclassified`."
-msgstr ""
+msgstr "Se ha utilizado `highway=road`, elige un valor correcto, como\n`highway=unclassified`."
 
 #: ../plugins/TagRemove_FR.py:34
 msgid "`designation=*` is a United Kingdom-specific tag."
@@ -3449,7 +3449,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_FR.py:36
 msgid "Translate it to another tag or remove."
-msgstr ""
+msgstr "Traducir a otra etiqueta o eliminar."
 
 #: ../plugins/TagRemove_Incompatibles.py:32
 msgid "The object contains two incompatible tags."
@@ -3457,17 +3457,17 @@ msgstr "El objeto contiene dos etiquetas incompatibles."
 
 #: ../plugins/TagRemove_Incompatibles.py:34
 msgid "Sometimes the object needs both tags."
-msgstr ""
+msgstr "A veces el objeto necesita ambas etiquetas."
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:35
 msgid ""
 "Reference road (eg. D 73) is in the tag `name=*` and not in the tag\n"
 "`ref=*`."
-msgstr ""
+msgstr "La referencia de carretera (por ejemplo, D 73) está en la etiqueta `name=*` y no en la etiqueta \n`ref=*`."
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:38
 msgid "Transfer the value from the tag `name=*` to the tag `ref=*`."
-msgstr ""
+msgstr "Transferir el valor de la etiqueta `name=*` a la etiqueta `ref=*`."
 
 #: ../plugins/TagRemove_OpenSeaMap.py:34
 msgid "Seamark was imported but need manual review `seamark:fixme=*`."
@@ -3498,7 +3498,7 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:82
 #, python-brace-format
 msgid "Unmapped {0}"
-msgstr ""
+msgstr "{0} no mapeado"
 
 #: ../analysers/analyser_merge_street_objects2.py:49
 #: ../analysers/analyser_merge_street_objects.py:49
@@ -3541,29 +3541,29 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Highway intersecting highway"
-msgstr ""
+msgstr "Carretera intersecciona con carretera"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:375
 msgid "Waterway intersecting waterway"
-msgstr ""
+msgstr "Vía de agua intersecciona con vía de agua"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:58
 msgid "Disconnected speed camera"
-msgstr ""
+msgstr "Cámara de velocidad desconectada"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:59
 msgid ""
 "Speed camera should be mapped as a node on the highway or use an enforcement"
 " relation."
-msgstr ""
+msgstr "La cámara de velocidad debe estar mapeada como un nodo en la carretera o en una relación de control"
 
 #: ../plugins/Name_Script.py:54
 msgid "Unexpected symbol in name"
-msgstr ""
+msgstr "Simbolo inesperado en el nombre"
 
 #: ../plugins/TagFix_BadValue.py:31
 msgid "Bad tag value"
-msgstr ""
+msgstr "Valor de etiqueta incorrecto"
 
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid "Untagged named object"
@@ -3574,14 +3574,14 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:104
 #, python-brace-format
 msgid "Observed between {0} and {1}"
-msgstr ""
+msgstr "Observado entre {0} y {1}"
 
 #: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:105
 #, python-brace-format
 msgid "Observed on {0}"
-msgstr ""
+msgstr "Observado en {0}"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:31
 msgid ""
@@ -3757,7 +3757,7 @@ msgstr ""
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:34
 #, python-brace-format
 msgid "{0} bicycle update"
-msgstr ""
+msgstr "{0} actualización de bicicleta"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:40
 msgid ""
@@ -4004,12 +4004,12 @@ msgstr ""
 #: ../analysers/analyser_merge_parapharmacy_IT.py:35
 #: ../analysers/analyser_merge_pharmacy_IT.py:35
 msgid "Pharmacy integration suggestion"
-msgstr ""
+msgstr "Farmacia, sugerencia de integración"
 
 #: ../analysers/analyser_merge_parapharmacy_IT.py:37
 #: ../analysers/analyser_merge_pharmacy_IT.py:37
 msgid "Pharmacy update"
-msgstr ""
+msgstr "Actualización de farmacia"
 
 #: ../analysers/analyser_osmosis_relation_route_access.py:97
 #, python-brace-format
@@ -4038,4 +4038,42 @@ msgstr ""
 #: ../plugins/TagFix_Note_Lang_fr.py:102
 #, python-format
 msgid "Use a tag to specify end: \"%s\""
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:32
+msgid "Wayside cross node without `material` tag"
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:34
+msgid ""
+"The tag `historic=wayside_cross` can always be used in combination with\n"
+"the tag `material=*`."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:37
+msgid "Fill the tag `material=*` as specific as possible."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:39
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:43
+msgid ""
+"Check if tag `material=*` is filled for `historic=wayside_cross` objects."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:45
+msgid ""
+"Add tag `material=*` or change object type as appropriate. Also take the \n"
+"oportunity to add other meta-data as `religion`, `denomination`, `start_date`, \n"
+"`inscritption`, ..."
+msgstr ""
+
+#: ../plugins/Historic_Wayside_cross_without_material.py:49
+msgid ""
+"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
+"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate"
 msgstr ""
