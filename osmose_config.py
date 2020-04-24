@@ -30,6 +30,7 @@ import modules.config
 
 GEOFABRIK = u"http://download.geofabrik.de/"
 OSMFR = u"http://download.openstreetmap.fr/extracts/"
+OSMCH = u"https://planet.osm.ch/"
 
 class template_config:
 
@@ -203,6 +204,11 @@ class default_country_simple(default_simple):
             self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
             self.download["diff"] = self.download_repo + "../replication/" + part + download_country + "/minute/"
             self.download["state.txt"] = self.download_repo + part + download_country + ".state.txt"
+        if download_repo == OSMCH:
+            self.download["url"] = self.download_repo + download_country + "-padded.osm.pbf"
+            self.download["poly"] = self.download_repo + "switzerland-padded.poly"
+            self.download["diff"] = self.download_repo + "replication/hour/"
+            self.download["state.txt"] = self.download["diff"] + "state.txt"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -605,7 +611,7 @@ default_country("europe", "san_marino", 54624, {"country": "SM", "language": "it
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
-default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": ["swisstopo:BFS_NUMMER", "swisstopo:BEZIRKSNUM"], 'phone_code': '41', 'phone_local_prefix': '0', 'phone_len': 9, 'phone_international': '00'})
+default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": ["swisstopo:BFS_NUMMER", "swisstopo:BEZIRKSNUM"], 'phone_code': '41', 'phone_local_prefix': '0', 'phone_len': 9, 'phone_international': '00'}, download_repo=OSMCH)
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "vatican_city", 36989, {"country": "VA", "language": "it", "proj": 23032}, download_repo=OSMFR)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
