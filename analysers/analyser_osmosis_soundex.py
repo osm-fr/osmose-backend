@@ -258,7 +258,7 @@ his name not need be transformed into "Jean Monnet",
         if not self.scripts:
             return
 
-        if "language" in self.config.options and self.config.options["language"] == "fr":
+        if "language" in self.config.options and self.config.options["language"].startswith("fr"):
             self.run(sql01_fr)
             self.run(sql03.format("fn_soundex2"))
         else:

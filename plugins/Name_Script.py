@@ -266,6 +266,19 @@ class Test(TestPluginCommon):
 
         self.check_err(a.node(None, {u"name:el": u"Aιαδρομος"})) # A (Latin) to Α (Greek)
 
+        assert a.node(None, {u"name": u"ä"})
+
+    def test_fr_LU(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"language": "fr_LU"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name": u"ä"})
+
     def test_fr_nl(self):
         a = Name_Script(None)
         class _config:

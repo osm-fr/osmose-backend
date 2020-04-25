@@ -45,6 +45,9 @@ language2scripts = {
   'fi': ['Latin'],
   'fo': ['Latin'],
   'fr': [u'[A-Za-zÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆéàèùâêîôûëïüÿçœæ]'],
+  'fr_GF': [u'[A-Za-zÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆÃĨÕŨÖƗéàèùâêîôûëïüÿçœæãĩõũöɨ]'],
+  'fr_LU': [u'[A-Za-zÉÀÈÙÂÊÎÔÛÄËÏÜŸÇŒÆéàèùâêîôûäëïüÿçœæ]'],
+  'fr_PF': [u'[A-Za-zÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆĀĪŌŪéàèùâêîôûëïüÿçœæāīōū]'],
   'fy': ['Latin'],
   'ga': ['Latin'],
   'gl': ['Latin'],
@@ -110,7 +113,11 @@ def scripts(languages):
         languages = [languages]
     all_scripts = []
     for language in languages:
-        scripts = language2scripts[language]
+        if language in language2scripts:
+            scripts = language2scripts[language]
+        elif '_' in language:
+            l = language.split('_')[0]
+            scripts = language2scripts[l]
         if not scripts:
             return
         all_scripts += scripts

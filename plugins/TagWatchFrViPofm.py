@@ -41,6 +41,8 @@ class TagWatchFrViPofm(Plugin):
         language = self.father.config.options.get("language") if self.father else None
         if isinstance(language, list):
             language = None
+        elif language:
+            language = language.split('_')[0]
 
         self._update_ks = {}
         self._update_kr = {}
