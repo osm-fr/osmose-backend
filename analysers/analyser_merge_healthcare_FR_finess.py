@@ -26,6 +26,7 @@ from backports import csv # In python3 only just "import csv"
 import io
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+import phonenumbers
 
 
 class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
@@ -97,8 +98,9 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i not in (None, 'None'), [fields["rs"], fields["rslongue"], fields["complrs"], fields["compldistrib"], fields["numvoie"], fields["typvoie"], fields["voie"], fields["compvoie"], fields["lieuditbp"], fields["ligneacheminement"], fields["libcategetab"], fields["numuai"]]))} )))
 
     def phone(self, number):
-        if number and len(number) == 10 and number[0] == "0":
-            return "+33" + number[1:]
+        n = phonenumbers.parse(number,"FR")
+        if phonenumbers.is_valid_number(n)
+            return phonenumbers.format_number(n, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
 
 
 class Source_Finess(Source):
