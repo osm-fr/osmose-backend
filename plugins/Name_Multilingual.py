@@ -19,7 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import unicode_literals
 from plugins.Plugin import Plugin
 from modules.languages import language2scripts, gen_regex
 import regex

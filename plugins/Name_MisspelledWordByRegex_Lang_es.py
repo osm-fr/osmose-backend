@@ -19,7 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import unicode_literals
 from plugins.Name_MisspelledWordByRegex import P_Name_MisspelledWordByRegex
 
 

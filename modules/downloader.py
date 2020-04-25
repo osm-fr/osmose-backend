@@ -29,10 +29,6 @@ from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
 from . import config
 
-try:
-    unicode
-except:
-    unicode = str
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
@@ -226,7 +222,7 @@ class Test(unittest.TestCase):
     def test_urlread(self):
         dst = urlread(self.url, 10)
         assert dst
-        self.assertIsInstance(dst, unicode)
+        self.assertIsInstance(dst, str)
         self.check_content(dst)
         exp_content = open(update_cache(self.url, 100), "r", encoding="utf-8").read()
         self.assertEqual(dst, exp_content, "urlread doesn't give expected result")
@@ -234,7 +230,7 @@ class Test(unittest.TestCase):
     def test_urlread_fr(self):
         dst = urlread(self.url_fr, 10)
         assert dst
-        self.assertIsInstance(dst, unicode)
+        self.assertIsInstance(dst, str)
         self.check_content(dst)
         exp_content = open(update_cache(self.url_fr, 100), "r", encoding="utf-8").read()
         self.assertEqual(dst, exp_content, "urlread doesn't give expected result")

@@ -28,12 +28,6 @@ import time
 from io import open  # In python3 only, this import is not required
 from modules import OsmoseLog
 
-try:
-    unicode # Python 2
-except:
-    unicode = str
-
-###########################################################################
 
 class Analyser_Sax(Analyser):
 
@@ -437,7 +431,7 @@ class Analyser_Sax(Analyser):
         conf_limit = set()
         for i in ("country", "language"):
             if i in self.config.options:
-                if isinstance(self.config.options[i], str) or isinstance(self.config.options[i], unicode):
+                if isinstance(self.config.options[i], str):
                     conf_limit.add(self.config.options[i])
 
         # load plugins
