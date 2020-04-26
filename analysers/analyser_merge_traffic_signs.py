@@ -25,8 +25,6 @@ from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dy
 from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
 
-from io import open # In python3 only, this import is not required
-
 
 class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
 

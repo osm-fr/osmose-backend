@@ -105,10 +105,7 @@ class P_Name_Dictionary(Plugin):
         self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
 
         for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
-            if sys.version_info < (3, ):
-                ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')]) # Python 2
-            else:
-                ustr = "".join(([chr(i) for i in c.encode('utf-8')]))
+            ustr = "".join(([chr(i) for i in c.encode('utf-8')]))
             self.DictEncoding[ustr] = c
 
         self.DictEncoding[u"`"] = u"'"

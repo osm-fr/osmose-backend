@@ -19,7 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from io import open  # In python3 only, this import is not required
 import hashlib
 import os
 import time

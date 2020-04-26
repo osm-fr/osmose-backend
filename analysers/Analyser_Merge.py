@@ -24,7 +24,7 @@ import io
 import bz2
 import datetime
 import gzip
-from backports import csv # In python3 only just "import csv"
+import csv
 import inspect
 import psycopg2.extras
 import psycopg2.extensions

@@ -23,8 +23,7 @@
 import json
 from .Analyser_Merge import Source
 
-from io import open # In python3 only, this import is not required
-from backports import csv # In python3 only just "import csv"
+import csv
 from modules.PointInPolygon import PointInPolygon
 from modules import SourceVersion
 from modules import downloader

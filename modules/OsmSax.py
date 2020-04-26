@@ -26,13 +26,7 @@ import dateutil.parser
 from . import config
 from .OsmState import OsmState
 import subprocess
-
-try:
-    # For Python 3.0 and later
-    from io import StringIO
-except ImportError:
-    # Fall back to Python 2
-    from cStringIO import StringIO
+from io import StringIO
 
 ###########################################################################
 
