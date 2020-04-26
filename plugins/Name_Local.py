@@ -44,7 +44,7 @@ class Name_Local(Plugin):
         self.errors[50603] = self.def_class(item = 5060, level = 1, tags = ['name', 'fix:chair'],
             title = T_('Language name without default name'))
 
-        self.Language = self.father.config.options.get("language")
+        self.Language = self.father.config.options.get("language").split('_')[0]
         self.LocalName = re.compile("^name:[a-z][a-z](_.*$|$)")
 
     def node(self, data, tags):

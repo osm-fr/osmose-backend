@@ -506,7 +506,7 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom("guadeloupe", 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
-france_departement_dom("guyane", 1260551, "FR-GF", dep_code=973, proj=2972, phone_code="594")
+france_departement_dom("guyane", 1260551, "FR-GF", dep_code=973, language='fr_GF', proj=2972, phone_code="594")
 france_departement_dom("martinique", 1891495, "FR-MQ", dep_code=972, proj=32620, phone_code="596")
 france_departement_dom("mayotte", 1259885, "FR-YT", dep_code=976, proj=32738, phone_code="262")
 france_departement_dom("reunion", 1785276, "FR-RE", dep_code=974, proj=2975, phone_code="262")
@@ -527,7 +527,7 @@ france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, 
 france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
 france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
 france_com(["south-america", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
-france_com(["south-america", "polynesie"], 3412620, "FR-PF", proj=32706, phone_code="689", phone_len=9)
+france_com(["south-america", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_len=9)
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
     phone_code="687", phone_len=6, phone_format=r"^[+]%s([- ./]*[0-9]){5}[0-9]$", phone_international='00')
 
@@ -600,7 +600,7 @@ lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "lan
 del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
 del(lithuania.analyser["osmosis_highway_broken_level_continuity"]) # follow official highway classification
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "lb", "proj": 2169, "boundary_detail_level": 6})
+default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6})
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)

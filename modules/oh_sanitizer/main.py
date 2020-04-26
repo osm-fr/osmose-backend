@@ -8,11 +8,6 @@ import unittest as _unittest
 import lark as _lark
 from lark.lexer import Token as _Token
 
-try:
-    unicode # Python 2
-except:
-    unicode = str
-
 
 def get_parser():
     """
@@ -373,7 +368,7 @@ def sanitize_field(field):
     """
     # The exceptions catching should be modified when the next version
     # 'lark-parser' will be released (it introduce a better exception handling).
-    if not isinstance(field, str) and not isinstance(field, unicode):
+    if not isinstance(field, str):
         raise TypeError("The field must be a string.")
     if _re.match("[0-9]{4} [0-9].+", field):
         raise SanitizeError("This field can not be parsed properly.")
