@@ -8,9 +8,6 @@
 import operator
 import sys
 
-# Python 3 has renamed xrange() to range()
-if sys.version_info[0] == 2:
-    range = xrange
 
 class IntervalTree(object):
     __slots__ = ('intervals', 'left', 'right', 'center')

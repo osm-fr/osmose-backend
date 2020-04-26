@@ -50,9 +50,6 @@
 from modules.lockfile import lockfile
 import sys, os
 
-# Python 3 has renamed xrange() to range()
-if sys.version_info[0] == 2:
-    range = xrange
 
 class MissingDataError(Exception):
     def __init__(self, value):

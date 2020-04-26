@@ -25,7 +25,6 @@ from .Analyser import Analyser
 import sys, os
 import importlib
 import time
-from io import open  # In python3 only, this import is not required
 from modules import OsmoseLog
 
 

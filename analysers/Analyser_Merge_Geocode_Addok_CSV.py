@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from io import open # In python3 only, this import is not required
 from .Analyser_Merge import Source
 from .modules import downloader
 
