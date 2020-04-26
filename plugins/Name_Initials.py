@@ -30,7 +30,7 @@ class Name_Initials(Plugin):
             title = T_('Initial stuck to the name'))
 
         import re
-        self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
+        self.ReInitColleNom  = re.compile(r"^(.*[A-Z]\.)([A-Z][a-z].*)$")
 
     def node(self, data, tags):
         if "name" in tags:

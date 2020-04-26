@@ -35,10 +35,10 @@ class P_Name_PoorlyWrittenWayType(Plugin):
             start = 1
         for c in p1[start:]:
             r += u"[%s%s]" % (c.lower(), c.upper())
-        r += u")(\.|"
+        r += r")(\.|"
         for c in p2:
-            r += u"[%s%s]" % (c.lower(), c.upper())
-        r += u")?) .*$"
+            r += r"[%s%s]" % (c.lower(), c.upper())
+        r += r")?) .*$"
         return re.compile(r)
 
     def init(self, logger, toponymie = False):

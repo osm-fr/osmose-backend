@@ -31,12 +31,12 @@ class Name_PoorlyWrittenWayType_Lang_ca(P_Name_PoorlyWrittenWayType):
         P_Name_PoorlyWrittenWayType.init(self, logger)
 
         self.ReTests = {}
-        self.ReTests[(200, u"Avinguda")]  = self.generator(u"Av|inguda")
-        self.ReTests[(201, u"Avinguda")]  = re.compile(u"^([Aa][Vv]([Dd][Aa]?)?\.?) .*$")
-        self.ReTests[(202, u"Carrer")]    = self.generator(u"C|arrer")
-        self.ReTests[(203, u"Carrer")]    = re.compile(u"^([Cc]([Ll]\.?|/)) .*$")
-        self.ReTests[(204, u"Carretera")] = re.compile(u"^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
-        self.ReTests[(204, u"Carretera")] = re.compile(u"^([Cc][Tt][Rr][Aa]\.?) .*$")
+        self.ReTests[(200, 'Avinguda')]  = self.generator(r'Av|inguda')
+        self.ReTests[(201, 'Avinguda')]  = re.compile(r'^([Aa][Vv]([Dd][Aa]?)?\.?) .*$')
+        self.ReTests[(202, 'Carrer')]    = self.generator(r'C|arrer')
+        self.ReTests[(203, 'Carrer')]    = re.compile(r'^([Cc]([Ll]\.?|/)) .*$')
+        self.ReTests[(204, 'Carretera')] = re.compile(r'^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$')
+        self.ReTests[(204, 'Carretera')] = re.compile(r'^([Cc][Tt][Rr][Aa]\.?) .*$')
         self.ReTests = self.ReTests.items()
 
 

@@ -51,7 +51,7 @@ class TagWatchFrViPofm(Plugin):
         self._update_ks_vr = defaultdict(dict)
         self._update_kr_vr = defaultdict(dict)
 
-        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|([^|]*).*")
+        reline = re.compile(r"^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|([^|]*).*")
 
         # récupération des infos depuis https://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
         data = urlread(u"https://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)

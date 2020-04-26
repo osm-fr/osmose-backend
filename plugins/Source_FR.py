@@ -30,7 +30,7 @@ class Source_FR(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.IGN = re.compile(".*(\wign)|(ign\w).*")
+        self.IGN = re.compile(r'.*(\wign)|(ign\w).*')
 
     def check(self, tags):
         if u"AAAA" in tags[u"source"]:

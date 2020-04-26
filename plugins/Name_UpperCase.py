@@ -42,8 +42,8 @@ class Name_UpperCase(Plugin):
 '''While uncommon, it is possible for a name to have uppercase words.
  This is particularly the case for corporate/branded locations as well as acronyms.''')
         )
-        self.UpperTitleCase = re.compile(u".*[\p{Lu}\p{Lt}]{5,}")
-        self.RomanNumber = re.compile(u".*[IVXCDLM]{5,}")
+        self.UpperTitleCase = re.compile(r".*[\p{Lu}\p{Lt}]{5,}")
+        self.RomanNumber = re.compile(r".*[IVXCDLM]{5,}")
 
         if "country" in self.father.config.options:
             country = self.father.config.options.get("country")[:2]
