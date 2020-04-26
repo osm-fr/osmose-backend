@@ -578,7 +578,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=37)
+        self.check_num_err(min=33)
 
     def test_resume_full(self):
         # Test with an older timestamp than older object in extract
@@ -603,7 +603,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test_resume.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=13)
+        self.check_num_err(min=11)
 
     def test_resume_empty(self):
         # Test with an younger timestamp than youngest object in extract
@@ -630,7 +630,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.FR.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=53)
+        self.check_num_err(min=47)
 
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr.xml")
@@ -642,7 +642,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.Lang_fr.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=41)
+        self.check_num_err(min=37)
 
     def test_fr_nl(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr_nl.xml")
@@ -654,7 +654,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.Lang_fr_nl.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=37)
+        self.check_num_err(min=34)
 
 
 ################################################################################
