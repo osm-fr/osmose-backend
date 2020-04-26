@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-23 20:29+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-04-24 12:33+0000\n"
+"Last-Translator: Jorge Sanz <sanchi2@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2065,7 +2065,7 @@ msgstr "Sufijo clave erróneo"
 msgid ""
 "[WikiProject_France/Repères_Géodésiques](https://wiki.openstreetmap.org/wiki/WikiProject_France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)\n"
 "French survey point imported in OSM but not found."
-msgstr ""
+msgstr "[WikiProject_France/Repères_Géodésiques](https://wiki.openstreetmap.org/wiki/WikiProject_France/Rep%C3%A8res_G%C3%A9od%C3%A9siques)\nPunto de encuesta francés importado en OSM pero no encontrado."
 
 #: ../analysers/analyser_merge_geodesie.py:30
 msgid "Restore node or relation."
@@ -2182,7 +2182,7 @@ msgstr "Los datos de TMC pueden estar incorrectos o mal ubicados."
 msgid ""
 "A relation that should be a closed polygon and it is not. An issue is\n"
 "reported at each end of open part."
-msgstr ""
+msgstr "Una relación que debería ser un polígono cerrado y no lo es. Un problema es\nreportado en cada extremo de la parte abierta."
 
 #: ../analysers/analyser_osmbin_open_relations.py:82
 #, python-brace-format
@@ -2195,7 +2195,7 @@ msgstr "Los extremos de la interpolación deben tener valores diferentes en la e
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
-msgstr ""
+msgstr "Compruebe la posición del nodo admin_centre rol y límites."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:191
 msgid ""
@@ -2276,13 +2276,13 @@ msgstr ""
 #: ../analysers/analyser_osmosis_cycleway_track.py:64
 msgid ""
 "Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`"
-msgstr ""
+msgstr "Vías ciclistas duplicadas, `highway=*`+`cycleway=track` y `highway=cycleway`"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:66
 msgid ""
 "Double cycleway mapping. `highway=*`+`cycleway=track` parallel to an\n"
 "`highway=cycleway`"
-msgstr ""
+msgstr "Mapeo de doble ciclovía. `highway=*`+`cycleway=track` paralelo a un\n`highway=cycleway`"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:69
 msgid ""
@@ -2295,7 +2295,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)\n"
 "\n"
 "Double mapping of the bike lane. "
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)\n\nDoble mapeo del carril bici."
 
 #: ../analysers/analyser_osmosis_double_tagging.py:101
 msgid ""
@@ -2318,7 +2318,7 @@ msgstr "Comparar etiquetas y borrar objeto o fusionarlo."
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:64
 msgid "Inconsistent `motor_vehicle` values (`destination`!=)"
-msgstr ""
+msgstr "Valores inconsistentes `motor_vehicle` (`destination`!=)"
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:111
 msgid ""
@@ -2326,27 +2326,27 @@ msgid ""
 "highway should normally be consistent along the entire path. For example\n"
 "a `highway=tertiary` should remain `highway=tertiary` until it intersects\n"
 "with a road of higher classification."
-msgstr ""
+msgstr "Compruebe la continuidad de los tipos de carreteras. La clasificación de una\ncarretera normalmente debe ser consistente a lo largo de todo el recorrido. Por ejemplo\nuna `highway=tertiary` debería continuar siendo `highway=tertiary` hasta que se cruce\ncon una carretera de mayor clasificación."
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:116
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)\n"
 "\n"
 "`highway=secondary` should not becoming a residential."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)\n\n`highway=secondary` no debería convertirse en residential."
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:58
 msgid ""
 "A way connects directly to the street classification much\n"
 "smaller."
-msgstr ""
+msgstr "Ua vía conecta directamente con una calle de clasificación mucho\nmenor."
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:61
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n"
 "\n"
 "Secondary connecting directly to the residentials."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n\nSecundaria conecta directamente a residencial"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:202
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:114
@@ -2369,7 +2369,7 @@ msgstr "Conecte la `cycleway` a la carretera, incluso con una pequeña ruta virt
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
-msgstr ""
+msgstr "Carreteras desde `motorway` a `tertiary` son vías importantes. Deben conducir\na algún lugar y, en particular, a una res de caminos menores."
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:217
 msgid "Review the classification of road or draw the local road network."
@@ -2393,7 +2393,7 @@ msgstr "Verifique la consistencia del tipo de carretera\n`highway=trunk_link|pri
 msgid ""
 "Change classification of `*_link` to match the way which is\n"
 "connected."
-msgstr ""
+msgstr "Cambie la clasificación de `*_link` para que coincida con la forma a la que\nconecta."
 
 #: ../analysers/analyser_osmosis_highway_link.py:139
 msgid ""
@@ -2420,7 +2420,7 @@ msgstr "Noexit en vía con múltiples salidas"
 msgid ""
 "An other node very close have already the tag\n"
 "`crossing=traffic_signals`."
-msgstr ""
+msgstr "Otro nodo muy cercano ya tiene la etiqueta\n`crossing=traffic_signals`."
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:165
 msgid ""
@@ -2467,13 +2467,13 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)\n"
 "\n"
 "Wrong tag for private swimming pool."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)\n\nEtiqueta incorrecta para piscina privada."
 
 #: ../analysers/analyser_osmosis_node_like_way.py:81
 msgid ""
 "Way node tagged like way. Probably due to a wrong selection when\n"
 "editing, nodes in the way have the same tags that way."
-msgstr ""
+msgstr "Nodo de la vía etiquetado como la vía. Probablemente debido a una selección incorrecta\nal editar, los nodos en el camino tienen las mismas etiquetas que la propia vía."
 
 #: ../analysers/analyser_osmosis_node_like_way.py:84
 msgid "Check and remove tag from node."
@@ -2532,7 +2532,7 @@ msgstr "Asegurar que los nodos a mover no pertenezcan a otra vía."
 #: ../analysers/analyser_osmosis_polygon.py:92
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
 
 #: ../analysers/analyser_osmosis_powerline.py:322
 msgid "This tower should probably be connected to a power line."
@@ -3355,13 +3355,13 @@ msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:38
 msgid "Analyzes the tag `note=*` with French and English keywords."
-msgstr ""
+msgstr "Analiza la etiqueta `note=*` con palabras clave en francés e inglés."
 
 #: ../plugins/TagFix_Note_Lang_fr.py:40
 msgid ""
 "Use a more appropriate tag as `description=*`, `opening_hours=*` or\n"
 "`fixme=*` so it can be found more easily."
-msgstr ""
+msgstr "Use una etiqueta más apropiada como `description=*`, `opening_hours=*` o\n`fixme=*` para que se pueda encontrar fácilmente."
 
 #: ../plugins/TagFix_Note_Lang_fr.py:43
 msgid "The analysis can provide crazy result."
@@ -3371,7 +3371,7 @@ msgstr "El análisis puede dar un resultado raro."
 msgid ""
 "Check postcode as decribed on\n"
 "[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)"
-msgstr ""
+msgstr "Verifique el código postal como se describe en\n[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)"
 
 #: ../plugins/TagFix_Role.py:33
 msgid "The role is not a keyword as expected."
@@ -3567,7 +3567,7 @@ msgstr "Valor de etiqueta incorrecto"
 
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid "Untagged named object"
-msgstr ""
+msgstr "Objeto con nombrado sin etiquetar"
 
 #: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
@@ -3679,16 +3679,16 @@ msgstr ""
 
 #: ../plugins/TagFix_Area.py:32
 msgid "Redundant area tagging"
-msgstr ""
+msgstr "Etiquetado de área redundante"
 
 #: ../plugins/TagFix_Area.py:33
 msgid "This feature is already implicitly an area due to another tag."
-msgstr ""
+msgstr "Esta característica ya es implícitamente un área debido a otra etiqueta."
 
 #: ../plugins/TagFix_Area.py:34 ../plugins/TagFix_Area.py:48
 #, python-brace-format
 msgid "Remove the `{0}` tag."
-msgstr ""
+msgstr "Eliminar la etiqueta `{0}`."
 
 #: ../plugins/TagFix_Area.py:37
 msgid "Untagged area object"
