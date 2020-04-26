@@ -86,7 +86,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
             day_two = 0
             for i in range(7):
                 if i < day_two:
-                     continue
+                    continue
                 current_hours_txt = ''
                 for j in range(7):
                     if j < i:

@@ -24,7 +24,6 @@ from .Analyser import Analyser
 
 import sys, os
 import importlib
-import time
 from modules import OsmoseLog
 
 
@@ -520,25 +519,23 @@ class Analyser_Sax(Analyser):
 
 ################################################################################
 from .Analyser import TestAnalyser
-import datetime
 
 class TestAnalyserOsmosis(TestAnalyser):
 
     class MockupReader(object):
         def NodeGet(self, id):
-            return { "id": id, "lat": 0, "lon": 0, "tag": {} };
+            return { "id": id, "lat": 0, "lon": 0, "tag": {} }
 
         def WayGet(self, id, dump_sub_elements=False):
-            return { "id": id, "nd": [0], "tag": {} };
+            return { "id": id, "nd": [0], "tag": {} }
 
         def RelationGet(self, id, dump_sub_elements=False):
-            return { "id": id, "member": [{"type": "node", "ref": 0}], "tag": {} };
+            return { "id": id, "member": [{"type": "node", "ref": 0}], "tag": {} }
 
         def UserGet(self, id):
             return None
 
         def timestamp(self):
-            import datetime
             return datetime.datetime.now()
 
 
@@ -560,12 +557,12 @@ class TestAnalyserOsmosis(TestAnalyser):
         from modules import config
         self.dirname = config.dir_tmp + "/tests/"
         try:
-          os.makedirs(self.dirname)
+            os.makedirs(self.dirname)
         except OSError:
-          if os.path.isdir(self.dirname):
-            pass
-          else:
-            raise
+            if os.path.isdir(self.dirname):
+                pass
+            else:
+                raise
 
     def test(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
@@ -658,9 +655,9 @@ class TestAnalyserOsmosis(TestAnalyser):
 
 ################################################################################
 
-if __name__=="__main__":
+if __name__ == "__main__":
     # Check argument
-    if len(sys.argv)!=3:
+    if len(sys.argv) != 3:
         print("Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>")
         sys.exit(-1)
 

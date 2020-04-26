@@ -30,7 +30,7 @@ class Number(Plugin):
             title = T_('Invalid numerical value'),
             detail = T_(
 '''The tag expects a numeric value with decimals using a period character
-and not a comma. \ For guidelines on numeric values with units see [the
+and not a comma. \\ For guidelines on numeric values with units see [the
 wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units).'''),
             fix = T_(
 '''Make sure the relevant tag value is numeric and in the expected format

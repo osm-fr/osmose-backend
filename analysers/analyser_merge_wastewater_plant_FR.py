@@ -50,5 +50,5 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:sandre": "CdOuvrageDepollution",
-                        "start_date" : lambda fields: None if not fields.get(u"DateMiseServiceOuvrageDepollution") else fields[u"DateMiseServiceOuvrageDepollution"][0:4] if fields[u"DateMiseServiceOuvrageDepollution"].endswith('-01-01') or fields[u"DateMiseServiceOuvrageDepollution"].endswith('-12-31') else fields[u"DateMiseServiceOuvrageDepollution"]},
+                        "start_date": lambda fields: None if not fields.get(u"DateMiseServiceOuvrageDepollution") else fields[u"DateMiseServiceOuvrageDepollution"][0:4] if fields[u"DateMiseServiceOuvrageDepollution"].endswith('-01-01') or fields[u"DateMiseServiceOuvrageDepollution"].endswith('-12-31') else fields[u"DateMiseServiceOuvrageDepollution"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NomOuvrageDepollution"], fields["LbSystemeCollecte"], fields["NomAgglomerationAssainissement"]]))} )))

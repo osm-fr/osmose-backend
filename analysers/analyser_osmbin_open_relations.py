@@ -150,12 +150,12 @@ class Test(TestAnalyser):
         del self.o
         dirname = config.dir_tmp + "/tests/"
         try:
-          os.makedirs(dirname)
+            os.makedirs(dirname)
         except OSError:
-          if os.path.isdir(dirname):
-            pass
-          else:
-            raise
+            if os.path.isdir(dirname):
+                pass
+            else:
+                raise
         self.xml_res_file = os.path.join(dirname, "osmbin_open_relations.test.xml")
         (self.conf, self.analyser_config) = self.init_config(dst=self.xml_res_file)
 

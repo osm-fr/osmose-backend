@@ -64,6 +64,6 @@ class Geocode_Addok_CSV(Source):
                 text = '\n'.join(r.text.split('\n')[0:])
             else:
                 text = '\n'.join(r.text.split('\n')[1:])
-            writer = outfile.write(text)
+            outfile.write(text)
 
         return True

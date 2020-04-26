@@ -116,7 +116,7 @@ class Source_Finess(Source):
             elif row[0] == 'geolocalisation':
                 geolocalisation[row[1]] = row[2:]
         for row in structureet:
-           row += geolocalisation.get(row[0], [])
+            row += geolocalisation.get(row[0], [])
 
         csvfile = io.StringIO()
         writer = csv.writer(csvfile)

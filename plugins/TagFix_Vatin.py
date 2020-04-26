@@ -17,9 +17,7 @@
 ##                                                                       ##
 ###########################################################################
 
-
 from plugins.Plugin import Plugin
-import re
 
 
 class TagFix_Vatin(Plugin):

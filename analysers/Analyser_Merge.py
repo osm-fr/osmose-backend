@@ -636,7 +636,7 @@ class Load(object):
 
         self.data = False
         def setDataTrue():
-            self.data=True
+            self.data = True
         osmosis.run0("SELECT * FROM meta WHERE name='%s' AND update=%s" % (table, time), lambda res: setDataTrue())
         if not self.data:
             osmosis.logger.log(u"Load source into database")
@@ -667,7 +667,7 @@ class Load(object):
 
         self.data = False
         def setData(res):
-            self.data=res
+            self.data = res
         osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
@@ -890,7 +890,7 @@ class Analyser_Merge(Analyser_Osmosis):
         return SourceVersion.version(self.parser.source.time(), self.__class__)
 
     def analyser_osmosis_common(self):
-        self.run("SET search_path TO %s" % (self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public']),));
+        self.run("SET search_path TO %s" % (self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public']),))
         table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
         if not table:
             self.logger.log(u"Empty bbox, abort")
@@ -898,16 +898,16 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Extract OSM objects
         if self.load.srid:
-          typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
-          typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
-          if self.mapping.osmRef == "NULL" or self.possible_merge:
-            typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
-          else:
-            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
+            typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
+            if self.mapping.osmRef == "NULL" or self.possible_merge:
+                typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+            else:
+                typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         else:
-          typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
-          typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
-          typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
         where = "((" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + "))"
         self.run("CREATE TEMP TABLE osm_item AS " +
@@ -952,7 +952,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.missing_official:
             self.run(sql12, lambda res: {
                 "class": self.missing_official['id'],
-                "subclass": str(stablehash64("%s%s%s"%(res[0],res[1],sorted(res[3].items())))),
+                "subclass": str(stablehash64("%s%s%s" % (res[0],res[1],sorted(res[3].items())))),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
@@ -987,7 +987,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
                     "class": self.possible_merge['id'],
-                    "subclass": str(stablehash64("%s%s"%(res[0],sorted(res[3].items())))),
+                    "subclass": str(stablehash64("%s%s" % (res[0],sorted(res[3].items())))),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                     "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
@@ -1027,7 +1027,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.update_official:
             self.run(sql60 % {"official": table, "joinClause": joinClause}, lambda res: {
                 "class": self.update_official['id'],
-                "subclass": str(stablehash64("%s%s"%(res[0],sorted(res[5].items())))),
+                "subclass": str(stablehash64("%s%s" % (res[0],sorted(res[5].items())))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
                 "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
@@ -1090,7 +1090,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     else:
                         column[k] += 1
         column = sorted(column, key=column.get, reverse=True)
-        column = list(filter(lambda a: a!=self.mapping.osmRef and not a in self.mapping.select.tags[0], column))
+        column = list(filter(lambda a: a != self.mapping.osmRef and not a in self.mapping.select.tags[0], column))
         column = [self.mapping.osmRef] + list(self.mapping.select.tags[0].keys()) + column
         buffer = io.StringIO()
         writer = csv.writer(buffer, lineterminator=u'\n')
@@ -1112,20 +1112,20 @@ class Analyser_Merge(Analyser_Osmosis):
         clauses = []
         for k, v in tags.items():
             if v == False:
-              clauses.append("NOT tags?'%s'" % k)
+                clauses.append("NOT tags?'%s'" % k)
             elif hasattr(v, '__call__'):
-              clauses.append(v("tags->'%s'"% k))
+                clauses.append(v("tags->'%s'" % k))
             else:
-              clauses.append("tags?'%s'" % k)
-              if isinstance(v, list):
-                  clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), v))))
-              elif isinstance(v, dict):
-                  if "like" in v:
-                      clauses.append("tags->'%s' LIKE '%s'" % (k, v["like"].replace("'", "''")))
-                  elif "regex" in v:
-                      clauses.append("tags->'%s' ~ '%s'" % (k, v["regex"].replace("'", "''")))
-              elif v:
-                  clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
+                clauses.append("tags?'%s'" % k)
+                if isinstance(v, list):
+                    clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), v))))
+                elif isinstance(v, dict):
+                    if "like" in v:
+                        clauses.append("tags->'%s' LIKE '%s'" % (k, v["like"].replace("'", "''")))
+                    elif "regex" in v:
+                        clauses.append("tags->'%s' ~ '%s'" % (k, v["regex"].replace("'", "''")))
+                elif v:
+                    clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
         return " AND ".join(clauses)
 
 ###########################################################################
@@ -1153,7 +1153,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_merge(self):
         # run all available merge analysers, for basic SQL check
-        import importlib, inspect, os, sys
+        import importlib, inspect, os
 
         for fn in sorted(os.listdir("analysers/")):
             if not fn.startswith("analyser_merge_") or not fn.endswith(".py"):

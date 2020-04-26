@@ -132,7 +132,7 @@ WHERE
 )
 """
 
-sql11= """
+sql11 = """
 SELECT
   objects.type || objects.id,
   ST_AsText(any_locate(objects.type, objects.id))

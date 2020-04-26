@@ -186,11 +186,11 @@ If geometry is correct and there's some vertical difference then make use of the
             fix = self.merge_doc(fix, T_(
 '''Large intersections may also be a duplicated mapping - in which case delete the less accurate elements.''')))
         if self.FR:
-            self.classs_change[6] = self.def_class(item =  1, level = 3, tags = ['building', 'geom', 'fix:chair'],
+            self.classs_change[6] = self.def_class(item = 1, level = 3, tags = ['building', 'geom', 'fix:chair'],
                 title = T_("Building in parts"),
                 fix = T_('Merge the building parts together as appropriate.'))
 
-        self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
+        self.callback30 = lambda res: {"class":2 if res[3] > res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
         self.callback60 = lambda res: {"class":5, "subclass": stablehash64(res[0]), "data":[self.positionAsText]}

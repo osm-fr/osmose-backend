@@ -22,7 +22,6 @@
 from modules.Stablehash import stablehash64
 from plugins.Plugin import Plugin
 import re
-import sys
 
 
 class P_Name_Dictionary(Plugin):

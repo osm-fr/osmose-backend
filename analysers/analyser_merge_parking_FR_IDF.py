@@ -43,7 +43,7 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
                     tags = {
                         "amenity": "parking",
                         "park_ride": None}),
-                    conflationDistance = 300,
+                conflationDistance = 300,
                 generate = Generate(
                     static1 = {"amenity": "parking", "park_ride": "yes"},
                     static2 = {"source": self.source},

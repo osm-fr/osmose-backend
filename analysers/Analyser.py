@@ -24,7 +24,6 @@ try:
 except ImportError:
     import __builtin__ as builtins
 
-import hashlib
 import os
 from inspect import getframeinfo, stack
 from modules import OsmoseErrorFile
@@ -105,7 +104,7 @@ class Analyser(object):
 
     def close_error_file(self):
         if self.error_file:
-          self.error_file.end()
+            self.error_file.end()
 
     def analyser(self):
         pass
@@ -165,7 +164,7 @@ class TestAnalyser(unittest.TestCase):
     @staticmethod
     def dict_sort_key(d):
         """
-	Create a key from dict, with a string containing all keys and values,
+        Create a key from dict, with a string containing all keys and values,
         sorted by keys.
         """
         s = ""
@@ -367,18 +366,18 @@ class TestAnalyser(unittest.TestCase):
     def check_err(self, cl=None, lat=None, lon=None, elems=None):
         for e in self.root_err.find("analyser").findall('error'):
             if cl is not None and e.attrib["class"] != cl:
-               continue
+                continue
             if lat is not None and e.find("location").attrib["lat"] != lat:
-               continue
+                continue
             if lon is not None and e.find("location").attrib["lon"] != lon:
-               continue
+                continue
             if elems is not None:
-               xml_elems = []
-               for t in ("node", "way", "relation"):
-                   for err_elem in e.findall(t):
-                       xml_elems.append((t, err_elem.attrib["id"]))
-               if set(elems) != set(xml_elems):
-                   continue
+                xml_elems = []
+                for t in ("node", "way", "relation"):
+                    for err_elem in e.findall(t):
+                        xml_elems.append((t, err_elem.attrib["id"]))
+                if set(elems) != set(xml_elems):
+                    continue
             return True
 
         assert False, "Error not found"

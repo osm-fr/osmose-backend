@@ -218,7 +218,7 @@ lead to somewhere and in particular to a network of minor roads.''')),
         self.classs[3] = self.def_class(item =1210, level = 1, tags = ["highway", "fix:chair"],
             title = T_('One way inaccessible or missing parking or parking entrance'))
 
-        self.callback20 = lambda res: {"class":1 if res[3]=='cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":1 if res[3] == 'cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql30)
