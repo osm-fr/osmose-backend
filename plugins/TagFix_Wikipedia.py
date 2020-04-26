@@ -85,8 +85,8 @@ the article. Same for accented letters. Letter must be readable.'''),
             detail = detail)
 
         import re
-        self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
-        self.lang_regexp = re.compile(u"[-a-z]+:.*")
+        self.wiki_regexp = re.compile(r'(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)')
+        self.lang_regexp = re.compile(r'[-a-z]+:.*')
         self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
 
         self.Country = self.father.config.options.get("country")

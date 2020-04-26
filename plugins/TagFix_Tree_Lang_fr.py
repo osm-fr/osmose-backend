@@ -35,7 +35,7 @@ class TagFix_Tree_Lang_fr(Plugin):
         return self.strip_accents(string.strip().lower()).replace(' commun', '')
 
     def liste_des_arbres_fruitiers(self):
-        reline = re.compile("\[\[([^:]*)$")
+        reline = re.compile(r"\[\[([^:]*)$")
         data = urlread(u"https://fr.wikipedia.org/wiki/Liste_des_arbres_fruitiers?action=raw", 1)
         #data = open(u"Liste_des_arbres_fruitiers?action=raw").read()
         data = data.split("]]")
@@ -45,7 +45,7 @@ class TagFix_Tree_Lang_fr(Plugin):
                     self.Tree[self.normalize(n)] = {'species:fr':res}
 
     def liste_des_essences_europennes(self):
-        reline = re.compile("^\* \[\[([^]]*)\]\][^[]*\[\[([^]]*)\]\][^[]*(?:\[\[([^]]*)\]\][^[]*)?(?:\[\[([^]]*)\]\][^[]*)?")
+        reline = re.compile(r"^\* \[\[([^]]*)\]\][^[]*\[\[([^]]*)\]\][^[]*(?:\[\[([^]]*)\]\][^[]*)?(?:\[\[([^]]*)\]\][^[]*)?")
         data = urlread(u"https://fr.wikipedia.org/wiki/Liste_des_essences_forestières_européennes?action=raw", 1)
         #data = open(u"Liste_des_essences_forestières_européennes?action=raw").read()
         data = data.split("\n")

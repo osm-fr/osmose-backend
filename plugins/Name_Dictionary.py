@@ -102,7 +102,7 @@ class P_Name_Dictionary(Plugin):
 
     def load_latin_language(self):
         # Apostrophes
-        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
+        self.apostrophe = re.compile(r'\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
 
         for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
             ustr = "".join(([chr(i) for i in c.encode('utf-8')]))

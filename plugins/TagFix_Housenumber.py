@@ -55,16 +55,16 @@ and `potential`.'''))
             # From open data from cantons Zurich and Bern. See also https://github.com/ltog/osmi-addresses/issues/93
             # Plus allows commas with multiple numbers
             ch_number = "[1-9][0-9]{0,3}( ?[a-zA-Z])?"
-            self.housenumber = re.compile("^(:?{0})(:?,{0})?$".format(ch_number))
+            self.housenumber = re.compile(r"^(:?{0})(:?,{0})?$".format(ch_number))
         elif country == 'CZ':
             # https://wiki.openstreetmap.org/wiki/Cs:WikiProject_Czech_Republic/Address_system
-            self.housenumber = re.compile("^(ev\.)?[1-9]")
+            self.housenumber = re.compile(r"^(ev\.)?[1-9]")
         elif country == 'LU':
             # From open data from CACLR, https://data.public.lu/en/datasets/registre-national-des-localites-et-des-rues/
-            self.housenumber = re.compile("^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
+            self.housenumber = re.compile(r"^[1-9][0-9]{0,3}([A-Z]){0,3}(-[1-9][0-9]{0,3}([A-Z]){0,3})?$")
         elif country == 'IT':
             # Allow "snc" (Senza numero civico) in Italy
-            self.housenumber = re.compile("(:?^[1-9])|(^snc$)")
+            self.housenumber = re.compile(r"(:?^[1-9])|(^snc$)")
         elif country == 'NL':
             # Baseline:
             #   https://imbag.github.io/catalogus/hoofdstukken/attributen--relaties#734-huisnummertoevoeging
@@ -83,7 +83,7 @@ and `potential`.'''))
                 "([ -/]?(([0-9]{1,4})|([A-Za-z]{1,5}))){0,4}$")
         else:
             # By default, validate that house number starts with 1-9
-            self.housenumber = re.compile("^[1-9]")
+            self.housenumber = re.compile(r"^[1-9]")
 
     def node(self, data, tags):
         err = []
