@@ -140,7 +140,7 @@ FROM
        b1.tags->'building' = b2.tags->'building' AND
        b1.wall = b2.wall AND
        ST_Intersects(b1.polygon_proj, b2.polygon_proj) AND
-       b2.npoints = 3
+       b2.npoints = 4
 WHERE
    NOT b1.relation AND
    NOT b2.relation AND
