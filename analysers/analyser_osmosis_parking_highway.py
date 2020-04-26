@@ -34,7 +34,7 @@ WHERE
   NOT is_construction
 """
 
-sql11= """
+sql11 = """
 CREATE INDEX park_highway_linestring_idx ON park_highway USING gist(linestring)
 """
 

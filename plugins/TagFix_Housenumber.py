@@ -20,8 +20,6 @@
 ###########################################################################
 
 import re
-from collections import defaultdict
-
 from plugins.Plugin import Plugin
 
 
@@ -180,7 +178,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"addr:housenumber": "42A-44A"})
         assert not a.node(None, {"addr:housenumber": "42BIS"})
 
-    def test_LU(self):
+    def test_IT(self):
         a = TagFix_Housenumber(None)
         class _config:
             options = {"country": "IT"}

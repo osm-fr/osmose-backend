@@ -72,7 +72,7 @@ class TagFix_Note_Lang_fr(Plugin):
             "transformateur",  "verger",  "volley", )
         self.Hours = re.compile(r'[0-9]{1,2}h')
         self.Date = re.compile(r'[0-9]{4,8}|(?:(?:[0-9]{1,2}/){2}/[0-9]{2,4})')
-        self.Split = re.compile(r'[- _\(\),.:/''"+!;<>=\[\]]')
+        self.Split = re.compile(r'[- _\(\),.:/''"+!;<>=\[\]]') # noqa
 
     def node(self, data, tags):
         if "note" not in tags and "comment" not in tags:

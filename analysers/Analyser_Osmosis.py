@@ -298,7 +298,7 @@ ANALYZE {0}.buildings;
                 "/osmosis/ActionFromTimestamp.sql",
                 "/osmosis/CreateTouched.sql",
             ]
-            for script in osmosis_resume_post_scripts: #self.config.analyser_conf.osmosis_resume_post_scripts:
+            for script in osmosis_resume_post_scripts: # self.config.analyser_conf.osmosis_resume_post_scripts:
                 self.giscurs.execute(open('./' + script, 'r').read().replace(':timestamp', timestamp))
             self.giscurs.execute('COMMIT')
             self.giscurs.execute('BEGIN')
@@ -546,12 +546,12 @@ class TestAnalyserOsmosis(TestAnalyser):
         for i in ["normal", "diff_empty", "diff_full"]:
             dirname = os.path.join(os.path.dirname(dst), i)
             try:
-              os.makedirs(dirname)
+                os.makedirs(dirname)
             except OSError:
-              if os.path.isdir(dirname):
-                pass
-              else:
-                raise
+                if os.path.isdir(dirname):
+                    pass
+                else:
+                    raise
 
         cls.conf = conf
         cls.xml_res_file = dst
@@ -594,7 +594,7 @@ class Test(TestAnalyserOsmosis):
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check
-        import importlib, inspect, os, sys
+        import importlib, inspect, os
 
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
@@ -616,7 +616,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_change_empty(self):
         # run all available osmosis analysers, for basic SQL check
-        import importlib, inspect, os, sys
+        import importlib, inspect, os
 
         self.conf.osmosis_manager.set_pgsql_schema()
 
@@ -648,7 +648,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_change_full(self):
         # run all available osmosis analysers, after marking all elements as new
-        import importlib, inspect, os, sys
+        import importlib, inspect, os
 
         self.conf.osmosis_manager.set_pgsql_schema()
 
@@ -684,7 +684,7 @@ class Test(TestAnalyserOsmosis):
     def test_cmp_normal_change(self):
         # compare results between normal and change_full
         # must be run after both test() and test_change_full()
-        import importlib, inspect, os, sys
+        import importlib, inspect, os
 
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):

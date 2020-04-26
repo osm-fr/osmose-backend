@@ -172,7 +172,7 @@ class Source_Fuel(Source):
         'S-DIESEL':                 GTL_DIESEL,# ?
         'SUPREME DIESEL':           GTL_DIESEL,# esso
         'V-POWER':                  OCTANE_100,
-        'V-POWER DIESEL' :          GTL_DIESEL,
+        'V-POWER DIESEL':           GTL_DIESEL,
     }
 
 
