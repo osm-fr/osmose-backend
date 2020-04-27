@@ -520,7 +520,6 @@ class GeoJSON(Parser):
 
     def import_(self, table, srid, osmosis):
         self.json = self.json or self.extractor(json.loads(self.source.open().read()))
-        insert_statement = u"insert into %s (%%s) values %%s" % table
         for row in self.json['features']:
             row['properties'] = flattenjson(row['properties'])
             columns = list(row['properties'].keys())
