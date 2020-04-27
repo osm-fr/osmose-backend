@@ -38,18 +38,7 @@ the tag `material=*`.'''),
             trap = T_(
 '''The tag `historic=wayside_cross` is sometimes misused. Please x-check
 if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate.'''))
-        doc = dict(
-            detail = T_(
-'''Check if tag `material=*` is filled for `historic=wayside_cross` objects.'''),
-            fix = T_(
-'''Add tag `material=*` or change object type as appropriate. Also take the 
-oportunity to add other meta-data as `religion`, `denomination`, `start_date`, 
-`inscritption`, ...'''),
-            trap = T_(
-'''The tag `historic=wayside_cross` is sometimes misused. Please x-check
-if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate'''))
-
 
     def node(self, data, tags):
         if tags["historic"]=="wayside_cross" and "material" not in tags:
-           return {"class": 800, "subclass": 0}
+           return {"class": 303242, "subclass": 0}
