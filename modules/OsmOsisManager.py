@@ -176,7 +176,7 @@ class OsmOsisManager:
     else:
       cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
     cmd += ["-quiet"]
-    cmd += ["--write-pgsql-dump", "directory=%s"%dir_country_tmp, "enableLinestringBuilder=yes"]
+    cmd += ["--write-pgsql-dump", "directory=%s" % dir_country_tmp, "enableLinestringBuilder=yes"]
 
     try:
       self.logger.execute_err(cmd)
@@ -414,7 +414,7 @@ class OsmOsisManager:
 
       cmd  = [conf.bin_osmosis]
       cmd += ["--read-xml-change", xml_change]
-      cmd += ["--write-pgsql-change", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
+      cmd += ["--write-pgsql-change", "database=%s" % conf.db_base, "user=%s" % conf.db_user, "password=%s" % conf.db_password]
       cmd += ["-quiet"]
       self.logger.execute_err(cmd)
 

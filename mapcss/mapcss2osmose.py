@@ -4,7 +4,7 @@ import re
 import ast
 import hashlib
 from pprint import pprint
-from antlr4 import *
+from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from generated.MapCSSLexer import MapCSSLexer
 from generated.MapCSSParser import MapCSSParser
 from MapCSSListenerL import MapCSSListenerL
@@ -212,7 +212,7 @@ rule_declarations_order_map = {
     # Osmose
     '-osmoseItemClassLevel': 2,
     '-osmoseTags': 2,
-     # text
+    # text
     'throwError': 3,
     'throwWarning': 3,
     'throwOther': 3,
@@ -528,7 +528,7 @@ def to_p(t):
     if isinstance(t, str):
         return t
     elif t['type'] == 'stylesheet':
-        return "\n".join(filter(lambda s: s!= "", map(to_p, t['rules'])))
+        return "\n".join(filter(lambda s: s != "", map(to_p, t['rules'])))
     elif t['type'] == 'rule':
         item = class_id = level = tags = group = group_class = text = text_class = None # For safty
         is_meta_rule = t.get('_meta')
@@ -555,8 +555,8 @@ def to_p(t):
                 "    if not match:\n" +
                 "        capture_tags = {}\n" +
                 "        try: match = " + to_p(s) + "\n" +
-                "        except mapcss.RuleAbort: pass\n"
-                , t['selectors'])) +
+                "        except mapcss.RuleAbort: pass\n",
+                t['selectors'])) +
                 "    if match:\n" +
                 "        # " + "\n        # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
                 (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
@@ -718,7 +718,7 @@ def build_tests(tests):
     for test in tests:
         test_code = ""
         if test['context']:
-            context = dict(map(lambda l: map(lambda s: s.strip(), l.split('=', 1)) , test['context'].split(',')))
+            context = dict(map(lambda l: map(lambda s: s.strip(), l.split('=', 1)), test['context'].split(',')))
             context = dict(map(lambda kv: (context_map[kv[0]] if kv[0] in context_map else kv[0], kv[1]), context.items()))
             test_code = "with with_options(n, {%s}):\n    " % ', '.join(map(lambda kv: ": ".join(map(lambda s: "'" + s.replace("'", "\\'") + "'", kv)), context.items()))
 

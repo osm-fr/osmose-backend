@@ -63,29 +63,29 @@ class SanitizerTransformer(_lark.Transformer):
 
     def time_domain(self, args):
         parts = []
-        
+
         defaultDict = {';': '; ', ',': ',', '||': ' || '}
         tweakedDict = {';': '; ', ',': ', ', '||': ' || '}
-        weekdayRe = _re.compile("^(Mo|Tu|We|Th|Fr|Sa|Su|PH|SH)")
-        timeRe = _re.compile("(dawn|sunrise|sunset|dusk|unknown|off|on|closed|open|\d\d:\d\d)[+-]?$")
-        
+        weekdayRe = _re.compile(r"^(Mo|Tu|We|Th|Fr|Sa|Su|PH|SH)")
+        timeRe = _re.compile(r"(dawn|sunrise|sunset|dusk|unknown|off|on|closed|open|\d\d:\d\d)[+-]?$")
+
         for counter, arg in enumerate(args):
             # if looking at a separator token
             if isinstance(arg, _Token):
                 separatorsDict = defaultDict
                 # if this is not first key AND args has at least one more element
-                if (0 < counter) and (counter+1) <= len(args) :
+                if (0 < counter) and (counter+1) <= len(args):
                     # if next arg starts with weekday
                     if ( weekdayRe.match(args[counter+1]) ):
                         # previous key was time
                         if ( timeRe.search(args[counter-1]) ):
                             separatorsDict = tweakedDict
-                        
+
                 parts.append( separatorsDict.get(arg.value.strip()) )
             # looking at actual value
             else:
                 parts.append(arg)
-            
+
         return ''.join(parts)
 
     def rule_sequence(self, args):
@@ -204,7 +204,6 @@ class SanitizerTransformer(_lark.Transformer):
 
     def holiday_in_weekday_sequence_selector(self, args):
         holidays = [h.upper() for h in args if h.lower() in ('sh', 'ph')]
-        days = [d for d in args if d not in holidays]
         return ','.join(holidays) + ' ' + args[-1]
 
     # Weekdays
@@ -306,11 +305,11 @@ class SanitizerTransformer(_lark.Transformer):
                 h = 0
             elif ( arg.type == 'PM' and h < 12 ):
                 h += 12
-        
+
         # In some cases, hours could be greater than 24.
         if (h >= 25) or (h >= 24 and m > 0):
             h -= 24
-        
+
         return str(h).zfill(2) + ':' + str(m).zfill(2)
 
     def variable_time(self, args):
@@ -378,7 +377,7 @@ def sanitize_field(field):
         field = field.replace('"""', '"').replace('""', '"')
         tree = PARSER.parse(field)
         new_field = SanitizerTransformer().transform(tree)
-    except _lark.exceptions.LarkError as e:
+    except _lark.exceptions.LarkError:
         raise SanitizeError(
             "The field could not be parsed. It is probably invalid, "
             "or just too complex for the parser."
@@ -407,14 +406,14 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo-Fr,SH 10:00-20:00"), "Mo-Fr,SH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr,PH 10:00-20:00"), "Mo-Fr,PH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr 10:00-12:00,13:00-20:00"), "Mo-Fr 10:00-12:00,13:00-20:00")
-        
+
         self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00, Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00, Tu 11:00-13:00,15:00-19:00")
         self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu 13:00-14:00,We 14:11-15:15;Fr 16:16-17:17"), "Mo 11:00-12:00, Tu 13:00-14:00, We 14:11-15:15; Fr 16:16-17:17")
         self.assertEqual(sanitize_field("Mo 11:00-12:00, Tu,We 14:11-15:15"), "Mo 11:00-12:00, Tu,We 14:11-15:15")
         self.assertEqual(sanitize_field("Tu-Th 12:00-22:00; Fr,Sa 12:00-23:00; Su 12:00-19:00"), "Tu-Th 12:00-22:00; Fr,Sa 12:00-23:00; Su 12:00-19:00")
         self.assertEqual(sanitize_field("Mo 11:11-12:12, Tu, Fr,Sa 12:00-23:00"), "Mo 11:11-12:12, Tu,Fr,Sa 12:00-23:00")
         self.assertEqual(sanitize_field("11:11-12:12, Tu,Fr,Sa 12:00-23:00, PH,Su,We 12:12-13:13"), "11:11-12:12, Tu,Fr,Sa 12:00-23:00, PH,Su,We 12:12-13:13")
-        
+
         # Ideally we would want a space after the comma rule separator in
         # "off, Mar" and after no other comma. But the space is optional,
         # getting the parser to correctly identify this case is hard /
@@ -471,9 +470,9 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo[1,3] 10:00-20:00"), "Mo[1,3] 10:00-20:00")
 
         self.assertEqual(sanitize_field(
-            'Mo off,Tu unknown,We 11:00-19:00;Th unknown "COMMENT"'), 
+            'Mo off,Tu unknown,We 11:00-19:00;Th unknown "COMMENT"'),
             'Mo off, Tu unknown, We 11:00-19:00; Th unknown "COMMENT"')
-        
+
     def test_invalid_fields(self):
         self.assertEqual(sanitize_field(" 24/7 "), "24/7")
 
@@ -547,35 +546,35 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field('"""on appointement"""'), '"on appointement"')
 
     def test_exception_raising(self):
-        with self.assertRaises(SanitizeError) as context:
+        with self.assertRaises(SanitizeError):
             sanitize_field('Mo 9 12')
 
-        with self.assertRaises(SanitizeError) as context:
+        with self.assertRaises(SanitizeError):
             sanitize_field('Mo 09:00+-12:00')
 
-        with self.assertRaises(SanitizeError) as context:
+        with self.assertRaises(SanitizeError):
             sanitize_field('on appointement')
 
-        with self.assertRaises(SanitizeError) as context:
+        with self.assertRaises(SanitizeError):
             sanitize_field("week 1337 10:00-20:00 Mo-Fr")
 
-        with self.assertRaises(SanitizeError) as context:
+        with self.assertRaises(SanitizeError):
             sanitize_field('23:60')
 
-        with self.assertRaises(SanitizeError) as context:
+        with self.assertRaises(SanitizeError):
             sanitize_field('30:00')
 
-        with self.assertRaises(InconsistentField) as context:
+        with self.assertRaises(InconsistentField):
             sanitize_field("week 10-20/54 off")
 
-        with self.assertRaises(InconsistentField) as context:
+        with self.assertRaises(InconsistentField):
             sanitize_field("week 56 off")
 
-        with self.assertRaises(InconsistentField) as context:
+        with self.assertRaises(InconsistentField):
             sanitize_field('"on appointement')
 
-        with self.assertRaises(InconsistentField) as context:
+        with self.assertRaises(InconsistentField):
             sanitize_field('on appointement"')
-    
+
 if __name__ == '__main__':
     _unittest.main()

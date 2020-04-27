@@ -24,9 +24,9 @@ import os, fcntl
 
 def get_pstree(pid=os.getpid()):
     tree = []
-    while os.path.isdir("/proc/%d"%pid):
-        tree.append((pid, open("/proc/%d/cmdline"%pid).read().replace('\x00', ' ').strip()))
-        pid = int(open("/proc/%d/stat"%pid).read().split(" ")[3])
+    while os.path.isdir("/proc/%d" % pid):
+        tree.append((pid, open("/proc/%d/cmdline" % pid).read().replace('\x00', ' ').strip()))
+        pid = int(open("/proc/%d/stat" % pid).read().split(" ")[3])
     tree.reverse()
     return tree
 
@@ -42,9 +42,9 @@ class lockfile:
             self.fd = None
             self.fd = open(self.fn, "w")
             for l in get_pstree():
-                self.fd.write("%6d %s\n"%l)
+                self.fd.write("%6d %s\n" % l)
             self.fd.flush()
-            fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_EX)
+            fcntl.flock(self.fd, fcntl.LOCK_NB | fcntl.LOCK_EX)
         except:
             #restore old data
             if self.fd:
@@ -56,7 +56,7 @@ class lockfile:
         #return
         if "fd" in dir(self):
             try:
-                fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_UN)
+                fcntl.flock(self.fd, fcntl.LOCK_NB | fcntl.LOCK_UN)
                 self.fd.close()
             except:
                 pass
@@ -97,7 +97,7 @@ class Test(unittest.TestCase):
     def test_twice_lock(self):
         l1 = lockfile(self.f1)
         with self.assertRaises(IOError):
-            l1bis = lockfile(self.f1)
+            lockfile(self.f1)
 
         del l1
         assert not os.path.isfile(self.f1)

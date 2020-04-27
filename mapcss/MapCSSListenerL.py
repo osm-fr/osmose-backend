@@ -172,10 +172,12 @@ class MapCSSListenerL(MapCSSListener):
         v = self.stack.pop()
         self.stack[-1]['booleanExpressions'].append({
             'type': 'booleanExpression',
-            'operator': None if v['functionExpression'] else
+            'operator':
+                None if v['functionExpression'] else
                 (ctx.op and ctx.op.text) or
                 (ctx.booleanOperator() or ctx.valueOperator() or ctx.regexOperator()).getText(),
-            'operands': v['booleanExpressions'] or # Juste get operands array
+            'operands':
+                v['booleanExpressions'] or # Juste get operands array
                 (v['functionExpression'] and [v['functionExpression']]) or
                 []
         })

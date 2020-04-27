@@ -115,8 +115,8 @@ def get_node_id_start(fd, nodeid):
                     break
                 if nid > nodeid:
                     if b_max <= b_cur:
-			# switch to sequential read if b_cur is in the middle
-			# of the wanted element
+                        # switch to sequential read if b_cur is in the middle
+                        # of the wanted element
                         seq_read = True
                     b_max = b_cur
                     break
@@ -167,8 +167,8 @@ def get_way_id_start(fd, wayid):
                     break
                 if wid > wayid:
                     if b_max <= b_cur:
-			# switch to sequential read if b_cur is in the middle
-			# of the wanted element
+                        # switch to sequential read if b_cur is in the middle
+                        # of the wanted element
                         seq_read = True
                     b_max = b_cur
                     break
@@ -218,8 +218,8 @@ def get_relation_id_start(fd, relationid):
                     break
                 if rid > relationid:
                     if b_max <= b_cur:
-			# switch to sequential read if b_cur is in the middle
-			# of the wanted element
+                        # switch to sequential read if b_cur is in the middle
+                        # of the wanted element
                         seq_read = True
                     b_max = b_cur
                     break
@@ -235,7 +235,7 @@ def get_relation_id_start(fd, relationid):
                     # of the wanted element
                     seq_read = True
                 b_max = b_cur
-                break;
+                break
             b_cur += line_len
         if b_max - b_min <= 1 or (prev_seq_read and b_cur == b_max):
             return None
@@ -265,21 +265,21 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
             parser.feed(f.read(bs))
         parser.feed(f.read(count-bs*int(count//bs)))
         parser.feed("</osm>")
-                                        
+
     def CopyNodeTo(self, output):
         return self._Copy(output, get_node_start, get_way_start)
-        
+
     def CopyWayTo(self, output):
         return self._Copy(output, get_way_start, get_relation_start)
-    
+
     def CopyRelationTo(self, output):
         return self._Copy(output, get_relation_start, get_file_last_line)
 
-    def _Get(self, start):        
-        
+    def _Get(self, start):
+
         if start is None:
             return None
-        
+
         class _output:
             data = None
             def NodeCreate(self, data):
@@ -293,14 +293,14 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
         self._output = _output()
         parser = OsmSax.make_parser()
         parser.setContentHandler(self)
-        parser.feed("<?xml version='1.0' encoding='UTF-8'?>")        
+        parser.feed("<?xml version='1.0' encoding='UTF-8'?>")
 
         f = self._GetFile()
         f.seek(start)
         while not self._output.data:
             parser.feed(f.readline())
         return self._output.data
-        
+
     def NodeGet(self, NodeId):
         start = get_node_id_start(self._GetFile(), NodeId)
         return self._Get(start)

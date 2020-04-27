@@ -23,14 +23,14 @@ import sys
 import osm_pbf_parser
 
 class V(osm_pbf_parser.Visitor):
-  def node(self, osmid, lon, lat, tags):
-    print('node', osmid, tags)
+    def node(self, osmid, lon, lat, tags):
+        print('node', osmid, tags)
 
-  def way(self, osmid, tags, refs):
-    print('way', osmid, tags, refs)
+    def way(self, osmid, tags, refs):
+        print('way', osmid, tags, refs)
 
-  def relation(self, osmid, tags, ref):
-    print('relation', osmid, tags, ref)
+    def relation(self, osmid, tags, ref):
+        print('relation', osmid, tags, ref)
 
 v = V()
 

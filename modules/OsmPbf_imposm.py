@@ -19,7 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys
 import time
 import dateutil.parser
 import traceback
@@ -176,7 +175,6 @@ class OsmPbfReader:
 
 
 ###########################################################################
-import unittest
 
 class MockCountObjects:
     def __init__(self):

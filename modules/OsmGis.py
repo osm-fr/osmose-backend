@@ -22,69 +22,69 @@
 import psycopg2
 
 class OsmGis:
-    
+
     def __init__(self, dbstring, prefix = "planet_osm", user_patch = True):
-        
+
         self._PgConn     = psycopg2.connect(dbstring)
         self._PgCurs     = self._PgConn.cursor()
         self._prefix     = prefix
         self._user_patch = user_patch
-                
+
     def __del__(self):
         self._PgConn.commit()
-        
+
     # ---------------------------------------------------------------------
     # Node
 
     def NodeGet(self, NodeId):
-        
+
         self._PgCurs.execute("SELECT lat, lon, tags FROM %s_nodes WHERE id = %d;" % (self._prefix, NodeId))
-        r1 = self._PgCurs.fetchone()    
+        r1 = self._PgCurs.fetchone()
         if not r1: return None
-        
+
         data = {}
         data[u"id"]      = NodeId
         data[u"lat"]     = r1[0]
-        data[u"lon"]     = r1[1]        
+        data[u"lon"]     = r1[1]
         data[u"tag"]     = {}
         for i in range(len(r1[2])//2):
             data[u"tag"][r1[2][2*i].decode("utf8")] = r1[2][2*i+1].decode("utf8")
-        
+
         if self._user_patch and "user" in data[u"tag"]:
             data["user"] = data["tag"].pop("user")
-            
+
         return data
-    
+
     # ---------------------------------------------------------------------
     # Way
 
     def WayGet(self, WayId, dump_sub_elements=False):
-        
+
         self._PgCurs.execute("SELECT nodes, tags FROM %s_ways WHERE id = %d;" % (self._prefix, WayId))
-        r1 = self._PgCurs.fetchone()    
+        r1 = self._PgCurs.fetchone()
         if not r1: return None
-        
+
         data = {}
         data[u"id"]      = WayId
         data[u"nd"]      = r1[0]
         data[u"tag"]     = {}
         for i in range(len(r1[1])//2):
             data[u"tag"][r1[1][2*i].decode("utf8")] = r1[1][2*i+1].decode("utf8")
-            
+
         if self._user_patch and "user" in data[u"tag"]:
             data["user"] = data["tag"].pop("user")
-            
+
         return data
 
     # ---------------------------------------------------------------------
     # Relation
-    
+
     def RelationGet(self, RelationId, dump_sub_elements=False):
-        
+
         self._PgCurs.execute("SELECT members, tags FROM %s_rels WHERE id = %d;" % (self._prefix, RelationId))
         r1 = self._PgCurs.fetchone()
         if not r1: return None
-        
+
         data = {}
         data[u"id"]      = RelationId
         data[u"member"]  = []
@@ -93,7 +93,7 @@ class OsmGis:
         data[u"tag"]     = {}
         for i in range(len(r1[1])//2):
             data[u"tag"][r1[1][2*i].decode("utf8")] = r1[1][2*i+1].decode("utf8")
-            
+
         if self._user_patch and "user" in data[u"tag"]:
             data["user"] = data["tag"].pop("user")
 
