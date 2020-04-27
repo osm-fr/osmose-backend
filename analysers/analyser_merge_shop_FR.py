@@ -74,10 +74,10 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                     mapping1 = {
                         "ref:FR:SIRET": lambda fields: fields["siret"],
                         # "ref:FR:RNA": "RNA",
-                        "name": lambda fields: fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"] or None},
-                        #"short_name": "SIGLE"},
+                        #"short_name": "SIGLE",
                         #"start_date": lambda fields:
                         #    "-".join([fields["DDEBACT"][0:4], fields["DDEBACT"][4:6], fields["DDEBACT"][6:8]]) if fields["DDEBACT"] != "19000101" else
                         #    "-".join([fields["DCRET"][0:4], fields["DCRET"][4:6], fields["DCRET"][6:8]]) if fields["DCRET"] != "19000101" else
-                        #    None},
+                        #    None,
+                        "name": lambda fields: fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"] or None},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f and f != 'None', [fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"]] + list(map(lambda k: fields[k], ["numeroVoieEtablissement", "indiceRepetitionEtablissement", "typeVoieEtablissement", "libelleVoieEtablissement", "complementAdresseEtablissement", "codePostalEtablissement", "libelleCommuneEtablissement"]))))} )))
