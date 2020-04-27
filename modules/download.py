@@ -35,10 +35,10 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     file_ts = local+".ts"
     url_ext = os.path.splitext(url)[1]
     local_ext = os.path.splitext(local)[1]
-    if (url_ext in [".bz2"]) and (local_ext not in [".bz2"]) :
+    if (url_ext in [".bz2"]) and (local_ext not in [".bz2"]):
         file_dl = local + url_ext
         unzip   = True
-    elif (url_ext in [".pbf"]) and (local_ext not in [".pbf"]) :
+    elif (url_ext in [".pbf"]) and (local_ext not in [".pbf"]):
         file_dl     = local + url_ext
         convert_pbf = True
     else:

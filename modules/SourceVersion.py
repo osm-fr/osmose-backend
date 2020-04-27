@@ -20,7 +20,7 @@
 ###########################################################################
 
 import inspect
-import time, os
+import os
 import hashlib
 
 

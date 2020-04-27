@@ -60,7 +60,7 @@ class OsmSaxReader(handler.ContentHandler):
 
     def log(self, txt):
         self._logger.log(txt)
-    
+
     def __init__(self, filename, state_file = None, logger = dummylog()):
         self._filename = filename
         self._state_file = state_file
@@ -206,7 +206,7 @@ class OscSaxReader(handler.ContentHandler):
         parser = make_parser()
         parser.setContentHandler(self)
         parser.parse(self._GetFile())
-        
+
     def startElement(self, name, attrs):
         attrs = attrs._attrs
         if name == u"create":
@@ -250,7 +250,7 @@ class OscSaxReader(handler.ContentHandler):
             elif self._action == u"modify":
                 self._output.NodeUpdate(self._data)
             elif self._action == u"delete":
-                self._output.NodeDelete(self._data)             
+                self._output.NodeDelete(self._data)
         elif name == u"way":
             self._data[u"tag"] = self._tags
             self._data[u"nd"]  = self._nodes
@@ -259,7 +259,7 @@ class OscSaxReader(handler.ContentHandler):
             elif self._action == u"modify":
                 self._output.WayUpdate(self._data)
             elif self._action == u"delete":
-                self._output.WayDelete(self._data)  
+                self._output.WayDelete(self._data)
         elif name == u"relation":
             self._data[u"tag"]    = self._tags
             self._data[u"member"] = self._members
@@ -268,7 +268,9 @@ class OscSaxReader(handler.ContentHandler):
             elif self._action == u"modify":
                 self._output.RelationUpdate(self._data)
             elif self._action == u"delete":
-                self._output.RelationDelete(self._data)  
+
+
+                self._output.RelationDelete(self._data)
             return
 
 ###########################################################################
@@ -304,16 +306,16 @@ class OsmSaxWriter(XMLGenerator):
             XMLGenerator.__init__(self, open(out, "w"), enc)
         else:
             XMLGenerator.__init__(self, out, enc)
-    
+
     def startElement(self, name, attrs):
         self._write(u'<' + name)
         for (name, value) in attrs.items():
             self._write(u' %s=%s' % (name, quoteattr(value)))
         self._write(u'>\n')
-        
+
     def endElement(self, name):
         self._write(u'</%s>\n' % name)
-    
+
     def Element(self, name, attrs):
         self._write(u'<' + name)
         for (name, value) in attrs.items():
@@ -330,7 +332,7 @@ class OsmSaxWriter(XMLGenerator):
             self.endElement("node")
         else:
             self.Element("node", _formatData(data))
-    
+
     def WayCreate(self, data):
         if not data:
             return
@@ -340,7 +342,7 @@ class OsmSaxWriter(XMLGenerator):
         for n in data[u"nd"]:
             self.Element("nd", {"ref":str(n)})
         self.endElement("way")
-    
+
     def RelationCreate(self, data):
         if not data:
             return
@@ -351,7 +353,7 @@ class OsmSaxWriter(XMLGenerator):
             m[u"ref"] = str(m[u"ref"])
             self.Element("member", m)
         self.endElement("relation")
-      
+
 def NodeToXml(data, full = False):
     o = StringIO()
     w = OsmSaxWriter(o, "UTF-8")

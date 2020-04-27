@@ -111,11 +111,11 @@ class Test(unittest.TestCase):
             ('SERVIZI E GESTIONI ZENIT S.R.L. IN SIGLA - ZENIT S.R.L.', 'Servizi e Gestioni Zenit S.R.L. in sigla - Zenit S.R.L.'),
             ('ITALIANA CARBURANTI S.P.A.', 'Italiana Carburanti S.p.A.'),
             ('SERVIZI & GESTIONI ITALIA srl', 'Servizi & Gestioni Italia S.R.L.'),
-            ]:
+        ]:
             self.assertEqual(normalize_common(s), t)
 
         for (s, t) in [
              ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.'),
-            ]:
+        ]:
             self.assertEqual(normalize_pharmacy(s), t)
 

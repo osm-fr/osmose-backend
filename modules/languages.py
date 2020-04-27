@@ -133,12 +133,12 @@ def languages_are_alphabets(languages):
 
 def gen_regex(scripts):
     if scripts:
-        ret = ""
+        ret = r""
         for s in scripts:
-            if s[0] == "[":
+            if s[0] == r"[":
                 ret += s
             else:
-                ret += u"\p{" + s + "}"
+                ret += r"\p{" + s + "}"
         return ret
 
 ###########################################################################

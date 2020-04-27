@@ -172,7 +172,7 @@ None_value = str_value(None)
 def flatten(z):
     return [x for y in z for x in y]
 
-uncapture_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
+uncapture_param_re = re.compile(r'\{([0-9]+\.[a-z]+)\}')
 def _uncapture_param(capture, a):
     i, ty = a.split('.', 1)
     k, v = capture.get(int(i), [None, None])
@@ -264,7 +264,7 @@ def cond(b, fst, snd):
 #list(a, b, ...)
 #    create list of values, e.g. for the dashes property
 def list_(*args):
-   return list(args)
+    return list(args)
 
 #get(lst, n)
 #    get the nth element of the list lst (counting starts at 0) [since 5699]

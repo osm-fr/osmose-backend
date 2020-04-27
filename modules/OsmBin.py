@@ -55,13 +55,13 @@ class MissingDataError(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
-        return "MissingDataError(%s)"%str(self.value)
+        return "MissingDataError(%s)" % str(self.value)
 
 class RelationLoopError(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
-        return "RelationLoopError(%s)"%str(self.value)
+        return "RelationLoopError(%s)" % str(self.value)
 
 ###########################################################################
 ## Common functions
@@ -83,7 +83,7 @@ def _Bytes5ToInt(txt):
 
 def _IntToBytes5(num):
     i0   = num//4294967296
-    num -= 4294967296*i0    
+    num -= 4294967296*i0
     i1   = num//16777216
     num -= 16777216*i1
     i2   = num//65536
@@ -143,7 +143,7 @@ def InitFolder(folder):
 
     nb_node_max = 2**4
     nb_way_max  = 2**4
-    
+
     if not os.path.exists(folder):
         os.makedirs(folder)
 
@@ -166,11 +166,11 @@ def InitFolder(folder):
         f.write(k)
     f.close()
     del k
-        
+
     # reset way.data
     print("Creating way.data")
     open(os.path.join(folder, "way.data"), "wb").write(b"--") # for no data at location 0
-    
+
     # reset way.free
     print("Creating way.free")
     open(os.path.join(folder, "way.free"), "wb")
@@ -185,16 +185,16 @@ class OsmBin:
         self._folder         = folder
         self._reldir         = os.path.join(folder, "relation")
         self._fNode_crd      = open(os.path.join(folder, "node.crd"), {"w":"rb+", "r":"rb"}[mode])
-        self._fWay_idx       = open(os.path.join(folder, "way.idx") , {"w":"rb+", "r":"rb"}[mode])
+        self._fWay_idx       = open(os.path.join(folder, "way.idx"),  {"w":"rb+", "r":"rb"}[mode])
         self._fWay_data      = open(os.path.join(folder, "way.data"), {"w":"rb+", "r":"rb"}[mode])
         self._fWay_data_size = os.stat(os.path.join(folder, "way.data")).st_size
-        if self._mode=="w":
+        if self._mode == "w":
             lock_file = os.path.join(folder, "lock")
             self._lock = lockfile(lock_file)
             self._ReadFree()
 
         self.node_id_size = 5
-        
+
     def __del__(self):
         try:
             self._fNode_crd.close()
@@ -202,14 +202,14 @@ class OsmBin:
             self._fWay_data.close()
         except AttributeError:
             pass
-        if self._mode=="w":
+        if self._mode == "w":
             self._WriteFree()
             del self._lock
-        
+
     def _ReadFree(self):
         self._free = {}
         for nbn in range(2001):
-            self._free[nbn] = []            
+            self._free[nbn] = []
         f = open(os.path.join(self._folder, "way.free"))
         while True:
             line = f.readline()
@@ -226,9 +226,9 @@ class OsmBin:
         f = open(os.path.join(self._folder, "way.free"), 'w')
         for nbn in self._free:
             for ptr in self._free[nbn]:
-                f.write("%d;%d\n"%(ptr, nbn))
+                f.write("%d;%d\n" % (ptr, nbn))
         f.close()
-        
+
     def begin(self):
         pass
 
@@ -237,7 +237,7 @@ class OsmBin:
 
     #######################################################################
     ## node functions
-        
+
     def NodeGet(self, NodeId):
         data = {}
         data["id"] = NodeId
@@ -249,13 +249,13 @@ class OsmBin:
         data["lon"] = _Bytes4ToCoord(read[4:])
         data["tag"] = {}
         return data
-        
+
     def NodeCreate(self, data):
         LatBytes4 = _CoordToBytes4(data[u"lat"])
         LonBytes4 = _CoordToBytes4(data[u"lon"])
         self._fNode_crd.seek(8*data[u"id"])
         self._fNode_crd.write(LatBytes4+LonBytes4)
-        
+
     NodeUpdate = NodeCreate
 
     def NodeDelete(self, data):
@@ -266,7 +266,7 @@ class OsmBin:
 
     #######################################################################
     ## way functions
-    
+
     def WayGet(self, WayId, dump_sub_elements=False):
         self._fWay_idx.seek(5*WayId)
         AdrWay = _Bytes5ToInt(self._fWay_idx.read(5))
@@ -279,7 +279,7 @@ class OsmBin:
         for i in range(nbn):
             nds.append(_Bytes5ToInt(data[self.node_id_size*i:self.node_id_size*(i+1)]))
         return {"id": WayId, "nd": nds, "tag":{}}
-    
+
     def WayCreate(self, data):
         self.WayDelete(data)
         # Search space big enough to store node list
@@ -300,7 +300,7 @@ class OsmBin:
         self._fWay_data.write(c)
 
     WayUpdate = WayCreate
-    
+
     def WayDelete(self, data):
         # Seek to position in file containing address to node list
         self._fWay_idx.seek(5*data[u"id"])
@@ -318,31 +318,31 @@ class OsmBin:
         # Save deletion
         self._fWay_idx.seek(5*data[u"id"])
         self._fWay_idx.write(_IntToBytes5(0))
-        
+
     #######################################################################
     ## relation functions
 
     def RelationGet(self, RelationId, dump_sub_elements=False):
-        RelationId = "%09d"%RelationId
+        RelationId = "%09d" % RelationId
         RelFolder  = self._reldir + "/" + RelationId[0:3] + "/" + RelationId[3:6] + "/"
         RelFile    = RelationId[6:9]
         if os.path.exists(RelFolder + RelFile):
             return eval(open(RelFolder + RelFile).read())
         else:
             return None
-    
+
     def RelationCreate(self, data):
-        RelationId = "%09d"%data["id"]
+        RelationId = "%09d" % data["id"]
         RelFolder  = self._reldir + "/" + RelationId[0:3] + "/" + RelationId[3:6] + "/"
         RelFile    = RelationId[6:9]
         if not os.path.exists(RelFolder):
             os.makedirs(RelFolder)
         open(RelFolder + RelFile, "w").write(repr(data))
-    
+
     RelationUpdate = RelationCreate
-    
+
     def RelationDelete(self, data):
-        RelationId = "%09d"%data["id"]
+        RelationId = "%09d" % data["id"]
         RelFolder  = self._reldir + "/" + RelationId[0:3] + "/" + RelationId[3:6] + "/"
         RelFile    = RelationId[6:9]
         try:
@@ -359,7 +359,7 @@ class OsmBin:
             elif m["type"] == "way":
                 way = self.WayGet(m["ref"])
                 if not way:
-                    raise MissingDataError("missing way %d"%m["ref"])
+                    raise MissingDataError("missing way %d" % m["ref"])
                 dta.append({"type": "way", "data": way})
                 if WayNodes:
                     for n in way["nd"]:
@@ -393,7 +393,7 @@ class OsmBin:
             way = self.WayGet(i)
             if way:
                 output.WayCreate(way)
-    
+
     def CopyRelationTo(self, output):
         for i in os.listdir(self._reldir):
             for j in os.listdir(self._reldir+"/"+i):
@@ -423,41 +423,41 @@ class OsmBin:
 
 ###########################################################################
 
-if __name__=="__main__":
-    if sys.argv[1]=="--init":
+if __name__ == "__main__":
+    if sys.argv[1] == "--init":
         InitFolder(sys.argv[2])
 
-    if sys.argv[1]=="--import":
+    if sys.argv[1] == "--import":
         o = OsmBin(sys.argv[2], "w")
         o.Import(sys.argv[3])
 
-    if sys.argv[1]=="--update":
+    if sys.argv[1] == "--update":
         o = OsmBin(sys.argv[2], "w")
         o.Update(sys.argv[3])
-        
-    if sys.argv[1]=="--read":
+
+    if sys.argv[1] == "--read":
         i = OsmBin(sys.argv[2])
-        if sys.argv[3]=="node":
+        if sys.argv[3] == "node":
             print(i.NodeGet(int(sys.argv[4])))
-        if sys.argv[3]=="way":
+        if sys.argv[3] == "way":
             print(i.WayGet(int(sys.argv[4])))
-        if sys.argv[3]=="relation":
+        if sys.argv[3] == "relation":
             print(i.RelationGet(int(sys.argv[4])))
-        if sys.argv[3]=="relation_full":
+        if sys.argv[3] == "relation_full":
             import pprint
             pprint.pprint(i.RelationFullRecur(int(sys.argv[4])))
-            
-    if sys.argv[1]=="--pyro":
+
+    if sys.argv[1] == "--pyro":
         import Pyro.core
         import Pyro.naming
         class OsmBin2(Pyro.core.ObjBase, OsmBin):
             def __init__(self, folder):
                 Pyro.core.ObjBase.__init__(self)
                 OsmBin.__init__(self, folder)
-        daemon=Pyro.core.Daemon()
-        #ns=Pyro.naming.NameServerLocator().getNS()
+        daemon = Pyro.core.Daemon()
+        #ns = Pyro.naming.NameServerLocator().getNS()
         #daemon.useNameServer(ns)
-        uri=daemon.connect(OsmBin2("/data/work/osmbin/data/"), "OsmBin")
+        uri = daemon.connect(OsmBin2("/data/work/osmbin/data/"), "OsmBin")
         daemon.requestLoop()
 
 ###########################################################################

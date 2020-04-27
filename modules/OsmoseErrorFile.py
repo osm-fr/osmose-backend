@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2, datetime
+import bz2
 
 from . import OsmSax
 from .OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
