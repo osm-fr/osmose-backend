@@ -40,5 +40,5 @@ the tag `material=*`.'''),
 if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate.'''))
 
     def node(self, data, tags):
-        if tags["historic"]=="wayside_cross" and "material" not in tags:
+        if tags.get("historic") == "wayside_cross" and "material" not in tags:
            return {"class": 303242, "subclass": 0}
