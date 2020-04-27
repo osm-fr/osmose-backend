@@ -219,16 +219,16 @@ def at(asset_lat, asset_lon, lat, lon):
 
 
 #+, -, *, /
-#    arithmetic operations 
+#    arithmetic operations
 
 #||, &&, !
-#    boolean operations 
+#    boolean operations
 
 #<, >, <=, >=, ==
-#    comparison operators 
+#    comparison operators
 
 #asin, atan, atan2, ceil, cos, cosh, exp, floor, log, max, min, random, round, signum, sin, sinh, sqrt, tan, tanh
-#    the usual meaning, details 
+#    the usual meaning, details
 import math
 import random
 str_value_num_wrapper = lambda function: lambda s: str_value(function(s.to_n()))
@@ -254,7 +254,7 @@ tanh = str_value_num_wrapper(math.tanh)
 
 #cond(b, fst, snd)
 #b ? fst : snd
-#    if (b) then fst else snd 
+#    if (b) then fst else snd
 def cond(b, fst, snd):
     if b:
         return fst
@@ -262,12 +262,12 @@ def cond(b, fst, snd):
         return snd
 
 #list(a, b, ...)
-#    create list of values, e.g. for the dashes property 
+#    create list of values, e.g. for the dashes property
 def list_(*args):
    return list(args)
 
 #get(lst, n)
-#    get the nth element of the list lst (counting starts at 0) [since 5699] 
+#    get the nth element of the list lst (counting starts at 0) [since 5699]
 def get(lst, n):
     try:
         return lst[n]
@@ -275,22 +275,22 @@ def get(lst, n):
         return None
 
 #split(sep, str)
-#    splits string str at occurrences of the separator string sep, returns a list [since 5699] 
+#    splits string str at occurrences of the separator string sep, returns a list [since 5699]
 def split(sep, string):
     if sep is not None and string is not None:
         return list(map(str_value, string.split(sep)))
 
 #prop(p_name)
-#    value of the property p_name of the current layer, e.g. prop("width") 
+#    value of the property p_name of the current layer, e.g. prop("width")
 #prop(p_name, layer_name)
-#    property from the layer layer_name 
+#    property from the layer layer_name
 #is_prop_set(p_name)
-#    true, if property p_name is set for the current layer 
+#    true, if property p_name is set for the current layer
 #is_prop_set(p_name, layer_name)
-#    true, if property p_name is set for the layer layer_name 
+#    true, if property p_name is set for the layer layer_name
 
 #tag(key_name)
-#    get the value of the key key_name from the object in question 
+#    get the value of the key key_name from the object in question
 
 @memoizeN
 def _re_search(r, s):
@@ -350,92 +350,92 @@ def _match_regex(tags, key_regex):
     return None_value
 
 #parent_tag(key_name)
-#    get the value of the key key_name from the object's parent 
+#    get the value of the key key_name from the object's parent
 #parent_tags(key_name)
-#    returns all parent's values for the key key_name as a list ordered by a natural ordering [since 8775] 
+#    returns all parent's values for the key key_name as a list ordered by a natural ordering [since 8775]
 
 #has_tag_key(key_name)
-#    true, if the object has a tag with the given key 
+#    true, if the object has a tag with the given key
 
 #rgb(r, g, b)
-#    create color value (arguments from 0.0 to 1.0) 
+#    create color value (arguments from 0.0 to 1.0)
 #hsb_color(h, s, b)
-#    create color from hue, saturation and brightness (arguments from 0.0 to 1.0) [since 6899] 
+#    create color from hue, saturation and brightness (arguments from 0.0 to 1.0) [since 6899]
 #red(clr), green(clr), blue(clr)
-#    get value of color channels in rgb color model 
+#    get value of color channels in rgb color model
 #alpha(clr)
-#    get the alpha value of the given color [since 6749] 
+#    get the alpha value of the given color [since 6749]
 
 #length(str)
-#    length of a string 
+#    length of a string
 def length(string):
     if string is not None:
         return len(string)
 
 #count(lst)
-#    length of a list, i.e., counts its elements [since 7162] 
+#    length of a list, i.e., counts its elements [since 7162]
 def count(lst):
     if lst is not None:
         return len(lst)
 
 #length(lst)
-#    length of a list [since 5699] – deprecated since 7162 
+#    length of a list [since 5699] – deprecated since 7162
 
 #any(obj1, obj2, ...)
-#    returns the first object which is not null (formerly coalesce, [since 7164]) 
+#    returns the first object which is not null (formerly coalesce, [since 7164])
 def any_(*args):
     if args is not None:
         return next(item for item in args if item is not None)
 
 #concat(str1, str2, ...)
-#    assemble the strings to one 
+#    assemble the strings to one
 def concat(*args):
     if args is not None:
         return str_value(''.join(args))
 
 #join(sep, str1, str2, ...)
-#    join strings, whith sep as separator [since 6737] 
+#    join strings, whith sep as separator [since 6737]
 def join(sep, *args):
     if sep is not None and args is not None:
         return str_value(sep.join(args))
 
 #join_list(sep, list_name)
-#    joins the elements of the list list_name to one string separated by the separator sep [since 8775] 
+#    joins the elements of the list list_name to one string separated by the separator sep [since 8775]
 def join_list(sep, list_name):
     if sep is not None and list_name is not None:
         return str_value(sep.join(list_name))
 
 #upper(str)
-#    converts string to upper case [since 11756] 
+#    converts string to upper case [since 11756]
 def upper(string):
     if string is not None:
         return str_value(string.upper())
 
 #lower(str)
-#    converts string to lower case [since 11756] 
+#    converts string to lower case [since 11756]
 def lower(string):
     if string is not None:
         return str_value(string.lower())
 
 #trim(str)
-#    remove leading and trailing whitespace from string [since 11756] 
+#    remove leading and trailing whitespace from string [since 11756]
 def trim(string):
     if string is not None:
         return str_value(string.strip())
 
 #JOSM_search("...")
-#    true, if JOSM search applies to the object 
+#    true, if JOSM search applies to the object
 def JOSM_search(string):
     raise NotImplementedError
 
 #tr(str, arg0, arg1, ...)
-#    translate from English to the current language (only for strings in the JOSM user interface) [since 6506] 
+#    translate from English to the current language (only for strings in the JOSM user interface) [since 6506]
 def tr(string, *args):
     if string is not None:
         return T_f(string, *args)
 
 #regexp_test(regexp, string)
-#    test if string matches pattern regexp [since 5699] 
+#    test if string matches pattern regexp [since 5699]
 def regexp_test(regexp, string):
     if regexp is None or string is None:
         return False
@@ -443,9 +443,9 @@ def regexp_test(regexp, string):
         return regexp.search(string)
 
 #regexp_test(regexp, string, flags)
-#    test if string matches pattern regexp; flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5699] 
+#    test if string matches pattern regexp; flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5699]
 #regexp_match(regexp, string)
-#    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. [since 5701] 
+#    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. [since 5701]
 def regexp_match(regexp, string):
     if regexp is None or string is None:
         return False
@@ -456,7 +456,7 @@ def regexp_match(regexp, string):
         return list(map(str_value, a))
 
 #regexp_match(regexp, string, flags)
-#    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. Flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5701] 
+#    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. Flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5701]
 
 #substring(str, idx)
 #    return the substring of str, starting at index idx (0-indexed) [since 6534]
@@ -467,21 +467,21 @@ def substring(string, start, end=None):
         return str_value(string[start:end])
 
 #replace(string, old, new)
-#    Replaces any occurrence of the substring old within the string string with the text new 
+#    Replaces any occurrence of the substring old within the string string with the text new
 def replace(string, old, new):
     if string is not None and old is not None and new is not None:
         return str_value(string.replace(old, new))
 
 #osm_id()
-#    returns the OSM id of the current object [since 5699] 
+#    returns the OSM id of the current object [since 5699]
 
 #parent_osm_id()
-#    returns the OSM id of the object's parent (matched by child selector) [since 13094] 
+#    returns the OSM id of the object's parent (matched by child selector) [since 13094]
 
 #URL_encode(str)
-#    percent-encode a string. May be useful for data URLs [since 6805] 
+#    percent-encode a string. May be useful for data URLs [since 6805]
 #URL_decode(str)
-#    percent-decode a string. [since 11756] 
+#    percent-decode a string. [since 11756]
 def URL_decode(string):
     if string is not None:
         # An URL is an ASCII String
@@ -491,54 +491,54 @@ def URL_decode(string):
             pass
 
 #XML_encode(str)
-#    escape special characters in xml. E.g. < becomes &lt;, other special characters: >, ", ', &, \n, \t and \r [since 6809] 
+#    escape special characters in xml. E.g. < becomes &lt;, other special characters: >, ", ', &, \n, \t and \r [since 6809]
 #CRC32_checksum(str)
-#    calculate the CRC32 checksum of a string (result is an integer from 0 to 232-1) [since 6908] 
+#    calculate the CRC32 checksum of a string (result is an integer from 0 to 232-1) [since 6908]
 
 #is_right_hand_traffic()
-#    Check if there is left-hand or right-hand traffic at the current location. [since 7193] 
+#    Check if there is left-hand or right-hand traffic at the current location. [since 7193]
 
 #number_of_tags()
-#    returns the number of tags for the current OSM object [since 7237] 
+#    returns the number of tags for the current OSM object [since 7237]
 
 #print(o)
-#    prints a string representation of o to the command line (for debugging) [since 7237] 
+#    prints a string representation of o to the command line (for debugging) [since 7237]
 ##def print(o):
 ##    print(o, end='')
 
 #println(o)
-#    prints a string representation of o to the command line, followed by a new line (for debugging) [since 7237] 
+#    prints a string representation of o to the command line, followed by a new line (for debugging) [since 7237]
 def println(o):
     print(o)
 
 #JOSM_pref(key, default)
 #    Get value from the JOSM advanced preferences. This way you can offer certain options to the user and make the style customizable. It works with strings, numbers, colors and boolean values.
-#    [This function exists since version 3856, but with some restrictions. JOSM_pref always returns a string, but in version 7237 and earlier, the automatic conversion of string to boolean and color was not working. You can use the following workarounds for boolean values and color in version 7237 and earlier: cond(JOSM_pref("myprefkey", "true")="true", "X", "O") and html2color(JOSM_pref("mycolor", "#FF345611")). These explicit conversions should be no longer necessary in version 7238 and later. Automatic conversion to a number works in any version.] 
+#    [This function exists since version 3856, but with some restrictions. JOSM_pref always returns a string, but in version 7237 and earlier, the automatic conversion of string to boolean and color was not working. You can use the following workarounds for boolean values and color in version 7237 and earlier: cond(JOSM_pref("myprefkey", "true")="true", "X", "O") and html2color(JOSM_pref("mycolor", "#FF345611")). These explicit conversions should be no longer necessary in version 7238 and later. Automatic conversion to a number works in any version.]
 def JOSM_pref(key, default):
     raise NotImplementedError
 
 #setting()
-#    to use a style setting [since 7450] 
+#    to use a style setting [since 7450]
 def setting(options, key):
     return options.get(key)
 
 #degree_to_radians()
-#    returns a in degree given direction in radians [since 8260] 
+#    returns a in degree given direction in radians [since 8260]
 #cardinal_to_radians()
-#    returns a cardinal direction in radians [since 8260] 
+#    returns a cardinal direction in radians [since 8260]
 
 #waylength()
-#    returns the length of the way in metres [since 8253] 
+#    returns the length of the way in metres [since 8253]
 def waylength():
     raise NotImplementedError
 
 #areasize()
-#    returns the area of a closed way in square meters [since 8253] 
+#    returns the area of a closed way in square meters [since 8253]
 def areasize():
     raise NotImplementedError
 
 #at(lat,lon)
-#    returns true if the object centroid lies at given lat/lon coordinates, e.g. to check for nodes at "null island" node[at(0.0,0.0)] [since 12514] 
+#    returns true if the object centroid lies at given lat/lon coordinates, e.g. to check for nodes at "null island" node[at(0.0,0.0)] [since 12514]
 
 
 # Other functions
