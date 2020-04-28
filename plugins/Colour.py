@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -12,7 +12,7 @@ class Colour(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[30911] = self.def_class(item = 3091, level = 2, tags = mapcss.list_(u'tag'), title = mapcss.tr(u'Colour code should start with \'#\' followed by 3 or 6 digits'))
 
         self.re_1b3f6ace = re.compile(r'^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$')

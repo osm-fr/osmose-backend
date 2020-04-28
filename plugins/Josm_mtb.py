@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -12,7 +12,7 @@ class Josm_mtb(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9013001] = self.def_class(item = 9013, level = 3, tags = ["tag", "sport"], title = mapcss.tr(u'Way contains \'\'{0}\'\' but not \'\'{1}\'\'.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
         self.errors[9013002] = self.def_class(item = 9013, level = 3, tags = ["tag", "sport"], title = mapcss.tr(u'Way contains \'\'{0}\'\' but is neither a track nor a path.', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
         self.errors[9013003] = self.def_class(item = 9013, level = 3, tags = ["tag", "sport"], title = mapcss.tr(u'Invalid \'\'{0}\'\' value: \'\'{1}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))

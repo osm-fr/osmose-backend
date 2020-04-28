@@ -788,9 +788,9 @@ def main(_, mapcss):
 
     mapcss = ("""#-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -800,7 +800,7 @@ class """ + prefix + class_name + """(PluginMapCSS):
 """ + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         """ + items.replace("\n", "\n        ") + """
         """ + "".join(map(lambda r: """
         self.""" + r[1] + " = re.compile(r'" + r[0].replace('(?U)', '').replace("'", "\\'") + "'" + (', ' + {'i': "re.I", 'm': "re.M", 's': "re.I"}[r[2]] if r[2] else '') + ")", map(lambda a: [a[0][0], a[1], a[0][1]], sorted(regex_store.items(), key = lambda s: s[1])))) + """

@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -15,7 +15,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9016001] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': mapcss._tag_uncapture(capture_tags, u'{1.value} signals only exist as light signals')})
         self.errors[9016002] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': u'hp signals only exist as semaphore or light signals'})
         self.errors[9016003] = self.def_class(item = 9016, level = 2, tags = ["tag", "railway"], title = {'en': u'KVB hp signals only exist as light signals'})

@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[20806] = self.def_class(item = 2080, level = 3, tags = mapcss.list_(u'parking', u'amenity', u'fix:chair'), title = mapcss.tr(u'Missing tag carpool on area'))
         self.errors[21600] = self.def_class(item = 2160, level = 3, tags = mapcss.list_(u'tag', u'railway'), title = mapcss.tr(u'Missing tag gauge on rail'))
         self.errors[30401] = self.def_class(item = 3040, level = 3, tags = mapcss.list_(u'ref', u'infrastructure'), title = mapcss.tr(u'{0} is invalid', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))

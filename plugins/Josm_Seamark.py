@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_Seamark(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9012001] = self.def_class(item = 9012, level = 3, tags = ["tag", "seamark"], title = mapcss.tr(u'Multi-colour {0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.key}')))
         self.errors[9012002] = self.def_class(item = 9012, level = 3, tags = ["tag", "seamark"], title = mapcss.tr(u'Unrecognized {0}: {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}')))
         self.errors[9012003] = self.def_class(item = 9012, level = 3, tags = ["tag", "seamark"], title = mapcss.tr(u'{0} have no IALA or system defind ({1})', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))

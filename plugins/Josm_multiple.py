@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_multiple(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9005001] = self.def_class(item = 9005, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} with multiple values', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
         self.errors[9005002] = self.def_class(item = 9005, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
 

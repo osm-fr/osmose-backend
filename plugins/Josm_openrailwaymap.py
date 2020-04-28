@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_openrailwaymap(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9015001] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Track tagged with usage=* AND service=* - remove one of these tags'})
         self.errors[9015002] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Station mapped as a way, but should be mapped as a node'})
         self.errors[9015004] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': u'Key traffic_mode is deprecated'})
