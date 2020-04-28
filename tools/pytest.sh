@@ -13,6 +13,7 @@ else
 fi
 
 case $TEST_SUITE in
+  lint)  pylama; exit $?;;
   sax)   PYTEST_PARAM="analysers/analyser_sax.py";;
   merge) PYTEST_PARAM="analysers/Analyser_Merge.py";;
   other) PYTEST_PARAM="--ignore=analysers/analyser_sax.py --ignore=analysers/Analyser_Merge.py";;
