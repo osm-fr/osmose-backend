@@ -48,7 +48,7 @@ def analyse_log(filename):
       if cur_task and not "iteration=" in cur_task:
         tasks[cur_task] = cur_timestamp - first_task_timestamp
       cur_task = new_task
-      first_task_timestamp = cur_timestamp
+      first_task_timestamp = cur_timestamp # noqa
 
   if first_timestamp is None:
     return None
@@ -247,7 +247,7 @@ if __name__ == "__main__":
             color = None
             attrs = None
           try:
-            val = str_timedelta(stats[i]["tasks"][taskname], print_day=tasks_longest[taskname][0].days) 
+            val = str_timedelta(stats[i]["tasks"][taskname], print_day=tasks_longest[taskname][0].days)
           except:
             val = str_timedelta_empty()
           print(colored(val, color, attrs=attrs), end=' ')

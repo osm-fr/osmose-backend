@@ -268,7 +268,7 @@ def execc(conf, logger, options, osmosis_manager):
                                         logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
-                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt))
+                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
                                         if not was_on_timeout:
@@ -329,8 +329,8 @@ def clean(conf, logger, options, osmosis_manager):
         f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
         for ext in ["osm", "osm.bz2", "osm.pbf"]:
             try:
-                os.remove("%s.%s"%(f, ext))
-                logger.sub().log("DROP FILE %s.%s"%(f, ext))
+                os.remove("%s.%s" % (f, ext))
+                logger.sub().log("DROP FILE %s.%s" % (f, ext))
             except:
                 pass
 
@@ -493,9 +493,9 @@ if __name__ == "__main__":
             lfil = "/tmp/analyse-{0}-{1}".format(country, base)
             lock = lockfile(lfil)
         except:
-            logger.err("can't lock %s"%country)
+            logger.err("can't lock %s" % country)
             if options.cron:
-                sys.stderr.write("can't lock %s\n"%country)
+                sys.stderr.write("can't lock %s\n" % country)
             for l in open(lfil).read().rstrip().split("\n"):
                 logger.log("  "+l)
                 if options.cron:
