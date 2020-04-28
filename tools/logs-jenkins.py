@@ -47,7 +47,6 @@ def analyse_log(filename):
       if cur_task and not "iteration=" in cur_task:
         tasks[cur_task] = cur_timestamp - first_task_timestamp
       cur_task = new_task
-      first_task_timestamp = cur_timestamp
 
   if first_timestamp is None:
     return None

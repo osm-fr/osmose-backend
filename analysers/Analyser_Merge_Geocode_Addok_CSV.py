@@ -50,7 +50,7 @@ class Geocode_Addok_CSV(Source):
         slices = int((len(content)-1) / step) + 1
         for i in range(0, slices):
             self.logger.log("Geocode slice {0}/{1}".format(i, slices))
-            slice = ''.join(header + content[1 + step*i : 1 + step*(i+1)])
+            slice = ''.join(header + content[1 + step*i : 1 + step*(i+1)]) # noqa
             r = downloader.requests_retry_session().post(url=service, data={
                 'delimiter': self.delimiter,
                 'encoding': self.encoding,
