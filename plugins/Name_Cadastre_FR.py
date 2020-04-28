@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -12,7 +12,7 @@ class Name_Cadastre_FR(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[50801] = self.def_class(item = 5080, level = 1, tags = mapcss.list_(u'name', u'fix:chair'), title = mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.'))
 
         self.re_5d724bf1 = re.compile(r'.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$')

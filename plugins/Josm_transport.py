@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_transport(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[21401] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing public_transport:version tag on a public_transport route relation'))
         self.errors[21402] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing network tag on a public_transport relation'))
         self.errors[21403] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing operator tag on a public_transport relation'))

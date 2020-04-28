@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -12,7 +12,7 @@ class Bicycle(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[20301] = self.def_class(item = 2030, level = 1, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), title = mapcss.tr(u'Opposite cycleway without oneway'))
         self.errors[20302] = self.def_class(item = 2030, level = 1, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), title = mapcss.tr(u'Opposite or opposite lane in the same way of the oneway'))
         self.errors[20805] = self.def_class(item = 2080, level = 3, tags = mapcss.list_(u'tag', u'highway') + mapcss.list_(u'footway', u'fix:chair'), title = mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'highway=footway|construction'))

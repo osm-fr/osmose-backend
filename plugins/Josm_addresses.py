@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -15,7 +15,7 @@ class Josm_addresses(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9000003] = self.def_class(item = 9000, level = 3, tags = ["tag", "addr"], title = mapcss.tr(u'Same value of {0} and {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
         self.errors[9000004] = self.def_class(item = 9000, level = 3, tags = ["tag", "addr"], title = mapcss.tr(u'{0} without number', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
 

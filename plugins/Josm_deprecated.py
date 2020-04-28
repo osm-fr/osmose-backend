@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_deprecated(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9002001] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'deprecated tagging'))
         self.errors[9002002] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'\'\'{0}\'\' is meaningless, use more specific tags, e.g. \'\'{1}\'\'', u'access=designated', u'bicycle=designated'))
         self.errors[9002003] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr(u'\'\'{0}\'\' does not specify the official mode of transportation, use \'\'{1}\'\' for example', u'access=official', u'bicycle=official'))

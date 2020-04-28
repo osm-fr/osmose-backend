@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -12,7 +12,7 @@ class Name_MisspelledWordByRegex_Lang_fa(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[50109001] = self.def_class(item = 5010, level = 2, tags = mapcss.list_(u'name', u'fix:chair'), title = mapcss.tr(u'Arabic letter detected in Farsi name'))
 
         self.re_4234bf3b = re.compile(r'ك')

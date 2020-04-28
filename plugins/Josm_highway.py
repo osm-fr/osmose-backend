@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_highway(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9004001] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'abbreviated street name'))
         self.errors[9004002] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'wrong crossing tag on a way'))
         self.errors[9004004] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'Unspecific highway type'))
