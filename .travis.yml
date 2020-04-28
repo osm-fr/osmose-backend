@@ -40,6 +40,7 @@ before_script:
   # compile osm pbf parser
   - cd modules/osm_pbf_parser && make && cd ../../
 env:
+  - TEST_SUITE=lint
   - TEST_SUITE=sax
   - TEST_SUITE=merge
   - TEST_SUITE=other
