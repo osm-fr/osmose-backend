@@ -25,7 +25,9 @@ from __future__ import print_function
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader
-import sys, os, traceback
+import sys
+import os
+import traceback
 import modules.OsmOsisManager
 import modules.config
 import osmose_config as config

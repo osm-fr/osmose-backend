@@ -25,7 +25,8 @@ from modules import download
 from modules.lockfile import lockfile
 from modules.OsmOsis import OsmOsis
 from modules.OsmState import OsmState
-import sys, os
+import sys
+import os
 import psycopg2
 import fileinput
 import shutil

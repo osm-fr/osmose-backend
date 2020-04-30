@@ -21,7 +21,9 @@
 
 from __future__ import print_function
 
-import time, sys, subprocess
+import time
+import sys
+import subprocess
 
 class logger:
 
@@ -99,7 +101,8 @@ class logger:
         if not email_to:
             return
 
-        import smtplib, socket
+        import smtplib
+        import socket
         from email.mime.text import MIMEText
 
         hostname = socket.getfqdn()

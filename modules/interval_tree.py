@@ -142,7 +142,8 @@ if __name__ == '__main__':
     def brute_force_find(intervals, start, stop):
         return [i for i in intervals if i.stop >= start and i.start <= stop]
 
-    import random, time
+    import random
+    import time
     def rand():
         s = random.randint(1, 2000000)
         return Interval(s, s + random.randint(200, 6000))

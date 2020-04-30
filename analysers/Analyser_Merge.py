@@ -1166,7 +1166,9 @@ class Test(TestAnalyserOsmosis):
 
     def test_merge(self):
         # run all available merge analysers, for basic SQL check
-        import importlib, inspect, os
+        import importlib
+        import inspect
+        import os
 
         for fn in sorted(os.listdir("analysers/")):
             if not fn.startswith("analyser_merge_") or not fn.endswith(".py"):

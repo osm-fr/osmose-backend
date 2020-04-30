@@ -19,7 +19,8 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2, gzip
+import bz2
+import gzip
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 import dateutil.parser

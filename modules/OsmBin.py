@@ -48,7 +48,8 @@
 # print bin.RelationFullRecur(12)
 
 from modules.lockfile import lockfile
-import sys, os
+import sys
+import os
 
 
 class MissingDataError(Exception):

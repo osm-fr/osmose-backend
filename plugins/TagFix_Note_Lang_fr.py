@@ -20,7 +20,8 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import re, unicodedata
+import re
+import unicodedata
 
 
 class TagFix_Note_Lang_fr(Plugin):

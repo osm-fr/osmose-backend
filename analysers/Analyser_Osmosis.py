@@ -594,7 +594,9 @@ class Test(TestAnalyserOsmosis):
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check
-        import importlib, inspect, os
+        import importlib
+        import inspect
+        import os
 
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
@@ -616,7 +618,9 @@ class Test(TestAnalyserOsmosis):
 
     def test_change_empty(self):
         # run all available osmosis analysers, for basic SQL check
-        import importlib, inspect, os
+        import importlib
+        import inspect
+        import os
 
         self.conf.osmosis_manager.set_pgsql_schema()
 
@@ -648,7 +652,9 @@ class Test(TestAnalyserOsmosis):
 
     def test_change_full(self):
         # run all available osmosis analysers, after marking all elements as new
-        import importlib, inspect, os
+        import importlib
+        import inspect
+        import os
 
         self.conf.osmosis_manager.set_pgsql_schema()
 
@@ -684,7 +690,9 @@ class Test(TestAnalyserOsmosis):
     def test_cmp_normal_change(self):
         # compare results between normal and change_full
         # must be run after both test() and test_change_full()
-        import importlib, inspect, os
+        import importlib
+        import inspect
+        import os
 
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):

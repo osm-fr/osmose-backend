@@ -21,7 +21,8 @@
 
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
-import re, unicodedata
+import re
+import unicodedata
 
 
 class TagFix_Tree_Lang_fr(Plugin):

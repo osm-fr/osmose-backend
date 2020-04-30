@@ -19,7 +19,8 @@
 ##                                                                       ##
 ###########################################################################
 
-import os, fcntl
+import os
+import fcntl
 
 
 def get_pstree(pid=os.getpid()):

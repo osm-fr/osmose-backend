@@ -22,7 +22,8 @@
 
 from .Analyser import Analyser
 
-import sys, os
+import sys
+import os
 import importlib
 from modules import OsmoseLog
 
