@@ -57,6 +57,6 @@ class Test(unittest.TestCase):
 
         try:
             version("1")
-            assert false
+            assert False
         except:
             pass

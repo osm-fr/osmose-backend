@@ -210,7 +210,7 @@ def execc(conf, logger, options, osmosis_manager):
                                     try:
                                         status = resp.json()
                                         remote_timestamp = dateutil.parser.parse(status['timestamp']) if status else None
-                                    except e:
+                                    except Exception as e:
                                         logger.sub().err(e)
 
                             if options.resume:

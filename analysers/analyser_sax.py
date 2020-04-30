@@ -519,6 +519,7 @@ class Analyser_Sax(Analyser):
 
 ################################################################################
 from .Analyser import TestAnalyser
+import datetime
 
 class TestAnalyserOsmosis(TestAnalyser):
 

@@ -25,6 +25,7 @@ import sys
 import os
 from modules import OsmoseLog
 from modules import downloader
+from modules import config
 
 def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
 

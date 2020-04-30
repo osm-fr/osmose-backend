@@ -41,6 +41,7 @@ from modules.Stablehash import stablehash64, hexastablehash
 from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
+from functools import reduce
 
 try:
     from pyproj import Transformer
