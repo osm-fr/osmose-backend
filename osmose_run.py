@@ -20,8 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import print_function
-
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader

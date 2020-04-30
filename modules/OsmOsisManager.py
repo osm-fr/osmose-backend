@@ -19,8 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import print_function
-
 from modules import download
 from modules.lockfile import lockfile
 from modules.OsmOsis import OsmOsis
