@@ -96,7 +96,7 @@ def get_node_id_start(fd, nodeid):
     seq_read = False
     prev_seq_read = False
     while True:
-        if seq_read == True:
+        if seq_read is True:
             b_cur = b_min
             prev_seq_read = True
         else:
@@ -144,7 +144,7 @@ def get_way_id_start(fd, wayid):
     seq_read = False
     prev_seq_read = False
     while True:
-        if seq_read == True:
+        if seq_read is True:
             b_cur = b_min
             prev_seq_read = True
         else:
@@ -195,7 +195,7 @@ def get_relation_id_start(fd, relationid):
     seq_read = False
     prev_seq_read = False
     while True:
-        if seq_read == True:
+        if seq_read is True:
             b_cur = b_min
             prev_seq_read = True
         else:

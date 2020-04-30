@@ -614,9 +614,9 @@ class Load(object):
                 if None in v:
                     cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
-            elif v is None or v == False:
+            elif v is None or v is False:
                 where.append("\"%s\" IS NULL" % k)
-            elif v == True:
+            elif v is True:
                 where.append("\"%s\" IS NOT NULL" % k)
             elif '%' in v:
                 where.append("\"%s\" LIKE '%s'" % (k, v.replace("'", "''")))
@@ -649,7 +649,7 @@ class Load(object):
             if not self.create:
                 header = parser.header()
                 if header:
-                    if header != True:
+                    if header is not True:
                         self.create = ",".join(map(lambda c: "\"%s\" VARCHAR(65534)" % c[0:50], header))
                 else:
                     raise AssertionError("No table schema provided")
@@ -1124,7 +1124,7 @@ class Analyser_Merge(Analyser_Osmosis):
     def where(self, tags):
         clauses = []
         for k, v in tags.items():
-            if v == False:
+            if v is False:
                 clauses.append("NOT tags?'%s'" % k)
             elif hasattr(v, '__call__'):
                 clauses.append(v("tags->'%s'" % k))

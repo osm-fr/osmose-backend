@@ -200,7 +200,7 @@ class Test(TestPluginCommon):
         class father:
             config = _config()
         self.p.father = father()
-        assert False == self.p.init(None)
+        assert self.p.init(None) is False
 
     def test_be(self):
         TestPluginCommon.setUp(self)

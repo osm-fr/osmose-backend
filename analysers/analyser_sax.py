@@ -454,7 +454,7 @@ class Analyser_Sax(Analyser):
 
                 # Plugin Initialisation
                 pluginInstance = pluginClazz(self)
-                if pluginInstance.init(self.logger.sub().sub()) == False:
+                if pluginInstance.init(self.logger.sub().sub()) is False:
                     self._sublog(u"self-disabled "+plugin[:-3])
                     continue
                 else:
