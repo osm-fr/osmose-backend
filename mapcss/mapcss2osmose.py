@@ -569,8 +569,8 @@ def to_p(t):
                 if text else "")
             )
         elif is_meta_rule:
-             list(map(to_p, t['declarations']))
-             return ""
+            list(map(to_p, t['declarations']))
+            return ""
     elif t['type'] == 'selector':
         if t['operator']:
             raise NotImplementedError(t)

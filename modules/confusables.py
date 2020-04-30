@@ -64,8 +64,8 @@ class Test(unittest.TestCase):
             for (script, prop) in proposals.items():
                 re = regex.compile(r"[\p{%s}]" % script, flags=regex.V1 | regex.U)
                 if re.match(prop):
-                     pass
+                    pass
                 elif group == prop:
-                     wrong += 1
-                     print("group=%s, script=%s, prop=%s" % (group, script, prop))
+                    wrong += 1
+                    print("group=%s, script=%s, prop=%s" % (group, script, prop))
         assert wrong == 0

@@ -41,7 +41,7 @@ class Analyser_Merge_Dynamic(Analyser):
         for obj in self.analysers:
             with obj(self.config, self.error_file,  self.logger) as analyser_obj:
                 # if not options.change or not xml_change:
-                    analyser_obj.analyser()
+                analyser_obj.analyser()
                 # else:
                 #     analyser_obj.analyser_change()
 
