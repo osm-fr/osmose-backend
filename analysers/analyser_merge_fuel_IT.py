@@ -188,4 +188,3 @@ class Source_Fuel(Source):
             return str(dt.date())
         except ValueError:
             return None
-

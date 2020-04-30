@@ -118,4 +118,3 @@ class Test(unittest.TestCase):
              ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.'),
         ]:
             self.assertEqual(normalize_pharmacy(s), t)
-

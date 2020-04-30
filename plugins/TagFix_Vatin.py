@@ -96,4 +96,3 @@ class Test(TestPluginCommon):
         assert a.node(None, {"ref:vatin": "ITAAAAAAAAAAA"})
         # missing country code
         assert a.node(None, {"ref:vatin": "11111111115"})
-
