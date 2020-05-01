@@ -1,0 +1,55 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Andrea Decorte 2020                                        ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
+meta {
+    title: "Osmose-QA – Destination";
+    description: "Check for invalid characters in destination tags";
+    author: "Andrea Decorte";
+    min-josm-version: 14481;
+    -osmoseTags: list("tag", "highway", "waterway");
+}
+meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
+    description: tr("Check for invalid characters in destination tags");
+}
+meta[lang=fr] {
+    description: "Vérification des tags destination";
+}
+
+/* ways with "|" in destination tag excluding destination:lanes:*  */
+way[highway][destination][destination*="|"],
+way[highway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/],
+way[waterway][destination][destination*="|"],
+way[waterway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/]
+{
+    -osmoseItemClassLevel: "3160/316010:0/3";
+    throwError: tr("{0} contains a pipe character", "{1.tag}");
+    group: tr("Pipe characters should not be used in destination tag, only in destination:lanes");
+    suggestAlternative: tr("In case of multiple values, use instead a semicolon to separate values");
+    fixAdd: concat("{0.key}=", replace("{0.value}", "|", ";"));
+
+    assertNoMatch: "way highway=primary destination=A8";
+    assertNoMatch: "way highway=primary destination:colour=Red";
+    assertNoMatch: "way highway=primary destination:lanes=A8|Centre|Plage";
+    assertNoMatch: "way highway=primary destination:lanes:backward=A8|Centre|Plage";
+    assertMatch: "way highway=primary destination=A8|Centre|Plage";
+    assertMatch: "way highway=primary destination:colour=Red|Yellow";
+
+    assertMatch: "way waterway=river destination=East|West";
+    assertNoMatch: "way waterway=river destination=East";
+}
