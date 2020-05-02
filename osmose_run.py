@@ -84,7 +84,7 @@ def check(conf, logger, options):
 
 ##########################################################################
 
-def execc(conf, logger, options, osmosis_manager):
+def execc(conf, logger, analysers, options, osmosis_manager):
     err_code = 0
 
     version = get_version()
@@ -338,7 +338,7 @@ def clean(conf, logger, options, osmosis_manager):
 
 ###########################################################################
 
-def run(conf, logger, options):
+def run(conf, logger, analysers, options):
     err = check(conf, logger, options)
     if err != 0:
         return err
@@ -353,7 +353,7 @@ def run(conf, logger, options):
                 logger.err(u"error in database initialisation")
                 return 0x10
 
-        return execc(conf, logger, options, osmosis_manager)
+        return execc(conf, logger, analysers, options, osmosis_manager)
     except:
         # Log error in case finally also fails
         traceback.print_exc()
@@ -363,10 +363,101 @@ def run(conf, logger, options):
 
 ###########################################################################
 
-if __name__ == "__main__":
+def main(options):
 
+    analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
+
+    if options.list_analyser:
+        for fn in sorted(os.listdir(analysers_path)):
+            if fn.startswith("analyser_") and fn.endswith(".py"):
+                print(fn[9:-3])
+        return 0
+
+    if options.list_country:
+        for k in sorted(config.config.keys()):
+           print(k)
+        return 0
+
+    if options.cron:
+        output = sys.stdout
+        logger = OsmoseLog.logger(output, False)
+    else:
+        output = sys.stdout
+        logger = OsmoseLog.logger(output, True)
+
+    if options.change_init and not options.change:
+        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
+        return 1
+
+    #=====================================
+    # Load of analysers
     err_code = 0
 
+    old_path = list(sys.path)
+    sys.path.insert(0, analysers_path)
+
+    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
+    analysers = {}
+    for fn in os.listdir(analysers_path):
+        if fn.startswith("analyser_") and fn.endswith(".py"):
+            if options.analyser and fn[9:-3] not in options.analyser:
+                continue
+            logger.log("  load "+fn[9:-3])
+            try:
+                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
+            except ImportError as e:
+                logger.log(e)
+                logger.log("Fails to load analysers {0}".format(fn[:-3]))
+    if options.analyser:
+        count = 0
+        for k in options.analyser:
+            if ("analyser_%s" % k) not in analysers:
+                logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
+                count += 1
+        # user is passing only non-existent analysers
+        if len(options.analyser) == count:
+            return "No valid analysers specified"
+
+    sys.path[:] = old_path # restore previous path
+
+    #=====================================
+    # analyser
+
+    for country in options.country:
+        country_conf = config.config[country]
+
+        # acquire lock
+        try:
+            base = '|'.join(map(str, [country_conf.db_base, country_conf.db_host]))
+            lfil = "/tmp/analyse-{0}-{1}".format(country, base)
+            lock = lockfile(lfil)
+        except:
+            logger.err("can't lock %s" % country)
+            if options.cron:
+                sys.stderr.write("can't lock %s\n" % country)
+            for l in open(lfil).read().rstrip().split("\n"):
+                logger.log("  "+l)
+                if options.cron:
+                    sys.stderr.write("  "+l+"\n")
+            if options.cron:
+                sys.stderr.flush()
+            err_code |= 0x80
+            continue
+
+        country_conf.init()
+        options.diff = not options.change and "diff" in country_conf.download
+
+        # analyse
+        err_code |= run(country_conf, logger, analysers, options)
+
+        # free lock
+        del lock
+
+    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
+    return err_code
+
+
+if __name__ == "__main__":
     #=====================================
     # analyse of parameters
 
@@ -420,100 +511,12 @@ if __name__ == "__main__":
 
     (options, args) = parser.parse_args()
 
-    analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
-
-    if options.list_analyser:
-        for fn in sorted(os.listdir(analysers_path)):
-            if fn.startswith("analyser_") and fn.endswith(".py"):
-                print(fn[9:-3])
-        sys.exit(0)
-
-    if options.list_country:
-        for k in sorted(config.config.keys()):
-           print(k)
-        sys.exit(0)
-
-    if options.cron:
-        output = sys.stdout
-        logger = OsmoseLog.logger(output, False)
-    else:
-        output = sys.stdout
-        logger = OsmoseLog.logger(output, True)
-
-    if options.change_init and not options.change:
-        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
+    if not options.country:
+        parser.print_help()
         sys.exit(1)
 
     if options.version:
         print("osmose backend version: %s" % get_version())
         sys.exit(0)
 
-    if not options.country:
-        parser.print_help()
-        sys.exit(1)
-
-    #=====================================
-    # Load of analysers
-
-    old_path = list(sys.path)
-    sys.path.insert(0, analysers_path)
-
-    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
-    analysers = {}
-    for fn in os.listdir(analysers_path):
-        if fn.startswith("analyser_") and fn.endswith(".py"):
-            if options.analyser and fn[9:-3] not in options.analyser:
-                continue
-            logger.log("  load "+fn[9:-3])
-            try:
-                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
-            except ImportError as e:
-                logger.log(e)
-                logger.log("Fails to load analysers {0}".format(fn[:-3]))
-    if options.analyser:
-        count = 0
-        for k in options.analyser:
-            if ("analyser_%s" % k) not in analysers:
-                logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
-                count += 1
-        # user is passing only non-existent analysers
-        if len(options.analyser) == count:
-            sys.exit("No valid analysers specified")
-
-    sys.path[:] = old_path # restore previous path
-
-    #=====================================
-    # analyser
-
-    for country in options.country:
-        country_conf = config.config[country]
-
-        # acquire lock
-        try:
-            base = '|'.join(map(str, [country_conf.db_base, country_conf.db_host]))
-            lfil = "/tmp/analyse-{0}-{1}".format(country, base)
-            lock = lockfile(lfil)
-        except:
-            logger.err("can't lock %s" % country)
-            if options.cron:
-                sys.stderr.write("can't lock %s\n" % country)
-            for l in open(lfil).read().rstrip().split("\n"):
-                logger.log("  "+l)
-                if options.cron:
-                    sys.stderr.write("  "+l+"\n")
-            if options.cron:
-                sys.stderr.flush()
-            err_code |= 0x80
-            continue
-
-        country_conf.init()
-        options.diff = not options.change and "diff" in country_conf.download
-
-        # analyse
-        err_code |= run(country_conf, logger, options)
-
-        # free lock
-        del lock
-
-    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
-    sys.exit(err_code)
+    sys.exit(main(options))
