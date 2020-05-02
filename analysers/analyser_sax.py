@@ -52,8 +52,7 @@ class Analyser_Sax(Analyser):
         return self.parser.timestamp()
 
     def analyser(self):
-        self._load_plugins()
-        self._init_plugins()
+        self._init_plugins(self._load_all_plugins())
         self._load_output(change=self.parsing_change_file)
         try:
             self._run_analyse()
@@ -66,8 +65,7 @@ class Analyser_Sax(Analyser):
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        self._load_plugins()
-        self._init_plugins()
+        self._init_plugins(self._load_all_plugins())
         self._load_output(change=True)
         self._run_analyse()
 
@@ -413,21 +411,26 @@ class Analyser_Sax(Analyser):
 
     ################################################################################
 
-    def _load_plugins(self):
+    def _load_plugin_from_name(self, name):
+        module = importlib.import_module('plugins.' + name)
+        classes = getattr(module, 'available_plugin_classes', [name])
+        return list(map(lambda clazz: getattr(module, clazz), classes))
+
+
+    def _load_all_plugins(self):
         self._log(u"Loading plugins")
 
-        self.available_plugins = []
+        available_plugins = []
         for plugin in sorted(self.ToolsListDir(u"plugins")):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]
-            pluginModule = importlib.import_module("plugins."+pluginName)
-            available_classes = getattr(pluginModule, "available_plugin_classes", [pluginName])
+            available_plugins += self._load_plugin_from_name(pluginName)
 
-            for pluginName in available_classes:
-                self.available_plugins.append(getattr(pluginModule, pluginName))
+        return available_plugins
 
-    def _init_plugins(self):
+
+    def _init_plugins(self, available_plugin_classes):
         self._Err = {}
         self.plugins = {}
         self.pluginsNodeMethodes = []
@@ -440,7 +443,7 @@ class Analyser_Sax(Analyser):
                 if isinstance(self.config.options[i], str):
                     conf_limit.add(self.config.options[i])
 
-        for pluginClazz in self.available_plugins:
+        for pluginClazz in available_plugin_classes:
             if "only_for" in dir(pluginClazz):
                 if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
                     self._sublog(u"skip "+pluginClazz.__name__)
