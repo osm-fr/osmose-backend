@@ -415,17 +415,10 @@ class Analyser_Sax(Analyser):
 
         self._log(u"Loading plugins")
         self._Err = {}
-        d = {}
         self.plugins = {}
         self.pluginsNodeMethodes = []
         self.pluginsWayMethodes = []
         self.pluginsRelationMethodes = []
-        _order = ["pre_pre_","pre_", "", "post_", "post_post_"]
-        _types = ["way", "node", "relation"]
-
-        for x in _order:
-            for y in _types:
-                d[x+y] = []
 
         conf_limit = set()
         for i in ("country", "language"):
