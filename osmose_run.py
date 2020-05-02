@@ -485,11 +485,8 @@ if __name__ == "__main__":
     #=====================================
     # analyser
 
-    for country, country_conf in config.config.items():
-
-        # filter
-        if options.country and country not in options.country:
-            continue
+    for country in options.country:
+        country_conf = config.config[country]
 
         # acquire lock
         try:
