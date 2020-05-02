@@ -152,15 +152,12 @@ def execc(conf, logger, analysers, options, osmosis_manager):
     lunched_analyser_change = []
     lunched_analyser_resume = []
 
-    for analyser, password in conf.analyser.items():
+    for analyser in analysers:
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
-        if not "analyser_" + analyser in analysers:
-            logger.sub().log("skipped")
-            continue
-
-        if password == "xxx":
-            logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
+        password = conf.analyser.get(analyser)
+        if not password or password == "xxx":
+            logger.sub().log("No password to upload result to %s" % conf.updt_url)
 
         try:
             analyser_conf = analyser_config()
@@ -189,7 +186,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 if "diff_path" in conf.download:
                     analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
 
-            for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
+            for name, obj in inspect.getmembers(analysers[analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     analyser_name = name[len("Analyser_"):]
@@ -404,14 +401,14 @@ def main(options):
                 continue
             logger.log("  load "+fn[9:-3])
             try:
-                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
+                analysers[fn[9:-3]] = importlib.import_module("analysers." + fn[:-3])
             except ImportError as e:
                 logger.log(e)
                 logger.log("Fails to load analysers {0}".format(fn[:-3]))
     if options.analyser:
         count = 0
         for k in options.analyser:
-            if ("analyser_%s" % k) not in analysers:
+            if k not in analysers:
                 logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
                 count += 1
         # user is passing only non-existent analysers
