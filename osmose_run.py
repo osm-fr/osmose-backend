@@ -368,7 +368,7 @@ if __name__ == "__main__":
     err_code = 0
 
     #=====================================
-    # analyse des arguments
+    # analyse of parameters
 
     from optparse import OptionParser
 
@@ -453,7 +453,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     #=====================================
-    # chargement des analysers
+    # Load of analysers
 
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
@@ -483,7 +483,7 @@ if __name__ == "__main__":
     sys.path[:] = old_path # restore previous path
 
     #=====================================
-    # analyse
+    # analyser
 
     for country, country_conf in config.config.items():
 
