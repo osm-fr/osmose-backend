@@ -416,7 +416,8 @@ def main(options):
                 count += 1
         # user is passing only non-existent analysers
         if len(options.analyser) == count:
-            return "No valid analysers specified"
+            logger.log(logger.log_av_b+"No valid analysers specified"+logger.log_ap)
+            return 1
 
     sys.path[:] = old_path # restore previous path
 
