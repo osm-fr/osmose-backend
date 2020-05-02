@@ -12,6 +12,7 @@
 # Holger Bruch <holger.bruch@systect.de>, 2019
 # kjon kjon <kjon@gmx.de>, 2020
 # Loo Nie <looniverse@gmail.com>, 2015
+# Robert Reichel <robertreich1212@gmail.com>, 2020
 # Sebastian, 2014
 # Sebastian Leske <sebastian.leske@sleske.name>, 2016
 # Sebastian, 2014,2017
@@ -22,8 +23,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-26 10:16+0000\n"
-"Last-Translator: kjon kjon <kjon@gmx.de>\n"
+"PO-Revision-Date: 2020-04-29 12:24+0000\n"
+"Last-Translator: Robert Reichel <robertreich1212@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -659,7 +660,7 @@ msgstr ""
 
 #: ../plugins/disabled/TagMissing_LookLike.py:85
 msgid "Missing tag by cooccurrence"
-msgstr ""
+msgstr "Fehlendes Tag durch gleichzeitiges Auftreten"
 
 #: ../plugins/TagRemove_FR.py:32
 msgid "Misused tag in this country"
@@ -696,7 +697,7 @@ msgstr "Paris Autolib' Autovermietung, Integrationsvorschlag"
 
 #: ../analysers/analyser_osmosis_fantoir.py:108
 msgid "Multiple name for the same ref FANTOIR"
-msgstr ""
+msgstr "Mehrfacher Name für dieselbe Referenz FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:641
 msgid "Tag \"addr:city\" not matching a city"
@@ -704,7 +705,7 @@ msgstr "Merkmal \"addr:city\" stimmt mit keiner Stadt überein"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:56
 msgid "FANTOIR object type not match OSM feature"
-msgstr ""
+msgstr "Der FANTOIR-Objekttyp stimmt nicht mit der OSM-Funktion überein"
 
 #: ../analysers/analyser_merge_police_FR_pn.py:30
 msgid "Police not integrated"
@@ -1105,7 +1106,7 @@ msgstr "Ein Kriegerdenkmal ist kein historic=monument"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:64
 msgid "Put a tag for a village hall or a community center"
-msgstr ""
+msgstr "Bringe ein Etikett für ein Gemeindehaus oder ein Gemeindezentrum an"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:76
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
@@ -1118,7 +1119,7 @@ msgstr "Merkmal school:FR hinzufügen"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:92
 msgid "FANTOIR numeric type is for ways"
-msgstr ""
+msgstr "Die FANTOIR numerische Art steht für Wege"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:108
 msgid "A living_street in France is a Zone 20"
@@ -1170,7 +1171,7 @@ msgstr "Ungültiges Multipolygon"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:200
 msgid "Interpolation on nodes of multiple street names"
-msgstr ""
+msgstr "Interpolation auf Knoten mehrerer Straßennamen"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
@@ -1244,11 +1245,11 @@ msgstr "Transformatorenstation Aktualisieurung"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support not integrated"
-msgstr ""
+msgstr "Stromversorgung nicht integriert"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:34
 msgid "Power support, integration suggestion"
-msgstr ""
+msgstr "Stromversorgung, Integrationsvorschlag"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:82
 msgid "Duplicate wikipedia tag"
@@ -1318,7 +1319,7 @@ msgstr "Loch zwischen administrativen grenzen von admin_level %s"
 
 #: ../plugins/Name_UpperCaseNumber.py:32
 msgid "Abbreviation of number should be in lowercase"
-msgstr ""
+msgstr "Die Abkürzung der Nummer sollte in Kleinbuchstaben angegeben werden"
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:30
 msgid "Power minor_distribution substation not integrated"
@@ -1343,15 +1344,15 @@ msgstr "Inkonsistentes Tagging von {0}"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:30
 msgid "Aquitaine equestrian spot not integrated"
-msgstr ""
+msgstr "Reitplatz in Aquitanien nicht integriert"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:30
 msgid "Aquitaine caravan site not integrated"
-msgstr ""
+msgstr "Campingplatz in Aquitanien nicht integriert"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:59
 msgid "Aquitaine camp site not integrated"
-msgstr ""
+msgstr "Zeltplatz in Aquitanien nicht integriert"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:30
 msgid "Aquitaine tourism information not integrated"

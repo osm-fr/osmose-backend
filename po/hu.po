@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-23 20:29+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-04-27 19:57+0000\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1531,7 +1531,7 @@ msgstr "Az út besorolását felül kell vizsgálni"
 
 #: ../plugins/Power.py:19 ../plugins/Power.py:55
 msgid "Power Transformers should have a frequency tag"
-msgstr "A transzformátoron kell lennie egy [frequency] címkének "
+msgstr "A transzformátoron kell lennie egy [frequency] címkének"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
@@ -2073,7 +2073,7 @@ msgid ""
 "Offered fix reimport the missing sites as point, but if was a\n"
 "relation. Must be converted manually, keep the tags and put survey points\n"
 "in relation."
-msgstr ""
+msgstr "A felajánlott javítás újraimpotrálja a hiányzó helyeket pontként, de ha kapcsolat volt, akkor kézzel kell konvertálni, meg kell őrizni a címkéket és fel kell tenni a mérési pontokat a kapcsolatba."
 
 #: ../analysers/analyser_merge_geodesie.py:43
 msgid "Moved survey point"
@@ -2082,7 +2082,7 @@ msgstr "Elmozdított földmérési alappont"
 #: ../analysers/analyser_merge_geodesie_support_FR.py:51
 #, python-brace-format
 msgid "Geodesic support not integrated {0}"
-msgstr ""
+msgstr "A földmérési alappont építménye nincs a térképen: {0}"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:34
 msgid ""
@@ -2109,7 +2109,7 @@ msgstr ""
 #: ../analysers/analyser_merge_pitch_FR.py:49
 #, python-brace-format
 msgid "Pitch not integrated {0}"
-msgstr ""
+msgstr "A sportpálya nincs a térképen: {0}"
 
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:30
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:30
@@ -2121,7 +2121,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:30
 #, python-brace-format
 msgid "{0} toilets not integrated"
-msgstr ""
+msgstr "WC ({0}): nincs a térképen"
 
 #: ../analysers/analyser_merge_radio_support_FR.py:30
 #, python-brace-format
@@ -2142,81 +2142,81 @@ msgstr "Távközlési adó ({0}): frissítendő"
 msgid ""
 "Check the location. Warning data from the Ministry may have several\n"
 "administrative schools for a single physical school."
-msgstr ""
+msgstr "Ellenőrizze a helyet. Figyelem! A minisztérium adatai alapján egyetlen fizikai iskolában több intézmény is lehet."
 
 #: ../analysers/analyser_merge_service_public_FR.py:33
 msgid "The location can be quite rough."
-msgstr ""
+msgstr "Lehet, hogy a hely eléggé hozzávetőleges."
 
 #: ../analysers/analyser_merge_street_number.py:31
 #, python-brace-format
 msgid "Missing address {0}"
-msgstr ""
+msgstr "Hiányzó cím: {0}"
 
 #: ../analysers/analyser_merge_street_number.py:33
 msgid ""
 "Address in an OpenData set was not found. Only the position and\n"
 "street numbers are checked."
-msgstr ""
+msgstr "Az OpenData halmazban található cím nem található. Csak a helyzet és az utca száma van ellenőrizve."
 
 #: ../analysers/analyser_merge_street_number.py:36
 msgid "Add or move a number, check the field."
-msgstr ""
+msgstr "Adjon hozzá vagy helyezzen át egy számot, ellenőrizze a mezőt."
 
 #: ../analysers/analyser_merge_street_number.py:38
 msgid "Pay attention to the data freshness."
-msgstr ""
+msgstr "Figyeljen az adatok frisseségére."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:32
 msgid "TMC data refers to a not found element of the road network. "
-msgstr ""
+msgstr "A TMC-adatok az úthálózat nem található elemére vonatkoznak. "
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:34
 msgid "TMC data may be wrong or poorly located."
-msgstr ""
+msgstr "Lehet, hogy a TMC-adatok hibásak vagy rosszul vannak elhelyezve."
 
 #: ../analysers/analyser_osmbin_open_relations.py:67
 msgid ""
 "A relation that should be a closed polygon and it is not. An issue is\n"
 "reported at each end of open part."
-msgstr ""
+msgstr "A kapcsolatnak zárt sokszögnek kell lennie, és ez nem az. A nyitott rész mindkét végén megjelenik egy-egy hiba."
 
 #: ../analysers/analyser_osmbin_open_relations.py:82
 #, python-brace-format
 msgid "Open relation type=boundary admin_level={0}"
-msgstr ""
+msgstr "Nyitott kapcsolyat: [type=boundary] és [admin_level={0}]"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:198
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
-msgstr ""
+msgstr "Az interpoláció két végének különböző [addr:housenumber] címkékkel kell rendelkezniük"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
-msgstr ""
+msgstr "Ellenőrizze az admin_centre pont helyzetét és a határokat."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:191
 msgid ""
 "The geodesic markers should not be moved. These are reference points.\n"
 "Some geodesic markers are really out of boundary."
-msgstr ""
+msgstr "A földmérési jelölőket nem szabad elmozdítani, mert referenciapontok. Néhány földmérési jelölő valóban a határon kívül esik."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:196
 msgid "An area is marked as belonging to several city at once."
-msgstr ""
+msgstr "A területet egyszerre több településhez tartozóként van megjelölve."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:198
 msgid "Check how this area should be owned."
-msgstr ""
+msgstr "Ellenőrizze, hogy a terület hová tartozik."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:202
 msgid ""
 "Unconnected boundary fragment, a way with a boundary tag not part of a\n"
 "boundary relation."
-msgstr ""
+msgstr "Nem összekapcsolt határtöredék: olyan [boundary] határcímkével ellátott vonal, amely nem tagja egyetlen [boundary] kapcsolatnak sem."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:205
 msgid "Delete the way, remove boundary tag or add to a relation."
-msgstr ""
+msgstr "Törölje a vonalat, távolítsa el a határcímkét vagy adja hozzá egy kapcsolathoz."
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:67
 msgid "An area is marked as not belonging to any city."
@@ -2224,35 +2224,35 @@ msgstr "Egyetlen városhoz sem tartozóként jelölt terület."
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:99
 msgid "Check the type of border and keep the best or merged."
-msgstr ""
+msgstr "Ellenőrizze a határ típusát, és tartsa meg a legjobbat vagy az egyesítettet."
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:103
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)\n"
 "\n"
 "Two definitions of the same border."
-msgstr ""
+msgstr "! [] (https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)\nUgyanazon határ két meghatározása."
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:123
 msgid "Missing `admin_centre` role"
-msgstr ""
+msgstr "Hiányzó [admin_centre] szerep"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:125
 msgid "Missing `name`"
-msgstr ""
+msgstr "Hiányzó név [name]"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:134
 msgid ""
 "The admin_centre `population` is greater than the relation\n"
 "`population`."
-msgstr ""
+msgstr "Az [admin_centre] közigazgatási központ [population] népessége nagyobb, mint a kapcsolaté."
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:107
 msgid ""
 "A survey point has a name that underlying meaning is located on a\n"
 "building (belltower, water tower, tower), but the node is not inside a\n"
 "building polygon (`building=*`)."
-msgstr ""
+msgstr "Neve (harangtorony, víztorony, torony) alapján a földmérési pont egy épületen van, de a pont nem egy [building=*] épület-sokszögben található."
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:111
 msgid ""
@@ -2260,7 +2260,7 @@ msgid ""
 "shift in the source data (cadastre, orthophotograhies), replace the\n"
 "layout of buildings to correct this issue. Otherwise, the building must\n"
 "be draw."
-msgstr ""
+msgstr "Ha az épület lenyomata megvan, csak a forrásadatok eltolódása (helyrajzi térkép, ortofotó) miatt rosszul helyezkedik el, cserélje le az épületek kinézetét a hiba kijavításához. Ellenkező esetben az épületet meg kell rajzoni."
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:116
 msgid ""
@@ -3597,7 +3597,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_charging_station_FR.py:44
 msgid "Car charging station not integrated"
-msgstr ""
+msgstr "Elektromos töltőállomás: nincs a térképen"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:46
 msgid "Car charging station, integration suggestion"
@@ -3742,7 +3742,7 @@ msgstr ""
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:30
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
-msgstr ""
+msgstr "Kerékpárkölcsönző ({0}): nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:32
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:32
@@ -3767,7 +3767,7 @@ msgstr ""
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 #, python-brace-format
 msgid "{0} glass recycling not integrated"
-msgstr ""
+msgstr "{0} üveg-újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:32
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:32
@@ -3857,7 +3857,7 @@ msgstr ""
 #: ../analysers/analyser_merge_parking_FR_capp.py:30
 #, python-brace-format
 msgid "{0} parking not integrated"
-msgstr ""
+msgstr "{0} parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:32
 #, python-brace-format
@@ -3873,12 +3873,12 @@ msgstr ""
 #: ../analysers/analyser_merge_parking_FR_capp.py:62
 #, python-brace-format
 msgid "{0} parking for disabled not integrated"
-msgstr ""
+msgstr "{0} mozgássérült-parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_csma.py:30
 #, python-brace-format
 msgid "{0} recycling not integrated"
-msgstr ""
+msgstr "{0} újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_csma.py:32
 #, python-brace-format
@@ -3888,7 +3888,7 @@ msgstr ""
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:30
 #, python-brace-format
 msgid "{0} waste disposal not integrated"
-msgstr ""
+msgstr "{0} hulladékártalmatlanítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:32
 #, python-brace-format
@@ -3991,7 +3991,7 @@ msgstr ""
 #: ../analysers/analyser_merge_parapharmacy_IT.py:31
 #: ../analysers/analyser_merge_pharmacy_IT.py:31
 msgid "Pharmacy not integrated"
-msgstr ""
+msgstr "Gyógyszertár: nincs a térképen"
 
 #: ../analysers/analyser_merge_parapharmacy_IT.py:33
 #: ../analysers/analyser_merge_pharmacy_IT.py:33
