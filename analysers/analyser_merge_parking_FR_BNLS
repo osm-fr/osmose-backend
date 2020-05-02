@@ -55,7 +55,7 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
                         "capacity": lambda res: res["nb_places"] if res["nb_places"] != "0" else None,
 			"capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
 			"capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
-                        "maxheight": lambda res: res["hauteur_max"] if res["hauteur_max"] != "N/A" else None, ```comment mettre en m car valeur en cm```
+                        "maxheight": lambda res: int(res["hauteur_max"]) / 10 if res["hauteur_max"] != "N/A" else None, ```
                         "parking": lambda res: "surface" if res["type_ouvrage"] == "enclos_en_surface" if res["type_ouvrage"] == "ouvrage" else "underground OU en étage" else None},
 
 
