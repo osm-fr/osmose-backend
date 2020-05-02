@@ -26,6 +26,7 @@ import sys
 import os
 import importlib
 from modules import OsmoseLog
+from functools import reduce
 
 
 class Analyser_Sax(Analyser):
@@ -52,7 +53,11 @@ class Analyser_Sax(Analyser):
         return self.parser.timestamp()
 
     def analyser(self):
-        self._init_plugins(self._load_all_plugins())
+        if self.config.plugins:
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+        else:
+            plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
         self._load_output(change=self.parsing_change_file)
         try:
             self._run_analyse()
@@ -65,7 +70,11 @@ class Analyser_Sax(Analyser):
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        self._init_plugins(self._load_all_plugins())
+        if self.config.plugins:
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+        else:
+            plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
         self._load_output(change=True)
         self._run_analyse()
 
@@ -553,6 +562,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             polygon_id = None
             reader = TestAnalyserOsmosis.MockupReader()
             source_url = 'http://example.com'
+            plugins = []
         self.config = config()
 
         # create directory for results

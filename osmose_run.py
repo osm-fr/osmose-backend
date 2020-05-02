@@ -180,6 +180,8 @@ def execc(conf, logger, options, osmosis_manager):
 
             analyser_conf.source_url = conf.source_url
 
+            analyser_conf.plugins = options.plugin
+
             if options.change and xml_change:
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:
@@ -382,6 +384,8 @@ if __name__ == "__main__":
                       help="Country to analyse (can be repeated)")
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
+    parser.add_option("--plugin", dest="plugin", action="append",
+                      help="Plugin to run (can be repeated). For analyser 'sax' only")
 
     parser.add_option("--change", dest="change", action="store_true",
                       help="Run analyser on change mode when available")

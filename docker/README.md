@@ -93,6 +93,11 @@ From docker container you can test analyser:
 ./osmose_run.py --no-clean --country=comoros --analyser=osmosis_highway_floating_islands
 ```
 
+For running one plugin only use:
+```
+./osmose_run.py --no-clean --country=comoros --analyser=sax --plugin=Name_Multiple
+```
+
 Wait for the end of the process, depends on the area, but it may be long
 or longer:
 ```
