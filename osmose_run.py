@@ -314,7 +314,7 @@ def execc(conf, logger, options, osmosis_manager):
 
 
 def clean(conf, logger, options, osmosis_manager):
-    logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
+    logger.log(logger.log_av_r + u"cleaning : " + logger.log_ap)
 
     if options.change:
         pass
