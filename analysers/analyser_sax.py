@@ -53,6 +53,7 @@ class Analyser_Sax(Analyser):
 
     def analyser(self):
         self._load_plugins()
+        self._init_plugins()
         self._load_output(change=self.parsing_change_file)
         try:
             self._run_analyse()
@@ -66,6 +67,7 @@ class Analyser_Sax(Analyser):
 
         self.config.timestamp = self.timestamp()
         self._load_plugins()
+        self._init_plugins()
         self._load_output(change=True)
         self._run_analyse()
 
@@ -412,8 +414,20 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_plugins(self):
-
         self._log(u"Loading plugins")
+
+        self.available_plugins = []
+        for plugin in sorted(self.ToolsListDir(u"plugins")):
+            if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
+                continue
+            pluginName = plugin[:-3]
+            pluginModule = importlib.import_module("plugins."+pluginName)
+            available_classes = getattr(pluginModule, "available_plugin_classes", [pluginName])
+
+            for pluginName in available_classes:
+                self.available_plugins.append(getattr(pluginModule, pluginName))
+
+    def _init_plugins(self):
         self._Err = {}
         self.plugins = {}
         self.pluginsNodeMethodes = []
@@ -426,50 +440,41 @@ class Analyser_Sax(Analyser):
                 if isinstance(self.config.options[i], str):
                     conf_limit.add(self.config.options[i])
 
-        # load plugins
-        for plugin in sorted(self.ToolsListDir(u"plugins")):
-            if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
-                continue
-            pluginName = plugin[:-3]
-            pluginModule = importlib.import_module("plugins."+pluginName)
-            available_classes = getattr(pluginModule, "available_plugin_classes", [pluginName])
-            for pluginName in available_classes:
-                pluginClazz = getattr(pluginModule, pluginName)
-
-                if "only_for" in dir(pluginClazz):
-                    if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
-                        self._sublog(u"skip "+plugin[:-3])
-                        continue
-
-                if "not_for" in dir(pluginClazz):
-                    if any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.not_for)):
-                        self._sublog(u"skip "+plugin[:-3])
-                        continue
-
-                # Plugin Initialisation
-                pluginInstance = pluginClazz(self)
-                if pluginInstance.init(self.logger.sub().sub()) is False:
-                    self._sublog(u"self-disabled "+plugin[:-3])
+        for pluginClazz in self.available_plugins:
+            if "only_for" in dir(pluginClazz):
+                if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
+                    self._sublog(u"skip "+pluginClazz.__name__)
                     continue
-                else:
-                    self._sublog(u"init "+pluginName+" ("+", ".join(pluginInstance.availableMethodes())+")")
 
-                    pluginAvailableMethodes = pluginInstance.availableMethodes()
-                    self.plugins[pluginName] = pluginInstance
+            if "not_for" in dir(pluginClazz):
+                if any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.not_for)):
+                    self._sublog(u"skip "+pluginClazz.__name__)
+                    continue
 
-                    # Fetch functions to call
-                    if "node" in pluginAvailableMethodes:
-                        self.pluginsNodeMethodes.append(pluginInstance.node)
-                    if "way" in pluginAvailableMethodes:
-                        self.pluginsWayMethodes.append(pluginInstance.way)
-                    if "relation" in pluginAvailableMethodes:
-                        self.pluginsRelationMethodes.append(pluginInstance.relation)
+            # Plugin Initialisation
+            pluginInstance = pluginClazz(self)
+            if pluginInstance.init(self.logger.sub().sub()) is False:
+                self._sublog(u"self-disabled "+pluginClazz.__name__)
+                continue
+            else:
+                self._sublog(u"init "+pluginClazz.__name__+" ("+", ".join(pluginInstance.availableMethodes())+")")
 
-                    # Liste generated issues
-                    for (cl, v) in self.plugins[pluginName].errors.items():
-                        if cl in self._Err:
-                            raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
-                        self._Err[cl] = v
+                pluginAvailableMethodes = pluginInstance.availableMethodes()
+                self.plugins[pluginClazz.__name__] = pluginInstance
+
+                # Fetch functions to call
+                if "node" in pluginAvailableMethodes:
+                    self.pluginsNodeMethodes.append(pluginInstance.node)
+                if "way" in pluginAvailableMethodes:
+                    self.pluginsWayMethodes.append(pluginInstance.way)
+                if "relation" in pluginAvailableMethodes:
+                    self.pluginsRelationMethodes.append(pluginInstance.relation)
+
+                # Liste generated issues
+                for (cl, v) in self.plugins[pluginClazz.__name__].errors.items():
+                    if cl in self._Err:
+                        raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
+                    self._Err[cl] = v
 
     ################################################################################
 
