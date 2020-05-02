@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+###########################################################################
+##                                                                       ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+
+
+class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
+    def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
+        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
+            title = T_f('{0} parking not integrated', 'BNLS'))
+
+        self.init(
+            u"https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
+            u"Base Nationale des Lieux de Stationnement",
+            CSV(Source(attribution = u"équipe du Point d'Accès National", millesime = "2020/04/30",
+                    fileUrl = u"https://static.data.gouv.fr/resources/base-nationale-des-lieux-de-stationnement/20200430-143152/20200430-bnls.csv", zip = "Ce n'est pas un ZIP", encoding = "charset=unknown-8bit")),
+            Load("Xlong", "Ylat",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "parking"}),
+                conflationDistance = 200,
+                generate = Generate(
+                    static1 = {
+                        "amenity": "parking"},
+                    static2 = {
+                        "source": self.source},
+                    mapping1 = {
+                        "name": "nom",
+                        "website": "url",
+                        "access": lambda res: "yes" if res["type_usagers"] == "tous" if res["type_usagers"] == "abonnés" else "customers" else None,
+                        "fee": lambda res: "yes" if res["gratuit"] == "0" else "no",
+                        "capacity": lambda res: res["nb_places"] if res["nb_places"] != "0" else None,
+			"capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
+			"capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
+                        "maxheight": lambda res: res["hauteur_max"] if res["hauteur_max"] != "N/A" else None, ```comment mettre en m car valeur en cm```
+                        "parking": lambda res: "surface" if res["type_ouvrage"] == "enclos_en_surface" if res["type_ouvrage"] == "ouvrage" else "underground OU en étage" else None},
+
+
+
+                    text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
+
