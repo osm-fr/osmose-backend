@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Vincent Bergeot (thanks Frédéric Rodrigo) 2020                                    ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -61,4 +61,3 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 
 
                     text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
-
