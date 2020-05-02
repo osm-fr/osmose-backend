@@ -1,4 +1,3 @@
-six
 python-dateutil
 lockfile
 polib
@@ -7,6 +6,5 @@ shapely >= 1.2
 regex
 lark-parser >=  0.6, < 0.7
 requests
-backports.csv
 transporthours
-pyproj
+pyproj >= 2.1.0

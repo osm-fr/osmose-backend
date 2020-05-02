@@ -200,7 +200,7 @@ class Test(TestPluginCommon):
         class father:
             config = _config()
         self.p.father = father()
-        assert False == self.p.init(None)
+        assert self.p.init(None) is False
 
     def test_be(self):
         TestPluginCommon.setUp(self)
@@ -281,7 +281,7 @@ class Test(TestPluginCommon):
         r = self.p.split_ma(u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ")
         assert u"Bab Atlas" == r[0]["name:fr"]
         assert u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ" == r[0]["name:zgh"]
-        assert None == r[0].get("name:ar")
+        assert r[0].get("name:ar") is None
 
         r = self.p.split_ma(u"Avenue Mohammed V 2 (Beau Gosse) شارع محمد الخامس 2")
         assert u"Avenue Mohammed V 2 (Beau Gosse)" == r[0]["name:fr"]

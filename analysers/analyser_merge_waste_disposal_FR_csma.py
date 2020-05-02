@@ -41,7 +41,7 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
             Load("X", "Y",
                  xFunction = self.float_comma,
                  yFunction = self.float_comma,
-                 select = {"detail" : ["Ordure ménagère", "Ordure ménagère (Accès clé)"]}),
+                 select = {"detail": ["Ordure ménagère", "Ordure ménagère (Accès clé)"]}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -52,10 +52,10 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
                         "amenity": "waste_disposal",
                         "operator": "Clisson Sèvre et Maine Agglo",
                         "fee": "yes",
-                        "authentication:membership_card" : "yes",
-                        "authentication:none" : "no",},
+                        "authentication:membership_card": "yes",
+                        "authentication:none": "no",},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "location": lambda fields: "underground" if fields["type"] == "Colonne enterrée" else None,
-                        "opening_hours": lambda fields : "24/7" if "Déchèterie" not in fields["adresse"] and "Pôle environnement" not in fields["adresse"] else None},
-                    text = lambda tags, fields : {"en": "%s - %s" %(fields["detail"], fields["adresse"])} )))
+                        "opening_hours": lambda fields: "24/7" if "Déchèterie" not in fields["adresse"] and "Pôle environnement" not in fields["adresse"] else None},
+                    text = lambda tags, fields: {"en": "%s - %s" % (fields["detail"], fields["adresse"])} )))

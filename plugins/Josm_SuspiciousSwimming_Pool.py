@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[30801] = self.def_class(item = 3080, level = 3, tags = ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), title = mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre'))
 
 

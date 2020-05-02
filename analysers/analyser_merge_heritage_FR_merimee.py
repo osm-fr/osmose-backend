@@ -53,12 +53,12 @@ World Heritage.'''))
             title = T_('Historical monument update'), **doc)
 
         def parseDPRO(dpro):
-            ret = None;
+            ret = None
             # Match YYYY ou YYYY/MM ou YYYY/MM/DD
-            match = re.match("^(\d{4}(?:/\d{2}(?:/\d{2})?)?) :", dpro);
+            match = re.match(r"^(\d{4}(?:/\d{2}(?:/\d{2})?)?) :", dpro)
             if match:
-                ret = match.group(1).replace("/", "-");
-            return ret;
+                ret = match.group(1).replace("/", "-")
+            return ret
 
         BLACK_WORDS = [
             u"Eglise protestante", u"Ossuaire (ancien)", u"Polissoir", u"Citadelle",

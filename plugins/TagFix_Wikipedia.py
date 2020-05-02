@@ -85,8 +85,8 @@ the article. Same for accented letters. Letter must be readable.'''),
             detail = detail)
 
         import re
-        self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
-        self.lang_regexp = re.compile(u"[-a-z]+:.*")
+        self.wiki_regexp = re.compile(r'(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)')
+        self.lang_regexp = re.compile(r'[-a-z]+:.*')
         self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
 
         self.Country = self.father.config.options.get("country")
@@ -134,7 +134,7 @@ the article. Same for accented letters. Letter must be readable.'''),
                 continue
 
             if wikipediaTag in tags:
-                if interwiki == False:
+                if interwiki is False:
                     try:
                         lang, title = tags[wikipediaTag].split(':')
                         json_str = urlread(u"https://"+lang+u".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+title+u"&redirects=&lllimit=500&format=json", 30)
@@ -196,7 +196,7 @@ class Test(TestPluginCommon):
                 errors_fix.extend(e.get("fix"))
             else:
                 errors_fix.append(e.get("fix"))
-        if has_error == False and errors_msg:  # pragma: no cover
+        if has_error is False and errors_msg:  # pragma: no cover
             print("FAIL:%s\nshould not have errors\nCurrent errors: %s\n" % (tags, errors_msg))
             return 1
         if has_error and has_error not in errors_msg:  # pragma: no cover

@@ -19,7 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules import downloader
 from .Polygon import Polygon
 from .interval_tree import IntervalTree
 
@@ -60,7 +59,7 @@ class PointInPolygon:
         n = len(x)
         ivals = []
         for i in range(n):
-            ivals.append(self.Interval(x[i], y[i], x[(i+1)%n], y[(i+1)%n], self.sameVDir(x[i], y[i], x[(i+1)%n], y[(i+1)%n], x[(i+2)%n], y[(i+2)%n])))
+            ivals.append(self.Interval(x[i], y[i], x[(i+1) % n], y[(i+1) % n], self.sameVDir(x[i], y[i], x[(i+1) % n], y[(i+1) % n], x[(i+2) % n], y[(i+2) % n])))
         return ivals
 
     def build(self):

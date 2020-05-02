@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from io import open # In python3 only, this import is not required
 from .Analyser_Merge import Source
 from .modules import downloader
 
@@ -51,7 +50,7 @@ class Geocode_Addok_CSV(Source):
         slices = int((len(content)-1) / step) + 1
         for i in range(0, slices):
             self.logger.log("Geocode slice {0}/{1}".format(i, slices))
-            slice = ''.join(header + content[1 + step*i : 1 + step*(i+1)])
+            slice = ''.join(header + content[1 + step*i : 1 + step*(i+1)]) # noqa
             r = downloader.requests_retry_session().post(url=service, data={
                 'delimiter': self.delimiter,
                 'encoding': self.encoding,
@@ -65,6 +64,6 @@ class Geocode_Addok_CSV(Source):
                 text = '\n'.join(r.text.split('\n')[0:])
             else:
                 text = '\n'.join(r.text.split('\n')[1:])
-            writer = outfile.write(text)
+            outfile.write(text)
 
         return True

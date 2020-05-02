@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_geometry(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9003001] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be used on a way.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
         self.errors[9003002] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be used on a way or relation.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
         self.errors[9003003] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))

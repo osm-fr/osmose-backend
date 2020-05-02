@@ -20,12 +20,12 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import print_function
-
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader
-import sys, os, traceback
+import sys
+import os
+import traceback
 import modules.OsmOsisManager
 import modules.config
 import osmose_config as config
@@ -84,7 +84,7 @@ def check(conf, logger, options):
 
 ##########################################################################
 
-def execc(conf, logger, options, osmosis_manager):
+def execc(conf, logger, analysers, options, osmosis_manager):
     err_code = 0
 
     version = get_version()
@@ -180,6 +180,8 @@ def execc(conf, logger, options, osmosis_manager):
 
             analyser_conf.source_url = conf.source_url
 
+            analyser_conf.plugins = options.plugin
+
             if options.change and xml_change:
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:
@@ -210,7 +212,7 @@ def execc(conf, logger, options, osmosis_manager):
                                     try:
                                         status = resp.json()
                                         remote_timestamp = dateutil.parser.parse(status['timestamp']) if status else None
-                                    except e:
+                                    except Exception as e:
                                         logger.sub().err(e)
 
                             if options.resume:
@@ -268,7 +270,7 @@ def execc(conf, logger, options, osmosis_manager):
                                         logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
-                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt))
+                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
                                         if not was_on_timeout:
@@ -312,7 +314,7 @@ def execc(conf, logger, options, osmosis_manager):
 
 
 def clean(conf, logger, options, osmosis_manager):
-    logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
+    logger.log(logger.log_av_r + u"cleaning : " + logger.log_ap)
 
     if options.change:
         pass
@@ -329,14 +331,14 @@ def clean(conf, logger, options, osmosis_manager):
         f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
         for ext in ["osm", "osm.bz2", "osm.pbf"]:
             try:
-                os.remove("%s.%s"%(f, ext))
-                logger.sub().log("DROP FILE %s.%s"%(f, ext))
+                os.remove("%s.%s" % (f, ext))
+                logger.sub().log("DROP FILE %s.%s" % (f, ext))
             except:
                 pass
 
 ###########################################################################
 
-def run(conf, logger, options):
+def run(conf, logger, analysers, options):
     err = check(conf, logger, options)
     if err != 0:
         return err
@@ -351,7 +353,7 @@ def run(conf, logger, options):
                 logger.err(u"error in database initialisation")
                 return 0x10
 
-        return execc(conf, logger, options, osmosis_manager)
+        return execc(conf, logger, analysers, options, osmosis_manager)
     except:
         # Log error in case finally also fails
         traceback.print_exc()
@@ -361,12 +363,104 @@ def run(conf, logger, options):
 
 ###########################################################################
 
-if __name__ == "__main__":
+def main(options):
 
-    err_code = 0
+    analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
+
+    if options.list_analyser:
+        for fn in sorted(os.listdir(analysers_path)):
+            if fn.startswith("analyser_") and fn.endswith(".py"):
+                print(fn[9:-3])
+        return 0
+
+    if options.list_country:
+        for k in sorted(config.config.keys()):
+           print(k)
+        return 0
+
+    if options.cron:
+        output = sys.stdout
+        logger = OsmoseLog.logger(output, False)
+    else:
+        output = sys.stdout
+        logger = OsmoseLog.logger(output, True)
+
+    if options.change_init and not options.change:
+        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
+        return 1
 
     #=====================================
-    # analyse des arguments
+    # Load of analysers
+    err_code = 0
+
+    old_path = list(sys.path)
+    sys.path.insert(0, analysers_path)
+
+    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
+    analysers = {}
+    for fn in os.listdir(analysers_path):
+        if fn.startswith("analyser_") and fn.endswith(".py"):
+            if options.analyser and fn[9:-3] not in options.analyser:
+                continue
+            logger.log("  load "+fn[9:-3])
+            try:
+                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
+            except ImportError as e:
+                logger.log(e)
+                logger.log("Fails to load analysers {0}".format(fn[:-3]))
+    if options.analyser:
+        count = 0
+        for k in options.analyser:
+            if ("analyser_%s" % k) not in analysers:
+                logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
+                count += 1
+        # user is passing only non-existent analysers
+        if len(options.analyser) == count:
+            logger.log(logger.log_av_b+"No valid analysers specified"+logger.log_ap)
+            return 1
+
+    sys.path[:] = old_path # restore previous path
+
+    #=====================================
+    # analyser
+
+    for country in options.country:
+        country_conf = config.config[country]
+
+        # acquire lock
+        try:
+            base = '|'.join(map(str, [country_conf.db_base, country_conf.db_host]))
+            lfil = "/tmp/analyse-{0}-{1}".format(country, base)
+            lock = lockfile(lfil)
+        except:
+            logger.err("can't lock %s" % country)
+            if options.cron:
+                sys.stderr.write("can't lock %s\n" % country)
+            for l in open(lfil).read().rstrip().split("\n"):
+                logger.log("  "+l)
+                if options.cron:
+                    sys.stderr.write("  "+l+"\n")
+            if options.cron:
+                sys.stderr.flush()
+            err_code |= 0x80
+            continue
+
+        country_conf.init()
+        options.diff = not options.change and "diff" in country_conf.download
+
+        # analyse
+        err_code |= run(country_conf, logger, analysers, options)
+
+        # free lock
+        del lock
+
+    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
+    return err_code
+
+
+if __name__ == "__main__":
+    #=====================================
+    # analyse of parameters
 
     from optparse import OptionParser
 
@@ -382,6 +476,8 @@ if __name__ == "__main__":
                       help="Country to analyse (can be repeated)")
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
+    parser.add_option("--plugin", dest="plugin", action="append",
+                      help="Plugin to run (can be repeated). For analyser 'sax' only")
 
     parser.add_option("--change", dest="change", action="store_true",
                       help="Run analyser on change mode when available")
@@ -416,103 +512,12 @@ if __name__ == "__main__":
 
     (options, args) = parser.parse_args()
 
-    analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
-
-    if options.list_analyser:
-        for fn in sorted(os.listdir(analysers_path)):
-            if fn.startswith("analyser_") and fn.endswith(".py"):
-                print(fn[9:-3])
-        sys.exit(0)
-
-    if options.list_country:
-        for k in sorted(config.config.keys()):
-           print(k)
-        sys.exit(0)
-
-    if options.cron:
-        output = sys.stdout
-        logger = OsmoseLog.logger(output, False)
-    else:
-        output = sys.stdout
-        logger = OsmoseLog.logger(output, True)
-
-    if options.change_init and not options.change:
-        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
+    if not options.country:
+        parser.print_help()
         sys.exit(1)
 
     if options.version:
         print("osmose backend version: %s" % get_version())
         sys.exit(0)
 
-    if not options.country:
-        parser.print_help()
-        sys.exit(1)
-
-    #=====================================
-    # chargement des analysers
-
-    old_path = list(sys.path)
-    sys.path.insert(0, analysers_path)
-
-    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
-    analysers = {}
-    for fn in os.listdir(analysers_path):
-        if fn.startswith("analyser_") and fn.endswith(".py"):
-            if options.analyser and fn[9:-3] not in options.analyser:
-                continue
-            logger.log("  load "+fn[9:-3])
-            try:
-                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
-            except ImportError as e:
-                logger.log(e)
-                logger.log("Fails to load analysers {0}".format(fn[:-3]))
-    if options.analyser:
-        count = 0
-        for k in options.analyser:
-            if ("analyser_%s" % k) not in analysers:
-                logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
-                count += 1
-        # user is passing only non-existent analysers
-        if len(options.analyser) == count:
-            sys.exit("No valid analysers specified")
-
-    sys.path[:] = old_path # restore previous path
-
-    #=====================================
-    # analyse
-
-    for country, country_conf in config.config.items():
-
-        # filter
-        if options.country and country not in options.country:
-            continue
-
-        # acquire lock
-        try:
-            base = '|'.join(map(str, [country_conf.db_base, country_conf.db_host]))
-            lfil = "/tmp/analyse-{0}-{1}".format(country, base)
-            lock = lockfile(lfil)
-        except:
-            logger.err("can't lock %s"%country)
-            if options.cron:
-                sys.stderr.write("can't lock %s\n"%country)
-            for l in open(lfil).read().rstrip().split("\n"):
-                logger.log("  "+l)
-                if options.cron:
-                    sys.stderr.write("  "+l+"\n")
-            if options.cron:
-                sys.stderr.flush()
-            err_code |= 0x80
-            continue
-
-        country_conf.init()
-        options.diff = not options.change and "diff" in country_conf.download
-
-        # analyse
-        err_code |= run(country_conf, logger, options)
-
-        # free lock
-        del lock
-
-    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
-    sys.exit(err_code)
+    sys.exit(main(options))

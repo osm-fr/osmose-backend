@@ -19,13 +19,12 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import print_function
-
 from modules import download
 from modules.lockfile import lockfile
 from modules.OsmOsis import OsmOsis
 from modules.OsmState import OsmState
-import sys, os
+import sys
+import os
 import psycopg2
 import fileinput
 import shutil
@@ -176,7 +175,7 @@ class OsmOsisManager:
     else:
       cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
     cmd += ["-quiet"]
-    cmd += ["--write-pgsql-dump", "directory=%s"%dir_country_tmp, "enableLinestringBuilder=yes"]
+    cmd += ["--write-pgsql-dump", "directory=%s" % dir_country_tmp, "enableLinestringBuilder=yes"]
 
     try:
       self.logger.execute_err(cmd)
@@ -414,7 +413,7 @@ class OsmOsisManager:
 
       cmd  = [conf.bin_osmosis]
       cmd += ["--read-xml-change", xml_change]
-      cmd += ["--write-pgsql-change", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
+      cmd += ["--write-pgsql-change", "database=%s" % conf.db_base, "user=%s" % conf.db_user, "password=%s" % conf.db_password]
       cmd += ["-quiet"]
       self.logger.execute_err(cmd)
 

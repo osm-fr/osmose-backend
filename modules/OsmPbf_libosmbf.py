@@ -19,9 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import time
 import dateutil.parser
-import traceback
 from . import config
 from .osm_pbf_parser import osm_pbf_parser
 from .OsmState import OsmState

@@ -20,7 +20,8 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import re, unicodedata
+import re
+import unicodedata
 
 
 class TagFix_Note_Lang_fr(Plugin):
@@ -70,9 +71,9 @@ class TagFix_Note_Lang_fr(Plugin):
             "gynmase",  "halles",  "handball",  "hangar",  "jardin",  "piste",
             "plot",  "prairie",  "prive",  "ruin",  "ruine",  "sortie",  "tel",  "toilettes",
             "transformateur",  "verger",  "volley", )
-        self.Hours = re.compile("[0-9]{1,2}h")
-        self.Date = re.compile("[0-9]{4,8}|(?:(?:[0-9]{1,2}/){2}/[0-9]{2,4})")
-        self.Split = re.compile('[- _\(\),.:/''"+!;<>=\[\]]')
+        self.Hours = re.compile(r'[0-9]{1,2}h')
+        self.Date = re.compile(r'[0-9]{4,8}|(?:(?:[0-9]{1,2}/){2}/[0-9]{2,4})')
+        self.Split = re.compile(r'[- _\(\),.:/''"+!;<>=\[\]]') # noqa
 
     def node(self, data, tags):
         if "note" not in tags and "comment" not in tags:

@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from io import open # In python3 only, this import is not required
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from .modules import Stablehash
@@ -29,7 +28,7 @@ from .modules import Stablehash
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8270 , id = 1, level = 3, tags = ['merge', 'power'],
+        self.missing_official = self.def_class(item = 8270, id = 1, level = 3, tags = ['merge', 'power'],
             title = T_('Power plant not integrated, geocoded at municipality level'))
 
         self.init(
@@ -58,8 +57,8 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                         "plant:output:electricity": lambda fields: int(float(fields["puisMaxRac"]) * 1000)},
                     mapping2 = {
                         "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
-                   tag_keep_multiple_values = ["voltage"],
-                   text = lambda tags, fields: T_(u"Power plant %s", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
+                    tag_keep_multiple_values = ["voltage"],
+                    text = lambda tags, fields: T_(u"Power plant %s", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
 
     filiere = {
         u"Autre": {

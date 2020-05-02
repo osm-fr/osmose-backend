@@ -23,4 +23,4 @@ __appname__ = "oh_sanitizer"
 __author__ = "rezemika <reze.mika@gmail.com>"
 __licence__ = "AGPLv3"
 
-from .main import sanitize_field, SanitizeError, InconsistentField
+from .main import sanitize_field, SanitizeError, InconsistentField # noqa

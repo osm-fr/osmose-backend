@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -12,7 +12,7 @@ class Construction2(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[40701] = self.def_class(item = 4070, level = 1, tags = mapcss.list_(u'tag', u'highway', u'fix:survey'), title = mapcss.tr(u'Inconsistent tagging of {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}')))
 
 

@@ -21,8 +21,7 @@
 ###########################################################################
 
 import json
-from io import open # In python3 only, this import is not required
-from backports import csv # In python3 only just "import csv"
+import csv
 import io
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
@@ -65,7 +64,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.missing_official = self.def_class(item =str(items[0]), id = classs+1, level = level, tags = ['merge'],
             title = T_f('{0} not integrated', title))
-        if missing_osm != False:
+        if missing_osm is not False:
             self.missing_osm = self.def_class(item =str(items[1]), id = classs+2, level = level, tags = ['merge'],
                 title = T_f('{0} without tag "{1}" or invalid', title, 'ref:FR:FINESS'))
         self.possible_merge = self.def_class(item =str(items[0]+1), id = classs+3, level = level, tags = ['merge'],
@@ -117,7 +116,7 @@ class Source_Finess(Source):
             elif row[0] == 'geolocalisation':
                 geolocalisation[row[1]] = row[2:]
         for row in structureet:
-           row += geolocalisation.get(row[0], [])
+            row += geolocalisation.get(row[0], [])
 
         csvfile = io.StringIO()
         writer = csv.writer(csvfile)

@@ -4,7 +4,7 @@ import re
 import ast
 import hashlib
 from pprint import pprint
-from antlr4 import *
+from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from generated.MapCSSLexer import MapCSSLexer
 from generated.MapCSSParser import MapCSSParser
 from MapCSSListenerL import MapCSSListenerL
@@ -212,7 +212,7 @@ rule_declarations_order_map = {
     # Osmose
     '-osmoseItemClassLevel': 2,
     '-osmoseTags': 2,
-     # text
+    # text
     'throwError': 3,
     'throwWarning': 3,
     'throwOther': 3,
@@ -528,7 +528,7 @@ def to_p(t):
     if isinstance(t, str):
         return t
     elif t['type'] == 'stylesheet':
-        return "\n".join(filter(lambda s: s!= "", map(to_p, t['rules'])))
+        return "\n".join(filter(lambda s: s != "", map(to_p, t['rules'])))
     elif t['type'] == 'rule':
         item = class_id = level = tags = group = group_class = text = text_class = None # For safty
         is_meta_rule = t.get('_meta')
@@ -555,8 +555,8 @@ def to_p(t):
                 "    if not match:\n" +
                 "        capture_tags = {}\n" +
                 "        try: match = " + to_p(s) + "\n" +
-                "        except mapcss.RuleAbort: pass\n"
-                , t['selectors'])) +
+                "        except mapcss.RuleAbort: pass\n",
+                t['selectors'])) +
                 "    if match:\n" +
                 "        # " + "\n        # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
                 (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
@@ -569,8 +569,8 @@ def to_p(t):
                 if text else "")
             )
         elif is_meta_rule:
-             list(map(to_p, t['declarations']))
-             return ""
+            list(map(to_p, t['declarations']))
+            return ""
     elif t['type'] == 'selector':
         if t['operator']:
             raise NotImplementedError(t)
@@ -718,7 +718,7 @@ def build_tests(tests):
     for test in tests:
         test_code = ""
         if test['context']:
-            context = dict(map(lambda l: map(lambda s: s.strip(), l.split('=', 1)) , test['context'].split(',')))
+            context = dict(map(lambda l: map(lambda s: s.strip(), l.split('=', 1)), test['context'].split(',')))
             context = dict(map(lambda kv: (context_map[kv[0]] if kv[0] in context_map else kv[0], kv[1]), context.items()))
             test_code = "with with_options(n, {%s}):\n    " % ', '.join(map(lambda kv: ": ".join(map(lambda s: "'" + s.replace("'", "\\'") + "'", kv)), context.items()))
 
@@ -788,9 +788,9 @@ def main(_, mapcss):
 
     mapcss = ("""#-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -800,7 +800,7 @@ class """ + prefix + class_name + """(PluginMapCSS):
 """ + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         """ + items.replace("\n", "\n        ") + """
         """ + "".join(map(lambda r: """
         self.""" + r[1] + " = re.compile(r'" + r[0].replace('(?U)', '').replace("'", "\\'") + "'" + (', ' + {'i': "re.I", 'm': "re.M", 's': "re.I"}[r[2]] if r[2] else '') + ")", map(lambda a: [a[0][0], a[1], a[0][1]], sorted(regex_store.items(), key = lambda s: s[1])))) + """

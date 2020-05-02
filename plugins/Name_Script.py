@@ -62,16 +62,16 @@ appropriate.'''),
 
         country = self.father.config.options.get("country")
 
-        self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
+        self.non_printable = regex.compile(r"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
         # http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]
-        self.other_symbol = regex.compile(u"[[\p{General_Category=Other_Symbol}]--[\p{Block=Latin 1 Supplement}\p{Block=Braille Patterns}\p{Block=CJK Radicals Supplement}\p{Block=Kangxi Radicals}\p{Block=CJK Strokes}]--[↔→◄►№]]", flags=regex.V1)
-        self.non_letter = regex.compile(u"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
-        non_look_like_latin = u"\p{Hangul}\p{Bengali}\p{Bopomofo}\p{Braille}\p{Canadian_Aboriginal}\p{Devanagari}\p{Ethiopic}\p{Gujarati}\p{Gurmukhi}\p{Han}\p{Hangul}\p{Hanunoo}\p{Hebrew}\p{Hiragana}\p{Inherited}\p{Kannada}\p{Katakana}\p{Khmer}\p{Lao}\p{Malayalam}\p{Oriya}\p{Runic}\p{Sinhala}\p{Syriac}\p{TaiLe}\p{Tamil}\p{Thaana}\p{Thai}\p{Tibetan}"
+        self.other_symbol = regex.compile(r"[[\p{General_Category=Other_Symbol}]--[\p{Block=Latin 1 Supplement}\p{Block=Braille Patterns}\p{Block=CJK Radicals Supplement}\p{Block=Kangxi Radicals}\p{Block=CJK Strokes}]--[↔→◄►№]]", flags=regex.V1)
+        self.non_letter = regex.compile(r"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
+        non_look_like_latin = r"\p{Hangul}\p{Bengali}\p{Bopomofo}\p{Braille}\p{Canadian_Aboriginal}\p{Devanagari}\p{Ethiopic}\p{Gujarati}\p{Gurmukhi}\p{Han}\p{Hangul}\p{Hanunoo}\p{Hebrew}\p{Hiragana}\p{Inherited}\p{Kannada}\p{Katakana}\p{Khmer}\p{Lao}\p{Malayalam}\p{Oriya}\p{Runic}\p{Sinhala}\p{Syriac}\p{TaiLe}\p{Tamil}\p{Thaana}\p{Thai}\p{Tibetan}"
         ammend = ""
         if country and country.startswith("BG"):
             ammend = "|TT" # Bulgarian survey point
-        self.alone_char = regex.compile(u"(^| |[%s])(?:[A-Z]%s)(?= |[%s]|$)" % (non_look_like_latin, ammend, non_look_like_latin), flags=regex.V1)
-        self.roman_number = regex.compile(u"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
+        self.alone_char = regex.compile(r"(^| |[%s])(?:[A-Z]%s)(?= |[%s]|$)" % (non_look_like_latin, ammend, non_look_like_latin), flags=regex.V1)
+        self.roman_number = regex.compile(r"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
 
         self.scripts = language2scripts
 

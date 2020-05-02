@@ -22,11 +22,11 @@
 
 from .Analyser import Analyser
 
-import sys, os
+import sys
+import os
 import importlib
-import time
-from io import open  # In python3 only, this import is not required
 from modules import OsmoseLog
+from functools import reduce
 
 
 class Analyser_Sax(Analyser):
@@ -53,7 +53,11 @@ class Analyser_Sax(Analyser):
         return self.parser.timestamp()
 
     def analyser(self):
-        self._load_plugins()
+        if self.config.plugins:
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+        else:
+            plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
         self._load_output(change=self.parsing_change_file)
         try:
             self._run_analyse()
@@ -66,7 +70,11 @@ class Analyser_Sax(Analyser):
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        self._load_plugins()
+        if self.config.plugins:
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+        else:
+            plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
         self._load_output(change=True)
         self._run_analyse()
 
@@ -412,21 +420,31 @@ class Analyser_Sax(Analyser):
 
     ################################################################################
 
-    def _load_plugins(self):
+    def _load_plugin_from_name(self, name):
+        module = importlib.import_module('plugins.' + name)
+        classes = getattr(module, 'available_plugin_classes', [name])
+        return list(map(lambda clazz: getattr(module, clazz), classes))
 
+
+    def _load_all_plugins(self):
         self._log(u"Loading plugins")
+
+        available_plugins = []
+        for plugin in sorted(self.ToolsListDir(u"plugins")):
+            if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
+                continue
+            pluginName = plugin[:-3]
+            available_plugins += self._load_plugin_from_name(pluginName)
+
+        return available_plugins
+
+
+    def _init_plugins(self, available_plugin_classes):
         self._Err = {}
-        d = {}
         self.plugins = {}
         self.pluginsNodeMethodes = []
         self.pluginsWayMethodes = []
         self.pluginsRelationMethodes = []
-        _order = ["pre_pre_","pre_", "", "post_", "post_post_"]
-        _types = ["way", "node", "relation"]
-
-        for x in _order:
-            for y in _types:
-                d[x+y] = []
 
         conf_limit = set()
         for i in ("country", "language"):
@@ -434,50 +452,41 @@ class Analyser_Sax(Analyser):
                 if isinstance(self.config.options[i], str):
                     conf_limit.add(self.config.options[i])
 
-        # load plugins
-        for plugin in sorted(self.ToolsListDir(u"plugins")):
-            if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
-                continue
-            pluginName = plugin[:-3]
-            pluginModule = importlib.import_module("plugins."+pluginName)
-            available_classes = getattr(pluginModule, "available_plugin_classes", [pluginName])
-            for pluginName in available_classes:
-                pluginClazz = getattr(pluginModule, pluginName)
-
-                if "only_for" in dir(pluginClazz):
-                    if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
-                        self._sublog(u"skip "+plugin[:-3])
-                        continue
-
-                if "not_for" in dir(pluginClazz):
-                    if any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.not_for)):
-                        self._sublog(u"skip "+plugin[:-3])
-                        continue
-
-                # Plugin Initialisation
-                pluginInstance = pluginClazz(self)
-                if pluginInstance.init(self.logger.sub().sub()) == False:
-                    self._sublog(u"self-disabled "+plugin[:-3])
+        for pluginClazz in available_plugin_classes:
+            if "only_for" in dir(pluginClazz):
+                if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
+                    self._sublog(u"skip "+pluginClazz.__name__)
                     continue
-                else:
-                    self._sublog(u"init "+pluginName+" ("+", ".join(pluginInstance.availableMethodes())+")")
 
-                    pluginAvailableMethodes = pluginInstance.availableMethodes()
-                    self.plugins[pluginName] = pluginInstance
+            if "not_for" in dir(pluginClazz):
+                if any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.not_for)):
+                    self._sublog(u"skip "+pluginClazz.__name__)
+                    continue
 
-                    # Fetch functions to call
-                    if "node" in pluginAvailableMethodes:
-                        self.pluginsNodeMethodes.append(pluginInstance.node)
-                    if "way" in pluginAvailableMethodes:
-                        self.pluginsWayMethodes.append(pluginInstance.way)
-                    if "relation" in pluginAvailableMethodes:
-                        self.pluginsRelationMethodes.append(pluginInstance.relation)
+            # Plugin Initialisation
+            pluginInstance = pluginClazz(self)
+            if pluginInstance.init(self.logger.sub().sub()) is False:
+                self._sublog(u"self-disabled "+pluginClazz.__name__)
+                continue
+            else:
+                self._sublog(u"init "+pluginClazz.__name__+" ("+", ".join(pluginInstance.availableMethodes())+")")
 
-                    # Liste generated issues
-                    for (cl, v) in self.plugins[pluginName].errors.items():
-                        if cl in self._Err:
-                            raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
-                        self._Err[cl] = v
+                pluginAvailableMethodes = pluginInstance.availableMethodes()
+                self.plugins[pluginClazz.__name__] = pluginInstance
+
+                # Fetch functions to call
+                if "node" in pluginAvailableMethodes:
+                    self.pluginsNodeMethodes.append(pluginInstance.node)
+                if "way" in pluginAvailableMethodes:
+                    self.pluginsWayMethodes.append(pluginInstance.way)
+                if "relation" in pluginAvailableMethodes:
+                    self.pluginsRelationMethodes.append(pluginInstance.relation)
+
+                # Liste generated issues
+                for (cl, v) in self.plugins[pluginClazz.__name__].errors.items():
+                    if cl in self._Err:
+                        raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
+                    self._Err[cl] = v
 
     ################################################################################
 
@@ -527,19 +536,18 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     class MockupReader(object):
         def NodeGet(self, id):
-            return { "id": id, "lat": 0, "lon": 0, "tag": {} };
+            return { "id": id, "lat": 0, "lon": 0, "tag": {} }
 
         def WayGet(self, id, dump_sub_elements=False):
-            return { "id": id, "nd": [0], "tag": {} };
+            return { "id": id, "nd": [0], "tag": {} }
 
         def RelationGet(self, id, dump_sub_elements=False):
-            return { "id": id, "member": [{"type": "node", "ref": 0}], "tag": {} };
+            return { "id": id, "member": [{"type": "node", "ref": 0}], "tag": {} }
 
         def UserGet(self, id):
             return None
 
         def timestamp(self):
-            import datetime
             return datetime.datetime.now()
 
 
@@ -554,6 +562,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             polygon_id = None
             reader = TestAnalyserOsmosis.MockupReader()
             source_url = 'http://example.com'
+            plugins = []
         self.config = config()
 
         # create directory for results
@@ -561,12 +570,12 @@ class TestAnalyserOsmosis(TestAnalyser):
         from modules import config
         self.dirname = config.dir_tmp + "/tests/"
         try:
-          os.makedirs(self.dirname)
+            os.makedirs(self.dirname)
         except OSError:
-          if os.path.isdir(self.dirname):
-            pass
-          else:
-            raise
+            if os.path.isdir(self.dirname):
+                pass
+            else:
+                raise
 
     def test(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
@@ -578,7 +587,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=37)
+        self.check_num_err(min=33)
 
     def test_resume_full(self):
         # Test with an older timestamp than older object in extract
@@ -603,7 +612,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test_resume.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=13)
+        self.check_num_err(min=11)
 
     def test_resume_empty(self):
         # Test with an younger timestamp than youngest object in extract
@@ -630,7 +639,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.FR.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=53)
+        self.check_num_err(min=47)
 
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr.xml")
@@ -642,7 +651,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.Lang_fr.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=41)
+        self.check_num_err(min=37)
 
     def test_fr_nl(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr_nl.xml")
@@ -654,14 +663,14 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.compare_results("tests/results/sax.test.Lang_fr_nl.xml")
 
         self.root_err = self.load_errors()
-        self.check_num_err(min=37)
+        self.check_num_err(min=34)
 
 
 ################################################################################
 
-if __name__=="__main__":
+if __name__ == "__main__":
     # Check argument
-    if len(sys.argv)!=3:
+    if len(sys.argv) != 3:
         print("Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>")
         sys.exit(-1)
 

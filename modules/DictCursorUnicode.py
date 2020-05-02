@@ -20,7 +20,6 @@
 ###########################################################################
 
 import psycopg2.extras
-import sys
 
 
 class DictRowUnicode50(psycopg2.extras.DictRow):
@@ -32,7 +31,7 @@ class DictRowUnicode50(psycopg2.extras.DictRow):
 
 class DictCursorUnicode50(psycopg2.extras.DictCursor):
     def __init__(self, *args, **kwargs):
-         # Overwrite row_factory from parent psycopg2.extras.DictCursor
+        # Overwrite row_factory from parent psycopg2.extras.DictCursor
         kwargs['row_factory'] = DictRowUnicode50
         psycopg2.extras.DictCursorBase.__init__(self, *args, **kwargs)
         self._prefetch = 1

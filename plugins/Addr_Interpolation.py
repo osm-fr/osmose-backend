@@ -20,8 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import datetime
-import dateutil.parser
+
 
 class Addr_Interpolation(Plugin):
 

@@ -6,11 +6,7 @@
 # 2015, Rodrigo Frederic, no assume segments are ordered
 
 import operator
-import sys
 
-# Python 3 has renamed xrange() to range()
-if sys.version_info[0] == 2:
-    range = xrange
 
 class IntervalTree(object):
     __slots__ = ('intervals', 'left', 'right', 'center')
@@ -37,7 +33,7 @@ class IntervalTree(object):
 
         this provides an extreme and satisfying performance improvement
         over searching manually over all 3 elements in the list (like
-        a sucker). 
+        a sucker).
 
         the IntervalTree class now also supports the iterator protocol
         so it's easy to loop over all elements in the tree:
@@ -49,13 +45,13 @@ class IntervalTree(object):
 
         NOTE: any object with start and stop attributes can be used
         in the incoming intervals list.
-        """ 
+        """
 
         depth -= 1
         if (depth == 0 or len(intervals) < minbucket) and len(intervals) < maxbucket:
             self.intervals = intervals
             self.left = self.right = None
-            return 
+            return
 
         if _extent is None:
             # sorting the first time through allows it to get
@@ -67,10 +63,10 @@ class IntervalTree(object):
         #center = intervals[len(intervals)/ 2].stop
         center = (left + right) / 2.0
 
-        
+
         self.intervals = []
         lefts, rights  = [], []
-        
+
 
         for interval in intervals:
             if interval.stop < center:
@@ -79,12 +75,12 @@ class IntervalTree(object):
                 rights.append(interval)
             else: # overlapping.
                 self.intervals.append(interval)
-                
-        self.left   = lefts  and IntervalTree(lefts,  depth, minbucket, (intervals[0].start,  center)) or None
-        self.right  = rights and IntervalTree(rights, depth, minbucket, (center,               right)) or None
+
+        self.left = lefts and IntervalTree(lefts, depth, minbucket, (intervals[0].start,  center)) or None
+        self.right = rights and IntervalTree(rights, depth, minbucket, (center, right)) or None
         self.center = center
- 
- 
+
+
     def find(self, start, stop):
         """find all elements between (or overlapping) start and stop"""
         def comp(i):
@@ -114,13 +110,13 @@ class IntervalTree(object):
 
         if self.right:
             for r in self.right: yield r
-   
+
     # methods to allow un/pickling (by pzs):
     def __getstate__(self):
-        return { 'intervals' : self.intervals,
-                    'left'   : self.left,
-                    'right'  : self.right,
-                    'center' : self.center }
+        return { 'intervals': self.intervals,
+                    'left':   self.left,
+                    'right':  self.right,
+                    'center': self.center }
 
     def __setstate__(self, state):
         for key,value in state.items():
@@ -133,9 +129,9 @@ class Interval(object):
         self.stop  = stop
     def __repr__(self):
         return "Interval(%i, %i)" % (self.start, self.stop)
-    
+
     def __getstate__(self):
-        return {'start': self.start, 
+        return {'start': self.start,
                 'stop': self.stop }
     def __setstate__(self, state):
         for k, v in state.items():
@@ -146,7 +142,8 @@ if __name__ == '__main__':
     def brute_force_find(intervals, start, stop):
         return [i for i in intervals if i.stop >= start and i.start <= stop]
 
-    import random, time
+    import random
+    import time
     def rand():
         s = random.randint(1, 2000000)
         return Interval(s, s + random.randint(200, 6000))
@@ -155,7 +152,7 @@ if __name__ == '__main__':
     intervals.append(Interval(0, 500000))
     tries = 100
 
-    
+
     tree = IntervalTree(intervals)
     t = time.time()
     for i in range(tries):
@@ -172,7 +169,7 @@ if __name__ == '__main__':
     assert not set(bf).symmetric_difference(res) , (len(bf), len(res), set(bf).difference(res), START, STOP)
     print treetime, btime, btime/treetime
 
-    
+
     assert sum(1 for x in tree) == len(intervals), "iterator not working?"
 
     intervals = [rand() for i in range(300)]
@@ -180,13 +177,13 @@ if __name__ == '__main__':
     import cPickle
     btree = cPickle.loads(cPickle.dumps(atree, -1))
 
-    af = atree.find(START, STOP) 
+    af = atree.find(START, STOP)
     bf = btree.find(START, STOP)
     assert len(af) == len(bf)
     for a, b in zip(af, bf):
         assert a.start == b.start
         assert a.stop == b.stop
-    
+
 
     import doctest
     doctest.testmod()

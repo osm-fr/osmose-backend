@@ -76,7 +76,7 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
                     tags = {
                         "amenity": "parking",
                         "capacity:disabled": None}),
-                    conflationDistance = 100,
+                conflationDistance = 100,
                 generate = Generate(
                     static1 = {"amenity": "parking"},
                     static2 = {"source": self.source},

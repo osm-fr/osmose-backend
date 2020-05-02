@@ -50,4 +50,3 @@ for country, country_conf in config.config.items():
                 print("%s,%s" % (country, size))
             except:
                 print("%s," % (country,))
-

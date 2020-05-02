@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_numeric(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9006001] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'numerical key'))
         self.errors[9006002] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} value with + sign', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
         self.errors[9006003] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'{0} should be an integer value between -5 and 5', mapcss._tag_uncapture(capture_tags, u'{0.key}')))

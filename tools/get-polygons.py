@@ -42,4 +42,3 @@ for country in osmose_config.config.values():
 list_polygons = set(list_polygons)
 
 print(",".join(list_polygons))
-

@@ -40,10 +40,10 @@ class Analyser_Merge_Dynamic(Analyser):
     def analyser(self):
         for obj in self.analysers:
             with obj(self.config, self.error_file,  self.logger) as analyser_obj:
-#                if not options.change or not xml_change:
-                    analyser_obj.analyser()
-#                else:
-#                    analyser_obj.analyser_change()
+                # if not options.change or not xml_change:
+                analyser_obj.analyser()
+                # else:
+                #     analyser_obj.analyser_change()
 
     def timestamp(self):
         with self.analysers[0](self.config, self.error_file,  self.logger) as analyser_obj:

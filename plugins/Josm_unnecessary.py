@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 import modules.mapcss_lib as mapcss
-import regex as re
+import regex as re # noqa
 
-from plugins.Plugin import with_options
+from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
@@ -13,7 +13,7 @@ class Josm_unnecessary(PluginMapCSS):
 
     def init(self, logger):
         super().init(logger)
-        tags = capture_tags = {}
+        tags = capture_tags = {} # noqa
         self.errors[9010001] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'unnecessary tag'))
         self.errors[9010002] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'{0} makes no sense', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
         self.errors[9010003] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'descriptive name'))

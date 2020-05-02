@@ -19,9 +19,9 @@
 ##                                                                       ##
 ###########################################################################
 
-from __future__ import print_function
-
-import time, sys, subprocess
+import time
+import sys
+import subprocess
 
 class logger:
 
@@ -76,7 +76,7 @@ class logger:
                 self._out.flush()
         proc.wait()
         if proc.returncode:
-            raise RuntimeError("'%s' exited with status %s"%(' '.join(cmd), repr(proc.returncode)))
+            raise RuntimeError("'%s' exited with status %s" % (' '.join(cmd), repr(proc.returncode)))
         #self.log(str(proc.returncode))
 
     def execute_out(self, cmd, cwd=None):
@@ -92,14 +92,15 @@ class logger:
                 self._out.flush()
         proc.wait()
         if proc.returncode:
-            raise RuntimeError("'%s' exited with status %s :\n%s"%(' '.join(cmd), repr(proc.returncode), proc.stderr.read()))
+            raise RuntimeError("'%s' exited with status %s :\n%s" % (' '.join(cmd), repr(proc.returncode), proc.stderr.read()))
         #self.log(str(proc.returncode))
 
     def send_alert_email(self, email_to, err_msg):
         if not email_to:
             return
 
-        import smtplib, socket
+        import smtplib
+        import socket
         from email.mime.text import MIMEText
 
         hostname = socket.getfqdn()
@@ -133,7 +134,7 @@ class sublog:
     def sub(self):
         return sublog(self._root, self._level + 1)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     a = logger()
     a.log("coucou")
     a.sub().log("test")

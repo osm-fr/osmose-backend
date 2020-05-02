@@ -967,7 +967,7 @@ default_country("asia", "bangladesh", 184640, {"country": "BD", "language": "bn"
 default_country("asia", "bahrain", 378734, {"country": "BH", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "bhutan", 184629, {"country": "BT", "language": ["dz", "en"], "proj": 32646}, download_repo=OSMFR)
 default_country("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
-default_country("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
+default_country("asia", "cambodia", 49898, {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "proj": 32651}, download_repo=OSMFR)
 default_country("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
@@ -979,7 +979,7 @@ default_country("asia", "kuwait", 305099, {"country": "KW", "language": "ar","pr
 default_country("asia", "kyrgyzstan", 178009, {"country": "KG", "language": ["ky", "ru"], "proj": 32643})
 default_country("asia", "laos", 49903, {"country": "LA", "language": ["lo", "en"], "proj": 32648}, download_repo=OSMFR)
 default_country("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
-default_country("asia", "malaysia", 2108121 , {"country": "MY", "language": "ms", "driving_side": "left", "proj": 32649}, download_repo=OSMFR)
+default_country("asia", "malaysia", 2108121, {"country": "MY", "language": "ms", "driving_side": "left", "proj": 32649}, download_repo=OSMFR)
 default_country("asia", "maldives", 536773, {"country": "MV", "language": "dv", "proj": 32643}, download_repo=OSMFR)
 default_country("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
 default_country("asia", "myanmar", 50371, {"country": "MM", "language": "my", "proj": 32646}, download_repo=OSMFR)
@@ -991,7 +991,7 @@ default_country("asia", "palestine", 1703814, {"country": "PS", "language": "ar"
 default_country("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651, 'phone_code': '63', 'phone_len': [7, 8], 'phone_international': '00'}, download_repo=GEOFABRIK)
 default_country("asia", "qatar", 305095, {"country": "QA", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "saudi_arabia", 307584, {"country": "SA", "language": "ar","proj": 32637}, download_repo=OSMFR)
-default_country("asia", "singapore", 536780 , {"country": "SG", "language": "en", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
+default_country("asia", "singapore", 536780, {"country": "SG", "language": "en", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
 default_country("asia", "sri-lanka", 536807, {"country": "LK", "language": ["en", "si", "ta"], "driving_side": "left", "proj": 32644})
 default_country("asia", "south_korea", 307756, {"country": "KR", "language": "ko", "proj": 32652}, download_country="south-korea")
 default_country("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
@@ -1101,7 +1101,7 @@ default_country("oceania", "vanuatu", 2177246, {"country": "VU", "language": ["e
 #########################################################################
 
 default_country("merge", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
-default_country("merge", "kiribati", 571178 , {"country": "KL", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
+default_country("merge", "kiribati", 571178, {"country": "KL", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
 
 #########################################################################
 
@@ -1135,7 +1135,7 @@ default_country("south-america", "niue", 1558556, {"country": "NU", "language": 
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
 default_country("south-america", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32602}, download_repo=OSMFR)
-default_country("south-america", "tonga", 2186665 , {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
+default_country("south-america", "tonga", 2186665, {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
 default_country("south-america", "trinidad_and_tobago", 555717, {"country": "TT", "language": "en", "driving_side": "left","proj": 32620}, download_repo=OSMFR)
 default_country("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "united_kingdom_falkland", 2185374, {"country": "FK", "language": "en", "driving_side": "left", "proj": 32721}, download_repo=OSMFR, download_country="falkland")
