@@ -113,8 +113,6 @@ class analyser_config:
 def execc(conf, logger, analysers, options, osmosis_manager):
     err_code = 0
 
-    logger.log("osmose backend version: %s" % get_version())
-
     ## download and create database
 
     if options.skip_init:
@@ -386,6 +384,8 @@ def main(options):
     #=====================================
     # Load of analysers
     err_code = 0
+
+    logger.log("osmose backend version: %s" % get_version())
 
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
