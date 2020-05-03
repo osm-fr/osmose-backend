@@ -27,22 +27,23 @@ from .OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
 
 class ErrorFile:
 
-    def __init__(self, config):
-        self.config = config
+    def __init__(self, dst, version = None, polygon_id = None):
+        self.dst = dst
+        self.version = version
         self.filter = None
-        if config.polygon_id:
+        if polygon_id:
             try:
-                self.filter = PolygonErrorFilter(config.polygon_id)
+                self.filter = PolygonErrorFilter(polygon_id)
             except Exception as e:
                 print(e)
                 pass
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
     def begin(self):
-        if self.config.dst.endswith(".bz2"):
-            output = bz2.BZ2File(self.config.dst, "w")
+        if self.dst.endswith(".bz2"):
+            output = bz2.BZ2File(self.dst, "w")
         else:
-            output = open(self.config.dst, "w")
+            output = open(self.dst, "w")
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {})
@@ -57,8 +58,8 @@ class ErrorFile:
         attrs = {}
         attrs["timestamp"] = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
         attrs["analyser_version"] = str(analyser_version)
-        if hasattr(self.config, "version") and self.config.version is not None:
-            attrs["version"] = self.config.version
+        if self.version is not None:
+            attrs["version"] = self.version
         self.outxml.startElement(self.mode, attrs)
 
     def analyser_end(self):
@@ -201,10 +202,7 @@ import unittest
 
 class Test(unittest.TestCase):
     def setUp(self):
-
-        class config:
-            polygon_id = None
-        self.a = ErrorFile(config)
+        self.a = ErrorFile(None)
 
     def check(self, b, c):
         import pprint

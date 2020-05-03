@@ -115,10 +115,9 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        import os
         import analysers.analyser_sax
         class config:
-            dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            error_file = None
         a = Administrative_INSEE_Name(analysers.analyser_sax.Analyser_Sax(config()))
         a.init(None)
 

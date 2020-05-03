@@ -23,6 +23,7 @@
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader
+from modules import OsmoseErrorFile
 import sys
 import os
 import traceback
@@ -81,7 +82,7 @@ def check(conf, logger, options):
 ##########################################################################
 
 class analyser_config:
-    def __init__(self, conf, options, osmosis_manager, xml_change):
+    def __init__(self, conf, options, osmosis_manager, xml_change = None):
         self.dst_dir = conf.dir_results
 
         self.osmosis_manager = osmosis_manager
@@ -99,7 +100,6 @@ class analyser_config:
 
         self.plugins = options.plugin
 
-        self.version = get_version()
         self.verbose = options.verbose
 
         if options.change and xml_change:
@@ -169,6 +169,8 @@ def execc(conf, logger, analysers, options, osmosis_manager):
     ##########################################################################
     ## analyses
 
+    version = get_version()
+
     lunched_analyser = []
     lunched_analyser_change = []
     lunched_analyser_resume = []
@@ -187,9 +189,11 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     analyser_name = name[len("Analyser_"):]
-                    analyser_conf.dst_file = name + "-" + conf.country + ".xml"
-                    analyser_conf.dst_file += ".bz2"
-                    analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
+
+                    dst_file = name + "-" + conf.country + ".xml"
+                    dst_file += ".bz2"
+                    dst = os.path.join(conf.dir_results, dst_file)
+                    analyser_conf.error_file = OsmoseErrorFile.ErrorFile(dst, version, analyser_conf.polygon_id)
 
                     # analyse
                     if not options.skip_analyser:
@@ -251,7 +255,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         'country': conf.country,
                                         'code': password
                                     }, files={
-                                        'content': open(analyser_conf.dst, 'rb')
+                                        'content': open(dst, 'rb')
                                     })
                                     r.raise_for_status()
                                     logger.sub().sub().log(r.text.strip())
@@ -290,15 +294,15 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
     if not options.no_clean:
         for (obj, analyser_conf) in lunched_analyser:
-            analyser_conf.dst = None
+            analyser_conf.error_file = None
             with obj(analyser_conf, logger.sub()) as analyser_obj:
                 analyser_obj.analyser_deferred_clean()
         for (obj, analyser_conf) in lunched_analyser_change:
-            analyser_conf.dst = None
+            analyser_conf.error_file = None
             with obj(analyser_conf, logger.sub()) as analyser_obj:
                 analyser_obj.analyser_deferred_clean()
         for (obj, analyser_conf) in lunched_analyser_resume:
-            analyser_conf.dst = None
+            analyser_conf.error_file = None
             with obj(analyser_conf, logger.sub()) as analyser_obj:
                 analyser_obj.analyser_deferred_clean()
 
