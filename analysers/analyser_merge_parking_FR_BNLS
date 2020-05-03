@@ -29,7 +29,8 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
-''''''),
+```This parking is referenced in the database of car parks managed by local authorities in France, off-street.
+This database is made up of local authorities and is available on data.gouv.fr.```),
             fix = T_(
 ''''''),
             trap = T_(
