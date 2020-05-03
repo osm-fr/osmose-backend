@@ -40,10 +40,13 @@ class ErrorFile:
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
     def begin(self):
-        if self.dst.endswith(".bz2"):
-            output = bz2.BZ2File(self.dst, "w")
+        if isinstance(self.dst, str):
+            if self.dst.endswith(".bz2"):
+                output = bz2.BZ2File(self.dst, "w")
+            else:
+                output = open(self.dst, "w")
         else:
-            output = open(self.dst, "w")
+            output = self.dst
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {})
