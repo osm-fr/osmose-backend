@@ -93,8 +93,6 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
     ## download and create database
 
-    country = conf.country
-
     if options.skip_init:
         pass
 
@@ -153,7 +151,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
     lunched_analyser_resume = []
 
     for analyser in analysers:
-        logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
+        logger.log(logger.log_av_r + conf.country + " : " + analyser + logger.log_ap)
 
         password = conf.analyser.get(analyser)
         if not password or password == "xxx":
@@ -168,7 +166,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
             if conf.db_schema:
                 analyser_conf.db_schema = conf.db_schema
             else:
-                analyser_conf.db_schema = country
+                analyser_conf.db_schema = conf.country
             analyser_conf.db_schema_path = conf.db_schema_path
 
             analyser_conf.options = conf.analyser_options
@@ -189,7 +187,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     analyser_name = name[len("Analyser_"):]
-                    analyser_conf.dst_file = name + "-" + country + ".xml"
+                    analyser_conf.dst_file = name + "-" + conf.country + ".xml"
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     analyser_conf.version = version
@@ -200,7 +198,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
                             remote_timestamp = None
                             if not options.skip_frontend_check:
-                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (country, analyser_name, 'objects=true' if options.resume else '')
+                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (conf.country, analyser_name, 'objects=true' if options.resume else '')
                                 resp = downloader.get(url)
                                 if not resp.ok:
                                     logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
@@ -252,7 +250,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                     u = url + '?name=' + name + '&country=' + (conf.db_schema or conf.country)
                                     r = requests.post(u, timeout=1800, data={
                                         'analyser': analyser_name,
-                                        'country': country,
+                                        'country': conf.country,
                                         'code': password
                                     }, files={
                                         'content': open(analyser_conf.dst, 'rb')
@@ -266,7 +264,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
-                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (country, analyser_name, dt))
+                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (conf.country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
                                         if not was_on_timeout:
