@@ -38,10 +38,6 @@ import dateutil.parser
 import requests
 
 ###########################################################################
-## fonctions utiles
-
-class analyser_config:
-  pass
 
 def get_version():
     version = os.getenv('OSMOSE_VERSION')
@@ -84,12 +80,40 @@ def check(conf, logger, options):
 
 ##########################################################################
 
+class analyser_config:
+    def __init__(self, conf, options, osmosis_manager, xml_change):
+        self.dst_dir = conf.dir_results
+
+        self.osmosis_manager = osmosis_manager
+        self.db_user = conf.db_user
+        if conf.db_schema:
+            self.db_schema = conf.db_schema
+        else:
+            self.db_schema = conf.country
+        self.db_schema_path = conf.db_schema_path
+
+        self.options = conf.analyser_options
+        self.polygon_id = conf.polygon_id
+
+        self.source_url = conf.source_url
+
+        self.plugins = options.plugin
+
+        self.version = get_version()
+        self.verbose = options.verbose
+
+        if options.change and xml_change:
+            self.src = xml_change
+        elif "dst" in conf.download:
+            self.src = conf.download["dst"]
+            if "diff_path" in conf.download:
+                self.src_state = os.path.join(conf.download["diff_path"], "state.txt")
+
+
 def execc(conf, logger, analysers, options, osmosis_manager):
     err_code = 0
 
-    version = get_version()
-
-    logger.log("osmose backend version: %s" % version)
+    logger.log("osmose backend version: %s" % get_version())
 
     ## download and create database
 
@@ -158,30 +182,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
             logger.sub().log("No password to upload result to %s" % conf.updt_url)
 
         try:
-            analyser_conf = analyser_config()
-            analyser_conf.dst_dir = conf.dir_results
-
-            analyser_conf.osmosis_manager = osmosis_manager
-            analyser_conf.db_user = conf.db_user
-            if conf.db_schema:
-                analyser_conf.db_schema = conf.db_schema
-            else:
-                analyser_conf.db_schema = conf.country
-            analyser_conf.db_schema_path = conf.db_schema_path
-
-            analyser_conf.options = conf.analyser_options
-            analyser_conf.polygon_id = conf.polygon_id
-
-            analyser_conf.source_url = conf.source_url
-
-            analyser_conf.plugins = options.plugin
-
-            if options.change and xml_change:
-                analyser_conf.src = xml_change
-            elif "dst" in conf.download:
-                analyser_conf.src = conf.download["dst"]
-                if "diff_path" in conf.download:
-                    analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
+            analyser_conf = analyser_config(conf, options, osmosis_manager, xml_change)
 
             for name, obj in inspect.getmembers(analysers[analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
@@ -190,8 +191,6 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                     analyser_conf.dst_file = name + "-" + conf.country + ".xml"
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
-                    analyser_conf.version = version
-                    analyser_conf.verbose = options.verbose
 
                     # analyse
                     if not options.skip_analyser:
