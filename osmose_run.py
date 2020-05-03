@@ -118,54 +118,55 @@ def execc(conf, logger, analysers, options, osmosis_manager):
     ## download and create database
 
     if options.skip_init:
-        pass
-
-    elif options.change and osmosis_manager.check_change(conf) and not options.change_init:
-        xml_change = osmosis_manager.run_change(conf)
-
-    elif "url" in conf.download:
-        newer = False
         xml_change = None
 
-        if not newer and options.skip_download:
-            logger.sub().log("skip download")
-            newer = True
+    else:
+        if options.change and osmosis_manager.check_change(conf) and not options.change_init:
+            xml_change = osmosis_manager.run_change(conf)
 
-        if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
-            (status, xml_change) = osmosis_manager.run_diff(conf)
-            if status:
+        elif "url" in conf.download:
+            newer = False
+            xml_change = None
+
+            if not newer and options.skip_download:
+                logger.sub().log("skip download")
                 newer = True
 
-        if not newer:
-            logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
-            newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
-                                min_file_size=8*1024)
+            if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
+                (status, xml_change) = osmosis_manager.run_diff(conf)
+                if status:
+                    newer = True
 
-            if newer and options.diff:
-                osmosis_manager.init_diff(conf)
-                if "/minute/" in conf.download["diff"] or "/hour/" in conf.download["diff"]:
-                    # update extract with any more recent available diff
-                    osmosis_manager.run_diff(conf)
+            if not newer:
+                logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
+                newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
+                                    min_file_size=8*1024)
 
-        if not newer:
-            return 0x11
+                if newer and options.diff:
+                    osmosis_manager.init_diff(conf)
+                    if "/minute/" in conf.download["diff"] or "/hour/" in conf.download["diff"]:
+                        # update extract with any more recent available diff
+                        osmosis_manager.run_diff(conf)
+
+            if not newer:
+                return 0x11
+
+            if osmosis_manager:
+                osmosis_manager.init_database(conf)
+
+            if options.change:
+                osmosis_manager.init_change(conf)
+
+        if hasattr(conf, "sql_post_scripts"):
+            logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
+            for script in conf.sql_post_scripts:
+                osmosis_manager.psql_f(script)
 
         if osmosis_manager:
-            osmosis_manager.init_database(conf)
+            osmosis_manager.update_metainfo(conf)
 
-        if options.change:
-            osmosis_manager.init_change(conf)
-
-    if hasattr(conf, "sql_post_scripts"):
-        logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
-        for script in conf.sql_post_scripts:
-            osmosis_manager.psql_f(script)
-
-    if not options.skip_init and osmosis_manager:
-        osmosis_manager.update_metainfo(conf)
-
-    if options.resume:
-        osmosis_manager.run_resume(conf)
+        if options.resume:
+            osmosis_manager.run_resume(conf)
 
     ##########################################################################
     ## analyses
