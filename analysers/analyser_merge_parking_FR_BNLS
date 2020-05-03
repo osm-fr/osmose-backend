@@ -27,7 +27,13 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
-            title = T_f('{0} parking not integrated', 'BNLS'))
+            title = T_f('{0} parking not integrated', 'BNLS'),
+            detail = T_(
+''''''),
+            fix = T_(
+''''''),
+            trap = T_(
+''''''))
 
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
