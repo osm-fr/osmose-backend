@@ -55,7 +55,7 @@ class Analyser_Sax(Analyser):
 
     def analyser(self):
         if self.config.plugins:
-            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin(plugin), self.config.plugins)))
         else:
             plugins = self._load_all_plugins()
         self._init_plugins(plugins)
@@ -72,7 +72,7 @@ class Analyser_Sax(Analyser):
 
         self.config.timestamp = self.timestamp()
         if self.config.plugins:
-            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin(plugin), self.config.plugins)))
         else:
             plugins = self._load_all_plugins()
         self._init_plugins(plugins)
@@ -421,11 +421,13 @@ class Analyser_Sax(Analyser):
 
     ################################################################################
 
-    def _load_plugin_from_name(self, name):
-        module = importlib.import_module('plugins.' + name)
-        classes = getattr(module, 'available_plugin_classes', [name])
-        return list(map(lambda clazz: getattr(module, clazz), classes))
-
+    def _load_plugin(self, plugin):
+        if isinstance(plugin, str):
+            module = importlib.import_module('plugins.' + plugin)
+            classes = getattr(module, 'available_plugin_classes', [plugin])
+            return list(map(lambda clazz: getattr(module, clazz), classes))
+        else:
+            return [plugin]
 
     def _load_all_plugins(self):
         self._log(u"Loading plugins")
@@ -435,7 +437,7 @@ class Analyser_Sax(Analyser):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]
-            available_plugins += self._load_plugin_from_name(pluginName)
+            available_plugins += self._load_plugin(pluginName)
 
         return available_plugins
 
