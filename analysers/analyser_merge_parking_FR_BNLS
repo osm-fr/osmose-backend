@@ -32,7 +32,8 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 ```This parking is referenced in the database of car parks managed by local authorities in France, off-street.
 This database is made up of local authorities and is available on data.gouv.fr.```),
             fix = T_(
-''''''),
+```See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)
+on the  wiki. Add a node or add tags if already existing.```),
             trap = T_(
 ''''''))
 
