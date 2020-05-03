@@ -38,11 +38,9 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        import modules.config as config
         from analysers.analyser_sax import Analyser_Sax
         class _config:
             options = {"language": "xx"}
-            dir_scripts = config.dir_osmose
         class father(Analyser_Sax):
             config = _config()
             def __init__(self):

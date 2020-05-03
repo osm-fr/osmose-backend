@@ -25,6 +25,7 @@ from .Analyser import Analyser
 import sys
 import os
 import importlib
+import modules.config
 from modules import OsmoseLog
 from functools import reduce
 
@@ -92,7 +93,7 @@ class Analyser_Sax(Analyser):
     #### Useful functions
 
     def ToolsGetFilePath(self, filename):
-        return os.path.join(self.config.dir_scripts, filename)
+        return os.path.join(modules.config.dir_osmose, filename)
 
     def ToolsOpenFile(self, filename, mode):
         return open(self.ToolsGetFilePath(filename), mode, encoding="utf-8")
@@ -554,7 +555,6 @@ class TestAnalyserOsmosis(TestAnalyser):
     def setUp(self):
 
         class config:
-            dir_scripts = '.'
             options = {"project": "openstreetmap"}
             src = "tests/saint_barthelemy.osm.gz"
             src_state = "tests/saint_barthelemy.state.txt"
@@ -676,7 +676,6 @@ if __name__ == "__main__":
 
     # Prepare configuration
     class config:
-        dir_scripts = '.'
         options = {"country": "FR", "language": "fr"}
         src = sys.argv[1]
         dst = sys.argv[2]

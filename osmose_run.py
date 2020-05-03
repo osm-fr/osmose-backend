@@ -171,7 +171,6 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 analyser_conf.db_schema = country
             analyser_conf.db_schema_path = conf.db_schema_path
 
-            analyser_conf.dir_scripts = conf.dir_scripts
             analyser_conf.options = conf.analyser_options
             analyser_conf.polygon_id = conf.polygon_id
 
