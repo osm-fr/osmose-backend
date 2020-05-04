@@ -39,7 +39,7 @@ on the  wiki. Add a node or add tags if already existing.'''))
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
             "Base Nationale des Lieux de Stationnement",
             CSV(Source(attribution = "Équipe du Point d'Accès National", millesime = "2020/04/30",
-                    fileUrl = "https://static.data.gouv.fr/resources/base-nationale-des-lieux-de-stationnement/20200430-143152/20200430-bnls.csv", encoding = "charset=unknown-8bit")),
+                    fileUrl = "https://static.data.gouv.fr/resources/base-nationale-des-lieux-de-stationnement/20200430-143152/20200430-bnls.csv")),
             Load("Xlong", "Ylat",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
