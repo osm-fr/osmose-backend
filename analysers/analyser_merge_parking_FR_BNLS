@@ -54,6 +54,7 @@ on the  wiki. Add a node or add tags if already existing.'''))
                     static2 = {
                         "source": self.source},
                     mapping1 = {
+                        "ref:FR:BNLS": "id",
                         "name": "nom",
                         "website": "url",
                         "access": lambda res: "yes" if res["type_usagers"] == "tous" if res["type_usagers"] == "abonnés" else "customers" else None,
