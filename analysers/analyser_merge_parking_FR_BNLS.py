@@ -57,7 +57,7 @@ on the  wiki. Add a node or add tags if already existing.'''))
                         "ref:FR:BNLS": "id",
                         "name": "nom",
                         "website": "url",
-                        "access": lambda res: "yes" if res["type_usagers"] == "tous" if res["type_usagers"] == "abonnés" else "customers" else None,
+                        "access": lambda res: "yes" if res["type_usagers"] == "tous" else "customers" if res["type_usagers"] == "abonnés" else None,
                         "fee": lambda res: "yes" if res["gratuit"] == "0" else "no",
                         "capacity": lambda res: res["nb_places"] if res["nb_places"] != "0" else None,
 			  "capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
