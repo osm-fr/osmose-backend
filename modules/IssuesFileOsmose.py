@@ -37,7 +37,6 @@ class IssuesFileOsmose:
             except Exception as e:
                 print(e)
                 pass
-        self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
     def begin(self):
         if isinstance(self.dst, str):
@@ -50,6 +49,7 @@ class IssuesFileOsmose:
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {})
+        self.geom_type_renderer = {"node": self.outxml.NodeCreate, "way": self.outxml.WayCreate, "relation": self.outxml.RelationCreate, "position": self.position}
 
     def end(self):
         self.outxml.endElement("analysers")
@@ -117,15 +117,6 @@ class IssuesFileOsmose:
                 fix = self.filterfix(res, fixType, fix, geom)
             self.dumpxmlfix(res, fixType, fix)
         self.outxml.endElement("error")
-
-    def node(self, args):
-        self.outxml.NodeCreate(args)
-
-    def way(self, args):
-        self.outxml.WayCreate(args)
-
-    def relation(self, args):
-        self.outxml.RelationCreate(args)
 
     def position(self, args):
         self.outxml.Element("location", {"lat":str(args["lat"]), "lon":str(args["lon"])})
