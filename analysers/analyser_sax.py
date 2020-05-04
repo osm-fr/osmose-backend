@@ -81,11 +81,11 @@ class Analyser_Sax(Analyser):
 
         if self.resume_from_timestamp:
             for id in self.already_issued_objects['N']:
-                self.error_file.node_delete(id)
+                self.error_file.delete('node', id)
             for id in self.already_issued_objects['W']:
-                self.error_file.way_delete(id)
+                self.error_file.delete('way', id)
             for id in self.already_issued_objects['R']:
-                self.error_file.relation_delete(id)
+                self.error_file.delete('relation', id)
 
         self._close_output()
 
@@ -169,7 +169,7 @@ class Analyser_Sax(Analyser):
             if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
-                self.error_file.node_delete(data["id"])
+                self.error_file.delete("node", data["id"])
 
         # Initialisation
         err  = []
@@ -218,7 +218,7 @@ class Analyser_Sax(Analyser):
         self.NodeCreate(data)
 
     def NodeDelete(self, data):
-        self.error_file.node_delete(data["id"])
+        self.error_file.delete("node", data["id"])
 
     ################################################################################
     #### Way parsing
@@ -232,7 +232,7 @@ class Analyser_Sax(Analyser):
             if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
-                self.error_file.way_delete(data["id"])
+                self.error_file.delete("way", data["id"])
 
         # Initialisation
         err  = []
@@ -285,7 +285,7 @@ class Analyser_Sax(Analyser):
         self.WayCreate(data)
 
     def WayDelete(self, data):
-        self.error_file.way_delete(data["id"])
+        self.error_file.delete("way", data["id"])
 
     ################################################################################
     #### Relation parsing
@@ -324,7 +324,7 @@ class Analyser_Sax(Analyser):
             if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
-                self.error_file.relation_delete(data["id"])
+                self.error_file.delete("relation", data["id"])
 
         # Initialisation
         err  = []
@@ -374,7 +374,7 @@ class Analyser_Sax(Analyser):
         self.RelationCreate(data)
 
     def RelationDelete(self, data):
-        self.error_file.relation_delete(data["id"])
+        self.error_file.delete("relation", data["id"])
 
     ################################################################################
 

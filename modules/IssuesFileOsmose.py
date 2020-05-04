@@ -133,15 +133,6 @@ class IssuesFileOsmose:
     def delete(self, t, id):
         self.outxml.Element("delete", {"type": t, "id": str(id)})
 
-    def node_delete(self, id):
-        self.delete("node", id)
-
-    def way_delete(self, id):
-        self.delete("way", id)
-
-    def relation_delete(self, id):
-        self.delete("relation", id)
-
     FixTable = {'~':'modify', '+':'create', '-':'delete'}
 
     def fixdiff(self, fixes):
