@@ -53,7 +53,7 @@ on the  wiki. Add a node or add tags if already existing.'''))
                     types = ["nodes", "ways"],
                     tags = {"amenity": "parking"}),
                 conflationDistance = 200,
-		osmRef = "ref:FR:BNLS",
+		  osmRef = "ref:FR:BNLS",
                 generate = Generate(
                     static1 = {
                         "amenity": "parking"},
