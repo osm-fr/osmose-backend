@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1535197910">
-<class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L35" level="3" tag="addr,fix:survey">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="941820171">
+<class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
@@ -20,7 +20,7 @@
 <classtext lang="zh_CN" title="无效的 addr:housenumber 值" />
 <classtext lang="zh_TW" title="無效的 addr:housenumber 數值" />
 </class>
-<class id="14" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L40" level="3" tag="addr,fix:chair">
+<class id="14" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L38" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="Chybný tag na vložené cestě" />
 <classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
@@ -36,7 +36,7 @@
 <classtext lang="zh_CN" title="插值线路中的标签无效" />
 <detail lang="en" title="Interpolation way only valid with addr:interpolation=* and optional&#10;addr:inclusion=*." />
 </class>
-<class id="15" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L47" level="3" tag="addr,fix:chair">
+<class id="15" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L45" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="Chybná hodnota addr:interpolation nebo addr:inclusion" />
 <classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
@@ -131,7 +131,7 @@
 <fix lang="uk" title="Найчастіше це помилка користувача, який додає кілька разів один&#10;відрізок. Редактор JOSM може легко візуалізувати зв'язки і відобразити&#10;дублікати (в кольорі)." />
 <trap lang="en" title="Double check the ways roles in the relation before deleting.&#10;&#10;Caution: in a route, a path can be taken several times. The multiple&#10;presence of this path in the relation `type=route` is not then an issue.&#10;Then ensure the roles `forward` and `backward`." />
 </class>
-<class id="703" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L35" level="2" tag="name,fix:chair">
+<class id="703" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L34" level="2" tag="name,fix:chair">
 <classtext lang="ca" title="La paraula no es troba al diccionari" />
 <classtext lang="cs" title="Slovo nenalezeno ve slovníku" />
 <classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
@@ -156,7 +156,7 @@
 <fix lang="eu" title="Seguruaski hizki larri bat falta da." />
 <fix lang="uk" title="Ймовірно, пропущена велика літера." />
 </class>
-<class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L37" level="1" tag="value,fix:chair">
+<class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L36" level="1" tag="value,fix:chair">
 <classtext lang="ca" title="Problema de codificació" />
 <classtext lang="cs" title="Chyba kódování" />
 <classtext lang="de" title="Kodierungsproblem" />
@@ -837,7 +837,7 @@
 <classtext lang="uk" title="Протилежний напрям руху на шляху з одним напрямом" />
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
 </class>
-<class id="20601" item="2060" source="http://example.com/plugins/Addr_Interpolation.py#L31" level="3" tag="tag,addr">
+<class id="20601" item="2060" source="http://example.com/plugins/Addr_Interpolation.py#L30" level="3" tag="tag,addr">
 <classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 <classtext lang="es" title="Uso indebido de addr:interpolación en combinación con otras etiquetas" />
 <classtext lang="fr" title="Mauvaise utilisation de “addr:interpolation” en combinaison avec d’autres attributs" />
@@ -2445,7 +2445,7 @@
 <classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
 <classtext lang="fr" title="Les transformateurs devraient avoir un attribut “frequency”" />
 <classtext lang="gl" title="Os transformadores de enerxía teñen que ter unha etiqueta de frecuencia ('frequency')" />
-<classtext lang="hu" title="A transzformátoron kell lennie egy [frequency] címkének " />
+<classtext lang="hu" title="A transzformátoron kell lennie egy [frequency] címkének" />
 <classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
 <classtext lang="pl" title='Stacje transformatorowe powinny mieć tag "frequency"' />
@@ -2477,6 +2477,9 @@
 <classtext lang="pl" title="Niezgodne maxspeed i source:maxspeed" />
 <classtext lang="uk" title="Розбіжність maxspeed та source:maxspeed" />
 <classtext lang="zh_CN" title="矛盾的最大速度和source:maxspeed" />
+</class>
+<class id="316010" item="3160" source="http://example.com/plugins/TagFix_Destination.validator.mapcss" level="3" tag="tag,highway,waterway">
+<classtext lang="en" title="Pipe characters should not be used in destination tag, only in destination:lanes" />
 </class>
 <class id="9000003" item="9000" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/addresses.mapcss" level="3" tag="tag,addr">
 <classtext lang="ca" title="El mateix valor de {0.key} i {1.key}" />
