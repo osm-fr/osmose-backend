@@ -22,10 +22,10 @@
 import bz2
 
 from . import OsmSax
-from .OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
+from .IssuesFile_PolygonFilter import PolygonFilter
 
 
-class ErrorFile:
+class IssuesFileOsmose:
 
     def __init__(self, dst, version = None, polygon_id = None):
         self.dst = dst
@@ -33,7 +33,7 @@ class ErrorFile:
         self.filter = None
         if polygon_id:
             try:
-                self.filter = PolygonErrorFilter(polygon_id)
+                self.filter = PolygonFilter(polygon_id)
             except Exception as e:
                 print(e)
                 pass
@@ -205,7 +205,7 @@ import unittest
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.a = ErrorFile(None)
+        self.a = IssuesFileOsmose(None)
 
     def check(self, b, c):
         import pprint

@@ -124,7 +124,7 @@ class Analyser(object):
 
 ###########################################################################
 import unittest
-from modules import OsmoseErrorFile
+from modules import IssuesFileOsmose
 
 class TestAnalyser(unittest.TestCase):
     @classmethod
@@ -156,7 +156,7 @@ class TestAnalyser(unittest.TestCase):
             verbose = False
             change = False
         analyser_conf = osmose_run.analyser_config(conf, options(), None)
-        analyser_conf.error_file = OsmoseErrorFile.ErrorFile(dst)
+        analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(dst)
 
         return (conf, analyser_conf)
 

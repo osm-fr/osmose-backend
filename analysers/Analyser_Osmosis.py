@@ -524,7 +524,7 @@ WHERE
 
 ###########################################################################
 from .Analyser import TestAnalyser
-from modules import OsmoseErrorFile
+from modules import IssuesFileOsmose
 
 
 class TestAnalyserOsmosis(TestAnalyser):
@@ -609,7 +609,7 @@ class Test(TestAnalyserOsmosis):
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     self.xml_res_file = self.default_xml_res_path + "normal/%s.xml" % name
-                    self.analyser_conf.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+                    self.analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
                         analyser_obj.analyser()
@@ -642,7 +642,7 @@ class Test(TestAnalyserOsmosis):
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     self.xml_res_file = self.default_xml_res_path + "diff_empty/%s.xml" % name
-                    self.analyser_conf.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+                    self.analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
                         analyser_obj.analyser_change()
@@ -678,7 +678,7 @@ class Test(TestAnalyserOsmosis):
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     self.xml_res_file = self.default_xml_res_path + "diff_full/%s.xml" % name
-                    self.analyser_conf.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+                    self.analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
                         analyser_obj.analyser_change()

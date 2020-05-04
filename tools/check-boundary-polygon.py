@@ -25,7 +25,7 @@ from shapely.geometry import MultiPolygon
 
 sys.path.append("..")
 
-from modules import OsmoseErrorFile_ErrorFilter
+from modules import IssuesFile_PolygonFilter
 from modules import downloader
 
 import osmose_config as config
@@ -99,7 +99,7 @@ for country, country_conf in config.config.items():
         if not poly:
             print("Warning(%s): no poly fetched : %s" % (country, country_conf.download['poly']))
         else:
-            polygonFilter = OsmoseErrorFile_ErrorFilter.PolygonErrorFilter(country_conf.polygon_id, cache_delay=1)
+            polygonFilter = IssuesFile_PolygonFilter.PolygonFilter(country_conf.polygon_id, cache_delay=1)
             if not polygonFilter.polygon.is_valid:
                 print("Error(%s) boundary not valid (r_id=%s)" % (country, country_conf.polygon_id))
             if not poly.is_valid:

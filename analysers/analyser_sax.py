@@ -533,7 +533,7 @@ class Analyser_Sax(Analyser):
 
 ################################################################################
 from .Analyser import TestAnalyser
-from modules import OsmoseErrorFile
+from modules import IssuesFileOsmose
 import datetime
 
 class TestAnalyserOsmosis(TestAnalyser):
@@ -581,7 +581,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -594,7 +594,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_resume_full(self):
         # Test with an older timestamp than older object in extract
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_full.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume("2000-01-01T01:01:01Z", {'N': set(), 'W': set(), 'R': set()})
@@ -606,7 +606,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_resume(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume("2012-07-18T11:04:56Z", {'N': set([1]), 'W': set([24552698]), 'R': set()})
@@ -619,7 +619,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_resume_empty(self):
         # Test with an younger timestamp than youngest object in extract
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_empty.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume("2030-01-01T01:01:01Z", {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
@@ -631,7 +631,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_FR(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"country": "FR", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -643,7 +643,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"language": "fr", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -655,7 +655,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_fr_nl(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr_nl.xml")
-        self.config.error_file = OsmoseErrorFile.ErrorFile(self.xml_res_file)
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"language": ["fr", "nl"], "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -678,7 +678,7 @@ if __name__ == "__main__":
     class config:
         options = {"country": "FR", "language": "fr"}
         src = sys.argv[1]
-        error_file = OsmoseErrorFile.ErrorFile(sys.argv[2])
+        error_file = IssuesFileOsmose.IssuesFileOsmose(sys.argv[2])
 
     # Start analyser
     with Analyser_Sax(config()) as analyser_obj:

@@ -23,7 +23,7 @@
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader
-from modules import OsmoseErrorFile
+from modules import IssuesFileOsmose
 import sys
 import os
 import traceback
@@ -193,7 +193,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                     dst_file = name + "-" + conf.country + ".xml"
                     dst_file += ".bz2"
                     dst = os.path.join(conf.dir_results, dst_file)
-                    analyser_conf.error_file = OsmoseErrorFile.ErrorFile(dst, version, analyser_conf.polygon_id)
+                    analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(dst, version, analyser_conf.polygon_id)
 
                     # analyse
                     if not options.skip_analyser:
