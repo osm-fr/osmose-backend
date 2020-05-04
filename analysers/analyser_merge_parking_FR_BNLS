@@ -63,5 +63,5 @@ on the  wiki. Add a node or add tags if already existing.'''))
 			  "capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
 			  "capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
                         "maxheight": lambda res: int(res["hauteur_max"]) / 10 if res["hauteur_max"] != "N/A" else None, ```
-                        "parking": lambda res: "surface" if res["type_ouvrage"] == "enclos_en_surface" else "underground OU en étage" if res["type_ouvrage"] == "ouvrage" else None},
+                        "parking": lambda res: "surface" if res["type_ouvrage"] == "enclos_en_surface" else None},
                     text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
