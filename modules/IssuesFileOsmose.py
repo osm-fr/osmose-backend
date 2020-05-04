@@ -19,33 +19,14 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2
-
 from . import OsmSax
-from .IssuesFile_PolygonFilter import PolygonFilter
+from .IssuesFile import IssuesFile
 
 
-class IssuesFileOsmose:
-
-    def __init__(self, dst, version = None, polygon_id = None):
-        self.dst = dst
-        self.version = version
-        self.filter = None
-        if polygon_id:
-            try:
-                self.filter = PolygonFilter(polygon_id)
-            except Exception as e:
-                print(e)
-                pass
+class IssuesFileOsmose(IssuesFile):
 
     def begin(self):
-        if isinstance(self.dst, str):
-            if self.dst.endswith(".bz2"):
-                output = bz2.BZ2File(self.dst, "w")
-            else:
-                output = open(self.dst, "w")
-        else:
-            output = self.dst
+        output = super().begin()
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {})
@@ -124,43 +105,6 @@ class IssuesFileOsmose:
     def delete(self, t, id):
         self.outxml.Element("delete", {"type": t, "id": str(id)})
 
-    FixTable = {'~':'modify', '+':'create', '-':'delete'}
-
-    def fixdiff(self, fixes):
-        """
-        Normalise fix in e
-        Normal form is [[{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '~':{'k4','v4'}}, {...}]]
-        Array of alternative ways to fix -> Array of fix for objects part of error -> Dict for diff actions -> Dict for tags
-        """
-        if not isinstance(fixes, list):
-            fixes = [[fixes]]
-        elif not isinstance(fixes[0], list):
-            # Default one level array is different way of fix
-            fixes = list(map(lambda x: [x], fixes))
-        return list(map(lambda fix:
-            list(map(lambda f:
-                None if f is None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
-                fix)),
-            fixes))
-
-    def filterfix(self, res, fixesType, fixes, geom):
-        ret_fixes = []
-        for fix in fixes:
-            i = 0
-            for f in fix:
-                if f is not None and i < len(fixesType):
-                    osm_obj = next((x for x in geom[fixesType[i]] if x['id'] == res[i]), None)
-                    if osm_obj:
-                        fix_tags = f['+'].keys() if '+' in f else []
-                        if len(set(osm_obj['tag'].keys()).intersection(fix_tags)) > 0:
-                            # Fix try to override existing tag in object, drop the fix
-                            i = 0
-                            break
-                i += 1
-            if i > 0:
-                ret_fixes.append(fix)
-        return ret_fixes
-
     def dumpxmlfix(self, res, fixesType, fixes):
         self.outxml.startElement("fixes", {})
         for fix in fixes:
@@ -181,27 +125,3 @@ class IssuesFileOsmose:
                 i += 1
             self.outxml.endElement('fix')
         self.outxml.endElement('fixes')
-
-################################################################################
-import unittest
-
-class Test(unittest.TestCase):
-    def setUp(self):
-        self.a = IssuesFileOsmose(None)
-
-    def check(self, b, c):
-        import pprint
-        d = self.a.fixdiff(b)
-        pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(d)
-        self.assertEqual(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
-
-    def test(self):
-        self.check([[None]], [[None]] )
-        self.check({"t": "v"}, [[{"~": {"t": "v"}}]] )
-        self.check({"~": {"t": "v"}}, [[{"~": {"t": "v"}}]] )
-        self.check({"~": {"t": "v"}, "+": {"t": "v"}}, [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
-        self.check([{"~": {"t": "v"}, "+": {"t": "v"}}], [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
-        self.check([{"~": {"t": "v"}}, {"+": {"t": "v"}}], [[{"~": {"t": "v"}}], [{"+": {"t": "v"}}]] )
-        self.check([[{"t": "v"}], [{"t": "v"}]], [[{"~": {"t": "v"}}], [{"~": {"t": "v"}}]] )
-        self.check([[None, {"t": "v"}]], [[None, {"~": {"t": "v"}}]] )
