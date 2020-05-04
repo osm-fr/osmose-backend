@@ -34,6 +34,10 @@ This database is made up of local authorities and is available on data.gouv.fr.'
             fix = T_(
 '''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)
 on the  wiki. Add a node or add tags if already existing.'''))
+        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],
+            title = T_('{0} parking integration suggestion'), 'BNLS')
+        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],
+            title = T_('{0} parking  update'), 'BNLS')
 
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
