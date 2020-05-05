@@ -42,16 +42,6 @@ written in a form actually used.'''),
             title = T_('incoherent maxspeed'))
         self.errors[30325] = self.def_class(item = 3032, level = 2, tags = ['highway', 'ref', 'fix:chair'],
             title = T_('Invalid reference'))
-        self.errors[30326] = self.def_class(item = 2100, level = 3, tags = ['fix:chair'],
-            title = T_('In France all pharmacies deliver drugs under prescription'),
-            detail = T_(
-'''All French pharmacies sell on prescription by a doctor. It require a
-tag `dispensing=yes` in addition to `amenity=pharmacy`.'''),
-            fix = T_(
-'''Add tag `dispensing=yes`.'''),
-            trap = T_(
-'''Chemist shot ("parapharmacie" in French) do not fall into this
-classification. They do not have a specific tag for the moment.'''))
         self.errors[206013] = self.def_class(item = 2060, level = 3, tags = ['addr', 'fix:chair'],
             title = T_('FANTOIR object type not match OSM feature'))
 
@@ -81,9 +71,6 @@ classification. They do not have a specific tag for the moment.'''))
                 err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag"), "fix": {"+": {"school:FR": self.school[matches[0]]}} })
             elif len(matches) > 1:
                 err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag") })
-
-        if tags.get("amenity") == "pharmacy" and tags.get("dispensing") != "yes":
-            err.append({"class": 30326, "subclass": 7, "fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]})
 
         if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
             fantoir_key = tags["ref:FR:FANTOIR"][5]
@@ -144,7 +131,6 @@ class Test(TestPluginCommon):
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "70"},
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
                   {"highway":"trunk", "ref": "3"},
-                  {"amenity":"pharmacy"},
                   {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
                  ]:
             self.check_err(a.way(None, t, None), t)
@@ -181,7 +167,6 @@ class Test(TestPluginCommon):
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "70"},
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
                   {"highway":"trunk", "ref": "3"},
-                  {"amenity":"pharmacy"},
                   {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
                   {"highway":"trunk", "ref": u"D\u20073"},
                   {"school:FR":"maternelle", "ref": u"1989898"},

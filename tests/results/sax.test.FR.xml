@@ -1618,11 +1618,11 @@
 <classtext lang="uk" title="Недійсна характеристика" />
 <classtext lang="zh_CN" title="无效的参考" />
 </class>
-<class id="30326" item="2100" source="http://example.com/plugins/TagFix_MultipleTag_FR.py#L54" level="3" tag="fix:chair">
+<class id="30326" item="2100" source="http://example.com/plugins/TagFix_Pharmacy.py#L32" level="3" tag="fix:chair">
 <classtext lang="ca" title="A França totes les farmàcies dispensen drogues amb prescripció" />
 <classtext lang="cs" title="Ve Francii vydávají všechny lékárny léky na předpis" />
 <classtext lang="de" title="In Frankreich liefern alle Apotheken verschriebene Medikamente" />
-<classtext lang="en" title="In France all pharmacies deliver drugs under prescription" />
+<classtext lang="en" title="In the country all pharmacies deliver drugs under prescription" />
 <classtext lang="es" title="En Francia todas las farmacias entregan drogas bajo prescripción" />
 <classtext lang="fa" title="در فرانسه همهٔ داروخانه‌ها دارو را با نسخه می‌دهند" />
 <classtext lang="fr" title="En France toutes les pharmacies délivrent des médicaments sur prescription" />
@@ -1636,12 +1636,12 @@
 <classtext lang="pt_BR" title="Na França, todas as farmácias entregam remédios sob prescrição" />
 <classtext lang="uk" title="у Франції всі аптеки поставляють ліки за рецептом" />
 <classtext lang="zh_CN" title="在法国所有的药店按处方提供药物" />
-<detail lang="en" title="All French pharmacies sell on prescription by a doctor. It require a&#10;tag `dispensing=yes` in addition to `amenity=pharmacy`." />
+<detail lang="en" title="All pharmacies in the country sell on prescription by a doctor. It requires a&#10;tag `dispensing=yes` in addition to `amenity=pharmacy`." />
 <detail lang="es" title="Todas las farmacias francesas venden con receta médica de un médico. Requiere una&#10;etiqueta `dispensing=yes` además de `amenity=pharmacy`." />
 <fix lang="en" title="Add tag `dispensing=yes`." />
 <fix lang="es" title="Añadir etiqueta `dispensing=yes`." />
 <fix lang="uk" title="Додайте теґ `dispensing=yes`." />
-<trap lang="en" title='Chemist shot ("parapharmacie" in French) do not fall into this&#10;classification. They do not have a specific tag for the moment.' />
+<trap lang="en" title='Chemist shops ("parapharmacie" in French) do not fall into this&#10;classification. They do not have a specific tag for the moment.' />
 </class>
 <class id="30327" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L37" level="2" tag="tag,fix:chair">
 <classtext lang="ca" title="Via d'aigua amb nivell" />
