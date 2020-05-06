@@ -53,7 +53,7 @@ on the  wiki. Add a node or add tags if already existing.'''))
                     types = ["nodes", "ways"],
                     tags = {"amenity": "parking"}),
                 conflationDistance = 200,
-		  osmRef = "ref:FR:BNLS",
+                osmRef = "ref:FR:BNLS",
                 generate = Generate(
                     static1 = {
                         "amenity": "parking"},
@@ -66,8 +66,8 @@ on the  wiki. Add a node or add tags if already existing.'''))
                         "access": lambda res: "yes" if res["type_usagers"] == "tous" else "customers" if res["type_usagers"] == "abonnés" else None,
                         "fee": lambda res: "yes" if res["gratuit"] == "0" else None,
                         "capacity": lambda res: res["nb_places"] if res["nb_places"] != "0" else None,
-			  "capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
-			  "capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
+                        "capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
+                        "capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
                         "maxheight": lambda res: int(res["hauteur_max"]) / 100 if res["hauteur_max"] != "N/A" else None,
                         "parking": lambda res: "surface" if res["type_ouvrage"] == "enclos_en_surface" else None},
                     text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
