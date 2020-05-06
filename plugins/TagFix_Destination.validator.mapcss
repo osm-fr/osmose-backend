@@ -33,9 +33,9 @@ meta[lang=fr] {
 
 /* ways with "|" in destination tag excluding destination:lanes:*  */
 way[highway][destination][destination*="|"],
-way[highway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/],
+way[highway][/^destination:/][!/^destination:lanes/][!/^destination:.*:lanes/][/^destination:/=~/\|/],
 way[waterway][destination][destination*="|"],
-way[waterway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/]
+way[waterway][/^destination:/][!/^destination:lanes/][!/^destination:.*:lanes/][/^destination:/=~/\|/]
 {
     -osmoseItemClassLevel: "3160/316010:0/3";
     throwError: tr("{0} contains a pipe character", "{1.tag}");
@@ -47,6 +47,9 @@ way[waterway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/]
     assertNoMatch: "way highway=primary destination:colour=Red";
     assertNoMatch: "way highway=primary destination:lanes=A8|Centre|Plage";
     assertNoMatch: "way highway=primary destination:lanes:backward=A8|Centre|Plage";
+    assertNoMatch: "way highway=primary destination:ref:lanes=A8|A10|A23";
+    assertNoMatch: "way highway=tertiary destination:ref:to:lanes=A 7|";
+    assertNoMatch: "way highway=tertiary destination:ref:lanes:backward=B 3|B 3";
     assertMatch: "way highway=primary destination=A8|Centre|Plage";
     assertMatch: "way highway=primary destination:colour=Red|Yellow";
 
