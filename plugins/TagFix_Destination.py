@@ -18,6 +18,7 @@ class TagFix_Destination(PluginMapCSS):
         self.re_262d3d80 = re.compile(r'\|')
         self.re_49b44b3d = re.compile(r'^destination:lanes')
         self.re_53d7e349 = re.compile(r'^destination:')
+        self.re_60b51c01 = re.compile(r'^destination:.*:lanes')
 
 
     def way(self, data, tags, nds):
@@ -27,9 +28,9 @@ class TagFix_Destination(PluginMapCSS):
 
 
         # way[highway][destination][destination*="|"]
-        # way[highway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/]
+        # way[highway][/^destination:/][!/^destination:lanes/][!/^destination:.*:lanes/][/^destination:/=~/\|/]
         # way[waterway][destination][destination*="|"]
-        # way[waterway][/^destination:/][!/^destination:lanes/][/^destination:/=~/\|/]
+        # way[waterway][/^destination:/][!/^destination:lanes/][!/^destination:.*:lanes/][/^destination:/=~/\|/]
         if (u'destination' in keys and u'highway' in keys) or (u'destination' in keys and u'waterway' in keys) or (u'highway' in keys) or (u'waterway' in keys):
             match = False
             if not match:
@@ -38,7 +39,7 @@ class TagFix_Destination(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d) and mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349)))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d) and not mapcss._tag_capture(capture_tags, 3, tags, self.re_60b51c01) and mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349)))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -46,7 +47,7 @@ class TagFix_Destination(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') and mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d) and mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349)))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') and mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d) and not mapcss._tag_capture(capture_tags, 3, tags, self.re_60b51c01) and mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349)))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Pipe characters should not be used in destination tag, only in destination:lanes")
@@ -58,8 +59,11 @@ class TagFix_Destination(PluginMapCSS):
                 # assertMatch:"way highway=primary destination:colour=Red|Yellow"
                 # assertNoMatch:"way highway=primary destination:lanes:backward=A8|Centre|Plage"
                 # assertNoMatch:"way highway=primary destination:lanes=A8|Centre|Plage"
+                # assertNoMatch:"way highway=primary destination:ref:lanes=A8|A10|A23"
                 # assertNoMatch:"way highway=primary destination=A8"
                 # assertMatch:"way highway=primary destination=A8|Centre|Plage"
+                # assertNoMatch:"way highway=tertiary destination:ref:lanes:backward=B 3|B 3"
+                # assertNoMatch:"way highway=tertiary destination:ref:to:lanes=A 7|"
                 # assertNoMatch:"way waterway=river destination=East"
                 # assertMatch:"way waterway=river destination=East|West"
                 err.append({'class': 316010, 'subclass': 0, 'text': mapcss.tr(u'{0} contains a pipe character', mapcss._tag_uncapture(capture_tags, u'{1.tag}')), 'allow_fix_override': True, 'fix': {
@@ -88,7 +92,10 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'destination:colour': u'Red|Yellow', u'highway': u'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {u'destination:lanes:backward': u'A8|Centre|Plage', u'highway': u'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {u'destination:lanes': u'A8|Centre|Plage', u'highway': u'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'destination:ref:lanes': u'A8|A10|A23', u'highway': u'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {u'destination': u'A8', u'highway': u'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_err(n.way(data, {u'destination': u'A8|Centre|Plage', u'highway': u'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'destination:ref:lanes:backward': u'B 3|B 3', u'highway': u'tertiary'}, [0]), expected={'class': 316010, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'destination:ref:to:lanes': u'A 7|', u'highway': u'tertiary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {u'destination': u'East', u'waterway': u'river'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_err(n.way(data, {u'destination': u'East|West', u'waterway': u'river'}, [0]), expected={'class': 316010, 'subclass': 0})
