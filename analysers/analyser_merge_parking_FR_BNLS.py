@@ -64,7 +64,7 @@ on the  wiki. Add a node or add tags if already existing.'''))
                         "name": "nom",
                         "website": "url",
                         "access": lambda res: "yes" if res["type_usagers"] == "tous" else "customers" if res["type_usagers"] == "abonnés" else None,
-                        "fee": lambda res: "yes" if res["gratuit"] == "0" else "no",
+                        "fee": lambda res: "yes" if res["gratuit"] == "0" else None,
                         "capacity": lambda res: res["nb_places"] if res["nb_places"] != "0" else None,
 			  "capacity:disabled": lambda res: res["nb_pmr"] if res["nb_pmr"] != "0" else None,
 			  "capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
