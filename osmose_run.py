@@ -24,6 +24,8 @@ from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader
 from modules import IssuesFileOsmose
+from modules import IssuesFileCsv
+from modules import IssuesFileGeoJson
 import sys
 import os
 import traceback
@@ -110,6 +112,25 @@ class analyser_config:
                 self.src_state = os.path.join(conf.download["diff_path"], "state.txt")
 
 
+def issues_file_from_fromat(dst, format, bz2 = False, version = None, polygon_id = None):
+    if format == 'csv':
+        if isinstance(dst, str):
+            dst += '.csv'
+        c = IssuesFileCsv.IssuesFileCsv
+    elif format == 'geojson':
+        if isinstance(dst, str):
+            dst += '.geojson'
+        c = IssuesFileGeoJson.IssuesFileGeoJson
+    else:
+        if isinstance(dst, str):
+            dst += '.xml'
+        c = IssuesFileOsmose.IssuesFileOsmose
+    if bz2 and isinstance(dst, str):
+        dst += '.bz2'
+
+    return c(dst, version, polygon_id)
+
+
 def execc(conf, logger, analysers, options, osmosis_manager):
     err_code = 0
 
@@ -190,10 +211,8 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     analyser_name = name[len("Analyser_"):]
 
-                    dst_file = name + "-" + conf.country + ".xml"
-                    dst_file += ".bz2"
-                    dst = os.path.join(conf.dir_results, dst_file)
-                    analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(dst, version, analyser_conf.polygon_id)
+                    dst = os.path.join(conf.dir_results, name + "-" + conf.country)
+                    analyser_conf.error_file = issues_file_from_fromat(dst, options.result_format, bz2 = True, version = version, polygon_id = analyser_conf.polygon_id)
 
                     # analyse
                     if not options.skip_analyser:
@@ -497,6 +516,10 @@ if __name__ == "__main__":
                       help="Don't upload the analyse result")
     parser.add_option("--no-clean", dest="no_clean", action="store_true",
                       help="Don't remove extract and database after analyses")
+
+    parser.add_option("--result-format", dest="result_format", action="store", default="osmose",
+                      type="choice", choices=["osmose", "csv", "geojson"],
+                      help="Analyser result format. Default 'osmose' XML. For debug purpose can be 'csv' or 'geojson'")
 
     parser.add_option("--cron", dest="cron", action="store_true",
                       help="Record output in a specific log")

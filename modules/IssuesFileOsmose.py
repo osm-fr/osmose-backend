@@ -36,6 +36,7 @@ class IssuesFileOsmose(IssuesFile):
         self.outxml.endElement("analysers")
         self.outxml.endDocument()
         del self.outxml
+        super().end()
 
     def analyser(self, timestamp, analyser_version, change=False):
         self.mode = "analyserChange" if change else "analyser"
