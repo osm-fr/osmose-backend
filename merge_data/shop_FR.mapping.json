@@ -2,6 +2,43 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
+    "class": "10.13B",
+    "level": 3,
+    "title": "Charcuterie",
+    "match": [
+      {
+        "shop": "butcher"
+      },
+      {
+        "shop": "deli"
+      }
+    ],
+    "generate": {
+      "shop": "butcher;deli",
+      "fixme": "select a shop type. Add butcher=pork for a butcher selling mainly pork"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "10.71B",
+    "level": 3,
+    "title": "Cuisson de produits de boulangerie",
+    "match": [
+      {
+        "shop": "bakery"
+      },
+      {
+        "shop": "pastry"
+      }
+    ],
+    "generate": {
+      "shop": "bakery"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
     "class": "10.71C",
     "level": 3,
     "title": "Boulangerie et boulangerie-pâtisserie",
@@ -131,16 +168,56 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
+    "class": "47.11B",
+    "level": 3,
+    "title": "Commerce de détail en magasin non spécialisé à prédominance alimentaire",
+    "match": [
+      {
+        "shop": "convenience"
+      },
+      {
+        "shop" : "farm"
+      },
+      {
+        "shop" : "supermarket"
+      },
+      {
+        "shop" : "greengrocer"
+      },
+      {
+        "shop" : "deli"
+      }
+    ],
+    "generate": {
+      "shop": "convenience;supermarket;greengrocer;farm;deli",
+      "fixme": "select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
     "class": "47.11C",
     "level": 3,
     "title": "Supérettes",
     "match": [
       {
         "shop": "convenience"
+      },
+      {
+        "shop" : "supermarket"
+      },
+      {
+        "shop" : "farm"
+      },
+      {
+        "shop" : "greengrocer"
+      },
+      {
+        "shop" : "deli"
       }
     ],
     "generate": {
-      "shop": "convenience"
+      "shop": "convenience;supermarket;farm;greengrocer;deli"
     }
   },
   {
@@ -258,10 +335,13 @@
       },
       {
         "shop": "chocolate"
+      },
+      {
+        "shop": "confectionery"
       }
     ],
     "generate": {
-      "shop": "bakery;pastry;chocolate",
+      "shop": "bakery;pastry;chocolate;confectionery",
       "fixme": "select a shop type"
     }
   },
@@ -381,10 +461,54 @@
       },
       {
         "shop": "household_linen"
+      },
+      {
+        "shop": "underwear"
+      },
+      {
+        "shop": "sewing"
       }
     ],
     "generate": {
-      "shop": "fabric;wool;household_linen",
+      "shop": "fabric;wool;household_linen;underwear;sewing",
+      "fixme": "select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.52A",
+    "level": 3,
+    "title": "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m²)",
+    "match": [
+      {
+        "shop": "hardware"
+      },
+      {
+        "shop": "doityourself"
+      }
+    ],
+    "generate": {
+      "shop": "hardware;doityourself",
+      "fixme": "select a shop type"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.52B",
+    "level": 3,
+    "title": "Commerce de détail de quincaillerie, peintures et verres en grandes surfaces (400 m² et plus)",
+    "match": [
+      {
+        "shop": "hardware"
+      },
+      {
+        "shop": "doityourself"
+      }
+    ],
+    "generate": {
+      "shop": "hardware;doityourself",
       "fixme": "select a shop type"
     }
   },
@@ -414,11 +538,14 @@
         "shop": "furniture"
       },
       {
-        "shop": "furniture"
+        "shop": "bed"
+      },
+      {
+        "shop": "kitchen"
       }
     ],
     "generate": {
-      "shop": "furniture;kitchen",
+      "shop": "furniture;kitchen;bed",
       "fixme": "select a shop type"
     }
   },
@@ -487,10 +614,13 @@
       },
       {
         "shop": "outdoor"
+      },
+      {
+        "shop": "bicycle"
       }
     ],
     "generate": {
-      "shop": "sports;outdoor",
+      "shop": "sports;outdoor;bicycle",
       "fixme": "select a shop type"
     }
   },
@@ -575,6 +705,25 @@
     ],
     "generate": {
       "amenity": "pharmacy"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "47.74Z",
+    "level": 3,
+    "title": "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé",
+    "match": [
+      {
+        "shop": "hearing_aids"
+      },
+      {
+        "shop": "medical_supply"
+      }
+    ],
+    "generate": {
+      "amenity": "hearing_aids;medical_supply",
+      "fixme": "select a shop type"
     }
   },
   {
@@ -670,6 +819,9 @@
       },
       {
         "books": "antiquarian"
+      },
+      {
+        "second_hand": "yes"
       }
     ],
     "generate": {
@@ -720,6 +872,15 @@
       },
       {
         "amenity": "fast_food"
+      },
+      {
+        "amenity": "bar"
+      },
+      {
+        "amenity": "pub"
+      },
+      {
+        "amenity": "cafe"
       }
     ],
     "generate": {
@@ -780,6 +941,22 @@
     ],
     "generate": {
       "amenity": "cinema"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "68.31Z",
+    "level": 3,
+    "title": "Agences immobilières",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "office": "estate_agent"
+      }
+    ],
+    "generate": {
+      "office": "estate_agent"
     }
   },
   {
@@ -867,6 +1044,24 @@
     "class": "79.11Z",
     "level": 3,
     "title": "Activités des agences de voyage",
+    "match": [
+      {
+        "shop": "travel_agency"
+      },
+      {
+        "office": "travel_agent"
+      }
+    ],
+    "generate": {
+      "shop": "travel_agency"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "79.12Z",
+    "level": 3,
+    "title": "Activités des voyagistes",
     "match": [
       {
         "shop": "travel_agency"
@@ -973,6 +1168,22 @@
   {
     "missing_official": 8310,
     "missing_osm": 7210,
+    "class": "96.01B",
+    "level": 3,
+    "title": "Blanchisserie-teinturerie de détail",
+    "trancheEffectifs": 1,
+    "match": [
+      {
+        "shop": "laundry"
+      }
+    ],
+    "generate": {
+      "shop": "laundry"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
     "class": "96.02A",
     "level": 3,
     "title": "Coiffure",
@@ -1015,6 +1226,29 @@
     ],
     "generate": {
       "shop": "funeral_directors"
+    }
+  },
+  {
+    "missing_official": 8310,
+    "missing_osm": 7210,
+    "class": "96.04Z",
+    "level": 3,
+    "title": "Entretien corporel",
+    "match": [
+      {
+        "shop": "beauty"
+      },
+      {
+        "amenity": "swingerclub"
+      },
+      {
+        "shop": "massage"
+      }
+    ],
+    "generate":
+    {
+      "shop": "beauty;massage",
+      "fixme": "Select an amenity type. Use amenity=swingerclub for swinger clubs (club libertin)"
     }
   }
 ]
