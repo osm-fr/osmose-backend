@@ -23,6 +23,7 @@
 import json
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from modules import reaccentue
 
 
 class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
@@ -79,5 +80,5 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                         #    "-".join([fields["DDEBACT"][0:4], fields["DDEBACT"][4:6], fields["DDEBACT"][6:8]]) if fields["DDEBACT"] != "19000101" else
                         #    "-".join([fields["DCRET"][0:4], fields["DCRET"][4:6], fields["DCRET"][6:8]]) if fields["DCRET"] != "19000101" else
                         #    None,
-                        "name": lambda fields: fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"] or None},
+                        "name": lambda fields: reaccentue.reaccentue(fields["enseigne1Etablissement"]) if fields["enseigne1Etablissement"] else (reaccentue.reaccentue(fields["denominationUsuelleEtablissement"]) if fields["denominationUsuelleEtablissement"] else None)},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda f: f and f != 'None', [fields["enseigne1Etablissement"] or fields["denominationUsuelleEtablissement"]] + list(map(lambda k: fields[k], ["numeroVoieEtablissement", "indiceRepetitionEtablissement", "typeVoieEtablissement", "libelleVoieEtablissement", "complementAdresseEtablissement", "codePostalEtablissement", "libelleCommuneEtablissement"]))))} )))

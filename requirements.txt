@@ -8,6 +8,7 @@ lark-parser >=  0.6, < 0.7
 requests
 transporthours
 pyproj >= 2.1.0
+Unidecode
 
 # Tests
 pytest

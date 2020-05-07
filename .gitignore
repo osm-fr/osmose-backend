@@ -2,4 +2,5 @@
 tests/out/
 po/josm/josm_trans/
 docker/work
-
+env/
+modules/osm_pbf_parser/osm_pbf_parser.so
