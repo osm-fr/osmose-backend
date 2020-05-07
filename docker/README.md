@@ -64,6 +64,13 @@ backend and frontend. In develop mode the backend can run an analysis and
 send the results to the local frontend without requiring extra
 configuration or upload password.
 
+Build with develop tools
+------------------------
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml build
+```
+
 Start Docker Backend container
 ------------------------------
 

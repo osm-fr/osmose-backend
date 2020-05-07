@@ -1,5 +1,1 @@
-pytest
-xmltodict
-termcolor
 antlr4-python3-runtime
-pylama
