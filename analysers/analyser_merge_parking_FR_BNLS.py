@@ -41,7 +41,6 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
                 trap = T_(
 '''It is not because there is an integration suggestion that it is right, you are an OSM contributor and not an integration machine.'''),
             doc4 = dict(
-                title = T_('Update'),
                 detail = T_(
 ''''This is an update suggestion because there is the same ref in opendatabase and OSM.'''),
                 fix = T_(
