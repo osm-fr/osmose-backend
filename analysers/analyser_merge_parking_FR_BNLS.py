@@ -24,21 +24,43 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 
 class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
-    def __init__(self, config, logger = None):
+    def __init__(self, config, logger = None):        
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
+               doc = dict(
+            title = T_('Opendata'),
+            detail = T_(
+''''This is a data from an opendatabase, without any verification'''),
+            fix = T_(
+'''If you're sure that it's a new data for OpenStreetMap, then you can add it with your favorite editor (picture of Id, josm link ?)'''),
+            trap = T_(
+'''It's not because it's open that it's right,see it's because it's opendata that OSM contributors needs to check '''))
+            
+        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
 '''This parking is referenced in the database of car parks managed by local authorities in France, off-street.
 This database is made up of local authorities and is available on data.gouv.fr.'''),
             fix = T_(
 '''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)
-on the  wiki. Add a node or add tags if already existing.'''))
-        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],
-            title = T_f('{0} parking integration suggestion', 'BNLS'))
-        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],
+on the  wiki. Add a node or add tags if already existing.'''),
+            trap = T_(
+'''lorem ipsum trap not integrated''')),
+        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
+            title = T_f('{0} parking integration suggestion', 'BNLS'),
+            detail = T_(
+'''lorem ipsum specific explanation for integration suggestion for specific opendata base'''),
+            fix = T_(
+'''lorem ipsum, How to fix for integration suggestion for specific opendata base'''),
+            trap = T_(
+'''lorem ipsum trap for integration suggestion for specific opendata base''')),
+        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
             title = T_f('{0} parking  update', 'BNLS'))
-
+            detail = T_(
+'''lorem ipsum specific explanation about update for specific opendata base'''),
+            fix = T_(
+'''lorem ipsum, How to fix about update for specific opendata base'''),
+            trap = T_(
+'''lorem ipsum trap about update for specific opendata base''')),
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
             "Base Nationale des Lieux de Stationnement",
