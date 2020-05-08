@@ -69,49 +69,7 @@
   },
   {
     "categories": [
-      "128",
-      "129",
-      "142",
-      "143",
-      "156",
-      "161",
-      "223",
-      "268",
-      "269",
-      "270",
-      "294",
-      "347",
-      "362",
-      "365",
-      "366",
-      "412",
-      "415",
-      "425",
-      "430",
-      "433",
-      "438",
-      "444",
-      "604",
-      "636"
-    ],
-    "items": [
-      8400
-    ],
-    "missing_osm": false,
-    "classes": 20,
-    "level": 3,
-    "title": "Établissements de soins autres que les hôpitaux",
-    "tags_select": {
-      "healthcare": "yes"
-    },
-    "tags_generate1": {},
-    "tags_generate2": {
-      "healthcare": "yes"
-    }
-  },
-  {
-    "categories": [
-	"603"
+      "603"
     ],
     "items": [
       8400
