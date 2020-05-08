@@ -52,7 +52,7 @@ on the  wiki. Add a node or add tags if already existing.'''),
             fix = T_(
 '''lorem ipsum, How to fix for integration suggestion for specific opendata base'''),
             trap = T_(
-'''lorem ipsum trap for integration suggestion for specific opendata base''')),
+'''lorem ipsum trap for integration suggestion for specific opendata base'''))),
         self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
             title = T_f('{0} parking  update', 'BNLS'))
             detail = T_(
