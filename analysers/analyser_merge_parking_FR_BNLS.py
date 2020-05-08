@@ -68,7 +68,7 @@ on the  wiki. Add a node or add tags if already existing.'''),
 '''lorem ipsum, How to fix for integration suggestion for specific opendata base'''),
             trap = T_(
 '''lorem ipsum trap for integration suggestion for specific opendata base'''))),
-        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
+        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc4,
             title = T_f('{0} parking  update', 'BNLS'))
             detail = T_(
 '''lorem ipsum specific explanation about update for specific opendata base'''),
