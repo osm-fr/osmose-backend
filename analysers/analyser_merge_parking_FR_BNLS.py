@@ -34,7 +34,6 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
                 trap = T_(
 '''It is not because it is open that it is good data, see it is because it is opendata that OSM contributors needs to check.'''),
             doc3 = dict(
-                title = T_('Integration suggestion'),
                 detail = T_(
 ''''This is a integration suggestion, mixing opendatabase and OpenStreetMap.'''),
                 fix = T_(
