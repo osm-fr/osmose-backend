@@ -34,7 +34,6 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 '''If you're sure that it's a new data for OpenStreetMap, then you can add it with your favorite editor (picture of Id, josm link ?)'''),
             trap = T_(
 '''It's not because it's open that it's right,see it's because it's opendata that OSM contributors needs to check '''))
-            
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
