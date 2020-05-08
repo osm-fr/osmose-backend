@@ -60,7 +60,7 @@ This database is made up of local authorities and is available on data.gouv.fr.'
 on the  wiki. Add a node or add tags if already existing.'''),
             trap = T_(
 '''lorem ipsum trap not integrated'''))),
-        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
+        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc3,
             title = T_f('{0} parking integration suggestion', 'BNLS'),
             detail = T_(
 '''lorem ipsum specific explanation for integration suggestion for specific opendata base'''),
