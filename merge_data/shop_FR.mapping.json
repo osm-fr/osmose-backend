@@ -176,16 +176,16 @@
         "shop": "convenience"
       },
       {
-        "shop" : "farm"
+        "shop": "farm"
       },
       {
-        "shop" : "supermarket"
+        "shop": "supermarket"
       },
       {
-        "shop" : "greengrocer"
+        "shop": "greengrocer"
       },
       {
-        "shop" : "deli"
+        "shop": "deli"
       }
     ],
     "generate": {
@@ -204,16 +204,16 @@
         "shop": "convenience"
       },
       {
-        "shop" : "supermarket"
+        "shop": "supermarket"
       },
       {
-        "shop" : "farm"
+        "shop": "farm"
       },
       {
-        "shop" : "greengrocer"
+        "shop": "greengrocer"
       },
       {
-        "shop" : "deli"
+        "shop": "deli"
       }
     ],
     "generate": {
@@ -409,6 +409,9 @@
       },
       {
         "shop": "video_games"
+      },
+      {
+        "shop": "mobile_phone"
       }
     ],
     "generate": {
@@ -741,6 +744,9 @@
       },
       {
         "shop": "chemist"
+      },
+      {
+        "shop": "beauty"
       }
     ],
     "generate": {
@@ -1245,8 +1251,7 @@
         "shop": "massage"
       }
     ],
-    "generate":
-    {
+    "generate": {
       "shop": "beauty;massage",
       "fixme": "Select an amenity type. Use amenity=swingerclub for swinger clubs (club libertin)"
     }
