@@ -50,7 +50,7 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 '''If you're sure that it's a good update then you can add it with your favorite editor (picture of Id, josm link ?)'''),
             trap = T_(
 '''It's not because there's a update suggestion that it's right, you're OSM contributors and not a machine !''')
-        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc,
+        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc1,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
 '''This parking is referenced in the database of car parks managed by local authorities in France, off-street.
