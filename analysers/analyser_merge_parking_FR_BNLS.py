@@ -27,7 +27,6 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
             doc1 = dict(
-                title = T_('Opendata'),
                 detail = T_(
 ''''This is a data from an opendatabase, without any verification'''),
                 fix = T_(
