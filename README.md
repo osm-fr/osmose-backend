@@ -1,21 +1,21 @@
-# Backend part of Osmose QA tool
+# Backend part of the Osmose QA tool
 
 ![Build Status](https://api.travis-ci.com/osm-fr/osmose-backend.svg?branch=master)
 
 This is the part of [Osmose](http://osmose.openstreetmap.fr) which analyses OSM
-and send results to frontend. This works as following:
+and sends the results to the frontend. This works as follows:
 
-  - an .osm.pbf extract is downloaded
-  - analyses are run directly on .osm.pbf file, or on the database
-  - analyses results are uploaded to the frontend
-  - by default, database is purged
+  - an .osm.pbf extraction is downloaded
+  - analyses are run directly on the .osm.pbf file, or on the database
+  - results of the analyses are uploaded to the frontend
+  - by default, the database is purged
 
-Analysers can be build on many ways:
+Analysers can be build in many ways:
 
   - With [MapCSS](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) rules validating each OSM objects: [plugins/*.mapcss](plugins) and JOSM MapCSS [core](https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/) and some [contrib](https://josm.openstreetmap.de/wiki/Rules) rules.
   - With Python code validating each OSM objects: [plugins](plugins).
-  - With SQL/PostGIS queries on Osmosis database: [analysers/analyser_osmosis_*.py](analysers).
-  - By configuring a OpenData and OSM objects comparator: [analysers/analyser_merge_*.py](analysers).
+  - With SQL/PostGIS queries on the Osmosis database: [analysers/analyser_osmosis_*.py](analysers).
+  - By configuring a comparator of OpenData and OSM objects: [analysers/analyser_merge_*.py](analysers).
 
 ## Installation
 
@@ -37,4 +37,4 @@ Setup a Docker install and follow the
 "[Develop on Osmose with docker](docker/README.md#develop-on-osmose-with-docker)"
 guide.
 
-Read the additional contribution [guildelines](CONTRIBUTING.md).
+Read the additional contribution [guidelines](CONTRIBUTING.md).

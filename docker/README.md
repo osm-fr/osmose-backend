@@ -22,8 +22,8 @@ docker-compose build
 ```
 
 
-Running a country alone
-=======================
+Running on a single country
+===========================
 
 The `./work` directory on your host must to be writable by anyone, as the
 `osmose` user in the container will have some random UID (probably 1000).
@@ -32,7 +32,7 @@ chmod a+w ./work
 ```
 
 Taking the Comoros (a quick and small one) as an example, once you have
-the docker image, you can run Osmose analysers with this:
+the docker image, you can run Osmose analysers like this:
 ```
 docker-compose --project-name comoros run --rm backend ./osmose_run.py --country=comoros
 docker-compose --project-name comoros down # Destroy the loaded data base
@@ -40,16 +40,16 @@ docker-compose --project-name comoros down # Destroy the loaded data base
 
 This will run interactively and you will see the output scrolling on your
 screen. The container will be deleted at the end of the process. All
-dowloaded and output data will be saved in the `./work` directory.
+downloaded and output data will be saved in the `./work` directory.
 
-To run with a password file and enable result to be uploaded to the
+To run with a password file and enable results to be uploaded to the
 frontend you must adapt `osmose_config_password.py`.
 
 
-Tunning
-=======
+Tuning
+======
 
-The database configuration can be tunned using the SQL in environment
+The database configuration can be tuned using the SQL in the environment
 variable `POSTGRESQL_POSTCREATION`. It is executed at startup by the
 postgres user.
 
@@ -67,7 +67,7 @@ configuration or upload password.
 Start Docker Backend container
 ------------------------------
 
-On first time only:
+At the  first time only:
 ```
 chmod a+w ../modules/osm_pbf_parser/
 ```
@@ -77,18 +77,18 @@ Enter the container with:
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 ```
 
-On first time only, compile the OSM PBF parser:
+At the first time only, compile the OSM PBF parser:
 ```
 cd modules/osm_pbf_parser/ && make && cd -
 ```
 
-Note: when exiting the backend, the dependency containers will still
+Note: when exiting the backend, the dependency containers will still be
 running. You can stop them with `docker-compose stop`.
 
 Running the analysis
 --------------------
 
-From docker container you can test analyser:
+From docker container you can test analysers:
 ```
 ./osmose_run.py --no-clean --country=comoros --analyser=osmosis_highway_floating_islands
 ```
@@ -98,7 +98,7 @@ For running one plugin only use:
 ./osmose_run.py --no-clean --country=comoros --analyser=sax --plugin=Name_Multiple
 ```
 
-Wait for the end of the process, depends on the area, but it may be long
+The execution time of the process, depending on the area, may be long
 or longer:
 ```
 [...]
@@ -107,13 +107,13 @@ or longer:
 2018-01-25 20:19:04 end of analyses
 ```
 
-The results files will be at `./work/results`.
+The files containing the results will be in `./work/results`.
 
-To debug, stay on container, edit the pyhton files from outside, then run
+To debug, stay on container, edit the python files from the outside, then run
 again `osmose-run`. You can add the option `--skip-init` to speedup.
 
-Showing the result on the Osmose Frontend Map
----------------------------------------------
+Showing the results on the Osmose Frontend Map
+----------------------------------------------
 
 Quick Osmose Frontend setup:
 ```
@@ -124,11 +124,11 @@ docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose-test.yml up
 ```
 
-For a detailed procedure see
+For a detailed description of the procedure see
 https://github.com/osm-fr/osmose-frontend/tree/master/docker
 
 
-To uploaded analysis results to the frontend use:
+To upload the results of the analysis to the frontend use:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
 ```

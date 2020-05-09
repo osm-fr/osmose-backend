@@ -2,13 +2,12 @@
 
 When contributing to this repository, please first discuss the change you
 wish to make via an issue on github if you want to change the core. Feel
-free to make direct pull request for a new analyzer.
+free to make direct pull request for adding a new analyzer.
 
-## Code Style
+## Coding Style
 
-There is no written rules about this project or any specific code style.
-But please try to make the code similar to code already existing.
-
+There are no written rules about this project or any specific coding style.
+However, please try to make the code similar to the already existing code.
 
 ## Fetching josm translations
 
@@ -23,4 +22,4 @@ bzr checkout --lightweight lp:~openstreetmap/josm/josm_trans
 
 When you have configured the backend for the country you want to add, please
 send an email to osmose-contact@openstreetmap.fr. We will then send you the
-password to use to connect to the frontend.
+password that you should use to connect to the frontend.
