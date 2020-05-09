@@ -19,46 +19,32 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2
-
 from . import OsmSax
-from .OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
+from .IssuesFile import IssuesFile
 
 
-class ErrorFile:
-
-    def __init__(self, config):
-        self.config = config
-        self.filter = None
-        if config.polygon_id:
-            try:
-                self.filter = PolygonErrorFilter(config.polygon_id)
-            except Exception as e:
-                print(e)
-                pass
-        self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
+class IssuesFileOsmose(IssuesFile):
 
     def begin(self):
-        if self.config.dst.endswith(".bz2"):
-            output = bz2.BZ2File(self.config.dst, "w")
-        else:
-            output = open(self.config.dst, "w")
+        output = super().begin()
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {})
+        self.geom_type_renderer = {"node": self.outxml.NodeCreate, "way": self.outxml.WayCreate, "relation": self.outxml.RelationCreate, "position": self.position}
 
     def end(self):
         self.outxml.endElement("analysers")
         self.outxml.endDocument()
         del self.outxml
+        super().end()
 
     def analyser(self, timestamp, analyser_version, change=False):
         self.mode = "analyserChange" if change else "analyser"
         attrs = {}
         attrs["timestamp"] = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
         attrs["analyser_version"] = str(analyser_version)
-        if hasattr(self.config, "version") and self.config.version is not None:
-            attrs["version"] = self.config.version
+        if self.version is not None:
+            attrs["version"] = self.version
         self.outxml.startElement(self.mode, attrs)
 
     def analyser_end(self):
@@ -114,66 +100,11 @@ class ErrorFile:
             self.dumpxmlfix(res, fixType, fix)
         self.outxml.endElement("error")
 
-    def node(self, args):
-        self.outxml.NodeCreate(args)
-
-    def way(self, args):
-        self.outxml.WayCreate(args)
-
-    def relation(self, args):
-        self.outxml.RelationCreate(args)
-
     def position(self, args):
         self.outxml.Element("location", {"lat":str(args["lat"]), "lon":str(args["lon"])})
 
     def delete(self, t, id):
         self.outxml.Element("delete", {"type": t, "id": str(id)})
-
-    def node_delete(self, id):
-        self.delete("node", id)
-
-    def way_delete(self, id):
-        self.delete("way", id)
-
-    def relation_delete(self, id):
-        self.delete("relation", id)
-
-    FixTable = {'~':'modify', '+':'create', '-':'delete'}
-
-    def fixdiff(self, fixes):
-        """
-        Normalise fix in e
-        Normal form is [[{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '~':{'k4','v4'}}, {...}]]
-        Array of alternative ways to fix -> Array of fix for objects part of error -> Dict for diff actions -> Dict for tags
-        """
-        if not isinstance(fixes, list):
-            fixes = [[fixes]]
-        elif not isinstance(fixes[0], list):
-            # Default one level array is different way of fix
-            fixes = list(map(lambda x: [x], fixes))
-        return list(map(lambda fix:
-            list(map(lambda f:
-                None if f is None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
-                fix)),
-            fixes))
-
-    def filterfix(self, res, fixesType, fixes, geom):
-        ret_fixes = []
-        for fix in fixes:
-            i = 0
-            for f in fix:
-                if f is not None and i < len(fixesType):
-                    osm_obj = next((x for x in geom[fixesType[i]] if x['id'] == res[i]), None)
-                    if osm_obj:
-                        fix_tags = f['+'].keys() if '+' in f else []
-                        if len(set(osm_obj['tag'].keys()).intersection(fix_tags)) > 0:
-                            # Fix try to override existing tag in object, drop the fix
-                            i = 0
-                            break
-                i += 1
-            if i > 0:
-                ret_fixes.append(fix)
-        return ret_fixes
 
     def dumpxmlfix(self, res, fixesType, fixes):
         self.outxml.startElement("fixes", {})
@@ -195,30 +126,3 @@ class ErrorFile:
                 i += 1
             self.outxml.endElement('fix')
         self.outxml.endElement('fixes')
-
-################################################################################
-import unittest
-
-class Test(unittest.TestCase):
-    def setUp(self):
-
-        class config:
-            polygon_id = None
-        self.a = ErrorFile(config)
-
-    def check(self, b, c):
-        import pprint
-        d = self.a.fixdiff(b)
-        pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(d)
-        self.assertEqual(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
-
-    def test(self):
-        self.check([[None]], [[None]] )
-        self.check({"t": "v"}, [[{"~": {"t": "v"}}]] )
-        self.check({"~": {"t": "v"}}, [[{"~": {"t": "v"}}]] )
-        self.check({"~": {"t": "v"}, "+": {"t": "v"}}, [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
-        self.check([{"~": {"t": "v"}, "+": {"t": "v"}}], [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
-        self.check([{"~": {"t": "v"}}, {"+": {"t": "v"}}], [[{"~": {"t": "v"}}], [{"+": {"t": "v"}}]] )
-        self.check([[{"t": "v"}], [{"t": "v"}]], [[{"~": {"t": "v"}}], [{"~": {"t": "v"}}]] )
-        self.check([[None, {"t": "v"}]], [[None, {"~": {"t": "v"}}]] )

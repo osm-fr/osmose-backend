@@ -31,11 +31,11 @@ The `./work` directory on your host must to be writable by anyone, as the
 chmod a+w ./work
 ```
 
-Taking the Comoros (a quick and small one) as an example, once you have
+Taking the Monaco (a quick and small one) as an example, once you have
 the docker image, you can run Osmose analysers like this:
 ```
-docker-compose --project-name comoros run --rm backend ./osmose_run.py --country=comoros
-docker-compose --project-name comoros down # Destroy the loaded data base
+docker-compose --project-name monaco run --rm backend ./osmose_run.py --country=monaco
+docker-compose --project-name monaco down # Destroy the loaded data base
 ```
 
 This will run interactively and you will see the output scrolling on your
@@ -53,21 +53,29 @@ The database configuration can be tuned using the SQL in the environment
 variable `POSTGRESQL_POSTCREATION`. It is executed at startup by the
 postgres user.
 
+
 Develop on Osmose with docker
 =============================
 
-Overview
---------
+* A Backend alone with the **Jupyter** web editor and visualizer can be
+used.
+* Alternatively, with docker-compose you can run a **full development
+environment** with backend and frontend. In develop mode the Backend can
+run an analysis and send the results to the local Frontend without
+requiring extra configuration or upload password.
 
-With docker-compose you can run a full development environment with
-backend and frontend. In develop mode the backend can run an analysis and
-send the results to the local frontend without requiring extra
-configuration or upload password.
 
-Start Docker Backend container
-------------------------------
+## Build the develop tools
 
-At the  first time only:
+Build the docker image with develop tools included:
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml build
+```
+
+
+## Start Docker Backend container
+
+At the first time only:
 ```
 chmod a+w ../modules/osm_pbf_parser/
 ```
@@ -82,28 +90,76 @@ At the first time only, compile the OSM PBF parser:
 cd modules/osm_pbf_parser/ && make && cd -
 ```
 
-Note: when exiting the backend, the dependency containers will still be
+Note: when exiting the backend, the dependency Database container will still be
 running. You can stop them with `docker-compose stop`.
 
-Running the analysis
---------------------
+
+## Access to the Database
+
+After data load (see later) the Database will contain the OSM data. You
+can enter to explore and test SQL directly. Open a psql shell on database
+from within the Backend container with:
+```sh
+psql -h postgis
+```
+
+Then on Postgres shell:
+```
+osmose=> set search_path to monaco,public;
+```
+
+You can Reset the Database and the docker containers with:
+```
+docker-compose down -v
+```
+
+
+## Alternative 1: Develop with Jupyter
+
+Download and load a country into the Database:
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 --rm backend ./osmose_run.py --no-clean --country=monaco --skip-analyser --skip-upload
+```
+You does not need to load the country each time. It saves in the Database.
+
+
+Then run the jupyter-notebook web server:
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 --rm backend jupyter-notebook --ip=0.0.0.0 --notebook-dir docker/jupyter
+```
+Note the `8888:8888`, which expose the port `8888` to localhost.
+
+Follow the displayed link on http://localhost:8888/...
+
+
+Start by reading the index documentation, and copy template to test your
+own analyzer code.
+
+
+## Alternative 2: Develop with Full environment
 
 From docker container you can test analysers:
+>>>>>>> 0e583394... Add Jupyter support and Plugin notebook #859
 ```
-./osmose_run.py --no-clean --country=comoros --analyser=osmosis_highway_floating_islands
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
+```
+
+From docker container you can test analyzer:
+```
+./osmose_run.py --no-clean --country=monaco --analyser=osmosis_highway_floating_islands
 ```
 
 For running one plugin only use:
 ```
-./osmose_run.py --no-clean --country=comoros --analyser=sax --plugin=Name_Multiple
+./osmose_run.py --no-clean --country=monaco --analyser=sax --plugin=Name_Multiple
 ```
 
 The execution time of the process, depending on the area, may be long
 or longer:
 ```
 [...]
-2018-01-25 20:19:04   DROP SCHEMA comoros
-2018-01-25 20:19:04   DROP SCHEMA IF EXISTS comoros CASCADE;
+2018-01-25 20:19:04   DROP SCHEMA monaco
+2018-01-25 20:19:04   DROP SCHEMA IF EXISTS monaco CASCADE;
 2018-01-25 20:19:04 end of analyses
 ```
 
@@ -112,8 +168,7 @@ The files containing the results will be in `./work/results`.
 To debug, stay on container, edit the python files from the outside, then run
 again `osmose-run`. You can add the option `--skip-init` to speedup.
 
-Showing the results on the Osmose Frontend Map
-----------------------------------------------
+### Showing the results on the Osmose Frontend Map
 
 Quick Osmose Frontend setup:
 ```
@@ -134,19 +189,3 @@ docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose
 ```
 
 The result will be available at: http://localhost:20009/map?useDev=all
-
-
-Access the database
--------------------
-
-After running `osmose_run.py` with `--no-clean` the data base will
-contain the OSM data. You can enter to explore and test SQL directly.
-Open a psql shell on database from within the backend container:
-```sh
-psql -h postgis
-```
-
-Then
-```
-osmose=> set search_path to comoros,public;
-```

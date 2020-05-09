@@ -25,6 +25,7 @@ from .Analyser import Analyser
 import sys
 import os
 import importlib
+import modules.config
 from modules import OsmoseLog
 from functools import reduce
 
@@ -54,7 +55,7 @@ class Analyser_Sax(Analyser):
 
     def analyser(self):
         if self.config.plugins:
-            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin(plugin), self.config.plugins)))
         else:
             plugins = self._load_all_plugins()
         self._init_plugins(plugins)
@@ -71,7 +72,7 @@ class Analyser_Sax(Analyser):
 
         self.config.timestamp = self.timestamp()
         if self.config.plugins:
-            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin_from_name(plugin), self.config.plugins)))
+            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin(plugin), self.config.plugins)))
         else:
             plugins = self._load_all_plugins()
         self._init_plugins(plugins)
@@ -80,11 +81,11 @@ class Analyser_Sax(Analyser):
 
         if self.resume_from_timestamp:
             for id in self.already_issued_objects['N']:
-                self.error_file.node_delete(id)
+                self.error_file.delete('node', id)
             for id in self.already_issued_objects['W']:
-                self.error_file.way_delete(id)
+                self.error_file.delete('way', id)
             for id in self.already_issued_objects['R']:
-                self.error_file.relation_delete(id)
+                self.error_file.delete('relation', id)
 
         self._close_output()
 
@@ -92,7 +93,7 @@ class Analyser_Sax(Analyser):
     #### Useful functions
 
     def ToolsGetFilePath(self, filename):
-        return os.path.join(self.config.dir_scripts, filename)
+        return os.path.join(modules.config.dir_osmose, filename)
 
     def ToolsOpenFile(self, filename, mode):
         return open(self.ToolsGetFilePath(filename), mode, encoding="utf-8")
@@ -168,7 +169,7 @@ class Analyser_Sax(Analyser):
             if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
-                self.error_file.node_delete(data["id"])
+                self.error_file.delete("node", data["id"])
 
         # Initialisation
         err  = []
@@ -217,7 +218,7 @@ class Analyser_Sax(Analyser):
         self.NodeCreate(data)
 
     def NodeDelete(self, data):
-        self.error_file.node_delete(data["id"])
+        self.error_file.delete("node", data["id"])
 
     ################################################################################
     #### Way parsing
@@ -231,7 +232,7 @@ class Analyser_Sax(Analyser):
             if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
-                self.error_file.way_delete(data["id"])
+                self.error_file.delete("way", data["id"])
 
         # Initialisation
         err  = []
@@ -284,7 +285,7 @@ class Analyser_Sax(Analyser):
         self.WayCreate(data)
 
     def WayDelete(self, data):
-        self.error_file.way_delete(data["id"])
+        self.error_file.delete("way", data["id"])
 
     ################################################################################
     #### Relation parsing
@@ -323,7 +324,7 @@ class Analyser_Sax(Analyser):
             if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
-                self.error_file.relation_delete(data["id"])
+                self.error_file.delete("relation", data["id"])
 
         # Initialisation
         err  = []
@@ -373,7 +374,7 @@ class Analyser_Sax(Analyser):
         self.RelationCreate(data)
 
     def RelationDelete(self, data):
-        self.error_file.relation_delete(data["id"])
+        self.error_file.delete("relation", data["id"])
 
     ################################################################################
 
@@ -420,11 +421,13 @@ class Analyser_Sax(Analyser):
 
     ################################################################################
 
-    def _load_plugin_from_name(self, name):
-        module = importlib.import_module('plugins.' + name)
-        classes = getattr(module, 'available_plugin_classes', [name])
-        return list(map(lambda clazz: getattr(module, clazz), classes))
-
+    def _load_plugin(self, plugin):
+        if isinstance(plugin, str):
+            module = importlib.import_module('plugins.' + plugin)
+            classes = getattr(module, 'available_plugin_classes', [plugin])
+            return list(map(lambda clazz: getattr(module, clazz), classes))
+        else:
+            return [plugin]
 
     def _load_all_plugins(self):
         self._log(u"Loading plugins")
@@ -434,7 +437,7 @@ class Analyser_Sax(Analyser):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]
-            available_plugins += self._load_plugin_from_name(pluginName)
+            available_plugins += self._load_plugin(pluginName)
 
         return available_plugins
 
@@ -530,6 +533,7 @@ class Analyser_Sax(Analyser):
 
 ################################################################################
 from .Analyser import TestAnalyser
+from modules import IssuesFileOsmose
 import datetime
 
 class TestAnalyserOsmosis(TestAnalyser):
@@ -554,12 +558,10 @@ class TestAnalyserOsmosis(TestAnalyser):
     def setUp(self):
 
         class config:
-            dir_scripts = '.'
             options = {"project": "openstreetmap"}
             src = "tests/saint_barthelemy.osm.gz"
             src_state = "tests/saint_barthelemy.state.txt"
-            dst = None
-            polygon_id = None
+            error_file = None
             reader = TestAnalyserOsmosis.MockupReader()
             source_url = 'http://example.com'
             plugins = []
@@ -579,7 +581,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -592,7 +594,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_resume_full(self):
         # Test with an older timestamp than older object in extract
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_full.xml")
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume("2000-01-01T01:01:01Z", {'N': set(), 'W': set(), 'R': set()})
@@ -604,7 +606,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_resume(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume.xml")
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume("2012-07-18T11:04:56Z", {'N': set([1]), 'W': set([24552698]), 'R': set()})
@@ -617,7 +619,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_resume_empty(self):
         # Test with an younger timestamp than youngest object in extract
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_empty.xml")
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser_resume("2030-01-01T01:01:01Z", {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
@@ -628,10 +630,8 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.check_num_err(min=0, max=0)
 
     def test_FR(self):
-        from modules import config
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
-        self.xml_res_file = config.dir_tmp + "/tests/sax.test.FR.xml"
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"country": "FR", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -643,7 +643,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr.xml")
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"language": "fr", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -655,7 +655,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     def test_fr_nl(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr_nl.xml")
-        self.config.dst = self.xml_res_file
+        self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"language": ["fr", "nl"], "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
@@ -676,11 +676,9 @@ if __name__ == "__main__":
 
     # Prepare configuration
     class config:
-        dir_scripts = '.'
         options = {"country": "FR", "language": "fr"}
         src = sys.argv[1]
-        dst = sys.argv[2]
-        polygon_id = None
+        error_file = IssuesFileOsmose.IssuesFileOsmose(sys.argv[2])
 
     # Start analyser
     with Analyser_Sax(config()) as analyser_obj:

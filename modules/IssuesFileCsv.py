@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2016                                      ##
+## Copyrights Frederic Rodrigo 2020                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,31 +19,26 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Name_Dictionary import P_Name_Dictionary
+import csv
+from .IssuesFile import IssuesFile
 
 
-class Name_Dictionary_Lang_xx(P_Name_Dictionary):
+class IssuesFileCsv(IssuesFile):
 
-    not_for = ["fr"]
+    def begin(self):
+        self.csv = csv.writer(super().begin())
+        self.csv.writerow(['classs', 'subclass', 'res', 'fixType', 'text', 'lon', 'lat', 'fix'])
 
-    def init(self, logger):
-        P_Name_Dictionary.init(self, logger)
+    def end(self):
+        del self.csv
 
-    def init_dictionaries(self):
-        self.laod_numbering()
+    def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
+        if self.filter and not self.filter.apply(classs, subclass, geom):
+            return
 
-
-###########################################################################
-from plugins.Plugin import TestPluginCommon
-
-class Test(TestPluginCommon):
-    def test(self):
-        from analysers.analyser_sax import Analyser_Sax
-        class _config:
-            options = {"language": "xx"}
-        class father(Analyser_Sax):
-            config = _config()
-            def __init__(self):
-                pass
-        a = Name_Dictionary_Lang_xx(father())
-        a.init(None)
+        try:
+            lat = geom['position'][0]['lat']
+            lon = geom['position'][0]['lon']
+        except:
+            lat = lon = None
+        self.csv.writerow([classs, subclass, res, fixType, text and text.get('en'), lon, lat, fix])

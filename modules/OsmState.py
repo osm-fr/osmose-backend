@@ -39,7 +39,7 @@ class OsmState:
     with open(state_file, 'r') as f:
       state_lines = f.readlines()
       for line in state_lines:
-        print("state: ", line)
+        logger.log("state: {0}".format(line))
         if line.startswith("timestamp="):
           s = line.replace('\\', '')
           self._timestamp = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)

@@ -23,6 +23,9 @@
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from modules import downloader
+from modules import IssuesFileOsmose
+from modules import IssuesFileCsv
+from modules import IssuesFileGeoJson
 import sys
 import os
 import traceback
@@ -38,10 +41,6 @@ import dateutil.parser
 import requests
 
 ###########################################################################
-## fonctions utiles
-
-class analyser_config:
-  pass
 
 def get_version():
     version = os.getenv('OSMOSE_VERSION')
@@ -84,127 +83,146 @@ def check(conf, logger, options):
 
 ##########################################################################
 
+class analyser_config:
+    def __init__(self, conf, options, osmosis_manager, xml_change = None):
+        self.dst_dir = conf.dir_results
+
+        self.osmosis_manager = osmosis_manager
+        self.db_user = conf.db_user
+        if conf.db_schema:
+            self.db_schema = conf.db_schema
+        else:
+            self.db_schema = conf.country
+        self.db_schema_path = conf.db_schema_path
+
+        self.options = conf.analyser_options
+        self.polygon_id = conf.polygon_id
+
+        self.source_url = conf.source_url
+
+        self.plugins = options.plugin
+
+        self.verbose = options.verbose
+
+        if options.change and xml_change:
+            self.src = xml_change
+        elif "dst" in conf.download:
+            self.src = conf.download["dst"]
+            if "diff_path" in conf.download:
+                self.src_state = os.path.join(conf.download["diff_path"], "state.txt")
+
+
+def issues_file_from_fromat(dst, format, bz2 = False, version = None, polygon_id = None):
+    if format == 'csv':
+        if isinstance(dst, str):
+            dst += '.csv'
+        c = IssuesFileCsv.IssuesFileCsv
+    elif format == 'geojson':
+        if isinstance(dst, str):
+            dst += '.geojson'
+        c = IssuesFileGeoJson.IssuesFileGeoJson
+    else:
+        if isinstance(dst, str):
+            dst += '.xml'
+        c = IssuesFileOsmose.IssuesFileOsmose
+    if bz2 and isinstance(dst, str):
+        dst += '.bz2'
+
+    return c(dst, version, polygon_id)
+
+
 def execc(conf, logger, analysers, options, osmosis_manager):
     err_code = 0
 
-    version = get_version()
-
-    logger.log("osmose backend version: %s" % version)
-
     ## download and create database
 
-    country = conf.country
-
     if options.skip_init:
-        pass
-
-    elif options.change and osmosis_manager.check_change(conf) and not options.change_init:
-        xml_change = osmosis_manager.run_change(conf)
-
-    elif "url" in conf.download:
-        newer = False
         xml_change = None
 
-        if not newer and options.skip_download:
-            logger.sub().log("skip download")
-            newer = True
+    else:
+        if options.change and osmosis_manager.check_change(conf) and not options.change_init:
+            xml_change = osmosis_manager.run_change(conf)
 
-        if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
-            (status, xml_change) = osmosis_manager.run_diff(conf)
-            if status:
+        elif "url" in conf.download:
+            newer = False
+            xml_change = None
+
+            if not newer and options.skip_download:
+                logger.sub().log("skip download")
                 newer = True
 
-        if not newer:
-            logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
-            newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
-                                min_file_size=8*1024)
+            if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
+                (status, xml_change) = osmosis_manager.run_diff(conf)
+                if status:
+                    newer = True
 
-            if newer and options.diff:
-                osmosis_manager.init_diff(conf)
-                if "/minute/" in conf.download["diff"] or "/hour/" in conf.download["diff"]:
-                    # update extract with any more recent available diff
-                    osmosis_manager.run_diff(conf)
+            if not newer:
+                logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
+                newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
+                                    min_file_size=8*1024)
 
-        if not newer:
-            return 0x11
+                if newer and options.diff:
+                    osmosis_manager.init_diff(conf)
+                    if "/minute/" in conf.download["diff"] or "/hour/" in conf.download["diff"]:
+                        # update extract with any more recent available diff
+                        osmosis_manager.run_diff(conf)
+
+            if not newer:
+                return 0x11
+
+            if osmosis_manager:
+                osmosis_manager.init_database(conf)
+
+            if options.change:
+                osmosis_manager.init_change(conf)
+
+        if hasattr(conf, "sql_post_scripts"):
+            logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
+            for script in conf.sql_post_scripts:
+                osmosis_manager.psql_f(script)
 
         if osmosis_manager:
-            osmosis_manager.init_database(conf)
+            osmosis_manager.update_metainfo(conf)
 
-        if options.change:
-            osmosis_manager.init_change(conf)
-
-    if hasattr(conf, "sql_post_scripts"):
-        logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
-        for script in conf.sql_post_scripts:
-            osmosis_manager.psql_f(script)
-
-    if not options.skip_init and osmosis_manager:
-        osmosis_manager.update_metainfo(conf)
-
-    if options.resume:
-        osmosis_manager.run_resume(conf)
+        if options.resume:
+            osmosis_manager.run_resume(conf)
 
     ##########################################################################
     ## analyses
+
+    version = get_version()
 
     lunched_analyser = []
     lunched_analyser_change = []
     lunched_analyser_resume = []
 
-    for analyser, password in conf.analyser.items():
-        logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
-
-        if not "analyser_" + analyser in analysers:
-            logger.sub().log("skipped")
+    for analyser in analysers:
+        if not options.analyser and analyser not in conf.analyser:
             continue
 
-        if password == "xxx":
-            logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
+        logger.log(logger.log_av_r + conf.country + " : " + analyser + logger.log_ap)
+
+        password = conf.analyser.get(analyser)
+        if not password or password == "xxx":
+            logger.sub().log("No password to upload result to %s" % conf.updt_url)
 
         try:
-            analyser_conf = analyser_config()
-            analyser_conf.dst_dir = conf.dir_results
+            analyser_conf = analyser_config(conf, options, osmosis_manager, xml_change)
 
-            analyser_conf.osmosis_manager = osmosis_manager
-            analyser_conf.db_user = conf.db_user
-            if conf.db_schema:
-                analyser_conf.db_schema = conf.db_schema
-            else:
-                analyser_conf.db_schema = country
-            analyser_conf.db_schema_path = conf.db_schema_path
-
-            analyser_conf.dir_scripts = conf.dir_scripts
-            analyser_conf.options = conf.analyser_options
-            analyser_conf.polygon_id = conf.polygon_id
-
-            analyser_conf.source_url = conf.source_url
-
-            analyser_conf.plugins = options.plugin
-
-            if options.change and xml_change:
-                analyser_conf.src = xml_change
-            elif "dst" in conf.download:
-                analyser_conf.src = conf.download["dst"]
-                if "diff_path" in conf.download:
-                    analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
-
-            for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
+            for name, obj in inspect.getmembers(analysers[analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     analyser_name = name[len("Analyser_"):]
-                    analyser_conf.dst_file = name + "-" + country + ".xml"
-                    analyser_conf.dst_file += ".bz2"
-                    analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
-                    analyser_conf.version = version
-                    analyser_conf.verbose = options.verbose
+
+                    dst = os.path.join(conf.dir_results, name + "-" + conf.country)
+                    analyser_conf.error_file = issues_file_from_fromat(dst, options.result_format, bz2 = True, version = version, polygon_id = analyser_conf.polygon_id)
 
                     # analyse
                     if not options.skip_analyser:
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
                             remote_timestamp = None
                             if not options.skip_frontend_check:
-                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (country, analyser_name, 'objects=true' if options.resume else '')
+                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (conf.country, analyser_name, 'objects=true' if options.resume else '')
                                 resp = downloader.get(url)
                                 if not resp.ok:
                                     logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
@@ -256,10 +274,10 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                     u = url + '?name=' + name + '&country=' + (conf.db_schema or conf.country)
                                     r = requests.post(u, timeout=1800, data={
                                         'analyser': analyser_name,
-                                        'country': country,
+                                        'country': conf.country,
                                         'code': password
                                     }, files={
-                                        'content': open(analyser_conf.dst, 'rb')
+                                        'content': open(analyser_conf.error_file.dst, 'rb')
                                     })
                                     r.raise_for_status()
                                     logger.sub().sub().log(r.text.strip())
@@ -270,7 +288,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         logger.sub().sub().sub().err('got an HTTP timeout status')
                                     else:
                                         dt = r.text.strip()
-                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (country, analyser_name, dt))
+                                        logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (conf.country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
                                         if not was_on_timeout:
@@ -298,15 +316,15 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
     if not options.no_clean:
         for (obj, analyser_conf) in lunched_analyser:
-            analyser_conf.dst = None
+            analyser_conf.error_file = None
             with obj(analyser_conf, logger.sub()) as analyser_obj:
                 analyser_obj.analyser_deferred_clean()
         for (obj, analyser_conf) in lunched_analyser_change:
-            analyser_conf.dst = None
+            analyser_conf.error_file = None
             with obj(analyser_conf, logger.sub()) as analyser_obj:
                 analyser_obj.analyser_deferred_clean()
         for (obj, analyser_conf) in lunched_analyser_resume:
-            analyser_conf.dst = None
+            analyser_conf.error_file = None
             with obj(analyser_conf, logger.sub()) as analyser_obj:
                 analyser_obj.analyser_deferred_clean()
 
@@ -393,6 +411,8 @@ def main(options):
     # Load of analysers
     err_code = 0
 
+    logger.log("osmose backend version: %s" % get_version())
+
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
@@ -404,14 +424,14 @@ def main(options):
                 continue
             logger.log("  load "+fn[9:-3])
             try:
-                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
+                analysers[fn[9:-3]] = importlib.import_module("analysers." + fn[:-3])
             except ImportError as e:
                 logger.log(e)
                 logger.log("Fails to load analysers {0}".format(fn[:-3]))
     if options.analyser:
         count = 0
         for k in options.analyser:
-            if ("analyser_%s" % k) not in analysers:
+            if k not in analysers:
                 logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
                 count += 1
         # user is passing only non-existent analysers
@@ -499,6 +519,10 @@ if __name__ == "__main__":
                       help="Don't upload the analyse result")
     parser.add_option("--no-clean", dest="no_clean", action="store_true",
                       help="Don't remove extract and database after analyses")
+
+    parser.add_option("--result-format", dest="result_format", action="store", default="osmose",
+                      type="choice", choices=["osmose", "csv", "geojson"],
+                      help="Analyser result format. Default 'osmose' XML. For debug purpose can be 'csv' or 'geojson'")
 
     parser.add_option("--cron", dest="cron", action="store_true",
                       help="Record output in a specific log")

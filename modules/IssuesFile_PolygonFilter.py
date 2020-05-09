@@ -22,12 +22,12 @@
 from .PointInPolygon import PointInPolygon
 
 
-class ErrorFilter:
+class IssuesFilter:
     def apply(self, classs, subclass, geom):
         return True
 
 
-class PolygonErrorFilter(ErrorFilter):
+class PolygonFilter(IssuesFilter):
 
     def __init__(self, polygon_id, cache_delay=60):
         self.pip = PointInPolygon(polygon_id, cache_delay)

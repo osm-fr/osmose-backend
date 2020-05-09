@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="941820171">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1110683924">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -1732,16 +1732,17 @@
 <classtext lang="it" title="parking:lane:[side] errato" />
 <classtext lang="lt" title="Bloga parking:lane:[side]" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
-<classtext lang="pl" title="Zła parking:lane:[strona]" />
+<classtext lang="pl" title="Nieprawidłowa strona w parking:lane:[strona]" />
 <classtext lang="pt" title="Erro parking:lane:[side]" />
 <classtext lang="pt_BR" title="Erro parking:lane:[side]" />
 <classtext lang="ru" title="Недопустимое parking:lane:[side]" />
 <classtext lang="uk" title="Помилковий parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良parking:lane:[side]" />
-<detail lang="en" title="The side was not recognized, see&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
+<detail lang="en" title="The side was not recognized, see&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <fix lang="en" title="Use `left`, `right` or `both`." />
 <fix lang="es" title="Use `left`, `right` o `both`." />
 <fix lang="eu" title="Erabili `left`, `right` edo `both`." />
+<fix lang="pl" title="Prawidłowe wartości to `left`, `right` lub `both`." />
 <fix lang="uk" title="Застосовуйте `left`, `right` чи `both`." />
 </class>
 <class id="31614" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L42" level="3" tag="highway,parking,fix:imagery">
@@ -1756,13 +1757,14 @@
 <classtext lang="it" title="Troppi parking:lane:[side]" />
 <classtext lang="lt" title="Per daug parking:lane:[side]" />
 <classtext lang="nl" title="Te veel parking:lane:[zijde]" />
-<classtext lang="pl" title="Za dużo parking:lane:[strona]" />
+<classtext lang="pl" title="Za dużo tagów parking:lane:[strona]" />
 <classtext lang="pt" title="Muitos parking:lane:[side]" />
 <classtext lang="pt_BR" title="Muitos parking:lane:[side]" />
 <classtext lang="ru" title="Слишком много parking:lane:[side]" />
 <classtext lang="uk" title="Забагато parking:lane:[side]" />
 <classtext lang="zh_CN" title="太多parking:lane:[side]" />
 <detail lang="en" title="There are more types of parking for sides than a street have&#10;sides." />
+<detail lang="pl" title="Jest więcej rodzajów parkowania niż ulica ma stron.&#10;&#10;Tag `parking:lane:both=*` nie może występować razem z `parking:lane:left=*` i `parking:lane:right=*`." />
 </class>
 <class id="31615" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L47" level="3" tag="highway,parking,fix:chair">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
@@ -1776,14 +1778,13 @@
 <classtext lang="it" title="Valore di parking:lane:[side] errato" />
 <classtext lang="lt" title="Bloga parking:lane:[side] reikšmė" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
-<classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
+<classtext lang="pl" title="Nieprawidłowa wartość klucza parking:lane:[strona]" />
 <classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
 <classtext lang="pt_BR" title="Valor parking:lane:[side] incorreto" />
 <classtext lang="ru" title="Недопустимое значение parking:lane:[side]" />
 <classtext lang="uk" title="Помилкове значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良的parking:lane:[side]值" />
-<fix lang="en" title="See values at&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
-<fix lang="es" title="Ver valores en&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
+<fix lang="en" title="See values at&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 </class>
 <class id="31616" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L51" level="3" tag="highway,parking,fix:survey">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
@@ -1805,6 +1806,7 @@
 <classtext lang="zh_CN" title="parking:condition:[side] 无 parking:lane:[side] 值" />
 <detail lang="en" title="A parking condition is present but without parking kind." />
 <detail lang="es" title="Una condición de aparcamiento está presente pero sin tipo de aparcamiento." />
+<detail lang="pl" title="Warunki parkowania, ale bez rodzaju parkowania." />
 </class>
 <class id="31700" item="3170" source="http://example.com/plugins/TagFix_Role.py#L36" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Rol no adient" />

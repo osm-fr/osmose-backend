@@ -26,7 +26,6 @@ except ImportError:
 
 import os
 from inspect import getframeinfo, stack
-from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
 from modules import SourceVersion
 
@@ -44,6 +43,7 @@ class Analyser(object):
     def __init__(self, config, logger = None):
         self.config = config
         self.logger = logger
+        self.error_file = config.error_file
         if not hasattr(builtins, "T_"):
             self.translate = OsmoseTranslation.OsmoseTranslation()
             builtins.T_ = self.translate.translate
@@ -96,11 +96,8 @@ class Analyser(object):
         return base
 
     def open_error_file(self):
-        if self.config.dst:
-            self.error_file = OsmoseErrorFile.ErrorFile(self.config)
+        if self.error_file:
             self.error_file.begin()
-        else:
-            self.error_file = None
 
     def close_error_file(self):
         if self.error_file:
@@ -127,6 +124,7 @@ class Analyser(object):
 
 ###########################################################################
 import unittest
+from modules import IssuesFileOsmose
 
 class TestAnalyser(unittest.TestCase):
     @classmethod
@@ -153,11 +151,12 @@ class TestAnalyser(unittest.TestCase):
         conf.download["dst"] = osm_file
         conf.init()
 
-        analyser_conf = osmose_run.analyser_config()
-        analyser_conf.polygon_id = None
-        analyser_conf.options = conf.analyser_options
-        analyser_conf.dst = dst
-        analyser_conf.db_user = conf.db_user
+        class options:
+            plugin = None
+            verbose = False
+            change = False
+        analyser_conf = osmose_run.analyser_config(conf, options(), None)
+        analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(dst)
 
         return (conf, analyser_conf)
 

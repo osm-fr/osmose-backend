@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
 <analyser timestamp="1970-01-01T00:00:00Z" analyser_version="494101385">
-<class id="2" item="3210" source="None/analysers/analyser_osmosis_highway_noexit.py#L90" level="2" tag="highway,tag,fix:chair">
+<class id="2" item="3210" source="https://github.com/osm-fr/osmose-backend/blob/master/analysers/analyser_osmosis_highway_noexit.py#L90" level="2" tag="highway,tag,fix:chair">
 <classtext lang="en" title="Noexit on way with multiple exits" />
 </class>
-<class id="1" item="3210" source="None/analysers/analyser_osmosis_highway_noexit.py#L88" level="2" tag="highway,tag,fix:chair">
+<class id="1" item="3210" source="https://github.com/osm-fr/osmose-backend/blob/master/analysers/analyser_osmosis_highway_noexit.py#L88" level="2" tag="highway,tag,fix:chair">
 <classtext lang="en" title="Noexit on node with exit" />
 </class>
 <error class="2">
