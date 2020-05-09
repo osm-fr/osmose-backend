@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
 <analyser timestamp="1970-01-01T00:00:00Z" analyser_version="763855597">
-<class id="1" item="1050" source="None/analysers/analyser_osmosis_roundabout_reverse.py#L61" level="1" tag="highway,roundabout,fix:chair">
+<class id="1" item="1050" source="https://github.com/osm-fr/osmose-backend/blob/master/analysers/analyser_osmosis_roundabout_reverse.py#L61" level="1" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Rotonda inversa" />
 <classtext lang="cs" title="Reverzní kruhový objezd" />
 <classtext lang="de" title="Kreisverkehr umkehren" />

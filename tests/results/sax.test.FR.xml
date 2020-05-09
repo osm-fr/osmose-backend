@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="941820171">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1110683924">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -1618,26 +1618,9 @@
 <classtext lang="uk" title="Недійсна характеристика" />
 <classtext lang="zh_CN" title="无效的参考" />
 </class>
-<class id="30326" item="2100" source="http://example.com/plugins/TagFix_Pharmacy.py#L32" level="3" tag="fix:chair">
-<classtext lang="ca" title="A França totes les farmàcies dispensen drogues amb prescripció" />
-<classtext lang="cs" title="Ve Francii vydávají všechny lékárny léky na předpis" />
-<classtext lang="de" title="In Frankreich liefern alle Apotheken verschriebene Medikamente" />
+<class id="30326" item="2100" source="http://example.com/plugins/TagFix_Pharmacy.py#L40" level="3" tag="fix:chair">
 <classtext lang="en" title="In the country all pharmacies deliver drugs under prescription" />
-<classtext lang="es" title="En Francia todas las farmacias entregan drogas bajo prescripción" />
-<classtext lang="fa" title="در فرانسه همهٔ داروخانه‌ها دارو را با نسخه می‌دهند" />
-<classtext lang="fr" title="En France toutes les pharmacies délivrent des médicaments sur prescription" />
-<classtext lang="gl" title="En Francia tódalas farmacias entregan drogas baixo prescrición" />
-<classtext lang="hu" title="Franciaországban minden gyógyszertár árul vényköteles gyógyszert" />
-<classtext lang="it" title="in Francia tutte le farmacie forniscono medicinali sotto prescrizione" />
-<classtext lang="lt" title="Prancūzijoje visos vaistinės pristato receptinius vaistus" />
-<classtext lang="nl" title="In Frankrijk verkopen alle aphotekers medicatie op voorschrift" />
-<classtext lang="pl" title="We Francji wszystkie apteki wydają leki na receptę" />
-<classtext lang="pt" title="Na França, todas as farmácias entregam remédios sob prescrição" />
-<classtext lang="pt_BR" title="Na França, todas as farmácias entregam remédios sob prescrição" />
-<classtext lang="uk" title="у Франції всі аптеки поставляють ліки за рецептом" />
-<classtext lang="zh_CN" title="在法国所有的药店按处方提供药物" />
 <detail lang="en" title="All pharmacies in the country sell on prescription by a doctor. It requires a&#10;tag `dispensing=yes` in addition to `amenity=pharmacy`." />
-<detail lang="es" title="Todas las farmacias francesas venden con receta médica de un médico. Requiere una&#10;etiqueta `dispensing=yes` además de `amenity=pharmacy`." />
 <fix lang="en" title="Add tag `dispensing=yes`." />
 <fix lang="es" title="Añadir etiqueta `dispensing=yes`." />
 <fix lang="uk" title="Додайте теґ `dispensing=yes`." />
@@ -1978,16 +1961,17 @@
 <classtext lang="it" title="parking:lane:[side] errato" />
 <classtext lang="lt" title="Bloga parking:lane:[side]" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
-<classtext lang="pl" title="Zła parking:lane:[strona]" />
+<classtext lang="pl" title="Nieprawidłowa strona w parking:lane:[strona]" />
 <classtext lang="pt" title="Erro parking:lane:[side]" />
 <classtext lang="pt_BR" title="Erro parking:lane:[side]" />
 <classtext lang="ru" title="Недопустимое parking:lane:[side]" />
 <classtext lang="uk" title="Помилковий parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良parking:lane:[side]" />
-<detail lang="en" title="The side was not recognized, see&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
+<detail lang="en" title="The side was not recognized, see&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <fix lang="en" title="Use `left`, `right` or `both`." />
 <fix lang="es" title="Use `left`, `right` o `both`." />
 <fix lang="eu" title="Erabili `left`, `right` edo `both`." />
+<fix lang="pl" title="Prawidłowe wartości to `left`, `right` lub `both`." />
 <fix lang="uk" title="Застосовуйте `left`, `right` чи `both`." />
 </class>
 <class id="31614" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L42" level="3" tag="highway,parking,fix:imagery">
@@ -2002,13 +1986,14 @@
 <classtext lang="it" title="Troppi parking:lane:[side]" />
 <classtext lang="lt" title="Per daug parking:lane:[side]" />
 <classtext lang="nl" title="Te veel parking:lane:[zijde]" />
-<classtext lang="pl" title="Za dużo parking:lane:[strona]" />
+<classtext lang="pl" title="Za dużo tagów parking:lane:[strona]" />
 <classtext lang="pt" title="Muitos parking:lane:[side]" />
 <classtext lang="pt_BR" title="Muitos parking:lane:[side]" />
 <classtext lang="ru" title="Слишком много parking:lane:[side]" />
 <classtext lang="uk" title="Забагато parking:lane:[side]" />
 <classtext lang="zh_CN" title="太多parking:lane:[side]" />
 <detail lang="en" title="There are more types of parking for sides than a street have&#10;sides." />
+<detail lang="pl" title="Jest więcej rodzajów parkowania niż ulica ma stron.&#10;&#10;Tag `parking:lane:both=*` nie może występować razem z `parking:lane:left=*` i `parking:lane:right=*`." />
 </class>
 <class id="31615" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L47" level="3" tag="highway,parking,fix:chair">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
@@ -2022,14 +2007,13 @@
 <classtext lang="it" title="Valore di parking:lane:[side] errato" />
 <classtext lang="lt" title="Bloga parking:lane:[side] reikšmė" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
-<classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
+<classtext lang="pl" title="Nieprawidłowa wartość klucza parking:lane:[strona]" />
 <classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
 <classtext lang="pt_BR" title="Valor parking:lane:[side] incorreto" />
 <classtext lang="ru" title="Недопустимое значение parking:lane:[side]" />
 <classtext lang="uk" title="Помилкове значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良的parking:lane:[side]值" />
-<fix lang="en" title="See values at&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
-<fix lang="es" title="Ver valores en&#10;`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`." />
+<fix lang="en" title="See values at&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 </class>
 <class id="31616" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L51" level="3" tag="highway,parking,fix:survey">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
@@ -2051,6 +2035,7 @@
 <classtext lang="zh_CN" title="parking:condition:[side] 无 parking:lane:[side] 值" />
 <detail lang="en" title="A parking condition is present but without parking kind." />
 <detail lang="es" title="Una condición de aparcamiento está presente pero sin tipo de aparcamiento." />
+<detail lang="pl" title="Warunki parkowania, ale bez rodzaju parkowania." />
 </class>
 <class id="31700" item="3170" source="http://example.com/plugins/TagFix_Role.py#L36" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Rol no adient" />
@@ -2743,7 +2728,7 @@
 <classtext lang="uk" title="Трансформатор повинен мати теґ frequency" />
 <classtext lang="zh_CN" title="变压器应该有一个频率标签" />
 </class>
-<class id="206013" item="2060" source="http://example.com/plugins/TagFix_MultipleTag_FR.py#L56" level="3" tag="addr,fix:chair">
+<class id="206013" item="2060" source="http://example.com/plugins/TagFix_MultipleTag_FR.py#L46" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="objekt FANTOIR neodpovídá vlastnosti OSM" />
 <classtext lang="de" title="Der FANTOIR-Objekttyp stimmt nicht mit der OSM-Funktion überein" />
 <classtext lang="en" title="FANTOIR object type not match OSM feature" />
@@ -4907,24 +4892,24 @@
 <tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
 </node>
 <text lang="en" value="is_in:country is deprecated" />
-<text lang="el" value="is_in:country είναι παρωχημένο" />
-<text lang="fr" value="is_in:country est déprécié" />
-<text lang="zh_TW" value="is_in:country 已經廢棄" />
-<text lang="pl" value="is_in:country jest przestarzały" />
-<text lang="it" value="is_in:country è deprecata" />
-<text lang="ru" value="is_in:country устарел" />
-<text lang="zh_CN" value="is_in:country 已过时" />
-<text lang="hu" value="is_in:country elavult" />
-<text lang="lt" value="is_in:country pasenusi" />
 <text lang="cs" value="is_in:country je zavržen" />
-<text lang="de" value="is_in:country ist veraltet" />
-<text lang="nl" value="is_in:country is vervallen" />
-<text lang="pt" value="''is_in:country'' está em desuso" />
-<text lang="pt_BR" value="is_in:country é obsoleto" />
-<text lang="ja" value="is_in:countryは推奨されていません" />
-<text lang="ca" value="is_in:country és obsolet" />
-<text lang="es" value="is_in:country está obsoleto" />
+<text lang="lt" value="is_in:country pasenusi" />
 <text lang="uk" value="is_in:country заборонено" />
+<text lang="pt_BR" value="is_in:country é obsoleto" />
+<text lang="hu" value="is_in:country elavult" />
+<text lang="ca" value="is_in:country és obsolet" />
+<text lang="de" value="is_in:country ist veraltet" />
+<text lang="zh_CN" value="is_in:country 已过时" />
+<text lang="pt" value="''is_in:country'' está em desuso" />
+<text lang="pl" value="is_in:country jest przestarzały" />
+<text lang="es" value="is_in:country está obsoleto" />
+<text lang="nl" value="is_in:country is vervallen" />
+<text lang="ru" value="is_in:country устарел" />
+<text lang="it" value="is_in:country è deprecata" />
+<text lang="ja" value="is_in:countryは推奨されていません" />
+<text lang="fr" value="is_in:country est déprécié" />
+<text lang="el" value="is_in:country είναι παρωχημένο" />
+<text lang="zh_TW" value="is_in:country 已經廢棄" />
 <fixes>
 <fix>
 <node id="489460194">
@@ -4942,18 +4927,18 @@
 <tag k="waterway:sign" v="mooring" />
 </node>
 <text lang="en" value='Missing hyphen after "Saint(e)"' />
-<text lang="fr" value="Trait d’union manquant après « Saint(e) »" />
-<text lang="pl" value='Brakuje łącznika po "Saint(e)"' />
-<text lang="it" value="Trattino mancante dopo “Saint(e)”" />
-<text lang="zh_CN" value='之后缺少连字符"Saint(e)"' />
-<text lang="hu" value="Hiányzó kötőjel a „Saint(e)” után (FR)" />
-<text lang="fa" value="بعد از Saint(e)‎ خط فاصله نیامده" />
 <text lang="cs" value='Chybějící pomlčka za "Saint(e)"' />
-<text lang="de" value='Fehlender Bindestrich nach "Saint(e)"' />
-<text lang="nl" value='Ontbrekende hyphen na "Saint(e)"' />
-<text lang="gl" value='Falla o guión após "Saint(e)"' />
-<text lang="es" value="Falta guión después de «Saint(e)»" />
 <text lang="uk" value='Відсутній дефіс після "Свята(-ий)"' />
+<text lang="hu" value="Hiányzó kötőjel a „Saint(e)” után (FR)" />
+<text lang="gl" value='Falla o guión após "Saint(e)"' />
+<text lang="de" value='Fehlender Bindestrich nach "Saint(e)"' />
+<text lang="zh_CN" value='之后缺少连字符"Saint(e)"' />
+<text lang="pl" value='Brakuje łącznika po "Saint(e)"' />
+<text lang="es" value="Falta guión después de «Saint(e)»" />
+<text lang="nl" value='Ontbrekende hyphen na "Saint(e)"' />
+<text lang="fa" value="بعد از Saint(e)‎ خط فاصله نیامده" />
+<text lang="it" value="Trattino mancante dopo “Saint(e)”" />
+<text lang="fr" value="Trait d’union manquant après « Saint(e) »" />
 <fixes>
 <fix>
 <node id="612582252">
@@ -4979,25 +4964,25 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="power=generator without generator:source" />
+<text lang="cs" value="power=generator bez generator:source" />
+<text lang="lt" value="power=generator be generator:source" />
+<text lang="uk" value="power=generator без generator:source" />
+<text lang="pt_BR" value="power=generator sem generator:source" />
+<text lang="hu" value="[power=generator], [generator:source] nélkül" />
+<text lang="gl" value="power=generator sen generator:source" />
+<text lang="ca" value="power=generator sense generator:source" />
+<text lang="de" value="power=generator ohne generator:source" />
+<text lang="zh_CN" value="power=generator 没有 generator:source" />
+<text lang="pt" value="power=generator sem generator:source" />
+<text lang="pl" value="power=generator bez generator:source" />
+<text lang="es" value="power=generator sin generator:source" />
+<text lang="nl" value="power=generator zonder generator:source" />
+<text lang="ru" value="power=generator без generator:source" />
+<text lang="fa" value="power=generator بدون generator:source" />
+<text lang="it" value="power=generator senza generator:source" />
+<text lang="ja" value="power=generatorがあるのにgenerator:sourceがない" />
 <text lang="fr" value="power=generator sans generator:source" />
 <text lang="zh_TW" value="power=generator 沒有 generator:source" />
-<text lang="pl" value="power=generator bez generator:source" />
-<text lang="it" value="power=generator senza generator:source" />
-<text lang="ru" value="power=generator без generator:source" />
-<text lang="zh_CN" value="power=generator 没有 generator:source" />
-<text lang="hu" value="[power=generator], [generator:source] nélkül" />
-<text lang="fa" value="power=generator بدون generator:source" />
-<text lang="lt" value="power=generator be generator:source" />
-<text lang="cs" value="power=generator bez generator:source" />
-<text lang="de" value="power=generator ohne generator:source" />
-<text lang="nl" value="power=generator zonder generator:source" />
-<text lang="pt" value="power=generator sem generator:source" />
-<text lang="gl" value="power=generator sen generator:source" />
-<text lang="pt_BR" value="power=generator sem generator:source" />
-<text lang="ja" value="power=generatorがあるのにgenerator:sourceがない" />
-<text lang="ca" value="power=generator sense generator:source" />
-<text lang="es" value="power=generator sin generator:source" />
-<text lang="uk" value="power=generator без generator:source" />
 </error>
 <error class="9002001" subclass="34751027">
 <location lat="17.9032984" lon="-62.8512634" />
@@ -5007,24 +4992,24 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="power_source is deprecated" />
-<text lang="el" value="power_source είναι παρωχημένο" />
-<text lang="fr" value="power_source est déprécié" />
-<text lang="zh_TW" value="power_source 已經廢棄" />
-<text lang="pl" value="power_source jest przestarzały" />
-<text lang="it" value="power_source è deprecata" />
-<text lang="ru" value="power_source устарел" />
-<text lang="zh_CN" value="power_source 已过时" />
-<text lang="hu" value="power_source elavult" />
-<text lang="lt" value="power_source pasenusi" />
 <text lang="cs" value="power_source je zavržen" />
-<text lang="de" value="power_source ist veraltet" />
-<text lang="nl" value="power_source is vervallen" />
-<text lang="pt" value="''power_source'' está em desuso" />
-<text lang="pt_BR" value="power_source é obsoleto" />
-<text lang="ja" value="power_sourceは推奨されていません" />
-<text lang="ca" value="power_source és obsolet" />
-<text lang="es" value="power_source está obsoleto" />
+<text lang="lt" value="power_source pasenusi" />
 <text lang="uk" value="power_source заборонено" />
+<text lang="pt_BR" value="power_source é obsoleto" />
+<text lang="hu" value="power_source elavult" />
+<text lang="ca" value="power_source és obsolet" />
+<text lang="de" value="power_source ist veraltet" />
+<text lang="zh_CN" value="power_source 已过时" />
+<text lang="pt" value="''power_source'' está em desuso" />
+<text lang="pl" value="power_source jest przestarzały" />
+<text lang="es" value="power_source está obsoleto" />
+<text lang="nl" value="power_source is vervallen" />
+<text lang="ru" value="power_source устарел" />
+<text lang="it" value="power_source è deprecata" />
+<text lang="ja" value="power_sourceは推奨されていません" />
+<text lang="fr" value="power_source est déprécié" />
+<text lang="el" value="power_source είναι παρωχημένο" />
+<text lang="zh_TW" value="power_source 已經廢棄" />
 </error>
 <error class="4010" subclass="1468904873">
 <location lat="17.9032984" lon="-62.8512634" />
@@ -5034,8 +5019,8 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="The tag `power_source` is deprecated in favour of `generator:source`" />
-<text lang="pl" value="Tag power_source powinien być zastąpiony tagiem `generator:source`" />
 <text lang="de" value="Der Tag `power_source` sollte ersetzt werden durch `generator:source`" />
+<text lang="pl" value="Tag power_source powinien być zastąpiony tagiem `generator:source`" />
 </error>
 <error class="4060" subclass="0">
 <location lat="17.905" lon="-62.8533" />
@@ -5100,18 +5085,18 @@
 <nd ref="266967025" />
 </way>
 <text lang="en" value='Missing hyphen after "Saint(e)"' />
-<text lang="fr" value="Trait d’union manquant après « Saint(e) »" />
-<text lang="pl" value='Brakuje łącznika po "Saint(e)"' />
-<text lang="it" value="Trattino mancante dopo “Saint(e)”" />
-<text lang="zh_CN" value='之后缺少连字符"Saint(e)"' />
-<text lang="hu" value="Hiányzó kötőjel a „Saint(e)” után (FR)" />
-<text lang="fa" value="بعد از Saint(e)‎ خط فاصله نیامده" />
 <text lang="cs" value='Chybějící pomlčka za "Saint(e)"' />
-<text lang="de" value='Fehlender Bindestrich nach "Saint(e)"' />
-<text lang="nl" value='Ontbrekende hyphen na "Saint(e)"' />
-<text lang="gl" value='Falla o guión após "Saint(e)"' />
-<text lang="es" value="Falta guión después de «Saint(e)»" />
 <text lang="uk" value='Відсутній дефіс після "Свята(-ий)"' />
+<text lang="hu" value="Hiányzó kötőjel a „Saint(e)” után (FR)" />
+<text lang="gl" value='Falla o guión após "Saint(e)"' />
+<text lang="de" value='Fehlender Bindestrich nach "Saint(e)"' />
+<text lang="zh_CN" value='之后缺少连字符"Saint(e)"' />
+<text lang="pl" value='Brakuje łącznika po "Saint(e)"' />
+<text lang="es" value="Falta guión después de «Saint(e)»" />
+<text lang="nl" value='Ontbrekende hyphen na "Saint(e)"' />
+<text lang="fa" value="بعد از Saint(e)‎ خط فاصله نیامده" />
+<text lang="it" value="Trattino mancante dopo “Saint(e)”" />
+<text lang="fr" value="Trait d’union manquant après « Saint(e) »" />
 <fixes>
 <fix>
 <way id="24552916">
@@ -5149,20 +5134,20 @@
 <nd ref="267603995" />
 </way>
 <text lang="en" value="Missing capital letter for: sud, îlot" />
-<text lang="fr" value="Lettre majuscule manquante pour : sud, îlot" />
-<text lang="pl" value="Brak wielkiej litery dla: sud, îlot" />
-<text lang="it" value="Lettera maiuscola mancante per: sud, îlot" />
-<text lang="zh_CN" value="缺少大写字母:sud, îlot" />
-<text lang="hu" value="Hiányzó nagybetű a következőnél: sud, îlot" />
-<text lang="fa" value="برای sud, îlot باید از حرف بزرگ استفاده شود " />
 <text lang="cs" value="Chybějící velké písmeno pro: sud, îlot" />
-<text lang="de" value="Fehlender Großbuchstabe für: sud, îlot" />
-<text lang="nl" value="Ontbrekende hoofdletter voor:sud, îlot" />
-<text lang="pt" value="Falta letra maiúscula em: sud, îlot" />
-<text lang="gl" value="Falla a letra maiúscula para: sud, îlot" />
-<text lang="pt_BR" value="Falta letra maiúscula em: sud, îlot" />
-<text lang="es" value="Falta letra capital para: sud, îlot" />
 <text lang="uk" value="Відсутня велика буква для: sud, îlot" />
+<text lang="pt_BR" value="Falta letra maiúscula em: sud, îlot" />
+<text lang="hu" value="Hiányzó nagybetű a következőnél: sud, îlot" />
+<text lang="gl" value="Falla a letra maiúscula para: sud, îlot" />
+<text lang="de" value="Fehlender Großbuchstabe für: sud, îlot" />
+<text lang="zh_CN" value="缺少大写字母:sud, îlot" />
+<text lang="pt" value="Falta letra maiúscula em: sud, îlot" />
+<text lang="pl" value="Brak wielkiej litery dla: sud, îlot" />
+<text lang="es" value="Falta letra capital para: sud, îlot" />
+<text lang="nl" value="Ontbrekende hoofdletter voor:sud, îlot" />
+<text lang="fa" value="برای sud, îlot باید از حرف بزرگ استفاده شود " />
+<text lang="it" value="Lettera maiuscola mancante per: sud, îlot" />
+<text lang="fr" value="Lettre majuscule manquante pour : sud, îlot" />
 <fixes>
 <fix>
 <way id="24617218">
@@ -5466,21 +5451,21 @@
 <nd ref="602655289" />
 </way>
 <text lang="en" value="Unspecific highway type" />
-<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
-<text lang="fr" value="Type de route imprécis" />
-<text lang="pl" value="Nieznana wartość highway" />
-<text lang="it" value="Tipo di strada non specificato" />
-<text lang="ru" value="Неуточнённый тип дороги" />
-<text lang="zh_CN" value="不特定的道路种类" />
-<text lang="hu" value="Nem konkrét úttípus" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
-<text lang="de" value="Unbestimmter Straßentyp" />
-<text lang="nl" value="Niet gespecificeerd type highway" />
-<text lang="pt" value="Tipo de estrada/rua não especificada" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
-<text lang="ja" value="道路の種類が未指定" />
-<text lang="es" value="Tipo de vía no especificada" />
 <text lang="uk" value="Невизначений тип дороги" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
+<text lang="hu" value="Nem konkrét úttípus" />
+<text lang="de" value="Unbestimmter Straßentyp" />
+<text lang="zh_CN" value="不特定的道路种类" />
+<text lang="pt" value="Tipo de estrada/rua não especificada" />
+<text lang="pl" value="Nieznana wartość highway" />
+<text lang="es" value="Tipo de vía no especificada" />
+<text lang="nl" value="Niet gespecificeerd type highway" />
+<text lang="ru" value="Неуточнённый тип дороги" />
+<text lang="it" value="Tipo di strada non specificato" />
+<text lang="ja" value="道路の種類が未指定" />
+<text lang="fr" value="Type de route imprécis" />
+<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -5517,21 +5502,21 @@
 <nd ref="602655388" />
 </way>
 <text lang="en" value="Unspecific highway type" />
-<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
-<text lang="fr" value="Type de route imprécis" />
-<text lang="pl" value="Nieznana wartość highway" />
-<text lang="it" value="Tipo di strada non specificato" />
-<text lang="ru" value="Неуточнённый тип дороги" />
-<text lang="zh_CN" value="不特定的道路种类" />
-<text lang="hu" value="Nem konkrét úttípus" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
-<text lang="de" value="Unbestimmter Straßentyp" />
-<text lang="nl" value="Niet gespecificeerd type highway" />
-<text lang="pt" value="Tipo de estrada/rua não especificada" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
-<text lang="ja" value="道路の種類が未指定" />
-<text lang="es" value="Tipo de vía no especificada" />
 <text lang="uk" value="Невизначений тип дороги" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
+<text lang="hu" value="Nem konkrét úttípus" />
+<text lang="de" value="Unbestimmter Straßentyp" />
+<text lang="zh_CN" value="不特定的道路种类" />
+<text lang="pt" value="Tipo de estrada/rua não especificada" />
+<text lang="pl" value="Nieznana wartość highway" />
+<text lang="es" value="Tipo de vía no especificada" />
+<text lang="nl" value="Niet gespecificeerd type highway" />
+<text lang="ru" value="Неуточнённый тип дороги" />
+<text lang="it" value="Tipo di strada non specificato" />
+<text lang="ja" value="道路の種類が未指定" />
+<text lang="fr" value="Type de route imprécis" />
+<text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -5657,20 +5642,20 @@
 <nd ref="2610107900" />
 </way>
 <text lang="en" value="Missing capital letter for: est" />
-<text lang="fr" value="Lettre majuscule manquante pour : est" />
-<text lang="pl" value="Brak wielkiej litery dla: est" />
-<text lang="it" value="Lettera maiuscola mancante per: est" />
-<text lang="zh_CN" value="缺少大写字母:est" />
-<text lang="hu" value="Hiányzó nagybetű a következőnél: est" />
-<text lang="fa" value="برای est باید از حرف بزرگ استفاده شود " />
 <text lang="cs" value="Chybějící velké písmeno pro: est" />
-<text lang="de" value="Fehlender Großbuchstabe für: est" />
-<text lang="nl" value="Ontbrekende hoofdletter voor:est" />
-<text lang="pt" value="Falta letra maiúscula em: est" />
-<text lang="gl" value="Falla a letra maiúscula para: est" />
-<text lang="pt_BR" value="Falta letra maiúscula em: est" />
-<text lang="es" value="Falta letra capital para: est" />
 <text lang="uk" value="Відсутня велика буква для: est" />
+<text lang="pt_BR" value="Falta letra maiúscula em: est" />
+<text lang="hu" value="Hiányzó nagybetű a következőnél: est" />
+<text lang="gl" value="Falla a letra maiúscula para: est" />
+<text lang="de" value="Fehlender Großbuchstabe für: est" />
+<text lang="zh_CN" value="缺少大写字母:est" />
+<text lang="pt" value="Falta letra maiúscula em: est" />
+<text lang="pl" value="Brak wielkiej litery dla: est" />
+<text lang="es" value="Falta letra capital para: est" />
+<text lang="nl" value="Ontbrekende hoofdletter voor:est" />
+<text lang="fa" value="برای est باید از حرف بزرگ استفاده شود " />
+<text lang="it" value="Lettera maiuscola mancante per: est" />
+<text lang="fr" value="Lettre majuscule manquante pour : est" />
 <fixes>
 <fix>
 <way id="255316718">
@@ -5692,20 +5677,20 @@
 <nd ref="2610107896" />
 </way>
 <text lang="en" value="Missing capital letter for: sud" />
-<text lang="fr" value="Lettre majuscule manquante pour : sud" />
-<text lang="pl" value="Brak wielkiej litery dla: sud" />
-<text lang="it" value="Lettera maiuscola mancante per: sud" />
-<text lang="zh_CN" value="缺少大写字母:sud" />
-<text lang="hu" value="Hiányzó nagybetű a következőnél: sud" />
-<text lang="fa" value="برای sud باید از حرف بزرگ استفاده شود " />
 <text lang="cs" value="Chybějící velké písmeno pro: sud" />
-<text lang="de" value="Fehlender Großbuchstabe für: sud" />
-<text lang="nl" value="Ontbrekende hoofdletter voor:sud" />
-<text lang="pt" value="Falta letra maiúscula em: sud" />
-<text lang="gl" value="Falla a letra maiúscula para: sud" />
-<text lang="pt_BR" value="Falta letra maiúscula em: sud" />
-<text lang="es" value="Falta letra capital para: sud" />
 <text lang="uk" value="Відсутня велика буква для: sud" />
+<text lang="pt_BR" value="Falta letra maiúscula em: sud" />
+<text lang="hu" value="Hiányzó nagybetű a következőnél: sud" />
+<text lang="gl" value="Falla a letra maiúscula para: sud" />
+<text lang="de" value="Fehlender Großbuchstabe für: sud" />
+<text lang="zh_CN" value="缺少大写字母:sud" />
+<text lang="pt" value="Falta letra maiúscula em: sud" />
+<text lang="pl" value="Brak wielkiej litery dla: sud" />
+<text lang="es" value="Falta letra capital para: sud" />
+<text lang="nl" value="Ontbrekende hoofdletter voor:sud" />
+<text lang="fa" value="برای sud باید از حرف بزرگ استفاده شود " />
+<text lang="it" value="Lettera maiuscola mancante per: sud" />
+<text lang="fr" value="Lettre majuscule manquante pour : sud" />
 <fixes>
 <fix>
 <way id="255316719">
@@ -5808,18 +5793,18 @@
 <member type="way" ref="70236587" role="inner" />
 </relation>
 <text lang="en" value="boat without waterway, natural=water, landuse=^(basin|reservoir)$ or ford=yes" />
-<text lang="fr" value="boat sans waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
-<text lang="pl" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ lub ford=yes" />
-<text lang="it" value="boat senza waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
-<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
-<text lang="hu" value="waterway, natural=water, landuse=^(basin|reservoir)$ vagy ford=yes nélküli boat" />
 <text lang="cs" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ nebo ford=yes" />
-<text lang="de" value="boat ohne waterway, natural=water, landuse=^(basin|reservoir)$ oder ford=yes" />
-<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
-<text lang="pt" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
-<text lang="ja" value="boatがあるのにwaterway、natural=water、landuse=^(basin|reservoir)$、ford=yesのいずれかがない" />
-<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
 <text lang="uk" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ або ford=yes" />
+<text lang="hu" value="waterway, natural=water, landuse=^(basin|reservoir)$ vagy ford=yes nélküli boat" />
+<text lang="de" value="boat ohne waterway, natural=water, landuse=^(basin|reservoir)$ oder ford=yes" />
+<text lang="pt" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
+<text lang="pl" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ lub ford=yes" />
+<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
+<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
+<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
+<text lang="it" value="boat senza waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
+<text lang="ja" value="boatがあるのにwaterway、natural=water、landuse=^(basin|reservoir)$、ford=yesのいずれかがない" />
+<text lang="fr" value="boat sans waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
 </error>
 <error class="50701" subclass="6689005421143404454">
 <location lat="0" lon="0" />
@@ -5864,12 +5849,12 @@
 <member type="relation" ref="2324452" role="subarea" />
 </relation>
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
-<text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : élément “́́“ inattendu" />
-<text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды" 不寻常 "́́"' />
-<text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
-<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
-<text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 <text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
+<text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
+<text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды" 不寻常 "́́"' />
+<text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
+<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
+<text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : élément “́́“ inattendu" />
 </error>
 <error class="9007001" subclass="552640123">
 <location lat="0" lon="0" />
@@ -5942,23 +5927,23 @@
 <member type="way" ref="255316718" role="outer" />
 </relation>
 <text lang="en" value="boundary relation without boundary tag" />
+<text lang="cs" value="boundary relace bez boundary značky" />
+<text lang="lt" value="boundary ryšys be boundary žymos" />
+<text lang="uk" value="boundary зв’язок без теґу boundary" />
+<text lang="pt_BR" value="boundary relação sem boundary tag" />
+<text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
+<text lang="ca" value="boundary relació sense l''etiqueta boundary" />
+<text lang="de" value="boundary Relation ohne boundary Merkmal" />
+<text lang="zh_CN" value="boundary关系没有boundary标签" />
+<text lang="pt" value="boundary relação sem a etiqueta boundary" />
+<text lang="pl" value="boundary relacji bez znacznika boundary" />
+<text lang="es" value="relación boundary sin etiqueta boundary" />
+<text lang="nl" value="boundary relatie zonder boundary tag" />
+<text lang="ru" value="boundary отношение без тега boundary" />
+<text lang="it" value="relazione boundary senza etichetta boundary" />
+<text lang="ja" value="boundaryリレーションにboundaryタグがない" />
 <text lang="fr" value="boundary relation sans boundary attribut" />
 <text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
-<text lang="pl" value="boundary relacji bez znacznika boundary" />
-<text lang="it" value="relazione boundary senza etichetta boundary" />
-<text lang="ru" value="boundary отношение без тега boundary" />
-<text lang="zh_CN" value="boundary关系没有boundary标签" />
-<text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
-<text lang="lt" value="boundary ryšys be boundary žymos" />
-<text lang="cs" value="boundary relace bez boundary značky" />
-<text lang="de" value="boundary Relation ohne boundary Merkmal" />
-<text lang="nl" value="boundary relatie zonder boundary tag" />
-<text lang="pt" value="boundary relação sem a etiqueta boundary" />
-<text lang="pt_BR" value="boundary relação sem boundary tag" />
-<text lang="ja" value="boundaryリレーションにboundaryタグがない" />
-<text lang="ca" value="boundary relació sense l''etiqueta boundary" />
-<text lang="es" value="relación boundary sin etiqueta boundary" />
-<text lang="uk" value="boundary зв’язок без теґу boundary" />
 </error>
 <error class="9001002" subclass="2039567622">
 <location lat="0" lon="0" />
