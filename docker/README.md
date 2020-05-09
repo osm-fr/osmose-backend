@@ -22,8 +22,8 @@ docker-compose build
 ```
 
 
-Running for a country
-=====================
+Running on a single country
+===========================
 
 The `./work` directory on your host must to be writable by anyone, as the
 `osmose` user in the container will have some random UID (probably 1000).
@@ -49,7 +49,7 @@ frontend you must adapt `osmose_config_password.py`.
 Tuning
 ======
 
-The database configuration can be tuned using the SQL in environment
+The database configuration can be tuned using the SQL in the environment
 variable `POSTGRESQL_POSTCREATION`. It is executed at startup by the
 postgres user.
 
