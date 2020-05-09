@@ -197,6 +197,9 @@ def execc(conf, logger, analysers, options, osmosis_manager):
     lunched_analyser_resume = []
 
     for analyser in analysers:
+        if not options.analyser and analyser not in conf.analyser:
+            continue
+
         logger.log(logger.log_av_r + conf.country + " : " + analyser + logger.log_ap)
 
         password = conf.analyser.get(analyser)
