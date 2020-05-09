@@ -3,11 +3,11 @@
 ![Build Status](https://api.travis-ci.com/osm-fr/osmose-backend.svg?branch=master)
 
 This is the part of [Osmose](http://osmose.openstreetmap.fr) which analyses OSM
-and sends results to frontend. This works as follows:
+and sends the results to the frontend. This works as follows:
 
-  - an .osm.pbf extract is downloaded
+  - an .osm.pbf extraction is downloaded
   - analyses are run directly on the .osm.pbf file, or on the database
-  - analyses results are uploaded to the frontend
+  - results of the analyses are uploaded to the frontend
   - by default, the database is purged
 
 Analysers can be build in many ways:
