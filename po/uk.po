@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-04-23 20:29+0000\n"
+"PO-Revision-Date: 2020-05-09 14:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -472,11 +472,11 @@ msgstr "Помилкове значення parking:lane:[side]"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] без значення parking:lane:[side]"
 
-#: ../plugins/Name_Dictionary.py:33
+#: ../plugins/Name_Dictionary.py:32
 msgid "Word not found in dictionary"
 msgstr "Слово не знайдено в словнику"
 
-#: ../plugins/Name_Dictionary.py:37
+#: ../plugins/Name_Dictionary.py:36
 msgid "Encoding problem"
 msgstr "Проблема кодування"
 
@@ -508,7 +508,7 @@ msgstr "Топонімія"
 msgid "Missing altitude"
 msgstr "Відсутня висота"
 
-#: ../plugins/ODbL_migration.py:32
+#: ../plugins/disabled/ODbL_migration.py:32
 msgid "ODbL migration damage"
 msgstr "Пошкодження ODbL міграції"
 
@@ -579,10 +579,6 @@ msgstr "невідповідний maxspeed"
 msgid "Invalid reference"
 msgstr "Недійсна характеристика"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:46
-msgid "In France all pharmacies deliver drugs under prescription"
-msgstr "у Франції всі аптеки поставляють ліки за рецептом"
-
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Tag highway missing on junction"
 msgstr "Теґ highway відсутній на junction"
@@ -591,7 +587,7 @@ msgstr "Теґ highway відсутній на junction"
 msgid "Tag highway missing on oneway"
 msgstr "Теґ highway відсутній на oneway"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:154
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:153
 msgid "Opposite cycleway without oneway"
 msgstr "протилежна велодоріжка без oneway"
 
@@ -603,7 +599,7 @@ msgstr "Відсутній теґ maxheight"
 msgid "Multiple values"
 msgstr "Декілька значень"
 
-#: ../plugins/TagFix_Note_Lang_fr.py:36
+#: ../plugins/TagFix_Note_Lang_fr.py:37
 msgid "Possible improvement for note or comment tag"
 msgstr "Можливе вдосконалення теґу note або comment"
 
@@ -615,7 +611,7 @@ msgstr "Недійсний індекс"
 msgid "Inadequate role"
 msgstr "Неадекватна роль"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:66
+#: ../plugins/TagFix_Tree_Lang_fr.py:67
 msgid "Tree tagging"
 msgstr "Теґування дерева"
 
@@ -692,7 +688,7 @@ msgstr "Множинна назва для того ж ref FANTOIR"
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Теґ \"addr:city\" не співпадає з містом"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:56
+#: ../plugins/TagFix_MultipleTag_FR.py:46
 msgid "FANTOIR object type not match OSM feature"
 msgstr "тип об'єкта FANTOIR не співпадає з ознакою OSM"
 
@@ -815,7 +811,7 @@ msgstr "Ресторан неінтеґрований"
 msgid "Winery not integrated"
 msgstr "Винарня Аптека неінтеґрована"
 
-#: ../plugins/Name_Multilingual.py:38
+#: ../plugins/Name_Multilingual.py:37
 msgid "Multilingual not matching"
 msgstr "Багатомовний не узгоджений"
 
@@ -1040,11 +1036,11 @@ msgstr "Можливо відсутній highway=traffic_signals поруч"
 msgid "Unmatched voltage of line on substation"
 msgstr "Невідповідна напруга лінії і підстанції"
 
-#: ../plugins/TagFix_Housenumber.py:37
+#: ../plugins/TagFix_Housenumber.py:35
 msgid "Invalid tag on interpolation way"
 msgstr "Недійсний теґ на лінії інтерполяції"
 
-#: ../plugins/TagFix_Housenumber.py:42
+#: ../plugins/TagFix_Housenumber.py:40
 msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr "Недійсне значення addr:interpolation або addr:inclusion "
 
@@ -1058,7 +1054,7 @@ msgstr "Автозаправна станція, пропозиція з інт�
 msgid "Gas station update"
 msgstr "АЗС оновлення"
 
-#: ../plugins/TagFix_Housenumber.py:35
+#: ../plugins/TagFix_Housenumber.py:33
 msgid "Invalid addr:housenumber value"
 msgstr "Недійсне значення addr:housenumber"
 
@@ -1097,51 +1093,51 @@ msgstr "Військовий меморіал не historic=monument"
 msgid "Put a tag for a village hall or a community center"
 msgstr "Додайте теґ в village hall або в community center"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:76
+#: ../plugins/TagFix_MultipleTag_FR.py:66
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr "Потрібний теґ amenity=nursery|kindergarten|school besides на school:FR"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:81
-#: ../plugins/TagFix_MultipleTag_FR.py:83
+#: ../plugins/TagFix_MultipleTag_FR.py:71
+#: ../plugins/TagFix_MultipleTag_FR.py:73
 msgid "Add school:FR tag"
 msgstr "Додайте теґ school:FR"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:92
+#: ../plugins/TagFix_MultipleTag_FR.py:79
 msgid "FANTOIR numeric type is for ways"
 msgstr "числовий тип FANTOIR для ліній"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:108
+#: ../plugins/TagFix_MultipleTag_FR.py:95
 msgid "A living_street in France is a Zone 20"
 msgstr "A living_street in France is a Zone 20"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:110
+#: ../plugins/TagFix_MultipleTag_FR.py:97
 msgid "A Zone 20 in France is a living_street"
 msgstr "Зона 20 у Франції це living_street"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:113
+#: ../plugins/TagFix_MultipleTag_FR.py:100
 msgid "A Zone 20 is limited to 20 km/h"
 msgstr "Зона 20 обмежена до 20 км/год"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:115
+#: ../plugins/TagFix_MultipleTag_FR.py:102
 msgid "A zone 30 is limited to 30 km/h"
 msgstr "Зона 30 обмежена до 30 км/год"
 
-#: ../plugins/TagFix_Note_Lang_fr.py:106
+#: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
 msgid "Use start_date tag for \"%s\""
 msgstr "Застосуйте start_date теґ для \"%s\""
 
-#: ../plugins/TagFix_Note_Lang_fr.py:110 ../plugins/TagFix_Note_Lang_fr.py:113
+#: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
 msgid "Use opening_hours tag for \"%s\""
 msgstr "Застосуйте opening_hours теґ для \"%s\""
 
-#: ../plugins/TagFix_Note_Lang_fr.py:118
+#: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
 msgid "Use construction tag for \"%s\""
 msgstr "Застосуйте теґ construction для \"%s\""
 
-#: ../plugins/TagFix_Note_Lang_fr.py:122 ../plugins/TagFix_Note_Lang_fr.py:125
+#: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
 msgid "\"%s\" can be set in specific tag"
 msgstr "\"%s\" може встановлюватися в певному тезі"
@@ -1326,7 +1322,7 @@ msgstr "Відкрити зв'язок type=boundary"
 msgid "Open relation type=multipolygon"
 msgstr "Відкрити зв'язок type=multipolygon"
 
-#: ../plugins/Construction2.py:17 ../plugins/Construction2.py:55
+#: ../plugins/Construction2.py:16 ../plugins/Construction2.py:54
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "Несумісне теґування від {0}"
@@ -1375,13 +1371,13 @@ msgstr "Коледж, пропозиція з інтеґрації"
 msgid "College update"
 msgstr "Коледж оновлення"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
-#: ../analysers/analyser_merge_shop_FR.py:45
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_shop_FR.py:44
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} неінтеґрована (-ий)"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:72
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:71
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}, пропозиція з інтеґрації"
@@ -1423,8 +1419,8 @@ msgstr "Зв'язок обмеження, помилковий напрям onew
 msgid "Useless turn restriction"
 msgstr "Даремне обмеження повороту"
 
-#: ../plugins/Name_Cadastre_FR.py:17 ../plugins/Name_Cadastre_FR.py:46
-#: ../plugins/Name_Cadastre_FR.py:71
+#: ../plugins/Name_Cadastre_FR.py:16 ../plugins/Name_Cadastre_FR.py:45
+#: ../plugins/Name_Cadastre_FR.py:70
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -1434,11 +1430,11 @@ msgstr "Хутір або місцевість містить в назві су
 msgid "Unexpected punctuation in name"
 msgstr "Несподівана пунктуація в назві"
 
-#: ../plugins/Power.py:17 ../plugins/Power.py:76 ../plugins/Power.py:97
+#: ../plugins/Power.py:16 ../plugins/Power.py:75 ../plugins/Power.py:96
 msgid "Power Transformers should always be on a node"
 msgstr "Трансформатор завжди позначається точкою"
 
-#: ../plugins/Power.py:18 ../plugins/Power.py:40
+#: ../plugins/Power.py:17 ../plugins/Power.py:39
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -1475,27 +1471,27 @@ msgstr "Вторинна переробка SITCOM оновлення"
 msgid "Direct or too permissive access to motorway"
 msgstr "Прямий, або занадто дозволений доступ до автомагістралі"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:184
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:183
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr "Протилежний напрям руху на шляху з одним напрямом"
 
-#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:65
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:64
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0} без {1}"
 
-#: ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:101
-#: ../plugins/Bicycle.py:133
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:20 ../plugins/Bicycle.py:100
+#: ../plugins/Bicycle.py:132
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} з {1}"
 
-#: ../plugins/Bicycle.py:23 ../plugins/Bicycle.py:49
+#: ../plugins/Bicycle.py:22 ../plugins/Bicycle.py:48
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} з {1} і {2}"
 
-#: ../plugins/Bicycle.py:22 ../plugins/Bicycle.py:82
+#: ../plugins/Bicycle.py:21 ../plugins/Bicycle.py:81
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} є кращим за {1}"
@@ -1529,7 +1525,7 @@ msgstr "Об'єкт потребує перегляду"
 msgid "Highway classification need review"
 msgstr "Класифікація автошляху потребує перегляду"
 
-#: ../plugins/Power.py:19 ../plugins/Power.py:55
+#: ../plugins/Power.py:18 ../plugins/Power.py:54
 msgid "Power Transformers should have a frequency tag"
 msgstr "Трансформатор повинен мати теґ frequency"
 
@@ -1545,26 +1541,26 @@ msgstr "Париж мотопаркінґ неінтеґрований"
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "Париж прокат мотоциклів/мотопаркінґ неінтеґрований"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:17
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:16
 msgid "Arabic letter detected in Farsi name"
 msgstr "Арабська буква виявлена в назві на фарсі"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:49
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:74
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:104
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:126
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:156
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:178
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:48
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:73
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:103
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:125
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:155
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:177
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "На фарсі арабська буква \"{0}\" має бути замінена на \"{1}\""
 
-#: ../plugins/Colour.py:17
+#: ../plugins/Colour.py:16
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
 msgstr "Код кольору повинен мати '#' далі 3 або 6 цифр"
 
-#: ../plugins/Colour.py:56 ../plugins/Colour.py:85 ../plugins/Colour.py:130
-#: ../plugins/Colour.py:164 ../plugins/Colour.py:203 ../plugins/Colour.py:232
+#: ../plugins/Colour.py:55 ../plugins/Colour.py:84 ../plugins/Colour.py:129
+#: ../plugins/Colour.py:163 ../plugins/Colour.py:202 ../plugins/Colour.py:231
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr "{0} код кольору повинен мати '#' далі 3 або 6 цифр"
@@ -1780,47 +1776,47 @@ msgstr "Помилковий роздільник для багатьох зна
 msgid "Discordant {0} and {1}"
 msgstr "Розбіжність {0} і {1}"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:60
+#: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-brace-format
 msgid "Bad tag {0}=\"{1}\""
 msgstr "Помилковий теґ {0}=\"{1}\""
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:87
+#: ../plugins/TagFix_Tree_Lang_fr.py:88
 #, python-brace-format
 msgid "Bad tag name=\"{0}\""
 msgstr "Помилковий теґ name=\"{0}\""
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:97
+#: ../plugins/TagFix_Tree_Lang_fr.py:98
 #, python-brace-format
 msgid "Bad tag type=\"{0}\""
 msgstr "Помилковий тип теґу type=\"{0}\""
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:101
+#: ../plugins/TagFix_Tree_Lang_fr.py:102
 #, python-brace-format
 msgid "Bad tag denotation=\"{0}\""
 msgstr "Помилковий теґ denotation=\"{0}\""
 
-#: ../plugins/TagWatchFrViPofm.py:94
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule ks)"
 msgstr "ключ теґу: {0} => {1} (rule ks)"
 
-#: ../plugins/TagWatchFrViPofm.py:96
+#: ../plugins/TagWatchFrViPofm.py:98
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vs)"
 msgstr "значення теґу: {0}={1} => {2} (rule ks_vs)"
 
-#: ../plugins/TagWatchFrViPofm.py:100
+#: ../plugins/TagWatchFrViPofm.py:102
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule ks_vr)"
 msgstr "значення теґу: {0}={1} => {2} (rule ks_vr)"
 
-#: ../plugins/TagWatchFrViPofm.py:105
+#: ../plugins/TagWatchFrViPofm.py:107
 #, python-brace-format
 msgid "tag key: {0} => {1} (rule kr)"
 msgstr "ключ теґу: {0} => {1} (rule kr)"
 
-#: ../plugins/TagWatchFrViPofm.py:109
+#: ../plugins/TagWatchFrViPofm.py:111
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr "значення теґу: {0}={1} => {2} (rule kr_vs)"
@@ -1842,7 +1838,7 @@ msgstr "Додатковий \"{0}\" після міжнародного код�
 msgid "College without tag \"ref:UAI\" or invalid"
 msgstr "Коледж без \"ref:UAI\" або недійсний"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:70
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} без теґу \"{1}\" або недійсний"
@@ -1912,11 +1908,11 @@ msgstr "Інтерполяція на вузли кількох зв'язків 
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "Теґ \"addr:street\" не містить назву вулиць, розміщених довкола"
 
-#: ../plugins/Addr_Interpolation.py:31
+#: ../plugins/Addr_Interpolation.py:30
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "Зловживання addr:interpolation в комбінації з іншими теґами"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:62
+#: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
 msgid "Power plant %s"
 msgstr "Електростанція %s"
@@ -1925,7 +1921,7 @@ msgstr "Електростанція %s"
 msgid "admin_level 8 without tag \"postal_code\""
 msgstr "admin_level 8 без теґу \"postal_code\""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:33
+#: ../analysers/analyser_merge_power_plant_FR.py:32
 msgid "Power plant not integrated, geocoded at municipality level"
 msgstr "Електростанція неінтеґрована, геокодування на муніципальному рівні"
 
@@ -1953,7 +1949,7 @@ msgstr "Помилкова топологія лінії {0} рівня"
 msgid "Not allowed char \"{0}\" in phone number tag \"{1}\""
 msgstr "Недійсний символ \"{0}\" в теґу номера телефону \"{1}\""
 
-#: ../plugins/TagWatchFrViPofm.py:114
+#: ../plugins/TagWatchFrViPofm.py:116
 #, python-brace-format
 msgid "tag value: {0}={1} => {2} (rule kr_vr)"
 msgstr "значення теґу: {0}={1} => {2} (rule kr_vr)"
@@ -2007,19 +2003,19 @@ msgstr "Очисні споруди, пропозиція з інтеґраці�
 msgid "Wastewater plant update"
 msgstr "Очисні споруди оновлення"
 
-#: ../plugins/TagFix_Vatin.py:64
+#: ../plugins/TagFix_Vatin.py:62
 msgid "Invalid 'VAT identification number'"
 msgstr "Недійсний 'ідентифікаційний код VAT'"
 
-#: ../plugins/TagFix_Vatin.py:67
+#: ../plugins/TagFix_Vatin.py:65
 msgid "Value too short"
 msgstr "Значення занадто коротке"
 
-#: ../plugins/TagFix_Vatin.py:69
+#: ../plugins/TagFix_Vatin.py:67
 msgid "Country code is missing"
 msgstr "Код країни відсутній"
 
-#: ../plugins/TagFix_Vatin.py:71
+#: ../plugins/TagFix_Vatin.py:69
 msgid "Value is not uppercase"
 msgstr "Значення не в верхньому реґістрі"
 
@@ -2040,7 +2036,7 @@ msgstr "Паркінґ Carpool оновлення"
 msgid "Carpool parking {0}"
 msgstr "Паркінґ Carpool {0}"
 
-#: ../plugins/TagFix_MultipleTag_FR.py:96
+#: ../plugins/TagFix_MultipleTag_FR.py:83
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
@@ -2079,7 +2075,7 @@ msgstr ""
 msgid "Moved survey point"
 msgstr "Точка знімання була переміщена"
 
-#: ../analysers/analyser_merge_geodesie_support_FR.py:51
+#: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-brace-format
 msgid "Geodesic support not integrated {0}"
 msgstr "Геодезична підтримка неінтеґрована {0}"
@@ -2106,7 +2102,7 @@ msgid ""
 "World Heritage."
 msgstr "Положення маркерів здійснюється за допомогою адресного геокодування, воно може бути\nрозташоване поблизу. Маркер може бути дуже грубо розташованим,\nз низькою точністю в селищі. Уважно перевірте вміст запропонованих\nтеґів, можуть бути цікаві або непридатні значення. Не перекривайте\nмітки Всесвітньої спадщини ЮНЕСКО."
 
-#: ../analysers/analyser_merge_pitch_FR.py:49
+#: ../analysers/analyser_merge_pitch_FR.py:48
 #, python-brace-format
 msgid "Pitch not integrated {0}"
 msgstr "Pitch not integrated {0}"
@@ -2991,7 +2987,7 @@ msgstr ""
 msgid "A parking condition is present but without parking kind."
 msgstr ""
 
-#: ../plugins/Name_Dictionary.py:35
+#: ../plugins/Name_Dictionary.py:34
 msgid "Probably missing a capital."
 msgstr "Ймовірно, пропущена велика літера."
 
@@ -3102,14 +3098,14 @@ msgstr ""
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
 msgstr ""
 
-#: ../plugins/ODbL_migration.py:34
+#: ../plugins/disabled/ODbL_migration.py:34
 msgid ""
 "The last contributor to the object is the ODbL migration robot. The\n"
 "result of the edition of this robot is a degradation of the object to\n"
 "make it compatible with ODbL."
 msgstr ""
 
-#: ../plugins/ODbL_migration.py:38
+#: ../plugins/disabled/ODbL_migration.py:38
 msgid "Complete the object and check immediate surroundings."
 msgstr ""
 
@@ -3268,13 +3264,13 @@ msgstr "Видаліть одне значення."
 msgid "In some case all values maybe required."
 msgstr "У деяких випадках, можливо, потрібні всі значення."
 
-#: ../plugins/TagFix_Housenumber.py:39
+#: ../plugins/TagFix_Housenumber.py:37
 msgid ""
 "Interpolation way only valid with addr:interpolation=* and optional\n"
 "addr:inclusion=*."
 msgstr ""
 
-#: ../plugins/TagFix_Housenumber.py:44
+#: ../plugins/TagFix_Housenumber.py:42
 msgid ""
 "* Tag `addr:interpolation=*` is only valid with values: `even`, `odd`,\n"
 "`all`, `alphabetic` and Number.\n"
@@ -3292,21 +3288,9 @@ msgstr ""
 msgid "Eg. replace \"Chemin Rural dit des Vignes\" by \"Chemin des Vignes\"."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:48
-msgid ""
-"All French pharmacies sell on prescription by a doctor. It require a\n"
-"tag `dispensing=yes` in addition to `amenity=pharmacy`."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag_FR.py:51
+#: ../plugins/TagFix_Pharmacy.py:37
 msgid "Add tag `dispensing=yes`."
 msgstr "Додайте теґ `dispensing=yes`."
-
-#: ../plugins/TagFix_MultipleTag_FR.py:53
-msgid ""
-"Chemist shot (\"parapharmacie\" in French) do not fall into this\n"
-"classification. They do not have a specific tag for the moment."
-msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:51
 msgid "Check if it is really an highway and it is not already mapped."
@@ -3350,17 +3334,17 @@ msgid ""
 "values."
 msgstr "Перевірте точність значень, при необхідності, видаліть застарілі\nзначення."
 
-#: ../plugins/TagFix_Note_Lang_fr.py:38
+#: ../plugins/TagFix_Note_Lang_fr.py:39
 msgid "Analyzes the tag `note=*` with French and English keywords."
 msgstr "Аналізує теґ `note=*` за допомогою французьких та англійських ключових слів."
 
-#: ../plugins/TagFix_Note_Lang_fr.py:40
+#: ../plugins/TagFix_Note_Lang_fr.py:41
 msgid ""
 "Use a more appropriate tag as `description=*`, `opening_hours=*` or\n"
 "`fixme=*` so it can be found more easily."
 msgstr ""
 
-#: ../plugins/TagFix_Note_Lang_fr.py:43
+#: ../plugins/TagFix_Note_Lang_fr.py:44
 msgid "The analysis can provide crazy result."
 msgstr "Аналіз може видати шалений результат."
 
@@ -3380,21 +3364,21 @@ msgid ""
 "tag."
 msgstr "Визначте правильну роль, можливо встановіть значення ролі в\nтеґ."
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:68
+#: ../plugins/TagFix_Tree_Lang_fr.py:69
 msgid ""
 "To characterize the trees `natural=tree`, there are two main tag:\n"
 "`type` and `species`."
 msgstr "Для опису дерев `natural=tree`, є два основних теґи:`type` та `species`."
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:71
+#: ../plugins/TagFix_Tree_Lang_fr.py:72
 msgid "Put the right data in the correct tag, in this case species."
 msgstr ""
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:73
+#: ../plugins/TagFix_Tree_Lang_fr.py:74
 msgid "Specify the language for the tag `species`: `species:en=oak`"
 msgstr ""
 
-#: ../plugins/TagFix_Vatin.py:39
+#: ../plugins/TagFix_Vatin.py:37
 msgid "Invalid value format of tag `ref:vatin`"
 msgstr "Недійсний формат значення теґу `ref:vatin`"
 
@@ -3484,33 +3468,33 @@ msgid ""
 "and not a road connected, same thing for `ref=*`."
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:68
+#: ../plugins/TagWatchFrViPofm.py:70
 msgid ""
 "Simple and frequent errors, the list is available\n"
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr "Список простих та частих помилок міститься\n[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 
-#: ../analysers/analyser_merge_street_objects2.py:48
-#: ../analysers/analyser_merge_street_objects.py:48
-#: ../analysers/analyser_merge_traffic_signs.py:82
+#: ../analysers/analyser_merge_street_objects2.py:46
+#: ../analysers/analyser_merge_street_objects.py:46
+#: ../analysers/analyser_merge_traffic_signs.py:80
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "Незамаплене {0}"
 
-#: ../analysers/analyser_merge_street_objects2.py:49
-#: ../analysers/analyser_merge_street_objects.py:49
+#: ../analysers/analyser_merge_street_objects2.py:47
+#: ../analysers/analyser_merge_street_objects.py:47
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr "Об'єкт ({1}) знайдений Mapillary, але не затеґований \"{0}\" довкола."
 
-#: ../analysers/analyser_merge_street_objects2.py:51
-#: ../analysers/analyser_merge_street_objects.py:51
+#: ../analysers/analyser_merge_street_objects2.py:49
+#: ../analysers/analyser_merge_street_objects.py:49
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
 msgstr "Map the corresponding object if the imagery is up-to-date and object detection is correct.\nПозначте відповідний об'єкт, якщо супутникове зображення свіже та об'єкт виявлений коректно."
 
-#: ../analysers/analyser_merge_traffic_signs.py:84
+#: ../analysers/analyser_merge_traffic_signs.py:82
 msgid ""
 "Add the appropriate highway tagging if the imagery is up-to-date and sign "
 "detection is correct."
@@ -3566,16 +3550,16 @@ msgstr "Недійсне значення теґу"
 msgid "Untagged named object"
 msgstr "Об'єкт з іменем без теґів"
 
-#: ../analysers/analyser_merge_street_objects2.py:71
-#: ../analysers/analyser_merge_street_objects.py:71
-#: ../analysers/analyser_merge_traffic_signs.py:104
+#: ../analysers/analyser_merge_street_objects2.py:69
+#: ../analysers/analyser_merge_street_objects.py:69
+#: ../analysers/analyser_merge_traffic_signs.py:102
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr "Досліджена між {0} і {1}"
 
-#: ../analysers/analyser_merge_street_objects2.py:72
-#: ../analysers/analyser_merge_street_objects.py:72
-#: ../analysers/analyser_merge_traffic_signs.py:105
+#: ../analysers/analyser_merge_street_objects2.py:70
+#: ../analysers/analyser_merge_street_objects.py:70
+#: ../analysers/analyser_merge_traffic_signs.py:103
 #, python-brace-format
 msgid "Observed on {0}"
 msgstr "Досліджена в {0}"
@@ -3786,7 +3770,7 @@ msgstr ""
 msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:83
+#: ../analysers/analyser_merge_traffic_signs.py:81
 #, python-brace-format
 msgid ""
 "Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
@@ -4027,12 +4011,12 @@ msgid ""
 "the number of lanes."
 msgstr ""
 
-#: ../plugins/TagFix_Note_Lang_fr.py:92 ../plugins/TagFix_Note_Lang_fr.py:96
+#: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
 msgid "note tag needs FIXME: \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_Note_Lang_fr.py:102
+#: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
 msgid "Use a tag to specify end: \"%s\""
 msgstr ""
@@ -4057,20 +4041,29 @@ msgid ""
 "if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate."
 msgstr ""
 
-#: ../plugins/Historic_Wayside_cross_without_material.py:43
+#: ../plugins/TagFix_Destination.py:16
 msgid ""
-"Check if tag `material=*` is filled for `historic=wayside_cross` objects."
+"Pipe characters should not be used in destination tag, only in "
+"destination:lanes"
 msgstr ""
 
-#: ../plugins/Historic_Wayside_cross_without_material.py:45
-msgid ""
-"Add tag `material=*` or change object type as appropriate. Also take the \n"
-"oportunity to add other meta-data as `religion`, `denomination`, `start_date`, \n"
-"`inscritption`, ..."
+#: ../plugins/TagFix_Destination.py:69
+#, python-brace-format
+msgid "{0} contains a pipe character"
 msgstr ""
 
-#: ../plugins/Historic_Wayside_cross_without_material.py:49
+#: ../plugins/TagFix_Pharmacy.py:32
+msgid "In the country all pharmacies deliver drugs under prescription"
+msgstr ""
+
+#: ../plugins/TagFix_Pharmacy.py:34
 msgid ""
-"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
-"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate"
+"All pharmacies in the country sell on prescription by a doctor. It requires a\n"
+"tag `dispensing=yes` in addition to `amenity=pharmacy`."
+msgstr ""
+
+#: ../plugins/TagFix_Pharmacy.py:39
+msgid ""
+"Chemist shops (\"parapharmacie\" in French) do not fall into this\n"
+"classification. They do not have a specific tag for the moment."
 msgstr ""

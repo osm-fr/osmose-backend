@@ -574,10 +574,6 @@ msgstr ""
 msgid "Invalid reference"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:46
-msgid "In France all pharmacies deliver drugs under prescription"
-msgstr ""
-
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Tag highway missing on junction"
 msgstr ""
@@ -687,7 +683,7 @@ msgstr ""
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:56
+#: ../plugins/TagFix_MultipleTag_FR.py:46
 msgid "FANTOIR object type not match OSM feature"
 msgstr ""
 
@@ -1091,32 +1087,32 @@ msgstr ""
 msgid "Put a tag for a village hall or a community center"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:76
+#: ../plugins/TagFix_MultipleTag_FR.py:66
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:81
-#: ../plugins/TagFix_MultipleTag_FR.py:83
+#: ../plugins/TagFix_MultipleTag_FR.py:71
+#: ../plugins/TagFix_MultipleTag_FR.py:73
 msgid "Add school:FR tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:92
+#: ../plugins/TagFix_MultipleTag_FR.py:79
 msgid "FANTOIR numeric type is for ways"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:108
+#: ../plugins/TagFix_MultipleTag_FR.py:95
 msgid "A living_street in France is a Zone 20"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:110
+#: ../plugins/TagFix_MultipleTag_FR.py:97
 msgid "A Zone 20 in France is a living_street"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:113
+#: ../plugins/TagFix_MultipleTag_FR.py:100
 msgid "A Zone 20 is limited to 20 km/h"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:115
+#: ../plugins/TagFix_MultipleTag_FR.py:102
 msgid "A zone 30 is limited to 30 km/h"
 msgstr ""
 
@@ -2031,7 +2027,7 @@ msgstr ""
 msgid "Carpool parking {0}"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:96
+#: ../plugins/TagFix_MultipleTag_FR.py:83
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
@@ -3290,20 +3286,8 @@ msgstr ""
 msgid "Eg. replace \"Chemin Rural dit des Vignes\" by \"Chemin des Vignes\"."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag_FR.py:48
-msgid ""
-"All French pharmacies sell on prescription by a doctor. It require a\n"
-"tag `dispensing=yes` in addition to `amenity=pharmacy`."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag_FR.py:51
+#: ../plugins/TagFix_Pharmacy.py:37
 msgid "Add tag `dispensing=yes`."
-msgstr ""
-
-#: ../plugins/TagFix_MultipleTag_FR.py:53
-msgid ""
-"Chemist shot (\"parapharmacie\" in French) do not fall into this\n"
-"classification. They do not have a specific tag for the moment."
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:51
@@ -4068,18 +4052,30 @@ msgid ""
 "if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate."
 msgstr ""
 
+#: ../plugins/TagFix_Destination.py:16
 msgid ""
-"Check if tag `material=*` is filled for `historic=wayside_cross` objects."
+"Pipe characters should not be used in destination tag, only in destination:"
+"lanes"
 msgstr ""
 
-msgid ""
-"Add tag `material=*` or change object type as appropriate. Also take the \n"
-"oportunity to add other meta-data as `religion`, `denomination`, "
-"`start_date`, \n"
-"`inscritption`, ..."
+#: ../plugins/TagFix_Destination.py:69
+#, python-brace-format
+msgid "{0} contains a pipe character"
 msgstr ""
 
+#: ../plugins/TagFix_Pharmacy.py:32
+msgid "In the country all pharmacies deliver drugs under prescription"
+msgstr ""
+
+#: ../plugins/TagFix_Pharmacy.py:34
 msgid ""
-"The tag `historic=wayside_cross` is sometimes misused. Please x-check\n"
-"if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate"
+"All pharmacies in the country sell on prescription by a doctor. It requires "
+"a\n"
+"tag `dispensing=yes` in addition to `amenity=pharmacy`."
+msgstr ""
+
+#: ../plugins/TagFix_Pharmacy.py:39
+msgid ""
+"Chemist shops (\"parapharmacie\" in French) do not fall into this\n"
+"classification. They do not have a specific tag for the moment."
 msgstr ""
