@@ -32,7 +32,7 @@ class Highway_Parking_Lane(Plugin):
             title = T_('Bad parking:lane:[side]'),
             detail = T_(
 '''The side was not recognized, see
-`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`.'''),
+[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane).'''),
             fix = T_(
 '''Use `left`, `right` or `both`.'''))
         self.errors[31614] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
@@ -44,7 +44,7 @@ sides.'''))
             title = T_('Bad parking:lane:[side] value'),
             fix = T_(
 '''See values at
-`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`.'''))
+[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane).'''))
         self.errors[31616] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:condition:[side] without parking:lane:[side] value'),
             detail = T_(
