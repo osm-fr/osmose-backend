@@ -277,7 +277,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         'country': conf.country,
                                         'code': password
                                     }, files={
-                                        'content': open(dst, 'rb')
+                                        'content': open(analyser_conf.error_file.dst, 'rb')
                                     })
                                     r.raise_for_status()
                                     logger.sub().sub().log(r.text.strip())
