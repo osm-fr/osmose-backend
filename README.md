@@ -37,4 +37,4 @@ Setup a Docker install and follow the
 "[Develop on Osmose with docker](docker/README.md#develop-on-osmose-with-docker)"
 guide.
 
-Read the additional contribution [guildelines](CONTRIBUTING.md).
+Read the additional contribution [guidelines](CONTRIBUTING.md).
