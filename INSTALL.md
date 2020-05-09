@@ -1,8 +1,8 @@
 Install
 =======
 
-Installation Python
--------------------
+Installing Python
+-----------------
 
 Osmose QA backend requires python > 3.6.
 
@@ -15,28 +15,28 @@ You can install python dependencies in the system or in a virtualenv.
 
 ### Alt: Python dependencies in the system
 
-In the system install the following packages:
+Install the following packages on the system:
 ```
 apt install python3-dateutil python3-polib python3-psycopg2 python3-shapely python3-regex python3-requests
 ```
 
 ### Alt: python dependencies in a virtualenv
 
-Alternatively instal python-virtualenv and create a new virtualenv.
+Alternatively, install python-virtualenv and create a new virtualenv.
 
 Setup system dependencies (Debian Stretch)
 ```
 apt install build-essential python3-dev python3-virtualenv libpq-dev protobuf-compiler libprotobuf-dev
 ```
 
-Create a python virtualenv, active it and install python dependencies
+Create a python virtualenv, activate it and install python dependencies:
 ```
 virtualenv --python=python3 osmose-backend-venv
 source osmose-backend-venv/bin/activate
 pip install -r requirements.txt
 ```
 
-To run tests, additional packages are needed.
+To run tests, additional packages are needed:
 ```
 pip install -r requirements-dev.txt
 ```
@@ -57,10 +57,10 @@ make
 ```
 
 
-Installation Database
----------------------
+Installing the Database
+-----------------------
 
-Setup system dependencies (Debian Buster)
+Setup system dependencies (Debian Buster):
 ```
 apt install postgresql-11 postgresql-11-postgis-2.5
 ```
@@ -112,7 +112,7 @@ See https://wiki.postgresql.org/wiki/Pgpass for more info.
 
 Run Tests
 ---------
-Setup a `~/.pgpass` file to allow pgsql to connect to the test database without asking for password:
+Setup a `~/.pgpass` file to allow pgsql to connect to the test database without asking for a password:
 ```
 hostname:port:database:username:password
 ```
