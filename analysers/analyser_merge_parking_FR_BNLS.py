@@ -32,21 +32,21 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
             fix = T_(
 '''If you are sure that it's a new data for OpenStreetMap, then you can add it with your favourite editor (picture of Id, josm link ?).'''),
             trap = T_(
-'''It is not because it is open that it is good data, see it is because it is opendata that OSM contributors needs to check.'''),
+'''It is not because it is open that it is good data, see it is because it is opendata that OSM contributors needs to check.'''))
         doc3 = dict(
             detail = T_(
 '''This is a integration suggestion, mixing opendatabase and OpenStreetMap.'''),
             fix = T_(
 '''If you are sure that it is a good integration then you can add it with your favourite editor (picture of Id, josm link ?).'''),
             trap = T_(
-'''It is not because there is an integration suggestion that it is right, you are an OSM contributor and not an integration machine.'''),
+'''It is not because there is an integration suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
         doc4 = dict(
            detail = T_(
 '''This is an update suggestion because there is the same ref in opendatabase and OSM.'''),
             fix = T_(
 '''If you are sure that it is a good update then you can add the tag, or part of, it with your favourite editor (picture of Id, josm link ?)'''),
             trap = T_(
-'''It is not because there is a update suggestion that it is right, you are an OSM contributor and not an integration machine.''')
+'''It is not because there is a update suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
 
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc1,
             title = T_f('{0} parking not integrated', 'BNLS'),
@@ -67,7 +67,7 @@ on the  wiki. Add a node or add tags if already existing.'''),
             trap = T_(
 '''lorem ipsum trap for integration suggestion for specific opendata base'''))),
         self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc4,
-            title = T_f('{0} parking  update', 'BNLS'))
+            title = T_f('{0} parking  update', 'BNLS'),
             detail = T_(
 '''lorem ipsum specific explanation about update for specific opendata base'''),
             fix = T_(
