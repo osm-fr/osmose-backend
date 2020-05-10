@@ -41,7 +41,7 @@ way[waterway][/^destination:/][!/^destination:lanes/][!/^destination:.*:lanes/][
     throwError: tr("{0} contains a pipe character", "{1.tag}");
     group: tr("Pipe characters should not be used in destination tag, only in destination:lanes");
     suggestAlternative: tr("In case of multiple values, use instead a semicolon to separate values");
-    fixAdd: concat("{0.key}=", replace("{0.value}", "|", ";"));
+    fixAdd: concat("{1.key}=", replace("{1.value}", "|", ";"));
 
     assertNoMatch: "way highway=primary destination=A8";
     assertNoMatch: "way highway=primary destination:colour=Red";
