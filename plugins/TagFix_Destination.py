@@ -54,7 +54,7 @@ class TagFix_Destination(PluginMapCSS):
                 # -osmoseItemClassLevel:"3160/316010:0/3"
                 # suggestAlternative:tr("In case of multiple values, use instead a semicolon to separate values")
                 # throwError:tr("{0} contains a pipe character","{1.tag}")
-                # fixAdd:concat("{0.key}=",replace("{0.value}","|",";"))
+                # fixAdd:concat("{1.key}=",replace("{1.value}","|",";"))
                 # assertNoMatch:"way highway=primary destination:colour=Red"
                 # assertMatch:"way highway=primary destination:colour=Red|Yellow"
                 # assertNoMatch:"way highway=primary destination:lanes:backward=A8|Centre|Plage"
@@ -68,7 +68,7 @@ class TagFix_Destination(PluginMapCSS):
                 # assertMatch:"way waterway=river destination=East|West"
                 err.append({'class': 316010, 'subclass': 0, 'text': mapcss.tr(u'{0} contains a pipe character', mapcss._tag_uncapture(capture_tags, u'{1.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, u'{0.key}='), mapcss.replace(mapcss._tag_uncapture(capture_tags, u'{0.value}'), u'|', u';'))).split('=', 1)])
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, u'{1.key}='), mapcss.replace(mapcss._tag_uncapture(capture_tags, u'{1.value}'), u'|', u';'))).split('=', 1)])
                 }})
 
         return err
