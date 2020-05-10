@@ -26,21 +26,21 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        doc1 = dict(
+        doc_missing_official = dict(
             detail = T_(
 '''This is a data from an opendatabase, without any verification'''),
             fix = T_(
 '''If you are sure that it's a new data for OpenStreetMap, then you can add it with your favourite editor (picture of Id, josm link ?).'''),
             trap = T_(
 '''It is not because it is open that it is good data, see it is because it is opendata that OSM contributors needs to check.'''))
-        doc3 = dict(
+        doc_possible_merge = dict(
             detail = T_(
 '''This is a integration suggestion, mixing opendatabase and OpenStreetMap.'''),
             fix = T_(
 '''If you are sure that it is a good integration then you can add it with your favourite editor (picture of Id, josm link ?).'''),
             trap = T_(
 '''It is not because there is an integration suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
-        doc4 = dict(
+        doc_update_official = dict(
             detail = T_(
 '''This is an update suggestion because there is the same ref in opendatabase and OSM.'''),
             fix = T_(
@@ -48,7 +48,7 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
             trap = T_(
 '''It is not because there is a update suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
 
-        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc1,
+        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_missing_official,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
 '''This parking is referenced in the database of car parks managed by local authorities in France, off-street.
@@ -58,7 +58,7 @@ This database is made up of local authorities and is available on data.gouv.fr.'
 on the  wiki. Add a node or add tags if already existing.'''),
             trap = T_(
 '''lorem ipsum trap not integrated'''))),
-        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc3,
+        self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_possible_merge,
             title = T_f('{0} parking integration suggestion', 'BNLS'),
             detail = T_(
 '''lorem ipsum specific explanation for integration suggestion for specific opendata base'''),
@@ -66,7 +66,7 @@ on the  wiki. Add a node or add tags if already existing.'''),
 '''lorem ipsum, How to fix for integration suggestion for specific opendata base'''),
             trap = T_(
 '''lorem ipsum trap for integration suggestion for specific opendata base'''))),
-        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc4,
+        self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_update_official,
             title = T_f('{0} parking  update', 'BNLS'),
             detail = T_(
 '''lorem ipsum specific explanation about update for specific opendata base'''),
