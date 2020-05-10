@@ -28,21 +28,21 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
             doc1 = dict(
                 detail = T_(
-''''This is a data from an opendatabase, without any verification'''),
+'''This is a data from an opendatabase, without any verification'''),
                 fix = T_(
 '''If you are sure that it's a new data for OpenStreetMap, then you can add it with your favourite editor (picture of Id, josm link ?).'''),
                 trap = T_(
 '''It is not because it is open that it is good data, see it is because it is opendata that OSM contributors needs to check.'''),
             doc3 = dict(
                 detail = T_(
-''''This is a integration suggestion, mixing opendatabase and OpenStreetMap.'''),
+'''This is a integration suggestion, mixing opendatabase and OpenStreetMap.'''),
                 fix = T_(
 '''If you are sure that it is a good integration then you can add it with your favourite editor (picture of Id, josm link ?).'''),
                 trap = T_(
 '''It is not because there is an integration suggestion that it is right, you are an OSM contributor and not an integration machine.'''),
             doc4 = dict(
                 detail = T_(
-''''This is an update suggestion because there is the same ref in opendatabase and OSM.'''),
+'''This is an update suggestion because there is the same ref in opendatabase and OSM.'''),
                 fix = T_(
 '''If you are sure that it is a good update then you can add the tag, or part of, it with your favourite editor (picture of Id, josm link ?)'''),
                 trap = T_(
