@@ -70,7 +70,6 @@ on the  wiki. Add a node or add tags if already existing.'''),
             title = T_f('{0} parking  update', 'BNLS'),
             detail = T_(
 '''lorem ipsum specific explanation about update for specific opendata base'''),
-            fix = T_(
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
             "Base Nationale des Lieux de Stationnement",
