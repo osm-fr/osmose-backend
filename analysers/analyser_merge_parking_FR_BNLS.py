@@ -47,7 +47,6 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 '''If you are sure that it is a good update then you can add the tag, or part of, it with your favourite editor (picture of Id, josm link ?)'''),
             trap = T_(
 '''It is not because there is a update suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
-
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_missing_official,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
