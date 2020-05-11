@@ -71,7 +71,6 @@ on the  wiki. Add a node or add tags if already existing.'''),
             detail = T_(
 '''lorem ipsum specific explanation about update for specific opendata base'''),
             fix = T_(
-'''lorem ipsum, How to fix about update for specific opendata base'''),
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
             "Base Nationale des Lieux de Stationnement",
