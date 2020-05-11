@@ -28,41 +28,41 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         doc_missing_official = dict(
             detail = T_(
-'''This is a data from an opendatabase, without any verification'''),
+'''This is a data from an OpenData base, without any verification.'''),
             fix = T_(
-'''If you are sure that it's a new data for OpenStreetMap, then you can add it with your favourite editor (picture of Id, josm link ?).'''),
+'''If you are sure that it is a new data for OpenStreetMap, then you can add it with your favourite editor.'''),
             trap = T_(
 '''It is not because it is open that it is good data, see it is because it is opendata that OSM contributors needs to check.'''))
         doc_possible_merge = dict(
             detail = T_(
 '''This is a integration suggestion, mixing opendatabase and OpenStreetMap.'''),
             fix = T_(
-'''If you are sure that it is a good integration then you can add it with your favourite editor (picture of Id, josm link ?).'''),
+'''If you are sure that it is a good integration then you can add it with your favourite editor.'''),
             trap = T_(
 '''It is not because there is an integration suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
         doc_update_official = dict(
             detail = T_(
 '''This is an update suggestion because there is the same ref in opendatabase and OSM.'''),
             fix = T_(
-'''If you are sure that it is a good update then you can add the tag, or part of, it with your favourite editor (picture of Id, josm link ?)'''),
+'''If you are sure that it is a good update then you can add the tag, or part of.'''),
             trap = T_(
 '''It is not because there is a update suggestion that it is right, you are an OSM contributor and not an integration machine.'''))
-        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_missing_official,
+
+        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'], **self.merge_docs(doc_missing_official,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = T_(
-'''This parking is referenced in the database of car parks managed by local authorities in France, off-street.
-This database is made up of local authorities and is available on data.gouv.fr.'''),
+'''This parking is referenced in the database of car parks managed by local authorities in France, off-street.'''),
             fix = T_(
 '''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)
 on the  wiki. Add a node or add tags if already existing.'''),
             trap = T_(
-'''Be sure there's not a suggestion integration of a parking, see item http://osmose.openstreetmap.fr/fr/map/#item=8131 '''))),
+'''Be sure there is not a suggestion integration of a parking, see item http://osmose.openstreetmap.fr/fr/map/#item=8131'''))),
         self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_possible_merge,
             title = T_f('{0} parking integration suggestion', 'BNLS'),
             detail = T_(
-'''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)'''),
+'''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement).'''),
             trap = T_(
-'''It's not street parking, it's only closed (with or without fee, for all or not, ...)'''))),
+'''It is not street parking, it is only closed (with or without fee, for all or not, ...)'''))),
         self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_update_official,
             title = T_f('{0} parking  update', 'BNLS'),
             detail = T_(
