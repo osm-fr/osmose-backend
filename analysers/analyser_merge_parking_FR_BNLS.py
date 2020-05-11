@@ -37,8 +37,7 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 
         doc_missing_official = self.merge_docs(doc_main, 
             detail = T_(
-'''This is issue if from an OpenData source, without any prior individual verification on this same issue.'''),
-                                              )
+'''This is issue if from an OpenData source, without any prior individual verification on this same issue.'''))
         doc_possible_merge = self.merge_docs(doc_main,
             detail = T_(
 '''This is a integration suggestion, mixing OpenData source and OpenStreetMap.'''))
