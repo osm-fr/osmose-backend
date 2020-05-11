@@ -69,7 +69,7 @@ on the  wiki. Add a node or add tags if already existing.'''),
         self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_update_official,
             title = T_f('{0} parking  update', 'BNLS'),
             detail = T_(
-'''lorem ipsum specific explanation about update for specific opendata base'''),
+'''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)''')),
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
             "Base Nationale des Lieux de Stationnement",
