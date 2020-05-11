@@ -62,7 +62,6 @@ on the  wiki. Add a node or add tags if already existing.'''),
             title = T_f('{0} parking integration suggestion', 'BNLS'),
             detail = T_(
 '''lorem ipsum specific explanation for integration suggestion for specific opendata base'''),
-'''lorem ipsum, How to fix for integration suggestion for specific opendata base'''),
             trap = T_(
 '''It's not street parking, it's only closed (with or without fee, for all or not, ...)'''))),
         self.update_official = self.def_class(item = 8132, id = 4, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_update_official,
