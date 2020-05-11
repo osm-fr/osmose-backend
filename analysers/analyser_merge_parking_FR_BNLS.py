@@ -59,7 +59,7 @@ on the  wiki. Add a node or add tags if already existing.'''),
 '''Be sure there's not a suggestion integration of a parking, see item http://osmose.openstreetmap.fr/fr/map/#item=8131 '''))),
         self.possible_merge = self.def_class(item = 8131, id = 3, level = 3, tags = ['merge', 'parking'],**self.merge_docs(doc_possible_merge,
             title = T_f('{0} parking integration suggestion', 'BNLS'),
-             detail = T_(
+            detail = T_(
 '''See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)'''),
             trap = T_(
 '''It's not street parking, it's only closed (with or without fee, for all or not, ...)'''))),
