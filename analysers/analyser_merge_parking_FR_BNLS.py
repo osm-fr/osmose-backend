@@ -29,7 +29,7 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 
         doc_main = dict(
             detail = T_(
-'''It is not because it is from and Opdata source that it is good data. Review it before integrating. Your are an OSM contributors, not a machin to do blind import.''')
+'''It is not because it is from and OpenData source that it is good data. Review it before integrating. Your are an OSM contributors, not a machin to do blind import.''')
             fix = T_(
 '''If after review you are sure that it is a new data and right for OpenStreetMap, then you can add it.'''),
             trap = T_(
