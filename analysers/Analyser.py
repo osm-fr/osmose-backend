@@ -88,7 +88,10 @@ class Analyser(object):
     @classmethod
     def merge_docs(cls, base, **docs):
         base = dict(base)
-        for key in docs.keys():
+        for key in ['title', 'detail', 'fix', 'trap', 'example']:
+            if key not in docs:
+                continue
+
             if key in base and key in docs:
                 base[key] = cls.merge_doc(base[key], docs[key])
             elif key in docs:

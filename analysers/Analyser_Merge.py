@@ -837,19 +837,49 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger):
         Analyser_Osmosis.__init__(self, config, logger)
 
+    doc_master = dict(
+        detail = T_(
+'''It is not because it is from and OpenData source that it is good data.
+Review it before integrating. Your are an OSM contributors, not a machin
+to do blind import.'''),
+        fix = T_(
+'''If after review you are sure that it is a new data and right for
+OpenStreetMap, then you can add it.'''),
+        trap = T_(
+'''Be sure there is not existing it in an other place.'''))
+
     def def_class_missing_official(self, **kwargs):
+        doc = self.merge_docs(self.doc_master,
+            detail = T_(
+'''This is issue if from an OpenData source, without any prior individual
+verification on this same issue.'''))
+        kwargs.update(self.merge_docs(doc, **kwargs))
         self.missing_official = self.def_class(**kwargs)
 
     def def_class_missing_osm(self, **kwargs):
+        doc = self.doc_master
+        kwargs.update(self.merge_docs(doc, **kwargs))
         self.missing_osm = self.def_class(**kwargs)
 
     def def_class_possible_merge(self, **kwargs):
+        doc = self.merge_docs(self.doc_master,
+            detail = T_(
+'''This is a integration suggestion, mixing OpenData source and
+OpenStreetMap.'''))
+        kwargs.update(self.merge_docs(doc, **kwargs))
         self.possible_merge = self.def_class(**kwargs)
 
     def def_class_moved_official(self, **kwargs):
+        doc = self.doc_master
+        kwargs.update(self.merge_docs(doc, **kwargs))
         self.moved_merge = self.def_class(**kwargs)
 
     def def_class_update_official(self, **kwargs):
+        doc = self.merge_docs(self.doc_master,
+            detail = T_(
+'''This is an update suggestion because there is the same ref in
+opendatabase and OSM.'''))
+        kwargs.update(self.merge_docs(doc, **kwargs))
         self.possible_merge = self.def_class(**kwargs)
 
     def init(self, url, name, parser, load = Load(), mapping = Mapping()):
