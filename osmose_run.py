@@ -136,10 +136,8 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
     ## download and create database
 
-    if options.skip_init:
-        xml_change = None
-
-    else:
+    xml_change = None
+    if not options.skip_init:
         if options.change and osmosis_manager.check_change(conf) and not options.change_init:
             xml_change = osmosis_manager.run_change(conf)
 
