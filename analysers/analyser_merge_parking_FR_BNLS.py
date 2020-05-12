@@ -33,17 +33,17 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)
 on the wiki. Add a node or add tags if already existing.''')
 
-        self.missing_official = self.def_class(item = 8130, id = 51, level = 3, tags = ['merge', 'parking'], **self.merge_docs(doc_missing_official,
+        self.missing_official = self.def_class(item = 8130, id = 51, level = 3, tags = ['merge', 'parking'],
             title = T_f('{0} parking not integrated', 'BNLS'),
-            detail = doc_detail)),
-        self.possible_merge = self.def_class(item = 8131, id = 53, level = 3, tags = ['merge', 'parking'], **self.merge_docs(doc_possible_merge,
+            detail = doc_detail)
+        self.possible_merge = self.def_class(item = 8131, id = 53, level = 3, tags = ['merge', 'parking'],
             title = T_f('{0} parking integration suggestion', 'BNLS'),
             detail = doc_detail,
             trap = T_(
-'''It is not street parking, it is only closed (with or without fee, for all or not...)'''))),
-        self.update_official = self.def_class(item = 8132, id = 54, level = 3, tags = ['merge', 'parking'], **self.merge_docs(doc_update_official,
+'''It is not street parking, it is only closed (with or without fee, for all or not...)''')
+        self.update_official = self.def_class(item = 8132, id = 54, level = 3, tags = ['merge', 'parking'],
             title = T_f('{0} parking  update', 'BNLS'),
-            detail = doc_detail))
+            detail = doc_detail)
 
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
