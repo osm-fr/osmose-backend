@@ -27,24 +27,6 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
 
-        doc_main = dict(
-            detail = T_(
-'''It is not because it is from and OpenData source that it is good data. Review it before integrating. Your are an OSM contributors, not a machin to do blind import.'''),
-            fix = T_(
-'''If after review you are sure that it is a new data and right for OpenStreetMap, then you can add it.'''),
-            trap = T_(
-'''Be sure there is not existing it in an other place.'''))
-
-        doc_missing_official = self.merge_docs(doc_main,
-            detail = T_(
-'''This is issue if from an OpenData source, without any prior individual verification on this same issue.'''))
-        doc_possible_merge = self.merge_docs(doc_main,
-            detail = T_(
-'''This is a integration suggestion, mixing OpenData source and OpenStreetMap.'''))
-        doc_update_official = self.merge_docs(doc_main,
-            detail = T_(
-'''This is an update suggestion because there is the same ref in opendatabase and OSM.'''))
-
         doc_detail = T_(
 '''This parking is referenced in the database of car parks managed by local authorities in France, off-street.
 
