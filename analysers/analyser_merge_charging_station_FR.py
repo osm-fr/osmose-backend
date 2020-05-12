@@ -40,11 +40,11 @@ on the  wiki. Add a node or add tags if already existing.'''),
 '''The initial information corresponds to recharging pools and devices and not to
 stations, so some values are worth checking in the field. For instance, an open data point
 with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''))
-        self.missing_official = self.def_class(item = 8410, id = 1, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8410, id = 1, level = 3, tags = ['merge'],
             title = T_('Car charging station not integrated'), **doc)
-        self.possible_merge = self.def_class(item = 8411, id = 3, level = 3, tags = ['merge'],
+        self.def_class_possible_merge(item = 8411, id = 3, level = 3, tags = ['merge'],
             title = T_('Car charging station, integration suggestion'), **doc)
-        self.update_official = self.def_class(item = 8412, id = 4, level = 3, tags = ['merge'],
+        self.def_class_update_official(item = 8412, id = 4, level = 3, tags = ['merge'],
             title = T_('Car charging station  update'), **doc)
 
         self.init(

@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8370, id = 100, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8370, id = 100, level = 3, tags = ['merge'],
             title = T_('Defibrillator not integrated'))
 
         self.init(

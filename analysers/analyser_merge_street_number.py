@@ -27,7 +27,7 @@ class _Analyser_Merge_Street_Number(Analyser_Merge):
 
     def __init__(self, config, classs, city, logger, url, name, parser, load, mapping):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8080, id = classs, level = 3, tags = ['addr'],
+        self.def_class_missing_official(item = 8080, id = classs, level = 3, tags = ['addr'],
             title = T_f('Missing address {0}', city),
             detail = T_(
 '''Address in an OpenData set was not found. Only the position and

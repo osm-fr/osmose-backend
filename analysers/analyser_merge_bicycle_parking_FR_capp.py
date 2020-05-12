@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8150, id = 11, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+        self.def_class_missing_official(item = 8150, id = 11, level = 3, tags = ['merge', 'public equipment', 'cycle'],
             title = T_('CAPP bicycle parking not integrated'))
 
         self.init(

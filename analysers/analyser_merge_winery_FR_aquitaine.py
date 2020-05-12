@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8250, id = 1, level = 3, tags = ['merge', 'amenity'],
+        self.def_class_missing_official(item = 8250, id = 1, level = 3, tags = ['merge', 'amenity'],
             title = T_('Winery not integrated'))
 
         self.init(

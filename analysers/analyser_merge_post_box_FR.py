@@ -26,11 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8025, id = 1, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_official(item = 8025, id = 1, level = 3, tags = ['merge', 'post'],
             title = T_('Post box not integrated'))
-        self.missing_osm = self.def_class(item = 7051, id = 2, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_osm(item = 7051, id = 2, level = 3, tags = ['merge', 'post'],
             title = T_('Post box without tag "ref" or invalid'))
-        self.possible_merge = self.def_class(item = 8026, id = 3, level = 3, tags = ['merge', 'post'],
+        self.def_class_possible_merge(item = 8026, id = 3, level = 3, tags = ['merge', 'post'],
             title = T_('Post box, integration suggestion'))
 
         self.init(

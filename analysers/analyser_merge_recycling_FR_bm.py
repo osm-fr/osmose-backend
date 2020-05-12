@@ -26,11 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, 
 class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8120, id = 1, level = 3, tags = ['merge', 'recycling'],
+        self.def_class_missing_official(item = 8120, id = 1, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} glass recycling not integrated', 'BM'))
-        self.possible_merge   = self.def_class(item = 8121, id = 3, level = 3, tags = ['merge', 'recycling'],
+        self.def_class_possible_merge(item = 8121, id = 3, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} glass recycling, integration suggestion', 'BM'))
-        self.update_official  = self.def_class(item = 8122, id = 4, level = 3, tags = ['merge', 'recycling'],
+        self.def_class_update_official(item = 8122, id = 4, level = 3, tags = ['merge', 'recycling'],
             title = T_f('{0} glass recycling update', 'BM'))
 
         self.init(

@@ -29,13 +29,13 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Poste_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8020, id = 1, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_official(item = 8020, id = 1, level = 3, tags = ['merge', 'post'],
             title = T_('Post office not integrated'))
-        self.missing_osm = self.def_class(item = 7050, id = 2, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_osm(item = 7050, id = 2, level = 3, tags = ['merge', 'post'],
             title = T_('Post office without tag "ref:FR:LaPoste" or invalid'))
-        self.possible_merge = self.def_class(item = 8021, id = 3, level = 3, tags = ['merge', 'post'],
+        self.def_class_possible_merge(item = 8021, id = 3, level = 3, tags = ['merge', 'post'],
             title = T_('Post office, integration suggestion'))
-        self.update_official = self.def_class(item = 8022, id = 4, level = 3, tags = ['merge', 'post'],
+        self.def_class_update_official(item = 8022, id = 4, level = 3, tags = ['merge', 'post'],
             title = T_('Post office update'))
 
         self.APBP = re.compile(' (AP|BP|RP)$')

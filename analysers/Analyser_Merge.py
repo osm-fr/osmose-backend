@@ -837,6 +837,21 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger):
         Analyser_Osmosis.__init__(self, config, logger)
 
+    def def_class_missing_official(self, **kwargs):
+        self.missing_official = self.def_class(**kwargs)
+
+    def def_class_missing_osm(self, **kwargs):
+        self.missing_osm = self.def_class(**kwargs)
+
+    def def_class_possible_merge(self, **kwargs):
+        self.possible_merge = self.def_class(**kwargs)
+
+    def def_class_moved_official(self, **kwargs):
+        self.moved_merge = self.def_class(**kwargs)
+
+    def def_class_update_official(self, **kwargs):
+        self.possible_merge = self.def_class(**kwargs)
+
     def init(self, url, name, parser, load = Load(), mapping = Mapping()):
         """
         @param url: remote URL of data source, webpage

@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select
 class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
     def __init__(self, config, logger, level, title, osmTags, osmTypes, c, tcd, stcd, threshold):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 7110, id = tcd*100+stcd, level = level, tags = ['merge', 'highway'],
+        self.def_class_missing_official(item = 7110, id = tcd*100+stcd, level = level, tags = ['merge', 'highway'],
             title = title,
             detail = T_(
 '''TMC data refers to a not found element of the road network. '''),

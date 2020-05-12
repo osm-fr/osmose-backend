@@ -26,9 +26,9 @@ import re
 class Analyser_Merge_Museum_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8010, id = 31, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8010, id = 31, level = 3, tags = ['merge'],
             title = T_('Museum not integrated'))
-        self.possible_merge   = self.def_class(item = 8011, id = 33, level = 3, tags = ['merge'],
+        self.def_class_possible_merge(item = 8011, id = 33, level = 3, tags = ['merge'],
             title = T_('Museum, integration suggestion'))
 
         re_phone = re.compile(u"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$")

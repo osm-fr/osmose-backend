@@ -26,11 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Sele
 class Analyser_Merge_Fuel_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8200, id = 1, level = 3, tags = ['merge', 'highway'],
+        self.def_class_missing_official(item = 8200, id = 1, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station not integrated'))
-        self.possible_merge   = self.def_class(item = 8201, id = 3, level = 3, tags = ['merge', 'highway'],
+        self.def_class_possible_merge(item = 8201, id = 3, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station integration suggestion'))
-        self.update_official  = self.def_class(item = 8202, id = 4, level = 3, tags = ['merge', 'highway'],
+        self.def_class_update_official(item = 8202, id = 4, level = 3, tags = ['merge', 'highway'],
             title = T_('Gas station update'))
 
         self.init(

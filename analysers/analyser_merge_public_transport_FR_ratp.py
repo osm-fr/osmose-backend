@@ -27,9 +27,9 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
         Analyser_Merge.__init__(self, config, logger)
         place = "RATP"
-        self.missing_official = self.def_class(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
+        self.def_class_missing_official(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
             title = T_f('{0} stop not integrated', place))
-        self.possible_merge   = self.def_class(item = 8041, id = 3+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
+        self.def_class_possible_merge(item = 8041, id = 3+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
             title = T_f('{0} stop, integration suggestion', place))
 
         self.init(
