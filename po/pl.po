@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-05-09 14:22+0000\n"
+"PO-Revision-Date: 2020-05-12 18:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -2965,12 +2965,6 @@ msgid ""
 "side* and `the merge_to_left` on the *right side*."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:34
-msgid ""
-"The side was not recognized, see\n"
-"`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`."
-msgstr "Nieprawidłowa wartość, zobacz\n[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)."
-
 #: ../plugins/Highway_Parking_Lane.py:37
 msgid "Use `left`, `right` or `both`."
 msgstr "Prawidłowe wartości to `left`, `right` lub `both`."
@@ -2980,12 +2974,6 @@ msgid ""
 "There are more types of parking for sides than a street have\n"
 "sides."
 msgstr "Jest więcej rodzajów parkowania niż ulica ma stron.\n\nTag `parking:lane:both=*` nie może występować razem z `parking:lane:left=*` i `parking:lane:right=*`."
-
-#: ../plugins/Highway_Parking_Lane.py:46
-msgid ""
-"See values at\n"
-"`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`."
-msgstr "Zobacz możliwe wartości [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)."
 
 #: ../plugins/Highway_Parking_Lane.py:51
 msgid "A parking condition is present but without parking kind."
@@ -4070,4 +4058,16 @@ msgstr ""
 msgid ""
 "Chemist shops (\"parapharmacie\" in French) do not fall into this\n"
 "classification. They do not have a specific tag for the moment."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:34
+msgid ""
+"The side was not recognized, see\n"
+"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:46
+msgid ""
+"See values at\n"
+"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 msgstr ""

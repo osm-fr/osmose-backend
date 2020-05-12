@@ -2958,12 +2958,6 @@ msgid ""
 "side* and `the merge_to_left` on the *right side*."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:34
-msgid ""
-"The side was not recognized, see\n"
-"`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`."
-msgstr ""
-
 #: ../plugins/Highway_Parking_Lane.py:37
 msgid "Use `left`, `right` or `both`."
 msgstr ""
@@ -2972,12 +2966,6 @@ msgstr ""
 msgid ""
 "There are more types of parking for sides than a street have\n"
 "sides."
-msgstr ""
-
-#: ../plugins/Highway_Parking_Lane.py:46
-msgid ""
-"See values at\n"
-"`[parking:lane=*](https://wiki.openstreetmap.org/wiki/Key:parking:lane)`."
 msgstr ""
 
 #: ../plugins/Highway_Parking_Lane.py:51
@@ -4078,4 +4066,16 @@ msgstr ""
 msgid ""
 "Chemist shops (\"parapharmacie\" in French) do not fall into this\n"
 "classification. They do not have a specific tag for the moment."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:34
+msgid ""
+"The side was not recognized, see\n"
+"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:46
+msgid ""
+"See values at\n"
+"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 msgstr ""
