@@ -30,13 +30,13 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
             title = T_('Tourism office not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/datatourisme-la-base-nationale-des-donnees-du-tourisme-en-open-data/",
-            u"DATAtourisme, la base nationale des données du tourisme en Open Data",
-            CSV(Source(attribution = u"data.gouv.fr:DATAtourisme", millesime = "05/2020",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/b9aa0996-4bdf-46d0-a375-cf7adc02d19b"), #TODO: no stable url ?
-                separator = u","),
+            "https://data.datatourisme.gouv.fr",
+            "DATAtourisme, la base nationale des données du tourisme en Open Data",
+            CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020",
+                    fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/9e8b7142a9fe83b82225032611cdb57e/cb33fad9-e86e-4f8a-a105-f4472f720526"),
+            ),
             Load("Longitude", "Latitude",
-                where =lambda row: "core#LocalTouristOffice" in row["Categories_de_POI"]
+                    uniq = ["elem"],
             ),
             Mapping(
                 select = Select(
@@ -49,15 +49,9 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
                         "tourism": "information"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "contact:phone": lambda fields: parse_contact(fields)[1],
-                        "contact:email": lambda fields: parse_contact(fields)[2],
-                        "contact:website": lambda fields: parse_contact(fields)[3],
-                        "official_name": "Nom_du_POI",
+                        "contact:phone": "contact_phone",
+                        "contact:email": "contact_email",
+                        "contact:website": "contact_website",
+                        "official_name": "label",
                     },
-                text = lambda tags, fields: {"en": u"%s - %s \n %s" % ( fields["Adresse_postale"], fields["Code_postal_et_commune"], fields["URI_ID_du_POI"])} )))
-
-        def parse_contact(line):
-            contact_list = line["Contacts_du_POI"]
-            contact = contact_list.split("|")[0] #TODO: is there a point of keep multiple contacts here ?
-            contact_name, contact_phone, contact_email, contact_website = contact.split("#")
-            return (contact_name, contact_phone, contact_email, contact_website)
+                text = lambda tags, fields: {"en": "%s - %s \n %s" % ( fields["street_address"], fields["city_address"], fields["elem"])} )))
