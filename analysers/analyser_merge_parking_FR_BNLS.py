@@ -29,13 +29,13 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 
         doc_main = dict(
             detail = T_(
-'''It is not because it is from and OpenData source that it is good data. Review it before integrating. Your are an OSM contributors, not a machin to do blind import.''')
+'''It is not because it is from and OpenData source that it is good data. Review it before integrating. Your are an OSM contributors, not a machin to do blind import.'''),
             fix = T_(
 '''If after review you are sure that it is a new data and right for OpenStreetMap, then you can add it.'''),
             trap = T_(
 '''Be sure there is not existing it in an other place.'''))
 
-        doc_missing_official = self.merge_docs(doc_main, 
+        doc_missing_official = self.merge_docs(doc_main,
             detail = T_(
 '''This is issue if from an OpenData source, without any prior individual verification on this same issue.'''))
         doc_possible_merge = self.merge_docs(doc_main,
@@ -50,7 +50,7 @@ class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
 
 See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)
 on the wiki. Add a node or add tags if already existing.''')
-        
+
         self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'], **self.merge_docs(doc_missing_official,
             title = T_f('{0} parking not integrated', 'BNLS'),
             detail = doc_detail)),
