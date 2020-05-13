@@ -576,6 +576,7 @@ france_local_db.analyser["merge_museum_FR"] = "xxx"
 france_local_db.analyser["merge_radio_support_FR"] = "xxx"
 france_local_db.analyser["merge_carpool_FR"] = "xxx"
 france_local_db.analyser["merge_charging_station_FR"] = "xxx"
+france_local_db.analyser["merge_parking_FR_BNLS"] = "xxx"
 
 #########################################################################
 
