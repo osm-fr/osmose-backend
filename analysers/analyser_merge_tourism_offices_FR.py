@@ -33,11 +33,9 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
             "https://data.datatourisme.gouv.fr",
             "DATAtourisme, la base nationale des données du tourisme en Open Data",
             CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020",
-                    fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/9e8b7142a9fe83b82225032611cdb57e/cb33fad9-e86e-4f8a-a105-f4472f720526"),
-            ),
+                    fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/9e8b7142a9fe83b82225032611cdb57e/cb33fad9-e86e-4f8a-a105-f4472f720526")),
             Load("Longitude", "Latitude",
-                    uniq = ["elem"],
-            ),
+                uniq = ["elem"]),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
