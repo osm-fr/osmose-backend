@@ -50,6 +50,5 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
                         "contact:phone": "contact_phone",
                         "contact:email": "contact_email",
                         "contact:website": "contact_website",
-                        "official_name": "label",
-                    },
+                        "official_name": "label"},
                 text = lambda tags, fields: {"en": "%s - %s \n %s" % ( fields["street_address"], fields["city_address"], fields["elem"])} )))
