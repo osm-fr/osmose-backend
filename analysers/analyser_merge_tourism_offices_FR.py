@@ -50,16 +50,16 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
                         "contact:phone": "contact_phone",
                         "contact:email": "contact_email",
                         "contact:website": "contact_website",
-                        "wheelchair": lambda fields: parse_wheelchair(fields),
+                        "wheelchair": lambda fields: parse_reducedMobilityAccess(fields),
                         "official_name": "label"},
                 text = lambda tags, fields: {"en": "%s - %s \n %s" % ( fields["street_address"], fields["city_address"], fields["elem"])} )))
 
-def parse_wheelchair(fields):
-    if not "wheelchair" in fields:
+def parse_reducedMobilityAccess(fields):
+    if not "reducedMobilityAccess" in fields:
         return None
-    if fields["wheelchair"] == "true":
+    if fields[reducedMobilityAccess"] == "true":
         return "yes"
-    if fields["wheelchair"] == "false":
+    if fields["reducedMobilityAccess"] == "false":
         return "no"
 
 # the csv data is generated with the following request:
