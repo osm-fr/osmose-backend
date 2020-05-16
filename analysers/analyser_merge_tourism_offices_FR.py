@@ -40,7 +40,7 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"information": "office"}),
-                conflationDistance = 300,
+                conflationDistance = 1000,
                 generate = Generate(
                     static1 = {
                         "information": "office",
@@ -50,5 +50,56 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
                         "contact:phone": "contact_phone",
                         "contact:email": "contact_email",
                         "contact:website": "contact_website",
+                        "wheelchair": lambda fields: parse_wheelchair(fields),
                         "official_name": "label"},
                 text = lambda tags, fields: {"en": "%s - %s \n %s" % ( fields["street_address"], fields["city_address"], fields["elem"])} )))
+
+def parse_wheelchair(fields):
+    if not "wheelchair" in fields:
+        return None
+    if fields["wheelchair"] == "true":
+        return "yes"
+    if fields["wheelchair"] == "false":
+        return "no"
+
+# the csv data is generated with the following request:
+# SELECT
+#   ?elem ?type ?label
+#   ?Latitude ?Longitude ?street_address ?city_address
+#   ?wheelchair ?contact_phone ?contact_email ?contact_website
+# WHERE {
+#   ?elem <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type;
+#               <http://www.w3.org/2000/01/rdf-schema#label> ?label;
+#        <https://www.datatourisme.gouv.fr/ontology/core#isLocatedAt> ?location.
+#
+#   FILTER (?type IN (
+#    ## <https://www.datatourisme.gouv.fr/ontology/core#TouristInformationCenter>,
+#    <https://www.datatourisme.gouv.fr/ontology/core#LocalTouristOffice>
+#   )).
+#
+#   ?location <http://schema.org/geo> ?geo.
+#   ?geo <http://schema.org/latitude> ?Latitude;
+#        <http://schema.org/longitude> ?Longitude.
+#
+#     ?location <http://schema.org/address> ?address.
+#   ?address <http://schema.org/streetAddress> ?street_address;
+#        <http://schema.org/addressLocality> ?city_address.
+#
+#   OPTIONAL {
+#   ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+#   ?agent_contact <http://schema.org/telephone> ?contact_phone.
+# 	}
+#     OPTIONAL {
+#   ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+#   ?agent_contact <http://schema.org/email> ?contact_email.
+# 	}
+#     OPTIONAL {
+#   	 ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+#  	 ?agent_contact <http://xmlns.com/foaf/0.1/homepage> ?contact_website.
+# 	}
+#
+#   OPTIONAL {
+#     ?elem <https://www.datatourisme.gouv.fr/ontology/core#reducedMobilityAccess> ?wheelchair.
+#   }
+#
+# }
