@@ -79,7 +79,7 @@ class IssuesFileOsmose(IssuesFile):
                     })
         self.outxml.endElement('class')
 
-    def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
+    def error(self, classs, subclass, text, ids, types, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
@@ -96,8 +96,8 @@ class IssuesFileOsmose(IssuesFile):
         if fix:
             fix = self.fixdiff(fix)
             if not allow_override:
-                fix = self.filterfix(res, fixType, fix, geom)
-            self.dumpxmlfix(res, fixType, fix)
+                fix = self.filterfix(ids, types, fix, geom)
+            self.dumpxmlfix(ids, types, fix)
         self.outxml.endElement("error")
 
     def position(self, args):
@@ -106,16 +106,16 @@ class IssuesFileOsmose(IssuesFile):
     def delete(self, t, id):
         self.outxml.Element("delete", {"type": t, "id": str(id)})
 
-    def dumpxmlfix(self, res, fixesType, fixes):
+    def dumpxmlfix(self, ids, types, fixes):
         self.outxml.startElement("fixes", {})
         for fix in fixes:
             self.outxml.startElement("fix", {})
             i = 0
             for f in fix:
-                if f is not None and i < len(fixesType):
-                    type = fixesType[i]
+                if f is not None and i < len(types):
+                    type = types[i]
                     if type:
-                        self.outxml.startElement(type, {'id': str(res[i])})
+                        self.outxml.startElement(type, {'id': str(ids[i])})
                         for opp, tags in f.items():
                             for k in tags:
                                 if opp in '~+':

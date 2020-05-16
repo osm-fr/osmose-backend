@@ -27,12 +27,12 @@ class IssuesFileCsv(IssuesFile):
 
     def begin(self):
         self.csv = csv.writer(super().begin())
-        self.csv.writerow(['classs', 'subclass', 'res', 'fixType', 'text', 'lon', 'lat', 'fix'])
+        self.csv.writerow(['classs', 'subclass', 'ids', 'types', 'text', 'lon', 'lat', 'fix'])
 
     def end(self):
         del self.csv
 
-    def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
+    def error(self, classs, subclass, text, ids, types, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
@@ -41,4 +41,4 @@ class IssuesFileCsv(IssuesFile):
             lon = geom['position'][0]['lon']
         except:
             lat = lon = None
-        self.csv.writerow([classs, subclass, res, fixType, text and text.get('en'), lon, lat, fix])
+        self.csv.writerow([classs, subclass, ids, types, text and text.get('en'), lon, lat, fix])
