@@ -57,7 +57,7 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
 def parse_reducedMobilityAccess(fields):
     if not "reducedMobilityAccess" in fields:
         return None
-    if fields[reducedMobilityAccess"] == "true":
+    if fields["reducedMobilityAccess"] == "true":
         return "yes"
     if fields["reducedMobilityAccess"] == "false":
         return "no"
