@@ -81,9 +81,11 @@ Each issue yield by the analyzer should refer to a class definition by using the
 * `class`: the class `id` from the definition.
 * `subclass` (optional): an extra identifier to make the issue instance unique. Used in case of a same OSM object trigger multiple time the same issue (eg misspelling). It can also be used to distinguee multiple behaviors of the a validation rule to easy debug.
 * `text` (optional): field also know as "subtitle". It explains the issue for this specific object, eg by quoting the tag value raising this issue.
-* `res` (optional): ????????????????????????????????????????????????????????
-* `fixType` (optional): ??????????????????????????????????????????????
 * `fix` (optional): a structured field of suggested changes to fix the OSM objects. See details below.
+
+This fields are automatically filled:
+* `ids` (optional): the OSM object ids,
+* `types` (optional): the OSM object types,
 * `geom`: the point location of the issue. Preferably on the object boundary, the objects intersection or the exact location of the geometrical issue.
 
 ### Fix Suggestion
