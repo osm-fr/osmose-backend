@@ -430,5 +430,5 @@ class Test(unittest.TestCase):
         self.assertEqual(Analyser.merge_doc({'en': '1', 'fr': '2'}, {'en': '3'}), {'en': '1\n\n3', 'fr': '2\n\n3'})
         self.assertEqual(Analyser.merge_doc({'en': '1', 'fr': '2'}, {'en': '3', 'fr': '4'}), {'en': '1\n\n3', 'fr': '2\n\n4'})
 
-        self.assertEqual(Analyser.merge_docs({'A': {'en': 'a'}}, B = {'en': 'b'}), {'A': {'en': 'a'}, 'B': {'en': 'b'}})
-        self.assertEqual(Analyser.merge_docs({'Z': {'en': 'a'}}, Z = {'en': 'b'}), {'Z': {'en': 'a\n\nb'}})
+        self.assertEqual(Analyser.merge_docs({'detail': {'en': 'a'}}, fix = {'en': 'b'}), {'detail': {'en': 'a'}, 'fix': {'en': 'b'}})
+        self.assertEqual(Analyser.merge_docs({'detail': {'en': 'a'}}, detail = {'en': 'b'}), {'detail': {'en': 'a\n\nb'}})
