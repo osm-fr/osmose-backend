@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-05-17 16:14+0000\n"
+"PO-Revision-Date: 2020-05-17 19:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -4088,4 +4088,39 @@ msgstr ""
 
 #: ../analysers/analyser_merge_tourism_offices_FR.py:30
 msgid "Tourism office not integrated"
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:842
+msgid ""
+"It is not because it is from and OpenData source that it is good data.\n"
+"Review it before integrating. You are an OSM contributors, not a machine\n"
+"to do blind import."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:846
+msgid ""
+"If after review you are sure that it is a new data and right for\n"
+"OpenStreetMap, then you can add it."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:849
+msgid "Be sure that it is not already existing in another place."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:854
+msgid ""
+"This is reported from an OpenData source, without any prior individual\n"
+"verification on this data."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:867
+msgid ""
+"This is a integration suggestion, mixing OpenData source and\n"
+"OpenStreetMap."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:880
+msgid ""
+"This is an update suggestion because the same ref can be found on both\n"
+"OpenData and OSM."
 msgstr ""
