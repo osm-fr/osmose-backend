@@ -43,12 +43,12 @@ This kind of analyzer concern more complex checks. It can deal with geometries u
 The main part of the rules are written in SQL.
 
 ### Merge Analyzers
-These analyzers use the OSM Osmosis database to compare it to an external OpenData data source also importer in the database.
+These analyzers use the OSM Osmosis database to compare it to an external OpenData base.
 
 There are able to report:
 * Missing Objects in the OSM Data.
-* Suspect Objects in OSM data not found on OpenData.
-* Improvement and Update could be done on OSM data brought by OpenData.
+* Objects in OSM data not found on OpenData.
+* Improvement and Update on OSM data brought by OpenData.
 
 
 ## Concepts of Osmose-QA Issue
@@ -58,7 +58,8 @@ The Osmose-QA Issues are probable errors that a contributor should review. In so
 The issues are defined and produced by analyzers (and plugins).
 
 ### Classes of issues
-A class of issue is a definition of the issues the analyzer will yield. The classes of issues are defined by the following fields.
+A class of issue is a definition of the issues the analyzer will yield.
+The classes of issues are defined by the following fields :
 
 * `id`: each class of issue should have an unique `id` in the scope of the analyzer. Note: all plugins are in the same scope of the `Analyser_Sax`.
 
@@ -79,7 +80,7 @@ Classification:
 ### Instances of issues
 Each issue yield by the analyzer should refer to a class definition by using the same class `id`:
 * `class`: the class `id` from the definition.
-* `subclass` (optional): an extra identifier to make the issue instance unique. Used in case of a same OSM object trigger multiple time the same issue (eg misspelling). It can also be used to distinguee multiple behaviors of the a validation rule to easy debug.
+* `subclass` (optional): an extra identifier to make the issue instance unique. Used in case of a same OSM object trigger multiple time the same issue (eg misspelling). It can also be used to distingue multiple behaviors of the validation rule to easy debug.
 * `text` (optional): field also know as "subtitle". It explains the issue for this specific object, eg by quoting the tag value raising this issue.
 * `fix` (optional): a structured field of suggested changes to fix the OSM objects. See details below.
 
@@ -102,12 +103,12 @@ This tree can be shortened.
 
 The Change Actions are `+` for add tags, `-` to delete tags and `~` to alter values of tags.
 
-Examples of  shortened fixes:
+Examples of shortened fixes:
 * `{'+': {'foo': 'bar'}}`: to add a tag `foo=bar` as unique suggestion to the unique object involved in the issue.
 * `{'~': {'foo': 'bar2'}}`: to alter the existing value of the tag `foo`.
 * `{'-': ['foo']}}`: to delete the tag `foo`.
 
-The actions can be combined: `{'-': ['oof'], '+': {'foo': 'bar'}}`, delete for `foo` and add `foo=bar` on the same object.
+The actions can be combined: `{'-': ['oof'], '+': {'foo': 'bar'}}`, delete for `oof` and add `foo=bar` on the same object.
 
 To fix multiples objects: `[{'-': ['foo']}, {'+': {'foo': 'bar'}]]` remove the `foo` tag from the first object and add `foo=bar` to the second.
 
@@ -147,7 +148,7 @@ There are multiple way to run Osmose-QA Backend and test your code. The easier t
 
 [Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter) can be used from Docker to have web shell on Osmose-QA and make this doc interactive (the *.ipynb part). A static view of the Jupyter notebook can also be view online at [Github repository](https://github.com/osm-fr/osmose-backend/tree/master/doc).
 
-Lastly, if you don’t support Docker and love the old school way, you can directly use Python Virtualenv. You will also have to install ans setup PostgreSQL yourself.
+Lastly, if you don’t support Docker and love the old school way, you can directly use Python Virtualenv. You will also have to install and setup PostgreSQL yourself.
 
 ### Translation
 Translation are make in Osmose-QA but without language destination. The translation are make in all languages at the same time. For that we use `T_()` and `T_f()`, the last if the `string.format()` variant. These functions return a dictionary of all available translations. When no translation is requited, just use `{'en': 'foobar'}`.
