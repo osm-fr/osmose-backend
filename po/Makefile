@@ -10,7 +10,7 @@ osmose-backend.pot: $(PYFILES)
 	sed -i "s/^#: .*//" osmose-backend.pot
 	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
           --keyword=_ --keyword=N_ --keyword=T_ --keyword=T_f --keyword=tr \
-          --force-po --omit-header \
+          --force-po --omit-header --from-code=utf-8 \
           --output=$@ $(PYFILES)
 
 %.po:
