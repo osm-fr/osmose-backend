@@ -840,19 +840,19 @@ class Analyser_Merge(Analyser_Osmosis):
     doc_master = dict(
         detail = T_(
 '''It is not because it is from and OpenData source that it is good data.
-Review it before integrating. Your are an OSM contributors, not a machin
+Review it before integrating. You are an OSM contributors, not a machine
 to do blind import.'''),
         fix = T_(
 '''If after review you are sure that it is a new data and right for
 OpenStreetMap, then you can add it.'''),
         trap = T_(
-'''Be sure there is not existing it in an other place.'''))
+'''Be sure that it is not already existing in another place.'''))
 
     def def_class_missing_official(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
             detail = T_(
-'''This is issue if from an OpenData source, without any prior individual
-verification on this same issue.'''))
+'''This is reported from an OpenData source, without any prior individual
+verification on this data.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.missing_official = self.def_class(**kwargs)
 
@@ -877,8 +877,8 @@ OpenStreetMap.'''))
     def def_class_update_official(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
             detail = T_(
-'''This is an update suggestion because there is the same ref in
-opendatabase and OSM.'''))
+'''This is an update suggestion because the same ref can be found on both
+OpenData and OSM.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.possible_merge = self.def_class(**kwargs)
 
