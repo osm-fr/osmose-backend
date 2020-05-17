@@ -9,9 +9,9 @@ Osmose-QA is composed of two parts:
 
 Backends can be this project or any other application able to produce issues lists in the Osmose-QA XML format and able to upload it to the Frontend.
 
-This Backend project is composed by an engine and lot of the rules of validation written in analyzers. An analyzer can implemented multiple checks, and so report many class of issues.
+This Backend project is composed by an engine and lot of the rules of validation written in analyzers. An analyzer can implement multiple checks, and so report many class of issues.
 
-There are several type of analyzers, they implement a particular way to access the data.
+There are several type of analyzers, each type implementing a particular way to access the data.
 
 
 ## Analyzers organization
@@ -25,7 +25,7 @@ The abstract root classes:
 This abstract classes are implemented by few kind of classes:
 * `Analyser_Osmosis_*`: directly implementing `Analyser_Osmosis` to run SQL queries on the database.
 * `Analyser_Merge_*`: implementing `Analyser_Merge` to report results of conflation with an OpenData source.
-* `Analyser_Sax`: directly implementing `Analyser` and run a set of simple analyzers so called "Plugins", it parse the OSM PBF extract and call rules on each OSM objects.
+* `Analyser_Sax`: directly implementing `Analyser` and run a set of simple analyzers so called "Plugins", it parses the OSM PBF extract and apply rules on each OSM objects.
 
 
 ## Analyzer types
@@ -38,7 +38,7 @@ They can be written in [MapCSS](https://josm.openstreetmap.de/wiki/Help/Styles/M
 The MapCSS code is compiled into Python using `mapcss2osmose.py` from the `mapcss` directory.
 
 ### Osmose Analyzers
-This kind of analyzer concern more complex checks. It can deal with geometries using [PostGIS](https://postgis.net/docs/reference.html) functions. It can also validate tags, topological or semantics relation between objects.
+This kind of analyzer handles more complex checks. It can deal with geometries using [PostGIS](https://postgis.net/docs/reference.html) functions. It can also validate tags, topological or semantics relation between objects.
 
 The main part of the rules are written in SQL.
 
@@ -69,12 +69,12 @@ Documentation:
 * `fix` (optional, markdown): general guide on how to fix the issue. Constructed with valid sentences and ends with a period.
 * `trap` (optional, markdown): common mistakes and complications you may make while fixing the issue. Constructed with valid sentences and ends with a period.
 * `example` (optional, markdown): an example of the issue. Constructed with valid sentences and ends with a period. Images are commonly found here (`![](imgURL)` in markdown).
-* `source`: URL to the source code of this analyzer. The abstract root class automatically fill this fields.
-* `resource` (optional): URL to any data used to produce this issue. The abstract root class `Analyser_Merge` automatically fill this fields.
+* `source`: URL to the source code of this analyzer. The abstract root class automatically fills this fields.
+* `resource` (optional): URL to any data used to produce this issue. The abstract root class `Analyser_Merge` automatically fills this field.
 
 Classification:
-* `item`: where to put the result of this class of issues in the Frontend menu of categories.
-* `level`: the impact of the Osmose-QA issues on the OSM data, `1`: hight, `2`: normal, `3`: low.
+* `item`: a 4-digit number, where to put the result of this class of issues in the Frontend menu of categories.
+* `level`: the impact of the Osmose-QA issues on the OSM data, `1`: high, `2`: normal, `3`: low.
 * `tags`: Osmose-QA tags (not OSM tags), allow thematic classification on the Frontend, see already existing tags at [/api/0.3/tags](http://osmose.openstreetmap.fr/api/0.3/tags).
 
 ### Instances of issues
@@ -123,11 +123,11 @@ The main steps of running Osmose-QA are:
 * Complementary data process into the database (eg. add index)
 * For each analyzer:
   * Call the Frontend API to see it the analyzer need to be update
-  * Lunching the analyzers
-  * Uploading the result to the Frontend
+  * Launch the analyzers
+  * Upload the result to the Frontend
 * Destroy the database
 
-All the process is ruled by the command `osmose_run.py`. Some complementary utilities can found in the `tools` directory.
+All the process is handled by the command `osmose_run.py`. Some complementary utilities can found in the `tools` directory.
 
 For help run:
 ```
@@ -146,7 +146,7 @@ TODO diff, change mode, resume mode.
 ### Environment
 There are multiple way to run Osmose-QA Backend and test your code. The easier to setup is by using with Docker. Docker avoid you to deals with install process and dependencies.
 
-[Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter) can be used from Docker to have web shell on Osmose-QA and make this doc interactive (the *.ipynb part). A static view of the Jupyter notebook can also be view online at [Github repository](https://github.com/osm-fr/osmose-backend/tree/master/doc).
+[Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter) can be used from Docker to have web shell on Osmose-QA and make this doc interactive (the `*.ipynb` part). A static view of the Jupyter notebook can also be view online at [Github repository](https://github.com/osm-fr/osmose-backend/tree/master/doc).
 
 Lastly, if you don’t support Docker and love the old school way, you can directly use Python Virtualenv. You will also have to install and setup PostgreSQL yourself.
 
