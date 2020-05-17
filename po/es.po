@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-05-12 18:31+0000\n"
+"PO-Revision-Date: 2020-05-17 16:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1375,7 +1375,7 @@ msgid "College update"
 msgstr "Actualización de universidad"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
-#: ../analysers/analyser_merge_shop_FR.py:44
+#: ../analysers/analyser_merge_shop_FR.py:45
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} no integrado"
@@ -3829,12 +3829,14 @@ msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:37
 #: ../analysers/analyser_merge_parking_FR_capp.py:30
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:32
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:40
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -4069,4 +4071,27 @@ msgstr ""
 msgid ""
 "See values at\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:31
+msgid ""
+"This parking is referenced in the database of car parks managed by local authorities in France, off-street.\n"
+"\n"
+"See [the mapping](https://wiki.openstreetmap.org/wiki/France/data.gouv.fr/Base_nationale_des_lieux_de_stationnement)\n"
+"on the wiki. Add a node or add tags if already existing."
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:43
+msgid ""
+"It is not street parking, it is only closed (with or without fee, for all or"
+" not...)"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:45
+#, python-brace-format
+msgid "{0} parking  update"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_offices_FR.py:30
+msgid "Tourism office not integrated"
 msgstr ""
