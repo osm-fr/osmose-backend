@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select,
 class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8170, id = 1, level = 3, tags = ['merge', 'sport'],
+        self.def_class_missing_official(item = 8170, id = 1, level = 3, tags = ['merge', 'sport'],
             title = T_('Aquitaine equestrian spot not integrated'))
 
         self.init(

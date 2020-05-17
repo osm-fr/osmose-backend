@@ -43,13 +43,13 @@ located elsewhere. The marker can be a very rough position, located as
 low accuracy to the town. Carefully check the contents of the proposed
 tags, can be curious or unsuitable values. Do not overide tags of UNESCO
 World Heritage.'''))
-        self.missing_official = self.def_class(item = 8010, id = 1, level = 3, tags = ['merge', 'building'],
+        self.def_class_missing_official(item = 8010, id = 1, level = 3, tags = ['merge', 'building'],
             title = T_('Historical monument not integrated'), **doc)
-        self.missing_osm = self.def_class(item = 7080, id = 2, level = 3, tags = ['merge'],
+        self.def_class_missing_osm(item = 7080, id = 2, level = 3, tags = ['merge'],
             title = T_('Historical monument without tag "ref:mhs" or invalid'), **doc)
-        self.possible_merge = self.def_class(item = 8011, id = 3, level = 3, tags = ['merge'],
+        self.def_class_possible_merge(item = 8011, id = 3, level = 3, tags = ['merge'],
             title = T_('Historical monument, integration suggestion'), **doc)
-        self.update_official = self.def_class(item = 8012, id = 4, level = 3, tags = ['merge'],
+        self.def_class_update_official(item = 8012, id = 4, level = 3, tags = ['merge'],
             title = T_('Historical monument update'), **doc)
 
         def parseDPRO(dpro):

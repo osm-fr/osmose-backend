@@ -34,7 +34,7 @@ class IssuesFileGeoJson(IssuesFile):
         self.output.write(']}')
         super().end()
 
-    def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
+    def error(self, classs, subclass, text, ids, types, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
@@ -54,8 +54,8 @@ class IssuesFileGeoJson(IssuesFile):
                 'class': classs,
                 'subclass': subclass,
                 'text': text and text.get('en'),
-                'ids': res,
-                'fixType': fixType,
+                'ids': ids,
+                'types': types,
                 'fix': fix,
             }
         }

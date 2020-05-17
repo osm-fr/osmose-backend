@@ -88,7 +88,10 @@ class Analyser(object):
     @classmethod
     def merge_docs(cls, base, **docs):
         base = dict(base)
-        for key in docs.keys():
+        for key in ['title', 'detail', 'fix', 'trap', 'example']:
+            if key not in docs:
+                continue
+
             if key in base and key in docs:
                 base[key] = cls.merge_doc(base[key], docs[key])
             elif key in docs:
@@ -427,5 +430,5 @@ class Test(unittest.TestCase):
         self.assertEqual(Analyser.merge_doc({'en': '1', 'fr': '2'}, {'en': '3'}), {'en': '1\n\n3', 'fr': '2\n\n3'})
         self.assertEqual(Analyser.merge_doc({'en': '1', 'fr': '2'}, {'en': '3', 'fr': '4'}), {'en': '1\n\n3', 'fr': '2\n\n4'})
 
-        self.assertEqual(Analyser.merge_docs({'A': {'en': 'a'}}, B = {'en': 'b'}), {'A': {'en': 'a'}, 'B': {'en': 'b'}})
-        self.assertEqual(Analyser.merge_docs({'Z': {'en': 'a'}}, Z = {'en': 'b'}), {'Z': {'en': 'a\n\nb'}})
+        self.assertEqual(Analyser.merge_docs({'detail': {'en': 'a'}}, fix = {'en': 'b'}), {'detail': {'en': 'a'}, 'fix': {'en': 'b'}})
+        self.assertEqual(Analyser.merge_docs({'detail': {'en': 'a'}}, detail = {'en': 'b'}), {'detail': {'en': 'a\n\nb'}})

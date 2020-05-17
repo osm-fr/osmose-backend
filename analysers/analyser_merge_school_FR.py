@@ -52,16 +52,16 @@ class Analyser_Merge_School_FR(Analyser_Merge):
         trap = T_(
 '''Check the location. Warning data from the Ministry may have several
 administrative schools for a single physical school.''')
-        self.missing_official = self.def_class(item = 8030, id = classs+1, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8030, id = classs+1, level = 3, tags = ['merge'],
             title = T_('School not integrated'),
             trap = trap)
-        self.missing_osm = self.def_class(item = 7070, id = classs+2, level = 3, tags = ['merge'],
+        self.def_class_missing_osm(item = 7070, id = classs+2, level = 3, tags = ['merge'],
             title = T_('School without tag \"ref:UAI\" or invalid'),
             trap = trap)
-        self.possible_merge = self.def_class(item = 8031, id = classs+3, level = 3, tags = ['merge'],
+        self.def_class_possible_merge(item = 8031, id = classs+3, level = 3, tags = ['merge'],
             title = T_('School, integration suggestion'),
             trap = trap)
-        self.update_official = self.def_class(item = 8032, id = classs+4, level = 3, tags = ['merge'],
+        self.def_class_update_official(item = 8032, id = classs+4, level = 3, tags = ['merge'],
             title = T_('School update'),
             trap = trap)
 

@@ -59,7 +59,7 @@ class IssuesFile:
     def classs(self, id, item, level, tags, title, detail = None, fix = None, trap = None, example = None, source = None, resource = None):
         pass
 
-    def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
+    def error(self, classs, subclass, text, ids, types, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
@@ -85,13 +85,13 @@ class IssuesFile:
                 fix)),
             fixes))
 
-    def filterfix(self, res, fixesType, fixes, geom):
+    def filterfix(self, ids, types, fixes, geom):
         ret_fixes = []
         for fix in fixes:
             i = 0
             for f in fix:
-                if f is not None and i < len(fixesType):
-                    osm_obj = next((x for x in geom[fixesType[i]] if x['id'] == res[i]), None)
+                if f is not None and i < len(types):
+                    osm_obj = next((x for x in geom[types[i]] if x['id'] == ids[i]), None)
                     if osm_obj:
                         fix_tags = f['+'].keys() if '+' in f else []
                         if len(set(osm_obj['tag'].keys()).intersection(fix_tags)) > 0:

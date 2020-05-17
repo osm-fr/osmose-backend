@@ -27,9 +27,9 @@ class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         place = "STAN"
-        self.missing_official = self.def_class(item = 8040, id = 91, level = 3, tags = ['merge', 'public transport'],
+        self.def_class_missing_official(item = 8040, id = 91, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop not integrated', place))
-        self.possible_merge   = self.def_class(item = 8041, id = 93, level = 3, tags = ['merge', 'public transport'],
+        self.def_class_possible_merge(item = 8041, id = 93, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop, integration suggestion', place))
 
         self.init(

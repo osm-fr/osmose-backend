@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Police_FR_pn(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8190, id = 10, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8190, id = 10, level = 3, tags = ['merge'],
             title = T_('Police not integrated'))
 
         self.init(

@@ -44,7 +44,7 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.missing_official = self.def_class(item = 8170, id = classs, level = 3, tags = ['merge', 'leisure'],
+        self.def_class_missing_official(item = 8170, id = classs, level = 3, tags = ['merge', 'leisure'],
             title = T_f('Pitch not integrated {0}', topic))
 
         self.init(

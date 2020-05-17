@@ -27,11 +27,11 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         place = "STAR"
-        self.missing_official = self.def_class(item = 8040, id = 81, level = 3, tags = ['merge', 'public transport'],
+        self.def_class_missing_official(item = 8040, id = 81, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop not integrated', place))
-        self.possible_merge   = self.def_class(item = 8041, id = 83, level = 3, tags = ['merge', 'public transport'],
+        self.def_class_possible_merge(item = 8041, id = 83, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop, integration suggestion', place))
-        self.update_official  = self.def_class(item = 8042, id = 84, level = 3, tags = ['merge', 'public transport'],
+        self.def_class_update_official(item = 8042, id = 84, level = 3, tags = ['merge', 'public transport'],
             title = T_f('{0} stop update', place))
 
         self.init(

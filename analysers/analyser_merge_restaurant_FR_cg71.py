@@ -27,7 +27,7 @@ import re
 class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8240, id = 11, level = 3, tags = ['merge', 'amenity'],
+        self.def_class_missing_official(item = 8240, id = 11, level = 3, tags = ['merge', 'amenity'],
             title = T_('Restaurant not integrated'))
 
         start_restaurant = re.compile("^(hôtel-)?restaurant ", flags=re.IGNORECASE)

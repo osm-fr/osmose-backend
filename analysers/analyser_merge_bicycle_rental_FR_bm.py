@@ -26,11 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, 
 class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8160, id = 1, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+        self.def_class_missing_official(item = 8160, id = 1, level = 3, tags = ['merge', 'public equipment', 'cycle'],
             title = T_f('{0} bicycle rental not integrated', 'BM'))
-        self.possible_merge   = self.def_class(item = 8161, id = 3, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+        self.def_class_possible_merge(item = 8161, id = 3, level = 3, tags = ['merge', 'public equipment', 'cycle'],
             title = T_f('{0} bicycle rental integration suggestion', 'BM'))
-        self.update_official  = self.def_class(item = 8162, id = 4, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+        self.def_class_update_official(item = 8162, id = 4, level = 3, tags = ['merge', 'public equipment', 'cycle'],
             title = T_f('{0} bicycle update', 'BM'))
 
         self.init(

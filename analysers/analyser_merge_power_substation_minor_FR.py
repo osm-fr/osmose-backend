@@ -26,9 +26,9 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8280, id = 11, level = 3, tags = ['merge', 'power'],
+        self.def_class_missing_official(item = 8280, id = 11, level = 3, tags = ['merge', 'power'],
             title = T_('Power minor_distribution substation not integrated'))
-        self.possible_merge   = self.def_class(item = 8281, id = 13, level = 3, tags = ['merge', 'power'],
+        self.def_class_possible_merge(item = 8281, id = 13, level = 3, tags = ['merge', 'power'],
             title = T_('Power minor_distribution substation, integration suggestion'))
 
         self.init(

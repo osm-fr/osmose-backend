@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
+        self.def_class_missing_official(item = 8130, id = 1, level = 3, tags = ['merge', 'parking'],
             title = T_f('{0} parking not integrated', 'CAPP'))
 
         self.init(
@@ -58,7 +58,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
 class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8130, id = 11, level = 3, tags = ['merge', 'parking'],
+        self.def_class_missing_official(item = 8130, id = 11, level = 3, tags = ['merge', 'parking'],
             title = T_f('{0} parking for disabled not integrated', 'CAPP'))
 
         self.init(

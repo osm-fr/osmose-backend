@@ -28,7 +28,7 @@ from .modules import Stablehash
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8270, id = 1, level = 3, tags = ['merge', 'power'],
+        self.def_class_missing_official(item = 8270, id = 1, level = 3, tags = ['merge', 'power'],
             title = T_('Power plant not integrated, geocoded at municipality level'))
 
         self.init(

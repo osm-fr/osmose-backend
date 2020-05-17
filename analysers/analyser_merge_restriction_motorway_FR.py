@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8320, id = 1, level = 3, tags = ['merge', 'maxweight'],
+        self.def_class_missing_official(item = 8320, id = 1, level = 3, tags = ['merge', 'maxweight'],
             title = T_('maxweight Restriction not integrated'))
 
         self.init(
@@ -53,7 +53,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
 class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item = 8320, id = 2, level = 3, tags = ['merge', 'maxheight'],
+        self.def_class_missing_official(item = 8320, id = 2, level = 3, tags = ['merge', 'maxheight'],
             title = T_('maxheight Restriction not integrated'))
 
         self.init(
