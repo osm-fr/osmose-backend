@@ -29,17 +29,15 @@ class TagFix_Brand(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        doc = dict(
-            detail=T_(
-                '''This object has a very common name that probably corresponds to a brand name.'''),
-            fix=T_(
-                '''If this is indeed a brand, add `brand` and `brand:wikidata` tags.
-If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags'''))
-
         self.errors[31301] = self.def_class(item=3130, level=2, tags=['brand', 'fix:chair'],
                                             title=T_(
                                                 "This name is very common, is it a brand ?"),
-                                            resource='https://nsi.guide/', **doc)
+                                            resource="https://nsi.guide/",
+                                            detail=T_(
+                                                "This object has a very common name that probably corresponds to a brand name."),
+                                            fix=T_('''If this is indeed a brand, add `brand` and `brand:wikidata` tags.
+If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags''')
+                                            )
 
         self.country_code = self.father.config.options.get("country").split("-")[0]
         self.frequent_names_from_nsi = self._get_frequent_names()
@@ -49,7 +47,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         nsi_url_for_names = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/names_keep.json"
         json_str = urlread(nsi_url_for_names, 30)
         results = json.loads(json_str)
-        return [elem.lower() for elem in results.keys()]
+        return set([elem.lower() for elem in results.keys()])
 
     def _get_brands(self):
         nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/brands.json"
@@ -58,7 +56,6 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         additional_brands = {}
         for brand_nsi_name, brand in results["brands"].items():
             if "countryCodes" in brand and self.country_code.lower() not in brand["countryCodes"]:
-                #print("ignoring brand " + brand_nsi_name)
                 continue
             brand_nsi_name = brand_nsi_name.split("~")[0]
             if "matchTags" in brand:
@@ -78,7 +75,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
                 if main_key in tags:
                     nsi_key = "{}/{}|{}".format(main_key, tags[main_key], tags["name"]).lower()
                     if nsi_key in self.frequent_names_from_nsi:
-                        if nsi_key in self.brands_from_nsi.keys():
+                        if nsi_key in self.brands_from_nsi:
                             brands_tags = self.brands_from_nsi[nsi_key]["tags"]
                             tags_to_add = {}
                             for tag in brands_tags:
