@@ -30,14 +30,13 @@ class TagFix_Brand(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[31301] = self.def_class(item=3130, level=2, tags=['brand', 'fix:chair'],
-                                            title=T_(
-                                                "This name is very common, is it a brand ?"),
-                                            resource="https://nsi.guide/",
-                                            detail=T_(
-                                                "This object has a very common name that probably corresponds to a brand name."),
-                                            fix=T_('''If this is indeed a brand, add `brand` and `brand:wikidata` tags.
-If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags''')
-                                            )
+            title=T_("This name is very common, is it a brand?"),
+            detail=T_(
+'''This object has a very common name that probably corresponds to a brand name.'''),
+            fix=T_(
+'''If this is indeed a brand, add `brand` and `brand:wikidata` tags.
+If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags.'''),
+            resource="https://nsi.guide/")
 
         self.country_code = self.father.config.options.get("country").split("-")[0]
         self.frequent_names_from_nsi = self._get_frequent_names()
