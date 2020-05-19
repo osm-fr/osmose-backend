@@ -100,6 +100,11 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
 class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "FR"}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
 
         assert a.node(None, {"name": "Kiabi", "shop": "clothes"})
