@@ -29,7 +29,7 @@ class TagFix_Brand(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31301] = self.def_class(item=3130, level=2, tags=['brand', 'fix:chair'],
+        self.errors[31301] = self.def_class(item=3130, level=3, tags=['brand', 'fix:chair'],
             title=T_("This name is very common, is it a brand?"),
             detail=T_(
 '''This object has a very common name that probably corresponds to a brand name.'''),
