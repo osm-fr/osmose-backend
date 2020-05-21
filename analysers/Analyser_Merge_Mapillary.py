@@ -39,7 +39,7 @@ class Source_Mapillary(Source):
         self.layer = layer
         self.logger = logger
         Source.__init__(self, **args)
-        self.fileUrl = u'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version(self.mapping))
+        self.fileUrl = u'mapillary-{0}-{1}-{2}-{3}.csv'.format(source, country, polygon_id, SourceVersion.version(self.mapping))
         self.fileUrlCache = 120
 
     def time(self):
