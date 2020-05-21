@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8420, id = 310, level = 3, tags = ['merge'],
+        self.missing_official = self.def_class(item = 8420, id = 310, level = 3, tags = ['merge'],
             title = T_('Tourism office not integrated'))
 
         self.init(
@@ -52,7 +52,7 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
                         "contact:website": "contact_website",
                         "wheelchair": lambda fields: parse_wheelchair(fields),
                         "official_name": "label"},
-                text = lambda tags, fields: {"en": "%s - %s \n %s" % ( fields["street_address"], fields["city_address"], fields["elem"])} )))
+                text = lambda tags, fields: {"en": "{} - {} {} \n {}".format(fields["street_address"], fields["postalcode_address"], fields["city_address"], fields["elem"])} )))
 
 def parse_wheelchair(fields):
     if not "wheelchair" in fields:
@@ -65,12 +65,12 @@ def parse_wheelchair(fields):
 # the csv data is generated with the following request:
 # SELECT
 #   ?elem ?type ?label
-#   ?Latitude ?Longitude ?street_address ?city_address
+#   ?Latitude ?Longitude ?street_address ?postalcode_address ?city_address
 #   ?wheelchair ?contact_phone ?contact_email ?contact_website
 # WHERE {
 #   ?elem <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type;
-#               <http://www.w3.org/2000/01/rdf-schema#label> ?label;
-#        <https://www.datatourisme.gouv.fr/ontology/core#isLocatedAt> ?location.
+#         <http://www.w3.org/2000/01/rdf-schema#label> ?label;
+#         <https://www.datatourisme.gouv.fr/ontology/core#isLocatedAt> ?location.
 #
 #   FILTER (?type IN (
 #    ## <https://www.datatourisme.gouv.fr/ontology/core#TouristInformationCenter>,
@@ -81,25 +81,24 @@ def parse_wheelchair(fields):
 #   ?geo <http://schema.org/latitude> ?Latitude;
 #        <http://schema.org/longitude> ?Longitude.
 #
-#     ?location <http://schema.org/address> ?address.
+#   ?location <http://schema.org/address> ?address.
 #   ?address <http://schema.org/streetAddress> ?street_address;
-#        <http://schema.org/addressLocality> ?city_address.
+#  	       <http://schema.org/postalCode> ?postalcode_address;
+#            <http://schema.org/addressLocality> ?city_address.
 #
 #   OPTIONAL {
-#   ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-#   ?agent_contact <http://schema.org/telephone> ?contact_phone.
+#   	?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+#   	?agent_contact <http://schema.org/telephone> ?contact_phone.
+#   }
+#   OPTIONAL {
+#  	?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+#   	?agent_contact <http://schema.org/email> ?contact_email.
+#   }
+#   OPTIONAL {
+#   	?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+#  	?agent_contact <http://xmlns.com/foaf/0.1/homepage> ?contact_website.
 # 	}
-#     OPTIONAL {
-#   ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-#   ?agent_contact <http://schema.org/email> ?contact_email.
-# 	}
-#     OPTIONAL {
-#   	 ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-#  	 ?agent_contact <http://xmlns.com/foaf/0.1/homepage> ?contact_website.
-# 	}
-#
 #   OPTIONAL {
 #     ?elem <https://www.datatourisme.gouv.fr/ontology/core#reducedMobilityAccess> ?wheelchair.
 #   }
-#
 # }
