@@ -839,9 +839,9 @@ class Analyser_Merge(Analyser_Osmosis):
 
     doc_master = dict(
         detail = T_(
-'''It is not because it is from and OpenData source that it is good data.
-Review it before integrating. You are an OSM contributors, not a machine
-to do blind import.'''),
+'''It is from OpenData source, but that not enough to ensure the quality
+of the data. Review it before integration. You must not done blind import
+into OSM, you must do critical review of data integration.'''),
         fix = T_(
 '''If after review you are sure that it is a new data and right for
 OpenStreetMap, then you can add it.'''),

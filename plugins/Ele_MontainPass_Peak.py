@@ -30,7 +30,7 @@ class Ele_MontainPass_Peak(Plugin):
             title = T_('Missing altitude'),
             detail = T_(
 '''Some elements, including the peak (natural=peak) and mountain_pass
-(mountain_pass=yes), has an evelation. This is shown in OSM with tag
+(mountain_pass=yes), has an elevation. This is shown in OSM with tag
 ele=* in meters.'''),
             fix = T_(
 '''Complete the tag ele=* missing.'''))
