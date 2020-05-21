@@ -38,6 +38,8 @@ class TagFix_Brand(Plugin):
 If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags.'''),
             resource="https://nsi.guide/")
 
+        if not self.father.config.options.get("country"):
+            return False
         self.country_code = self.father.config.options.get("country").split("-")[0]
         self.frequent_names_from_nsi = self._get_frequent_names()
         self.brands_from_nsi = self._get_brands()
