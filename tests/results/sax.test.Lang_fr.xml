@@ -347,8 +347,7 @@
 <classtext lang="uk" title="Відсутня висота" />
 <classtext lang="zh_CN" title="缺少高度" />
 <classtext lang="zh_TW" title="缺少高度" />
-<detail lang="en" title="Some elements, including the peak (natural=peak) and mountain_pass&#10;(mountain_pass=yes), has an evelation. This is shown in OSM with tag&#10;ele=* in meters." />
-<detail lang="uk" title="Деякі елементи, включаючи вершину (natural=peak) та mountain_pass&#10;(mountain_pass=yes), мають висоту. В OSM це показується теґом&#10;ele=* в метрах." />
+<detail lang="en" title="Some elements, including the peak (natural=peak) and mountain_pass&#10;(mountain_pass=yes), has an elevation. This is shown in OSM with tag&#10;ele=* in meters." />
 <fix lang="en" title="Complete the tag ele=* missing." />
 <fix lang="es" title="Completa la etiqueta ele=* que falta." />
 <fix lang="uk" title="Відсутній завершальний теґ ele=*." />
