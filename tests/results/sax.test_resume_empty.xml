@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1110683924">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="101521711">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -1309,6 +1309,7 @@
 <class id="30316" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L82" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Etiqueta de Viquipèdia duplicada com a sufix i prefix" />
 <classtext lang="cs" title="Zdvojená značka wikipedie jako před i přípona" />
+<classtext lang="de" title="Doppeltes Wikipedia-Merkmal als Suffix und Präfix" />
 <classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
 <classtext lang="fa" title="تگ تکراری ویکی‌پدیا به‌صورت پیشوندی و پسوندی" />
@@ -1739,6 +1740,7 @@
 <classtext lang="uk" title="Помилковий parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良parking:lane:[side]" />
 <detail lang="en" title="The side was not recognized, see&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
+<detail lang="pl" title="Nieprawidłowa wartość, zobacz&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)." />
 <fix lang="en" title="Use `left`, `right` or `both`." />
 <fix lang="es" title="Use `left`, `right` o `both`." />
 <fix lang="eu" title="Erabili `left`, `right` edo `both`." />
@@ -1785,6 +1787,7 @@
 <classtext lang="uk" title="Помилкове значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良的parking:lane:[side]值" />
 <fix lang="en" title="See values at&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
+<fix lang="pl" title="Zobacz możliwe wartości [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)." />
 </class>
 <class id="31616" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L51" level="3" tag="highway,parking,fix:survey">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
