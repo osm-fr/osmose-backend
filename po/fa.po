@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-05-17 19:22+0000\n"
+"PO-Revision-Date: 2020-05-22 18:43+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,7 @@ msgstr "معبر یا گره barrier تنها"
 msgid "Geodesic mark without building"
 msgstr "نشانهٔ Geodesic بدون ساختمان"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:169
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:168
 msgid "Possible crossing=traffic_signals"
 msgstr "احتمالاً crossing=traffic_signals"
 
@@ -1006,10 +1006,6 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "تداخل بین تگ‌ها: crossing=no باید بدون تگ highway=crossing به‌کار برود"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
-msgid "Bad lanes number or lanes:turn before and after this node"
-msgstr "مقدار بد برای lanes یا lanes:turn قبل و بعد از این گره"
-
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:168
 msgid "Duplicated way geometry and tags"
 msgstr "تگ‌ها و هندسهٔ تکراری راه"
@@ -1026,7 +1022,7 @@ msgstr "تگ‌ها و هندسهٔ تکراری گره"
 msgid "Duplicated node geometry but different tags"
 msgstr "هندسهٔ تکراری گره اما با تگ‌های متفاوت"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:172
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:171
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "کمبود احتمالی highway=traffic_signals در این نزدیکی"
 
@@ -1195,13 +1191,13 @@ msgstr "تگ tracktype یا lanes بدون تگ highway"
 msgid "Missing relation type"
 msgstr "کمبود نوع رابطه"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:175
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:174
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "کمبود احتمالی تگ traffic_signals:direction یا crossing برای چراغ راهنمایی"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:178
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:176
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "احتمالاً تگ direction برای stop یا give way از قلم افتاده"
 
@@ -2407,13 +2403,7 @@ msgstr ""
 msgid "Noexit on way with multiple exits"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
-msgid ""
-"An other node very close have already the tag\n"
-"`crossing=traffic_signals`."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:165
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:164
 msgid ""
 "It is very likely that the traffic signals on the junction are\n"
 "inconsistent with each other, see also\n"
@@ -2903,13 +2893,6 @@ msgstr ""
 
 #: ../plugins/disabled/Wiki.py:31
 msgid "Object taggin type"
-msgstr ""
-
-#: ../plugins/Ele_MontainPass_Peak.py:32
-msgid ""
-"Some elements, including the peak (natural=peak) and mountain_pass\n"
-"(mountain_pass=yes), has an evelation. This is shown in OSM with tag\n"
-"ele=* in meters."
 msgstr ""
 
 #: ../plugins/Ele_MontainPass_Peak.py:36
@@ -4091,13 +4074,6 @@ msgstr ""
 msgid "Tourism office not integrated"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:842
-msgid ""
-"It is not because it is from and OpenData source that it is good data.\n"
-"Review it before integrating. You are an OSM contributors, not a machine\n"
-"to do blind import."
-msgstr ""
-
 #: ../analysers/Analyser_Merge.py:846
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
@@ -4124,4 +4100,42 @@ msgstr ""
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:842
+msgid ""
+"It is from OpenData source, but that not enough to ensure the quality\n"
+"of the data. Review it before integration. You must not done blind import\n"
+"into OSM, you must do critical review of data integration."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
+msgid "An other node very close have already a traffic signals."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
+msgid "Bad lanes number or `turn:lanes` before and after this node"
+msgstr ""
+
+#: ../plugins/Ele_MontainPass_Peak.py:32
+msgid ""
+"Some elements, including the peak (natural=peak) and mountain_pass\n"
+"(mountain_pass=yes), has an elevation. This is shown in OSM with tag\n"
+"ele=* in meters."
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:33
+msgid "This name is very common, is it a brand?"
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:35
+msgid ""
+"This object has a very common name that probably corresponds to a brand "
+"name."
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:37
+msgid ""
+"If this is indeed a brand, add `brand` and `brand:wikidata` tags.\n"
+"If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags."
 msgstr ""
