@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-13 03:33+0200\n"
-"PO-Revision-Date: 2020-04-12 21:36+0000\n"
-"Last-Translator: Kristaps Brics <Unknown>\n"
+"POT-Creation-Date: 2020-05-21 03:34+0200\n"
+"PO-Revision-Date: 2020-05-21 05:28+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Koptev Oleg <koptev.oleg@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2020-04-13 05:21+0000\n"
-"X-Generator: Launchpad (build 2e26c9bbd21cdca248baaea29aeffb920afcc32a)\n"
+"X-Launchpad-Export-Date: 2020-05-22 05:16+0000\n"
+"X-Generator: Launchpad (build 1f7bc749b40714a4cc10f5e4d787118a78037035)\n"
 "Language: ru_RU\n"
 
 #: ../core/resources/data/validator/addresses.mapcss:3
@@ -799,6 +799,8 @@ msgstr "{0} устарел"
 #: ../core/resources/data/validator/deprecated.mapcss:1953
 #: ../core/resources/data/validator/deprecated.mapcss:1960
 #: ../core/resources/data/validator/deprecated.mapcss:1967
+#: ../core/resources/data/validator/deprecated.mapcss:1974
+#: ../core/resources/data/validator/deprecated.mapcss:1981
 #: ../core/resources/data/validator/highway.mapcss:111
 #: ../core/resources/data/validator/highway.mapcss:117
 #: ../core/resources/data/validator/highway.mapcss:126
@@ -902,6 +904,7 @@ msgid "Unspecific tag {0}"
 msgstr "Неспецифичный тег {0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:560
+#: ../core/resources/data/validator/numeric.mapcss:420
 #, java-format
 msgid "Definition of {0} is unclear"
 msgstr "Неточное определение {0}"
@@ -929,7 +932,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1293
 #: ../core/resources/data/validator/deprecated.mapcss:1368
 #: ../core/resources/data/validator/geometry.mapcss:281
-#: ../core/resources/data/validator/numeric.mapcss:347
+#: ../core/resources/data/validator/numeric.mapcss:349
 #: ../core/resources/data/validator/religion.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:126
 #: ../core/resources/data/validator/unnecessary.mapcss:158
@@ -961,6 +964,8 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1187
 #: ../core/resources/data/validator/deprecated.mapcss:1197
 #: ../core/resources/data/validator/deprecated.mapcss:1254
+#: ../core/resources/data/validator/deprecated.mapcss:1972
+#: ../core/resources/data/validator/deprecated.mapcss:1979
 #, java-format
 msgid "{0} is deprecated for {1}"
 msgstr "{0} не рекомендуется для {1}"
@@ -992,9 +997,9 @@ msgstr "значение, написанное с ошибкой"
 #: ../core/resources/data/validator/deprecated.mapcss:1237
 #: ../core/resources/data/validator/deprecated.mapcss:1246
 #: ../core/resources/data/validator/deprecated.mapcss:1770
-#: ../core/resources/data/validator/numeric.mapcss:379
-#: ../core/resources/data/validator/numeric.mapcss:388
-#: ../core/resources/data/validator/numeric.mapcss:397
+#: ../core/resources/data/validator/numeric.mapcss:381
+#: ../core/resources/data/validator/numeric.mapcss:390
+#: ../core/resources/data/validator/numeric.mapcss:399
 #, java-format
 msgid "wrong value: {0}"
 msgstr "неверное значение: {0}"
@@ -1010,11 +1015,11 @@ msgstr "{0} не является типом здания."
 #: ../core/resources/data/validator/numeric.mapcss:217
 #: ../core/resources/data/validator/numeric.mapcss:227
 #: ../core/resources/data/validator/numeric.mapcss:237
-#: ../core/resources/data/validator/numeric.mapcss:271
-#: ../core/resources/data/validator/numeric.mapcss:282
-#: ../core/resources/data/validator/numeric.mapcss:361
-#: ../core/resources/data/validator/numeric.mapcss:365
-#: ../core/resources/data/validator/numeric.mapcss:405
+#: ../core/resources/data/validator/numeric.mapcss:273
+#: ../core/resources/data/validator/numeric.mapcss:284
+#: ../core/resources/data/validator/numeric.mapcss:363
+#: ../core/resources/data/validator/numeric.mapcss:367
+#: ../core/resources/data/validator/numeric.mapcss:407
 #, java-format
 msgid "unusual value of {0}"
 msgstr "необычное значение {0}"
@@ -1146,15 +1151,10 @@ msgid "{0} on a small area"
 msgstr "{0} на маленькой области"
 
 #: ../core/resources/data/validator/geometry.mapcss:339
-#, java-format
-msgid "Way with {0} not closed."
-msgstr "Линия с тегом {0} не замкнута."
-
-#: ../core/resources/data/validator/geometry.mapcss:344
 msgid "Too large building"
 msgstr "Слишком большое здание"
 
-#: ../core/resources/data/validator/geometry.mapcss:354
+#: ../core/resources/data/validator/geometry.mapcss:349
 msgid ""
 "Node connects a power line or cable with an object which is not related to "
 "the power infrastructure."
@@ -1162,7 +1162,7 @@ msgstr ""
 "Точка соединяет линию электропередачи или кабель с объектом, не относящимся "
 "к энергетической инфраструктуре."
 
-#: ../core/resources/data/validator/geometry.mapcss:359
+#: ../core/resources/data/validator/geometry.mapcss:354
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
@@ -1170,17 +1170,17 @@ msgstr ""
 "Водный путь заканчивается без соединения с другим водным путём или у него "
 "неправильное направление."
 
-#: ../core/resources/data/validator/geometry.mapcss:365
+#: ../core/resources/data/validator/geometry.mapcss:360
 #, java-format
 msgid "Coastline inside {1}"
 msgstr "Береговая линия внутри {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:372
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr "{0} должен быть точкой пересечения {1} и {2}"
 
-#: ../core/resources/data/validator/geometry.mapcss:381
+#: ../core/resources/data/validator/geometry.mapcss:376
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
@@ -1189,15 +1189,15 @@ msgstr ""
 "{0} –  тег для линейных водных объектов. Для обозначения площадных водоёмов "
 "используйте {1} + {2}."
 
-#: ../core/resources/data/validator/geometry.mapcss:395
+#: ../core/resources/data/validator/geometry.mapcss:390
 msgid "Ferry route is not connected to the road network or branches."
 msgstr "Паромный маршрут не связан с дорожной сетью или ответвлениями."
 
-#: ../core/resources/data/validator/geometry.mapcss:403
+#: ../core/resources/data/validator/geometry.mapcss:398
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr "Паромный маршрут не связан с паромным терминалом или ответвлениями."
 
-#: ../core/resources/data/validator/geometry.mapcss:408
+#: ../core/resources/data/validator/geometry.mapcss:403
 #, java-format
 msgid "{0} outside of {1}"
 msgstr "{0} снаружи {1}"
@@ -1292,7 +1292,7 @@ msgstr "значения {0} должны быть только числами �
 #: ../core/resources/data/validator/numeric.mapcss:129
 #: ../core/resources/data/validator/numeric.mapcss:150
 #: ../core/resources/data/validator/numeric.mapcss:189
-#: ../core/resources/data/validator/numeric.mapcss:324
+#: ../core/resources/data/validator/numeric.mapcss:326
 #, java-format
 msgid "unusual value of {0}: use . instead of , as decimal separator"
 msgstr ""
@@ -1338,28 +1338,43 @@ msgstr "напряжение должно быть в вольтах без ед
 msgid "{0} must be a numeric value"
 msgstr "{0} должно быть числовым значением"
 
-#: ../core/resources/data/validator/numeric.mapcss:260
+#: ../core/resources/data/validator/numeric.mapcss:262
 #, java-format
 msgid "{0} must be a positive integer number"
 msgstr "{0} должен быть положительным целым числом"
 
-#: ../core/resources/data/validator/numeric.mapcss:312
-#: ../core/resources/data/validator/numeric.mapcss:335
+#: ../core/resources/data/validator/numeric.mapcss:314
+#: ../core/resources/data/validator/numeric.mapcss:337
 #, java-format
 msgid "{0} must be a numeric value, in meters and without units"
 msgstr "{0} должно быть числом в метрах, без единиц измерения"
 
-#: ../core/resources/data/validator/numeric.mapcss:348
+#: ../core/resources/data/validator/numeric.mapcss:350
 msgid "Unnecessary amount of decimal places"
 msgstr "Излишнее количество десятичных знаков"
 
-#: ../core/resources/data/validator/numeric.mapcss:380
-#: ../core/resources/data/validator/numeric.mapcss:389
-#: ../core/resources/data/validator/numeric.mapcss:398
+#: ../core/resources/data/validator/numeric.mapcss:382
+#: ../core/resources/data/validator/numeric.mapcss:391
+#: ../core/resources/data/validator/numeric.mapcss:400
 #: ../core/resources/data/validator/territories.mapcss:29
 #: ../core/resources/data/validator/territories.mapcss:34
 msgid "Airport tagging"
 msgstr "Теги аэропорта"
+
+#: ../core/resources/data/validator/numeric.mapcss:429
+#: ../core/resources/data/validator/numeric.mapcss:441
+#: ../core/resources/data/validator/numeric.mapcss:449
+#: ../core/resources/data/validator/numeric.mapcss:459
+#: ../core/resources/data/validator/numeric.mapcss:469
+#: ../core/resources/data/validator/numeric.mapcss:482
+#, java-format
+msgid ""
+"unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point "
+"is decimal separator; space between value and unit"
+msgstr ""
+"необычное значение {0}: должна быть  указана единица измерения, например  "
+"{1} или {2}; только положительные значения; точка в качестве разделителя; "
+"пробел между значением и единицей измерения"
 
 #: ../core/resources/data/validator/relation.mapcss:4
 msgid "relation without type"
