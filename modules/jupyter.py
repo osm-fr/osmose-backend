@@ -29,9 +29,20 @@ from ipywidgets import HTML
 import modules.OsmOsisManager
 from osmose_run import analyser_config, issues_file_from_fromat
 from modules import OsmoseLog
+from mapcss import mapcss2osmose
+from antlr4 import InputStream
+import imp
 
 
 LOG = None
+
+
+def compile_mapcss(mapcss_code, name):
+    python_code = mapcss2osmose.compile(InputStream(mapcss_code), name)
+    compiled = imp.new_module('compiled')
+    exec(python_code, compiled.__dict__)
+    return compiled
+
 
 def run(conf, analyser, plugin = None, format = 'osmose'):
     from optparse import Values

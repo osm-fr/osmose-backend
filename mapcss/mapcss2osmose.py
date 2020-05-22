@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 import os
 import re
@@ -5,9 +7,9 @@ import ast
 import hashlib
 from pprint import pprint
 from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
-from generated.MapCSSLexer import MapCSSLexer
-from generated.MapCSSParser import MapCSSParser
-from MapCSSListenerL import MapCSSListenerL
+from .generated.MapCSSLexer import MapCSSLexer
+from .generated.MapCSSParser import MapCSSParser
+from .MapCSSListenerL import MapCSSListenerL
 
 
 # Clean
@@ -733,36 +735,9 @@ def build_tests(tests):
     return "\n".join(out)
 
 
-from item_map import item_map
-
-def main(_, mapcss):
-    path = os.path.dirname(mapcss)
-    class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
+def compile(input, class_name, mapcss_url = None, only_for = [], not_for = [], prefix = ""):
     global item_default, class_map, subclass_blacklist, class_index, meta_tags
-    if class_name in item_map:
-        i = item_map[class_name]
-        item_default = i.get('item')
-        class_map = i.get('class') or {None: 0}
-        subclass_blacklist = i.get('subclass_blacklist', [])
-        mapcss_url = i.get('url_display', i.get('url'))
-        only_for = i.get('only_for', [])
-        not_for = i.get('not_for', [])
-        prefix = i.get('prefix', '')
-        class_index = max(class_map.values())
-        meta_tags = ('["' + ('", "').join(i.get('tags')) + '"]') if i.get('tags') else None
-    else:
-        item_default = 0
-        class_map = {}
-        subclass_blacklist = []
-        mapcss_url = None
-        only_for = []
-        not_for = []
-        prefix = ''
-        class_index = item_default * 1000
-        meta_tags = None
-    class_name = class_name.replace('.', '_').replace('-', '_')
 
-    input = FileStream(mapcss, encoding='utf-8')
     lexer = MapCSSLexer(input)
     stream = CommonTokenStream(lexer)
     parser = MapCSSParser(stream)
@@ -832,9 +807,46 @@ class Test(TestPluginCommon):
 
         """ + asserts.replace("\n", "\n        ") + """
 """).replace("        \n", "\n")
-    f = open((path or '.') + '/' + prefix + class_name + '.py', 'w')
-    f.write(mapcss)
-    f.close()
+    return mapcss
+
+
+from .item_map import item_map
+
+
+def main(_, mapcss):
+    class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
+    global item_default, class_map, subclass_blacklist, class_index, meta_tags
+    if class_name in item_map:
+        i = item_map[class_name]
+        item_default = i.get('item')
+        class_map = i.get('class') or {None: 0}
+        subclass_blacklist = i.get('subclass_blacklist', [])
+        mapcss_url = i.get('url_display', i.get('url'))
+        only_for = i.get('only_for', [])
+        not_for = i.get('not_for', [])
+        prefix = i.get('prefix', '')
+        class_index = max(class_map.values())
+        meta_tags = ('["' + ('", "').join(i.get('tags')) + '"]') if i.get('tags') else None
+    else:
+        item_default = 0
+        class_map = {}
+        subclass_blacklist = []
+        mapcss_url = None
+        only_for = []
+        not_for = []
+        prefix = ''
+        class_index = item_default * 1000
+        meta_tags = None
+    class_name = class_name.replace('.', '_').replace('-', '_')
+
+    input = FileStream(mapcss, encoding='utf-8')
+
+    python_code = compile(input, class_name, mapcss_url, only_for, not_for, prefix)
+
+    path = os.path.dirname(mapcss)
+    output = open((path or '.') + '/' + prefix + class_name + '.py', 'w')
+    output.write(python_code)
+    output.close()
 
     if original_class_name in item_map:
         item_map[original_class_name]['class'] = class_map
@@ -843,6 +855,7 @@ class Test(TestPluginCommon):
         f.write("item_map = \\\n")
         pprint(item_map, f)
         f.close()
+
 
 if __name__ == '__main__':
     main(*sys.argv)

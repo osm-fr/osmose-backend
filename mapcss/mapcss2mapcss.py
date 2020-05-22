@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 import sys
 from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
-from MapCSSLexer import MapCSSLexer
-from MapCSSParser import MapCSSParser
-from MapCSSListenerL import MapCSSListenerL
+from .MapCSSLexer import MapCSSLexer
+from .MapCSSParser import MapCSSParser
+from .MapCSSListenerL import MapCSSListenerL
 
 
 def to_mapcss(t):

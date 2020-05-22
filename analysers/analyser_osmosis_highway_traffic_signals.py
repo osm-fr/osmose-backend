@@ -159,8 +159,7 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         doc = dict(
             detail = T_(
-'''An other node very close have already the tag
-`crossing=traffic_signals`.'''),
+'''An other node very close have already a traffic signals.'''),
             fix = T_(
 '''It is very likely that the traffic signals on the junction are
 inconsistent with each other, see also
@@ -172,11 +171,9 @@ inconsistent with each other, see also
             title = T_('Possible missing highway=traffic_signals nearby'),
             **doc)
         self.classs_change[3] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Possible missing traffic_signals:direction tag or crossing on traffic signals'),
-            **doc)
+            title = T_('Possible missing traffic_signals:direction tag or crossing on traffic signals'))
         self.classs_change[4] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
-            title = T_('Possible missing direction tag on stop or a give way'),
-            **doc)
+            title = T_('Possible missing direction tag on stop or a give way'))
 
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
             [{"+":{"crossing":"traffic_signals"}}],

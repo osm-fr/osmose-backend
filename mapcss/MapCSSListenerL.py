@@ -1,5 +1,5 @@
-from generated.MapCSSListener import MapCSSListener
-from generated.MapCSSParser import MapCSSParser
+from .generated.MapCSSListener import MapCSSListener
+from .generated.MapCSSParser import MapCSSParser
 
 
 class MapCSSListenerL(MapCSSListener):
