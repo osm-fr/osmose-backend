@@ -872,7 +872,7 @@ OpenStreetMap.'''))
     def def_class_moved_official(self, **kwargs):
         doc = self.doc_master
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.moved_merge = self.def_class(**kwargs)
+        self.moved_official = self.def_class(**kwargs)
 
     def def_class_update_official(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
@@ -880,7 +880,7 @@ OpenStreetMap.'''))
 '''This is an update suggestion because the same ref can be found on both
 OpenData and OSM.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.possible_merge = self.def_class(**kwargs)
+        self.update_official = self.def_class(**kwargs)
 
     def init(self, url, name, parser, load = Load(), mapping = Mapping()):
         """
