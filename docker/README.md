@@ -139,7 +139,6 @@ own analyzer code.
 ## Alternative 2: Develop with Full environment
 
 From docker container you can test analysers:
->>>>>>> 0e583394... Add Jupyter support and Plugin notebook #859
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 ```
