@@ -534,12 +534,12 @@ if __name__ == "__main__":
 
     (options, args) = parser.parse_args()
 
-    if not options.country:
-        parser.print_help()
-        sys.exit(1)
-
     if options.version:
         print("osmose backend version: %s" % get_version())
         sys.exit(0)
+
+    if not options.country and not options.list_country and not options.list_analyser:
+        parser.print_help()
+        sys.exit(1)
 
     sys.exit(main(options))
