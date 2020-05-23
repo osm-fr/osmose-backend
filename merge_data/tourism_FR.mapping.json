@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Tourism office",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#LocalTouristOffice",
+    "items": 8420,
+    "classes": 310,
+    "tags_select": {
+      "information": "office"
+    },
+    "tags_generate": {
+      "information": "office",
+      "tourism": "information"
+    }
+  }
+]

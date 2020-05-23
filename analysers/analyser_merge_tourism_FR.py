@@ -20,14 +20,25 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+import json
+from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
+from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
+class Analyser_Merge_tourism_FR(Analyser_Merge_Dynamic):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8420, id = 310, level = 3, tags = ['merge'],
-            title = T_('Tourism office not integrated'))
+        Analyser_Merge_Dynamic.__init__(self, config, logger)
+
+        mapingfile = json.loads(open("merge_data/tourism_FR.mapping.json").read())
+        for r in mapingfile:
+            self.classFactory(SubAnalyser_Datatourisme_FR, r['classes'], r['items'], r['classes'], r['title'], r['type'], r['tags_select'], r['tags_generate'])
+
+
+class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
+    def __init__(self, config, error_file, logger, items, classs, title, type_, tags_select, tags_generate):
+        SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
+        self.def_class_missing_official(item = items, id = classs, level = 3, tags = ['merge'],
+            title = T_f('{0} not integrated', title))
 
         self.init(
             "https://data.datatourisme.gouv.fr",
@@ -35,16 +46,15 @@ class Analyser_Merge_Datatourisme_tourism_office_FR(Analyser_Merge):
             CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020",
                     fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/9e8b7142a9fe83b82225032611cdb57e/cb33fad9-e86e-4f8a-a105-f4472f720526")),
             Load("Longitude", "Latitude",
+                select = {'type': type_},
                 uniq = ["elem"]),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = {"information": "office"}),
+                    tags = tags_select),
                 conflationDistance = 1000,
                 generate = Generate(
-                    static1 = {
-                        "information": "office",
-                        "tourism": "information"},
+                    static1 = tags_generate,
                     static2 = {"source": self.source},
                     mapping1 = {
                         "contact:phone": "contact_phone",
