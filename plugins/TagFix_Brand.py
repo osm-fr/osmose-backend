@@ -30,9 +30,9 @@ class TagFix_Brand(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[31301] = self.def_class(item=3130, level=3, tags=['brand', 'fix:chair'],
-            title=T_("This name is very common, is it a brand?"),
+            title=T_("This name is very common, it looks like a brand with missing tags"),
             detail=T_(
-'''This object has a very common name that probably corresponds to a brand name.'''),
+'''This object has a very common name that probably corresponds to a brand name. All objects of the same brand should be tagged the same way.'''),
             fix=T_(
 '''If this is indeed a brand, add `brand` and `brand:wikidata` tags.
 If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags.'''),
