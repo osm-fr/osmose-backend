@@ -278,7 +278,6 @@ include_aquitaine = [
     'merge_sport_FR_aquitaine_equestrian',
     'merge_library_FR_aquitaine',
     'merge_winery_FR_aquitaine',
-    'merge_restaurant_FR_aquitaine',
 ]
 france_departement("aquitaine/dordogne", 7375, "FR-24", include=include_aquitaine)
 france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine + [
@@ -314,10 +313,7 @@ france_departement("basse_normandie/orne", 7419, "FR-61")
 
 france_departement("bourgogne/cote_d_or", 7424, "FR-21")
 france_departement("bourgogne/nievre", 7448, "FR-58")
-france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
-    # Saône-et-Loire
-    'merge_restaurant_FR_cg71',
-])
+france_departement("bourgogne/saone_et_loire", 7397, "FR-71")
 france_departement("bourgogne/yonne", 7392, "FR-89")
 
 france_departement("bretagne/cotes_d_armor", 7398, "FR-22")
