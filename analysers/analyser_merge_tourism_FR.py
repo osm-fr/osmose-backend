@@ -74,37 +74,37 @@ SELECT
   ?wheelchair ?takeaway ?contact_phone ?contact_email ?contact_website
 WHERE {
   ?elem <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type;
-        <http://www.w3.org/2000/01/rdf-schema#label> ?label;
-        <https://www.datatourisme.gouv.fr/ontology/core#isLocatedAt> ?location.
+      <http://www.w3.org/2000/01/rdf-schema#label> ?label;
+      <https://www.datatourisme.gouv.fr/ontology/core#isLocatedAt> ?location.
 
   FILTER (?type IN (
-   <https://www.datatourisme.gouv.fr/ontology/core#Camping>,
-   <https://www.datatourisme.gouv.fr/ontology/core#Church>,
-   <https://www.datatourisme.gouv.fr/ontology/core#Restaurant>,
-   <https://www.datatourisme.gouv.fr/ontology/core#LocalTouristOffice>
+    <https://www.datatourisme.gouv.fr/ontology/core#Camping>,
+    <https://www.datatourisme.gouv.fr/ontology/core#Church>,
+    <https://www.datatourisme.gouv.fr/ontology/core#Restaurant>,
+    <https://www.datatourisme.gouv.fr/ontology/core#LocalTouristOffice>
   )).
 
   ?location <http://schema.org/geo> ?geo.
   ?geo <http://schema.org/latitude> ?Latitude;
-       <http://schema.org/longitude> ?Longitude.
+      <http://schema.org/longitude> ?Longitude.
 
   ?location <http://schema.org/address> ?address.
   ?address <http://schema.org/streetAddress> ?street_address;
- 	         <http://schema.org/postalCode> ?postalcode_address;
-           <http://schema.org/addressLocality> ?city_address.
-  
+      <http://schema.org/postalCode> ?postalcode_address;
+      <http://schema.org/addressLocality> ?city_address.
+
   OPTIONAL {
-  	?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-  	?agent_contact <http://schema.org/telephone> ?contact_phone.
+    ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+    ?agent_contact <http://schema.org/telephone> ?contact_phone.
   }
   OPTIONAL {
- 	  ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-  	?agent_contact <http://schema.org/email> ?contact_email.
+    ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+    ?agent_contact <http://schema.org/email> ?contact_email.
   }
   OPTIONAL {
-  	?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
- 	  ?agent_contact <http://xmlns.com/foaf/0.1/homepage> ?contact_website.
-	} 
+    ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+    ?agent_contact <http://xmlns.com/foaf/0.1/homepage> ?contact_website.
+  }
   OPTIONAL {
     ?elem <https://www.datatourisme.gouv.fr/ontology/core#reducedMobilityAccess> ?wheelchair.
   }
