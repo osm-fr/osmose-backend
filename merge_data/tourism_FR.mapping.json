@@ -11,5 +11,42 @@
       "information": "office",
       "tourism": "information"
     }
+  },
+  {
+    "title": "Church",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#Church",
+    "items": 8101,
+    "classes": 310,
+    "tags_select": {
+      "amenity": "place_of_worship"
+    },
+    "tags_generate": {
+      "religion": "christian",
+      "amenity": "place_of_worship"
+    }
+  },
+  {
+    "title": "Camping",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#Camping",
+    "items": 8140,
+    "classes": 310,
+    "tags_select": {
+      "tourism": "camp_site"
+    },
+    "tags_generate": {
+      "tourism": "camp_site"
+    }
+  },
+  {
+    "title": "Restaurant",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#Restaurant",
+    "items": 8240,
+    "classes": 310,
+    "tags_select": {
+      "amenity": "restaurant"
+    },
+    "tags_generate": {
+      "amenity": "restaurant"
+    }
   }
 ]
