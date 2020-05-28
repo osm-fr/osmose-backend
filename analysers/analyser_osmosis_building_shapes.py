@@ -79,6 +79,8 @@ tagged.''')
                 {"+":{"man_made":"windmill"}},
                 {"+":{"man_made":"dovecote"}},
                 {"+":{"building":"hut"}},
+                {"+":{"building":"yurt"}},
+                {"+":{"building":"ger"}},
                 ]}
             self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":[
                 {"+":{"man_made":"works"}},

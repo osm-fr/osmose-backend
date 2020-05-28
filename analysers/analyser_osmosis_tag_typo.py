@@ -78,6 +78,7 @@ FROM
             'mail', 'email',
             'lock', 'rock',
             'reg_name', 'ref_name',
+            'massage', 'message',
             'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9' -- Tiger mess
         ) AND
         NOT key LIKE 'AND_%'

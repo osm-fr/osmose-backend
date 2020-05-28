@@ -28,7 +28,7 @@ class Historic_Wayside_cross_without_material(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[303242] = self.def_class(item = 3032, level = 1, tags = ['historic', 'fix:survey'],
+        self.errors[303242] = self.def_class(item = 3032, level = 3, tags = ['historic', 'fix:survey'],
             title = T_('Wayside cross node without `material` tag'),
             detail = T_(
 '''The tag `historic=wayside_cross` can always be used in combination with
