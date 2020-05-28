@@ -312,7 +312,10 @@ france_departement("basse_normandie/orne", 7419, "FR-61")
 
 france_departement("bourgogne/cote_d_or", 7424, "FR-21")
 france_departement("bourgogne/nievre", 7448, "FR-58")
-france_departement("bourgogne/saone_et_loire", 7397, "FR-71")
+france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
+    # Saône-et-Loire
+    'merge_hydrants_FR',
+])
 france_departement("bourgogne/yonne", 7392, "FR-89")
 
 france_departement("bretagne/cotes_d_armor", 7398, "FR-22")
