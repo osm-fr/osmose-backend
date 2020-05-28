@@ -154,6 +154,7 @@
 <fix lang="en" title="Probably missing a capital." />
 <fix lang="es" title="Probablemente le falta una mayúscula." />
 <fix lang="eu" title="Seguruaski hizki larri bat falta da." />
+<fix lang="fr" title="Il manque probablement une lettre en capitale." />
 <fix lang="uk" title="Ймовірно, пропущена велика літера." />
 </class>
 <class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L36" level="1" tag="value,fix:chair">
@@ -300,6 +301,7 @@
 <detail lang="en" title="Some elements, including the peak (natural=peak) and mountain_pass&#10;(mountain_pass=yes), has an elevation. This is shown in OSM with tag&#10;ele=* in meters." />
 <fix lang="en" title="Complete the tag ele=* missing." />
 <fix lang="es" title="Completa la etiqueta ele=* que falta." />
+<fix lang="pl" title="Dodaj brakujący tag `ele=*`." />
 <fix lang="uk" title="Відсутній завершальний теґ ele=*." />
 </class>
 <class id="900" item="4030" source="http://example.com/plugins/TagRemove_Incompatibles.py#L34" level="1" tag="tag,fix:chair">
@@ -326,6 +328,7 @@
 <detail lang="en" title="The object contains two incompatible tags." />
 <detail lang="es" title="El objeto contiene dos etiquetas incompatibles." />
 <detail lang="eu" title="Objektuak bi etiketa bateraezin ditu." />
+<detail lang="fr" title="L'objet contient deux attributs incompatibles." />
 <detail lang="pl" title="Ten obiekt zawiera dwa niepasujące do siebie znaczniki." />
 <detail lang="uk" title="Об'єкт містить два несумісні теґи." />
 <trap lang="de" title="Manchmal benötigt das Objekt beide Merkmale." />
@@ -488,6 +491,7 @@
 <fix lang="en" title="Delete one value." />
 <fix lang="es" title="Borrar un valor." />
 <fix lang="eu" title="Ezabatu balio bat." />
+<fix lang="fr" title="Supprime une valeur." />
 <fix lang="ja" title="値を1つ削除してください。" />
 <fix lang="uk" title="Видаліть одне значення." />
 <trap lang="en" title="In some case all values maybe required." />
@@ -723,6 +727,7 @@
 <classtext lang="zh_CN" title="这个多面体是一个简单的多边形" />
 <detail lang="en" title="Multipolygon relation actually defines a simple polygon." />
 <detail lang="es" title="La relación multipolígono en realidad define un polígono simple." />
+<detail lang="fr" title="Le “multipolygon” est un polygone simple" />
 <detail lang="uk" title="Зв'язок мультиполігону фактично є звичайним полігоном." />
 </class>
 <class id="12001" item="1200" source="http://example.com/plugins/Structural_Useless_Relation.py#L38" level="2" tag="relation,fix:chair">
@@ -778,6 +783,7 @@
 <classtext lang="zh_TW" title="閉合的水路" />
 <detail lang="en" title="A waterway cannot flow in closed loop." />
 <detail lang="es" title="Una vía fluvial no puede fluir en circuito cerrado." />
+<detail lang="fr" title="Un cours d’eau ne peut pas former une boucle fermée." />
 <detail lang="hu" title="Vízfolyás nem folyhat körbe." />
 <detail lang="pl" title="Ciek nie może płynąć w zamkniętej pętli." />
 <detail lang="uk" title="Водний шлях не може протікати по колу." />
@@ -1518,6 +1524,7 @@
 <fix lang="en" title="Delete one value." />
 <fix lang="es" title="Borrar un valor." />
 <fix lang="eu" title="Ezabatu balio bat." />
+<fix lang="fr" title="Supprime une valeur." />
 <fix lang="ja" title="値を1つ削除してください。" />
 <fix lang="uk" title="Видаліть одне значення." />
 <trap lang="en" title="In some case all values maybe required." />
@@ -1874,6 +1881,7 @@
 <classtext lang="de" title="Fläche ohne beschreibende Eigenschaften" />
 <classtext lang="en" title="Untagged area object" />
 <classtext lang="ja" title="タグがないエリアオブジェクト " />
+<classtext lang="pl" title="Obszar bez podstawowego tagu" />
 <detail lang="de" title="Dem Objekt fehlt ein Tag, das beschreibt, um welche Art von Merkmal es sich handelt. Das ist unerwartet für etwas, das mit `area=yes` getaggt ist." />
 <detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`." />
 <fix lang="de" title="Ergänze ein übergeordnetes Tag um kennzeichnen, worum es sich bei dem Merkmal handelt. Übliche Werte für Flächenmerkmale sind:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `power`, `public_transport`, `sport`, `tourism`, `waterway`" />
@@ -2332,6 +2340,7 @@
 <classtext lang="zh_CN" title="不可打印字符" />
 <detail lang="en" title="A non-printable character such as linefeed (0x000a) has been&#10;used." />
 <detail lang="es" title="Ha sido usado un caracter no imprimible como una línea de salida (0x000a)." />
+<detail lang="fr" title="Un caractère non imprimable, par exemple un retour à la ligne (0x000a), été utilisé." />
 <detail lang="ja" title="ラインフィード(0x000a)のような表示不能な文字が使われています。" />
 <detail lang="pl" title="Został użyty niedrukowalny znak, taki jak np. znak nowej linii (0x000A)." />
 <detail lang="uk" title="Недрукований символ, як linefeed (0x000a) був&#10;використаний." />
@@ -2340,6 +2349,7 @@
 <fix lang="fr" title="Supprimer le caractère." />
 <fix lang="hu" title="Távolítsa el a karaktert." />
 <fix lang="ja" title="文字を削除します。" />
+<fix lang="pl" title="Usuń ten znak." />
 <fix lang="uk" title="Видаліть символ." />
 </class>
 <class id="50703" item="5070" source="http://example.com/plugins/Name_Script.py#L61" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
@@ -2410,6 +2420,7 @@
 <classtext lang="zh_CN" title="缺少maxheight标签" />
 <detail lang="de" title="Fehlendes `maxheight=*` oder `maxheight:*` Tag für den Tunnel oder die Unterführung." />
 <detail lang="en" title="Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a&#10;bridge." />
+<detail lang="pl" title="Brakuje tagu `maxheight=*` lub `maxheight:*` dla tunelu lub drogi pod wiaduktem." />
 <detail lang="uk" title="Відсутній `maxheight=*` або `maxheight:*` для тунелю або шляху під&#10;мостом." />
 </class>
 <class id="91001" item="9100" source="http://example.com/plugins/Power.validator.mapcss" level="2" tag="power,fix:chair,geom">
@@ -3107,19 +3118,7 @@
 <classtext lang="zh_CN" title="对象在位置0.00E 0.00N。此处没有任何东西，除了一个已绘制的气象浮筏。" />
 </class>
 <class id="9003010" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="2" tag="geom">
-<classtext lang="cs" title="Cesta s {0.key}={0.value} není uzavřena." />
-<classtext lang="de" title="Linie mit {0.key}={0.value} nicht geschlossen." />
 <classtext lang="en" title="Way with {0.key}={0.value} not closed." />
-<classtext lang="es" title="Camino con {0.key}={0.value} no cerrado." />
-<classtext lang="fr" title="Chemin avec {0.key}={0.value} non fermé." />
-<classtext lang="hu" title="Nincs bezárva a(z) {0.key}={0.value} címkéjű vonal." />
-<classtext lang="it" title="Way con {0.key}={0.value} non chiusa." />
-<classtext lang="ja" title="{0.key}={0.value}のウェイが閉じていません。" />
-<classtext lang="nl" title="Weg met {0.key}={0.value} niet gesloten." />
-<classtext lang="pl" title="Linia z {0.key}={0.value} nie jest zamknięta." />
-<classtext lang="pt" title="Via com {0.key}={0.value} não fechada." />
-<classtext lang="ru" title="Линия с тегом {0.key}={0.value} не замкнута." />
-<classtext lang="uk" title="Лінія з теґом {0.key}={0.value} не є замкненою." />
 </class>
 <class id="9004001" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="ca" title="nom abreviat del carrer" />
