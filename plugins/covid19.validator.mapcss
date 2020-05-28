@@ -1,0 +1,74 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Noémie Lehuby 2020                                         ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
+meta {
+    title: "Osmose-QA - covid19 clean-up";
+    description: "*:covid19 tags clean-up";
+    author: "Ça Reste Ouvert";
+    -osmoseTags: list("tag", "fix:survey", "deprecated");
+}
+meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
+    description: tr("covid-19 tags clean-up");
+}
+
+*[takeaway:covid19=yes][takeaway!=yes] {
+    -osmoseItemClassLevel: "4010/202004/2";
+    throwWarning: tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times");
+    fixChangeKey: "takeaway:covid19=>takeaway";
+
+    assertNoMatch: "way takeaway:covid19=yes takeaway=yes";
+    assertMatch: "way takeaway:covid19=yes";
+    assertMatch: "node takeaway:covid19=yes takeaway=no";
+    assertNoMatch: "way takeaway:covid19=no";
+    assertNoMatch: "way takeaway:covid19=only";
+}
+
+*[delivery:covid19=yes][delivery!=yes] {
+    -osmoseItemClassLevel: "4010/202004/2";
+    throwWarning: tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times");
+    fixChangeKey: "delivery:covid19=>delivery";
+
+    assertNoMatch: "way delivery:covid19=yes delivery=yes";
+    assertMatch: "way delivery:covid19=yes";
+    assertMatch: "node delivery:covid19=yes delivery=no";
+    assertNoMatch: "way delivery:covid19=no";
+    assertNoMatch: "way delivery:covid19=only";
+}
+
+*[opening_hours:covid19][opening_hours:covid19=~/off|restricted/]{
+    -osmoseItemClassLevel: "4010/202004/2";
+    throwWarning: tr("The lockdown is over. Has this place reopened ?");
+    fixRemove: "opening_hours:covid19";
+
+    assertNoMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\"";
+    assertNoMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\" opening_hours=\"Mo-Su 09:00-20:00\"";
+    assertNoMatch: "way opening_hours:covid19=same";
+    assertMatch: "way opening_hours:covid19=restricted";
+}
+
+*[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours]{
+    -osmoseItemClassLevel: "4010/202004/2";
+    throwWarning: tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?");
+    fixChangeKey: "opening_hours:covid19=>opening_hours";
+
+    assertMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\"";
+    assertNoMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\" opening_hours=\"Mo-Su 09:00-20:00\"";
+    assertNoMatch: "way opening_hours:covid19=same";
+    assertNoMatch: "way opening_hours:covid19=restricted";
+}
