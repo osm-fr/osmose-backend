@@ -16,7 +16,7 @@
     "title": "Church",
     "type": "https://www.datatourisme.gouv.fr/ontology/core#Church",
     "items": 8101,
-    "classes": 310,
+    "classes": 320,
     "tags_select": {
       "amenity": "place_of_worship"
     },
@@ -29,7 +29,7 @@
     "title": "Camping",
     "type": "https://www.datatourisme.gouv.fr/ontology/core#Camping",
     "items": 8140,
-    "classes": 310,
+    "classes": 330,
     "tags_select": {
       "tourism": "camp_site"
     },
@@ -41,7 +41,7 @@
     "title": "Restaurant",
     "type": "https://www.datatourisme.gouv.fr/ontology/core#Restaurant",
     "items": 8240,
-    "classes": 310,
+    "classes": 340,
     "tags_select": {
       "amenity": "restaurant"
     },
