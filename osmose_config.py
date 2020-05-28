@@ -274,7 +274,6 @@ include_aquitaine = [
     # Aquitiane
     'merge_tourism_FR_aquitaine_camp_caravan',
     'merge_tourism_FR_aquitaine_museum',
-    'merge_tourism_FR_aquitaine_information',
     'merge_sport_FR_aquitaine_equestrian',
     'merge_library_FR_aquitaine',
     'merge_winery_FR_aquitaine',
