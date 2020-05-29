@@ -27,7 +27,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     description: tr("covid-19 tags clean-up");
 }
 
-*[takeaway:covid19=yes][takeaway!=yes] {
+*[takeaway:covid19=yes][takeaway!=yes][inside("FR")] {
     -osmoseItemClassLevel: "4010/202004/2";
     throwWarning: tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times");
     fixChangeKey: "takeaway:covid19=>takeaway";
@@ -39,7 +39,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     assertNoMatch: "way takeaway:covid19=only";
 }
 
-*[delivery:covid19=yes][delivery!=yes] {
+*[delivery:covid19=yes][delivery!=yes][inside("FR")] {
     -osmoseItemClassLevel: "4010/202004/2";
     throwWarning: tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times");
     fixChangeKey: "delivery:covid19=>delivery";
@@ -51,7 +51,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     assertNoMatch: "way delivery:covid19=only";
 }
 
-*[opening_hours:covid19][opening_hours:covid19=~/off|restricted/]{
+*[opening_hours:covid19][opening_hours:covid19=~/off|restricted/][inside("FR")]{
     -osmoseItemClassLevel: "4010/202004/2";
     throwWarning: tr("The lockdown is over. Has this place reopened ?");
     fixRemove: "opening_hours:covid19";
@@ -62,7 +62,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     assertMatch: "way opening_hours:covid19=restricted";
 }
 
-*[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours]{
+*[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours][inside("FR")]{
     -osmoseItemClassLevel: "4010/202004/2";
     throwWarning: tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?");
     fixChangeKey: "opening_hours:covid19=>opening_hours";
