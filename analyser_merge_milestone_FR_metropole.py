@@ -1,0 +1,120 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+###########################################################################
+##                                                                       ##
+## Copyrights Frédéric Rodrigo 2014-2020                                 ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
+from collections import OrderedDict
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+
+class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
+    def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
+
+        # fix item 
+        self.def_class_missing_official(item = 8130, id = 41, level = 3, tags = ['merge', 'milestone'],
+            title = T_('Milestone not integrated'))
+        self.def_class_possible_merge(item = 8131, id = 43, level = 3, tags = ['merge', 'milestone'],
+            title = T_('Milestone integration suggestion'))
+        self.def_class_update_official(item = 8132, id = 44, level = 3, tags = ['merge', 'milestone'],
+            title = T_('Milestone update'))
+
+#            u"https://www.data.gouv.fr/fr/datasets/gestionnaires-du-reseau-routier-national/",
+#            u"Bornage du réseau routier national",
+#            CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2018",
+#                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/9045452c-f6a6-4e13-b82c-6f55e671656d",
+#                    filter = lambda text: text.replace(',', '.')), separator = u"\t"),
+# need to read this file in first : route + depPrD + prD is unique code match Gestionnaire => operator to second csv...?
+
+        self.init(
+            u"https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
+            u"Bornage du réseau routier national",
+            CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2019",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/fbc8b73b-a65c-486b-a710-ed22b9e4070c",
+                    filter = lambda text: text.replace(',', '.')), separator = u"\t"),
+                    
+            Load("x", "y",srid = 2154,
+                where = lambda row: self.transform_to_natref(row) is not None),
+            Mapping(
+                select = Select(
+                    types = ["nodes"],
+                    tags = [{"highway": "milestone"}]),
+                osmRef = "nat_ref",    
+                conflationDistance = 150,
+                generate = Generate(
+                    static1 = {"highway": "milestone"},
+                    static2 = {"source": self.source},
+                    mapping1 = {
+                        "distance": 'pr',
+                        "nat_ref": lambda row: self.transform_to_natref(row),
+                        "ref": lambda fields: self.transform_route(fields['route']) }
+                    )))
+
+    def transform_to_natref(self,row):
+        #dept must be on 2 caracter
+        dept=row['depPr']
+        #C or '', not 'N'
+        if (row['concessionPr']=='C') :
+            concede = 'C'
+        else :
+            concede = ''
+        #I is for ignore, sens is D,G or U for droite(sens croissant),gauche(sens décroissant), unique. 
+        sens = row['cote']
+        if (row['cote']=='I') :
+            sens = 'U'
+            
+        if len(dept) == 1 :
+            dept = '0' + dept
+        if (dept in ('975','976','977')) :
+            #coordinate is in utm
+            return None
+        elif (dept==row['route'][0:2]) :
+            #not a milestone but highway junction
+            return None
+        elif (row['route'][0:1]=='P') :
+            #P for temporary,
+            return None
+        elif (row['route'][0:2] in ('N1','N2')) :
+            #N1 for future up_class and N2 for down_class road,
+            return None
+        else :
+            return dept + 'PR' + row['pr'] + sens + concede
+            
+    def transform_route(self,route):
+        #remove multiple 0 and add space
+        if   route[0:4] in ('A000', 'N000') : return route[0:1] + " " + route[4:]
+        elif route[0:3] in ('A00', 'N00')   : return route[0:1] + " " + route[3:]
+        elif route[0:2] in ('A0', 'N0')     : return route[0:1] + " " + route[2:]
+        else : return route[0:1] + " " + route[1:]
+
+
+class Sub_Analyser_Merge_Milestone_FR_gestionnaire(Analyser_Merge):
+    def __init__(self, config, logger = None):
+        Analyser_Merge.__init__(self, config, logger)
+
+    # need to read this file in first : unique_code axe + '_' + dept + '_' + pr + concede : Gestionnaire => operator to second csv...?
+    # operatordict[fields['route'] +  '_' + fields['depPrD'] +  '_' + fields['prD'] +  '_' + fields['concessionPrD']] = fields['Gestionnaire']
+
+        self.init(
+            u"https://www.data.gouv.fr/fr/datasets/gestionnaires-du-reseau-routier-national/",
+            u"Bornage du réseau routier national",
+            CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2018",
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/9045452c-f6a6-4e13-b82c-6f55e671656d",
+                    filter = lambda text: text.replace(',', '.')), separator = u"\t"))
+
