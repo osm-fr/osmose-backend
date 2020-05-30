@@ -6,7 +6,7 @@ from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
 
-class covid19(PluginMapCSS):
+class Covid19(PluginMapCSS):
 
 
 
@@ -36,7 +36,7 @@ class covid19(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times")
                 # fixChangeKey:"takeaway:covid19=>takeaway"
-                # assertMatch:"node takeaway:covid19=yes takeaway=no"
+                # -osmoseAssertMatchWithContext:list("node takeaway:covid19=yes takeaway=no","inside=FR")
                 err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'takeaway', mapcss.tag(tags, u'takeaway:covid19')]]),
@@ -55,7 +55,7 @@ class covid19(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times")
                 # fixChangeKey:"delivery:covid19=>delivery"
-                # assertMatch:"node delivery:covid19=yes delivery=no"
+                # -osmoseAssertMatchWithContext:list("node delivery:covid19=yes delivery=no","inside=FR")
                 err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'delivery', mapcss.tag(tags, u'delivery:covid19')]]),
@@ -116,10 +116,10 @@ class covid19(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times")
                 # fixChangeKey:"takeaway:covid19=>takeaway"
-                # assertNoMatch:"way takeaway:covid19=no"
-                # assertNoMatch:"way takeaway:covid19=only"
-                # assertNoMatch:"way takeaway:covid19=yes takeaway=yes"
-                # assertMatch:"way takeaway:covid19=yes"
+                # -osmoseAssertNoMatchWithContext:list("way takeaway:covid19=no","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way takeaway:covid19=only","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way takeaway:covid19=yes takeaway=yes","inside=FR")
+                # -osmoseAssertMatchWithContext:list("way takeaway:covid19=yes","inside=FR")
                 err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'takeaway', mapcss.tag(tags, u'takeaway:covid19')]]),
@@ -138,10 +138,10 @@ class covid19(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times")
                 # fixChangeKey:"delivery:covid19=>delivery"
-                # assertNoMatch:"way delivery:covid19=no"
-                # assertNoMatch:"way delivery:covid19=only"
-                # assertNoMatch:"way delivery:covid19=yes delivery=yes"
-                # assertMatch:"way delivery:covid19=yes"
+                # -osmoseAssertNoMatchWithContext:list("way delivery:covid19=no","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way delivery:covid19=only","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way delivery:covid19=yes delivery=yes","inside=FR")
+                # -osmoseAssertMatchWithContext:list("way delivery:covid19=yes","inside=FR")
                 err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'delivery', mapcss.tag(tags, u'delivery:covid19')]]),
@@ -160,10 +160,9 @@ class covid19(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("The lockdown is over. Has this place reopened ?")
                 # fixRemove:"opening_hours:covid19"
-                # assertNoMatch:"way opening_hours:covid19=\"Mo-Su 09:00-20:00\" opening_hours=\"Mo-Su 09:00-20:00\""
-                # assertNoMatch:"way opening_hours:covid19=\"Mo-Su 09:00-20:00\""
-                # assertMatch:"way opening_hours:covid19=restricted"
-                # assertNoMatch:"way opening_hours:covid19=same"
+                # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'","inside=FR")
+                # -osmoseAssertMatchWithContext:list("way opening_hours:covid19=restricted","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19=same","inside=FR")
                 err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened ?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'opening_hours:covid19'])
@@ -180,10 +179,8 @@ class covid19(PluginMapCSS):
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?")
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
-                # assertNoMatch:"way opening_hours:covid19=\"Mo-Su 09:00-20:00\" opening_hours=\"Mo-Su 09:00-20:00\""
-                # assertMatch:"way opening_hours:covid19=\"Mo-Su 09:00-20:00\""
-                # assertNoMatch:"way opening_hours:covid19=restricted"
-                # assertNoMatch:"way opening_hours:covid19=same"
+                # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'","inside=FR")
+                # -osmoseAssertMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00'","inside=FR")
                 err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
@@ -277,7 +274,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = covid19(None)
+        n = Covid19(None)
         class _config:
             options = {"country": None, "language": None}
         class father:
@@ -286,21 +283,33 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {u'takeaway': u'no', u'takeaway:covid19': u'yes'}), expected={'class': 202004, 'subclass': 0})
-        self.check_err(n.node(data, {u'delivery': u'no', u'delivery:covid19': u'yes'}), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'takeaway:covid19': u'no'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'takeaway:covid19': u'only'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'takeaway': u'yes', u'takeaway:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_err(n.way(data, {u'takeaway:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'delivery:covid19': u'no'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'delivery:covid19': u'only'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'delivery': u'yes', u'delivery:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_err(n.way(data, {u'delivery:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'opening_hours': u'Mo-Su 09:00-20:00', u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_err(n.way(data, {u'opening_hours:covid19': u'restricted'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'opening_hours:covid19': u'same'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'opening_hours': u'Mo-Su 09:00-20:00', u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_err(n.way(data, {u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'opening_hours:covid19': u'restricted'}, [0]), expected={'class': 202004, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'opening_hours:covid19': u'same'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.node(data, {u'takeaway': u'no', u'takeaway:covid19': u'yes'}), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.node(data, {u'delivery': u'no', u'delivery:covid19': u'yes'}), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'takeaway:covid19': u'no'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'takeaway:covid19': u'only'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'takeaway': u'yes', u'takeaway:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.way(data, {u'takeaway:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'delivery:covid19': u'no'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'delivery:covid19': u'only'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'delivery': u'yes', u'delivery:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.way(data, {u'delivery:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'opening_hours': u'Mo-Su 09:00-20:00', u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.way(data, {u'opening_hours:covid19': u'restricted'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'opening_hours:covid19': u'same'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {u'opening_hours': u'Mo-Su 09:00-20:00', u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.way(data, {u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
