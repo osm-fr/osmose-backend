@@ -32,11 +32,11 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     throwWarning: tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times");
     fixChangeKey: "takeaway:covid19=>takeaway";
 
-    assertNoMatch: "way takeaway:covid19=yes takeaway=yes";
-    assertMatch: "way takeaway:covid19=yes";
-    assertMatch: "node takeaway:covid19=yes takeaway=no";
-    assertNoMatch: "way takeaway:covid19=no";
-    assertNoMatch: "way takeaway:covid19=only";
+    -osmoseAssertNoMatchWithContext: list("way takeaway:covid19=yes takeaway=yes", "inside=FR");
+    -osmoseAssertMatchWithContext: list("way takeaway:covid19=yes", "inside=FR");
+    -osmoseAssertMatchWithContext: list("node takeaway:covid19=yes takeaway=no", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("way takeaway:covid19=no", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("way takeaway:covid19=only", "inside=FR");
 }
 
 *[delivery:covid19=yes][delivery!=yes][inside("FR")] {
@@ -44,11 +44,11 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     throwWarning: tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times");
     fixChangeKey: "delivery:covid19=>delivery";
 
-    assertNoMatch: "way delivery:covid19=yes delivery=yes";
-    assertMatch: "way delivery:covid19=yes";
-    assertMatch: "node delivery:covid19=yes delivery=no";
-    assertNoMatch: "way delivery:covid19=no";
-    assertNoMatch: "way delivery:covid19=only";
+    -osmoseAssertNoMatchWithContext: list("way delivery:covid19=yes delivery=yes", "inside=FR");
+    -osmoseAssertMatchWithContext: list("way delivery:covid19=yes", "inside=FR");
+    -osmoseAssertMatchWithContext: list("node delivery:covid19=yes delivery=no", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("way delivery:covid19=no", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("way delivery:covid19=only", "inside=FR");
 }
 
 *[opening_hours:covid19][opening_hours:covid19=~/off|restricted/][inside("FR")]{
@@ -56,19 +56,16 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
     throwWarning: tr("The lockdown is over. Has this place reopened ?");
     fixRemove: "opening_hours:covid19";
 
-    assertNoMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\"";
-    assertNoMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\" opening_hours=\"Mo-Su 09:00-20:00\"";
-    assertNoMatch: "way opening_hours:covid19=same";
-    assertMatch: "way opening_hours:covid19=restricted";
+    -osmoseAssertNoMatchWithContext: list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("way opening_hours:covid19=same", "inside=FR");
+    -osmoseAssertMatchWithContext: list("way opening_hours:covid19=restricted", "inside=FR");
 }
 
 *[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours][inside("FR")]{
     -osmoseItemClassLevel: "4010/202004/2";
     throwWarning: tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?");
     fixChangeKey: "opening_hours:covid19=>opening_hours";
-
-    assertMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\"";
-    assertNoMatch: "way opening_hours:covid19=\"Mo-Su 09:00-20:00\" opening_hours=\"Mo-Su 09:00-20:00\"";
-    assertNoMatch: "way opening_hours:covid19=same";
-    assertNoMatch: "way opening_hours:covid19=restricted";
+    
+    -osmoseAssertMatchWithContext: list("way opening_hours:covid19='Mo-Su 09:00-20:00'", "inside=FR");
+    -osmoseAssertNoMatchWithContext: list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'", "inside=FR");
 }
