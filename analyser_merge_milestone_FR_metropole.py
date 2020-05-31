@@ -28,19 +28,12 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
 
         # fix item 
-        self.def_class_missing_official(item = 8130, id = 41, level = 3, tags = ['merge', 'milestone'],
+        self.def_class_missing_official(item = 8130, id = 41, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone not integrated'))
-        self.def_class_possible_merge(item = 8131, id = 43, level = 3, tags = ['merge', 'milestone'],
+        self.def_class_possible_merge(item = 8131, id = 43, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone integration suggestion'))
-        self.def_class_update_official(item = 8132, id = 44, level = 3, tags = ['merge', 'milestone'],
+        self.def_class_update_official(item = 8132, id = 44, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone update'))
-
-#            u"https://www.data.gouv.fr/fr/datasets/gestionnaires-du-reseau-routier-national/",
-#            u"Bornage du réseau routier national",
-#            CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2018",
-#                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/9045452c-f6a6-4e13-b82c-6f55e671656d",
-#                    filter = lambda text: text.replace(',', '.')), separator = u"\t"),
-# need to read this file in first : route + depPrD + prD is unique code match Gestionnaire => operator to second csv...?
 
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
@@ -50,7 +43,9 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                     filter = lambda text: text.replace(',', '.')), separator = u"\t"),
                     
             Load("x", "y",srid = 2154,
-                where = lambda row: self.transform_to_natref(row) is not None),
+                xFunction = self.float_comma, 
+                yFunction = self.float_comma,
+                where = lambda row: self.is_natref(row) == True),
             Mapping(
                 select = Select(
                     types = ["nodes"],
@@ -65,36 +60,40 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                         "nat_ref": lambda row: self.transform_to_natref(row),
                         "ref": lambda fields: self.transform_route(fields['route']) }
                     )))
+    
+    def is_natref(self,row):
+        if (len(row['depPr']) == 3) :
+            return False
+        elif (row['route'][0:1] == 'P') :
+            #P for temporary,
+            return False
+        elif (row['route'][0:2] in ('N1','N2')) :
+            #N1 for future up_class and N2 for down_class road,
+            return False
+        elif (row['route'][2:4] in ('A9','N9')) :
+            #In metropole, it's not milestone but way_link or roundabout
+            return False
+        else :
+            return True
 
     def transform_to_natref(self,row):
         #dept must be on 2 caracter
         dept=row['depPr']
+        if len(dept) == 1 :
+            dept = '0' + dept
+
         #C or '', not 'N'
         if (row['concessionPr']=='C') :
             concede = 'C'
         else :
             concede = ''
+            
         #I is for ignore, sens is D,G or U for droite(sens croissant),gauche(sens décroissant), unique. 
         sens = row['cote']
-        if (row['cote']=='I') :
+        if (sens =='I') :
             sens = 'U'
-            
-        if len(dept) == 1 :
-            dept = '0' + dept
-        if (dept in ('975','976','977')) :
-            #coordinate is in utm
-            return None
-        elif (dept==row['route'][0:2]) :
-            #not a milestone but highway junction
-            return None
-        elif (row['route'][0:1]=='P') :
-            #P for temporary,
-            return None
-        elif (row['route'][0:2] in ('N1','N2')) :
-            #N1 for future up_class and N2 for down_class road,
-            return None
-        else :
-            return dept + 'PR' + row['pr'] + sens + concede
+
+        return dept + 'PR' + row['pr'] + sens + concede
             
     def transform_route(self,route):
         #remove multiple 0 and add space
