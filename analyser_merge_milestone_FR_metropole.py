@@ -58,7 +58,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                     mapping1 = {
                         "distance": 'pr',
                         "nat_ref": lambda row: self.transform_to_natref(row),
-                        "ref": lambda fields: self.transform_route(fields['route']) }
+                        "ref": lambda row: self.transform_route(row['route']) }
                     )))
     
     def is_natref(self,row):
