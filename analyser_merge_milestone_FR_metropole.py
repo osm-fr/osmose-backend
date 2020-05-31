@@ -45,7 +45,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             Load("x", "y",srid = 2154,
                 xFunction = self.float_comma, 
                 yFunction = self.float_comma,
-                where = lambda row: self.is_natref(row) == True),
+                where = lambda row: self.is_natref(row)),
             Mapping(
                 select = Select(
                     types = ["nodes"],
@@ -116,4 +116,3 @@ class Sub_Analyser_Merge_Milestone_FR_gestionnaire(Analyser_Merge):
             CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2018",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/9045452c-f6a6-4e13-b82c-6f55e671656d",
                     filter = lambda text: text.replace(',', '.')), separator = u"\t"))
-
