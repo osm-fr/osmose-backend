@@ -4,7 +4,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Frédéric Rodrigo 2014-2020                                 ##
-##                                                                       ##
+##            Didier Marchand 2020                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
 ## the Free Software Foundation, either version 3 of the License, or     ##
@@ -27,13 +27,21 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
 
-        # fix item 
+        doc = dict(
+            detail = T_(
+            '''A road milestone is present but not integrated. The list of milestone comes from the CEREMA's database "RIU" in France by the Ministry of the Ecological and Inclusive Transition.'''),
+            fix = T_(
+            '''Add a node or to integrate tags if milestone already existing.'''),
+            trap = T_(
+            '''The position of the marker may be a little different than that visible on the road. Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or mapillary's photo
+            '''))
+
         self.def_class_missing_official(item = 8130, id = 41, level = 3, tags = ['merge', 'highway'],
-            title = T_('Milestone not integrated'))
+            title = T_('Milestone not integrated'), **doc)
         self.def_class_possible_merge(item = 8131, id = 43, level = 3, tags = ['merge', 'highway'],
-            title = T_('Milestone integration suggestion'))
+            title = T_('Milestone integration suggestion'), **doc)
         self.def_class_update_official(item = 8132, id = 44, level = 3, tags = ['merge', 'highway'],
-            title = T_('Milestone update'))
+            title = T_('Milestone update'), **doc)
 
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
