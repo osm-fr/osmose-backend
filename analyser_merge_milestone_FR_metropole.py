@@ -41,9 +41,9 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             title = T_('Milestone update'), **doc)
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
-            u"Bornage du réseau routier national",
-            CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2019",
+            "https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
+            "Bornage du réseau routier national",
+            CSV(Source("data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2019",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/fbc8b73b-a65c-486b-a710-ed22b9e4070c",
                     separator = "\t"),
                     
