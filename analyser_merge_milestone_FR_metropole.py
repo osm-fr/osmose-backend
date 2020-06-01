@@ -110,18 +110,3 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         elif route[0:3] in ('A00', 'N00')   : return route[0:1] + " " + route[3:]
         elif route[0:2] in ('A0', 'N0')     : return route[0:1] + " " + route[2:]
         else : return route[0:1] + " " + route[1:]
-
-
-class Sub_Analyser_Merge_Milestone_FR_gestionnaire(Analyser_Merge):
-    def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
-
-    # need to read this file in first : unique_code axe + '_' + dept + '_' + pr + concede : Gestionnaire => operator to second csv...?
-    # operatordict[fields['route'] +  '_' + fields['depPrD'] +  '_' + fields['prD'] +  '_' + fields['concessionPrD']] = fields['Gestionnaire']
-
-        self.init(
-            u"https://www.data.gouv.fr/fr/datasets/gestionnaires-du-reseau-routier-national/",
-            u"Bornage du réseau routier national",
-            CSV(Source(u"data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2018",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/9045452c-f6a6-4e13-b82c-6f55e671656d",
-                    filter = lambda text: text.replace(',', '.')), separator = u"\t"))
