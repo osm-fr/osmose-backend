@@ -68,15 +68,15 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                     )))
     
     def is_natref(self,row):
-        if (len(row['depPr']) == 3) :
+        if len(row['depPr']) == 3:
             return False
-        elif (row['route'][0:1] == 'P') :
+        elif row['route'][0:1] == 'P':
             #P for temporary,
             return False
-        elif (row['route'][0:2] in ('N1','N2')) :
+        elif row['route'][0:2] in ('N1', 'N2'):
             #N1 for future up_class and N2 for down_class road,
             return False
-        elif (row['route'][2:4] in ('A9','N9')) :
+        elif row['route'][2:4] in ('A9', 'N9'):
             #In metropole, it's not milestone but way_link or roundabout
             return False
         else :
