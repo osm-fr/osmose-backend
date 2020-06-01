@@ -82,7 +82,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         else :
             return True
 
-    def transform_to_natref(self,row):
+    def transform_to_natref(self, row):
         #dept must be on 2 caracter
         dept = row['depPr']
         if len(dept) == 1:
