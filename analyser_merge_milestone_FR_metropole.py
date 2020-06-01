@@ -98,7 +98,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
 
         return dept + 'PR' + row['pr'] + sens + concede
             
-    def transform_route(self,route):
+    def transform_route(self, route):
         #remove multiple 0 and add space
         if   route[0:4] in ('A000', 'N000') : return route[0:1] + " " + route[4:]
         elif route[0:3] in ('A00', 'N00')   : return route[0:1] + " " + route[3:]
