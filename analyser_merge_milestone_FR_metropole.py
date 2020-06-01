@@ -19,7 +19,6 @@
 ##                                                                       ##
 ###########################################################################
 
-from collections import OrderedDict
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
@@ -45,9 +44,8 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             CSV(Source("data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2019",
                     fileUrl = "https://www.data.gouv.fr/fr/datasets/r/fbc8b73b-a65c-486b-a710-ed22b9e4070c"),
                     separator = "\t"),
-                    
             Load("x", "y", srid = 2154,
-                xFunction = self.float_comma, 
+                xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 where = lambda row: self.is_natref(row)),
             Mapping(
@@ -89,14 +87,14 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
 
         #C or '', not 'N'
         concede = 'C' if row['concessionPr'] == 'C' else ''
-            
-        #I is for ignore, sens is D,G or U for droite (sens croissant), gauche (sens décroissant), unique. 
+
+        #I is for ignore, sens is D,G or U for droite (sens croissant), gauche (sens décroissant), unique.
         sens = row['cote']
         if sens == 'I':
             sens = 'U'
 
         return dept + 'PR' + row['pr'] + sens + concede
-            
+    
     def transform_route(self, route):
         #remove multiple 0 and add space
         if   route[0:4] in ('A000', 'N000') : return route[0:1] + " " + route[4:]
