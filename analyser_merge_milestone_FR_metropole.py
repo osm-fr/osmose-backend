@@ -29,12 +29,9 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
 
         doc = dict(
             detail = T_(
-            '''A road milestone is present but not integrated. The list of milestone comes from the CEREMA's database "RIU" in France by the Ministry of the Ecological and Inclusive Transition.'''),
-            fix = T_(
-            '''Add a node or to integrate tags if milestone already existing.'''),
+'''The list of milestone comes from the CEREMA's database "RIU" in France.'''),
             trap = T_(
-            '''The position of the marker may be a little different than that visible on the road. Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or mapillary's photo
-            '''))
+'''The position of the marker may be a little different than that visible on the road. Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or Mapillary's photo.'''))
 
         self.def_class_missing_official(item = 8130, id = 41, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone not integrated'), **doc)
