@@ -91,7 +91,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         #C or '', not 'N'
         concede = 'C' if row['concessionPr'] == 'C' else ''
             
-        #I is for ignore, sens is D,G or U for droite(sens croissant),gauche(sens décroissant), unique. 
+        #I is for ignore, sens is D,G or U for droite (sens croissant), gauche (sens décroissant), unique. 
         sens = row['cote']
         if (sens =='I') :
             sens = 'U'
