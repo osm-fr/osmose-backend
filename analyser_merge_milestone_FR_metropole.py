@@ -31,11 +31,11 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             trap = T_(
 '''The position of the marker may be a little different than that visible on the road. Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or Mapillary's photo.'''))
 
-        self.def_class_missing_official(item = 8130, id = 41, level = 3, tags = ['merge', 'highway'],
+        self.def_class_missing_official(item = 8430, id = 41, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone not integrated'), **doc)
-        self.def_class_possible_merge(item = 8131, id = 43, level = 3, tags = ['merge', 'highway'],
+        self.def_class_possible_merge(item = 8431, id = 43, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone integration suggestion'), **doc)
-        self.def_class_update_official(item = 8132, id = 44, level = 3, tags = ['merge', 'highway'],
+        self.def_class_update_official(item = 8432, id = 44, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone update'), **doc)
 
         self.init(
