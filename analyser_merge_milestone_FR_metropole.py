@@ -93,7 +93,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             
         #I is for ignore, sens is D,G or U for droite (sens croissant), gauche (sens décroissant), unique. 
         sens = row['cote']
-        if (sens =='I') :
+        if sens == 'I':
             sens = 'U'
 
         return dept + 'PR' + row['pr'] + sens + concede
