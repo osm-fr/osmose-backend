@@ -84,8 +84,8 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
 
     def transform_to_natref(self,row):
         #dept must be on 2 caracter
-        dept=row['depPr']
-        if len(dept) == 1 :
+        dept = row['depPr']
+        if len(dept) == 1:
             dept = '0' + dept
 
         #C or '', not 'N'
