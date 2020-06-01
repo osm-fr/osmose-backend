@@ -79,7 +79,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         elif row['route'][2:4] in ('A9', 'N9'):
             #In metropole, it's not milestone but way_link or roundabout
             return False
-        else :
+        else:
             return True
 
     def transform_to_natref(self, row):
