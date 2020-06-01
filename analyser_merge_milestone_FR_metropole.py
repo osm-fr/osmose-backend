@@ -58,7 +58,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = [{"highway": "milestone"}]),
-                osmRef = "nat_ref",    
+                osmRef = "ref" + "nat_ref",    
                 conflationDistance = 150,
                 generate = Generate(
                     static1 = {"highway": "milestone"},
