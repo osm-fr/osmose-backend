@@ -89,10 +89,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             dept = '0' + dept
 
         #C or '', not 'N'
-        if (row['concessionPr']=='C') :
-            concede = 'C'
-        else :
-            concede = ''
+        concede = 'C' if row['concessionPr'] == 'C' else ''
             
         #I is for ignore, sens is D,G or U for droite(sens croissant),gauche(sens décroissant), unique. 
         sens = row['cote']
