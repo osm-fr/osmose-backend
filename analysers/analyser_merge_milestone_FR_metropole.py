@@ -41,7 +41,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         self.init(
             "https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
             "Bornage du réseau routier national",
-            CSV(Source(attribution ="data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2019",
+            CSV(Source(attribution = "data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2019",
                     fileUrl = "https://www.data.gouv.fr/fr/datasets/r/fbc8b73b-a65c-486b-a710-ed22b9e4070c"),
                     separator = "\t"),
             Load("x", "y", srid = 2154,
@@ -70,10 +70,10 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         elif row['route'][0:1] == 'P':
             #P for temporary,
             return False
-        elif row['route'][0:2] in ('N1', 'N2'):
+        elif row['route'][0:2] in ('A1', 'A2', 'N1', 'N2'):
             #N1 for future up_class and N2 for down_class road,
             return False
-        elif row['route'][2:4] in ('A9', 'N9'):
+        elif row['route'][2:4] in ('A9', 'N9', 'P9'):
             #In metropole, it's not milestone but way_link or roundabout
             return False
         else:
