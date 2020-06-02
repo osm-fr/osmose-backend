@@ -62,7 +62,7 @@ class Analyser_Merge_plo_riu_FR(Analyser_Merge):
                     types = ["ways"],
                     tags = [{"highway": ["motorway_link", "primary_link", "secondary_link", "tertiary_link"]}, {"junction": "roundabout"}]),
                 osmRef = "nat_ref",
-                conflationDistance = 150,
+                conflationDistance = 350,
                 generate = Generate(
                     static2 = {"source:nat_ref": self.source},
                     mapping1 = {
