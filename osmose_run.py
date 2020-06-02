@@ -202,7 +202,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
         password = conf.analyser.get(analyser)
         if not password or password == "xxx":
-            logger.sub().log("No password to upload result to %s" % conf.updt_url)
+            logger.sub().err("No password to upload result to %s" % conf.updt_url)
 
         try:
             analyser_conf = analyser_config(conf, options, osmosis_manager, xml_change)
@@ -269,7 +269,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                 nb_iter += 1
                                 logger.sub().sub().log("iteration=%d" % nb_iter)
                                 try:
-                                    u = url + '?name=' + name + '&country=' + (conf.db_schema or conf.country)
+                                    u = url + '?analyser=' + analyser_name + '&country=' + conf.country
                                     r = requests.post(u, timeout=1800, data={
                                         'analyser': analyser_name,
                                         'country': conf.country,

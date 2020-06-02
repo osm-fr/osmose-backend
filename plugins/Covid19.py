@@ -13,7 +13,7 @@ class Covid19(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[202004] = self.def_class(item = 4010, level = 2, tags = mapcss.list_(u'tag', u'fix:survey', u'deprecated'), title = mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?'))
+        self.errors[202004] = self.def_class(item = 4010, level = 2, tags = mapcss.list_(u'tag', u'fix:survey', u'deprecated'), title = mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'))
 
         self.re_3f390088 = re.compile(r'off|restricted')
         self.re_64916a2b = re.compile(r'same|off|open|restricted')
@@ -72,9 +72,9 @@ class Covid19(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
-                # throwWarning:tr("The lockdown is over. Has this place reopened ?")
+                # throwWarning:tr("The lockdown is over. Has this place reopened?")
                 # fixRemove:"opening_hours:covid19"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened ?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'opening_hours:covid19'])
                 }})
@@ -88,9 +88,9 @@ class Covid19(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
-                # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?")
+                # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?")
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
                     '-': ([
@@ -158,12 +158,12 @@ class Covid19(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
-                # throwWarning:tr("The lockdown is over. Has this place reopened ?")
+                # throwWarning:tr("The lockdown is over. Has this place reopened?")
                 # fixRemove:"opening_hours:covid19"
                 # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way opening_hours:covid19=restricted","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19=same","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened ?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'opening_hours:covid19'])
                 }})
@@ -177,11 +177,11 @@ class Covid19(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
-                # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?")
+                # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?")
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
                 # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00'","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
                     '-': ([
@@ -241,9 +241,9 @@ class Covid19(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
-                # throwWarning:tr("The lockdown is over. Has this place reopened ?")
+                # throwWarning:tr("The lockdown is over. Has this place reopened?")
                 # fixRemove:"opening_hours:covid19"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened ?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'opening_hours:covid19'])
                 }})
@@ -257,9 +257,9 @@ class Covid19(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
-                # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?")
+                # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?")
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
                     '-': ([

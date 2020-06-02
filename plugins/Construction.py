@@ -32,9 +32,9 @@ class Construction(Plugin):
         self.errors[4070] = self.def_class(item = 4070, level = 2, tags = ['tag', 'fix:survey'],
             title = T_('Finished construction'),
             detail = T_(
-'''The tag `opening_date=*`, `check_date=*`, `open_date=*`,
-`construction:date=*`, `temporary:date_on=*`, `date_on=*` are not present
-and the object is in construction for more than two years or dates is
+'''There is no tag `opening_date`, `check_date`, `open_date`,
+`construction:date`, `temporary:date_on`, `date_on` and the object has
+been in construction for more than two years or opening data is
 exceeded.'''))
 
         self.tag_construction = ["highway", "landuse", "building"]

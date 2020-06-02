@@ -678,7 +678,7 @@ class Load(object):
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
             if self.pip:
                 if Transformer:
-                    transformer = Transformer.from_crs(self.srid, 4326)
+                    transformer = Transformer.from_crs(self.srid, 4326, always_xy = True)
                 else: # py2 conditional
                     transformer = None #
             osmosis.logger.log(u"Convert data to tags")

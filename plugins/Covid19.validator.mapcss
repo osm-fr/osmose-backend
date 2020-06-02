@@ -53,7 +53,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 
 *[opening_hours:covid19][opening_hours:covid19=~/off|restricted/][inside("FR")]{
     -osmoseItemClassLevel: "4010/202004/2";
-    throwWarning: tr("The lockdown is over. Has this place reopened ?");
+    throwWarning: tr("The lockdown is over. Has this place reopened?");
     fixRemove: "opening_hours:covid19";
 
     -osmoseAssertNoMatchWithContext: list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'", "inside=FR");
@@ -63,7 +63,7 @@ meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for transla
 
 *[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours][inside("FR")]{
     -osmoseItemClassLevel: "4010/202004/2";
-    throwWarning: tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect ?");
+    throwWarning: tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?");
     fixChangeKey: "opening_hours:covid19=>opening_hours";
     
     -osmoseAssertMatchWithContext: list("way opening_hours:covid19='Mo-Su 09:00-20:00'", "inside=FR");
