@@ -639,7 +639,7 @@
 <classtext lang="ru" title="Строительство завершено" />
 <classtext lang="uk" title="Завершене будівництво" />
 <classtext lang="zh_CN" title="完工" />
-<detail lang="en" title="The tag `opening_date=*`, `check_date=*`, `open_date=*`,&#10;`construction:date=*`, `temporary:date_on=*`, `date_on=*` are not present&#10;and the object is in construction for more than two years or dates is&#10;exceeded." />
+<detail lang="en" title="There is no tag `opening_date`, `check_date`, `open_date`,&#10;`construction:date`, `temporary:date_on`, `date_on` and the object has&#10;been in construction for more than two years or opening data is&#10;exceeded." />
 </class>
 <class id="11701" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L32" level="2" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Chybná role pro multipolygon" />
@@ -2466,6 +2466,9 @@
 <classtext lang="pl" title='Stacje transformatorowe powinny mieć tag "frequency"' />
 <classtext lang="uk" title="Трансформатор повинен мати теґ frequency" />
 <classtext lang="zh_CN" title="变压器应该有一个频率标签" />
+</class>
+<class id="202004" item="4010" source="http://example.com/plugins/Covid19.validator.mapcss" level="2" tag="tag,fix:survey,deprecated">
+<classtext lang="en" title="This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?" />
 </class>
 <class id="303210" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L39" level="1" tag="tag,highway,fix:chair">
 <classtext lang="de" title="'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden" />
