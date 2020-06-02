@@ -60,7 +60,7 @@ class Analyser_Merge_plo_riu_FR(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ["ways"],
-                    tags = [{"highway": ["motorway_link", "primary_link", "secondary_link", "tertiary_link"]} , {"junction": "roundabout"}]),
+                    tags = [{"highway": ["motorway_link", "primary_link", "secondary_link", "tertiary_link"]}, {"junction": "roundabout"}]),
                 osmRef = "nat_ref",
                 conflationDistance = 150,
                 generate = Generate(
