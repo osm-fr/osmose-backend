@@ -263,6 +263,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'osmosis_highway_motorway',
     'osmosis_highway_zone',
     'merge_milestone_FR_metropole',
+    'merge_plo_riu_FR',
     'merge_shop_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
@@ -501,6 +502,7 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'merge_shop_FR',
     'merge_wastewater_plant_FR',
     'merge_museum_FR',
+    'merge_plo_riu_FR',
     'merge_radio_support_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
