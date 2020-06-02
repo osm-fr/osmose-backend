@@ -64,7 +64,7 @@ class Analyser_Merge_plo_riu_FR(Analyser_Merge):
                 osmRef = "nat_ref",
                 conflationDistance = 150,
                 generate = Generate(
-                    static2 = {"source": self.source},
+                    static2 = {"source:nat_ref": self.source},
                     mapping1 = {
                         "nat_ref": lambda row: row['route'] + '_' + row['pr']}
                     )))
