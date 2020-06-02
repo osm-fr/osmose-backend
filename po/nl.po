@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-05-22 18:43+0000\n"
+"PO-Revision-Date: 2020-06-02 19:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgstr "Omgekeerde rotonde"
 msgid "Soundex test"
 msgstr "Soundex test"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:140
+#: ../analysers/analyser_osmosis_tag_typo.py:141
 msgid "Typo in tag"
 msgstr "typefout in tag"
 
@@ -802,8 +802,8 @@ msgstr "Naam taal zonder standaardnaam"
 msgid "Library not integrated"
 msgstr "Bibliotheek niet geïntegreerd"
 
-#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:30
-#: ../analysers/analyser_merge_restaurant_FR_cg71.py:31
+#: ../analysers/disabled/analyser_merge_restaurant_FR_aquitaine.py:30
+#: ../analysers/disabled/analyser_merge_restaurant_FR_cg71.py:31
 msgid "Restaurant not integrated"
 msgstr "Restaurant niet geïntegreerd"
 
@@ -1335,11 +1335,11 @@ msgstr "Aquitaine caravan site niet geïntegreerd"
 msgid "Aquitaine camp site not integrated"
 msgstr "Aquitaine kamp site niet geïntegreerd"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:30
+#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:30
 msgid "Aquitaine tourism information not integrated"
 msgstr "Aquitaine toerisme informatie niet geïntegreerd"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:32
+#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:32
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr "Aquitaine toerisme informatie, integratie suggestie"
 
@@ -1369,6 +1369,7 @@ msgstr "College update"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #: ../analysers/analyser_merge_shop_FR.py:45
+#: ../analysers/analyser_merge_tourism_FR.py:41
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} niet geïntegreerd"
@@ -2750,11 +2751,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:142
+#: ../analysers/analyser_osmosis_tag_typo.py:143
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:144
+#: ../analysers/analyser_osmosis_tag_typo.py:145
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -2875,14 +2876,6 @@ msgid ""
 "Caution: in a route, a path can be taken several times. The multiple\n"
 "presence of this path in the relation `type=route` is not then an issue.\n"
 "Then ensure the roles `forward` and `backward`."
-msgstr ""
-
-#: ../plugins/Construction.py:35
-msgid ""
-"The tag `opening_date=*`, `check_date=*`, `open_date=*`,\n"
-"`construction:date=*`, `temporary:date_on=*`, `date_on=*` are not present\n"
-"and the object is in construction for more than two years or dates is\n"
-"exceeded."
 msgstr ""
 
 #: ../plugins/disabled/Structural_Restriction2.py:36
@@ -4072,10 +4065,6 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/analyser_merge_tourism_offices_FR.py:30
-msgid "Tourism office not integrated"
-msgstr ""
-
 #: ../analysers/Analyser_Merge.py:846
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
@@ -4126,18 +4115,64 @@ msgid ""
 "ele=* in meters."
 msgstr ""
 
+#: ../plugins/TagFix_Brand.py:37
+msgid ""
+"If this is indeed a brand, add `brand` and `brand:wikidata` tags.\n"
+"If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags."
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrants_FR.py:31
+msgid "Fire hydrant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrants_FR.py:33
+msgid "Fire hydrant integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrants_FR.py:35
+msgid "Fire hydrant update"
+msgstr ""
+
+#: ../plugins/Construction.py:35
+msgid ""
+"There is no tag `opening_date`, `check_date`, `open_date`,\n"
+"`construction:date`, `temporary:date_on`, `date_on` and the object has\n"
+"been in construction for more than two years or opening data is\n"
+"exceeded."
+msgstr ""
+
+#: ../plugins/Covid19.py:16 ../plugins/Covid19.py:93 ../plugins/Covid19.py:184
+#: ../plugins/Covid19.py:262
+msgid ""
+"This store was on an adapted schedule during the lockdown. Are these opening"
+" hours still in effect?"
+msgstr ""
+
+#: ../plugins/Covid19.py:40 ../plugins/Covid19.py:123
+#: ../plugins/Covid19.py:210
+msgid ""
+"This store offered a take-away service during the lockdown. Does it still "
+"offer take-away in usual times"
+msgstr ""
+
+#: ../plugins/Covid19.py:59 ../plugins/Covid19.py:145
+#: ../plugins/Covid19.py:228
+msgid ""
+"This store offered a delivery service during the lockdown. Does it still "
+"offer delivery in usual times"
+msgstr ""
+
+#: ../plugins/Covid19.py:77 ../plugins/Covid19.py:166
+#: ../plugins/Covid19.py:246
+msgid "The lockdown is over. Has this place reopened?"
+msgstr ""
+
 #: ../plugins/TagFix_Brand.py:33
-msgid "This name is very common, is it a brand?"
+msgid "This name is very common, is this store part of the brand network?"
 msgstr ""
 
 #: ../plugins/TagFix_Brand.py:35
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
-"name."
-msgstr ""
-
-#: ../plugins/TagFix_Brand.py:37
-msgid ""
-"If this is indeed a brand, add `brand` and `brand:wikidata` tags.\n"
-"If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags."
+"name. All objects of the same brand should be tagged the same way."
 msgstr ""

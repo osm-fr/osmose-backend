@@ -39,8 +39,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-05-20 10:28+0000\n"
-"Last-Translator: samuel braikeh\n"
+"PO-Revision-Date: 2020-06-02 19:52+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -285,7 +285,7 @@ msgstr "Élément de voie ou nœud “barrier” isolé"
 msgid "Geodesic mark without building"
 msgstr "Repère géodésique sans bâtiment"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:169
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:168
 msgid "Possible crossing=traffic_signals"
 msgstr "Possible “crossing”=“traffic_signals”"
 
@@ -431,7 +431,7 @@ msgstr "Giratoire à l’envers"
 msgid "Soundex test"
 msgstr "Similitude phonétique “Soundex”"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:140
+#: ../analysers/analyser_osmosis_tag_typo.py:141
 msgid "Typo in tag"
 msgstr "Coquille dans l’attribut"
 
@@ -829,8 +829,8 @@ msgstr "Langue locale du nom sans langue par défaut"
 msgid "Library not integrated"
 msgstr "Bibliothèque non intégrée"
 
-#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:30
-#: ../analysers/analyser_merge_restaurant_FR_cg71.py:31
+#: ../analysers/disabled/analyser_merge_restaurant_FR_aquitaine.py:30
+#: ../analysers/disabled/analyser_merge_restaurant_FR_cg71.py:31
 msgid "Restaurant not integrated"
 msgstr "Restaurant non intégré"
 
@@ -1035,10 +1035,6 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflit entre attributs : “crossing”=“no” devrait être utilisé sans “highway”=“crossing”"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
-msgid "Bad lanes number or lanes:turn before and after this node"
-msgstr "Mauvais nombre de voies ou de “lanes:turn” avant et après ce nœud"
-
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:168
 msgid "Duplicated way geometry and tags"
 msgstr "Chemin dupliqué dans sa géométrie et ses attributs"
@@ -1055,7 +1051,7 @@ msgstr "Nœud dupliqué dans sa géométrie et ses attributs"
 msgid "Duplicated node geometry but different tags"
 msgstr "Nœud dupliqué dans sa géométrie mais attributs différents"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:172
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:171
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Il manque peut-être un élément “highway”=“traffic_signals” à proximité"
 
@@ -1224,13 +1220,13 @@ msgstr "Attribut “highway” manquant sur “tracktypes” ou “lanes”"
 msgid "Missing relation type"
 msgstr "Type de relation manquante"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:175
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:174
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "Attribut “traffic_signal:direction” peut-être manquant sur une signalisation routière"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:178
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:176
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Attribut “direction” peut-être manquant sur un stop ou laissez-le-passage"
 
@@ -1366,11 +1362,11 @@ msgstr "Aire de caravanes ou camping-cars en Aquitaine non intégrée"
 msgid "Aquitaine camp site not integrated"
 msgstr "Camping en Aquitaine non intégré"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:30
+#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:30
 msgid "Aquitaine tourism information not integrated"
 msgstr "Office de tourisme en Aquitaine non intégré"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:32
+#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:32
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr "Office de tourisme en Aquitaine, proposition d’intégration"
 
@@ -1400,6 +1396,7 @@ msgstr "Établissement d’enseignement supérieur à mettre à jour"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #: ../analysers/analyser_merge_shop_FR.py:45
+#: ../analysers/analyser_merge_tourism_FR.py:41
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} non intégré"
@@ -2436,13 +2433,7 @@ msgstr ""
 msgid "Noexit on way with multiple exits"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
-msgid ""
-"An other node very close have already the tag\n"
-"`crossing=traffic_signals`."
-msgstr ""
-
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:165
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:164
 msgid ""
 "It is very likely that the traffic signals on the junction are\n"
 "inconsistent with each other, see also\n"
@@ -2787,11 +2778,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr "* Rue Piere Curie ==> Rue Pierre Curie\n* Rue du Général de Gaules ==> Rue du Général de Gaulle\n* Mac Donald ==> McDonald's"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:142
+#: ../analysers/analyser_osmosis_tag_typo.py:143
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:144
+#: ../analysers/analyser_osmosis_tag_typo.py:145
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -2914,14 +2905,6 @@ msgid ""
 "Then ensure the roles `forward` and `backward`."
 msgstr ""
 
-#: ../plugins/Construction.py:35
-msgid ""
-"The tag `opening_date=*`, `check_date=*`, `open_date=*`,\n"
-"`construction:date=*`, `temporary:date_on=*`, `date_on=*` are not present\n"
-"and the object is in construction for more than two years or dates is\n"
-"exceeded."
-msgstr ""
-
 #: ../plugins/disabled/Structural_Restriction2.py:36
 msgid "Useless `no_u_turn` restriction, it's already forbidden by local law"
 msgstr ""
@@ -2932,13 +2915,6 @@ msgstr ""
 
 #: ../plugins/disabled/Wiki.py:31
 msgid "Object taggin type"
-msgstr ""
-
-#: ../plugins/Ele_MontainPass_Peak.py:32
-msgid ""
-"Some elements, including the peak (natural=peak) and mountain_pass\n"
-"(mountain_pass=yes), has an evelation. This is shown in OSM with tag\n"
-"ele=* in meters."
 msgstr ""
 
 #: ../plugins/Ele_MontainPass_Peak.py:36
@@ -3577,7 +3553,7 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:103
 #, python-brace-format
 msgid "Observed on {0}"
-msgstr "Observé en [0]"
+msgstr "Observé en {0}"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:31
 msgid ""
@@ -4116,17 +4092,6 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/analyser_merge_tourism_offices_FR.py:30
-msgid "Tourism office not integrated"
-msgstr ""
-
-#: ../analysers/Analyser_Merge.py:842
-msgid ""
-"It is not because it is from and OpenData source that it is good data.\n"
-"Review it before integrating. You are an OSM contributors, not a machine\n"
-"to do blind import."
-msgstr ""
-
 #: ../analysers/Analyser_Merge.py:846
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
@@ -4153,4 +4118,88 @@ msgstr ""
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
+msgstr ""
+
+#: ../analysers/Analyser_Merge.py:842
+msgid ""
+"It is from OpenData source, but that not enough to ensure the quality\n"
+"of the data. Review it before integration. You must not done blind import\n"
+"into OSM, you must do critical review of data integration."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
+msgid "An other node very close have already a traffic signals."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
+msgid "Bad lanes number or `turn:lanes` before and after this node"
+msgstr ""
+
+#: ../plugins/Ele_MontainPass_Peak.py:32
+msgid ""
+"Some elements, including the peak (natural=peak) and mountain_pass\n"
+"(mountain_pass=yes), has an elevation. This is shown in OSM with tag\n"
+"ele=* in meters."
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:37
+msgid ""
+"If this is indeed a brand, add `brand` and `brand:wikidata` tags.\n"
+"If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags."
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrants_FR.py:31
+msgid "Fire hydrant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrants_FR.py:33
+msgid "Fire hydrant integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrants_FR.py:35
+msgid "Fire hydrant update"
+msgstr ""
+
+#: ../plugins/Construction.py:35
+msgid ""
+"There is no tag `opening_date`, `check_date`, `open_date`,\n"
+"`construction:date`, `temporary:date_on`, `date_on` and the object has\n"
+"been in construction for more than two years or opening data is\n"
+"exceeded."
+msgstr ""
+
+#: ../plugins/Covid19.py:16 ../plugins/Covid19.py:93 ../plugins/Covid19.py:184
+#: ../plugins/Covid19.py:262
+msgid ""
+"This store was on an adapted schedule during the lockdown. Are these opening"
+" hours still in effect?"
+msgstr ""
+
+#: ../plugins/Covid19.py:40 ../plugins/Covid19.py:123
+#: ../plugins/Covid19.py:210
+msgid ""
+"This store offered a take-away service during the lockdown. Does it still "
+"offer take-away in usual times"
+msgstr ""
+
+#: ../plugins/Covid19.py:59 ../plugins/Covid19.py:145
+#: ../plugins/Covid19.py:228
+msgid ""
+"This store offered a delivery service during the lockdown. Does it still "
+"offer delivery in usual times"
+msgstr ""
+
+#: ../plugins/Covid19.py:77 ../plugins/Covid19.py:166
+#: ../plugins/Covid19.py:246
+msgid "The lockdown is over. Has this place reopened?"
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:33
+msgid "This name is very common, is this store part of the brand network?"
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:35
+msgid ""
+"This object has a very common name that probably corresponds to a brand "
+"name. All objects of the same brand should be tagged the same way."
 msgstr ""
