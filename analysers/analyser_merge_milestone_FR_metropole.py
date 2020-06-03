@@ -67,14 +67,8 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
     def is_natref(self,row):
         if len(row['depPr']) == 3:
             return False
-        elif row['route'][0:1] == 'P':
-            #P for temporary,
-            return False
-        elif row['route'][0:2] in ('A1', 'A2', 'N1', 'N2'):
-            #N1 for future up_class and N2 for down_class road,
-            return False
-        elif row['route'][2:4] in ('A9', 'N9', 'P9'):
-            #In metropole, it's not milestone but way_link or roundabout
+        elif [ele for ele in ('P', 'N1', 'N2', 'A9', 'N9') if(ele in row['route'])]:
+            #P for temporary ; N1 for future up_class and N2 for down_class road ; A9,N9 in metropole, is not milestone but way_link or roundabout
             return False
         else:
             return True
@@ -96,8 +90,9 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         return dept + 'PR' + row['pr'] + sens + concede
 
     def transform_route(self, route):
-        #remove multiple 0 and add space
-        if route[0:4] in ('A000', 'N000'): return route[0:1] + " " + route[4:]
+        #filter or remove multiple 0 and add space
+        if [ele for ele in ('P', 'A1', 'A2', 'N1', 'N2', 'A9', 'N9') if(ele in route)]: return None
+        elif route[0:4] in ('A000', 'N000'): return route[0:1] + " " + route[4:]
         elif route[0:3] in ('A00', 'N00'): return route[0:1] + " " + route[3:]
         elif route[0:2] in ('A0', 'N0'): return route[0:1] + " " + route[2:]
         else: return route[0:1] + " " + route[1:]
