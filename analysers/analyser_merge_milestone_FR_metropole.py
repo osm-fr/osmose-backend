@@ -73,6 +73,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             return True
 
     def transform_to_natref(self, row):
+        # use plo format, description available at http://dtrf.setra.fr/pdf/pj/Dtrf/0005/Dtrf-0005792/DT5792.pdf
         #dept must be on 2 caracter
         dept = row['depPr']
         if len(dept) == 1:
