@@ -89,7 +89,7 @@ administrative schools for a single physical school.''')
                         "amenity": lambda res: "kindergarten" if res["Code nature"] in ("101", "102", "103", "111") else "school",
                         "ref:UAI": "Code établissement",
                         "school:FR": lambda res: self.School_FR_nature_uai[res["Code nature"]],
-                        "operator:type": lambda res: "private" if res[u"Secteur Public/Privé"] == u"Privé" else None},
+                        "operator:type": lambda res: "private" if res[u"Secteur Public/Privé"] == u"Privé" else "public" if res[u"Secteur Public/Privé"] == u"Public" else None},
                     mapping2 = {"name": "Appellation officielle"},
                     text = self.text)))
 
