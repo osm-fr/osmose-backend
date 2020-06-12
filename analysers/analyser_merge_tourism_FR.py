@@ -31,11 +31,11 @@ class Analyser_Merge_tourism_FR(Analyser_Merge_Dynamic):
 
         mapingfile = json.loads(open("merge_data/tourism_FR.mapping.json").read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Datatourisme_FR, r['classes'], r['items'], r['classes'], r['title'], r['type'], r['tags_select'], r['tags_generate'])
+            self.classFactory(SubAnalyser_Datatourisme_FR, r['classes'], r['items'], r['classes'], r['title'], r['type'], r['tags_select'], r['conflationDistance'], r['tags_generate'])
 
 
 class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, items, classs, title, type_, tags_select, tags_generate):
+    def __init__(self, config, error_file, logger, items, classs, title, type_, tags_select, conflationDistance, tags_generate):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.def_class_missing_official(item = items, id = classs, level = 3, tags = ['merge'],
             title = T_f('{0} not integrated', title))
@@ -52,7 +52,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = tags_select),
-                conflationDistance = 1000,
+                conflationDistance = conflationDistance,
                 generate = Generate(
                     static1 = tags_generate,
                     static2 = {"source": self.source},
