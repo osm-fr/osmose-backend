@@ -66,7 +66,7 @@ FROM
     ways AS ways
 WHERE
     tags != ''::hstore AND
-    tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power'] AND
+    tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power', 'aeroway'] AND
     ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
 """
@@ -100,10 +100,12 @@ WHERE
         (b1.lsttag->'railway' = b2.lsttag->'railway') OR
         (b1.lsttag->'addr:interpolation' = b2.lsttag->'addr:interpolation') OR
         (b1.lsttag->'man_made' = b2.lsttag->'man_made') OR
+        (b1.lsttag->'aeroway' = b2.lsttag->'aeroway') OR
         (b1.lsttag->'power' = b2.lsttag->'power')
     ) AND
     (NOT b1.lsttag?'layer' AND NOT b2.lsttag?'layer' OR b1.lsttag->'layer' = b2.lsttag->'layer') AND
     (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level') AND
+    (NOT b1.lsttag?'min_height' AND NOT b2.lsttag?'min_height' OR b1.lsttag->'min_height' = b2.lsttag->'min_height') AND
     (NOT b1.lsttag?'ele' AND NOT b2.lsttag?'ele' OR b1.lsttag->'ele' = b2.lsttag->'ele')
 """
 
@@ -142,6 +144,7 @@ WHERE
     (b1.tags @> b2.tags OR b2.tags @> b1.tags) AND
     (NOT b1.tags?'layer' AND NOT b2.tags?'layer' OR b1.tags->'layer' = b2.tags->'layer') AND
     (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level') AND
+    (NOT b1.tags?'min_height' AND NOT b2.tags?'min_height' OR b1.tags->'min_height' = b2.tags->'min_height') AND
     (NOT b1.tags?'ele' AND NOT b2.tags?'ele' OR b1.tags->'ele' = b2.tags->'ele')
 """
 
