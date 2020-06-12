@@ -86,4 +86,3 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             sens = 'U'
 
         return dept + 'PR' + row['pr'] + sens + concede
-
