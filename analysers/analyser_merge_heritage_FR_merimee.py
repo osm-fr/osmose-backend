@@ -28,7 +28,6 @@ from functools import reduce
 class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        Analyser_Merge.__init__(self, config, logger)
         doc = dict(
             detail = T_(
 '''A historical monument is here but is not mapped. The list of monuments
