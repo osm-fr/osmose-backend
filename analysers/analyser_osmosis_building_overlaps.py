@@ -65,6 +65,8 @@ WHERE
     NOT b2.relation AND
     NOT b1.layer AND
     NOT b2.layer AND
+    NOT b1.indoor AND
+    NOT b2.indoor AND
     b1.polygon_proj IS NOT NULL AND
     b2.polygon_proj IS NOT NULL
 """
@@ -105,6 +107,7 @@ FROM
 WHERE
     NOT buildings.relation AND
     NOT buildings.layer AND
+    NOT buildings.indoor AND
     buildings.polygon_proj IS NOT NULL AND
     buildings.wall
 ORDER BY
