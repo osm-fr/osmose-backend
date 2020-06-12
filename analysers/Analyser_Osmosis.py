@@ -120,6 +120,7 @@ SELECT DISTINCT ON (id)
     CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' AND ST_IsValid(ST_MakePolygon(ST_Transform(linestring, {1}))) THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon_proj,
     (NOT tags?'wall' OR tags->'wall' != 'no') AND tags->'building' != 'roof' AS wall,
     tags?'layer' AS layer,
+    (tags?'building:part' or tags?'min_height') AS indoor,
     ST_NPoints(linestring) AS npoints,
     relation_members.relation_id IS NOT NULL AS relation
 FROM
