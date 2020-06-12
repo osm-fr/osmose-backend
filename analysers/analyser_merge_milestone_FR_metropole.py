@@ -46,24 +46,22 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             Load("x", "y", srid = 2154,
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
-                where = lambda row: self.is_natref(row)),
+                where = lambda row: self.is_milestone(row)),
             Mapping(
                 select = Select(
                     types = ["nodes"],
                     tags = [{"highway": "milestone"}]),
                 osmRef = "nat_ref",
-                extraJoin = "ref",
                 conflationDistance = 150,
                 generate = Generate(
                     static1 = {"highway": "milestone"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "distance": 'pr',
-                        "nat_ref": lambda row: self.transform_to_natref(row),
-                        "ref": lambda row: self.transform_route(row['route']) }
+                        "nat_ref": lambda row: self.transform_to_plo(row) }
                     )))
 
-    def is_natref(self,row):
+    def is_milestone(self,row):
         if len(row['depPr']) == 3:
             return False
         elif [ele for ele in ('P', 'N1', 'N2', 'A9', 'N9') if ele in row['route']]:
@@ -72,7 +70,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         else:
             return True
 
-    def transform_to_natref(self, row):
+    def transform_to_plo(self, row):
         # use plo format, description available at http://dtrf.setra.fr/pdf/pj/Dtrf/0005/Dtrf-0005792/DT5792.pdf
         #dept must be on 2 caracter
         dept = row['depPr']
@@ -89,10 +87,3 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
 
         return dept + 'PR' + row['pr'] + sens + concede
 
-    def transform_route(self, route):
-        #filter or remove multiple 0 and add space
-        if [ele for ele in ('P', 'A1', 'A2', 'N1', 'N2', 'A9', 'N9') if ele in route]: return None
-        elif route[0:4] in ('A000', 'N000'): return route[0:1] + " " + route[4:]
-        elif route[0:3] in ('A00', 'N00'): return route[0:1] + " " + route[3:]
-        elif route[0:2] in ('A0', 'N0'): return route[0:1] + " " + route[2:]
-        else: return route[0:1] + " " + route[1:]
