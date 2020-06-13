@@ -54,7 +54,7 @@ class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_FR):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             T_(u"Bridge missing (TMC)"),
-            {"highway": ["motorway", "motorway_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "bridge": None},
+            {"highway": ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "bridge": None},
             ["ways"],
             "P", 3, 1,
             500)
@@ -74,7 +74,7 @@ class Analyser_Merge_TMC_Point_Roundabout_Fr(_Analyser_Merge_TMC_Point_FR):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             T_(u"Roundabout missing (TMC)"),
-            {"highway": ["motorway", "motorway_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "junction": "roundabout"},
+            {"highway": ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "junction": "roundabout"},
             ["ways"],
             "P", 1, 8,
             150)
@@ -114,7 +114,7 @@ class Analyser_Merge_TMC_Point_Tunnel_Fr(_Analyser_Merge_TMC_Point_FR):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
             T_(u"Tunnel missing (TMC)"),
-            {"highway": ["motorway", "motorway_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "tunnel": None},
+            {"highway": ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "tunnel": None},
             ["ways"],
             "P", 3, 5,
             500)
