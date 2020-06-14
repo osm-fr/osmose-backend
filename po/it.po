@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-06-02 19:52+0000\n"
+"PO-Revision-Date: 2020-06-14 18:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -60,11 +60,11 @@ msgstr "Suggerimento di integrazione di idrante"
 msgid "Crossing level not integrated"
 msgstr "Passaggio a livello non integrato"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:47
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:46
 msgid "Historical monument not integrated"
 msgstr "Monumento storico non integrato"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:51
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:50
 msgid "Historical monument, integration suggestion"
 msgstr "Suggerimento di integrazione di monumento storico"
 
@@ -965,7 +965,7 @@ msgstr "Strada che interseca una grande superficie d’acqua"
 msgid "Paris Autolib' car rental update"
 msgstr "Aggiorna noleggio auto Autolib’ di Parigi"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:53
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:52
 msgid "Historical monument update"
 msgstr "Aggiorna monumento storico"
 
@@ -1011,19 +1011,19 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Etichette in conflitto: crossing=no deve essere usato senza highway=crossing"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:168
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated way geometry and tags"
 msgstr "Geometria ed etichette del percorso duplicate"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:172
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:175
 msgid "Duplicated way geometry but different tags"
 msgstr "Percorso con geometria duplicata ma etichette differenti"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:179
 msgid "Duplicated node geometry and tags"
 msgstr "Geometria ed etichette del nodo duplicate"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:181
 msgid "Duplicated node geometry but different tags"
 msgstr "Nodo con geometria duplicata ma etichette differenti"
 
@@ -1168,7 +1168,7 @@ msgstr "Interpolazione sulle strade: %s"
 msgid "Large relation of type %s"
 msgstr "Relazione grande di tipo %s"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
 msgstr "Nodo duplicato senza etichette"
 
@@ -1578,7 +1578,7 @@ msgstr "L'URL non ha uno schema valido"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "URL errato %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:114
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:113
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr "Monumento storico: {0} (posizionato in {1} con precisione {2})"
@@ -1843,7 +1843,7 @@ msgstr ""
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:49
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:48
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr ""
 
@@ -2080,20 +2080,20 @@ msgstr ""
 msgid "Geodesic support not integrated {0}"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:34
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
 msgid ""
 "A historical monument is here but is not mapped. The list of monuments\n"
 "comes from the database \"Merimee Inventory of monuments\" in France by the\n"
 "Ministry of Culture."
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:38
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:37
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add a node or to integrate tags if something already existing."
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:41
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:40
 msgid ""
 "The position of the markers is made by address geocoding, it may be\n"
 "located elsewhere. The marker can be a very rough position, located as\n"
@@ -2301,11 +2301,11 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:170
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:173
 msgid "Delete one of the two objects."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:177
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
@@ -4178,4 +4178,28 @@ msgstr ""
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
 "name. All objects of the same brand should be tagged the same way."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:30
+msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:32
+msgid ""
+"The position of the marker may be a little different than what is visible on"
+" the road. Sometimes, a small white line perpendicular to the road on the "
+"emergency stop strip or the left flared strip can be seen on satellite "
+"images or Mapillary's photos."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:35
+msgid "Milestone not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:37
+msgid "Milestone integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:39
+msgid "Milestone update"
 msgstr ""

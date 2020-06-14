@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-06-02 19:52+0000\n"
+"PO-Revision-Date: 2020-06-14 18:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -61,11 +61,11 @@ msgstr "Hydrant, propozycja integracji"
 msgid "Crossing level not integrated"
 msgstr "Przejazd kolejowy niezintegrowany"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:47
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:46
 msgid "Historical monument not integrated"
 msgstr "Pomnik niezintegrowany"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:51
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:50
 msgid "Historical monument, integration suggestion"
 msgstr "Pomnik, propozycja integracji"
 
@@ -966,7 +966,7 @@ msgstr "Droga przecinająca duży ciek"
 msgid "Paris Autolib' car rental update"
 msgstr "Wypożyczalnia samochodów Autolib', aktualizacja"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:53
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:52
 msgid "Historical monument update"
 msgstr "Aktualizacja pomnika"
 
@@ -1012,19 +1012,19 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Sprzeczność między tagami: crossing=no należy używać bez highway=crossing"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:168
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated way geometry and tags"
 msgstr "Zduplikowana geometria i tagi linii"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:172
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:175
 msgid "Duplicated way geometry but different tags"
 msgstr "Zduplikowana geometria, ale inne tagi linii"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:179
 msgid "Duplicated node geometry and tags"
 msgstr "Zduplikowana geometria i tagi węzła"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:181
 msgid "Duplicated node geometry but different tags"
 msgstr "Zduplikowana geometria węzła, ale inne tagi"
 
@@ -1169,7 +1169,7 @@ msgstr ""
 msgid "Large relation of type %s"
 msgstr "Duża relacja \"type=%s\""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
 msgstr "Zduplikowany węzeł bez tagów"
 
@@ -1579,7 +1579,7 @@ msgstr "Adres strony internetowej nie ma poprawnego formatu"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "Niepoprawny URL %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:114
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:113
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr ""
@@ -1642,7 +1642,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_area_access.py:66
 #, python-brace-format
 msgid "Inconsistent motor_vehicle values ('{0}'!='{1}')"
-msgstr ""
+msgstr "Sprzeczne tagowanie wartości motor_vehicle ('{0}'!='{1}')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
 #, python-brace-format
@@ -1844,7 +1844,7 @@ msgstr "Szkoła policealna bez tagu \"ref:UAI\" lub tag niepoprawny"
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} bez tagu \"{1}\" lub tag niepoprawny"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:49
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:48
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr "Pomnik bez tagu \"ref:mhs\" lub tag niepoprawny"
 
@@ -2081,20 +2081,20 @@ msgstr ""
 msgid "Geodesic support not integrated {0}"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:34
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
 msgid ""
 "A historical monument is here but is not mapped. The list of monuments\n"
 "comes from the database \"Merimee Inventory of monuments\" in France by the\n"
 "Ministry of Culture."
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:38
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:37
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add a node or to integrate tags if something already existing."
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:41
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:40
 msgid ""
 "The position of the markers is made by address geocoding, it may be\n"
 "located elsewhere. The marker can be a very rough position, located as\n"
@@ -2302,17 +2302,17 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:170
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:173
 msgid "Delete one of the two objects."
 msgstr "Usuń jeden z obiektów."
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:177
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:64
 msgid "Inconsistent `motor_vehicle` values (`destination`!=)"
-msgstr ""
+msgstr "Sprzeczne tagowanie wartości motor_vehicle (`destination`!=)"
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:111
 msgid ""
@@ -4127,15 +4127,15 @@ msgstr ""
 
 #: ../analysers/analyser_merge_hydrants_FR.py:31
 msgid "Fire hydrant not integrated"
-msgstr ""
+msgstr "Hydrant niezintegrowany"
 
 #: ../analysers/analyser_merge_hydrants_FR.py:33
 msgid "Fire hydrant integration suggestion"
-msgstr ""
+msgstr "Hydrant, propozycja integracji"
 
 #: ../analysers/analyser_merge_hydrants_FR.py:35
 msgid "Fire hydrant update"
-msgstr ""
+msgstr "Hydrant, aktualizacja"
 
 #: ../plugins/Construction.py:35
 msgid ""
@@ -4143,40 +4143,64 @@ msgid ""
 "`construction:date`, `temporary:date_on`, `date_on` and the object has\n"
 "been in construction for more than two years or opening data is\n"
 "exceeded."
-msgstr ""
+msgstr "Brakuje tagu `opening_date`, `check_date`, `open_date`, `construction:date`, `temporary:date_on`, `date_on`, a obiekt jest w budowie od ponad dwóch lat."
 
 #: ../plugins/Covid19.py:16 ../plugins/Covid19.py:93 ../plugins/Covid19.py:184
 #: ../plugins/Covid19.py:262
 msgid ""
 "This store was on an adapted schedule during the lockdown. Are these opening"
 " hours still in effect?"
-msgstr ""
+msgstr "Czy godziny otwarcia są aktualne?"
 
 #: ../plugins/Covid19.py:40 ../plugins/Covid19.py:123
 #: ../plugins/Covid19.py:210
 msgid ""
 "This store offered a take-away service during the lockdown. Does it still "
 "offer take-away in usual times"
-msgstr ""
+msgstr "Czy to miejsce nadal oferuje usługę na wynos?"
 
 #: ../plugins/Covid19.py:59 ../plugins/Covid19.py:145
 #: ../plugins/Covid19.py:228
 msgid ""
 "This store offered a delivery service during the lockdown. Does it still "
 "offer delivery in usual times"
-msgstr ""
+msgstr "Czy to miejsce nadal oferuje dostawę?"
 
 #: ../plugins/Covid19.py:77 ../plugins/Covid19.py:166
 #: ../plugins/Covid19.py:246
 msgid "The lockdown is over. Has this place reopened?"
-msgstr ""
+msgstr "Czy to miejsce jest otwarte?"
 
 #: ../plugins/TagFix_Brand.py:33
 msgid "This name is very common, is this store part of the brand network?"
-msgstr ""
+msgstr "Ta nazwa jest bardzo powszechna. Czy ten sklep należy do sieci?"
 
 #: ../plugins/TagFix_Brand.py:35
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
 "name. All objects of the same brand should be tagged the same way."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:30
+msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:32
+msgid ""
+"The position of the marker may be a little different than what is visible on"
+" the road. Sometimes, a small white line perpendicular to the road on the "
+"emergency stop strip or the left flared strip can be seen on satellite "
+"images or Mapillary's photos."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:35
+msgid "Milestone not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:37
+msgid "Milestone integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:39
+msgid "Milestone update"
 msgstr ""

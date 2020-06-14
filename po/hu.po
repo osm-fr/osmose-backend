@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-06-02 19:52+0000\n"
+"PO-Revision-Date: 2020-06-14 18:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,11 @@ msgstr "Tűzcsap: kiegészítési javaslat"
 msgid "Crossing level not integrated"
 msgstr "Szintbeni kereszteződés: nincs a térképen"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:47
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:46
 msgid "Historical monument not integrated"
 msgstr "Műemlék: nincs a térképen"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:51
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:50
 msgid "Historical monument, integration suggestion"
 msgstr "Műemlék: kiegészítési javaslat"
 
@@ -962,7 +962,7 @@ msgstr "Nagy vízobjektumot metsző út"
 msgid "Paris Autolib' car rental update"
 msgstr "Paris Autolib' gépkocsikölcsönző: frissítendő"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:53
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:52
 msgid "Historical monument update"
 msgstr "Műemlék: frissítendő"
 
@@ -1008,19 +1008,19 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Címkék közötti ellentmondás: a [crossing=no] csak [highway=crossing] nélkül használható"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:168
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated way geometry and tags"
 msgstr "Megkettőzött vonalalakzat és címkék"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:172
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:175
 msgid "Duplicated way geometry but different tags"
 msgstr "Megkettőzött vonalalakzat különböző címkékkel"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:179
 msgid "Duplicated node geometry and tags"
 msgstr "Megkettőzött pontalakzat és címkék"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:181
 msgid "Duplicated node geometry but different tags"
 msgstr "Megkettőzött pontalakzat különböző címkékkel"
 
@@ -1165,7 +1165,7 @@ msgstr "Interpolációs hiány következő utcákon: %s"
 msgid "Large relation of type %s"
 msgstr "%s típusú nagy kapcsolat"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
 msgstr "Megkettőzött pont címke nélkül"
 
@@ -1575,7 +1575,7 @@ msgstr "Az URL sémája érvénytelen"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "Hibás URL %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:114
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:113
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr "Műemlék: {0} ({2} a valószínűsége annak, hogy ez a(z) {1} a helye)"
@@ -1840,7 +1840,7 @@ msgstr "Főiskola hiányzó vagy érvénytelen [ref:UAI] címkével"
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "[{0}] hiányzó vagy érvénytelen [{1}] címkével"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:49
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:48
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr "Műemlék hiányzó vagy érvénytelen [ref:mhs] címkével"
 
@@ -2077,20 +2077,20 @@ msgstr "Elmozdított földmérési alappont"
 msgid "Geodesic support not integrated {0}"
 msgstr "A földmérési alappont építménye nincs a térképen: {0}"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:34
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
 msgid ""
 "A historical monument is here but is not mapped. The list of monuments\n"
 "comes from the database \"Merimee Inventory of monuments\" in France by the\n"
 "Ministry of Culture."
 msgstr "Itt van egy műemlék, de nincs a térképen. A műemlékek listája a francia kulturális minisztérium „Mérimée műemlékjegyzék” adatbázisából származik."
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:38
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:37
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add a node or to integrate tags if something already existing."
 msgstr "Lásd: a [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) kulcsról szóló bejegyzést az OSM wikin. Helyezzen el egy pontot vagy – ha valami már létezik – adja hozzá a megfelelő címkéket."
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:41
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:40
 msgid ""
 "The position of the markers is made by address geocoding, it may be\n"
 "located elsewhere. The marker can be a very rough position, located as\n"
@@ -2298,11 +2298,11 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:170
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:173
 msgid "Delete one of the two objects."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:177
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
@@ -4175,4 +4175,28 @@ msgstr ""
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
 "name. All objects of the same brand should be tagged the same way."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:30
+msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:32
+msgid ""
+"The position of the marker may be a little different than what is visible on"
+" the road. Sometimes, a small white line perpendicular to the road on the "
+"emergency stop strip or the left flared strip can be seen on satellite "
+"images or Mapillary's photos."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:35
+msgid "Milestone not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:37
+msgid "Milestone integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:39
+msgid "Milestone update"
 msgstr ""

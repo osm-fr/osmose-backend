@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-06-02 19:52+0000\n"
+"PO-Revision-Date: 2020-06-14 18:38+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -68,11 +68,11 @@ msgstr "Hydrant, Integrationsvorschlag"
 msgid "Crossing level not integrated"
 msgstr "Bahnübergang nicht integriert"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:47
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:46
 msgid "Historical monument not integrated"
 msgstr "Historisches Bauwerk nicht integriert"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:51
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:50
 msgid "Historical monument, integration suggestion"
 msgstr "Historisches Bauwerk, Integrationsvorschlag"
 
@@ -973,7 +973,7 @@ msgstr "Straße kreuzt große Wasserfläche"
 msgid "Paris Autolib' car rental update"
 msgstr "Paris Autolib' Autovermietung, Aktualisierung"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:53
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:52
 msgid "Historical monument update"
 msgstr "Historisches Denkmal, Aktualisierung"
 
@@ -1019,19 +1019,19 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Konflikt zwischen Merkmalen: crossing=no kann nicht mit highway=crossing kombiniert werden"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:168
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated way geometry and tags"
 msgstr "Linien mit duplizierter Geometrie und Merkmalen"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:172
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:175
 msgid "Duplicated way geometry but different tags"
 msgstr "Linien mit duplizierter Geometrie, aber unterschiedlichen Merkmalen"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:179
 msgid "Duplicated node geometry and tags"
 msgstr "Punkte mit duplizierter Geometrie und Merkmalen"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:181
 msgid "Duplicated node geometry but different tags"
 msgstr "Punkte mit duplizierter Geometrie, aber unterschiedlichen Merkmalen"
 
@@ -1176,7 +1176,7 @@ msgstr "Interpoliere Bereich auf Straßen: %s"
 msgid "Large relation of type %s"
 msgstr "Große Relation vom Typ %s"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
 msgstr "Duplizierter Knotenpunkt ohne Merkmal"
 
@@ -1406,11 +1406,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:374
 msgid "Highway overlaps"
-msgstr ""
+msgstr "Überdeckung von Straßen"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:376
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "Überdeckung von Wasserwegen"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:111
 #: ../analysers/analyser_osmosis_highway_zone.py:113
@@ -1586,7 +1586,7 @@ msgstr "Der URL hat kein gültiges Schema"
 msgid "Bad URL %(k)s=%(v)s"
 msgstr "Fehlerhafte URL %(k)s=%(v)s"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:114
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:113
 #, python-brace-format
 msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr ""
@@ -1851,7 +1851,7 @@ msgstr ""
 msgid "{0} without tag \"{1}\" or invalid"
 msgstr "{0} ohne Merkmal \"{1}\" oder ungültig"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:49
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:48
 msgid "Historical monument without tag \"ref:mhs\" or invalid"
 msgstr ""
 
@@ -2088,20 +2088,20 @@ msgstr ""
 msgid "Geodesic support not integrated {0}"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:34
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:33
 msgid ""
 "A historical monument is here but is not mapped. The list of monuments\n"
 "comes from the database \"Merimee Inventory of monuments\" in France by the\n"
 "Ministry of Culture."
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:38
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:37
 msgid ""
 "See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on\n"
 "wiki. Add a node or to integrate tags if something already existing."
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:41
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:40
 msgid ""
 "The position of the markers is made by address geocoding, it may be\n"
 "located elsewhere. The marker can be a very rough position, located as\n"
@@ -2309,11 +2309,11 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:170
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:173
 msgid "Delete one of the two objects."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:177
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
@@ -2500,7 +2500,7 @@ msgstr "Kreuzende Flächen `{0}`"
 msgid ""
 "Same surfaces type overlapped (`waterway`, `natural` or\n"
 "`landuse`.)"
-msgstr "Gleiche Flächenarten überdecken sich (`waterway`, `natural` or\n`landuse`)."
+msgstr "Überdeckung gleicher Flächenarten (`waterway`, `natural` or\n`landuse`)."
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:90
 msgid "Separate the surface or merge, pay attention on other tags"
@@ -3904,7 +3904,7 @@ msgid ""
 "Fix geometry so that buildings don't overlap, but share nodes if physically "
 "joined. If geometry is correct and there's some vertical difference then "
 "make use of the `layer` tag to indicate this."
-msgstr "Korrigiere die Geometrie so, dass sich die Gebäude nicht überlappen, sondern Knoten teilen, wenn sie physisch verbunden sind. Wenn die Geometrie korrekt ist und sich die Gebäude tatsächlich überlagern, verwende `layer`, um dies zu kennzeichnen."
+msgstr "Korrigiere die Geometrie, so dass sich die Gebäude nicht überdecken, sondern ihre Knoten teilen, wenn sie aneinander angrenzen. Wenn sich die Gebäude tatsächlich überdecken, verwende `layer`, um dies zu kennzeichnen."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:171
 #: ../analysers/analyser_osmosis_building_overlaps.py:187
@@ -4186,4 +4186,28 @@ msgstr ""
 msgid ""
 "This object has a very common name that probably corresponds to a brand "
 "name. All objects of the same brand should be tagged the same way."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:30
+msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:32
+msgid ""
+"The position of the marker may be a little different than what is visible on"
+" the road. Sometimes, a small white line perpendicular to the road on the "
+"emergency stop strip or the left flared strip can be seen on satellite "
+"images or Mapillary's photos."
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:35
+msgid "Milestone not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:37
+msgid "Milestone integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:39
+msgid "Milestone update"
 msgstr ""
