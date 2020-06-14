@@ -7,6 +7,7 @@
     "tags_select": {
       "information": "office"
     },
+    "conflationDistance": 1000,
     "tags_generate": {
       "information": "office",
       "tourism": "information"
@@ -20,6 +21,7 @@
     "tags_select": {
       "amenity": "place_of_worship"
     },
+    "conflationDistance": 300,
     "tags_generate": {
       "religion": "christian",
       "amenity": "place_of_worship"
@@ -33,6 +35,8 @@
     "tags_select": {
       "tourism": "camp_site"
     },
+    "osm_types": ["nodes", "ways", "relations"],
+    "conflationDistance": 1000,
     "tags_generate": {
       "tourism": "camp_site"
     }
@@ -45,6 +49,7 @@
     "tags_select": {
       "amenity": "restaurant"
     },
+    "conflationDistance": 200,
     "tags_generate": {
       "amenity": "restaurant"
     }

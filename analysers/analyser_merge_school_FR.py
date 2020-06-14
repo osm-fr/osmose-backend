@@ -122,6 +122,7 @@ administrative schools for a single physical school.''')
 
     School_FR_app = {
         "None": {"en": u"none", "fr": u"aucun"},
+        "NE SAIT PAS": {"en": u"none", "fr": u"aucun"},
         "COMMUNE": {"en": u"municipality", "fr": u"commune"},
         "Correcte": {"en": u"good", "fr": u"correcte"},
         "DIFF_NOM": {"en": u"different name", "fr": u"nom dfférent"},
