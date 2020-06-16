@@ -29,7 +29,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             detail = T_(
 '''The list of milestone comes from the CEREMA's database "RIU" in France.'''),
             trap = T_(
-'''The position of the marker may be a little different than what is visible on the road. Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or Mapillary's photos.'''))
+'''Those milestones can't be on way * _link. The position of the marker may be a little different than what is visible on the road. Sometimes, a small white line perpendicular to the road on the emergency stop strip or the left flared strip can be seen on satellite images or Mapillary's photos.'''))
 
         self.def_class_missing_official(item = 8430, id = 41, level = 3, tags = ['merge', 'highway'],
             title = T_('Milestone not integrated'), **doc)
@@ -55,7 +55,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                 conflationDistance = 150,
                 generate = Generate(
                     static1 = {"highway": "milestone"},
-                    static2 = {"source": self.source},
+                    static2 = {"source:nat_ref": self.source},
                     mapping1 = {
                         "distance": 'pr',
                         "nat_ref": lambda row: self.transform_to_plo(row) }
