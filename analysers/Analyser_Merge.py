@@ -527,8 +527,13 @@ class GeoJSON(Parser):
             values = list(map(removequotesjson, map(lambda column: row['properties'][column], columns)))
             columns.append(u"geom_x")
             columns.append(u"geom_y")
-            values.append(row['geometry']['coordinates'][0])
-            values.append(row['geometry']['coordinates'][1])
+            if row['geometry']['type']=='Point':
+                values.append(row['geometry']['coordinates'][0])
+                values.append(row['geometry']['coordinates'][1])
+            elif row['geometry']['type']=='LineString':
+                npt = len(row['geometry']['coordinates'])//2
+                values.append(row['geometry']['coordinates'][npt][0])
+                values.append(row['geometry']['coordinates'][npt][1])
             osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                 (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
                 values)
