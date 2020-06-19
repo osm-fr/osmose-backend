@@ -522,7 +522,7 @@ class GeoJSON(Parser):
     def import_(self, table, srid, osmosis):
         self.json = self.json or self.extractor(json.loads(self.source.open().read()))
         for row in self.json['features']:
-            if len(row['geometry']['coordinates'])>0:
+            if len(row['geometry']['coordinates']) > 0:
                 row['properties'] = flattenjson(row['properties'])
                 columns = list(row['properties'].keys())
                 values = list(map(removequotesjson, map(lambda column: row['properties'][column], columns)))
