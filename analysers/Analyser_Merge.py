@@ -537,10 +537,9 @@ class GeoJSON(Parser):
                         values.append(row['geometry']['coordinates'][npt][0])
                         values.append(row['geometry']['coordinates'][npt][1])
                     else:
-                        nli = len(row['geometry']['coordinates'])//2
-                        npt = len(row['geometry']['coordinates'][npt])//2
-                        values.append(row['geometry']['coordinates'][nli][npt][0])
-                        values.append(row['geometry']['coordinates'][nli][npt][1])
+                        npt = len(row['geometry']['coordinates'][0])//2
+                        values.append(row['geometry']['coordinates'][0][npt][0])
+                        values.append(row['geometry']['coordinates'][0][npt][1])
                     osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                         (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
                         values)
