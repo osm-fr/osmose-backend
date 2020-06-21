@@ -522,16 +522,27 @@ class GeoJSON(Parser):
     def import_(self, table, srid, osmosis):
         self.json = self.json or self.extractor(json.loads(self.source.open().read()))
         for row in self.json['features']:
-            row['properties'] = flattenjson(row['properties'])
-            columns = list(row['properties'].keys())
-            values = list(map(removequotesjson, map(lambda column: row['properties'][column], columns)))
-            columns.append(u"geom_x")
-            columns.append(u"geom_y")
-            values.append(row['geometry']['coordinates'][0])
-            values.append(row['geometry']['coordinates'][1])
-            osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
-                (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
-                values)
+            if len(row['geometry']['coordinates']) > 0:
+                row['properties'] = flattenjson(row['properties'])
+                columns = list(row['properties'].keys())
+                values = list(map(removequotesjson, map(lambda column: row['properties'][column], columns)))
+                columns.append(u"geom_x")
+                columns.append(u"geom_y")
+                if row['geometry']['type'] in ('Point', 'MultiPoint', 'LineString', 'MultiLineString'):
+                    if row['geometry']['type'] == 'Point':
+                        values.append(row['geometry']['coordinates'][0])
+                        values.append(row['geometry']['coordinates'][1])
+                    elif row['geometry']['type'] in ('MultiPoint', 'LineString'):
+                        npt = len(row['geometry']['coordinates'])//2
+                        values.append(row['geometry']['coordinates'][npt][0])
+                        values.append(row['geometry']['coordinates'][npt][1])
+                    else:
+                        npt = len(row['geometry']['coordinates'][0])//2
+                        values.append(row['geometry']['coordinates'][0][npt][0])
+                        values.append(row['geometry']['coordinates'][0][npt][1])
+                    osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
+                        (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
+                        values)
 
 class SHP(Parser):
     def __init__(self, source, edit = lambda s: s):
