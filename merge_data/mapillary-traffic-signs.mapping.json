@@ -817,6 +817,10 @@
         "junction": "roundabout"
       },
       {
+        "highway": null,
+        "junction": "circular"
+      },
+      {
         "highway": "mini_roundabout"
       }
     ],
