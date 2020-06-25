@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-06-14 18:38+0000\n"
+"PO-Revision-Date: 2020-06-25 18:48+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -4067,35 +4067,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:846
+#: ../analysers/Analyser_Merge.py:857
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:849
+#: ../analysers/Analyser_Merge.py:860
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:854
+#: ../analysers/Analyser_Merge.py:865
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:867
+#: ../analysers/Analyser_Merge.py:878
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:880
+#: ../analysers/Analyser_Merge.py:891
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:842
+#: ../analysers/Analyser_Merge.py:853
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4183,14 +4183,6 @@ msgstr ""
 msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
 msgstr ""
 
-#: ../analysers/analyser_merge_milestone_FR_metropole.py:32
-msgid ""
-"The position of the marker may be a little different than what is visible on"
-" the road. Sometimes, a small white line perpendicular to the road on the "
-"emergency stop strip or the left flared strip can be seen on satellite "
-"images or Mapillary's photos."
-msgstr ""
-
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:35
 msgid "Milestone not integrated"
 msgstr ""
@@ -4201,4 +4193,12 @@ msgstr ""
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:39
 msgid "Milestone update"
+msgstr ""
+
+#: ../analysers/analyser_merge_milestone_FR_metropole.py:32
+msgid ""
+"Those milestones can't be on way * _link. The position of the marker may be "
+"a little different than what is visible on the road. Sometimes, a small "
+"white line perpendicular to the road on the emergency stop strip or the left"
+" flared strip can be seen on satellite images or Mapillary's photos."
 msgstr ""
