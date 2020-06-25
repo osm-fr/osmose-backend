@@ -33,10 +33,10 @@
     "items": 8140,
     "classes": 330,
     "tags_select": {
-      "tourism": "camp_site"
+      "tourism": ["camp_site", "hotel"]
     },
     "osm_types": ["nodes", "ways", "relations"],
-    "conflationDistance": 1000,
+    "conflationDistance": 500,
     "tags_generate": {
       "tourism": "camp_site"
     }
