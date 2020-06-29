@@ -44,7 +44,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
             "https://data.datatourisme.gouv.fr",
             "DATAtourisme, la base nationale des données du tourisme en Open Data",
             CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020",
-                    fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/9e8b7142a9fe83b82225032611cdb57e/cb33fad9-e86e-4f8a-a105-f4472f720526")),
+                    fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/84c2e2e54073df2b931c9f4bf8a3ccf3/b7f07a07-2b8f-4fcb-a74f-fdd68b0f57d5")),
             Load("Longitude", "Latitude",
                 select = {'type': type_},
                 uniq = ["elem"]),
@@ -57,6 +57,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
                     static1 = tags_generate,
                     static2 = {"source": self.source},
                     mapping1 = {
+                        "ref:FR:CRTA": lambda fields: fields["identifier"] if fields["publisher_name"] == "SIRTAQUI Nouvelle-Aquitaine" else None,
                         "contact:phone": "contact_phone",
                         "contact:email": "contact_email",
                         "contact:website": "contact_website",
@@ -65,51 +66,58 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
                         "official_name": "label"},
                 text = lambda tags, fields: {"en": "{} - {} {} - {}".format(fields["street_address"], fields["postalcode_address"], fields["city_address"], fields["elem"])} )))
 
-
 # the csv data is generated with the following request:
 sparql = """
+PREFIX dt: <https://www.datatourisme.gouv.fr/ontology/core#>
+PREFIX schema: <http://schema.org/>
+PREFIX purl: <http://purl.org/dc/elements/1.1/>
+
 SELECT
+  ?publisher_name ?identifier
   ?elem ?type ?label
   ?Latitude ?Longitude ?street_address ?postalcode_address ?city_address
   ?wheelchair ?takeaway ?contact_phone ?contact_email ?contact_website
 WHERE {
   ?elem <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type;
       <http://www.w3.org/2000/01/rdf-schema#label> ?label;
-      <https://www.datatourisme.gouv.fr/ontology/core#isLocatedAt> ?location.
-
+      dt:isLocatedAt ?location.
   FILTER (?type IN (
-    <https://www.datatourisme.gouv.fr/ontology/core#Camping>,
-    <https://www.datatourisme.gouv.fr/ontology/core#Church>,
-    <https://www.datatourisme.gouv.fr/ontology/core#Restaurant>,
-    <https://www.datatourisme.gouv.fr/ontology/core#LocalTouristOffice>
+    dt:Camping,
+    dt:Church,
+    dt:Restaurant,
+    dt:LocalTouristOffice
   )).
-
-  ?location <http://schema.org/geo> ?geo.
-  ?geo <http://schema.org/latitude> ?Latitude;
-      <http://schema.org/longitude> ?Longitude.
-
-  ?location <http://schema.org/address> ?address.
-  ?address <http://schema.org/streetAddress> ?street_address;
-      <http://schema.org/postalCode> ?postalcode_address;
-      <http://schema.org/addressLocality> ?city_address.
-
+  ?location schema:geo ?geo.
+  ?geo schema:latitude ?Latitude;
+       schema:longitude ?Longitude.
+  ?location schema:address ?address.
+  ?address schema:streetAddress ?street_address;
+           schema:postalCode ?postalcode_address;
+           schema:addressLocality ?city_address.
   OPTIONAL {
-    ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-    ?agent_contact <http://schema.org/telephone> ?contact_phone.
+    ?elem dt:hasBeenPublishedBy ?publisher.
+    ?publisher schema:legalName ?publisher_name.
   }
   OPTIONAL {
-    ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
-    ?agent_contact <http://schema.org/email> ?contact_email.
+    ?elem purl:identifier ?identifier.
   }
   OPTIONAL {
-    ?elem <https://www.datatourisme.gouv.fr/ontology/core#hasBookingContact> ?agent_contact.
+    ?elem dt:hasBookingContact ?agent_contact.
+    ?agent_contact schema:telephone ?contact_phone.
+  }
+  OPTIONAL {
+    ?elem dt:hasBookingContact ?agent_contact.
+    ?agent_contact schema:email ?contact_email.
+  }
+  OPTIONAL {
+    ?elem dt:hasBookingContact ?agent_contact.
     ?agent_contact <http://xmlns.com/foaf/0.1/homepage> ?contact_website.
   }
   OPTIONAL {
-    ?elem <https://www.datatourisme.gouv.fr/ontology/core#reducedMobilityAccess> ?wheelchair.
+    ?elem dt:reducedMobilityAccess ?wheelchair.
   }
   OPTIONAL {
-    ?elem <https://www.datatourisme.gouv.fr/ontology/core#takeAway> ?takeaway.
+    ?elem dt:takeAway ?takeaway.
   }
 }
 """
