@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
     def __init__(self, config, logger=None):
         Analyser_Merge.__init__(self, config, logger)
-        self.missing_official = self.def_class(item=8440, id=3, level=3, tags=['merge'],
+        self.missing_official = self.def_class(item=8440, id=1, level=3, tags=['merge'],
                                                title=T_('Emergency point not integrated'))
         self.possible_merge = self.def_class(item=8441, id=3, level=3, tags=['merge'],
                                                title=T_('Emergency point integration suggestion'))
