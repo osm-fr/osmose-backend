@@ -601,7 +601,8 @@ lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "lan
 del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
 del(lithuania.analyser["osmosis_highway_broken_level_continuity"]) # follow official highway classification
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6})
+luxembourg = default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6})
+luxembourg.analyser["merge_emergency_points_LU"] = "xxx"
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
