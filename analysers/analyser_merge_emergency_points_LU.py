@@ -42,6 +42,7 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
                 select=Select(
                     types=["nodes"],
                     tags={"highway": "emergency_access_point"}),
+                osmRef = "ref",
                 conflationDistance=50,
                 generate=Generate(
                     static1={
