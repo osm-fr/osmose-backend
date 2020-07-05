@@ -34,10 +34,10 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             title = T_('Power support, integration suggestion'))
 
         self.init(
-            u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte",
+            u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte-au-6-juin-2020",
             u"Pylones RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",
-                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte-au-6-juin-2020/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"),
                 separator = u";"),
             Load(u"Longitude pylône (DD)", u"Latitude pylône (DD)"),
             Mapping(
