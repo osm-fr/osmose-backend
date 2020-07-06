@@ -33,12 +33,12 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
         self.init(
             u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
             u"Toilettes publiques de Nantes Métropole",
-            JSON(Source(attribution = u"Nantes Métropole", millesime = "11/2016",
+            JSON(Source(attribution = u"Nantes Métropole", millesime = "07/2020",
                     fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole/download/?format=json&timezone=Europe/Berlin"),
                 extractor = lambda json: map(lambda j: j['fields'], json)),
-            Load("location", "location",
-                xFunction = lambda c: c and json.loads(c)[1],
-                yFunction = lambda c: c and json.loads(c)[0]),
+            Load("geo_shape.coordinates", "geo_shape.coordinates",
+                xFunction = lambda c: c and json.loads(c)[0],
+                yFunction = lambda c: c and json.loads(c)[1]),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -52,4 +52,6 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                     mapping1 = {
                         "name": 'nom',
                         "ref": 'id',
-                        "wheelchair": lambda res: "yes" if res['acces_pmr'] == u'oui' else "no" if res['acces_pmr'] == u'non' else None } )))
+                        "operator": 'exploitant',
+                        "opening_hours": lambda res: "24/7" if res['horaire_d_ouverture'] == u'24/24' else None,
+                        "wheelchair": lambda res: "yes" if res['accessible_pmr'] == u'oui' else "no" if res['accessible_pmr'] == u'non' else None } )))
