@@ -487,7 +487,12 @@ class JSON(Parser):
 
     def header(self):
         self.json = list(map(flattenjson, self.extractor(json.loads(self.source.open().read()))))
-        return self.json[0].keys()
+        columns = set()
+        # Read all entries because structure can vary
+        for feature in self.json:
+            columns = columns.union(list(flattenjson(feature).keys()))
+        columns = list(columns)
+        return columns
 
     def import_(self, table, srid, osmosis):
         self.json = self.json or map(flattenjson, self.extractor(json.loads(self.source.open().read())))
