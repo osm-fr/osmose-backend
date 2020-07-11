@@ -260,13 +260,13 @@ WHERE
 """
 
 sql60 = """
-SELECT 
+SELECT
     nodes.id,
     ST_AsText(nodes.geom) AS geom
 FROM
     nodes
-    JOIN way_nodes ON 
-        nodes.id = way_nodes.node_id 
+    JOIN way_nodes ON
+        nodes.id = way_nodes.node_id
     JOIN highways ON
     way_nodes.way_id = highways.id
 WHERE
@@ -277,7 +277,7 @@ WHERE
 """
 
 sql70 = """
-SELECT 
+SELECT
     nodes.id,
     ST_AsText(nodes.geom) AS geom
 FROM
@@ -285,8 +285,8 @@ FROM
     LEFT JOIN way_nodes ON
         nodes.id = way_nodes.node_id
 WHERE nodes.tags != ''::hstore AND
-    nodes.tags?'public_transport' AND 
-    nodes.tags->'public_transport' = 'stop_position' AND  
+    nodes.tags?'public_transport' AND
+    nodes.tags->'public_transport' = 'stop_position' AND
     node_id is null;
 """
 
@@ -297,9 +297,9 @@ SELECT
     ST_AsText(nodes.geom) AS geom,
     way_nodes.way_id
 FROM
-    way_nodes 
+    way_nodes
     JOIN relation_members ON
-        relation_members.member_type = 'N' AND 
+        relation_members.member_type = 'N' AND
         relation_members.member_id = node_id AND
         relation_members.member_role NOT IN ('stop', 'stop_exit_only', 'stop_entry_only')
     JOIN relations ON
@@ -314,8 +314,8 @@ WHERE
   highways.highway NOT IN ('footway', 'platform')
 """
 
-sql90 = """ 
-SELECT 
+sql90 = """
+SELECT
     stop_platform.id,
     stop_platform.member_type || stop_platform.mid,
     ST_AsText(stop_platform.geom) AS geom
@@ -325,7 +325,7 @@ FROM
       stop_platform.id = relations.id
   LEFT JOIN way_nodes ON
       mid = node_id
-WHERE 
+WHERE
     mrole IN ('stop', 'stop_exit_only', 'stop_entry_only') AND
     relations.tags->'public_transport:version' = '2' AND
     node_id IS NULL;
@@ -384,4 +384,3 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql70, self.callback70)
         self.run(sql80, self.callback80)
         self.run(sql90, self.callback90)
-
