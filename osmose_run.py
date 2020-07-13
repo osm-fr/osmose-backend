@@ -451,7 +451,7 @@ def main(options):
             lfil = "/tmp/analyse-{0}-{1}".format(country, base)
             lock = lockfile(lfil)
         except:
-            logger.err("can't lock %s" % country)
+            logger.err("can't lock {0} ({1})".format(country, lfil))
             if options.cron:
                 sys.stderr.write("can't lock %s\n" % country)
             for l in open(lfil).read().rstrip().split("\n"):
