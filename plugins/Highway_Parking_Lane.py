@@ -54,11 +54,10 @@ sides.'''))
 
         err = []
 
-        conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith("parking:condition:"), tags))
-        for c in conditions:
-            if c not in tags:
-                err.append({"class": 31616})
-                break
+        if (("parking:condition:right" in tags and not "parking:lane:right" in tags and not "parking:lane:both" in tags) or
+            ("parking:condition:left" in tags and not "parking:lane:left" in tags and not "parking:lane:both" in tags) or
+            ("parking:condition:both" in tags and not "parking:condition:both" in tags)):
+            err.append({"class": 31616})
 
         sides = list(map(lambda tag: tag[len("parking:lane:"):].split(":")[0], filter(lambda tag: tag.startswith("parking:lane:"), tags)))
         if len(sides) == 0:
@@ -97,6 +96,7 @@ class Test(TestPluginCommon):
 
         for t in [{"highway": "r", "parking:lane:both:parallel": "t"},
                   {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"},
+                  {"highway": "r", "parking:condition:right": "private", "parking:condition:left": "private", "parking:lane:both": "perpendicular"},
                   {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"},
                  ]:
             assert not a.way(None, t, None), t
