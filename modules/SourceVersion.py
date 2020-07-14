@@ -37,7 +37,7 @@ def version(*sources):
                 try:
                     h.update(open(inspect.getsourcefile(c), 'rb').read())
                 except TypeError: # No python source file
-                    pass
+                    h.update(str(id(c)).encode())
         else:
             raise NotImplementedError(source.__class__)
 
