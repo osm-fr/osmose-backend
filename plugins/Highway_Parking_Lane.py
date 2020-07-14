@@ -26,8 +26,6 @@ class Highway_Parking_Lane(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.parking_lane = "parking:lane:"
-        self.parking_condition = "parking:condition:"
         self.errors[31611] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Bad parking:lane:[side]'),
             detail = T_(
@@ -56,18 +54,16 @@ sides.'''))
 
         err = []
 
-        sides = list(map(lambda tag: tag[len(self.parking_lane):].split(":")[0], filter(lambda tag: tag.startswith(self.parking_lane), tags)))
-        n_sides = len(sides)
-        sides = [i for i in sides if i not in ("left", "right", "both")]
-
-        conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
+        conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith("parking:condition:"), tags))
         for c in conditions:
             if c not in tags:
                 err.append({"class": 31616})
                 break
 
-        if n_sides == 0:
+        sides = list(map(lambda tag: tag[len("parking:lane:"):].split(":")[0], filter(lambda tag: tag.startswith("parking:lane:"), tags)))
+        if len(sides) == 0:
             return err
+        sides = [i for i in sides if i not in ("left", "right", "both")]
 
         if len(sides) > 0:
             err.append({"class": 31611})
