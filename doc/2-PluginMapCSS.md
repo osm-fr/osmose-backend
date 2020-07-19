@@ -1,6 +1,6 @@
 # Plugin based on MapCCS - The basics
 
-The MapCSS is more easy to understand and write than Python. The [definition of the MapCSS language](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) is from JOSM. The MapCSS code can also be run and [shared with the JOSM validator](https://josm.openstreetmap.de/wiki/Rules).
+The MapCSS is easier to understand and write than Python. The [definition of the MapCSS language](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) is from JOSM. The MapCSS code can also be run and [shared with the JOSM validator](https://josm.openstreetmap.de/wiki/Rules).
 
 ## MapCSS Structure
 
@@ -49,7 +49,7 @@ meta {
 }
 ```
 
-The `min-josm-version` is to JOSM to ignore Osmose-QA MapCSS extensions. But it is now an old JOSM version (14481) and can be safely ignored.
+The `min-josm-version` is required by JOSM to ignore Osmose-QA MapCSS extensions. But it is now an old JOSM version (14481) and can be safely ignored.
 
 Additional Osmose-QA property `-osmoseTags` can be set to have common Osmose-QA tags applied to all the rules of this MapCSS file.
 
@@ -290,4 +290,4 @@ In place of keeping it in Osmose-QA the MapCSS files can also be shared with the
 
 ### Test on JOSM
 
-The asserts in the MapCSS rules can also be check by JSON. This is optional and require to be enabled.
+The asserts in the MapCSS rules can also be checked by JSON. This is optional and must be enabled.
