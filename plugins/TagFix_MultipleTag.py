@@ -125,6 +125,14 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             name_parent.append("disused:" + i)
             name_parent.append("abandoned:" + i)
             name_parent.append("historic:" + i)
+            name_parent.append("proposed:" + i)
+            name_parent.append("planned:" + i)
+            name_parent.append("construction:" + i)
+            name_parent.append("abandoned:" + i)
+            name_parent.append("demolished:" + i)
+            name_parent.append("removed:" + i)
+            name_parent.append("razed:" + i)
+            name_parent.append("was:" + i)
         self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
