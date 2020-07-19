@@ -3,8 +3,7 @@
 # Original work from https://github.com/cquest/reaccentue
 
 import sys
-import os as _os
-import os.path
+import os
 import re
 import select
 import csv
@@ -128,8 +127,8 @@ def reaccentue(maj):
 dico = None
 freq = None
 
-base_dir = _os.path.dirname(_os.path.realpath(__file__))
-with gzip.open(_os.path.join(base_dir, "../dictionaries/fr/reaccentue.pz"), 'rb') as dico_cache:
+base_dir = os.path.dirname(os.path.realpath(__file__))
+with gzip.open(os.path.join(base_dir, "../dictionaries/fr/reaccentue.pz"), 'rb') as dico_cache:
     dico = pickle.load(dico_cache)
 
 articles = ['le', 'la', 'les',
