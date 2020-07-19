@@ -6,7 +6,7 @@ This documentation is written in Markdown and in Jupyter Notebook. The Jupyter N
 
 0. [Index](0-Index.md): General consideration and concept, good point to start.
 1. [Python Plugin](https://github.com/osm-fr/osmose-backend/blob/master/doc/1-Plugin.ipynb): Interactive introduction to how to make simple validation rule using Python.
-2. MapCSS Plugin (Doc TBD): Consideration and concept about making validation rule using the [MapCSS](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) language.
+2. [MapCSS Plugin](2-PluginMapCSS.md): Consideration and concept about making validation rule using the [MapCSS](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation) language.
   * [Minimal MapCSS Plugin](https://github.com/osm-fr/osmose-backend/blob/master/doc/2_0-PluginMapCSS-minimal.ipynb): Interactive introduction to how to make simple validation rule using MapCSS language.
 3. [SQL Analyzer](3-SQL-basics.md): Consideration and concept about making validation rule using the Osmose-QA Osmosis Framework.
   * [Minimal SQL Analyzer](https://github.com/osm-fr/osmose-backend/blob/master/doc/3_0-SQL-minimal.ipynb): Interactive introduction to how to make a complex validation rule using SQL.

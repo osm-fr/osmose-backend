@@ -74,19 +74,22 @@ class TagFix_Maxspeed(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[303241] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway'],
-            title = T_('Discordant maxspeed and source:maxspeed'))
+            title = T_('Discordant maxspeed and source:maxspeed or maxspeed:type'))
 
 
     def way(self, data, tags, nds):
-        if not tags.get('highway') or not tags.get('maxspeed') or not tags['maxspeed'][0] in "0123456789" or not tags.get('source:maxspeed') or not ':' in tags['source:maxspeed']:
+        if not tags.get('highway') or not tags.get('maxspeed') or not tags['maxspeed'][0] in "0123456789":
+            return
+        other_maxspeed = tags.get('source:maxspeed', tags.get('maxspeed:type'))
+        if other_maxspeed is None or ':' not in other_maxspeed:
             return
 
-        source_maxspeed = self.maxspeed_table.get(tags['source:maxspeed'].lower()) or self.maxspeed_table_default.get(tags['source:maxspeed'].split(':')[1])
+        source_maxspeed = self.maxspeed_table.get(other_maxspeed.lower()) or self.maxspeed_table_default.get(other_maxspeed.split(':')[1])
         if not source_maxspeed or len(source_maxspeed) == 0:
             return
 
         if tags['maxspeed'] not in source_maxspeed:
-            return [{'class': 303241, 'subclass': 0, 'text': T_f(u'Discordant {0} and {1}', tags['maxspeed'], tags['source:maxspeed'])}]
+            return [{'class': 303241, 'subclass': 0, 'text': T_f(u'Discordant {0} and {1}', tags['maxspeed'], other_maxspeed)}]
 
 
 ###########################################################################
@@ -100,5 +103,7 @@ class Test(TestPluginCommon):
         assert not a.way(None, {'name': 'foo'}, None)
         assert not a.way(None, {'highway': 'primary'}, None)
         assert not a.way(None, {'highway': 'primary', 'maxspeed': '50', 'source:maxspeed': 'FR:urban'}, None)
+        assert not a.way(None, {'highway': 'primary', 'maxspeed': '50', 'maxspeed:type': 'FR:urban'}, None)
 
         self.check_err(a.way(None, {'highway': 'primary', 'maxspeed': '30', 'source:maxspeed': 'FR:urban'}, None))
+        self.check_err(a.way(None, {'highway': 'primary', 'maxspeed': '30', 'maxspeed:type': 'FR:urban'}, None))

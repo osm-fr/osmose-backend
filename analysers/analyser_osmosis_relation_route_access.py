@@ -55,7 +55,11 @@ FROM
         )
       )
     ) AND
-    NOT ways.tags?'{3}:conditional'
+    NOT ways.tags?'{3}:conditional' AND
+    (
+        NOT ways.tags?'{7}' OR
+        ways.tags->'{7}' = 'no'
+    )
 WHERE
   relations.tags != ''::hstore AND
   relations.tags?'type' AND
@@ -78,19 +82,25 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
                 'access_tag': 'bicycle',
                 'no_access': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'footway', 'pedestrian', 'trunk', 'motorway', 'trunk_link', 'motorway_link'",
-                'highway_overide_access': "'yes', 'permissive', 'true', 'designated', 'shoulder', 'dismount'"},
+                'highway_overide_access': "'yes', 'permissive', 'true', 'designated', 'shoulder', 'dismount'",
+                'dedicated': 'cycleway',
+            },
             'foot': {
                 'class': 2,
                 'access_tag': 'foot',
                 'no_access': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'trunk', 'motorway', 'trunk_link', 'motorway_link'", # 'cycleway' default for foot depends on country
-                'highway_overide_access': "'yes', 'permissive', 'true', 'designated'"},
+                'highway_overide_access': "'yes', 'permissive', 'true', 'designated'",
+                'dedicated': 'sidewalk',
+            },
             'hiking': { # Same as foot
                 'class': 3,
                 'access_tag': 'foot',
                 'no_access': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'trunk', 'motorway', 'trunk_link', 'motorway_link'", # 'cycleway' default for foot depends on country
-                'highway_overide_access': "'yes', 'permissive', 'true', 'designated'"},
+                'highway_overide_access': "'yes', 'permissive', 'true', 'designated'",
+                'dedicated': 'sidewalk',
+            },
         }
         for route_type, access in self.map.items():
             self.classs_change[access['class']] = self.def_class(item = 3240, level = 2, tags = ['relation', 'routing'],
@@ -101,9 +111,9 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         for route_type, access in self.map.items():
-            self.run(sql10.format('', '', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('', '', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access'], access['dedicated']), self.callback10(access['class']))
 
     def analyser_osmosis_diff(self):
         for route_type, access in self.map.items():
-            self.run(sql10.format('', 'touched_', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
-            self.run(sql10.format('touched_', 'not_touched_', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('', 'touched_', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access'], access['dedicated']), self.callback10(access['class']))
+            self.run(sql10.format('touched_', 'not_touched_', route_type, access['access_tag'], access['no_access'], access['highway_overide'], access['highway_overide_access'], access['dedicated']), self.callback10(access['class']))

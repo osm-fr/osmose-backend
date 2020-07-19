@@ -62,7 +62,7 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
         self.classs[1] = self.def_class(item = 6060, level = 2, tags = ['boundary', 'geom', 'fix:chair'],
-            title = T_f('Hole between administrative boundaries of admin_level %s', self.admin_level),
+            title = T_f('Hole between administrative boundaries of admin_level {0}', self.admin_level),
             detail = T_(
 '''An area is marked as not belonging to any city.'''))
 

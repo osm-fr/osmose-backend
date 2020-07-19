@@ -26,8 +26,6 @@ class Highway_Parking_Lane(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.parking_lane = "parking:lane:"
-        self.parking_condition = "parking:condition:"
         self.errors[31611] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Bad parking:lane:[side]'),
             detail = T_(
@@ -56,18 +54,15 @@ sides.'''))
 
         err = []
 
-        sides = list(map(lambda tag: tag[len(self.parking_lane):].split(":")[0], filter(lambda tag: tag.startswith(self.parking_lane), tags)))
-        n_sides = len(sides)
-        sides = [i for i in sides if i not in ("left", "right", "both")]
+        if (("parking:condition:right" in tags and not "parking:lane:right" in tags and not "parking:lane:both" in tags) or
+            ("parking:condition:left" in tags and not "parking:lane:left" in tags and not "parking:lane:both" in tags) or
+            ("parking:condition:both" in tags and not "parking:condition:both" in tags)):
+            err.append({"class": 31616})
 
-        conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
-        for c in conditions:
-            if c not in tags:
-                err.append({"class": 31616})
-                break
-
-        if n_sides == 0:
+        sides = list(map(lambda tag: tag[len("parking:lane:"):].split(":")[0], filter(lambda tag: tag.startswith("parking:lane:"), tags)))
+        if len(sides) == 0:
             return err
+        sides = [i for i in sides if i not in ("left", "right", "both")]
 
         if len(sides) > 0:
             err.append({"class": 31611})
@@ -101,6 +96,7 @@ class Test(TestPluginCommon):
 
         for t in [{"highway": "r", "parking:lane:both:parallel": "t"},
                   {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"},
+                  {"highway": "r", "parking:condition:right": "private", "parking:condition:left": "private", "parking:lane:both": "perpendicular"},
                   {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"},
                  ]:
             assert not a.way(None, t, None), t

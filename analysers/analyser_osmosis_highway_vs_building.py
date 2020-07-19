@@ -45,7 +45,7 @@ WHERE
     tags != ''::hstore AND
     ((
         tags?'highway' AND
-        tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no', 'services')
+        tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no', 'services', 'elevator')
     ) OR (
         tags?'railway' AND
         tags->'railway' IN ('rail', 'tram')

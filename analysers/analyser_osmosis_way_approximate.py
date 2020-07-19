@@ -123,7 +123,7 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
                     )
         for t in self.tags:
             self.classs_change[t[0]] = self.def_class(item = 1190, level = 3, tags = ['geom', 'highway', 'railway', 'fix:imagery'],
-                title = T_f('Approximate {0}', t[1]),
+                title = T_f('Approximate geometry of {0}', t[1]),
                 detail = T_(
 '''Geometry seems to be draw crudely, there is a discrepancy between the
 drawing and the real way especially in the curve. Use an imagerie.'''),

@@ -166,9 +166,10 @@ CREATE TEMP TABLE power_line AS
 SELECT
     id,
     ends(nodes) AS nid,
-    regexp_split_to_table(tags->'voltage','; *') AS voltage
+    voltage
 FROM
     ways
+    JOIN LATERAL (SELECT regexp_split_to_table(tags->'voltage','; *') AS voltage) AS t ON TRUE
 WHERE
     tags != ''::hstore AND
     tags?'power' AND
@@ -372,7 +373,7 @@ there's likely an unmapped pole nearby.'''))
         self.run(sql26, lambda res: {"class":6 if res[2] == 'minor_line' else 2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30)
         self.run(sql31)
-        self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql32, lambda res: {"class":3, "data":[self.node, self.positionAsText]} )
         self.run(sql60, lambda res: {"class":7, "data":[self.way_full, self.any_full, self.positionAsText]} )
 
     def analyser_osmosis_full(self):

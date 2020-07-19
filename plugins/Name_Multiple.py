@@ -46,15 +46,11 @@ the tag `name:left=*` and `name:right=*`.'''))
 
         self.NoExtra = False
         self.HighwayOnly = False
-        self.streetSubNumber = False
         self.allowSlash = False
         if self.father.config.options.get("country"):
             self.NoExtra = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['DE', 'US', 'CA']))
 
             self.HighwayOnly = self.father.config.options.get("country").startswith('BY')
-
-            # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1"
-            self.streetSubNumber = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['TH', 'VN', 'MY']))
 
             self.allowSlash = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['CH', 'DJ']))
 
@@ -74,7 +70,7 @@ the tag `name:left=*` and `name:right=*`.'''))
         if self.NoExtra:
             return
 
-        if not self.allowSlash and '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])):
+        if not self.allowSlash and '/' in tags["name"] and not self.streetSubNumberRe.match(tags["name"]):
             return {"class": 705, "subclass": 1, "text": {"en": "name=%s" % tags["name"]}}
         if '+' in tags["name"][0:-1]:
             return {"class": 705, "subclass": 2, "text": {"en": "name=%s" % tags["name"]}}
@@ -120,3 +116,5 @@ class Test(TestPluginCommon):
         with with_options(p, {'country': 'DJ'}):
             p.init(None)
             assert not p.way(None, {"name": u"Avenue 17 / جادة 17"}, None)
+
+        assert not p.way(None, {"name": u"Gas station no. 21/2356"}, None)

@@ -125,6 +125,14 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             name_parent.append("disused:" + i)
             name_parent.append("abandoned:" + i)
             name_parent.append("historic:" + i)
+            name_parent.append("proposed:" + i)
+            name_parent.append("planned:" + i)
+            name_parent.append("construction:" + i)
+            name_parent.append("abandoned:" + i)
+            name_parent.append("demolished:" + i)
+            name_parent.append("removed:" + i)
+            name_parent.append("razed:" + i)
+            name_parent.append("was:" + i)
         self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
@@ -173,7 +181,7 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             err.append({"class": 30320, "subclass": 1000, "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
-        if tags.get("junction") not in (None, "yes") and u"highway" not in tags:
+        if tags.get("junction") not in (None, "yes") and (u"highway" not in tags or "area:highway" not in tags):
             err.append({"class": 20800, "subclass": 0})
 
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):

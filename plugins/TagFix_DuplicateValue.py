@@ -48,11 +48,13 @@ similar.'''),
         self.BlackList = set((
             'ref', 'created_by', 'is_in',
             'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid',
-            'opening_hours', 'service_times', 'collection_times',
+            'opening_hours', 'service_times', 'collection_times', 'opening_hours:kitchen',
             'phone', 'contact:phone', 'fax', 'contact:fax',
             'url',
             'technology', 'cables', 'position', 'passenger', 'couplings:diameters',
             'healthcare:speciality',
+            'traffic_sign',
+            'sport',
         ))
         self.BlackListRegex = set((
             re.compile('seamark:.+:colour'),
@@ -68,6 +70,7 @@ similar.'''),
             re.compile('lacounty:.+'),
             re.compile('.+:conditional'),
             re.compile('railway:signal:.+'),
+            re.compile('turn:lanes.*'),
        ))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python

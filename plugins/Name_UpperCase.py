@@ -29,7 +29,7 @@ UpperCase_WhiteList = {
 
 class Name_UpperCase(Plugin):
 
-    not_for = ["CU"]
+    not_for = ["CU", "JP"]
 
     def init(self, logger):
         Plugin.init(self, logger)
