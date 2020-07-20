@@ -36,7 +36,7 @@ meta[lang=fr] {
 *[email][contact:email][contact:email!=tag(email)],
 *[website][contact:website][contact:website!=tag(website)] {
     group: tr("Different value of tag contact:* and *");
-    throwWarning: tr("Different values of {0} and of {1}", "0.key", "1.key");
+    throwWarning: tr("Different values of {0} and of {1}", "{0.key}", "{1.key}");
     -osmoseItemClassLevel: "3092/3097/2";
 
     assertMatch: "node phone=1 contact:phone=2";
