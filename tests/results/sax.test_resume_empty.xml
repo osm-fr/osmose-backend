@@ -599,7 +599,7 @@
 <fix lang="en" title="Check that the value is accurate. Consider whether another tag should&#10;be used if the value is valid." />
 </class>
 <class id="3097" item="3092" source="http://example.com/plugins/Phone2.validator.mapcss" level="2" tag="tag">
-<classtext lang="en" title="Defferent valmue of tag contact:* and *" />
+<classtext lang="en" title="Different value of tag contact:* and *" />
 </class>
 <class id="4010" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L99" level="2" tag="deprecated,tag,fix:chair">
 <classtext lang="ca" title="Etiqueta en desús" />

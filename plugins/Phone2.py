@@ -13,7 +13,7 @@ class Phone2(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[3097] = self.def_class(item = 3092, level = 2, tags = mapcss.list_(u'tag'), title = mapcss.tr(u'Defferent valmue of tag contact:* and *'))
+        self.errors[3097] = self.def_class(item = 3092, level = 2, tags = mapcss.list_(u'tag'), title = mapcss.tr(u'Different value of tag contact:* and *'))
 
 
 
@@ -46,7 +46,7 @@ class Phone2(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'website') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:website') and mapcss._tag_capture(capture_tags, 2, tags, u'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'website')))
                 except mapcss.RuleAbort: pass
             if match:
-                # group:tr("Defferent valmue of tag contact:* and *")
+                # group:tr("Different value of tag contact:* and *")
                 # -osmoseItemClassLevel:"3092/3097/2"
                 # throwWarning:tr("Different values of {0} and of {1}","0.key","1.key")
                 # assertMatch:"node phone=1 contact:phone=2"
@@ -84,7 +84,7 @@ class Phone2(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'website') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:website') and mapcss._tag_capture(capture_tags, 2, tags, u'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'website')))
                 except mapcss.RuleAbort: pass
             if match:
-                # group:tr("Defferent valmue of tag contact:* and *")
+                # group:tr("Different value of tag contact:* and *")
                 # -osmoseItemClassLevel:"3092/3097/2"
                 # throwWarning:tr("Different values of {0} and of {1}","0.key","1.key")
                 err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', u'0.key', u'1.key')})
@@ -120,7 +120,7 @@ class Phone2(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'website') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:website') and mapcss._tag_capture(capture_tags, 2, tags, u'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'website')))
                 except mapcss.RuleAbort: pass
             if match:
-                # group:tr("Defferent valmue of tag contact:* and *")
+                # group:tr("Different value of tag contact:* and *")
                 # -osmoseItemClassLevel:"3092/3097/2"
                 # throwWarning:tr("Different values of {0} and of {1}","0.key","1.key")
                 err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', u'0.key', u'1.key')})
