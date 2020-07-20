@@ -4930,58 +4930,6 @@
 <nd ref="602655388" />
 </way>
 </error>
-<error class="20800" subclass="0">
-<location lat="0" lon="0" />
-<way id="116269031" version="1" timestamp="2011-06-04T00:12:33Z" changeset="8335277" uid="205520" user="bumf">
-<tag k="highway" v="primary" />
-<tag k="junction" v="roundabout" />
-<nd ref="1311333022" />
-<nd ref="1311333100" />
-<nd ref="1311332810" />
-<nd ref="1311333121" />
-<nd ref="1311332925" />
-<nd ref="1311333097" />
-<nd ref="1311332869" />
-<nd ref="1311333046" />
-<nd ref="1311332848" />
-<nd ref="1311332840" />
-<nd ref="1311333020" />
-<nd ref="1311333165" />
-<nd ref="1311333053" />
-<nd ref="1311333112" />
-<nd ref="1311333044" />
-<nd ref="1311333028" />
-<nd ref="1311332903" />
-<nd ref="1311332786" />
-<nd ref="1311333022" />
-</way>
-</error>
-<error class="20800" subclass="0">
-<location lat="0" lon="0" />
-<way id="116269034" version="2" timestamp="2013-01-04T20:36:30Z" changeset="14530762" uid="233248" user="zors1843">
-<tag k="highway" v="primary" />
-<tag k="junction" v="roundabout" />
-<nd ref="1311332853" />
-<nd ref="1311333147" />
-<nd ref="1311333167" />
-<nd ref="1311332801" />
-<nd ref="1311333160" />
-<nd ref="1311332938" />
-<nd ref="1311333158" />
-<nd ref="1311332782" />
-<nd ref="1311332808" />
-<nd ref="1311332963" />
-<nd ref="1311332955" />
-<nd ref="2095457231" />
-<nd ref="1311332950" />
-<nd ref="1311333029" />
-<nd ref="1311332975" />
-<nd ref="1311332885" />
-<nd ref="1311332992" />
-<nd ref="1311332796" />
-<nd ref="1311332853" />
-</way>
-</error>
 <error class="9001002" subclass="2039567622">
 <location lat="0" lon="0" />
 <relation id="537967" version="19" timestamp="2014-01-05T14:23:40Z" changeset="19823745" uid="10610" user="RedFox">
