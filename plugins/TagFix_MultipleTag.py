@@ -181,7 +181,7 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             err.append({"class": 30320, "subclass": 1000, "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
-        if tags.get("junction") not in (None, "yes") and (u"highway" not in tags or "area:highway" not in tags):
+        if tags.get("junction") not in (None, "yes") and u"highway" not in tags and "area:highway" not in tags:
             err.append({"class": 20800, "subclass": 0})
 
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
