@@ -4585,32 +4585,6 @@
 </node>
 </error>
 <delete type="way" id="24552698" />
-<error class="20800" subclass="0">
-<location lat="0" lon="0" />
-<way id="116269034" version="2" timestamp="2013-01-04T20:36:30Z" changeset="14530762" uid="233248" user="zors1843">
-<tag k="highway" v="primary" />
-<tag k="junction" v="roundabout" />
-<nd ref="1311332853" />
-<nd ref="1311333147" />
-<nd ref="1311333167" />
-<nd ref="1311332801" />
-<nd ref="1311333160" />
-<nd ref="1311332938" />
-<nd ref="1311333158" />
-<nd ref="1311332782" />
-<nd ref="1311332808" />
-<nd ref="1311332963" />
-<nd ref="1311332955" />
-<nd ref="2095457231" />
-<nd ref="1311332950" />
-<nd ref="1311333029" />
-<nd ref="1311332975" />
-<nd ref="1311332885" />
-<nd ref="1311332992" />
-<nd ref="1311332796" />
-<nd ref="1311332853" />
-</way>
-</error>
 <error class="9001002" subclass="2039567622">
 <location lat="0" lon="0" />
 <relation id="537967" version="19" timestamp="2014-01-05T14:23:40Z" changeset="19823745" uid="10610" user="RedFox">
