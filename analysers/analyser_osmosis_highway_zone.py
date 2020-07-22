@@ -75,7 +75,7 @@ SELECT
 FROM
   (SELECT cid, geom FROM a2_{0} WHERE path = 0) AS a
   LEFT JOIN
-    (SELECT cid, ST_Accum(geom) AS inners FROM a2_{0} WHERE path > 0 GROUP BY cid) AS t ON
+    (SELECT cid, array_agg(geom) AS inners FROM a2_{0} WHERE path > 0 GROUP BY cid) AS t ON
     a.cid = t.cid
 """
 
