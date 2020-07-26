@@ -1,10 +1,11 @@
+# 
 # Translators:
-# Marco <marcxosm@gmail.com>, 2018
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2020
+# Marco <marcxosm@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2020\n"
+"Last-Translator: Marco <marcxosm@gmail.com>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/openstreetmap-france/teams/17462/it/)\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -120,58 +121,70 @@ msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"L’etichetta network dovrebbe avere lo stesso valore per route e "
+"route_master: {0} vs {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
+"L’etichetta operator dovrebbe avere lo stesso valore per route e "
+"route_master: {0} vs {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr ""
+"L’etichetta ref dovrebbe avere lo stesso valore per route e route_master: "
+"{0} vs {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"L’etichetta colour dovrebbe avere lo stesso valore per route e route_master:"
+" {0} vs {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
 msgstr ""
+"La modalità di trasporto pubblico dovrebbe essere la stessa per route e "
+"route_master: {0} vs {1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr ""
+msgstr "Verifica l’etichetta colour"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Il codice del colore dovrebbe iniziare con ‘#’ seguito da 3 o 6 cifre"
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
 msgstr ""
+"Il colore della linea di trasporto pubblico dovrebbe stare nell’etichetta "
+"colour"
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "Una fermata dell’autobus dovrebbe essere u nodo"
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "L’intervallo non è valido (prova con dei valori in minuti)"
 
 #: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "La durata non è valida (prova con dei valori in minuti)"
 
 #: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "Manca l’etichetta interval che specifica l’intervallo principale"
 
 #: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
@@ -179,23 +192,31 @@ msgstr "Etichetta opening_hours mancante"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "Manca il nome su una fermata del trasporto pubblico"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
 msgstr ""
+"Verifica l’etichetta operator: questo operatore non esiste, potrebbe "
+"trattarsi di un refuso"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
 msgstr ""
+"Verifica l’etichetta network: questa rete non esiste, potrebbe trattarsi di "
+"un refuso"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
 msgstr ""
+"Una stazione dei bus solitamente è una vasta area dove sostano gli autobus, "
+"verifica se puoi disegnare quest’area"
 
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
+"È una fermata dell’autobus o del tram? Aggiungi un’etichetta per specificare"
+" il tipo di piattaforma"

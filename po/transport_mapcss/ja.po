@@ -1,24 +1,26 @@
+# 
 # Translators:
 # Tom Konda <tom.konda.dev@gmail.com>, 2020
+# Shu Higashi <higa432@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Tom Konda <tom.konda.dev@gmail.com>, 2020\n"
+"Last-Translator: Shu Higashi <higa432@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/openstreetmap-france/teams/17462/ja/)\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../transport.validator.mapcss:15
 msgid "Uncompromising validation of transit data"
-msgstr ""
+msgstr "乗り換えデータの妥協のないバリデーション"
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
-msgstr ""
+msgstr "transportation modeがありません、route = bus/coach/tram/etcタグをいずれか追加します"
 
 #: ../transport.validator.mapcss:67
 msgid "Missing transportation mode, change tag route to route_master"
-msgstr ""
+msgstr "transportation modeがありません、routeタグをroute_masterに変更します"
 
 #: ../transport.validator.mapcss:83
 msgid ""
@@ -43,7 +45,7 @@ msgstr "public_transportリレーションにfromとtoのタグがない "
 
 #: ../transport.validator.mapcss:176
 msgid "The stops may not be in the right order"
-msgstr ""
+msgstr "stopの順番が誤っている可能性があります"
 
 #: ../transport.validator.mapcss:201
 msgid "Is it a bus stop or a bus station?"
@@ -52,7 +54,7 @@ msgstr "バス停またはバスターミナルのいずれかです。"
 #: ../transport.validator.mapcss:213
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
-msgstr ""
+msgstr "stop (platform)なのか道路上の場所(stop_position)なのかを指定します"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
@@ -60,25 +62,25 @@ msgstr "これがバス停ならば、highway=bus_stopのタグを追加して�
 
 #: ../transport.validator.mapcss:253
 msgid "Check if the note can be deleted"
-msgstr ""
+msgstr "メモを削除できるかチェックします"
 
 #: ../transport.validator.mapcss:258
 msgid "The network should be on the transport lines and not on the stops"
-msgstr ""
+msgstr "ネットワークはstopではなく輸送ライン上にあるべきです"
 
 #: ../transport.validator.mapcss:264
 msgid "The operator should be on the transport lines and not on the stops"
-msgstr ""
+msgstr "operatorはstopではなく輸送ライン上にあるべきです"
 
 #: ../transport.validator.mapcss:275
 msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
-msgstr ""
+msgstr "lineのバリアントがどのlineにも属していません、route_master relationに追加します"
 
 #: ../transport.validator.mapcss:289
 msgid "The stop is not served by any line, add it to a route relation"
-msgstr ""
+msgstr "stopは任意のlineとして提供されていません、route relationに追加します"
 
 #: ../transport.validator.mapcss:214 ../transport.validator.mapcss:225
 msgid "Missing public_transport tag on a public transport stop"
@@ -88,7 +90,7 @@ msgstr "public_transportタグが公共交通機関の停止場所にない "
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
-msgstr ""
+msgstr "stop (platform)なのか鉄道上の場所(stop_position)なのかを指定します"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"
@@ -122,7 +124,7 @@ msgstr "colourタグはrouteとroute_masterで同じであるべきです: {0} v
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
-msgstr ""
+msgstr "public transport modeはroute及びroute_masterと同じであるべきです : {0} vs {1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
@@ -138,19 +140,19 @@ msgstr "公共交通機関のラインカラーはcolourタグにあるべきで
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "バス停はノードであることが想定されています"
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "intervalが無効です(分指定で試してください)"
 
 #: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "durationが無効です(分指定で試してください)"
 
 #: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "主intervalを指定するintervalタグがない"
 
 #: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
@@ -158,23 +160,23 @@ msgstr "opening_hoursタグがない"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "公共交通機関の停止場所にnameがない"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
-msgstr ""
+msgstr "operatorタグを確認: このoperatorは存在せず、typoかもしれません"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
-msgstr ""
+msgstr "networkタグを確認 : このnetworkは存在せずtypoかもしれません"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
-msgstr ""
+msgstr "バス・ステーションは通常多くのバスが停まる大きなエリアです、このエリアを描けるかどうか確認してください"
 
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
-msgstr ""
+msgstr "このstopはバス用ですかトラム用ですか？platformの種類を詳述するタグを追加します"

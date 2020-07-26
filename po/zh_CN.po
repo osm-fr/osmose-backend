@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-06-25 18:48+0000\n"
+"PO-Revision-Date: 2020-07-26 19:35+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -300,19 +300,19 @@ msgstr "一群单独的节点"
 msgid "Invalid polygon"
 msgstr "无效的多边形"
 
-#: ../analysers/analyser_osmosis_powerline.py:320
+#: ../analysers/analyser_osmosis_powerline.py:321
 msgid "Lone power tower or pole"
 msgstr "单独的电力塔或电线杆"
 
-#: ../analysers/analyser_osmosis_powerline.py:343
+#: ../analysers/analyser_osmosis_powerline.py:344
 msgid "Connection between different voltages"
 msgstr "不同电压之间的连接"
 
-#: ../analysers/analyser_osmosis_powerline.py:346
+#: ../analysers/analyser_osmosis_powerline.py:347
 msgid "Non power node on power way"
 msgstr "电力线路上的非电力节点"
 
-#: ../analysers/analyser_osmosis_powerline.py:354
+#: ../analysers/analyser_osmosis_powerline.py:355
 msgid "Missing power tower or pole"
 msgstr "缺少电塔或电杆"
 
@@ -453,19 +453,19 @@ msgstr "不良的日期格式"
 msgid "Bad lanes value"
 msgstr "不良的车道值"
 
-#: ../plugins/Highway_Parking_Lane.py:32
+#: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
 msgstr "不良parking:lane:[side]"
 
-#: ../plugins/Highway_Parking_Lane.py:39
+#: ../plugins/Highway_Parking_Lane.py:37
 msgid "Too many parking:lane:[side]"
 msgstr "太多parking:lane:[side]"
 
-#: ../plugins/Highway_Parking_Lane.py:44
+#: ../plugins/Highway_Parking_Lane.py:42
 msgid "Bad parking:lane:[side] value"
 msgstr "不良的parking:lane:[side]值"
 
-#: ../plugins/Highway_Parking_Lane.py:49
+#: ../plugins/Highway_Parking_Lane.py:47
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] 无 parking:lane:[side] 值"
 
@@ -718,7 +718,7 @@ msgstr "名字以空格开头"
 msgid "Name ends with a space"
 msgstr "名字以空格结尾"
 
-#: ../plugins/TagFix_DuplicateValue.py:121
+#: ../plugins/TagFix_DuplicateValue.py:124
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "重复相似的值%(key)s=%(val)s"
@@ -747,12 +747,12 @@ msgstr "冲突标签：%s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "冲突标签：'bridge'和'tunnel'"
 
-#: ../plugins/TagFix_MultipleTag.py:161
+#: ../plugins/TagFix_MultipleTag.py:169
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "在这个国家的迷你环岛通常是这样“%s”"
 
-#: ../plugins/TagFix_MultipleTag.py:173
+#: ../plugins/TagFix_MultipleTag.py:181
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "使用标签“toll”而不是“fee”"
 
@@ -766,7 +766,7 @@ msgstr "使用维基百科=%s:*"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "无效的维基百科后缀'%s'"
 
-#: ../plugins/TagFix_DuplicateValue.py:114
+#: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "重复的值%(key)s=%(val)s"
@@ -913,12 +913,12 @@ msgstr "多个数字“%(numbers)s”在方式“%(way)s”"
 msgid "Name with uppercase"
 msgstr "以大写字母命名"
 
-#: ../plugins/TagFix_MultipleTag.py:202
+#: ../plugins/TagFix_MultipleTag.py:210
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "包括滑雪，马，轻便摩托车，危险品等，除非明确排除"
 
-#: ../plugins/TagFix_MultipleTag.py:204
+#: ../plugins/TagFix_MultipleTag.py:212
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除"
@@ -927,7 +927,7 @@ msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除
 msgid "Inconsistent Access"
 msgstr "访问不一致"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:269
+#: ../analysers/analyser_osmosis_relation_public_transport.py:344
 msgid "Non route relation member in route_master relation"
 msgstr "非路由关系成员在route_master关系中"
 
@@ -939,11 +939,11 @@ msgstr "物体必须靠近海岸或水域"
 msgid "Naptan import, survey needed."
 msgstr "Naptan进口，需要调查。"
 
-#: ../analysers/analyser_osmosis_powerline.py:327
+#: ../analysers/analyser_osmosis_powerline.py:328
 msgid "Unfinished power major line"
 msgstr "未完成的电力主线"
 
-#: ../analysers/analyser_osmosis_powerline.py:335
+#: ../analysers/analyser_osmosis_powerline.py:336
 msgid "Unfinished power minor line"
 msgstr "未完成的电力次要线路"
 
@@ -1025,7 +1025,7 @@ msgstr "重复的节点几何形状但不同的标签"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "可能缺少 highway=traffic_signals 附近"
 
-#: ../analysers/analyser_osmosis_powerline.py:359
+#: ../analysers/analyser_osmosis_powerline.py:360
 msgid "Unmatched voltage of line on substation"
 msgstr "变电站线路电压不匹配"
 
@@ -1242,7 +1242,7 @@ msgstr "不应该包含标签ref=%s"
 msgid "Close similar name"
 msgstr "关闭相似的名字"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:271
+#: ../analysers/analyser_osmosis_relation_public_transport.py:346
 msgid "Public transport relation route not in route_master relation"
 msgstr "公共交通关系路线不在 route_master 关系中"
 
@@ -1253,11 +1253,11 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于associatedStreet关系中"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:265
+#: ../analysers/analyser_osmosis_relation_public_transport.py:340
 msgid "The track of this route contains gaps"
 msgstr "这条路线的轨迹包含空白"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:267
+#: ../analysers/analyser_osmosis_relation_public_transport.py:342
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
@@ -1265,17 +1265,13 @@ msgstr "站点或平台离这条路线的轨迹太远"
 msgid "Missing international prefix"
 msgstr "缺少国际前缀"
 
-#: ../plugins/TagFix_Maxspeed.py:77
-msgid "Discordant maxspeed and source:maxspeed"
-msgstr "矛盾的最大速度和source:maxspeed"
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:273
+#: ../analysers/analyser_osmosis_relation_public_transport.py:348
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "网络，运营商，参考，颜色标签应该是相同的路线和route_master关系"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:280
+#: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
 msgid "%s are different"
 msgstr "%s是不同的"
@@ -1289,11 +1285,6 @@ msgstr "maxweight 限制未整合"
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:57
 msgid "maxheight Restriction not integrated"
 msgstr "maxheight 限制未整合"
-
-#: ../analysers/analyser_osmosis_boundary_hole.py:65
-#, python-format
-msgid "Hole between administrative boundaries of admin_level %s"
-msgstr "行政边界之间的空洞，在admin_level%s"
 
 #: ../plugins/Name_UpperCaseNumber.py:32
 msgid "Abbreviation of number should be in lowercase"
@@ -1642,11 +1633,6 @@ msgstr "不符 motor_vehicle 值 ('{0}'!='{1}')"
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr "进车道 {0}(-{1}+{2}), 出车道 {3}(-{4}+{5})"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:126
-#, python-brace-format
-msgid "Approximate {0}"
-msgstr "近似 {0}"
-
 #: ../analysers/analyser_osmosis_way_approximate.py:140
 #, python-brace-format
 msgid "{0} deviation of {1}m"
@@ -1765,7 +1751,7 @@ msgstr "电话号码中不允许使用字符"
 msgid "Bad separator for multiple values"
 msgstr "多个值的错误分隔符"
 
-#: ../plugins/TagFix_Maxspeed.py:89
+#: ../plugins/TagFix_Maxspeed.py:92
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr "不和谐{0}和{1}"
@@ -1972,6 +1958,7 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:30
+#: ../analysers/analyser_merge_defibrillators_FR.py:58
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:30
 msgid "Defibrillator not integrated"
@@ -2515,7 +2502,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:322
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "This tower should probably be connected to a power line."
 msgstr ""
 
@@ -2934,17 +2921,17 @@ msgid ""
 "side* and `the merge_to_left` on the *right side*."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:37
+#: ../plugins/Highway_Parking_Lane.py:35
 msgid "Use `left`, `right` or `both`."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:41
+#: ../plugins/Highway_Parking_Lane.py:39
 msgid ""
 "There are more types of parking for sides than a street have\n"
 "sides."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:51
+#: ../plugins/Highway_Parking_Lane.py:49
 msgid "A parking condition is present but without parking kind."
 msgstr ""
 
@@ -3580,40 +3567,40 @@ msgid ""
 "allow for correct routing."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:324
-#: ../analysers/analyser_osmosis_powerline.py:332
-#: ../analysers/analyser_osmosis_powerline.py:340
+#: ../analysers/analyser_osmosis_powerline.py:325
+#: ../analysers/analyser_osmosis_powerline.py:333
+#: ../analysers/analyser_osmosis_powerline.py:341
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:329
-#: ../analysers/analyser_osmosis_powerline.py:337
+#: ../analysers/analyser_osmosis_powerline.py:330
+#: ../analysers/analyser_osmosis_powerline.py:338
 msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`) or a generator (`power=generator`)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:344
+#: ../analysers/analyser_osmosis_powerline.py:345
 msgid ""
 "Two power lines meet at this point, but have inconsistent voltages "
 "(`voltage=*`)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:348
+#: ../analysers/analyser_osmosis_powerline.py:349
 msgid ""
 "Power lines can only form a straight line between supports and therefore shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:351
+#: ../analysers/analyser_osmosis_powerline.py:352
 msgid ""
 "If this node is a tower or pole, use the tag `power=tower` or\n"
 "`power=pole`. Otherwise remove it."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:356
+#: ../analysers/analyser_osmosis_powerline.py:357
 msgid ""
 "Based on the statistical frequency of the poles on this power line,\n"
 "there's likely an unmapped pole nearby."
@@ -3955,7 +3942,7 @@ msgstr ""
 msgid "Pharmacy update"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_route_access.py:97
+#: ../analysers/analyser_osmosis_relation_route_access.py:107
 #, python-brace-format
 msgid "Way access mismatch relation route={0}"
 msgstr ""
@@ -4031,13 +4018,13 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:34
+#: ../plugins/Highway_Parking_Lane.py:32
 msgid ""
 "The side was not recognized, see\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:46
+#: ../plugins/Highway_Parking_Lane.py:44
 msgid ""
 "See values at\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
@@ -4062,35 +4049,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:857
+#: ../analysers/Analyser_Merge.py:862
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:860
+#: ../analysers/Analyser_Merge.py:865
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:865
+#: ../analysers/Analyser_Merge.py:870
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:878
+#: ../analysers/Analyser_Merge.py:883
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:891
+#: ../analysers/Analyser_Merge.py:896
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:853
+#: ../analysers/Analyser_Merge.py:858
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4196,4 +4183,59 @@ msgid ""
 "a little different than what is visible on the road. Sometimes, a small "
 "white line perpendicular to the road on the emergency stop strip or the left"
 " flared strip can be seen on satellite images or Mapillary's photos."
+msgstr ""
+
+#: ../analysers/analyser_merge_emergency_points_LU.py:30
+msgid "Emergency point not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_emergency_points_LU.py:32
+msgid "Emergency point integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_hole.py:65
+#, python-brace-format
+msgid "Hole between administrative boundaries of admin_level {0}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:350
+msgid ""
+"The bus stop is part of a way, it should have public_transport=stop_position"
+" tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:352
+msgid "The stop_position is not part of a way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:354
+msgid "The platform is part of a way, it should have the role stop"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:356
+msgid "The stop is not part of a way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:357
+msgid ""
+"Change the role in the relation to platform or add the stop to the way and "
+"turn it to a public_transport=stop_position"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_way_approximate.py:126
+#, python-brace-format
+msgid "Approximate geometry of {0}"
+msgstr ""
+
+#: ../plugins/Phone2.py:16
+msgid "Different value of tag contact:* and *"
+msgstr ""
+
+#: ../plugins/Phone2.py:54 ../plugins/Phone2.py:90 ../plugins/Phone2.py:126
+#, python-brace-format
+msgid "Different values of {0} and of {1}"
+msgstr ""
+
+#: ../plugins/TagFix_Maxspeed.py:77
+msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""

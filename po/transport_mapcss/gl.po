@@ -1,10 +1,12 @@
+# 
 # Translators:
 # Navhy, 2019
 # Iváns, 2019
+# ccpr1l <csdpe0810-tf@yahoo.es>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Iváns, 2019\n"
+"Last-Translator: ccpr1l <csdpe0810-tf@yahoo.es>, 2020\n"
 "Language-Team: Galician (https://www.transifex.com/openstreetmap-france/teams/17462/gl/)\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -210,3 +212,5 @@ msgstr ""
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
+"Isto é unha parada de autobús ou de tranvía? Engade unha etiqueta que "
+"especifique o tipo de plataforma"
