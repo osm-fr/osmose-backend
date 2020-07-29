@@ -54,7 +54,7 @@ msgstr "バス停またはバスターミナルのいずれかです。"
 #: ../transport.validator.mapcss:213
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
-msgstr "stop (platform)なのか道路上の場所(stop_position)なのかを指定します"
+msgstr "停止場所 (platform)または道路上の停止位置(stop_position)を指定します"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
@@ -90,7 +90,7 @@ msgstr "public_transportタグが公共交通機関の停止場所にない "
 msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
-msgstr "stop (platform)なのか鉄道上の場所(stop_position)なのかを指定します"
+msgstr "停止場所 (platform)または鉄道上の停止位置(stop_position)を指定します"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"

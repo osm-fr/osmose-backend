@@ -16,12 +16,14 @@
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016,2019
 # Gilles MOREL <contact@gilles-morel.fr>, 2018
 # deuzeffe, 2019-2020
+# Jacques Lavignotte <jacques@lavignotte.org>, 2020
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
 # Jorg722, 2019
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # Julien Lepiller <transifex@lepiller.eu>, 2018-2019
+# Lucas Longour <lucas.longour@gromatici.xyz>, 2020
 # Marc M <marc_marc_irc@hotmail.com>, 2020
 # Noémie <nlehuby@zaclys.net>, 2020
 # operon, 2014-2015
@@ -39,8 +41,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-07-26 19:35+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-07-29 15:00+0000\n"
+"Last-Translator: Lucas Longour <lucas.longour@gromatici.xyz>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2305,7 +2307,7 @@ msgstr ""
 msgid ""
 "An entity must be present only once, remove one and eventually merge\n"
 "the tags."
-msgstr ""
+msgstr "Une entité ne doit être présente qu'une seule fois, en retirer une et éventuellement fusionner les balises."
 
 #: ../analysers/analyser_osmosis_double_tagging.py:104
 msgid ""
@@ -2355,13 +2357,13 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_deadend.py:202
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:114
 msgid "The end of the way is not connected to another way."
-msgstr ""
+msgstr "La fin du chemin n'est pas liée à une autre voie."
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:206
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner"
-msgstr ""
+msgstr "La fin d'une `highway=cycleway` doit être connectée au reste du réseau routier pour assurer la continuité, en particulier pour le calculateur d'itinéraires"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:209
 msgid ""
@@ -2381,7 +2383,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_features.py:80
 msgid "Crossing for which it lacks the road or railway. "
-msgstr ""
+msgstr "Croisement pour lequel il n'y a pas de route ou de voie ferrée."
 
 #: ../analysers/analyser_osmosis_highway_features.py:84
 msgid "The node must be common to rail and road."
@@ -2475,17 +2477,17 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_node_like_way.py:84
 msgid "Check and remove tag from node."
-msgstr ""
+msgstr "Vérifier et retirer la balise du nœud"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:57
 msgid "Group of nodes without tag and not part of a way."
-msgstr ""
+msgstr "Groupe de noeuds sans balise et ne faisant pas partie d'une route. "
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:59
 msgid ""
 "Find the origin of these nodes. Probably in trouble in import.\n"
 "Contact the contributor submiting the nodes."
-msgstr ""
+msgstr "Trouvez l'origine de ces nœuds. Probablement un problème à l'import.\nContactez le contributeur qui soumet les nœuds."
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:62
 msgid ""
@@ -2513,7 +2515,7 @@ msgstr ""
 msgid ""
 "The polygon intersects itself. The marker points directly to the\n"
 "error area of the crossing."
-msgstr ""
+msgstr "Le polygone se recoupe lui-même. Le marquer pointe directement la zone de l'erreur de croisement.  "
 
 #: ../analysers/analyser_osmosis_polygon.py:85
 msgid ""
@@ -2521,11 +2523,11 @@ msgid ""
 "correct geometry for a single loop (a '0') or by removing nodes or\n"
 "changing the order of these nodes, by adding new nodes or by creating\n"
 "multiple polygons."
-msgstr ""
+msgstr "Cherchez où le polygone se coupe lui-même (c'est-à-dire qu'il forme un \"8\") et corrigez la géométrie pour former une seule boucle (un \"0\") ou en supprimant les nœuds ou en changeant l'ordre de ces nœuds, en ajoutant de nouveaux nœuds ou en créant des multiple polygones ."
 
 #: ../analysers/analyser_osmosis_polygon.py:90
 msgid "Make sure the nodes to move do not belong to other way."
-msgstr ""
+msgstr "Assurez-vous que les noeuds à bouger n'appartiennent pas à un autre chemin. "
 
 #: ../analysers/analyser_osmosis_polygon.py:92
 msgid ""
@@ -2534,7 +2536,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:323
 msgid "This tower should probably be connected to a power line."
-msgstr ""
+msgstr "Ce pylône devrait probablement être relié à une ligne électrique."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:613
 msgid ""
@@ -2544,15 +2546,15 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid "The street is not present in relation with the role `street`."
-msgstr ""
+msgstr "Cette rue n'est pas présente dans la relation avec le role `street`."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:622
 msgid "The street must be a highway."
-msgstr ""
+msgstr "Cette rue doit être un 'highway'."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:626
 msgid "A member without role is present in the relation."
-msgstr ""
+msgstr "Un membre sans rôle est présent dans la relation."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:630
 msgid "Address without number is present."
@@ -2566,7 +2568,7 @@ msgstr ""
 msgid ""
 "A relation whose members should be close is geographically\n"
 "spread."
-msgstr ""
+msgstr "Une relation dont les membres doivent être proches est géographiquement trop étendue"
 
 #: ../analysers/analyser_osmosis_relation_large.py:78
 msgid ""
@@ -2578,7 +2580,7 @@ msgstr ""
 msgid ""
 "The geometry of the inner of the multipolygon is duplicated. One in\n"
 "relation without tag and another with tags not part of the relation."
-msgstr ""
+msgstr "La géométrie de l'intérieur du multipolygone est dupliquée. Une relation sans balise et une autre avec des balises ne faisant pas partie de la relation."
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:204
 msgid ""
@@ -2606,7 +2608,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:222
 msgid "Close the way to make a polygon or add to a multipolygon."
-msgstr ""
+msgstr "Fermer la voie pour faire un polygone ou ajouter à un multipolygone."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:365
 msgid ""
@@ -2620,7 +2622,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:376
 msgid "Impossible to reach the restriction by respecting the oneway."
-msgstr ""
+msgstr "Impossible d'atteindre la  restriction en respectant le sens-unique."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:380
 msgid ""
@@ -2636,7 +2638,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:266
 msgid "Adjust the tag `highway=*` of the roundabout."
-msgstr ""
+msgstr "Ajustez le tag `highway=*` du rond-point."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:268
 msgid ""
@@ -2656,7 +2658,7 @@ msgstr ""
 msgid ""
 "After verifying that it is an access roads to the roundabout and they\n"
 "were well oriented, set the tag `oneway=yes` on the two segments."
-msgstr ""
+msgstr "Après avoir vérifié qu'il s'agit d'une route d'accès au rond-point et qu'elle est bien orientée, placez le tag \"oneway=yes\" sur les deux segments."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:281
 msgid ""
@@ -2683,38 +2685,38 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:299
 msgid "Check if it is really a roundabout and cut the way."
-msgstr ""
+msgstr "Vérifiez que c'est vraiment un rond-point et coupez la route."
 
 #: ../analysers/analyser_osmosis_roundabout.py:67
 msgid "Missing `junction=roundabout`"
-msgstr ""
+msgstr "Il manque `junction=roundabout`"
 
 #: ../analysers/analyser_osmosis_roundabout.py:69
 msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
-msgstr ""
+msgstr "Ceci ressemble à un rond-point mais la balise `junction=roundabout` est\nabsente. Voir [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\npour plus d'information."
 
 #: ../analysers/analyser_osmosis_roundabout.py:73
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
 "verify that the path is in the counter-clockwise when driving side is on\n"
 "right, and remove the tag `oneway=yes` if present."
-msgstr ""
+msgstr "S'il s'agit vraiment d'un rond-point, ajoutez le tag \"jonction=rond-point\", vérifiez que le chemin est dans le sens inverse des aiguilles d'une montre lorsque le côté de la route est à droite, et retirez le tag \"oneway=yes\" s'il est présent."
 
 #: ../analysers/analyser_osmosis_roundabout.py:77
 msgid ""
 "Ensure that it is a roundabout, using satellite imagery or a local\n"
 "survey."
-msgstr ""
+msgstr "Assurez-vous qu'il s'agit d'un rond-point, en utilisant des images satellites\nou en vérifiant sur place."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:47
 msgid ""
 "The circulation of the roundabout is draw clockwise, but in countries\n"
 "where they driveon the right the sense of roundabouts is\n"
 "counterclockwise, and vice versa for the other countries."
-msgstr ""
+msgstr "En France la circulation dans le rond-point se fait dans le sens inverse des aiguilles d'une montre, mais dans les pays\noù ils conduisent à gauche, le sens des ronds-points est\ndans le sens des aiguilles d'une montre, et vice versa pour les autres pays."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:51
 msgid ""
@@ -2746,7 +2748,7 @@ msgstr "Un nom de rue \"sonne\" de manière identique qu'un autre nom de rue dé
 
 #: ../analysers/analyser_osmosis_soundex.py:240
 msgid "After you have checked that it is a mistake, change the name."
-msgstr ""
+msgstr "Après avoir vérifié qu'il s'agit bien d'une erreur, changez le nom."
 
 #: ../analysers/analyser_osmosis_soundex.py:242
 msgid ""
@@ -2771,7 +2773,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_tag_typo.py:145
 msgid "Check that the correction does not change the intent of the tag."
-msgstr ""
+msgstr "Vérifiez que la correction ne modifie pas l'intention de la balise."
 
 #: ../analysers/analyser_osmosis_useless.py:125
 msgid ""
@@ -2792,13 +2794,13 @@ msgstr "L'objet est quelquefois dupliqué."
 msgid ""
 "There is one `waterway=riverbank` but there is no `waterway=river`\n"
 "inside it."
-msgstr ""
+msgstr "Il y a un `waterway=riverbank` mais pas de `waterway=river`\ndedans."
 
 #: ../analysers/analyser_osmosis_waterway.py:140
 msgid ""
 "After checking, create a \"river\" line inside te \"riverbank\"\n"
 "polygon."
-msgstr ""
+msgstr "Après vérification, crééz une ligne \"river\" dans le polygone \"riverbank\"."
 
 #: ../analysers/analyser_osmosis_waterway.py:145
 msgid ""
@@ -2874,14 +2876,14 @@ msgstr ""
 
 #: ../plugins/Administrative_TooManyWays.py:32
 msgid "In a relation, a way should be present only once."
-msgstr ""
+msgstr "Dans une relation, une route devrait n'être présente qu'une fois. "
 
 #: ../plugins/Administrative_TooManyWays.py:34
 msgid ""
 "Most often, this is an user issue that add several times the same way.\n"
 "The editor JOSM can easily visualize the relationships and see duplicates\n"
 "(in color)."
-msgstr ""
+msgstr "Most often, this is an user issue that add several times the same way.\nThe editor JOSM can easily visualize the relationships and see duplicates\n(in color).\n\nLe plus souvent, il s'agit d'un problème d'utilisateur qui ajoute plusieurs fois de la même route. \nL'éditeur JOSM peut facilement visualiser les relations et voir les doublons (en couleur)."
 
 #: ../plugins/Administrative_TooManyWays.py:38
 msgid ""
@@ -2898,7 +2900,7 @@ msgstr ""
 
 #: ../plugins/disabled/TagFix_Brand.py:35
 msgid "Tag name is a brand"
-msgstr ""
+msgstr "Le nom est une marque."
 
 #: ../plugins/disabled/Wiki.py:31
 msgid "Object taggin type"
@@ -2910,7 +2912,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Non-numeric value, `lanes=*` must have an integer value."
-msgstr ""
+msgstr "Valeur non-numérique : 'lanes=*' doit être un nombre entier. "
 
 #: ../plugins/Highway_Lanes.py:37
 msgid ""
@@ -2930,7 +2932,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:53
 msgid "Right must be on the right and left on the left."
-msgstr ""
+msgstr "La droite doit être à droite et la gauche à gauche."
 
 #: ../plugins/Highway_Lanes.py:55
 msgid ""
@@ -2953,7 +2955,7 @@ msgstr ""
 
 #: ../plugins/Highway_Parking_Lane.py:35
 msgid "Use `left`, `right` or `both`."
-msgstr ""
+msgstr "Utilisez `left`, `right` or `both`."
 
 #: ../plugins/Highway_Parking_Lane.py:39
 msgid ""
@@ -2963,7 +2965,7 @@ msgstr ""
 
 #: ../plugins/Highway_Parking_Lane.py:49
 msgid "A parking condition is present but without parking kind."
-msgstr ""
+msgstr "Une mention de stationnement est présente mais sans type de stationnement."
 
 #: ../plugins/Name_Dictionary.py:34
 msgid "Probably missing a capital."
@@ -2971,14 +2973,14 @@ msgstr "Il manque probablement une lettre en capitale."
 
 #: ../plugins/Name_MisspelledWordByRegex.py:32
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
-msgstr ""
+msgstr "Souvent manque un accent sur une lettre capitale (par ex. Ecole ppur École"
 
 #: ../plugins/Name_Multiple.py:34
 msgid ""
 "The tag `name=*` contains two street names, separated by a semicolon,\n"
 "a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
 "way and the concatenation of the names of the streets."
-msgstr ""
+msgstr "L'étiquette \"name=*\" contient deux noms de rue, séparés par un point-virgule,\nun \"/\" ou un \"\\\". Cette erreur a probablement été produite par la fusion de deux\net la concaténation des noms des rues."
 
 #: ../plugins/Name_Multiple.py:38
 msgid ""
@@ -2986,14 +2988,14 @@ msgid ""
 "* Otherwise, a survey is required: check if it is a street whose name\n"
 "changes at a crossroads, if this is the case, cut the street and set the\n"
 "proper names of both part."
-msgstr ""
+msgstr "S'il y a un double, supprimez-en un. Sinon, une vérification sur place est nécessaire : vérifiez s'il s'agit d'une rue dont le nom change à un carrefour ; si c'est le cas, coupez la rue et corrigez les noms exacts des deux parties."
 
 #: ../plugins/Name_Multiple.py:43
 msgid ""
 "Some streets have not the same names on the each side, especially if\n"
 "the houses by both sides are on different city. In this case, you can use\n"
 "the tag `name:left=*` and `name:right=*`."
-msgstr ""
+msgstr "Certaines rues n'ont pas le même nom de chaque côté, surtout si les maisons des deux côtés se trouvent dans des villes différentes. Dans ce cas, vous pouvez utiliser les balises \"nom:gauche=*` et \"nom:droite=*`."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:50
 msgid "An abbreviation is present."
@@ -3005,7 +3007,7 @@ msgstr ""
 
 #: ../plugins/Name_Quotation.py:30
 msgid "Unbalanced quotation mark or bracket in name"
-msgstr ""
+msgstr "Guillemets ou crochets non équilibrés."
 
 #: ../plugins/Name_Saint_FR.py:34
 msgid ""
@@ -4137,7 +4139,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_hydrants_FR.py:31
 msgid "Fire hydrant not integrated"
-msgstr ""
+msgstr " Bouche d'incendie non intégrée"
 
 #: ../analysers/analyser_merge_hydrants_FR.py:33
 msgid "Fire hydrant integration suggestion"
@@ -4236,15 +4238,15 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:352
 msgid "The stop_position is not part of a way"
-msgstr ""
+msgstr "Le stop_position ne fait pas partie de la route."
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:354
 msgid "The platform is part of a way, it should have the role stop"
-msgstr ""
+msgstr "Le quai fait partie d'un chemin, il devrait avoir le rôle 'stop'"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:356
 msgid "The stop is not part of a way"
-msgstr ""
+msgstr "L'arrêt ne fait pas partie d'une ligne."
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:357
 msgid ""
