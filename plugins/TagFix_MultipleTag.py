@@ -190,7 +190,7 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
             err.append({"class": 71301, "subclass": 0})
 
-        if "waterway" in tags and "level" in tags:
+        if "waterway" in tags and "level" in tags and not ("tunnel" in tags and tags.get('tunnel') == 'culvert'):
             err.append({"class": 30327, "subclass": 0, "fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]})
 
         if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):

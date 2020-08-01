@@ -52,7 +52,8 @@ class TagRemove_Layer(Plugin):
             layer = tags.get(u"layer")
             if tags.get(u"landuse"):
                 return {"class": 41101, "subclass": 0}
-            elif tags.get(u"natural") and layer[0] == '-':
+            elif tags.get(u"natural") and layer[0] == '-' \
+                    and not(tags.get(u"natural") == "water" and tags.get(u"tunnel") and tags.get(u"tunnel") == "culvert"):
                 return {"class": 41102, "subclass": 0}
             elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
