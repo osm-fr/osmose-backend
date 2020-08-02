@@ -79,7 +79,15 @@ FROM
             'lock', 'rock',
             'reg_name', 'ref_name',
             'massage', 'message',
-            'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9' -- Tiger mess
+            'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9', -- Tiger mess
+
+            -- Regional hiking/cycling/etc. routes. Lesser used ones like 'rhn' for horse riding trigger false positives:
+            'rcn', 'rhn', 'rin', 'rmn', 'rpn', 'rwn',
+            'rcn:name', 'rhn:name', 'rin:name', 'rmn:name', 'rpn:name', 'rwn:name',
+            'operator:rcn', 'operator:rhn', 'operator:rin', 'operator:rmn', 'operator:rpn', 'operator:rwn',
+            'rcn_ref', 'rhn_ref', 'rin_ref', 'rmn_ref', 'rpn_ref', 'rwn_ref',
+            'expected_rcn_route_relations', 'expected_rhn_route_relations', 'expected_rin_route_relations',
+            'expected_rmn_route_relations', 'expected_rpn_route_relations', 'expected_rwn_route_relations'
         ) AND
         NOT key LIKE 'AND_%'
     ) AS keys
