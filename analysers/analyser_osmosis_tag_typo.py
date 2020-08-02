@@ -87,7 +87,7 @@ FROM
             'operator:rcn', 'operator:rhn', 'operator:rin', 'operator:rmn', 'operator:rpn', 'operator:rwn',
             'rcn_ref', 'rhn_ref', 'rin_ref', 'rmn_ref', 'rpn_ref', 'rwn_ref',
             'expected_rcn_route_relations', 'expected_rhn_route_relations', 'expected_rin_route_relations',
-            'expected_rmn_route_relations', 'expected_rpn_route_relations', 'expected_rwn_route_relations',
+            'expected_rmn_route_relations', 'expected_rpn_route_relations', 'expected_rwn_route_relations'
         ) AND
         NOT key LIKE 'AND_%'
     ) AS keys
