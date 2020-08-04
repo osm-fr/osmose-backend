@@ -34,7 +34,9 @@ class TagFix_MultipleTag(Plugin):
         self.errors[30323] = self.def_class(item = 3032, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Watch multiple tags'))
         self.errors[30327] = self.def_class(item = 3032, level = 2, tags = ['tag', 'fix:chair'],
-            title = T_('Waterway with level'))
+            title = T_('Waterway with level'),
+            detail = T_('Level should be used for buildings, shops, amenities, etc.'),
+            trap = T_('Remove level and check if layer is needed instead'))
         self.errors[303210] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Fence with material tag, better use fence_type tag'))
         self.errors[20800] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'roundabout', 'fix:chair'],

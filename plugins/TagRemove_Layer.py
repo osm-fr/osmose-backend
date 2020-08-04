@@ -39,20 +39,20 @@ class TagRemove_Layer(Plugin):
         self.errors[41106] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Long Highway above ground and no bridge'))
         self.errors[41107] = self.def_class(item = 4110, level = 3, tags = ['highway', 'fix:chair'],
-            title = T_('Waterway underground and no tunnel'))
+            title = T_('Waterway/water underground and no tunnel'))
         self.errors[41108] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Long Waterway underground and no tunnel'))
+            title = T_('Long Waterway/water underground and no tunnel'))
         self.errors[41109] = self.def_class(item = 4110, level = 3, tags = ['highway', 'fix:chair'],
-            title = T_('Waterway above ground and no bridge'))
+            title = T_('Waterway/water above ground and no bridge'))
         self.errors[41100] = self.def_class(item = 4110, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Long Waterway above ground and no bridge'))
+            title = T_('Long Waterway/water above ground and no bridge'))
 
     def way(self, data, tags, nds):
         if tags.get(u"layer") and tags.get(u"layer") != "0":
             layer = tags.get(u"layer")
             if tags.get(u"landuse"):
                 return {"class": 41101, "subclass": 0}
-            elif tags.get(u"natural") and layer[0] == '-':
+            elif tags.get(u"natural") and layer[0] == '-' and tags.get(u"natural") != "water":
                 return {"class": 41102, "subclass": 0}
             elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
@@ -62,7 +62,7 @@ class TagRemove_Layer(Plugin):
                         return {"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
                         return {"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}
-            elif tags.get(u"waterway"):
+            elif tags.get(u"waterway") or ((tags.get(u"natural") and tags.get(u"natural") == "water")):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
                     if len(nds) > 3:
                         return {"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}
@@ -81,8 +81,8 @@ class Test(TestPluginCommon):
         a.init(None)
         assert not a.way(None, {"layer": "-1"}, None)
         self.check_err(a.way(None, {"layer": "-1", "landuse": "forest"}, None))
-        assert not a.way(None, {"layer": "1", "natural": "water"}, None)
-        self.check_err(a.way(None, {"layer": "-1", "natural": "water"}, None))
+        assert not a.way(None, {"layer": "1", "natural": "wood"}, None)
+        self.check_err(a.way(None, {"layer": "-1", "natural": "tree"}, None))
 
         # highway
         self.check_err(a.way(None, {"layer": "-1", "highway": "service"}, [1,2,3,4]))
@@ -100,3 +100,8 @@ class Test(TestPluginCommon):
         # other highways
         assert not a.way(None, {"layer": "-1", "indoor": "yes", "highway": "service"}, None)
         assert not a.way(None, {"layer": "-1", "highway": "steps"}, None)
+        # waterways/water
+        assert not a.way(None, {"layer": "1", "bridge": "aqueduct", "waterway": "canal"}, [1,2,3,4,5])
+        assert not a.way(None, {"layer": "-1", "tunnel": "culvert", "natural": "water"}, [1,2])
+        self.check_err(a.way(None, {"layer": "-1", "waterway": "ditch"}, [1,2,3]))
+        self.check_err(a.way(None, {"layer": "1", "natural": "water"}, [1,2,3,4,5,6]))
