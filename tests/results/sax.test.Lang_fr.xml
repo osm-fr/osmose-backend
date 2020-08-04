@@ -1613,6 +1613,8 @@
 <classtext lang="pt" title="Hidrovia com etiqueta de level (nível)" />
 <classtext lang="uk" title="Водний шлях з level" />
 <classtext lang="zh_CN" title="水平与等级" />
+<detail lang="en" title="Level should be used for buildings, shops, amenities, etc." />
+<trap lang="en" title="Remove level and check if layer is needed instead" />
 </class>
 <class id="30328" item="3032" source="http://example.com/plugins/Bicycle.validator.mapcss" level="2" tag="tag,highway,cycleway,fix:chair">
 <classtext lang="cs" title="{0.key}={0.value} s {1.key}={1.value}" />
@@ -2336,7 +2338,7 @@
 <class id="41100" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L48" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
 <classtext lang="de" title="Langes Fließgewässer über Grund und keine Brücke" />
-<classtext lang="en" title="Long Waterway above ground and no bridge" />
+<classtext lang="en" title="Long Waterway/water above ground and no bridge" />
 <classtext lang="es" title="Vía fluvial larga sobre el suelo y sin puente" />
 <classtext lang="fa" title="راه آبی طولانی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Long cours d’eau au dessus du sol et sans pont" />
@@ -2462,7 +2464,7 @@
 <class id="41107" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L42" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="vodní tok pod zemí a žádný tunel" />
 <classtext lang="de" title="Fließgewässer unterirdisch und kein Tunnel" />
-<classtext lang="en" title="Waterway underground and no tunnel" />
+<classtext lang="en" title="Waterway/water underground and no tunnel" />
 <classtext lang="es" title="Vía fluvial subterránea y sin túnel" />
 <classtext lang="fa" title="راه آبی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Cours d’eau souterrain sans tunnel" />
@@ -2480,7 +2482,7 @@
 <class id="41108" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L44" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="dlouhý vodní tok pod zemí a žádný tunel" />
 <classtext lang="de" title="Langes Fließgewässer unterirdisch und kein Tunnel" />
-<classtext lang="en" title="Long Waterway underground and no tunnel" />
+<classtext lang="en" title="Long Waterway/water underground and no tunnel" />
 <classtext lang="es" title="Vía fluvial larga subterránea y sin túnel" />
 <classtext lang="fa" title="راه آبی طولانی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Long cours d’eau souterrain sans tunnel" />
@@ -2498,7 +2500,7 @@
 <class id="41109" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L46" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="vodní tok nad zemí a žádný most" />
 <classtext lang="de" title="Fließgewässer über Grund und keine Brücke" />
-<classtext lang="en" title="Waterway above ground and no bridge" />
+<classtext lang="en" title="Waterway/water above ground and no bridge" />
 <classtext lang="es" title="Vía fluvial sobre el suelo y sin puente" />
 <classtext lang="fa" title="راه آبی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Cours d’eau au dessus du sol et sans pont" />
