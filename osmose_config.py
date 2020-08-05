@@ -265,6 +265,7 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'merge_milestone_FR_metropole',
     'merge_shop_FR',
     'merge_defibrillators_FR',
+    'merge_defibrillators_FR_aedmap',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
@@ -504,6 +505,7 @@ france_departement_dom = gen_country('europe', 'france', language='fr', municipa
     'merge_museum_FR',
     'merge_radio_support_FR',
     'merge_defibrillators_FR',
+    'merge_defibrillators_FR_aedmap',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom("guadeloupe", 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
