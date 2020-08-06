@@ -31,7 +31,9 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
             return None
         else:
             etg = unidecode.unidecode(etg.lower().replace("-", "").replace(".", "").replace(" ", ""))
-            if etg in ["rezdechaussee", "rezdejardin", "rezdechausse", "rez", "red-de-chaussee", "rdc", "rdj"]:
+            if etg == "0":
+                return None
+            elif etg in ["rezdechaussee", "rezdechausse", "reddechaussee", "rdc"]:
                 return "0"
             elif re.compile(r"^r\+\d$").match(etg):
                 return etg[2:]
@@ -55,7 +57,8 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8370, id = 120, level = 3, tags = ["merge"],
-            title = T_("Defibrillator not integrated"))
+            title = T_("Defibrillator not integrated"),
+            trap = T_("Location of defibrillators from this dataset can be very approximative. Check carefully the position before adding to OSM."))
 
         self.init(
             u"https://geo.data.gouv.fr/fr/datasets/a701db3964e8fd81823c92afc029f138ffa207b3",
@@ -75,17 +78,17 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:GeoDAE": "c_gid",
-                        "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
+                        "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
                         "indoor": lambda res: "yes" if res["c_acc"] == u"Intérieur" else "no" if res["c_acc"] == u"Extérieur" else None,
                         "access": lambda res: "yes" if res["c_acc_lib"] == "t" else "permissive" if res["c_acc_lib"] == "f" else None,
                         "security_desk": lambda res: "yes" if res["c_acc_pcsec"] == "t" else "no" if res["c_acc_pcsec"] == "f" else None,
                         "reception_desk": lambda res: "yes" if res["c_acc_acc"] == "t" else "no" if res["c_acc_acc"] == "f" else None,
                         "level": lambda res: self.normalizeEtage(res["c_acc_etg"]),
-                        "defibrillator:location": "c_acc_complt",
+                        "defibrillator:location": lambda res: res["c_acc_complt"] if res["c_acc_complt"] else reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
                         "opening_hours": lambda res: self.normalizeHours(res["c_disp_j"], res["c_disp_h"]),
                         "surveillance": lambda res: "yes" if res["c_dispsurv"] == "t" else "no" if res["c_dispsurv"] == "f" else None,
                         "start_date": "c_date_instal|timePosition",
-                        "ref:FR:SIREN": "c_expt_siren",
+                        "operator:ref:FR:SIREN": "c_expt_siren",
                         "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if res["c_expt_rais"] else None
                     },
                     text = lambda tags, fields: {"en": " - ".join(filter(lambda x: x, [
