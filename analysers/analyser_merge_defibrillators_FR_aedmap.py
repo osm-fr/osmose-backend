@@ -49,7 +49,7 @@ class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge):
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: self.cleanName(res["Nom"]) if res["Nom"] else None
+                        "defibrillator:location": lambda res: self.cleanName(res["Nom"]) if res["Nom"] else None
                     },
                     text = lambda tags, fields: {"en": " ".join(filter(lambda x: x, [
                         fields["Nom"],
