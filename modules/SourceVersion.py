@@ -37,7 +37,10 @@ def version(*sources):
                 try:
                     h.update(open(inspect.getsourcefile(c), 'rb').read())
                 except TypeError: # No python source file
-                    h.update(str(id(c)).encode())
+                    try:
+                        h.update(inspect.getsource(c))
+                    except TypeError: # Built-in
+                        pass
         else:
             raise NotImplementedError(source.__class__)
 
@@ -53,7 +56,7 @@ class Test(unittest.TestCase):
 
     def test(self):
         self.assertEqual(version(1), 876922281)
-        self.assertEqual(version(PointInPolygon), 912264323)
+        self.assertEqual(version(PointInPolygon), 125363717)
 
         try:
             version("1")
