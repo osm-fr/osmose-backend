@@ -1,9 +1,10 @@
+# 
 # Translators:
-# Supaplex <bejokeup@gmail.com>, 2018
+# Supaplex <bejokeup@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Supaplex <bejokeup@gmail.com>, 2018\n"
+"Last-Translator: Supaplex <bejokeup@gmail.com>, 2020\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/openstreetmap-france/teams/17462/zh_TW/)\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -98,83 +99,83 @@ msgstr "大眾運輸站點遺失傳統標籤"
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "路線和路線總纜的網路標籤應該是相同的：{0} vs {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
-msgstr ""
+msgstr "路線和路線總纜的營運者標籤應該是相同的：{0} vs {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
-msgstr ""
+msgstr "路線和路線總纜的編號標籤應該是相同的：{0} vs {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "路線和路線總纜的顏色標籤應該是相同的：{0} vs {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
-msgstr ""
+msgstr "路線和路線總纜的大眾運輸模式標籤應該是相同的：{0} vs {1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
-msgstr ""
+msgstr "檢查顏色標籤"
 
 #: ../transport.validator.mapcss:162
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "顏色代碼應該以  '#' 開頭後面接 3 或 6 個數字"
 
 #: ../transport.validator.mapcss:170
 msgid "The color of the public transport line should be in a colour tag"
-msgstr ""
+msgstr "大眾運輸路線的顏色應當用顏色標籤"
 
 #: ../transport.validator.mapcss:196
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "公車站應當是節點"
 
 #: ../transport.validator.mapcss:308
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "時間區間無效 (試試用多少分鐘)"
 
 #: ../transport.validator.mapcss:324
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "單程時間無效 (試試用多少分鐘)"
 
 #: ../transport.validator.mapcss:344
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "遺失的時間區間標籤來指明主要的時間區間"
 
 #: ../transport.validator.mapcss:350
 msgid "Missing opening_hours tag"
-msgstr ""
+msgstr "缺少開放時間標籤"
 
 #: ../transport.validator.mapcss:295 ../transport.validator.mapcss:301
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "大眾運輸站點遺失名稱"
 
 #: ../transport.validator.mapcss:184
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
-msgstr ""
+msgstr "檢查營運者標籤：營運者並不存在，也許打錯了"
 
 #: ../transport.validator.mapcss:190
 msgid "Check the network tag : this network does not exist, it may be a typo"
-msgstr ""
+msgstr "檢查路線網路標籤：路線網路並不存在，也許打錯了"
 
 #: ../transport.validator.mapcss:207
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
-msgstr ""
+msgstr "轉運站通常是大型區域，擁有多個公車站，如果可能請用區域來描繪"
 
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
-msgstr ""
+msgstr "這是公車站還是街車站？請加精準的標籤來描述等車區"

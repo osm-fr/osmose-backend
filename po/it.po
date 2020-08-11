@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-07-26 19:35+0000\n"
+"PO-Revision-Date: 2020-08-11 19:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -399,7 +399,7 @@ msgid "Roundabout crossing"
 msgstr "Attraversamento della rotatoria"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:45
-#: ../plugins/TagFix_MultipleTag.py:73
+#: ../plugins/TagFix_MultipleTag.py:75
 msgid "Reverse roundabout"
 msgstr "Rotatoria inversa"
 
@@ -407,7 +407,7 @@ msgstr "Rotatoria inversa"
 msgid "Soundex test"
 msgstr "Testo assonante"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:141
+#: ../analysers/analyser_osmosis_tag_typo.py:149
 msgid "Typo in tag"
 msgstr "Errore tipografico nel tag"
 
@@ -582,11 +582,11 @@ msgstr "maxspeed non coerente"
 msgid "Invalid reference"
 msgstr "Codice riferimento non valido"
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:43
 msgid "Tag highway missing on junction"
 msgstr "Tag highway mancante sul raccordo"
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:49
 msgid "Tag highway missing on oneway"
 msgstr "Tag highway mancante sul senso unico"
 
@@ -594,7 +594,7 @@ msgstr "Tag highway mancante sul senso unico"
 msgid "Opposite cycleway without oneway"
 msgstr "Pista ciclabile inversa senza tag oneway"
 
-#: ../plugins/TagFix_MultipleTag.py:55
+#: ../plugins/TagFix_MultipleTag.py:57
 msgid "Missing maxheight tag"
 msgstr "Tag maxheight mancante"
 
@@ -753,12 +753,12 @@ msgstr "Conflitto tra etichette: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflitto tra tag: 'bridge' e 'tunnel'"
 
-#: ../plugins/TagFix_MultipleTag.py:169
+#: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "La direzione delle mini-rotatorie in questa nazione solitamente è \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:181
+#: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Usa il tag \"toll\" invece di \"fee\""
 
@@ -834,25 +834,9 @@ msgstr "Strada al di sopra del terreno e nessun ponte"
 msgid "Long Highway above ground and no bridge"
 msgstr "Strada lunga e al di sopra del terreno e nessun ponte"
 
-#: ../plugins/TagRemove_Layer.py:42
-msgid "Waterway underground and no tunnel"
-msgstr "Corso d'acqua sotterraneo ma non è un tunnel"
-
-#: ../plugins/TagRemove_Layer.py:44
-msgid "Long Waterway underground and no tunnel"
-msgstr "Corso d'acqua lungo e sotterraneo ma non è un tunnel"
-
-#: ../plugins/TagRemove_Layer.py:46
-msgid "Waterway above ground and no bridge"
-msgstr "Corso d'acqua sopraelevato ma non è un ponte"
-
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Waterway with level"
 msgstr "Corso d'acqua con level"
-
-#: ../plugins/TagRemove_Layer.py:48
-msgid "Long Waterway above ground and no bridge"
-msgstr "Corso d'acqua lungo e sopraelevato ma non è un ponte"
 
 #: ../plugins/TagRemove_Roundabout.py:38
 msgid "Unnecessary tag oneway"
@@ -870,11 +854,11 @@ msgstr "Suggerimento di integrazione di buca delle lettere"
 msgid "Bridge structure missing"
 msgstr "Struttura del ponte mancante"
 
-#: ../plugins/TagFix_MultipleTag.py:92
+#: ../plugins/TagFix_MultipleTag.py:94
 msgid "Roundabout as area"
 msgstr "Rotatoria mappata come area"
 
-#: ../plugins/TagFix_MultipleTag.py:94
+#: ../plugins/TagFix_MultipleTag.py:96
 msgid "Level or repeat_on tag missing"
 msgstr "Etichette level oppure repeat_on mancanti"
 
@@ -882,11 +866,11 @@ msgstr "Etichette level oppure repeat_on mancanti"
 msgid "Building in parts"
 msgstr "Edificio in parti"
 
-#: ../plugins/TagFix_MultipleTag.py:96
+#: ../plugins/TagFix_MultipleTag.py:98
 msgid "Indoor or buildingpart tag missing"
 msgstr "Etichette indoor o buildingpart mancanti"
 
-#: ../plugins/TagFix_MultipleTag.py:98
+#: ../plugins/TagFix_MultipleTag.py:100
 msgid "Missing tag ref for emergency access point"
 msgstr "Etichetta ref per punto di ritrovo d’emergenza mancante"
 
@@ -919,12 +903,12 @@ msgstr "Oggetti multipli “%(numbers)s” nel percorso “%(way)s”"
 msgid "Name with uppercase"
 msgstr "Nome con lettere maiuscole"
 
-#: ../plugins/TagFix_MultipleTag.py:210
+#: ../plugins/TagFix_MultipleTag.py:212
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusi sci, cavalli, scooter, mezzi per il trasporto di sostanze pericolose e così via a meno che non siano esplicitamente esclusi"
 
-#: ../plugins/TagFix_MultipleTag.py:212
+#: ../plugins/TagFix_MultipleTag.py:214
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusi auto, cavalli, scooter, mezzi per il trasporto di sostanze pericolose e così via a meno che non siano esplicitamente esclusi"
@@ -1188,11 +1172,11 @@ msgstr "Strada a senso unico inaccessibile oppure parcheggio o entrata al parche
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Autostrada senza ref, nat_ref, int_ref oppure etichetta noref"
 
-#: ../plugins/TagFix_MultipleTag.py:53
+#: ../plugins/TagFix_MultipleTag.py:55
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "Etichetta highway mancante per tracktype oppure lanes"
 
-#: ../plugins/TagFix_MultipleTag.py:69
+#: ../plugins/TagFix_MultipleTag.py:71
 msgid "Missing relation type"
 msgstr "Tipo di relazione mancante"
 
@@ -1206,7 +1190,7 @@ msgstr "Possibile etichetta traffic_signals:direction mancante oppure incrocio s
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Possibile etichetta direction mancante su stop o ‘dare precedenza’"
 
-#: ../plugins/TagFix_MultipleTag.py:118
+#: ../plugins/TagFix_MultipleTag.py:120
 msgid "Suspicious name for a container"
 msgstr "Nome sospetto per contenitore"
 
@@ -1504,7 +1488,7 @@ msgstr "Aggiorna polizia/“gendarmeria”"
 msgid "Missing access way to parking"
 msgstr "Via di accesso al parcheggio mancante"
 
-#: ../plugins/TagFix_MultipleTag.py:116
+#: ../plugins/TagFix_MultipleTag.py:118
 msgid "Probably only for bottles, not any type of glass"
 msgstr "Probabilmente solo per bottiglie, non qualsiasi vetro"
 
@@ -1807,7 +1791,7 @@ msgstr ""
 msgid "tag value: {0}={1} => {2} (rule kr_vs)"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
@@ -1956,6 +1940,7 @@ msgstr ""
 msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
 
+#: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:33
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_gers.py:30
@@ -1964,7 +1949,7 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:30
-#: ../analysers/analyser_merge_defibrillators_FR.py:58
+#: ../analysers/analyser_merge_defibrillators_FR.py:60
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:30
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:30
 msgid "Defibrillator not integrated"
@@ -2707,7 +2692,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:59
-#: ../plugins/TagFix_MultipleTag.py:88
+#: ../plugins/TagFix_MultipleTag.py:90
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
 "\n"
@@ -2741,11 +2726,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:143
+#: ../analysers/analyser_osmosis_tag_typo.py:151
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:145
+#: ../analysers/analyser_osmosis_tag_typo.py:153
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3246,24 +3231,24 @@ msgstr ""
 msgid "Add tag `dispensing=yes`."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:51
+#: ../plugins/TagFix_MultipleTag.py:47 ../plugins/TagFix_MultipleTag.py:53
 msgid "Check if it is really an highway and it is not already mapped."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:57
+#: ../plugins/TagFix_MultipleTag.py:59
 msgid ""
 "Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a\n"
 "bridge."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:75
+#: ../plugins/TagFix_MultipleTag.py:77
 msgid ""
 "The circulation of the roundabout is draw clockwise, but in countries\n"
 "where they drive on the right the sense of roundabouts is\n"
 "counterclockwise, and vice versa for the other countries."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:79
+#: ../plugins/TagFix_MultipleTag.py:81
 msgid ""
 "For the mini roundabouts `highway=mini_roundabout`: the tag\n"
 "`direction=*` indicates the direction, in countries driven on the right,\n"
@@ -3271,7 +3256,7 @@ msgid ""
 "tag."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:84
+#: ../plugins/TagFix_MultipleTag.py:86
 msgid ""
 "Make sure that it is a roundabout (for example, no a side way in\n"
 "oposite direction around a square or a central roundabout, ordriveways\n"
@@ -3500,7 +3485,7 @@ msgstr ""
 msgid "Bad tag value"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:60
+#: ../plugins/TagFix_MultipleTag.py:62
 msgid "Untagged named object"
 msgstr ""
 
@@ -3641,7 +3626,7 @@ msgid ""
 "`area=yes` features are:"
 msgstr ""
 
-#: ../plugins/TagFix_Area.py:43 ../plugins/TagFix_MultipleTag.py:66
+#: ../plugins/TagFix_Area.py:43 ../plugins/TagFix_MultipleTag.py:68
 msgid ""
 "It may be more appropriate to remove the object completely if it isn't "
 "useful."
@@ -3660,19 +3645,19 @@ msgstr ""
 msgid "Tags, {0}, already make this an area."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:61
+#: ../plugins/TagFix_MultipleTag.py:63
 msgid ""
 "The object is missing any tag which defines what kind of feature it is. This"
 " is unexpected for something with a `name` tag."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:63
+#: ../plugins/TagFix_MultipleTag.py:65
 msgid ""
 "Add a top level tag to state what this feature is. Considered top level tags"
 " are (with derived `disused:`, `abandoned:` and `historic:` variants):"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:70
+#: ../plugins/TagFix_MultipleTag.py:72
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
@@ -3916,11 +3901,11 @@ msgstr ""
 msgid "Merge the building parts together as appropriate."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:102 ../plugins/TagFix_MultipleTag.py:108
+#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:110
 msgid "Overly permissive access"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:110
+#: ../plugins/TagFix_MultipleTag.py:106 ../plugins/TagFix_MultipleTag.py:112
 msgid ""
 "The tags `access=yes` and `access=permissive` mark a feature as wide open to"
 " all transport modes. This is almost never the case and more specific tags "
@@ -3953,11 +3938,11 @@ msgstr ""
 msgid "Way access mismatch relation route={0}"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:45
 msgid "The way has a tag `junction=*` but without `highway=*`."
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:49
+#: ../plugins/TagFix_MultipleTag.py:51
 msgid "The way has a tag `oneway=*` but without `highway=*`."
 msgstr ""
 
@@ -4244,4 +4229,34 @@ msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:77
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
+msgid ""
+"Location of defibrillators from this dataset can be very approximative. "
+"Check carefully the position before adding to OSM."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:38
+msgid "Level should be used for buildings, shops, amenities, etc."
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:39
+msgid "Remove level and check if layer is needed instead"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:42
+msgid "Waterway/water underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:44
+msgid "Long Waterway/water underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:46
+msgid "Waterway/water above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:48
+msgid "Long Waterway/water above ground and no bridge"
 msgstr ""
