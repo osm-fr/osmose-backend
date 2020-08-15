@@ -56,7 +56,7 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
 
         mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.json").read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r.get('missing_osm', True), r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
+            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r.get('missing_osm', True), r['classes'], r['level'], r['title:fr'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
 
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):

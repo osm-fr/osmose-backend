@@ -15,7 +15,7 @@
     ],
     "classes": 10,
     "level": 3,
-    "title": "Hôpital",
+    "title:fr": "Hôpital",
     "tags_select": {
       "amenity": "hospital"
     },
@@ -38,7 +38,7 @@
     ],
     "classes": 80,
     "level": 3,
-    "title": "Clinique",
+    "title:fr": "Clinique",
     "tags_select": {
       "amenity": "clinic"
     },
@@ -58,7 +58,7 @@
     ],
     "classes": 100,
     "level": 3,
-    "title": "Dialyse Ambulatoire",
+    "title:fr": "Dialyse Ambulatoire",
     "tags_select": {
       "healthcare": "dialysis"
     },
@@ -77,7 +77,7 @@
     "missing_osm": false,
     "classes": 130,
     "level": 3,
-    "title": "Maison de santé",
+    "title:fr": "Maison de santé",
     "tags_select": {
       "healthcare": "centre"
     },
@@ -98,7 +98,7 @@
     ],
     "classes": 70,
     "level": 3,
-    "title": "Laboratoire de Biologie Médicale",
+    "title:fr": "Laboratoire de Biologie Médicale",
     "tags_select": {
       "healthcare": "laboratory"
     },
@@ -122,7 +122,7 @@
     ],
     "classes": 0,
     "level": 3,
-    "title": "Pharmacie",
+    "title:fr": "Pharmacie",
     "tags_select": {
       "amenity": "pharmacy"
     },
@@ -142,7 +142,7 @@
     ],
     "classes": 90,
     "level": 3,
-    "title": "Structure dispensatrice d'oxygène à usage médical",
+    "title:fr": "Structure dispensatrice d'oxygène à usage médical",
     "tags_select": {
       "shop": "medical_supply"
     },
@@ -172,7 +172,7 @@
     "missing_osm": false,
     "classes": 30,
     "level": 3,
-    "title": "Établissement et services d'hébergement pour adultes handicapés",
+    "title:fr": "Établissement et services d'hébergement pour adultes handicapés",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -195,7 +195,7 @@
     "missing_osm": false,
     "classes": 40,
     "level": 3,
-    "title": "Établissement et services de travail protégé pour adultes handicapés",
+    "title:fr": "Établissement et services de travail protégé pour adultes handicapés",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -217,7 +217,7 @@
     "missing_osm": false,
     "classes": 120,
     "level": 3,
-    "title": "Résidences autonomie",
+    "title:fr": "Résidences autonomie",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -239,7 +239,7 @@
     "missing_osm": false,
     "classes": 110,
     "level": 3,
-    "title": "Établissement d'hébergement pour personnes âgées dépendantes (EHPAD)",
+    "title:fr": "Établissement d'hébergement pour personnes âgées dépendantes (EHPAD)",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -262,7 +262,7 @@
     "missing_osm": false,
     "classes": 50,
     "level": 3,
-    "title": "Établissement d'hébergement pour personnes âgées (EHPA)",
+    "title:fr": "Établissement d'hébergement pour personnes âgées (EHPA)",
     "tags_select": {
       "amenity": "social_facility"
     },
@@ -290,7 +290,7 @@
     "missing_osm": false,
     "classes": 60,
     "level": 3,
-    "title": "Établissement de l'Aide Sociale à l'Enfance",
+    "title:fr": "Établissement de l'Aide Sociale à l'Enfance",
     "tags_select": {
       "amenity": "social_facility"
     },

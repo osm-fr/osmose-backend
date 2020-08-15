@@ -34,7 +34,7 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
         mapping = 'merge_data/shop_FR.mapping.json'
         mapingfile = json.loads(open(mapping).read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Shop_FR, r['class'].replace('.', ''), r['missing_official'], r['missing_osm'], r['class'], r['level'], r['title'], r.get('trancheEffectifs'), r['match'], r['generate'])
+            self.classFactory(SubAnalyser_Merge_Shop_FR, r['class'].replace('.', ''), r['missing_official'], r['missing_osm'], r['class'], r['level'], r['title:fr'], r.get('trancheEffectifs'), r['match'], r['generate'])
 
 
 class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
