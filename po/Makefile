@@ -1,4 +1,5 @@
-PYFILES=$(shell find .. -name '*.py' -not -type l | grep -v 'Josm_' | sort)
+PYFILES=$(shell find .. ! -path ./venv -name '*.py' -not -type l | grep -v 'Josm_' | sort)
+JSON=$(shell find ../merge_data -name '*.json' | sort)
 
 PO:=$(wildcard *.po)
 
@@ -6,12 +7,15 @@ PO:=$(wildcard *.po)
 
 all: osmose-backend.pot %.po josm_po
 
-osmose-backend.pot: $(PYFILES)
+tmp.json: $(JSON) Makefile
+	for json in $(JSON); do cat $$json | jq -r '.[].title' | grep -v 'null' | sed -e 's/\(.*\)/_("\1")/'; done > $@
+
+osmose-backend.pot: $(PYFILES) tmp.json
 	sed -i "s/^#: .*//" osmose-backend.pot
 	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
           --keyword=_ --keyword=N_ --keyword=T_ --keyword=T_f --keyword=tr \
           --force-po --omit-header --from-code=utf-8 \
-          --output=$@ $(PYFILES)
+          --output=$@ $(PYFILES) tmp.json
 
 %.po:
 	tx pull -a --minimum-perc=5
