@@ -69,21 +69,36 @@ class OsmoseTranslation:
 
         return out
 
-    def translate_format(self, str, *args):
+    def translate_format(self, string, *args):
         out = {}
 
-        # english version
         if len(args) == 0:
-            out["en"] = str
-        else:
-            out["en"] = str.format(*args)
+            out["en"] = string
 
-        for l in self.languages:
-            if str in self.trans[l] and self.trans[l][str] != "":
-                if len(args) == 0:
-                    out[l] = self.trans[l][str]
+            for l in self.languages:
+                if string in self.trans[l] and self.trans[l][string] != "":
+                    if len(args) == 0:
+                        out[l] = self.trans[l][string]
+
+        else:
+            args_basic = []
+            args_translated = []
+            for arg in args:
+                if isinstance(arg, dict):
+                    args_basic.append('{' + str(len(args_translated)) + '}')
+                    args_translated.append(arg)
                 else:
-                    out[l] = self.trans[l][str].format(*args)
+                    args_basic.append(arg)
+
+            out["en"] = string.format(*args_basic)
+            if args_translated:
+                out["en"] = out["en"].format(*map(lambda a: a['en'], args_translated))
+
+            for l in self.languages:
+                if string in self.trans[l] and self.trans[l][string] != "":
+                    out[l] = self.trans[l][string].format(*args_basic)
+                    if args_translated:
+                        out[l] = out[l].format(*map(lambda a: l in a and a[l] or a['en'], args_translated))
 
         return out
 

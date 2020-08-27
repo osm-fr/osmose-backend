@@ -110,4 +110,4 @@ World Heritage.'''))
                         "heritage": lambda res: 2 if res[u"Précision sur la Protection"] and u"classement par arrêté" in res[u"Précision sur la Protection"] else 3 if res[u"Précision sur la Protection"] and u"inscription par arrêté" in res[u"Précision sur la Protection"] else None},
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
                     tag_keep_multiple_values = ["heritage:operator"],
-                    text = lambda tags, fields: T_f(u"Historical monument: {0} (positioned at {1} with confidence {2})", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))
+                    text = lambda tags, fields: T_f("Historical monument: {0}", ", ".join(filter(lambda x: x, [fields["Date de Protection"], fields["Adresse"], fields["Commune"]]))) )))

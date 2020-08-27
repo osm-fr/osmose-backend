@@ -56,7 +56,7 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
 
         mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.json").read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r.get('missing_osm', True), r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
+            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r.get('missing_osm', True), r['classes'], r['level'], r['title:fr'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
 
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
@@ -74,7 +74,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",
             CSV(Source_Finess(attribution = 'Le ministère des solidarités et de la santé', millesime = '03/2019', encoding = 'ISO-8859-1',
-                    fileUrl = 'https://static.data.gouv.fr/resources/finess-extraction-du-fichier-des-etablissements/20190307-093304/etalab-cs1100507-stock-20190307-0422.csv')),
+                    fileUrl = 'https://www.data.gouv.fr/fr/datasets/r/16ee2cd3-b9fe-459e-8a57-46e03ba3adbd')),
             Load("coordxet", "coordyet", srid = srid,
                 select = {"categetab": categories},
                 where = lambda res: is_in(res["departement"])),

@@ -27,13 +27,13 @@ from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 6, "Arles", logger,
-            u"https://trouver.datasud.fr/dataset/base-locale-dadresses-accm",
-            u"Base locale d'adresses - ACCM",
-            SHP(Source(attribution = u"Arles Crau Camargue Montagnette", millesime = "04/2016",
-                    fileUrl = u"https://trouver.datasud.fr/dataset/4c3c3e85-2e53-4c22-938f-0d5ed5efde84/resource/471d295a-3b33-49c3-b051-93d49241afc8/download/accm_adresses.zip", zip = "ACCM_ADRESSES.shp")),
+            "http://metadonnees.agglo-accm.fr/geosource/srv/fre/catalog.search#/metadata/1e251473-4dc0-4f03-bb89-aa54269c8e3f",
+            "Adresses postales",
+            SHP(Source(attribution = "Arles Crau Camargue Montagnette", millesime = "08/2020",
+                    fileUrl = u"http://webcarto.agglo-accm.fr/ressources/donnees_ouvertes/adresse.adr_accm_adresse.zip", zip = "adr_accm_adresse.shp")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},
-                    mapping1 = {"addr:housenumber": lambda res: str(res["num_voi"]) + (res["suf_voi"] if res["suf_voi"] else "")},
-                    text = lambda tags, fields: {"en": fields["adresse"]} )))
+                    mapping1 = {"addr:housenumber": lambda res: str(res["NUM_VOI"]) + (res["SUF_VOI"] if res["SUF_VOI"] else "")},
+                    text = lambda tags, fields: {"en": fields["ADRESSE"]} )))

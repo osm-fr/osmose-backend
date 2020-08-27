@@ -36,7 +36,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
             u"http://www.sandre.eaufrance.fr/atlas/srv/fre/catalog.search#/metadata/ebef2115-bee5-40bb-b5cc-4593d82ba334",
             u"Stations de traitement des eaux usées - France entière",
             CSV(Source(attribution = u"Sandre", millesime = "09/2019",
-                    fileUrl = u"http://services.sandre.eaufrance.fr/geo/odp_FRA?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
+                    fileUrl = u"https://services.sandre.eaufrance.fr/geo/odp?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
             Load("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
                 select = {"DateMiseHorServiceOuvrageDepollution": None}),
             Mapping(

@@ -4,7 +4,7 @@
     "missing_osm": 7210,
     "class": "10.13B",
     "level": 3,
-    "title": "Charcuterie",
+    "title:fr": "Charcuterie",
     "match": [
       {
         "shop": "butcher"
@@ -23,7 +23,7 @@
     "missing_osm": 7210,
     "class": "10.71B",
     "level": 3,
-    "title": "Cuisson de produits de boulangerie",
+    "title:fr": "Cuisson de produits de boulangerie",
     "match": [
       {
         "shop": "bakery"
@@ -41,7 +41,7 @@
     "missing_osm": 7210,
     "class": "10.71C",
     "level": 3,
-    "title": "Boulangerie et boulangerie-pâtisserie",
+    "title:fr": "Boulangerie et boulangerie-pâtisserie",
     "match": [
       {
         "shop": "bakery"
@@ -59,7 +59,7 @@
     "missing_osm": 7210,
     "class": "10.71D",
     "level": 3,
-    "title": "Pâtisserie",
+    "title:fr": "Pâtisserie",
     "match": [
       {
         "shop": "pastry"
@@ -74,7 +74,7 @@
     "missing_osm": 7210,
     "class": "45.11Z",
     "level": 3,
-    "title": "Commerce de voitures et de véhicules automobiles légers",
+    "title:fr": "Commerce de voitures et de véhicules automobiles légers",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -90,7 +90,7 @@
     "missing_osm": 7210,
     "class": "45.19Z",
     "level": 3,
-    "title": "Commerce d'autres véhicules automobiles",
+    "title:fr": "Commerce d'autres véhicules automobiles",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -106,7 +106,7 @@
     "missing_osm": 7210,
     "class": "45.20A",
     "level": 3,
-    "title": "Entretien et réparation de véhicules automobiles",
+    "title:fr": "Entretien et réparation de véhicules automobiles",
     "match": [
       {
         "shop": "car_repair"
@@ -121,7 +121,7 @@
     "missing_osm": 7210,
     "class": "45.32Z",
     "level": 3,
-    "title": "Commerce de détail d'équipements automobiles",
+    "title:fr": "Commerce de détail d'équipements automobiles",
     "match": [
       {
         "shop": "car_parts"
@@ -136,7 +136,7 @@
     "missing_osm": 7210,
     "class": "45.40Z",
     "level": 3,
-    "title": "Commerce et réparation de motocycles",
+    "title:fr": "Commerce et réparation de motocycles",
     "match": [
       {
         "shop": "motorcycle"
@@ -155,7 +155,7 @@
     "missing_osm": 7210,
     "class": "47.11A",
     "level": 3,
-    "title": "Commerce de détail de produits surgelés",
+    "title:fr": "Commerce de détail de produits surgelés",
     "match": [
       {
         "shop": "frozen_food"
@@ -170,7 +170,7 @@
     "missing_osm": 7210,
     "class": "47.11B",
     "level": 3,
-    "title": "Commerce de détail en magasin non spécialisé à prédominance alimentaire",
+    "title:fr": "Commerce de détail en magasin non spécialisé à prédominance alimentaire",
     "match": [
       {
         "shop": "convenience"
@@ -198,7 +198,7 @@
     "missing_osm": 7210,
     "class": "47.11C",
     "level": 3,
-    "title": "Supérettes",
+    "title:fr": "Supérettes",
     "match": [
       {
         "shop": "convenience"
@@ -225,7 +225,7 @@
     "missing_osm": 7210,
     "class": "47.11D",
     "level": 3,
-    "title": "Supermarchés",
+    "title:fr": "Supermarchés",
     "match": [
       {
         "shop": "supermarket"
@@ -240,7 +240,7 @@
     "missing_osm": 7210,
     "class": "47.11F",
     "level": 3,
-    "title": "Hypermarchés",
+    "title:fr": "Hypermarchés",
     "match": [
       {
         "shop": "supermarket"
@@ -255,7 +255,7 @@
     "missing_osm": 7210,
     "class": "47.19A",
     "level": 3,
-    "title": "Grands magasins",
+    "title:fr": "Grands magasins",
     "match": [
       {
         "shop": "department_store"
@@ -270,7 +270,7 @@
     "missing_osm": 7210,
     "class": "47.21Z",
     "level": 3,
-    "title": "Commerce de détail de fruits et légumes en magasin spécialisé",
+    "title:fr": "Commerce de détail de fruits et légumes en magasin spécialisé",
     "match": [
       {
         "shop": "grocery"
@@ -295,7 +295,7 @@
     "missing_osm": 7210,
     "class": "47.22Z",
     "level": 3,
-    "title": "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé",
+    "title:fr": "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé",
     "match": [
       {
         "shop": "butcher"
@@ -310,7 +310,7 @@
     "missing_osm": 7210,
     "class": "47.23Z",
     "level": 3,
-    "title": "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé",
+    "title:fr": "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé",
     "match": [
       {
         "shop": "seafood"
@@ -325,7 +325,7 @@
     "missing_osm": 7210,
     "class": "47.24Z",
     "level": 3,
-    "title": "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé",
+    "title:fr": "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé",
     "match": [
       {
         "shop": "bakery"
@@ -350,7 +350,7 @@
     "missing_osm": 7210,
     "class": "47.25Z",
     "level": 3,
-    "title": "Commerce de détail de boissons en magasin spécialisé",
+    "title:fr": "Commerce de détail de boissons en magasin spécialisé",
     "match": [
       {
         "shop": "beverages"
@@ -369,7 +369,7 @@
     "missing_osm": 7210,
     "class": "47.26Z",
     "level": 3,
-    "title": "Commerce de détail de produits à base de tabac en magasin spécialisé",
+    "title:fr": "Commerce de détail de produits à base de tabac en magasin spécialisé",
     "match": [
       {
         "shop": "tobacco"
@@ -387,7 +387,7 @@
     "missing_osm": 7210,
     "class": "47.30Z",
     "level": 3,
-    "title": "Commerce de détail de carburants en magasin spécialisé",
+    "title:fr": "Commerce de détail de carburants en magasin spécialisé",
     "match": [
       {
         "amenity": "fuel"
@@ -402,7 +402,7 @@
     "missing_osm": 7210,
     "class": "47.41Z",
     "level": 3,
-    "title": "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé",
+    "title:fr": "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé",
     "match": [
       {
         "shop": "computer"
@@ -424,7 +424,7 @@
     "missing_osm": 7210,
     "class": "47.42Z",
     "level": 3,
-    "title": "Commerce de détail de matériels de télécommunication en magasin spécialisé",
+    "title:fr": "Commerce de détail de matériels de télécommunication en magasin spécialisé",
     "match": [
       {
         "shop": "mobile_phone"
@@ -439,7 +439,7 @@
     "missing_osm": 7210,
     "class": "47.43Z",
     "level": 3,
-    "title": "Commerce de détail de matériels audio et vidéo en magasin spécialisé",
+    "title:fr": "Commerce de détail de matériels audio et vidéo en magasin spécialisé",
     "match": [
       {
         "shop": "hifi"
@@ -454,7 +454,7 @@
     "missing_osm": 7210,
     "class": "47.51Z",
     "level": 3,
-    "title": "Commerce de détail de textiles en magasin spécialisé",
+    "title:fr": "Commerce de détail de textiles en magasin spécialisé",
     "match": [
       {
         "shop": "fabric"
@@ -482,7 +482,7 @@
     "missing_osm": 7210,
     "class": "47.52A",
     "level": 3,
-    "title": "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m²)",
+    "title:fr": "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m²)",
     "match": [
       {
         "shop": "hardware"
@@ -501,7 +501,7 @@
     "missing_osm": 7210,
     "class": "47.52B",
     "level": 3,
-    "title": "Commerce de détail de quincaillerie, peintures et verres en grandes surfaces (400 m² et plus)",
+    "title:fr": "Commerce de détail de quincaillerie, peintures et verres en grandes surfaces (400 m² et plus)",
     "match": [
       {
         "shop": "hardware"
@@ -520,7 +520,7 @@
     "missing_osm": 7210,
     "class": "47.53Z",
     "level": 3,
-    "title": "Commerce de détail de tapis, moquettes et revêtements de murs et de sols en magasin spécialisé",
+    "title:fr": "Commerce de détail de tapis, moquettes et revêtements de murs et de sols en magasin spécialisé",
     "match": [
       {
         "shop": "carpet"
@@ -535,7 +535,7 @@
     "missing_osm": 7210,
     "class": "47.59A",
     "level": 3,
-    "title": "Commerce de détail de meubles",
+    "title:fr": "Commerce de détail de meubles",
     "match": [
       {
         "shop": "furniture"
@@ -557,7 +557,7 @@
     "missing_osm": 7210,
     "class": "47.61Z",
     "level": 3,
-    "title": "Commerce de détail de livres en magasin spécialisé",
+    "title:fr": "Commerce de détail de livres en magasin spécialisé",
     "match": [
       {
         "shop": "books"
@@ -572,7 +572,7 @@
     "missing_osm": 7210,
     "class": "47.62Z",
     "level": 3,
-    "title": "Commerce de détail de journaux et papeterie en magasin spécialisé",
+    "title:fr": "Commerce de détail de journaux et papeterie en magasin spécialisé",
     "match": [
       {
         "shop": "newsagent"
@@ -591,7 +591,7 @@
     "missing_osm": 7210,
     "class": "47.63Z",
     "level": 3,
-    "title": "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé",
+    "title:fr": "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé",
     "match": [
       {
         "shop": "music"
@@ -610,7 +610,7 @@
     "missing_osm": 7210,
     "class": "47.64Z",
     "level": 3,
-    "title": "Commerce de détail d'articles de sport en magasin spécialisé",
+    "title:fr": "Commerce de détail d'articles de sport en magasin spécialisé",
     "match": [
       {
         "shop": "sports"
@@ -632,7 +632,7 @@
     "missing_osm": 7210,
     "class": "47.65Z",
     "level": 3,
-    "title": "Commerce de détail de jeux et jouets en magasin spécialisé",
+    "title:fr": "Commerce de détail de jeux et jouets en magasin spécialisé",
     "match": [
       {
         "shop": "toys"
@@ -651,7 +651,7 @@
     "missing_osm": 7210,
     "class": "47.71Z",
     "level": 3,
-    "title": "Commerce de détail d'habillement en magasin spécialisé",
+    "title:fr": "Commerce de détail d'habillement en magasin spécialisé",
     "match": [
       {
         "shop": "clothes"
@@ -666,7 +666,7 @@
     "missing_osm": 7210,
     "class": "47.72A",
     "level": 3,
-    "title": "Commerce de détail de la chaussure",
+    "title:fr": "Commerce de détail de la chaussure",
     "match": [
       {
         "shop": "shoes"
@@ -681,7 +681,7 @@
     "missing_osm": 7210,
     "class": "47.72B",
     "level": 3,
-    "title": "Commerce de détail de maroquinerie et d'articles de voyage",
+    "title:fr": "Commerce de détail de maroquinerie et d'articles de voyage",
     "match": [
       {
         "shop": "bag"
@@ -700,7 +700,7 @@
     "missing_osm": 7210,
     "class": "47.73Z",
     "level": 3,
-    "title": "Commerce de détail de produits pharmaceutiques en magasin spécialisé",
+    "title:fr": "Commerce de détail de produits pharmaceutiques en magasin spécialisé",
     "match": [
       {
         "amenity": "pharmacy"
@@ -715,7 +715,7 @@
     "missing_osm": 7210,
     "class": "47.74Z",
     "level": 3,
-    "title": "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé",
+    "title:fr": "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé",
     "match": [
       {
         "shop": "hearing_aids"
@@ -734,7 +734,7 @@
     "missing_osm": 7210,
     "class": "47.75Z",
     "level": 3,
-    "title": "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé",
+    "title:fr": "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé",
     "match": [
       {
         "shop": "perfumery"
@@ -759,7 +759,7 @@
     "missing_osm": 7210,
     "class": "47.76Z",
     "level": 3,
-    "title": "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé",
+    "title:fr": "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé",
     "match": [
       {
         "shop": "florist"
@@ -781,7 +781,7 @@
     "missing_osm": 7210,
     "class": "47.77Z",
     "level": 3,
-    "title": "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé",
+    "title:fr": "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé",
     "match": [
       {
         "shop": "watches"
@@ -800,7 +800,7 @@
     "missing_osm": 7210,
     "class": "47.78A",
     "level": 3,
-    "title": "Commerces de détail d'optique",
+    "title:fr": "Commerces de détail d'optique",
     "match": [
       {
         "shop": "optician"
@@ -815,7 +815,7 @@
     "missing_osm": 7210,
     "class": "47.79Z",
     "level": 3,
-    "title": "Commerce de détail de biens d'occasion en magasin",
+    "title:fr": "Commerce de détail de biens d'occasion en magasin",
     "match": [
       {
         "shop": "second_hand"
@@ -840,7 +840,7 @@
     "missing_osm": 7210,
     "class": "55.10Z",
     "level": 3,
-    "title": "Hôtels et hébergement similaire",
+    "title:fr": "Hôtels et hébergement similaire",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -856,7 +856,7 @@
     "missing_osm": 7210,
     "class": "55.30Z",
     "level": 3,
-    "title": "Terrains de camping et parcs pour caravanes ou véhicules de loisirs",
+    "title:fr": "Terrains de camping et parcs pour caravanes ou véhicules de loisirs",
     "match": [
       {
         "tourism": "camp_site"
@@ -871,7 +871,7 @@
     "missing_osm": 7210,
     "class": "56.10A",
     "level": 3,
-    "title": "Restauration traditionnelle",
+    "title:fr": "Restauration traditionnelle",
     "match": [
       {
         "amenity": "restaurant"
@@ -898,7 +898,7 @@
     "missing_osm": 7210,
     "class": "56.10C",
     "level": 3,
-    "title": "Restauration de type rapide",
+    "title:fr": "Restauration de type rapide",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -917,7 +917,7 @@
     "missing_osm": 7210,
     "class": "56.30Z",
     "level": 3,
-    "title": "Débits de boissons",
+    "title:fr": "Débits de boissons",
     "match": [
       {
         "amenity": "bar"
@@ -939,7 +939,7 @@
     "missing_osm": 7210,
     "class": "59.14Z",
     "level": 3,
-    "title": "Projection de films cinématographiques",
+    "title:fr": "Projection de films cinématographiques",
     "match": [
       {
         "amenity": "cinema"
@@ -954,7 +954,7 @@
     "missing_osm": 7210,
     "class": "68.31Z",
     "level": 3,
-    "title": "Agences immobilières",
+    "title:fr": "Agences immobilières",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -970,7 +970,7 @@
     "missing_osm": 7210,
     "class": "71.11Z",
     "level": 3,
-    "title": "Activités d'architecture",
+    "title:fr": "Activités d'architecture",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -986,7 +986,7 @@
     "missing_osm": 7210,
     "class": "71.12A",
     "level": 3,
-    "title": "Activité des géomètres",
+    "title:fr": "Activité des géomètres",
     "match": [
       {
         "office": "surveyor"
@@ -1004,7 +1004,7 @@
     "missing_osm": 7210,
     "class": "75.00Z",
     "level": 3,
-    "title": "Activités vétérinaires",
+    "title:fr": "Activités vétérinaires",
     "match": [
       {
         "amenity": "veterinary"
@@ -1019,7 +1019,7 @@
     "missing_osm": 7210,
     "class": "77.22Z",
     "level": 3,
-    "title": "Location de vidéocassettes et disques vidéo",
+    "title:fr": "Location de vidéocassettes et disques vidéo",
     "match": [
       {
         "shop": "video"
@@ -1034,7 +1034,7 @@
     "missing_osm": 7210,
     "class": "78.10Z",
     "level": 3,
-    "title": "Activités des agences de placement de main-d'œuvre",
+    "title:fr": "Activités des agences de placement de main-d'œuvre",
     "match": [
       {
         "office": "employment_agency"
@@ -1049,7 +1049,7 @@
     "missing_osm": 7210,
     "class": "79.11Z",
     "level": 3,
-    "title": "Activités des agences de voyage",
+    "title:fr": "Activités des agences de voyage",
     "match": [
       {
         "shop": "travel_agency"
@@ -1067,7 +1067,7 @@
     "missing_osm": 7210,
     "class": "79.12Z",
     "level": 3,
-    "title": "Activités des voyagistes",
+    "title:fr": "Activités des voyagistes",
     "match": [
       {
         "shop": "travel_agency"
@@ -1085,7 +1085,7 @@
     "missing_osm": 7210,
     "class": "86.23Z",
     "level": 3,
-    "title": "Pratique dentaire",
+    "title:fr": "Pratique dentaire",
     "match": [
       {
         "amenity": "dentist"
@@ -1100,7 +1100,7 @@
     "missing_osm": 7210,
     "class": "87.30A",
     "level": 3,
-    "title": "Hébergement social pour personnes âgées",
+    "title:fr": "Hébergement social pour personnes âgées",
     "match": [
       {
         "amenity": "social_facility",
@@ -1119,7 +1119,7 @@
     "missing_osm": 7210,
     "class": "87.30B",
     "level": 3,
-    "title": "Hébergement social pour handicapés physiques",
+    "title:fr": "Hébergement social pour handicapés physiques",
     "match": [
       {
         "amenity": "social_facility",
@@ -1138,7 +1138,7 @@
     "missing_osm": 7210,
     "class": "87.90A",
     "level": 3,
-    "title": "Hébergement social pour enfants en difficultés",
+    "title:fr": "Hébergement social pour enfants en difficultés",
     "match": [
       {
         "amenity": "social_facility",
@@ -1157,7 +1157,7 @@
     "missing_osm": 7210,
     "class": "87.90B",
     "level": 3,
-    "title": "Hébergement social pour adultes et familles en difficultés et autre hébergement social",
+    "title:fr": "Hébergement social pour adultes et familles en difficultés et autre hébergement social",
     "match": [
       {
         "amenity": "social_facility",
@@ -1176,7 +1176,7 @@
     "missing_osm": 7210,
     "class": "96.01B",
     "level": 3,
-    "title": "Blanchisserie-teinturerie de détail",
+    "title:fr": "Blanchisserie-teinturerie de détail",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -1192,7 +1192,7 @@
     "missing_osm": 7210,
     "class": "96.02A",
     "level": 3,
-    "title": "Coiffure",
+    "title:fr": "Coiffure",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -1208,7 +1208,7 @@
     "missing_osm": 7210,
     "class": "96.02B",
     "level": 3,
-    "title": "Soins de beauté",
+    "title:fr": "Soins de beauté",
     "trancheEffectifs": 1,
     "match": [
       {
@@ -1224,7 +1224,7 @@
     "missing_osm": 7210,
     "class": "96.03Z",
     "level": 3,
-    "title": "Services funéraires",
+    "title:fr": "Services funéraires",
     "match": [
       {
         "shop": "funeral_directors"
@@ -1239,7 +1239,7 @@
     "missing_osm": 7210,
     "class": "96.04Z",
     "level": 3,
-    "title": "Entretien corporel",
+    "title:fr": "Entretien corporel",
     "match": [
       {
         "shop": "beauty"

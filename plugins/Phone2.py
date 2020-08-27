@@ -48,10 +48,10 @@ class Phone2(PluginMapCSS):
             if match:
                 # group:tr("Different value of tag contact:* and *")
                 # -osmoseItemClassLevel:"3092/3097/2"
-                # throwWarning:tr("Different values of {0} and of {1}","0.key","1.key")
+                # throwWarning:tr("Different values of {0} and of {1}","{0.key}","{1.key}")
                 # assertMatch:"node phone=1 contact:phone=2"
                 # assertNoMatch:"node website=1 contact:website=1"
-                err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', u'0.key', u'1.key')})
+                err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         return err
 
@@ -86,8 +86,8 @@ class Phone2(PluginMapCSS):
             if match:
                 # group:tr("Different value of tag contact:* and *")
                 # -osmoseItemClassLevel:"3092/3097/2"
-                # throwWarning:tr("Different values of {0} and of {1}","0.key","1.key")
-                err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', u'0.key', u'1.key')})
+                # throwWarning:tr("Different values of {0} and of {1}","{0.key}","{1.key}")
+                err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         return err
 
@@ -122,8 +122,8 @@ class Phone2(PluginMapCSS):
             if match:
                 # group:tr("Different value of tag contact:* and *")
                 # -osmoseItemClassLevel:"3092/3097/2"
-                # throwWarning:tr("Different values of {0} and of {1}","0.key","1.key")
-                err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', u'0.key', u'1.key')})
+                # throwWarning:tr("Different values of {0} and of {1}","{0.key}","{1.key}")
+                err.append({'class': 3097, 'subclass': 0, 'text': mapcss.tr(u'Different values of {0} and of {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         return err
 

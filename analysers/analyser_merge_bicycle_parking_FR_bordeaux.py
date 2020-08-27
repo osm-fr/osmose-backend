@@ -46,4 +46,4 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
                 generate = Generate(
                     static1 = {"amenity": "bicycle_parking"},
                     static2 = {"source": self.source},
-                    mapping1 = {"capacity": lambda res: None if res["nombre"] in (None, "0") else res["nombre"] if res["nombre"] == "Rack" else str(int(res["nombre"])*2)} )))
+                    mapping1 = {"capacity": lambda res: None if res["nombre"] in (None, "0") else res["nombre"] if res["nature"] == "Rack" else str(int(res["nombre"])*2)} )))

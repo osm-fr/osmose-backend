@@ -33,9 +33,16 @@
     "items": 8140,
     "classes": 330,
     "tags_select": {
-      "tourism": ["camp_site", "hotel"]
+      "tourism": [
+        "camp_site",
+        "hotel"
+      ]
     },
-    "osm_types": ["nodes", "ways", "relations"],
+    "osm_types": [
+      "nodes",
+      "ways",
+      "relations"
+    ],
     "conflationDistance": 500,
     "tags_generate": {
       "tourism": "camp_site"
@@ -52,6 +59,61 @@
     "conflationDistance": 200,
     "tags_generate": {
       "amenity": "restaurant"
+    }
+  },
+  {
+    "title": "Museum",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#Museum",
+    "items": 8010,
+    "classes": 350,
+    "tags_select": {
+      "tourism": "museum"
+    },
+    "conflationDistance": 200,
+    "tags_generate": {
+      "tourism": "museum"
+    }
+  },
+  {
+    "title": "Winery",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#Winery",
+    "items": 8250,
+    "classes": 360,
+    "tags_select": {
+      "craft": "winery"
+    },
+    "conflationDistance": 200,
+    "tags_generate": {
+      "craft": "winery"
+    }
+  },
+  {
+    "title": "Viewpoint",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#PointOfView",
+    "items": 8450,
+    "classes": 370,
+    "tags_select": {
+      "tourism": "viewpoint"
+    },
+    "osm_types": [
+        "nodes"
+    ],
+    "conflationDistance": 500,
+    "tags_generate": {
+      "tourism": "viewpoint"
+    }
+  },
+  {
+    "title": "Picnic site",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#PicnicArea",
+    "items": 8460,
+    "classes": 380,
+    "tags_select": {
+      "tourism": "picnic_site"
+    },
+    "conflationDistance": 500,
+    "tags_generate": {
+      "tourism": "picnic_site"
     }
   }
 ]
