@@ -77,22 +77,27 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:GeoDAE": "c_gid",
+                        "ref:FR:GeoDAE": "gid",
                         "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
                         "indoor": lambda res: "yes" if res["c_acc"] == u"Intérieur" else "no" if res["c_acc"] == u"Extérieur" else None,
                         "access": lambda res: "yes" if res["c_acc_lib"] == "t" else "permissive" if res["c_acc_lib"] == "f" else None,
                         "security_desk": lambda res: "yes" if res["c_acc_pcsec"] == "t" else "no" if res["c_acc_pcsec"] == "f" else None,
                         "reception_desk": lambda res: "yes" if res["c_acc_acc"] == "t" else "no" if res["c_acc_acc"] == "f" else None,
                         "level": lambda res: self.normalizeEtage(res["c_acc_etg"]),
-                        "defibrillator:location": lambda res: res["c_acc_complt"] if res["c_acc_complt"] else reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
+                        "defibrillator:location": lambda res: res["c_acc_complt"] if "c_acc_complt" in res else reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
                         "opening_hours": lambda res: self.normalizeHours(res["c_disp_j"], res["c_disp_h"]),
-                        "surveillance": lambda res: "yes" if res["c_dispsurv"] == "t" else "no" if res["c_dispsurv"] == "f" else None,
                         "start_date": "c_date_instal|timePosition",
-                        "operator:ref:FR:SIREN": "c_expt_siren",
-                        "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if res["c_expt_rais"] else None
+                        "operator:ref:FR:SIREN": lambda res: res["c_expt_siren"] if "c_expt_siren" in res else None,
+                        "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if "c_expt_rais" in res else None
                     },
                     text = lambda tags, fields: {"en": " - ".join(filter(lambda x: x, [
                         u"POSITION APPROXIMATIVE À VÉRIFIER" if fields["c_etat_valid"] == u"en attente de validation" else None,
                         fields["c_nom"],
-                        "Horaires : "+fields["c_disp_j"][1:-1]+" "+fields["c_disp_h"][1:-1] if fields["c_disp_j"] and fields["c_disp_h"] else None
+                        "Horaires : "+fields["c_disp_j"][1:-1]+" "+fields["c_disp_h"][1:-1] if fields["c_disp_j"] and fields["c_disp_h"] else None,
+                        " ".join(filter(lambda x: x, [
+                            fields["c_adr_num"],
+                            fields["c_adr_voie"],
+                            fields["c_com_cp"],
+                            fields["c_com_nom"]
+                        ]))
                     ]))} )))
