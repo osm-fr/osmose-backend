@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-08-11 19:34+0000\n"
+"PO-Revision-Date: 2020-08-27 18:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -1547,11 +1547,6 @@ msgstr ""
 #: ../plugins/Website.py:44
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
-
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:113
-#, python-brace-format
-msgid "Historical monument: {0} (positioned at {1} with confidence {2})"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:31
@@ -4255,4 +4250,185 @@ msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:48
 msgid "Long Waterway/water above ground and no bridge"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:113
+#, python-brace-format
+msgid "Historical monument: {0}"
+msgstr ""
+
+#: tmp.json:1
+msgid "bicycle parking"
+msgstr ""
+
+#: tmp.json:2
+msgid "surveillance camera"
+msgstr ""
+
+#: tmp.json:3
+msgid "fire hydrant"
+msgstr ""
+
+#: tmp.json:4
+msgid "traffic light"
+msgstr ""
+
+#: tmp.json:5
+msgid "phone booth"
+msgstr ""
+
+#: tmp.json:6
+msgid "drinking water"
+msgstr ""
+
+#: tmp.json:7 tmp.json:33
+msgid "max speed limit 5"
+msgstr ""
+
+#: tmp.json:8 tmp.json:34
+msgid "max speed limit 10"
+msgstr ""
+
+#: tmp.json:9 tmp.json:35
+msgid "max speed limit 15"
+msgstr ""
+
+#: tmp.json:10 tmp.json:36
+msgid "max speed limit 20"
+msgstr ""
+
+#: tmp.json:11 tmp.json:38
+msgid "max speed limit 30"
+msgstr ""
+
+#: tmp.json:12 tmp.json:39
+msgid "max speed limit 35"
+msgstr ""
+
+#: tmp.json:13 tmp.json:40
+msgid "max speed limit 40"
+msgstr ""
+
+#: tmp.json:14 tmp.json:41
+msgid "max speed limit 45"
+msgstr ""
+
+#: tmp.json:15 tmp.json:42
+msgid "max speed limit 50"
+msgstr ""
+
+#: tmp.json:16 tmp.json:44
+msgid "max speed limit 60"
+msgstr ""
+
+#: tmp.json:17 tmp.json:46
+msgid "max speed limit 70"
+msgstr ""
+
+#: tmp.json:18 tmp.json:48
+msgid "max speed limit 80"
+msgstr ""
+
+#: tmp.json:19 tmp.json:49
+msgid "max speed limit 90"
+msgstr ""
+
+#: tmp.json:20 tmp.json:50
+msgid "max speed limit 100"
+msgstr ""
+
+#: tmp.json:21 tmp.json:51
+msgid "max speed limit 110"
+msgstr ""
+
+#: tmp.json:22 tmp.json:52
+msgid "max speed limit 120"
+msgstr ""
+
+#: tmp.json:23
+msgid "max speed limit 130"
+msgstr ""
+
+#: tmp.json:24
+msgid "max height limit"
+msgstr ""
+
+#: tmp.json:25
+msgid "max weight limit"
+msgstr ""
+
+#: tmp.json:26
+msgid "roundabout"
+msgstr ""
+
+#: tmp.json:27
+msgid "road bump"
+msgstr ""
+
+#: tmp.json:28
+msgid "traffic signals"
+msgstr ""
+
+#: tmp.json:29
+msgid "living street"
+msgstr ""
+
+#: tmp.json:30
+msgid "bus stop"
+msgstr ""
+
+#: tmp.json:31
+msgid "animal crossing"
+msgstr ""
+
+#: tmp.json:32
+msgid "stop"
+msgstr ""
+
+#: tmp.json:37
+msgid "max speed limit 25"
+msgstr ""
+
+#: tmp.json:43
+msgid "max speed limit 55"
+msgstr ""
+
+#: tmp.json:45
+msgid "max speed limit 65"
+msgstr ""
+
+#: tmp.json:47
+msgid "max speed limit 75"
+msgstr ""
+
+#: tmp.json:53
+msgid "Tourism office"
+msgstr ""
+
+#: tmp.json:54
+msgid "Church"
+msgstr ""
+
+#: tmp.json:55
+msgid "Camping"
+msgstr ""
+
+#: tmp.json:56
+msgid "Restaurant"
+msgstr ""
+
+#: tmp.json:57
+msgid "Museum"
+msgstr ""
+
+#: tmp.json:58
+msgid "Winery"
+msgstr ""
+
+#: tmp.json:59
+msgid "Viewpoint"
+msgstr ""
+
+#: tmp.json:60
+msgid "Picnic site"
 msgstr ""
