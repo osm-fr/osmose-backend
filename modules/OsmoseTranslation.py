@@ -87,6 +87,8 @@ class OsmoseTranslation:
                 if isinstance(arg, dict):
                     args_basic.append('{' + str(len(args_translated)) + '}')
                     args_translated.append(arg)
+                elif isinstance(arg, str):
+                    args_basic.append(arg.replace('{', '{{').replace('}', '}}'))
                 else:
                     args_basic.append(arg)
 
