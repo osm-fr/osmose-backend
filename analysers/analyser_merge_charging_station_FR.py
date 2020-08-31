@@ -63,6 +63,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                     static1={
                         "amenity": "charging_station",
                         "motorcar": "yes"},
+                    static2={"source": self.source},
                     mapping1={
                         "operator": "n_operateur",
                         "network": "n_enseigne",
