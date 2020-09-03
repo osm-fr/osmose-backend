@@ -27,10 +27,10 @@ from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 4, "Lyon", logger,
-            u"https://data.grandlyon.com/localisation/points-dadressage-sur-bftiments-de-la-mftropole-de-lyon/",
-            u"Grand Lyon - Points d'adressage sur bâtiments de la Métropole de Lyon",
-            SHP(Source(attribution = u"Grand Lyon", millesime = "06/2016",
-                    fileUrl = u"https://download.data.grandlyon.com/ws/grandlyon/adr_voie_lieu.adradresse.shp?srsname=epsg:4171",
+            "https://data.grandlyon.com/localisation/points-dadressage-sur-bftiments-de-la-mftropole-de-lyon/",
+            "Grand Lyon - Points d'adressage sur bâtiments de la Métropole de Lyon",
+            SHP(Source(attribution = "Grand Lyon", millesime = "092020",
+                    fileUrl = "https://download.data.grandlyon.com/ws/grandlyon/adr_voie_lieu.adradresse.shp?srsname=EPSG:4326&maxfeatures=999999&start=1",
                 zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",)),
             Mapping(

@@ -43,7 +43,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://data.datatourisme.gouv.fr",
             "DATAtourisme, la base nationale des données du tourisme en Open Data",
-            CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020",
+            CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020", fileUrlCache = 7, # 7d to avoid auto-disable of the data source
                     fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/84c2e2e54073df2b931c9f4bf8a3ccf3/b7f07a07-2b8f-4fcb-a74f-fdd68b0f57d5")),
             Load("Longitude", "Latitude",
                 select = {'type': type_},
@@ -85,7 +85,11 @@ WHERE {
     dt:Camping,
     dt:Church,
     dt:Restaurant,
-    dt:LocalTouristOffice
+    dt:LocalTouristOffice,
+    dt:Museum,
+    dt:PointOfView,
+    dt:PicnicArea,
+    dt:Winery
   )).
   ?location schema:geo ?geo.
   ?geo schema:latitude ?Latitude;
