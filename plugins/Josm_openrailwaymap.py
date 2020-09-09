@@ -573,7 +573,7 @@ class Josm_openrailwaymap(PluginMapCSS):
                     [u'railway:switch:resetting',u'yes']])
                 }})
 
-        # node[railway=station][!name]
+        # node[railway=station][station!=funicular][!name]
         # node[railway=halt][!name]
         # node[railway=junction][!name]
         # node[railway=spur_junction][!name]
@@ -586,7 +586,7 @@ class Josm_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'station') and not mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'station') and mapcss._tag_capture(capture_tags, 1, tags, u'station') != mapcss._value_const_capture(capture_tags, 1, u'funicular', u'funicular') and not mapcss._tag_capture(capture_tags, 2, tags, u'name'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -640,7 +640,7 @@ class Josm_openrailwaymap(PluginMapCSS):
                 # assertMatch:"node railway=tram_stop"
                 # assertNoMatch:"node railway=yard name=foo"
                 # assertMatch:"node railway=yard"
-                err.append({'class': 9015044, 'subclass': 1983319850, 'text': mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
+                err.append({'class': 9015044, 'subclass': 1433036676, 'text': mapcss.tr(u'{0}={1} without name', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
 
         return err
 
@@ -1649,24 +1649,24 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'railway': u'switch', u'railway:switch': u'default'}), expected={'class': 9015040, 'subclass': 967663151})
         self.check_err(n.node(data, {u'railway': u'switch', u'railway:switch': u'resetting', u'ref': u'2'}), expected={'class': 9015040, 'subclass': 967663151})
         self.check_not_err(n.node(data, {u'railway': u'switch'}), expected={'class': 9015040, 'subclass': 967663151})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'crossover'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'crossover'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'halt'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'halt'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'junction'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'junction'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'service_station'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'service_station'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'site'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'site'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'spur_junction'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'spur_junction'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'station'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'station'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'tram_stop'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'tram_stop'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'yard'}), expected={'class': 9015044, 'subclass': 1983319850})
-        self.check_err(n.node(data, {u'railway': u'yard'}), expected={'class': 9015044, 'subclass': 1983319850})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'crossover'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'crossover'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'halt'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'halt'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'junction'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'junction'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'service_station'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'service_station'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'site'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'site'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'spur_junction'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'spur_junction'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'station'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'station'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'tram_stop'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'tram_stop'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_not_err(n.node(data, {u'name': u'foo', u'railway': u'yard'}), expected={'class': 9015044, 'subclass': 1433036676})
+        self.check_err(n.node(data, {u'railway': u'yard'}), expected={'class': 9015044, 'subclass': 1433036676})
         self.check_not_err(n.way(data, {u'railway': u'rail', u'service': u'siding'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
         self.check_not_err(n.way(data, {u'railway': u'rail', u'service': u'yard', u'usage': u'industrial'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})
         self.check_err(n.way(data, {u'railway': u'rail', u'service': u'siding', u'usage': u'main'}, [0]), expected={'class': 9015001, 'subclass': 1888453557})

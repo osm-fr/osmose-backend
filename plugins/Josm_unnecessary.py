@@ -19,7 +19,7 @@ class Josm_unnecessary(PluginMapCSS):
         self.errors[9010003] = self.def_class(item = 9010, level = 3, tags = ["tag"], title = mapcss.tr(u'descriptive name'))
 
         self.re_017d2728 = re.compile(r'^(?i)(restaurant)$')
-        self.re_053f39fb = re.compile(r'^(?i)(house|casa|rumah|vivienda)$')
+        self.re_07d0fe8d = re.compile(r'^(?i)(library|biblioteca|biblioteka|bibliothek|bibliotheek)$')
         self.re_0a40c79a = re.compile(r'^(?i)(Аптека|farmacia|pharmacy|pharmacie)$')
         self.re_106eed50 = re.compile(r'^(?i)(shop|boutique)$')
         self.re_10870b34 = re.compile(r'^(?i)(parc|park)$')
@@ -27,8 +27,8 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_1b9641aa = re.compile(r'^(?i)(post office)$')
         self.re_1ba0f749 = re.compile(r'^(?i)(pond)$')
         self.re_1e5aeb3d = re.compile(r'^(footway|pedestrian)$')
-        self.re_2335ac87 = re.compile(r'^(?i)(house|casa|maison|rumah|vivienda)$')
         self.re_251cae80 = re.compile(r'^(?i)(parking|parkplatz)$')
+        self.re_29150b73 = re.compile(r'^(?i)(casa)$')
         self.re_2b5b04af = re.compile(r'^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$')
         self.re_337f006b = re.compile(r'^(?i)(school|école|Школа)$')
         self.re_33dfa05b = re.compile(r'^(?i)(church|église|biserica)$')
@@ -38,8 +38,10 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_480c7ba6 = re.compile(r'^(?i)(building|bangunan)$')
         self.re_480ecdbb = re.compile(r'^(?i)(école élémentaire)$')
         self.re_519078ac = re.compile(r'^(?i)(collège)$')
+        self.re_5276c7e0 = re.compile(r'^(?i)(house|maison|rumah|vivienda)$')
         self.re_56dafa68 = re.compile(r'^(?i)(hydrant)$')
         self.re_577104db = re.compile(r'^(?i)(kiosk)$')
+        self.re_58f52447 = re.compile(r'^(?i)(house|rumah|vivienda)$')
         self.re_5b729ae4 = re.compile(r'^(?i)(toilets?)$')
         self.re_644827a8 = re.compile(r'^(?i)(jalan)$')
         self.re_69efe08d = re.compile(r'^(gpx|gpxx|gpxd):')
@@ -185,9 +187,9 @@ class Josm_unnecessary(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, u'{1.key}')])
                 }})
 
+        # *[name][name=~/^(?i)(library|biblioteca|biblioteka|bibliothek|bibliotheek)$/][amenity=library]
         # *[name][name=~/^(?i)(parc|park)$/][leisure=park]
         # *[name][name=~/^(?i)(pond)$/][water=pond]
-        # *[name][name=~/^(?i)(chapel|chapelle|kapelle)$/][building=chapel]
         # *[name][name=~/^(?i)(church|église|biserica)$/][amenity=place_of_worship][religion=christian]
         # *[name][name=~/^(?i)(mosque|cami|masjid|مسجد)$/][amenity=place_of_worship][religion=muslim]
         # *[name][name=~/^(?i)(parking|parkplatz)$/][amenity=parking]
@@ -197,16 +199,15 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(playground|spielplatz)$/][leisure=playground]
         # *[name][name=~/^(?i)(shop|boutique)$/][shop][shop!=no]
         # *[name][name=~/^(?i)(building|bangunan)$/][building][building!=no]
-        # *[name][name=~/^(?i)(house|casa|maison|rumah|vivienda)$/][building=house]
-        # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk]
+        # *[name][name=~/^(?i)(house|maison|rumah|vivienda)$/][building=house]
+        # *[name][name=~/^(?i)(casa)$/][building=house][outside("FR")]
+        # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk][outside("NL")]
         # *[name][name=~/^(?i)(path)$/][highway=path]
         # *[name][name=~/^(?i)(jalan)$/][highway]
         # *[name][name=~/^(?i)(silo)$/][man_made=silo]
-        # *[name][name=~/^(?i)(silo)$/][building=silo]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][amenity=grave_yard]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][landuse=cemetery]
         # *[name][name=~/^(?i)(monument aux morts|war memorial)$/][historic=memorial][memorial=war_memorial]
-        # *[name][name=~/^(?i)(school|école|Школа)$/][building=school]
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity=school]
         # *[name][name=~/^(?i)(école élémentaire)$/][amenity=school]["school:FR"="élémentaire"]
         # *[name][name=~/^(?i)(école maternelle)$/][amenity=school]["school:FR"="maternelle"]
@@ -220,15 +221,15 @@ class Josm_unnecessary(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_07d0fe8d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'library'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_10870b34), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'leisure') == mapcss._value_capture(capture_tags, 2, u'park'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1ba0f749), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') == mapcss._value_capture(capture_tags, 2, u'pond'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'chapel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -268,11 +269,15 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2335ac87), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5276c7e0), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_577104db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'shop') == mapcss._value_capture(capture_tags, 2, u'kiosk'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_29150b73), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house') and mapcss.outside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_577104db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'shop') == mapcss._value_capture(capture_tags, 2, u'kiosk') and mapcss.outside(self.father.config.options, u'NL'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -288,10 +293,6 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76c4f24d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'silo'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2b5b04af), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'grave_yard'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -301,10 +302,6 @@ class Josm_unnecessary(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76f94888), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'historic') == mapcss._value_capture(capture_tags, 2, u'memorial') and mapcss._tag_capture(capture_tags, 3, tags, u'memorial') == mapcss._value_capture(capture_tags, 3, u'war_memorial'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'school'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -353,27 +350,42 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertMatch:"node name=parking amenity=parking"
                 # assertNoMatch:"node name=shop shop=no"
                 # assertMatch:"node name=shop shop=whatever"
-                err.append({'class': 9010003, 'subclass': 1361203443, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 773913345, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'name'])
                 }})
 
-        # *[name][name=~/^(?i)(school|école|Школа)$/][building][building!=school][building!=no]
-        # *[name][name=~/^(?i)(house|casa|rumah|vivienda)$/][building][building!=house][building!=no]
-        if (u'building' in keys and u'name' in keys):
+        # *[name][name=~/^(?i)(chapel|chapelle|kapelle)$/]
+        # *[name][name=~/^(?i)(silo)$/][man_made!=silo]
+        # *[name][name=~/^(?i)(school|école|Школа)$/][amenity!=school]
+        # *[name][name=~/^(?i)(house|rumah|vivienda)$/][building][building!=house][building!=no]
+        # *[name][name=~/^(?i)(casa)$/][building][building!=house][building!=no][outside("FR")]
+        if (u'building' in keys and u'name' in keys) or (u'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'school', u'school') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, u'name')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_053f39fb), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76c4f24d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'man_made') != mapcss._value_const_capture(capture_tags, 2, u'silo', u'silo'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 2, u'school', u'school'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_58f52447), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_29150b73), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no') and mapcss.outside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("descriptive name")
                 # throwWarning:tr("{0}","{0.tag}")
-                err.append({'class': 9010003, 'subclass': 1173941116, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9010003, 'subclass': 107322852, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # *[/^(gpx|gpxx|gpxd):/]
         if True:
@@ -448,8 +460,8 @@ class Josm_unnecessary(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, u'{0.key}')])
                 }})
 
-        # way[foot=~/^(yes|designated)$/][highway=~/^(footway|pedestrian)$/][!access]
-        # way[bicycle=~/^(yes|designated)$/][highway=cycleway][!vehicle][!access][foot!=designated]
+        # way[foot][highway][foot=~/^(yes|designated)$/][highway=~/^(footway|pedestrian)$/][!access]
+        # way[bicycle][highway][bicycle=~/^(yes|designated)$/][highway=cycleway][!vehicle][!access][foot!=designated]
         # *[gnis:Class="Populated Place"][place=city]
         # *[gnis:Class="Populated Place"][place=town]
         # *[gnis:Class="Populated Place"][place=village]
@@ -459,11 +471,11 @@ class Josm_unnecessary(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 0, tags, u'foot')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1e5aeb3d), mapcss._tag_capture(capture_tags, 1, tags, u'highway')) and not mapcss._tag_capture(capture_tags, 2, tags, u'access'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'foot') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 2, tags, u'foot')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_1e5aeb3d), mapcss._tag_capture(capture_tags, 3, tags, u'highway')) and not mapcss._tag_capture(capture_tags, 4, tags, u'access'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 0, tags, u'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == mapcss._value_capture(capture_tags, 1, u'cycleway') and not mapcss._tag_capture(capture_tags, 2, tags, u'vehicle') and not mapcss._tag_capture(capture_tags, 3, tags, u'access') and mapcss._tag_capture(capture_tags, 4, tags, u'foot') != mapcss._value_const_capture(capture_tags, 4, u'designated', u'designated'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'bicycle') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 2, tags, u'bicycle')) and mapcss._tag_capture(capture_tags, 3, tags, u'highway') == mapcss._value_capture(capture_tags, 3, u'cycleway') and not mapcss._tag_capture(capture_tags, 4, tags, u'vehicle') and not mapcss._tag_capture(capture_tags, 5, tags, u'access') and mapcss._tag_capture(capture_tags, 6, tags, u'foot') != mapcss._value_const_capture(capture_tags, 6, u'designated', u'designated'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -491,7 +503,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # fixRemove:"{0.key}"
                 # assertNoMatch:"way highway=pedestrian access=no foot=designated"
                 # assertMatch:"way highway=pedestrian foot=designated"
-                err.append({'class': 9010001, 'subclass': 92001477, 'text': mapcss.tr(u'{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010001, 'subclass': 519553113, 'text': mapcss.tr(u'{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, u'{0.key}')])
                 }})
@@ -557,9 +569,9 @@ class Josm_unnecessary(PluginMapCSS):
                 # throwWarning:tr("{0} is unnecessary for {1}. The flow direction is defined by the way direction.","{1.key}","{0.key}")
                 err.append({'class': 9010001, 'subclass': 1802985931, 'text': mapcss.tr(u'{0} is unnecessary for {1}. The flow direction is defined by the way direction.', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[name][name=~/^(?i)(library|biblioteca|biblioteka|bibliothek|bibliotheek)$/][amenity=library]
         # *[name][name=~/^(?i)(parc|park)$/][leisure=park]
         # *[name][name=~/^(?i)(pond)$/][water=pond]
-        # *[name][name=~/^(?i)(chapel|chapelle|kapelle)$/][building=chapel]
         # *[name][name=~/^(?i)(church|église|biserica)$/][amenity=place_of_worship][religion=christian]
         # *[name][name=~/^(?i)(mosque|cami|masjid|مسجد)$/][amenity=place_of_worship][religion=muslim]
         # *[name][name=~/^(?i)(parking|parkplatz)$/][amenity=parking]
@@ -569,16 +581,15 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(playground|spielplatz)$/][leisure=playground]
         # *[name][name=~/^(?i)(shop|boutique)$/][shop][shop!=no]
         # *[name][name=~/^(?i)(building|bangunan)$/][building][building!=no]
-        # *[name][name=~/^(?i)(house|casa|maison|rumah|vivienda)$/][building=house]
-        # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk]
+        # *[name][name=~/^(?i)(house|maison|rumah|vivienda)$/][building=house]
+        # *[name][name=~/^(?i)(casa)$/][building=house][outside("FR")]
+        # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk][outside("NL")]
         # *[name][name=~/^(?i)(path)$/][highway=path]
         # *[name][name=~/^(?i)(jalan)$/][highway]
         # *[name][name=~/^(?i)(silo)$/][man_made=silo]
-        # *[name][name=~/^(?i)(silo)$/][building=silo]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][amenity=grave_yard]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][landuse=cemetery]
         # *[name][name=~/^(?i)(monument aux morts|war memorial)$/][historic=memorial][memorial=war_memorial]
-        # *[name][name=~/^(?i)(school|école|Школа)$/][building=school]
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity=school]
         # *[name][name=~/^(?i)(école élémentaire)$/][amenity=school]["school:FR"="élémentaire"]
         # *[name][name=~/^(?i)(école maternelle)$/][amenity=school]["school:FR"="maternelle"]
@@ -592,15 +603,15 @@ class Josm_unnecessary(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_07d0fe8d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'library'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_10870b34), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'leisure') == mapcss._value_capture(capture_tags, 2, u'park'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1ba0f749), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') == mapcss._value_capture(capture_tags, 2, u'pond'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'chapel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -640,11 +651,15 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2335ac87), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5276c7e0), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_577104db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'shop') == mapcss._value_capture(capture_tags, 2, u'kiosk'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_29150b73), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house') and mapcss.outside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_577104db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'shop') == mapcss._value_capture(capture_tags, 2, u'kiosk') and mapcss.outside(self.father.config.options, u'NL'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -660,10 +675,6 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76c4f24d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'silo'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2b5b04af), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'grave_yard'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -673,10 +684,6 @@ class Josm_unnecessary(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76f94888), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'historic') == mapcss._value_capture(capture_tags, 2, u'memorial') and mapcss._tag_capture(capture_tags, 3, tags, u'memorial') == mapcss._value_capture(capture_tags, 3, u'war_memorial'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'school'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -721,7 +728,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertMatch:"way name=Cmentarz amenity=grave_yard"
                 # assertMatch:"way name=Rumah building=house"
                 # assertNoMatch:"way name=Rumah building=yes"
-                # assertMatch:"way name=Silo building=silo"
+                # assertNoMatch:"way name=Silo building=silo"
                 # assertMatch:"way name=Silo man_made=silo building=silo"
                 # assertMatch:"way name=building building=house"
                 # assertMatch:"way name=building building=yes"
@@ -734,33 +741,49 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertNoMatch:"way name=parking"
                 # assertNoMatch:"way name=shop leisure=playground"
                 # assertMatch:"way name=silo man_made=silo"
-                err.append({'class': 9010003, 'subclass': 1361203443, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 773913345, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'name'])
                 }})
 
-        # *[name][name=~/^(?i)(school|école|Школа)$/][building][building!=school][building!=no]
-        # *[name][name=~/^(?i)(house|casa|rumah|vivienda)$/][building][building!=house][building!=no]
-        if (u'building' in keys and u'name' in keys):
+        # *[name][name=~/^(?i)(chapel|chapelle|kapelle)$/]
+        # *[name][name=~/^(?i)(silo)$/][man_made!=silo]
+        # *[name][name=~/^(?i)(school|école|Школа)$/][amenity!=school]
+        # *[name][name=~/^(?i)(house|rumah|vivienda)$/][building][building!=house][building!=no]
+        # *[name][name=~/^(?i)(casa)$/][building][building!=house][building!=no][outside("FR")]
+        if (u'building' in keys and u'name' in keys) or (u'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'school', u'school') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, u'name')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_053f39fb), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76c4f24d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'man_made') != mapcss._value_const_capture(capture_tags, 2, u'silo', u'silo'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 2, u'school', u'school'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_58f52447), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_29150b73), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no') and mapcss.outside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("descriptive name")
                 # throwWarning:tr("{0}","{0.tag}")
                 # assertNoMatch:"way name=Rumah building=house"
                 # assertMatch:"way name=Rumah building=yes"
+                # assertMatch:"way name=Silo building=silo"
                 # assertNoMatch:"way name=building building=house"
                 # assertNoMatch:"way name=building building=yes"
                 # assertNoMatch:"way name=house building=house"
                 # assertMatch:"way name=house building=yes"
-                err.append({'class': 9010003, 'subclass': 1173941116, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9010003, 'subclass': 107322852, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # *[/^(gpx|gpxx|gpxd):/]
         if True:
@@ -894,9 +917,9 @@ class Josm_unnecessary(PluginMapCSS):
                     u'payment:cash'])
                 }})
 
+        # *[name][name=~/^(?i)(library|biblioteca|biblioteka|bibliothek|bibliotheek)$/][amenity=library]
         # *[name][name=~/^(?i)(parc|park)$/][leisure=park]
         # *[name][name=~/^(?i)(pond)$/][water=pond]
-        # *[name][name=~/^(?i)(chapel|chapelle|kapelle)$/][building=chapel]
         # *[name][name=~/^(?i)(church|église|biserica)$/][amenity=place_of_worship][religion=christian]
         # *[name][name=~/^(?i)(mosque|cami|masjid|مسجد)$/][amenity=place_of_worship][religion=muslim]
         # *[name][name=~/^(?i)(parking|parkplatz)$/][amenity=parking]
@@ -906,16 +929,15 @@ class Josm_unnecessary(PluginMapCSS):
         # *[name][name=~/^(?i)(playground|spielplatz)$/][leisure=playground]
         # *[name][name=~/^(?i)(shop|boutique)$/][shop][shop!=no]
         # *[name][name=~/^(?i)(building|bangunan)$/][building][building!=no]
-        # *[name][name=~/^(?i)(house|casa|maison|rumah|vivienda)$/][building=house]
-        # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk]
+        # *[name][name=~/^(?i)(house|maison|rumah|vivienda)$/][building=house]
+        # *[name][name=~/^(?i)(casa)$/][building=house][outside("FR")]
+        # *[name][name=~/^(?i)(kiosk)$/][shop=kiosk][outside("NL")]
         # *[name][name=~/^(?i)(path)$/][highway=path]
         # *[name][name=~/^(?i)(jalan)$/][highway]
         # *[name][name=~/^(?i)(silo)$/][man_made=silo]
-        # *[name][name=~/^(?i)(silo)$/][building=silo]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][amenity=grave_yard]
         # *[name][name=~/^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$/][landuse=cemetery]
         # *[name][name=~/^(?i)(monument aux morts|war memorial)$/][historic=memorial][memorial=war_memorial]
-        # *[name][name=~/^(?i)(school|école|Школа)$/][building=school]
         # *[name][name=~/^(?i)(school|école|Школа)$/][amenity=school]
         # *[name][name=~/^(?i)(école élémentaire)$/][amenity=school]["school:FR"="élémentaire"]
         # *[name][name=~/^(?i)(école maternelle)$/][amenity=school]["school:FR"="maternelle"]
@@ -929,15 +951,15 @@ class Josm_unnecessary(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_07d0fe8d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'library'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_10870b34), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'leisure') == mapcss._value_capture(capture_tags, 2, u'park'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1ba0f749), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'water') == mapcss._value_capture(capture_tags, 2, u'pond'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'chapel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -977,11 +999,15 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2335ac87), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5276c7e0), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_577104db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'shop') == mapcss._value_capture(capture_tags, 2, u'kiosk'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_29150b73), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'house') and mapcss.outside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_577104db), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'shop') == mapcss._value_capture(capture_tags, 2, u'kiosk') and mapcss.outside(self.father.config.options, u'NL'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -997,10 +1023,6 @@ class Josm_unnecessary(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76c4f24d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'silo'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2b5b04af), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'grave_yard'))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -1010,10 +1032,6 @@ class Josm_unnecessary(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76f94888), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'historic') == mapcss._value_capture(capture_tags, 2, u'memorial') and mapcss._tag_capture(capture_tags, 3, tags, u'memorial') == mapcss._value_capture(capture_tags, 3, u'war_memorial'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') == mapcss._value_capture(capture_tags, 2, u'school'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1058,27 +1076,42 @@ class Josm_unnecessary(PluginMapCSS):
                 # assertMatch:"relation name=PLAYGROUND leisure=playground type=multipolygon"
                 # assertMatch:"relation name=Parking amenity=parking type=multipolygon"
                 # assertMatch:"relation name=parking amenity=parking type=multipolygon"
-                err.append({'class': 9010003, 'subclass': 1361203443, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010003, 'subclass': 773913345, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'name'])
                 }})
 
-        # *[name][name=~/^(?i)(school|école|Школа)$/][building][building!=school][building!=no]
-        # *[name][name=~/^(?i)(house|casa|rumah|vivienda)$/][building][building!=house][building!=no]
-        if (u'building' in keys and u'name' in keys):
+        # *[name][name=~/^(?i)(chapel|chapelle|kapelle)$/]
+        # *[name][name=~/^(?i)(silo)$/][man_made!=silo]
+        # *[name][name=~/^(?i)(school|école|Школа)$/][amenity!=school]
+        # *[name][name=~/^(?i)(house|rumah|vivienda)$/][building][building!=house][building!=no]
+        # *[name][name=~/^(?i)(casa)$/][building][building!=house][building!=no][outside("FR")]
+        if (u'building' in keys and u'name' in keys) or (u'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'school', u'school') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7c3e64db), mapcss._tag_capture(capture_tags, 1, tags, u'name')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_053f39fb), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_76c4f24d), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'man_made') != mapcss._value_const_capture(capture_tags, 2, u'silo', u'silo'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_337f006b), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') != mapcss._value_const_capture(capture_tags, 2, u'school', u'school'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_58f52447), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_29150b73), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'building') and mapcss._tag_capture(capture_tags, 3, tags, u'building') != mapcss._value_const_capture(capture_tags, 3, u'house', u'house') and mapcss._tag_capture(capture_tags, 4, tags, u'building') != mapcss._value_const_capture(capture_tags, 4, u'no', u'no') and mapcss.outside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("descriptive name")
                 # throwWarning:tr("{0}","{0.tag}")
-                err.append({'class': 9010003, 'subclass': 1173941116, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9010003, 'subclass': 107322852, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         # *[/^(gpx|gpxx|gpxd):/]
         if True:
@@ -1115,13 +1148,13 @@ class Test(TestPluginCommon):
 
         self.check_not_err(n.node(data, {u'gnis:Class': u'Populated Place', u'place': u'locality'}), expected={'class': 9010001, 'subclass': 1667787383})
         self.check_err(n.node(data, {u'gnis:Class': u'Populated Place', u'place': u'village'}), expected={'class': 9010001, 'subclass': 1667787383})
-        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Megaparking'}), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.node(data, {u'leisure': u'playground', u'name': u'PLaYGrOUNd'}), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking'}), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking_with_suffix'}), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'parking'}), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.node(data, {u'name': u'shop', u'shop': u'no'}), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.node(data, {u'name': u'shop', u'shop': u'whatever'}), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Megaparking'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.node(data, {u'leisure': u'playground', u'name': u'PLaYGrOUNd'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.node(data, {u'amenity': u'parking', u'name': u'Parking_with_suffix'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'parking'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.node(data, {u'name': u'shop', u'shop': u'no'}), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.node(data, {u'name': u'shop', u'shop': u'whatever'}), expected={'class': 9010003, 'subclass': 773913345})
         self.check_err(n.node(data, {u'gpx:time': u'2018-01-01T12:00:00Z'}), expected={'class': 9010001, 'subclass': 764820177})
         self.check_err(n.node(data, {u'gpxd:color': u'#FF0000'}), expected={'class': 9010001, 'subclass': 764820177})
         self.check_not_err(n.node(data, {u'source': u'gpx:foo'}), expected={'class': 9010001, 'subclass': 764820177})
@@ -1130,32 +1163,33 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'highway': u'motorway', u'motor_vehicle': u'yes'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
         self.check_err(n.way(data, {u'access': u'no', u'highway': u'proposed'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
         self.check_err(n.way(data, {u'layer': u'0'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
-        self.check_not_err(n.way(data, {u'access': u'no', u'foot': u'designated', u'highway': u'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 92001477})
-        self.check_err(n.way(data, {u'foot': u'designated', u'highway': u'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 92001477})
+        self.check_not_err(n.way(data, {u'access': u'no', u'foot': u'designated', u'highway': u'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 519553113})
+        self.check_err(n.way(data, {u'foot': u'designated', u'highway': u'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 519553113})
         self.check_not_err(n.way(data, {u'emergency': u'designated'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {u'emergency': u'permissive'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
-        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'silo', u'man_made': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'cemetery'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'building': u'yes', u'name': u'kiosk', u'shop': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'name': u'parking'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'leisure': u'playground', u'name': u'shop'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.way(data, {u'man_made': u'silo', u'name': u'silo'}, [0]), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_not_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_not_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_not_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 1173941116})
-        self.check_err(n.relation(data, {u'leisure': u'playground', u'name': u'PLAYGROUND', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'Parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1361203443})
-        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 1361203443})
+        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'building': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'building': u'silo', u'man_made': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'cemetery'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'amenity': u'grave_yard', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'building': u'yes', u'name': u'kiosk', u'shop': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'kiosk'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'name': u'parking'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'leisure': u'playground', u'name': u'shop'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.way(data, {u'man_made': u'silo', u'name': u'silo'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_not_err(n.way(data, {u'building': u'house', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_err(n.way(data, {u'building': u'yes', u'name': u'Rumah'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_err(n.way(data, {u'building': u'silo', u'name': u'Silo'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_not_err(n.way(data, {u'building': u'house', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_not_err(n.way(data, {u'building': u'yes', u'name': u'building'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_not_err(n.way(data, {u'building': u'house', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_err(n.way(data, {u'building': u'yes', u'name': u'house'}, [0]), expected={'class': 9010003, 'subclass': 107322852})
+        self.check_err(n.relation(data, {u'leisure': u'playground', u'name': u'PLAYGROUND', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'Parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 773913345})
+        self.check_err(n.relation(data, {u'amenity': u'parking', u'name': u'parking', u'type': u'multipolygon'}, []), expected={'class': 9010003, 'subclass': 773913345})

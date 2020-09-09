@@ -29,34 +29,47 @@ class Josm_numeric(PluginMapCSS):
         self.errors[9006020] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: kilometers is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
         self.errors[9006021] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'Unnecessary amount of decimal places'))
         self.errors[9006022] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'Airport tagging'))
+        self.errors[9006023] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9006024] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'Definition of {0} is unclear', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9006025] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'))
 
-        self.re_035d45f0 = re.compile(r'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_08f211f3 = re.compile(r'^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$')
+        self.re_09e9525d = re.compile(r'^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$')
         self.re_0ae2edfd = re.compile(r'^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$')
         self.re_0b0f0f56 = re.compile(r'^0$|^(-|\+)?[1-5]$')
+        self.re_0d8976a3 = re.compile(r'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_0f74b227 = re.compile(r'^(0|1|2|3|4|5|6|7|8)((;|-)(1|2|3|4|5|6|7|8))*$')
+        self.re_17733c6c = re.compile(r'^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$')
         self.re_18424cc6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|ft))?$')
+        self.re_19ef4172 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? h)$')
+        self.re_1b78ea82 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? min)$')
         self.re_1d428b19 = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
-        self.re_1e934345 = re.compile(r'^[0-9]+,[0-9][0-9]?( (t|kg|lbs))?$')
+        self.re_22159f36 = re.compile(r'([0-9.]+)( )*(.+)')
         self.re_23eb7c0d = re.compile(r'^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)((-|;)([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$')
         self.re_288e587a = re.compile(r'^\+\d')
         self.re_29d73dcf = re.compile(r'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$')
         self.re_2a784076 = re.compile(r'^(([0-9]|[1-9][0-9]*)(\.5)?)$')
         self.re_2b84c9ab = re.compile(r'^[0-9]+,[0-9][0-9]?$')
+        self.re_330da7b0 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? hr)$')
         self.re_43c55ce5 = re.compile(r'(.*[A-Za-z].*)|.*,.*|.*( ).*')
         self.re_45b46d60 = re.compile(r'^-?[0-9]+(\.[0-9]+)?$')
         self.re_45e73e1b = re.compile(r'^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$')
-        self.re_49888e30 = re.compile(r'^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$')
+        self.re_49679ad5 = re.compile(r'^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
+        self.re_4b1a18a4 = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$')
         self.re_4b9c2b6a = re.compile(r'^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_4d44d8e0 = re.compile(r'^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$')
         self.re_4e26566a = re.compile(r'^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$')
+        self.re_519e5bd1 = re.compile(r'^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
+        self.re_52f27115 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)?h)$')
         self.re_5478d8af = re.compile(r'^[1-9]([0-9]*)$')
+        self.re_5590280d = re.compile(r'^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
         self.re_55d147d6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$')
         self.re_597f003d = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
         self.re_5a7f47b9 = re.compile(r'^-?[0-9]+\.[0-9][0-9][0-9]+$')
         self.re_6aa93c30 = re.compile(r'^[A-Z]{3}$')
         self.re_762a1d1d = re.compile(r'^-?[0-9]+(\.[0-9]+)? ?m$')
+        self.re_78202c9a = re.compile(r'^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$')
         self.re_7afc6883 = re.compile(r'^[A-Z]{4}$')
         self.re_7b1365b7 = re.compile(r'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)')
         self.re_7f163374 = re.compile(r'^(1|2|3|4|5|6|7|8|9|10|11|12)$')
@@ -67,7 +80,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_separator_autofix = set_maxheight_separator_autofix = set_maxweight_separator_autofix = set_maxwidth_separator_autofix = set_width_separator_autofix = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -156,6 +169,50 @@ class Josm_numeric(PluginMapCSS):
                 # assertMatch:"node level=one"
                 err.append({'class': 9006004, 'subclass': 1004173499, 'text': mapcss.tr(u'{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[height][height=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'height') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setheight_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," m")
+                # assertNoMatch:"node height=2 m"
+                # assertMatch:"node height=2m"
+                # assertMatch:"node height=5  metre"
+                # assertNoMatch:"node height=5"
+                # assertMatch:"node height=6.78 meters"
+                set_height_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 2067083591, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'height=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'height')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[height][height=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'height') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setheight_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," ft")
+                # assertNoMatch:"node height=2 ft"
+                # assertMatch:"node height=2ft"
+                # assertMatch:"node height=5  Feet"
+                # assertNoMatch:"node height=5"
+                # assertMatch:"node height=6.78 foot"
+                set_height_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1271699979, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'height=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'height')), 1), u' ft')).split('=', 1)])
+                }})
+
         # *[height][height=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'height' in keys):
             match = False
@@ -180,23 +237,49 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'height=', mapcss.replace(mapcss.tag(tags, u'height'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.height_separator_autofix
-        if (u'height' in keys):
+        # *[maxheight][maxheight=~/^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxheight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_height_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_597f003d, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_49679ad5), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                # assertNoMatch:"node height=22'"
-                # assertMatch:"node height=-5"
-                # assertNoMatch:"node height=2 m"
-                # assertNoMatch:"node height=20 ft"
-                # assertNoMatch:"node height=5"
-                # assertNoMatch:"node height=7.8"
-                # assertMatch:"node height=medium"
-                err.append({'class': 9006018, 'subclass': 929433247, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxheight_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," m")
+                # assertNoMatch:"node maxheight=2 m"
+                # assertMatch:"node maxheight=2m"
+                # assertMatch:"node maxheight=5  metre"
+                # assertNoMatch:"node maxheight=5"
+                # assertMatch:"node maxheight=6.78 meters"
+                set_maxheight_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 463347816, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxheight=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxheight')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxheight][maxheight=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxheight' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxheight_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," ft")
+                # assertNoMatch:"node maxheight=2 ft"
+                # assertMatch:"node maxheight=2ft"
+                # assertMatch:"node maxheight=5  Feet"
+                # assertNoMatch:"node maxheight=5"
+                # assertMatch:"node maxheight=6.78 foot"
+                set_maxheight_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1908168649, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxheight=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxheight')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[maxheight][maxheight=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'maxheight' in keys):
@@ -222,25 +305,117 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'maxheight=', mapcss.replace(mapcss.tag(tags, u'maxheight'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxheight_separator_autofix
-        if (u'maxheight' in keys):
+        # *[maxlength][maxlength=~/^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxlength' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxheight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_49679ad5), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                # assertNoMatch:"node maxheight=10'"
-                # assertMatch:"node maxheight=-5"
-                # assertMatch:"node maxheight=0"
-                # assertNoMatch:"node maxheight=14 ft"
-                # assertNoMatch:"node maxheight=16'3\""
-                # assertNoMatch:"node maxheight=2 m"
-                # assertNoMatch:"node maxheight=3.5"
-                # assertNoMatch:"node maxheight=4"
-                # assertMatch:"node maxheight=something"
-                err.append({'class': 9006018, 'subclass': 1179691550, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxlength_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," m")
+                # assertNoMatch:"node maxlength=2 m"
+                # assertMatch:"node maxlength=2m"
+                # assertMatch:"node maxlength=5  metre"
+                # assertNoMatch:"node maxlength=5"
+                # assertMatch:"node maxlength=6.78 meters"
+                set_maxlength_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 399755268, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxlength')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxlength][maxlength=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxlength' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxlength_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," ft")
+                # assertNoMatch:"node maxlength=2 ft"
+                # assertMatch:"node maxlength=2ft"
+                # assertMatch:"node maxlength=5  Feet"
+                # assertNoMatch:"node maxlength=5"
+                # assertMatch:"node maxlength=6.78 foot"
+                set_maxlength_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1400502556, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxlength')), 1), u' ft')).split('=', 1)])
+                }})
+
+        # *[maxlength][maxlength=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
+        if (u'maxlength' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxlength_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("maxlength=",replace(tag("maxlength"),",","."))
+                # assertMatch:"node maxlength=12,00"
+                # assertNoMatch:"node maxlength=12,000"
+                # assertMatch:"node maxlength=12,5 ft"
+                # assertNoMatch:"node maxlength=3,50,5"
+                # assertNoMatch:"node maxlength=3.5"
+                # assertNoMatch:"node maxlength=4"
+                # assertMatch:"node maxlength=5,5"
+                set_maxlength_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 1544322885, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.replace(mapcss.tag(tags, u'maxlength'), u',', u'.'))).split('=', 1)])
+                }})
+
+        # *[width][width=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'width' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setwidth_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
+                # assertNoMatch:"node width=2 m"
+                # assertMatch:"node width=2m"
+                # assertMatch:"node width=5  metre"
+                # assertNoMatch:"node width=5"
+                # assertMatch:"node width=6.78 meters"
+                set_width_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 202462507, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'width')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[width][width=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'width' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setwidth_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," ft")
+                # assertNoMatch:"node width=2 ft"
+                # assertMatch:"node width=2ft"
+                # assertMatch:"node width=5  Feet"
+                # assertNoMatch:"node width=5"
+                # assertMatch:"node width=6.78 foot"
+                set_width_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 242298933, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'width')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[width][width=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'width' in keys):
@@ -265,16 +440,49 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'width=', mapcss.replace(mapcss.tag(tags, u'width'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[width][width!~/^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]!.width_separator_autofix
-        if (u'width' in keys):
+        # *[maxwidth][maxwidth=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxwidth' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_width_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_49888e30, u'^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 587682576, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxwidth_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
+                # assertNoMatch:"node maxwidth=2 m"
+                # assertMatch:"node maxwidth=2m"
+                # assertMatch:"node maxwidth=5  metre"
+                # assertNoMatch:"node maxwidth=5"
+                # assertMatch:"node maxwidth=6.78 meters"
+                set_maxwidth_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 26753566, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxwidth')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxwidth][maxwidth=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxwidth' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxwidth_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," ft")
+                # assertNoMatch:"node maxwidth=2 ft"
+                # assertMatch:"node maxwidth=2ft"
+                # assertMatch:"node maxwidth=5  Feet"
+                # assertNoMatch:"node maxwidth=5"
+                # assertMatch:"node maxwidth=6.78 foot"
+                set_maxwidth_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 39753761, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxwidth')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[maxwidth][maxwidth=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'maxwidth' in keys):
@@ -299,23 +507,79 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'maxwidth=', mapcss.replace(mapcss.tag(tags, u'maxwidth'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxwidth_separator_autofix
-        if (u'maxwidth' in keys):
+        # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.height_separator_autofix!.height_meter_autofix!.height_foot_autofix
+        # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxheight_separator_autofix!.maxheight_meter_autofix!.maxheight_foot_autofix
+        # *[maxlength][maxlength!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxlength_separator_autofix!.maxlength_meter_autofix!.maxlength_foot_autofix
+        # *[width][width!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]!.width_separator_autofix!.width_meter_autofix!.width_foot_autofix
+        # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxwidth_separator_autofix!.maxwidth_meter_autofix!.maxwidth_foot_autofix
+        if (u'height' in keys) or (u'maxheight' in keys) or (u'maxlength' in keys) or (u'maxwidth' in keys) or (u'width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxwidth_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1d428b19, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
+                try: match = (not set_height_separator_autofix and not set_height_meter_autofix and not set_height_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_597f003d, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxheight_separator_autofix and not set_maxheight_meter_autofix and not set_maxheight_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxlength_separator_autofix and not set_maxlength_meter_autofix and not set_maxlength_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_width_separator_autofix and not set_width_meter_autofix and not set_width_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b1a18a4, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxwidth_separator_autofix and not set_maxwidth_meter_autofix and not set_maxwidth_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1d428b19, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 1600821089, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # assertNoMatch:"node height=22'"
+                # assertNoMatch:"node height=2.22 m"
+                # assertNoMatch:"node height=2m"
+                # assertNoMatch:"node height=3"
+                # assertNoMatch:"node height=5  metre"
+                # assertNoMatch:"node height=6.78 meters"
+                # assertNoMatch:"node height=7.8"
+                # assertMatch:"node height=medium"
+                # assertMatch:"node maxheight=-5"
+                # assertMatch:"node maxlength=0"
+                # assertMatch:"node maxlength=10'13\""
+                # assertNoMatch:"node maxwidth=7 ft"
+                # assertNoMatch:"node width=10'5\""
+                err.append({'class': 9006018, 'subclass': 79082020, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
-        # *[maxweight][maxweight=~/^[0-9]+,[0-9][0-9]?( (t|kg|lbs))?$/]
+        # *[maxaxleload][maxaxleload=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
+        if (u'maxaxleload' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxaxleload') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, u'maxaxleload')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxaxleload_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("maxaxleload=",replace(tag("maxaxleload"),",","."))
+                # assertMatch:"node maxaxleload=12,00"
+                # assertNoMatch:"node maxaxleload=12,000"
+                # assertNoMatch:"node maxaxleload=3,50,5"
+                # assertNoMatch:"node maxaxleload=3.5"
+                # assertNoMatch:"node maxaxleload=4"
+                # assertMatch:"node maxaxleload=5,5"
+                set_maxaxleload_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 1432954177, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxaxleload=', mapcss.replace(mapcss.tag(tags, u'maxaxleload'), u',', u'.'))).split('=', 1)])
+                }})
+
+        # *[maxweight][maxweight=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
         if (u'maxweight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1e934345), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmaxweight_separator_autofix
@@ -328,21 +592,32 @@ class Josm_numeric(PluginMapCSS):
                 # assertNoMatch:"node maxweight=4"
                 # assertMatch:"node maxweight=5,5"
                 set_maxweight_separator_autofix = True
-                err.append({'class': 9006017, 'subclass': 1860114154, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006017, 'subclass': 1611278185, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(u'maxweight=', mapcss.replace(mapcss.tag(tags, u'maxweight'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxweight_separator_autofix
-        if (u'maxweight' in keys):
+        # *[maxaxleload][maxaxleload!~/^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxaxleload_separator_autofix
+        # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxweight_separator_autofix
+        if (u'maxaxleload' in keys) or (u'maxweight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxweight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_035d45f0, u'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
+                try: match = (not set_maxaxleload_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxaxleload') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0d8976a3, u'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxaxleload')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxweight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0d8976a3, u'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006019, 'subclass': 280688781, 'text': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # assertNoMatch:"node maxaxleload=2"
+                # assertNoMatch:"node maxaxleload=2.5"
+                # assertNoMatch:"node maxaxleload=7 kg"
+                # assertMatch:"node maxaxleload=something"
+                # assertMatch:"node maxweight=-5"
+                # assertNoMatch:"node maxweight=6'6\""
+                err.append({'class': 9006019, 'subclass': 380397850, 'text': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[distance][distance=~/^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$/]
         if (u'distance' in keys):
@@ -389,9 +664,14 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} must be a numeric value","{0.key}")
                 err.append({'class': 9006008, 'subclass': 313743521, 'text': mapcss.tr(u'{0} must be a numeric value', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # node[seats][seats!~/^[1-9]([0-9]*)$/][amenity=bench]
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
-        if (u'amenity' in keys and u'screen' in keys):
+        if (u'amenity' in keys and u'screen' in keys) or (u'amenity' in keys and u'seats' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seats') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5478d8af, u'^[1-9]([0-9]*)$'), mapcss._tag_capture(capture_tags, 1, tags, u'seats')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'bench'))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5478d8af, u'^[1-9]([0-9]*)$'), mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'cinema'))
@@ -400,7 +680,7 @@ class Josm_numeric(PluginMapCSS):
                 # throwError:tr("{0} must be a positive integer number","{0.key}")
                 # assertNoMatch:"node amenity=cinema screen=8"
                 # assertMatch:"node amenity=cinema screen=led"
-                err.append({'class': 9006009, 'subclass': 1499065449, 'text': mapcss.tr(u'{0} must be a positive integer number', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006009, 'subclass': 2104305963, 'text': mapcss.tr(u'{0} must be a positive integer number', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if (u'admin_level' in keys):
@@ -643,13 +923,171 @@ class Josm_numeric(PluginMapCSS):
                 # assertMatch:"node isced:level=secondary"
                 err.append({'class': 9006010, 'subclass': 1091907371, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[maxstay=0]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, 0))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Definition of {0} is unclear","{0.tag}")
+                # assertMatch:"node maxstay=0"
+                # assertNoMatch:"node maxstay=2"
+                err.append({'class': 9006024, 'subclass': 1756130010, 'text': mapcss.tr(u'Definition of {0} is unclear', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? min)$/][maxstay!="1 min"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b78ea82), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 min', u'1 min'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"min","minutes"))
+                # assertNoMatch:"node maxstay=\"02 minutes\""
+                # assertNoMatch:"node maxstay=\"1 min\""
+                # assertMatch:"node maxstay=\"15 min\""
+                # assertNoMatch:"node maxstay=\"2 minutes\""
+                # assertMatch:"node maxstay=\"5 min\""
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 606655085, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'min', u'minutes'))).split('=', 1)])
+                }})
+
+        # *[maxstay="1h"]
+        # *[maxstay="1 h"]
+        # *[maxstay="1 hr"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1h'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1 h'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1 hr'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:"maxstay=1 hour"
+                # assertMatch:"node maxstay=\"1 h\""
+                # assertMatch:"node maxstay=\"1 hr\""
+                # assertMatch:"node maxstay=1h"
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 872535915, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'maxstay',u'1 hour']])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? h)$/][maxstay!="1 h"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_19ef4172), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 h', u'1 h'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h","hours"))
+                # assertNoMatch:"node maxstay=\"02 hours\""
+                # assertNoMatch:"node maxstay=\"1 h\""
+                # assertMatch:"node maxstay=\"15 h\""
+                # assertNoMatch:"node maxstay=\"2 hours\""
+                # assertMatch:"node maxstay=\"5 h\""
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 59629984, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'h', u'hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? hr)$/][maxstay!="1 hr"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_330da7b0), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 hr', u'1 hr'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"hr","hours"))
+                # assertNoMatch:"node maxstay=\"02 hours\""
+                # assertNoMatch:"node maxstay=\"1 hr\""
+                # assertMatch:"node maxstay=\"15 hr\""
+                # assertNoMatch:"node maxstay=\"2 hours\""
+                # assertMatch:"node maxstay=\"5 hr\""
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 814970301, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'hr', u'hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)?h)$/][maxstay!="1h"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_52f27115), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1h', u'1h'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h"," hours"))
+                # assertNoMatch:"node maxstay=\"2 h\""
+                # assertNoMatch:"node maxstay=\"2 hr\""
+                # assertNoMatch:"node maxstay=02hours"
+                # assertMatch:"node maxstay=15h"
+                # assertNoMatch:"node maxstay=1h"
+                # assertNoMatch:"node maxstay=2hours"
+                # assertMatch:"node maxstay=5h"
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 1721471777, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'h', u' hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay!~/^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$/]!.maxstay_autofix
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxstay_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17733c6c, u'^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # assertMatch:"node maxstay=\"0 minutes\""
+                # assertMatch:"node maxstay=\"1. hours\""
+                # assertNoMatch:"node maxstay=\"2.5 hours\""
+                # assertNoMatch:"node maxstay=\"66 minutes\""
+                # assertNoMatch:"node maxstay=\"7 h\""
+                # assertNoMatch:"node maxstay=\"7 hr\""
+                # assertMatch:"node maxstay=-5"
+                # assertNoMatch:"node maxstay=0"
+                # assertMatch:"node maxstay=180"
+                # assertMatch:"node maxstay=66minutes"
+                # assertNoMatch:"node maxstay=load-unload"
+                # assertNoMatch:"node maxstay=no"
+                # assertMatch:"node maxstay=something"
+                # assertNoMatch:"node maxstay=unlimited"
+                err.append({'class': 9006025, 'subclass': 1976092293, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours')})
+
         return err
 
     def way(self, data, tags, nds):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_separator_autofix = set_maxheight_separator_autofix = set_maxweight_separator_autofix = set_maxwidth_separator_autofix = set_width_separator_autofix = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -706,6 +1144,40 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
                 err.append({'class': 9006004, 'subclass': 1004173499, 'text': mapcss.tr(u'{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[height][height=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'height') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setheight_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," m")
+                set_height_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 2067083591, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'height=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'height')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[height][height=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'height') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setheight_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," ft")
+                set_height_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1271699979, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'height=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'height')), 1), u' ft')).split('=', 1)])
+                }})
+
         # *[height][height=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'height' in keys):
             match = False
@@ -723,16 +1195,39 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'height=', mapcss.replace(mapcss.tag(tags, u'height'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.height_separator_autofix
-        if (u'height' in keys):
+        # *[maxheight][maxheight=~/^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxheight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_height_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_597f003d, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_49679ad5), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 929433247, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxheight_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," m")
+                set_maxheight_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 463347816, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxheight=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxheight')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxheight][maxheight=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxheight' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxheight_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," ft")
+                set_maxheight_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1908168649, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxheight=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxheight')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[maxheight][maxheight=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'maxheight' in keys):
@@ -751,16 +1246,90 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'maxheight=', mapcss.replace(mapcss.tag(tags, u'maxheight'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxheight_separator_autofix
-        if (u'maxheight' in keys):
+        # *[maxlength][maxlength=~/^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxlength' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxheight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_49679ad5), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 1179691550, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxlength_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," m")
+                set_maxlength_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 399755268, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxlength')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxlength][maxlength=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxlength' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxlength_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," ft")
+                set_maxlength_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1400502556, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxlength')), 1), u' ft')).split('=', 1)])
+                }})
+
+        # *[maxlength][maxlength=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
+        if (u'maxlength' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxlength_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("maxlength=",replace(tag("maxlength"),",","."))
+                set_maxlength_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 1544322885, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.replace(mapcss.tag(tags, u'maxlength'), u',', u'.'))).split('=', 1)])
+                }})
+
+        # *[width][width=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'width' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setwidth_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
+                set_width_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 202462507, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'width')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[width][width=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'width' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setwidth_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," ft")
+                set_width_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 242298933, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'width')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[width][width=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'width' in keys):
@@ -779,24 +1348,39 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'width=', mapcss.replace(mapcss.tag(tags, u'width'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[width][width!~/^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]!.width_separator_autofix
-        if (u'width' in keys):
+        # *[maxwidth][maxwidth=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxwidth' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_width_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_49888e30, u'^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                # assertNoMatch:"way width=1'"
-                # assertMatch:"way width=-5"
-                # assertNoMatch:"way width=0.5"
-                # assertNoMatch:"way width=1 m"
-                # assertNoMatch:"way width=10 ft"
-                # assertNoMatch:"way width=10'5\""
-                # assertNoMatch:"way width=3"
-                # assertMatch:"way width=something"
-                err.append({'class': 9006018, 'subclass': 587682576, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxwidth_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
+                set_maxwidth_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 26753566, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxwidth')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxwidth][maxwidth=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxwidth' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxwidth_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," ft")
+                set_maxwidth_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 39753761, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxwidth')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[maxwidth][maxwidth=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'maxwidth' in keys):
@@ -815,56 +1399,86 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'maxwidth=', mapcss.replace(mapcss.tag(tags, u'maxwidth'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxwidth_separator_autofix
-        if (u'maxwidth' in keys):
+        # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.height_separator_autofix!.height_meter_autofix!.height_foot_autofix
+        # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxheight_separator_autofix!.maxheight_meter_autofix!.maxheight_foot_autofix
+        # *[maxlength][maxlength!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxlength_separator_autofix!.maxlength_meter_autofix!.maxlength_foot_autofix
+        # *[width][width!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]!.width_separator_autofix!.width_meter_autofix!.width_foot_autofix
+        # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxwidth_separator_autofix!.maxwidth_meter_autofix!.maxwidth_foot_autofix
+        if (u'height' in keys) or (u'maxheight' in keys) or (u'maxlength' in keys) or (u'maxwidth' in keys) or (u'width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxwidth_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1d428b19, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
+                try: match = (not set_height_separator_autofix and not set_height_meter_autofix and not set_height_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_597f003d, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxheight_separator_autofix and not set_maxheight_meter_autofix and not set_maxheight_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxlength_separator_autofix and not set_maxlength_meter_autofix and not set_maxlength_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_width_separator_autofix and not set_width_meter_autofix and not set_width_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b1a18a4, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxwidth_separator_autofix and not set_maxwidth_meter_autofix and not set_maxwidth_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1d428b19, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                # assertMatch:"way maxwidth=-5"
-                # assertNoMatch:"way maxwidth=2"
-                # assertNoMatch:"way maxwidth=2.5"
-                # assertNoMatch:"way maxwidth=6'6\""
-                # assertNoMatch:"way maxwidth=7 ft"
-                # assertMatch:"way maxwidth=something"
-                err.append({'class': 9006018, 'subclass': 1600821089, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006018, 'subclass': 79082020, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
-        # *[maxweight][maxweight=~/^[0-9]+,[0-9][0-9]?( (t|kg|lbs))?$/]
+        # *[maxaxleload][maxaxleload=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
+        if (u'maxaxleload' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxaxleload') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, u'maxaxleload')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxaxleload_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("maxaxleload=",replace(tag("maxaxleload"),",","."))
+                set_maxaxleload_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 1432954177, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxaxleload=', mapcss.replace(mapcss.tag(tags, u'maxaxleload'), u',', u'.'))).split('=', 1)])
+                }})
+
+        # *[maxweight][maxweight=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
         if (u'maxweight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1e934345), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmaxweight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxweight=",replace(tag("maxweight"),",","."))
                 set_maxweight_separator_autofix = True
-                err.append({'class': 9006017, 'subclass': 1860114154, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006017, 'subclass': 1611278185, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(u'maxweight=', mapcss.replace(mapcss.tag(tags, u'maxweight'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxweight_separator_autofix
-        if (u'maxweight' in keys):
+        # *[maxaxleload][maxaxleload!~/^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxaxleload_separator_autofix
+        # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxweight_separator_autofix
+        if (u'maxaxleload' in keys) or (u'maxweight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxweight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_035d45f0, u'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
+                try: match = (not set_maxaxleload_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxaxleload') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0d8976a3, u'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxaxleload')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxweight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0d8976a3, u'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit","{0.key}")
-                # assertMatch:"way maxweight=-5"
-                # assertNoMatch:"way maxweight=2"
-                # assertNoMatch:"way maxweight=2.5"
-                # assertNoMatch:"way maxweight=6'6\""
-                # assertNoMatch:"way maxweight=7 kg"
-                # assertMatch:"way maxweight=something"
-                err.append({'class': 9006019, 'subclass': 280688781, 'text': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006019, 'subclass': 380397850, 'text': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # way[maxspeed][maxspeed!~/^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$/]
         # way[maxspeed:forward][maxspeed:forward!~/^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$/]
@@ -1010,12 +1624,17 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} must be a numeric value","{0.key}")
                 err.append({'class': 9006008, 'subclass': 313743521, 'text': mapcss.tr(u'{0} must be a numeric value', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # way[seats][seats!~/^[1-9]([0-9]*)$/][amenity=bench]
         # way[lanes][lanes!~/^[1-9]([0-9]*)$/][highway]
         # way["lanes:backward"]["lanes:backward"!~/^[1-9]([0-9]*)$/][highway]
         # way["lanes:forward"]["lanes:forward"!~/^[1-9]([0-9]*)$/][highway]
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
-        if (u'amenity' in keys and u'screen' in keys) or (u'highway' in keys and u'lanes' in keys) or (u'highway' in keys and u'lanes:backward' in keys) or (u'highway' in keys and u'lanes:forward' in keys):
+        if (u'amenity' in keys and u'screen' in keys) or (u'amenity' in keys and u'seats' in keys) or (u'highway' in keys and u'lanes' in keys) or (u'highway' in keys and u'lanes:backward' in keys) or (u'highway' in keys and u'lanes:forward' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'seats') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5478d8af, u'^[1-9]([0-9]*)$'), mapcss._tag_capture(capture_tags, 1, tags, u'seats')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'bench'))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'lanes') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5478d8af, u'^[1-9]([0-9]*)$'), mapcss._tag_capture(capture_tags, 1, tags, u'lanes')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway'))
@@ -1040,7 +1659,7 @@ class Josm_numeric(PluginMapCSS):
                 # assertNoMatch:"way highway=residential lanes=1"
                 # assertMatch:"way highway=residential lanes=1;2"
                 # assertMatch:"way highway=residential lanes=5.5"
-                err.append({'class': 9006009, 'subclass': 10320184, 'text': mapcss.tr(u'{0} must be a positive integer number', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006009, 'subclass': 2089206793, 'text': mapcss.tr(u'{0} must be a positive integer number', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if (u'admin_level' in keys):
@@ -1226,13 +1845,132 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 err.append({'class': 9006010, 'subclass': 1091907371, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[maxstay=0]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, 0))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Definition of {0} is unclear","{0.tag}")
+                # assertMatch:"way maxstay=0"
+                # assertNoMatch:"way maxstay=no"
+                err.append({'class': 9006024, 'subclass': 1756130010, 'text': mapcss.tr(u'Definition of {0} is unclear', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? min)$/][maxstay!="1 min"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b78ea82), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 min', u'1 min'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"min","minutes"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 606655085, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'min', u'minutes'))).split('=', 1)])
+                }})
+
+        # *[maxstay="1h"]
+        # *[maxstay="1 h"]
+        # *[maxstay="1 hr"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1h'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1 h'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1 hr'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:"maxstay=1 hour"
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 872535915, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'maxstay',u'1 hour']])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? h)$/][maxstay!="1 h"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_19ef4172), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 h', u'1 h'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h","hours"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 59629984, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'h', u'hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? hr)$/][maxstay!="1 hr"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_330da7b0), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 hr', u'1 hr'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"hr","hours"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 814970301, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'hr', u'hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)?h)$/][maxstay!="1h"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_52f27115), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1h', u'1h'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h"," hours"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 1721471777, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'h', u' hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay!~/^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$/]!.maxstay_autofix
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxstay_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17733c6c, u'^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                err.append({'class': 9006025, 'subclass': 1976092293, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours')})
+
         return err
 
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_separator_autofix = set_maxheight_separator_autofix = set_maxweight_separator_autofix = set_maxwidth_separator_autofix = set_width_separator_autofix = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -1287,6 +2025,40 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
                 err.append({'class': 9006004, 'subclass': 1004173499, 'text': mapcss.tr(u'{0} should have numbers only with optional .5 increments', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[height][height=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'height') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setheight_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," m")
+                set_height_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 2067083591, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'height=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'height')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[height][height=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'height' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'height') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setheight_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," ft")
+                set_height_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1271699979, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'height=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'height')), 1), u' ft')).split('=', 1)])
+                }})
+
         # *[height][height=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'height' in keys):
             match = False
@@ -1304,16 +2076,39 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'height=', mapcss.replace(mapcss.tag(tags, u'height'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.height_separator_autofix
-        if (u'height' in keys):
+        # *[maxheight][maxheight=~/^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxheight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_height_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_597f003d, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_49679ad5), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 929433247, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxheight_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," m")
+                set_maxheight_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 463347816, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxheight=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxheight')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxheight][maxheight=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxheight' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxheight_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," ft")
+                set_maxheight_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1908168649, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxheight=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxheight')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[maxheight][maxheight=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'maxheight' in keys):
@@ -1332,16 +2127,90 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'maxheight=', mapcss.replace(mapcss.tag(tags, u'maxheight'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxheight_separator_autofix
-        if (u'maxheight' in keys):
+        # *[maxlength][maxlength=~/^[1-9][0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxlength' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxheight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_49679ad5), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 1179691550, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxlength_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," m")
+                set_maxlength_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 399755268, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxlength')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxlength][maxlength=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxlength' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxlength_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," ft")
+                set_maxlength_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 1400502556, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxlength')), 1), u' ft')).split('=', 1)])
+                }})
+
+        # *[maxlength][maxlength=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
+        if (u'maxlength' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxlength_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("maxlength=",replace(tag("maxlength"),",","."))
+                set_maxlength_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 1544322885, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxlength=', mapcss.replace(mapcss.tag(tags, u'maxlength'), u',', u'.'))).split('=', 1)])
+                }})
+
+        # *[width][width=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'width' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setwidth_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
+                set_width_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 202462507, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'width')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[width][width=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'width' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setwidth_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," ft")
+                set_width_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 242298933, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'width')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[width][width=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'width' in keys):
@@ -1360,16 +2229,39 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'width=', mapcss.replace(mapcss.tag(tags, u'width'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[width][width!~/^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]!.width_separator_autofix
-        if (u'width' in keys):
+        # *[maxwidth][maxwidth=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        if (u'maxwidth' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_width_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_49888e30, u'^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 587682576, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                # setmaxwidth_meter_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
+                set_maxwidth_meter_autofix = True
+                err.append({'class': 9006023, 'subclass': 26753566, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxwidth')), 1), u' m')).split('=', 1)])
+                }})
+
+        # *[maxwidth][maxwidth=~/^[0-9]+\.?[0-9]*(( )*(foot|Foot|feet|Feet)|ft)$/]
+        if (u'maxwidth' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_78202c9a), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxwidth_foot_autofix
+                # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
+                # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," ft")
+                set_maxwidth_foot_autofix = True
+                err.append({'class': 9006023, 'subclass': 39753761, 'text': mapcss.tr(u'unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, u'maxwidth')), 1), u' ft')).split('=', 1)])
+                }})
 
         # *[maxwidth][maxwidth=~/^[0-9]+,[0-9][0-9]?( (m|ft))?$/]
         if (u'maxwidth' in keys):
@@ -1388,44 +2280,86 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat(u'maxwidth=', mapcss.replace(mapcss.tag(tags, u'maxwidth'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxwidth_separator_autofix
-        if (u'maxwidth' in keys):
+        # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]!.height_separator_autofix!.height_meter_autofix!.height_foot_autofix
+        # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxheight_separator_autofix!.maxheight_meter_autofix!.maxheight_foot_autofix
+        # *[maxlength][maxlength!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$/]!.maxlength_separator_autofix!.maxlength_meter_autofix!.maxlength_foot_autofix
+        # *[width][width!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]!.width_separator_autofix!.width_meter_autofix!.width_foot_autofix
+        # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxwidth_separator_autofix!.maxwidth_meter_autofix!.maxwidth_foot_autofix
+        if (u'height' in keys) or (u'maxheight' in keys) or (u'maxlength' in keys) or (u'maxwidth' in keys) or (u'width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxwidth_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1d428b19, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
+                try: match = (not set_height_separator_autofix and not set_height_meter_autofix and not set_height_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_597f003d, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'height')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxheight_separator_autofix and not set_maxheight_meter_autofix and not set_maxheight_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxlength_separator_autofix and not set_maxlength_meter_autofix and not set_maxlength_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxlength') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_29d73dcf, u'^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default|below_default)$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxlength')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_width_separator_autofix and not set_width_meter_autofix and not set_width_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b1a18a4, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$'), mapcss._tag_capture(capture_tags, 1, tags, u'width')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxwidth_separator_autofix and not set_maxwidth_meter_autofix and not set_maxwidth_foot_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1d428b19, u'^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006018, 'subclass': 1600821089, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006018, 'subclass': 79082020, 'text': mapcss.tr(u'unusual value of {0}: meters is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
-        # *[maxweight][maxweight=~/^[0-9]+,[0-9][0-9]?( (t|kg|lbs))?$/]
+        # *[maxaxleload][maxaxleload=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
+        if (u'maxaxleload' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxaxleload') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, u'maxaxleload')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxaxleload_separator_autofix
+                # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
+                # fixAdd:concat("maxaxleload=",replace(tag("maxaxleload"),",","."))
+                set_maxaxleload_separator_autofix = True
+                err.append({'class': 9006017, 'subclass': 1432954177, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxaxleload=', mapcss.replace(mapcss.tag(tags, u'maxaxleload'), u',', u'.'))).split('=', 1)])
+                }})
+
+        # *[maxweight][maxweight=~/^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$/]
         if (u'maxweight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1e934345), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmaxweight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxweight=",replace(tag("maxweight"),",","."))
                 set_maxweight_separator_autofix = True
-                err.append({'class': 9006017, 'subclass': 1860114154, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006017, 'subclass': 1611278185, 'text': mapcss.tr(u'unusual value of {0}: use . instead of , as decimal separator', mapcss._tag_uncapture(capture_tags, u'{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(u'maxweight=', mapcss.replace(mapcss.tag(tags, u'maxweight'), u',', u'.'))).split('=', 1)])
                 }})
 
-        # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxweight_separator_autofix
-        if (u'maxweight' in keys):
+        # *[maxaxleload][maxaxleload!~/^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxaxleload_separator_autofix
+        # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]!.maxweight_separator_autofix
+        if (u'maxaxleload' in keys) or (u'maxweight' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_maxweight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_035d45f0, u'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
+                try: match = (not set_maxaxleload_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxaxleload') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0d8976a3, u'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxaxleload')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxweight_separator_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_0d8976a3, u'^(([0-9]+\.?[0-9]*( (t|kg|st|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit","{0.key}")
-                err.append({'class': 9006019, 'subclass': 280688781, 'text': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
+                err.append({'class': 9006019, 'subclass': 380397850, 'text': mapcss.tr(u'unusual value of {0}: tonne is default; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
         # *[distance][distance=~/^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$/]
         if (u'distance' in keys):
@@ -1643,6 +2577,123 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 err.append({'class': 9006010, 'subclass': 1091907371, 'text': mapcss.tr(u'unusual value of {0}', mapcss._tag_uncapture(capture_tags, u'{0.key}'))})
 
+        # *[maxstay=0]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, 0))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Definition of {0} is unclear","{0.tag}")
+                err.append({'class': 9006024, 'subclass': 1756130010, 'text': mapcss.tr(u'Definition of {0} is unclear', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? min)$/][maxstay!="1 min"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b78ea82), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 min', u'1 min'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"min","minutes"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 606655085, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'min', u'minutes'))).split('=', 1)])
+                }})
+
+        # *[maxstay="1h"]
+        # *[maxstay="1 h"]
+        # *[maxstay="1 hr"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1h'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1 h'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') == mapcss._value_capture(capture_tags, 0, u'1 hr'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:"maxstay=1 hour"
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 872535915, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    [u'maxstay',u'1 hour']])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? h)$/][maxstay!="1 h"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_19ef4172), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 h', u'1 h'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h","hours"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 59629984, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'h', u'hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)? hr)$/][maxstay!="1 hr"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_330da7b0), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1 hr', u'1 hr'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"hr","hours"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 814970301, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'hr', u'hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay=~/^([1-9][0-9]*(\.[0-9]+)?h)$/][maxstay!="1h"]
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_52f27115), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxstay') != mapcss._value_const_capture(capture_tags, 2, u'1h', u'1h'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setmaxstay_autofix
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h"," hours"))
+                set_maxstay_autofix = True
+                err.append({'class': 9006025, 'subclass': 1721471777, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(u'maxstay=', mapcss.replace(mapcss.tag(tags, u'maxstay'), u'h', u' hours'))).split('=', 1)])
+                }})
+
+        # *[maxstay][maxstay!~/^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$/]!.maxstay_autofix
+        if (u'maxstay' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_maxstay_autofix and mapcss._tag_capture(capture_tags, 0, tags, u'maxstay') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17733c6c, u'^(([1-9][0-9]*(\.[0-9]+)?( (minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years)))|(no|unlimited|0|load-unload))$'), mapcss._tag_capture(capture_tags, 1, tags, u'maxstay')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
+                err.append({'class': 9006025, 'subclass': 1976092293, 'text': mapcss.tr(u'unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'minutes', u'hours')})
+
         return err
 
 
@@ -1694,6 +2745,16 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'level': u'1;1.5'}), expected={'class': 9006004, 'subclass': 1004173499})
         self.check_err(n.node(data, {u'level': u'2.3'}), expected={'class': 9006004, 'subclass': 1004173499})
         self.check_err(n.node(data, {u'level': u'one'}), expected={'class': 9006004, 'subclass': 1004173499})
+        self.check_not_err(n.node(data, {u'height': u'2 m'}), expected={'class': 9006023, 'subclass': 2067083591})
+        self.check_err(n.node(data, {u'height': u'2m'}), expected={'class': 9006023, 'subclass': 2067083591})
+        self.check_err(n.node(data, {u'height': u'5  metre'}), expected={'class': 9006023, 'subclass': 2067083591})
+        self.check_not_err(n.node(data, {u'height': u'5'}), expected={'class': 9006023, 'subclass': 2067083591})
+        self.check_err(n.node(data, {u'height': u'6.78 meters'}), expected={'class': 9006023, 'subclass': 2067083591})
+        self.check_not_err(n.node(data, {u'height': u'2 ft'}), expected={'class': 9006023, 'subclass': 1271699979})
+        self.check_err(n.node(data, {u'height': u'2ft'}), expected={'class': 9006023, 'subclass': 1271699979})
+        self.check_err(n.node(data, {u'height': u'5  Feet'}), expected={'class': 9006023, 'subclass': 1271699979})
+        self.check_not_err(n.node(data, {u'height': u'5'}), expected={'class': 9006023, 'subclass': 1271699979})
+        self.check_err(n.node(data, {u'height': u'6.78 foot'}), expected={'class': 9006023, 'subclass': 1271699979})
         self.check_err(n.node(data, {u'height': u'12,00'}), expected={'class': 9006017, 'subclass': 1079140059})
         self.check_not_err(n.node(data, {u'height': u'12,000'}), expected={'class': 9006017, 'subclass': 1079140059})
         self.check_err(n.node(data, {u'height': u'12,5 ft'}), expected={'class': 9006017, 'subclass': 1079140059})
@@ -1701,13 +2762,16 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'height': u'3.5'}), expected={'class': 9006017, 'subclass': 1079140059})
         self.check_not_err(n.node(data, {u'height': u'4'}), expected={'class': 9006017, 'subclass': 1079140059})
         self.check_err(n.node(data, {u'height': u'5,5'}), expected={'class': 9006017, 'subclass': 1079140059})
-        self.check_not_err(n.node(data, {u'height': u'22\''}), expected={'class': 9006018, 'subclass': 929433247})
-        self.check_err(n.node(data, {u'height': u'-5'}), expected={'class': 9006018, 'subclass': 929433247})
-        self.check_not_err(n.node(data, {u'height': u'2 m'}), expected={'class': 9006018, 'subclass': 929433247})
-        self.check_not_err(n.node(data, {u'height': u'20 ft'}), expected={'class': 9006018, 'subclass': 929433247})
-        self.check_not_err(n.node(data, {u'height': u'5'}), expected={'class': 9006018, 'subclass': 929433247})
-        self.check_not_err(n.node(data, {u'height': u'7.8'}), expected={'class': 9006018, 'subclass': 929433247})
-        self.check_err(n.node(data, {u'height': u'medium'}), expected={'class': 9006018, 'subclass': 929433247})
+        self.check_not_err(n.node(data, {u'maxheight': u'2 m'}), expected={'class': 9006023, 'subclass': 463347816})
+        self.check_err(n.node(data, {u'maxheight': u'2m'}), expected={'class': 9006023, 'subclass': 463347816})
+        self.check_err(n.node(data, {u'maxheight': u'5  metre'}), expected={'class': 9006023, 'subclass': 463347816})
+        self.check_not_err(n.node(data, {u'maxheight': u'5'}), expected={'class': 9006023, 'subclass': 463347816})
+        self.check_err(n.node(data, {u'maxheight': u'6.78 meters'}), expected={'class': 9006023, 'subclass': 463347816})
+        self.check_not_err(n.node(data, {u'maxheight': u'2 ft'}), expected={'class': 9006023, 'subclass': 1908168649})
+        self.check_err(n.node(data, {u'maxheight': u'2ft'}), expected={'class': 9006023, 'subclass': 1908168649})
+        self.check_err(n.node(data, {u'maxheight': u'5  Feet'}), expected={'class': 9006023, 'subclass': 1908168649})
+        self.check_not_err(n.node(data, {u'maxheight': u'5'}), expected={'class': 9006023, 'subclass': 1908168649})
+        self.check_err(n.node(data, {u'maxheight': u'6.78 foot'}), expected={'class': 9006023, 'subclass': 1908168649})
         self.check_err(n.node(data, {u'maxheight': u'12,00'}), expected={'class': 9006017, 'subclass': 72165305})
         self.check_not_err(n.node(data, {u'maxheight': u'12,000'}), expected={'class': 9006017, 'subclass': 72165305})
         self.check_err(n.node(data, {u'maxheight': u'12,5 ft'}), expected={'class': 9006017, 'subclass': 72165305})
@@ -1715,41 +2779,94 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'maxheight': u'3.5'}), expected={'class': 9006017, 'subclass': 72165305})
         self.check_not_err(n.node(data, {u'maxheight': u'4'}), expected={'class': 9006017, 'subclass': 72165305})
         self.check_err(n.node(data, {u'maxheight': u'5,5'}), expected={'class': 9006017, 'subclass': 72165305})
-        self.check_not_err(n.node(data, {u'maxheight': u'10\''}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_err(n.node(data, {u'maxheight': u'-5'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_err(n.node(data, {u'maxheight': u'0'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_not_err(n.node(data, {u'maxheight': u'14 ft'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_not_err(n.node(data, {u'maxheight': u'16\'3"'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_not_err(n.node(data, {u'maxheight': u'2 m'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_not_err(n.node(data, {u'maxheight': u'3.5'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_not_err(n.node(data, {u'maxheight': u'4'}), expected={'class': 9006018, 'subclass': 1179691550})
-        self.check_err(n.node(data, {u'maxheight': u'something'}), expected={'class': 9006018, 'subclass': 1179691550})
+        self.check_not_err(n.node(data, {u'maxlength': u'2 m'}), expected={'class': 9006023, 'subclass': 399755268})
+        self.check_err(n.node(data, {u'maxlength': u'2m'}), expected={'class': 9006023, 'subclass': 399755268})
+        self.check_err(n.node(data, {u'maxlength': u'5  metre'}), expected={'class': 9006023, 'subclass': 399755268})
+        self.check_not_err(n.node(data, {u'maxlength': u'5'}), expected={'class': 9006023, 'subclass': 399755268})
+        self.check_err(n.node(data, {u'maxlength': u'6.78 meters'}), expected={'class': 9006023, 'subclass': 399755268})
+        self.check_not_err(n.node(data, {u'maxlength': u'2 ft'}), expected={'class': 9006023, 'subclass': 1400502556})
+        self.check_err(n.node(data, {u'maxlength': u'2ft'}), expected={'class': 9006023, 'subclass': 1400502556})
+        self.check_err(n.node(data, {u'maxlength': u'5  Feet'}), expected={'class': 9006023, 'subclass': 1400502556})
+        self.check_not_err(n.node(data, {u'maxlength': u'5'}), expected={'class': 9006023, 'subclass': 1400502556})
+        self.check_err(n.node(data, {u'maxlength': u'6.78 foot'}), expected={'class': 9006023, 'subclass': 1400502556})
+        self.check_err(n.node(data, {u'maxlength': u'12,00'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_not_err(n.node(data, {u'maxlength': u'12,000'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_err(n.node(data, {u'maxlength': u'12,5 ft'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_not_err(n.node(data, {u'maxlength': u'3,50,5'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_not_err(n.node(data, {u'maxlength': u'3.5'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_not_err(n.node(data, {u'maxlength': u'4'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_err(n.node(data, {u'maxlength': u'5,5'}), expected={'class': 9006017, 'subclass': 1544322885})
+        self.check_not_err(n.node(data, {u'width': u'2 m'}), expected={'class': 9006023, 'subclass': 202462507})
+        self.check_err(n.node(data, {u'width': u'2m'}), expected={'class': 9006023, 'subclass': 202462507})
+        self.check_err(n.node(data, {u'width': u'5  metre'}), expected={'class': 9006023, 'subclass': 202462507})
+        self.check_not_err(n.node(data, {u'width': u'5'}), expected={'class': 9006023, 'subclass': 202462507})
+        self.check_err(n.node(data, {u'width': u'6.78 meters'}), expected={'class': 9006023, 'subclass': 202462507})
+        self.check_not_err(n.node(data, {u'width': u'2 ft'}), expected={'class': 9006023, 'subclass': 242298933})
+        self.check_err(n.node(data, {u'width': u'2ft'}), expected={'class': 9006023, 'subclass': 242298933})
+        self.check_err(n.node(data, {u'width': u'5  Feet'}), expected={'class': 9006023, 'subclass': 242298933})
+        self.check_not_err(n.node(data, {u'width': u'5'}), expected={'class': 9006023, 'subclass': 242298933})
+        self.check_err(n.node(data, {u'width': u'6.78 foot'}), expected={'class': 9006023, 'subclass': 242298933})
         self.check_err(n.node(data, {u'width': u'12,00'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_not_err(n.node(data, {u'width': u'12,000'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_not_err(n.node(data, {u'width': u'3,50,5'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_not_err(n.node(data, {u'width': u'3.5'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_not_err(n.node(data, {u'width': u'4'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_err(n.node(data, {u'width': u'5,5'}), expected={'class': 9006017, 'subclass': 1422350111})
+        self.check_not_err(n.node(data, {u'maxwidth': u'2 m'}), expected={'class': 9006023, 'subclass': 26753566})
+        self.check_err(n.node(data, {u'maxwidth': u'2m'}), expected={'class': 9006023, 'subclass': 26753566})
+        self.check_err(n.node(data, {u'maxwidth': u'5  metre'}), expected={'class': 9006023, 'subclass': 26753566})
+        self.check_not_err(n.node(data, {u'maxwidth': u'5'}), expected={'class': 9006023, 'subclass': 26753566})
+        self.check_err(n.node(data, {u'maxwidth': u'6.78 meters'}), expected={'class': 9006023, 'subclass': 26753566})
+        self.check_not_err(n.node(data, {u'maxwidth': u'2 ft'}), expected={'class': 9006023, 'subclass': 39753761})
+        self.check_err(n.node(data, {u'maxwidth': u'2ft'}), expected={'class': 9006023, 'subclass': 39753761})
+        self.check_err(n.node(data, {u'maxwidth': u'5  Feet'}), expected={'class': 9006023, 'subclass': 39753761})
+        self.check_not_err(n.node(data, {u'maxwidth': u'5'}), expected={'class': 9006023, 'subclass': 39753761})
+        self.check_err(n.node(data, {u'maxwidth': u'6.78 foot'}), expected={'class': 9006023, 'subclass': 39753761})
         self.check_err(n.node(data, {u'maxwidth': u'12,00'}), expected={'class': 9006017, 'subclass': 1276502300})
         self.check_not_err(n.node(data, {u'maxwidth': u'12,000'}), expected={'class': 9006017, 'subclass': 1276502300})
         self.check_not_err(n.node(data, {u'maxwidth': u'3,50,5'}), expected={'class': 9006017, 'subclass': 1276502300})
         self.check_not_err(n.node(data, {u'maxwidth': u'3.5'}), expected={'class': 9006017, 'subclass': 1276502300})
         self.check_not_err(n.node(data, {u'maxwidth': u'4'}), expected={'class': 9006017, 'subclass': 1276502300})
         self.check_err(n.node(data, {u'maxwidth': u'5,5'}), expected={'class': 9006017, 'subclass': 1276502300})
-        self.check_err(n.node(data, {u'maxweight': u'12,00'}), expected={'class': 9006017, 'subclass': 1860114154})
-        self.check_not_err(n.node(data, {u'maxweight': u'12,000'}), expected={'class': 9006017, 'subclass': 1860114154})
-        self.check_not_err(n.node(data, {u'maxweight': u'3,50,5'}), expected={'class': 9006017, 'subclass': 1860114154})
-        self.check_not_err(n.node(data, {u'maxweight': u'3.5'}), expected={'class': 9006017, 'subclass': 1860114154})
-        self.check_not_err(n.node(data, {u'maxweight': u'4'}), expected={'class': 9006017, 'subclass': 1860114154})
-        self.check_err(n.node(data, {u'maxweight': u'5,5'}), expected={'class': 9006017, 'subclass': 1860114154})
+        self.check_not_err(n.node(data, {u'height': u'22\''}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'height': u'2.22 m'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'height': u'2m'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'height': u'3'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'height': u'5  metre'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'height': u'6.78 meters'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'height': u'7.8'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_err(n.node(data, {u'height': u'medium'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_err(n.node(data, {u'maxheight': u'-5'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_err(n.node(data, {u'maxlength': u'0'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_err(n.node(data, {u'maxlength': u'10\'13"'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'maxwidth': u'7 ft'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_not_err(n.node(data, {u'width': u'10\'5"'}), expected={'class': 9006018, 'subclass': 79082020})
+        self.check_err(n.node(data, {u'maxaxleload': u'12,00'}), expected={'class': 9006017, 'subclass': 1432954177})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'12,000'}), expected={'class': 9006017, 'subclass': 1432954177})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'3,50,5'}), expected={'class': 9006017, 'subclass': 1432954177})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'3.5'}), expected={'class': 9006017, 'subclass': 1432954177})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'4'}), expected={'class': 9006017, 'subclass': 1432954177})
+        self.check_err(n.node(data, {u'maxaxleload': u'5,5'}), expected={'class': 9006017, 'subclass': 1432954177})
+        self.check_err(n.node(data, {u'maxweight': u'12,00'}), expected={'class': 9006017, 'subclass': 1611278185})
+        self.check_not_err(n.node(data, {u'maxweight': u'12,000'}), expected={'class': 9006017, 'subclass': 1611278185})
+        self.check_not_err(n.node(data, {u'maxweight': u'3,50,5'}), expected={'class': 9006017, 'subclass': 1611278185})
+        self.check_not_err(n.node(data, {u'maxweight': u'3.5'}), expected={'class': 9006017, 'subclass': 1611278185})
+        self.check_not_err(n.node(data, {u'maxweight': u'4'}), expected={'class': 9006017, 'subclass': 1611278185})
+        self.check_err(n.node(data, {u'maxweight': u'5,5'}), expected={'class': 9006017, 'subclass': 1611278185})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'2'}), expected={'class': 9006019, 'subclass': 380397850})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'2.5'}), expected={'class': 9006019, 'subclass': 380397850})
+        self.check_not_err(n.node(data, {u'maxaxleload': u'7 kg'}), expected={'class': 9006019, 'subclass': 380397850})
+        self.check_err(n.node(data, {u'maxaxleload': u'something'}), expected={'class': 9006019, 'subclass': 380397850})
+        self.check_err(n.node(data, {u'maxweight': u'-5'}), expected={'class': 9006019, 'subclass': 380397850})
+        self.check_not_err(n.node(data, {u'maxweight': u'6\'6"'}), expected={'class': 9006019, 'subclass': 380397850})
         self.check_err(n.node(data, {u'distance': u'12,00'}), expected={'class': 9006017, 'subclass': 13385038})
         self.check_not_err(n.node(data, {u'distance': u'12,000'}), expected={'class': 9006017, 'subclass': 13385038})
         self.check_not_err(n.node(data, {u'distance': u'3,50,5'}), expected={'class': 9006017, 'subclass': 13385038})
         self.check_not_err(n.node(data, {u'distance': u'3.5'}), expected={'class': 9006017, 'subclass': 13385038})
         self.check_not_err(n.node(data, {u'distance': u'4'}), expected={'class': 9006017, 'subclass': 13385038})
         self.check_err(n.node(data, {u'distance': u'5,5'}), expected={'class': 9006017, 'subclass': 13385038})
-        self.check_not_err(n.node(data, {u'amenity': u'cinema', u'screen': u'8'}), expected={'class': 9006009, 'subclass': 1499065449})
-        self.check_err(n.node(data, {u'amenity': u'cinema', u'screen': u'led'}), expected={'class': 9006009, 'subclass': 1499065449})
+        self.check_not_err(n.node(data, {u'amenity': u'cinema', u'screen': u'8'}), expected={'class': 9006009, 'subclass': 2104305963})
+        self.check_err(n.node(data, {u'amenity': u'cinema', u'screen': u'led'}), expected={'class': 9006009, 'subclass': 2104305963})
         self.check_err(n.node(data, {u'admin_level': u'-1'}), expected={'class': 9006010, 'subclass': 1514270237})
         self.check_err(n.node(data, {u'admin_level': u'0'}), expected={'class': 9006010, 'subclass': 1514270237})
         self.check_err(n.node(data, {u'admin_level': u'13'}), expected={'class': 9006010, 'subclass': 1514270237})
@@ -1814,28 +2931,49 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'isced:level': u'5'}), expected={'class': 9006010, 'subclass': 1091907371})
         self.check_err(n.node(data, {u'isced:level': u'9'}), expected={'class': 9006010, 'subclass': 1091907371})
         self.check_err(n.node(data, {u'isced:level': u'secondary'}), expected={'class': 9006010, 'subclass': 1091907371})
+        self.check_err(n.node(data, {u'maxstay': u'0'}), expected={'class': 9006024, 'subclass': 1756130010})
+        self.check_not_err(n.node(data, {u'maxstay': u'2'}), expected={'class': 9006024, 'subclass': 1756130010})
+        self.check_not_err(n.node(data, {u'maxstay': u'02 minutes'}), expected={'class': 9006025, 'subclass': 606655085})
+        self.check_not_err(n.node(data, {u'maxstay': u'1 min'}), expected={'class': 9006025, 'subclass': 606655085})
+        self.check_err(n.node(data, {u'maxstay': u'15 min'}), expected={'class': 9006025, 'subclass': 606655085})
+        self.check_not_err(n.node(data, {u'maxstay': u'2 minutes'}), expected={'class': 9006025, 'subclass': 606655085})
+        self.check_err(n.node(data, {u'maxstay': u'5 min'}), expected={'class': 9006025, 'subclass': 606655085})
+        self.check_err(n.node(data, {u'maxstay': u'1 h'}), expected={'class': 9006025, 'subclass': 872535915})
+        self.check_err(n.node(data, {u'maxstay': u'1 hr'}), expected={'class': 9006025, 'subclass': 872535915})
+        self.check_err(n.node(data, {u'maxstay': u'1h'}), expected={'class': 9006025, 'subclass': 872535915})
+        self.check_not_err(n.node(data, {u'maxstay': u'02 hours'}), expected={'class': 9006025, 'subclass': 59629984})
+        self.check_not_err(n.node(data, {u'maxstay': u'1 h'}), expected={'class': 9006025, 'subclass': 59629984})
+        self.check_err(n.node(data, {u'maxstay': u'15 h'}), expected={'class': 9006025, 'subclass': 59629984})
+        self.check_not_err(n.node(data, {u'maxstay': u'2 hours'}), expected={'class': 9006025, 'subclass': 59629984})
+        self.check_err(n.node(data, {u'maxstay': u'5 h'}), expected={'class': 9006025, 'subclass': 59629984})
+        self.check_not_err(n.node(data, {u'maxstay': u'02 hours'}), expected={'class': 9006025, 'subclass': 814970301})
+        self.check_not_err(n.node(data, {u'maxstay': u'1 hr'}), expected={'class': 9006025, 'subclass': 814970301})
+        self.check_err(n.node(data, {u'maxstay': u'15 hr'}), expected={'class': 9006025, 'subclass': 814970301})
+        self.check_not_err(n.node(data, {u'maxstay': u'2 hours'}), expected={'class': 9006025, 'subclass': 814970301})
+        self.check_err(n.node(data, {u'maxstay': u'5 hr'}), expected={'class': 9006025, 'subclass': 814970301})
+        self.check_not_err(n.node(data, {u'maxstay': u'2 h'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_not_err(n.node(data, {u'maxstay': u'2 hr'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_not_err(n.node(data, {u'maxstay': u'02hours'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_err(n.node(data, {u'maxstay': u'15h'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_not_err(n.node(data, {u'maxstay': u'1h'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_not_err(n.node(data, {u'maxstay': u'2hours'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_err(n.node(data, {u'maxstay': u'5h'}), expected={'class': 9006025, 'subclass': 1721471777})
+        self.check_err(n.node(data, {u'maxstay': u'0 minutes'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_err(n.node(data, {u'maxstay': u'1. hours'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'2.5 hours'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'66 minutes'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'7 h'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'7 hr'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_err(n.node(data, {u'maxstay': u'-5'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'0'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_err(n.node(data, {u'maxstay': u'180'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_err(n.node(data, {u'maxstay': u'66minutes'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'load-unload'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'no'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_err(n.node(data, {u'maxstay': u'something'}), expected={'class': 9006025, 'subclass': 1976092293})
+        self.check_not_err(n.node(data, {u'maxstay': u'unlimited'}), expected={'class': 9006025, 'subclass': 1976092293})
         self.check_err(n.way(data, {u'123': u'foo'}, [0]), expected={'class': 9006001, 'subclass': 750700308})
         self.check_not_err(n.way(data, {u'ref.1': u'foo'}, [0]), expected={'class': 9006001, 'subclass': 750700308})
-        self.check_not_err(n.way(data, {u'width': u'1\''}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_err(n.way(data, {u'width': u'-5'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_not_err(n.way(data, {u'width': u'0.5'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_not_err(n.way(data, {u'width': u'1 m'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_not_err(n.way(data, {u'width': u'10 ft'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_not_err(n.way(data, {u'width': u'10\'5"'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_not_err(n.way(data, {u'width': u'3'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_err(n.way(data, {u'width': u'something'}, [0]), expected={'class': 9006018, 'subclass': 587682576})
-        self.check_err(n.way(data, {u'maxwidth': u'-5'}, [0]), expected={'class': 9006018, 'subclass': 1600821089})
-        self.check_not_err(n.way(data, {u'maxwidth': u'2'}, [0]), expected={'class': 9006018, 'subclass': 1600821089})
-        self.check_not_err(n.way(data, {u'maxwidth': u'2.5'}, [0]), expected={'class': 9006018, 'subclass': 1600821089})
-        self.check_not_err(n.way(data, {u'maxwidth': u'6\'6"'}, [0]), expected={'class': 9006018, 'subclass': 1600821089})
-        self.check_not_err(n.way(data, {u'maxwidth': u'7 ft'}, [0]), expected={'class': 9006018, 'subclass': 1600821089})
-        self.check_err(n.way(data, {u'maxwidth': u'something'}, [0]), expected={'class': 9006018, 'subclass': 1600821089})
-        self.check_err(n.way(data, {u'maxweight': u'-5'}, [0]), expected={'class': 9006019, 'subclass': 280688781})
-        self.check_not_err(n.way(data, {u'maxweight': u'2'}, [0]), expected={'class': 9006019, 'subclass': 280688781})
-        self.check_not_err(n.way(data, {u'maxweight': u'2.5'}, [0]), expected={'class': 9006019, 'subclass': 280688781})
-        self.check_not_err(n.way(data, {u'maxweight': u'6\'6"'}, [0]), expected={'class': 9006019, 'subclass': 280688781})
-        self.check_not_err(n.way(data, {u'maxweight': u'7 kg'}, [0]), expected={'class': 9006019, 'subclass': 280688781})
-        self.check_err(n.way(data, {u'maxweight': u'something'}, [0]), expected={'class': 9006019, 'subclass': 280688781})
         self.check_err(n.way(data, {u'maxspeed': u'-50'}, [0]), expected={'class': 9006010, 'subclass': 683878293})
         self.check_err(n.way(data, {u'maxspeed': u'0'}, [0]), expected={'class': 9006010, 'subclass': 683878293})
         self.check_not_err(n.way(data, {u'maxspeed': u'30 mph'}, [0]), expected={'class': 9006010, 'subclass': 683878293})
@@ -1872,12 +3010,12 @@ class Test(TestPluginCommon):
         self.check_not_err(n.way(data, {u'incline': u'down'}, [0]), expected={'class': 9006010, 'subclass': 901779967})
         self.check_err(n.way(data, {u'incline': u'extreme'}, [0]), expected={'class': 9006010, 'subclass': 901779967})
         self.check_not_err(n.way(data, {u'incline': u'up'}, [0]), expected={'class': 9006010, 'subclass': 901779967})
-        self.check_err(n.way(data, {u'highway': u'residential', u'lanes:backward': u'-1'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
-        self.check_err(n.way(data, {u'highway': u'residential', u'lanes:forward': u'-1'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
-        self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'-1'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
-        self.check_not_err(n.way(data, {u'highway': u'residential', u'lanes': u'1'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
-        self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'1;2'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
-        self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'5.5'}, [0]), expected={'class': 9006009, 'subclass': 10320184})
+        self.check_err(n.way(data, {u'highway': u'residential', u'lanes:backward': u'-1'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
+        self.check_err(n.way(data, {u'highway': u'residential', u'lanes:forward': u'-1'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
+        self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'-1'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
+        self.check_not_err(n.way(data, {u'highway': u'residential', u'lanes': u'1'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
+        self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'1;2'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
+        self.check_err(n.way(data, {u'highway': u'residential', u'lanes': u'5.5'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
         self.check_not_err(n.way(data, {u'interval': u'00:05'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
         self.check_not_err(n.way(data, {u'interval': u'00:05:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
         self.check_err(n.way(data, {u'interval': u'00:65:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
@@ -1896,3 +3034,5 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'eddb'}, [0]), expected={'class': 9006022, 'subclass': 311618853})
         self.check_not_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EDDB'}, [0]), expected={'class': 9006022, 'subclass': 345477776})
         self.check_err(n.way(data, {u'aeroway': u'aerodrome', u'icao': u'EQQQ'}, [0]), expected={'class': 9006022, 'subclass': 345477776})
+        self.check_err(n.way(data, {u'maxstay': u'0'}, [0]), expected={'class': 9006024, 'subclass': 1756130010})
+        self.check_not_err(n.way(data, {u'maxstay': u'no'}, [0]), expected={'class': 9006024, 'subclass': 1756130010})

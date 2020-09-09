@@ -24,12 +24,15 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.errors[40612] = self.def_class(item = 4061, level = 2, tags = mapcss.list_(u'parking', u'amenity', u'fix:chair'), title = mapcss.tr(u'Does this station still sell SP95, or has it been replaced by the SP95-E10?'))
         self.errors[9019001] = self.def_class(item = 9019, level = 3, tags = mapcss.list_(u'ref', u'highway'), title = mapcss.tr(u'validation rules highway milestone'))
         self.errors[9019002] = self.def_class(item = 9019, level = 3, tags = mapcss.list_(u'ref', u'highway'), title = mapcss.tr(u'validation rules nat_ref in France'))
+        self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': u'Unusually named motorway_junction; use of \'name=*\' for the exit destination?'})
+        self.errors[9019004] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': u'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
-        self.re_0a66a902 = re.compile(r'^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$')
+        self.re_0c53237c = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$')
         self.re_299ea34e = re.compile(r'^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$')
         self.re_30299d59 = re.compile(r'^(Enedis|GRDF)$')
-        self.re_322a74e0 = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$')
+        self.re_3863901a = re.compile(r'^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$')
+        self.re_3b90619c = re.compile(r'^\D')
         self.re_4bae79a8 = re.compile(r'[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}')
         self.re_55ee32ac = re.compile(r'^(motorway|trunk|primary|secondary|tertiary)$')
         self.re_6388df2b = re.compile(r'^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]))$')
@@ -194,24 +197,8 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseTags:list("ref","highway")
                 # -osmoseItemClassLevel:"3040/30403/3"
                 # throwWarning:tr("{0} is not a milestone valid reference RIU","{2.tag}")
-                # -osmoseAssertNoMatchWithContext:list("node highway=milestone ref=A4 distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("node highway=milestone distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
                 err.append({'class': 30403, 'subclass': 0, 'text': mapcss.tr(u'{0} is not a milestone valid reference RIU', mapcss._tag_uncapture(capture_tags, u'{2.tag}'))})
-
-        # node[highway=milestone][operator][nat_ref][!ref][inside("FR")]
-        if (u'highway' in keys and u'nat_ref' in keys and u'operator' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'milestone') and mapcss._tag_capture(capture_tags, 1, tags, u'operator') and mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref') and not mapcss._tag_capture(capture_tags, 3, tags, u'ref') and mapcss.inside(self.father.config.options, u'FR'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("validation rules highway milestone")
-                # -osmoseTags:list("ref","highway")
-                # -osmoseItemClassLevel:"9019/9019001/3"
-                # throwWarning:tr("missing ref")
-                # -osmoseAssertMatchWithContext:list("node highway=milestone distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
-                # -osmoseAssertNoMatchWithContext:list("node highway=milestone ref=A4 distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
-                err.append({'class': 9019001, 'subclass': 0, 'text': mapcss.tr(u'missing ref')})
 
         # node[highway=milestone][operator][nat_ref][!distance][inside("FR")]
         if (u'highway' in keys and u'nat_ref' in keys and u'operator' in keys):
@@ -225,9 +212,43 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseTags:list("ref","highway")
                 # -osmoseItemClassLevel:"9019/9019001/3"
                 # throwWarning:tr("missing distance")
-                # -osmoseAssertNoMatchWithContext:list("node highway=milestone ref=A4 distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
-                # -osmoseAssertMatchWithContext:list("node highway=milestone ref=A4 nat_ref=77PR38DC operator=SANEF","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("node highway=milestone distance=38 nat_ref=77PR38DC operator=SANEF","inside=FR")
+                # -osmoseAssertMatchWithContext:list("node highway=milestone nat_ref=77PR38DC operator=SANEF","inside=FR")
                 err.append({'class': 9019001, 'subclass': 0, 'text': mapcss.tr(u'missing distance')})
+
+        # node[highway=motorway_junction][name][inside("FR")]
+        if (u'highway' in keys and u'name' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'motorway_junction') and mapcss._tag_capture(capture_tags, 1, tags, u'name') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # suggestAlternative:"'destination=*' tag on the exiting 'highway=*_link'"
+                # throwWarning:"Unusually named motorway_junction; use of 'name=*' for the exit destination?"
+                # fixRemove:"name"
+                # -osmoseAssertMatchWithContext:list("node highway=motorway_junction name=Trifouilly-lès-Oies","inside=FR")
+                err.append({'class': 9019003, 'subclass': 1394767972, 'text': {'en': u'Unusually named motorway_junction; use of \'name=*\' for the exit destination?'}, 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    u'name'])
+                }})
+
+        # node[highway=motorway_junction][ref=~/^\D/]
+        if (u'highway' in keys and u'ref' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'motorway_junction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b90619c), mapcss._tag_capture(capture_tags, 1, tags, u'ref')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # suggestAlternative:"'destination:ref=*' tag on the exiting 'highway=*_link'"
+                # throwWarning:"Unusual ref for motorway_junction; use of 'ref=*' for the exit destination ref?"
+                # fixRemove:"ref"
+                # assertMatch:"node highway=motorway_junction ref=N7"
+                err.append({'class': 9019004, 'subclass': 323412661, 'text': {'en': u'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    u'ref'])
+                }})
 
         return err
 
@@ -432,12 +453,12 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way highway=motorway_link nat_ref:forward=62A902615CD_1 nat_ref:backward=62A902615CD_2 operator='SANEF'","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr(u'{0} must be a link road ', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/][nat_ref][nat_ref!~/^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$/][operator!="VILLE DE PARIS"][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/][nat_ref][nat_ref!~/^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$/][operator!="VILLE DE PARIS"][inside("FR")]
         if (u'highway' in keys and u'nat_ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0a66a902, u'^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$'), mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref')) and mapcss._tag_capture(capture_tags, 3, tags, u'operator') != mapcss._value_const_capture(capture_tags, 3, u'VILLE DE PARIS', u'VILLE DE PARIS') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_3863901a, u'^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$'), mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref')) and mapcss._tag_capture(capture_tags, 3, tags, u'operator') != mapcss._value_const_capture(capture_tags, 3, u'VILLE DE PARIS', u'VILLE DE PARIS') and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -447,12 +468,12 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way highway=motorway_link nat_ref=80A901645CD_6 operator=SANEF","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr(u'{0} is not a valid reference', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
-        # way[junction=roundabout][highway=~/^(motorway|trunk|primary|secondary|tertiary)$/][nat_ref][nat_ref!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$/][inside("FR")]
+        # way[junction=roundabout][highway=~/^(motorway|trunk|primary|secondary|tertiary)$/][nat_ref][nat_ref!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$/][inside("FR")]
         if (u'highway' in keys and u'junction' in keys and u'nat_ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'junction') == mapcss._value_capture(capture_tags, 0, u'roundabout') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 1, tags, u'highway')) and mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_322a74e0, u'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 3, tags, u'nat_ref')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'junction') == mapcss._value_capture(capture_tags, 0, u'roundabout') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 1, tags, u'highway')) and mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_0c53237c, u'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 3, tags, u'nat_ref')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -477,17 +498,17 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way highway=trunk_link nat_ref=75Periph_Paris_05_3 operator=\"VILLE DE PARIS\"","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr(u'{0} is not a valid reference (Paris)', mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
 
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:forward"]["nat_ref:forward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$/][inside("FR")]
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:backward"]["nat_ref:backward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$/][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:forward"]["nat_ref:forward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$/][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:backward"]["nat_ref:backward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$/][inside("FR")]
         if (u'highway' in keys and u'nat_ref:backward' in keys) or (u'highway' in keys and u'nat_ref:forward' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'nat_ref:forward') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_322a74e0, u'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref:forward')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'nat_ref:forward') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0c53237c, u'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref:forward')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'nat_ref:backward') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_322a74e0, u'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref:backward')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'nat_ref:backward') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0c53237c, u'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, u'nat_ref:backward')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -701,15 +722,14 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {u'amenity': u'parking', u'name': u'Aire de Covoiturage'}), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {u'distance': u'38', u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF', u'ref': u'A4'}), expected={'class': 30403, 'subclass': 0})
+            self.check_not_err(n.node(data, {u'distance': u'38', u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF'}), expected={'class': 30403, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {u'distance': u'38', u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF'}), expected={'class': 9019001, 'subclass': 0})
+            self.check_not_err(n.node(data, {u'distance': u'38', u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF'}), expected={'class': 9019001, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {u'distance': u'38', u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF', u'ref': u'A4'}), expected={'class': 9019001, 'subclass': 0})
+            self.check_err(n.node(data, {u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF'}), expected={'class': 9019001, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {u'distance': u'38', u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF', u'ref': u'A4'}), expected={'class': 9019001, 'subclass': 0})
-        with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {u'highway': u'milestone', u'nat_ref': u'77PR38DC', u'operator': u'SANEF', u'ref': u'A4'}), expected={'class': 9019001, 'subclass': 0})
+            self.check_err(n.node(data, {u'highway': u'motorway_junction', u'name': u'Trifouilly-lès-Oies'}), expected={'class': 9019003, 'subclass': 1394767972})
+        self.check_err(n.node(data, {u'highway': u'motorway_junction', u'ref': u'N7'}), expected={'class': 9019004, 'subclass': 323412661})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {u'railway': u'disused'}, [0]), expected={'class': 21600, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):

@@ -17,7 +17,6 @@ class Josm_transport(PluginMapCSS):
         self.errors[21401] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing public_transport:version tag on a public_transport route relation'))
         self.errors[21402] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing network tag on a public_transport relation'))
         self.errors[21403] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing operator tag on a public_transport relation'))
-        self.errors[21404] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing ref tag for line number on a public_transport relation'))
         self.errors[21405] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing from/to tag on a public_transport route relation'))
         self.errors[21411] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing public_transport tag on a public transport stop'))
         self.errors[21412] = self.def_class(item = 2140, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing legacy tag on a public transport stop'))
@@ -27,6 +26,7 @@ class Josm_transport(PluginMapCSS):
         self.errors[9014008] = self.def_class(item = 9014, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The operator should be on the transport lines and not on the stops'))
         self.errors[9014009] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing transportation mode, add a tag route = bus/coach/tram/etc'))
         self.errors[9014010] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing transportation mode, change tag route to route_master'))
+        self.errors[9014017] = self.def_class(item = 9014, level = 3, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'Missing ref tag for line number on a public_transport relation'))
         self.errors[9014019] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'A bus stop is supposed to be a node'))
         self.errors[9014020] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The color of the public transport line should be in a colour tag'))
         self.errors[9014021] = self.def_class(item = 9014, level = 2, tags = mapcss.list_(u'tag', u'public_transport'), title = mapcss.tr(u'The interval is invalid (try a number of minutes)'))
@@ -103,12 +103,12 @@ class Josm_transport(PluginMapCSS):
                     [u'public_transport',u'stop_position']])
                 }})
 
-        # node[public_transport=platform][!highway][!railway][!bus][!tram][!ferry]
+        # node[public_transport=platform][!highway][!railway][!bus][!tram][!ferry][!walking_bus]
         if (u'public_transport' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'tram') and not mapcss._tag_capture(capture_tags, 5, tags, u'ferry'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'tram') and not mapcss._tag_capture(capture_tags, 5, tags, u'ferry') and not mapcss._tag_capture(capture_tags, 6, tags, u'walking_bus'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
@@ -333,11 +333,10 @@ class Josm_transport(PluginMapCSS):
                 try: match = (set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'ref'))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseItemClassLevel:"2140/21404/3"
-                # throwError:tr("Missing ref tag for line number on a public_transport relation")
+                # throwWarning:tr("Missing ref tag for line number on a public_transport relation")
                 # assertNoMatch:"relation type=route route=bus ref=3"
                 # assertMatch:"relation type=route route=bus"
-                err.append({'class': 21404, 'subclass': 0, 'text': mapcss.tr(u'Missing ref tag for line number on a public_transport relation')})
+                err.append({'class': 9014017, 'subclass': 1396643784, 'text': mapcss.tr(u'Missing ref tag for line number on a public_transport relation')})
 
         # relation.pt_route[!from]
         # relation.pt_route[!to]
@@ -561,8 +560,8 @@ class Test(TestPluginCommon):
         self.check_err(n.relation(data, {u'route': u'bus', u'type': u'route'}, []), expected={'class': 21402, 'subclass': 0})
         self.check_not_err(n.relation(data, {u'operator': u'BiBiBus', u'route': u'bus', u'type': u'route'}, []), expected={'class': 21403, 'subclass': 0})
         self.check_err(n.relation(data, {u'route': u'bus', u'type': u'route'}, []), expected={'class': 21403, 'subclass': 0})
-        self.check_not_err(n.relation(data, {u'ref': u'3', u'route': u'bus', u'type': u'route'}, []), expected={'class': 21404, 'subclass': 0})
-        self.check_err(n.relation(data, {u'route': u'bus', u'type': u'route'}, []), expected={'class': 21404, 'subclass': 0})
+        self.check_not_err(n.relation(data, {u'ref': u'3', u'route': u'bus', u'type': u'route'}, []), expected={'class': 9014017, 'subclass': 1396643784})
+        self.check_err(n.relation(data, {u'route': u'bus', u'type': u'route'}, []), expected={'class': 9014017, 'subclass': 1396643784})
         self.check_not_err(n.relation(data, {u'from': u'A', u'route': u'bus', u'to': u'B', u'type': u'route'}, []), expected={'class': 21405, 'subclass': 0})
         self.check_err(n.relation(data, {u'from': u'A', u'route': u'bus', u'type': u'route'}, []), expected={'class': 21405, 'subclass': 0})
         self.check_err(n.relation(data, {u'route': u'bus', u'to': u'B', u'type': u'route'}, []), expected={'class': 21405, 'subclass': 0})

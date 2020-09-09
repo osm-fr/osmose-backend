@@ -27,6 +27,7 @@ class Josm_wikipedia(PluginMapCSS):
         self.errors[9011011] = self.def_class(item = 9011, level = 3, tags = ["tag", "wikipedia"], title = mapcss.tr(u'wikipedia language seems to be duplicated, e.g. en:en:Foo'))
         self.errors[9011012] = self.def_class(item = 9011, level = 2, tags = ["tag", "wikipedia"], title = mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit'))
         self.errors[9011015] = self.def_class(item = 9011, level = 3, tags = ["tag", "wikipedia"], title = mapcss.tr(u'\'\'{0}\'\' tag is set, but no \'\'{1}\'\' tag. Make sure to set \'\'wikipedia=language:value\'\' for the main article and optional \'\'wikipedia:language=value\'\' only for additional articles that are not just other language variants of the main article.', mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{0.key}')))
+        self.errors[9011016] = self.def_class(item = 9011, level = 3, tags = ["tag", "wikipedia"], title = mapcss.tr(u'{0} value looks like a {1} value', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'wikidata'))
 
         self.re_034ab801 = re.compile(r'^cz:')
         self.re_04adb5d2 = re.compile(r'(?i).*%[0-9A-F][0-9A-F]')
@@ -41,6 +42,7 @@ class Josm_wikipedia(PluginMapCSS):
         self.re_294645af = re.compile(r'^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):')
         self.re_2a71e33b = re.compile(r'(?i)^([-a-z]+:)wiki/(.*)$')
         self.re_2d3d5d3d = re.compile(r'(?i)^[-a-z]{2,12}:https?:')
+        self.re_2dd1bee3 = re.compile(r'^[-a-zA-Z]{2,12}:Q[1-9][0-9]{0,8}$')
         self.re_4b567f18 = re.compile(r'^Q[1-9][0-9]{0,8}$')
         self.re_536e5b67 = re.compile(r'(?i)^[-a-z]{2,12}: ')
         self.re_53b6f173 = re.compile(r'^be-x-old:')
@@ -404,6 +406,27 @@ class Josm_wikipedia(PluginMapCSS):
                 # assertMatch:"node wikidata=a"
                 err.append({'class': 9011012, 'subclass': 1398622919, 'text': mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit')})
 
+        # *[wikipedia][wikipedia=~/^[-a-zA-Z]{2,12}:Q[1-9][0-9]{0,8}$/]
+        if (u'wikipedia' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} value looks like a {1} value","{0.key}","wikidata")
+                # assertNoMatch:"node wikipedia=a"
+                # assertNoMatch:"node wikipedia=de:Q"
+                # assertNoMatch:"node wikipedia=de:Q0"
+                # assertNoMatch:"node wikipedia=de:Q0123"
+                # assertMatch:"node wikipedia=de:Q1"
+                # assertMatch:"node wikipedia=de:Q123"
+                # assertNoMatch:"node wikipedia=de:a"
+                # assertNoMatch:"node wikipedia=en-GB:Q0123"
+                # assertMatch:"node wikipedia=en-GB:Q1"
+                # assertMatch:"node wikipedia=en-GB:Q123"
+                err.append({'class': 9011016, 'subclass': 346570414, 'text': mapcss.tr(u'{0} value looks like a {1} value', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'wikidata')})
+
         # *[!wikipedia][/^wikipedia:/]
         if True:
             match = False
@@ -733,6 +756,17 @@ class Josm_wikipedia(PluginMapCSS):
                 # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
                 err.append({'class': 9011012, 'subclass': 1398622919, 'text': mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit')})
 
+        # *[wikipedia][wikipedia=~/^[-a-zA-Z]{2,12}:Q[1-9][0-9]{0,8}$/]
+        if (u'wikipedia' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} value looks like a {1} value","{0.key}","wikidata")
+                err.append({'class': 9011016, 'subclass': 346570414, 'text': mapcss.tr(u'{0} value looks like a {1} value', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'wikidata')})
+
         # *[!wikipedia][/^wikipedia:/]
         if True:
             match = False
@@ -1059,6 +1093,17 @@ class Josm_wikipedia(PluginMapCSS):
                 # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
                 err.append({'class': 9011012, 'subclass': 1398622919, 'text': mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit')})
 
+        # *[wikipedia][wikipedia=~/^[-a-zA-Z]{2,12}:Q[1-9][0-9]{0,8}$/]
+        if (u'wikipedia' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} value looks like a {1} value","{0.key}","wikidata")
+                err.append({'class': 9011016, 'subclass': 346570414, 'text': mapcss.tr(u'{0} value looks like a {1} value', mapcss._tag_uncapture(capture_tags, u'{0.key}'), u'wikidata')})
+
         # *[!wikipedia][/^wikipedia:/]
         if True:
             match = False
@@ -1123,6 +1168,16 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'wikidata': u'Q1'}), expected={'class': 9011012, 'subclass': 1398622919})
         self.check_not_err(n.node(data, {u'wikidata': u'Q123'}), expected={'class': 9011012, 'subclass': 1398622919})
         self.check_err(n.node(data, {u'wikidata': u'a'}), expected={'class': 9011012, 'subclass': 1398622919})
+        self.check_not_err(n.node(data, {u'wikipedia': u'a'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_not_err(n.node(data, {u'wikipedia': u'de:Q'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_not_err(n.node(data, {u'wikipedia': u'de:Q0'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_not_err(n.node(data, {u'wikipedia': u'de:Q0123'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_err(n.node(data, {u'wikipedia': u'de:Q1'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_err(n.node(data, {u'wikipedia': u'de:Q123'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_not_err(n.node(data, {u'wikipedia': u'de:a'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_not_err(n.node(data, {u'wikipedia': u'en-GB:Q0123'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_err(n.node(data, {u'wikipedia': u'en-GB:Q1'}), expected={'class': 9011016, 'subclass': 346570414})
+        self.check_err(n.node(data, {u'wikipedia': u'en-GB:Q123'}), expected={'class': 9011016, 'subclass': 346570414})
         self.check_err(n.node(data, {u'wikipedia:en': u'a'}), expected={'class': 9011015, 'subclass': 153018468})
         self.check_not_err(n.node(data, {u'wikipedia': u'Foo'}), expected={'class': 9011015, 'subclass': 153018468})
         self.check_not_err(n.node(data, {u'wikipedia': u'a', u'wikipedia:en': u'b'}), expected={'class': 9011015, 'subclass': 153018468})

@@ -22,7 +22,6 @@ class Josm_geometry(PluginMapCSS):
         self.errors[9003007] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr(u'{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
         self.errors[9003008] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
         self.errors[9003009] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.'))
-        self.errors[9003010] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr(u'Way with {0} not closed.', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
 
         self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
 
@@ -638,17 +637,6 @@ class Josm_geometry(PluginMapCSS):
             if match:
                 # throwError:tr("{0} on a way. Should be used in a relation","{0.tag}")
                 err.append({'class': 9003008, 'subclass': 665916193, 'text': mapcss.tr(u'{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
-
-        # way[place=island]!:closed
-        if (u'place' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'island') and nds[0] != nds[-1])
-                except mapcss.RuleAbort: pass
-            if match:
-                # throwError:tr("Way with {0} not closed.","{0.tag}")
-                err.append({'class': 9003010, 'subclass': 167228643, 'text': mapcss.tr(u'Way with {0} not closed.', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
 
         return err
 
