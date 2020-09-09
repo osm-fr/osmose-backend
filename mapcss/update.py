@@ -16,6 +16,7 @@ def main(mapcsss):
             importlib.reload(mapcss2osmose)
             print(v['url'])
             r = requests.get(v['url'], allow_redirects=True)
+            r.encoding = 'utf-8' # Force bad encoding
             f = '/tmp/mapcss/' + k + '.mapcss'
             open(f, 'w').write(r.text)
             try:
