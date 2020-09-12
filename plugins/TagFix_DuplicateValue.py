@@ -48,6 +48,7 @@ similar.'''),
         self.BlackList = set((
             'ref', 'created_by', 'is_in',
             'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid',
+            'source:geometry:date', 'source:geometry:ref', # Belgium, Flanders
             'opening_hours', 'service_times', 'collection_times', 'opening_hours:kitchen',
             'phone', 'contact:phone', 'fax', 'contact:fax',
             'url',
