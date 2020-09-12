@@ -32,6 +32,15 @@ def primaryExpression_remove_null_op(t, c):
         t = t['value']
     return t
 
+def valueExpression_equal(t, c):
+    """
+    type = valueExpression
+    Use only '=' as equal opperator
+    """
+    if t['operator'] and t['operands'] == '==':
+        t['operands'] = '='
+    return t
+
 def quoted_unescape(t, c):
     """
     type = quoted
@@ -355,6 +364,7 @@ def functionExpression_runtime(t, c):
 rewrite_rules_clean = [
     ('valueExpression', valueExpression_remove_null_op),
     ('primaryExpression', primaryExpression_remove_null_op),
+    ('valueExpression', valueExpression_equal),
     ('quoted', quoted_unescape),
     ('regexExpression', regexExpression_unescape),
     ('simple_selector', simple_selector_pseudo_class),
