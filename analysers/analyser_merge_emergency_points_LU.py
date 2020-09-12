@@ -48,6 +48,9 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
                     static1={
                         "highway": "emergency_access_point"
                     },
+                    static2={
+                        "source": self.source,
+                    },
                     mapping1={
                         "ref": "NAME",
                         "name": "ZUSATZ"
