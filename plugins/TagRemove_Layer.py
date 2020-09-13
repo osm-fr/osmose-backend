@@ -63,7 +63,7 @@ class TagRemove_Layer(Plugin):
                     else:
                         return {"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}
             elif tags.get(u"waterway") or ((tags.get(u"natural") and tags.get(u"natural") == "water")):
-                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
+                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no") and (not tags.get(u"location") or tags.get(u"location") != "underground"):
                     if len(nds) > 3:
                         return {"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
@@ -105,3 +105,4 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"layer": "-1", "tunnel": "culvert", "natural": "water"}, [1,2])
         self.check_err(a.way(None, {"layer": "-1", "waterway": "ditch"}, [1,2,3]))
         self.check_err(a.way(None, {"layer": "1", "natural": "water"}, [1,2,3,4,5,6]))
+        assert not a.way(None, {"layer": "-1", "waterway": "pressurised", "location": "underground"}, [1,2])
