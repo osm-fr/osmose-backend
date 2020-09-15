@@ -35,10 +35,10 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
             title = T_f('{0} stop update', place))
 
         self.init(
-            u"http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
-            u"Horaires des lignes régulières du réseau transgironde",
-            GTFS(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2016",
-                    fileUrl = u"https://datacat.datalocale.fr/file/1479301/raw/download", encoding = "ISO-8859-15")),
+            "https://www.data.gouv.fr/fr/datasets/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/",
+            "Horaires théoriques du réseau de transport 'CG 33 -TRANSGIRONDE'",
+            GTFS(Source(attribution = "Conseil général de la Gironde", millesime = "04/2018",
+                    fileUrl = "https://static.data.gouv.fr/resources/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/20180423-150005/download_CD33_GTFS_lignes_reg.zip", encoding = "ISO-8859-15")),
             Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(
