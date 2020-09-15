@@ -64,7 +64,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
                         "wheelchair": lambda fields: {"true": "yes", "false": "no"}.get(fields["wheelchair"]),
                         "takeaway": lambda fields: {"true": "yes", "false": "no"}.get(fields["takeaway"]),
                         "official_name": "label"},
-                text = lambda tags, fields: {"en": "{} - {} {} - {}".format(fields["street_address"], fields["postalcode_address"], fields["city_address"], fields["elem"])} )))
+                text = lambda tags, fields: {"en": "{} - {} - {} {} - {}".format(fields["label"], fields["street_address"], fields["postalcode_address"], fields["city_address"], fields["elem"])} )))
 
 # the csv data is generated with the following request:
 sparql = """
@@ -89,7 +89,7 @@ WHERE {
     dt:Museum,
     dt:PointOfView,
     dt:PicnicArea,
-    dt:Winery
+    dt:WineCellar
   )).
   ?location schema:geo ?geo.
   ?geo schema:latitude ?Latitude;

@@ -58,7 +58,7 @@ PAR_OPEN: '(';
 PAR_CLOSE: ')';
 DOT: '.';
 
-OP_EQ: '=';
+OP_EQ: '=' | '==';
 OP_NEQ: '!=';
 OP_LE: '<=';
 OP_GE: '>=';

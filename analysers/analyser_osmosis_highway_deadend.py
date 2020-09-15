@@ -59,8 +59,15 @@ HAVING
         ferry.tags != ''::hstore AND
         ferry.tags?'route' AND
         ferry.tags->'route' = 'ferry'
+    LEFT JOIN ways AS bicycle_parking ON
+        bicycle_parking.linestring && t.geom AND
+        t.nid = ANY(bicycle_parking.nodes) AND
+        bicycle_parking.tags != ''::hstore AND
+        bicycle_parking.tags?'amenity' AND
+        bicycle_parking.tags->'amenity' = 'bicycle_parking'
 WHERE
-    ferry.id IS NULL
+    ferry.id IS NULL AND
+    bicycle_parking.id IS NULL
 """
 
 sql30 = """

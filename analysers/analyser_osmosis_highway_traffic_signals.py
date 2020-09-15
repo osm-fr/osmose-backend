@@ -140,7 +140,10 @@ FROM
   JOIN {1}highways AS ways ON
     ways.id = way_nodes.way_id
 WHERE
-  NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')
+  (NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')) AND
+  (NOT nodes.tags?'traffic_sign:direction' OR nodes.tags->'traffic_sign:direction' NOT IN('backward', 'forward')) AND
+  NOT nodes.tags?'traffic_sign:forward' AND
+  NOT nodes.tags?'traffic_sign:backward'
 GROUP BY
   nodes.id,
   nodes.geom

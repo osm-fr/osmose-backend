@@ -48,6 +48,7 @@ similar.'''),
         self.BlackList = set((
             'ref', 'created_by', 'is_in',
             'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid',
+            'source:geometry:date', 'source:geometry:ref', # Belgium, Flanders
             'opening_hours', 'service_times', 'collection_times', 'opening_hours:kitchen',
             'phone', 'contact:phone', 'fax', 'contact:fax',
             'url',
@@ -55,6 +56,7 @@ similar.'''),
             'healthcare:speciality',
             'traffic_sign',
             'sport',
+            'addr:flats', 'addr:housenumber', 'addr:unit', 'addr:floor', 'addr:block', 'addr:door',
         ))
         self.BlackListRegex = set((
             re.compile('seamark:.+:colour'),

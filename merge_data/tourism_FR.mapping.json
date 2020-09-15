@@ -76,7 +76,7 @@
   },
   {
     "title": "Winery",
-    "type": "https://www.datatourisme.gouv.fr/ontology/core#Winery",
+    "type": "https://www.datatourisme.gouv.fr/ontology/core#WineCellar",
     "items": 8250,
     "classes": 360,
     "tags_select": {

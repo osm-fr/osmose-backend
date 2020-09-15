@@ -32,6 +32,15 @@ def primaryExpression_remove_null_op(t, c):
         t = t['value']
     return t
 
+def valueExpression_equal(t, c):
+    """
+    type = valueExpression
+    Use only '=' as equal opperator
+    """
+    if t['operator'] and t['operands'] == '==':
+        t['operands'] = '='
+    return t
+
 def quoted_unescape(t, c):
     """
     type = quoted
@@ -355,6 +364,7 @@ def functionExpression_runtime(t, c):
 rewrite_rules_clean = [
     ('valueExpression', valueExpression_remove_null_op),
     ('primaryExpression', primaryExpression_remove_null_op),
+    ('valueExpression', valueExpression_equal),
     ('quoted', quoted_unescape),
     ('regexExpression', regexExpression_unescape),
     ('simple_selector', simple_selector_pseudo_class),
@@ -813,7 +823,7 @@ class Test(TestPluginCommon):
 from .item_map import item_map
 
 
-def main(_, mapcss):
+def mapcss2osmose(mapcss, output_path = None):
     class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
     global item_default, class_map, subclass_blacklist, class_index, meta_tags
     if class_name in item_map:
@@ -843,7 +853,7 @@ def main(_, mapcss):
 
     python_code = compile(input, class_name, mapcss_url, only_for, not_for, prefix)
 
-    path = os.path.dirname(mapcss)
+    path = output_path if output_path else os.path.dirname(mapcss)
     output = open((path or '.') + '/' + prefix + class_name + '.py', 'w')
     output.write(python_code)
     output.close()
@@ -858,4 +868,4 @@ def main(_, mapcss):
 
 
 if __name__ == '__main__':
-    main(*sys.argv)
+    mapcss2osmose(mapcss = sys.argv[1])
