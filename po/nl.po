@@ -6,7 +6,7 @@
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
 # ali zaroili <ali.zaroili@gmail.com>, 2016-2018
-# alain2003, 2014,2017-2020
+# d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2014,2017-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

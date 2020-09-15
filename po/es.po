@@ -10,7 +10,7 @@
 # 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014
 # 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014-2017
 # Mikel Ortega, 2020
-# Eric Armijo, 2020
+# YoViajo, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
