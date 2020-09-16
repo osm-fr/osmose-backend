@@ -19,14 +19,9 @@
 ##                                                                       ##
 ###########################################################################
 
-try:
-    from . import OsmPbf_libosmbf
-    OsmPbfReader = OsmPbf_libosmbf.OsmPbfReader
-    MockCountObjects = OsmPbf_libosmbf.MockCountObjects
-except ImportError:
-    from . import OsmPbf_imposm
-    OsmPbfReader = OsmPbf_imposm.OsmPbfReader
-    MockCountObjects = OsmPbf_imposm.MockCountObjects
+from . import OsmPbf_libosmbf
+OsmPbfReader = OsmPbf_libosmbf.OsmPbfReader
+MockCountObjects = OsmPbf_libosmbf.MockCountObjects
 
 ###########################################################################
 import unittest
