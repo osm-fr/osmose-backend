@@ -19,11 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
-
+import builtins
 import os
 from inspect import getframeinfo, stack
 from modules import OsmoseTranslation
