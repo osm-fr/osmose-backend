@@ -10,6 +10,7 @@ from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from .generated.MapCSSLexer import MapCSSLexer
 from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
+from typing import Dict, List, Set, Optional
 
 
 # Clean
@@ -517,7 +518,7 @@ def stablehash(s):
     return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
 
 
-class_map = {}
+class_map: Dict[Optional[str], int] = {}
 class_index = 0
 meta_tags = None
 item_default = None
@@ -525,8 +526,8 @@ item = class_id = level = tags = group = group_class = text = text_class = fix =
 subclass_id = 0
 class_ = {}
 tests = []
-regex_store = {}
-set_store = set()
+regex_store: Dict[List[str], str] = {}
+set_store: Set[str] = set()
 subclass_blacklist = []
 is_meta_rule = False
 

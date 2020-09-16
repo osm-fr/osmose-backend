@@ -230,7 +230,7 @@ def at(asset_lat, asset_lon, lat, lon):
 #asin, atan, atan2, ceil, cos, cosh, exp, floor, log, max, min, random, round, signum, sin, sinh, sqrt, tan, tanh
 #    the usual meaning, details
 import math
-import random
+import random as py_random
 str_value_num_wrapper = lambda function: lambda s: str_value(function(s.to_n()))
 asin = str_value_num_wrapper(math.asin)
 atan = str_value_num_wrapper(math.atan)
@@ -243,7 +243,7 @@ floor = str_value_num_wrapper(math.floor)
 log = str_value_num_wrapper(math.log)
 #max = max
 #min = min
-random = random.random
+random = py_random.random
 round_ = str_value_num_wrapper(lambda f: round(f))
 signum = str_value_num_wrapper(lambda x: (x > 0) - (x < 0))
 sin = str_value_num_wrapper(math.sin)
