@@ -25,6 +25,7 @@
 import os
 from collections import OrderedDict
 import modules.config
+from typing import Dict, Optional
 
 ###########################################################################
 
@@ -74,12 +75,12 @@ class template_config:
     dir_extracts   = modules.config.dir_extracts
     dir_diffs      = modules.config.dir_diffs
 
-    db_base     = "osmose"
-    db_user     = "osmose"
-    db_password = "-osmose-"
-    db_host     = os.environ.get('DB_HOST', None) # Use socket by default
-    db_schema   = None
-    db_schema_path = None
+    db_base: Optional[str] = 'osmose'
+    db_user: Optional[str] = 'osmose'
+    db_password: Optional[str] = '-osmose-'
+    db_host: Optional[str] = os.environ.get('DB_HOST', None) # Use socket by default
+    db_schema: Optional[str] = None
+    db_schema_path: Optional[str] = None
     db_persistent = False
 
     source_url = 'https://github.com/osm-fr/osmose-backend/blob/master'
@@ -90,7 +91,7 @@ class template_config:
         self.polygon_id       = polygon_id # ID of a relation for the country boundary
         self.download         = {}
         self.download_repo    = download_repo
-        self.analyser         = OrderedDict()
+        self.analyser: OrderedDict[str, str] = OrderedDict()
         if analyser_options:
             self.analyser_options = analyser_options
         else:
@@ -98,6 +99,7 @@ class template_config:
 
         self.sql_post_scripts = []  # Scripts to run everytime, just before launching analysers
         self.db_extension_check = []
+        self.analyser_updt_url = {}
 
     def init(self):
         if "diff" in self.download:
@@ -112,7 +114,7 @@ class template_config:
 
             self.download["dst"] = self.dir_extracts + "/" + self.country + ext
 
-config = OrderedDict()
+config: Dict[str, template_config] = OrderedDict()
 
 ###########################################################################
 
