@@ -152,6 +152,7 @@ if __name__ == "__main__":
         if bool(re.search('.csv$', sys.argv[1])):
             with open(sys.argv[1], 'r') as in_file:
                 csv_in = csv.DictReader(in_file)
+                assert csv_in.fieldnames is not None
                 csv_out = csv.DictWriter(sys.stdout,
                                          fieldnames=csv_in.fieldnames)
                 csv_out.writerow(dict((fn, fn) for fn in csv_in.fieldnames))
