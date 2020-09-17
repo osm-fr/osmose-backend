@@ -126,9 +126,9 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
                 title = T_f('Approximate geometry of {0}', t[1]),
                 detail = T_(
 '''Geometry seems to be draw crudely, there is a discrepancy between the
-drawing and the real way especially in the curve. Use an imagerie.'''),
+drawing and the real way especially in the curve.'''),
                 fix = T_(
-'''After checking (orthophotos), add nodes or move existing nodes.'''),
+'''After checking orthophotos, add nodes or move existing nodes.'''),
                 trap = T_(
 '''On service ways, train stations, train workshops that may be either a
 false positive'''),
