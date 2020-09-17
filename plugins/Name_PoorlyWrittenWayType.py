@@ -63,6 +63,3 @@ class P_Name_PoorlyWrittenWayType(Plugin):
 
     def relation(self, data, tags, members):
         return self.way(data, tags, None)
-
-
-available_plugin_classes = []

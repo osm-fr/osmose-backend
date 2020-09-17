@@ -171,6 +171,3 @@ class P_Name_Dictionary(Plugin):
     #    #logger.log(u"%d mots à trier"%len(self.DictUnknownWords))
     #    f.close()
     #    return
-
-
-available_plugin_classes = []
