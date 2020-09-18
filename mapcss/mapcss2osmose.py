@@ -191,7 +191,7 @@ def functionExpression_param_regex(t, c):
     type = functionExpression
     Ensure params to regex functions are regex
     """
-    if t['name'] in ('regexp_test', 'regexp_match'):
+    if t['name'] in ('regexp_test', 'regexp_match', 'tag_regex'):
         if t['params'][0]['type'] == 'quoted':
             t['params'][0] = {'type': 'regexExpression', 'value': t['params'][0]['value']}
     return t
@@ -201,7 +201,7 @@ def functionExpression_regexp_flags(t, c):
     type = functionExpression
     Move regex flag from match function to regex object
     """
-    if t['name'] in ('regexp_test', 'regexp_match') and len(t['params']) == 3:
+    if t['name'] in ('regexp_test', 'regexp_match', 'tag_regex') and len(t['params']) == 3:
         flags = t['params'].pop()
         t['params'][0]['params'][2]['flags'] = flags
     return t
@@ -348,7 +348,7 @@ def functionExpression_runtime(t, c):
         return "len(tags)"
     else:
         t['params'] = (
-            ["tags"] if t['name'] == 'tag' else
+            ["tags"] if t['name'] in ('tag', 'tag_regex') else
             ["data['lat']", "data['lon']"] if t['name'] == 'at' else
             ["self.father.config.options"] if t['name'] in ('inside', 'outside', 'language', 'no_language', 'setting') else
             []
