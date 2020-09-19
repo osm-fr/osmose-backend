@@ -14,8 +14,8 @@ class Josm_relation(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[9007001] = self.def_class(item = 9007, level = 3, tags = ["tag", "relation"], title = mapcss.tr(u'missing tag'))
-        self.errors[9007002] = self.def_class(item = 9007, level = 2, tags = ["tag", "relation"], title = mapcss.tr(u'relation without type'))
+        self.errors[9007001] = self.def_class(item = 9007, level = 3, tags = ["tag", "relation"], title = mapcss.tr('missing tag'))
+        self.errors[9007002] = self.def_class(item = 9007, level = 2, tags = ["tag", "relation"], title = mapcss.tr('relation without type'))
 
         self.re_67b11051 = re.compile(r'^restriction')
 
@@ -31,13 +31,13 @@ class Josm_relation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, u'type'))
+                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'type'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("relation without type")
                 # assertMatch:"relation name=Foo"
                 # assertNoMatch:"relation type=route name=Foo"
-                err.append({'class': 9007002, 'subclass': 1457279320, 'text': mapcss.tr(u'relation without type')})
+                err.append({'class': 9007002, 'subclass': 1457279320, 'text': mapcss.tr('relation without type')})
 
         # relation[type=route][!route]
         # relation[type=route_master][!route_master]
@@ -45,31 +45,31 @@ class Josm_relation(PluginMapCSS):
         # relation[type=public_transport][!public_transport]
         # relation[type=waterway][!waterway]
         # relation[type=enforcement][!enforcement]
-        if (u'type' in keys):
+        if ('type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and not mapcss._tag_capture(capture_tags, 1, tags, u'route'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route') and not mapcss._tag_capture(capture_tags, 1, tags, 'route'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, 'route_master'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'boundary') and not mapcss._tag_capture(capture_tags, 1, tags, u'boundary') and not mapcss._tag_capture(capture_tags, 2, tags, u'disused:boundary'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary') and not mapcss._tag_capture(capture_tags, 1, tags, 'boundary') and not mapcss._tag_capture(capture_tags, 2, tags, 'disused:boundary'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'public_transport') and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'public_transport') and not mapcss._tag_capture(capture_tags, 1, tags, 'public_transport'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'waterway') and not mapcss._tag_capture(capture_tags, 1, tags, u'waterway'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'waterway') and not mapcss._tag_capture(capture_tags, 1, tags, 'waterway'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'enforcement') and not mapcss._tag_capture(capture_tags, 1, tags, u'enforcement'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'enforcement') and not mapcss._tag_capture(capture_tags, 1, tags, 'enforcement'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -87,14 +87,14 @@ class Josm_relation(PluginMapCSS):
                 # assertNoMatch:"relation type=site site=administrative"
                 # assertNoMatch:"relation type=waterway waterway=river"
                 # assertMatch:"relation type=waterway"
-                err.append({'class': 9007001, 'subclass': 1287163089, 'text': mapcss.tr(u'{0} relation without {0} tag', mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9007001, 'subclass': 1287163089, 'text': mapcss.tr('{0} relation without {0} tag', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # relation[type=restriction][!/^restriction/]
-        if (u'type' in keys):
+        if ('type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'restriction') and not mapcss._tag_capture(capture_tags, 1, tags, self.re_67b11051))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'restriction') and not mapcss._tag_capture(capture_tags, 1, tags, self.re_67b11051))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -102,7 +102,7 @@ class Josm_relation(PluginMapCSS):
                 # assertNoMatch:"relation type=restriction restriction:hgv=no_left_turn"
                 # assertNoMatch:"relation type=restriction restriction=no_left_turn"
                 # assertMatch:"relation type=restriction"
-                err.append({'class': 9007001, 'subclass': 1097316614, 'text': mapcss.tr(u'{0} relation without {0} tag', u'restriction')})
+                err.append({'class': 9007001, 'subclass': 1097316614, 'text': mapcss.tr('{0} relation without {0} tag', 'restriction')})
 
         return err
 
@@ -121,21 +121,21 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.relation(data, {u'name': u'Foo'}, []), expected={'class': 9007002, 'subclass': 1457279320})
-        self.check_not_err(n.relation(data, {u'name': u'Foo', u'type': u'route'}, []), expected={'class': 9007002, 'subclass': 1457279320})
-        self.check_not_err(n.relation(data, {u'boundary': u'administrative', u'type': u'boundary'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_err(n.relation(data, {u'type': u'boundary'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'enforcement': u'maxspeed', u'type': u'enforcement'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_err(n.relation(data, {u'type': u'enforcement'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'public_transport': u'stop_area', u'type': u'public_transport'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_err(n.relation(data, {u'type': u'public_transport'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'route': u'train', u'type': u'route'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_err(n.relation(data, {u'type': u'route'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'route_master': u'train', u'type': u'route_master'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_err(n.relation(data, {u'type': u'route_master'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'site': u'administrative', u'type': u'site'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'type': u'waterway', u'waterway': u'river'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_err(n.relation(data, {u'type': u'waterway'}, []), expected={'class': 9007001, 'subclass': 1287163089})
-        self.check_not_err(n.relation(data, {u'restriction:hgv': u'no_left_turn', u'type': u'restriction'}, []), expected={'class': 9007001, 'subclass': 1097316614})
-        self.check_not_err(n.relation(data, {u'restriction': u'no_left_turn', u'type': u'restriction'}, []), expected={'class': 9007001, 'subclass': 1097316614})
-        self.check_err(n.relation(data, {u'type': u'restriction'}, []), expected={'class': 9007001, 'subclass': 1097316614})
+        self.check_err(n.relation(data, {'name': 'Foo'}, []), expected={'class': 9007002, 'subclass': 1457279320})
+        self.check_not_err(n.relation(data, {'name': 'Foo', 'type': 'route'}, []), expected={'class': 9007002, 'subclass': 1457279320})
+        self.check_not_err(n.relation(data, {'boundary': 'administrative', 'type': 'boundary'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_err(n.relation(data, {'type': 'boundary'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'enforcement': 'maxspeed', 'type': 'enforcement'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_err(n.relation(data, {'type': 'enforcement'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'public_transport': 'stop_area', 'type': 'public_transport'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_err(n.relation(data, {'type': 'public_transport'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'route': 'train', 'type': 'route'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_err(n.relation(data, {'type': 'route'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'route_master': 'train', 'type': 'route_master'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_err(n.relation(data, {'type': 'route_master'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'site': 'administrative', 'type': 'site'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'type': 'waterway', 'waterway': 'river'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_err(n.relation(data, {'type': 'waterway'}, []), expected={'class': 9007001, 'subclass': 1287163089})
+        self.check_not_err(n.relation(data, {'restriction:hgv': 'no_left_turn', 'type': 'restriction'}, []), expected={'class': 9007001, 'subclass': 1097316614})
+        self.check_not_err(n.relation(data, {'restriction': 'no_left_turn', 'type': 'restriction'}, []), expected={'class': 9007001, 'subclass': 1097316614})
+        self.check_err(n.relation(data, {'type': 'restriction'}, []), expected={'class': 9007001, 'subclass': 1097316614})

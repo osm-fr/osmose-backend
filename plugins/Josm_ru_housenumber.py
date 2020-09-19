@@ -16,7 +16,7 @@ class Josm_ru_housenumber(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[9017001] = self.def_class(item = 9017, level = 3, tags = ["tag", "addr"], title = mapcss.tr(u'Номера домов не соответствующие принятому соглашению'))
+        self.errors[9017001] = self.def_class(item = 9017, level = 3, tags = ["tag", "addr"], title = mapcss.tr('Номера домов не соответствующие принятому соглашению'))
 
         self.re_62d22c1b = re.compile(r'^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$')
 
@@ -28,15 +28,15 @@ class Josm_ru_housenumber(PluginMapCSS):
 
 
         # *[addr:housenumber][addr:housenumber!~/^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$/]
-        if (u'addr:housenumber' in keys):
+        if ('addr:housenumber' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_62d22c1b, u'^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$'), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_62d22c1b, '^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Номера домов не соответствующие принятому соглашению")
-                err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr(u'Номера домов не соответствующие принятому соглашению')})
+                err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr('Номера домов не соответствующие принятому соглашению')})
 
         return err
 
@@ -47,15 +47,15 @@ class Josm_ru_housenumber(PluginMapCSS):
 
 
         # *[addr:housenumber][addr:housenumber!~/^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$/]
-        if (u'addr:housenumber' in keys):
+        if ('addr:housenumber' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_62d22c1b, u'^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$'), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_62d22c1b, '^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Номера домов не соответствующие принятому соглашению")
-                err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr(u'Номера домов не соответствующие принятому соглашению')})
+                err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr('Номера домов не соответствующие принятому соглашению')})
 
         return err
 
@@ -66,15 +66,15 @@ class Josm_ru_housenumber(PluginMapCSS):
 
 
         # *[addr:housenumber][addr:housenumber!~/^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$/]
-        if (u'addr:housenumber' in keys):
+        if ('addr:housenumber' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_62d22c1b, u'^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$'), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_62d22c1b, '^((?:вл)?[0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?(?: к[0-9А-Я]+)?(?: с[0-9А-Я]+)?(?: соор[0-9А-Я]+)?(?: лит[0-9А-Я]+)?(?: фл[0-9А-Я]+)?|[0-9]+-[0-9]+|[0-9]+[А-Я]?[\/-][0-9]+[А-Я]?[\/-][0-9]+[А-Я]?|(([0-9]+[А-Я]?[IXV]*)|[IXV]*)[\/-]([0-9]+[А-Я]?|[IXV]*)|ЗЯБ-[0-9]+|С-([0-9]+[А-Я]?(?:\/[0-9]+[А-Я]?)?|[IXV]*)|к[0-9А-Я]+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Номера домов не соответствующие принятому соглашению")
-                err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr(u'Номера домов не соответствующие принятому соглашению')})
+                err.append({'class': 9017001, 'subclass': 774061168, 'text': mapcss.tr('Номера домов не соответствующие принятому соглашению')})
 
         return err
 

@@ -13,7 +13,7 @@ class Covid19(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[202004] = self.def_class(item = 4010, level = 2, tags = mapcss.list_(u'tag', u'fix:survey', u'deprecated'), title = mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'))
+        self.errors[202004] = self.def_class(item = 4010, level = 2, tags = mapcss.list_('tag', 'fix:survey', 'deprecated'), title = mapcss.tr('This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'))
 
         self.re_3f390088 = re.compile(r'off|restricted')
         self.re_64916a2b = re.compile(r'same|off|open|restricted')
@@ -26,75 +26,75 @@ class Covid19(PluginMapCSS):
 
 
         # *[takeaway:covid19=yes][takeaway!=yes][inside("FR")]
-        if (u'takeaway:covid19' in keys):
+        if ('takeaway:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'takeaway') != mapcss._value_const_capture(capture_tags, 1, u'yes', u'yes') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times")
                 # fixChangeKey:"takeaway:covid19=>takeaway"
                 # -osmoseAssertMatchWithContext:list("node takeaway:covid19=yes takeaway=no","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'takeaway', mapcss.tag(tags, u'takeaway:covid19')]]),
+                    ['takeaway', mapcss.tag(tags, 'takeaway:covid19')]]),
                     '-': ([
-                    u'takeaway:covid19'])
+                    'takeaway:covid19'])
                 }})
 
         # *[delivery:covid19=yes][delivery!=yes][inside("FR")]
-        if (u'delivery:covid19' in keys):
+        if ('delivery:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'delivery:covid19') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'delivery') != mapcss._value_const_capture(capture_tags, 1, u'yes', u'yes') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times")
                 # fixChangeKey:"delivery:covid19=>delivery"
                 # -osmoseAssertMatchWithContext:list("node delivery:covid19=yes delivery=no","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'delivery', mapcss.tag(tags, u'delivery:covid19')]]),
+                    ['delivery', mapcss.tag(tags, 'delivery:covid19')]]),
                     '-': ([
-                    u'delivery:covid19'])
+                    'delivery:covid19'])
                 }})
 
         # *[opening_hours:covid19][opening_hours:covid19=~/off|restricted/][inside("FR")]
-        if (u'opening_hours:covid19' in keys):
+        if ('opening_hours:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours:covid19')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("The lockdown is over. Has this place reopened?")
                 # fixRemove:"opening_hours:covid19"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
-                    u'opening_hours:covid19'])
+                    'opening_hours:covid19'])
                 }})
 
         # *[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours][inside("FR")]
-        if (u'opening_hours:covid19' in keys):
+        if ('opening_hours:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, u'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, u'opening_hours') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?")
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
+                    ['opening_hours', mapcss.tag(tags, 'opening_hours:covid19')]]),
                     '-': ([
-                    u'opening_hours:covid19'])
+                    'opening_hours:covid19'])
                 }})
 
         return err
@@ -106,11 +106,11 @@ class Covid19(PluginMapCSS):
 
 
         # *[takeaway:covid19=yes][takeaway!=yes][inside("FR")]
-        if (u'takeaway:covid19' in keys):
+        if ('takeaway:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'takeaway') != mapcss._value_const_capture(capture_tags, 1, u'yes', u'yes') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -120,19 +120,19 @@ class Covid19(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way takeaway:covid19=only","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("way takeaway:covid19=yes takeaway=yes","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way takeaway:covid19=yes","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'takeaway', mapcss.tag(tags, u'takeaway:covid19')]]),
+                    ['takeaway', mapcss.tag(tags, 'takeaway:covid19')]]),
                     '-': ([
-                    u'takeaway:covid19'])
+                    'takeaway:covid19'])
                 }})
 
         # *[delivery:covid19=yes][delivery!=yes][inside("FR")]
-        if (u'delivery:covid19' in keys):
+        if ('delivery:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'delivery:covid19') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'delivery') != mapcss._value_const_capture(capture_tags, 1, u'yes', u'yes') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -142,19 +142,19 @@ class Covid19(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way delivery:covid19=only","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("way delivery:covid19=yes delivery=yes","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way delivery:covid19=yes","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'delivery', mapcss.tag(tags, u'delivery:covid19')]]),
+                    ['delivery', mapcss.tag(tags, 'delivery:covid19')]]),
                     '-': ([
-                    u'delivery:covid19'])
+                    'delivery:covid19'])
                 }})
 
         # *[opening_hours:covid19][opening_hours:covid19=~/off|restricted/][inside("FR")]
-        if (u'opening_hours:covid19' in keys):
+        if ('opening_hours:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours:covid19')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -163,17 +163,17 @@ class Covid19(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way opening_hours:covid19=restricted","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19=same","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
-                    u'opening_hours:covid19'])
+                    'opening_hours:covid19'])
                 }})
 
         # *[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours][inside("FR")]
-        if (u'opening_hours:covid19' in keys):
+        if ('opening_hours:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, u'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, u'opening_hours') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -181,11 +181,11 @@ class Covid19(PluginMapCSS):
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
                 # -osmoseAssertNoMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00' opening_hours='Mo-Su 09:00-20:00'","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way opening_hours:covid19='Mo-Su 09:00-20:00'","inside=FR")
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
+                    ['opening_hours', mapcss.tag(tags, 'opening_hours:covid19')]]),
                     '-': ([
-                    u'opening_hours:covid19'])
+                    'opening_hours:covid19'])
                 }})
 
         return err
@@ -197,73 +197,73 @@ class Covid19(PluginMapCSS):
 
 
         # *[takeaway:covid19=yes][takeaway!=yes][inside("FR")]
-        if (u'takeaway:covid19' in keys):
+        if ('takeaway:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'takeaway') != mapcss._value_const_capture(capture_tags, 1, u'yes', u'yes') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a take-away service during the lockdown. Does it still offer take-away in usual times")
                 # fixChangeKey:"takeaway:covid19=>takeaway"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store offered a take-away service during the lockdown. Does it still offer take-away in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'takeaway', mapcss.tag(tags, u'takeaway:covid19')]]),
+                    ['takeaway', mapcss.tag(tags, 'takeaway:covid19')]]),
                     '-': ([
-                    u'takeaway:covid19'])
+                    'takeaway:covid19'])
                 }})
 
         # *[delivery:covid19=yes][delivery!=yes][inside("FR")]
-        if (u'delivery:covid19' in keys):
+        if ('delivery:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'delivery:covid19') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'delivery') != mapcss._value_const_capture(capture_tags, 1, u'yes', u'yes') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store offered a delivery service during the lockdown. Does it still offer delivery in usual times")
                 # fixChangeKey:"delivery:covid19=>delivery"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store offered a delivery service during the lockdown. Does it still offer delivery in usual times'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'delivery', mapcss.tag(tags, u'delivery:covid19')]]),
+                    ['delivery', mapcss.tag(tags, 'delivery:covid19')]]),
                     '-': ([
-                    u'delivery:covid19'])
+                    'delivery:covid19'])
                 }})
 
         # *[opening_hours:covid19][opening_hours:covid19=~/off|restricted/][inside("FR")]
-        if (u'opening_hours:covid19' in keys):
+        if ('opening_hours:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours:covid19')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("The lockdown is over. Has this place reopened?")
                 # fixRemove:"opening_hours:covid19"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('The lockdown is over. Has this place reopened?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
-                    u'opening_hours:covid19'])
+                    'opening_hours:covid19'])
                 }})
 
         # *[opening_hours:covid19][opening_hours:covid19!~/same|off|open|restricted/][!opening_hours][inside("FR")]
-        if (u'opening_hours:covid19' in keys):
+        if ('opening_hours:covid19' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, u'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, u'opening_hours') and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
                 # throwWarning:tr("This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?")
                 # fixChangeKey:"opening_hours:covid19=>opening_hours"
-                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr(u'This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 202004, 'subclass': 0, 'text': mapcss.tr('This store was on an adapted schedule during the lockdown. Are these opening hours still in effect?'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'opening_hours', mapcss.tag(tags, u'opening_hours:covid19')]]),
+                    ['opening_hours', mapcss.tag(tags, 'opening_hours:covid19')]]),
                     '-': ([
-                    u'opening_hours:covid19'])
+                    'opening_hours:covid19'])
                 }})
 
         return err
@@ -284,32 +284,32 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {u'takeaway': u'no', u'takeaway:covid19': u'yes'}), expected={'class': 202004, 'subclass': 0})
+            self.check_err(n.node(data, {'takeaway': 'no', 'takeaway:covid19': 'yes'}), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {u'delivery': u'no', u'delivery:covid19': u'yes'}), expected={'class': 202004, 'subclass': 0})
+            self.check_err(n.node(data, {'delivery': 'no', 'delivery:covid19': 'yes'}), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'takeaway:covid19': u'no'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'takeaway:covid19': 'no'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'takeaway:covid19': u'only'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'takeaway:covid19': 'only'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'takeaway': u'yes', u'takeaway:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'takeaway': 'yes', 'takeaway:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {u'takeaway:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_err(n.way(data, {'takeaway:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'delivery:covid19': u'no'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'delivery:covid19': 'no'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'delivery:covid19': u'only'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'delivery:covid19': 'only'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'delivery': u'yes', u'delivery:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'delivery': 'yes', 'delivery:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {u'delivery:covid19': u'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_err(n.way(data, {'delivery:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'opening_hours': u'Mo-Su 09:00-20:00', u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'opening_hours': 'Mo-Su 09:00-20:00', 'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {u'opening_hours:covid19': u'restricted'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_err(n.way(data, {'opening_hours:covid19': 'restricted'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'opening_hours:covid19': u'same'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'opening_hours:covid19': 'same'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {u'opening_hours': u'Mo-Su 09:00-20:00', u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_not_err(n.way(data, {'opening_hours': 'Mo-Su 09:00-20:00', 'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {u'opening_hours:covid19': u'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
+            self.check_err(n.way(data, {'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})

@@ -14,14 +14,14 @@ class Josm_highway(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[9004001] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'abbreviated street name'))
-        self.errors[9004002] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'wrong crossing tag on a way'))
-        self.errors[9004004] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'Unspecific highway type'))
-        self.errors[9004006] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'deprecated tagging'))
-        self.errors[9004008] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'wrong highway tag on a node'))
-        self.errors[9004010] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
-        self.errors[9004011] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}')))
-        self.errors[9004012] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr(u'Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{3.value}'), u'sidewalk=left|right|both|no'))
+        self.errors[9004001] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('abbreviated street name'))
+        self.errors[9004002] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('wrong crossing tag on a way'))
+        self.errors[9004004] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('Unspecific highway type'))
+        self.errors[9004006] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('deprecated tagging'))
+        self.errors[9004008] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('wrong highway tag on a node'))
+        self.errors[9004010] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9004011] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[9004012] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no'))
 
         self.re_015aabd5 = re.compile(r'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(r'^.*_link$')
@@ -39,11 +39,11 @@ class Josm_highway(PluginMapCSS):
         set_fixable_footway = set_link_road = set_major_road = set_minor_road = set_not_fixable_footway = False
 
         # node[highway=~/motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway/][highway!=motorway_junction][highway!=services]
-        if (u'highway' in keys):
+        if ('highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3dc5dd7c), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != mapcss._value_const_capture(capture_tags, 1, u'motorway_junction', u'motorway_junction') and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != mapcss._value_const_capture(capture_tags, 2, u'services', u'services'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3dc5dd7c), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'highway') != mapcss._value_const_capture(capture_tags, 1, 'motorway_junction', 'motorway_junction') and mapcss._tag_capture(capture_tags, 2, tags, 'highway') != mapcss._value_const_capture(capture_tags, 2, 'services', 'services'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong highway tag on a node")
@@ -64,33 +64,33 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"node highway=traffic_calming"
                 # assertNoMatch:"node highway=traffic_signals"
                 # assertNoMatch:"node highway=turning_circle"
-                err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node')})
+                err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr('wrong highway tag on a node')})
 
         # node[footway=crossing]
-        if (u'footway' in keys):
+        if ('footway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'crossing'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'crossing'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node","{0.tag}")
                 # suggestAlternative:"highway=crossing"
                 # suggestAlternative:"railway=crossing"
-                err.append({'class': 9004010, 'subclass': 1262520638, 'text': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9004010, 'subclass': 1262520638, 'text': mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # node[cycleway=crossing]
-        if (u'cycleway' in keys):
+        if ('cycleway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'cycleway') == mapcss._value_capture(capture_tags, 0, u'crossing'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'crossing'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node","{0.tag}")
                 # suggestAlternative:"highway=crossing + bicycle=yes"
                 # suggestAlternative:"railway=crossing + bicycle=yes"
-                err.append({'class': 9004010, 'subclass': 1385847744, 'text': mapcss.tr(u'{0} on a node', mapcss._tag_uncapture(capture_tags, u'{0.tag}'))})
+                err.append({'class': 9004010, 'subclass': 1385847744, 'text': mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # node[railway!=crossing][crossing!=no].is_in_railway.is_in_minor_road!.is_in_major_road
         # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
@@ -110,44 +110,44 @@ class Josm_highway(PluginMapCSS):
         set_fixable_footway = set_link_road = set_major_road = set_minor_road = set_not_fixable_footway = False
 
         # way[highway=~/^(motorway|trunk|primary|secondary|tertiary)$/]
-        if (u'highway' in keys):
+        if ('highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, u'highway')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmajor_road
                 set_major_road = True
 
         # way[highway=~/^.*_link$/]
-        if (u'highway' in keys):
+        if ('highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3092b7ac), mapcss._tag_capture(capture_tags, 0, tags, u'highway')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3092b7ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setlink_road
                 set_link_road = True
 
         # way[highway=~/^(unclassified|residential|living_street|service)$/]
-        if (u'highway' in keys):
+        if ('highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_015aabd5), mapcss._tag_capture(capture_tags, 0, tags, u'highway')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_015aabd5), mapcss._tag_capture(capture_tags, 0, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setminor_road
                 set_minor_road = True
 
         # way[highway][name=~/(?i).* (Ave|Blvd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Wy)[.]?$/]
-        if (u'highway' in keys and u'name' in keys):
+        if ('highway' in keys and 'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_776f2c1a), mapcss._tag_capture(capture_tags, 1, tags, u'name')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_776f2c1a), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("abbreviated street name")
@@ -155,74 +155,74 @@ class Josm_highway(PluginMapCSS):
                 # assertMatch:"way highway=unclassified name=\"Bou blvd.\""
                 # assertMatch:"way highway=unclassified name=\"Foo Ave\""
                 # assertMatch:"way highway=unclassified name=\"Foo Ave.\""
-                err.append({'class': 9004001, 'subclass': 544432044, 'text': mapcss.tr(u'abbreviated street name')})
+                err.append({'class': 9004001, 'subclass': 544432044, 'text': mapcss.tr('abbreviated street name')})
 
         # way[highway=crossing]
         # way[railway=crossing]
         # way[railway=level_crossing]
-        if (u'highway' in keys) or (u'railway' in keys):
+        if ('highway' in keys) or ('railway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'crossing'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'crossing'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'crossing'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'crossing'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'level_crossing'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'level_crossing'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong crossing tag on a way")
                 # assertMatch:"way highway=crossing"
-                err.append({'class': 9004002, 'subclass': 1549110307, 'text': mapcss.tr(u'wrong crossing tag on a way')})
+                err.append({'class': 9004002, 'subclass': 1549110307, 'text': mapcss.tr('wrong crossing tag on a way')})
 
         # way[highway=yes]
         # way[highway=road]
-        if (u'highway' in keys):
+        if ('highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'yes'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'road'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'road'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Unspecific highway type")
                 # assertNoMatch:"way highway=residential"
                 # assertMatch:"way highway=road"
-                err.append({'class': 9004004, 'subclass': 1729022478, 'text': mapcss.tr(u'Unspecific highway type')})
+                err.append({'class': 9004004, 'subclass': 1729022478, 'text': mapcss.tr('Unspecific highway type')})
 
         # way[highway=footway][maxspeed]
         # way[highway=steps][maxspeed]
         # way[highway=cycleway][bicycle=no]
         # way[highway=footway][foot=no]
         # way[highway=cycleway][cycleway=lane]
-        if (u'bicycle' in keys and u'highway' in keys) or (u'cycleway' in keys and u'highway' in keys) or (u'foot' in keys and u'highway' in keys) or (u'highway' in keys and u'maxspeed' in keys):
+        if ('bicycle' in keys and 'highway' in keys) or ('cycleway' in keys and 'highway' in keys) or ('foot' in keys and 'highway' in keys) or ('highway' in keys and 'maxspeed' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway') and mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'steps') and mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'steps') and mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, u'bicycle') == mapcss._value_capture(capture_tags, 1, u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, 'bicycle') == mapcss._value_capture(capture_tags, 1, 'no'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'foot') == mapcss._value_capture(capture_tags, 1, u'no'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway') and mapcss._tag_capture(capture_tags, 1, tags, 'foot') == mapcss._value_capture(capture_tags, 1, 'no'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway') == mapcss._value_capture(capture_tags, 1, u'lane'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway') == mapcss._value_capture(capture_tags, 1, 'lane'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
@@ -236,29 +236,29 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"way highway=footway"
                 # assertNoMatch:"way highway=residential cycleway=lane"
                 # assertNoMatch:"way highway=residential maxspeed=20"
-                err.append({'class': 9004011, 'subclass': 469607562, 'text': mapcss.tr(u'{0} together with {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.tag}'))})
+                err.append({'class': 9004011, 'subclass': 469607562, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # way[footway=left][/^footway:/]
         # way[footway=right][/^footway:/]
         # way[footway=both][/^footway:/]
         # way[footway=no][/^footway:/]
-        if (u'footway' in keys):
+        if ('footway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'left') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'left') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'right') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'right') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'both') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'both') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'no') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'no') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354))
                 except mapcss.RuleAbort: pass
             if match:
                 # setnot_fixable_footway
@@ -266,43 +266,43 @@ class Josm_highway(PluginMapCSS):
                 # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk","{1.key}")
                 # assertMatch:"way footway=both footway:surface=asphalt"
                 set_not_fixable_footway = True
-                err.append({'class': 9004006, 'subclass': 141262069, 'text': mapcss.tr(u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'sidewalk', mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9004006, 'subclass': 141262069, 'text': mapcss.tr('{0} is deprecated, use {1} instead. Also check similar tags like {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), 'sidewalk', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[footway=none][/footway:/]
-        if (u'footway' in keys):
+        if ('footway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'none') and mapcss._tag_capture(capture_tags, 1, tags, self.re_61bbe299))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'none') and mapcss._tag_capture(capture_tags, 1, tags, self.re_61bbe299))
                 except mapcss.RuleAbort: pass
             if match:
                 # setnot_fixable_footway
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk=no","{1.key}")
                 set_not_fixable_footway = True
-                err.append({'class': 9004006, 'subclass': 1570348899, 'text': mapcss.tr(u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), u'sidewalk=no', mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 9004006, 'subclass': 1570348899, 'text': mapcss.tr('{0} is deprecated, use {1} instead. Also check similar tags like {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), 'sidewalk=no', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[footway=left]!.not_fixable_footway
         # way[footway=right]!.not_fixable_footway
         # way[footway=both]!.not_fixable_footway
         # way[footway=no]!.not_fixable_footway
-        if (u'footway' in keys):
+        if ('footway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'left'))
+                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'left'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'right'))
+                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'right'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'both'))
+                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'both'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'no'))
+                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'no'))
                 except mapcss.RuleAbort: pass
             if match:
                 # setfixable_footway
@@ -311,19 +311,19 @@ class Josm_highway(PluginMapCSS):
                 # suggestAlternative:"sidewalk"
                 # fixChangeKey:"footway => sidewalk"
                 set_fixable_footway = True
-                err.append({'class': 9004006, 'subclass': 2076937761, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9004006, 'subclass': 2076937761, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'sidewalk', mapcss.tag(tags, u'footway')]]),
+                    ['sidewalk', mapcss.tag(tags, 'footway')]]),
                     '-': ([
-                    u'footway'])
+                    'footway'])
                 }})
 
         # way[footway=none]!.not_fixable_footway
-        if (u'footway' in keys):
+        if ('footway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'none'))
+                try: match = (not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'none'))
                 except mapcss.RuleAbort: pass
             if match:
                 # setfixable_footway
@@ -333,19 +333,19 @@ class Josm_highway(PluginMapCSS):
                 # fixRemove:"footway"
                 # fixAdd:"sidewalk=no"
                 set_fixable_footway = True
-                err.append({'class': 9004006, 'subclass': 430589555, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9004006, 'subclass': 430589555, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'sidewalk',u'no']]),
+                    ['sidewalk','no']]),
                     '-': ([
-                    u'footway'])
+                    'footway'])
                 }})
 
         # way[footway][footway!=access_aisle][footway!=crossing][footway!=sidewalk]!.fixable_footway!.not_fixable_footway
-        if (u'footway' in keys):
+        if ('footway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_fixable_footway and not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'footway') != mapcss._value_const_capture(capture_tags, 1, u'access_aisle', u'access_aisle') and mapcss._tag_capture(capture_tags, 2, tags, u'footway') != mapcss._value_const_capture(capture_tags, 2, u'crossing', u'crossing') and mapcss._tag_capture(capture_tags, 3, tags, u'footway') != mapcss._value_const_capture(capture_tags, 3, u'sidewalk', u'sidewalk'))
+                try: match = (not set_fixable_footway and not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, 'footway') and mapcss._tag_capture(capture_tags, 1, tags, 'footway') != mapcss._value_const_capture(capture_tags, 1, 'access_aisle', 'access_aisle') and mapcss._tag_capture(capture_tags, 2, tags, 'footway') != mapcss._value_const_capture(capture_tags, 2, 'crossing', 'crossing') and mapcss._tag_capture(capture_tags, 3, tags, 'footway') != mapcss._value_const_capture(capture_tags, 3, 'sidewalk', 'sidewalk'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.","{0.key}","{1.value}","{2.value}","{3.value}","sidewalk=left|right|both|no")
@@ -353,7 +353,7 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"way footway=left footway:left:surface=asphalt"
                 # assertNoMatch:"way footway=left"
                 # assertNoMatch:"way footway=none"
-                err.append({'class': 9004012, 'subclass': 533671178, 'text': mapcss.tr(u'Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{3.value}'), u'sidewalk=left|right|both|no')})
+                err.append({'class': 9004012, 'subclass': 533671178, 'text': mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no')})
 
         return err
 
@@ -372,42 +372,42 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.node(data, {u'highway': u'bus_stop'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'crossing'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'emergency_access_point'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'give_way'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'mini_roundabout'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'motorway_junction'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'passing_place'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_err(n.node(data, {u'highway': u'primary'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_err(n.node(data, {u'highway': u'primary_link'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'rest_area'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'services'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'speed_camera'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'stop'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'street_lamp'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'traffic_calming'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'traffic_signals'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {u'highway': u'turning_circle'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Bou Blvd.'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
-        self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Bou blvd.'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
-        self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo Ave'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
-        self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo Ave.'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
-        self.check_err(n.way(data, {u'highway': u'crossing'}, [0]), expected={'class': 9004002, 'subclass': 1549110307})
-        self.check_not_err(n.way(data, {u'highway': u'residential'}, [0]), expected={'class': 9004004, 'subclass': 1729022478})
-        self.check_err(n.way(data, {u'highway': u'road'}, [0]), expected={'class': 9004004, 'subclass': 1729022478})
-        self.check_not_err(n.way(data, {u'bicycle': u'yes', u'highway': u'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_err(n.way(data, {u'cycleway': u'lane', u'highway': u'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'highway': u'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'highway': u'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'foot': u'yes', u'highway': u'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_err(n.way(data, {u'highway': u'footway', u'maxspeed': u'20'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'highway': u'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'highway': u'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'cycleway': u'lane', u'highway': u'residential'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {u'highway': u'residential', u'maxspeed': u'20'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_err(n.way(data, {u'footway': u'both', u'footway:surface': u'asphalt'}, [0]), expected={'class': 9004006, 'subclass': 141262069})
-        self.check_err(n.way(data, {u'footway': u'bar'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
-        self.check_not_err(n.way(data, {u'footway': u'left', u'footway:left:surface': u'asphalt'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
-        self.check_not_err(n.way(data, {u'footway': u'left'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
-        self.check_not_err(n.way(data, {u'footway': u'none'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
+        self.check_not_err(n.node(data, {'highway': 'bus_stop'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'crossing'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'emergency_access_point'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'give_way'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'mini_roundabout'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'motorway_junction'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'passing_place'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_err(n.node(data, {'highway': 'primary'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_err(n.node(data, {'highway': 'primary_link'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'rest_area'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'services'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'speed_camera'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'stop'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'street_lamp'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'traffic_calming'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'traffic_signals'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'turning_circle'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Bou Blvd.'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
+        self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Bou blvd.'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
+        self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Foo Ave'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
+        self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Foo Ave.'}, [0]), expected={'class': 9004001, 'subclass': 544432044})
+        self.check_err(n.way(data, {'highway': 'crossing'}, [0]), expected={'class': 9004002, 'subclass': 1549110307})
+        self.check_not_err(n.way(data, {'highway': 'residential'}, [0]), expected={'class': 9004004, 'subclass': 1729022478})
+        self.check_err(n.way(data, {'highway': 'road'}, [0]), expected={'class': 9004004, 'subclass': 1729022478})
+        self.check_not_err(n.way(data, {'bicycle': 'yes', 'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_err(n.way(data, {'cycleway': 'lane', 'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'foot': 'yes', 'highway': 'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_err(n.way(data, {'highway': 'footway', 'maxspeed': '20'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'highway': 'residential'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '20'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_err(n.way(data, {'footway': 'both', 'footway:surface': 'asphalt'}, [0]), expected={'class': 9004006, 'subclass': 141262069})
+        self.check_err(n.way(data, {'footway': 'bar'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
+        self.check_not_err(n.way(data, {'footway': 'left', 'footway:left:surface': 'asphalt'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
+        self.check_not_err(n.way(data, {'footway': 'left'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
+        self.check_not_err(n.way(data, {'footway': 'none'}, [0]), expected={'class': 9004012, 'subclass': 533671178})

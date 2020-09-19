@@ -13,7 +13,7 @@ class Name_Cadastre_FR(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[50801] = self.def_class(item = 5080, level = 1, tags = mapcss.list_(u'name', u'fix:chair'), title = mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.'))
+        self.errors[50801] = self.def_class(item = 5080, level = 1, tags = mapcss.list_('name', 'fix:chair'), title = mapcss.tr('Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.'))
 
         self.re_5d724bf1 = re.compile(r'.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$')
 
@@ -26,15 +26,15 @@ class Name_Cadastre_FR(PluginMapCSS):
 
         # node[place=locality][name=~/.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$/][inside("FR")]
         # node[place=hamlet][name=~/.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$/][inside("FR")]
-        if (u'name' in keys and u'place' in keys):
+        if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'locality') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'hamlet') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
@@ -42,7 +42,7 @@ class Name_Cadastre_FR(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list('node place=hamlet name="Kerbrest"',"inside=FR")
                 # -osmoseAssertNoMatchWithContext:list('node place=hamlet name="ZA Sud Loire"',"inside=FR")
                 # -osmoseAssertMatchWithContext:list('node place=hamlet name=Montdésert-Sud',"inside=FR")
-                err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')})
+                err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr('Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')})
 
         return err
 
@@ -54,20 +54,20 @@ class Name_Cadastre_FR(PluginMapCSS):
 
         # way[place=locality][name=~/.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$/][inside("FR")]
         # way[place=hamlet][name=~/.+([- ]([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre))$/][inside("FR")]
-        if (u'name' in keys and u'place' in keys):
+        if ('name' in keys and 'place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'locality') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'hamlet') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5d724bf1), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")
-                err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')})
+                err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr('Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.')})
 
         return err
 
@@ -87,8 +87,8 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {u'name': u'Kerbrest', u'place': u'hamlet'}), expected={'class': 50801, 'subclass': 0})
+            self.check_not_err(n.node(data, {'name': 'Kerbrest', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {u'name': u'ZA Sud Loire', u'place': u'hamlet'}), expected={'class': 50801, 'subclass': 0})
+            self.check_not_err(n.node(data, {'name': 'ZA Sud Loire', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {u'name': u'Montdésert-Sud', u'place': u'hamlet'}), expected={'class': 50801, 'subclass': 0})
+            self.check_err(n.node(data, {'name': 'Montdésert-Sud', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})
