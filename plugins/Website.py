@@ -41,7 +41,7 @@ class Website(Plugin):
             title = T_('The URL does not have a valid scheme'))
 
     def _bad_url(self, tag, tags):
-        return T_("Bad URL %(k)s=%(v)s", {"k": tag, "v": tags[tag]})
+        return T_f("Bad URL {k}={v}", k = tag, v = tags[tag])
 
     def check(self, tags):
         err = []
