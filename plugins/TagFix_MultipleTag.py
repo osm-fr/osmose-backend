@@ -168,10 +168,10 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
-                err.append({"class": 1050, "subclass": 1000, "text": T_f("mini roundabout direction in this country is usually \"{0}\"", self.driving_direction),
+                err.append({"class": 1050, "subclass": 1000, "text": T_("mini roundabout direction in this country is usually \"{0}\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
 #            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-#                err.append({"class": 1050, "subclass": 1001, "text": T_f("Mini roundabout direction in this country is \"{0}\" by default, useless direction tag", self.driving_direction),
+#                err.append({"class": 1050, "subclass": 1001, "text": T_("Mini roundabout direction in this country is \"{0}\" by default, useless direction tag", self.driving_direction),
 #                            "fix": {"-": ["direction"]}})
 
         return err

@@ -123,7 +123,7 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
                     )
         for t in self.tags:
             self.classs_change[t[0]] = self.def_class(item = 1190, level = 3, tags = ['geom', 'highway', 'railway', 'fix:imagery'],
-                title = T_f('Approximate geometry of {0}', t[1]),
+                title = T_('Approximate geometry of {0}', t[1]),
                 detail = T_(
 '''Geometry seems to be draw crudely, there is a discrepancy between the
 drawing and the real way especially in the curve.'''),
@@ -137,7 +137,7 @@ false positive'''),
 
 `railway=rail` crudely drawn.'''))
 
-        self.callback10 = lambda res: {"class":res[4], "subclass":res[5], "data":[self.way_full, self.positionAsText], "text": T_f(u"{0} deviation of {1}m", res[3], res[2])}
+        self.callback10 = lambda res: {"class":res[4], "subclass":res[5], "data":[self.way_full, self.positionAsText], "text": T_("{0} deviation of {1}m", res[3], res[2])}
 
     def analyser_osmosis_full(self):
         self.run(sql10)

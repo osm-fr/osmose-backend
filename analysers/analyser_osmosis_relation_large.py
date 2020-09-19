@@ -82,4 +82,4 @@ classes](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categor
         self.run(sql10, lambda res: {
             "class":1,
             "data":[self.relation, self.positionAsText],
-            "text": T_f("Large relation of type {0}", res[2]) })
+            "text": T_("Large relation of type {0}", res[2]) })

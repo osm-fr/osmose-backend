@@ -108,9 +108,9 @@ class Analyser_Osmosis_Highway_Zone(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[20] = self.def_class(item = 2150, level = 1, tags = ['highway', 'fix:survey'],
-            title = T_f('Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood', 20))
+            title = T_('Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood', 20))
         self.classs[30] = self.def_class(item = 2150, level = 1, tags = ['highway', 'fix:survey'],
-            title = T_f('Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood', 30))
+            title = T_('Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood', 30))
         self.callback20 = lambda res: {"class":20, "data":[self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":30, "data":[self.way_full, self.positionAsText]}
 

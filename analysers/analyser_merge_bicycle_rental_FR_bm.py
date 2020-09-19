@@ -27,11 +27,11 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8160, id = 1, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_f('{0} bicycle rental not integrated', 'BM'))
+            title = T_('{0} bicycle rental not integrated', 'BM'))
         self.def_class_possible_merge(item = 8161, id = 3, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_f('{0} bicycle rental integration suggestion', 'BM'))
+            title = T_('{0} bicycle rental integration suggestion', 'BM'))
         self.def_class_update_official(item = 8162, id = 4, level = 3, tags = ['merge', 'public equipment', 'cycle'],
-            title = T_f('{0} bicycle update', 'BM'))
+            title = T_('{0} bicycle update', 'BM'))
 
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p',

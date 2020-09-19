@@ -95,7 +95,7 @@ priority for the field on OSM.'''))
         if u"place" in tags:
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
-                return {"class": 800, "subclass": 0, "text": T_f("Node with place={0} without name", tags[u"place"])}
+                return {"class": 800, "subclass": 0, "text": T_("Node with place={0} without name", tags[u"place"])}
 
     def relation(self, relation, tags, members):
         if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":

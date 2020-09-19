@@ -79,7 +79,7 @@ reported at each end of open part.'''))
             else:
                 level = 3
             self.error_file.classs(id = 100 + admin_level, item = 6010, level = level, tags = ['geom', 'boundary'],
-                title = T_f('Open relation type=boundary admin_level={0}', admin_level),
+                title = T_('Open relation type=boundary admin_level={0}', admin_level),
                 **doc6010)
 
         self.classs = {"boundary": 1, "multipolygon": 5}

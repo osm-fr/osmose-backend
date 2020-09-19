@@ -27,7 +27,7 @@ class Analyser_Merge_Public_Equipment_FR_Angers_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8180, id = 8, level = 3, tags = ['merge', 'public equipment'],
-            title = T_f('{0} toilets not integrated', 'Angers'))
+            title = T_('{0} toilets not integrated', 'Angers'))
 
         self.init(
             u"https://data.angers.fr/explore/dataset/sanitaires-publics-angers/",

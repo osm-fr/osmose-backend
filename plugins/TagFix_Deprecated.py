@@ -111,13 +111,13 @@ features](https://wiki.openstreetmap.org/wiki/Deprecated_features)''')
                 err.append({
                     "class": 4010,
                     "subclass": stablehash(k),
-                    "text": T_f('The tag `{0}` is deprecated in favour of {1}', k, self.Deprecated[k][None])
+                    "text": T_('The tag `{0}` is deprecated in favour of {1}', k, self.Deprecated[k][None])
                 })
             elif tags[k] in self.Deprecated[k]:
                 err.append({
                     "class": 40102,
                     "subclass": stablehash(k),
-                    "text": T_f('The tag `{0}` is deprecated in favour of {1}', "=".join([k, tags[k]]), self.Deprecated[k][tags[k]])
+                    "text": T_('The tag `{0}` is deprecated in favour of {1}', "=".join([k, tags[k]]), self.Deprecated[k][tags[k]])
                 })
         return err
 

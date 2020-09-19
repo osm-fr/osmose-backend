@@ -37,7 +37,7 @@ and not a road connected, same thing for `ref=*`.'''))
 
     def way(self, data, tags, nds):
         if tags.get("junction") == "roundabout" and u"ref" in tags:
-            return {"class": 102, "subclass": 1, "text": T_f("Should not contain tag ref={0}", tags[u"ref"]), "fix": {"-": ["ref"]}}
+            return {"class": 102, "subclass": 1, "text": T_("Should not contain tag ref={0}", tags[u"ref"]), "fix": {"-": ["ref"]}}
 
 
 ###########################################################################

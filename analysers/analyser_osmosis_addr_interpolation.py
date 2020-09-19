@@ -206,8 +206,8 @@ class Analyser_Osmosis_Addr_Interpolation(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":102, "subclass":0, "data":[self.way_full, self.way_full, self.positionAsText] }
         self.callback40 = lambda res: {"class":103, "subclass":0, "data":[self.way_full, self.positionAsText] }
         self.callback50 = lambda res: {"class":104, "subclass":0, "data":[self.way_full, self.positionAsText] }
-        self.callback60 = lambda res: {"class":16, "subclass":1, "data":[self.way_full, self.positionAsText], "text": T_f("Interpolation span on streets: {0}", res[2]) }
-        self.callback70 = lambda res: {"class":17, "subclass":1, "data":[self.node_full, self.positionAsText], "text": T_f("Interpolation span on streets: {0}", res[2]) }
+        self.callback60 = lambda res: {"class":16, "subclass":1, "data":[self.way_full, self.positionAsText], "text": T_("Interpolation span on streets: {0}", res[2]) }
+        self.callback70 = lambda res: {"class":17, "subclass":1, "data":[self.node_full, self.positionAsText], "text": T_("Interpolation span on streets: {0}", res[2]) }
 
     def analyser_osmosis_common(self):
         self.run(sql00)

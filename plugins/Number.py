@@ -65,12 +65,12 @@ be used if the value is valid.''')
                     )) and
                     not (i == "maxheight" and tags[i] in self.MaxheightExtraValue)
                 ):
-                    return {"class": 3091, "subclass": 1, "text": T_f("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
+                    return {"class": 3091, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
                 elif m and i == "height" and float(m.group(1)) > 500:
-                    return {"class": 3092, "subclass": 2, "text": T_f("`height={0}` is really tall, consider changing to `ele=*`", m.group(1)),
+                    return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", m.group(1)),
                              "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
                 elif m and i == "maxspeed" and float(m.group(1)) < 5 and not "waterway" in tags:
-                    return {"class": 3092, "subclass": 3, "text": T_f('`{0}` is really slow', 'maxspeed=' + m.group(1))}
+                    return {"class": 3092, "subclass": 3, "text": T_('`{0}` is really slow', 'maxspeed=' + m.group(1))}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

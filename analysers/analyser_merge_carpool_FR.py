@@ -57,4 +57,4 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                         "capacity": "nbre_pl",
                         "capacity:disabled": "nbre_pmr",
                         "lit": lambda res: "yes" if res["lumiere"] == "true" else ("no" if res["lumiere"] == "false" else None)},
-                    text = lambda tags, fields: T_f(u"Carpool parking {0}", fields[u"nom_lieu"]) )))
+                    text = lambda tags, fields: T_("Carpool parking {0}", fields[u"nom_lieu"]) )))

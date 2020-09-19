@@ -145,4 +145,4 @@ class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
         self.run(sql12)
         self.run(sql13)
         self.run(sql14, lambda res: {"class":1, "data":[self.node, self.positionAsText],
-            "text": T_f(u"lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})", res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) })
+            "text": T_("lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})", res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) })

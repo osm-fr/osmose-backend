@@ -90,40 +90,40 @@ class TagFix_Note_Lang_fr(Plugin):
             if 'FIXME' not in tags and ('note' not in tags or 'fixme' not in tags['note'].lower()):
                 for w in self.FixmeFull:
                     if w in tt:
-                        return {"class": 3110, "subclass": 100, "text": T_f("note tag needs FIXME: \"{0}\"", tags[t]),
+                        return {"class": 3110, "subclass": 100, "text": T_("note tag needs FIXME: \"{0}\"", tags[t]),
                                  "fix": {"note": "FIXME %s" % tags[t]}}
                 for w in self.FixmeWord:
                     if w in words:
-                        return {"class": 3110, "subclass": 101, "text": T_f("note tag needs FIXME: \"{0}\"", tags[t]),
+                        return {"class": 3110, "subclass": 101, "text": T_("note tag needs FIXME: \"{0}\"", tags[t]),
                                  "fix": {"note": "FIXME %s" % tags[t]}}
             # Destruction
             if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
                 for w in self.Destruction:
                     if w in tt:
-                        return {"class": 3110, "subclass": 500, "text": T_f("Use a tag to specify end: \"{0}\"", tags[t])}
+                        return {"class": 3110, "subclass": 500, "text": T_("Use a tag to specify end: \"{0}\"", tags[t])}
             # start_date
             if 'start_date' not in tags:
                 if self.Date.match(tt) or "siecle" in tt:
-                    return {"class": 3110, "subclass": 300, "text": T_f("Use start_date tag for \"{0}\"", tags[t])}
+                    return {"class": 3110, "subclass": 300, "text": T_("Use start_date tag for \"{0}\"", tags[t])}
             # opening_hours
             if 'opening_hours' not in tags:
                 if self.Hours.match(tt):
-                    return {"class": 3110, "subclass": 200, "text": T_f("Use opening_hours tag for \"{0}\"", tags[t])}
+                    return {"class": 3110, "subclass": 200, "text": T_("Use opening_hours tag for \"{0}\"", tags[t])}
                 for w in self.Opening_hours:
                     if w in words:
-                        return {"class": 3110, "subclass": 201, "text": T_f("Use opening_hours tag for \"{0}\"", tags[t])}
+                        return {"class": 3110, "subclass": 201, "text": T_("Use opening_hours tag for \"{0}\"", tags[t])}
             # construction
             if 'construction' not in tags:
                 for w in self.Construction:
                     if w in words:
-                        return {"class": 3110, "subclass": 400, "text": T_f("Use construction tag for \"{0}\"", tags[t])}
+                        return {"class": 3110, "subclass": 400, "text": T_("Use construction tag for \"{0}\"", tags[t])}
             # an other tag
             for w in self.TagFull:
                 if w in tt:
-                    return {"class": 3110, "subclass": 900, "text": T_f("\"{0}\" can be set in specific tag", tags[t])}
+                    return {"class": 3110, "subclass": 900, "text": T_("\"{0}\" can be set in specific tag", tags[t])}
             for w in self.TagWord:
                 if w in words:
-                    return {"class": 3110, "subclass": 901, "text": T_f("\"{0}\" can be set in specific tag", tags[t])}
+                    return {"class": 3110, "subclass": 901, "text": T_("\"{0}\" can be set in specific tag", tags[t])}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

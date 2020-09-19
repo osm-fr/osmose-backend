@@ -28,11 +28,11 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         place = "TransGironde"
         self.def_class_missing_official(item = 8040, id = 41, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop not integrated', place))
+            title = T_('{0} stop not integrated', place))
         self.def_class_possible_merge(item = 8041, id = 43, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop, integration suggestion', place))
+            title = T_('{0} stop, integration suggestion', place))
         self.def_class_update_official(item = 8042, id = 44, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop update', place))
+            title = T_('{0} stop update', place))
 
         self.init(
             "https://www.data.gouv.fr/fr/datasets/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/",
@@ -56,7 +56,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                     mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
                         "name": lambda res: self.replace(res['stop_name'].split(' - ')[1]) if len(res['stop_name'].split(' - ')) > 1 else None},
-                    text = lambda tags, fields: T_f(u"{0} stop of {1}", place, fields["stop_name"]) )))
+                    text = lambda tags, fields: T_("{0} stop of {1}", place, fields["stop_name"]) )))
 
     def replace(self, string):
         for s in self.replacement.keys():
