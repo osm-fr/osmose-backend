@@ -71,13 +71,11 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),
-                conflationDistance = 50,
-                osmRef = "ref:FR:GeoDAE",
+                conflationDistance = 100,
                 generate = Generate(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:GeoDAE": "gid",
                         "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
                         "indoor": lambda res: "yes" if res["c_acc"] == u"Intérieur" else "no" if res["c_acc"] == u"Extérieur" else None,
                         "access": lambda res: "yes" if res["c_acc_lib"] == "t" else "permissive" if res["c_acc_lib"] == "f" else None,
