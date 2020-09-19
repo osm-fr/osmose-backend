@@ -47,22 +47,7 @@ class OsmoseTranslation:
             if entry.msgstr != "":
                 self.trans[l][entry.msgid] = entry.msgstr
 
-    def translate(self, str, *args):
-        out = {}
-
-        # english version
-        if len(args) == 0:
-            out["en"] = str
-        else:
-            raise NotImplementedError
-
-        for l in self.languages:
-            if str in self.trans[l] and self.trans[l][str] != "":
-                out[l] = self.trans[l][str]
-
-        return out
-
-    def translate_format(self, string, *args, **kwargs):
+    def translate(self, string, *args, **kwargs):
         out = {}
 
         if len(args) == 0 and len(kwargs) == 0:

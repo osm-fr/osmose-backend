@@ -432,7 +432,7 @@ def JOSM_search(string):
 #    translate from English to the current language (only for strings in the JOSM user interface) [since 6506]
 def tr(string, *args):
     if string is not None:
-        return T_f(string, *args)
+        return T_(string, *args)
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699]
