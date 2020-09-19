@@ -53,26 +53,19 @@ class OsmoseTranslation:
         # english version
         if len(args) == 0:
             out["en"] = str
-        elif isinstance(args[0], dict):
-            out["en"] = str % args[0]
         else:
-            out["en"] = str % args
+            raise NotImplementedError
 
         for l in self.languages:
             if str in self.trans[l] and self.trans[l][str] != "":
-                if len(args) == 0:
-                    out[l] = self.trans[l][str]
-                elif isinstance(args[0], dict):
-                    out[l] = self.trans[l][str] % args[0]
-                else:
-                    out[l] = self.trans[l][str] % args
+                out[l] = self.trans[l][str]
 
         return out
 
-    def translate_format(self, string, *args):
+    def translate_format(self, string, *args, **kwargs):
         out = {}
 
-        if len(args) == 0:
+        if len(args) == 0 and len(kwargs) == 0:
             out["en"] = string
 
             for l in self.languages:
@@ -92,13 +85,13 @@ class OsmoseTranslation:
                 else:
                     args_basic.append(arg)
 
-            out["en"] = string.format(*args_basic)
+            out["en"] = string.format(*args_basic, **kwargs)
             if args_translated:
                 out["en"] = out["en"].format(*map(lambda a: a['en'], args_translated))
 
             for l in self.languages:
                 if string in self.trans[l] and self.trans[l][string] != "":
-                    out[l] = self.trans[l][string].format(*args_basic)
+                    out[l] = self.trans[l][string].format(*args_basic, **kwargs)
                     if args_translated:
                         out[l] = out[l].format(*map(lambda a: l in a and a[l] or a['en'], args_translated))
 
