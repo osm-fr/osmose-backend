@@ -22,8 +22,8 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
-from .modules import downloader
-from .modules import italian_strings
+from modules import downloader
+from modules import italian_strings
 import csv
 import datetime
 

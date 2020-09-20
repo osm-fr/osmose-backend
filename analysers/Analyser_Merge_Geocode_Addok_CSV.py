@@ -21,7 +21,7 @@
 ###########################################################################
 
 from .Analyser_Merge import Source
-from .modules import downloader
+from modules import downloader
 
 
 class Geocode_Addok_CSV(Source):
