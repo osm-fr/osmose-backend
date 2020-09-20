@@ -743,8 +743,8 @@ msgstr "Naam bevat opeenvolgende ruimtes"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "Conflict tussen tags: %s"
+msgid "Conflict between tags: {0}"
+msgstr "Conflict tussen tags: {0}"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -752,8 +752,8 @@ msgstr "Conflict tussen tags: 'brug' en 'tunnel'"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "mini rotonde is in deze land gewoonlijk \"%s\" "
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "mini rotonde is in deze land gewoonlijk \"{0}\" "
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -761,13 +761,13 @@ msgstr "Gebruik tag \"toll\" in de plaats van \"fee\""
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "Gebruik wikipedia=%s:*"
+msgid "Use wikipedia={0}:*"
+msgstr "Gebruik wikipedia={0}:*"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "Ongeldig wikipedia suffix '%s'"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "Ongeldig wikipedia suffix '{0}'"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1040,8 +1040,8 @@ msgstr "Ongeldig addr:housenumber waarde"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "Knoop met place=%s zonder naam"
+msgid "Node with place={0} without name"
+msgstr "Knoop met place={0} zonder naam"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1053,8 +1053,8 @@ msgstr "Sommige karakter waarde komen niet overeen met de taal charset"
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "Ontbrekende hoofdletter voor:%s"
+msgid "Missing capital letter for: {0}"
+msgstr "Ontbrekende hoofdletter voor:{0}"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1062,8 +1062,8 @@ msgstr "Bron tag bevat AAAA"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
-msgstr "\"name=%s\" is de lokale maar niet de naam"
+msgid "\"name={0}\" is the localisation but not the name"
+msgstr "\"name={0}\" is de lokale maar niet de naam"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
@@ -1104,23 +1104,23 @@ msgstr "Een zone 30 is beperkt tot 30 km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "Gebruik start_date tag voor \"%s\""
+msgid "Use start_date tag for \"{0}\""
+msgstr "Gebruik start_date tag voor \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "Gebruik opening_hours tag voor \"%s\""
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "Gebruik opening_hours tag voor \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "Gebruik constructie tag voor \"%s\""
+msgid "Use construction tag for \"{0}\""
+msgstr "Gebruik constructie tag voor \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "\"%s\" kan worden ingesteld in bepaalde tag"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "\"{0}\" kan worden ingesteld in bepaalde tag"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1141,13 +1141,13 @@ msgstr "Interpolatie op nodes van meerdere straat namen"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
-msgstr "Interpolatiebereik op straten:%s"
+msgid "Interpolation span on streets: {0}"
+msgstr "Interpolatiebereik op straten:{0}"
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "Lange relatie van type %s"
+msgid "Large relation of type {0}"
+msgstr "Lange relatie van type {0}"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1193,8 +1193,8 @@ msgstr "Verkeerde naam voor een container"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "Transformatorstation %s"
+msgid "Power substation of {0}"
+msgstr "Transformatorstation {0}"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1222,8 +1222,8 @@ msgstr "Zelfde wikipedia tag"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "Kan geen tag ref=%s bevatten"
+msgid "Should not contain tag ref={0}"
+msgstr "Kan geen tag ref={0} bevatten"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1260,8 +1260,8 @@ msgstr "network, operator, ref, colour tag moet dezelfde zijn op route en route_
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "%s is verschillend"
+msgid "{0} are different"
+msgstr "{0} is verschillend"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1380,8 +1380,8 @@ msgstr "Waterweg overlapt"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr "ontbrekende tagzone: maxspeed = XX :%s, volgens de buurt"
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
+msgstr "ontbrekende tagzone: maxspeed = XX :{0}, volgens de buurt"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -1876,8 +1876,8 @@ msgstr "Verkeerd gebruik addr:interpolation in combinatie met andere tags"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
-msgstr "Energiecentrale %s"
+msgid "Power plant {0}"
+msgstr "Energiecentrale {0}"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "admin_level 8 without tag \"postal_code\""
@@ -3743,7 +3743,7 @@ msgstr ""
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3946,12 +3946,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
+msgid "note tag needs FIXME: \"{0}\""
 msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
 msgstr ""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32

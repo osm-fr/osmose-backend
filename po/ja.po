@@ -746,8 +746,8 @@ msgstr "nameに連続スペースが含まれている"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "競合しているタグ: %s"
+msgid "Conflict between tags: {0}"
+msgstr "競合しているタグ: {0}"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -755,8 +755,8 @@ msgstr "'bridge'と'tunnel'タグが競合"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "この国でのミニ・ラウンドアバウトの方向は通常は \"%s\""
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "この国でのミニ・ラウンドアバウトの方向は通常は \"{0}\""
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -764,13 +764,13 @@ msgstr "\"fee\"タグの代わりに\"toll\"タグを使用してください"
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "wikipedia=%s:* を使用"
+msgid "Use wikipedia={0}:*"
+msgstr "wikipedia={0}:* を使用"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "無効なwikipedia接尾辞 '%s'"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "無効なwikipedia接尾辞 '{0}'"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1043,8 +1043,8 @@ msgstr "無効なaddr:housenumberタグの値"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "nameがないplace=%s ノード"
+msgid "Node with place={0} without name"
+msgstr "nameがないplace={0} ノード"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1056,8 +1056,8 @@ msgstr "この言語の文字セットに無い文字がある"
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "%sに大文字が無い"
+msgid "Missing capital letter for: {0}"
+msgstr "{0}に大文字が無い"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1065,8 +1065,8 @@ msgstr "sourceタグにAAAAが含まれている"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
-msgstr "\"name=%s\" は各国語化だがnameでは無い"
+msgid "\"name={0}\" is the localisation but not the name"
+msgstr "\"name={0}\" は各国語化だがnameでは無い"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
@@ -1107,23 +1107,23 @@ msgstr "Zone 30は30 km/hに制限されています"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "\"%s\"にはstart_dateを使います"
+msgid "Use start_date tag for \"{0}\""
+msgstr "\"{0}\"にはstart_dateを使います"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "\"%s\"にはopening_hoursタグを使います"
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "\"{0}\"にはopening_hoursタグを使います"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "\"%s\"にはconstructionタグを使います"
+msgid "Use construction tag for \"{0}\""
+msgstr "\"{0}\"にはconstructionタグを使います"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "\"%s\" は特定のタグにセットできます"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "\"{0}\" は特定のタグにセットできます"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1144,13 +1144,13 @@ msgstr "複数街路名のノード上の住所補間"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
-msgstr "街路上の補間スパン: %s"
+msgid "Interpolation span on streets: {0}"
+msgstr "街路上の補間スパン: {0}"
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "種別 %sの大きなリレーション"
+msgid "Large relation of type {0}"
+msgstr "種別 {0}の大きなリレーション"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1196,8 +1196,8 @@ msgstr "コンテナには疑わしい名前"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "%sの変電所"
+msgid "Power substation of {0}"
+msgstr "{0}の変電所"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1225,8 +1225,8 @@ msgstr "重複したwikipediaタグ"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "ref=%sタグが含まれるべきではありません"
+msgid "Should not contain tag ref={0}"
+msgstr "ref={0}タグが含まれるべきではありません"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1263,8 +1263,8 @@ msgstr "network, operator, ref, colourタグはroute 及びroute_master relation
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "%s は異なる"
+msgid "{0} are different"
+msgstr "{0} は異なる"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1383,8 +1383,8 @@ msgstr "水路のオーバーラップ"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr "近隣の状況から見て、おそらくzone:maxspeed=XX:%sタグが無い"
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
+msgstr "近隣の状況から見て、おそらくzone:maxspeed=XX:{0}タグが無い"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -1879,8 +1879,8 @@ msgstr "addr:interpolationと他のタグとの誤用"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
-msgstr "発電所 %s"
+msgid "Power plant {0}"
+msgstr "発電所 {0}"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "admin_level 8 without tag \"postal_code\""
@@ -3746,8 +3746,8 @@ msgstr "一般的ではありませんが、nameに大文字が使われるこ�
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
-msgstr "`height=%s` はかなり高いです。`ele=*`への変更を検討してください。"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
+msgstr "`height={0}` はかなり高いです。`ele=*`への変更を検討してください。"
 
 #: ../plugins/TagFix_BadValue.py:33
 msgid ""
@@ -3949,13 +3949,13 @@ msgstr "`psv:lanes=*` はアクセス制限のタグですが、`lanes:psv=*` �
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
-msgstr "note タグには FIXME: \"%s\"が必要"
+msgid "note tag needs FIXME: \"{0}\""
+msgstr "note タグには FIXME: \"{0}\"が必要"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
-msgstr "終わりを指定するタグを使います: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
+msgstr "終わりを指定するタグを使います: \"{0}\""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32
 msgid "Wayside cross node without `material` tag"

@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-08-27 18:46+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-09-19 19:57+0000\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -743,8 +743,8 @@ msgstr "Névben egymást követő szóközök vannak"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "Ellentmondás a következő címkék között: [%s]"
+msgid "Conflict between tags: {0}"
+msgstr "Ellentmondás a következő címkék között: [{0}]"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -752,8 +752,8 @@ msgstr "Ellentmondás a [bridge] és [tunnel] címkék között"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "ebben az országban a mini körforgalmak iránya általában „%s”"
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "ebben az országban a mini körforgalmak iránya általában „{0}”"
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -761,13 +761,13 @@ msgstr "[fee] (díj) helyett [toll] (útdíj) címkét kell használni"
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "A következőt kell használni: wikipedia=%s:*"
+msgid "Use wikipedia={0}:*"
+msgstr "A következőt kell használni: wikipedia={0}:*"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "Érvénytelen Wikipédia-utótag: '%s'"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "Érvénytelen Wikipédia-utótag: '{0}'"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1040,8 +1040,8 @@ msgstr "Érvénytelen érték az [addr:housenumber] kulcs mellett"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "[place=%s] címkéjű pont név nélkül"
+msgid "Node with place={0} without name"
+msgstr "[place={0}] címkéjű pont név nélkül"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1053,8 +1053,8 @@ msgstr "Az értékmezőben néhány karakter nem felel meg a nyelv karakterkész
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "Hiányzó nagybetű a következőnél: %s"
+msgid "Missing capital letter for: {0}"
+msgstr "Hiányzó nagybetű a következőnél: {0}"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1062,8 +1062,8 @@ msgstr "A [source] címke AAAA-t tartalmaz"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
-msgstr "[name=%s] a hely, nem pedig a név"
+msgid "\"name={0}\" is the localisation but not the name"
+msgstr "[name={0}] a hely, nem pedig a név"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
@@ -1104,23 +1104,23 @@ msgstr "A Zone 30-ban a sebességkorlátozás 30 km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "[start_date] címkét kell használni a következőn: \"%s\""
+msgid "Use start_date tag for \"{0}\""
+msgstr "[start_date] címkét kell használni a következőn: \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "[opening_hours] címkét kell használni a következőnél: „%s”"
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "[opening_hours] címkét kell használni a következőnél: „{0}”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "Építkezési [construction] címkét kell használni a következőhöz: „%s”"
+msgid "Use construction tag for \"{0}\""
+msgstr "Építkezési [construction] címkét kell használni a következőhöz: „{0}”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "A(z) „%s” konkrét címkével is meghatározható"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "A(z) „{0}” konkrét címkével is meghatározható"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1141,13 +1141,13 @@ msgstr "Interpoláció több utcanév pontjain"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
-msgstr "Interpolációs hiány következő utcákon: %s"
+msgid "Interpolation span on streets: {0}"
+msgstr "Interpolációs hiány következő utcákon: {0}"
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "%s típusú nagy kapcsolat"
+msgid "Large relation of type {0}"
+msgstr "{0} típusú nagy kapcsolat"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1193,8 +1193,8 @@ msgstr "Ez gyanús név egy konténernek"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "%s elektromos alállomás"
+msgid "Power substation of {0}"
+msgstr "{0} elektromos alállomás"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1222,8 +1222,8 @@ msgstr "Megkettőzött [wikipedia] címke"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "Nem tartalmazhat [ref=%s] címkét"
+msgid "Should not contain tag ref={0}"
+msgstr "Nem tartalmazhat [ref={0}] címkét"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1260,8 +1260,8 @@ msgstr "a [network], [operator], [ref], [colour] címkének azonosnak kell lenni
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "%s különbözik"
+msgid "{0} are different"
+msgstr "{0} különbözik"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1380,8 +1380,8 @@ msgstr "Egymás átfedő vízfolyások"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr "A környékből ítélve valószínűleg hiányzik egy zone:maxspeed=XX:%s címke"
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
+msgstr "A környékből ítélve valószínűleg hiányzik egy zone:maxspeed=XX:{0} címke"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -1400,7 +1400,7 @@ msgstr "A falucskához vagy dűlőhöz, lakatlan helyhez tartozó Nord, Sud, Est
 
 #: ../plugins/Name_Punctuation.py:30
 msgid "Unexpected punctuation in name"
-msgstr "Furcsa központozás a névben"
+msgstr "Váratlan központozás a névben [name]"
 
 #: ../plugins/Power.py:16 ../plugins/Power.py:75 ../plugins/Power.py:96
 msgid "Power Transformers should always be on a node"
@@ -1876,8 +1876,8 @@ msgstr "Más címkékkel együtt hibásan használt [addr:interpolation] címke"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
-msgstr "Erőmű %s"
+msgid "Power plant {0}"
+msgstr "Erőmű {0}"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "admin_level 8 without tag \"postal_code\""
@@ -2267,7 +2267,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:173
 msgid "Delete one of the two objects."
-msgstr ""
+msgstr "Törölje a két objektum közül az egyiket."
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:177
 msgid "Compare tags and delete object or merge them."
@@ -2851,7 +2851,7 @@ msgstr ""
 
 #: ../plugins/disabled/TagFix_Brand.py:35
 msgid "Tag name is a brand"
-msgstr ""
+msgstr "A címkeérték egy márkanév [brand]"
 
 #: ../plugins/disabled/Wiki.py:31
 msgid "Object taggin type"
@@ -2958,7 +2958,7 @@ msgstr ""
 
 #: ../plugins/Name_Quotation.py:30
 msgid "Unbalanced quotation mark or bracket in name"
-msgstr ""
+msgstr "Hiányzó fél idézőjel vagy zárójel a névben"
 
 #: ../plugins/Name_Saint_FR.py:34
 msgid ""
@@ -3106,7 +3106,7 @@ msgstr ""
 
 #: ../plugins/Structural_Multipolygon.py:36
 msgid "Members must be ways."
-msgstr ""
+msgstr "A tagoknak csak vonalak lehetnek"
 
 #: ../plugins/Structural_Multipolygon.py:40
 msgid "At least one outer ring must be present."
@@ -3189,7 +3189,7 @@ msgstr ""
 
 #: ../plugins/TagFix_DuplicateValue.py:37
 msgid "Delete one value."
-msgstr ""
+msgstr "Töröljön egy értéket."
 
 #: ../plugins/TagFix_DuplicateValue.py:39
 msgid "In some case all values maybe required."
@@ -3311,7 +3311,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Vatin.py:37
 msgid "Invalid value format of tag `ref:vatin`"
-msgstr ""
+msgstr "Érvénytelen értékformátum a [ref:vatin] címkében"
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid ""
@@ -3453,7 +3453,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Highway intersecting highway"
-msgstr ""
+msgstr "Utat metsző út"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:375
 msgid "Waterway intersecting waterway"
@@ -3471,15 +3471,15 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:54
 msgid "Unexpected symbol in name"
-msgstr ""
+msgstr "Váratlan szimbólum a névben [name]"
 
 #: ../plugins/TagFix_BadValue.py:31
 msgid "Bad tag value"
-msgstr ""
+msgstr "Hibás címkeérték"
 
 #: ../plugins/TagFix_MultipleTag.py:62
 msgid "Untagged named object"
-msgstr ""
+msgstr "Névvel rendelkező címkézetlen objektum"
 
 #: ../analysers/analyser_merge_street_objects2.py:69
 #: ../analysers/analyser_merge_street_objects.py:69
@@ -3524,7 +3524,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:97
 msgid "Borders crossing each other."
-msgstr ""
+msgstr "Egymást metsző határok."
 
 #: ../analysers/analyser_osmosis_boundary_intersect.py:101
 msgid "The borders are part of relations, they normally doing a loops."
@@ -3591,7 +3591,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Area.py:32
 msgid "Redundant area tagging"
-msgstr ""
+msgstr "Fölösleges területcímkézés"
 
 #: ../plugins/TagFix_Area.py:33
 msgid "This feature is already implicitly an area due to another tag."
@@ -3600,11 +3600,11 @@ msgstr ""
 #: ../plugins/TagFix_Area.py:34 ../plugins/TagFix_Area.py:48
 #, python-brace-format
 msgid "Remove the `{0}` tag."
-msgstr ""
+msgstr "Távolítsa el ezt a címkét [{0}]."
 
 #: ../plugins/TagFix_Area.py:37
 msgid "Untagged area object"
-msgstr ""
+msgstr "Címkézetlen terület"
 
 #: ../plugins/TagFix_Area.py:38
 msgid ""
@@ -3722,12 +3722,12 @@ msgstr ""
 #: ../plugins/TagFix_MultipleValue.py:98
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
-msgstr ""
+msgstr "Ezt a címkét érinti: [{0}]"
 
 #: ../plugins/Name_Punctuation.py:38
 #, python-brace-format
 msgid "Unexpected character: `{0}`"
-msgstr ""
+msgstr "Váratlan karakter: „{0}”"
 
 #: ../plugins/Name_UpperCase.py:39
 msgid ""
@@ -3743,7 +3743,7 @@ msgstr ""
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3819,7 +3819,7 @@ msgstr ""
 
 #: ../plugins/Number.py:30
 msgid "Invalid numerical value"
-msgstr ""
+msgstr "Érvénytelen számérték"
 
 #: ../plugins/Number.py:32
 msgid ""
@@ -3836,7 +3836,7 @@ msgstr ""
 
 #: ../plugins/Number.py:40
 msgid "Suspicious numerical value"
-msgstr ""
+msgstr "Gyanús számérték"
 
 #: ../plugins/Number.py:42
 msgid ""
@@ -3895,7 +3895,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:110
 msgid "Overly permissive access"
-msgstr ""
+msgstr "Túlzottan megengedő használat"
 
 #: ../plugins/TagFix_MultipleTag.py:106 ../plugins/TagFix_MultipleTag.py:112
 msgid ""
@@ -3946,12 +3946,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
+msgid "note tag needs FIXME: \"{0}\""
 msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
 msgstr ""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32
@@ -4197,7 +4197,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:356
 msgid "The stop is not part of a way"
-msgstr ""
+msgstr "A stop tábla nem része a vonalnak"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:357
 msgid ""
@@ -4256,111 +4256,111 @@ msgstr ""
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:113
 #, python-brace-format
 msgid "Historical monument: {0}"
-msgstr ""
+msgstr "Műemlék: {0}"
 
 #: tmp.json:1
 msgid "bicycle parking"
-msgstr ""
+msgstr "kerékpártároló"
 
 #: tmp.json:2
 msgid "surveillance camera"
-msgstr ""
+msgstr "térfigyelő kamera"
 
 #: tmp.json:3
 msgid "fire hydrant"
-msgstr ""
+msgstr "tűzcsap"
 
 #: tmp.json:4
 msgid "traffic light"
-msgstr ""
+msgstr "jelzőlámpa"
 
 #: tmp.json:5
 msgid "phone booth"
-msgstr ""
+msgstr "telefonfülke"
 
 #: tmp.json:6
 msgid "drinking water"
-msgstr ""
+msgstr "ivóvíz"
 
 #: tmp.json:7 tmp.json:33
 msgid "max speed limit 5"
-msgstr ""
+msgstr "sebességkorlátozás: 5 km/h"
 
 #: tmp.json:8 tmp.json:34
 msgid "max speed limit 10"
-msgstr ""
+msgstr "sebességkorlátozás: 10 km/h"
 
 #: tmp.json:9 tmp.json:35
 msgid "max speed limit 15"
-msgstr ""
+msgstr "sebességkorlátozás: 15 km/h"
 
 #: tmp.json:10 tmp.json:36
 msgid "max speed limit 20"
-msgstr ""
+msgstr "sebességkorlátozás: 20 km/h"
 
 #: tmp.json:11 tmp.json:38
 msgid "max speed limit 30"
-msgstr ""
+msgstr "sebességkorlátozás: 30 km/h"
 
 #: tmp.json:12 tmp.json:39
 msgid "max speed limit 35"
-msgstr ""
+msgstr "sebességkorlátozás: 35 km/h"
 
 #: tmp.json:13 tmp.json:40
 msgid "max speed limit 40"
-msgstr ""
+msgstr "sebességkorlátozás: 40 km/h"
 
 #: tmp.json:14 tmp.json:41
 msgid "max speed limit 45"
-msgstr ""
+msgstr "sebességkorlátozás: 45 km/h"
 
 #: tmp.json:15 tmp.json:42
 msgid "max speed limit 50"
-msgstr ""
+msgstr "sebességkorlátozás: 50 km/h"
 
 #: tmp.json:16 tmp.json:44
 msgid "max speed limit 60"
-msgstr ""
+msgstr "sebességkorlátozás: 60 km/h"
 
 #: tmp.json:17 tmp.json:46
 msgid "max speed limit 70"
-msgstr ""
+msgstr "sebességkorlátozás: 70 km/h"
 
 #: tmp.json:18 tmp.json:48
 msgid "max speed limit 80"
-msgstr ""
+msgstr "sebességkorlátozás: 80 km/h"
 
 #: tmp.json:19 tmp.json:49
 msgid "max speed limit 90"
-msgstr ""
+msgstr "sebességkorlátozás: 90 km/h"
 
 #: tmp.json:20 tmp.json:50
 msgid "max speed limit 100"
-msgstr ""
+msgstr "sebességkorlátozás: 100 km/h"
 
 #: tmp.json:21 tmp.json:51
 msgid "max speed limit 110"
-msgstr ""
+msgstr "sebességkorlátozás: 110 km/h"
 
 #: tmp.json:22 tmp.json:52
 msgid "max speed limit 120"
-msgstr ""
+msgstr "sebességkorlátozás: 120 km/h"
 
 #: tmp.json:23
 msgid "max speed limit 130"
-msgstr ""
+msgstr "sebességkorlátozás: 130 km/h"
 
 #: tmp.json:24
 msgid "max height limit"
-msgstr ""
+msgstr "magasságkorlátozás"
 
 #: tmp.json:25
 msgid "max weight limit"
-msgstr ""
+msgstr "súlykorlátozás"
 
 #: tmp.json:26
 msgid "roundabout"
-msgstr ""
+msgstr "körforgalom"
 
 #: tmp.json:27
 msgid "road bump"
@@ -4368,15 +4368,15 @@ msgstr ""
 
 #: tmp.json:28
 msgid "traffic signals"
-msgstr ""
+msgstr "jelzőtáblák"
 
 #: tmp.json:29
 msgid "living street"
-msgstr ""
+msgstr "lakó-pihenő övezet"
 
 #: tmp.json:30
 msgid "bus stop"
-msgstr ""
+msgstr "buszmegálló"
 
 #: tmp.json:31
 msgid "animal crossing"
@@ -4388,48 +4388,48 @@ msgstr ""
 
 #: tmp.json:37
 msgid "max speed limit 25"
-msgstr ""
+msgstr "sebességkorlátozás: 25 km/h"
 
 #: tmp.json:43
 msgid "max speed limit 55"
-msgstr ""
+msgstr "sebességkorlátozás: 55"
 
 #: tmp.json:45
 msgid "max speed limit 65"
-msgstr ""
+msgstr "sebességkorlátozás: 65"
 
 #: tmp.json:47
 msgid "max speed limit 75"
-msgstr ""
+msgstr "sebességkorlátozás: 75"
 
 #: tmp.json:53
 msgid "Tourism office"
-msgstr ""
+msgstr "Tourinform iroda"
 
 #: tmp.json:54
 msgid "Church"
-msgstr ""
+msgstr "Templom"
 
 #: tmp.json:55
 msgid "Camping"
-msgstr ""
+msgstr "Kemping"
 
 #: tmp.json:56
 msgid "Restaurant"
-msgstr ""
+msgstr "Étterem"
 
 #: tmp.json:57
 msgid "Museum"
-msgstr ""
+msgstr "Múzeum"
 
 #: tmp.json:58
 msgid "Winery"
-msgstr ""
+msgstr "Borászat"
 
 #: tmp.json:59
 msgid "Viewpoint"
-msgstr ""
+msgstr "Kilátóhely"
 
 #: tmp.json:60
 msgid "Picnic site"
-msgstr ""
+msgstr "Piknikezőhely"

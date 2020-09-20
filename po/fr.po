@@ -5,9 +5,11 @@
 # Translators:
 # Adrien Pavie <panieravide@riseup.net>, 2020
 # Antonin Curtit, 2020
+# Antonin Curtit, 2020
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017,2020
 # Binnette <binnette@gmail.com>, 2019
 # Codain, 2017-2018
+# deuzeffe, 2018
 # deuzeffe, 2018
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2020
 # frodrigo <fred.rodrigo@gmail.com>, 2014
@@ -22,18 +24,22 @@
 # Jorg722, 2019
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
+# Jorg722, 2019
 # Julien Lepiller <transifex@lepiller.eu>, 2018-2019
 # Lucas Longour <lucas.longour@gromatici.xyz>, 2020
 # Marc M <marc_marc_irc@hotmail.com>, 2020
 # Noémie <nlehuby@zaclys.net>, 2020
-# operon, 2014-2015
+# operon, 2014-2015,2017
 # operon, 2015,2017
 # operon, 2014
+# Philippe Verdy, 2017
 # Philippe Verdy, 2017-2019
 # Pyrog <pyrog@laposte.net>, 2014
 # samuel braikeh, 2020
+# samuel braikeh, 2020
 # Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
+# StephaneP <stephane.peneau@wanadoo.fr>, 2016
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
 # Philippe Verdy, 2017
 msgid ""
@@ -41,7 +47,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-08-27 18:46+0000\n"
+"PO-Revision-Date: 2020-09-20 19:37+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -772,8 +778,8 @@ msgstr "L’attribut “name” contient des espaces successives"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "Conflit entre attributs : %s"
+msgid "Conflict between tags: {0}"
+msgstr "Conflit entre attributs : {0}"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -781,8 +787,8 @@ msgstr "Conflit entre attributs : “bridge” et “tunnel”"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "le sens des giratoires est normalement “%s” dans ce pays"
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "le sens des giratoires est normalement “{0}” dans ce pays"
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -790,13 +796,13 @@ msgstr "Utilisez l’attribut “toll” à la place de “fee”"
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "Utiliser “wikipedia”=“%s:*”"
+msgid "Use wikipedia={0}:*"
+msgstr "Utiliser “wikipedia”=“{0}:*”"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "Suffixe “%s” non valide pour l’attribut “wikipedia”"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "Suffixe “{0}” non valide pour l’attribut “wikipedia”"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1069,8 +1075,8 @@ msgstr "Valeur de “addr:housenumber” incorrecte"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "Nœud avec “place”=“%s” mais sans nom"
+msgid "Node with place={0} without name"
+msgstr "Nœud avec “place”=“{0}” mais sans nom"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1082,8 +1088,8 @@ msgstr "Certains caractères en valeur ne correspondent pas à l’écriture de 
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "Lettre majuscule manquante pour : %s"
+msgid "Missing capital letter for: {0}"
+msgstr "Lettre majuscule manquante pour : {0}"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1091,8 +1097,8 @@ msgstr "L’attribut source contient AAAA"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
-msgstr "L’attribut “name”=“%s” indique la localisation mais pas le nom effectif"
+msgid "\"name={0}\" is the localisation but not the name"
+msgstr "L’attribut “name”=“{0}” indique la localisation mais pas le nom effectif"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
@@ -1133,23 +1139,23 @@ msgstr "Une zone 30 est limitée à 30 km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "Utiliser l’attribut “start_date” pour “%s”"
+msgid "Use start_date tag for \"{0}\""
+msgstr "Utiliser l’attribut “start_date” pour “{0}”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "Utiliser l’attribut “opening_hours” pour “%s”"
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "Utiliser l’attribut “opening_hours” pour “{0}”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "Utiliser l’attribut “construction” pour “%s”"
+msgid "Use construction tag for \"{0}\""
+msgstr "Utiliser l’attribut “construction” pour “{0}”"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "“%s” peut être définit dans un attribut spécifique"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "“{0}” peut être définit dans un attribut spécifique"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1170,13 +1176,13 @@ msgstr "Interpolation de nœuds avec des noms de rue différents"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
-msgstr "Interpolation sur rues : %s"
+msgid "Interpolation span on streets: {0}"
+msgstr "Interpolation sur rues : {0}"
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "Relation étendue de type “%s”"
+msgid "Large relation of type {0}"
+msgstr "Relation étendue de type “{0}”"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1222,8 +1228,8 @@ msgstr "Nom suspect pour un container"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "Poste transformateur électrique de %s"
+msgid "Power substation of {0}"
+msgstr "Poste transformateur électrique de {0}"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1251,8 +1257,8 @@ msgstr "Attribut “wikipedia” en doublon"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "Ne devrait pas comporter l’attribut “ref”=“%s”"
+msgid "Should not contain tag ref={0}"
+msgstr "Ne devrait pas comporter l’attribut “ref”=“{0}”"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1289,8 +1295,8 @@ msgstr "Chaque attribut “network”, “operator”, “ref”, “colour” d
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "%s sont différents"
+msgid "{0} are different"
+msgstr "{0} sont différents"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1409,8 +1415,8 @@ msgstr "Superpositions de cours d’eau"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr "Attribut “zone:maxspeed”=“XX:%s” probablement manquant, d’après le voisinage"
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
+msgstr "Attribut “zone:maxspeed”=“XX:{0}” probablement manquant, d’après le voisinage"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -1905,8 +1911,8 @@ msgstr "Mauvaise utilisation de “addr:interpolation” en combinaison avec d�
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
-msgstr "Centrale électrique %s"
+msgid "Power plant {0}"
+msgstr "Centrale électrique {0}"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "admin_level 8 without tag \"postal_code\""
@@ -3772,7 +3778,7 @@ msgstr ""
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3975,12 +3981,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
+msgid "note tag needs FIXME: \"{0}\""
 msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
 msgstr ""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32

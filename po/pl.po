@@ -748,8 +748,8 @@ msgstr "Nazwa zawiera niepotrzebne spacje"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "Sprzeczność między tagami: %s"
+msgid "Conflict between tags: {0}"
+msgstr "Sprzeczność między tagami: {0}"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -757,8 +757,8 @@ msgstr "Sprzeczność między tagami: 'bridge' i 'tunnel'"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "kierunek minironda w tym kraju jest raczej \"%s\""
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "kierunek minironda w tym kraju jest raczej \"{0}\""
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -766,13 +766,13 @@ msgstr "Użyj tagu \"toll\" zamiast \"fee\""
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "Użyj wikipedia=%s:*"
+msgid "Use wikipedia={0}:*"
+msgstr "Użyj wikipedia={0}:*"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "Niepoprawny przyrostek wikipedia '%s'"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "Niepoprawny przyrostek wikipedia '{0}'"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1045,8 +1045,8 @@ msgstr "Niepoprawna wartość addr:housenumber"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "Węzeł z place=%s bez tagu name"
+msgid "Node with place={0} without name"
+msgstr "Węzeł z place={0} bez tagu name"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1058,8 +1058,8 @@ msgstr "Niektóre znaki nie pasują do zestawu znaków tego języka"
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "Brak wielkiej litery dla: %s"
+msgid "Missing capital letter for: {0}"
+msgstr "Brak wielkiej litery dla: {0}"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1067,8 +1067,8 @@ msgstr "Tag source zawiera \"AAAA\""
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
-msgstr "\"name=%s\" jest lokalizacją, a nie nazwą"
+msgid "\"name={0}\" is the localisation but not the name"
+msgstr "\"name={0}\" jest lokalizacją, a nie nazwą"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
@@ -1109,23 +1109,23 @@ msgstr "Strefa 30 ma ograniczenie prędkości 30 km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "Użyj tagu start_date dla \"%s\""
+msgid "Use start_date tag for \"{0}\""
+msgstr "Użyj tagu start_date dla \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "Użyj tagu opening_hours dla \"%s\""
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "Użyj tagu opening_hours dla \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "Użyj tagu construction dla \"%s\""
+msgid "Use construction tag for \"{0}\""
+msgstr "Użyj tagu construction dla \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "\"%s\" może zostać zastąpiony przez dokładniejszy tag"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "\"{0}\" może zostać zastąpiony przez dokładniejszy tag"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1146,13 +1146,13 @@ msgstr "Interpolacja na węzłach z różnymi nazwami ulic"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
+msgid "Interpolation span on streets: {0}"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "Duża relacja \"type=%s\""
+msgid "Large relation of type {0}"
+msgstr "Duża relacja \"type={0}\""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1198,8 +1198,8 @@ msgstr "Podejrzana nazwa dla pojemnika"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "Podstacja elektryczna %s"
+msgid "Power substation of {0}"
+msgstr "Podstacja elektryczna {0}"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1227,8 +1227,8 @@ msgstr "Zduplikowany tag wikipedia"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "Nie powinno zawierać tagu ref=%s"
+msgid "Should not contain tag ref={0}"
+msgstr "Nie powinno zawierać tagu ref={0}"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1265,8 +1265,8 @@ msgstr "Tagi network, operator, ref, colour powinny być takie same w relacjach 
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "tagi %s różnią się"
+msgid "{0} are different"
+msgstr "tagi {0} różnią się"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1385,8 +1385,8 @@ msgstr "Nakładające się cieki"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr "Prawdopodobnie brakuje tagu zone:maxspeed=XX:%s, zgodnie z tym, co w okolicy."
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
+msgstr "Prawdopodobnie brakuje tagu zone:maxspeed=XX:{0}, zgodnie z tym, co w okolicy."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -1881,8 +1881,8 @@ msgstr "Niewłaściwe użycie addr:interpolation w połączeniu z innymi tagami"
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
-msgstr "Elektrownia %s"
+msgid "Power plant {0}"
+msgstr "Elektrownia {0}"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "admin_level 8 without tag \"postal_code\""
@@ -3748,7 +3748,7 @@ msgstr "Nazwa składająca się z samych wielkich liter jest możliwa w przypadk
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3951,13 +3951,13 @@ msgstr "`psv:lanes=*` to tag dostępu, podczas gdy `lanes:psv=*` to liczba pasó
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
-msgstr "Tag note powinien zostać zastąpiony tagiem fixme: \"%s\""
+msgid "note tag needs FIXME: \"{0}\""
+msgstr "Tag note powinien zostać zastąpiony tagiem fixme: \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
-msgstr "Użyj odpowiedniego tagu: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
+msgstr "Użyj odpowiedniego tagu: \"{0}\""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32
 msgid "Wayside cross node without `material` tag"

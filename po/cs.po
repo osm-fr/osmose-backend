@@ -749,8 +749,8 @@ msgstr "Jméno obsahuje posloupnost mezer"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "Konflikt mezi značkami: %s"
+msgid "Conflict between tags: {0}"
+msgstr "Konflikt mezi značkami: {0}"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -758,8 +758,8 @@ msgstr "Konflikt mezi značkami: 'most' a 'tunel'"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"%s\""
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"{0}\""
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -767,13 +767,13 @@ msgstr "Použijte \"toll\" místo \"fee\""
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "Použij wikipedia=%s:*"
+msgid "Use wikipedia={0}:*"
+msgstr "Použij wikipedia={0}:*"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "Chybná přípona wikipedie '%s'"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "Chybná přípona wikipedie '{0}'"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1046,8 +1046,8 @@ msgstr "Chybná hodnota addr:housenumber"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "Uzel s place=%s bez jména"
+msgid "Node with place={0} without name"
+msgstr "Uzel s place={0} bez jména"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1059,8 +1059,8 @@ msgstr "Některé znaky hodnoty neodpovídají znakové sadě jazyka"
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "Chybějící velké písmeno pro: %s"
+msgid "Missing capital letter for: {0}"
+msgstr "Chybějící velké písmeno pro: {0}"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1068,8 +1068,8 @@ msgstr "Zdrojový tag obsahuje AAAA"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
-msgstr "\"name=%s\" je lokalizace ale ne jméno"
+msgid "\"name={0}\" is the localisation but not the name"
+msgstr "\"name={0}\" je lokalizace ale ne jméno"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
 msgid "A war memorial is not a historic=monument"
@@ -1110,23 +1110,23 @@ msgstr "Zóna 30 je omezena na 30km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "Použijte tag start_date pro \"%s\""
+msgid "Use start_date tag for \"{0}\""
+msgstr "Použijte tag start_date pro \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "Použijte tag opening_hours pro \"%s\""
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "Použijte tag opening_hours pro \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "Použijte tag construction pro \"%s\""
+msgid "Use construction tag for \"{0}\""
+msgstr "Použijte tag construction pro \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "\"%s\" může být nastaveno ve specifickém tagu"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "\"{0}\" může být nastaveno ve specifickém tagu"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1147,13 +1147,13 @@ msgstr "Interpolace na uzlech pro více uličních jmen"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
-msgstr "Značka interpolace adresních bodů na ulicích: %s"
+msgid "Interpolation span on streets: {0}"
+msgstr "Značka interpolace adresních bodů na ulicích: {0}"
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "Rozsáhlá relace typu %s"
+msgid "Large relation of type {0}"
+msgstr "Rozsáhlá relace typu {0}"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1199,8 +1199,8 @@ msgstr "Podezřelé jméno pro kontejner"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "Energetická stanice %s"
+msgid "Power substation of {0}"
+msgstr "Energetická stanice {0}"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1228,8 +1228,8 @@ msgstr "Duplikovaný tag wikipedia"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "Němel by obsahovat tag ref=%s"
+msgid "Should not contain tag ref={0}"
+msgstr "Němel by obsahovat tag ref={0}"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1266,8 +1266,8 @@ msgstr "tagy network, operator, ref, colour by měly být stejné na relacích r
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "%s jsou různé"
+msgid "{0} are different"
+msgstr "{0} jsou různé"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1386,8 +1386,8 @@ msgstr "Vodní tok kříží"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr "Podle okolí pravděpodobně chybějící značka zone:maxspeed=XX:%s"
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
+msgstr "Podle okolí pravděpodobně chybějící značka zone:maxspeed=XX:{0}"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -1882,7 +1882,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
+msgid "Power plant {0}"
 msgstr ""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
@@ -3749,7 +3749,7 @@ msgstr ""
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3952,12 +3952,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
+msgid "note tag needs FIXME: \"{0}\""
 msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
 msgstr ""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32

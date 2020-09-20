@@ -741,8 +741,8 @@ msgstr "فاصله‌های پیاپی در نام"
 
 #: ../plugins/TagRemove_Incompatibles.py:94
 #, python-format
-msgid "Conflict between tags: %s"
-msgstr "تداخل بین تگ‌ها: %s"
+msgid "Conflict between tags: {0}"
+msgstr "تداخل بین تگ‌ها: {0}"
 
 #: ../plugins/TagRemove_Incompatibles.py:97
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -750,8 +750,8 @@ msgstr "تداخل بین تگ‌ها: bridge و tunnel"
 
 #: ../plugins/TagFix_MultipleTag.py:171
 #, python-format
-msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "جهت mini roundabout در این کشور معمولاً %s است"
+msgid "mini roundabout direction in this country is usually \"{0}\""
+msgstr "جهت mini roundabout در این کشور معمولاً {0} است"
 
 #: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -759,13 +759,13 @@ msgstr "به‌جای fee از تگ toll استفاده کنید"
 
 #: ../plugins/TagFix_Wikipedia.py:113
 #, python-format
-msgid "Use wikipedia=%s:*"
-msgstr "از wikipedia=%s:*‎ استفاده کنید"
+msgid "Use wikipedia={0}:*"
+msgstr "از wikipedia={0}:*‎ استفاده کنید"
 
 #: ../plugins/TagFix_Wikipedia.py:167
 #, python-format
-msgid "Invalid wikipedia suffix '%s'"
-msgstr "پسوند ویکی‌پدیایی %s نامعتبر است"
+msgid "Invalid wikipedia suffix '{0}'"
+msgstr "پسوند ویکی‌پدیایی {0} نامعتبر است"
 
 #: ../plugins/TagFix_DuplicateValue.py:117
 #, python-format
@@ -1038,8 +1038,8 @@ msgstr "مقدار نامعتبر برای addr:housenumber"
 
 #: ../plugins/Administrative_INSEE_Name.py:98
 #, python-format
-msgid "Node with place=%s without name"
-msgstr "گره با تگ place=%s اما بدون نام"
+msgid "Node with place={0} without name"
+msgstr "گره با تگ place={0} اما بدون نام"
 
 #: ../plugins/Name_Saint_FR.py:52
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1051,8 +1051,8 @@ msgstr "برخی از نویسه‌های مقدار با نویسه‌های ا
 
 #: ../plugins/Name_Toponymy_FR.py:157
 #, python-format
-msgid "Missing capital letter for: %s"
-msgstr "برای %s باید از حرف بزرگ استفاده شود "
+msgid "Missing capital letter for: {0}"
+msgstr "برای {0} باید از حرف بزرگ استفاده شود "
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1060,7 +1060,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:52
 #, python-format
-msgid "\"name=%s\" is the localisation but not the name"
+msgid "\"name={0}\" is the localisation but not the name"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:60
@@ -1102,23 +1102,23 @@ msgstr "zone 30 محدود به  30km/h است"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:107
 #, python-format
-msgid "Use start_date tag for \"%s\""
-msgstr "برای %s از تگ start_date استفاده کنید"
+msgid "Use start_date tag for \"{0}\""
+msgstr "برای {0} از تگ start_date استفاده کنید"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:111 ../plugins/TagFix_Note_Lang_fr.py:114
 #, python-format
-msgid "Use opening_hours tag for \"%s\""
-msgstr "برای %s از تگ opening_hours استفاده کنید"
+msgid "Use opening_hours tag for \"{0}\""
+msgstr "برای {0} از تگ opening_hours استفاده کنید"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:119
 #, python-format
-msgid "Use construction tag for \"%s\""
-msgstr "برای %s از تگ construction استفاده کنید"
+msgid "Use construction tag for \"{0}\""
+msgstr "برای {0} از تگ construction استفاده کنید"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:123 ../plugins/TagFix_Note_Lang_fr.py:126
 #, python-format
-msgid "\"%s\" can be set in specific tag"
-msgstr "\"%s\" را می‌توان در تگ مخصوص آورد"
+msgid "\"{0}\" can be set in specific tag"
+msgstr "\"{0}\" را می‌توان در تگ مخصوص آورد"
 
 #: ../plugins/Name_Script.py:47
 msgid "Non printable char"
@@ -1139,13 +1139,13 @@ msgstr "درون‌یابی روی گره‌های مربوط به چند خیا
 #: ../analysers/analyser_osmosis_addr_interpolation.py:209
 #: ../analysers/analyser_osmosis_addr_interpolation.py:210
 #, python-format
-msgid "Interpolation span on streets: %s"
-msgstr "گسترهٔ درون‌یابی روی خیابان‌های: %s"
+msgid "Interpolation span on streets: {0}"
+msgstr "گسترهٔ درون‌یابی روی خیابان‌های: {0}"
 
 #: ../analysers/analyser_osmosis_relation_large.py:85
 #, python-format
-msgid "Large relation of type %s"
-msgstr "رابطهٔ بزرگ از نوع %s"
+msgid "Large relation of type {0}"
+msgstr "رابطهٔ بزرگ از نوع {0}"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:183
 msgid "Duplicated node without tag"
@@ -1191,8 +1191,8 @@ msgstr "نام مشکوک برای زباله‌دان"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format
-msgid "Power substation of %s"
-msgstr "power substation در %s"
+msgid "Power substation of {0}"
+msgstr "power substation در {0}"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:36
 msgid "Power substation not integrated"
@@ -1220,8 +1220,8 @@ msgstr "تگ ویکی‌پدیای تکراری"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:40
 #, python-format
-msgid "Should not contain tag ref=%s"
-msgstr "نباید تگ ref=%s را داشته باشد"
+msgid "Should not contain tag ref={0}"
+msgstr "نباید تگ ref={0} را داشته باشد"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:85
 msgid "Close similar name"
@@ -1258,8 +1258,8 @@ msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:364
 #, python-format
-msgid "%s are different"
-msgstr "%s متفاوت هستند"
+msgid "{0} are different"
+msgstr "{0} متفاوت هستند"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
@@ -1378,7 +1378,7 @@ msgstr "روی هم افتادن راه‌های آبی"
 #: ../analysers/analyser_osmosis_highway_zone.py:113
 #, python-format
 msgid ""
-"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
+"Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:374
@@ -1874,7 +1874,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_plant_FR.py:61
 #, python-format
-msgid "Power plant %s"
+msgid "Power plant {0}"
 msgstr ""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
@@ -3741,7 +3741,7 @@ msgstr ""
 
 #: ../plugins/Number.py:70
 #, python-format
-msgid "`height=%s` is really tall, consider changing to `ele=*`"
+msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:33
@@ -3944,12 +3944,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93 ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
-msgid "note tag needs FIXME: \"%s\""
+msgid "note tag needs FIXME: \"{0}\""
 msgstr ""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:103
 #, python-format
-msgid "Use a tag to specify end: \"%s\""
+msgid "Use a tag to specify end: \"{0}\""
 msgstr ""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:32
