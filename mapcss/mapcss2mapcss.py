@@ -2,8 +2,8 @@
 
 import sys
 from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
-from .MapCSSLexer import MapCSSLexer
-from .MapCSSParser import MapCSSParser
+from .generated.MapCSSLexer import MapCSSLexer
+from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
 
 
