@@ -23,6 +23,7 @@
 import re
 import itertools
 from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 class TagFix_DuplicateValue(Plugin):

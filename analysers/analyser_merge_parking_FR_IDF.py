@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):

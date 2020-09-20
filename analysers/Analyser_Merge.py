@@ -37,6 +37,7 @@ import json
 import re
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
+from modules.OsmoseTranslation import T_
 from modules.Stablehash import stablehash64, hexastablehash
 from modules import downloader
 from modules import PointInPolygon

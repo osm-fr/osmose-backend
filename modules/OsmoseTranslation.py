@@ -82,6 +82,10 @@ class OsmoseTranslation:
 
         return out
 
+translate = OsmoseTranslation()
+
+T_ = translate.translate
+
 if __name__ == "__main__":
     translate = OsmoseTranslation()
     print("languages: ")

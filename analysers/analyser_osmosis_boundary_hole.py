@@ -21,6 +21,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 

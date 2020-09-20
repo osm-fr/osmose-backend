@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 

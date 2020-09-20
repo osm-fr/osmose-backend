@@ -2,6 +2,7 @@
 import modules.mapcss_lib as mapcss
 import regex as re # noqa
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 

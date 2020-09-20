@@ -52,6 +52,7 @@ WHERE
 ;
 """
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.Stablehash import stablehash64
 

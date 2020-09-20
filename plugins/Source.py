@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 

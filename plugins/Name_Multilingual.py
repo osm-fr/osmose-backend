@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.languages import language2scripts, gen_regex
 import regex

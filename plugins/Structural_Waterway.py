@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 class Structural_Waterway(Plugin):

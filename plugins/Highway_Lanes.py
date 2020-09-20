@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.py3 import ilen
 from modules.Stablehash import stablehash64

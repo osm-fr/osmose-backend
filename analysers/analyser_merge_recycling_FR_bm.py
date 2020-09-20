@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 

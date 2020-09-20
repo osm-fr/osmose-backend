@@ -20,9 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules.Stablehash import stablehash64
-
 
 sql10 = """
 CREATE TEMP TABLE commune AS

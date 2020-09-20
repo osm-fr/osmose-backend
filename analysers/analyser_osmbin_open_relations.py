@@ -21,9 +21,8 @@
 ###########################################################################
 
 import datetime
-
+from modules.OsmoseTranslation import T_
 from .Analyser import Analyser
-
 from modules import OsmBin
 
 ###########################################################################

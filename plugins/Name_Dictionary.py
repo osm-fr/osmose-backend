@@ -20,6 +20,7 @@
 ###########################################################################
 
 from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 import re
 

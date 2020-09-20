@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 import requests.utils
 import re
+from modules.OsmoseTranslation import T_
 
 # Utils
 

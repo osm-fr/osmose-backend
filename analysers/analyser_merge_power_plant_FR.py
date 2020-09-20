@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from .modules import Stablehash

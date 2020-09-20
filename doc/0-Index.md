@@ -151,4 +151,4 @@ There are multiple way to run Osmose-QA Backend and test your code. The easier t
 Lastly, if you don’t support Docker and love the old school way, you can directly use Python Virtualenv. You will also have to install and setup PostgreSQL yourself.
 
 ### Translation
-Translation are make in Osmose-QA but without language destination. The translation are make in all languages at the same time. For that we use `T_()` and `T_f()`, the last if the `string.format()` variant. These functions return a dictionary of all available translations. When no translation is requited, just use `{'en': 'foobar'}`.
+Translation are make in Osmose-QA but without language destination. The translation are make in all languages at the same time. For that we use `T_()` (like `string.format()`). This function return a dictionary of all available translations. When no translation is requited, just use `{'en': 'foobar'}`.

@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 # Cluster Zone with buffer
