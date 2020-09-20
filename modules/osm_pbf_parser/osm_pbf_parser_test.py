@@ -20,7 +20,7 @@
 ###########################################################################
 
 import sys
-import osm_pbf_parser
+from . import osm_pbf_parser
 
 class V(osm_pbf_parser.Visitor):
     def node(self, osmid, lon, lat, tags):
