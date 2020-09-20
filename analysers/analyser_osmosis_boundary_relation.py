@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
@@ -125,7 +126,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             title = T_('Missing `name`'))
         if self.municipality_ref:
             self.classs_change[3] = self.def_class(item = 7120, level = 2, tags = ['boundary', 'ref', 'fix:chair'],
-                title = T_f('Missing municipality ref tag'))
+                title = T_('Missing municipality ref tag'))
         self.classs_change[4] = self.def_class(item = 7120, level = 2, tags = ['boundary', 'wikipedia', 'fix:chair'],
             title = T_('Missing wikipedia tag'))
         self.classs_change[5] = self.def_class(item = 7120, level = 3, tags = ['boundary', 'fix:chair'],
@@ -143,11 +144,11 @@ relations.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText], "fix":{"name": res[2]} if res[2] else None}
         if self.municipality_ref:
-            self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "text":T_f(u"Missing municipality ref tag {0}", ", ".join(self.municipality_ref)),
+            self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "text":T_("Missing municipality ref tag {0}", ", ".join(self.municipality_ref)),
                 "fix":{self.municipality_ref: res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText],
-            "text": T_f(u"Population on admin_centre role ({0}) greater than population on the relation ({1})", res[2], res[3]) }
+            "text": T_("Population on admin_centre role ({0}) greater than population on the relation ({1})", res[2], res[3]) }
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}}
 
     def municipality_col(self, tags):

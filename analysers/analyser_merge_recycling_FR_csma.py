@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
@@ -27,9 +28,9 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8120, id = 30, level = 3, tags = ['merge', 'recycling'],
-            title = T_f('{0} recycling not integrated', 'CSMA'))
+            title = T_('{0} recycling not integrated', 'CSMA'))
         self.def_class_possible_merge(item = 8121, id = 31, level = 3, tags = ['merge', 'recycling'],
-            title = T_f('{0} recycling, integration suggestion', 'CSMA'))
+            title = T_('{0} recycling, integration suggestion', 'CSMA'))
 
         self.init(
             "https://environnement.clissonsevremaine.fr/",

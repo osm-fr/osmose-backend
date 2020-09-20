@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -31,7 +32,7 @@ class TagFix_Area(Plugin):
         self.errors[32001] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Redundant area tagging'),
             detail = T_('This feature is already implicitly an area due to another tag.'),
-            fix = T_f('Remove the `{0}` tag.', 'area=yes')
+            fix = T_('Remove the `{0}` tag.', 'area=yes')
         )
         self.errors[32002] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Untagged area object'),
@@ -45,7 +46,7 @@ class TagFix_Area(Plugin):
         self.errors[32003] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Redundant area negation'),
             detail = T_('This feature is already implicitly not an area.'),
-            fix = T_f('Remove the `{0}` tag.', 'area=no')
+            fix = T_('Remove the `{0}` tag.', 'area=no')
         )
 
     def way(self, data, tags, nds):
@@ -57,7 +58,7 @@ class TagFix_Area(Plugin):
                 err.append({
                     "class": 32001,
                     "subclass": 1,
-                    "text": T_f('Tags, {0}, already make this an area.', '/'.join(map(lambda x: '`{}`'.format(x), tagged_as_bad)))
+                    "text": T_('Tags, {0}, already make this an area.', '/'.join(map(lambda x: '`{}`'.format(x), tagged_as_bad)))
                 })
             elif not (len(key_set & self.area_yes_good) > 0 or tags.get("railway") == "platform"):
                 err.append({"class": 32002, "subclass": 1})

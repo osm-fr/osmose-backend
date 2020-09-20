@@ -14,7 +14,7 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[30801] = self.def_class(item = 3080, level = 3, tags = ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), title = mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre'))
+        self.errors[30801] = self.def_class(item = 3080, level = 3, tags = ["tag"] + mapcss.list_('tag', 'fix:chair', 'leisure', 'public equipment'), title = mapcss.tr('Suspicious tag association - possible confusion between swimming_pool and sports_centre'))
 
 
 
@@ -33,43 +33,43 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
         # *[leisure=swimming_pool][phone]
         # *[leisure=swimming_pool][contact:phone]
         # *[leisure=swimming_pool][wikipedia]
-        if (u'building' in keys and u'leisure' in keys) or (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'leisure' in keys and u'name' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys):
+        if ('building' in keys and 'leisure' in keys) or ('contact:phone' in keys and 'leisure' in keys) or ('contact:url' in keys and 'leisure' in keys) or ('contact:website' in keys and 'leisure' in keys) or ('leisure' in keys and 'name' in keys) or ('leisure' in keys and 'phone' in keys) or ('leisure' in keys and 'url' in keys) or ('leisure' in keys and 'website' in keys) or ('leisure' in keys and 'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'name'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'name'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'building') == mapcss._value_capture(capture_tags, 1, u'yes'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'building') == mapcss._value_capture(capture_tags, 1, 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'website'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'website'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'url'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'url'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:website'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:website'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:url'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:url'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'phone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'phone'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:phone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
@@ -77,7 +77,7 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
                 # -osmoseItemClassLevel:"3080/30801/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
                 # assertMatch:"node leisure=swimming_pool building=yes"
-                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
+                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr('If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
 
         return err
 
@@ -95,39 +95,39 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
         # *[leisure=swimming_pool][phone]
         # *[leisure=swimming_pool][contact:phone]
         # *[leisure=swimming_pool][wikipedia]
-        if (u'building' in keys and u'leisure' in keys) or (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys):
+        if ('building' in keys and 'leisure' in keys) or ('contact:phone' in keys and 'leisure' in keys) or ('contact:url' in keys and 'leisure' in keys) or ('contact:website' in keys and 'leisure' in keys) or ('leisure' in keys and 'phone' in keys) or ('leisure' in keys and 'url' in keys) or ('leisure' in keys and 'website' in keys) or ('leisure' in keys and 'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'building') == mapcss._value_capture(capture_tags, 1, u'yes'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'building') == mapcss._value_capture(capture_tags, 1, 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'website'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'website'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'url'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'url'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:website'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:website'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:url'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:url'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'phone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'phone'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:phone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
@@ -136,7 +136,7 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
                 # assertMatch:"way leisure=swimming_pool url=A"
                 # assertNoMatch:"way leisure=swimming_pool"
-                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
+                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr('If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
 
         return err
 
@@ -154,39 +154,39 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
         # *[leisure=swimming_pool][phone]
         # *[leisure=swimming_pool][contact:phone]
         # *[leisure=swimming_pool][wikipedia]
-        if (u'building' in keys and u'leisure' in keys) or (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys):
+        if ('building' in keys and 'leisure' in keys) or ('contact:phone' in keys and 'leisure' in keys) or ('contact:url' in keys and 'leisure' in keys) or ('contact:website' in keys and 'leisure' in keys) or ('leisure' in keys and 'phone' in keys) or ('leisure' in keys and 'url' in keys) or ('leisure' in keys and 'website' in keys) or ('leisure' in keys and 'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'building') == mapcss._value_capture(capture_tags, 1, u'yes'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'building') == mapcss._value_capture(capture_tags, 1, 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'website'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'website'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'url'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'url'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:website'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:website'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:url'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:url'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'phone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'phone'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'contact:phone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
@@ -194,7 +194,7 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
                 # -osmoseItemClassLevel:"3080/30801/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
                 # assertMatch:"relation leisure=swimming_pool phone=+3334656565"
-                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
+                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr('If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
 
         return err
 
@@ -213,7 +213,7 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {u'building': u'yes', u'leisure': u'swimming_pool'}), expected={'class': 30801, 'subclass': 0})
-        self.check_err(n.way(data, {u'leisure': u'swimming_pool', u'url': u'A'}, [0]), expected={'class': 30801, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'leisure': u'swimming_pool'}, [0]), expected={'class': 30801, 'subclass': 0})
-        self.check_err(n.relation(data, {u'leisure': u'swimming_pool', u'phone': u'+3334656565'}, []), expected={'class': 30801, 'subclass': 0})
+        self.check_err(n.node(data, {'building': 'yes', 'leisure': 'swimming_pool'}), expected={'class': 30801, 'subclass': 0})
+        self.check_err(n.way(data, {'leisure': 'swimming_pool', 'url': 'A'}, [0]), expected={'class': 30801, 'subclass': 0})
+        self.check_not_err(n.way(data, {'leisure': 'swimming_pool'}, [0]), expected={'class': 30801, 'subclass': 0})
+        self.check_err(n.relation(data, {'leisure': 'swimming_pool', 'phone': '+3334656565'}, []), expected={'class': 30801, 'subclass': 0})

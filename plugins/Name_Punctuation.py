@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -35,7 +36,7 @@ class Name_Punctuation(Plugin):
 
         for q in [u"?", u"¿", u"؟", u"՞", u";", u"？", u"፧", u"꘏"]:
             if q in tags["name"]:
-                return [{"class": 50705, "subclass": 0, "text": T_f("Unexpected character: `{0}`", q)}]
+                return [{"class": 50705, "subclass": 0, "text": T_("Unexpected character: `{0}`", q)}]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

@@ -14,7 +14,7 @@ class Josm_religion(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[9008005] = self.def_class(item = 9008, level = 3, tags = ["tag"], title = mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')))
+        self.errors[9008005] = self.def_class(item = 9008, level = 3, tags = ["tag"], title = mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
 
 
 
@@ -25,23 +25,23 @@ class Josm_religion(PluginMapCSS):
 
 
         # *[religion=catholic]
-        if (u'religion' in keys):
+        if ('religion' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'religion') == mapcss._value_capture(capture_tags, 0, u'catholic'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}","{0.tag}")
                 # suggestAlternative:"religion=christian + denomination=catholic"
                 # fixChangeKey:"religion => denomination"
                 # fixAdd:"religion=christian"
-                err.append({'class': 9008005, 'subclass': 97466527, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9008005, 'subclass': 97466527, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'denomination', mapcss.tag(tags, u'religion')],
-                    [u'religion',u'christian']]),
+                    ['denomination', mapcss.tag(tags, 'religion')],
+                    ['religion','christian']]),
                     '-': ([
-                    u'religion'])
+                    'religion'])
                 }})
 
         return err
@@ -53,23 +53,23 @@ class Josm_religion(PluginMapCSS):
 
 
         # *[religion=catholic]
-        if (u'religion' in keys):
+        if ('religion' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'religion') == mapcss._value_capture(capture_tags, 0, u'catholic'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}","{0.tag}")
                 # suggestAlternative:"religion=christian + denomination=catholic"
                 # fixChangeKey:"religion => denomination"
                 # fixAdd:"religion=christian"
-                err.append({'class': 9008005, 'subclass': 97466527, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9008005, 'subclass': 97466527, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'denomination', mapcss.tag(tags, u'religion')],
-                    [u'religion',u'christian']]),
+                    ['denomination', mapcss.tag(tags, 'religion')],
+                    ['religion','christian']]),
                     '-': ([
-                    u'religion'])
+                    'religion'])
                 }})
 
         return err
@@ -81,23 +81,23 @@ class Josm_religion(PluginMapCSS):
 
 
         # *[religion=catholic]
-        if (u'religion' in keys):
+        if ('religion' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'religion') == mapcss._value_capture(capture_tags, 0, u'catholic'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}","{0.tag}")
                 # suggestAlternative:"religion=christian + denomination=catholic"
                 # fixChangeKey:"religion => denomination"
                 # fixAdd:"religion=christian"
-                err.append({'class': 9008005, 'subclass': 97466527, 'text': mapcss.tr(u'{0}', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9008005, 'subclass': 97466527, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
-                    [u'denomination', mapcss.tag(tags, u'religion')],
-                    [u'religion',u'christian']]),
+                    ['denomination', mapcss.tag(tags, 'religion')],
+                    ['religion','christian']]),
                     '-': ([
-                    u'religion'])
+                    'religion'])
                 }})
 
         return err

@@ -20,6 +20,7 @@
 ###########################################################################
 
 from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -154,7 +155,7 @@ IGN (French geographic name conventions)'''),
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return {"class": 906, "subclass": stablehash64(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(sorted(set(words)))),
+            return {"class": 906, "subclass": stablehash64(','.join(words)), "text": T_("Missing capital letter for: {0}", u", ".join(sorted(set(words)))),
                      "fix": {"name": "".join(splitfix)} }
         return
 

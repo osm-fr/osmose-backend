@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -89,7 +90,7 @@ class TagFix_Maxspeed(Plugin):
             return
 
         if tags['maxspeed'] not in source_maxspeed:
-            return [{'class': 303241, 'subclass': 0, 'text': T_f(u'Discordant {0} and {1}', tags['maxspeed'], other_maxspeed)}]
+            return [{'class': 303241, 'subclass': 0, 'text': T_('Discordant {0} and {1}', tags['maxspeed'], other_maxspeed)}]
 
 
 ###########################################################################

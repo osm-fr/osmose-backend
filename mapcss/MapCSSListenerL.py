@@ -1,11 +1,12 @@
 from .generated.MapCSSListener import MapCSSListener
 from .generated.MapCSSParser import MapCSSParser
+from typing import Dict, List, Optional
 
 
 class MapCSSListenerL(MapCSSListener):
     # Enter a parse tree produced by MapCSSParser#stylesheet.
     def enterStylesheet(self, ctx:MapCSSParser.StylesheetContext):
-        self.rules = []
+        self.rules: List[Dict] = []
 
     # Exit a parse tree produced by MapCSSParser#stylesheet.
     def exitStylesheet(self, ctx:MapCSSParser.StylesheetContext):
@@ -14,9 +15,9 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#rule_.
     def enterRule_(self, ctx:MapCSSParser.Rule_Context):
-        self.selectors = []
-        self.declarations = []
-        self.stack = []
+        self.selectors: List[Dict] = []
+        self.declarations: List[Dict] = []
+        self.stack: List[Dict] = []
 
     # Exit a parse tree produced by MapCSSParser#rule_.
     def exitRule_(self, ctx:MapCSSParser.Rule_Context):
@@ -25,9 +26,9 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#selector.
     def enterSelector(self, ctx:MapCSSParser.SelectorContext):
-        self.simple_selectors = []
-        self.link_selectors = []
-        self.pseudo_class = []
+        self.simple_selectors: List[Dict] = []
+        self.link_selectors: List[Dict] = []
+        self.pseudo_class: List[Dict] = []
 
     # Exit a parse tree produced by MapCSSParser#selector.
     def exitSelector(self, ctx:MapCSSParser.SelectorContext):
@@ -56,11 +57,11 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#simple_selector.
     def enterSimple_selector(self, ctx:MapCSSParser.Simple_selectorContext):
-        self.zoom_selector = None
-        self.class_selectors = []
-        self.predicates = []
-        self.predicates_function_base = None
-        self.pseudo_class = []
+        self.zoom_selector: Optional[Dict] = None
+        self.class_selectors: List[Dict] = []
+        self.predicates: List[Dict] = []
+        self.predicates_function_base: Optional[List[Dict]] = None
+        self.pseudo_class = [] # : List[Dict]
 
     # Exit a parse tree produced by MapCSSParser#simple_selector.
     def exitSimple_selector(self, ctx:MapCSSParser.Simple_selectorContext):
@@ -159,7 +160,7 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#booleanExpression.
     def enterBooleanExpression(self, ctx:MapCSSParser.BooleanExpressionContext):
-        operands = []
+        operands: List[Dict] = []
         self.stack.append({
             'booleanExpressions': operands,
             'valueExpressions': operands,

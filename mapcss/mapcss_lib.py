@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 import requests.utils
 import re
+from modules.OsmoseTranslation import T_
 
 # Utils
 
@@ -230,7 +231,7 @@ def at(asset_lat, asset_lon, lat, lon):
 #asin, atan, atan2, ceil, cos, cosh, exp, floor, log, max, min, random, round, signum, sin, sinh, sqrt, tan, tanh
 #    the usual meaning, details
 import math
-import random
+import random as py_random
 str_value_num_wrapper = lambda function: lambda s: str_value(function(s.to_n()))
 asin = str_value_num_wrapper(math.asin)
 atan = str_value_num_wrapper(math.atan)
@@ -243,7 +244,7 @@ floor = str_value_num_wrapper(math.floor)
 log = str_value_num_wrapper(math.log)
 #max = max
 #min = min
-random = random.random
+random = py_random.random
 round_ = str_value_num_wrapper(lambda f: round(f))
 signum = str_value_num_wrapper(lambda x: (x > 0) - (x < 0))
 sin = str_value_num_wrapper(math.sin)
@@ -432,7 +433,7 @@ def JOSM_search(string):
 #    translate from English to the current language (only for strings in the JOSM user interface) [since 6506]
 def tr(string, *args):
     if string is not None:
-        return T_f(string, *args)
+        return T_(string, *args)
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699]
@@ -539,6 +540,57 @@ def areasize():
 
 #at(lat,lon)
 #    returns true if the object centroid lies at given lat/lon coordinates, e.g. to check for nodes at "null island" node[at(0.0,0.0)] [since 12514]
+
+#is_similar(str1, str2)
+#    returns true if the two strings are similar, but not identical, i.e., have a Levenshtein distance of 1 or 2. Example: way[highway][name][is_similar(tag(name), "Main Street")] checks for streets with a possible typo in the name (e.g. Main Streeg). [since r14371]
+
+#gpx_distance()
+#    returns the lowest distance between the OSM object and a GPX point [since r14802]
+
+#count_roles()
+#    returns the number of primitives in a relation with the specified roles [since r15275]
+
+#sort(str1, str2, str3, ...)
+#    sorts an array of strings [since r15279]
+
+#sort_list()
+#    sorts a list of strings [since r15279]
+
+#tag_regex(regex)
+#    returns a list of values that match the regex [since r15317]
+def tag_regex(tags, regex):
+    if tags is not None and regex is not None:
+        return [tags[k] for k in tags.keys() if _re_search(regex, k)]
+    return None_value
+
+#to_boolean(str)
+#    returns the string argument as a boolean [since r16110]
+
+#to_byte(str)
+#    returns the string argument as a byte [since r16110]
+
+#to_short(str)
+#    returns the string argument as a short [since r16110]
+
+#to_int(str)
+#    returns the string argument as a int [since r16110]
+
+#to_long(str)
+#    returns the string argument as a long [since r16110]
+
+#to_float(str)
+#    returns the string argument as a float [since r16110]
+
+#to_double(str)
+#    returns the string argument as a double [since r16110]
+
+#uniq(str1, str2, str3, ...)
+#    returns a list of strings that only have unique values from an array of strings [since r15323]
+
+#uniq_list()
+#    returns a list of strings that only have unique values from a list of strings [since r15353]
+def uniq_list(l):
+    return set(l)
 
 
 # Other functions

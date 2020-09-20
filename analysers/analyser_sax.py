@@ -27,7 +27,6 @@ import os
 import importlib
 import modules.config
 from modules import OsmoseLog
-from functools import reduce
 
 
 class Analyser_Sax(Analyser):
@@ -54,10 +53,7 @@ class Analyser_Sax(Analyser):
         return self.parser.timestamp()
 
     def analyser(self):
-        if self.config.plugins:
-            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin(plugin), self.config.plugins)))
-        else:
-            plugins = self._load_all_plugins()
+        plugins = self._load_all_plugins()
         self._init_plugins(plugins)
         self._load_output(change=self.parsing_change_file)
         try:
@@ -71,10 +67,7 @@ class Analyser_Sax(Analyser):
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        if self.config.plugins:
-            plugins = list(reduce(lambda sum, classes: sum + classes, map(lambda plugin: self._load_plugin(plugin), self.config.plugins)))
-        else:
-            plugins = self._load_all_plugins()
+        plugins = self._load_all_plugins()
         self._init_plugins(plugins)
         self._load_output(change=True)
         self._run_analyse()
@@ -422,12 +415,11 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_plugin(self, plugin):
-        if isinstance(plugin, str):
-            module = importlib.import_module('plugins.' + plugin)
-            classes = getattr(module, 'available_plugin_classes', [plugin])
-            return list(map(lambda clazz: getattr(module, clazz), classes))
+        module = importlib.import_module('plugins.' + plugin)
+        if getattr(module, 'P_' + plugin, None):
+            pass
         else:
-            return [plugin]
+            return getattr(module, plugin)
 
     def _load_all_plugins(self):
         self._log(u"Loading plugins")
@@ -437,7 +429,9 @@ class Analyser_Sax(Analyser):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]
-            available_plugins += self._load_plugin(pluginName)
+            clazz = self._load_plugin(pluginName)
+            if clazz:
+                available_plugins.append(clazz)
 
         return available_plugins
 

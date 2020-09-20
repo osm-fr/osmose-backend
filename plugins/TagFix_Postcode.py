@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
 import re
@@ -97,9 +98,9 @@ class TagFix_Postcode(Plugin):
     def node(self, data, tags):
         err = []
         if self.CountryPostcodeArea and 'postal_code' in tags and not self.CountryPostcodeArea.match(tags['postal_code'].replace(" ", "").replace("-", "").replace(".", "")):
-            err.append({"class": 31901, "subclass": 1, "text": T_("Invalid area postcode %(postcode)s for country code %(country)s", {"postcode": tags['postal_code'], "country": self.Country})})
+            err.append({"class": 31901, "subclass": 1, "text": T_("Invalid area postcode {postcode} for country code {country}", postcode = tags['postal_code'], country = self.Country)})
         if self.CountryPostcodeStreet and 'addr:postcode' in tags and not self.CountryPostcodeStreet.match(tags['addr:postcode'].replace(" ", "").replace("-", "").replace(".", "")):
-            err.append({"class": 31901, "subclass": 2, "text": T_("Invalid street level postcode %(postcode)s for country code %(country)s", {"postcode": tags['addr:postcode'], "country": self.Country})})
+            err.append({"class": 31901, "subclass": 2, "text": T_("Invalid street level postcode {postcode} for country code {country}", postcode = tags['addr:postcode'], country = self.Country)})
         return err
 
     def way(self, data, tags, nds):

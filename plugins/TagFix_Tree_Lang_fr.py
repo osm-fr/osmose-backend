@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
 import re
@@ -58,7 +59,7 @@ class TagFix_Tree_Lang_fr(Plugin):
     def check(self, tag, value, subclass):
         name = self.normalize(u''.join(value))
         if name in self.Tree:
-            return {"class": 3120, "subclass": subclass, "text": T_f(u"Bad tag {0}=\"{1}\"", tag, value),
+            return {"class": 3120, "subclass": subclass, "text": T_("Bad tag {0}=\"{1}\"", tag, value),
                     "fix": {"-": [tag], "+": self.Tree[name]}}
 
     def init(self, logger):
@@ -85,7 +86,7 @@ class TagFix_Tree_Lang_fr(Plugin):
 
         if 'name' in tags:
             if tags['name'].lower() in ('arbre', 'tree') or 'chablis' in tags['name'].lower() or 'branche' in tags['name'].lower():
-                err.append({"class": 3120, "subclass": 0, "text": T_f(u"Bad tag name=\"{0}\"", tags["name"])})
+                err.append({"class": 3120, "subclass": 0, "text": T_("Bad tag name=\"{0}\"", tags["name"])})
             c = self.check('name', tags['name'], 1)
             if c:
                 err.append(c)
@@ -95,11 +96,11 @@ class TagFix_Tree_Lang_fr(Plugin):
             if c:
                 err.append(c)
             elif tags['type'] not in ('broad_leaved', 'broad_leafed', 'conifer', 'palm'):
-                err.append({"class": 3120, "subclass": 3, "text": T_f(u"Bad tag type=\"{0}\"", tags["type"])})
+                err.append({"class": 3120, "subclass": 3, "text": T_("Bad tag type=\"{0}\"", tags["type"])})
 
         if 'denotation' in tags:
             if tags['denotation'] not in ('cluster', 'avenue', 'urban', 'natural_monument', 'park', 'landmark'):
-                err.append({"class": 3120, "subclass": 4, "text": T_f(u"Bad tag denotation=\"{0}\"", tags["denotation"])})
+                err.append({"class": 3120, "subclass": 4, "text": T_("Bad tag denotation=\"{0}\"", tags["denotation"])})
 
         return err
 

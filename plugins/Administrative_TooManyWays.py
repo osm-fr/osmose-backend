@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -54,7 +55,7 @@ Then ensure the roles `forward` and `backward`.'''))
         #n_limit = 15
         #n = len(data[u"member"])
         #if n >= n_limit:
-        #    return {"class": 503, "subclass": 0, "text": T_(u"More than %s ways in admin_level=8 relation (%s)", str(n_limit),str(n))}
+        #    return {"class": 503, "subclass": 0, "text": T_("More than {0} ways in admin_level=8 relation ({1})", str(n_limit), str(n))}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

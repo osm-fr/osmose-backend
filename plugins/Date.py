@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 import datetime
 import dateutil.parser
@@ -87,9 +88,9 @@ class Date(Plugin):
                 if ".." in tags[i]:
                     for d in tags[i].split('..'):
                         if not self.check(d):
-                            return {"class": 3090, "subclass": 2, "text": T_f("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
+                            return {"class": 3090, "subclass": 2, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
                 elif not self.check(tags[i]):
-                    return {"class": 3090, "subclass": 1, "text": T_f("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
+                    return {"class": 3090, "subclass": 1, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

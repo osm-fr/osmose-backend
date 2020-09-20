@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select, Generate
 
 
@@ -28,17 +29,17 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         place = "TransGironde"
         self.def_class_missing_official(item = 8040, id = 41, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop not integrated', place))
+            title = T_('{0} stop not integrated', place))
         self.def_class_possible_merge(item = 8041, id = 43, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop, integration suggestion', place))
+            title = T_('{0} stop, integration suggestion', place))
         self.def_class_update_official(item = 8042, id = 44, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop update', place))
+            title = T_('{0} stop update', place))
 
         self.init(
-            u"http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
-            u"Horaires des lignes régulières du réseau transgironde",
-            GTFS(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2016",
-                    fileUrl = u"https://datacat.datalocale.fr/file/1479301/raw/download", encoding = "ISO-8859-15")),
+            "https://www.data.gouv.fr/fr/datasets/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/",
+            "Horaires théoriques du réseau de transport 'CG 33 -TRANSGIRONDE'",
+            GTFS(Source(attribution = "Conseil général de la Gironde", millesime = "04/2018",
+                    fileUrl = "https://static.data.gouv.fr/resources/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/20180423-150005/download_CD33_GTFS_lignes_reg.zip", encoding = "ISO-8859-15")),
             Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(
@@ -56,7 +57,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                     mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
                         "name": lambda res: self.replace(res['stop_name'].split(' - ')[1]) if len(res['stop_name'].split(' - ')) > 1 else None},
-                    text = lambda tags, fields: T_f(u"{0} stop of {1}", place, fields["stop_name"]) )))
+                    text = lambda tags, fields: T_("{0} stop of {1}", place, fields["stop_name"]) )))
 
     def replace(self, string):
         for s in self.replacement.keys():

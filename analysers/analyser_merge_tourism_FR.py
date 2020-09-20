@@ -21,6 +21,7 @@
 ###########################################################################
 
 import json
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
@@ -38,7 +39,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, items, classs, title, type_, tags_select, osm_types, conflationDistance, tags_generate):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.def_class_missing_official(item = items, id = classs, level = 3, tags = ['merge'],
-            title = T_f('{0} not integrated', T_(title)))
+            title = T_('{0} not integrated', T_(title)))
 
         self.init(
             "https://data.datatourisme.gouv.fr",

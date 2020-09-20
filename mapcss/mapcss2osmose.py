@@ -10,6 +10,7 @@ from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from .generated.MapCSSLexer import MapCSSLexer
 from .generated.MapCSSParser import MapCSSParser
 from .MapCSSListenerL import MapCSSListenerL
+from typing import Dict, List, Set, Optional
 
 
 # Clean
@@ -48,7 +49,7 @@ def quoted_unescape(t, c):
     """
     if not 'unescape' in t:
         t['unescape'] = True
-        t['value'] = ast.literal_eval("u" + t['value'])
+        t['value'] = ast.literal_eval(t['value'])
     return t
 
 def regexExpression_unescape(t, c):
@@ -190,7 +191,7 @@ def functionExpression_param_regex(t, c):
     type = functionExpression
     Ensure params to regex functions are regex
     """
-    if t['name'] in ('regexp_test', 'regexp_match'):
+    if t['name'] in ('regexp_test', 'regexp_match', 'tag_regex'):
         if t['params'][0]['type'] == 'quoted':
             t['params'][0] = {'type': 'regexExpression', 'value': t['params'][0]['value']}
     return t
@@ -200,7 +201,7 @@ def functionExpression_regexp_flags(t, c):
     type = functionExpression
     Move regex flag from match function to regex object
     """
-    if t['name'] in ('regexp_test', 'regexp_match') and len(t['params']) == 3:
+    if t['name'] in ('regexp_test', 'regexp_match', 'tag_regex') and len(t['params']) == 3:
         flags = t['params'].pop()
         t['params'][0]['params'][2]['flags'] = flags
     return t
@@ -347,7 +348,7 @@ def functionExpression_runtime(t, c):
         return "len(tags)"
     else:
         t['params'] = (
-            ["tags"] if t['name'] == 'tag' else
+            ["tags"] if t['name'] in ('tag', 'tag_regex') else
             ["data['lat']", "data['lon']"] if t['name'] == 'at' else
             ["self.father.config.options"] if t['name'] in ('inside', 'outside', 'language', 'no_language', 'setting') else
             []
@@ -517,7 +518,7 @@ def stablehash(s):
     return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
 
 
-class_map = {}
+class_map: Dict[Optional[str], int] = {}
 class_index = 0
 meta_tags = None
 item_default = None
@@ -525,8 +526,8 @@ item = class_id = level = tags = group = group_class = text = text_class = fix =
 subclass_id = 0
 class_ = {}
 tests = []
-regex_store = {}
-set_store = set()
+regex_store: Dict[List[str], str] = {}
+set_store: Set[str] = set()
 subclass_blacklist = []
 is_meta_rule = False
 
@@ -561,7 +562,7 @@ def to_p(t):
             fix = len(fix) > 0 and map(lambda om: "'" + om[0] + "': " + ("dict" if om[0] != '-' else "") + "([\n            " + ",\n            ".join(om[1]) + "])", sorted(fix.items()))
             return (
                 selectors_text + "\n" +
-                (("if (" + ") or (".join(sorted(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), main_tags))) + ")") if not main_tags_None else "if True") + ":\n" + # Quick fail
+                (("if (" + ") or (".join(sorted(map(lambda s: " and ".join(map(lambda z: "'" + z.replace("'", "\\'") + "' in keys", sorted(s))), main_tags))) + ")") if not main_tags_None else "if True") + ":\n" + # Quick fail
                 "    match = False\n" +
                 "".join(map(lambda s:
                 "    if not match:\n" +
@@ -643,14 +644,14 @@ def to_p(t):
             pass # Do nothing
         elif t['property'] == 'fixAdd':
             if t['value']['type'] == 'single_value' and t['value']['value']['type'] == 'quoted':
-                fix[t['property']].append("[" + ','.join(map(lambda a: "u'" + a.strip().replace("'", "\\'") + "'", t['value']['value']['value'].split('=', 1))) + "]")
+                fix[t['property']].append("[" + ','.join(map(lambda a: "'" + a.strip().replace("'", "\\'") + "'", t['value']['value']['value'].split('=', 1))) + "]")
             else:
                 fix[t['property']].append("(" + to_p(t['value']) + ").split('=', 1)")
         elif t['property'] == 'fixChangeKey':
             if t['value']['type'] == 'single_value' and t['value']['value']['type'] == 'quoted':
                 l = t['value']['value']['value'].split('=>', 1)
-                fix['fixRemove'].append("u'" + l[0].strip().replace("'", "\\'") + "'")
-                fix['fixAdd'].append("[u'" + l[1].strip().replace("'", "\\'") + "', mapcss.tag(tags, u'" + l[0].strip().replace("'", "\\'") + "')]")
+                fix['fixRemove'].append("'" + l[0].strip().replace("'", "\\'") + "'")
+                fix['fixAdd'].append("['" + l[1].strip().replace("'", "\\'") + "', mapcss.tag(tags, '" + l[0].strip().replace("'", "\\'") + "')]")
             else:
                 l = "(" + to_p(t['value']) + ").split('=>', 1)"
                 fix['fixRemove'].append(l + "[0].strip()")
@@ -664,7 +665,7 @@ def to_p(t):
             if t['value']['type'] == 'single_value':
                 what, context = (to_p(t['value']), None)
             else: # It's a list (we hope so)
-                what, context = (to_p(t['value']['params'][0]), to_p(t['value']['params'][1])[2:-1])
+                what, context = (to_p(t['value']['params'][0]), to_p(t['value']['params'][1])[1:-1])
             tests.append({'type': t['property'], 'what': what, 'context': context, 'class': class_id, 'subclass': subclass_id or 0})
         else:
             raise NotImplementedError(t['property'])
@@ -695,9 +696,9 @@ def to_p(t):
     elif t['type'] == 'zoom_selector':
         return "" # Ignore
     elif t['type'] == 'quoted':
-        return "u'" + t['value'].replace("'", "\\'") + "'"
+        return "'" + t['value'].replace("'", "\\'") + "'"
     elif t['type'] == 'osmtag':
-        return "u'" + t['value'] + "'"
+        return "'" + t['value'] + "'"
     elif t['type'] == 'regexExpression':
         if t['value'] in regex_store:
             regex_var = regex_store[t['value'], t.get('flags')]
@@ -734,12 +735,12 @@ def build_tests(tests):
             context = dict(map(lambda kv: (context_map[kv[0]] if kv[0] in context_map else kv[0], kv[1]), context.items()))
             test_code = "with with_options(n, {%s}):\n    " % ', '.join(map(lambda kv: ": ".join(map(lambda s: "'" + s.replace("'", "\\'") + "'", kv)), context.items()))
 
-        okvs = list(map(lambda s: s.strip(' ='), kv_split.split(test['what'][2:-1])))
+        okvs = list(map(lambda s: s.strip(' ='), kv_split.split(test['what'][1:-1])))
         o, kvs = okvs[0], list(map(lambda a: a[0] in '"\'' and a[0] == a[-1] and a[1:-1] or a, map(lambda a: a.replace('\\\"', '"').replace("\\\'", "'"), okvs[1:])))
         kvs = zip(kvs[0::2], kvs[1::2]) # kvs.slice(2)
         tags = dict(kvs)
         test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') or test['type'].startswith('-osmoseAssertMatch') else "check_not_err") + "(" +
-            "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}" + {'node': "", 'way': ", [0]", 'relation': ", []"}[o] + "), " +
+            "n." + o + "(data, {" + ', '.join(map(lambda kv: "'" + kv[0].replace("'", "\\'") + "': '" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}" + {'node': "", 'way': ", [0]", 'relation': ", []"}[o] + "), " +
             "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})")
         out.append(test_code)
     return "\n".join(out)

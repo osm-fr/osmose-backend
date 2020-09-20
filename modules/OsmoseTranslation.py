@@ -47,32 +47,10 @@ class OsmoseTranslation:
             if entry.msgstr != "":
                 self.trans[l][entry.msgid] = entry.msgstr
 
-    def translate(self, str, *args):
+    def translate(self, string, *args, **kwargs):
         out = {}
 
-        # english version
-        if len(args) == 0:
-            out["en"] = str
-        elif isinstance(args[0], dict):
-            out["en"] = str % args[0]
-        else:
-            out["en"] = str % args
-
-        for l in self.languages:
-            if str in self.trans[l] and self.trans[l][str] != "":
-                if len(args) == 0:
-                    out[l] = self.trans[l][str]
-                elif isinstance(args[0], dict):
-                    out[l] = self.trans[l][str] % args[0]
-                else:
-                    out[l] = self.trans[l][str] % args
-
-        return out
-
-    def translate_format(self, string, *args):
-        out = {}
-
-        if len(args) == 0:
+        if len(args) == 0 and len(kwargs) == 0:
             out["en"] = string
 
             for l in self.languages:
@@ -92,17 +70,21 @@ class OsmoseTranslation:
                 else:
                     args_basic.append(arg)
 
-            out["en"] = string.format(*args_basic)
+            out["en"] = string.format(*args_basic, **kwargs)
             if args_translated:
                 out["en"] = out["en"].format(*map(lambda a: a['en'], args_translated))
 
             for l in self.languages:
                 if string in self.trans[l] and self.trans[l][string] != "":
-                    out[l] = self.trans[l][string].format(*args_basic)
+                    out[l] = self.trans[l][string].format(*args_basic, **kwargs)
                     if args_translated:
                         out[l] = out[l].format(*map(lambda a: l in a and a[l] or a['en'], args_translated))
 
         return out
+
+translate = OsmoseTranslation()
+
+T_ = translate.translate
 
 if __name__ == "__main__":
     translate = OsmoseTranslation()

@@ -52,6 +52,7 @@ WHERE
 ;
 """
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.Stablehash import stablehash64
 
@@ -95,7 +96,7 @@ values.'''))
         keys = set(keys) & self.SimpleValuedTag
         for k in keys:
             if ';' in tags[k]:
-                err.append({"class": 3070, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                err.append({"class": 3070, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         return err
 

@@ -20,9 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
-from .modules import Stablehash
+from modules import Stablehash
 
 
 class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
@@ -58,7 +59,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                     mapping2 = {
                         "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
                     tag_keep_multiple_values = ["voltage"],
-                    text = lambda tags, fields: T_(u"Power plant %s", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
+                    text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
 
     filiere = {
         u"Autre": {

@@ -23,6 +23,7 @@
 import re
 import itertools
 from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 class TagFix_DuplicateValue(Plugin):
@@ -116,14 +117,14 @@ similar.'''),
                 vs = list(filter(lambda w: len(w) > 0, map(lambda w: w.strip(), v.split(';'))))
                 if len(vs) != len(set(vs)):
                     err.append({"class": 3060, "subclass": stablehash64(k),
-                                "text": T_("Duplicated values %(key)s=%(val)s", {"key": k, "val": tags[k]}),
+                                "text": T_("Duplicated values {key}={val}", key = k, val = tags[k]),
                                 "fix": {k: ";".join(set(vs))} })
                 else:
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
                             err.append({"class": 30601, "subclass": stablehash64(k),
-                                        "text": T_("Duplicated similar values %(key)s=%(val)s", {"key": k, "val": tags[k]})})
+                                        "text": T_("Duplicated similar values {key}={val}", key = k, val = tags[k])})
                             break
 
         return err

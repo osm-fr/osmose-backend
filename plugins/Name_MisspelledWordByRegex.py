@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -46,6 +47,3 @@ class P_Name_MisspelledWordByRegex(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
-
-
-available_plugin_classes = []

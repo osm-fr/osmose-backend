@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -104,7 +105,7 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
         }
         for route_type, access in self.map.items():
             self.classs_change[access['class']] = self.def_class(item = 3240, level = 2, tags = ['relation', 'routing'],
-                title = T_f('Way access mismatch relation route={0}', route_type))
+                title = T_('Way access mismatch relation route={0}', route_type))
 
     def callback10(self, clazz):
         return lambda res: {'class':clazz, 'data':[self.way_full, self.relation_full, self.positionAsText] }

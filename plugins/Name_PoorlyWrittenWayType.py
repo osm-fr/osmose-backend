@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 import re
 
@@ -63,6 +64,3 @@ class P_Name_PoorlyWrittenWayType(Plugin):
 
     def relation(self, data, tags, members):
         return self.way(data, tags, None)
-
-
-available_plugin_classes = []

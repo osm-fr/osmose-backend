@@ -18,6 +18,8 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
 ##                                                                       ##
 ###########################################################################
+
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 try:

@@ -21,6 +21,7 @@
 ###########################################################################
 
 import json
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from modules import reaccentue
@@ -42,13 +43,13 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         classss = int(classs.replace('.', '0')[:-1]) * 100 + ord(classs[-1]) - 65
         self.def_class_missing_official(item = missing_official, id = classss+1, level = level, tags = ['merge'],
-            title = T_f('{0} not integrated', classs + ', ' + title))
+            title = T_('{0} not integrated', classs + ', ' + title))
         #self.def_class_missing_osm(item = missing_osm, id = classss+2, level = level, tags = ['merge'],
-        #    title = T_f('{0} without tag "{1}" or invalid', title, 'ref:FR:SIRET'))
+        #    title = T_('{0} without tag "{1}" or invalid', title, 'ref:FR:SIRET'))
         #self.def_class_possible_merge(item = missing_official[0:-1]+"1", id = classss+3, level = level, tags = ['merge'],
-        #    title = T_f('{0}, integration suggestion', title))
+        #    title = T_('{0}, integration suggestion', title))
         #self.def_class_update_official(item = missing_official[0:-1]+"2", id = classss+4, level = level, tags = ['merge'],
-        #    title = T_f('{0} update', title))
+        #    title = T_('{0} update', title))
 
         dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
 

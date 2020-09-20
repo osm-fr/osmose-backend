@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
 from modules.Stablehash import stablehash64
@@ -110,7 +111,7 @@ the article. Same for accented letters. Letter must be readable.'''),
                 return [{"class": 30310, "subclass": 0}]
             elif m:
                 # tag 'wikipedia' seams to be an url
-                return [{"class": 30311, "subclass": 1, "text": T_(u"Use wikipedia=%s:*", m.group(2)),
+                return [{"class": 30311, "subclass": 1, "text": T_("Use wikipedia={0}:*", m.group(2)),
                          "fix": {wikipediaTag: "%s:%s" % (m.group(2), self.human_readable(m.group(3)))} }]
 
             if not self.lang_regexp.match(tags[wikipediaTag]):
@@ -164,7 +165,7 @@ the article. Same for accented letters. Letter must be readable.'''),
                         value = self.human_readable(tags[tag])
                     missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
-                err.append({"class": 30315, "subclass": stablehash64(tag), "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
+                err.append({"class": 30315, "subclass": stablehash64(tag), "text": T_("Invalid wikipedia suffix '{0}'", suffix) })
 
         if missing_primary != []:
             if self.Language:

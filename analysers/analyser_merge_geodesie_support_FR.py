@@ -22,6 +22,7 @@
 
 import csv
 import re
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
@@ -47,7 +48,7 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, item, classs, level, topic, osmTags, defaultTags):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.def_class_missing_official(item = item, id = classs, level = level, tags = ['merge'],
-            title = T_f('Geodesic support not integrated {0}', topic.replace('^', '').replace('|', ', ')))
+            title = T_('Geodesic support not integrated {0}', topic.replace('^', '').replace('|', ', ')))
 
         self.init(
             u"http://geodesie.ign.fr",

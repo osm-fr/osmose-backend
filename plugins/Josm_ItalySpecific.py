@@ -14,7 +14,7 @@ class Josm_ItalySpecific(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[21001] = self.def_class(item = 2100, level = 3, tags = mapcss.list_(u'fix:chair'), title = mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}')))
+        self.errors[21001] = self.def_class(item = 2100, level = 3, tags = mapcss.list_('fix:chair'), title = mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
 
 
 
@@ -25,17 +25,17 @@ class Josm_ItalySpecific(PluginMapCSS):
 
 
         # *[amenity=pharmacy][!dispensing][inside("IT")]
-        if (u'amenity' in keys):
+        if ('amenity' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, u'dispensing') and mapcss.inside(self.father.config.options, u'IT'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing') and mapcss.inside(self.father.config.options, 'IT'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
                 # -osmoseItemClassLevel:"2100/21001/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
-                err.append({'class': 21001, 'subclass': 0, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 21001, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
@@ -46,17 +46,17 @@ class Josm_ItalySpecific(PluginMapCSS):
 
 
         # *[amenity=pharmacy][!dispensing][inside("IT")]
-        if (u'amenity' in keys):
+        if ('amenity' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, u'dispensing') and mapcss.inside(self.father.config.options, u'IT'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing') and mapcss.inside(self.father.config.options, 'IT'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
                 # -osmoseItemClassLevel:"2100/21001/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
-                err.append({'class': 21001, 'subclass': 0, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 21001, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
@@ -67,17 +67,17 @@ class Josm_ItalySpecific(PluginMapCSS):
 
 
         # *[amenity=pharmacy][!dispensing][inside("IT")]
-        if (u'amenity' in keys):
+        if ('amenity' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, u'dispensing') and mapcss.inside(self.father.config.options, u'IT'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing') and mapcss.inside(self.father.config.options, 'IT'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
                 # -osmoseItemClassLevel:"2100/21001/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
-                err.append({'class': 21001, 'subclass': 0, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.tag}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
+                err.append({'class': 21001, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 

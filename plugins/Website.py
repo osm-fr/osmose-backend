@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 from modules.Stablehash import stablehash64
 
@@ -41,7 +42,7 @@ class Website(Plugin):
             title = T_('The URL does not have a valid scheme'))
 
     def _bad_url(self, tag, tags):
-        return T_("Bad URL %(k)s=%(v)s", {"k": tag, "v": tags[tag]})
+        return T_("Bad URL {k}={v}", k = tag, v = tags[tag])
 
     def check(self, tags):
         err = []

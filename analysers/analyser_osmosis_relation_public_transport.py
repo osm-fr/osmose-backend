@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
@@ -361,7 +362,7 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":5,
-             "text": T_("%s are different", ", ".join(filter(lambda r: r, [res[3] and "network", res[4] and "operator", res[5] and "ref", res[6] and "colour"]))),
+             "text": T_("{0} are different", ", ".join(filter(lambda r: r, [res[3] and "network", res[4] and "operator", res[5] and "ref", res[6] and "colour"]))),
              "data": [self.relation_full, self.relation_full, self.positionAsText] }
         self.callback60 = lambda res: {"class":6, "data":[self.node_full, self.positionAsText]}
         self.callback70 = lambda res: {"class":7, "data":[self.node_full, self.positionAsText]}

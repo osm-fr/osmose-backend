@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql40 = """
@@ -63,16 +64,16 @@ smaller.'''),
 Secondary connecting directly to the residentials.'''))
 
         self.classs[1] = self.def_class(item = 1090, level = 1, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
-            title = T_f('Sudden highway type change (level {0})', 1),
+            title = T_('Sudden highway type change (level {0})', 1),
             detail = {'en':
 '''motorway, primary, trunk'''}))
         self.classs[2] = self.def_class(item = 1090, level = 2, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
-            title = T_f('Sudden highway type change (level {0})', 2),
+            title = T_('Sudden highway type change (level {0})', 2),
             detail = {'en':
 '''motorway_link, primary_link, trunk_link, secondary,
 secondary_link'''}))
         self.classs[3] = self.def_class(item = 1090, level = 2, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
-            title = T_f('Sudden highway type change (level {0})', 3),
+            title = T_('Sudden highway type change (level {0})', 3),
             detail = {'en':
 '''tertiary, tertiary_link'''}))
 

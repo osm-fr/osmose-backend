@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
@@ -28,11 +29,11 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         place = "STAR"
         self.def_class_missing_official(item = 8040, id = 81, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop not integrated', place))
+            title = T_('{0} stop not integrated', place))
         self.def_class_possible_merge(item = 8041, id = 83, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop, integration suggestion', place))
+            title = T_('{0} stop, integration suggestion', place))
         self.def_class_update_official(item = 8042, id = 84, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop update', place))
+            title = T_('{0} stop update', place))
 
         self.init(
             u"https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star",
@@ -61,4 +62,4 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
                         "name": "Nom",
                         "wheelchair": lambda res: "yes" if res["Accessible aux PMR"] == "true" else "no" if res["Accessible aux PMR"] == "false" else None,
                         "shelter": lambda res: "yes" if res["Mobilier"] and "Abri" in res["Mobilier"] else "no" if res["Mobilier"] == "Poteau" else None},
-                    text = lambda tags, fields: T_f(u"{0} stop of {1}", place, fields["Nom"]) )))
+                    text = lambda tags, fields: T_("{0} stop of {1}", place, fields["Nom"]) )))

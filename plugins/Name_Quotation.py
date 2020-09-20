@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -52,10 +53,10 @@ class Name_Quotation(Plugin):
                 else:
                     p, group = stack.pop()
                     if c not in group:
-                        return [{"class": 50704, "subclass": 0, "text": T_f(u"Umbalanced {0} with {1}", p, c)}]
+                        return [{"class": 50704, "subclass": 0, "text": T_("Umbalanced {0} with {1}", p, c)}]
 
         if len(stack) > 0:
-            return [{"class": 50704, "subclass": 1, "text": T_f(u"Umbalanced {0}", "".join(map(lambda q: q[0], stack)))}]
+            return [{"class": 50704, "subclass": 1, "text": T_("Umbalanced {0}", "".join(map(lambda q: q[0], stack)))}]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

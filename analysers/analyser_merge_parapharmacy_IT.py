@@ -20,8 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
-from .modules import italian_strings
+from modules import italian_strings
 
 
 class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):

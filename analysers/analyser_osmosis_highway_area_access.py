@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -63,7 +64,7 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
             detail = T_(
 '''Inconsistent `motor_vehicle` values (`destination`!=)'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
-            "text": T_f(u"Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
+            "text": T_("Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)

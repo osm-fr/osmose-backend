@@ -19,24 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
-
 import os
 from inspect import getframeinfo, stack
-from modules import OsmoseTranslation
 from modules import SourceVersion
 
-
-if not hasattr(builtins, "T_"):
-    translate = OsmoseTranslation.OsmoseTranslation()
-    builtins.T_ = translate.translate
-
-if not hasattr(builtins, "T_f"):
-    translate_format = OsmoseTranslation.OsmoseTranslation()
-    builtins.T_f = translate.translate_format
 
 class Analyser(object):
 
@@ -44,12 +30,6 @@ class Analyser(object):
         self.config = config
         self.logger = logger
         self.error_file = config.error_file
-        if not hasattr(builtins, "T_"):
-            self.translate = OsmoseTranslation.OsmoseTranslation()
-            builtins.T_ = self.translate.translate
-        if not hasattr(builtins, "T_f"):
-            self.translate = OsmoseTranslation.OsmoseTranslation()
-            builtins.T_f = self.translate.translate_format
 
     def __enter__(self):
         self.open_error_file()

@@ -21,6 +21,7 @@
 ###########################################################################
 
 import json
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
@@ -77,8 +78,8 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
             ))
 
         self.def_class_missing_official(item = 8300, id = classs, level = level, tags = ['merge', 'leisure'],
-            title = T_f('Unmapped {0}', T_(title)),
-            detail = T_f('Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}', '\n\n- ' + '\n- '.join(missing_tags), T_(title)),
+            title = T_('Unmapped {0}', T_(title)),
+            detail = T_('Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}', '\n\n- ' + '\n- '.join(missing_tags), T_(title)),
             fix = T_('Add the appropriate highway tagging if the imagery is up-to-date and sign detection is correct.'))
 
         self.init(
@@ -99,5 +100,5 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                       "mapillary": "image_key",
                       "survey:date": lambda res: res["last_seen_at"][0:10]},
                 text = lambda tags, fields:
-                    T_f('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
-                    T_f('Observed on {0}', fields["first_seen_at"][0:10]) )))
+                    T_('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
+                    T_('Observed on {0}', fields["first_seen_at"][0:10]) )))

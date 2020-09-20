@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from io import open
 
@@ -27,11 +28,11 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
     def __init__(self, config, logger, clas, NAT_IDs, title, tags_select, tags_generate):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8390, id = 1+10*clas, level = 3, tags = ['merge'],
-            title = T_f('Radio support ({0}) not integrated', title))
+            title = T_('Radio support ({0}) not integrated', title))
         self.def_class_possible_merge(item = 8391, id = 3+10*clas, level = 3, tags = ['merge'],
-            title = T_f('Radio support ({0}), integration suggestion', title))
+            title = T_('Radio support ({0}), integration suggestion', title))
         self.def_class_update_official(item = 8392, id = 4+10*clas, level = 3, tags = ['merge'],
-            title = T_f('Radio support ({0}) update', title))
+            title = T_('Radio support ({0}) update', title))
 
         self.communeNameIndexedByInsee = {}
         with open("dictionaries/FR/BddCommunes", "r", encoding="utf-8") as f:

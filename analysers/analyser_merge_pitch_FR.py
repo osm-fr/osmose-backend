@@ -21,6 +21,7 @@
 ###########################################################################
 
 import csv
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
@@ -45,7 +46,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.def_class_missing_official(item = 8170, id = classs, level = 3, tags = ['merge', 'leisure'],
-            title = T_f('Pitch not integrated {0}', topic))
+            title = T_('Pitch not integrated {0}', topic))
 
         self.init(
             u"http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",

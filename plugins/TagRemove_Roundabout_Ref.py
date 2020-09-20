@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 
@@ -37,7 +38,7 @@ and not a road connected, same thing for `ref=*`.'''))
 
     def way(self, data, tags, nds):
         if tags.get("junction") == "roundabout" and u"ref" in tags:
-            return {"class": 102, "subclass": 1, "text": T_(u"Should not contain tag ref=%s", tags[u"ref"]), "fix": {"-": ["ref"]}}
+            return {"class": 102, "subclass": 1, "text": T_("Should not contain tag ref={0}", tags[u"ref"]), "fix": {"-": ["ref"]}}
 
 
 ###########################################################################

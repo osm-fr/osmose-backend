@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
@@ -28,9 +29,9 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         place = "TBM"
         self.def_class_missing_official(item = 8040, id = 51, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop not integrated', place))
+            title = T_('{0} stop not integrated', place))
         self.def_class_possible_merge(item = 8041, id = 53, level = 3, tags = ['merge', 'public transport'],
-            title = T_f('{0} stop, integration suggestion', place))
+            title = T_('{0} stop, integration suggestion', place))
 
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p',
@@ -54,4 +55,4 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                     mapping2 = {
                         "name": lambda res: res['nomarret'],
                         "shelter": lambda res: "yes" if res["mobilie1"] and "abribus" in res["mobilie1"].lower() else "no" if res["mobilie1"] and "poteau" in res["mobilie1"].lower() else None},
-                    text = lambda tags, fields: T_f(u"{0} stop {1}", place, fields["nomarret"]) )))
+                    text = lambda tags, fields: T_("{0} stop {1}", place, fields["nomarret"]) )))

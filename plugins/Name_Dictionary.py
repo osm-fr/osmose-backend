@@ -20,6 +20,7 @@
 ###########################################################################
 
 from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 import re
 
@@ -171,6 +172,3 @@ class P_Name_Dictionary(Plugin):
     #    #logger.log(u"%d mots à trier"%len(self.DictUnknownWords))
     #    f.close()
     #    return
-
-
-available_plugin_classes = []

@@ -21,6 +21,7 @@
 ###########################################################################
 
 from modules.Stablehash import stablehash64
+from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 class TagFix_BadKey(Plugin):
@@ -77,9 +78,9 @@ separator '_' or ':'. See
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append({"class": 30501, "subclass": stablehash64(k), "text": T_f("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                err.append({"class": 30501, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         return err
 

@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
@@ -109,4 +110,4 @@ class Analyser_Osmosis_Fantoir(Analyser_Osmosis):
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":11, "data":[self.array_full, self.positionAsText],
-            "text": T_f(u"Multiple name for the same ref FANTOIR {0}: {1}", res[2], ', '.join(res[3]))} )
+            "text": T_("Multiple name for the same ref FANTOIR {0}: {1}", res[2], ', '.join(res[3]))} )
