@@ -47,7 +47,6 @@ env:
   - TEST_SUITE=other
 jobs:
   allow_failures:
-    - env: TEST_SUITE=mypy
     - env: TEST_SUITE=merge
     - env: TEST_SUITE=sax
 script:
