@@ -231,6 +231,10 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                     except Exception as e:
                                         logger.sub().err(e)
 
+                            if analyser_obj.timestamp() and remote_timestamp and analyser_obj.timestamp() <= remote_timestamp:
+                                logger.sub().warn("Skip, frontend is already up to date")
+                                continue
+
                             if options.resume:
                                 if remote_timestamp:
                                     already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
@@ -238,11 +242,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                     lunched_analyser_resume.append([obj, analyser_conf])
                                     continue
                                 else:
-                                    logger.sub().err("Not able to resume")
-
-                            if analyser_obj.timestamp() and remote_timestamp and analyser_obj.timestamp() <= remote_timestamp:
-                                logger.sub().warn("Skip, frontend is already up to date")
-                                continue
+                                    logger.sub().err("Not able to resume, start a full run")
 
                             if not options.change or not xml_change:
                                 analyser_obj.analyser()
