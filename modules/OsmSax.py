@@ -28,12 +28,9 @@ from . import config
 from .OsmState import OsmState
 import subprocess
 from io import StringIO
+from .OsmReader import OsmReader, dummylog
 
 ###########################################################################
-
-class dummylog:
-    def log(self, text):
-        return
 
 class dummyout:
     def __init__(self):
@@ -57,12 +54,12 @@ class dummyout:
 class OsmSaxNotXMLFile(Exception):
     pass
 
-class OsmSaxReader(handler.ContentHandler):
+class OsmSaxReader(OsmReader, handler.ContentHandler):
 
     def log(self, txt):
         self._logger.log(txt)
 
-    def __init__(self, filename, state_file = None, logger = dummylog()):
+    def __init__(self, filename, logger = dummylog(), state_file = None):
         self._filename = filename
         self._state_file = state_file
         self._logger   = logger
@@ -182,14 +179,17 @@ class OsmSaxReader(handler.ContentHandler):
 
 ###########################################################################
 
-class OscSaxReader(handler.ContentHandler):
+class OscSaxReader(OsmReader, handler.ContentHandler):
 
     def log(self, txt):
         self._logger.log(txt)
 
-    def __init__(self, filename, logger = dummylog()):
+    def __init__(self, filename, logger = dummylog(), state_file = None):
         self._filename = filename
         self._logger   = logger
+
+    def is_change(self):
+        return True
 
     def _GetFile(self):
         try:
@@ -412,7 +412,7 @@ class MockCountObjects:
 
 class Test(unittest.TestCase):
     def test_bz2(self):
-        i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2", "tests/saint_barthelemy.state.txt")
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2", state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 8076)
@@ -421,7 +421,7 @@ class Test(unittest.TestCase):
         self.assertEqual(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
 
     def test_gz(self):
-        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", "tests/saint_barthelemy.state.txt")
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 8076)
@@ -429,7 +429,7 @@ class Test(unittest.TestCase):
         self.assertEqual(o1.num_rels, 16)
 
     def test_gz_no_state_txt(self):
-        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", None)
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 8076)
@@ -439,7 +439,7 @@ class Test(unittest.TestCase):
 
     def test_file(self):
         f = gzip.open("tests/saint_barthelemy.osm.gz")
-        i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
+        i1 = OsmSaxReader(f, state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 8076)
@@ -449,7 +449,7 @@ class Test(unittest.TestCase):
     def test_subprocess(self):
         import io
         f = io.BytesIO(subprocess.check_output(["gunzip", "-c", "tests/saint_barthelemy.osm.gz"]))
-        i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
+        i1 = OsmSaxReader(f, state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 8076)
@@ -461,7 +461,7 @@ class Test(unittest.TestCase):
         import io
         f = gzip.open("tests/saint_barthelemy.osm.gz")
         io = io.BytesIO(f.read())
-        i1 = OsmSaxReader(io, "tests/saint_barthelemy.state.txt")
+        i1 = OsmSaxReader(io, state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 8076)

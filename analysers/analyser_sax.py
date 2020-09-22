@@ -27,6 +27,7 @@ import os
 import importlib
 import modules.config
 from modules import OsmoseLog
+from modules import OsmReader
 
 
 class Analyser_Sax(Analyser):
@@ -39,7 +40,7 @@ class Analyser_Sax(Analyser):
         Analyser.__enter__(self)
         # open database connections
         self._load_reader()
-        self._load_parser()
+        self.parser = OsmReader.open(self.config.src, self.logger.sub(), getattr(self.config, 'src_state', None))
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -55,7 +56,7 @@ class Analyser_Sax(Analyser):
     def analyser(self):
         plugins = self._load_all_plugins()
         self._init_plugins(plugins)
-        self._load_output(change=self.parsing_change_file)
+        self._load_output(change=self.parser.is_change())
         try:
             self._run_analyse()
             self._close_plugins()
@@ -387,30 +388,9 @@ class Analyser_Sax(Analyser):
             self._reader = self.config.reader
 
         else:
-            from modules import OsmSaxAlea
-            self._reader = OsmSaxAlea.OsmSaxReader(self.config.src, self.config.src_state)
-
-    ################################################################################
-
-    def _load_parser(self):
-        if self.config.src.endswith(".pbf"):
-            from modules.OsmPbf import OsmPbfReader
-            self.parser = OsmPbfReader(self.config.src, getattr(self.config, 'src_state', None), self.logger.sub())
-            self.parsing_change_file = False
-        elif (self.config.src.endswith(".osc") or
-              self.config.src.endswith(".osc.gz") or
-              self.config.src.endswith(".osc.bz2")):
-            from modules.OsmSax import OscSaxReader
-            self.parser = OscSaxReader(self.config.src, getattr(self.config, 'src_state', None), self.logger.sub())
-            self.parsing_change_file = True
-        elif (self.config.src.endswith(".osm") or
-              self.config.src.endswith(".osm.gz") or
-              self.config.src.endswith(".osm.bz2")):
-            from modules.OsmSax import OsmSaxReader
-            self.parser = OsmSaxReader(self.config.src, getattr(self.config, 'src_state', None), self.logger.sub())
-            self.parsing_change_file = False
-        else:
-            raise Exception("File extension '%s' is not recognized" % self.config.src)
+            # from modules import OsmSaxAlea
+            # self._reader = OsmSaxAlea.OsmSaxReader(self.config.src, self.config.src_state)
+            raise RuntimeError('No OSM reader available')
 
     ################################################################################
 

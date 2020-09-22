@@ -48,6 +48,7 @@
 # print bin.RelationFullRecur(12)
 
 from modules.lockfile import lockfile
+from . import OsmReader
 import sys
 import os
 
@@ -402,15 +403,7 @@ class OsmBin:
                     output.RelationCreate(eval(open(self._reldir+"/"+i+"/"+j+"/"+k).read()))
 
     def Import(self, f):
-        if f == "-":
-            from . import OsmSax
-            i = OsmSax.OsmSaxReader(sys.stdin)
-        elif f.endswith(".pbf"):
-            from . import OsmPbf
-            i = OsmPbf.OsmPbfReader(f, None)
-        else:
-            from . import OsmSax
-            i = OsmSax.OsmSaxReader(f, None)
+        i = OsmReader.open(f)
         i.CopyTo(self)
 
     def Update(self, f):
