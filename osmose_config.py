@@ -619,7 +619,6 @@ default_country("europe", "san_marino", 54624, {"country": "SM", "language": "it
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
-default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": ["swisstopo:BFS_NUMMER", "swisstopo:BEZIRKSNUM"], 'phone_code': '41', 'phone_local_prefix': '0', 'phone_len': 9, 'phone_international': '00'}, download_repo=OSMCH)
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "vatican_city", 36989, {"country": "VA", "language": "it", "proj": 23032}, download_repo=OSMFR)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
@@ -643,6 +642,38 @@ be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], **{'m
 be_part('flanders', 53134, 'BE-VLG', language='nl')
 be_part('wallonia_french_community', 2620920, 'BE-WAL', language='fr')
 be_part('wallonia_german_community', 2425209, 'BE-WAL', language='de')
+
+#########################################################################
+
+ch_part = gen_country('europe', 'switzerland', download_repo=OSMFR, proj=2056, municipality_ref=['swisstopo:BFS_NUMMER', 'swisstopo:BEZIRKSNUM'],
+    phone_code='41', phone_len=9, phone_international='00', phone_local_prefix='0')
+
+ch_part('aargau', 1686359, 'CH-AG', language='de')
+ch_part('appenzell_ausserrhoden', 1686649, 'CH-AR', language='de')
+ch_part('appenzell_innerrhoden', 1686666, 'CH-AI', language='de')
+ch_part('basel_landschaft', 1686366, 'CH-BL', language='de')
+ch_part('basel_stadt', 1699639, 'CH-BS', language='de')
+ch_part('bern', 1686344, 'CH-BE', language=['de', 'fr'])
+ch_part('fribourg', 1698314, 'CH-FR', language=['fr', 'de'])
+ch_part('geneva', 1702419, 'CH-GE', language='fr')
+ch_part('glarus', 1685673, 'CH-GL', language='de')
+ch_part('grisons', 1686631, 'CH-GR', language=['de', 'it', 'rm'])
+ch_part('jura', 1697347, 'CH-JU', language='fr')
+ch_part('lucerne', 1685677, 'CH-LU', language='de')
+ch_part('neuchatel', 1702420, 'CH-NE', language='fr')
+ch_part('nidwalden', 1686449, 'CH-NW', language='de')
+ch_part('obwalden', 1686448, 'CH-OW', language='de')
+ch_part('schaffhausen', 1696112, 'CH-SH', language='de')
+ch_part('schwyz', 1688583, 'CH-SZ', language='de')
+ch_part('solothurn', 1701133, 'CH-SO', language='de')
+ch_part('saint_gallen', 1687006, 'CH-SG', language='de')
+ch_part('thurgau', 1693811, 'CH-TG', language='de')
+ch_part('ticino', 1687730, 'CH-TI', language='it')
+ch_part('uri', 1693971, 'CH-UR', language='de')
+ch_part('valais', 1686699, 'CH-VS', language=['fr', 'de'])
+ch_part('vaud', 1702421, 'CH-VD', language='fr')
+ch_part('zug', 1686447, 'CH-ZG', language='de')
+ch_part('zurich', 1690227, 'CH-ZH', language='de')
 
 #########################################################################
 
