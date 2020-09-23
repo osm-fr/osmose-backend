@@ -5,15 +5,16 @@
 # Translators:
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
-# ali zaroili <ali.zaroili@gmail.com>, 2016-2018
+# ali zaroili <ali.zaroili@gmail.com>, 2014,2016-2018
+# Ivo Pit, 2020
 # d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2014,2017-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-08-27 18:46+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-09-22 11:26+0000\n"
+"Last-Translator: Ivo Pit\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3860,7 +3861,7 @@ msgid ""
 "Fix geometry so that buildings don't overlap, but share nodes if physically "
 "joined. If geometry is correct and there's some vertical difference then "
 "make use of the `layer` tag to indicate this."
-msgstr ""
+msgstr "Herstel de geometrie zodat de gebouwen niet overlappen, maar maak gebruik van gedeelde knopen als ze fysiek aangrenzend zijn. Als de geometrie correct is en er sprake is van een verticaal verschil, geef dit aan met behulp van de 'layer'-tag ."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:171
 #: ../analysers/analyser_osmosis_building_overlaps.py:187
