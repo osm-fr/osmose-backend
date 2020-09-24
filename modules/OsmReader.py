@@ -35,6 +35,9 @@ class OsmReader:
     def is_change(self) -> bool:
         return False
 
+    def set_filter_since_timestamp(self, since_timestamp) -> None:
+        pass
+
     def timestamp(self):
         pass
 

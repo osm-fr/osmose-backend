@@ -39,6 +39,9 @@ class OsmPbfReader(OsmReader, osm_pbf_parser.Visitor):
         self._logger = logger
         self._got_error = False
 
+    def set_filter_since_timestamp(self, since_timestamp):
+        self.set_since_timestamp(int(since_timestamp.timestamp()) if since_timestamp else 0)
+
     def timestamp(self):
         if self._state_file:
             osm_state = OsmState(self._state_file)

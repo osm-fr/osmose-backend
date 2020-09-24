@@ -17,6 +17,7 @@
 ##                                                                       ##
 #########################################################################*/
 
+#include <vector>
 #include <boost/python.hpp>
 using namespace boost::python;
 
@@ -73,31 +74,65 @@ struct Visitor
     (void)x;
   }
 
-  void node_callback(uint64_t osmid, double lon, double lat, const Tags & tags) const {
-      if (!tags.empty()) { // TODO Move this check earlier
+  void set_since_timestamp(const uint64_t timestamp) {
+      since_timestamp = timestamp;
+  }
+
+  void node_callback(uint64_t osmid, double lon, double lat, const Tags & tags, const uint64_t timestamp) {
+      if (!tags.empty() && (since_timestamp == 0 || timestamp >= since_timestamp)) {
           call_method<void>(self, "node", osmid, lon, lat, tagsToDict(tags));
+      } else {
+          filtered_nodes_osmid.push_back(osmid);
       }
   }
 
-  void way_callback(uint64_t osmid, const Tags & tags, const std::vector<uint64_t> & refs) const {
-      call_method<void>(self, "way", osmid, tagsToDict(tags), nodeIdToList(refs));
+  boost::python::list filtered_nodes() const {
+      return nodeIdToList(filtered_nodes_osmid);
   }
 
-  void relation_callback(uint64_t osmid, const Tags & tags, const References & refs) const {
-      call_method<void>(self, "relation", osmid, tagsToDict(tags), referencesToDict(refs));
+  void way_callback(uint64_t osmid, const Tags & tags, const std::vector<uint64_t> & refs, const uint64_t timestamp) {
+      if (since_timestamp == 0 || timestamp >= since_timestamp) {
+          call_method<void>(self, "way", osmid, tagsToDict(tags), nodeIdToList(refs));
+      } else {
+          filtered_ways_osmid.push_back(osmid);
+      }
+  }
+
+  boost::python::list filtered_ways() const {
+      return nodeIdToList(filtered_ways_osmid);
+  }
+
+  void relation_callback(uint64_t osmid, const Tags & tags, const References & refs, const uint64_t timestamp) {
+      if (since_timestamp == 0 || timestamp >= since_timestamp) {
+          call_method<void>(self, "relation", osmid, tagsToDict(tags), referencesToDict(refs));
+      } else {
+          filtered_relations_osmid.push_back(osmid);
+      }
+  }
+
+  boost::python::list filtered_relations() const {
+      return nodeIdToList(filtered_relations_osmid);
   }
 
  private:
     PyObject* self;
+    uint64_t since_timestamp = 0;
+    std::vector<uint64_t> filtered_nodes_osmid;
+    std::vector<uint64_t> filtered_ways_osmid;
+    std::vector<uint64_t> filtered_relations_osmid;
 };
 
 
 BOOST_PYTHON_MODULE(osm_pbf_parser)
 {
     class_<Visitor, Visitor>("Visitor")
-        .def("node", &Visitor::node_callback)
+        .def("set_since_timestamp", &Visitor::set_since_timestamp)
+        .def("node", &Visitor::filtered_nodes)
+        .def("filtered_nodes", &Visitor::filtered_nodes)
         .def("way", &Visitor::way_callback)
+        .def("filtered_ways", &Visitor::filtered_ways)
         .def("relation", &Visitor::relation_callback)
+        .def("filtered_relations", &Visitor::filtered_relations)
     ;
 
     def("read_osm_pbf", read_osm_pbf<Visitor>);

@@ -34,7 +34,6 @@ class Analyser_Sax(Analyser):
 
     def __init__(self, config, logger = OsmoseLog.logger()):
         Analyser.__init__(self, config, logger)
-        self.resume_from_timestamp = None
 
     def __enter__(self):
         Analyser.__enter__(self)
@@ -64,7 +63,7 @@ class Analyser_Sax(Analyser):
             self._close_output()
 
     def analyser_resume(self, timestamp, already_issued_objects):
-        self.resume_from_timestamp = timestamp
+        self.parser.set_filter_since_timestamp(timestamp)
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
@@ -73,13 +72,19 @@ class Analyser_Sax(Analyser):
         self._load_output(change=True)
         self._run_analyse()
 
-        if self.resume_from_timestamp:
+        if timestamp:
+            filtered_nodes = set(self.parser.filtered_nodes())
             for id in self.already_issued_objects['N']:
-                self.error_file.delete('node', id)
+                if id not in filtered_nodes:
+                    self.error_file.delete('node', id)
+            filtered_ways = set(self.parser.filtered_ways())
             for id in self.already_issued_objects['W']:
-                self.error_file.delete('way', id)
+                if id not in filtered_ways:
+                    self.error_file.delete('way', id)
+            filtered_relations = set(self.parser.filtered_relations())
             for id in self.already_issued_objects['R']:
-                self.error_file.delete('relation', id)
+                if id not in filtered_relations:
+                    self.error_file.delete('relation', id)
 
         self._close_output()
 
@@ -155,16 +160,6 @@ class Analyser_Sax(Analyser):
     #### Node parsing
 
     def NodeCreate(self, data):
-        if self.resume_from_timestamp:
-            already_issued = data["id"] in self.already_issued_objects['N']
-            if already_issued:
-                self.already_issued_objects['N'].remove(data["id"])
-
-            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
-                return
-            elif already_issued:
-                self.error_file.delete("node", data["id"])
-
         # Initialisation
         err  = []
         tags = data[u"tag"]
@@ -218,16 +213,6 @@ class Analyser_Sax(Analyser):
     #### Way parsing
 
     def WayCreate(self, data):
-        if self.resume_from_timestamp:
-            already_issued = data["id"] in self.already_issued_objects['W']
-            if already_issued:
-                self.already_issued_objects['W'].remove(data["id"])
-
-            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
-                return
-            elif already_issued:
-                self.error_file.delete("way", data["id"])
-
         # Initialisation
         err  = []
         tags = data[u"tag"]
@@ -310,16 +295,6 @@ class Analyser_Sax(Analyser):
         return node
 
     def RelationCreate(self, data):
-        if self.resume_from_timestamp:
-            already_issued = data["id"] in self.already_issued_objects['R']
-            if already_issued:
-                self.already_issued_objects['R'].remove(data["id"])
-
-            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
-                return
-            elif already_issued:
-                self.error_file.delete("relation", data["id"])
-
         # Initialisation
         err  = []
         tags = data[u"tag"]
