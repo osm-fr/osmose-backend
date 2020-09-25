@@ -28,6 +28,7 @@ import importlib
 import modules.config
 from modules import OsmoseLog
 from modules import OsmReader
+from modules import SourceVersion
 
 
 class Analyser_Sax(Analyser):
@@ -40,6 +41,8 @@ class Analyser_Sax(Analyser):
         # open database connections
         self._load_reader()
         self.parser = OsmReader.open(self.config.src, self.logger.sub(), getattr(self.config, 'src_state', None))
+        plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -52,9 +55,10 @@ class Analyser_Sax(Analyser):
     def timestamp(self):
         return self.parser.timestamp()
 
+    def analyser_version(self):
+        return SourceVersion.version(*([self.__class__] + list(map(lambda p: p.__class__, self.plugins))))
+
     def analyser(self):
-        plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
         self._load_output(change=self.parser.is_change())
         try:
             self._run_analyse()
@@ -67,8 +71,6 @@ class Analyser_Sax(Analyser):
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
         self._load_output(change=True)
         self._run_analyse()
 

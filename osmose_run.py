@@ -228,21 +228,25 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                     try:
                                         status = resp.json()
                                         remote_timestamp = dateutil.parser.parse(status['timestamp']) if status else None
+                                        remote_analyser_version = int(status['analyser_version'])
                                     except Exception as e:
                                         logger.sub().err(e)
 
-                            if analyser_obj.timestamp() and remote_timestamp and analyser_obj.timestamp() <= remote_timestamp:
+                            if analyser_obj.timestamp() and remote_timestamp and analyser_obj.timestamp() <= remote_timestamp and analyser_obj.analyser_version() == remote_analyser_version:
                                 logger.sub().warn("Skip, frontend is already up to date")
                                 continue
 
                             if options.resume:
                                 if remote_timestamp:
-                                    already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
-                                    analyser_obj.analyser_resume(remote_timestamp, already_issued_objects)
-                                    lunched_analyser_resume.append([obj, analyser_conf])
-                                    continue
+                                    if analyser_obj.analyser_version() == remote_analyser_version:
+                                        already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
+                                        analyser_obj.analyser_resume(remote_timestamp, already_issued_objects)
+                                        lunched_analyser_resume.append([obj, analyser_conf])
+                                        continue
+                                    else:
+                                        logger.sub().err("Analyser version changed, start a full run")
                                 else:
-                                    logger.sub().err("Not able to resume, start a full run")
+                                    logger.sub().err("No remote timestamp to resume from, start a full run")
 
                             if not options.change or not xml_change:
                                 analyser_obj.analyser()
