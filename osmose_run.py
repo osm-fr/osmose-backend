@@ -211,6 +211,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     analyser_name = name[len("Analyser_"):]
+                    resume = options.resume or (options.resume_analyser and analyser in options.resume_analyser)
 
                     dst = os.path.join(conf.dir_results, name + "-" + conf.country)
                     analyser_conf.error_file = issues_file_from_fromat(dst, options.result_format, bz2 = True, version = version, polygon_id = analyser_conf.polygon_id)
@@ -220,7 +221,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
                             remote_timestamp = None
                             if not options.skip_frontend_check:
-                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (conf.country, analyser_name, 'objects=true' if options.resume else '')
+                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (conf.country, analyser_name, 'objects=true' if resume else '')
                                 resp = downloader.get(url)
                                 if not resp.ok:
                                     logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
@@ -236,7 +237,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                 logger.sub().warn("Skip, frontend is already up to date")
                                 continue
 
-                            if options.resume:
+                            if resume:
                                 if remote_timestamp:
                                     if analyser_obj.analyser_version() == remote_analyser_version:
                                         already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
@@ -508,6 +509,8 @@ if __name__ == "__main__":
 
     parser.add_option("--resume", dest="resume", action="store_true",
                       help="Run analyser on change mode by continuing from last run when available")
+    parser.add_option("--resume-analyser", dest="resume_analyser", action="append",
+                      help="Subset of analysers to run in resume mode (can be repeated)")
 
     parser.add_option("--skip-download", dest="skip_download", action="store_true",
                       help="Don't download extract")
