@@ -299,7 +299,7 @@ ANALYZE {0}.buildings;
                 "/osmosis/CreateTouched.sql",
             ]
             for script in osmosis_resume_post_scripts: # self.config.analyser_conf.osmosis_resume_post_scripts:
-                self.giscurs.execute(open('./' + script, 'r').read().replace(':timestamp', timestamp))
+                self.giscurs.execute(open('./' + script, 'r').read().replace(':timestamp', str(timestamp)))
             self.giscurs.execute('COMMIT')
             self.giscurs.execute('BEGIN')
 
