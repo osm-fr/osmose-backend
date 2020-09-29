@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
       print("  downloading %d" % i)
       try:
-        u = buildbot_api + "builds/%d/steps/1/logs/stdio/contents" %  i
+        u = buildbot_api + "builds/%d/steps/1/logs/stdio/contents" % i
         log = json.loads(requests.get(u).text)
         with open(log_name, 'w') as f:
           for c in log["logchunks"]:
