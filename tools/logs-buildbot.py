@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import collections
@@ -85,14 +85,17 @@ if __name__ == "__main__":
 
   if not args.num_builds:
     if args.stats_global:
-      args.num_builds = 0
+      args.num_builds = 1
     else:
       args.num_builds = 5
 
   buildbot_root = u"https://buildbot.osmose.openstreetmap.fr"
-  buildbot_api = buildbot_root + "/json/builders/"
+  buildbot_api = buildbot_root + "/api/v2/"
 
-  builders = json.loads(requests.get(buildbot_api).text)
+  builders_json = json.loads(requests.get(buildbot_api + "builders").text)
+  builders = {}
+  for b in builders_json["builders"]:
+    builders[b["name"]] = b["builderid"]
 
   all_country = []
   list_country = set()
@@ -136,20 +139,14 @@ if __name__ == "__main__":
 
     if args.no_buildbot_check and os.listdir(c_dir):
       nums = sorted([int(i) for i in os.listdir(c_dir)])
-      last_num = int(nums[-1])
-      first_num = max(nums[0],last_num-args.num_builds)
-      orig_list_builds = sorted(set(nums).intersection(range(first_num, last_num + 1)))
+      list_builds = nums[:]
     else:
-      #last_num = J[country].get_last_completed_buildnumber()
-      builds = json.loads(requests.get(buildbot_api + "%s/builds/_all" % country).text)
-      list_builds = [int(i) for i in builds.keys()]
-      for i in builders[country]["currentBuilds"]:
-        list_builds.remove(i)
+      builds = json.loads(requests.get(buildbot_api + "builders/%d/builds?complete__eq=true&order=-complete_at&limit=%d" % (builders[country], args.num_builds)).text)
+      list_builds = [int(i["buildid"]) for i in builds["builds"]]
       if len(list_builds) == 0:
         continue
-      last_num = max(list_builds)
-      first_num = max(0,last_num-args.num_builds)
-      orig_list_builds = range(first_num, last_num + 1)
+
+    orig_list_builds = list_builds[:]
 
     list_builds = orig_list_builds[:]
     for i in orig_list_builds:
@@ -161,8 +158,13 @@ if __name__ == "__main__":
 
       print("  downloading %d" % i)
       try:
-        u = buildbot_root + "/builders/" + country + "/builds/" + "%s" % i + "/steps/osmose_run.py/logs/stdio/text"
-        open(log_name, 'w').write(requests.get(u).text)
+        u = buildbot_api + "builds/%d/steps/1/logs/stdio/contents" %  i
+        log = json.loads(requests.get(u).text)
+        with open(log_name, 'w') as f:
+          for c in log["logchunks"]:
+            for line in c["content"].split("\n"):
+              # need to remove first character, encoding stdio/stderr
+              f.write(line[1:] + "\n")
 
       except:
         if os.path.isfile(log_name):
@@ -262,6 +264,7 @@ if __name__ == "__main__":
         print()
 
     if args.stats_global:
+      last_num = list_builds[0]
       try:
         last_stat = stats[last_num]
       except NameError:
