@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012-2015                                 ##
+## Copyrights Frédéric Rodrigo 2012-2020                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -67,9 +67,9 @@ administrative schools for a single physical school.''')
             trap = trap)
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/",
+            u"https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
-            CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "03/2018",
+            CSV(Source(attribution = u"Ministère de l'Éducation nationale et de la Jeunesse", millesime = "09/2020",
                     fileUrl = u"https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
                     filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire")),
                  separator = u";"),
@@ -81,17 +81,18 @@ administrative schools for a single physical school.''')
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
-                    tags = {"amenity": ["school", "kindergarten"]}),
+                    tags = {"amenity": "school"}),
                 osmRef = "ref:UAI",
                 conflationDistance = 50,
                 generate = Generate(
-                    static2 = {"source": self.source},
+                    static2 = {
+                        "source": self.source,
+                        "amenity": "school"},
                     mapping1 = {
-                        "amenity": lambda res: "kindergarten" if res["Code nature"] in ("101", "102", "103", "111") else "school",
                         "ref:UAI": "Code établissement",
                         "school:FR": lambda res: self.School_FR_nature_uai[res["Code nature"]],
                         "operator:type": lambda res: "private" if res[u"Secteur Public/Privé"] == u"Privé" else "public" if res[u"Secteur Public/Privé"] == u"Public" else None},
-                    mapping2 = {"name": "Appellation officielle"},
+                    mapping2 = {"name": lambda res: res["Appellation officielle"].replace(u"Ecole", u"École").replace(u"ECOLE", u"École").replace(u"College", u"Collège").replace(u"elementaire", u"élémentaire").replace(u"ELEMENTAIRE", u"élémentaire") if res["Appellation officielle"] not in ("A COMPLETER", u"Ecole primaire", u"Ecole Primaire", u"ECOLE PRIMAIRE", u"Ecole PRIMAIRE", u"ECOLE Primaire", u"école primaire", u"École Primaire", u"Ecole primaire publique", u"ECOLE PRIMAIRE PUBLIQUE", u"Ecole Primaire Publique", u"Ecole PRIMAIRE publique", u"Ecole primaire privée", u"ECOLE PRIMAIRE PRIVÉE", u"Ecole primaire intercommunale", u"Ecole primaire Intercommunale", u"Ecole Primaire Intercommunale", u"Ecole élémentaire", u"Ecole Elémentaire", u"Ecole elémentaire", u"Ecole élementaire", u"ECOLE ELEMENTAIRE", u"Ecole ELEMENTAIRE", u"Ecole elementaire", u"Ecole Elementaire", u"École Élémentaire", u"école élémentaire", u"Ecole élémentaire publique", u"Ecole élémentaire Publique", u"ECOLE ELEMENTAIRE PUBLIQUE", u"Ecole élémentaire privée", u"Ecole élémentaire intercommunale", u"Ecole élémentaire école publique", u"Ecole maternelle", u"ECOLE MATERNELLE", u"Ecole Maternelle", u"Ecole MATERNELLE", u"École Maternelle", u"école maternelle", u"Ecole maternelle publique", u"ECOLE MATERNELLE PUBLIQUE", u"Ecole Maternelle Publique", u"Ecole maternelle Publique", u"ecole maternelle publique", u"Ecole maternelle intercommunale", u"Ecole maternelle Intercommunale", u"Collège")},
                     text = self.text)))
 
     def text(self, tags, fields):
@@ -119,6 +120,7 @@ administrative schools for a single physical school.''')
         "Rue": {"en": u"street", "fr": u"rue"},
         "Ville": {"en": u"city", "fr": u"ville"},
         "ZONE_ADRESSAGE": {"en": u"addresse area", "fr": u"zone d'adressage"},
+        "CENTROIDE (D'EMPRISE)": {"en": u"Centroid", "fr": u"centroïde d'emprise"},
     }
 
     School_FR_app = {
