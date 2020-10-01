@@ -2,7 +2,6 @@
 import modules.mapcss_lib as mapcss
 import regex as re # noqa
 
-from modules.OsmoseTranslation import T_
 from plugins.Plugin import with_options # noqa
 from plugins.PluginMapCSS import PluginMapCSS
 
@@ -25,8 +24,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.errors[40612] = self.def_class(item = 4061, level = 2, tags = mapcss.list_('parking', 'amenity', 'fix:chair'), title = mapcss.tr('Does this station still sell SP95, or has it been replaced by the SP95-E10?'))
         self.errors[9019001] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules highway milestone'))
         self.errors[9019002] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules nat_ref in France'))
-        self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusually named motorway_junction; use of \'name=*\' for the exit destination?'})
-        self.errors[9019004] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
+        self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
         self.re_0c53237c = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$')
@@ -217,23 +215,6 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertMatchWithContext:list("node highway=milestone nat_ref=77PR38DC operator=SANEF","inside=FR")
                 err.append({'class': 9019001, 'subclass': 0, 'text': mapcss.tr('missing distance')})
 
-        # node[highway=motorway_junction][name][inside("FR")]
-        if ('highway' in keys and 'name' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction') and mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'FR'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # suggestAlternative:"'destination=*' tag on the exiting 'highway=*_link'"
-                # throwWarning:"Unusually named motorway_junction; use of 'name=*' for the exit destination?"
-                # fixRemove:"name"
-                # -osmoseAssertMatchWithContext:list("node highway=motorway_junction name=Trifouilly-lès-Oies","inside=FR")
-                err.append({'class': 9019003, 'subclass': 1394767972, 'text': {'en': 'Unusually named motorway_junction; use of \'name=*\' for the exit destination?'}, 'allow_fix_override': True, 'fix': {
-                    '-': ([
-                    'name'])
-                }})
-
         # node[highway=motorway_junction][ref=~/^\D/]
         if ('highway' in keys and 'ref' in keys):
             match = False
@@ -246,7 +227,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # throwWarning:"Unusual ref for motorway_junction; use of 'ref=*' for the exit destination ref?"
                 # fixRemove:"ref"
                 # assertMatch:"node highway=motorway_junction ref=N7"
-                err.append({'class': 9019004, 'subclass': 323412661, 'text': {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9019003, 'subclass': 323412661, 'text': {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'ref'])
                 }})
@@ -728,9 +709,7 @@ class Test(TestPluginCommon):
             self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
-        with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'highway': 'motorway_junction', 'name': 'Trifouilly-lès-Oies'}), expected={'class': 9019003, 'subclass': 1394767972})
-        self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019004, 'subclass': 323412661})
+        self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019003, 'subclass': 323412661})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'railway': 'disused'}, [0]), expected={'class': 21600, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
