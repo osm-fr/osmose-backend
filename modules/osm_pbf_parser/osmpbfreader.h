@@ -240,7 +240,7 @@ private:
 
                 double lon = 0.000000001 * (primblock.lon_offset() + (primblock.granularity() * n.lon())) ;
                 double lat = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lat())) ;
-                uint64_t timestamp = n.info().timestamp();
+                uint64_t timestamp = n.info().has_timestamp() ? n.info().timestamp() : 0;
                 visitor.node_callback(n.id(), lon, lat, get_tags(n, primblock), timestamp);
             }
 
@@ -269,7 +269,7 @@ private:
                         tags[key_string] = val_string;
                     }
                     ++current_kv;
-                    timestamp += dn.denseinfo().timestamp(i);
+                    timestamp += dn.has_denseinfo() ? dn.denseinfo().timestamp(i) : 0;
                     visitor.node_callback(id, lon, lat, tags, timestamp);
                 }
             }
@@ -284,7 +284,7 @@ private:
                     refs.push_back(ref);
                 }
                 uint64_t id = w.id();
-                uint64_t timestamp = w.info().timestamp();
+                uint64_t timestamp = w.info().has_timestamp() ? w.info().timestamp() : 0;
                 visitor.way_callback(id, get_tags(w, primblock), refs, timestamp);
             }
 
@@ -299,7 +299,7 @@ private:
                     refs.push_back(Reference(rel.types(l), id, primblock.stringtable().s(rel.roles_sid(l))));
                 }
 
-                uint64_t timestamp = rel.info().timestamp();
+                uint64_t timestamp = rel.info().has_timestamp() ? rel.info().timestamp() : 0;
                 visitor.relation_callback(rel.id(), get_tags(rel, primblock), refs, timestamp);
             }
         }
