@@ -27,19 +27,22 @@ import os
 import importlib
 import modules.config
 from modules import OsmoseLog
+from modules import OsmReader
+from modules import SourceVersion
 
 
 class Analyser_Sax(Analyser):
 
     def __init__(self, config, logger = OsmoseLog.logger()):
         Analyser.__init__(self, config, logger)
-        self.resume_from_timestamp = None
 
     def __enter__(self):
         Analyser.__enter__(self)
         # open database connections
         self._load_reader()
-        self._load_parser()
+        self.parser = OsmReader.open(self.config.src, self.logger.sub(), getattr(self.config, 'src_state', None))
+        plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -52,10 +55,11 @@ class Analyser_Sax(Analyser):
     def timestamp(self):
         return self.parser.timestamp()
 
+    def analyser_version(self):
+        return SourceVersion.version(*([self.__class__] + list(map(lambda p: p.__class__, self.plugins))))
+
     def analyser(self):
-        plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
-        self._load_output(change=self.parsing_change_file)
+        self._load_output(change=self.parser.is_change())
         try:
             self._run_analyse()
             self._close_plugins()
@@ -63,22 +67,26 @@ class Analyser_Sax(Analyser):
             self._close_output()
 
     def analyser_resume(self, timestamp, already_issued_objects):
-        self.resume_from_timestamp = timestamp
+        self.parser.set_filter_since_timestamp(timestamp)
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
         self._load_output(change=True)
         self._run_analyse()
 
-        if self.resume_from_timestamp:
+        if timestamp:
+            filtered_nodes = set(self.parser.filtered_nodes())
             for id in self.already_issued_objects['N']:
-                self.error_file.delete('node', id)
+                if id not in filtered_nodes:
+                    self.error_file.delete('node', id)
+            filtered_ways = set(self.parser.filtered_ways())
             for id in self.already_issued_objects['W']:
-                self.error_file.delete('way', id)
+                if id not in filtered_ways:
+                    self.error_file.delete('way', id)
+            filtered_relations = set(self.parser.filtered_relations())
             for id in self.already_issued_objects['R']:
-                self.error_file.delete('relation', id)
+                if id not in filtered_relations:
+                    self.error_file.delete('relation', id)
 
         self._close_output()
 
@@ -154,16 +162,6 @@ class Analyser_Sax(Analyser):
     #### Node parsing
 
     def NodeCreate(self, data):
-        if self.resume_from_timestamp:
-            already_issued = data["id"] in self.already_issued_objects['N']
-            if already_issued:
-                self.already_issued_objects['N'].remove(data["id"])
-
-            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
-                return
-            elif already_issued:
-                self.error_file.delete("node", data["id"])
-
         # Initialisation
         err  = []
         tags = data[u"tag"]
@@ -217,16 +215,6 @@ class Analyser_Sax(Analyser):
     #### Way parsing
 
     def WayCreate(self, data):
-        if self.resume_from_timestamp:
-            already_issued = data["id"] in self.already_issued_objects['W']
-            if already_issued:
-                self.already_issued_objects['W'].remove(data["id"])
-
-            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
-                return
-            elif already_issued:
-                self.error_file.delete("way", data["id"])
-
         # Initialisation
         err  = []
         tags = data[u"tag"]
@@ -309,16 +297,6 @@ class Analyser_Sax(Analyser):
         return node
 
     def RelationCreate(self, data):
-        if self.resume_from_timestamp:
-            already_issued = data["id"] in self.already_issued_objects['R']
-            if already_issued:
-                self.already_issued_objects['R'].remove(data["id"])
-
-            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
-                return
-            elif already_issued:
-                self.error_file.delete("relation", data["id"])
-
         # Initialisation
         err  = []
         tags = data[u"tag"]
@@ -387,30 +365,9 @@ class Analyser_Sax(Analyser):
             self._reader = self.config.reader
 
         else:
-            from modules import OsmSaxAlea
-            self._reader = OsmSaxAlea.OsmSaxReader(self.config.src, self.config.src_state)
-
-    ################################################################################
-
-    def _load_parser(self):
-        if self.config.src.endswith(".pbf"):
-            from modules.OsmPbf import OsmPbfReader
-            self.parser = OsmPbfReader(self.config.src, getattr(self.config, 'src_state', None), self.logger.sub())
-            self.parsing_change_file = False
-        elif (self.config.src.endswith(".osc") or
-              self.config.src.endswith(".osc.gz") or
-              self.config.src.endswith(".osc.bz2")):
-            from modules.OsmSax import OscSaxReader
-            self.parser = OscSaxReader(self.config.src, getattr(self.config, 'src_state', None), self.logger.sub())
-            self.parsing_change_file = True
-        elif (self.config.src.endswith(".osm") or
-              self.config.src.endswith(".osm.gz") or
-              self.config.src.endswith(".osm.bz2")):
-            from modules.OsmSax import OsmSaxReader
-            self.parser = OsmSaxReader(self.config.src, getattr(self.config, 'src_state', None), self.logger.sub())
-            self.parsing_change_file = False
-        else:
-            raise Exception("File extension '%s' is not recognized" % self.config.src)
+            # from modules import OsmSaxAlea
+            # self._reader = OsmSaxAlea.OsmSaxReader(self.config.src, self.config.src_state)
+            raise RuntimeError('No OSM reader available')
 
     ################################################################################
 
@@ -529,6 +486,7 @@ class Analyser_Sax(Analyser):
 from .Analyser import TestAnalyser
 from modules import IssuesFileOsmose
 import datetime
+import dateutil
 
 class TestAnalyserOsmosis(TestAnalyser):
 
@@ -591,7 +549,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
-            analyser_obj.analyser_resume("2000-01-01T01:01:01Z", {'N': set(), 'W': set(), 'R': set()})
+            analyser_obj.analyser_resume(dateutil.parser.parse("2000-01-01T01:01:01Z").replace(tzinfo=None), {'N': set(), 'W': set(), 'R': set()})
 
         self.compare_results("tests/results/sax.test_resume_full.xml")
 
@@ -603,7 +561,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
-            analyser_obj.analyser_resume("2012-07-18T11:04:56Z", {'N': set([1]), 'W': set([24552698]), 'R': set()})
+            analyser_obj.analyser_resume(dateutil.parser.parse("2012-07-18T11:04:56Z").replace(tzinfo=None), {'N': set([1]), 'W': set([24552698]), 'R': set()})
 
         self.compare_results("tests/results/sax.test_resume.xml")
 
@@ -616,7 +574,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
-            analyser_obj.analyser_resume("2030-01-01T01:01:01Z", {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
+            analyser_obj.analyser_resume(dateutil.parser.parse("2030-01-01T01:01:01Z").replace(tzinfo=None), {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
 
         self.compare_results("tests/results/sax.test_resume_empty.xml")
 

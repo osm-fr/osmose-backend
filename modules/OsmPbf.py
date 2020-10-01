@@ -31,7 +31,7 @@ class Test(unittest.TestCase):
         # basic test to verify connection to submodules
         import dateutil
 
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 83)  # only nodes with tags are reported

@@ -310,22 +310,26 @@ def tag(tags, key_name):
 def _tag_capture(stock, index, tags, key_name):
     if tags is not None and key_name is not None:
         if index >= len(stock):
-            stock[index] = [None, None]
+            stock_index = stock[index] = [None, None]
+        else:
+            stock_index = stock[index]
 
         if key_name.__class__ in (str, str_value_):
-            stock[index][0] = key_name
-            if not stock[index][1]:
-                stock[index][1] = tags.get(key_name)
+            stock_index[0] = key_name
+            if not stock_index[1] is None:
+                stock_index[1] = tags.get(key_name)
+                return str_value(stock_index[1])
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
                 if _re_search(key_name, k):
-                    stock[index][0] = k
-                    if not stock[index][1]:
-                        stock[index][1] = tags[k]
+                    stock_index[0] = k
+                    if stock_index[1] is None:
+                        stock_index[1] = tags[k]
+                        return str_value(stock_index[1])
                     return str_value(tags[k])
             # No match found, store the regex
-            stock[index][0] = key_name.pattern
+            stock_index[0] = key_name.pattern
     return None_value
 
 def _value_capture(stock, index, value):

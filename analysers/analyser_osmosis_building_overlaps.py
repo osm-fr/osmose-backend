@@ -160,7 +160,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and ("country" in config.options and config.options["country"].startswith("FR") or "test" in config.options)
         fix = T_(
-'''Fix geometry so that buildings don't overlap, but share nodes if physically joined. \
+'''Fix geometry so that buildings don't overlap, but share nodes if physically joined.
 If geometry is correct and there's some vertical difference then make use of the `layer` tag to indicate this.''')
 
         self.classs_change[1] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
@@ -174,8 +174,8 @@ If geometry is correct and there's some vertical difference then make use of the
             title = T_('Building too small'),
             detail = T_('The area of this feature is too small to possibly be a building.'),
             fix = T_(
-'''- Correct the gometry if inaccurately mapped. \
-- Correct the tagging if this isn't a building. \
+'''- Correct the gometry if inaccurately mapped.
+- Correct the tagging if this isn't a building.
 - Delete the feature if it's invalid.'''))
         self.classs_change[4] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
             title = T_('Gap between buildings'),

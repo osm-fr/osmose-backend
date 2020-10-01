@@ -118,12 +118,6 @@ config: Dict[str, template_config] = OrderedDict()
 
 ###########################################################################
 
-world = template_config("world", analyser_options={"project": "openstreetmap"})
-world.analyser["osmbin_open_relations"] = "xxx"
-world.db_base = None
-
-###########################################################################
-
 class default_simple(template_config):
     def __init__(self, country, polygon_id=None, analyser_options=None, download_url=None, download_repo=None):
 
@@ -184,6 +178,7 @@ class default_simple(template_config):
         self.analyser["osmosis_relation_enforcement"] = "xxx"
         self.analyser["osmosis_addr_interpolation"] = "xxx"
         self.analyser["osmosis_camp_pitch_out_of_camp_site"] = "xxx"
+        self.analyser["osmosis_relation_open"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,

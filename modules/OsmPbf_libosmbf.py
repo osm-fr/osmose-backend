@@ -24,26 +24,23 @@ from . import config
 from .osm_pbf_parser import osm_pbf_parser
 from .OsmState import OsmState
 import subprocess
+from .OsmReader import OsmReader, dummylog
 
-###########################################################################
 
-class dummylog:
-    def log(self, text):
-        return
-
-###########################################################################
-
-class OsmPbfReader(osm_pbf_parser.Visitor):
+class OsmPbfReader(OsmReader, osm_pbf_parser.Visitor):
 
     def log(self, txt):
         self._logger.log(txt)
 
-    def __init__(self, pbf_file, state_file, logger = dummylog()):
+    def __init__(self, pbf_file, logger = dummylog(), state_file = None):
         osm_pbf_parser.Visitor.__init__(self)
         self._pbf_file = pbf_file
         self._state_file = state_file
         self._logger = logger
         self._got_error = False
+
+    def set_filter_since_timestamp(self, since_timestamp):
+        self.set_since_timestamp(int(since_timestamp.timestamp()) if since_timestamp else 0)
 
     def timestamp(self):
         if self._state_file:
@@ -131,7 +128,7 @@ class MockCountObjects:
 
 class Test(unittest.TestCase):
     def test_copy_all(self):
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", state_file = "tests/saint_barthelemy.state.txt")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 83)  # only nodes with tags are reported
@@ -140,7 +137,7 @@ class Test(unittest.TestCase):
         self.assertEqual(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
 
     def test_copy_all_no_state_txt(self):
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", None)
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 83)  # only nodes with tags are reported
@@ -149,7 +146,7 @@ class Test(unittest.TestCase):
         self.assertEqual(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
 
     def test_copy_all_pbf_timestamp(self):
-        i1 = OsmPbfReader("tests/gibraltar.osm.pbf", None)
+        i1 = OsmPbfReader("tests/gibraltar.osm.pbf")
         o1 = MockCountObjects()
         i1.CopyTo(o1)
         self.assertEqual(o1.num_nodes, 850)  # only nodes with tags are reported

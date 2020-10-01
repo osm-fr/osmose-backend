@@ -85,10 +85,10 @@ class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):
 '''When importing layer of water from cadastre, the tag water pools have
 not been corrected.'''),
             fix = T_(
-'''Change tags `natural=water` in `leisure=swimming_pool` +
-`access=private` for a private pool or `amenity=swimming_pool` for a
-public pool. There is also other kinds of smal water place like
-`landuse=reservoir`, `landuse=basin` or `landuse=pond`.'''),
+'''Change the tag `natural=water` in `leisure=swimming_pool`. If it is
+private then tag it also with `access=private`. If it is actually not a
+swimming pool then you can use e.g. `natural=water` +
+`water=pond`/`water=basin`.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/a/a1/Osmose-eg-error-3080.png)
 

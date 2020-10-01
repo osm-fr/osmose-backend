@@ -123,7 +123,7 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         doc = dict(
             detail = T_(
-'''An objet without relevant tag (no other tag than `source`,
+'''An object without relevant tag (no other tag than `source`,
 `created_by`, `note:qadastre` nor `name`) nor a relation member with a
 role.'''),
             fix = T_(

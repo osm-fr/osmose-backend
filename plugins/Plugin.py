@@ -24,6 +24,7 @@ from analysers.Analyser import Analyser
 
 import os
 from inspect import getframeinfo, stack
+from typing import Dict, List, Union
 
 
 class Plugin(object):
@@ -51,7 +52,7 @@ class Plugin(object):
         if currentClass.relation != Plugin.relation: capabilities.append("relation")
         return capabilities
 
-    def node(self, node, tags):
+    def node(self, node: Dict[str, Union[str, int]], tags: Dict[str, str]):
         """
         Called each time a node is found on data source.
 
@@ -62,7 +63,7 @@ class Plugin(object):
         """
         pass
 
-    def way(self, way, tags, nodes):
+    def way(self, way: Dict[str, Union[str, int]], tags: Dict[str, str], nodes: List[int]):
         """
         Called each time a way is found on data source.
 
@@ -74,7 +75,7 @@ class Plugin(object):
         """
         pass
 
-    def relation(self, relation, tags, members):
+    def relation(self, relation: Dict[str, Union[str, int]], tags: Dict[str, str], members: List[Dict[str, Union[str, int]]]):
         """
         Called each time a relation is found on data source.
 
