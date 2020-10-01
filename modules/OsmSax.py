@@ -63,12 +63,28 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
         self._filename = filename
         self._state_file = state_file
         self._logger   = logger
+        self.since_timestamp = None
 
         # check if file begins with an xml tag
         f = self._GetFile()
         line = f.readline()
         if not line.startswith(b"<?xml"):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
+
+    def set_filter_since_timestamp(self, since_timestamp):
+        self.since_timestamp = since_timestamp.isoformat()
+        self.filtered_nodes_osmid = []
+        self.filtered_wayss_osmid = []
+        self.filtered_relationss_osmid = []
+
+    def filtered_nodes(self):
+        return self.filtered_nodes_osmid
+
+    def filtered_ways(self):
+        return self.filtered_wayss_osmid
+
+    def filtered_relations(self):
+        return self.filtered_relationss_osmid
 
     def timestamp(self):
         if self._state_file:
@@ -156,7 +172,10 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
         if name == u"node":
             self._data[u"tag"] = self._tags
             try:
-                self._output.NodeCreate(self._data)
+                if self.since_timestamp is None or self._data['timestamp'] is None or self._data['timestamp'] > self.since_timestamp:
+                    self._output.NodeCreate(self._data)
+                else:
+                    self.filtered_nodes_osmid.append(self._data['id'])
             except:
                 print(self._data)
                 raise
@@ -164,7 +183,10 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
             self._data[u"tag"] = self._tags
             self._data[u"nd"]  = self._nodes
             try:
-                self._output.WayCreate(self._data)
+                if self.since_timestamp is None or self._data['timestamp'] is None or self._data['timestamp'] > self.since_timestamp:
+                    self._output.WayCreate(self._data)
+                else:
+                    self.filtered_nodes_osmid.append(self._data['id'])
             except:
                 print(self._data)
                 raise
@@ -172,7 +194,10 @@ class OsmSaxReader(OsmReader, handler.ContentHandler):
             self._data[u"tag"]    = self._tags
             self._data[u"member"] = self._members
             try:
-                self._output.RelationCreate(self._data)
+                if self.since_timestamp is None or self._data['timestamp'] is None or self._data['timestamp'] > self.since_timestamp:
+                    self._output.RelationCreate(self._data)
+                else:
+                    self.filtered_nodes_osmid.append(self._data['id'])
             except:
                 print(self._data)
                 raise
