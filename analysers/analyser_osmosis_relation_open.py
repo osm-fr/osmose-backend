@@ -64,7 +64,7 @@ FROM (
 """
 
 
-class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
+class Analyser_Osmosis_Relation_Open(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
