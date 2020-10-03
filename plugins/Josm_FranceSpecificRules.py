@@ -535,7 +535,16 @@ class Josm_FranceSpecificRules(PluginMapCSS):
 
         # way.link_road["nat_ref:forward"][oneway=~/^(yes|1|-1)$/][inside("FR")]
         # way.link_road["nat_ref:backward"][oneway=~/^(yes|1|-1)$/][inside("FR")]
-        # Use undeclared class link_road
+        if ('nat_ref:backward' in keys and 'oneway' in keys) or ('nat_ref:forward' in keys and 'oneway' in keys):
+            match = False
+            # Skip selector using undeclared class link_road
+            # Skip selector using undeclared class link_road
+            if match:
+                # group:tr("validation rules nat_ref in France")
+                # -osmoseTags:list("ref","highway")
+                # -osmoseItemClassLevel:"9019/9019002/3"
+                # throwWarning:tr("{0} no tag forward if oneway","{2.tag}")
+                err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} no tag forward if oneway', mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         return err
 

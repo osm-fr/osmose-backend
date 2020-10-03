@@ -2613,7 +2613,12 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018031, 'subclass': 115703372, 'text': mapcss.tr('nome utilizado de forma incorreta')})
 
         # way[boundary=administrative][!admin_level]!.way_in_relation
-        # Use undeclared class way_in_relation
+        if ('boundary' in keys):
+            match = False
+            # Skip selector using undeclared class way_in_relation
+            if match:
+                # throwError:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
+                err.append({'class': 9018033, 'subclass': 1118919413, 'text': mapcss.tr('{0} deve possuir {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[place][place!~/^(city_block|farm|hamlet|island|islet|isolated_dwelling|neighbourhood|square)$/][!admin_level][!boundary][inside("BR")]
         if ('place' in keys):
@@ -2629,7 +2634,18 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # way[admin_level][!boundary]!.way_in_relation
         # way[admin_level][boundary][boundary!=administrative]!.way_in_relation
-        # Use undeclared class way_in_relation
+        if ('admin_level' in keys) or ('admin_level' in keys and 'boundary' in keys):
+            match = False
+            # Skip selector using undeclared class way_in_relation
+            # Skip selector using undeclared class way_in_relation
+            if match:
+                # group:tr("Brasil - Correções e melhorias")
+                # throwError:tr("ausência de boundary=administrative")
+                # fixAdd:"boundary=administrative"
+                err.append({'class': 9018006, 'subclass': 827896633, 'text': mapcss.tr('ausência de boundary=administrative'), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['boundary','administrative']])
+                }})
 
         # *[boundary=national_park][!name][inside("BR")]
         # *[boundary=protected_area][!name][inside("BR")]
