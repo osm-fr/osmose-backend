@@ -55,10 +55,10 @@ class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
         self.classs[1] = self.def_class(item = 1080, level = 1, tags = ['geom', 'building', 'fix:chair'],
             title = T_('Orphan nodes cluster'),
             detail = T_(
-'''Group of nodes without tag and not part of a way.'''),
+'''Nodes in the vicinity without tag and not part of a way.'''),
             fix = T_(
-'''Find the origin of these nodes. Probably in trouble in import.
-Contact the contributor submiting the nodes.'''),
+'''Find the origin of these nodes. Probably resulting from bad import.
+Contact the contributor submiting the nodes or remove those.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)
 
