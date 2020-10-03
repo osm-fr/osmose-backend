@@ -41,15 +41,8 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
 
         if not self.father.config.options.get("country"):
             return False
-        self.country_code = self.father.config.options.get("country").split("-")[0]
-        self.frequent_names_from_nsi = self._get_frequent_names()
+        self.country_code = self.father.config.options.get("country").split("-")[0].lower()
         self.brands_from_nsi = self._get_brands()
-
-    def _get_frequent_names(self):
-        nsi_url_for_names = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/names_keep.json"
-        json_str = urlread(nsi_url_for_names, 30)
-        results = json.loads(json_str)
-        return set([elem.lower() for elem in results.keys()])
 
     def _get_brands(self):
         nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/brands.json"
@@ -57,8 +50,11 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         results = json.loads(json_str)
         additional_brands = {}
         for brand_nsi_name, brand in results["brands"].items():
-            if "countryCodes" in brand and self.country_code.lower() not in brand["countryCodes"]:
-                continue
+            if "locationSet" in brand:
+                if "include" in brand["locationSet"] and self.country_code not in brand["locationSet"]["include"] and "001" not in brand["locationSet"]["include"]:
+                    continue
+                if "exclude" in brand["locationSet"] and self.country_code in brand["locationSet"]["exclude"]:
+                    continue
             brand_nsi_name = brand_nsi_name.split("~")[0]
             if "matchTags" in brand:
                 for additional_tag in brand["matchTags"]:
@@ -76,18 +72,13 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
             for main_key in ["shop", "amenity"]:
                 if main_key in tags:
                     nsi_key = "{}/{}|{}".format(main_key, tags[main_key], tags["name"]).lower()
-                    if nsi_key in self.frequent_names_from_nsi:
-                        if nsi_key in self.brands_from_nsi:
-                            brands_tags = self.brands_from_nsi[nsi_key]["tags"]
-                            tags_to_add = {}
-                            for tag in brands_tags:
-                                if not tags.get(tag):
-                                    tags_to_add[tag] = brands_tags[tag]
-                            return {"class": 31301, "subclass": 0,
-                                    "fix": {"+": tags_to_add}}
-                        else:
-                            return {"class": 31301, "subclass": 1,
-                                    "fix": {"+": {"brand": tags["name"]}}}
+                    if nsi_key in self.brands_from_nsi:
+                        brands_tags = self.brands_from_nsi[nsi_key]["tags"]
+                        tags_to_add = {}
+                        for tag in brands_tags:
+                            if not tags.get(tag):
+                                tags_to_add[tag] = brands_tags[tag]
+                        return {"class": 31301, "subclass": 0, "fix": {"+": tags_to_add}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -100,7 +91,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
 
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_FR(self):
         a = TagFix_Brand(None)
         class _config:
             options = {"country": "FR"}
@@ -111,3 +102,15 @@ class Test(TestPluginCommon):
 
         assert a.node(None, {"name": "Kiabi", "shop": "clothes"})
         assert not a.node(None, {"brand": "Kiabi", "shop": "clothes", "name": "Kiabi"})
+        assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+    def test_CA(self):
+        a = TagFix_Brand(None)
+        class _config:
+            options = {"country": "CA"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
