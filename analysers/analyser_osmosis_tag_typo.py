@@ -25,7 +25,7 @@ from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE rtag_{0} AS
+CREATE TEMP TABLE rtag_{type} AS
 SELECT
     key,
     SUM(count) AS count
@@ -40,7 +40,7 @@ FROM
             split_part((each(tags)).key, ':', 1) AS key,
             COUNT(*) AS count
         FROM
-            {0}
+            {type}
         WHERE
             tags != ''::hstore
         GROUP BY
@@ -97,13 +97,13 @@ GROUP BY
 """
 
 sql20 = """
-CREATE TEMP TABLE fix_{0} AS
+CREATE TEMP TABLE fix_{type} AS
 SELECT DISTINCT ON (t1.key)
     t1.key as low_key,
     t2.key as hight_key
 FROM
-    rtag_{0} AS t1,
-    rtag_{0} AS t2
+    rtag_{type} AS t1,
+    rtag_{type} AS t2
 WHERE
     t1.count < t2.count / 20 AND
     abs(length(t1.key) - length(t2.key)) <= 1 AND
@@ -120,23 +120,23 @@ SELECT
     value,
     low_key,
     hight_key,
-    ST_AsText(%(as_text)s)
+    ST_AsText({as_text})
 FROM
     (
     SELECT
         id,
         (each(tags)).key AS key,
         (each(tags)).value AS value,
-        %(geo)s
+        {geo}
     FROM
-        %(table)s
+        {table}
     GROUP BY
         id,
         key,
         value,
-        %(geo)s
+        {geo}
     ) AS keys,
-    fix_{0} As fix
+    fix_{type} As fix
 WHERE
     keys.key = fix.low_key OR
     (POSITION(':' IN keys.key) > 0 AND SUBSTRING(keys.key FROM 1 FOR LENGTH(fix.low_key)+1) = fix.low_key || ':')
@@ -154,27 +154,27 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
 '''Check that the correction does not change the intent of the tag.'''))
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format("nodes"))
-        self.run(sql20.format("nodes"))
-        self.run(sql30.format("nodes") % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
+        self.run(sql10.format(type="nodes"))
+        self.run(sql20.format(type="nodes"))
+        self.run(sql30.format(type="nodes", as_text="geom", table="nodes", geo="geom"), lambda res: {
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.node_full, None, None, None, None, self.positionAsText],
             "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        self.run(sql10.format("ways"))
-        self.run(sql20.format("ways"))
-        self.run(sql30.format("ways") % {"as_text": "way_locate(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
+        self.run(sql10.format(type="ways"))
+        self.run(sql20.format(type="ways"))
+        self.run(sql30.format(type="ways", as_text="way_locate(linestring)", table="ways", geo="linestring"), lambda res: {
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.way_full, None, None, None, None, self.positionAsText],
             "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        self.run(sql10.format("relations"))
-        self.run(sql20.format("relations"))
-        self.run(sql30.format("relations") % {"as_text": "relation_locate(id)", "table": "relations", "geo": "user"}, lambda res: {
+        self.run(sql10.format(type="relations"))
+        self.run(sql20.format(type="relations"))
+        self.run(sql30.format(type="relations", as_text="relation_locate(id)", table="relations", geo="user"), lambda res: {
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.relation_full, None, None, None, None, self.positionAsText],
