@@ -230,7 +230,8 @@ WHERE
     (
         (ways.tags->'oneway' = 'yes' AND ways.nodes[1] = via.id) OR
         (ways.tags->'oneway' = '-1' AND ways.nodes[array_length(ways.nodes, 1)] = via.id)
-    )
+    ) AND
+    NOT EXISTS (SELECT * FROM each(ways.tags) WHERE key LIKE 'oneway:%' AND value = 'no');
 """
 
 sql41 = """
@@ -265,7 +266,8 @@ WHERE
     (
         (ways.tags->'oneway' = 'yes' AND ways.nodes[array_length(ways.nodes, 1)] = via.id) OR
         (ways.tags->'oneway' = '-1' AND ways.nodes[1] = via.id)
-    )
+    ) AND
+    NOT EXISTS (SELECT * FROM each(ways.tags) WHERE key LIKE 'oneway:%' AND value = 'no');
 """
 
 sql50 = """
