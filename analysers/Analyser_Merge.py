@@ -334,8 +334,8 @@ class Source:
             if not os.path.isabs(self.file):
                 self.file = "merge_data/" + self.file
 
-        if self.attribution and "%s" in self.attribution:
-            self.attribution_re = re.compile(self.attribution.replace("%s", ".*"))
+        if self.attribution and "{0}" in self.attribution:
+            self.attribution_re = re.compile(self.attribution.replace("{0}", ".*"))
 
     def time(self):
         if self.file:
@@ -376,13 +376,13 @@ class Source:
         return f
 
     def as_tag_value(self):
-        if "%s" in self.attribution:
-            return self.attribution % self.millesime
+        if "{0}" in self.attribution:
+            return self.attribution.format(self.millesime)
         else:
             return " - ".join(filter(lambda x: x is not None, [self.attribution, self.millesime]))
 
     def match_attribution(self, s):
-        if "%s" not in self.attribution:
+        if "{0}" not in self.attribution:
             return self.attribution in s
         else:
             return self.attribution_re.match(s)

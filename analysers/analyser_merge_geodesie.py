@@ -47,7 +47,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.init(
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques",
-            CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
+            CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
@@ -89,7 +89,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.init(
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques-site",
-            CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
+            CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie_site.csv.bz2"),
                 header = False),
             Load("lon", "lat",
