@@ -56,14 +56,14 @@ GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
 sql_schema = """
 DO language 'plpgsql' $$
 BEGIN
-  IF NOT EXISTS (SELECT * FROM information_schema.schemata WHERE schema_name = '%(schema)s' ) THEN
-    CREATE SCHEMA %(schema)s;
+  IF NOT EXISTS (SELECT * FROM information_schema.schemata WHERE schema_name = '{schema}' ) THEN
+    CREATE SCHEMA {schema};
   END IF;
 END $$
 """
 
 sql00 = """
-CREATE TEMP TABLE %(official)s_temp (
+CREATE TEMP TABLE {official}_temp (
     ref varchar(65534),
     tags hstore,
     tags1 hstore,
@@ -74,37 +74,37 @@ CREATE TEMP TABLE %(official)s_temp (
 
 sql01_ref = """
 SELECT
-    %(distinct)s
-    %(x)s AS _x,
-    %(y)s AS _y,
+    {distinct}
+    {x} AS _x,
+    {y} AS _y,
     *
 FROM
-    %(table)s
+    {table}
 WHERE
-    %(where)s
-%(order_by)s
+    {where}
+{order_by}
 """
 
 sql01_geo = """
 SELECT
-    %(distinct)s
-    %(x)s AS _x,
-    %(y)s AS _y,
+    {distinct}
+    {x} AS _x,
+    {y} AS _y,
     *
 FROM
-    %(table)s
+    {table}
 WHERE
-    %(x)s IS NOT NULL AND
-    %(y)s IS NOT NULL AND
-    %(x)s::varchar NOT IN ('', 'null') AND
-    %(y)s::varchar NOT IN ('', 'null') AND
-    %(where)s
-%(order_by)s
+    {x} IS NOT NULL AND
+    {y} IS NOT NULL AND
+    {x}::varchar NOT IN ('', 'null') AND
+    {y}::varchar NOT IN ('', 'null') AND
+    {where}
+{order_by}
 """
 
 sql02 = """
 INSERT INTO
-    %(official)s_temp
+    {official}_temp
 VALUES (
     %(ref)s,
     %(tags)s,
@@ -115,8 +115,8 @@ VALUES (
 """
 
 sql02b = """
-DROP TABLE IF EXISTS %(official)s CASCADE;
-CREATE UNLOGGED TABLE %(official)s AS
+DROP TABLE IF EXISTS {official} CASCADE;
+CREATE UNLOGGED TABLE {official} AS
 SELECT
   ref,
   tags,
@@ -124,7 +124,7 @@ SELECT
   fields,
   geom
 FROM
-  %(official)s_temp
+  {official}_temp
 GROUP BY
   ref,
   tags,
@@ -134,11 +134,11 @@ GROUP BY
 """
 
 sql03a = """
-CREATE INDEX ir_%(official)s ON %(official)s(ref)
+CREATE INDEX ir_{official} ON {official}(ref)
 """
 
 sql03b = """
-CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom)
+CREATE INDEX ig_{official} ON {official} USING GIST(geom)
 """
 
 sql10 = """
@@ -150,9 +150,9 @@ SELECT
     official.fields,
     official.geom
 FROM
-    %(official)s AS official
+    {official} AS official
     LEFT JOIN osm_item ON
-        %(joinClause)s
+        {joinClause}
 WHERE
     osm_item.id IS NULL
 """
@@ -180,8 +180,8 @@ SELECT
     osm_item.shape
 FROM
     osm_item
-    LEFT JOIN %(official)s AS official ON
-        %(joinClause)s
+    LEFT JOIN {official} AS official ON
+        {joinClause}
 WHERE
     osm_item.ref IS NULL AND
     official.ref IS NULL
@@ -208,8 +208,8 @@ SELECT
     osm_item.ref
 FROM
     osm_item
-    LEFT JOIN %(official)s AS official ON
-        %(joinClause)s
+    LEFT JOIN {official} AS official ON
+        {joinClause}
 WHERE
     osm_item.ref IS NOT NULL AND
     official.ref IS NULL
@@ -230,10 +230,10 @@ SELECT
 FROM
     missing_official
     JOIN missing_osm ON
-        %(joinClause)s
+        {joinClause}
 ORDER BY
     missing_osm.id
-    %(orderBy)s
+    {orderBy}
 """
 
 sql40 = """
@@ -245,8 +245,8 @@ SELECT
     osm_item.geom
 FROM
     osm_item
-    JOIN %(official)s AS official ON
-        %(joinClause)s
+    JOIN {official} AS official ON
+        {joinClause}
 """
 
 sql41 = """
@@ -286,9 +286,9 @@ SELECT
     ST_AsText(osm_item.geom),
     ST_AsText(official.geom)
 FROM
-    %(official)s AS official
+    {official} AS official
     JOIN osm_item ON
-        %(joinClause)s AND
+        {joinClause} AND
         NOT official.geom && osm_item.geom
 """
 
@@ -301,9 +301,9 @@ SELECT
     osm_item.tags,
     official.fields AS official_fields
 FROM
-    %(official)s AS official
+    {official} AS official
     JOIN osm_item ON
-        %(joinClause)s
+        {joinClause}
 WHERE
     official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::hstore
 """
@@ -431,13 +431,13 @@ class CSV(Parser):
         self.f = self.f or self.source.open()
         for _ in range(self.skip_first_lines):
             self.f.__next__()
-        copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
+        copy = "COPY {0} FROM STDIN WITH {1} {2} {3} {4} {5}".format(
             table,
-            ("DELIMITER AS '%s'" % self.separator) if self.separator is not None else "",
-            ("NULL AS '%s'" % self.null) if self.null is not None else "",
+            ("DELIMITER AS '{0}'".format(self.separator)) if self.separator is not None else "",
+            ("NULL AS '{0}'".format(self.null)) if self.null is not None else "",
             "CSV" if self.csv else "",
             "HEADER" if self.csv and self.header else "",
-            ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
+            ("QUOTE '{0}'".format(self.quote)) if self.csv and self.quote else "")
         osmosis.giscurs.copy_expert(copy, self.f)
 
     def close(self):
@@ -569,7 +569,7 @@ class SHP(Parser):
         unzip = "unzip -o -d {0}_ {1}".format(tmp_file.name, self.source.path())
         if os.system(unzip):
             raise Exception("unzip error")
-        shp2pgsql = "shp2pgsql -e -k -W \"%s\" -s \"%s\" \"%s_/%s\" \"%s\" > \"%s\"" % (
+        shp2pgsql = "shp2pgsql -e -k -W \"{0}\" -s \"{1}\" \"{2}_/{3}\" \"{4}\" > \"{5}\"".format(
             self.source.encoding,
             srid,
             tmp_file.name,
@@ -670,7 +670,7 @@ class Load(object):
                         self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(c[0:50]), header))
                 else:
                     raise AssertionError("No table schema provided")
-            osmosis.run(sql_schema % {"schema": db_schema})
+            osmosis.run(sql_schema.format(schema = db_schema))
             if self.create:
                 osmosis.run("CREATE UNLOGGED TABLE {0} ({1})".format(table, self.create))
             parser.import_(table, self.srid, osmosis)
@@ -699,8 +699,8 @@ class Load(object):
                 else: # py2 conditional
                     transformer = None #
             osmosis.logger.log(u"Convert data to tags")
-            osmosis.run(sql_schema % {"schema": db_schema})
-            osmosis.run(sql00 % {"official": tableOfficial})
+            osmosis.run(sql_schema.format(schema = db_schema))
+            osmosis.run(sql00.format(official = tableOfficial))
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             mult_space = re.compile(r'\s+')
@@ -728,7 +728,7 @@ class Load(object):
                                 pass
                         tags = mapping.generate.tagFactory(res)
                         tags[1].update(tags[0])
-                        giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
+                        giscurs.execute(sql02.format(official = tableOfficial), {
                             "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
                             "tags": tags[1],
                             "tags1": tags[0],
@@ -749,15 +749,15 @@ class Load(object):
                 order_by = "ORDER BY {0}".format(l)
             else:
                 distinct = order_by = ""
-            osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo) % {"table":table, "x":self.x, "y":self.y, "where":self.formatCSVSelect(), "distinct": distinct, "order_by": order_by}, insertOfficial)
-            osmosis.run(sql02b.replace("%(official)s", tableOfficial))
+            osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo).format(table = table, x = self.x, y = self.y, where = self.formatCSVSelect(), distinct = distinct, order_by = order_by), insertOfficial)
+            osmosis.run(sql02b.format(official = tableOfficial))
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM {0}".format(tableOfficial))
                 self.bbox = giscurs.fetchone()[0]
             else:
                 self.bbox = None
-            osmosis.run(sql03a % {"official": tableOfficial})
-            osmosis.run(sql03b % {"official": tableOfficial})
+            osmosis.run(sql03a.format(official = tableOfficial))
+            osmosis.run(sql03b.format(official = tableOfficial))
 
             giscurs_getpoint.close()
             giscurs.close()
@@ -990,20 +990,28 @@ OpenData and OSM.'''))
                 map(lambda type:
                     ("""(
                     SELECT
-                        '%(type)s'::char(1) AS type,
+                        '{type}'::char(1) AS type,
                         id,
                         trim(both from ref) AS ref,
-                        %(geom)s::geography AS geom,
-                        %(shape)s::geography AS shape,
+                        {geom}::geography AS geom,
+                        {shape}::geography AS shape,
                         tags
                     FROM
-                        %(from)s
-                        LEFT JOIN LATERAL regexp_split_to_table(tags->'%(ref)s', ';') a(ref) ON true
+                        {from_}
+                        LEFT JOIN LATERAL regexp_split_to_table(tags->'{ref}', ';') a(ref) ON true
                     WHERE""" + ("""
-                        %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
-                        ST_SetSRID(ST_Expand(ST_GeomFromText('%(bbox)s'), %(distance)s), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
+                        {geomSelect} IS NOT NULL AND""" if self.load.srid else "") + ("""
+                        ST_SetSRID(ST_Expand(ST_GeomFromText('{bbox}'), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.load.srid else "") + """
                         tags != ''::hstore AND
-                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "distance": self.mapping.conflationDistance or 0, "where":where},
+                        {where})""").format(
+                            type = type[0].upper(),
+                            ref = self.mapping.osmRef,
+                            geomSelect = typeSelect[type[0].upper()],
+                            geom = typeGeom[type[0].upper()],
+                            shape = typeShape[type[0].upper()],
+                            from_ = type,
+                            bbox = self.load.bbox,
+                            distance = self.mapping.conflationDistance or 0, where = where),
                     self.mapping.select.types
                 )
             ))
@@ -1022,7 +1030,7 @@ OpenData and OSM.'''))
         joinClause = " AND\n".join(joinClause) + "\n"
 
         # Missing official
-        self.run(sql10 % {"official": table, "joinClause": joinClause})
+        self.run(sql10.format(official = table, joinClause = joinClause))
         self.run(sql11)
         if self.missing_official:
             self.run(sql12, lambda res: {
@@ -1035,7 +1043,7 @@ OpenData and OSM.'''))
             } )
 
         if self.mapping.osmRef != "NULL":
-            self.run(sql20 % {"official": table, "joinClause": joinClause})
+            self.run(sql20.format(official = table, joinClause = joinClause))
             self.run(sql21)
             if self.missing_osm:
                 # Missing OSM
@@ -1044,7 +1052,7 @@ OpenData and OSM.'''))
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
                 # Invalid OSM
-                self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
+                self.run(sql23.format(official = table, joinClause = joinClause), lambda res: {
                     "class": self.missing_osm['id'],
                     "subclass": str(stablehash64(res[5])) if self.mapping.osmRef != "NULL" else None,
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
@@ -1060,7 +1068,7 @@ OpenData and OSM.'''))
                 if self.mapping.extraJoin:
                     possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.mapping.extraJoin))
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
-                self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
+                self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy), lambda res: {
                     "class": self.possible_merge['id'],
                     "subclass": str(stablehash64("{0}{1}".format(res[0], sorted(res[3].items())))),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
@@ -1072,7 +1080,7 @@ OpenData and OSM.'''))
                 list((r['lon'], r['lat'])) + cc
             )
 
-            self.run(sql40 % {"official": table, "joinClause": joinClause})
+            self.run(sql40.format(official = table, joinClause = joinClause))
             self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
                 list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
             )
@@ -1093,14 +1101,14 @@ OpenData and OSM.'''))
 
         # Moved official
         if self.moved_official:
-            self.run(sql50 % {"official": table, "joinClause": joinClause}, lambda res: {
+            self.run(sql50.format(official = table, joinClause = joinClause), lambda res: {
                 "class": self.moved_official['id'],
                 "data": [self.node_full, self.positionAsText],
             } )
 
         # Update official
         if self.update_official:
-            self.run(sql60 % {"official": table, "joinClause": joinClause}, lambda res: {
+            self.run(sql60.format(official = table, joinClause = joinClause), lambda res: {
                 "class": self.update_official['id'],
                 "subclass": str(stablehash64("{0}{1}".format(res[0],sorted(res[5].items())))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
