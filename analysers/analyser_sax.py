@@ -59,6 +59,8 @@ class Analyser_Sax(Analyser):
         return SourceVersion.version(*([self.__class__] + list(map(lambda p: p.__class__, self.plugins))))
 
     def analyser(self):
+        self.logger.log("run sax all")
+
         self._load_output(change=self.parser.is_change())
         try:
             self._run_analyse()
@@ -67,28 +69,33 @@ class Analyser_Sax(Analyser):
             self._close_output()
 
     def analyser_resume(self, timestamp, already_issued_objects):
+        self.logger.log("run sax changed")
+
         self.parser.set_filter_since_timestamp(timestamp)
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
         self._load_output(change=True)
-        self._run_analyse()
 
-        if timestamp:
-            filtered_nodes = set(self.parser.filtered_nodes())
-            for id in self.already_issued_objects['N']:
-                if id not in filtered_nodes:
-                    self.error_file.delete('node', id)
-            filtered_ways = set(self.parser.filtered_ways())
-            for id in self.already_issued_objects['W']:
-                if id not in filtered_ways:
-                    self.error_file.delete('way', id)
-            filtered_relations = set(self.parser.filtered_relations())
-            for id in self.already_issued_objects['R']:
-                if id not in filtered_relations:
-                    self.error_file.delete('relation', id)
+        try:
+            self._run_analyse()
+            self._close_plugins()
 
-        self._close_output()
+            if timestamp:
+                filtered_nodes = set(self.parser.filtered_nodes())
+                for id in self.already_issued_objects['N']:
+                    if id not in filtered_nodes:
+                        self.error_file.delete('node', id)
+                filtered_ways = set(self.parser.filtered_ways())
+                for id in self.already_issued_objects['W']:
+                    if id not in filtered_ways:
+                        self.error_file.delete('way', id)
+                filtered_relations = set(self.parser.filtered_relations())
+                for id in self.already_issued_objects['R']:
+                    if id not in filtered_relations:
+                        self.error_file.delete('relation', id)
+        finally:
+            self._close_output()
 
     ################################################################################
     #### Useful functions
