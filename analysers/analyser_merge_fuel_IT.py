@@ -83,7 +83,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                         'fuel:lpg': lambda res: 'yes' if (int(res['Carburanti']) & LPG) != 0 else Generate.delete_tag,
                         'fuel:cng': lambda res: 'yes' if (int(res['Carburanti']) & CNG) != 0 else Generate.delete_tag,
                     },
-                text = lambda tags, fields: {'en': '%s, %s' % (fields['Indirizzo'], fields['Comune'])} )))
+                text = lambda tags, fields: {'en': '{0}, {1}'.format(fields['Indirizzo'], fields['Comune'])} )))
 
 
 class Source_Fuel(Source):

@@ -208,7 +208,7 @@ class Analyser_Sax(Analyser):
                         {"position": [data], "node": [data]},
                         allow_override = allow_fix_override)
                 except:
-                    self._err("Error on error %s from %s" % (str(e), str(err)))
+                    self._err("Error on error {0} from {1}".format(str(e), str(err)))
                     raise
 
     def NodeUpdate(self, data):
@@ -265,7 +265,7 @@ class Analyser_Sax(Analyser):
                         {"position": [node], "way": [data]},
                         allow_override = allow_fix_override)
                 except:
-                    self._err("Error on error %s from %s" % (str(e), str(err)))
+                    self._err("Error on error {0} from {1}".format(str(e), str(err)))
                     raise
 
     def WayUpdate(self, data):
@@ -344,7 +344,7 @@ class Analyser_Sax(Analyser):
                         {"position": [node], "relation": [data]},
                         allow_override = allow_fix_override)
                 except:
-                    self._err("Error on error %s from %s" % (str(e), str(err)))
+                    self._err("Error on error {0} from {1}".format(str(e), str(err)))
                     raise
 
     def RelationUpdate(self, data):
@@ -446,7 +446,7 @@ class Analyser_Sax(Analyser):
                 # Liste generated issues
                 for (cl, v) in self.plugins[pluginClazz.__name__].errors.items():
                     if cl in self._Err:
-                        raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
+                        raise Exception("class {0} already present as item {1}".format(cl, self._Err[cl]['item']))
                     self._Err[cl] = v
 
     ################################################################################

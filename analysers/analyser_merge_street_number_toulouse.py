@@ -41,4 +41,4 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
                         "source": lambda a: a.parser.source.attribution,
                         "source:date": lambda a: a.parser.source.millesime},
                     mapping1 = {"addr:housenumber": "no"},
-                    text = lambda tags, fields: {"en": u"%s %s" % (fields["no"], fields["lib_off"])} )))
+                    text = lambda tags, fields: {"en": "{0} {1}".format(fields["no"], fields["lib_off"])} )))
