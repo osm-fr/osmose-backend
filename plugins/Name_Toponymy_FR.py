@@ -127,7 +127,7 @@ IGN (French geographic name conventions)'''),
 
     def _split(self, name):
         for x in [u" ", u"’", u"\xa0", u"°", u"'", u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
-            name = name.replace(x, u"\xffff%s\xffff" % x)
+            name = name.replace(x, "\xffff{0}\xffff".format(x))
         return name.split(u"\xffff")
 
     def node(self, data, tags):

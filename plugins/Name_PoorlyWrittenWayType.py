@@ -35,10 +35,10 @@ class P_Name_PoorlyWrittenWayType(Plugin):
             r += p1[0]  # keep first leter in uppercase
             start = 1
         for c in p1[start:]:
-            r += u"[%s%s]" % (c.lower(), c.upper())
+            r += "[{0}{1}]".format(c.lower(), c.upper())
         r += r")(\.|"
         for c in p2:
-            r += r"[%s%s]" % (c.lower(), c.upper())
+            r += r"[{0}{1}]".format(c.lower(), c.upper())
         r += r")?) .*$"
         return re.compile(r)
 
@@ -57,7 +57,7 @@ class P_Name_PoorlyWrittenWayType(Plugin):
             return
         name = tags["name"]
         for test in self.ReTests:
-            if not name.startswith("%s " % test[0][1]):
+            if not name.startswith("{0} ".format(test[0][1])):
                 r = test[1].match(name)
                 if r:
                     return {"class": 702, "subclass": test[0][0], "fix": {"name": name.replace(r.group(1), test[0][1])}}

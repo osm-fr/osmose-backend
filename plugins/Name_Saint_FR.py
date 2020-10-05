@@ -51,7 +51,7 @@ Name should be the "Saint-Esprit".'''))
             r = self.Saint.match(tags["name"])
             if r:
                 return {"class": 3033, "subclass": 1, "text": T_(u"Missing hyphen after \"Saint(e)\""),
-                         "fix": {"name": tags["name"].replace(r.group(1), "%s-" % r.group(2))}}
+                         "fix": {"name": tags["name"].replace(r.group(1), "{0}-".format(r.group(2)))}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

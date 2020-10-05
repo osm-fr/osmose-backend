@@ -67,19 +67,19 @@ class P_Name_Dictionary(Plugin):
 
     def load_external_dictionaries(self, lang):
         # Dictionaries
-        for d in self.father.ToolsListDir("dictionaries/%s" % lang):
+        for d in self.father.ToolsListDir("dictionaries/{0}".format(lang)):
             if d[-1] == "~": continue
             if d[:4] != "Dico": continue
-            self.DictKnownWords += self.father.ToolsReadList("dictionaries/%s/%s" % (lang, d))
+            self.DictKnownWords += self.father.ToolsReadList("dictionaries/{0}/{1}".format(lang, d))
 
         # Corrections
-        for d in self.father.ToolsListDir("dictionaries/%s" % lang):
+        for d in self.father.ToolsListDir("dictionaries/{0}".format(lang)):
             if d[-1] == "~": continue
             if d[:4] != "Corr": continue
-            self.DictCorrections.update(self.father.ToolsReadDict("dictionaries/%s/%s" % (lang, d), ":"))
+            self.DictCorrections.update(self.father.ToolsReadDict("dictionaries/{0}/{1}".format(lang, d), ":"))
 
         # Common words
-        self.DictCommonWords += [x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
+        self.DictCommonWords += [x for x in self.father.ToolsReadList("dictionaries/{0}/ResultCommonWords".format(lang)) if x in self.DictKnownWords]
 
     def laod_numbering(self):
         # 1a 1b 1c
@@ -130,7 +130,7 @@ class P_Name_Dictionary(Plugin):
                 if self.DictCorrections[WordComplet]:
                     return {"class": 703, "subclass": stablehash64(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
                 else:
-                    raise Exception("Could not find correction for %s" % WordComplet)
+                    raise Exception("Could not find correction for {0}".format(WordComplet))
             else:
                 for x in self.DictEncoding:
                     if x in WordComplet:
@@ -169,6 +169,6 @@ class P_Name_Dictionary(Plugin):
     #    f = self.father.ToolsOpenFile("ResultMotsATrier", "w")
     #    for x in self.DictUnknownWords:
     #        f.write(x + "\n")
-    #    #logger.log(u"%d mots à trier"%len(self.DictUnknownWords))
+    #    #logger.log("{0} mots à trier".format(len(self.DictUnknownWords)))
     #    f.close()
     #    return

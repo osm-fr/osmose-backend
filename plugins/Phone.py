@@ -68,18 +68,18 @@ class Phone(Plugin):
 
         if self.code and self.local_prefix:
             # Regular numbers must not have a local_prefix (aka "0") after +[code]
-            self.InternationalAndLocalPrefix = re.compile(r"^[+]%s[- ./]*%s((?:[- ./]*[0-9])+)$" % (self.code, self.local_prefix))
+            self.InternationalAndLocalPrefix = re.compile(r"^[+]{0}[- ./]*{1}((?:[- ./]*[0-9])+)$".format(self.code, self.local_prefix))
         else:
             self.InternationalAndLocalPrefix = None
 
         if self.size_short:
             # Short numbers cannot be internationalized
-            self.BadShort = re.compile(r"^[+]%s[- ./]*([0-9]{%s,%s})$" % (self.code, min(self.size_short), max(self.size_short)))
+            self.BadShort = re.compile(r"^[+]{0}[- ./]*([0-9]{{{1},{2}}})$".format(self.code, min(self.size_short), max(self.size_short)))
         else:
             self.BadShort = None
 
         if self.international_prefix:
-            self.InternationalPrefix = re.compile(r"^%s(.*)" % self.international_prefix)
+            self.InternationalPrefix = re.compile(r"^{0}(.*)".format(self.international_prefix))
         else:
             self.InternationalPrefix = None
 
@@ -88,17 +88,17 @@ class Phone(Plugin):
                 # Local numbers to internationalize. Note that in addition to
                 # short numbers this also skips special numbers starting with 08
                 # or 09 since these may or may not be callable from abroad.
-                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*([1-7](:?[- ./]*[0-9]){%s,%s})$" % (self.local_prefix, min(self.size) - 1, max(self.size) - 1))
+                self.MissingInternationalPrefix = re.compile(r"^{0}[- ./]*([1-7](:?[- ./]*[0-9]){{{1},{2}}})$".format(self.local_prefix, min(self.size) - 1, max(self.size) - 1))
             elif self.size:
-                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*){%s,%s}[0-9])$" % (self.local_prefix, min(self.size) - len(self.local_prefix) - 1, max(self.size) - len(self.local_prefix) - 1))
+                self.MissingInternationalPrefix = re.compile(r"^{0}[- ./]*((:?[0-9][- ./]*){{{1},{2}}}[0-9])$".format(self.local_prefix, min(self.size) - len(self.local_prefix) - 1, max(self.size) - len(self.local_prefix) - 1))
             else:
-                self.MissingInternationalPrefix = re.compile(r"^%s[- ./]*((:?[0-9][- ./]*)+[0-9])$" % (self.local_prefix))
+                self.MissingInternationalPrefix = re.compile(r"^{0}[- ./]*((:?[0-9][- ./]*)+[0-9])$".format(self.local_prefix))
         else:
             if country and country.startswith("IT"):
                 # Only non toll-free numbers are callable from abroad.
-                self.MissingInternationalPrefix = re.compile(r"^([03](:?[0-9][- ./]*){%s,%s})$" % (min(self.size) - 1, max(self.size) - 1))
+                self.MissingInternationalPrefix = re.compile(r"^([03](:?[0-9][- ./]*){{{0},{1}}})$".format(min(self.size) - 1, max(self.size) - 1))
             else:
-                self.MissingInternationalPrefix = re.compile(r"^((:?[0-9][- ./]*){%s,%s}[0-9])$" % (min(self.size) - 1, max(self.size) - 1))
+                self.MissingInternationalPrefix = re.compile(r"^((:?[0-9][- ./]*){{{0},{1}}}[0-9])$".format(min(self.size) - 1, max(self.size) - 1))
 
         if self.format:
             self.Format = re.compile(self.format % self.code)
@@ -204,15 +204,15 @@ class Test(TestPluginCommon):
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
-            self.check_err(err, ("phone='%s'" % bad))
+            self.check_err(err, ("phone='{0}'".format(bad)))
             self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got no error for other correct numbers
         for good in (u"3631", u"118987", u"1;2"):
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         assert len(p.node(None, {"phone": "09.72.42.42.42", "fax": "09.72.42.42.42"})) == 2
 
@@ -232,15 +232,15 @@ class Test(TestPluginCommon):
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
-            self.check_err(err, ("phone='%s'" % bad))
+            self.check_err(err, ("phone='{0}'".format(bad)))
             self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got error for other correct numbers
         for bad in (u"3631"):
-            assert p.node(None, {"phone": bad}), ("phone='%s'" % bad)
+            assert p.node(None, {"phone": bad}), ("phone='{0}'".format(bad))
 
     def test_CA(self):
         p = Phone(None)
@@ -256,15 +256,15 @@ class Test(TestPluginCommon):
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
-            self.check_err(err, ("phone='%s'" % bad))
+            self.check_err(err, ("phone='{0}'".format(bad)))
             self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got error for other correct numbers
         for bad in (u"3631", u"(123) 123-4567", "+1 123 1234567"):
-            assert p.node(None, {"phone": bad}), ("phone='%s'" % bad)
+            assert p.node(None, {"phone": bad}), ("phone='{0}'".format(bad))
 
     def test_ES(self):
         p = Phone(None)
@@ -283,11 +283,11 @@ class Test(TestPluginCommon):
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
-            self.check_err(err, ("phone='%s'" % bad))
+            self.check_err(err, ("phone='{0}'".format(bad)))
             self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
     def test_IT(self):
         p = Phone(None)
@@ -309,12 +309,12 @@ class Test(TestPluginCommon):
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
-            self.check_err(err, ("phone='%s'" % bad))
+            self.check_err(err, ("phone='{0}'".format(bad)))
             self.assertEqual(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))
 
         # Verify we got no error for other correct numbers
         for good in (u"800 123", u"112", u"1515"):
-            assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+            assert not p.node(None, {"phone": good}), ("phone='{0}'".format(good))

@@ -71,7 +71,7 @@ appropriate.'''),
         ammend = ""
         if country and country.startswith("BG"):
             ammend = "|TT" # Bulgarian survey point
-        self.alone_char = regex.compile(r"(^| |[%s])(?:[A-Z]%s)(?= |[%s]|$)" % (non_look_like_latin, ammend, non_look_like_latin), flags=regex.V1)
+        self.alone_char = regex.compile(r"(^| |[{0}])(?:[A-Z]{1})(?= |[{2}]|$)".format(non_look_like_latin, ammend, non_look_like_latin), flags=regex.V1)
         self.roman_number = regex.compile(r"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
 
         self.scripts = language2scripts
@@ -96,7 +96,7 @@ appropriate.'''),
             # Assert the languages are mapped to scripts
             for language in languages:
                 if language not in self.lang:
-                    raise Exception("No script setup for language '%s'" % language)
+                    raise Exception("No script setup for language '{0}'".format(language))
 
             # Disable default scripts if one language is not mapped to scripts
             for language in languages:
@@ -105,7 +105,7 @@ appropriate.'''),
 
             # Build default regex
             if languages:
-                self.default = regex.compile(r"[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)), flags=regex.V1)
+                self.default = regex.compile(r"[\p{{Common}}{0}]".format("".join(map(lambda l: self.lang[l], languages))), flags=regex.V1)
 
         self.uniq_script = self.uniq_scripts.get(languages[0]) if languages and len(languages) == 1 else None
 
@@ -113,7 +113,7 @@ appropriate.'''),
             if s is None:
                 del(self.lang[l])
             else:
-                self.lang[l] = regex.compile(r"[\p{Common}%s]" % s, flags=regex.V1)
+                self.lang[l] = regex.compile(r"[\p{{Common}}{0}]".format(s), flags=regex.V1)
 
         self.names = [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name"]
 

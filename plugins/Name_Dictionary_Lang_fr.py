@@ -102,11 +102,11 @@ class Test(TestPluginCommon):
         for (n, f) in name:
             rdp = a.node(None, {"name": n})
             if f:
-                self.check_err(rdp, ("name='%s'" % n))
+                self.check_err(rdp, ("name='{0}'".format(n)))
                 fix = rdp[0]["fix"]["name"]
-                self.assertEqual(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
+                self.assertEqual(fix, f, u"name='{0}' - fix = wanted='{1}' / got='{2}'".format(n, f, fix))
             else:
-                assert not rdp, ("name='%s'" % n)
+                assert not rdp, ("name='{0}'".format(n))
 
         assert not a.way(None, {"highway": u"Rue Saint-AndrÃ©"}, None)
         assert not a.relation(None, {"highway": u"Rue Saint-AndrÃ©"}, None)

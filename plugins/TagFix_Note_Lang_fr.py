@@ -92,11 +92,11 @@ class TagFix_Note_Lang_fr(Plugin):
                 for w in self.FixmeFull:
                     if w in tt:
                         return {"class": 3110, "subclass": 100, "text": T_("note tag needs FIXME: \"{0}\"", tags[t]),
-                                 "fix": {"note": "FIXME %s" % tags[t]}}
+                                 "fix": {"note": "FIXME {0}".format(tags[t])}}
                 for w in self.FixmeWord:
                     if w in words:
                         return {"class": 3110, "subclass": 101, "text": T_("note tag needs FIXME: \"{0}\"", tags[t]),
-                                 "fix": {"note": "FIXME %s" % tags[t]}}
+                                 "fix": {"note": "FIXME {0}".format(tags[t])}}
             # Destruction
             if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
                 for w in self.Destruction:
@@ -151,20 +151,20 @@ class Test(TestPluginCommon):
     def test_node(self):
         assert not self.p.node(None, {}), ("node with no note")
         for d in self.note_gen_err:
-            self.check_err(self.p.node(None, {"note": d}), ("node with note='%s'" % d))
+            self.check_err(self.p.node(None, {"note": d}), ("node with note='{0}'".format(d)))
         for d in self.note_gen_no_err:
-            assert not self.p.node(None, {"note": d}), ("node with note='%s'" % d)
+            assert not self.p.node(None, {"note": d}), ("node with note='{0}'".format(d))
 
     def test_way(self):
         assert not self.p.way(None, {}, []), ("way with no note")
         for d in self.note_gen_err:
-            self.check_err(self.p.way(None, {"note": d}, []), ("way with note='%s'" % d))
+            self.check_err(self.p.way(None, {"note": d}, []), ("way with note='{0}'".format(d)))
         for d in self.note_gen_no_err:
-            assert not self.p.way(None, {"note": d}, []), ("way with note='%s'" % d)
+            assert not self.p.way(None, {"note": d}, []), ("way with note='{0}'".format(d))
 
     def test_relation(self):
         assert not self.p.relation(None, {}, []), ("relation with no note")
         for d in self.note_gen_err:
-            self.check_err(self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d))
+            self.check_err(self.p.relation(None, {"note": d}, []), ("relation with note='{0}'".format(d)))
         for d in self.note_gen_no_err:
-            assert not self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d)
+            assert not self.p.relation(None, {"note": d}, []), ("relation with note='{0}'".format(d))

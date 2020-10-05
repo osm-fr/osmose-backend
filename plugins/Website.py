@@ -99,19 +99,19 @@ class Test(TestPluginCommon):
         p.init(None)
 
         test_url = "www.openstreetmap.org"
-        for bad in (u"%s" % test_url,
-                    u"://%s" % test_url,
-                    u" %s " % test_url):
+        for bad in ("{0}".format(test_url),
+                    "://{0}".format(test_url),
+                    " {0} ".format(test_url)):
             # Check the bad url's error and fix
             err = p.node(None, {"website": bad})
-            self.check_err(err, ("website='%s'" % bad))
-            self.assertEqual(err[0]["fix"][0]["website"], "https://%s" % test_url)
-            self.assertEqual(err[0]["fix"][1]["website"], "http://%s" % test_url)
+            self.check_err(err, ("website='{0}'".format(bad)))
+            self.assertEqual(err[0]["fix"][0]["website"], "https://{0}".format(test_url))
+            self.assertEqual(err[0]["fix"][1]["website"], "http://{0}".format(test_url))
 
         # Verify we get no error for other correct URLs
-        for good in (u"ftp://%s" % test_url,
-                     u"http://%s" % test_url,
-                     u"https://%s" % test_url):
-            assert not p.node(None, {"website": good}), ("website='%s'" % good)
+        for good in ("ftp://{0}".format(test_url),
+                     "http://{0}".format(test_url),
+                     "https://{0}".format(test_url)):
+            assert not p.node(None, {"website": good}), ("website='{0}'".format(good))
 
         assert not p.node(None, {u"url": u"http://ancien-geodesie.ign.fr/fiche_point_OM.asp?num_site=9712301&#38;no_ptg=04"})

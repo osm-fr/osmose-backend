@@ -64,7 +64,7 @@ the tag `name:left=*` and `name:right=*`.'''))
             return
 
         if ';' in tags["name"]:
-            return {"class": 705, "subclass": 0, "text": {"en": "name=%s" % tags["name"]}}
+            return {"class": 705, "subclass": 0, "text": {"en": "name={0}".format(tags["name"])}}
 
         if self.HighwayOnly and u"highway" not in tags:
             return
@@ -72,9 +72,9 @@ the tag `name:left=*` and `name:right=*`.'''))
             return
 
         if not self.allowSlash and '/' in tags["name"] and not self.streetSubNumberRe.match(tags["name"]):
-            return {"class": 705, "subclass": 1, "text": {"en": "name=%s" % tags["name"]}}
+            return {"class": 705, "subclass": 1, "text": {"en": "name={0}".format(tags["name"])}}
         if '+' in tags["name"][0:-1]:
-            return {"class": 705, "subclass": 2, "text": {"en": "name=%s" % tags["name"]}}
+            return {"class": 705, "subclass": 2, "text": {"en": "name={0}".format(tags["name"])}}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon, with_options

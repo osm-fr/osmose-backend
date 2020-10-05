@@ -176,7 +176,7 @@ class TestPluginCommon(unittest.TestCase):
                 self.check_array([error["fix"]], log)
             for k in error.keys():
                 if k not in ("class", "subclass", "text", "fix", "allow_fix_override"):
-                    assert False, "key '%s' is not accepted in error: %s" % (k, error)
+                    assert False, "key '{0}' is not accepted in error: {1}".format(k, error)
 
         if expected:
             found = False

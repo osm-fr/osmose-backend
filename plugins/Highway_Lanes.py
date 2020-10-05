@@ -146,7 +146,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                 if tag.startswith(base):
                     try:
                         int(tags_lanes[tag])
-                        err.append({"class": 31609, "subclass": 1 + stablehash64(tag), "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
+                        err.append({"class": 31609, "subclass": 1 + stablehash64(tag), "text": {'en': '{0}={1}'.format(tag, tags_lanes[tag]) }})
                     except ValueError:
                         # Ok, should not be an integer
                         pass
@@ -201,7 +201,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                         number[star][direction] - non_fullwidth_lanes_number_star != \
                         n_lanes[direction] - non_fullwidth_lanes_number_tag:
                     err.append({"class": 31608, "subclass": 0 + stablehash64(direction + '|' + star), "text": {
-                        "en": "(lanes(%s)=%s) - (non fullwidth=%s) != (lanes(%s)=%s) - (non fullwidth=%s)" % (
+                        "en": "(lanes({0})={1}) - (non fullwidth={2}) != (lanes({3})={4}) - (non fullwidth={5})".format(
                             star+":*"+direction, number[star][direction], non_fullwidth_lanes_number_star,
                             tag, n_lanes[direction], non_fullwidth_lanes_number_tag) }})
                 elif n_lanes.get(direction) is None and number[star].get(direction) is not None:

@@ -79,10 +79,10 @@ class Test(TestPluginCommon):
                        (u"de l '", u"de l'"),
                        (u"l ' été", u"l'été"),
                       ]:
-            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
+            self.check_err(a.node(None, {"name": d}), ("name='{0}'".format(d)))
             self.assertEqual(a.node(None, {"name": d})["fix"]["name"], f)
-            assert not a.node(None, {"name": f}), ("name='%s'" % f)
+            assert not a.node(None, {"name": f}), ("name='{0}'".format(f))
 
-            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
-            self.check_err(a.relation(None, {"name": d}, None), ("name='%s'" % d))
-            assert not a.node(None, {"amenity": d}), ("amenity='%s'" % d)
+            self.check_err(a.way(None, {"name": d}, None), ("name='{0}'".format(d)))
+            self.check_err(a.relation(None, {"name": d}, None), ("name='{0}'".format(d)))
+            assert not a.node(None, {"amenity": d}), ("amenity='{0}'".format(d))

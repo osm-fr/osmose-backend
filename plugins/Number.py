@@ -88,18 +88,18 @@ class Test(TestPluginCommon):
         a = Number(None)
         a.init(None)
         for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft", "10'", "10'11\"", "1'9.8\"", "1.18\"", "-6"]:
-            assert not a.node(None, {"width":d}), ("width='%s'" % d)
+            assert not a.node(None, {"width":d}), ("width='{0}'".format(d))
 
         for d in ["3,75", "foo", "18,4m", "4810"]:
-            self.check_err(a.node(None, {"height":d}), ("height='%s'" % d))
-            self.check_err(a.way(None, {"height":d}, None), ("height='%s'" % d))
-            self.check_err(a.relation(None, {"height":d}, None), ("height='%s'" % d))
+            self.check_err(a.node(None, {"height":d}), ("height='{0}'".format(d)))
+            self.check_err(a.way(None, {"height":d}, None), ("height='{0}'".format(d)))
+            self.check_err(a.relation(None, {"height":d}, None), ("height='{0}'".format(d)))
 
         for d in ["foo", "18kph", "1", "30 km/h", "30 c"]:
-            self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d))
+            self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d)))
 
         for d in ["50", "FR:urban", "35 mph", "10 knots"]:
-            assert not a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d)
+            assert not a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d))
 
         t = {"maxspeed":"1", "waterway": "river"}
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
