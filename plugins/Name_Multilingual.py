@@ -66,7 +66,7 @@ class Name_Multilingual(Plugin):
             ]
             self.split = self.split_dj
 
-        self.lang_regex_script = list(map(lambda l: [l, regex.compile(r"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang))
+        self.lang_regex_script = list(map(lambda l: [l, regex.compile(r"^[\p{{Common}}{0}]+$".format(gen_regex(language2scripts[l])), flags=regex.V1)], lang))
 
     def filter_fix_already_existing(self, names, s):
         return list(filter(
@@ -144,9 +144,9 @@ class Name_Multilingual(Plugin):
 
     char_common = regex.compile(r"[\p{Common}]", flags=regex.V1)
     char_ma = {
-        'fr': regex.compile(r"[%s]" % gen_regex(language2scripts['fr']), flags=regex.V1),
-        'ar': regex.compile(r"[%s]" % gen_regex(language2scripts['ar']), flags=regex.V1),
-        'zgh': regex.compile(r"[%s]" % gen_regex(language2scripts['zgh']), flags=regex.V1),
+        'fr': regex.compile(r"[{0}]".format(gen_regex(language2scripts['fr'])), flags=regex.V1),
+        'ar': regex.compile(r"[{0}]".format(gen_regex(language2scripts['ar'])), flags=regex.V1),
+        'zgh': regex.compile(r"[{0}]".format(gen_regex(language2scripts['zgh'])), flags=regex.V1),
     }.items()
 
     def split_ma(self, name):

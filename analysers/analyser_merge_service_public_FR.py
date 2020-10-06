@@ -59,7 +59,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                     static1 = defaultTag,
                     static2 = {"source": self.source},
                     mapping1 = dict({"wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None}, **defaultTagMapping),
-                    text = lambda tags, fields: {"en": u"%s, %s (geocoded %s)" % (fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": u"%s, %s (géocodé %s)" % (fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])} )))
+                    text = lambda tags, fields: {"en": "{0}, {1} (geocoded {2})".format(fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": "{0}, {1} (géocodé {2})".format(fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])} )))
 
         self.accTable = {
             "ACC": "yes",

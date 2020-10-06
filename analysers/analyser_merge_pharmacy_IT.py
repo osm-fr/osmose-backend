@@ -67,4 +67,4 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
                         'operator': lambda res: italian_strings.normalize_pharmacy(res['DESCRIZIONEFARMACIA']),
                         'source:start_date': lambda res: self.date_format(res['DATAINIZIOVALIDITA'])
                     },
-                text = lambda tags, fields: {'en': '%s, %s' % (fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))
+                text = lambda tags, fields: {'en': '{0}, {1}'.format(fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))

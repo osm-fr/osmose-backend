@@ -65,7 +65,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                         "phone": "telephone",
                         "official_name": "service",
                     },
-                text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))
+                text = lambda tags, fields: {"en": "{0}, {1}".format(fields["service"], fields["adresse_geographique"])} )))
 
 
         OSM_DAYS_FR = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche', 'jours_feries']

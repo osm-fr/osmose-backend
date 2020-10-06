@@ -77,4 +77,4 @@ on the wiki. Add a node or add tags if already existing.''')
                         "capacity:charging": lambda res: res["nb_voitures_electriques"] if res["nb_voitures_electriques"] != "0" else None,
                         "maxheight": lambda res: int(res["hauteur_max"]) / 100 if res["hauteur_max"] != "N/A" else None,
                         "parking": lambda res: "surface" if res["type_ouvrage"] == "enclos_en_surface" else None},
-                    text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
+                    text = lambda tags, fields: {"en": "Parking {0}".format(tags["name"])} )))

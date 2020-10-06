@@ -53,7 +53,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
                         "fee": lambda res: "yes" if res["Pay_grat"] == "Payant" else "no",
                         "capacity": lambda res: res["Places"] if res["Places"] != "0" else None,
                         "parking": lambda res: "surface" if res["Ouvrage"] == "Plein air" else "underground" if res["Ouvrage"] == "Souterrain" else None},
-                    text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
+                    text = lambda tags, fields: {"en": "Parking {0}".format(tags["name"])} )))
 
 
 class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):

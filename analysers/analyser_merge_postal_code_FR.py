@@ -53,4 +53,4 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
                     mapping1 = {
                         "ref:INSEE": "Code_commune_INSEE",
                         "postal_code": "Code_postal"},
-                text = lambda tags, fields: {"en": u"Postal code %s for %s (INSEE:%s)" % (fields["Code_postal"], (fields["Nom_commune"] or "").strip(), fields["Code_commune_INSEE"])} )))
+                text = lambda tags, fields: {"en": "Postal code {0} for {1} (INSEE:{2})".format(fields["Code_postal"], (fields["Nom_commune"] or "").strip(), fields["Code_commune_INSEE"])} )))

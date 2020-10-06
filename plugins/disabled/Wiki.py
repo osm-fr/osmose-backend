@@ -61,21 +61,21 @@ class Wiki(Plugin):
         ret = []
         for tag in tags:
             if tag in self.tag_supported and tag not in self.tag_node:
-                ret.append((3140, 1, {"fr": u"Le tag \"%s\" ne s'applique pas aux nœuds" % tag, "en": u"Tag \"%s\" not for nodes" % tag}))
+                ret.append((3140, 1, {"fr": "Le tag \"{0}\" ne s'applique pas aux nœuds".format(tag), "en": "Tag \"{0}\" not for nodes".format(tag)}))
         return ret
 
     def way(self, data, tags, nds):
         ret = []
         for tag in tags:
             if tag in self.tag_supported and tag not in self.tag_way and tag not in self.tag_area:
-                ret.append((3140, 2, {"fr": u"Le tag \"%s\" ne s'applique pas aux ways" % tag, "en": u"Tag \"%s\" not for ways" % tag}))
+                ret.append((3140, 2, {"fr": "Le tag \"{0}\" ne s'applique pas aux ways".format(tag), "en": "Tag \"{0}\" not for ways".format(tag)}))
         return ret
 
     def relation(self, data, tags, members):
         ret = []
         for tag in tags:
             if tag in self.tag_supported and tag not in self.tag_relation:
-                ret.append((3140, 3, {"fr": u"Le tag \"%s\" ne s'applique pas aux relations" % tag, "en": u"Tag \"%s\" not for relations" % tag}))
+                ret.append((3140, 3, {"fr": "Le tag \"{0}\" ne s'applique pas aux relations".format(tag), "en": "Tag \"{0}\" not for relations".format(tag)}))
         return ret
 
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     a.init(None)
     for d in [u"fsdkfjdklsfkleqnhkflerklg", u"sport"]:
         if a.node(None, {d:"a"}):
-            print("fail: %s" % d)
+            print("fail: {0}".format(d))
     for d in [u"building"]:
         if not a.node(None, {d:"a"}):
-            print("nofail: %s" % d)
+            print("nofail: {0}".format(d))

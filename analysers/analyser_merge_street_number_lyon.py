@@ -37,4 +37,4 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
                 generate = Generate(
                     static2 = {"source": self.source},
                     mapping1 = {"addr:housenumber": "numero"},
-                    text = lambda tags, fields: {"en": u"%s %s" % (fields["numero"], fields["voie"])} )))
+                    text = lambda tags, fields: {"en": u"{0} {1}".format(fields["numero"], fields["voie"])} )))

@@ -26,7 +26,6 @@ class Josm_transport(PluginMapCSS):
         self.errors[9014008] = self.def_class(item = 9014, level = 3, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The operator should be on the transport lines and not on the stops'))
         self.errors[9014009] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Missing transportation mode, add a tag route = bus/coach/tram/etc'))
         self.errors[9014010] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Missing transportation mode, change tag route to route_master'))
-        self.errors[9014017] = self.def_class(item = 9014, level = 3, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Missing ref tag for line number on a public_transport relation'))
         self.errors[9014019] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('A bus stop is supposed to be a node'))
         self.errors[9014020] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The color of the public transport line should be in a colour tag'))
         self.errors[9014021] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The interval is invalid (try a number of minutes)'))
@@ -35,6 +34,7 @@ class Josm_transport(PluginMapCSS):
         self.errors[9014024] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Missing opening_hours tag'))
         self.errors[9014025] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Check the operator tag : this operator does not exist, it may be a typo'))
         self.errors[9014026] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Check the network tag : this network does not exist, it may be a typo'))
+        self.errors[9014027] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The line variant does not belong to any line, add it to the route_master relation'))
 
         self.re_181de9b6 = re.compile(r'^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$')
         self.re_25554804 = re.compile(r'STIF|Kéolis|Véolia')
@@ -320,24 +320,6 @@ class Josm_transport(PluginMapCSS):
                 # assertMatch:"relation type=route route=bus"
                 err.append({'class': 21403, 'subclass': 0, 'text': mapcss.tr('Missing operator tag on a public_transport relation')})
 
-        # relation.pt_route[!ref]
-        # relation.pt_route_master[!ref]
-        if True:
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, 'ref'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, 'ref'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # throwWarning:tr("Missing ref tag for line number on a public_transport relation")
-                # assertNoMatch:"relation type=route route=bus ref=3"
-                # assertMatch:"relation type=route route=bus"
-                err.append({'class': 9014017, 'subclass': 1396643784, 'text': mapcss.tr('Missing ref tag for line number on a public_transport relation')})
-
         # relation.pt_route[!from]
         # relation.pt_route[!to]
         if True:
@@ -440,7 +422,12 @@ class Josm_transport(PluginMapCSS):
                 err.append({'class': 9014019, 'subclass': 1590282811, 'text': mapcss.tr('A bus stop is supposed to be a node')})
 
         # relation.pt_route!.route_ok
-        # Use undeclared class pt_route, route_ok
+        if True:
+            match = False
+            # Skip selector using undeclared class pt_route, route_ok
+            if match:
+                # throwError:tr("The line variant does not belong to any line, add it to the route_master relation")
+                err.append({'class': 9014027, 'subclass': 1286525207, 'text': mapcss.tr('The line variant does not belong to any line, add it to the route_master relation')})
 
         # relation.pt_route[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
         # relation.pt_route_master[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
@@ -560,8 +547,6 @@ class Test(TestPluginCommon):
         self.check_err(n.relation(data, {'route': 'bus', 'type': 'route'}, []), expected={'class': 21402, 'subclass': 0})
         self.check_not_err(n.relation(data, {'operator': 'BiBiBus', 'route': 'bus', 'type': 'route'}, []), expected={'class': 21403, 'subclass': 0})
         self.check_err(n.relation(data, {'route': 'bus', 'type': 'route'}, []), expected={'class': 21403, 'subclass': 0})
-        self.check_not_err(n.relation(data, {'ref': '3', 'route': 'bus', 'type': 'route'}, []), expected={'class': 9014017, 'subclass': 1396643784})
-        self.check_err(n.relation(data, {'route': 'bus', 'type': 'route'}, []), expected={'class': 9014017, 'subclass': 1396643784})
         self.check_not_err(n.relation(data, {'from': 'A', 'route': 'bus', 'to': 'B', 'type': 'route'}, []), expected={'class': 21405, 'subclass': 0})
         self.check_err(n.relation(data, {'from': 'A', 'route': 'bus', 'type': 'route'}, []), expected={'class': 21405, 'subclass': 0})
         self.check_err(n.relation(data, {'route': 'bus', 'to': 'B', 'type': 'route'}, []), expected={'class': 21405, 'subclass': 0})

@@ -58,7 +58,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
                         "capacity:disabled": "np_pmr",
                         "name": "nom",
                         "operator": "exploit"},
-                    text = lambda tags, fields: {"en": u"Parking %s" % fields[u"nom"]} )))
+                    text = lambda tags, fields: {"en": "Parking {0}".format(fields[u"nom"])} )))
 
 
 class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):

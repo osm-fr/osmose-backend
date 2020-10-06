@@ -62,6 +62,7 @@ FROM (
       nodes.tags?'noexit' OR
       (nodes.tags?'highway' AND nodes.tags->'highway' IN ('turning_circle', 'bus_stop')) OR
       (nodes.tags?'railway' AND nodes.tags->'railway' IN ('subway_entrance')) OR
+      (nodes.tags?'public_transport' AND nodes.tags->'public_transport' IN ('platform')) OR
       nodes.tags?'amenity' OR
       nodes.tags?'barrier'
     )

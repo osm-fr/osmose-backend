@@ -292,4 +292,4 @@ if __name__ == "__main__":
     a.init(None)
     for d in [u"Citroën"]:
         if not a.node(None, {"name":d}):
-            print("fail: %s" % d)
+            print("fail: {0}".format(d))

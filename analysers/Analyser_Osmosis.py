@@ -181,7 +181,7 @@ ANALYZE {0}.buildings;
     def analyser(self):
         self.init_analyser()
         if self.classs != {} or self.classs_change != {}:
-            self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
+            self.logger.log(u"run osmosis all analyser {0}".format(self.__class__.__name__))
             self.error_file.analyser(self.timestamp(), self.analyser_version())
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
@@ -206,7 +206,7 @@ ANALYZE {0}.buildings;
     def analyser_change(self):
         self.init_analyser()
         if self.classs != {}:
-            self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
+            self.logger.log(u"run osmosis base analyser {0}".format(self.__class__.__name__))
             self.error_file.analyser(self.timestamp(), self.analyser_version())
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
@@ -216,7 +216,7 @@ ANALYZE {0}.buildings;
             finally:
                 self.error_file.analyser_end()
         if self.classs_change != {}:
-            self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
+            self.logger.log(u"run osmosis change analyser {0}".format(self.__class__.__name__))
             self.error_file.analyser(self.timestamp(), self.analyser_version(), change=True)
             try:
                 if hasattr(self, 'requires_tables_diff'):
@@ -277,7 +277,7 @@ ANALYZE {0}.buildings;
                     self.requires_tables_build(["buildings"])
                     self.create_view_not_touched('buildings', 'W')
                 else:
-                    raise Exception('Unknow table name %s' % (table, ))
+                    raise Exception('Unknow table name {0}'.format(table))
                 self.giscurs.execute('COMMIT')
                 self.giscurs.execute('BEGIN')
 
@@ -305,9 +305,9 @@ ANALYZE {0}.buildings;
 
     def init_analyser(self):
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
-            self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
+            self.logger.log(u"Warning: duplicate class in {0}".format(self.__class__.__name__))
 
-        self.giscurs.execute("SET search_path TO %s,public;" % (self.config.db_schema_path or self.config.db_schema))
+        self.giscurs.execute("SET search_path TO {0},public;".format(self.config.db_schema_path or self.config.db_schema))
 
 
     def dump_class(self, classs):
@@ -414,7 +414,7 @@ WHERE
         try:
             self.giscurs.execute(sql)
         except:
-            self.logger.err(u"sql=%s" % sql)
+            self.logger.err("sql={0}".format(sql))
             raise
 
         if callback:
@@ -427,13 +427,13 @@ WHERE
                     try:
                         ret = callback(res)
                     except:
-                        self.logger.err("res=%s" % str(res))
-                        self.logger.err("ret=%s" % str(ret))
+                        self.logger.err("res={0}".format(res))
+                        self.logger.err("ret={0}".format(ret))
                         raise
 
     def run0(self, sql, callback = None):
         caller = getframeinfo(stack()[1][0])
-        self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
+        self.logger.log("{0}:{1} sql".format(os.path.basename(caller.filename), caller.lineno))
         self.run00(sql, callback)
 
     def run(self, sql, callback = None):
@@ -459,10 +459,10 @@ WHERE
 
         caller = getframeinfo(stack()[1][0])
         if callback:
-            self.logger.log(u"%s:%d xml generation" % (os.path.basename(caller.filename), caller.lineno))
+            self.logger.log("{0}:{1} xml generation".format(os.path.basename(caller.filename), caller.lineno))
             self.run00(sql, callback_package)
         else:
-            self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
+            self.logger.log("{0}:{1} sql".format(os.path.basename(caller.filename), caller.lineno))
             self.run00(sql)
 
 
@@ -608,7 +608,7 @@ class Test(TestAnalyserOsmosis):
                 if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
-                    self.xml_res_file = self.default_xml_res_path + "normal/%s.xml" % name
+                    self.xml_res_file = self.default_xml_res_path + "normal/{0}.xml".format(name)
                     self.analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
@@ -641,7 +641,7 @@ class Test(TestAnalyserOsmosis):
                 if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
-                    self.xml_res_file = self.default_xml_res_path + "diff_empty/%s.xml" % name
+                    self.xml_res_file = self.default_xml_res_path + "diff_empty/{0}.xml".format(name)
                     self.analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
@@ -677,7 +677,7 @@ class Test(TestAnalyserOsmosis):
                 if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
-                    self.xml_res_file = self.default_xml_res_path + "diff_full/%s.xml" % name
+                    self.xml_res_file = self.default_xml_res_path + "diff_full/{0}.xml".format(name)
                     self.analyser_conf.error_file = IssuesFileOsmose.IssuesFileOsmose(self.xml_res_file)
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
@@ -702,9 +702,9 @@ class Test(TestAnalyserOsmosis):
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     normal_xml = (self.default_xml_res_path +
-                                "normal/%s.xml" % name)
+                                "normal/{0}.xml".format(name))
                     change_xml = (self.default_xml_res_path +
-                                "diff_full/%s.xml" % name)
+                                "diff_full/{0}.xml".format(name))
 
                     print(normal_xml, change_xml)
                     self.compare_results(normal_xml, change_xml, convert_checked_to_normal=True)

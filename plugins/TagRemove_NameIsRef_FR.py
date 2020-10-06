@@ -51,7 +51,7 @@ class TagRemove_NameIsRef_FR(Plugin):
         if ref:
             ref_src = ref.group(1)
             ref_dest = ref.group(2)
-            if " la %s" % ref_src in tags["name"] or " de %s" % ref_src in tags["name"] or " du %s" % ref_src in tags["name"]:
+            if " la {0}".format(ref_src) in tags["name"] or " de {0}".format(ref_src) in tags["name"] or " du {0}".format(ref_src) in tags["name"]:
                 return
             if "ancienne" in tags["name"]:
                 return {"class": 904}
@@ -63,7 +63,7 @@ class TagRemove_NameIsRef_FR(Plugin):
             return {"class": 904, "fix": fix}
 
         if self.ReRefRoute2.match(tags["name"]):
-            return {"class": 904, "subclass": 1, "text": {"en": "name=%s" % tags["name"]}}
+            return {"class": 904, "subclass": 1, "text": {"en": "name={0}".format(tags["name"])}}
 
 
 ###########################################################################
@@ -84,20 +84,20 @@ class Test(TestPluginCommon):
         for (n, gen_err, f, r) in name:
             rdp = a.way(None, {"name": n, "highway": "H"}, None)
             if gen_err:
-                self.check_err(rdp, ("name='%s'" % n))
+                self.check_err(rdp, ("name='{0}'".format(n)))
             else:
-                assert not rdp, ("name='%s'" % n)
+                assert not rdp, ("name='{0}'".format(n))
 
             if f:
                 fix1 = rdp["fix"]["~"]["name"]
-                self.assertEqual(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+                self.assertEqual(fix1, f, "name='{0}' - fix = wanted='{1}' / got='{2}'".format(n, f, fix1))
             elif gen_err and r:
                 fix1 = rdp["fix"]["-"]
-                self.assertEqual(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+                self.assertEqual(fix1, ["name"], "name='{0}' - fix = wanted='{1}' / got='{2}'".format(n, f, fix1))
 
             if r:
                 fix2 = rdp["fix"]["+"]["ref"]
-                self.assertEqual(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
+                self.assertEqual(fix2, r, "ref='{0}' - fix = wanted='{1}' / got='{2}'".format(n, r, fix2))
 
             assert not a.way(None, {"name": n, "highway": "H", "ref": "N10"}, None)
             assert not a.way(None, {"name": n}, None)

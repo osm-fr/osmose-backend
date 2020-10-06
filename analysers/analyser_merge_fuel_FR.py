@@ -67,4 +67,4 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                             ))),
                         "hgv:lanes": lambda res: "yes" if res["services"] and "Piste poids lourds" in res["services"] else None,
                         "vending": lambda res: "fuel" if res["services"] and "Automate CB 24/24" in res["services"] else None},
-                text = lambda tags, fields: {"en": u"%s, %s" % (fields["addr"], fields["city"])} )))
+                text = lambda tags, fields: {"en": "{0}, {1}".format(fields["addr"], fields["city"])} )))

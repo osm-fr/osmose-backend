@@ -45,7 +45,7 @@ tag.'''))
                 roles.append(member["role"])
 
         if len(roles) > 0:
-            return {"class": 31700, "subclass": 1, "text": {"en": "role=%s" % ', '.join(roles)}}
+            return {"class": 31700, "subclass": 1, "text": {"en": "role={0}".format(', '.join(roles))}}
 
 
 ###########################################################################

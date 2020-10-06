@@ -59,6 +59,8 @@ class Analyser_Sax(Analyser):
         return SourceVersion.version(*([self.__class__] + list(map(lambda p: p.__class__, self.plugins))))
 
     def analyser(self):
+        self.logger.log("run sax all")
+
         self._load_output(change=self.parser.is_change())
         try:
             self._run_analyse()
@@ -67,28 +69,33 @@ class Analyser_Sax(Analyser):
             self._close_output()
 
     def analyser_resume(self, timestamp, already_issued_objects):
+        self.logger.log("run sax changed")
+
         self.parser.set_filter_since_timestamp(timestamp)
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
         self._load_output(change=True)
-        self._run_analyse()
 
-        if timestamp:
-            filtered_nodes = set(self.parser.filtered_nodes())
-            for id in self.already_issued_objects['N']:
-                if id not in filtered_nodes:
-                    self.error_file.delete('node', id)
-            filtered_ways = set(self.parser.filtered_ways())
-            for id in self.already_issued_objects['W']:
-                if id not in filtered_ways:
-                    self.error_file.delete('way', id)
-            filtered_relations = set(self.parser.filtered_relations())
-            for id in self.already_issued_objects['R']:
-                if id not in filtered_relations:
-                    self.error_file.delete('relation', id)
+        try:
+            self._run_analyse()
+            self._close_plugins()
 
-        self._close_output()
+            if timestamp:
+                filtered_nodes = set(self.parser.filtered_nodes())
+                for id in self.already_issued_objects['N']:
+                    if id not in filtered_nodes:
+                        self.error_file.delete('node', id)
+                filtered_ways = set(self.parser.filtered_ways())
+                for id in self.already_issued_objects['W']:
+                    if id not in filtered_ways:
+                        self.error_file.delete('way', id)
+                filtered_relations = set(self.parser.filtered_relations())
+                for id in self.already_issued_objects['R']:
+                    if id not in filtered_relations:
+                        self.error_file.delete('relation', id)
+        finally:
+            self._close_output()
 
     ################################################################################
     #### Useful functions
@@ -201,7 +208,7 @@ class Analyser_Sax(Analyser):
                         {"position": [data], "node": [data]},
                         allow_override = allow_fix_override)
                 except:
-                    self._err("Error on error %s from %s" % (str(e), str(err)))
+                    self._err("Error on error {0} from {1}".format(str(e), str(err)))
                     raise
 
     def NodeUpdate(self, data):
@@ -258,7 +265,7 @@ class Analyser_Sax(Analyser):
                         {"position": [node], "way": [data]},
                         allow_override = allow_fix_override)
                 except:
-                    self._err("Error on error %s from %s" % (str(e), str(err)))
+                    self._err("Error on error {0} from {1}".format(str(e), str(err)))
                     raise
 
     def WayUpdate(self, data):
@@ -337,7 +344,7 @@ class Analyser_Sax(Analyser):
                         {"position": [node], "relation": [data]},
                         allow_override = allow_fix_override)
                 except:
-                    self._err("Error on error %s from %s" % (str(e), str(err)))
+                    self._err("Error on error {0} from {1}".format(str(e), str(err)))
                     raise
 
     def RelationUpdate(self, data):
@@ -439,7 +446,7 @@ class Analyser_Sax(Analyser):
                 # Liste generated issues
                 for (cl, v) in self.plugins[pluginClazz.__name__].errors.items():
                     if cl in self._Err:
-                        raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
+                        raise Exception("class {0} already present as item {1}".format(cl, self._Err[cl]['item']))
                     self._Err[cl] = v
 
     ################################################################################

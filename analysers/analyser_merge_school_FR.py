@@ -98,8 +98,8 @@ administrative schools for a single physical school.''')
     def text(self, tags, fields):
         lib = ', '.join(filter(lambda x: x and x != "None", [fields["Appellation officielle"], fields["Adresse"], fields["Lieu dit"], fields["Boite postale"], fields["Code postal"], fields["Localite d'acheminement"], fields["Commune"]]))
         return {
-            "en": lib + " (positioned: %s, matching: %s)" % (self.School_FR_loc[fields["Localisation"]]["en"], self.School_FR_app[fields[u"Qualité d'appariement"]]["en"]),
-            "fr": lib + " (position : %s, appariement : %s)" % (self.School_FR_loc[fields["Localisation"]]["fr"], self.School_FR_app[fields[u"Qualité d'appariement"]]["fr"]),
+            "en": lib + " (positioned: {0}, matching: {1})".format(self.School_FR_loc[fields["Localisation"]]["en"], self.School_FR_app[fields[u"Qualité d'appariement"]]["en"]),
+            "fr": lib + " (position : {0}, appariement : {1})".format(self.School_FR_loc[fields["Localisation"]]["fr"], self.School_FR_app[fields[u"Qualité d'appariement"]]["fr"]),
         }
 
     School_FR_loc = {

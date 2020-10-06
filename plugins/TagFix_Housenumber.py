@@ -98,11 +98,11 @@ and `potential`.'''))
             if any(filter(lambda x: x.startswith("addr:") and x not in ('addr:interpolation', 'addr:inclusion'), tags.keys())):
                 err.append({"class": 14, "subclass": 1})
             if interpolation not in ('even', 'odd', 'all', 'alphabetic') and not interpolation.isdigit():
-                err.append({"class": 15, "subclass": 1, "text": {'en': 'addr:interpolation=%s' % [interpolation]}})
+                err.append({"class": 15, "subclass": 1, "text": {'en': 'addr:interpolation={0}'.format(interpolation)}})
 
         inclusion = tags.get("addr:inclusion")
         if inclusion and inclusion not in ('actual', 'estimate', 'potential'):
-            err.append({"class": 15, "subclass": 2, "text": {'en': 'addr:inclusion=%s' % [inclusion]}})
+            err.append({"class": 15, "subclass": 2, "text": {'en': 'addr:inclusion={0}'.format(inclusion)}})
 
         return err
 

@@ -83,7 +83,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                         "fee": lambda fields: guess_fee(fields["acces_recharge_grouped"]),
                         "opening_hours": lambda fields: guess_opening_hours(fields["accessibilité_grouped"]),
                     },
-                    text=lambda tags, fields: {"en": "%s, %s" % (fields["n_station"], fields["ad_station"])})))
+                    text=lambda tags, fields: {"en": "{0}, {1}".format(fields["n_station"], fields["ad_station"])})))
 
         def guess_fee(text_fee):
             if text_fee is None:

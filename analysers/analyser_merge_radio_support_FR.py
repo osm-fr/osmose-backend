@@ -67,7 +67,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
                         "operator": lambda fields: self.owner[int(fields["TPO_ID"])] if fields["TPO_ID"] and int(fields["TPO_ID"]) in self.owner else None,
                         "height": lambda fields: fields["SUP_NM_HAUT"].replace(",", ".") if fields["SUP_NM_HAUT"] else None,
                         },
-                    text = lambda tags, fields: {"en": u"%s, address: %s, %s%s" % (
+                    text = lambda tags, fields: {"en": "{0}, address: {1}, {2}{3}".format(
                         (lambda x: self.Tour_Mat_Pylone[fields["NAT_ID"]] if x == u"Tour, mât et pylône" else x)(title),
                         ", ".join(filter(lambda x: x != "None", [fields["ADR_LB_LIEU"], fields["ADR_LB_ADD1"], fields["ADR_LB_ADD2"], fields["ADR_LB_ADD3"],fields["ADR_NM_CP"]])),
                         (lambda x: self.communeNameIndexedByInsee[x] if x in self.communeNameIndexedByInsee else x)(fields["COM_CD_INSEE"]),

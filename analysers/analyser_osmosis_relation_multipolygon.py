@@ -224,13 +224,13 @@ a polygon or a part of a multipolygon as outer role.'''),
 
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "subclass":stablehash64(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "%s=(%s,%s)" % k, filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
+            "text": {"en": u", ".join(map(lambda k: "{0}=({1},{2})".format(*k), filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
         }
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.relation_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "%s=(%s)" % k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
+            "text": {"en": u", ".join(map(lambda k: "{0}=({1})".format(*k), filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
         self.callback40 = lambda res: {"class":4, "subclass":stablehash64(res[9]), "data":[self.way_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "%s=%s" % k, filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
+            "text": {"en": u", ".join(map(lambda k: "{0}={1}".format(*k), filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 
     def analyser_osmosis_full(self):

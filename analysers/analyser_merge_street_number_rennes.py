@@ -38,4 +38,4 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
                 generate = Generate(
                     static2 = {"source": self.source},
                     mapping1 = {"addr:housenumber": lambda res: res["numero"] + (res["suffixe"] if res["suffixe"] else "")},
-                    text = lambda tags, fields: {"en": u"%s%s %s" % (fields["numero"], (fields["suffixe"] if fields["suffixe"] else ""), fields["voie_nom"])} )))
+                    text = lambda tags, fields: {"en": "{0}{1} {2}".format(fields["numero"], (fields["suffixe"] if fields["suffixe"] else ""), fields["voie_nom"])} )))

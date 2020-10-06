@@ -41,9 +41,11 @@ class Josm_deprecated(PluginMapCSS):
         self.re_0f294fdf = re.compile(r'^[1-9][0-9]*$')
         self.re_1f92073a = re.compile(r'^(?i)fixme$')
         self.re_27210286 = re.compile(r'^.$')
+        self.re_2f881233 = re.compile(r'^(?i)(bbq)$')
         self.re_2fd4cdcf = re.compile(r'^(crossover|siding|spur|yard)$')
         self.re_300dfa36 = re.compile(r'^[^t][^i][^g].+_[0-9]$')
         self.re_3185ac6d = re.compile(r'^note_[0-9]$')
+        self.re_340a2b31 = re.compile(r'(?i)(;bbq|bbq;)')
         self.re_34c15d62 = re.compile(r'^..$')
         self.re_493fd1a6 = re.compile(r'^is_in:.*$')
         self.re_51df498f = re.compile(r'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|slipway|yes)$')
@@ -55,13 +57,14 @@ class Josm_deprecated(PluginMapCSS):
         self.re_6d27b157 = re.compile(r'^description_[0-9]$')
         self.re_787405b1 = re.compile(r'^(yes|no|limited)$')
         self.re_7a045a17 = re.compile(r'^(irrigation|transportation|water_power)$')
+        self.re_7d409ed5 = re.compile(r'(?i)(_bbq)')
 
 
     def node(self, data, tags):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_diaper___checked = set_diaper_checked = set_samecolor = False
+        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -1482,10 +1485,10 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1064658218, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[building:color][building:colour]!.samebuildingcolor
-        # Use undeclared class samebuildingcolor
+        # Rule Blacklisted
 
         # *[roof:color][roof:colour]!.sameroofcolor
-        # Use undeclared class sameroofcolor
+        # Rule Blacklisted
 
         # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
@@ -4632,13 +4635,45 @@ class Josm_deprecated(PluginMapCSS):
                     'climbing:grade:UIAA'])
                 }})
 
+        # *[cuisine][cuisine=~/^(?i)(bbq)$/]
+        if ('cuisine' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cuisine') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2f881233), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setbbq_autofix
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"cuisine=barbecue"
+                # fixAdd:"cuisine=barbecue"
+                set_bbq_autofix = True
+                err.append({'class': 9002001, 'subclass': 1943338875, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['cuisine','barbecue']])
+                }})
+
+        # *[cuisine=~/(?i)(;bbq|bbq;)/][cuisine!~/(?i)(_bbq)/]
+        if ('cuisine' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_340a2b31), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_7d409ed5, '(?i)(_bbq)'), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","cuisine=bbq")
+                # suggestAlternative:"cuisine=barbecue"
+                err.append({'class': 9002001, 'subclass': 1958782130, 'text': mapcss.tr('{0} is deprecated', 'cuisine=bbq')})
+
         return err
 
     def way(self, data, tags, nds):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_diaper___checked = set_diaper_checked = set_samecolor = False
+        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -6111,10 +6146,10 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1064658218, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[building:color][building:colour]!.samebuildingcolor
-        # Use undeclared class samebuildingcolor
+        # Rule Blacklisted
 
         # *[roof:color][roof:colour]!.sameroofcolor
-        # Use undeclared class sameroofcolor
+        # Rule Blacklisted
 
         # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
@@ -9203,13 +9238,61 @@ class Josm_deprecated(PluginMapCSS):
                     'climbing:grade:UIAA'])
                 }})
 
+        # *[cuisine][cuisine=~/^(?i)(bbq)$/]
+        if ('cuisine' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cuisine') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2f881233), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setbbq_autofix
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"cuisine=barbecue"
+                # fixAdd:"cuisine=barbecue"
+                # assertMatch:"way cuisine=BBQ"
+                # assertMatch:"way cuisine=bbq"
+                # assertNoMatch:"way cuisine=bbq;pizza"
+                # assertNoMatch:"way cuisine=korean_bbq"
+                # assertNoMatch:"way cuisine=korean_bbq;bbq"
+                # assertNoMatch:"way cuisine=pasta;bbq;pizza"
+                # assertNoMatch:"way cuisine=pizza;Bbq"
+                # assertNoMatch:"way cuisine=pizza;bbq"
+                set_bbq_autofix = True
+                err.append({'class': 9002001, 'subclass': 1943338875, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['cuisine','barbecue']])
+                }})
+
+        # *[cuisine=~/(?i)(;bbq|bbq;)/][cuisine!~/(?i)(_bbq)/]
+        if ('cuisine' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_340a2b31), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_7d409ed5, '(?i)(_bbq)'), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","cuisine=bbq")
+                # suggestAlternative:"cuisine=barbecue"
+                # assertNoMatch:"way cuisine=BBQ"
+                # assertNoMatch:"way cuisine=bbq"
+                # assertMatch:"way cuisine=bbq;pizza"
+                # assertNoMatch:"way cuisine=korean_bbq"
+                # assertNoMatch:"way cuisine=korean_bbq;bbq"
+                # assertMatch:"way cuisine=pasta;bbq;pizza"
+                # assertMatch:"way cuisine=pizza;Bbq"
+                # assertMatch:"way cuisine=pizza;bbq"
+                err.append({'class': 9002001, 'subclass': 1958782130, 'text': mapcss.tr('{0} is deprecated', 'cuisine=bbq')})
+
         return err
 
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_diaper___checked = set_diaper_checked = set_samecolor = False
+        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -10590,10 +10673,10 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1064658218, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[building:color][building:colour]!.samebuildingcolor
-        # Use undeclared class samebuildingcolor
+        # Rule Blacklisted
 
         # *[roof:color][roof:colour]!.sameroofcolor
-        # Use undeclared class sameroofcolor
+        # Rule Blacklisted
 
         # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
@@ -13212,6 +13295,38 @@ class Josm_deprecated(PluginMapCSS):
                     'climbing:grade:UIAA'])
                 }})
 
+        # *[cuisine][cuisine=~/^(?i)(bbq)$/]
+        if ('cuisine' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cuisine') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2f881233), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setbbq_autofix
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"cuisine=barbecue"
+                # fixAdd:"cuisine=barbecue"
+                set_bbq_autofix = True
+                err.append({'class': 9002001, 'subclass': 1943338875, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['cuisine','barbecue']])
+                }})
+
+        # *[cuisine=~/(?i)(;bbq|bbq;)/][cuisine!~/(?i)(_bbq)/]
+        if ('cuisine' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_340a2b31), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_7d409ed5, '(?i)(_bbq)'), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","cuisine=bbq")
+                # suggestAlternative:"cuisine=barbecue"
+                err.append({'class': 9002001, 'subclass': 1958782130, 'text': mapcss.tr('{0} is deprecated', 'cuisine=bbq')})
+
         return err
 
 
@@ -13275,5 +13390,21 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'building': 'supermarket', 'building:type': 'church'}, [0]), expected={'class': 9002001, 'subclass': 1133239698})
         self.check_not_err(n.way(data, {'building': 'yes', 'building:type': 'church'}, [0]), expected={'class': 9002001, 'subclass': 1133239698})
         self.check_not_err(n.way(data, {'building:type': 'church'}, [0]), expected={'class': 9002001, 'subclass': 1133239698})
+        self.check_err(n.way(data, {'cuisine': 'BBQ'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_err(n.way(data, {'cuisine': 'bbq'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'bbq;pizza'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'korean_bbq'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'korean_bbq;bbq'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'pasta;bbq;pizza'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'pizza;Bbq'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'pizza;bbq'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
+        self.check_not_err(n.way(data, {'cuisine': 'BBQ'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_not_err(n.way(data, {'cuisine': 'bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_err(n.way(data, {'cuisine': 'bbq;pizza'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_not_err(n.way(data, {'cuisine': 'korean_bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_not_err(n.way(data, {'cuisine': 'korean_bbq;bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_err(n.way(data, {'cuisine': 'pasta;bbq;pizza'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_err(n.way(data, {'cuisine': 'pizza;Bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_err(n.way(data, {'cuisine': 'pizza;bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
         self.check_err(n.relation(data, {'fo': 'bar'}, []), expected={'class': 9002012, 'subclass': 518970721})
         self.check_not_err(n.relation(data, {'to': 'Berlin'}, []), expected={'class': 9002012, 'subclass': 518970721})

@@ -153,13 +153,13 @@ class TestAnalyser(unittest.TestCase):
         for k in sorted(d.keys()):
             v = d[k]
             if hasattr(v, 'items'):
-                s += "%s-%s-" % (k, TestAnalyser.dict_sort_key(v))
+                s += "{0}-{1}-".format(k, TestAnalyser.dict_sort_key(v))
             elif isinstance(v, list):
-                s += "%s-" % k
+                s += "{0}-".format(k)
                 for l in v:
-                    s += "%s_" % TestAnalyser.dict_sort_key(l)
+                    s += "{0}_".format(TestAnalyser.dict_sort_key(l))
             else:
-                s += "%s-%s-" % (k, v)
+                s += "{0}-{1}-".format(k, v)
         return s
 
     @staticmethod
@@ -192,9 +192,9 @@ class TestAnalyser(unittest.TestCase):
                 elif isinstance(a[k], list) and isinstance(b[k], list):
                     return TestAnalyser.compare_list(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 else:
-                    return "key '%s' is different: '%s' != '%s' [%s]" % (k, a[k], b[k], ctx)
+                    return "key '{0}' is different: '{1}' != '{2}' [{3}]".format(k, a[k], b[k], ctx)
         if len(a) != len(b):
-            return "length are different: %d != %d [%s]" % (len(a), len(b), ctx)
+            return "length are different: {0} != {1} [{2}]".format(len(a), len(b), ctx)
         return ""
 
 
@@ -202,18 +202,18 @@ class TestAnalyser(unittest.TestCase):
     def compare_dict(a, b, ctx=u""):
         for k in a.keys():
             if k not in b:
-                return "key '%s' is missing from b [%s]" % (k, ctx)
+                return "key '{0}' is missing from b [{1}]".format(k, ctx)
 
         for k in b.keys():
             if k not in a:
-                return "key '%s' is missing from a [%s]" % (k, ctx)
+                return "key '{0}' is missing from a [{1}]".format(k, ctx)
             if a[k] != b[k]:
                 if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
                     return TestAnalyser.compare_dict(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
                     return TestAnalyser.compare_list(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 else:
-                    return "key '%s' is different: '%s' != '%s' [%s]" % (k, a[k], b[k], ctx)
+                    return "key '{0}' is different: '{1}' != '{2}' [{3}]".format(k, a[k], b[k], ctx)
 
         return ""
 
@@ -375,11 +375,11 @@ class TestAnalyser(unittest.TestCase):
             xml_num = len(root_analyser.findall('error'))
 
         if num is not None:
-            self.assertEqual(xml_num, num, "Found %d errors instead of %d" % (xml_num, num))
+            self.assertEqual(xml_num, num, "Found {0} errors instead of {1}".format(xml_num, num))
         if min is not None:
-            self.assertGreaterEqual(xml_num, min, "Found %d errors instead of >= %d" % (xml_num, min))
+            self.assertGreaterEqual(xml_num, min, "Found {0} errors instead of >= {1}".format(xml_num, min))
         if max is not None:
-            self.assertLessEqual(xml_num, max, "Found %d errors instead of <= %d" % (xml_num, max))
+            self.assertLessEqual(xml_num, max, "Found {0} errors instead of <= {1}".format(xml_num, max))
 
 
 ###########################################################################

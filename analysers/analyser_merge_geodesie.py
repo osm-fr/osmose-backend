@@ -47,7 +47,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.init(
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques",
-            CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
+            CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
@@ -76,7 +76,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                         "ele": "ele"},
                     mapping2 = {
                         "description": "description"},
-                    text = lambda tags, fields: {"en": u"Survey point %s" % tags["ref"], "fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas %s" % tags["ref"]} )))
+                    text = lambda tags, fields: {"en": "Survey point {0}".format(tags["ref"]), "fr": "Repères géodésiques {0}".format(tags["ref"]), "es": "Señales geodésicas {0}".format(tags["ref"])} )))
 
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
@@ -89,7 +89,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.init(
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques-site",
-            CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
+            CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie_site.csv.bz2"),
                 header = False),
             Load("lon", "lat",
@@ -119,4 +119,4 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
                         "name": "name",
                         "network": "network"},
                     mapping2 = {"note": "note"},
-                    text = lambda tags, fields: {"en": u"Survey site %s - %s" % (fields["ref"], fields["name"]), "fr": u"Site géodésique %s - %s" % (fields["ref"], fields["name"]), "es": u"Sitio geodésico %s - %s" % (fields["ref"], fields["name"])} )))
+                    text = lambda tags, fields: {"en": "Survey site {0} - {1}".format(fields["ref"], fields["name"]), "fr": "Site géodésique {0} - {1}".format(fields["ref"], fields["name"]), "es": "Sitio geodésico {0} - {1}".format(fields["ref"], fields["name"])} )))

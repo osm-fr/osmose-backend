@@ -53,11 +53,11 @@ class Name_Local(Plugin):
             return
 
         if "name" in tags:
-            local_name = tags.get("name:%s" % self.Language)
+            local_name = tags.get("name:{0}".format(self.Language))
             if local_name and local_name != tags.get("name"):
                 return {"class": 50601, "subclass": 0}
         else:
-            local_name = tags.get("name:%s" % self.Language)
+            local_name = tags.get("name:{0}".format(self.Language))
             if local_name:
                 return {"class": 50602, "subclass": 0, "fix": {"+": {"name": local_name}}}
             else:

@@ -94,6 +94,7 @@ FROM
     NOT highways.is_construction AND
     (NOT highways.tags?'zone:maxspeed' OR NOT highways.tags->'zone:maxspeed' LIKE '%:{0}') AND
     (NOT highways.tags?'maxspeed' OR highways.tags->'maxspeed' = '{0}') AND
+    (NOT highways.tags?'bicycle_road' OR highways.tags->'bicycle_road' != 'yes') AND
     highways.linestring_proj && a3.geom AND
     ST_Length(ST_Intersection(highways.linestring_proj, a3.geom)) / ST_Length(highways.linestring) > 0.8
 WHERE

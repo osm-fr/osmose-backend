@@ -19,9 +19,11 @@ class Josm_highway(PluginMapCSS):
         self.errors[9004004] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('Unspecific highway type'))
         self.errors[9004006] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('deprecated tagging'))
         self.errors[9004008] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('wrong highway tag on a node'))
+        self.errors[9004009] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('missing tag'))
         self.errors[9004010] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[9004011] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
-        self.errors[9004012] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no'))
+        self.errors[9004011] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('suspicious tag combination'))
+        self.errors[9004012] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[9004013] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no'))
 
         self.re_015aabd5 = re.compile(r'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(r'^.*_link$')
@@ -93,13 +95,40 @@ class Josm_highway(PluginMapCSS):
                 err.append({'class': 9004010, 'subclass': 1385847744, 'text': mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # node[railway!=crossing][crossing!=no].is_in_railway.is_in_minor_road!.is_in_major_road
-        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+        if True:
+            match = False
+            # Skip selector using undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("pedestrian railway crossing without {0}","{0.tag}")
+                # fixAdd:"railway=crossing"
+                err.append({'class': 9004009, 'subclass': 18813378, 'text': mapcss.tr('pedestrian railway crossing without {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway','crossing']])
+                }})
 
         # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
-        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+        if True:
+            match = False
+            # Skip selector using undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("railway crossing without {0}","{0.tag}")
+                # fixAdd:"railway=level_crossing"
+                err.append({'class': 9004009, 'subclass': 1127761651, 'text': mapcss.tr('railway crossing without {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway','level_crossing']])
+                }})
 
         # node[highway=crossing][barrier=kerb].is_in_major_road
-        # Use undeclared class is_in_major_road
+        if ('barrier' in keys and 'highway' in keys):
+            match = False
+            # Skip selector using undeclared class is_in_major_road
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # suggestAlternative:"kerb=*"
+                err.append({'class': 9004011, 'subclass': 440952770, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         return err
 
@@ -236,7 +265,7 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"way highway=footway"
                 # assertNoMatch:"way highway=residential cycleway=lane"
                 # assertNoMatch:"way highway=residential maxspeed=20"
-                err.append({'class': 9004011, 'subclass': 469607562, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9004012, 'subclass': 469607562, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # way[footway=left][/^footway:/]
         # way[footway=right][/^footway:/]
@@ -353,7 +382,7 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"way footway=left footway:left:surface=asphalt"
                 # assertNoMatch:"way footway=left"
                 # assertNoMatch:"way footway=none"
-                err.append({'class': 9004012, 'subclass': 533671178, 'text': mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no')})
+                err.append({'class': 9004013, 'subclass': 533671178, 'text': mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no')})
 
         return err
 
@@ -396,18 +425,18 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'highway': 'crossing'}, [0]), expected={'class': 9004002, 'subclass': 1549110307})
         self.check_not_err(n.way(data, {'highway': 'residential'}, [0]), expected={'class': 9004004, 'subclass': 1729022478})
         self.check_err(n.way(data, {'highway': 'road'}, [0]), expected={'class': 9004004, 'subclass': 1729022478})
-        self.check_not_err(n.way(data, {'bicycle': 'yes', 'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_err(n.way(data, {'cycleway': 'lane', 'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'foot': 'yes', 'highway': 'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_err(n.way(data, {'highway': 'footway', 'maxspeed': '20'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'cycleway': 'lane', 'highway': 'residential'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
-        self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '20'}, [0]), expected={'class': 9004011, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'bicycle': 'yes', 'highway': 'cycleway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_err(n.way(data, {'cycleway': 'lane', 'highway': 'cycleway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'cycleway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'foot': 'yes', 'highway': 'footway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_err(n.way(data, {'highway': 'footway', 'maxspeed': '20'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'footway'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'cycleway': 'lane', 'highway': 'residential'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
+        self.check_not_err(n.way(data, {'highway': 'residential', 'maxspeed': '20'}, [0]), expected={'class': 9004012, 'subclass': 469607562})
         self.check_err(n.way(data, {'footway': 'both', 'footway:surface': 'asphalt'}, [0]), expected={'class': 9004006, 'subclass': 141262069})
-        self.check_err(n.way(data, {'footway': 'bar'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
-        self.check_not_err(n.way(data, {'footway': 'left', 'footway:left:surface': 'asphalt'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
-        self.check_not_err(n.way(data, {'footway': 'left'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
-        self.check_not_err(n.way(data, {'footway': 'none'}, [0]), expected={'class': 9004012, 'subclass': 533671178})
+        self.check_err(n.way(data, {'footway': 'bar'}, [0]), expected={'class': 9004013, 'subclass': 533671178})
+        self.check_not_err(n.way(data, {'footway': 'left', 'footway:left:surface': 'asphalt'}, [0]), expected={'class': 9004013, 'subclass': 533671178})
+        self.check_not_err(n.way(data, {'footway': 'left'}, [0]), expected={'class': 9004013, 'subclass': 533671178})
+        self.check_not_err(n.way(data, {'footway': 'none'}, [0]), expected={'class': 9004013, 'subclass': 533671178})

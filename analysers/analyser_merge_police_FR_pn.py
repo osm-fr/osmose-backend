@@ -54,4 +54,4 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
                         "phone": "telephone",
                         "official_name": "service",
                     },
-                text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))
+                text = lambda tags, fields: {"en": "{0}, {1}".format(fields["service"], fields["adresse_geographique"])} )))

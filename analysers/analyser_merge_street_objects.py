@@ -46,7 +46,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
         self.def_class_missing_official(item = 8360, id = classs, level = level, tags = ['merge', 'leisure'],
             title = T_('Unmapped {0}', T_(title)),
             detail = T_('Street object ({1}) detected by Mapillary, but no nearby "{0}" tagging.',
-                ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), T_(title)),
+                ', '.join(map(lambda kv: '{0}={1}'.format(kv[0], kv[1] if kv[1] else '*'), generateTags.items())), T_(title)),
             fix = T_('Map the corresponding object if the imagery is up-to-date and object detection is correct.'))
 
         self.init(

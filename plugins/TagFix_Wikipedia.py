@@ -112,7 +112,7 @@ the article. Same for accented letters. Letter must be readable.'''),
             elif m:
                 # tag 'wikipedia' seams to be an url
                 return [{"class": 30311, "subclass": 1, "text": T_("Use wikipedia={0}:*", m.group(2)),
-                         "fix": {wikipediaTag: "%s:%s" % (m.group(2), self.human_readable(m.group(3)))} }]
+                         "fix": {wikipediaTag: "{0}:{1}".format(m.group(2), self.human_readable(m.group(3)))} }]
 
             if not self.lang_regexp.match(tags[wikipediaTag]):
                 err.append({"class": 30312, "subclass": 2})
@@ -163,7 +163,7 @@ the article. Same for accented letters. Letter must be readable.'''),
                         value = tags[tag][len(suffix)+1:]
                     else:
                         value = self.human_readable(tags[tag])
-                    missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
+                    missing_primary.append({'-': [tag], '+':{wikipediaTag: "{0}:{1}".format(suffix, value)}})
             else:
                 err.append({"class": 30315, "subclass": stablehash64(tag), "text": T_("Invalid wikipedia suffix '{0}'", suffix) })
 
@@ -198,18 +198,18 @@ class Test(TestPluginCommon):
             else:
                 errors_fix.append(e.get("fix"))
         if has_error is False and errors_msg:  # pragma: no cover
-            print("FAIL:%s\nshould not have errors\nCurrent errors: %s\n" % (tags, errors_msg))
+            print("FAIL:{0}\nshould not have errors\nCurrent errors: {1}\n".format(tags, errors_msg))
             return 1
         if has_error and has_error not in errors_msg:  # pragma: no cover
-            print("FAIL:%s\nshould have error '%s'\ninstead of      %s\n" % (tags, has_error, errors_msg))
+            print("FAIL:{0}\nshould have error '{1}'\ninstead of      {2}\n".format(tags, has_error, errors_msg))
             return 1
         if fix and isinstance(fix, dict) and fix not in errors_fix:  # pragma: no cover
-            print("FAIL:%s\nshould have fix %s\ninstead of     %s\n" % (tags, fix, errors_fix))
+            print("FAIL:{0}\nshould have fix {1}\ninstead of     {2}\n".format(tags, fix, errors_fix))
             return 1
         if fix and not isinstance(fix, dict):
             for f in fix:
                 if f not in errors_fix:  # pragma: no cover
-                    print("FAIL:%s\nshould have fix %s\nin     %s\n" % (tags, f, errors_fix))
+                    print("FAIL:{0}\nshould have fix {1}\nin     {2}\n".format(tags, f, errors_fix))
                     return 1
         if has_error:
             self.check_err(errors, (tags, errors_msg))
@@ -364,7 +364,7 @@ class Test(TestPluginCommon):
                            has_error=False)
 
         if err:  # pragma: no cover
-            print("%i errors" % err)
+            print("{0} errors".format(err))
         assert not err
 
     def test_UA(self):

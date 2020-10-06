@@ -299,6 +299,12 @@ def rule_before_set(t, c):
     type = rule
     """
     c['declare_set'] = set()
+    return t
+
+def selector_before_use_set(t, c):
+    """
+    type = rule
+    """
     c['use_set'] = set()
     return t
 
@@ -324,6 +330,12 @@ def rule_after_set(t, c):
     """
     t['_declare_set'] = c['declare_set']
     del(c['declare_set'])
+    return t
+
+def selector_after_use_set(t, c):
+    """
+    type = selector
+    """
     t['_require_set'] = c['use_set']
     del(c['use_set'])
     return t
@@ -394,6 +406,7 @@ rewrite_rules_change_before = [
     # Set
     ('rule', rule_before_set),
     ('declaration', declaration_declare_set),
+    ('selector', selector_before_use_set),
     ('class_selector', class_selector_use_set),
 ]
 rewrite_rules_change_after = [
@@ -402,6 +415,7 @@ rewrite_rules_change_after = [
     ('rule', rule_after_flags),
     # Set
     ('rule', rule_after_set),
+    ('selector', selector_after_use_set),
     # Pythonize
     ('quoted', quoted_uncapture),
     ('functionExpression', functionExpression_runtime),
@@ -551,8 +565,6 @@ def to_p(t):
             return selectors_text + "\n# Rule Blacklisted\n"
         elif t.get('_flag'):
             return selectors_text + "\n# Part of rule not implemented\n"
-        elif not t['_require_set'].issubset(set_store):
-            return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         elif not is_meta_rule:
             main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z is not None, s.get('_main_tags')))), t['selectors'])))
             main_tags_None = any(map(lambda s: len(s) == 0, main_tags))
@@ -564,12 +576,7 @@ def to_p(t):
                 selectors_text + "\n" +
                 (("if (" + ") or (".join(sorted(map(lambda s: " and ".join(map(lambda z: "'" + z.replace("'", "\\'") + "' in keys", sorted(s))), main_tags))) + ")") if not main_tags_None else "if True") + ":\n" + # Quick fail
                 "    match = False\n" +
-                "".join(map(lambda s:
-                "    if not match:\n" +
-                "        capture_tags = {}\n" +
-                "        try: match = " + to_p(s) + "\n" +
-                "        except mapcss.RuleAbort: pass\n",
-                t['selectors'])) +
+                "".join(map(to_p, t['selectors'])) +
                 "    if match:\n" +
                 "        # " + "\n        # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
                 (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
@@ -587,8 +594,15 @@ def to_p(t):
     elif t['type'] == 'selector':
         if t['operator']:
             raise NotImplementedError(t)
+        elif not t['_require_set'].issubset(set_store):
+            return "    # Skip selector using undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         else:
-            return " and ".join(map(to_p, t['simple_selectors']))
+            return (
+                "    if not match:\n" +
+                "        capture_tags = {}\n" +
+                "        try: match = " + " and ".join(map(to_p, t['simple_selectors'])) + "\n" +
+                "        except mapcss.RuleAbort: pass\n"
+            )
     elif t['type'] == 'link_selector':
         if t['role']:
             raise NotImplementedError(t)

@@ -49,7 +49,7 @@ class Name_Local_JP(Plugin):
 
         if default or ja or en:
             if default:
-                if (ja or en) and not (default == ja or default == en or (ja and en and default == u"%s (%s)" % (ja, en))):
+                if (ja or en) and not (default == ja or default == en or (ja and en and default == "{0} ({1})".format(ja, en))):
                     return {"class": 50604, "subclass": 0}
             elif (ja or en):
                 return {"class": 50605, "subclass": 0, "fix": [{"+": {"name": ja}}, {"+": {"name": en}}]}
