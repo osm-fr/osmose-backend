@@ -1,24 +1,26 @@
+# 
 # Translators:
 # Ivan <freeExec@mail.ru>, 2020
+# Андрей Коваленко, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ivan <freeExec@mail.ru>, 2020\n"
+"Last-Translator: Андрей Коваленко, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/openstreetmap-france/teams/17462/ru/)\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: ../transport.validator.mapcss:15
 msgid "Uncompromising validation of transit data"
-msgstr ""
+msgstr "Валидатор транспорта"
 
 #: ../transport.validator.mapcss:56 ../transport.validator.mapcss:61
 msgid "Missing transportation mode, add a tag route = bus/coach/tram/etc"
-msgstr ""
+msgstr "Не указан вид транспорта, добавьте route = bus/subway/tram/другое"
 
 #: ../transport.validator.mapcss:67
 msgid "Missing transportation mode, change tag route to route_master"
-msgstr ""
+msgstr "Не указан вид транспорта, поменяйте route на route_master"
 
 #: ../transport.validator.mapcss:83
 msgid ""
@@ -55,6 +57,8 @@ msgstr "Это автобусная остановка или автостанц
 msgid ""
 "Specify if it is a stop (platform) or a location on the road (stop_position)"
 msgstr ""
+"Уточните назначение: остановка (platform) или место на дороге "
+"(stop_position)"
 
 #: ../transport.validator.mapcss:242
 msgid "Is this a bus stop? add the tag highway=bus_stop"
@@ -76,7 +80,7 @@ msgstr "operator должен быть на линии маршрута, а не
 msgid ""
 "The line variant does not belong to any line, add it to the route_master "
 "relation"
-msgstr ""
+msgstr "Вариант линии не фходит ни в одну линию. Добавте её в мастер-машрут"
 
 #: ../transport.validator.mapcss:289
 msgid "The stop is not served by any line, add it to a route relation"
@@ -93,6 +97,7 @@ msgid ""
 "Specify if it is a stop (platform) or a location on the rails "
 "(stop_position)"
 msgstr ""
+"Уточните назначение: платформа (platform) или точка на путях (stop_position)"
 
 #: ../transport.validator.mapcss:236 ../transport.validator.mapcss:243
 msgid "Missing legacy tag on a public transport stop"
@@ -104,30 +109,40 @@ msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"Теги network у маршрута и мастер-маршрута должны совпадать:route {0}, а "
+"route_master {1}"
 
 #: ../transport.validator.mapcss:134
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
 msgstr ""
+"Теги operator у маршрута и мастер-маршрута должны совпадать:route {0}, а "
+"route_master {1}"
 
 #: ../transport.validator.mapcss:139
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
 msgstr ""
+"Теги ref у маршрута и мастер-маршрута должны совпадать:route {0}, а "
+"route_master {1}"
 
 #: ../transport.validator.mapcss:144
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
 msgstr ""
+"Теги colour у маршрута и мастер-маршрута должны совпадать:route {0}, а "
+"route_master {1}"
 
 #: ../transport.validator.mapcss:149
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
 msgstr ""
+"Вид транспорта у маршрута и мастер-маршрута должны совпадать:route {0}, а "
+"route_master {1}"
 
 #: ../transport.validator.mapcss:155
 msgid "Check the colour tag"
@@ -186,3 +201,5 @@ msgstr ""
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
+"Это автобусная или трамвайная остановка? Добавьте тег, уточняющий тип "
+"платформы"

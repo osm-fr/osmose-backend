@@ -1,12 +1,13 @@
+# 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Jo <winfixit@gmail.com>, 2018
 # ali zaroili <ali.zaroili@gmail.com>, 2018
-# alain2003, 2019
+# d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2019
 # 
 msgid ""
 msgstr ""
-"Last-Translator: alain2003, 2019\n"
+"Last-Translator: d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2019\n"
 "Language-Team: Dutch (https://www.transifex.com/openstreetmap-france/teams/17462/nl/)\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"

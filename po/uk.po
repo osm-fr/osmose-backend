@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-10-01 20:16+0000\n"
+"PO-Revision-Date: 2020-10-06 19:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -365,19 +365,19 @@ msgstr "Невідповідність мультиполігону природ
 msgid "Inconsistant multipolygon member nature"
 msgstr "Невідповідність мультиполігону з членом природи"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:364
+#: ../analysers/analyser_osmosis_relation_restriction.py:366
 msgid "Restriction relation, wrong number of members"
 msgstr "Зв'язок обмеження, невірна кількість членів"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:369
+#: ../analysers/analyser_osmosis_relation_restriction.py:371
 msgid "Restriction relation, bad member type"
 msgstr "Зв'язок обмеження, помилковий тип члена"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:371
+#: ../analysers/analyser_osmosis_relation_restriction.py:373
 msgid "Unconnected restriction relation ways"
 msgstr "Нез'єднані лінії у зв'язку обмеження"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:379
+#: ../analysers/analyser_osmosis_relation_restriction.py:381
 msgid "Restriction doesn't match topology"
 msgstr "Restriction doesn't match topology"
 
@@ -1133,7 +1133,7 @@ msgstr "Дублювання точки без теґу"
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Має бути полігон, частина мультиполігону або не мати теґу area"
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:100
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:101
 msgid "Almost junction, join or use noexit tag"
 msgstr "Майже з'єднано, приєднайте, або застосуйте теґ noexit"
 
@@ -1354,14 +1354,14 @@ msgstr "Накладання шляхів"
 msgid "Waterway overlaps"
 msgstr "Накладання водних шляхів"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:112
-#: ../analysers/analyser_osmosis_highway_zone.py:114
+#: ../analysers/analyser_osmosis_highway_zone.py:113
+#: ../analysers/analyser_osmosis_highway_zone.py:115
 #, python-format, python-brace-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
 msgstr "Ймовірно, пропущений теґ zone:maxspeed=XX:{0}, стосовно околиці"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:375
+#: ../analysers/analyser_osmosis_relation_restriction.py:377
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "Зв'язок обмеження, помилковий напрям oneway члена \"from\" або \"to\""
 
@@ -2397,16 +2397,6 @@ msgstr ""
 msgid "Check and remove tag from node."
 msgstr "Перевірте та видаліть теґ з точки."
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:58
-msgid "Group of nodes without tag and not part of a way."
-msgstr "Група точок без теґів, які не є частиною лінії."
-
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:60
-msgid ""
-"Find the origin of these nodes. Probably in trouble in import.\n"
-"Contact the contributor submiting the nodes."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:63
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)\n"
@@ -2528,21 +2518,21 @@ msgstr ""
 msgid "Close the way to make a polygon or add to a multipolygon."
 msgstr "З'єднайте лінію щоб створити полігон, або додайте її до мультиполігону."
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:366
+#: ../analysers/analyser_osmosis_relation_restriction.py:368
 msgid ""
 "Some required member are missing, eg. there is a `from` and `via`\n"
 "role, but missing the `to` role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:373
+#: ../analysers/analyser_osmosis_relation_restriction.py:375
 msgid "The ways in the restriction must be continuous."
 msgstr "Вулиці в зв'язку мають бути послідовними."
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:377
+#: ../analysers/analyser_osmosis_relation_restriction.py:379
 msgid "Impossible to reach the restriction by respecting the oneway."
 msgstr "Не можна досягти обмеження, дотримуючись oneway."
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:381
+#: ../analysers/analyser_osmosis_relation_restriction.py:383
 msgid ""
 "The shape of the paths described by the way does not correspond to the\n"
 "restriction."
@@ -4437,4 +4427,14 @@ msgstr ""
 #: ../plugins/Website.py:45
 #, python-brace-format
 msgid "Bad URL {k}={v}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:58
+msgid "Nodes in the vicinity without tag and not part of a way."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:60
+msgid ""
+"Find the origin of these nodes. Probably resulting from bad import.\n"
+"Contact the contributor submiting the nodes or remove those."
 msgstr ""

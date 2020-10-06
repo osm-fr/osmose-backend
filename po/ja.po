@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-10-01 20:16+0000\n"
+"PO-Revision-Date: 2020-10-06 19:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -366,19 +366,19 @@ msgstr "マルチポリゴンの特性とメンバーの特性が不一致"
 msgid "Inconsistant multipolygon member nature"
 msgstr "マルチポリゴンのメンバーの特性が不一致"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:364
+#: ../analysers/analyser_osmosis_relation_restriction.py:366
 msgid "Restriction relation, wrong number of members"
 msgstr "進行方向制限リレーション、メンバー数誤り"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:369
+#: ../analysers/analyser_osmosis_relation_restriction.py:371
 msgid "Restriction relation, bad member type"
 msgstr "進行方向制限リレーション、メンバー種別誤り"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:371
+#: ../analysers/analyser_osmosis_relation_restriction.py:373
 msgid "Unconnected restriction relation ways"
 msgstr "接続されていない進行方向制限リレーションのウェイ"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:379
+#: ../analysers/analyser_osmosis_relation_restriction.py:381
 msgid "Restriction doesn't match topology"
 msgstr "進行方向制限が幾何形状と不一致"
 
@@ -1134,7 +1134,7 @@ msgstr "タグがない重複したノード"
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "ポリゴンであるべきだが、マルチポリゴンの一部またはエリアタグが付いている"
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:100
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:101
 msgid "Almost junction, join or use noexit tag"
 msgstr "交差点に酷似しています。接続するかnoexitタグを使用してください"
 
@@ -1355,14 +1355,14 @@ msgstr "道路のオーバーラップ"
 msgid "Waterway overlaps"
 msgstr "水路のオーバーラップ"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:112
-#: ../analysers/analyser_osmosis_highway_zone.py:114
+#: ../analysers/analyser_osmosis_highway_zone.py:113
+#: ../analysers/analyser_osmosis_highway_zone.py:115
 #, python-format, python-brace-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
 msgstr "近隣の状況から見て、おそらくzone:maxspeed=XX:{0}タグが無い"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:375
+#: ../analysers/analyser_osmosis_relation_restriction.py:377
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "進行方向制限リレーション、\"from\" または\"to\"メンバー上の不正な一方通行の方向"
 
@@ -2398,16 +2398,6 @@ msgstr "ウェイのようにタグ付けされたウェイ内ノード。おそ
 msgid "Check and remove tag from node."
 msgstr "ノードをチェックしてタグを削除してください。"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:58
-msgid "Group of nodes without tag and not part of a way."
-msgstr "タグの無いノードのグループで、ウェイの一部でも無い。"
-
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:60
-msgid ""
-"Find the origin of these nodes. Probably in trouble in import.\n"
-"Contact the contributor submiting the nodes."
-msgstr "これらのノードの元を探してください。おそらくインポート時のトラブルです。ノードを登録した投稿者に連絡してください。"
-
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:63
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)\n"
@@ -2529,21 +2519,21 @@ msgstr "ウェイの性質は表面であることを示しています。ウェ
 msgid "Close the way to make a polygon or add to a multipolygon."
 msgstr "ウェイを閉じてポリゴンを作るかマルチポリゴンに追加します。"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:366
+#: ../analysers/analyser_osmosis_relation_restriction.py:368
 msgid ""
 "Some required member are missing, eg. there is a `from` and `via`\n"
 "role, but missing the `to` role."
 msgstr "必須のメンバーがありません。例：`from` や `via` roleはあるが、`to` roleが無い。"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:373
+#: ../analysers/analyser_osmosis_relation_restriction.py:375
 msgid "The ways in the restriction must be continuous."
 msgstr "進行方向制限内のウェイは連続していなければなりません。"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:377
+#: ../analysers/analyser_osmosis_relation_restriction.py:379
 msgid "Impossible to reach the restriction by respecting the oneway."
 msgstr "一方通行を守ると進行方向制限にたどり着けません。"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:381
+#: ../analysers/analyser_osmosis_relation_restriction.py:383
 msgid ""
 "The shape of the paths described by the way does not correspond to the\n"
 "restriction."
@@ -4376,14 +4366,14 @@ msgstr "ピクニック場"
 msgid ""
 "Fix geometry so that buildings don't overlap, but share nodes if physically joined.\n"
 "If geometry is correct and there's some vertical difference then make use of the `layer` tag to indicate this."
-msgstr ""
+msgstr "建物がオーバーラップしないように幾何形状を修正しますが、物理的につながっていればノードを共有します。\n幾何形状が正しく、垂直方向での違いがあれば、それを示すには`layer`タグを使用してください。"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid ""
 "- Correct the gometry if inaccurately mapped.\n"
 "- Correct the tagging if this isn't a building.\n"
 "- Delete the feature if it's invalid."
-msgstr ""
+msgstr "- マッピングが不正確なら幾何形状を修正。\n- 建物でなければタグ付を修正。\n- 無効な地物なら削除。"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:88
 msgid ""
@@ -4391,51 +4381,61 @@ msgid ""
 "private then tag it also with `access=private`. If it is actually not a\n"
 "swimming pool then you can use e.g. `natural=water` +\n"
 "`water=pond`/`water=basin`."
-msgstr ""
+msgstr "`leisure=swimming_pool`にある`natural=water`タグを変更します。プライベートなものであれば`access=private`もタグ付けします。実際はプールでない場合には、例えば \n`natural=water` +\n`water=pond`/`water=basin`\nといったタグを使えます。"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:671
 #, python-brace-format
 msgid "Multiple numbers \"{numbers}\" in way \"{way}\""
-msgstr ""
+msgstr "複数の数字 \"{numbers}\" がウェイ \"{way}\"内にある"
 
 #: ../analysers/analyser_osmosis_useless.py:126
 msgid ""
 "An object without relevant tag (no other tag than `source`,\n"
 "`created_by`, `note:qadastre` nor `name`) nor a relation member with a\n"
 "role."
-msgstr ""
+msgstr "オブジェクトは関連するタグ(`source`,`created_by`, `note:qadastre` , `name 以外のタグ`)が無く、roleを持つリレーションのメンバーでもない。"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:129
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
 "drawing and the real way especially in the curve."
-msgstr ""
+msgstr "幾何形状が粗く描かれているようです。描かれたものと実際のウェイが、とりわけカーブ部分で食い違っています。"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:132
 msgid "After checking orthophotos, add nodes or move existing nodes."
-msgstr ""
+msgstr "背景画像をチェックしてからノードを追加したり既存ノードを移動したりします。"
 
 #: ../plugins/TagFix_DuplicateValue.py:120
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
-msgstr ""
+msgstr "重複した値 {key}={val}"
 
 #: ../plugins/TagFix_DuplicateValue.py:127
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
-msgstr ""
+msgstr "重複した類似の値 {key}={val}"
 
 #: ../plugins/TagFix_Postcode.py:101
 #, python-brace-format
 msgid "Invalid area postcode {postcode} for country code {country}"
-msgstr ""
+msgstr "郵便番号 {postcode} は国コード {country}では無効"
 
 #: ../plugins/TagFix_Postcode.py:103
 #, python-brace-format
 msgid "Invalid street level postcode {postcode} for country code {country}"
-msgstr ""
+msgstr "街路レベル郵便番号 {postcode} は国コード {country}では無効"
 
 #: ../plugins/Website.py:45
 #, python-brace-format
 msgid "Bad URL {k}={v}"
+msgstr "不正なURL {k}={v}"
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:58
+msgid "Nodes in the vicinity without tag and not part of a way."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:60
+msgid ""
+"Find the origin of these nodes. Probably resulting from bad import.\n"
+"Contact the contributor submiting the nodes or remove those."
 msgstr ""

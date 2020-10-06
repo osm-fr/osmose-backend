@@ -47,7 +47,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-10-01 20:16+0000\n"
+"PO-Revision-Date: 2020-10-06 19:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -398,19 +398,19 @@ msgstr "Nature du “multipolygon” inconsistante avec la nature de ses membres
 msgid "Inconsistant multipolygon member nature"
 msgstr "Nature des membres du “multipolygon” inconsistante"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:364
+#: ../analysers/analyser_osmosis_relation_restriction.py:366
 msgid "Restriction relation, wrong number of members"
 msgstr "Relation “restriction”, nombre de membres erroné"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:369
+#: ../analysers/analyser_osmosis_relation_restriction.py:371
 msgid "Restriction relation, bad member type"
 msgstr "Relation “restriction”, membre de type erroné"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:371
+#: ../analysers/analyser_osmosis_relation_restriction.py:373
 msgid "Unconnected restriction relation ways"
 msgstr "Chemins de la relation “restriction” non connexes"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:379
+#: ../analysers/analyser_osmosis_relation_restriction.py:381
 msgid "Restriction doesn't match topology"
 msgstr "La restriction ne correspond pas à la topologie"
 
@@ -1166,7 +1166,7 @@ msgstr "Nœud dupliqué sans attribut"
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Devrait être un polygone, faire partie d’un multipolygone ou ne pas avoir d’attribut “area”"
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:100
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:101
 msgid "Almost junction, join or use noexit tag"
 msgstr "Jonction imparfaite, joindre le nœud ou utiliser l’attribut “noexit” si sans issue"
 
@@ -1387,14 +1387,14 @@ msgstr "Voiries superposées"
 msgid "Waterway overlaps"
 msgstr "Superpositions de cours d’eau"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:112
-#: ../analysers/analyser_osmosis_highway_zone.py:114
+#: ../analysers/analyser_osmosis_highway_zone.py:113
+#: ../analysers/analyser_osmosis_highway_zone.py:115
 #, python-format, python-brace-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood"
 msgstr "Attribut “zone:maxspeed”=“XX:{0}” probablement manquant, d’après le voisinage"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:375
+#: ../analysers/analyser_osmosis_relation_restriction.py:377
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "Relation de restriction, sens unique incorrectement orienté sur un membre “from” ou “to”."
 
@@ -2430,16 +2430,6 @@ msgstr ""
 msgid "Check and remove tag from node."
 msgstr "Vérifier et retirer la balise du nœud"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:58
-msgid "Group of nodes without tag and not part of a way."
-msgstr "Groupe de noeuds sans balise et ne faisant pas partie d'une route. "
-
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:60
-msgid ""
-"Find the origin of these nodes. Probably in trouble in import.\n"
-"Contact the contributor submiting the nodes."
-msgstr "Trouvez l'origine de ces nœuds. Probablement un problème à l'import.\nContactez le contributeur qui soumet les nœuds."
-
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:63
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)\n"
@@ -2561,21 +2551,21 @@ msgstr ""
 msgid "Close the way to make a polygon or add to a multipolygon."
 msgstr "Fermer la voie pour faire un polygone ou ajouter à un multipolygone."
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:366
+#: ../analysers/analyser_osmosis_relation_restriction.py:368
 msgid ""
 "Some required member are missing, eg. there is a `from` and `via`\n"
 "role, but missing the `to` role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:373
+#: ../analysers/analyser_osmosis_relation_restriction.py:375
 msgid "The ways in the restriction must be continuous."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:377
+#: ../analysers/analyser_osmosis_relation_restriction.py:379
 msgid "Impossible to reach the restriction by respecting the oneway."
 msgstr "Impossible d'atteindre la  restriction en respectant le sens-unique."
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:381
+#: ../analysers/analyser_osmosis_relation_restriction.py:383
 msgid ""
 "The shape of the paths described by the way does not correspond to the\n"
 "restriction."
@@ -4470,4 +4460,14 @@ msgstr ""
 #: ../plugins/Website.py:45
 #, python-brace-format
 msgid "Bad URL {k}={v}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:58
+msgid "Nodes in the vicinity without tag and not part of a way."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:60
+msgid ""
+"Find the origin of these nodes. Probably resulting from bad import.\n"
+"Contact the contributor submiting the nodes or remove those."
 msgstr ""
