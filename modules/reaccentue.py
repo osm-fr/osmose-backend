@@ -129,7 +129,7 @@ freq = None
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
 with gzip.open(os.path.join(base_dir, "../dictionaries/fr/reaccentue.pz"), 'rb') as dico_cache:
-    dico = pickle.load(dico_cache)
+    dico = pickle.load(dico_cache)  # type: ignore
 
 articles = ['le', 'la', 'les',
             'un',  'une', 'des',
