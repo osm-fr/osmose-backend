@@ -178,7 +178,11 @@ class Analyser_Sax(Analyser):
 
         # Running jobs
         for meth in self.pluginsNodeMethodes:
-            res = meth(data, tags)
+            try:
+                res = meth(data, tags)
+            except:
+                self._err("Fail on {0} with {1}, {2}".format(meth, data, tags))
+                raise
             if res:
                 if isinstance(res, dict):
                     err.append(res)
@@ -229,7 +233,12 @@ class Analyser_Sax(Analyser):
 
         # Run jobs
         for meth in self.pluginsWayMethodes:
-            res = meth(data, tags, nds)
+            try:
+                res = meth(data, tags, nds)
+            except:
+                self._err("Fail on {0} with {0}, {1}, {2}".format(meth, data, tags, nds))
+                raise
+
             if res:
                 if isinstance(res, dict):
                     err.append(res)
@@ -311,7 +320,11 @@ class Analyser_Sax(Analyser):
 
         # Run jobs
         for meth in self.pluginsRelationMethodes:
-            res = meth(data, tags, members)
+            try:
+                res = meth(data, tags, members)
+            except:
+                self._err("Fail on {0} with {0}, {1}, {2}".format(meth, data, tags, members))
+                raise
             if res:
                 if isinstance(res, dict):
                     err.append(res)
