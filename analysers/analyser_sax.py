@@ -41,7 +41,10 @@ class Analyser_Sax(Analyser):
         # open database connections
         self._load_reader()
         self.parser = OsmReader.open(self.config.src, self.logger.sub(), getattr(self.config, 'src_state', None))
-        plugins = self._load_all_plugins()
+        if self.config.plugins:
+            plugins = map(lambda plugin: self._load_plugin(plugin) if isinstance(plugin, str) else plugin, self.config.plugins)
+        else:
+            plugins = self._load_all_plugins()
         self._init_plugins(plugins)
         return self
 
@@ -236,7 +239,7 @@ class Analyser_Sax(Analyser):
             try:
                 res = meth(data, tags, nds)
             except:
-                self._err("Fail on {0} with {0}, {1}, {2}".format(meth, data, tags, nds))
+                self._err("Fail on {0} with {1}, {2}, {3}".format(meth, data, tags, nds))
                 raise
 
             if res:
@@ -323,7 +326,7 @@ class Analyser_Sax(Analyser):
             try:
                 res = meth(data, tags, members)
             except:
-                self._err("Fail on {0} with {0}, {1}, {2}".format(meth, data, tags, members))
+                self._err("Fail on {0} with {1}, {2}, {3}".format(meth, data, tags, members))
                 raise
             if res:
                 if isinstance(res, dict):
