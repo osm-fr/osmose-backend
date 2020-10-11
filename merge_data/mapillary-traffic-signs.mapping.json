@@ -1784,5 +1784,70 @@
     "generate_tags": {
       "maxspeed": "120{speed_limit_unit}"
     }
+  },
+  {
+    "class": 130,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "cycling infrastructure",
+    "object": [
+      "regulatory--bicycles-only--g1",
+      "regulatory--end-of-bicycles-only--g1",
+      "regulatory--end-of-bicycles-only--g2",
+      "regulatory--dual-path-bicycles-and-pedestrians--g1",
+      "regulatory--end-of-dual-path-bicycles-and-pedestrians--g1",
+      "regulatory--dual-path-pedestrians-and-bicycles--g1",
+      "regulatory--end-of-dual-path-pedestrians-and-bicycles--g1",
+      "regulatory--dual-path-equestrians-and-pedestrians-bicycles--g1",
+      "regulatory--mopeds-and-bicycles-only--g1",
+      "regulatory--end-of-mopeds-and-bicycles-only--g1",
+      "regulatory--shared-path-pedestrians-and-bicycles--g1",
+      "regulatory--end-of-shared-path-pedestrians-and-bicycles--g1",
+      "regulatory--shared-path-bicycles-and-pedestrians--g1",
+      "regulatory--end-of-shared-path-bicycles-and-pedestrians--g1",
+      "regulatory--motorcycles-and-bicycles-only--g1",
+      "regulatory--bicycles-and-buses-only--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": "cycleway"
+      },
+      {
+        "highway": null,
+        "bicycle": "designated"
+      },
+      {
+        "highway": null,
+        "cycleway": "track"
+      },
+      {
+        "highway": null,
+        "cycleway": "opposite_track"
+      },
+      {
+        "highway": null,
+        "cycleway:right": "track"
+      },
+      {
+        "highway": null,
+        "cycleway:left": "track"
+      },
+      {
+        "highway": null,
+        "cycleway:both": "track"
+      },
+      {
+        "highway": null,
+        "bicycle_road": "yes"
+      },
+      {
+        "highway": null,
+        "cyclestreet": "yes"
+      }
+    ],
+    "generate_tags": {}
   }
 ]
