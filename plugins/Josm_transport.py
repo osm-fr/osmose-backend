@@ -36,7 +36,6 @@ class Josm_transport(PluginMapCSS):
         self.errors[9014026] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Check the network tag : this network does not exist, it may be a typo'))
         self.errors[9014027] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The line variant does not belong to any line, add it to the route_master relation'))
 
-        self.re_181de9b6 = re.compile(r'^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$')
         self.re_25554804 = re.compile(r'STIF|Kéolis|Véolia')
         self.re_2fe0817d = re.compile(r'^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$')
         self.re_6194d2a4 = re.compile(r'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus|walking_bus)$')
@@ -455,17 +454,17 @@ class Josm_transport(PluginMapCSS):
                 # assertMatch:"relation type=route_master route_master=bus interval=1240"
                 err.append({'class': 9014021, 'subclass': 170114261, 'text': mapcss.tr('The interval is invalid (try a number of minutes)')})
 
-        # relation.pt_route[duration][duration!~/^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$/]
-        # relation.pt_route_master[duration][duration!~/^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$/]
+        # relation.pt_route[duration][duration!~/^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
+        # relation.pt_route_master[duration][duration!~/^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
         if ('duration' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, 'duration') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_181de9b6, '^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$'), mapcss._tag_capture(capture_tags, 1, tags, 'duration')))
+                try: match = (set_pt_route and mapcss._tag_capture(capture_tags, 0, tags, 'duration') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'duration')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, 'duration') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_181de9b6, '^([0-9][0-9]?[0-9]?|(PT)?[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?|P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??)$'), mapcss._tag_capture(capture_tags, 1, tags, 'duration')))
+                try: match = (set_pt_route_master and mapcss._tag_capture(capture_tags, 0, tags, 'duration') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'duration')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("The duration is invalid (try a number of minutes)")
@@ -474,16 +473,9 @@ class Josm_transport(PluginMapCSS):
                 # assertNoMatch:"relation type=route route=ferry duration=120"
                 # assertMatch:"relation type=route route=ferry duration=1240"
                 # assertNoMatch:"relation type=route route=ferry duration=20"
-                # assertNoMatch:"relation type=route route=ferry duration=P0.5D"
-                # assertNoMatch:"relation type=route route=ferry duration=PT02:25:06"
-                # assertNoMatch:"relation type=route route=ferry duration=PT120M"
-                # assertNoMatch:"relation type=route route=ferry duration=PT20M"
-                # assertNoMatch:"relation type=route route=ferry duration=PT2H25M6S"
-                # assertNoMatch:"relation type=route route=ferry duration=PT50S"
                 # assertNoMatch:"relation type=route_master route=bus duration=02:00:00"
-                # assertNoMatch:"relation type=route_master route=ferry duration=PT4H"
                 # assertNoMatch:"relation type=route_master route_master=bus duration=5"
-                err.append({'class': 9014022, 'subclass': 305414991, 'text': mapcss.tr('The duration is invalid (try a number of minutes)')})
+                err.append({'class': 9014022, 'subclass': 317647061, 'text': mapcss.tr('The duration is invalid (try a number of minutes)')})
 
         # relation.pt_route["interval:conditional"][!interval]
         # relation.pt_route_master["interval:conditional"][!interval]
@@ -561,17 +553,10 @@ class Test(TestPluginCommon):
         self.check_err(n.relation(data, {'interval': 'irregular', 'route': 'bus', 'type': 'route'}, []), expected={'class': 9014021, 'subclass': 170114261})
         self.check_err(n.relation(data, {'interval': '2heures', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014021, 'subclass': 170114261})
         self.check_err(n.relation(data, {'interval': '1240', 'route_master': 'bus', 'type': 'route_master'}, []), expected={'class': 9014021, 'subclass': 170114261})
-        self.check_err(n.relation(data, {'duration': '20minutes', 'route': 'bus', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': '25:00', 'route': 'bus', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': '120', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_err(n.relation(data, {'duration': '1240', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': '20', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'P0.5D', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'PT02:25:06', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'PT120M', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'PT20M', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'PT2H25M6S', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'PT50S', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': '02:00:00', 'route': 'bus', 'type': 'route_master'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': 'PT4H', 'route': 'ferry', 'type': 'route_master'}, []), expected={'class': 9014022, 'subclass': 305414991})
-        self.check_not_err(n.relation(data, {'duration': '5', 'route_master': 'bus', 'type': 'route_master'}, []), expected={'class': 9014022, 'subclass': 305414991})
+        self.check_err(n.relation(data, {'duration': '20minutes', 'route': 'bus', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 317647061})
+        self.check_not_err(n.relation(data, {'duration': '25:00', 'route': 'bus', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 317647061})
+        self.check_not_err(n.relation(data, {'duration': '120', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 317647061})
+        self.check_err(n.relation(data, {'duration': '1240', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 317647061})
+        self.check_not_err(n.relation(data, {'duration': '20', 'route': 'ferry', 'type': 'route'}, []), expected={'class': 9014022, 'subclass': 317647061})
+        self.check_not_err(n.relation(data, {'duration': '02:00:00', 'route': 'bus', 'type': 'route_master'}, []), expected={'class': 9014022, 'subclass': 317647061})
+        self.check_not_err(n.relation(data, {'duration': '5', 'route_master': 'bus', 'type': 'route_master'}, []), expected={'class': 9014022, 'subclass': 317647061})
