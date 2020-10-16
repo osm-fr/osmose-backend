@@ -64,11 +64,11 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
                 r['select_tags'] = list(map(lambda select: self.dict_replace(select, '{speed_limit_unit}', unit), r['select_tags']))
                 r['generate_tags'] = self.dict_replace(r['generate_tags'], '{speed_limit_unit}', unit)
 
-                self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['item'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'map_features', 'trafficsigns')
+                self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['item'], r['class'], r['level'], r.get('tags', []), r['otype'], r['conflation'], r['title'], r['object'], r['select_tags'], r['generate_tags'], mapping, 'map_features', 'trafficsigns')
 
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, item, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, source, layer):
+    def __init__(self, config, error_file, logger, item, classs, level, tags, otype, conflation, title, object, selectTags, generateTags, mapping, source, layer):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
 
         missing_tags = []
@@ -77,7 +77,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                 ['`{}={}`'.format(kv[0], kv[1] if kv[1] else '*') for kv in selection.items()]
             ))
 
-        self.def_class_missing_official(item = item, id = classs, level = level, tags = ['merge', 'leisure'],
+        self.def_class_missing_official(item = item, id = classs, level = level, tags = ['merge'] + tags,
             title = T_('Unmapped {0}', T_(title)),
             detail = T_('Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}', '\n\n- ' + '\n- '.join(missing_tags), T_(title)),
             fix = T_('Add the appropriate highway tagging if the imagery is up-to-date and sign detection is correct.'))

@@ -1835,6 +1835,9 @@
     "item": 8470,
     "class": 130,
     "level": 2,
+    "tags": [
+      "bicycle"
+    ],
     "otype": [
       "ways"
     ],
