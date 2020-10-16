@@ -42,7 +42,7 @@ tag_mapping = {
 class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8150, id = 21, level = 3, tags = ['merge', 'public equipment', 'cycle'],
+        self.def_class_missing_official(item = 8150, id = 21, level = 3, tags = ['merge', 'public equipment', 'bicycle'],
             title = T_('Paris bicycle parking not integrated'))
 
         self.init(
