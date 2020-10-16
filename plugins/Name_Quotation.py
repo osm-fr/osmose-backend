@@ -74,9 +74,12 @@ class Test(TestPluginCommon):
         self.p = Name_Quotation(None)
         self.p.init(None)
 
-        assert not self.p.node(None, {"foo": u"bar"})
-        assert self.p.node(None, {"name": u"("})
-        assert self.p.node(None, {"name": u"(]"})
-        assert self.p.node(None, {"name": u"(("})
-        assert not self.p.node(None, {"name": u"{[]}"})
-        assert self.p.node(None, {"name": u"{[}]"})
+        assert not self.p.node(None, {"foo": "bar"})
+        assert self.p.node(None, {"name": "("})
+        assert self.p.node(None, {"name": "(]"})
+        assert self.p.node(None, {"name": "(("})
+        assert not self.p.node(None, {"name": "{[]}"})
+        assert self.p.node(None, {"name": "{[}]"})
+        assert not self.p.node(None, {"name": "קריית מוצקין (תפעולית)"})
+        assert self.p.node(None, {"name": "קריית מוצקין (תפעולית"})
+        assert self.p.node(None, {"name": "120 - (ביס אסיף (התפתחות הילד "}) # Twice '(' but not writer in the same direction
