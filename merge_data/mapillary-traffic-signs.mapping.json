@@ -549,6 +549,10 @@
       },
       {
         "highway": null,
+        "maxspeed:hgv": "90{speed_limit_unit}"
+      },
+      {
+        "highway": null,
         "maxspeed:conditional": {
           "like": "90{speed_limit_unit} @ %"
         }
@@ -598,6 +602,10 @@
       },
       {
         "highway": null,
+        "maxspeed:hgb": "100{speed_limit_unit}"
+      },
+      {
+        "highway": null,
         "maxspeed:conditional": {
           "like": "100{speed_limit_unit} @ %"
         }
@@ -644,6 +652,10 @@
       {
         "highway": null,
         "maxspeed:backward": "110{speed_limit_unit}"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "110{speed_limit_unit}"
       },
       {
         "highway": null,
