@@ -215,7 +215,7 @@ WHERE
 """
 
 sql40 = """
-SELECT DISTINCT ON(relations.id)
+SELECT
     relations.id,
     ST_AsText(relation_locate(relations.id))
 FROM
@@ -224,12 +224,16 @@ FROM
         relation_members.member_id = relations.id AND
         relation_members.member_type = 'R'
     LEFT JOIN relations AS parent ON
-        parent.id = relation_members.relation_id
+        parent.id = relation_members.relation_id AND
+        parent.tags->'type' = 'route_master'
 WHERE
     relations.tags->'type' = 'route' AND
     relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
-    (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master') AND
     relation_locate(relations.id) IS NOT NULL
+GROUP BY
+    relations.id
+HAVING
+    bool_and(parent.id IS NULL)
 """
 
 sql50 = """
