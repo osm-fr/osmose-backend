@@ -45,7 +45,12 @@ GROUP BY
     way_ends.geom,
     way_ends.level
 HAVING
-    BOOL_AND(way_ends.level + 1 < highway_level.level)
+    BOOL_AND(
+        CASE
+            WHEN way_ends.is_link THEN way_ends.level + 2 < highway_level.level
+            ELSE way_ends.level + 1 < highway_level.level
+        END
+   )
 """
 
 class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
