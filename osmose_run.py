@@ -237,7 +237,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                 logger.sub().warn("Skip, frontend is already up to date")
                                 continue
 
-                            if resume and remote_timestamp and analyser_obj.analyser_version() != remote_analyser_version:
+                            if resume and remote_timestamp and analyser_obj.analyser_version() == remote_analyser_version:
                                 already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
                                 analyser_obj.analyser_resume(remote_timestamp, already_issued_objects)
                                 lunched_analyser_resume.append([obj, analyser_conf])
