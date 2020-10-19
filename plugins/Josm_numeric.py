@@ -63,7 +63,6 @@ class Josm_numeric(PluginMapCSS):
         self.re_519e5bd1 = re.compile(r'^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
         self.re_52f27115 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)?h)$')
         self.re_5478d8af = re.compile(r'^[1-9]([0-9]*)$')
-        self.re_5590280d = re.compile(r'^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
         self.re_55d147d6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$')
         self.re_597f003d = re.compile(r'^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
         self.re_5a7f47b9 = re.compile(r'^-?[0-9]+\.[0-9][0-9][0-9]+$')
@@ -373,12 +372,12 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('maxlength=', mapcss.replace(mapcss.tag(tags, 'maxlength'), ',', '.'))).split('=', 1)])
                 }})
 
-        # *[width][width=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        # *[width][width=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
         if ('width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, 'width')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, 'width')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setwidth_meter_autofix
@@ -390,7 +389,7 @@ class Josm_numeric(PluginMapCSS):
                 # assertNoMatch:"node width=5"
                 # assertMatch:"node width=6.78 meters"
                 set_width_meter_autofix = True
-                err.append({'class': 9006023, 'subclass': 202462507, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006023, 'subclass': 515306741, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, 'width')), 1), ' m')).split('=', 1)])
                 }})
@@ -440,12 +439,12 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('width=', mapcss.replace(mapcss.tag(tags, 'width'), ',', '.'))).split('=', 1)])
                 }})
 
-        # *[maxwidth][maxwidth=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        # *[maxwidth][maxwidth=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
         if ('maxwidth' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmaxwidth_meter_autofix
@@ -457,7 +456,7 @@ class Josm_numeric(PluginMapCSS):
                 # assertNoMatch:"node maxwidth=5"
                 # assertMatch:"node maxwidth=6.78 meters"
                 set_maxwidth_meter_autofix = True
-                err.append({'class': 9006023, 'subclass': 26753566, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006023, 'subclass': 1877835288, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, 'maxwidth')), 1), ' m')).split('=', 1)])
                 }})
@@ -1297,19 +1296,19 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('maxlength=', mapcss.replace(mapcss.tag(tags, 'maxlength'), ',', '.'))).split('=', 1)])
                 }})
 
-        # *[width][width=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        # *[width][width=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
         if ('width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, 'width')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, 'width')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
                 set_width_meter_autofix = True
-                err.append({'class': 9006023, 'subclass': 202462507, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006023, 'subclass': 515306741, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, 'width')), 1), ' m')).split('=', 1)])
                 }})
@@ -1348,19 +1347,19 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('width=', mapcss.replace(mapcss.tag(tags, 'width'), ',', '.'))).split('=', 1)])
                 }})
 
-        # *[maxwidth][maxwidth=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        # *[maxwidth][maxwidth=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
         if ('maxwidth' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmaxwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
                 set_maxwidth_meter_autofix = True
-                err.append({'class': 9006023, 'subclass': 26753566, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006023, 'subclass': 1877835288, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, 'maxwidth')), 1), ' m')).split('=', 1)])
                 }})
@@ -2178,19 +2177,19 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('maxlength=', mapcss.replace(mapcss.tag(tags, 'maxlength'), ',', '.'))).split('=', 1)])
                 }})
 
-        # *[width][width=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        # *[width][width=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
         if ('width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, 'width')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, 'width')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
                 set_width_meter_autofix = True
-                err.append({'class': 9006023, 'subclass': 202462507, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006023, 'subclass': 515306741, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('width=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, 'width')), 1), ' m')).split('=', 1)])
                 }})
@@ -2229,19 +2228,19 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('width=', mapcss.replace(mapcss.tag(tags, 'width'), ',', '.'))).split('=', 1)])
                 }})
 
-        # *[maxwidth][maxwidth=~/^[0-9]*\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
+        # *[maxwidth][maxwidth=~/^[0-9]+\.?[0-9]*(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$/]
         if ('maxwidth' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5590280d), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_519e5bd1), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setmaxwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
                 set_maxwidth_meter_autofix = True
-                err.append({'class': 9006023, 'subclass': 26753566, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9006023, 'subclass': 1877835288, 'text': mapcss.tr('unusual value of {0}: use abbreviation for unit and space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat('maxwidth=', mapcss.get(mapcss.regexp_match(self.re_22159f36, mapcss.tag(tags, 'maxwidth')), 1), ' m')).split('=', 1)])
                 }})
@@ -2796,11 +2795,11 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {'maxlength': '3.5'}), expected={'class': 9006017, 'subclass': 1544322885})
         self.check_not_err(n.node(data, {'maxlength': '4'}), expected={'class': 9006017, 'subclass': 1544322885})
         self.check_err(n.node(data, {'maxlength': '5,5'}), expected={'class': 9006017, 'subclass': 1544322885})
-        self.check_not_err(n.node(data, {'width': '2 m'}), expected={'class': 9006023, 'subclass': 202462507})
-        self.check_err(n.node(data, {'width': '2m'}), expected={'class': 9006023, 'subclass': 202462507})
-        self.check_err(n.node(data, {'width': '5  metre'}), expected={'class': 9006023, 'subclass': 202462507})
-        self.check_not_err(n.node(data, {'width': '5'}), expected={'class': 9006023, 'subclass': 202462507})
-        self.check_err(n.node(data, {'width': '6.78 meters'}), expected={'class': 9006023, 'subclass': 202462507})
+        self.check_not_err(n.node(data, {'width': '2 m'}), expected={'class': 9006023, 'subclass': 515306741})
+        self.check_err(n.node(data, {'width': '2m'}), expected={'class': 9006023, 'subclass': 515306741})
+        self.check_err(n.node(data, {'width': '5  metre'}), expected={'class': 9006023, 'subclass': 515306741})
+        self.check_not_err(n.node(data, {'width': '5'}), expected={'class': 9006023, 'subclass': 515306741})
+        self.check_err(n.node(data, {'width': '6.78 meters'}), expected={'class': 9006023, 'subclass': 515306741})
         self.check_not_err(n.node(data, {'width': '2 ft'}), expected={'class': 9006023, 'subclass': 242298933})
         self.check_err(n.node(data, {'width': '2ft'}), expected={'class': 9006023, 'subclass': 242298933})
         self.check_err(n.node(data, {'width': '5  Feet'}), expected={'class': 9006023, 'subclass': 242298933})
@@ -2812,11 +2811,11 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {'width': '3.5'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_not_err(n.node(data, {'width': '4'}), expected={'class': 9006017, 'subclass': 1422350111})
         self.check_err(n.node(data, {'width': '5,5'}), expected={'class': 9006017, 'subclass': 1422350111})
-        self.check_not_err(n.node(data, {'maxwidth': '2 m'}), expected={'class': 9006023, 'subclass': 26753566})
-        self.check_err(n.node(data, {'maxwidth': '2m'}), expected={'class': 9006023, 'subclass': 26753566})
-        self.check_err(n.node(data, {'maxwidth': '5  metre'}), expected={'class': 9006023, 'subclass': 26753566})
-        self.check_not_err(n.node(data, {'maxwidth': '5'}), expected={'class': 9006023, 'subclass': 26753566})
-        self.check_err(n.node(data, {'maxwidth': '6.78 meters'}), expected={'class': 9006023, 'subclass': 26753566})
+        self.check_not_err(n.node(data, {'maxwidth': '2 m'}), expected={'class': 9006023, 'subclass': 1877835288})
+        self.check_err(n.node(data, {'maxwidth': '2m'}), expected={'class': 9006023, 'subclass': 1877835288})
+        self.check_err(n.node(data, {'maxwidth': '5  metre'}), expected={'class': 9006023, 'subclass': 1877835288})
+        self.check_not_err(n.node(data, {'maxwidth': '5'}), expected={'class': 9006023, 'subclass': 1877835288})
+        self.check_err(n.node(data, {'maxwidth': '6.78 meters'}), expected={'class': 9006023, 'subclass': 1877835288})
         self.check_not_err(n.node(data, {'maxwidth': '2 ft'}), expected={'class': 9006023, 'subclass': 39753761})
         self.check_err(n.node(data, {'maxwidth': '2ft'}), expected={'class': 9006023, 'subclass': 39753761})
         self.check_err(n.node(data, {'maxwidth': '5  Feet'}), expected={'class': 9006023, 'subclass': 39753761})

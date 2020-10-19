@@ -45,20 +45,20 @@ class Analyser(object):
         return None
 
     @classmethod
-    def def_class_(cls, config, **kwargs):
+    def def_class_(cls, config, back_in_stack = 2, **kwargs):
         # Check keys
         diff_keys = set(kwargs.keys()) - set(['item', 'id', 'level', 'tags', 'title', 'detail', 'fix', 'trap', 'example', 'source', 'resource'])
         if len(diff_keys) > 0:
             raise Exception('Unknow key ' + ', '.join(diff_keys))
 
         if 'source' not in kwargs:
-            caller = getframeinfo(stack()[2][0])
+            caller = getframeinfo(stack()[back_in_stack][0])
             kwargs['source'] = '{0}/analysers/{1}#L{2}'.format(config and hasattr(config, 'source_url') and config.source_url or None, os.path.basename(caller.filename), caller.lineno)
 
         return kwargs
 
-    def def_class(self, **kwargs):
-        return self.def_class_(self.config, **kwargs)
+    def def_class(self, back_in_stack = 2, **kwargs):
+        return self.def_class_(self.config, back_in_stack = back_in_stack, **kwargs)
 
     @classmethod
     def merge_doc(cls, *docs):

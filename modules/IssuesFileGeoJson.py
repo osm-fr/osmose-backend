@@ -39,8 +39,8 @@ class IssuesFileGeoJson(IssuesFile):
             return
 
         try:
-            lat = geom['position'][0]['lat']
-            lon = geom['position'][0]['lon']
+            lat = float(geom['position'][0]['lat'])
+            lon = float(geom['position'][0]['lon'])
         except:
             lat = lon = None
 

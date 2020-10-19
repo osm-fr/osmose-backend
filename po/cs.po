@@ -5,13 +5,13 @@
 # Translators:
 # Jakub Jelen <jakuje@gmail.com>, 2020
 # Jan Vršovský <vrs@email.cz>, 2015
-# trendspotter <j.podhorecky@volny.cz>, 2019
-# trendspotter <j.podhorecky@volny.cz>, 2018
-# trendspotter <j.podhorecky@volny.cz>, 2019
+# Jiří Podhorecký, 2019
+# Jiří Podhorecký, 2018
+# Jiří Podhorecký, 2019
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014-2015
 # Petr Schönmann <pschonmann@gmail.com>, 2018
 # TK, 2014-2017
-# trendspotter <j.podhorecky@volny.cz>, 2018-2019
+# Jiří Podhorecký, 2018-2019
 # Jan Vršovský <vrs@email.cz>, 2015
 msgid ""
 msgstr ""

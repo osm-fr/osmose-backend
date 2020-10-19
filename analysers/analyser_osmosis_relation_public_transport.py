@@ -215,7 +215,7 @@ WHERE
 """
 
 sql40 = """
-SELECT DISTINCT ON(relations.id)
+SELECT
     relations.id,
     ST_AsText(relation_locate(relations.id))
 FROM
@@ -224,12 +224,16 @@ FROM
         relation_members.member_id = relations.id AND
         relation_members.member_type = 'R'
     LEFT JOIN relations AS parent ON
-        parent.id = relation_members.relation_id
+        parent.id = relation_members.relation_id AND
+        parent.tags->'type' = 'route_master'
 WHERE
     relations.tags->'type' = 'route' AND
     relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
-    (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master') AND
     relation_locate(relations.id) IS NOT NULL
+GROUP BY
+    relations.id
+HAVING
+    bool_and(parent.id IS NULL)
 """
 
 sql50 = """
@@ -332,6 +336,36 @@ WHERE
     node_id IS NULL;
 """
 
+sqlA0 = """
+SELECT
+    sp.id,
+    ST_AsText(sp.geom) AS geom
+FROM
+    nodes AS sp
+    LEFT JOIN nodes AS n_bs ON
+        ST_Intersects(ST_Transform(ST_Buffer(ST_Transform(sp.geom, {0}), 100), 4326), n_bs.geom) AND
+        n_bs.tags != ''::hstore AND
+        (
+            (n_bs.tags?'public_transport' AND n_bs.tags->'public_transport' = 'platform') OR
+            (n_bs.tags?'highway' AND n_bs.tags->'highway' = 'bus_stop')
+        )
+    LEFT JOIN ways AS w_bs ON
+        ST_Intersects(ST_Transform(ST_Buffer(ST_Transform(sp.geom, {0}), 100), 4326), w_bs.linestring) AND
+        w_bs.tags != ''::hstore AND
+        (
+            (w_bs.tags?'public_transport' AND w_bs.tags->'public_transport' = 'platform') OR
+            (w_bs.tags?'highway' AND w_bs.tags->'highway' = 'bus_stop')
+        )
+WHERE
+    sp.tags != ''::hstore AND
+    sp.tags?'public_transport' AND
+    sp.tags->'public_transport' = 'stop_position' AND
+    sp.tags?'bus' AND
+    sp.tags->'bus' = 'yes' AND
+    n_bs.id IS NULL AND
+    w_bs.id IS NULL
+"""
+
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
     requires_tables_common = ['highways']
 
@@ -356,6 +390,9 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.classs[9] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
             title = T_('The stop is not part of a way'),
             fix = T_('Change the role in the relation to platform or add the stop to the way and turn it to a public_transport=stop_position'))
+        self.classs[10] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('Stop position without platform nor bus stop'),
+            fix = T_('A bus `public_transport=stop_position` without close `public_transport=platform` nor `highway=bus_stop`.'))
 
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.any_full, self.positionAsText]}
@@ -368,6 +405,7 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.callback70 = lambda res: {"class":7, "data":[self.node_full, self.positionAsText]}
         self.callback80 = lambda res: {"class":8, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback90 = lambda res: {"class":9, "data":[self.relation_full, self.any_full, self.positionAsText]}
+        self.callbackA0 = lambda res: {"class":10, "data":[self.node_full, self.positionAsText]}
 
 
     def analyser_osmosis_common(self):
@@ -385,3 +423,4 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql70, self.callback70)
         self.run(sql80, self.callback80)
         self.run(sql90, self.callback90)
+        self.run(sqlA0.format(self.config.options.get("proj")), self.callbackA0)

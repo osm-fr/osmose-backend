@@ -41,6 +41,8 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
+  ORDER BY
+    id
 ) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
@@ -54,6 +56,8 @@ FROM ((
     tags?'wikipedia' AND
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
+  ORDER BY
+    id
 ) UNION ALL (
   SELECT
     tags->'wikipedia' AS w,
@@ -68,6 +72,8 @@ FROM ((
     NOT tags->'wikipedia' LIKE '%#%' AND
     NOT tags->'type' IN ('route', 'boundary') AND
     NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
+  ORDER BY
+    id
 )) AS t
 GROUP BY
   w

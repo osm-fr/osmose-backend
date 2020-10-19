@@ -65,18 +65,18 @@ $$ LANGUAGE plpgsql
 
 sql12 = """
 SELECT
-    id,
+    foo.id,
     ST_AsText(ST_PointN(_linestring, index)),
     GREATEST(
         discard3points(
-            ST_PointN(linestring, index-1),
-            ST_PointN(linestring, index),
-            ST_PointN(linestring, index+1)
+            ST_PointN(foo.linestring, index-1),
+            ST_PointN(foo.linestring, index),
+            ST_PointN(foo.linestring, index+1)
         ),
         discard3points(
-            ST_PointN(linestring, index+1),
-            ST_PointN(linestring, index),
-            ST_PointN(linestring, index-1)
+            ST_PointN(foo.linestring, index+1),
+            ST_PointN(foo.linestring, index),
+            ST_PointN(foo.linestring, index-1)
         )
     ) AS d,
     type,
@@ -96,19 +96,37 @@ FROM (
         tags?'{1}' AND tags->'{1}' IN ('{2}') AND
         ST_NPoints(linestring) >= 4
 ) AS foo
+{5}
 WHERE
+    {6}
     GREATEST(
         discard3points(
-            ST_PointN(linestring, index-1),
-            ST_PointN(linestring, index),
-            ST_PointN(linestring, index+1)
+            ST_PointN(foo.linestring, index-1),
+            ST_PointN(foo.linestring, index),
+            ST_PointN(foo.linestring, index+1)
         ),
         discard3points(
-            ST_PointN(linestring, index+1),
-            ST_PointN(linestring, index),
-            ST_PointN(linestring, index-1)
+            ST_PointN(foo.linestring, index+1),
+            ST_PointN(foo.linestring, index),
+            ST_PointN(foo.linestring, index-1)
         )
     ) > 70/2
+"""
+
+sql12water1 = """
+    LEFT JOIN ways ON
+        ways.is_polygon AND
+        ways.tags != ''::hstore AND
+        ways.tags?'natural' AND
+        ways.tags->'natural' = 'water' AND
+        ways.tags?'water' AND
+        ways.tags->'water' IN ('lake', 'lagoon', 'basin', 'reservoir') AND
+        ways.linestring && ST_PointN(foo._linestring, index) AND
+        ST_Intersects(ST_MakePolygon(ways.linestring), ST_PointN(foo._linestring, index))
+"""
+
+sql12water2 = """
+    ways.id IS NULL AND
 """
 
 class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
@@ -118,9 +136,9 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
         highway_values = ("motorway", "trunk", "primary", "secondary")
         if self.config.options and "osmosis_way_approximate" in self.config.options and self.config.options["osmosis_way_approximate"].get("highway"):
             highway_values = self.config.options["osmosis_way_approximate"].get("highway")
-        self.tags = ( (10, "railway", ("rail",)),
-                      (20, "waterway", ("river",)),
-                      (30, "highway", highway_values),
+        self.tags = ( (10, "railway", ("rail",), '', ''),
+                      (20, "waterway", ("river",), sql12water1, sql12water2),
+                      (30, "highway", highway_values, '', ''),
                     )
         for t in self.tags:
             self.classs_change[t[0]] = self.def_class(item = 1190, level = 3, tags = ['geom', 'highway', 'railway', 'fix:imagery'],
@@ -144,10 +162,10 @@ false positive'''),
         self.run(sql10)
         self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj")), self.callback10)
+            self.run(sql12.format("", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)
 
     def analyser_osmosis_diff(self):
         self.run(sql10)
         self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("touched_", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj")), self.callback10)
+            self.run(sql12.format("touched_", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)

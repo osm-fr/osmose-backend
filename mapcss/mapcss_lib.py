@@ -445,7 +445,7 @@ def regexp_test(regexp, string):
     if regexp is None or string is None:
         return False
     else:
-        return regexp.search(string)
+        return _re_search(regexp, string)
 
 #regexp_test(regexp, string, flags)
 #    test if string matches pattern regexp; flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5699]

@@ -59,7 +59,7 @@ separator '_' or ':'. See
                                 "nhd-shp",
                                 "voltage-high", "voltage-low",
                                 "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
-                                "strassen-nrw:abs", # DE import
+                                "strassen-nrw", # DE import
                              ) )
 
         self.exceptions_whole = set((
@@ -100,6 +100,7 @@ class Test(TestPluginCommon):
         for k in ["toto", "def9", "disused:amenity", "access:([date])", "def:a=b",
                   "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate",
                   "railway:memor2+", "railway:tbl1+",
+                  "strassen-nrw:abs",
                  ]:
             assert not a.node(None, {k: '1'}), ("key='{0}'".format(k))
 

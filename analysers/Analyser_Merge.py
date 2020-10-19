@@ -871,12 +871,12 @@ OpenStreetMap, then you can add it.'''),
 '''This is reported from an OpenData source, without any prior individual
 verification on this data.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.missing_official = self.def_class(**kwargs)
+        self.missing_official = self.def_class(back_in_stack = 3, **kwargs)
 
     def def_class_missing_osm(self, **kwargs):
         doc = self.doc_master
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.missing_osm = self.def_class(**kwargs)
+        self.missing_osm = self.def_class(back_in_stack = 3, **kwargs)
 
     def def_class_possible_merge(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
@@ -884,12 +884,12 @@ verification on this data.'''))
 '''This is a integration suggestion, mixing OpenData source and
 OpenStreetMap.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.possible_merge = self.def_class(**kwargs)
+        self.possible_merge = self.def_class(back_in_stack = 3, **kwargs)
 
     def def_class_moved_official(self, **kwargs):
         doc = self.doc_master
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.moved_official = self.def_class(**kwargs)
+        self.moved_official = self.def_class(back_in_stack = 3, **kwargs)
 
     def def_class_update_official(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
@@ -897,7 +897,7 @@ OpenStreetMap.'''))
 '''This is an update suggestion because the same ref can be found on both
 OpenData and OSM.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
-        self.update_official = self.def_class(**kwargs)
+        self.update_official = self.def_class(back_in_stack = 3, **kwargs)
 
     def init(self, url, name, parser, load = Load(), mapping = Mapping()):
         """
