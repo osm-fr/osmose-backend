@@ -11,15 +11,15 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2019
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019-2020
 # Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
-# Marco <marcxosm@gmail.com>, 2018-2019
+# Marco <marcxosm@gmail.com>, 2018-2020
 # Marco <marcxosm@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-10-06 19:28+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-10-15 08:25+0000\n"
+"Last-Translator: Marco <marcxosm@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4191,15 +4191,15 @@ msgstr ""
 
 #: tmp.json:1
 msgid "bicycle parking"
-msgstr ""
+msgstr "parcheggio bici"
 
 #: tmp.json:2
 msgid "surveillance camera"
-msgstr ""
+msgstr "camera di sorveglianza"
 
 #: tmp.json:3
 msgid "fire hydrant"
-msgstr ""
+msgstr "idrante"
 
 #: tmp.json:4
 msgid "traffic light"
@@ -4207,79 +4207,79 @@ msgstr ""
 
 #: tmp.json:5
 msgid "phone booth"
-msgstr ""
+msgstr "Cabina telefonica"
 
 #: tmp.json:6
 msgid "drinking water"
-msgstr ""
+msgstr "fontanella"
 
 #: tmp.json:7 tmp.json:33
 msgid "max speed limit 5"
-msgstr ""
+msgstr "limite di velocità 5"
 
 #: tmp.json:8 tmp.json:34
 msgid "max speed limit 10"
-msgstr ""
+msgstr "limite di velocità 10"
 
 #: tmp.json:9 tmp.json:35
 msgid "max speed limit 15"
-msgstr ""
+msgstr "limite di velocità 15"
 
 #: tmp.json:10 tmp.json:36
 msgid "max speed limit 20"
-msgstr ""
+msgstr "limite di velocità 20"
 
 #: tmp.json:11 tmp.json:38
 msgid "max speed limit 30"
-msgstr ""
+msgstr "limite di velocità 30"
 
 #: tmp.json:12 tmp.json:39
 msgid "max speed limit 35"
-msgstr ""
+msgstr "limite di velocità 35"
 
 #: tmp.json:13 tmp.json:40
 msgid "max speed limit 40"
-msgstr ""
+msgstr "limite di velocità 40"
 
 #: tmp.json:14 tmp.json:41
 msgid "max speed limit 45"
-msgstr ""
+msgstr "limite di velocità 45"
 
 #: tmp.json:15 tmp.json:42
 msgid "max speed limit 50"
-msgstr ""
+msgstr "limite di velocità 50"
 
 #: tmp.json:16 tmp.json:44
 msgid "max speed limit 60"
-msgstr ""
+msgstr "limite di velocità 60"
 
 #: tmp.json:17 tmp.json:46
 msgid "max speed limit 70"
-msgstr ""
+msgstr "limite di velocità 70"
 
 #: tmp.json:18 tmp.json:48
 msgid "max speed limit 80"
-msgstr ""
+msgstr "limite di velocità 80"
 
 #: tmp.json:19 tmp.json:49
 msgid "max speed limit 90"
-msgstr ""
+msgstr "limite di velocità 90"
 
 #: tmp.json:20 tmp.json:50
 msgid "max speed limit 100"
-msgstr ""
+msgstr "limite di velocità 100"
 
 #: tmp.json:21 tmp.json:51
 msgid "max speed limit 110"
-msgstr ""
+msgstr "limite di velocità 110"
 
 #: tmp.json:22 tmp.json:52
 msgid "max speed limit 120"
-msgstr ""
+msgstr "limite di velocità 120"
 
 #: tmp.json:23
 msgid "max speed limit 130"
-msgstr ""
+msgstr "limite di velocità 130"
 
 #: tmp.json:24
 msgid "max height limit"
@@ -4299,7 +4299,7 @@ msgstr ""
 
 #: tmp.json:28
 msgid "traffic signals"
-msgstr ""
+msgstr "Semaforo"
 
 #: tmp.json:29
 msgid "living street"
@@ -4315,31 +4315,31 @@ msgstr ""
 
 #: tmp.json:32
 msgid "stop"
-msgstr ""
+msgstr "stop"
 
 #: tmp.json:37
 msgid "max speed limit 25"
-msgstr ""
+msgstr "limite di velocità 25"
 
 #: tmp.json:43
 msgid "max speed limit 55"
-msgstr ""
+msgstr "limite di velocità 55"
 
 #: tmp.json:45
 msgid "max speed limit 65"
-msgstr ""
+msgstr "limite di velocità 65"
 
 #: tmp.json:47
 msgid "max speed limit 75"
-msgstr ""
+msgstr "limite di velocità 75"
 
 #: tmp.json:53
 msgid "Tourism office"
-msgstr ""
+msgstr "Ufficio del turismo"
 
 #: tmp.json:54
 msgid "Church"
-msgstr ""
+msgstr "Chiesa"
 
 #: tmp.json:55
 msgid "Camping"
