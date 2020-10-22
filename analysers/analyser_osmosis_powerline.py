@@ -124,7 +124,7 @@ UNION ALL
 (
 SELECT
     'W' || id AS type_id,
-    linestring::geography AS geom,
+    ST_MakePolygon(linestring)::geography AS geom,
     tags->'power' AS power,
     tags->'substation' AS substation,
     regexp_split_to_array(tags->'voltage','; *') AS voltage
@@ -133,7 +133,8 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'power' AND
-    tags->'power' NOT IN ('line', 'minor_line', 'cable')
+    tags->'power' NOT IN ('line', 'minor_line', 'cable') AND
+    is_polygon
 )
 """
 
@@ -304,7 +305,7 @@ SELECT DISTINCT ON (line_ends1.wid)
 FROM
     line_ends1
     JOIN line_terminators ON
-        ST_DWithin(line_ends1.geom, line_terminators.geom, 30)
+        ST_Intersects(line_ends1.geom, line_terminators.geom)
 WHERE
     line_terminators.power = 'substation' AND
     (line_terminators.substation IS NULL OR line_terminators.substation != 'minor_distribution') AND
