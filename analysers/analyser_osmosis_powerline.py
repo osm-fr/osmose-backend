@@ -54,7 +54,7 @@ SELECT DISTINCT ON (ends(ways.nodes))
     ways.id AS wid,
     ends(ways.nodes) AS id,
     ways.tags->'power' AS power,
-    regexp_split_to_array(ways.tags->'voltage','; *') AS voltage
+    (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(ways.tags->'voltage','; *')) AS t(v)) AS voltage
 FROM
     ways
 WHERE
@@ -112,7 +112,7 @@ SELECT
     geom::geography,
     tags->'power' AS power,
     tags->'substation' AS substation,
-    regexp_split_to_array(tags->'voltage','; *') AS voltage
+    (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(tags->'voltage','; *')) AS t(v)) AS voltage
 FROM
     nodes
 WHERE
@@ -127,7 +127,7 @@ SELECT
     ST_MakePolygon(linestring)::geography AS geom,
     tags->'power' AS power,
     tags->'substation' AS substation,
-    regexp_split_to_array(tags->'voltage','; *') AS voltage
+    (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(tags->'voltage','; *')) AS t(v)) AS voltage
 FROM
     ways
 WHERE
@@ -171,7 +171,7 @@ SELECT
     voltage
 FROM
     ways
-    JOIN LATERAL (SELECT regexp_split_to_table(tags->'voltage','; *') AS voltage) AS t ON TRUE
+    JOIN LATERAL (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(tags->'voltage','; *')) AS t(v)) AS t(voltage) ON TRUE
 WHERE
     tags != ''::hstore AND
     tags?'power' AND
@@ -309,7 +309,7 @@ FROM
 WHERE
     line_terminators.power = 'substation' AND
     (line_terminators.substation IS NULL OR line_terminators.substation != 'minor_distribution') AND
-    NOT line_ends1.voltage <@ line_terminators.voltage
+    (SELECT max(v) FROM unnest(line_ends1.voltage) AS t(v)) > (SELECT max(v) FROM unnest(line_terminators.voltage) AS t(v))
 ORDER BY
     line_ends1.wid
 """
