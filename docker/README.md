@@ -125,7 +125,7 @@ You does not need to load the country each time. It saves in the Database.
 
 Then run the jupyter-notebook web server:
 ```
-docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 --rm backend jupyter-notebook --ip=0.0.0.0 --notebook-dir doc
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 --rm backend jupyter-notebook
 ```
 Note the `8888:8888`, which expose the port `8888` to localhost.
 
