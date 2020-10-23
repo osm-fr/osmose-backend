@@ -8,12 +8,8 @@ services:
       args:
         PIP_INSTALL: -r requirements-dev.txt
     volumes:
-      - type: bind
-        source: ..
-        target: /opt/osmose-backend
-      - type: bind
-        source: ../osmose_config_password-example.py
-        target: /opt/osmose-backend/osmose_config_password.py
+      - ..:/opt/osmose-backend
+      - ../osmose_config_password-example.py:/opt/osmose-backend/osmose_config_password.py:ro
     command: bash
     environment:
       - DB_HOST=postgis

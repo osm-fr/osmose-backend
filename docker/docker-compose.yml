@@ -1,18 +1,18 @@
 version: '3.3'
 
+volumes:
+  pgdata:
+
 services:
   postgis:
     shm_size: 1g
     image: postgis/postgis:13-3.0-alpine
     volumes:
-      - type: bind
-        source: ./postgis-init.sh
-        target: /docker-entrypoint-initdb.d/postgis-init.sh
-      ## To keep the data outside of container
-      #- type: bind
-      #  source: ./postgresql-data:
-      #  target: /var/lib/postgresql/data
-      ## With tmpfs database is only on memory, lost on stop. Save SSD lifetime.
+      - ./postgis-init.sh:/docker-entrypoint-initdb.d/postgis-init.sh:ro
+      - pgdata:/var/lib/postgresql/data
+      ## Alternate, to keep the data outside of container
+      #- ./postgresql-data:/var/lib/postgresql/data
+      ## Alternate, with tmpfs database is only on memory, lost on stop. Save SSD lifetime.
       #- type: tmpfs
       #  target: /var/lib/postgresql/data
     environment:
@@ -28,13 +28,8 @@ services:
     depends_on:
       - postgis
     volumes:
-      - type: bind
-        source: ../osmose_config_password.py
-        target: /opt/osmose-backend/osmose_config_password.py
-        read_only: true
-      - type: bind
-        source: ./work
-        target: /data/work/osmose
+      - ../osmose_config_password.py:/opt/osmose-backend/osmose_config_password.py:ro
+      - ./work:/data/work/osmose
     environment:
       - DB_HOST=postgis
       - JUPYTER_RUNTIME_DIR=/tmp
