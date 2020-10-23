@@ -54,7 +54,7 @@ SELECT DISTINCT ON (ends(ways.nodes))
     ways.id AS wid,
     ends(ways.nodes) AS id,
     ways.tags->'power' AS power,
-    regexp_split_to_array(ways.tags->'voltage','; *') AS voltage
+    (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(ways.tags->'voltage','; *')) AS t(v)) AS voltage
 FROM
     ways
 WHERE
@@ -112,7 +112,7 @@ SELECT
     geom::geography,
     tags->'power' AS power,
     tags->'substation' AS substation,
-    regexp_split_to_array(tags->'voltage','; *') AS voltage
+    (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(tags->'voltage','; *')) AS t(v)) AS voltage
 FROM
     nodes
 WHERE
@@ -124,16 +124,17 @@ UNION ALL
 (
 SELECT
     'W' || id AS type_id,
-    linestring::geography AS geom,
+    ST_MakePolygon(linestring)::geography AS geom,
     tags->'power' AS power,
     tags->'substation' AS substation,
-    regexp_split_to_array(tags->'voltage','; *') AS voltage
+    (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(tags->'voltage','; *')) AS t(v)) AS voltage
 FROM
     ways
 WHERE
     tags != ''::hstore AND
     tags?'power' AND
-    tags->'power' NOT IN ('line', 'minor_line', 'cable')
+    tags->'power' NOT IN ('line', 'minor_line', 'cable') AND
+    is_polygon
 )
 """
 
@@ -170,7 +171,7 @@ SELECT
     voltage
 FROM
     ways
-    JOIN LATERAL (SELECT regexp_split_to_table(tags->'voltage','; *') AS voltage) AS t ON TRUE
+    JOIN LATERAL (SELECT array_agg(lpad(v, 99, '0')) FROM unnest(regexp_split_to_array(tags->'voltage','; *')) AS t(v)) AS t(voltage) ON TRUE
 WHERE
     tags != ''::hstore AND
     tags?'power' AND
@@ -304,11 +305,11 @@ SELECT DISTINCT ON (line_ends1.wid)
 FROM
     line_ends1
     JOIN line_terminators ON
-        ST_DWithin(line_ends1.geom, line_terminators.geom, 30)
+        ST_Intersects(line_ends1.geom, line_terminators.geom)
 WHERE
     line_terminators.power = 'substation' AND
     (line_terminators.substation IS NULL OR line_terminators.substation != 'minor_distribution') AND
-    NOT line_ends1.voltage <@ line_terminators.voltage
+    (SELECT max(v) FROM unnest(line_ends1.voltage) AS t(v)) > (SELECT max(v) FROM unnest(line_terminators.voltage) AS t(v))
 ORDER BY
     line_ends1.wid
 """

@@ -69,8 +69,8 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         u'Pl.': u'Place',
         u'Eglise': u'Église',
         u'Rte ': u'Route ',
-        u'Bld ': u'Boulevard',
+        u'Bld ': u'Boulevard ',
         u'St ': u'Saint ',
-        u'Av. ': u'Avenue',
+        u'Av. ': u'Avenue ',
         u'Hôp.': u'Hôpital',
     }
