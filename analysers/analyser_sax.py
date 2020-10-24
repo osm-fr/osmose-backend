@@ -35,17 +35,17 @@ class Analyser_Sax(Analyser):
 
     def __init__(self, config, logger = OsmoseLog.logger()):
         Analyser.__init__(self, config, logger)
+        if self.config.plugins:
+            plugins = map(lambda plugin: self._load_plugin(plugin) if isinstance(plugin, str) else plugin, self.config.plugins)
+        else:
+            plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
 
     def __enter__(self):
         Analyser.__enter__(self)
         # open database connections
         self._load_reader()
         self.parser = OsmReader.open(self.config.src, self.logger.sub(), getattr(self.config, 'src_state', None))
-        if self.config.plugins:
-            plugins = map(lambda plugin: self._load_plugin(plugin) if isinstance(plugin, str) else plugin, self.config.plugins)
-        else:
-            plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
