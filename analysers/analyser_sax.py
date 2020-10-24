@@ -67,7 +67,6 @@ class Analyser_Sax(Analyser):
         self._load_output(change=self.parser.is_change())
         try:
             self._run_analyse()
-            self._close_plugins()
         finally:
             self._close_output()
 
@@ -82,7 +81,6 @@ class Analyser_Sax(Analyser):
 
         try:
             self._run_analyse()
-            self._close_plugins()
 
             if timestamp:
                 filtered_nodes = set(self.parser.filtered_nodes())
@@ -494,13 +492,6 @@ class Analyser_Sax(Analyser):
         self._log(u"Analyse finished")
 
     ################################################################################
-
-    def _close_plugins(self):
-        # Close plugins
-        self._log(u"Unloading plugins")
-        for y in sorted(self.plugins.keys()):
-            self._sublog(u"end "+y)
-            self.plugins[y].end(self.logger.sub().sub())
 
     def _close_output(self):
         self.error_file.analyser_end()
