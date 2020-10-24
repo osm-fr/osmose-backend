@@ -37,5 +37,5 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},
-                    mapping1 = {"addr:housenumber": "NUMERO"},
-                    text = lambda tags, fields: {"en": fields["NUMERO"]} )))
+                    mapping1 = {"addr:housenumber": "numero"},
+                    text = lambda tags, fields: {"en": fields["numero"]} )))
