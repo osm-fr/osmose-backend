@@ -116,10 +116,14 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        import analysers.analyser_sax
-        class config:
-            error_file = None
-        a = Administrative_INSEE_Name(analysers.analyser_sax.Analyser_Sax(config()))
+        from analysers.analyser_sax import Analyser_Sax
+        class _config:
+            options = {}
+        class father(Analyser_Sax):
+            config = _config()
+            def __init__(self):
+                pass
+        a = Administrative_INSEE_Name(father())
         a.init(None)
 
         for t in [{"highway": "primary"},
