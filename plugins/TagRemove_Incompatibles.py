@@ -45,7 +45,6 @@ class TagRemove_Incompatibles(Plugin):
                 ['school', 'amenity', 'school'],
                 ['industrial', 'amenity', 'recycling'],
                 ['retail', 'amenity', 'marketplace'],
-                ['water', 'amenity', 'fountain'], # ?
                 ['military', 'aeroway', 'aerodrome'],
             ],
             'water': [
@@ -63,6 +62,7 @@ class TagRemove_Incompatibles(Plugin):
             'natural': [
                 ['water', 'leisure', 'marina'],
                 ['water', 'leisure', 'swimming_area'],
+                ['water', 'amenity', 'fountain'], # ?
             ],
             'amenity': [
                 ['stables', 'leisure', 'horse_riding'],
