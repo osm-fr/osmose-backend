@@ -40,6 +40,8 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
     def value_replace(self, v, key, replacement):
         if isinstance(v, dict):
             return dict(map(lambda kv: [kv[0], self.value_replace(kv[1], key, replacement)], v.items()))
+        elif isinstance(v, list):
+            return list(map(lambda vv: self.value_replace(vv, key, replacement), v))
         else:
             return v.replace(key, replacement)
 
