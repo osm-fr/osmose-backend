@@ -29,11 +29,13 @@ services:
       - type: bind
         source: ../osmose_config_password.py
         target: /opt/osmose-backend/osmose_config_password.py
+        read_only: true
       - type: bind
         source: ./work
         target: /data/work/osmose
     environment:
       - DB_HOST=postgis
+      - JUPYTER_RUNTIME_DIR=/tmp
     user: "1000:1000"
     command: ./osmose_run.py --country=monaco --analyser=osmosis_highway_floating_islands
     networks:
