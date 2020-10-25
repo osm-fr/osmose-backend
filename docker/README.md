@@ -102,6 +102,7 @@ from within the Backend container with:
 ```sh
 psql -h postgis
 ```
+Password: `-osmose-`.
 
 Then on Postgres shell:
 ```
