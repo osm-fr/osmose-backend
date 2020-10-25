@@ -28,18 +28,19 @@ class Josm_deprecated(PluginMapCSS):
         self.errors[9002012] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('uncommon short key'))
         self.errors[9002013] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is inaccurate. Use separate tags for each specific type, e.g. {1} or {2}.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), 'payment:bitcoin=yes', 'payment:litecoin=yes'))
         self.errors[9002014] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('questionable key (ending with a number)'))
-        self.errors[9002015] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0}={1} is unspecific. Please replace \'\'{1}\'\' by \'\'left\'\', \'\'right\'\' or \'\'both\'\'.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
         self.errors[9002016] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is not recommended. Use the Reverse Ways function from the Tools menu.', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002017] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('The key {0} has an uncommon value.', mapcss._tag_uncapture(capture_tags, '{1.key}')))
         self.errors[9002018] = self.def_class(item = 9002, level = 2, tags = ["tag", "deprecated"], title = mapcss.tr('misspelled value'))
         self.errors[9002019] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('wrong value: {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002020] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9002021] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
 
         self.re_01eb1711 = re.compile(r'^(yes|both|no)$')
         self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
         self.re_0c5b5730 = re.compile(r'color:')
         self.re_0f294fdf = re.compile(r'^[1-9][0-9]*$')
         self.re_1f92073a = re.compile(r'^(?i)fixme$')
+        self.re_24dfeb95 = re.compile(r'^(tower|pole|insulator|portal|terminal)$')
         self.re_27210286 = re.compile(r'^.$')
         self.re_2f881233 = re.compile(r'^(?i)(bbq)$')
         self.re_2fd4cdcf = re.compile(r'^(crossover|siding|spur|yard)$')
@@ -64,7 +65,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_samecolor = False
+        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_power_pole_type_warning = set_power_tower_type_warning = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -4081,16 +4082,177 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'suspension'))
                 except mapcss.RuleAbort: pass
             if match:
+                # setpower_tower_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # fixChangeKey:"tower:type => line_attachment"
+                set_power_tower_type_warning = True
                 err.append({'class': 9002001, 'subclass': 180380605, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['line_attachment', mapcss.tag(tags, 'tower:type')]]),
                     '-': ([
                     'tower:type'])
                 }})
+
+        # *[tower:type=branch][branch:type=split]
+        # *[tower:type=branch][branch:type=loop]
+        if ('branch:type' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'split'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=split"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=split"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 362350862, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','split']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=branch][!branch:type]
+        # *[tower:type=branch][branch:type=tap]
+        if ('branch:type' in keys and 'tower:type' in keys) or ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and not mapcss._tag_capture(capture_tags, 1, tags, 'branch:type'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=branch"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=branch"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 476423517, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','branch']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=branch][branch:type=cross]
+        if ('branch:type' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=cross"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=cross"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 2103059531, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','cross']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=termination]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'termination'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=termination"
+                # fixAdd:"line_management=termination"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 232235847, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','termination']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
+        # *[tower:type=transposing]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transposing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=transpose"
+                # fixAdd:"line_management=transpose"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1795169098, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','transpose']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
+        # *[tower:type=crossing]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'crossing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"height=* + design=*"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1301565974, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[tower:type][power][power=~/^(tower|pole|insulator|portal|terminal)$/]!.power_tower_type_warning
+        if ('power' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_power_tower_type_warning and mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') and mapcss._tag_capture(capture_tags, 1, tags, 'power') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setgeneric_power_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"design"
+                # suggestAlternative:"line_attachment"
+                # suggestAlternative:"line_management"
+                # suggestAlternative:"structure"
+                set_generic_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 2020421267, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # node[pole:type=anchor]
         # node[pole:type=suspension]
@@ -4105,16 +4267,136 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'suspension'))
                 except mapcss.RuleAbort: pass
             if match:
+                # setpower_pole_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # fixChangeKey:"pole:type => line_attachment"
+                set_power_pole_type_warning = True
                 err.append({'class': 9002001, 'subclass': 1925507031, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['line_attachment', mapcss.tag(tags, 'pole:type')]]),
                     '-': ([
                     'pole:type'])
                 }})
+
+        # node[pole:type=branch][branch:type=split]
+        # node[pole:type=branch][branch:type=loop]
+        if ('branch:type' in keys and 'pole:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'split'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_pole_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=split"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=split"
+                # fixRemove:"pole:type"
+                set_power_pole_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1645001021, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','split']]),
+                    '-': ([
+                    'branch:type',
+                    'pole:type'])
+                }})
+
+        # node[pole:type=branch][!branch:type]
+        # node[pole:type=branch][branch:type=tap]
+        if ('branch:type' in keys and 'pole:type' in keys) or ('pole:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch') and not mapcss._tag_capture(capture_tags, 1, tags, 'branch:type'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_pole_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=branch"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=branch"
+                # fixRemove:"pole:type"
+                set_power_pole_type_warning = True
+                err.append({'class': 9002001, 'subclass': 686268660, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','branch']]),
+                    '-': ([
+                    'branch:type',
+                    'pole:type'])
+                }})
+
+        # node[pole:type=branch][branch:type=cross]
+        if ('branch:type' in keys and 'pole:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_pole_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=cross"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=cross"
+                # fixRemove:"pole:type"
+                set_power_pole_type_warning = True
+                err.append({'class': 9002001, 'subclass': 160459065, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','cross']]),
+                    '-': ([
+                    'branch:type',
+                    'pole:type'])
+                }})
+
+        # node[pole:type=termination]
+        if ('pole:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'termination'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_pole_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=termination"
+                # fixAdd:"line_management=termination"
+                # fixRemove:"pole:type"
+                set_power_pole_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1675908395, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','termination']]),
+                    '-': ([
+                    'pole:type'])
+                }})
+
+        # *[pole:type][power][power=~/^(tower|pole|insulator|portal|terminal)$/]!.power_pole_type_warning!.generic_power_tower_type_warning
+        if ('pole:type' in keys and 'power' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_power_pole_type_warning and not set_generic_power_tower_type_warning and mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') and mapcss._tag_capture(capture_tags, 1, tags, 'power') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"line_attachment"
+                # suggestAlternative:"line_management"
+                err.append({'class': 9002001, 'subclass': 1513543887, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # node[man_made=pipeline_marker]
         # node[pipeline=marker]
@@ -4667,13 +4949,32 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"cuisine=barbecue"
                 err.append({'class': 9002001, 'subclass': 1958782130, 'text': mapcss.tr('{0} is deprecated', 'cuisine=bbq')})
 
+        # *[Fixme]
+        if ('Fixme' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'Fixme'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"fixme"
+                # fixChangeKey:"Fixme => fixme"
+                err.append({'class': 9002001, 'subclass': 592643943, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['fixme', mapcss.tag(tags, 'Fixme')]]),
+                    '-': ([
+                    'Fixme'])
+                }})
+
         return err
 
     def way(self, data, tags, nds):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_samecolor = False
+        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_power_pole_type_warning = set_power_tower_type_warning = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -5860,8 +6161,12 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'sidewalk') == mapcss._value_capture(capture_tags, 0, 'yes'))
                 except mapcss.RuleAbort: pass
             if match:
-                # throwWarning:tr("{0}={1} is unspecific. Please replace ''{1}'' by ''left'', ''right'' or ''both''.","{0.key}","{0.value}")
-                err.append({'class': 9002015, 'subclass': 36539821, 'text': mapcss.tr('{0}={1} is unspecific. Please replace \'\'{1}\'\' by \'\'left\'\', \'\'right\'\' or \'\'both\'\'.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}'))})
+                # throwWarning:tr("{0} is unspecific","{0.tag}")
+                # suggestAlternative:"sidewalk=both"
+                # suggestAlternative:"sidewalk=left"
+                # suggestAlternative:"sidewalk=right"
+                # suggestAlternative:"sidewalk=separate"
+                err.append({'class': 9002021, 'subclass': 36539821, 'text': mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[waterway=water_point]
         if ('waterway' in keys):
@@ -6047,33 +6352,33 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"{0.key}=* + intermittent=yes"
                 err.append({'class': 9002001, 'subclass': 719234223, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # way[oneway=1][!waterway]
+        # way[oneway=1]
         if ('oneway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, 1) and not mapcss._tag_capture(capture_tags, 1, tags, 'waterway'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, 1))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"oneway=yes"
                 # fixAdd:"oneway=yes"
-                err.append({'class': 9002001, 'subclass': 430545008, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1628124317, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['oneway','yes']])
                 }})
 
-        # way[oneway=-1][!waterway]
+        # way[oneway=-1]
         if ('oneway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, -1) and not mapcss._tag_capture(capture_tags, 1, tags, 'waterway'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, -1))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} is not recommended. Use the Reverse Ways function from the Tools menu.","{0.tag}")
-                err.append({'class': 9002016, 'subclass': 1448981670, 'text': mapcss.tr('{0} is not recommended. Use the Reverse Ways function from the Tools menu.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9002016, 'subclass': 579355135, 'text': mapcss.tr('{0} is not recommended. Use the Reverse Ways function from the Tools menu.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[drinkable]
         if ('drinkable' in keys):
@@ -8725,16 +9030,191 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'suspension'))
                 except mapcss.RuleAbort: pass
             if match:
+                # setpower_tower_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # fixChangeKey:"tower:type => line_attachment"
+                set_power_tower_type_warning = True
                 err.append({'class': 9002001, 'subclass': 180380605, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['line_attachment', mapcss.tag(tags, 'tower:type')]]),
                     '-': ([
                     'tower:type'])
                 }})
+
+        # *[tower:type=branch][branch:type=split]
+        # *[tower:type=branch][branch:type=loop]
+        if ('branch:type' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'split'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=split"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=split"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 362350862, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','split']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=branch][!branch:type]
+        # *[tower:type=branch][branch:type=tap]
+        if ('branch:type' in keys and 'tower:type' in keys) or ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and not mapcss._tag_capture(capture_tags, 1, tags, 'branch:type'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=branch"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=branch"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 476423517, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','branch']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=branch][branch:type=cross]
+        if ('branch:type' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=cross"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=cross"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 2103059531, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','cross']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=termination]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'termination'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=termination"
+                # fixAdd:"line_management=termination"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 232235847, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','termination']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
+        # *[tower:type=transposing]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transposing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=transpose"
+                # fixAdd:"line_management=transpose"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1795169098, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','transpose']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
+        # *[tower:type=crossing]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'crossing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"height=* + design=*"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1301565974, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[tower:type][power][power=~/^(tower|pole|insulator|portal|terminal)$/]!.power_tower_type_warning
+        if ('power' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_power_tower_type_warning and mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') and mapcss._tag_capture(capture_tags, 1, tags, 'power') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setgeneric_power_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"design"
+                # suggestAlternative:"line_attachment"
+                # suggestAlternative:"line_management"
+                # suggestAlternative:"structure"
+                set_generic_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 2020421267, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *[pole:type][power][power=~/^(tower|pole|insulator|portal|terminal)$/]!.power_pole_type_warning!.generic_power_tower_type_warning
+        if ('pole:type' in keys and 'power' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_power_pole_type_warning and not set_generic_power_tower_type_warning and mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') and mapcss._tag_capture(capture_tags, 1, tags, 'power') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"line_attachment"
+                # suggestAlternative:"line_management"
+                err.append({'class': 9002001, 'subclass': 1513543887, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # way[barrier=embankment]
         if ('barrier' in keys):
@@ -9286,13 +9766,62 @@ class Josm_deprecated(PluginMapCSS):
                 # assertMatch:"way cuisine=pizza;bbq"
                 err.append({'class': 9002001, 'subclass': 1958782130, 'text': mapcss.tr('{0} is deprecated', 'cuisine=bbq')})
 
+        # way[cycleway=none]
+        # way[cycleway:left=none]
+        # way[cycleway:right=none]
+        if ('cycleway' in keys) or ('cycleway:left' in keys) or ('cycleway:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'none'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left') == mapcss._value_capture(capture_tags, 0, 'none'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 0, 'none'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("{0.key}","=no")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixAdd:concat("{0.key}","=no")
+                err.append({'class': 9002001, 'subclass': 1292581247, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}'), '=no')).split('=', 1)])
+                }})
+
+        # *[Fixme]
+        if ('Fixme' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'Fixme'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"fixme"
+                # fixChangeKey:"Fixme => fixme"
+                # assertNoMatch:"way FIXME=foo"
+                # assertMatch:"way Fixme=foo"
+                # assertNoMatch:"way fixme=foo"
+                err.append({'class': 9002001, 'subclass': 592643943, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['fixme', mapcss.tag(tags, 'Fixme')]]),
+                    '-': ([
+                    'Fixme'])
+                }})
+
         return err
 
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_samecolor = False
+        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_power_pole_type_warning = set_power_tower_type_warning = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -12900,16 +13429,191 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'suspension'))
                 except mapcss.RuleAbort: pass
             if match:
+                # setpower_tower_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # fixChangeKey:"tower:type => line_attachment"
+                set_power_tower_type_warning = True
                 err.append({'class': 9002001, 'subclass': 180380605, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['line_attachment', mapcss.tag(tags, 'tower:type')]]),
                     '-': ([
                     'tower:type'])
                 }})
+
+        # *[tower:type=branch][branch:type=split]
+        # *[tower:type=branch][branch:type=loop]
+        if ('branch:type' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'split'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=split"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=split"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 362350862, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','split']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=branch][!branch:type]
+        # *[tower:type=branch][branch:type=tap]
+        if ('branch:type' in keys and 'tower:type' in keys) or ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and not mapcss._tag_capture(capture_tags, 1, tags, 'branch:type'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=branch"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=branch"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 476423517, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','branch']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=branch][branch:type=cross]
+        if ('branch:type' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch') and mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=cross"
+                # fixRemove:"branch:type"
+                # fixAdd:"line_management=cross"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 2103059531, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','cross']]),
+                    '-': ([
+                    'branch:type',
+                    'tower:type'])
+                }})
+
+        # *[tower:type=termination]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'termination'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=termination"
+                # fixAdd:"line_management=termination"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 232235847, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','termination']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
+        # *[tower:type=transposing]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transposing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"line_management=transpose"
+                # fixAdd:"line_management=transpose"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1795169098, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['line_management','transpose']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
+        # *[tower:type=crossing]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'crossing'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"height=* + design=*"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1301565974, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[tower:type][power][power=~/^(tower|pole|insulator|portal|terminal)$/]!.power_tower_type_warning
+        if ('power' in keys and 'tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_power_tower_type_warning and mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') and mapcss._tag_capture(capture_tags, 1, tags, 'power') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setgeneric_power_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"design"
+                # suggestAlternative:"line_attachment"
+                # suggestAlternative:"line_management"
+                # suggestAlternative:"structure"
+                set_generic_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 2020421267, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *[pole:type][power][power=~/^(tower|pole|insulator|portal|terminal)$/]!.power_pole_type_warning!.generic_power_tower_type_warning
+        if ('pole:type' in keys and 'power' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (not set_power_pole_type_warning and not set_generic_power_tower_type_warning and mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') and mapcss._tag_capture(capture_tags, 1, tags, 'power') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"line_attachment"
+                # suggestAlternative:"line_management"
+                err.append({'class': 9002001, 'subclass': 1513543887, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[sloped_curb=yes][!kerb]
         # *[sloped_curb=both][!kerb]
@@ -13327,6 +14031,25 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"cuisine=barbecue"
                 err.append({'class': 9002001, 'subclass': 1958782130, 'text': mapcss.tr('{0} is deprecated', 'cuisine=bbq')})
 
+        # *[Fixme]
+        if ('Fixme' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'Fixme'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"fixme"
+                # fixChangeKey:"Fixme => fixme"
+                err.append({'class': 9002001, 'subclass': 592643943, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['fixme', mapcss.tag(tags, 'Fixme')]]),
+                    '-': ([
+                    'Fixme'])
+                }})
+
         return err
 
 
@@ -13406,5 +14129,8 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'cuisine': 'pasta;bbq;pizza'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
         self.check_err(n.way(data, {'cuisine': 'pizza;Bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
         self.check_err(n.way(data, {'cuisine': 'pizza;bbq'}, [0]), expected={'class': 9002001, 'subclass': 1958782130})
+        self.check_not_err(n.way(data, {'FIXME': 'foo'}, [0]), expected={'class': 9002001, 'subclass': 592643943})
+        self.check_err(n.way(data, {'Fixme': 'foo'}, [0]), expected={'class': 9002001, 'subclass': 592643943})
+        self.check_not_err(n.way(data, {'fixme': 'foo'}, [0]), expected={'class': 9002001, 'subclass': 592643943})
         self.check_err(n.relation(data, {'fo': 'bar'}, []), expected={'class': 9002012, 'subclass': 518970721})
         self.check_not_err(n.relation(data, {'to': 'Berlin'}, []), expected={'class': 9002012, 'subclass': 518970721})
