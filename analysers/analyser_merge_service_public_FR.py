@@ -88,7 +88,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "5": u"au code postal",
             "6": u"à la rue",
             "7": u"à l'intersection",
-            "8": u"à l'address",
+            "8": u"à l'adresse",
             "9": u"au bâtiment",
             "10": "10",
         }
@@ -140,13 +140,6 @@ class Analyser_Merge_ServicePublic_FR_CG(_Analyser_Merge_ServicePublic_Name_FR):
                         {"office": "government", "government": "parliament"},
                         {"office": "government", "government": "parliament", "admin_level": "6"})
 
-class Analyser_Merge_ServicePublic_FR_CR(_Analyser_Merge_ServicePublic_Name_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 9, 3, "cr",
-                        {"office": "government", "government": "parliament"},
-                        {"office": "government", "government": "parliament", "admin_level": "4"})
-
-
 class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 10, 3, "tresorerie",
@@ -176,3 +169,9 @@ class Analyser_Merge_ServicePublic_FR_CCI(_Analyser_Merge_ServicePublic_Name_FR)
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 14, 3, ["chambre_agriculture", "chambre_metier", "cci"],
                         {"office": "government", "government": "chamber_of_commerce"},
                         {"office": "government", "government": "chamber_of_commerce"})
+
+class Analyser_Merge_ServicePublic_FR_CR(_Analyser_Merge_ServicePublic_Name_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 15, 3, "cr",
+                        {"office": "government", "government": "parliament"},
+                        {"office": "government", "government": "parliament", "admin_level": "4"})
