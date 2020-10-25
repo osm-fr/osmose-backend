@@ -52,7 +52,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
                     mapping1 = {
                         "ref:FR:CUB": "ident",
                         "start_date": "an_serv",
-                        "parking": lambda res: "surface" if "surface" in res["type"].lower() else "underground" if u"enterré" in res["type"].lower() else None,
+                        "parking": lambda res: {"SURFACE": "surface", "ENTERRE": "underground"}.get(res["type"]),
                         "levels": "nb_niv",
                         "capacity": "np_total",
                         "capacity:disabled": "np_pmr",

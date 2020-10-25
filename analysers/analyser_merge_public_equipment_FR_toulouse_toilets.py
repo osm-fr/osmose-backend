@@ -50,4 +50,4 @@ class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "wheelchair": lambda res: "yes" if res["PMR"] == u"T" else "no" if res["PMR"] == u"F" else None} )))
+                        "wheelchair": lambda res: "yes" if res["accessibilité"] == "Accessible aux personnes à mobilité réduite" else "no" if res["accessibilité"] == "Non accessible aux personnes à mobilité réduite" else None} )))

@@ -26,7 +26,6 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_14b2be23 = re.compile(r'^(?i)(lycée)$')
         self.re_1b9641aa = re.compile(r'^(?i)(post office)$')
         self.re_1ba0f749 = re.compile(r'^(?i)(pond)$')
-        self.re_1e5aeb3d = re.compile(r'^(footway|pedestrian)$')
         self.re_251cae80 = re.compile(r'^(?i)(parking|parkplatz)$')
         self.re_29150b73 = re.compile(r'^(?i)(casa)$')
         self.re_2b5b04af = re.compile(r'^(?i)(cemetery|cementerio|cimetière|cmentarz|friedhof)$')
@@ -34,7 +33,6 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_33dfa05b = re.compile(r'^(?i)(church|église|biserica)$')
         self.re_3ad2c525 = re.compile(r'^(?i)(école primaire)$')
         self.re_3ad9e1f5 = re.compile(r'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
-        self.re_47aaa0f7 = re.compile(r'^(yes|designated)$')
         self.re_480c7ba6 = re.compile(r'^(?i)(building|bangunan)$')
         self.re_480ecdbb = re.compile(r'^(?i)(école élémentaire)$')
         self.re_519078ac = re.compile(r'^(?i)(collège)$')
@@ -460,23 +458,13 @@ class Josm_unnecessary(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
-        # way[foot][highway][foot=~/^(yes|designated)$/][highway=~/^(footway|pedestrian)$/][!access]
-        # way[bicycle][highway][bicycle=~/^(yes|designated)$/][highway=cycleway][!vehicle][!access][foot!=designated]
         # *[gnis:Class="Populated Place"][place=city]
         # *[gnis:Class="Populated Place"][place=town]
         # *[gnis:Class="Populated Place"][place=village]
         # *[gnis:Class="Populated Place"][place=hamlet]
         # *[gnis:Class=Summit][natural=peak]
-        if ('bicycle' in keys and 'highway' in keys) or ('foot' in keys and 'highway' in keys) or ('gnis:Class' in keys and 'natural' in keys) or ('gnis:Class' in keys and 'place' in keys):
+        if ('gnis:Class' in keys and 'natural' in keys) or ('gnis:Class' in keys and 'place' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'foot') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 2, tags, 'foot')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_1e5aeb3d), mapcss._tag_capture(capture_tags, 3, tags, 'highway')) and not mapcss._tag_capture(capture_tags, 4, tags, 'access'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bicycle') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_47aaa0f7), mapcss._tag_capture(capture_tags, 2, tags, 'bicycle')) and mapcss._tag_capture(capture_tags, 3, tags, 'highway') == mapcss._value_capture(capture_tags, 3, 'cycleway') and not mapcss._tag_capture(capture_tags, 4, tags, 'vehicle') and not mapcss._tag_capture(capture_tags, 5, tags, 'access') and mapcss._tag_capture(capture_tags, 6, tags, 'foot') != mapcss._value_const_capture(capture_tags, 6, 'designated', 'designated'))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'gnis:Class') == mapcss._value_capture(capture_tags, 0, 'Populated Place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') == mapcss._value_capture(capture_tags, 1, 'city'))
@@ -501,9 +489,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{1.tag}")
                 # fixRemove:"{0.key}"
-                # assertNoMatch:"way highway=pedestrian access=no foot=designated"
-                # assertMatch:"way highway=pedestrian foot=designated"
-                err.append({'class': 9010001, 'subclass': 519553113, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010001, 'subclass': 1667787383, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -540,34 +526,6 @@ class Josm_unnecessary(PluginMapCSS):
                     '-': ([
                     'payment:cash'])
                 }})
-
-        # way[waterway][oneway?]
-        if ('oneway' in keys and 'waterway' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') in ('yes', 'true', '1'))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("unnecessary tag")
-                # throwWarning:tr("{0} is unnecessary for {1}","{1.key}","{0.key}")
-                # fixRemove:"{1.key}"
-                err.append({'class': 9010001, 'subclass': 877465780, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
-                    '-': ([
-                    mapcss._tag_uncapture(capture_tags, '{1.key}')])
-                }})
-
-        # way[waterway][oneway=-1]
-        if ('oneway' in keys and 'waterway' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, -1))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("unnecessary tag")
-                # throwWarning:tr("{0} is unnecessary for {1}. The flow direction is defined by the way direction.","{1.key}","{0.key}")
-                err.append({'class': 9010001, 'subclass': 1802985931, 'text': mapcss.tr('{0} is unnecessary for {1}. The flow direction is defined by the way direction.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[name][name=~/^(?i)(library|biblioteca|biblioteka|bibliothek|bibliotheek)$/][amenity=library]
         # *[name][name=~/^(?i)(parc|park)$/][leisure=park]
@@ -1163,8 +1121,6 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'highway': 'motorway', 'motor_vehicle': 'yes'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
         self.check_err(n.way(data, {'access': 'no', 'highway': 'proposed'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
         self.check_err(n.way(data, {'layer': '0'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
-        self.check_not_err(n.way(data, {'access': 'no', 'foot': 'designated', 'highway': 'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 519553113})
-        self.check_err(n.way(data, {'foot': 'designated', 'highway': 'pedestrian'}, [0]), expected={'class': 9010001, 'subclass': 519553113})
         self.check_not_err(n.way(data, {'emergency': 'designated'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {'emergency': 'permissive'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {'amenity': 'grave_yard', 'name': 'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 773913345})

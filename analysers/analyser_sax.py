@@ -35,6 +35,11 @@ class Analyser_Sax(Analyser):
 
     def __init__(self, config, logger = OsmoseLog.logger()):
         Analyser.__init__(self, config, logger)
+        if self.config.plugins:
+            plugins = map(lambda plugin: self._load_plugin(plugin) if isinstance(plugin, str) else plugin, self.config.plugins)
+        else:
+            plugins = self._load_all_plugins()
+        self._init_plugins(plugins)
 
     def __enter__(self):
         Analyser.__enter__(self)
@@ -59,16 +64,9 @@ class Analyser_Sax(Analyser):
     def analyser(self):
         self.logger.log("run sax all")
 
-        if self.config.plugins:
-            plugins = map(lambda plugin: self._load_plugin(plugin) if isinstance(plugin, str) else plugin, self.config.plugins)
-        else:
-            plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
         self._load_output(change=self.parser.is_change())
-
         try:
             self._run_analyse()
-            self._close_plugins()
         finally:
             self._close_output()
 
@@ -79,17 +77,10 @@ class Analyser_Sax(Analyser):
         self.already_issued_objects = already_issued_objects
 
         self.config.timestamp = self.timestamp()
-        if self.config.plugins:
-            plugins = map(lambda plugin: self._load_plugin(plugin) if isinstance(plugin, str) else plugin, self.config.plugins)
-        else:
-            plugins = self._load_all_plugins()
-        self._init_plugins(plugins)
-        self.config.timestamp = self.timestamp()
         self._load_output(change=True)
 
         try:
             self._run_analyse()
-            self._close_plugins()
 
             if timestamp:
                 filtered_nodes = set(self.parser.filtered_nodes())
@@ -501,13 +492,6 @@ class Analyser_Sax(Analyser):
         self._log(u"Analyse finished")
 
     ################################################################################
-
-    def _close_plugins(self):
-        # Close plugins
-        self._log(u"Unloading plugins")
-        for y in sorted(self.plugins.keys()):
-            self._sublog(u"end "+y)
-            self.plugins[y].end(self.logger.sub().sub())
 
     def _close_output(self):
         self.error_file.analyser_end()

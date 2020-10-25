@@ -1883,23 +1883,40 @@
       },
       {
         "highway": null,
-        "cycleway": "track"
+        "cycleway": [
+          "lane",
+          "track",
+          "opposite_track",
+          "opposite",
+          "opposite_lane"
+        ]
       },
       {
         "highway": null,
-        "cycleway": "opposite_track"
+        "cycleway:right": [
+          "lane",
+          "track",
+          "opposite_track",
+          "opposite",
+          "opposite_lane"
+        ]
       },
       {
         "highway": null,
-        "cycleway:right": "track"
+        "cycleway:left": [
+          "lane",
+          "track",
+          "opposite_track",
+          "opposite",
+          "opposite_lane"
+        ]
       },
       {
         "highway": null,
-        "cycleway:left": "track"
-      },
-      {
-        "highway": null,
-        "cycleway:both": "track"
+        "cycleway:both": [
+          "lane",
+          "track"
+        ]
       },
       {
         "highway": null,
