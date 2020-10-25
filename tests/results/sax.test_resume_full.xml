@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1127232452">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="2002729909">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L34" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -1105,26 +1105,26 @@
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
 <class id="20805" item="2080" source="http://example.com/plugins/Bicycle.validator.mapcss" level="3" tag="tag,highway,footway,fix:chair">
-<classtext lang="ca" title="{{0.key}}={{0.value}} sense highway=footway|construction" />
-<classtext lang="cs" title="{{0.key}}={{0.value}} bez highway=footway|construction" />
-<classtext lang="de" title="{{0.key}}={{0.value}} ohne highway=footway|construction" />
-<classtext lang="en" title="{{0.key}}={{0.value}} without highway=footway|construction" />
-<classtext lang="es" title="{{0.key}}={{0.value}} sin highway=footway|construction" />
-<classtext lang="fa" title="{{0.key}}={{0.value}} بدون highway=footway|construction" />
-<classtext lang="fr" title="{{0.key}}={{0.value}} sans highway=footway|construction" />
-<classtext lang="gl" title="{{0.key}}={{0.value}} sen highway=footway|construction" />
-<classtext lang="hu" title="[{{0.key}}={{0.value}}], [highway=footway|construction] nélkül" />
-<classtext lang="it" title="{{0.key}}={{0.value}} senza highway=footway|construction" />
-<classtext lang="ja" title="highway=footway|constructionの無い{{0.key}}={{0.value}}" />
-<classtext lang="lt" title="{{0.key}}={{0.value}} be highway=footway|construction" />
-<classtext lang="nl" title="{{0.key}}={{0.value}} zonder highway=footway|construction" />
-<classtext lang="pl" title="{{0.key}}={{0.value}} bez highway=footway|construction" />
-<classtext lang="pt" title="{{0.key}}={{0.value}} sem highway=footway|construction" />
-<classtext lang="pt_BR" title="{{0.key}}={{0.value}} sem highway=footway|construction" />
-<classtext lang="ru" title="{{0.key}}={{0.value}} без highway=footway|construction" />
-<classtext lang="uk" title="{{0.key}}={{0.value}} без highway=footway|construction" />
-<classtext lang="zh_CN" title="{{0.key}}={{0.value}} 没有 highway=footway|construction" />
-<classtext lang="zh_TW" title="{{0.key}}={{0.value}} 沒有 highway=footway|construction" />
+<classtext lang="ca" title="footway=sidewalk sense highway=footway|construction" />
+<classtext lang="cs" title="footway=sidewalk bez highway=footway|construction" />
+<classtext lang="de" title="footway=sidewalk ohne highway=footway|construction" />
+<classtext lang="en" title="footway=sidewalk without highway=footway|construction" />
+<classtext lang="es" title="footway=sidewalk sin highway=footway|construction" />
+<classtext lang="fa" title="footway=sidewalk بدون highway=footway|construction" />
+<classtext lang="fr" title="footway=sidewalk sans highway=footway|construction" />
+<classtext lang="gl" title="footway=sidewalk sen highway=footway|construction" />
+<classtext lang="hu" title="[footway=sidewalk], [highway=footway|construction] nélkül" />
+<classtext lang="it" title="footway=sidewalk senza highway=footway|construction" />
+<classtext lang="ja" title="highway=footway|constructionの無いfootway=sidewalk" />
+<classtext lang="lt" title="footway=sidewalk be highway=footway|construction" />
+<classtext lang="nl" title="footway=sidewalk zonder highway=footway|construction" />
+<classtext lang="pl" title="footway=sidewalk bez highway=footway|construction" />
+<classtext lang="pt" title="footway=sidewalk sem highway=footway|construction" />
+<classtext lang="pt_BR" title="footway=sidewalk sem highway=footway|construction" />
+<classtext lang="ru" title="footway=sidewalk без highway=footway|construction" />
+<classtext lang="uk" title="footway=sidewalk без highway=footway|construction" />
+<classtext lang="zh_CN" title="footway=sidewalk 没有 highway=footway|construction" />
+<classtext lang="zh_TW" title="footway=sidewalk 沒有 highway=footway|construction" />
 </class>
 <class id="20806" item="2080" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="parking,amenity,fix:chair">
 <classtext lang="en" title="Missing tag carpool on area" />
@@ -1164,9 +1164,9 @@
 <detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag." />
 <detail lang="ja" title="このオブジェクトには地物の種類を示すものがありません。`name` タグがある場合には何かしらの種類を示すタグがあることが想定されます。" />
 <detail lang="pl" title="Temu obiektowi brakuje podstawowego tagu, który opisuje, czym jest." />
-<fix lang="de" title="Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt handelt. Als Hauptmerkmale gelten (bei Bedarf mit den geeigneten Präfixen `disused:`, `abandoned:` and `historic:`):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
-<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
-<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="de" title="Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt handelt. Als Hauptmerkmale gelten (bei Bedarf mit den geeigneten Präfixen `disused:`, `abandoned:` and `historic:`):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
 <trap lang="de" title="Es kann sinnvoller sein, das Objekt vollständig zu entfernen, wenn es nicht nützlich ist." />
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 <trap lang="ja" title="有用でない場合はオブジェクトを完全に削除することが適切な場合があります。" />
@@ -1613,20 +1613,20 @@
 <trap lang="pl" title="Usuń tag `level` i sprawdź, czy nie trzeba dodać tagu `layer` w zamian." />
 </class>
 <class id="30328" item="3032" source="http://example.com/plugins/Bicycle.validator.mapcss" level="2" tag="tag,highway,cycleway,fix:chair">
-<classtext lang="cs" title="{{0.key}}={{0.value}} s {{1.key}}={{1.value}}" />
-<classtext lang="de" title="{{0.key}}={{0.value}} mit {{1.key}}={{1.value}}" />
-<classtext lang="en" title="{{0.key}}={{0.value}} with {{1.key}}={{1.value}}" />
-<classtext lang="es" title="{{0.key}}={{0.value}} con {{1.key}}={{1.value}}" />
-<classtext lang="fa" title="{{0.key}}={{0.value}} با {{1.key}}={{1.value}}" />
-<classtext lang="fr" title="{{0.key}}={{0.value}} avec {{1.key}}={{1.value}}" />
-<classtext lang="gl" title="{{0.key}}={{0.value}} con {{1.key}}={{1.value}}" />
-<classtext lang="hu" title="{{0.key}}={{0.value}} a következővel: {{1.key}}={{1.value}}" />
-<classtext lang="it" title="{{0.key}}={{0.value}} con {{1.key}}={{1.value}}" />
-<classtext lang="ja" title="{{1.key}}={{1.value}}のある{{0.key}}={{0.value}}" />
-<classtext lang="nl" title="{{0.key}}={{0.value}} met {{1.key}}={{1.value}}" />
-<classtext lang="pl" title="{{0.key}}={{0.value}} z {{1.key}}={{1.value}}" />
-<classtext lang="uk" title="{{0.key}}={{0.value}} з {{1.key}}={{1.value}}" />
-<classtext lang="zh_CN" title="{{0.key}}={{0.value}} 和 {{1.key}}={{1.value}}" />
+<classtext lang="cs" title="highway=cycleway s cycleway=track" />
+<classtext lang="de" title="highway=cycleway mit cycleway=track" />
+<classtext lang="en" title="highway=cycleway with cycleway=track" />
+<classtext lang="es" title="highway=cycleway con cycleway=track" />
+<classtext lang="fa" title="highway=cycleway با cycleway=track" />
+<classtext lang="fr" title="highway=cycleway avec cycleway=track" />
+<classtext lang="gl" title="highway=cycleway con cycleway=track" />
+<classtext lang="hu" title="highway=cycleway a következővel: cycleway=track" />
+<classtext lang="it" title="highway=cycleway con cycleway=track" />
+<classtext lang="ja" title="cycleway=trackのあるhighway=cycleway" />
+<classtext lang="nl" title="highway=cycleway met cycleway=track" />
+<classtext lang="pl" title="highway=cycleway z cycleway=track" />
+<classtext lang="uk" title="highway=cycleway з cycleway=track" />
+<classtext lang="zh_CN" title="highway=cycleway 和 cycleway=track" />
 </class>
 <class id="30329" item="3032" source="http://example.com/plugins/Bicycle.validator.mapcss" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="{{0.key}}={{0.value}} s {{1.key}}={{1.value}}" />
@@ -2242,19 +2242,19 @@
 <classtext lang="uk" title="Недійсні умовні інтервали" />
 </class>
 <class id="40101" item="4010" source="http://example.com/plugins/Bicycle.validator.mapcss" level="2" tag="tag,highway,fix:chair">
-<classtext lang="cs" title="{{2.key}}={{2.value}} se dává přednost před {{1.key}}={{1.value}}" />
-<classtext lang="de" title="{{2.key}}={{2.value}} sollte anstelle von {{1.key}}={{1.value}} verwendet werden" />
-<classtext lang="en" title="{{2.key}}={{2.value}} is preferred to {{1.key}}={{1.value}}" />
-<classtext lang="es" title="{{2.key}}={{2.value}} se prefiere a {{1.key}}={{1.value}}" />
-<classtext lang="fa" title="{{2.key}}={{2.value}} بهتر از {{1.key}}={{1.value}} است" />
-<classtext lang="fr" title="{{2.key}}={{2.value}} est préféré à {{1.key}}={{1.value}}" />
-<classtext lang="gl" title="{{2.key}}={{2.value}} é máis axeitado a {{1.key}}={{1.value}}" />
-<classtext lang="hu" title="{{2.key}}={{2.value}} előnyösebb ehhez: {{1.key}}={{1.value}}" />
-<classtext lang="it" title="{{2.key}}={{2.value}} è preferibile a {{1.key}}={{1.value}}" />
-<classtext lang="ja" title="{{1.key}}={{1.value}}より{{2.key}}={{2.value}}が望ましい" />
-<classtext lang="nl" title="voorkeur {{2.key}}={{2.value}} op {{1.key}}={{1.value}}" />
-<classtext lang="uk" title="{{2.key}}={{2.value}} є кращим за {{1.key}}={{1.value}}" />
-<classtext lang="zh_CN" title="{{2.key}}={{2.value}} 是优选的 {{1.key}}={{1.value}}" />
+<classtext lang="cs" title="psv se dává přednost před service=psv" />
+<classtext lang="de" title="psv sollte anstelle von service=psv verwendet werden" />
+<classtext lang="en" title="psv is preferred to service=psv" />
+<classtext lang="es" title="psv se prefiere a service=psv" />
+<classtext lang="fa" title="psv بهتر از service=psv است" />
+<classtext lang="fr" title="psv est préféré à service=psv" />
+<classtext lang="gl" title="psv é máis axeitado a service=psv" />
+<classtext lang="hu" title="psv előnyösebb ehhez: service=psv" />
+<classtext lang="it" title="psv è preferibile a service=psv" />
+<classtext lang="ja" title="service=psvよりpsvが望ましい" />
+<classtext lang="nl" title="voorkeur psv op service=psv" />
+<classtext lang="uk" title="psv є кращим за service=psv" />
+<classtext lang="zh_CN" title="psv 是优选的 service=psv" />
 </class>
 <class id="40102" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L103" level="2" tag="deprecated,value,fix:chair">
 <classtext lang="de" title="Veralteter Wert" />
@@ -2336,20 +2336,20 @@
 <classtext lang="zh_CN" title="环岛作为区域" />
 </class>
 <class id="40301" item="4030" source="http://example.com/plugins/Bicycle.validator.mapcss" level="2" tag="tag,highway,cycleway,fix:chair">
-<classtext lang="cs" title="{{0.key}} s {{1.key}} a {{2.key}}" />
-<classtext lang="de" title="{{0.key}} mit {{1.key}} und {{2.key}}" />
-<classtext lang="en" title="{{0.key}} with {{1.key}} and {{2.key}}" />
-<classtext lang="es" title="{{0.key}} con {{1.key}} y {{2.key}}" />
-<classtext lang="fa" title="{{0.key}} با {{1.key}} و {{2.key}}" />
-<classtext lang="fr" title="{{0.key}} avec {{1.key}} et {{2.key}}" />
-<classtext lang="gl" title="{{0.key}} con {{1.key}} e {{2.key}}" />
-<classtext lang="hu" title="{{0.key}} a következőkkel: {{1.key}} és {{2.key}}" />
-<classtext lang="it" title="{{0.key}} con {{1.key}} e {{2.key}}" />
-<classtext lang="ja" title="{{1.key}}及び{{2.key}}のある{{0.key}}" />
-<classtext lang="nl" title="{{0.key}} met {{1.key}} en {{2.key}}" />
-<classtext lang="pl" title="{{0.key}} z {{1.key}} i {{2.key}}" />
-<classtext lang="uk" title="{{0.key}} з {{1.key}} і {{2.key}}" />
-<classtext lang="zh_CN" title="{{0.key}} 和 {{1.key}} 以及 {{2.key}}" />
+<classtext lang="cs" title="cycleway s cycleway:right a {{cycleway:left}}" />
+<classtext lang="de" title="cycleway mit cycleway:right und {{cycleway:left}}" />
+<classtext lang="en" title="cycleway with cycleway:right and {{cycleway:left}}" />
+<classtext lang="es" title="cycleway con cycleway:right y {{cycleway:left}}" />
+<classtext lang="fa" title="cycleway با cycleway:right و {{cycleway:left}}" />
+<classtext lang="fr" title="cycleway avec cycleway:right et {{cycleway:left}}" />
+<classtext lang="gl" title="cycleway con cycleway:right e {{cycleway:left}}" />
+<classtext lang="hu" title="cycleway a következőkkel: cycleway:right és {{cycleway:left}}" />
+<classtext lang="it" title="cycleway con cycleway:right e {{cycleway:left}}" />
+<classtext lang="ja" title="cycleway:right及び{{cycleway:left}}のあるcycleway" />
+<classtext lang="nl" title="cycleway met cycleway:right en {{cycleway:left}}" />
+<classtext lang="pl" title="cycleway z cycleway:right i {{cycleway:left}}" />
+<classtext lang="uk" title="cycleway з cycleway:right і {{cycleway:left}}" />
+<classtext lang="zh_CN" title="cycleway 和 cycleway:right 以及 {{cycleway:left}}" />
 </class>
 <class id="40610" item="4061" source="http://example.com/plugins/TagRemove_Fixme.py#L31" level="3" tag="fixme,fix:chair">
 <classtext lang="cs" title="Objekt potřebuje revizi" />
@@ -3142,26 +3142,6 @@
 <classtext lang="uk" title="сумнівний ключ (з цифрою в кінці)" />
 <classtext lang="zh_CN" title="可疑的键（以数字结尾）" />
 </class>
-<class id="9002015" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
-<classtext lang="ca" title="{{0.key}}={{0.value}} no és específic. Si us plau canvieu ''{{0.value}}''per ''costat esquerre (left)'', ''costat dret (right)'' o ''ambdós (both)''." />
-<classtext lang="cs" title="{{0.key}}={{0.value}} je neurčité. Prosím, nahraďte ''{{0.value}}'' textem ''left'', ''right'' nebo ''both''." />
-<classtext lang="de" title="{{0.key}}={{0.value}} ist unbestimmt. Bitte ersetzen Sie ''{{0.value}}'' durch ''left'', ''right'' oder ''both''." />
-<classtext lang="en" title="{{0.key}}={{0.value}} is unspecific. Please replace ''{{0.value}}'' by ''left'', ''right'' or ''both''." />
-<classtext lang="es" title="{{0.key}}={{0.value}} no es específico. Reemplazar ''{{0.value}}'' con ''izquierda'', ''derecha'' o ''ambos''." />
-<classtext lang="fr" title="{{0.key}}={{0.value}} n’est pas spécifique. Veuillez remplacer « {{0.value}} » par « left »(gauche), « right » (droite) ou « both » (les deux)." />
-<classtext lang="hu" title="{{0.key}}={{0.value}} nem konkrét. Kérlek, cseréld a(z) ''{{0.value}}''-at/-et/-öt valamelyikkel: ''left'', ''right'' vagy ''both''." />
-<classtext lang="it" title="{{0.key}}={{0.value}} non è specifico. Sostituire ''{{0.value}}'' con ''sinistra'', ''destra'' o ''entrambi''." />
-<classtext lang="ja" title="{{0.key}}={{0.value}}は未定義です。''{{0.value}}''を''left''、''right''、''both''のいずれかに置き換えてください。" />
-<classtext lang="lt" title="{{0.key}}={{0.value}} yra netikslu. Pakeiskite „{{0.value}}“ į „left“ (kairė), „right“ (dešinė) arba „both“ (abi)." />
-<classtext lang="nl" title="{{0.key}}={{0.value}} is niet specifiek. Vervang ''{{0.value}}'' door ''links'', ''rechts'' of ''beide''." />
-<classtext lang="pl" title="{{0.key}} = {{0.value}} jest niespecyficzne. Zastąp &quot;{{0.value}}&quot; na ''left'', ''right'' lub ''both''." />
-<classtext lang="pt" title="{{0.key}}={{0.value}} é genérico. Substitua ''{{0.value}}'' por ''left'' (esquerda), ''right'' (direita) ou  ''both'' (ambos)." />
-<classtext lang="pt_BR" title="{{0.key}}={{0.value}} é inespecífico. Por favor, substitua ''{{0.value}}'' por ''left'', ''right'' ou ''both''." />
-<classtext lang="ru" title="{{0.key}}={{0.value}} — обобщённое значение. Замените ''{{0.value}}'' на ''left'', ''right'' или ''both''." />
-<classtext lang="uk" title="{{0.key}}={{0.value}} не визначено. Будь ласка, замініть ''{{0.value}}'' на ''left'', ''right'' або ''both''." />
-<classtext lang="zh_CN" title="{{0.key}}={{0.value}}不特定。请用“left”、“right”或“both”替换“{{0.value}}”。" />
-<classtext lang="zh_TW" title="{{0.key}}={{0.value}} 不明確：請將 {{0.value}} 換成 left、right 或 both。" />
-</class>
 <class id="9002016" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="{{0.key}}={{0.value}} no es recomana. Utilitzeu la funció Vies inverses del menú Eines." />
 <classtext lang="cs" title="{{0.key}}={{0.value}} není doporučeno. Použijte funkci otočení cesty z menu nástrojů." />
@@ -3249,6 +3229,9 @@
 <classtext lang="ru" title="необычное значение {{0.key}}" />
 <classtext lang="uk" title="незвичайне значення {{0.key}}" />
 <classtext lang="zh_CN" title="{{0.key}}的值反常" />
+</class>
+<class id="9002021" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
+<classtext lang="en" title="{{0.key}}={{0.value}} is unspecific" />
 </class>
 <class id="9003001" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="3" tag="geom">
 <classtext lang="ca" title="{{0.key}}={{0.value}} a un node. Ha de ser utilitzat a una via." />
@@ -3395,6 +3378,9 @@
 <classtext lang="ru" title="Объект с позицией 0.00E 0.00N. В этом месте нет ничего, кроме уже обозначенного метеорологического буя." />
 <classtext lang="uk" title="Об’єкт з позицією 0.00E 0.00N. У цьому місці немає нічого, окрім вже позначеного метеорологічного буя." />
 <classtext lang="zh_CN" title="对象在位置0.00E 0.00N。此处没有任何东西，除了一个已绘制的气象浮筏。" />
+</class>
+<class id="9003011" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="3" tag="geom">
+<classtext lang="en" title="{{1.key}}={{1.value}} on a closed way. Should be used on an unclosed way." />
 </class>
 <class id="9004001" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="ca" title="nom abreviat del carrer" />
@@ -5061,7 +5047,7 @@
 <tag k="waterway:sign" v="mooring" />
 </node>
 </error>
-<error class="9001001" subclass="2008928235">
+<error class="9001001" subclass="2003345826">
 <location lat="17.9032984" lon="-62.8512634" />
 <node id="1674634101" lat="17.9032984" lon="-62.8512634" version="1" timestamp="2012-03-14T15:12:45Z" changeset="10978821" uid="628569" user="MAGRAS Philippe">
 <tag k="name" v="EDF" />
