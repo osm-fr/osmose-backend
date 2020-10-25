@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-10-06 19:28+0000\n"
+"PO-Revision-Date: 2020-10-19 20:23+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -888,7 +888,7 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr "Противоречивый доступ"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:345
+#: ../analysers/analyser_osmosis_relation_public_transport.py:379
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1190,7 +1190,7 @@ msgstr ""
 msgid "Power support, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_wikipedia.py:83
+#: ../analysers/analyser_osmosis_wikipedia.py:89
 msgid "Duplicate wikipedia tag"
 msgstr "Повторяющийся тег wikipedia"
 
@@ -1203,7 +1203,7 @@ msgstr ""
 msgid "Close similar name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:347
+#: ../analysers/analyser_osmosis_relation_public_transport.py:381
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
@@ -1214,11 +1214,11 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber или addr:housename без addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place или addr:hamlet должен быть в отношении associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:341
+#: ../analysers/analyser_osmosis_relation_public_transport.py:375
 msgid "The track of this route contains gaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:343
+#: ../analysers/analyser_osmosis_relation_public_transport.py:377
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
@@ -1226,13 +1226,13 @@ msgstr ""
 msgid "Missing international prefix"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:349
+#: ../analysers/analyser_osmosis_relation_public_transport.py:383
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:365
+#: ../analysers/analyser_osmosis_relation_public_transport.py:402
 #, python-format, python-brace-format
 msgid "{0} are different"
 msgstr ""
@@ -1586,7 +1586,7 @@ msgstr ""
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:141
+#: ../analysers/analyser_osmosis_way_approximate.py:159
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr ""
@@ -1870,9 +1870,9 @@ msgstr ""
 msgid "Similar values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:67
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:71
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:72
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:76
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:81
 #, python-brace-format
 msgid "Sudden highway type change (level {0})"
 msgstr ""
@@ -2265,13 +2265,13 @@ msgid ""
 "`highway=secondary` should not becoming a residential."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:59
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid ""
 "A way connects directly to the street classification much\n"
 "smaller."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:62
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:67
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n"
 "\n"
@@ -2711,13 +2711,13 @@ msgstr ""
 msgid "Link the waterway or invert its flow direction."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:134
+#: ../analysers/analyser_osmosis_way_approximate.py:152
 msgid ""
 "On service ways, train stations, train workshops that may be either a\n"
 "false positive"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:137
+#: ../analysers/analyser_osmosis_way_approximate.py:155
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n"
 "\n"
@@ -4106,31 +4106,31 @@ msgstr ""
 msgid "Hole between administrative boundaries of admin_level {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:351
+#: ../analysers/analyser_osmosis_relation_public_transport.py:385
 msgid ""
 "The bus stop is part of a way, it should have public_transport=stop_position"
 " tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:353
+#: ../analysers/analyser_osmosis_relation_public_transport.py:387
 msgid "The stop_position is not part of a way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:355
+#: ../analysers/analyser_osmosis_relation_public_transport.py:389
 msgid "The platform is part of a way, it should have the role stop"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:357
+#: ../analysers/analyser_osmosis_relation_public_transport.py:391
 msgid "The stop is not part of a way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:358
+#: ../analysers/analyser_osmosis_relation_public_transport.py:392
 msgid ""
 "Change the role in the relation to platform or add the stop to the way and "
 "turn it to a public_transport=stop_position"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:127
+#: ../analysers/analyser_osmosis_way_approximate.py:145
 #, python-brace-format
 msgid "Approximate geometry of {0}"
 msgstr ""
@@ -4327,35 +4327,35 @@ msgstr ""
 msgid "max speed limit 75"
 msgstr ""
 
-#: tmp.json:53
+#: tmp.json:54
 msgid "Tourism office"
 msgstr ""
 
-#: tmp.json:54
+#: tmp.json:55
 msgid "Church"
 msgstr ""
 
-#: tmp.json:55
+#: tmp.json:56
 msgid "Camping"
 msgstr ""
 
-#: tmp.json:56
+#: tmp.json:57
 msgid "Restaurant"
 msgstr ""
 
-#: tmp.json:57
+#: tmp.json:58
 msgid "Museum"
 msgstr ""
 
-#: tmp.json:58
+#: tmp.json:59
 msgid "Winery"
 msgstr ""
 
-#: tmp.json:59
+#: tmp.json:60
 msgid "Viewpoint"
 msgstr ""
 
-#: tmp.json:60
+#: tmp.json:61
 msgid "Picnic site"
 msgstr ""
 
@@ -4392,13 +4392,13 @@ msgid ""
 "role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:129
+#: ../analysers/analyser_osmosis_way_approximate.py:147
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
 "drawing and the real way especially in the curve."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:132
+#: ../analysers/analyser_osmosis_way_approximate.py:150
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
@@ -4435,4 +4435,18 @@ msgstr ""
 msgid ""
 "Find the origin of these nodes. Probably resulting from bad import.\n"
 "Contact the contributor submiting the nodes or remove those."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:394
+msgid "Stop position without platform nor bus stop"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:395
+msgid ""
+"A bus `public_transport=stop_position` without close "
+"`public_transport=platform` nor `highway=bus_stop`."
+msgstr ""
+
+#: tmp.json:53
+msgid "cycling infrastructure"
 msgstr ""
