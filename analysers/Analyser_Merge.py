@@ -54,12 +54,7 @@ except ImportError:
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
 
 sql_schema = """
-DO language 'plpgsql' $$
-BEGIN
-  IF NOT EXISTS (SELECT * FROM information_schema.schemata WHERE schema_name = '{schema}' ) THEN
-    CREATE SCHEMA {schema};
-  END IF;
-END $$
+CREATE SCHEMA IF NOT EXISTS {schema}
 """
 
 sql00 = """
