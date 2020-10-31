@@ -11,4 +11,3 @@ services:
       - ./work:/data/work/osmose:ro
       - type: tmpfs
         target: /tmp
-        size: 16M
