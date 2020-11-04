@@ -68,6 +68,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['stables', 'leisure', 'horse_riding'],
                 ['drinking_water', 'natural', 'spring'],
                 ['drinking_water', 'man_made', 'water_tap'],
+                ['shelter', 'highway', 'bus_stop'],
             ],
         }.items()
 
