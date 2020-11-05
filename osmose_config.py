@@ -613,7 +613,6 @@ default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", 
 default_country("europe", "san_marino", 54624, {"country": "SM", "language": "it", "proj": 23032}, download_repo=OSMFR)
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
-default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "vatican_city", 36989, {"country": "VA", "language": "it", "proj": 23032}, download_repo=OSMFR)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
@@ -637,6 +636,32 @@ be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], **{'m
 be_part('flanders', 53134, 'BE-VLG', language='nl')
 be_part('wallonia_french_community', 2620920, 'BE-WAL', language='fr')
 be_part('wallonia_german_community', 2425209, 'BE-WAL', language='de')
+
+#########################################################################
+
+se_part = gen_country('europe', 'sweden', download_repo=OSMFR, proj=32633, language='sv')
+
+se_part('stockholm', 54391, 'SE-AB')
+se_part('vasterbotten', 52825, 'SE-AC')
+se_part('norrbotten', 52824, 'SE-BD')
+se_part('uppsala', 54220, 'SE-C')
+se_part('sodermanland', 54386, 'SE-D')
+se_part('ostergotland', 940675, 'SE-E')
+se_part('jonkoping', 54374, 'SE-F')
+se_part('kronoberg', 54412, 'SE-G')
+se_part('kalmar', 54417, 'SE-H')
+se_part('gotland', 941530, 'SE-I')
+se_part('blekinge', 54413, 'SE-K')
+se_part('skane', 54409, 'SE-M')
+se_part('halland', 54403, 'SE-N')
+se_part('vastra_gotaland', 54367, 'SE-O')
+se_part('varmland', 54223, 'SE-S')
+se_part('orebro', 54222, 'SE-T')
+se_part('vastmanland', 54221, 'SE-U')
+se_part('dalarna', 52834, 'SE-W')
+se_part('gavleborg', 52832, 'SE-X')
+se_part('vasternorrland', 52827, 'SE-Y')
+se_part('jamtland', 52826, 'SE-Z')
 
 #########################################################################
 
