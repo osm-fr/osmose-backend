@@ -316,7 +316,7 @@ def _tag_capture(stock, index, tags, key_name):
 
         if key_name.__class__ in (str, str_value_):
             stock_index[0] = key_name
-            if not stock_index[1] is None:
+            if stock_index[1] is None:
                 stock_index[1] = tags.get(key_name)
                 return str_value(stock_index[1])
             return str_value(tags.get(key_name))
