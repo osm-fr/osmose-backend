@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 def transform_phone(phone_number):
     if len(phone_number) > 6 and phone_number.startswith("0"):
         return "+33 " + phone_number[1:]
-    else :
+    else:
         return phone_number
 
 class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
@@ -41,7 +41,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
-            CSV(Source(attribution = u"Service-Public.fr", millesime = "11/2020",
+            CSV(Source(attribution = "Service-Public.fr", millesime = "11/2020",
                     file = "service_public_FR.csv.bz2")),
             Load("longitude", "latitude",
                 select = {"category": select},
@@ -65,7 +65,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                     static1 = defaultTag,
                     static2 = {"source": self.source},
                     mapping1 = dict({"wheelchair": lambda res: self.accTable[res["wheelchair_access"]] if res["wheelchair_access"] else None,
-                        "contact:email":lambda res:res["email"] if "@" in res["email"] else None,
+                        "contact:email": lambda res:res["email"] if "@" in res["email"] else None,
                         "contact:phone": lambda res: transform_phone(res["phone"]) if res["phone"] else None},
                         **defaultTagMapping),
                     text = lambda tags, fields: {"en": "{0}, {1} (geocoded {2})".format(fields["name"], fields["address"], self.prescitionTableEn[fields["geoloc_precision"]]), "fr": "{0}, {1} (géocodé {2})".format(fields["name"], fields["address"], self.prescitionTableFr[fields["geoloc_precision"]])} )))
