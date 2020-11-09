@@ -36,14 +36,12 @@ class Capacity(Plugin):
         )
 
     def node(self, data, tags):
-        try:
-            if tags["capacity"] == "":
+        if ("capacity" not in tags
                 # Ignore errors that should be reported by generic prefix analysers
-                return
-            total_capacity = int(tags["capacity"])
-        except KeyError:
-            # No capacity tag
+                or tags["capacity"] == ""):
             return
+        try:
+            total_capacity = int(tags["capacity"])
         except ValueError:
             return {
                 "class": 35001,
