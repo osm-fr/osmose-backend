@@ -32,7 +32,7 @@ class Capacity(Plugin):
             tags=["tag"],
             title=T_("Invalid capacity value"),
             detail=T_("""A capacity tag value is incorrect."""),
-            resource="https://wiki.openstreetmap.org/wiki/Key:capacity for more information",
+            resource="https://wiki.openstreetmap.org/wiki/Key:capacity",
         )
 
     def node(self, data, tags):
