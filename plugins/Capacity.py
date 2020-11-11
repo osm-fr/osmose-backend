@@ -44,25 +44,26 @@ class Capacity(Plugin):
         )
 
     def node(self, data, tags):
+        errors = []
         if ("capacity" not in tags
                 # Ignore errors that should be reported by generic analysers
                 or tags["capacity"] == ""):
-            return
+            return []
         try:
             total_capacity = int(tags["capacity"])
+            if total_capacity < 0:
+                return [{
+                    "class": 30913,
+                    "subclass": 5,
+                    "text": T_('"{0}" value "{1}" is negative', "capacity", total_capacity),
+                }]
         except ValueError:
-            return {
+            errors.append({
                 "class": 30912,
                 "subclass": 4,
                 "text": T_('"{0}" value "{1}" is not an integer', "capacity", tags["capacity"]),
-            }
-
-        if total_capacity < 0:
-            return {
-                "class": 30913,
-                "subclass": 5,
-                "text": T_('"{0}" value "{1}" is negative', "capacity", total_capacity),
-            }
+            })
+            total_capacity = None
 
         for key, value in tags.items():
             if (
@@ -77,31 +78,33 @@ class Capacity(Plugin):
 
             try:
                 capacity_int = int(value)
+                if total_capacity is not None and capacity_int > total_capacity:
+                    errors.append({
+                        "class": 30913,
+                        "subclass": 1,
+                        "text": T_(
+                            'Specific "{0}" value "{1}" is larger than total capacity {2}',
+                            key,
+                            value,
+                            total_capacity,
+                        ),
+                    })
+
+                if capacity_int < 0:
+                    errors.append({
+                        "class": 30912,
+                        "subclass": 5,
+                        "text": T_('"{0}" value "{1}" is negative', key, value),
+                    })
             except ValueError:
-                return {
+                errors.append({
                     "class": 30912,
                     "subclass": 4,
                     "text": T_('"{0}" value "{1}" is not an integer', key, value),
-                }
+                })
+                continue
 
-            if capacity_int > total_capacity:
-                return {
-                    "class": 30913,
-                    "subclass": 1,
-                    "text": T_(
-                        'Specific "{0}" value {1} is larger than total capacity {2}',
-                        key,
-                        value,
-                        total_capacity,
-                    ),
-                }
-
-            if capacity_int < 0:
-                return {
-                    "class": 30912,
-                    "subclass": 5,
-                    "text": T_('"{0}" value "{1}" is negative', key, value),
-                }
+        return errors
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -128,12 +131,13 @@ class Test(TestPluginCommon):
             {"class": 30912, "subclass": 5},
         )
 
-        assert a.node(None, {"amenity": "restaurant"}) is None
-        assert a.node(None, {"capacity": "1", "capacity:wheelchair": "1"}) is None
+        assert not a.node(None, {"amenity": "restaurant"})
+        assert not a.node(None, {"capacity": "1"})
+        assert not a.node(None, {"capacity": "1", "capacity:wheelchair": "1"})
 
-        assert a.node(None, {"capacity:": "1"}) is None
-        assert a.node(None, {"capacity:": ""}) is None
-        assert a.node(None, {"capacity": ""}) is None
+        assert not a.node(None, {"capacity:": "1"})
+        assert not a.node(None, {"capacity:": ""})
+        assert not a.node(None, {"capacity": ""})
 
-        assert a.node(None, {"capacity": "1", "capacity:": "a"}) is None
-        assert a.node(None, {"capacity:wheelchair": "1"}) is None
+        assert not a.node(None, {"capacity": "1", "capacity:": "a"})
+        assert not a.node(None, {"capacity:wheelchair": "1"})
