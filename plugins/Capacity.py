@@ -45,7 +45,7 @@ class Capacity(Plugin):
 
     def node(self, data, tags):
         if ("capacity" not in tags
-                # Ignore errors that should be reported by generic prefix analysers
+                # Ignore errors that should be reported by generic analysers
                 or tags["capacity"] == ""):
             return
         try:
@@ -70,6 +70,7 @@ class Capacity(Plugin):
                 # Ignore errors that should be reported by generic prefix analysers
                 or key == "capacity:"
                 or value == ""
+
                 or value in ("yes", "no")
             ):
                 continue
@@ -94,6 +95,7 @@ class Capacity(Plugin):
                         total_capacity,
                     ),
                 }
+
             if capacity_int < 0:
                 return {
                     "class": 30912,
@@ -102,11 +104,9 @@ class Capacity(Plugin):
                 }
 
     def way(self, data, tags, nds):
-        # Same check as node
         return self.node(data, tags)
 
     def relation(self, data, tags, members):
-        # Same check as node
         return self.node(data, tags)
 
 
@@ -130,10 +130,10 @@ class Test(TestPluginCommon):
 
         assert a.node(None, {"amenity": "restaurant"}) is None
         assert a.node(None, {"capacity": "1", "capacity:wheelchair": "1"}) is None
+
         assert a.node(None, {"capacity:": "1"}) is None
         assert a.node(None, {"capacity:": ""}) is None
         assert a.node(None, {"capacity": ""}) is None
 
         assert a.node(None, {"capacity": "1", "capacity:": "a"}) is None
-        assert a.node(None, {"capacity:wheelchair": "1"}) is None
         assert a.node(None, {"capacity:wheelchair": "1"}) is None
