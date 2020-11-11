@@ -1758,6 +1758,14 @@
 <classtext lang="uk" title="Код кольору повинен мати '#' далі 3 або 6 цифр" />
 <classtext lang="zh_CN" title="颜色代码应以“＃”开头，后跟3或6位数字" />
 </class>
+<class id="30912" item="3091" source="http://example.com/plugins/Capacity.py#L35" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
+<classtext lang="en" title="Invalid capacity value" />
+<detail lang="en" title="Capacity tags should be positive integers." />
+</class>
+<class id="30913" item="3091" source="http://example.com/plugins/Capacity.py#L43" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
+<classtext lang="en" title="Specific capacity is greater than total capacity" />
+<detail lang="en" title="A capacity:* value is greater than the total capacity." />
+</class>
 <class id="30931" item="3093" source="http://example.com/plugins/Website.py#L40" level="2" tag="value,fix:chair">
 <classtext lang="cs" title="URL obsahuje mezeru" />
 <classtext lang="de" title="Der URL enthält ein Leerzeichen" />
