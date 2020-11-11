@@ -130,6 +130,10 @@ class Test(TestPluginCommon):
             a.node(None, {"capacity": "1", "capacity:disabled": "a"}),
             {"class": 30912, "subclass": 5},
         )
+        self.check_err(
+            a.node(None, {"capacity": "1", "capacity:disabled": "2"}),
+            {"class": 30913, "subclass": 1},
+        )
 
         assert not a.node(None, {"amenity": "restaurant"})
         assert not a.node(None, {"capacity": "1"})
