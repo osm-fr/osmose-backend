@@ -26,12 +26,20 @@ class Capacity(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
 
-        self.errors[35001] = self.def_class(
-            item=3500,
+        self.errors[30912] = self.def_class(
+            item=3091,
             level=2,
             tags=["tag"],
             title=T_("Invalid capacity value"),
-            detail=T_("""A capacity tag value is incorrect."""),
+            detail=T_("""Capacity tags should be positive integers."""),
+            resource="https://wiki.openstreetmap.org/wiki/Key:capacity",
+        )
+        self.errors[30913] = self.def_class(
+            item=3091,
+            level=2,
+            tags=["tag"],
+            title=T_("Specific capacity is greater than total capacity"),
+            detail=T_("""A capacity:* value is greater than the total capacity."""),
             resource="https://wiki.openstreetmap.org/wiki/Key:capacity",
         )
 
@@ -44,16 +52,16 @@ class Capacity(Plugin):
             total_capacity = int(tags["capacity"])
         except ValueError:
             return {
-                "class": 35001,
-                "subclass": 0,
-                "text": T_('Invalid "{0}" value: {1}', "capacity", tags["capacity"]),
+                "class": 30912,
+                "subclass": 4,
+                "text": T_('"{0}" value "{1}" is not an integer', "capacity", tags["capacity"]),
             }
 
         if total_capacity < 0:
             return {
-                "class": 35001,
-                "subclass": 0,
-                "text": T_('Invalid "{0}" value: {1}', "capacity", total_capacity),
+                "class": 30913,
+                "subclass": 5,
+                "text": T_('"{0}" value "{1}" is negative', "capacity", total_capacity),
             }
 
         for key, value in tags.items():
@@ -70,14 +78,14 @@ class Capacity(Plugin):
                 capacity_int = int(value)
             except ValueError:
                 return {
-                    "class": 35001,
-                    "subclass": 0,
-                    "text": T_('Invalid "{0}" value: {1}', key, value),
+                    "class": 30912,
+                    "subclass": 4,
+                    "text": T_('"{0}" value "{1}" is not an integer', key, value),
                 }
 
             if capacity_int > total_capacity:
                 return {
-                    "class": 35001,
+                    "class": 30913,
                     "subclass": 1,
                     "text": T_(
                         'Specific "{0}" value {1} is larger than total capacity {2}',
@@ -88,9 +96,9 @@ class Capacity(Plugin):
                 }
             if capacity_int < 0:
                 return {
-                    "class": 35001,
-                    "subclass": 0,
-                    "text": T_('Invalid "{0}" value: {1}', key, tags["capacity"]),
+                    "class": 30912,
+                    "subclass": 5,
+                    "text": T_('"{0}" value "{1}" is negative', key, value),
                 }
 
     def way(self, data, tags, nds):
@@ -107,17 +115,17 @@ class Test(TestPluginCommon):
         a = Capacity(None)
         a.init(None)
 
-        self.check_err(a.node(None, {"capacity": "a"}), {"class": 35001, "subclass": 0})
+        self.check_err(a.node(None, {"capacity": "a"}), {"class": 30912, "subclass": 4})
         self.check_err(
-            a.node(None, {"capacity": "-1"}), {"class": 35001, "subclass": 0}
+            a.node(None, {"capacity": "-1"}), {"class": 30912, "subclass": 5}
         )
         self.check_err(
             a.node(None, {"capacity": "1", "capacity:disabled": "-1"}),
-            {"class": 35001, "subclass": 1},
+            {"class": 30912, "subclass": 5},
         )
         self.check_err(
             a.node(None, {"capacity": "1", "capacity:disabled": "a"}),
-            {"class": 35001, "subclass": 1},
+            {"class": 30912, "subclass": 5},
         )
 
         assert a.node(None, {"amenity": "restaurant"}) is None
