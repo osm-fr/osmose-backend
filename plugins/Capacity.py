@@ -83,7 +83,7 @@ class Capacity(Plugin):
                         "class": 30913,
                         "subclass": 1,
                         "text": T_(
-                            'Specific "{0}" value "{1}" is larger than total capacity {2}',
+                            'Specific "{0}" value "{1}" should be lower than total capacity {2}',
                             key,
                             value,
                             total_capacity,
