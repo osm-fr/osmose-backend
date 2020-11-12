@@ -71,7 +71,6 @@ class Capacity(Plugin):
                 # Ignore errors that should be reported by generic prefix analysers
                 or key == "capacity:"
                 or value == ""
-
                 or value in ("yes", "no")
             ):
                 continue
