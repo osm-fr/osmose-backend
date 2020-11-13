@@ -43,7 +43,12 @@ from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
 from functools import reduce
-from pyproj import Transformer
+
+try:
+    from pyproj import Transformer
+except ImportError:
+    # No available in pyproj < 2.1
+    Transformer = None
 
 
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
@@ -684,7 +689,10 @@ class Load(object):
         if not self.data:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
             if self.pip:
-                transformer = Transformer.from_crs(self.srid, 4326, always_xy = True)
+                if Transformer:
+                    transformer = Transformer.from_crs(self.srid, 4326, always_xy = True)
+                else: # pyproj < 2.1
+                    transformer = None
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema.format(schema = db_schema))
             osmosis.run(sql00.format(official = tableOfficial))
@@ -700,7 +708,12 @@ class Load(object):
                 if not self.pip or (x and y):
                     is_pip = False
                     if self.pip:
-                        lonLat = transformer.transform(x, y)
+                        if transformer:
+                            lonLat = transformer.transform(x, y)
+                        else:
+                            giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint({x}, {y}), {srid}), 4326))".format(x=x, y=y, srid=self.srid))
+                            lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
+                            lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                         is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
                     if not self.pip or is_pip:
                         for k in res.keys():
