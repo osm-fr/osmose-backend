@@ -44,18 +44,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             CSV(Source(attribution = "Service-Public.fr", millesime = "11/2020",
                     file = "service_public_FR.csv.bz2")),
             Load("longitude", "latitude",
-                select = {"category": select},
-                create = """
-                    id VARCHAR(254),
-                    category VARCHAR(254),
-                    name VARCHAR(254),
-                    email VARCHAR(254),
-                    phone VARCHAR(254),
-                    wheelchair_access VARCHAR(254),
-                    latitude VARCHAR(254),
-                    longitude VARCHAR(254),
-                    geoloc_precision VARCHAR(254),
-                    address VARCHAR(1024)"""),
+                select = {"category": select}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
