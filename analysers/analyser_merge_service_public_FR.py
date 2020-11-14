@@ -23,6 +23,11 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
+def transform_phone(phone_number):
+    if len(phone_number) > 6 and phone_number.startswith("0"):
+        return "+33 " + phone_number[1:]
+    else:
+        return phone_number
 
 class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 
@@ -36,30 +41,23 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
-            CSV(Source(attribution = u"Service-Public.fr", millesime = "08/2018",
-                    file = "service_public_FR.csv.bz2"),
-                csv = False, separator = None),
-            Load("lon", "lat",
-                select = {"pivot": select},
-                create = """
-                    id VARCHAR(254),
-                    pivot VARCHAR(254),
-                    adresse VARCHAR(1024),
-                    acc VARCHAR(254),
-                    nom VARCHAR(254),
-                    lat VARCHAR(254),
-                    lon VARCHAR(254),
-                    precision VARCHAR(254)"""),
+            CSV(Source(attribution = "Service-Public.fr", millesime = "11/2020",
+                    file = "service_public_FR.csv.bz2")),
+            Load("longitude", "latitude",
+                select = {"category": select}),
             Mapping(
                 select = Select(
-                    types = ["nodes", "ways"],
+                    types = ["nodes", "ways", "relations"],
                     tags = osmTags),
-                conflationDistance = 300,
+                conflationDistance = 500,
                 generate = Generate(
                     static1 = defaultTag,
                     static2 = {"source": self.source},
-                    mapping1 = dict({"wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None}, **defaultTagMapping),
-                    text = lambda tags, fields: {"en": "{0}, {1} (geocoded {2})".format(fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": "{0}, {1} (géocodé {2})".format(fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])} )))
+                    mapping1 = dict({"wheelchair": lambda res: self.accTable[res["wheelchair_access"]] if res["wheelchair_access"] else None,
+                        "contact:email": lambda res:res["email"] if "@" in res["email"] else None,
+                        "contact:phone": lambda res: transform_phone(res["phone"]) if res["phone"] else None},
+                        **defaultTagMapping),
+                    text = lambda tags, fields: {"en": "{0}, {1} (geocoded {2})".format(fields["name"], fields["address"], self.prescitionTableEn[fields["geoloc_precision"]]), "fr": "{0}, {1} (géocodé {2})".format(fields["name"], fields["address"], self.prescitionTableFr[fields["geoloc_precision"]])} )))
 
         self.accTable = {
             "ACC": "yes",
@@ -96,7 +94,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger, item, clas, level, select, osmTags, defaultTag):
         defaultTagMapping = {
-            "name": "nom",
+            "name": "name",
         }
         _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, item, clas, level, select, osmTags, defaultTag, defaultTagMapping)
 
