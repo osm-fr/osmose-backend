@@ -554,6 +554,7 @@
 <classtext lang="fr" title="Mauvaise clé" />
 <classtext lang="gl" title="Clave errónea" />
 <classtext lang="hu" title="Hibás kulcs" />
+<classtext lang="it" title="Chiave non corretta" />
 <classtext lang="ja" title="不正なキー" />
 <classtext lang="pl" title="Niepoprawny klucz" />
 <classtext lang="uk" title="Помилковий ключ" />
@@ -869,6 +870,7 @@
 <classtext lang="pt_BR" title="Este multipolígono é um polígono simples" />
 <classtext lang="uk" title="Цей мультиполігон є простим полігоном" />
 <classtext lang="zh_CN" title="这个多面体是一个简单的多边形" />
+<detail lang="de" title="Dieses Multipolygon ist ein einfaches Polygon" />
 <detail lang="en" title="Multipolygon relation actually defines a simple polygon." />
 <detail lang="es" title="La relación multipolígono en realidad define un polígono simple." />
 <detail lang="fr" title="Le “multipolygon” est un polygone simple" />
@@ -1004,6 +1006,7 @@
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
 </class>
 <class id="20601" item="2060" source="http://example.com/plugins/Addr_Interpolation.py#L31" level="3" tag="tag,addr">
+<classtext lang="de" title="Fehlerhafte Verwendung von addr:interpolation in Kombination mit weiteren Tags" />
 <classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 <classtext lang="es" title="Uso indebido de addr:interpolación en combinación con otras etiquetas" />
 <classtext lang="fr" title="Mauvaise utilisation de “addr:interpolation” en combinaison avec d’autres attributs" />
@@ -1692,6 +1695,7 @@
 <classtext lang="fr" title="Mauvais suffixe de clé" />
 <classtext lang="gl" title="Sufixo da clave erróneo" />
 <classtext lang="hu" title="Hibás kulcsutótag" />
+<classtext lang="it" title="Suffisso chiave non corretto" />
 <classtext lang="ja" title="不正なキー接尾辞" />
 <classtext lang="pl" title="Niepoprawny przyrostek klucza" />
 <classtext lang="uk" title="Помилковий суфікс ключа" />
@@ -1964,7 +1968,7 @@
 </class>
 <class id="31611" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L36" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Chybný parking:lane:[strana]" />
-<classtext lang="de" title="Falsches parking:lane:[Seite]" />
+<classtext lang="de" title="Falsches parking:lane:[side]" />
 <classtext lang="en" title="Bad parking:lane:[side]" />
 <classtext lang="es" title="Mal parking:lane:[side]" />
 <classtext lang="fa" title="parking:lane:[side] بد" />
@@ -1981,6 +1985,7 @@
 <classtext lang="ru" title="Недопустимое parking:lane:[side]" />
 <classtext lang="uk" title="Помилковий parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良parking:lane:[side]" />
+<detail lang="de" title="Die Straßenseite ist nicht zulässig, siehe&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <detail lang="en" title="The side was not recognized, see&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <detail lang="ja" title="どちら側か認識できませんでした。[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)参照。" />
 <detail lang="pl" title="Nieprawidłowa wartość, zobacz&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)." />
@@ -1995,7 +2000,7 @@
 </class>
 <class id="31614" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L41" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Příliš mnoho pruhů parking:lane:[strana]" />
-<classtext lang="de" title="Zu viele parking:lane:[Seite]" />
+<classtext lang="de" title="Zu viele parking:lane:[side]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
 <classtext lang="es" title="Demasiado parking:lane:[side]" />
 <classtext lang="fa" title="تعداد خیلی زیادی parking:lane:[side]" />
@@ -2018,7 +2023,7 @@
 </class>
 <class id="31615" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L46" level="3" tag="highway,parking,fix:chair">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
-<classtext lang="de" title="Falscher Wert für parking:lane:[Seite]" />
+<classtext lang="de" title="Falscher Wert für parking:lane:[side]" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
 <classtext lang="es" title="Valor malo en parking:lane:[side]" />
 <classtext lang="fa" title="مقدار بد برای parking:lane:[side] " />
