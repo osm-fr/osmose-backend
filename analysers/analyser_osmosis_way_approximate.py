@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012-2015                                 ##
+## Copyrights Frédéric Rodrigo 2012-2020                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,6 +22,14 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
+
+
+#   B   |f
+#    /----- C
+#   /\  |
+#  / r\ |
+# /    \|
+# A
 
 sql10 = """
 WITH
@@ -79,7 +87,8 @@ WITH
             index > 1 AND
             dist_h IS NOT NULL AND
             dist_a > 0 AND
-            dist_b > 0
+            dist_b > 0 AND
+            (dist_a > 70 OR dist_b > 70)
     ),
     rc AS (
         SELECT
