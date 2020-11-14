@@ -48,7 +48,7 @@ try:
     from pyproj import Transformer
 except ImportError:
     # No available in pyproj < 2.1
-    Transformer = None
+    Transformer = None # type: ignore
 
 
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"

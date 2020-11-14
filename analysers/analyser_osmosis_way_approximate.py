@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012-2015                                 ##
+## Copyrights Frédéric Rodrigo 2012-2020                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,110 +23,119 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
+
+#   B   |f
+#    /----- C
+#   /\  |
+#  / r\ |
+# /    \|
+# A
+
 sql10 = """
-CREATE OR REPLACE FUNCTION discard(x1 float, y1 float, x2 float, y2 float, x3 float, y3 float) RETURNS float AS $$
-DECLARE d12 float; -- distance between 1 and 2
-DECLARE d23 float; -- distance between 2 and 3
-DECLARE d31 float; -- distance between 3 and 1
-DECLARE ag float; -- angle
-DECLARE rc float; -- radius
-DECLARE cosB float;
-DECLARE f float; -- discard
-BEGIN
-    d12 = dsqrt(dpow(x2 - x1,2) + dpow(y2 - y1,2));
-    d23 = dsqrt(dpow(x3 - x2,2) + dpow(y3 - y2,2));
-    d31 = dsqrt(dpow(x1 - x3,2) + dpow(y1 - y3,2));
-    cosB = dpow(d31, 2) - dpow(d12, 2) - dpow(d23, 2);
-    cosB = cosB / (2 * d12 * d23);
-    ag = 180 - (acos(cosB) * 180 / pi());
-    rc = (d23/2)/(cos((ag-90)*pi()/180));
-    f = -(dsqrt(dpow(rc,2)-dpow((d23/2),2))-rc);
-    RETURN f;
-END;
-$$ LANGUAGE plpgsql
-   IMMUTABLE;
-"""
-
-sql11 = """
-CREATE OR REPLACE FUNCTION discard3points(p1 geometry, p2 geometry, p3 geometry) RETURNS integer AS $$
-BEGIN
-    RETURN (discard(ST_X(p1), ST_Y(p1), ST_X(p2), ST_Y(p2), ST_X(p3), ST_Y(p3))/2)::int;
-EXCEPTION
-WHEN division_by_zero THEN
-    --RAISE INFO 'division_by_zero';
-    RETURN 0;
-WHEN numeric_value_out_of_range THEN
-    --RAISE INFO 'numeric_value_out_of_range';
-    RETURN 0;
-END;
-$$ LANGUAGE plpgsql
-   IMMUTABLE;
-"""
-
-sql12 = """
+WITH
+    points AS (
+        SELECT
+            id,
+            tags->'{1}' AS type,
+            (ST_DumpPoints(linestring)).geom AS geom4326,
+            (ST_DumpPoints(ST_Transform(linestring, {4}))).geom AS geom,
+            (ST_DumpPoints(ST_Transform(linestring, {4}))).path[1] AS index
+        FROM
+            {0}ways AS ways
+        WHERE
+            tags != ''::hstore AND
+            tags?'{1}' AND tags->'{1}' IN ('{2}') AND
+            ST_NPoints(linestring) >= 4
+    ),
+    distances AS (
+        SELECT
+            id, index, type,
+            lead(geom4326) OVER (PARTITION BY id ORDER BY index) AS geom4326,
+            lead(geom) OVER (PARTITION BY id ORDER BY index) AS geom,
+            ST_Distance(geom, lead(geom) OVER (PARTITION BY id ORDER BY index)) dist,
+            ST_Distance(geom, lead(geom, 2) OVER (PARTITION BY id ORDER BY index)) dist_h
+        FROM
+            points
+            {5}
+        WHERE
+            {6}
+            1 = 1
+    ),
+    distances2 AS (
+        SELECT
+            id, index, type, geom,
+            dist AS dist_a,
+            lead(dist) OVER (PARTITION BY id ORDER BY index) AS dist_b,
+            dist_h
+        FROM
+            distances
+    ),
+    cos AS (
+        SELECT
+            id, index, type, geom, dist_a, dist_b,
+            -- Subtracting π/2, we compute the angle of a radius of a tangential circle of first segment
+            cos(
+                -- Using cosine law in a triangle we compute the cosine angle of the middle point of way segments
+                acos(GREATEST(-1, LEAST(1,
+                      (dpow(dist_a, 2) + dpow(dist_b, 2) - dpow(dist_h, 2)) / (2 * dist_a * dist_b)
+                )))
+                - pi()/2
+            ) AS rc
+        FROM
+            distances2
+        WHERE
+            index > 1 AND
+            dist_h IS NOT NULL AND
+            dist_a > 0 AND
+            dist_b > 0 AND
+            (dist_a > 70 OR dist_b > 70)
+    ),
+    rc AS (
+        SELECT
+            id, index, type, geom, dist_a, dist_b,
+            -- We compute the radius of the circle tangential to first segment.
+            -- Using cosine in a right-angled triangle based on the middle of the second segment.
+            -- The hypotenuse of the triangle is the circle radius.
+            (dist_a / 2) / rc AS rc_a,
+            (dist_b / 2) / rc AS rc_b
+        FROM
+            cos
+    )
 SELECT
-    foo.id,
-    ST_AsText(ST_PointN(_linestring, index)),
-    GREATEST(
-        discard3points(
-            ST_PointN(foo.linestring, index-1),
-            ST_PointN(foo.linestring, index),
-            ST_PointN(foo.linestring, index+1)
-        ),
-        discard3points(
-            ST_PointN(foo.linestring, index+1),
-            ST_PointN(foo.linestring, index),
-            ST_PointN(foo.linestring, index-1)
-        )
-    ) AS d,
+    id,
+    ST_AsText(ST_Transform(geom, 4326)),
+    round(GREATEST(
+        -- Using Pythagoras we compute the last side of the right-angled triangle.
+        -- The difference between this side length and the circle radius.
+        rc_a - dsqrt(dpow(rc_a, 2) - dpow(dist_a / 2, 2)),
+        rc_b - dsqrt(dpow(rc_b, 2) - dpow(dist_b / 2, 2))
+    )) AS d,
     type,
     {3},
     index
-FROM (
-    SELECT
-        id,
-        linestring AS _linestring,
-        ST_Transform(linestring, {4}) AS linestring,
-        generate_series(2, ST_NPoints(linestring)-1) AS index,
-        tags->'{1}' AS type
-    FROM
-        {0}ways AS ways
-    WHERE
-        tags != ''::hstore AND
-        tags?'{1}' AND tags->'{1}' IN ('{2}') AND
-        ST_NPoints(linestring) >= 4
-) AS foo
-{5}
+FROM
+    rc
 WHERE
-    {6}
     GREATEST(
-        discard3points(
-            ST_PointN(foo.linestring, index-1),
-            ST_PointN(foo.linestring, index),
-            ST_PointN(foo.linestring, index+1)
-        ),
-        discard3points(
-            ST_PointN(foo.linestring, index+1),
-            ST_PointN(foo.linestring, index),
-            ST_PointN(foo.linestring, index-1)
-        )
-    ) > 70/2
+        rc_a - dsqrt(dpow(rc_a, 2) - dpow(dist_a / 2, 2)),
+        rc_b - dsqrt(dpow(rc_b, 2) - dpow(dist_b / 2, 2))
+    ) > 70
 """
 
-sql12water1 = """
-    LEFT JOIN ways ON
-        ways.is_polygon AND
-        ways.tags != ''::hstore AND
-        ways.tags?'natural' AND
-        ways.tags->'natural' = 'water' AND
-        ways.tags?'water' AND
-        ways.tags->'water' IN ('lake', 'lagoon', 'basin', 'reservoir') AND
-        ways.linestring && ST_PointN(foo._linestring, index) AND
-        ST_Intersects(ST_MakePolygon(ways.linestring), ST_PointN(foo._linestring, index))
+sql10water1 = """
+        LEFT JOIN (SELECT is_polygon, tags, linestring FROM ways) AS water ON
+            water.is_polygon AND
+            water.tags != ''::hstore AND
+            water.tags?'natural' AND
+            water.tags->'natural' = 'water' AND
+            water.tags?'water' AND
+            water.tags->'water' IN ('lake', 'lagoon', 'basin', 'reservoir') AND
+            water.linestring && points.geom4326 AND
+            ST_Intersects(ST_MakePolygon(water.linestring), points.geom4326)
 """
 
-sql12water2 = """
-    ways.id IS NULL AND
+sql10water2 = """
+        water.is_polygon IS NULL AND
 """
 
 class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
@@ -137,7 +146,7 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
         if self.config.options and "osmosis_way_approximate" in self.config.options and self.config.options["osmosis_way_approximate"].get("highway"):
             highway_values = self.config.options["osmosis_way_approximate"].get("highway")
         self.tags = ( (10, "railway", ("rail",), '', ''),
-                      (20, "waterway", ("river",), sql12water1, sql12water2),
+                      (20, "waterway", ("river",), sql10water1, sql10water2),
                       (30, "highway", highway_values, '', ''),
                     )
         for t in self.tags:
@@ -159,13 +168,9 @@ false positive'''),
         self.callback10 = lambda res: {"class":res[4], "subclass":res[5], "data":[self.way_full, self.positionAsText], "text": T_("{0} deviation of {1}m", res[3], res[2])}
 
     def analyser_osmosis_full(self):
-        self.run(sql10)
-        self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)
+            self.run(sql10.format("", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10)
-        self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("touched_", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)
+            self.run(sql10.format("touched_", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)
