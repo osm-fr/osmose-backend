@@ -92,7 +92,7 @@ msgstr ""
 msgid "School, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:32
+#: ../analysers/analyser_merge_service_public_FR.py:37
 msgid "Public service not integrated"
 msgstr ""
 
@@ -720,12 +720,12 @@ msgstr ""
 msgid "Name contains successive spaces"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:95
+#: ../plugins/TagRemove_Incompatibles.py:96
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:98
+#: ../plugins/TagRemove_Incompatibles.py:99
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:101
+#: ../plugins/TagRemove_Incompatibles.py:102
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1580,7 +1580,7 @@ msgstr ""
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:159
+#: ../analysers/analyser_osmosis_way_approximate.py:168
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr ""
@@ -2069,7 +2069,7 @@ msgid ""
 "administrative schools for a single physical school."
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:34
+#: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
 msgstr ""
 
@@ -2710,13 +2710,13 @@ msgstr ""
 msgid "Link the waterway or invert its flow direction."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:152
+#: ../analysers/analyser_osmosis_way_approximate.py:161
 msgid ""
 "On service ways, train stations, train workshops that may be either a\n"
 "false positive"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:155
+#: ../analysers/analyser_osmosis_way_approximate.py:164
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n"
 "\n"
@@ -3973,35 +3973,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:863
+#: ../analysers/Analyser_Merge.py:858
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:866
+#: ../analysers/Analyser_Merge.py:861
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:871
+#: ../analysers/Analyser_Merge.py:866
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:884
+#: ../analysers/Analyser_Merge.py:879
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:897
+#: ../analysers/Analyser_Merge.py:892
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:859
+#: ../analysers/Analyser_Merge.py:854
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4146,7 +4146,7 @@ msgid ""
 "turn it to a public_transport=stop_position"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:145
+#: ../analysers/analyser_osmosis_way_approximate.py:154
 #, python-brace-format
 msgid "Approximate geometry of {0}"
 msgstr ""
@@ -4410,13 +4410,13 @@ msgid ""
 "role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:147
+#: ../analysers/analyser_osmosis_way_approximate.py:156
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
 "drawing and the real way especially in the curve."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:150
+#: ../analysers/analyser_osmosis_way_approximate.py:159
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
@@ -4467,4 +4467,35 @@ msgstr ""
 
 #: tmp.json:53
 msgid "cycling infrastructure"
+msgstr ""
+
+#: ../plugins/Capacity.py:33
+msgid "Invalid capacity value"
+msgstr ""
+
+#: ../plugins/Capacity.py:34
+msgid "Capacity tags should be positive integers."
+msgstr ""
+
+#: ../plugins/Capacity.py:41
+msgid "Specific capacity is greater than total capacity"
+msgstr ""
+
+#: ../plugins/Capacity.py:42
+msgid "A capacity:* value is greater than the total capacity."
+msgstr ""
+
+#: ../plugins/Capacity.py:58 ../plugins/Capacity.py:96
+#, python-brace-format
+msgid "\"{0}\" value \"{1}\" is negative"
+msgstr ""
+
+#: ../plugins/Capacity.py:64 ../plugins/Capacity.py:102
+#, python-brace-format
+msgid "\"{0}\" value \"{1}\" is not an integer"
+msgstr ""
+
+#: ../plugins/Capacity.py:85
+#, python-brace-format
+msgid "Specific \"{0}\" value \"{1}\" should be lower than total capacity {2}"
 msgstr ""

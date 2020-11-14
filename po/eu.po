@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-10-19 20:23+0000\n"
+"PO-Revision-Date: 2020-11-14 19:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Basque (http://www.transifex.com/openstreetmap-france/osmose/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr "Integratu gabeko eskola"
 msgid "School, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:32
+#: ../analysers/analyser_merge_service_public_FR.py:37
 msgid "Public service not integrated"
 msgstr "Integratu gabeko zerbitzu publikoa"
 
@@ -301,19 +301,19 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:322
+#: ../analysers/analyser_osmosis_powerline.py:323
 msgid "Lone power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:345
+#: ../analysers/analyser_osmosis_powerline.py:346
 msgid "Connection between different voltages"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:348
+#: ../analysers/analyser_osmosis_powerline.py:349
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:356
+#: ../analysers/analyser_osmosis_powerline.py:357
 msgid "Missing power tower or pole"
 msgstr ""
 
@@ -723,12 +723,12 @@ msgstr "Izena zuriune batekin bukatzen da"
 msgid "Name contains successive spaces"
 msgstr "Izenak zuriune ugari ditu jarraian"
 
-#: ../plugins/TagRemove_Incompatibles.py:95
+#: ../plugins/TagRemove_Incompatibles.py:96
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:98
+#: ../plugins/TagRemove_Incompatibles.py:99
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -898,11 +898,11 @@ msgstr "Objektuak itsaso edo uretatik gertu egon behar du"
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:329
+#: ../analysers/analyser_osmosis_powerline.py:330
 msgid "Unfinished power major line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:337
+#: ../analysers/analyser_osmosis_powerline.py:338
 msgid "Unfinished power minor line"
 msgstr ""
 
@@ -959,7 +959,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:101
+#: ../plugins/TagRemove_Incompatibles.py:102
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -984,7 +984,7 @@ msgstr ""
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:361
+#: ../analysers/analyser_osmosis_powerline.py:362
 msgid "Unmatched voltage of line on substation"
 msgstr ""
 
@@ -1584,7 +1584,7 @@ msgstr ""
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:159
+#: ../analysers/analyser_osmosis_way_approximate.py:168
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr ""
@@ -2073,7 +2073,7 @@ msgid ""
 "administrative schools for a single physical school."
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:34
+#: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
 msgstr ""
 
@@ -2438,7 +2438,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:324
+#: ../analysers/analyser_osmosis_powerline.py:325
 msgid "This tower should probably be connected to a power line."
 msgstr ""
 
@@ -2709,13 +2709,13 @@ msgstr ""
 msgid "Link the waterway or invert its flow direction."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:152
+#: ../analysers/analyser_osmosis_way_approximate.py:161
 msgid ""
 "On service ways, train stations, train workshops that may be either a\n"
 "false positive"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:155
+#: ../analysers/analyser_osmosis_way_approximate.py:164
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n"
 "\n"
@@ -3343,7 +3343,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_street_objects2.py:47
 #: ../analysers/analyser_merge_street_objects.py:47
-#: ../analysers/analyser_merge_traffic_signs.py:81
+#: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr ""
@@ -3361,7 +3361,7 @@ msgid ""
 "detection is correct."
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:83
+#: ../analysers/analyser_merge_traffic_signs.py:85
 msgid ""
 "Add the appropriate highway tagging if the imagery is up-to-date and sign "
 "detection is correct."
@@ -3419,14 +3419,14 @@ msgstr ""
 
 #: ../analysers/analyser_merge_street_objects2.py:70
 #: ../analysers/analyser_merge_street_objects.py:70
-#: ../analysers/analyser_merge_traffic_signs.py:103
+#: ../analysers/analyser_merge_traffic_signs.py:105
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
 #: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
-#: ../analysers/analyser_merge_traffic_signs.py:104
+#: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed on {0}"
 msgstr ""
@@ -3486,40 +3486,40 @@ msgid ""
 "allow for correct routing."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:326
-#: ../analysers/analyser_osmosis_powerline.py:334
-#: ../analysers/analyser_osmosis_powerline.py:342
+#: ../analysers/analyser_osmosis_powerline.py:327
+#: ../analysers/analyser_osmosis_powerline.py:335
+#: ../analysers/analyser_osmosis_powerline.py:343
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:331
-#: ../analysers/analyser_osmosis_powerline.py:339
+#: ../analysers/analyser_osmosis_powerline.py:332
+#: ../analysers/analyser_osmosis_powerline.py:340
 msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`) or a generator (`power=generator`)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:346
+#: ../analysers/analyser_osmosis_powerline.py:347
 msgid ""
 "Two power lines meet at this point, but have inconsistent voltages "
 "(`voltage=*`)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:350
+#: ../analysers/analyser_osmosis_powerline.py:351
 msgid ""
 "Power lines can only form a straight line between supports and therefore shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:353
+#: ../analysers/analyser_osmosis_powerline.py:354
 msgid ""
 "If this node is a tower or pole, use the tag `power=tower` or\n"
 "`power=pole`. Otherwise remove it."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:358
+#: ../analysers/analyser_osmosis_powerline.py:359
 msgid ""
 "Based on the statistical frequency of the poles on this power line,\n"
 "there's likely an unmapped pole nearby."
@@ -3637,7 +3637,7 @@ msgstr ""
 msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:82
+#: ../analysers/analyser_merge_traffic_signs.py:84
 #, python-brace-format
 msgid ""
 "Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
@@ -3955,35 +3955,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:863
+#: ../analysers/Analyser_Merge.py:858
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:866
+#: ../analysers/Analyser_Merge.py:861
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:871
+#: ../analysers/Analyser_Merge.py:866
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:884
+#: ../analysers/Analyser_Merge.py:879
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:897
+#: ../analysers/Analyser_Merge.py:892
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:859
+#: ../analysers/Analyser_Merge.py:854
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4128,7 +4128,7 @@ msgid ""
 "turn it to a public_transport=stop_position"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:145
+#: ../analysers/analyser_osmosis_way_approximate.py:154
 #, python-brace-format
 msgid "Approximate geometry of {0}"
 msgstr ""
@@ -4390,13 +4390,13 @@ msgid ""
 "role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:147
+#: ../analysers/analyser_osmosis_way_approximate.py:156
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
 "drawing and the real way especially in the curve."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:150
+#: ../analysers/analyser_osmosis_way_approximate.py:159
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
@@ -4447,4 +4447,35 @@ msgstr ""
 
 #: tmp.json:53
 msgid "cycling infrastructure"
+msgstr ""
+
+#: ../plugins/Capacity.py:33
+msgid "Invalid capacity value"
+msgstr ""
+
+#: ../plugins/Capacity.py:34
+msgid "Capacity tags should be positive integers."
+msgstr ""
+
+#: ../plugins/Capacity.py:41
+msgid "Specific capacity is greater than total capacity"
+msgstr ""
+
+#: ../plugins/Capacity.py:42
+msgid "A capacity:* value is greater than the total capacity."
+msgstr ""
+
+#: ../plugins/Capacity.py:58 ../plugins/Capacity.py:96
+#, python-brace-format
+msgid "\"{0}\" value \"{1}\" is negative"
+msgstr ""
+
+#: ../plugins/Capacity.py:64 ../plugins/Capacity.py:102
+#, python-brace-format
+msgid "\"{0}\" value \"{1}\" is not an integer"
+msgstr ""
+
+#: ../plugins/Capacity.py:85
+#, python-brace-format
+msgid "Specific \"{0}\" value \"{1}\" should be lower than total capacity {2}"
 msgstr ""
