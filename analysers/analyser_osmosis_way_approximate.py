@@ -33,14 +33,13 @@ DECLARE rc float; -- radius
 DECLARE cosB float;
 DECLARE f float; -- discard
 BEGIN
-    d12 = dsqrt(dpow(x2 - x1,2) + dpow(y2 - y1,2));
-    d23 = dsqrt(dpow(x3 - x2,2) + dpow(y3 - y2,2));
-    d31 = dsqrt(dpow(x1 - x3,2) + dpow(y1 - y3,2));
-    cosB = dpow(d31, 2) - dpow(d12, 2) - dpow(d23, 2);
-    cosB = cosB / (2 * d12 * d23);
-    ag = 180 - (acos(cosB) * 180 / pi());
-    rc = (d23/2)/(cos((ag-90)*pi()/180));
-    f = -(dsqrt(dpow(rc,2)-dpow((d23/2),2))-rc);
+    d12 = dsqrt(dpow(x2 - x1, 2) + dpow(y2 - y1, 2));
+    d23 = dsqrt(dpow(x3 - x2, 2) + dpow(y3 - y2, 2));
+    d31 = dsqrt(dpow(x1 - x3, 2) + dpow(y1 - y3, 2));
+    cosB = (dpow(d12, 2) + dpow(d23, 2) - dpow(d31, 2)) / (2 * d12 * d23);
+    ag = acos(cosB);
+    rc = (d23/2) / cos(ag-pi()/2);
+    f = rc - dsqrt(dpow(rc, 2) - dpow(d23 / 2, 2));
     RETURN f;
 END;
 $$ LANGUAGE plpgsql
@@ -50,7 +49,7 @@ $$ LANGUAGE plpgsql
 sql11 = """
 CREATE OR REPLACE FUNCTION discard3points(p1 geometry, p2 geometry, p3 geometry) RETURNS integer AS $$
 BEGIN
-    RETURN (discard(ST_X(p1), ST_Y(p1), ST_X(p2), ST_Y(p2), ST_X(p3), ST_Y(p3))/2)::int;
+    RETURN discard(ST_X(p1), ST_Y(p1), ST_X(p2), ST_Y(p2), ST_X(p3), ST_Y(p3))::int;
 EXCEPTION
 WHEN division_by_zero THEN
     --RAISE INFO 'division_by_zero';
@@ -110,7 +109,7 @@ WHERE
             ST_PointN(foo.linestring, index),
             ST_PointN(foo.linestring, index-1)
         )
-    ) > 70/2
+    ) > 70
 """
 
 sql12water1 = """
