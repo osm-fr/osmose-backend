@@ -53,8 +53,16 @@ except ImportError:
 
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
 
+# Checking existence of schema before CREATE SCHEMA is necessary on databases,
+# like france_local_db, where user osmose doesn't have the rights to create a
+# schema.
 sql_schema = """
-CREATE SCHEMA IF NOT EXISTS {schema}
+DO language 'plpgsql' $$
+BEGIN
+  IF NOT EXISTS (SELECT * FROM information_schema.schemata WHERE schema_name = '{schema}' ) THEN
+    CREATE SCHEMA {schema};
+  END IF;
+END $$
 """
 
 sql00 = """
