@@ -3973,35 +3973,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:858
+#: ../analysers/Analyser_Merge.py:866
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:861
+#: ../analysers/Analyser_Merge.py:869
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:866
+#: ../analysers/Analyser_Merge.py:874
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:879
+#: ../analysers/Analyser_Merge.py:887
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:892
+#: ../analysers/Analyser_Merge.py:900
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:854
+#: ../analysers/Analyser_Merge.py:862
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
