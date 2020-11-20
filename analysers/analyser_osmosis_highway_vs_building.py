@@ -186,6 +186,7 @@ FROM
     JOIN {1}highway AS highway ON
         highway.level = '0' AND
         highway.layer = '0' AND
+        highway.highway NOT IN ('footway', 'path', 'track') AND
         tree.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
 """

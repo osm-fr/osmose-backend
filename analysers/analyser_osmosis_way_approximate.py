@@ -31,6 +31,25 @@ from .Analyser_Osmosis import Analyser_Osmosis
 # /    \|
 # A
 
+sql00 = """
+CREATE TEMP TABLE water AS
+SELECT
+    linestring
+FROM
+    ways AS water
+WHERE
+    water.is_polygon AND
+    water.tags != ''::hstore AND
+    water.tags?'natural' AND
+    water.tags->'natural' = 'water' AND
+    water.tags?'water' AND
+    water.tags->'water' IN ('lake', 'lagoon', 'basin', 'reservoir')
+"""
+
+sql01 = """
+CREATE INDEX idx_water_linestring ON water USING gist(linestring)
+"""
+
 sql10 = """
 WITH
     points AS (
@@ -123,19 +142,13 @@ WHERE
 """
 
 sql10water1 = """
-        LEFT JOIN (SELECT is_polygon, tags, linestring FROM ways) AS water ON
-            water.is_polygon AND
-            water.tags != ''::hstore AND
-            water.tags?'natural' AND
-            water.tags->'natural' = 'water' AND
-            water.tags?'water' AND
-            water.tags->'water' IN ('lake', 'lagoon', 'basin', 'reservoir') AND
-            water.linestring && points.geom4326 AND
-            ST_Intersects(ST_MakePolygon(water.linestring), points.geom4326)
+            LEFT JOIN water ON
+                water.linestring && points.geom4326 AND
+                ST_Intersects(ST_MakePolygon(water.linestring), points.geom4326)
 """
 
 sql10water2 = """
-        water.is_polygon IS NULL AND
+            water.linestring IS NULL AND
 """
 
 class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
@@ -168,9 +181,13 @@ false positive'''),
         self.callback10 = lambda res: {"class":res[4], "subclass":res[5], "data":[self.way_full, self.positionAsText], "text": T_("{0} deviation of {1}m", res[3], res[2])}
 
     def analyser_osmosis_full(self):
+        self.run(sql00)
+        self.run(sql01)
         for t in self.tags:
             self.run(sql10.format("", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)
 
     def analyser_osmosis_diff(self):
+        self.run(sql00)
+        self.run(sql01)
         for t in self.tags:
             self.run(sql10.format("touched_", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj"), t[3], t[4]), self.callback10)

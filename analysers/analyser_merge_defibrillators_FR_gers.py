@@ -31,10 +31,10 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/inventaire-des-defibrillateurs-automatises-externes-dae-dans-le-gers/#",
-            u"Inventaire des Défibrillateurs Automatisés Externes (DAE) dans le Gers",
-            SHP(Source(attribution = u"Région Occitanie / Pyrénées Méditerranée",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d81ffeca-921b-4455-b889-f1019da423e1",
+            "https://www.data.gouv.fr/fr/datasets/inventaire-des-defibrillateurs-automatises-externes-dae-dans-le-gers-1/",
+            "Inventaire des Défibrillateurs Automatisés Externes (DAE) dans le Gers",
+            SHP(Source(attribution = "Département du Gers",
+                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/479b8047-f8e3-4536-9a07-12f96c9a3cd7",
                     zip = "inventaire-des-defibrillateurs-automatises-externes-dans-le-gers.shp")),
             Load(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), srid = 2154),
             Mapping(
