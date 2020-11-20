@@ -87,6 +87,9 @@
       {
         "railway": "level_crossing",
         "crossing:light": "yes"
+      },
+      {
+        "railway": "signal"
       }
     ],
     "generate_tags": {
