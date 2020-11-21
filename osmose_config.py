@@ -624,7 +624,6 @@ default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT"
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
-default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632, "phone_code": '45', "phone_len": 8, "phone_international": '00'}, download_repo=GEOFABRIK)
 
 #########################################################################
@@ -694,6 +693,30 @@ ch_part('valais', 1686699, 'CH-VS', language=['fr', 'de'])
 ch_part('vaud', 1702421, 'CH-VD', language='fr')
 ch_part('zug', 1686447, 'CH-ZG', language='de')
 ch_part('zurich', 1690227, 'CH-ZH', language='de')
+
+#########################################################################
+
+fi_part = gen_country('europe', 'finland', download_repo=OSMFR, proj=32635)
+
+fi_part('lapland', 2541341, 'FI-10', language="fi")
+fi_part('north_ostrobothnia', 1724360, 'FI-14', language="fi")
+fi_part('kainuu', 1997164, 'FI-05', language="fi")
+fi_part('north_karelia', 1999428, 'FI-13', language="fi")
+fi_part('north_savo', 918898, 'FI-15', language="fi")
+fi_part('south_savo', 918897, 'FI-04', language="fi")
+fi_part('south_karelia', 2067231, 'FI-02', language="fi")
+fi_part('central_finland', 1701740, 'FI-08', language="fi")
+fi_part('south_ostrobothnia', 1702263, 'FI-03', language="fi")
+fi_part('ostrobothnia', 2000320, 'FI-12', language=["fi", "sv"])
+fi_part('central_ostrobothnia', 1702330, 'FI-07', language=["fi", "sv"])
+fi_part('pirkanmaa', 1701741, 'FI-11', language="fi")
+fi_part('satakunta', 2000361, 'FI-17', language="fi")
+fi_part('paijat_hame', 1703362, 'FI-16', language="fi")
+fi_part('kanta_hame', 1473990, 'FI-06', language="fi")
+fi_part('kymenlaakso', 2102313, 'FI-09', language="fi")
+fi_part('uusimaa', 37355, 'FI-19', language=["fi", "sv"])
+fi_part('southwest_finland', 38092, 'FI-19', language=["fi", "sv"])
+fi_part('aland', 1650407, 'AX', language="sv")
 
 #########################################################################
 
