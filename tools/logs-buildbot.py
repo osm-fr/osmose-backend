@@ -275,7 +275,12 @@ if __name__ == "__main__":
         a = t.split(":")[-1].strip()
         global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
 
-      global_countries_longest[country] = last_stat["total"]
+      if args.tasks:
+        for t in last_stat["tasks"]:
+          if args.tasks[0] in t:
+            global_countries_longest[country] = last_stat["tasks"][t]
+      else:
+        global_countries_longest[country] = last_stat["total"]
 
   if args.stats_global:
     print()
