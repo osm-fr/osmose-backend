@@ -787,7 +787,7 @@ class Select:
         self.tags = tags
 
 class Generate:
-    def __init__(self, missing_official_fix = True, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, tag_keep_multiple_values = [], text = lambda tags, fields: {}):
+    def __init__(self, missing_official_fix = True, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, tag_keep_multiple_values = [], subclass_hash = lambda d: d, text = lambda tags, fields: {}):
         """
         How result error file is build.
         @param missing_official_fix: boolean to generate or not new object with quickfix
@@ -795,7 +795,8 @@ class Generate:
         @param static2: dict of secondary tags apply as is, not checked on update process
         @param mapping1: dict of primary tags, if value is string then data set column value is take, else lambda
         @param mapping2: dict of secondary tags, if value is string then data set column value is take, else lambda, not checked on update process
-        @parem tag_keep_multiple_values: if tags already have value or multiple values just append the new one
+        @param tag_keep_multiple_values: if tags already have value or multiple values just append the new one
+        @param subclass_hash: lambda return dict from dict fields to be used in subclass hash computation (to be stable)
         @param text: lambda return string, describe this error
         """
         self.missing_official_fix = missing_official_fix
@@ -804,6 +805,7 @@ class Generate:
         self.mapping1 = mapping1
         self.mapping2 = mapping2
         self.tag_keep_multiple_values = tag_keep_multiple_values
+        self.subclass_hash = subclass_hash
         self.text = text
 
     def eval_staticGroup(self, static, analyser):
@@ -1038,7 +1040,9 @@ OpenData and OSM.'''))
         if self.missing_official:
             self.run(sql12, lambda res: {
                 "class": self.missing_official['id'],
-                "subclass": str(stablehash64("{0}{1}{2}".format(res[0],res[1],sorted(res[3].items())))),
+                "subclass": str(stablehash64("{0}{1}{2}".format(
+                    res[0], res[1],
+                    sorted(self.mapping.generate.subclass_hash(res[3]).items())) )),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
@@ -1073,7 +1077,9 @@ OpenData and OSM.'''))
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy), lambda res: {
                     "class": self.possible_merge['id'],
-                    "subclass": str(stablehash64("{0}{1}".format(res[0], sorted(res[3].items())))),
+                    "subclass": str(stablehash64("{0}{1}".format(
+                        res[0],
+                        sorted(self.mapping.generate.subclass_hash(res[3]).items())) )),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                     "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
@@ -1113,7 +1119,9 @@ OpenData and OSM.'''))
         if self.update_official:
             self.run(sql60.format(official = table, joinClause = joinClause), lambda res: {
                 "class": self.update_official['id'],
-                "subclass": str(stablehash64("{0}{1}".format(res[0],sorted(res[5].items())))),
+                "subclass": str(stablehash64("{0}{1}".format(
+                    res[0],
+                    sorted(self.mapping.generate.subclass_hash(res[5]).items())) )),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
                 "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
