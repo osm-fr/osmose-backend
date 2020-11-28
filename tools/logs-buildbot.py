@@ -138,7 +138,7 @@ if __name__ == "__main__":
       os.makedirs(c_dir)
 
     if args.no_buildbot_check and os.listdir(c_dir):
-      nums = sorted([int(i) for i in os.listdir(c_dir)])
+      nums = sorted([int(i) for i in os.listdir(c_dir)], reverse=True)
       list_builds = nums[:]
     else:
       builds = json.loads(requests.get(buildbot_api + "builders/%d/builds?complete__eq=true&order=-complete_at&limit=%d" % (builders[country], args.num_builds)).text)
