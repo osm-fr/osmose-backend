@@ -477,7 +477,7 @@ france_departement("rhone_alpes/savoie", 7425, "FR-73")
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74")
 
 
-france_departement_dom = gen_country(None, country_base='france', language='fr', municipality_ref='ref:INSEE',
+france_departement_dom = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE',
     phone_len=9, phone_format=r'^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$', phone_international='00', phone_local_prefix='0',
     include=[
     'osmosis_building_geodesie_FR',
