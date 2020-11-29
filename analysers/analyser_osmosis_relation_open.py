@@ -87,5 +87,5 @@ reported at each end of open part.''')
                 title = T_('Open relation type=boundary admin_level={0}', admin_level),
                 detail = detail)
 
-    def analyser_osmosis_full(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class": res[3], "data":[self.relation_full, self.node, self.positionAsText]})
