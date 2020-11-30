@@ -60,7 +60,6 @@ separator '_' or ':'. See
                                 "voltage-high", "voltage-low",
                                 "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
                                 "strassen-nrw", # DE import
-                                "ref",
                                 "hazmat",
                              ) )
 
@@ -103,7 +102,6 @@ class Test(TestPluginCommon):
                   "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate",
                   "railway:memor2+", "railway:tbl1+",
                   "strassen-nrw:abs",
-                  "ref:clochers.org",
                   "hazmat:4.3",
                  ]:
             assert not a.node(None, {k: '1'}), ("key='{0}'".format(k))
