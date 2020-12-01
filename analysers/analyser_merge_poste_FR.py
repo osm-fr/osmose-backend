@@ -55,14 +55,14 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                 osmRef = "ref:FR:LaPoste",
                 conflationDistance = 1000,
                 generate = Generate(
-                    static1 = {
-                        "amenity": "post_office",
-                        "operator": "La Poste"},
-                    static2 = {"source": self.source},
+                    static1 = {"amenity": "post_office"},
+                    static2 = {
+                        "source": self.source,
+                        "brand": "La Poste"},
                     mapping1 = {
                         "ref:FR:LaPoste": "#Identifiant_du_site",
                         "post_office:type": lambda res:
-                            "post_annex" if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste
+                            "post_annex" if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
                             "post_partner" if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
                             None, # BP: Bureau de poste; other
                         "addr:postcode": "Code_postal",
@@ -75,6 +75,10 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                             "limited" if self.bool[res[u"Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res[u"Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "no"},
                     mapping2 = {
+                        "operator": lambda res:
+                            None if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
+                            None if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
+                            "La Poste", # BP: Bureau de poste; other
                         "name": lambda res: re.sub(self.APBP, "", res["Libellé_du_site"]),
                         "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "phone": lambda res: ("+33" + res["Numéro_de_téléphone"][1:]) if res["Numéro_de_téléphone"] != "3631" else None},
