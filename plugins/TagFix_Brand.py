@@ -45,26 +45,28 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         self.brands_from_nsi = self._get_brands()
 
     def _get_brands(self):
-        nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/brands.json"
+        nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/index.json"
         json_str = urlread(nsi_url_for_brands, 30)
         results = json.loads(json_str)
         additional_brands = {}
-        for brand_nsi_name, brand in results["brands"].items():
-            if "locationSet" in brand:
-                if "include" in brand["locationSet"] and self.country_code not in brand["locationSet"]["include"] and "001" not in brand["locationSet"]["include"]:
-                    continue
-                if "exclude" in brand["locationSet"] and self.country_code in brand["locationSet"]["exclude"]:
-                    continue
-            brand_nsi_name = brand_nsi_name.split("~")[0]
-            if "matchTags" in brand:
-                for additional_tag in brand["matchTags"]:
-                    nsi_key = "{}|{}".format(additional_tag, brand_nsi_name.split("|")[1])
-                    additional_brands[nsi_key.lower()] = brand
-            if "matchNames" in brand:
-                for additional_name in brand["matchNames"]:
-                    nsi_key = "{}|{}".format(brand_nsi_name.split("|")[0], additional_name)
-                    additional_brands[nsi_key.lower()] = brand
-            additional_brands[brand_nsi_name.lower()] = brand
+        for tag, brands in results.items():
+            if tag.startswith('brands/'):
+                brand_nsi_name = tag[len('brands/'):]
+                for brand in brands:
+                    if "locationSet" in brand:
+                        if "include" in brand["locationSet"] and self.country_code not in brand["locationSet"]["include"] and "001" not in brand["locationSet"]["include"]:
+                            continue
+                        if "exclude" in brand["locationSet"] and self.country_code in brand["locationSet"]["exclude"]:
+                            continue
+                    if "matchTags" in brand:
+                        for additional_tag in brand["matchTags"]:
+                            nsi_key = "{}|{}".format(additional_tag, brand["displayName"])
+                            additional_brands[nsi_key.lower()] = brand
+                    if "matchNames" in brand:
+                        for additional_name in brand["matchNames"]:
+                            nsi_key = "{}|{}".format(brand_nsi_name, additional_name)
+                            additional_brands[nsi_key.lower()] = brand
+                    additional_brands["{}|{}".format(brand_nsi_name, brand["displayName"]).lower()] = brand
         return additional_brands
 
     def node(self, data, tags):
