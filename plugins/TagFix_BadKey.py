@@ -41,12 +41,16 @@ separator '_' or ':'. See
         self.errors[3050]  = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
             title = T_('Bad key'),
             **doc)
+        self.errors[30502]  = self.def_class(item = 3050, level = 3, tags = ['tag', 'fix:chair'],
+            title = T_('Bad key'),
+            **doc)
         self.errors[30501] = self.def_class(item = 3050, level = 1, tags = ['tag', 'fix:chair'],
             title = T_('Bad key suffix'),
             **doc)
 
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
+        self.KeyPart1Less = re.compile("^[-.a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
         self.exceptions = set( ("ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
                                 "USGS-LULC",
@@ -79,7 +83,10 @@ separator '_' or ':'. See
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append({"class": 3050, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                if self.KeyPart1Less.match(part[0]):
+                    err.append({"class": 30502, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                else:
+                    err.append({"class": 3050, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
                 err.append({"class": 30501, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
