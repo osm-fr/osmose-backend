@@ -86,7 +86,7 @@ FROM
 """
 
 sql23 = """
-CREATE TEMP TABLE {0}_{1}_coastline AS
+CREATE TEMP TABLE {0}_{1}_coastline_sinkhole AS
 SELECT
     ww.id,
     ww.end
@@ -99,7 +99,18 @@ FROM
         ways.id = way_nodes.way_id AND
         ways.tags != ''::hstore AND
         ways.tags?'natural' AND
-        ways.tags->'natural' = 'coastline'
+        ways.tags->'natural' IN ('coastline', 'sinkhole')
+UNION ALL
+SELECT
+    ww.id,
+    ww.end
+FROM
+    {0}water_ends AS ww
+    JOIN nodes ON
+        nodes.id = ww.end AND
+        nodes.tags != ''::hstore AND
+        nodes.tags?'natural' AND
+        nodes.tags->'natural' IN ('sinkhole')
 """
 
 sql24 = """
@@ -117,7 +128,7 @@ FROM
         SELECT
             *
         FROM
-            {0}_{1}_coastline
+            {0}_{1}_coastline_sinkhole
     EXCEPT
         SELECT
             *

@@ -95,7 +95,7 @@ class Source_Mapillary(Source):
                             p = j['properties']
                             gc = j['geometry']['coordinates']
                             if self.source == 'map_features':
-                                image_key = p['detections'][0]['image_key']
+                                image_key = min(map(lambda d: d['image_key'], p['detections']))
                                 row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']]
                             elif self.source == 'image_detections':
                                 image_key = p['key']

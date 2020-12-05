@@ -32,7 +32,7 @@ class Administrative_TooManyWays(Plugin):
             detail = T_(
 '''In a relation, a way should be present only once.'''),
             fix = T_(
-'''Most often, this is an user issue that add several times the same way.
+'''Most often, this is a user issue that added several times the same way.
 The editor JOSM can easily visualize the relationships and see duplicates
 (in color).'''),
             trap = T_(

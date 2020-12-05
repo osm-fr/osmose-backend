@@ -31,7 +31,7 @@ STANDS_TYPES = {
 }
 tag_mapping = {
     "capacity": (
-        lambda res: None if res["Place calculée"] in (None, "0", "-1") else res["Place calculée"]
+        lambda res: None if res["Nombre places calculées"] in (None, "0", "-1") else res["Nombre places calculées"]
     ),
     "bicycle_parking": (
         lambda res: STANDS_TYPES.get(res['Type mobilier'], None)
