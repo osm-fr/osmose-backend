@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-11-15 02:12+0000\n"
+"PO-Revision-Date: 2020-11-29 22:48+0000\n"
 "Last-Translator: maro21 OSM\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -448,7 +448,7 @@ msgstr "Nazwa miasta nie pasuje do kodu INSEE"
 
 #: ../plugins/Administrative_TooManyWays.py:31
 msgid "Duplicated way in relation"
-msgstr "Powielona droga w relacji"
+msgstr "Powielona linia w relacji"
 
 #: ../plugins/Construction.py:34
 msgid "Finished construction"
@@ -2317,7 +2317,7 @@ msgstr "Brakuje drogi lub torowiska dla tego przejazdu."
 
 #: ../analysers/analyser_osmosis_highway_features.py:84
 msgid "The node must be common to rail and road."
-msgstr ""
+msgstr "Ten węzeł musi być częścią drogi (`highway=*`)."
 
 #: ../analysers/analyser_osmosis_highway_link.py:134
 msgid ""
@@ -2771,14 +2771,14 @@ msgstr ""
 
 #: ../plugins/Administrative_TooManyWays.py:33
 msgid "In a relation, a way should be present only once."
-msgstr ""
+msgstr "Każda linia w relacji powinna wystąpić tylko raz."
 
 #: ../plugins/Administrative_TooManyWays.py:35
 msgid ""
 "Most often, this is an user issue that add several times the same way.\n"
 "The editor JOSM can easily visualize the relationships and see duplicates\n"
 "(in color)."
-msgstr ""
+msgstr "To najczęściej jest błąd użytkownika, który dodał dwa razy tę samą linię. Edytor JOSM może łatwo pokazywać relacje i oznaczać duplikaty innym kolorem."
 
 #: ../plugins/Administrative_TooManyWays.py:39
 msgid ""
@@ -2787,7 +2787,7 @@ msgid ""
 "Caution: in a route, a path can be taken several times. The multiple\n"
 "presence of this path in the relation `type=route` is not then an issue.\n"
 "Then ensure the roles `forward` and `backward`."
-msgstr ""
+msgstr "Dokładnie sprawdź role tych linii w relacji przed usunięciem.\n\nUwaga: w trasach drogi mogą występować kilkakrotnie. Kilkakrotne występowanie tej samej ścieżki lub drogi w relacjach `type=route` nie jest błędem.\nZwróć też uwagę na odpowiednie role `forward` lub `backward`."
 
 #: ../plugins/disabled/Structural_Restriction2.py:37
 msgid "Useless `no_u_turn` restriction, it's already forbidden by local law"
@@ -2864,7 +2864,7 @@ msgstr "Warunki parkowania, ale bez rodzaju parkowania."
 
 #: ../plugins/Name_Dictionary.py:35
 msgid "Probably missing a capital."
-msgstr ""
+msgstr "Może brakować wielkiej litery lub znaku diakrytycznego."
 
 #: ../plugins/Name_MisspelledWordByRegex.py:33
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
@@ -2894,7 +2894,7 @@ msgstr ""
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:51
 msgid "An abbreviation is present."
-msgstr ""
+msgstr "W nazwie drogi jest skrót."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:53
 msgid "Write the type of the way with all letters."
@@ -2902,7 +2902,7 @@ msgstr ""
 
 #: ../plugins/Name_Quotation.py:31
 msgid "Unbalanced quotation mark or bracket in name"
-msgstr ""
+msgstr "Nierówna liczba nawiasów lub cudzysłowów"
 
 #: ../plugins/Name_Saint_FR.py:35
 msgid ""
@@ -3050,7 +3050,7 @@ msgstr ""
 
 #: ../plugins/Structural_Multipolygon.py:37
 msgid "Members must be ways."
-msgstr ""
+msgstr "Członami relacji muszą być linie."
 
 #: ../plugins/Structural_Multipolygon.py:41
 msgid "At least one outer ring must be present."
@@ -3415,7 +3415,7 @@ msgstr "Fotoradar powinien być jako węzeł na drodze lub w relacji enforcement
 
 #: ../plugins/Name_Script.py:55
 msgid "Unexpected symbol in name"
-msgstr ""
+msgstr "Nieoczekiwany symbol w nazwie"
 
 #: ../plugins/TagFix_BadValue.py:32
 msgid "Bad tag value"
@@ -3595,7 +3595,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:73
 msgid "The relation is missing a `type` tag to define what it represents."
-msgstr ""
+msgstr "Relacji brakuje tagu `type=*`."
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31

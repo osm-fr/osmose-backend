@@ -415,11 +415,11 @@ msgstr ""
 msgid "Missing tag or role on relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:136
+#: ../analysers/analyser_osmosis_waterway.py:147
 msgid "Riverbank without river"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:144
+#: ../analysers/analyser_osmosis_waterway.py:155
 msgid "Unconnected waterway or wrong way flow"
 msgstr ""
 
@@ -1697,7 +1697,7 @@ msgstr ""
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:93
+#: ../plugins/TagFix_Maxspeed.py:95
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr ""
@@ -1974,11 +1974,11 @@ msgstr ""
 msgid "Camp pitchs outside a camp site"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:42
+#: ../plugins/TagFix_BadKey.py:42 ../plugins/TagFix_BadKey.py:45
 msgid "Bad key"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:45
+#: ../plugins/TagFix_BadKey.py:48
 msgid "Bad key suffix"
 msgstr ""
 
@@ -2688,25 +2688,25 @@ msgstr ""
 msgid "The object is sometimes duplicate."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:138
+#: ../analysers/analyser_osmosis_waterway.py:149
 msgid ""
 "There is one `waterway=riverbank` but there is no `waterway=river`\n"
 "inside it."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:141
+#: ../analysers/analyser_osmosis_waterway.py:152
 msgid ""
 "After checking, create a \"river\" line inside te \"riverbank\"\n"
 "polygon."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:146
+#: ../analysers/analyser_osmosis_waterway.py:157
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
 "water must flow into another waterway or meet a `natural=coastline`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:149
+#: ../analysers/analyser_osmosis_waterway.py:160
 msgid "Link the waterway or invert its flow direction."
 msgstr ""
 
@@ -2766,7 +2766,6 @@ msgstr ""
 msgid "In a relation, a way should be present only once."
 msgstr ""
 
-#: ../plugins/Administrative_TooManyWays.py:35
 msgid ""
 "Most often, this is an user issue that add several times the same way.\n"
 "The editor JOSM can easily visualize the relationships and see duplicates\n"
@@ -3420,16 +3419,16 @@ msgstr ""
 msgid "Untagged named object"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:70
-#: ../analysers/analyser_merge_street_objects.py:70
-#: ../analysers/analyser_merge_traffic_signs.py:105
+#: ../analysers/analyser_merge_street_objects2.py:71
+#: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:71
-#: ../analysers/analyser_merge_street_objects.py:71
-#: ../analysers/analyser_merge_traffic_signs.py:106
+#: ../analysers/analyser_merge_street_objects2.py:72
+#: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
 msgstr ""
@@ -3662,9 +3661,9 @@ msgstr ""
 #: ../plugins/Name_UpperCase.py:66 ../plugins/Number.py:69
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
-#: ../plugins/TagFix_BadKey.py:81 ../plugins/TagFix_BadKey.py:83
-#: ../plugins/TagFix_BadValue.py:105 ../plugins/TagFix_BadValue.py:110
-#: ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:87 ../plugins/TagFix_BadKey.py:89
+#: ../plugins/TagFix_BadKey.py:91 ../plugins/TagFix_BadValue.py:105
+#: ../plugins/TagFix_BadValue.py:110 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr ""
@@ -3973,35 +3972,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:866
+#: ../analysers/Analyser_Merge.py:868
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:869
+#: ../analysers/Analyser_Merge.py:871
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:874
+#: ../analysers/Analyser_Merge.py:876
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:887
+#: ../analysers/Analyser_Merge.py:889
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:900
+#: ../analysers/Analyser_Merge.py:902
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:862
+#: ../analysers/Analyser_Merge.py:864
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4160,7 +4159,7 @@ msgstr ""
 msgid "Different values of {0} and of {1}"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:78
+#: ../plugins/TagFix_Maxspeed.py:80
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
@@ -4498,4 +4497,24 @@ msgstr ""
 #: ../plugins/Capacity.py:85
 #, python-brace-format
 msgid "Specific \"{0}\" value \"{1}\" should be lower than total capacity {2}"
+msgstr ""
+
+#: ../plugins/Administrative_TooManyWays.py:35
+msgid ""
+"Most often, this is a user issue that added several times the same way.\n"
+"The editor JOSM can easily visualize the relationships and see duplicates\n"
+"(in color)."
+msgstr ""
+
+#: ../plugins/Cuisine_Guess.py:36
+msgid "Possible mistake of lack of precision of `cuisine` value"
+msgstr ""
+
+#: ../plugins/Cuisine_Guess.py:39
+msgid "Suggestion of `cuisine` value"
+msgstr ""
+
+#: ../plugins/Cuisine_Guess.py:61
+#, python-brace-format
+msgid "Guess with propability: {0}"
 msgstr ""
