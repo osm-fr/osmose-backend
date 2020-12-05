@@ -148,11 +148,7 @@
 <detail lang="es" title="En una relación, una vía debería estar presente sólo una vez." />
 <detail lang="fr" title="Dans une relation, une route devrait n'être présente qu'une fois. " />
 <detail lang="ja" title="リレーション内ではウェイは1回だけ現れるべきです。" />
-<fix lang="de" title="Meistens wurde der Weg unbeabsichtigt mehrfach der Relation hinzugefügt.&#10;Der JOSM Editor kann Relationen visualisieren und diese Duplikate (farbig) anzeigen." />
-<fix lang="en" title="Most often, this is an user issue that add several times the same way.&#10;The editor JOSM can easily visualize the relationships and see duplicates&#10;(in color)." />
-<fix lang="fr" title="Most often, this is an user issue that add several times the same way.&#10;The editor JOSM can easily visualize the relationships and see duplicates&#10;(in color).&#10;&#10;Le plus souvent, il s'agit d'un problème d'utilisateur qui ajoute plusieurs fois de la même route. &#10;L'éditeur JOSM peut facilement visualiser les relations et voir les doublons (en couleur)." />
-<fix lang="ja" title="たいてい、これは同じウェイを何回も追加してしまったユーザー側の問題です。JOSMエディタではその関係を簡単に(色で)視覚化して重複を見分けられます。" />
-<fix lang="uk" title="Найчастіше це помилка користувача, який додає кілька разів один&#10;відрізок. Редактор JOSM може легко візуалізувати зв'язки і відобразити&#10;дублікати (в кольорі)." />
+<fix lang="en" title="Most often, this is a user issue that added several times the same way.&#10;The editor JOSM can easily visualize the relationships and see duplicates&#10;(in color)." />
 <trap lang="en" title="Double check the ways roles in the relation before deleting.&#10;&#10;Caution: in a route, a path can be taken several times. The multiple&#10;presence of this path in the relation `type=route` is not then an issue.&#10;Then ensure the roles `forward` and `backward`." />
 <trap lang="ja" title="削除する前に、リレーション内のウェイのroleをダブルチェックしてください。&#10;&#10;警告: routeにおいて、経路は複数回取ることができます。そのためリレーション種別`type=route` 内に複数経路があることは問題ではありません。&#10;role `forward` 及び `backward`を確認してください。" />
 </class>
@@ -1849,7 +1845,7 @@
 <classtext lang="zh_CN" title="标签丢失" />
 <classtext lang="zh_TW" title="缺少標籤" />
 </class>
-<class id="30501" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L46" level="1" tag="tag,fix:chair">
+<class id="30501" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L49" level="1" tag="tag,fix:chair">
 <classtext lang="de" title="Unpassender Schlüssel-Suffix" />
 <classtext lang="en" title="Bad key suffix" />
 <classtext lang="es" title="Sufijo clave erróneo" />
@@ -1860,6 +1856,32 @@
 <classtext lang="ja" title="不正なキー接尾辞" />
 <classtext lang="pl" title="Niepoprawny przyrostek klucza" />
 <classtext lang="uk" title="Помилковий суфікс ключа" />
+<detail lang="de" title="Der Schlüssel des Tags enthält unzulässige Zeichen. Schlüssel sollten aus alphanumerischen Zeichen: 0-9, a-z (vorzugsweise Kleinbuchstaben), Trennzeichen '_' oder ':' bestehen, siehe: [Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
+<detail lang="en" title="The key of tag contains characters not recommended. The key is&#10;composed of alphanumeric characters: 0-9, a-z (preferably lower case),&#10;separator '_' or ':'. See&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
+<detail lang="ja" title="キーまたはタグに非推奨の文字が含まれています。キーは英数字: 0-9, a-z (小文字が望ましい)と区切り文字'_' または ':'で構成されます。&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)参照。" />
+<detail lang="pl" title='Klucz tagu zawiera niezalecane znaki. Powinien składać się z: małych liter a-z (bez polskich znaków i innych znaków diakrytycznych), cyfr 0-9, znaku podkreślenia "_", dwukropka ":". Zobacz&#10;[Syntactic conventions for new tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags).' />
+<fix lang="de" title="Den Merkmalschlüssel prüfen, und korrigieren." />
+<fix lang="en" title="Check the key tag, and correct." />
+<fix lang="ja" title="キータグをチェックして修正してください。" />
+<fix lang="pl" title="Sprawdź klucz tagu i popraw." />
+<fix lang="uk" title="Перевірте ключ теґу та виправте" />
+<trap lang="en" title="There certainly false positives." />
+<trap lang="eu" title="Ziurrekin positibo faltsuak daude." />
+<trap lang="ja" title="もちろん偽陽性（誤検出）はありえます。" />
+<trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
+</class>
+<class id="30502" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L46" level="3" tag="tag,fix:chair">
+<classtext lang="de" title="Unpassender Schlüssel" />
+<classtext lang="en" title="Bad key" />
+<classtext lang="es" title="Clave errónea" />
+<classtext lang="eu" title="Gako okerra" />
+<classtext lang="fr" title="Mauvaise clé" />
+<classtext lang="gl" title="Clave errónea" />
+<classtext lang="hu" title="Hibás kulcs" />
+<classtext lang="it" title="Chiave non corretta" />
+<classtext lang="ja" title="不正なキー" />
+<classtext lang="pl" title="Niepoprawny klucz" />
+<classtext lang="uk" title="Помилковий ключ" />
 <detail lang="de" title="Der Schlüssel des Tags enthält unzulässige Zeichen. Schlüssel sollten aus alphanumerischen Zeichen: 0-9, a-z (vorzugsweise Kleinbuchstaben), Trennzeichen '_' oder ':' bestehen, siehe: [Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
 <detail lang="en" title="The key of tag contains characters not recommended. The key is&#10;composed of alphanumeric characters: 0-9, a-z (preferably lower case),&#10;separator '_' or ':'. See&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)." />
 <detail lang="ja" title="キーまたはタグに非推奨の文字が含まれています。キーは英数字: 0-9, a-z (小文字が望ましい)と区切り文字'_' または ':'で構成されます。&#10;[Any_tags_you_like#Syntactic_conventions_for_new_tags](https://wiki.openstreetmap.org/wiki/Any_tags_you_like#Syntactic_conventions_for_new_tags)参照。" />
@@ -1925,11 +1947,19 @@
 </class>
 <class id="30912" item="3091" source="http://example.com/plugins/Capacity.py#L35" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
 <classtext lang="en" title="Invalid capacity value" />
+<classtext lang="ja" title="無効な収容数" />
+<classtext lang="pl" title="Niepoprawna wartość capacity" />
 <detail lang="en" title="Capacity tags should be positive integers." />
+<detail lang="ja" title="収容数は正の整数であるべきです。" />
+<detail lang="pl" title="Wartość tagu capacity powinna być dodatnia." />
 </class>
 <class id="30913" item="3091" source="http://example.com/plugins/Capacity.py#L43" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
 <classtext lang="en" title="Specific capacity is greater than total capacity" />
+<classtext lang="ja" title="個別の収容数が総収容数より大きい" />
+<classtext lang="pl" title="Wartość tagu capacity:* jest większa niż dla capacity" />
 <detail lang="en" title="A capacity:* value is greater than the total capacity." />
+<detail lang="ja" title="capacity:* の値が総収容数より大きい" />
+<detail lang="pl" title="Wartość tagu capacity:* jest większa niż dla capacity." />
 </class>
 <class id="30931" item="3093" source="http://example.com/plugins/Website.py#L40" level="2" tag="value,fix:chair">
 <classtext lang="cs" title="URL obsahuje mezeru" />
@@ -2584,7 +2614,7 @@
 <classtext lang="de" title="Hochliegendes Gewässer bzw. Wasserlauf ohne Brücken-Attribut" />
 <classtext lang="en" title="Long Waterway/water above ground and no bridge" />
 <classtext lang="ja" title="bridgeタグがないのに地表より上にある長い水路/水系" />
-<classtext lang="pl" title="Długi ciek na ziemią bez mostu" />
+<classtext lang="pl" title="Długi ciek nad ziemią bez mostu" />
 </class>
 <class id="41101" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L31" level="3" tag="landuse,fix:chair">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
@@ -2619,7 +2649,7 @@
 <classtext lang="ja" title="地下にあるnatureの地物" />
 <classtext lang="lt" title="Natūralus objektas po žeme" />
 <classtext lang="nl" title="Natural kenmerk ondergronds" />
-<classtext lang="pl" title="Obiekt natural pod ziemią" />
+<classtext lang="pl" title="Obiekt naturalny pod ziemią" />
 <classtext lang="pt" title="Característica 'natural' por baixo so solo" />
 <classtext lang="pt_BR" title="Característica 'natural' por baixo so solo" />
 <classtext lang="ru" title="Природный объект под землёй" />
@@ -2984,7 +3014,7 @@
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
 </class>
-<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L78" level="1" tag="tag,highway">
+<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L80" level="1" tag="tag,highway">
 <classtext lang="en" title="Discordant maxspeed and source:maxspeed or maxspeed:type" />
 <classtext lang="gl" title="'maxspeed e 'source:maxspeed' ou 'maxspeed:type' difiren" />
 <classtext lang="ja" title="maxspeed と source:maxspeed または maxspeed:type が不一致" />
@@ -3110,6 +3140,7 @@
 <classtext lang="de" title="transition nur als Wert von placement nutzen" />
 <classtext lang="en" title="Use transition only as value of placement" />
 <classtext lang="es" title="Utilice transition solo como un valor de placement" />
+<classtext lang="fr" title="Utiliser transition seulement comme valeur de placement" />
 <classtext lang="nl" title="Gebruik transition alleen als waarde van placement" />
 <classtext lang="ru" title="Используйте transition только как значение placement" />
 <classtext lang="uk" title="Використовуйте transition тільки як значення для placement" />
@@ -3179,7 +3210,7 @@
 <classtext lang="en" title="{{0.key}}={{0.value}} is unspecific. Instead of ''{{0.value}}'' please give more information about what exactly should be fixed." />
 <classtext lang="es" title="{{0.key}}={{0.value}} carece de precisión. En lugar de ''{{0.value}}'' por favor ingrese más información sobre exactamente qué debería ser corregido." />
 <classtext lang="fr" title="{{0.key}}={{0.value}} est vague. À la place de ''{{0.value}}'', veuillez indiquer précisément ce qui doit être corrigé ou amélioré." />
-<classtext lang="hu" title="{{0.key}}={{0.value}} nem konkrét. Kérlek, a(z) ''{{0.value}}'' helyett inkább adj több tájékoztatást arról, hogy pontosan mit is kellene kijavítani!" />
+<classtext lang="hu" title="[{{0.key}}={{0.value}}] nem konkrét. Kérlek, a(z) [{{0.value}}] helyett inkább adj több tájékoztatást arról, hogy pontosan mit is kellene kijavítani." />
 <classtext lang="it" title="{{0.key}}={{0.value}} non è specifico. Al posto di ''{{0.value}}'' si prega di fornire maggiori informazioni riguardo a che cosa esattamente dovrebbe essere corretto." />
 <classtext lang="ja" title="{{0.key}}={{0.value}}は定義されていません。''{{0.value}}''の代わりに、正確に何を修正するべきかについての詳細情報を設定してください。" />
 <classtext lang="lt" title="{{0.key}}={{0.value}} netikslu. Vietoje „{{0.value}}“ pateikite daugiau informacijos apie tai, kas tiksliai turi būti sutvarkyta." />
@@ -3187,7 +3218,7 @@
 <classtext lang="pl" title='{{0.key}} = {{0.value}} jest niespecyficzne. Zamiast "{{0.value}}" podaj więcej informacji o tym, co dokładnie należy naprawić.' />
 <classtext lang="pt" title="{{0.key}}={{0.value}} é genérico. Em vez de ''{{0.value}}'' descreva melhor o que deve ser corrigido." />
 <classtext lang="pt_BR" title="{{0.key}}={{0.value}} é inespecífico. Em vez de ''{{0.value}}'', por favor, dê mais informações sobre o que exatamente deve ser corrigido." />
-<classtext lang="ru" title="{{0.key}}={{0.value}} — точно не определённый тег. Вместо ''{{0.value}}'' опишите подробнее то, что должно быть исправлено." />
+<classtext lang="ru" title="{{0.key}}={{0.value}} — обобщено. Вместо «{{0.value}}» опишите подробнее то, что должно быть исправлено." />
 <classtext lang="uk" title="{{0.key}}={{0.value}} є неспецифічним. Замість ''{{0.value}}'' вкажіть докладнішу інформацію про те, що дійсно потрібно виправити." />
 <classtext lang="zh_CN" title="{{0.key}}={{0.value}}不特定。请给出更多关于修复的信息而不是“{{0.value}}”。" />
 </class>
@@ -3198,7 +3229,7 @@
 <classtext lang="en" title="Wrong usage of {{0.key}} tag. Remove {{0.key}}={{0.value}}, because it is clear that the name is missing even without an additional tag." />
 <classtext lang="es" title="Uso incorrecto de la etiqueta {{0.key}}. Elimine {{0.key}}={{0.value}}, debido a que queda claro que el nombre está ausente incluso sin una etiqueta adicional ." />
 <classtext lang="fr" title="Usage incorrect du tag {{0.key}}. Supprimez {{0.key}}={{0.value}} car il est évident que le nom est manquant même sans un tag additionnel." />
-<classtext lang="hu" title="{{0.key}} címke használata helytelen. Töröld a(z) {{0.key}}={{0.value}} címkét, mert egy további címke nélkül is egyértelmű, hogy a név hiányzik." />
+<classtext lang="hu" title="[{{0.key}}] címke használata helytelen. Töröld a(z) [{{0.key}}={{0.value}}] címkét, mert további címke nélkül is egyértelmű, hogy a név hiányzik." />
 <classtext lang="it" title="Uso non corretto dell’etichetta {{0.key}}. Rimuovere {{0.key}}={{0.value}} perché è chiaro che il nome sia mancante anche senza aggiungere un’altra etichetta." />
 <classtext lang="ja" title="{{0.key}} タグの使い方が誤っています。追加タグがなくても名前がないことが明らかなので、 {{0.key}}={{0.value}} を削除してください。" />
 <classtext lang="nl" title="Verkeerd gebruik van tag {{0.key}}. Verwijder {{0.key}}={{0.value}}, want het is duidelijk dat de naam ontbreekt, zelfs zonder een aanvullende tag." />
@@ -3215,14 +3246,14 @@
 <classtext lang="en" title="{{0.key}}={{0.value}} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme." />
 <classtext lang="es" title="{{0.key}}={{0.value}} no es específica. En su lugar se debe utilizar la clave fixme con información en el valor de lo que debe arreglarse exactamente." />
 <classtext lang="fr" title="{{0.key}}={{0.value}} n''est pas spécifique. Utilisez fixme à la place, avec l''élément à corriger." />
-<classtext lang="hu" title="{{0.key}}={{0.value}} címke nem konkrét. Helyette használd inkább a fixme kulcsot, és az értékmezőben írd le, hogy pontosan mit kellene kijavítani." />
+<classtext lang="hu" title="[{{0.key}}={{0.value}}] címke nem konkrét. Helyette használd inkább a [fixme] kulcsot, és az értékmezőben írd le, hogy pontosan mit kellene kijavítani." />
 <classtext lang="it" title="{{0.key}}={{0.value}} non è specifico. Utilizzare al suo posto la chiave fixme inserendo l’informazione di cosa vada esattamente corretto." />
 <classtext lang="lt" title="{{0.key}}={{0.value}} yra netikslu. Vietoje to naudokite raktą fixme su informacija, ką tiksliai reikia pataisyti fixme reikšmėje." />
 <classtext lang="nl" title="{{0.key}}={{0.value}} is niet specifiek. Gebruik in plaats daarvan de sleutel fixme met in de waarde van fixme de informatie over wat exact zou moeten worden gerepareerd." />
 <classtext lang="pl" title="{{0.key}}={{0.value}} jest za mało szczegółowe. Zamiast tego użyj klucza Fixme z informacją, co dokładnie powinno zostać naprawione w wartości Fixme." />
 <classtext lang="pt" title="{{0.key}}={{0.value}} não é específico. Em vez disso use a chave fixme com a informação do que deve ser realmente corrigido no valor de fixme." />
 <classtext lang="pt_BR" title="{{0.key}}={{0.value}} não é específico. Ao invés disto, utilize a chave fixme com a exata informação que deve ser corrigida no valor de fixme." />
-<classtext lang="ru" title="{{0.key}}={{0.value}} — неконкретный тег. Используйте ключ fixme, значением которого является информация о том, что именно нужно исправить." />
+<classtext lang="ru" title="{{0.key}}={{0.value}} — обобщено. Вместо этого используйте ключ fixme, значением которого является информация о том, что именно нужно исправить." />
 <classtext lang="uk" title="{{0.key}}={{0.value}} – не визначений. Замість цього використовуйте ключ fixme, в значенні якого вкажіть інформацію про те, що потрібно виправити." />
 <classtext lang="zh_CN" title="{{0.key}}={{0.value}}不特定。使用键fixme并在fixme的值中填写有关修复的具体信息。" />
 </class>
@@ -3233,7 +3264,7 @@
 <classtext lang="en" title="{{0.key}}={{0.value}} is unspecific. Please replace ''{{0.value}}'' by a specific value." />
 <classtext lang="es" title="{{0.key}}={{0.value}} no es específico. Reemplazar ''{{0.value}}'' con un valor más concreto." />
 <classtext lang="fr" title="{{0.key}}={{0.value}} est imprécis. Veuillez remplacer « {{0.value}} » par une valeur spécifique." />
-<classtext lang="hu" title="A(z)z {{0.key}}={{0.value}} nem konkrét. Kérlek, helyettesítsd konkrét értékkel a következőt: ''{{0.value}}''" />
+<classtext lang="hu" title="[{{0.key}}={{0.value}}] címke nem konkrét. Kérlek, helyettesítsd konkrét értékkel a következőt: [{{0.value}}]" />
 <classtext lang="it" title="{{0.key}}={{0.value}} non è specificato. Sostituire ''{{0.value}}'' con un valore specifico." />
 <classtext lang="ja" title="{{0.key}}={{0.value}}は未定義です。「{{0.value}}」を具体的な値に置き換えてください。" />
 <classtext lang="lt" title="{{0.key}}={{0.value}} yra netikslu. Pakeiskite „{{0.value}}“ tikslia reikšme." />
@@ -3241,7 +3272,7 @@
 <classtext lang="pl" title='{{0.key}} = {{0.value}} jest niespecyficzne. Zmień "{{0.value}}" na określoną wartość.' />
 <classtext lang="pt" title="{{0.key}}={{0.value}} é genérico. Substitua ''{{0.value}}'' por um valor específico." />
 <classtext lang="pt_BR" title="{{0.key}}={{0.value}} é inespecífico. Por favor, substitua ''{{0.value}}'' por um valor específico." />
-<classtext lang="ru" title="{{0.key}}={{0.value}} — обобщённое значение. Замените ''{{0.value}}'' более конкретным значением." />
+<classtext lang="ru" title="{{0.key}}={{0.value}} — обобщённое значение. Замените «{{0.value}}» более конкретным значением." />
 <classtext lang="uk" title="{{0.key}}={{0.value}} є неспецифічним. Будь ласка, вкажіть замість ''{{0.value}}'' конкретніше значення." />
 <classtext lang="zh_CN" title="{{0.key}}={{0.value}}不特定。请用特定值替换“{{0.value}}”。" />
 <classtext lang="zh_TW" title="{{0.key}}={{0.value}} 不明確：請將 {{0.value}} 換成特定的數值。" />
@@ -3253,7 +3284,7 @@
 <classtext lang="en" title="{{0.key}} should be replaced with {{1.key}}" />
 <classtext lang="es" title="{{0.key}} debería ser reemplazado con {{1.key}}" />
 <classtext lang="fr" title="{{0.key}} devrait être remplacé par {{1.key}}" />
-<classtext lang="hu" title="a(z) {{0.key}}-t {{1.key}}-el kellene cserélni" />
+<classtext lang="hu" title="[{{0.key}}] – le kellene cserélni erre: {{1.key}}" />
 <classtext lang="it" title="{{0.key}} dovrebbe essere sostituito da {{1.key}}" />
 <classtext lang="ja" title="{{0.key}}は{{1.key}}に置き換えるべきです" />
 <classtext lang="nl" title="{{0.key}} zou moeten worden vervangen door {{1.key}}" />
@@ -3273,7 +3304,7 @@
 <classtext lang="es" title="{{1.key}} = {{1.value}}; eliminar {{1.key}}" />
 <classtext lang="fr" title="{{1.key}} = {{1.value}}; retirer {{1.key}}" />
 <classtext lang="gl" title="{{1.key}} = {{1.value}}; eliminar {{1.key}}" />
-<classtext lang="hu" title="{{1.key}} = {{1.value}}; {{1.key}} eltávolítása" />
+<classtext lang="hu" title="[{{1.key}}={{1.value}}]; távolítsd el ezt: {{1.key}}" />
 <classtext lang="it" title="{{1.key}} = {{1.value}}; rimuovere {{1.key}}" />
 <classtext lang="nl" title="{{1.key}} = {{1.value}}; verwijder {{1.key}}" />
 <classtext lang="pl" title="{{1.key}} = {{1.value}}; usuń {{1.key}}" />
@@ -3298,7 +3329,7 @@
 <classtext lang="pl" title="Nieokreślony znacznik {{0.key}}={{0.value}}" />
 <classtext lang="pt" title="Etiqueta genérica {{0.key}}={{0.value}}" />
 <classtext lang="pt_BR" title="Etiqueta inespecífica {{0.key}}={{0.value}}" />
-<classtext lang="ru" title="Неспецифичный тег {{0.key}}={{0.value}}" />
+<classtext lang="ru" title="Неуточнённый тег {{0.key}}={{0.value}}" />
 <classtext lang="uk" title="Незрозумілий теґ {{0.key}}={{0.value}}" />
 <classtext lang="zh_CN" title="不具体的标签 {{0.key}}={{0.value}}" />
 <classtext lang="zh_TW" title="不明確的標籤 {{0.key}}={{0.value}}" />
@@ -3431,6 +3462,7 @@
 <classtext lang="de" title="falscher Wert: {{0.key}}={{0.value}}" />
 <classtext lang="en" title="wrong value: {{0.key}}={{0.value}}" />
 <classtext lang="es" title="valor incorrecto: {{0.key}}={{0.value}}" />
+<classtext lang="fa" title="مقدار اشتباه: {{0.key}}={{0.value}}" />
 <classtext lang="fr" title="Mauvaise valeur: {{0.key}}={{0.value}}" />
 <classtext lang="hu" title="helytelen érték: {{0.key}}={{0.value}}" />
 <classtext lang="it" title="valore errato: {{0.key}}={{0.value}}" />
@@ -3462,7 +3494,13 @@
 <classtext lang="zh_CN" title="{{0.key}}的值反常" />
 </class>
 <class id="9002021" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
+<classtext lang="cs" title="{{0.key}}={{0.value}} je nekonkrétní" />
+<classtext lang="de" title="{{0.key}}={{0.value}} ist unspezifisch" />
 <classtext lang="en" title="{{0.key}}={{0.value}} is unspecific" />
+<classtext lang="fr" title="{{0.key}}={{0.value}} n''est pas spécifique" />
+<classtext lang="nl" title="{{0.key}}={{0.value}} is niet specifiek" />
+<classtext lang="ru" title="{{0.key}}={{0.value}} не уточнено" />
+<classtext lang="uk" title="{{0.key}}={{0.value}} є розпливчастим" />
 </class>
 <class id="9003001" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="3" tag="geom">
 <classtext lang="ca" title="{{0.key}}={{0.value}} a un node. Ha de ser utilitzat a una via." />
@@ -3611,7 +3649,13 @@
 <classtext lang="zh_CN" title="对象在位置0.00E 0.00N。此处没有任何东西，除了一个已绘制的气象浮筏。" />
 </class>
 <class id="9003011" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="3" tag="geom">
+<classtext lang="cs" title="{{1.key}}={{1.value}} na uzavřené cestě. Mělo by se používat pouze na neuzavřené cestě." />
+<classtext lang="de" title="{{1.key}}={{1.value}} auf einer geschlossenen Linie, sollte nur auf nicht geschlossenen Linien verwendet werden." />
 <classtext lang="en" title="{{1.key}}={{1.value}} on a closed way. Should be used on an unclosed way." />
+<classtext lang="fr" title="{{1.key}}={{1.value}} sur un chemin fermé. Doit être utilisé sur un chemin non fermé." />
+<classtext lang="nl" title="{{1.key}}={{1.value}} op een gesloten weg. Zou moeten worden gebruikt op een niet gesloten weg." />
+<classtext lang="ru" title="{{1.key}}={{1.value}} на замкнутой линии. Следует использовать на незамкнутой линии." />
+<classtext lang="uk" title="{{1.key}}={{1.value}} на замкненій лінії. Має використовуватись не незамкненій лінії." />
 </class>
 <class id="9004001" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="ca" title="nom abreviat del carrer" />
@@ -3979,6 +4023,7 @@
 <classtext lang="de" title="Spannung sollte in Volt ohne Einheitensymbol oder Leerzeichen angegeben werden" />
 <classtext lang="en" title="voltage should be in volts with no units/delimiter/spaces" />
 <classtext lang="es" title="el voltaje debería ser en voltios sin unidades/delimitadores/espacios" />
+<classtext lang="fa" title="ولتاژ باید به ولت و بدون واحد یا جداکننده یا فاصله باشد" />
 <classtext lang="fr" title="la tension doit être en Volts sans unité/delimiter/ espace" />
 <classtext lang="hu" title="a feszültségnek voltban kellene lennie, mértékenység, határoló vagy szóköz nélkül" />
 <classtext lang="it" title="la tensione dovrebbe essere espressa in volt senza unità/delimitatori/spazi" />
@@ -4078,6 +4123,7 @@
 <classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: nutze die Abkürzung der Einheit und Leerzeichen zwischen Zahlenwert und Einheit" />
 <classtext lang="en" title="unusual value of {{0.key}}: use abbreviation for unit and space between value and unit" />
 <classtext lang="es" title="Valor poco común de {{0.key}}: utilice la abreviación para unidades y un espacio entre el valor y la unidad" />
+<classtext lang="fr" title="valeur inhabituelle de {{0.key}} : utiliser l''abréviation de l''unité et un espace entre la valeur et l''unité" />
 <classtext lang="nl" title="ongebruikelijke waarde van {{0.key}}: gebruik afkorting voor eenheid en spatie tussen waarde en eenheid" />
 <classtext lang="ru" title="необычное значение {{0.key}}: используйте сокращение для единиц измерения и пробел между значением и единицей" />
 <classtext lang="uk" title="незвичайне значення у {{0.key}}: використовуйте одиниці виміру через пробіл від значення" />
@@ -4106,6 +4152,7 @@
 <classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: lege die Einheit fest, z. B. minutes oder hours; nur positive Werte; Punkt ist Dezimaltrennzeichen; Leerzeichen zwischen Wert und Einheit" />
 <classtext lang="en" title="unusual value of {{0.key}}: set unit e.g. minutes or hours; only positive values; point is decimal separator; space between value and unit" />
 <classtext lang="es" title="valor inusual de {{0.key}}: establecer la unidad, por ejemplo minutes o hours; sólo valores positivos; el punto es separador decimal; espacio entre el valor y la unidad" />
+<classtext lang="fr" title="valeur inhabituelle de {{0.key}} : fixer l''unité, par exemple minutes ou hours ; valeurs positives uniquement ; le point est le séparateur décimal ; espace entre la valeur et l''unité" />
 <classtext lang="nl" title="ongewone waarde van {{0.key}}: stel eenheid in, bijv. minutes of hours; alleen positieve waarden; punt is decimale scheidingsteken; spatie tussen waarde en eenheid" />
 <classtext lang="ru" title="необычное значение {{0.key}}: должна быть  указана единица измерения, например  minutes или hours; только положительные значения; точка в качестве разделителя; пробел между значением и единицей измерения" />
 <classtext lang="uk" title="незвичайне значення {{0.key}}: встановіть одиниці виміру, напр. minutes або hours; десятковий роздільник - точка; пробіл між значенням та одиницями виміру" />
@@ -4192,6 +4239,7 @@
 <classtext lang="de" title="Straßenname enthält ss" />
 <classtext lang="en" title="street name contains ss" />
 <classtext lang="es" title="nombre de calle contiene ss" />
+<classtext lang="fa" title="نام خیابان حاوی ss است" />
 <classtext lang="fr" title="le nom de rue contient ss" />
 <classtext lang="gl" title="nome de rúa contén ss" />
 <classtext lang="hu" title="az utcanév ss-t tartalmaz" />
@@ -4211,6 +4259,7 @@
 <classtext lang="de" title="Straßenname enthält ß" />
 <classtext lang="en" title="street name contains ß" />
 <classtext lang="es" title="el nombre de la calle contiene ß" />
+<classtext lang="fa" title="نام خیابان حاوی ß است" />
 <classtext lang="fr" title="Le nom de la voie contient ß" />
 <classtext lang="gl" title="nome de rúa contén ß" />
 <classtext lang="hu" title="az utcanév ß-t tartalmaz" />
@@ -4269,6 +4318,7 @@
 <classtext lang="es" title="nombre descriptivo" />
 <classtext lang="fr" title="nom descriptif" />
 <classtext lang="gl" title="nome descritivo" />
+<classtext lang="hu" title="Leíró jellegű [name] név" />
 <classtext lang="it" title="nome descrittivo" />
 <classtext lang="nl" title="beschrijvende naam" />
 <classtext lang="pl" title="nazwa opisowa" />
@@ -4280,8 +4330,9 @@
 <classtext lang="de" title="Wikipedia-Merkmal hat kein Sprachkürzel, ''wikipedia''=''sprache:seitentitel'' nutzen" />
 <classtext lang="en" title="wikipedia tag has no language given, use ''wikipedia''=''language:page title''" />
 <classtext lang="es" title="la etiqueta wikipedia no tiene ningún idioma, use ''wikipedia''=''idioma:título de la página''" />
+<classtext lang="fa" title="برای برچسب ویکی‌پدیا زبانی مشخص نشده است، از ''wikipedia''=''language:page title'' استفاده کنید" />
 <classtext lang="fr" title='Le tag wikipedia n a pas de langage précisé, utilisez "wikipedia"="langage:titre de la page"' />
-<classtext lang="hu" title='a wikipedia címkéhez nincs nyelv megadva, használd a "wikipedia"="nyelv:oldal címe" szintaxist' />
+<classtext lang="hu" title="A [wikipedia] címkéhez nincs nyelv megadva, használd a [wikipedia=nyelv:oldal címe] szintaxist" />
 <classtext lang="it" title="l’etichetta wikipedia non ha una lingua specificato, usare ''wikipedia''=''lingua:titolo della pagina''" />
 <classtext lang="lt" title="žymai wikipedia nenurodyta kalba, naudokite „wikipedia“=„kalba:puslapio pavadinimas“" />
 <classtext lang="nl" title="tag voor wikipedia heeft geen opgegeven taal, gebruik ''wikipedia''=''language:page title''" />
@@ -4298,8 +4349,9 @@
 <classtext lang="de" title="Wikipedia-Merkmal hat einen unbekanntes Sprachkürzel." />
 <classtext lang="en" title="wikipedia tag has an unknown language prefix" />
 <classtext lang="es" title="la etiqueta wikipedia tiene un prefijo de idioma desconocido" />
+<classtext lang="fa" title="برچسب ویکی‌پدیا پیشوند زبان نامعلوم دارد" />
 <classtext lang="fr" title="la clé wikipedia contient un préfixe de langue inconnu" />
-<classtext lang="hu" title="a wikipedia címkében ismeretlen nyelvelőtag szerepel" />
+<classtext lang="hu" title="A [wikipedia] címkében ismeretlen nyelvelőtag szerepel" />
 <classtext lang="it" title="L’etichetta di wikipedia ha un prefisso di lingua sconosciuto" />
 <classtext lang="ja" title="wikipediaタグの言語接頭辞は不明です" />
 <classtext lang="lt" title="žyma wikipedia turi nežinomą kalbos prefiksą" />
@@ -4338,7 +4390,7 @@
 <classtext lang="en" title="wikipedia ''be-x-old'' language is obsolete, use ''be-tarask'' instead" />
 <classtext lang="es" title="el idioma ''be-x-old'' de wikipedia está obsoleto, utilice ''be-tarask'' en su lugar" />
 <classtext lang="fr" title='Le langage wikipedia "be-x-old" est obsolète, utilisez plutot "be-tarask"' />
-<classtext lang="hu" title="A Wikipédia ''be-x-old'' nyelve elavult, használd inkább a következőt: ''be-tarask''" />
+<classtext lang="hu" title="A [wikipedia] címke [be-x-old] nyelve elavult, használd inkább a következőt: [be-tarask]" />
 <classtext lang="it" title="la lingua wikipedia ''be-x-old'' è obsoleta, utilizzare al suo posto ''be-tarask''" />
 <classtext lang="lt" title="wikipedia „be-x-old“ kalba yra pasenusi, vietoje jos naudokite „be-tarask“" />
 <classtext lang="nl" title="wikipedia ''be-x-old'' taal is vervallen, gebruik in plaats daarvan ''be-tarask''" />
@@ -4355,8 +4407,9 @@
 <classtext lang="de" title="Wikipedia-Sprache ''cz'' ist ungültig, stattdessen ''cs'' nutzen" />
 <classtext lang="en" title="wikipedia ''cz'' language is invalid, use ''cs'' instead" />
 <classtext lang="es" title="el idioma ''cz'' de wikipedia no es válido, utilice ''cs'' en su lugar" />
+<classtext lang="fa" title="زبان ''cz'' ویکی‌پدیا نامعتبر است، در عوض از ''cs'' استفاده کنید" />
 <classtext lang="fr" title='Le langage wikipedia "cz" est invalide, utilisez plutot "cs"' />
-<classtext lang="hu" title="A Wikipédia ''cz'' nyelve érvénytelen, használd inkább a következőt: ''cs''" />
+<classtext lang="hu" title="A [wikipedia] címke [cz] nyelve érvénytelen, használd inkább a következőt: [cs]" />
 <classtext lang="it" title="la lingua wikipedia ''cz'' è non valida, utilizzare al suo posto ''cs''" />
 <classtext lang="lt" title="wikipedia „cz“ kalba yra neteisinga, vietoje jos naudokite „cs“" />
 <classtext lang="nl" title="wikipedia ''cz'' taal is ongeldig, gebruik in plaats daarvan ''cs''" />
@@ -4374,7 +4427,7 @@
 <classtext lang="en" title="{{0.key}} tag should not have URL-encoded values like ''%27''" />
 <classtext lang="es" title="la etiqueta {{0.key}} no debería tener valores codificados de estilo URL como ''%27''" />
 <classtext lang="fr" title="Le tag {{0.key}} ne devrait pas avoir de valeurs d URL encodées comme ''%27''" />
-<classtext lang="hu" title="{{0.key}} címke nem tartalmazhat URL-kódolású értéket, mint „%27”" />
+<classtext lang="hu" title="[{{0.key}}] címke nem tartalmazhat URL-kódolású értéket, mint például „%27”" />
 <classtext lang="it" title="l’etichetta {{0.key}} non dovrebbe contenere valori codificati come ''%27''" />
 <classtext lang="ja" title="{{0.key}}タグに''%27''のようなURLをエンコードした値は入るべきではありません" />
 <classtext lang="nl" title="{{0.key}} tag zou geen URL-gecodeerde waarden, zoals ''%27'', moeten hebben" />
@@ -4391,8 +4444,9 @@
 <classtext lang="de" title="Wikipediatitel sollte nach dem Sprachkürzel nicht mit einem Leerzeichen beginnen" />
 <classtext lang="en" title="wikipedia title should not start with a space after language code" />
 <classtext lang="es" title="el título de Wikipedia no debería comenzar con un espacio después del código de idioma" />
+<classtext lang="fa" title="عنوان ویکی‌پدیا نبایستی با حرف فاصله بعد از کد زبان شروع شود" />
 <classtext lang="fr" title="le titre Wikipédia ne doit pas commencer par un espace après le code de la langue" />
-<classtext lang="hu" title="a Wikipédia cím nem kezdődhet szóközzel a nyelvkód után" />
+<classtext lang="hu" title="A [wikipedia] címkében a cím nem kezdődhet szóközzel a nyelvkód után" />
 <classtext lang="it" title="il titolo Wikipedia non dovrebbe cominciare con uno spazio subito dopo il codice della lingua" />
 <classtext lang="ja" title="Wikipediaのページ名は言語コードの後にスペースを入れずに始めるべきです" />
 <classtext lang="lt" title="wikipedia pavadinimas neturi prasidėti tarpu po kalbos kodo" />
@@ -4410,8 +4464,9 @@
 <classtext lang="de" title="Wikipediatitel sollte kein Präfix ''wiki/'' haben" />
 <classtext lang="en" title="wikipedia title should not have ''wiki/'' prefix" />
 <classtext lang="es" title="el título de Wikipedia no debería tener un prefijo ''wiki/''" />
+<classtext lang="fa" title="عنوان ویکی‌پدیا بایستی پیشوند ''wiki/'' نداشته باشد" />
 <classtext lang="fr" title='Le titre wikipedia ne doit pas avoir de préfixe "wiki/"' />
-<classtext lang="hu" title="a wikipédia cím nem tartalmazhat ''wiki/'' előtagot" />
+<classtext lang="hu" title="A [wikipedia] címkében a cím nem tartalmazhat [wiki/] előtagot" />
 <classtext lang="it" title="il titolo wikipedia non dovrebbe avere il prefisso ''wiki/''" />
 <classtext lang="ja" title="Wikipediaのページ名は''wiki/''の接頭辞を持つべきではありません" />
 <classtext lang="lt" title="wikipedia pavadinimas neturi turėti prefikso „wiki/“" />
@@ -4430,7 +4485,7 @@
 <classtext lang="en" title="wikipedia page title should have first letter capitalized" />
 <classtext lang="es" title="el título de página de Wikipedia debería tener su primer letra en mayúsculas" />
 <classtext lang="fr" title="Le titre de la page wikipedia devrait avoir la première lettre en majuscule" />
-<classtext lang="hu" title="a Wikipédia szócikk címe nagy betűvel kell kezdődjön" />
+<classtext lang="hu" title="A [wikipedia] címkében a szócikk címét nagy betűvel kell kezdeni" />
 <classtext lang="it" title="il titolo della pagina wikipedia dovrebbe avere la prima lettera maiuscola" />
 <classtext lang="ja" title="Wikipediaのページ名は一文字目を大文字にすべきです" />
 <classtext lang="lt" title="wikipedia puslapio pavadinimas turėtų prasidėti didžiąja raide" />
@@ -4449,7 +4504,7 @@
 <classtext lang="en" title="wikipedia page title should have spaces instead of underscores (''_''→'' '')" />
 <classtext lang="es" title="el título de página de Wikipedia debería tener espacios en lugar de guiones bajos (''_''→'' '')" />
 <classtext lang="fr" title="Le titre de la page Wikipedia devrait avoir des espaces au lieu des underscores ('' _ '' → '' '')" />
-<classtext lang="hu" title="a Wikipédia szócikk címe szóközöket kell tartalmazzon alávonás helyett („_”→„ ”)" />
+<classtext lang="hu" title="A [wikipedia] címkében a szócikk címének szóközöket kell tartalmaznia alávonás helyett („_”→„ ”)" />
 <classtext lang="it" title="il titolo della pagina Wikipedia dovrebbe avere uno spazio al posto del trattino basso ('' _ '' → '' '')" />
 <classtext lang="lt" title="wikipedia puslapio pavadinimas turi būti su tarpais, o ne pabraukimais („_“→„ “)" />
 <classtext lang="nl" title="Paginatitel voor Wikipedia zou spaties in plaats van underscores (''_''→'' '') moeten hebben" />
@@ -4467,7 +4522,7 @@
 <classtext lang="en" title="wikipedia language seems to be duplicated, e.g. en:en:Foo" />
 <classtext lang="es" title="el idioma de Wikipedia parece estar duplicado, por ejemplo es:es:Cualquiera" />
 <classtext lang="fr" title="la langue wikipedia semble être dupliquée, p. ex. fr: fr: Foo" />
-<classtext lang="hu" title="a Wikipédia nyelvkód úgy tűnik, hogy ismédlődik, pl. hu:hu:Valami" />
+<classtext lang="hu" title="A [wikipedia] címkében ismétlődni látszik a nyelvkód, pl. [hu:hu:Valami]" />
 <classtext lang="it" title="la lingua wikipedia sembra essere duplicata, per esempio en:en:Pippo" />
 <classtext lang="ja" title="Wikipediaの言語が重複しているようです。例: en:en:Foo" />
 <classtext lang="lt" title="panašu, kad wikipedia kalba dubliuota, pvz., lt:lt:Foo" />
@@ -4485,8 +4540,9 @@
 <classtext lang="de" title="Wikidata-Merkmal muss im Qnnnn-Format sein (n = Zahl)" />
 <classtext lang="en" title="wikidata tag must be in Qnnnn format, where n is a digit" />
 <classtext lang="es" title="El tag Wikidata debe estar en el formato Qnnnn, donde n es un dígito" />
+<classtext lang="fa" title="قالب ویکی‌داده به صورت Qnnnn است که n یک عدد است" />
 <classtext lang="fr" title="La balise wikidata doit être au format Qnnnn, où n est un chiffre" />
-<classtext lang="hu" title="Wikidata címke Q0000 formátumú kell legyen, ahol a 0 egy számjegy" />
+<classtext lang="hu" title="A [wikidata] címke értékét [Q0000] formátumban kell megadni, ahol a 0 egy számjegy" />
 <classtext lang="it" title="l’etichetta wikidata dovrebbe essere in formato Qnnnn, dove n è una cifra" />
 <classtext lang="ja" title="wikidataタグはQnnnn（nは数字）の形式でなければなりません" />
 <classtext lang="lt" title="žyma wikidata privalo būti Qnnnn formatu, kur n yra skaitmuo" />
@@ -4505,6 +4561,7 @@
 <classtext lang="en" title="''{{1.key}}'' tag is set, but no ''{{0.key}}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article." />
 <classtext lang="es" title="Se establece la etiqueta ''{{1.key}}'', pero no hay etiqueta ''{{0.key}}''. Asegúrese de establecer ''wikipedia=language:value'' para el artículo principal y opcional ''wikipedia:language=value'' solo para artículos adicionales que no sean solo otras variantes de idioma del artículo principal." />
 <classtext lang="fr" title="Le tag ''{{1.key}}'' est défini, mais pas ''{{0.key}}''. Assurez-vous de définir ''wikipedia=langue:valeur'' pour l''article principal et en option ''wikipedia:langue=valeur'' seulement pour les articles supplémentaires qui ne sont pas seulement d''autres variantes linguistiques de l''article principal." />
+<classtext lang="hu" title="[{{1.key}}] címke ugyan meg van adva, [{{0.key}}] viszont nincs. Győződj meg arról, hogy a [wikipedia=nyelv:érték] címke a fő szócikkre mutat, a nem kötelező [wikipedia:nyelv=érték] címkék pedig csak olyan további Wikipédia-szócikkekre mutatnak, amelyek nem csupán a fő cikk más nyelvi változatai." />
 <classtext lang="nl" title="tag ''{{1.key}}'' is ingesteld, maar geen tag ''{{0.key}}''. Zorg er voor dat ''wikipedia=language:value'' is ingesteld voor het hoofdartikel en optioneel ''wikipedia:language=value'' alleen voor aanvullende artikelen die niet slechts andere taalvarianten van het hoofdartikel zijn." />
 <classtext lang="ru" title="Задан тег ''{{1.key}}'', но не тег ''{{0.key}}''. Убедитесь, что задан ''wikipedia=language:значение'' для главной статьи и необязательный ''wikipedia:language=значение'' только для дополнительных статей, не являющихся просто вариантами главной статьи на другом языке." />
 <classtext lang="uk" title="Встановлено  теґ ''{{1.key}}'', але відсутній теґ ''{{0.key}}''. Переконайтеся що ви встановили ''wikipedia=мова:назва сторінки'' для основної статті, не обов''язково можна додати ''wikipedia:мова=назва сторінки'', але тільки у випадках, коли ця стаття не просто стаття іншою мовою, а й містить додаткову інформацію." />
@@ -4514,6 +4571,8 @@
 <classtext lang="de" title="{{0.key}}-Wert sieht wie ein wikidata-Wert aus" />
 <classtext lang="en" title="{{0.key}} value looks like a wikidata value" />
 <classtext lang="es" title="El valor {{0.key}} parece un valor wikidata" />
+<classtext lang="fr" title="La valeur de {{0.key}} ressemble à une valeur de wikidata" />
+<classtext lang="hu" title="Az [{{0.key}}] érték úgy néz ki, mint egy [wikidata] érték" />
 <classtext lang="nl" title="waarde {{0.key}} ziet eruit als een waarde wikidata" />
 <classtext lang="ru" title="значение {{0.key}} выглядит похожим на значение wikidata" />
 <classtext lang="uk" title="значення {{0.key}} схоже на wikidata" />
@@ -5266,7 +5325,7 @@
 <text lang="cs" value="is_in:country je zavržen" />
 <text lang="lt" value="is_in:country pasenusi" />
 <text lang="ja" value="is_in:countryは推奨されていません" />
-<text lang="hu" value="is_in:country elavult" />
+<text lang="hu" value="[is_in:country] elavult" />
 <text lang="zh_CN" value="is_in:country 已过时" />
 <text lang="ca" value="is_in:country és obsolet" />
 <fixes>
@@ -5355,7 +5414,7 @@
 <text lang="cs" value="power_source je zavržen" />
 <text lang="lt" value="power_source pasenusi" />
 <text lang="ja" value="power_sourceは推奨されていません" />
-<text lang="hu" value="power_source elavult" />
+<text lang="hu" value="[power_source] elavult" />
 <text lang="zh_CN" value="power_source 已过时" />
 <text lang="ca" value="power_source és obsolet" />
 </error>
