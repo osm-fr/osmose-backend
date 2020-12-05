@@ -30,6 +30,8 @@ import fileinput
 import shutil
 import datetime
 import time
+import osmium # type: ignore
+import dateutil
 
 
 class OsmOsisManager:
@@ -258,7 +260,7 @@ class OsmOsisManager:
     return True
 
 
-  def init_diff(self, conf):
+  def init_osmosis_diff(self, conf):
     self.logger.log(self.logger.log_av_r+"init osmosis replication for diff"+self.logger.log_ap)
     diff_path = conf.download["diff_path"]
 
@@ -291,7 +293,7 @@ class OsmOsisManager:
                 min_file_size=10)
 
 
-  def run_diff(self, conf):
+  def run_osmosis_diff(self, conf):
     self.logger.log(self.logger.log_av_r+"run osmosis replication"+self.logger.log_ap)
     diff_path = conf.download["diff_path"]
     xml_change = os.path.join(diff_path, "change.osc.gz")
@@ -373,6 +375,76 @@ class OsmOsisManager:
 
       raise
 
+
+  def run_osmium_diff(self, conf):
+    self.logger.log(self.logger.log_av_r + "run pyosmium replication" + self.logger.log_ap)
+    diff_path = conf.download["diff_path"]
+    pbf_file = conf.download["dst"]
+    tmp_pbf_file = conf.download["dst"] + ".tmp"
+
+    try:
+      is_uptodate = False
+      nb_iter = 0
+
+      osmobject = osmium.io.Reader(pbf_file)
+      prev_timestamp = dateutil.parser.isoparse(osmobject.header().get('osmosis_replication_timestamp'))
+      cur_ts = datetime.datetime.now(datetime.timezone.utc)
+      print("state: ", prev_timestamp, end=' ')
+      if prev_timestamp < (cur_ts - datetime.timedelta(days=10)):
+        # Skip updates, and directly download .pbf file if extract is too old
+        self.logger.log(self.logger.log_av_r + "stop updates, to download full extract" + self.logger.log_ap)
+        return (False, None)
+
+      while not is_uptodate and nb_iter < 10:
+        nb_iter += 1
+        self.logger.log("iteration=%d" % nb_iter)
+
+        if os.path.exists(tmp_pbf_file):
+          os.remove(tmp_pbf_file)
+
+        try:
+          cmd  = [conf.bin_pyosmium_up_to_date]
+          cmd += ["-v"]
+          cmd += ["--format", "pbf"]
+          cmd += ["--outfile", tmp_pbf_file]
+          cmd += ["--tmpdir", diff_path]
+          cmd += ["--force-update-of-old-planet"]
+          cmd += [pbf_file]
+          self.logger.execute_err(cmd)
+        except:
+          self.logger.log("waiting 2 minutes")
+          time.sleep(2*60)
+          continue
+
+        shutil.move(tmp_pbf_file, pbf_file)
+
+        # Check if state.txt is more recent than one day
+        osmobject = osmium.io.Reader(pbf_file)
+        cur_timestamp = dateutil.parser.isoparse(osmobject.header().get('osmosis_replication_timestamp'))
+        print("state: ", nb_iter, " - ", cur_timestamp, end=' ')
+        print("   ", prev_timestamp - cur_timestamp)
+        if cur_timestamp > (cur_ts - datetime.timedelta(days=1)):
+          is_uptodate = True
+        elif prev_timestamp == cur_timestamp:
+          is_uptodate = True
+        else:
+          prev_timestamp = cur_timestamp
+
+      if not is_uptodate:
+        # we didn't get the latest version of the pbf file
+        self.logger.log(self.logger.log_av_r + "didn't get latest version of osm file" + self.logger.log_ap)
+        return (False, None)
+      elif nb_iter == 1:
+        return (True, None)
+      else:
+        # TODO: we should return a merge of all xml change files
+        return (True, None)
+
+    except:
+      self.logger.err("got error, aborting")
+      raise
+
+
   def check_change(self, conf):
     if not self.check_diff(conf):
       return False
@@ -383,7 +455,7 @@ class OsmOsisManager:
 
 
   def init_change(self, conf):
-    self.init_diff(conf)
+    self.init_osmosis_diff(conf)
 
     self.logger.log(self.logger.log_av_r+"import osmosis change post scripts"+self.logger.log_ap)
     self.set_pgsql_schema()

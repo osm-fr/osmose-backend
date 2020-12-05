@@ -150,7 +150,10 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 newer = True
 
             if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
-                (status, xml_change) = osmosis_manager.run_diff(conf)
+                if options.pbf_update_tool == 'osmosis':
+                    (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
+                else:
+                    (status, xml_change) = osmosis_manager.run_osmium_diff(conf)
                 if status:
                     newer = True
 
@@ -160,10 +163,14 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                     min_file_size=8*1024)
 
                 if newer and options.diff:
-                    osmosis_manager.init_diff(conf)
+                    if options.pbf_update_tool == 'osmosis':
+                        osmosis_manager.init_osmosis_diff(conf)
                     if "/minute/" in conf.download["diff"] or "/hour/" in conf.download["diff"]:
                         # update extract with any more recent available diff
-                        osmosis_manager.run_diff(conf)
+                        if options.pbf_update_tool == 'osmosis':
+                            osmosis_manager.run_osmosis_diff(conf)
+                        else:
+                            osmosis_manager.run_osmium_diff(conf)
 
             if not newer:
                 return 0x11
@@ -534,6 +541,9 @@ if __name__ == "__main__":
                       help="Send an email alert in case of error")
     parser.add_option("--minimum-free-space", dest="minimum_free_space", type=int,
                       help="Minimum free space required on filesystem before running (in GB)")
+
+    parser.add_option("--extract-update-tool", dest="pbf_update_tool", action="store", default="osmosis",
+                      help="Use \"osmosis\" (default) or \"osmium\" to update the OSM extract")
 
     parser.add_option("--version", dest="version", action="store_true",
                       help="Output version information and exit")
