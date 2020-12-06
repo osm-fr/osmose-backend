@@ -33,7 +33,7 @@ class Cuisine_Guess(Plugin):
         Plugin.init(self, logger)
         detail = '''Using statistics based on amenity name, amenity tag value and takeaway tag, guess a possible value for `cuisine` tag.'''
         self.errors[1] = self.def_class(item = 3270, level = 3, tags = ['fix:survey'],
-            title = T_('Possible mistake of lack of precision of `cuisine` value'),
+            title = T_('Possible mistake or lack of precision of `cuisine` value'),
             detail = T_(detail))
         self.errors[2] = self.def_class(item = 3270, level = 3, tags = ['fix:survey'],
             title = T_('Suggestion of `cuisine` value'),
@@ -58,7 +58,7 @@ class Cuisine_Guess(Plugin):
 
             if not tasty_cuisines:
                 return {'class': 1 if 'cuisine' in tags else 2,
-                    'text': T_('Guess with propability: {0}', ', '.join(map(lambda cs: '{0} ({1}%)'.format(cs[0], round(cs[1] * 100)), cuisine_guess.items()))),
+                    'text': T_('Guess with probability: {0}', ', '.join(map(lambda cs: '{0} ({1}%)'.format(cs[0], round(cs[1] * 100)), cuisine_guess.items()))),
                     'fix': [{'~': {'cuisine': cuisine[0]}} for cuisine in cuisine_guess.items()]
                 }
 
