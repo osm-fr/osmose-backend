@@ -37,12 +37,12 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
         self.init(
             u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
             u"Colonnes aériennes de Nantes Métropole",
-            CSV(Source(attribution = "Nantes Métropole {0}", millesime = "08/2018",
+            CSV(Source(attribution = "Nantes Métropole {0}", millesime = "12/2020",
                     fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = u";"),
-            Load(u"location", u"location",
+            Load("geo_point_2d", "geo_point_2d",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0]),
-                select = {u"type_dechets": u"verre"}),
+                select = {"type_dechet": "Verre"}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -56,4 +56,4 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:NM": u"id_colonne"},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x is not None, [fields[u"type_dechets"], fields[u"voie"], fields[u"obs"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x is not None, [fields["type_dechet"], fields["voie"], fields["obs"]]))} )))
