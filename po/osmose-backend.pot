@@ -4507,7 +4507,7 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Cuisine_Guess.py:36
-msgid "Possible mistake of lack of precision of `cuisine` value"
+msgid "Possible mistake or lack of precision of `cuisine` value"
 msgstr ""
 
 #: ../plugins/Cuisine_Guess.py:39
@@ -4516,5 +4516,5 @@ msgstr ""
 
 #: ../plugins/Cuisine_Guess.py:61
 #, python-brace-format
-msgid "Guess with propability: {0}"
+msgid "Guess with probability: {0}"
 msgstr ""
