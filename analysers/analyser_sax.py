@@ -59,7 +59,7 @@ class Analyser_Sax(Analyser):
         return self.parser.timestamp()
 
     def analyser_version(self):
-        return SourceVersion.version(*([self.__class__] + list(map(lambda p: p.__class__, self.plugins))))
+        return SourceVersion.version(*([self.__class__] + list(map(lambda p: p.__class__, self.plugins.values()))))
 
     def analyser(self):
         self.logger.log("run sax all")
