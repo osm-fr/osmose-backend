@@ -2,7 +2,7 @@
 <analysers>
 <analyser timestamp="2015-03-25T19:05:08Z" analyser_version="2002729909">
 <class id="1" item="3270" source="http://example.com/plugins/Cuisine_Guess.py#L37" level="3" tag="fix:survey">
-<classtext lang="en" title="Possible mistake of lack of precision of `cuisine` value" />
+<classtext lang="en" title="Possible mistake or lack of precision of `cuisine` value" />
 <detail lang="en" title="Using statistics based on amenity name, amenity tag value and takeaway tag, guess a possible value for `cuisine` tag." />
 </class>
 <class id="2" item="3270" source="http://example.com/plugins/Cuisine_Guess.py#L40" level="3" tag="fix:survey">
