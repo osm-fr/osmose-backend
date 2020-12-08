@@ -53,6 +53,7 @@ WHERE
   pr.tags != ''::hstore AND
   pr.tags?'amenity' AND
   pr.tags->'amenity' = 'parking' AND
+  (NOT pr.tags?'parking' OR pr.tags->'parking' != 'street_side') AND
   highway.id IS NULL
 """
 
@@ -64,16 +65,22 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = self.def_class(item = 3161, level = 1, tags = ['highway', 'fix:chair'],
             title = T_('Missing access way to parking'),
-            detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.')
-        )
+            detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.'))
         self.classs[2] = self.def_class(item = 3161, level = 3, tags = ['highway', 'fix:chair'],
             title = T_('Missing access way to parking'),
-            detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.')
-        )
+            detail = T_(
+'''There should be a `highway` feature leading to this parking facility
+to allow for correct routing. Add a road or check if `parking=*` is
+correct. If it is a street side parking (`parking=street_side`) or lane,
+then add appropriate tags.
+
+See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki.'''))
 
     def analyser_osmosis_common(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12, lambda res: {
             "class": 1 if res[2] else 2,
-            "data": [self.way_full, self.positionAsText]})
+            "data": [self.way_full, self.positionAsText],
+            "fix": {"+": {"parking": "street_side"}},
+        })
