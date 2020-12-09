@@ -45,7 +45,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         self.brands_from_nsi = self._get_brands()
 
     def _get_brands(self):
-        nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/index.json"
+        nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.json"
         json_str = urlread(nsi_url_for_brands, 30)
         results = json.loads(json_str)
         additional_brands = {}
