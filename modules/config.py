@@ -38,6 +38,9 @@ url_frontend_opendata_update = u"http://opendata.osmose.openstreetmap.fr/control
 # where osmosis is located
 bin_osmosis = dir_osmose + "/osmosis/osmosis-0.47.4/bin/osmosis"
 
+# where pyosmium_up_to_date is located
+bin_pyosmium_up_to_date = "pyosmium-up-to-date"
+
 # where osmconvert is located
 bin_osmconvert = "./osmconvert/osmconvert"
 

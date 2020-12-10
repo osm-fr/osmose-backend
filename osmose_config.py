@@ -43,7 +43,7 @@ class template_config:
     dir_cache      = modules.config.dir_cache
     dir_scripts    = modules.config.dir_osmose
     bin_osmosis    = modules.config.bin_osmosis
-    bin_pyosmium_up_to_date = "pyosmium-up-to-date"
+    bin_pyosmium_up_to_date = modules.config.bin_pyosmium_up_to_date
     osmosis_pre_scripts = [
         dir_scripts + "/osmosis/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_bbox.sql",
