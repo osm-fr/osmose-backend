@@ -30,7 +30,10 @@ import fileinput
 import shutil
 import datetime
 import time
-import osmium # type: ignore
+try: # osmium still optional for now
+    import osmium # type: ignore
+except:
+    pass
 import dateutil
 
 
