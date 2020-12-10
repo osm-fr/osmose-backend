@@ -1038,7 +1038,7 @@ config["senegal"].analyser["osmosis_way_approximate"] = "xxx"
 config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 for country, c in config.items():
-    if c.download and "url" in c.download and "/africa/" in c.download["url"]:
+    if c.download and "url" in c.download and "/africa/" in c.download["url"] and not ("mayotte" in c.download["url"] or "reunion" in c.download["url"]):
         del(c.analyser["osmosis_building_shapes"])
 
 #########################################################################
