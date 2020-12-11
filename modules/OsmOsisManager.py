@@ -381,7 +381,6 @@ class OsmOsisManager:
 
   def run_osmium_diff(self, conf):
     self.logger.log(self.logger.log_av_r + "run pyosmium replication" + self.logger.log_ap)
-    diff_path = conf.download["diff_path"]
     pbf_file = conf.download["dst"]
     tmp_pbf_file = conf.download["dst"] + ".tmp"
 
@@ -410,7 +409,7 @@ class OsmOsisManager:
           cmd += ["-v"]
           cmd += ["--format", "pbf"]
           cmd += ["--outfile", tmp_pbf_file]
-          cmd += ["--tmpdir", diff_path]
+          cmd += ["--tmpdir", conf.dir_tmp]
           cmd += ["--force-update-of-old-planet"]
           cmd += [pbf_file]
           self.logger.execute_err(cmd)
