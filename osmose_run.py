@@ -149,7 +149,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 logger.sub().log("skip download")
                 newer = True
 
-            if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
+            if not newer and options.diff and (options.pbf_update_tool == 'osmium' or osmosis_manager.check_osmosis_diff(conf)) and os.path.exists(conf.download["dst"]):
                 if options.pbf_update_tool == 'osmosis':
                     (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
                 else:

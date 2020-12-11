@@ -249,7 +249,7 @@ class OsmOsisManager:
     self.osmosis_close()
 
 
-  def check_diff(self, conf):
+  def check_osmosis_diff(self, conf):
     self.logger.log("check osmosis replication")
     diff_path = conf.download["diff_path"]
     if not os.path.exists(diff_path):
