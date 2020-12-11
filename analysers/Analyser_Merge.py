@@ -446,6 +446,15 @@ class CSV(Parser):
     def close(self):
         self.f.close()
 
+class GTFS(CSV):
+    def __init__(self, source):
+        """
+        Load GTFS file data.
+        @param source: source file reader
+        """
+        source.zip = "stops.txt"
+        CSV.__init__(self, source)
+
 def flattenjson(b):
     """
     Converts multi-level JSON properties into single level
@@ -587,15 +596,6 @@ class SHP(Parser):
             if s != "":
                 osmosis.giscurs.execute(s)
         os.remove(tmp_file.name)
-
-class GTFS(CSV):
-    def __init__(self, source):
-        """
-        Load GTFS file data.
-        @param source: source file reader
-        """
-        source.zip = "stops.txt"
-        CSV.__init__(self, source)
 
 class Load(object):
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
