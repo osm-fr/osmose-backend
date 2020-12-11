@@ -412,13 +412,14 @@ class OsmOsisManager:
           cmd += ["--tmpdir", conf.dir_tmp]
           cmd += ["--force-update-of-old-planet"]
           cmd += [pbf_file]
-          self.logger.execute_err(cmd)
+          ret = self.logger.execute_err(cmd, valid_return_code=(0, 3))
+
+          if ret == 0:
+            shutil.move(tmp_pbf_file, pbf_file)
         except:
           self.logger.log("waiting 2 minutes")
           time.sleep(2*60)
           continue
-
-        shutil.move(tmp_pbf_file, pbf_file)
 
         # Check if state.txt is more recent than one day
         osmobject = osmium.io.Reader(pbf_file)
