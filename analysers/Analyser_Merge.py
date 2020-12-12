@@ -597,6 +597,33 @@ class SHP(Parser):
                 osmosis.giscurs.execute(s)
         os.remove(tmp_file.name)
 
+class GDAL(Parser):
+    def __init__(self, source):
+        """
+        Load any GDAL supported format.
+        @param source: source file reader
+        """
+        self.source = source
+
+    def header(self):
+        return True
+
+    def import_(self, table, srid, osmosis):
+        gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco UNLOGGED=ON -t_srs EPSG:4326 '{}' ".format(
+            osmosis.config.osmosis_manager.db_string,
+            osmosis.config.osmosis_manager.db_user,
+            table,
+            self.source.path()
+        )
+        osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
+        osmosis.giscurs.execute("COMMIT")
+        print(gdal)
+        if os.system(gdal):
+            raise Exception("ogr2ogr error")
+        osmosis.giscurs.execute("BEGIN")
+
+GPKG = GDAL
+
 class Load(object):
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
             select = {}, uniq = None, where = lambda res: True, map = lambda i: i, xFunction = lambda i: i, yFunction = lambda i: i):
