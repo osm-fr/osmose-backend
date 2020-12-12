@@ -16,7 +16,7 @@
   {
     "title": "Church",
     "type": "https://www.datatourisme.gouv.fr/ontology/core#Church",
-    "items": 8101,
+    "items": 8100,
     "classes": 320,
     "tags_select": {
       "amenity": "place_of_worship"

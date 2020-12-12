@@ -504,6 +504,12 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
     'merge_radio_support_FR',
     'merge_defibrillators_FR',
     'merge_defibrillators_FR_aedmap',
+    'merge_cemetery_FR',
+    'merge_highway_ref_FR',
+    'merge_man_made_FR',
+    'merge_poi_FR',
+    'merge_reservoir_FR',
+    'merge_water_FR',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement_dom(["central-america", "guadeloupe"], 1401835, "FR-GP", dep_code=971, proj=32620, phone_code="590")
@@ -579,6 +585,12 @@ france_local_db.analyser["merge_carpool_FR"] = "xxx"
 france_local_db.analyser["merge_charging_station_FR"] = "xxx"
 france_local_db.analyser["merge_parking_FR_BNLS"] = "xxx"
 france_local_db.analyser["merge_tourism_FR"] = "xxx"
+france_local_db.analyser["merge_cemetery_FR"] = "xxx"
+france_local_db.analyser["merge_highway_ref_FR"] = "xxx"
+france_local_db.analyser["merge_man_made_FR"] = "xxx"
+france_local_db.analyser["merge_poi_FR"] = "xxx"
+france_local_db.analyser["merge_reservoir_FR"] = "xxx"
+france_local_db.analyser["merge_water_FR"] = "xxx"
 
 #########################################################################
 
