@@ -378,6 +378,17 @@ class OsmOsisManager:
 
       raise
 
+  def check_osmium_diff(self, conf):
+    self.logger.log("check osmium replication")
+    pbf_file = conf.download["dst"]
+    from osmium.replication.utils import get_replication_header # type: ignore
+
+    # check if osmosis_* headers for replication are present
+    url, seq, ts = get_replication_header(pbf_file)
+    if url is None or seq is None or ts is None:
+      return False
+
+    return True
 
   def run_osmium_diff(self, conf):
     self.logger.log(self.logger.log_av_r + "run pyosmium replication" + self.logger.log_ap)
