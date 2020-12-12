@@ -803,6 +803,10 @@ class Load(object):
         if not(self.srid and not self.bbox): # Abort condition
             return tableOfficial
 
+class LoadGeomCentroid(Load):
+    def __init__(self, *args, **kwargs):
+        super(LoadGeomCentroid, self).__init__(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), *args, **kwargs)
+
 class Select:
     def __init__(self, types = [], tags = {}):
         """
