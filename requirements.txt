@@ -9,6 +9,7 @@ requests
 transporthours
 pyproj >= 2.1.0
 Unidecode
+osmium
 
 # Tests
 pytest

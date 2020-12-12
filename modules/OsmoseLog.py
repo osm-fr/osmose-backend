@@ -63,7 +63,7 @@ class logger:
     def sub(self):
         return sublog(self, 1)
 
-    def execute_err(self, cmd):
+    def execute_err(self, cmd, valid_return_code=(0,)):
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             cerr = proc.stderr.readline().decode('utf-8').strip()
@@ -75,11 +75,11 @@ class logger:
                 self._out.write(u'{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S"), cerr))
                 self._out.flush()
         proc.wait()
-        if proc.returncode:
+        if proc.returncode not in valid_return_code:
             raise RuntimeError("'%s' exited with status %s" % (' '.join(cmd), repr(proc.returncode)))
-        #self.log(str(proc.returncode))
+        return proc.returncode
 
-    def execute_out(self, cmd, cwd=None):
+    def execute_out(self, cmd, cwd=None, valid_return_code=(0,)):
         proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             cerr = proc.stdout.readline().decode('utf-8').strip()
@@ -91,9 +91,9 @@ class logger:
                 self._out.write(u'{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S "), cerr))
                 self._out.flush()
         proc.wait()
-        if proc.returncode:
+        if proc.returncode not in valid_return_code:
             raise RuntimeError("'%s' exited with status %s :\n%s" % (' '.join(cmd), repr(proc.returncode), proc.stderr.read()))
-        #self.log(str(proc.returncode))
+        return proc.returncode
 
     def send_alert_email(self, email_to, err_msg):
         if not email_to:
