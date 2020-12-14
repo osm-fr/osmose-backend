@@ -393,7 +393,7 @@ class OsmOsisManager:
   def run_osmium_diff(self, conf):
     self.logger.log(self.logger.log_av_r + "run pyosmium replication" + self.logger.log_ap)
     pbf_file = conf.download["dst"]
-    tmp_pbf_file = conf.download["dst"] + ".tmp"
+    tmp_pbf_file = conf.download["dst"] + ".tmp.pbf"
 
     try:
       is_uptodate = False
@@ -418,7 +418,6 @@ class OsmOsisManager:
         try:
           cmd  = [conf.bin_pyosmium_up_to_date]
           cmd += ["-v"]
-          cmd += ["--format", "pbf"]
           cmd += ["--outfile", tmp_pbf_file]
           cmd += ["--tmpdir", conf.dir_tmp]
           cmd += ["--force-update-of-old-planet"]
