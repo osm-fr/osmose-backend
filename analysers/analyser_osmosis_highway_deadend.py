@@ -218,7 +218,7 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
             title = T_('Unconnected cycleway'),
             detail = self.merge_doc(detail, T_(
 '''The end of a `highway=cycleway` must be connected to the rest of the
-road network to ensure continuity, especially for routes planner''')),
+road network to ensure continuity, especially for routes planner.''')),
             fix = T_(
 '''Connect the `cycleway` to the road, even with a little virtual
 path.'''))
