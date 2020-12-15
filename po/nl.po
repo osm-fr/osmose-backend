@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-11-14 19:36+0000\n"
+"PO-Revision-Date: 2020-12-15 19:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -182,16 +182,16 @@ msgstr "Wikipedia, voorstel om kasteel toe te voegen"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia, voorstel om kerk toe te voegen"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:187
+#: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Survey point out of boundary"
 msgstr "Geografische marker buiten zijn stad"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:194
+#: ../analysers/analyser_osmosis_boundary_administrative.py:193
 #: ../analysers/analyser_osmosis_boundary_intersect.py:96
 msgid "Boundary intersection"
 msgstr "Kruising van grens"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:200
+#: ../analysers/analyser_osmosis_boundary_administrative.py:199
 msgid "Lone boundary fragment"
 msgstr "Geïsoleerde grens fragment "
 
@@ -243,7 +243,7 @@ msgstr "Speciaal gebouw (rond)"
 msgid "Special building (large)"
 msgstr "Speciaal gebouw (groot)"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:212
+#: ../analysers/analyser_osmosis_highway_deadend.py:218
 msgid "Unconnected cycleway"
 msgstr "Niet verbonden fietspad"
 
@@ -272,15 +272,15 @@ msgstr "Verkeerde *_link weg"
 msgid "Highway too long for a *_link"
 msgstr "Weg te lang voor een *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:367
+#: ../analysers/analyser_osmosis_highway_vs_building.py:368
 msgid "Highway intersecting building"
 msgstr "Kruising tussen een weg en een gebouw"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:368
+#: ../analysers/analyser_osmosis_highway_vs_building.py:369
 msgid "Tree intersecting building"
 msgstr "Kruising tussen een boom en een gebouw"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:369
+#: ../analysers/analyser_osmosis_highway_vs_building.py:370
 msgid "Tree and highway too close"
 msgstr "Boom en weg te dichtbij "
 
@@ -421,11 +421,11 @@ msgstr "Tag of role op weg ontbreekt"
 msgid "Missing tag or role on relation"
 msgstr "Tag of role op relatie ontbreekt"
 
-#: ../analysers/analyser_osmosis_waterway.py:136
+#: ../analysers/analyser_osmosis_waterway.py:147
 msgid "Riverbank without river"
 msgstr "Rivieroever zonder een rivier"
 
-#: ../analysers/analyser_osmosis_waterway.py:144
+#: ../analysers/analyser_osmosis_waterway.py:155
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Niet verbonden waterweg, of verkeerde stromingsrichting"
 
@@ -909,11 +909,11 @@ msgstr "Onvoltooid grote hoogspanningslijn"
 msgid "Unfinished power minor line"
 msgstr "Onvoltooid kleine hoogspanningslijn"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:370
+#: ../analysers/analyser_osmosis_highway_vs_building.py:371
 msgid "Highway intersecting small water piece"
 msgstr "Weg kruist een kleine waterweg"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:371
+#: ../analysers/analyser_osmosis_highway_vs_building.py:372
 msgid "Highway intersecting large water piece"
 msgstr "Weg kruist een grote waterweg"
 
@@ -1136,7 +1136,7 @@ msgstr "Meot een polygoon zijn, een deel van een multipolygon of heeft geen area
 msgid "Almost junction, join or use noexit tag"
 msgstr "Bijna een kruising, voeg samen of gebruik noexit tag"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:227
+#: ../analysers/analyser_osmosis_highway_deadend.py:233
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "éérichingsweg ontoegangelijk of parking ontbreekt of parking ingang"
 
@@ -1331,25 +1331,25 @@ msgstr "{0} niet geïntegreerd"
 msgid "{0}, integration suggestion"
 msgstr "{0}, integratie suggestie"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:113
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:114
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
 msgstr "Kleine weggroep, los van het hoofdnetwerk of met onvoldoende toegang "
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:372
+#: ../analysers/analyser_osmosis_highway_vs_building.py:373
 msgid "Power object intersecting building"
 msgstr "Elektriciteit object kruist gebouw"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:373
+#: ../analysers/analyser_osmosis_highway_vs_building.py:374
 msgid "Power object and highway too close"
 msgstr "Elektriciteit object en weg te dichtbij "
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:375
+#: ../analysers/analyser_osmosis_highway_vs_building.py:376
 msgid "Highway overlaps"
 msgstr "Weg overlapt"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:377
+#: ../analysers/analyser_osmosis_highway_vs_building.py:378
 msgid "Waterway overlaps"
 msgstr "Waterweg overlapt"
 
@@ -1457,7 +1457,7 @@ msgstr "Politie/\"Gendarmerie\", integratie suggestie"
 msgid "Police/\"Gendarmerie\" update"
 msgstr "Politie/\"Gendarmerie\" update"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:66
+#: ../analysers/analyser_osmosis_parking_highway.py:67
 #: ../analysers/analyser_osmosis_parking_highway.py:70
 msgid "Missing access way to parking"
 msgstr "Toegangsweg tot parking ontbreekt"
@@ -1587,7 +1587,7 @@ msgstr "Inconsistent motor_vehicle waarden ('{0}'!='{1}')"
 msgid "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgstr "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:168
+#: ../analysers/analyser_osmosis_way_approximate.py:181
 #, python-brace-format
 msgid "{0} deviation of {1}m"
 msgstr "{0} afwijking van {1}m"
@@ -1705,7 +1705,7 @@ msgstr "Niet toegestane karakter in telefoonnummer "
 msgid "Bad separator for multiple values"
 msgstr "Verkeerde separator voor meerdere waarden"
 
-#: ../plugins/TagFix_Maxspeed.py:93
+#: ../plugins/TagFix_Maxspeed.py:95
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr "Dissonant {0} en {1}"
@@ -1759,7 +1759,7 @@ msgstr "tag waarde: {0}={1} => {2} (rule kr_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Hek met material tag, gebruik beter fence_type tag"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:220
+#: ../analysers/analyser_osmosis_highway_deadend.py:226
 msgid "Unconnected highway"
 msgstr "Niet verbonden weg "
 
@@ -1982,11 +1982,11 @@ msgstr ""
 msgid "Camp pitchs outside a camp site"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:42
+#: ../plugins/TagFix_BadKey.py:42 ../plugins/TagFix_BadKey.py:45
 msgid "Bad key"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:45
+#: ../plugins/TagFix_BadKey.py:48
 msgid "Bad key suffix"
 msgstr ""
 
@@ -2124,31 +2124,30 @@ msgstr "Open relatie type=boundary admin_level={0}"
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:191
+#: ../analysers/analyser_osmosis_boundary_administrative.py:190
 msgid ""
 "The geodesic markers should not be moved. These are reference points.\n"
 "Some geodesic markers are really out of boundary."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:196
+#: ../analysers/analyser_osmosis_boundary_administrative.py:195
 msgid "An area is marked as belonging to several city at once."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:198
+#: ../analysers/analyser_osmosis_boundary_administrative.py:197
 msgid "Check how this area should be owned."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:202
+#: ../analysers/analyser_osmosis_boundary_administrative.py:201
 msgid ""
 "Unconnected boundary fragment, a way with a boundary tag not part of a\n"
 "boundary relation."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:205
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
 msgid "Delete the way, remove boundary tag or add to a relation."
 msgstr ""
 
@@ -2279,30 +2278,29 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:210
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:115
+#: ../analysers/analyser_osmosis_highway_deadend.py:216
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:116
 msgid "The end of the way is not connected to another way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:214
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:217
+#: ../analysers/analyser_osmosis_highway_deadend.py:223
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:222
+#: ../analysers/analyser_osmosis_highway_deadend.py:228
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:225
+#: ../analysers/analyser_osmosis_highway_deadend.py:231
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -2366,7 +2364,7 @@ msgid ""
 "bridges](https://wiki.openstreetmap.org/wiki/Key:bridge)."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:364
+#: ../analysers/analyser_osmosis_highway_vs_building.py:365
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)\n"
 "\n"
@@ -2690,35 +2688,35 @@ msgstr ""
 msgid "The object is sometimes duplicate."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:138
+#: ../analysers/analyser_osmosis_waterway.py:149
 msgid ""
 "There is one `waterway=riverbank` but there is no `waterway=river`\n"
 "inside it."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:141
+#: ../analysers/analyser_osmosis_waterway.py:152
 msgid ""
 "After checking, create a \"river\" line inside te \"riverbank\"\n"
 "polygon."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:146
+#: ../analysers/analyser_osmosis_waterway.py:157
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
 "water must flow into another waterway or meet a `natural=coastline`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:149
+#: ../analysers/analyser_osmosis_waterway.py:160
 msgid "Link the waterway or invert its flow direction."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:161
+#: ../analysers/analyser_osmosis_way_approximate.py:174
 msgid ""
 "On service ways, train stations, train workshops that may be either a\n"
 "false positive"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:164
+#: ../analysers/analyser_osmosis_way_approximate.py:177
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9d/Osmose-eg-error-1190.png)\n"
 "\n"
@@ -2768,7 +2766,6 @@ msgstr ""
 msgid "In a relation, a way should be present only once."
 msgstr ""
 
-#: ../plugins/Administrative_TooManyWays.py:35
 msgid ""
 "Most often, this is an user issue that add several times the same way.\n"
 "The editor JOSM can easily visualize the relationships and see duplicates\n"
@@ -3370,19 +3367,19 @@ msgid ""
 "detection is correct."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:355
+#: ../analysers/analyser_osmosis_highway_vs_building.py:356
 msgid ""
 "Two features overlap with no shared node to indicate a physical connection "
 "or tagging to indicate a vertical separation."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:357
+#: ../analysers/analyser_osmosis_highway_vs_building.py:358
 msgid ""
 "Move a feature if it's in the wrong place. Connect the features if "
 "appropriate or update the tags if not."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:359
+#: ../analysers/analyser_osmosis_highway_vs_building.py:360
 msgid ""
 "A feature may be missing a tag e.g. `tunnel=*`, `bridge=*`,\n"
 "`covered=*` or consider `layer=*` on the buidling where a road or railway\n"
@@ -3390,11 +3387,11 @@ msgid ""
 "time or with spatial offset."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:374
+#: ../analysers/analyser_osmosis_highway_vs_building.py:375
 msgid "Highway intersecting highway"
 msgstr "Weg kruist water "
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:376
+#: ../analysers/analyser_osmosis_highway_vs_building.py:377
 msgid "Waterway intersecting waterway"
 msgstr "Waterweg kruist een waterweg"
 
@@ -3420,16 +3417,16 @@ msgstr "Verkeerde tag waarde"
 msgid "Untagged named object"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:70
-#: ../analysers/analyser_merge_street_objects.py:70
-#: ../analysers/analyser_merge_traffic_signs.py:105
+#: ../analysers/analyser_merge_street_objects2.py:71
+#: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:71
-#: ../analysers/analyser_merge_street_objects.py:71
-#: ../analysers/analyser_merge_traffic_signs.py:106
+#: ../analysers/analyser_merge_street_objects2.py:72
+#: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
 msgstr ""
@@ -3482,8 +3479,7 @@ msgid ""
 "tagged."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:67
-#: ../analysers/analyser_osmosis_parking_highway.py:71
+#: ../analysers/analyser_osmosis_parking_highway.py:68
 msgid ""
 "There should be a `highway` feature leading to this parking facility to "
 "allow for correct routing."
@@ -3656,9 +3652,9 @@ msgstr ""
 #: ../plugins/Name_UpperCase.py:66 ../plugins/Number.py:69
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
-#: ../plugins/TagFix_BadKey.py:81 ../plugins/TagFix_BadKey.py:83
-#: ../plugins/TagFix_BadValue.py:105 ../plugins/TagFix_BadValue.py:110
-#: ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:87 ../plugins/TagFix_BadKey.py:89
+#: ../plugins/TagFix_BadKey.py:91 ../plugins/TagFix_BadValue.py:105
+#: ../plugins/TagFix_BadValue.py:110 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr ""
@@ -3958,35 +3954,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:858
+#: ../analysers/Analyser_Merge.py:899
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:861
+#: ../analysers/Analyser_Merge.py:902
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:866
+#: ../analysers/Analyser_Merge.py:907
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:879
+#: ../analysers/Analyser_Merge.py:920
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:892
+#: ../analysers/Analyser_Merge.py:933
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:854
+#: ../analysers/Analyser_Merge.py:895
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4131,7 +4127,7 @@ msgid ""
 "turn it to a public_transport=stop_position"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:154
+#: ../analysers/analyser_osmosis_way_approximate.py:167
 #, python-brace-format
 msgid "Approximate geometry of {0}"
 msgstr ""
@@ -4145,7 +4141,7 @@ msgstr ""
 msgid "Different values of {0} and of {1}"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:78
+#: ../plugins/TagFix_Maxspeed.py:80
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
@@ -4393,13 +4389,13 @@ msgid ""
 "role."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:156
+#: ../analysers/analyser_osmosis_way_approximate.py:169
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
 "drawing and the real way especially in the curve."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:159
+#: ../analysers/analyser_osmosis_way_approximate.py:172
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
@@ -4481,4 +4477,40 @@ msgstr ""
 #: ../plugins/Capacity.py:85
 #, python-brace-format
 msgid "Specific \"{0}\" value \"{1}\" should be lower than total capacity {2}"
+msgstr ""
+
+#: ../plugins/Administrative_TooManyWays.py:35
+msgid ""
+"Most often, this is a user issue that added several times the same way.\n"
+"The editor JOSM can easily visualize the relationships and see duplicates\n"
+"(in color)."
+msgstr ""
+
+#: ../plugins/Cuisine_Guess.py:36
+msgid "Possible mistake or lack of precision of `cuisine` value"
+msgstr ""
+
+#: ../plugins/Cuisine_Guess.py:39
+msgid "Suggestion of `cuisine` value"
+msgstr ""
+
+#: ../plugins/Cuisine_Guess.py:61
+#, python-brace-format
+msgid "Guess with probability: {0}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:220
+msgid ""
+"The end of a `highway=cycleway` must be connected to the rest of the\n"
+"road network to ensure continuity, especially for routes planner."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:72
+msgid ""
+"There should be a `highway` feature leading to this parking facility\n"
+"to allow for correct routing. Add a road or check if `parking=*` is\n"
+"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
+"then add appropriate tags.\n"
+"\n"
+"See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki."
 msgstr ""

@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-12-05 18:03+0000\n"
+"PO-Revision-Date: 2020-12-15 19:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -196,16 +196,16 @@ msgstr "Wikipedia, Schloss Integrationsvorschlag"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia Kirche Integrationsvorschlag"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:187
+#: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Survey point out of boundary"
 msgstr "Messpunkt außerhalb der Grenze"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:194
+#: ../analysers/analyser_osmosis_boundary_administrative.py:193
 #: ../analysers/analyser_osmosis_boundary_intersect.py:96
 msgid "Boundary intersection"
 msgstr "Kreuzende Grenzen"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:200
+#: ../analysers/analyser_osmosis_boundary_administrative.py:199
 msgid "Lone boundary fragment"
 msgstr "Einzelnes Grenzfragment"
 
@@ -257,7 +257,7 @@ msgstr "Spezielles Gebäude (rund)"
 msgid "Special building (large)"
 msgstr "Spezielles Gebäude (groß)"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:212
+#: ../analysers/analyser_osmosis_highway_deadend.py:218
 msgid "Unconnected cycleway"
 msgstr "Nicht verbundener Radweg"
 
@@ -1150,7 +1150,7 @@ msgstr "Sollte Polygon oder Teil eines Multipolygons sein oder keinen area-Tag h
 msgid "Almost junction, join or use noexit tag"
 msgstr "Fast-Kreuzung, verbinden oder noexit-Tag benutzen"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:227
+#: ../analysers/analyser_osmosis_highway_deadend.py:233
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Einbahnstraße nicht erreichbar oder fehlender parking bzw. parking_entrance Tag"
 
@@ -1345,7 +1345,7 @@ msgstr "{0} nicht integriert"
 msgid "{0}, integration suggestion"
 msgstr "{0}, Integrationsvorschlag"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:113
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:114
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1471,7 +1471,7 @@ msgstr "Polizei/Gendarmerie, Integrationsvorschlag"
 msgid "Police/\"Gendarmerie\" update"
 msgstr "Polizei/Gendarmerie Update"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:66
+#: ../analysers/analyser_osmosis_parking_highway.py:67
 #: ../analysers/analyser_osmosis_parking_highway.py:70
 msgid "Missing access way to parking"
 msgstr "Fehlende Parkplatzzufahrt"
@@ -1773,7 +1773,7 @@ msgstr "Merkmalwert: {0}={1} => {2} (rule kr_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:220
+#: ../analysers/analyser_osmosis_highway_deadend.py:226
 msgid "Unconnected highway"
 msgstr "Nicht verbundener Weg"
 
@@ -2138,31 +2138,30 @@ msgstr "Offener Ring bei Relation type=boundary admin_level={0}"
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
 msgstr "Die Endpunkte von Adressinterpolationen sollten verschiedene \"addr:housenumber\" Werte aufweisen."
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:189
 msgid "Check the position of node admin_centre role and boundaries."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:191
+#: ../analysers/analyser_osmosis_boundary_administrative.py:190
 msgid ""
 "The geodesic markers should not be moved. These are reference points.\n"
 "Some geodesic markers are really out of boundary."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:196
+#: ../analysers/analyser_osmosis_boundary_administrative.py:195
 msgid "An area is marked as belonging to several city at once."
 msgstr "Die Fläche ist mehreren Gemeinden zugewiesen."
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:198
+#: ../analysers/analyser_osmosis_boundary_administrative.py:197
 msgid "Check how this area should be owned."
 msgstr "Prüfe, welcher Gemeinde die Fläche zugewiesen werden sollte."
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:202
+#: ../analysers/analyser_osmosis_boundary_administrative.py:201
 msgid ""
 "Unconnected boundary fragment, a way with a boundary tag not part of a\n"
 "boundary relation."
 msgstr "Nicht verbundenes Grenzsegment, ein Weg mit einem boundary-Tag ohne zugehörige Grenz-Relation."
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:205
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
 msgid "Delete the way, remove boundary tag or add to a relation."
 msgstr "Füge den Weg einer Relation hinzu, entferne das boundary-Tag oder lösche den Weg."
 
@@ -2293,30 +2292,29 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n\nhighway=secondary wechselt unmittelbar zu highway=residential."
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:210
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:115
+#: ../analysers/analyser_osmosis_highway_deadend.py:216
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:116
 msgid "The end of the way is not connected to another way."
 msgstr "Das Ende des Wegs hat keine Verbindung zu einem anderen Weg."
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:214
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner"
 msgstr "Das Ende eines `highway=cycleway` muss mit dem übrigen Straßennetz verbunden sein, um die Kontinuität zu gewährleisten, insbesondere für Routenplaner."
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:217
+#: ../analysers/analyser_osmosis_highway_deadend.py:223
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr "Verbinde den `cycleway` mit dem Straßennetz."
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:222
+#: ../analysers/analyser_osmosis_highway_deadend.py:228
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:225
+#: ../analysers/analyser_osmosis_highway_deadend.py:231
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -3495,8 +3493,7 @@ msgid ""
 "tagged."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:67
-#: ../analysers/analyser_osmosis_parking_highway.py:71
+#: ../analysers/analyser_osmosis_parking_highway.py:68
 msgid ""
 "There should be a `highway` feature leading to this parking facility to "
 "allow for correct routing."
@@ -3971,35 +3968,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr "{0} Parkplatz aktualisiert"
 
-#: ../analysers/Analyser_Merge.py:868
+#: ../analysers/Analyser_Merge.py:899
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "Wenn nach Prüfung sichergestellt werden kann, dass es sich um neue Daten handelt\nund sie für OpenStreetMap geeignet sind, dann können die Daten hinzufügt werden."
 
-#: ../analysers/Analyser_Merge.py:871
+#: ../analysers/Analyser_Merge.py:902
 msgid "Be sure that it is not already existing in another place."
 msgstr "Stelle sicher, dass es nicht bereits an einem anderen Ort existiert."
 
-#: ../analysers/Analyser_Merge.py:876
+#: ../analysers/Analyser_Merge.py:907
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:889
+#: ../analysers/Analyser_Merge.py:920
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:902
+#: ../analysers/Analyser_Merge.py:933
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:864
+#: ../analysers/Analyser_Merge.py:895
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4504,7 +4501,7 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Cuisine_Guess.py:36
-msgid "Possible mistake of lack of precision of `cuisine` value"
+msgid "Possible mistake or lack of precision of `cuisine` value"
 msgstr ""
 
 #: ../plugins/Cuisine_Guess.py:39
@@ -4513,5 +4510,21 @@ msgstr ""
 
 #: ../plugins/Cuisine_Guess.py:61
 #, python-brace-format
-msgid "Guess with propability: {0}"
+msgid "Guess with probability: {0}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:220
+msgid ""
+"The end of a `highway=cycleway` must be connected to the rest of the\n"
+"road network to ensure continuity, especially for routes planner."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:72
+msgid ""
+"There should be a `highway` feature leading to this parking facility\n"
+"to allow for correct routing. Add a road or check if `parking=*` is\n"
+"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
+"then add appropriate tags.\n"
+"\n"
+"See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki."
 msgstr ""
