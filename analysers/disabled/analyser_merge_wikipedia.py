@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, LoadGeomCentroid, Mapping, Select, Generate
 
 
 # http://de.wikipedia.org/wiki/Wikipedia:WikiProjekt_Georeferenzierung/Wikipedia-World/en
@@ -332,7 +332,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             "Wikipedia-World",
             CSV(Source(file = "wikipedia_point_fr.csv.bz2"),
                 csv = False, separator = None, null = None),
-            Load(("ST_X(the_geom)",), ("ST_Y(the_geom)",),
+            LoadGeomCentroid(),
                 create = self.create_table,
                 select = {"lang": wikiLang, "Country": wikiCountry},
                 where = (lambda res: not res["titel"].startswith("Liste ")) if starts is None else

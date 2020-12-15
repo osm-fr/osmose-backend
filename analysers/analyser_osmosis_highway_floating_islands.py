@@ -58,7 +58,8 @@ SELECT
 FROM
   highways
 WHERE
-  NOT highways.is_construction
+  NOT highways.is_construction AND
+  NOT tags->'golf' = 'cartpath'
 """
 
 sqlb14 = """

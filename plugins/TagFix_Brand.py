@@ -60,13 +60,13 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
                             continue
                     if "matchTags" in brand:
                         for additional_tag in brand["matchTags"]:
-                            nsi_key = "{}|{}".format(additional_tag, brand["displayName"])
+                            nsi_key = "{}|{}".format(additional_tag, brand["tags"]["name"])
                             additional_brands[nsi_key.lower()] = brand
                     if "matchNames" in brand:
                         for additional_name in brand["matchNames"]:
                             nsi_key = "{}|{}".format(brand_nsi_name, additional_name)
                             additional_brands[nsi_key.lower()] = brand
-                    additional_brands["{}|{}".format(brand_nsi_name, brand["displayName"]).lower()] = brand
+                    additional_brands["{}|{}".format(brand_nsi_name, brand["tags"]["name"]).lower()] = brand
         return additional_brands
 
     def node(self, data, tags):

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
             'Arrêt physique sur le réseau',
             SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
                 fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'tb_arret_p.shp')),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",),
+            LoadGeomCentroid(
                 select = {"reseau": [None, "BUS"]}),
             Mapping(
                 select = Select(

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, SHP, Load, Mapping, Generate
+from .Analyser_Merge import Source, SHP, LoadGeomCentroid, Mapping, Generate
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -32,7 +32,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
             SHP(Source(attribution = "Grand Lyon", millesime = "092020",
                     fileUrl = "https://download.data.grandlyon.com/ws/grandlyon/adr_voie_lieu.adradresse.shp?srsname=EPSG:4326&maxfeatures=999999&start=1",
                 zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",)),
+            LoadGeomCentroid(),
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},

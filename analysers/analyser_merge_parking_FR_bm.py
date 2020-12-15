@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
@@ -39,7 +39,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
             'Parking hors voirie',
             SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
                     fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'st_park_p.shp')),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",)),
+            LoadGeomCentroid(),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -72,7 +72,7 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
             'Place de stationnement PMR',
             SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
                     fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/grs_gigc_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'grs_gigc_p.shp')),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",)),
+            LoadGeomCentroid(),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

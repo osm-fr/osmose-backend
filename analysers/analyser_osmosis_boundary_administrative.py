@@ -183,11 +183,10 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and ("country" in config.options and config.options["country"].startswith("FR") or "test" in config.options)
-        self.classs[100] = self.def_class(item = 6070, level = 3, tags = ['boundary', 'geom', 'fix:chair'],
-            title = T_('Survey point out of boundary'),
-            fix = T_(
-'''Check the position of node admin_centre role and boundaries.'''),
-            trap = T_(
+        if self.FR:
+            self.classs[100] = self.def_class(item = 6070, level = 3, tags = ['boundary', 'geom', 'fix:chair'],
+                title = T_('Survey point out of boundary'),
+                trap = T_(
 '''The geodesic markers should not be moved. These are reference points.
 Some geodesic markers are really out of boundary.'''))
         self.classs[2] = self.def_class(item = 6060, level = 1, tags = ['boundary', 'geom', 'fix:chair'],

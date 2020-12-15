@@ -446,6 +446,15 @@ class CSV(Parser):
     def close(self):
         self.f.close()
 
+class GTFS(CSV):
+    def __init__(self, source):
+        """
+        Load GTFS file data.
+        @param source: source file reader
+        """
+        source.zip = "stops.txt"
+        CSV.__init__(self, source)
+
 def flattenjson(b):
     """
     Converts multi-level JSON properties into single level
@@ -588,14 +597,32 @@ class SHP(Parser):
                 osmosis.giscurs.execute(s)
         os.remove(tmp_file.name)
 
-class GTFS(CSV):
+class GDAL(Parser):
     def __init__(self, source):
         """
-        Load GTFS file data.
+        Load any GDAL supported format.
         @param source: source file reader
         """
-        source.zip = "stops.txt"
-        CSV.__init__(self, source)
+        self.source = source
+
+    def header(self):
+        return True
+
+    def import_(self, table, srid, osmosis):
+        gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco UNLOGGED=ON -t_srs EPSG:4326 '{}' ".format(
+            osmosis.config.osmosis_manager.db_string,
+            osmosis.config.osmosis_manager.db_user,
+            table,
+            self.source.path()
+        )
+        osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
+        osmosis.giscurs.execute("COMMIT")
+        print(gdal)
+        if os.system(gdal):
+            raise Exception("ogr2ogr error")
+        osmosis.giscurs.execute("BEGIN")
+
+GPKG = GDAL
 
 class Load(object):
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
@@ -775,6 +802,10 @@ class Load(object):
 
         if not(self.srid and not self.bbox): # Abort condition
             return tableOfficial
+
+class LoadGeomCentroid(Load):
+    def __init__(self, *args, **kwargs):
+        super(LoadGeomCentroid, self).__init__(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), *args, **kwargs)
 
 class Select:
     def __init__(self, types = [], tags = {}):

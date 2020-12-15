@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, SHP, Load, Mapping, Generate
+from .Analyser_Merge import Source, SHP, LoadGeomCentroid, Mapping, Generate
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -31,7 +31,7 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
             "Adresses postales",
             SHP(Source(attribution = "Arles Crau Camargue Montagnette", millesime = "08/2020",
                     fileUrl = u"http://webcarto.agglo-accm.fr/ressources/donnees_ouvertes/adresse.adr_accm_adresse.zip", zip = "adr_accm_adresse.shp")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
+            LoadGeomCentroid(srid = 2154),
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},
