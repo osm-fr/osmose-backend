@@ -59,7 +59,7 @@ FROM
   highways
 WHERE
   NOT highways.is_construction AND
-  NOT tags->'golf' = 'cartpath'
+  (NOT tags?'golf' OR tags->'golf' != 'cartpath')
 """
 
 sqlb14 = """
