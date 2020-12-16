@@ -159,12 +159,14 @@ FROM
 WHERE
   nodes.tags != ''::hstore AND
   (
-    nodes.tags?'amenity' AND
-    nodes.tags->'amenity' = 'parking_entrance' -- entrance and/or exit
-  ) OR
-  (
-    nodes.tags?'entrance' AND
-    nodes.tags->'entrance' = 'garage'
+    (
+      nodes.tags?'amenity' AND
+      nodes.tags->'amenity' = 'parking_entrance' -- entrance and/or exit
+    ) OR
+    (
+      nodes.tags?'entrance' AND
+      nodes.tags->'entrance' = 'garage'
+    )
   )
 )
 """
