@@ -74,7 +74,6 @@ class TagRemove_Incompatibles(Plugin):
                 ['drinking_water', 'man_made', 'water_tap'],
                 ['shelter', 'highway', 'bus_stop'],
                 ['event_venue', 'leisure', 'garden'],
-                ['gambling', 'leisure', 'adult_gaming_centre'],
             ],
         }.items()
 
