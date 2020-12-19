@@ -22,6 +22,11 @@ addons:
     - make
     - pkg-config
     - protobuf-compiler
+    # for PyKOpeningHours
+    - cmake
+    - qtbase5-dev
+    - flex
+    - bison
 install:
   - pip install -r requirements.txt
 before_script:
