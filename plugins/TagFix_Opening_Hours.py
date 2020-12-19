@@ -47,8 +47,9 @@ class TagFix_Opening_Hours(Plugin):
         if parser.error() == Error.SyntaxError or parser.error() == Error.IncompatibleMode:
             return {"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}}
         sanitized_field = parser.normalizedExpression()
-        # Ignore space and case changes, those can be fixed by bots rather than humans
-        if sanitized_field.replace(' ', '').replace('0', '').lower() != tags['opening_hours'].replace(' ', '').replace('0', '').lower():
+        # Ignore trivial changes that can be fixed by bots rather than humans like spaces, case errors, etc
+        simplify = lambda s: s.replace(' ', '').replace('24:00', '00:00').replace('0', '').lower()
+        if simplify(sanitized_field) != simplify(tags['opening_hours']):
             return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized_field}}
 
     def node(self, data, tags):
@@ -80,3 +81,7 @@ class Test(TestPluginCommon):
         # These are OK, no suggestion
         assert not a.node(None, {'opening_hours': 'Mo-Fr 10:00-19:00'})
         assert not a.node(None, {'opening_hours': 'Mo-Tu,Th-Fr 09:30-12:00; We 15:00-17:00; 2020 Dec 24,2020 Dec 31 off; Sa,Su off; PH off'})
+
+        # Check 00:00 and 24:00 are both OK
+        assert not a.node(None, {'opening_hours': 'Mo-Su 09:00-00:00'})
+        assert not a.node(None, {'opening_hours': 'Mo-Su 09:00-24:00'})
