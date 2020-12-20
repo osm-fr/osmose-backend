@@ -4,12 +4,12 @@ polib
 psycopg2-binary >= 2.7
 shapely >= 1.2
 regex
-lark-parser >=  0.6, < 0.7
 requests
 transporthours
 pyproj >= 2.1.0
 Unidecode
 osmium
+git+git://github.com/dfaure/PyKOpeningHours.git@v1.3.6
 
 # Tests
 pytest

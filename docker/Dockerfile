@@ -3,6 +3,9 @@ FROM python:3.7
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        bison \
+        cmake \
+        flex \
         g++ \
         gcc \
         git \
@@ -19,8 +22,9 @@ RUN apt-get update && \
         python-dev \
         python-pip \
         python-setuptools \
-        python-wheel && \
-    apt-get clean
+        python-wheel \
+        qtbase5-dev \
+        && apt-get clean
 
 RUN mkdir -p /data/work/osmose && \
     useradd -s /bin/bash -d /data/work/osmose osmose && \

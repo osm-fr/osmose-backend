@@ -23,16 +23,16 @@ from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 
 try:
-    from modules.oh_sanitizer import sanitize_field, SanitizeError, InconsistentField
-    module_oh_sanitizer = True
+    from PyKOpeningHours.PyKOpeningHours import OpeningHours, Error
+    module_PyKOpeningHours = True
 except ImportError as e:
     print(e)
-    module_oh_sanitizer = False
+    module_PyKOpeningHours = False
 
 class TagFix_Opening_Hours(Plugin):
 
     def init(self, logger):
-        if not module_oh_sanitizer:
+        if not module_PyKOpeningHours:
             return False
         Plugin.init(self, logger)
         self.errors[32501] = self.def_class(item = 3250, level = 3, tags = ['value', 'fix:chair'],
@@ -42,14 +42,15 @@ class TagFix_Opening_Hours(Plugin):
         if 'opening_hours' not in tags:
             return
 
-        try:
-            sanitized_field = sanitize_field(tags['opening_hours'])
-            if sanitized_field.replace(' ', '').replace('0', '').lower() != tags['opening_hours'].replace(' ', '').replace('0', '').lower(): # Ignore sapce and 0 changes
-                return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized_field}}
-        except InconsistentField as e:
-            return {"class": 32501, "subclass": 1, 'text': {'en': str(e)}}
-        except SanitizeError:
-            return {"class": 32501, "subclass": 2}
+        parser = OpeningHours()
+        parser.setExpression(tags['opening_hours'])
+        if parser.error() == Error.SyntaxError or parser.error() == Error.IncompatibleMode:
+            return {"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}}
+        sanitized_field = parser.normalizedExpression()
+        # Ignore trivial changes that can be fixed by bots rather than humans like spaces, case errors, etc
+        simplify = lambda s: s.replace(' ', '').replace('24:00', '00:00').replace('0', '').lower()
+        if simplify(sanitized_field) != simplify(tags['opening_hours']):
+            return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized_field}}
 
     def node(self, data, tags):
         return self.sanitize_tags(tags)
@@ -69,9 +70,18 @@ class Test(TestPluginCommon):
         a = TagFix_Opening_Hours(None)
         a.init(None)
 
-        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00'}))
-        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00"'}))
-        self.check_err(a.node(None, {'opening_hours': '2010 - 2020/2 dec-feb 10:00 am - 12:00 am/1:00 pm-7:00pm'}))
+        # These should return a modification suggestion
+        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00'}), expected={"class": 32501, "subclass": 0, 'fix': {'opening_hours': 'Mo-Fr 10:00-19:00'}})
+        self.check_err(a.node(None, {'opening_hours': 'Monday to Friday 8:00AM to 4:30PM'}), expected={"class": 32501, "subclass": 0, 'fix': {'opening_hours': 'Mo-Fr 08:00-16:30'}})
 
+        # These return a parse error
+        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00"'}), expected={"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}})
+        self.check_err(a.node(None, {'opening_hours': '09:00-21:00 TEL/072(360)3200'}), expected={"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}})
+
+        # These are OK, no suggestion
         assert not a.node(None, {'opening_hours': 'Mo-Fr 10:00-19:00'})
-        assert not a.node(None, {'opening_hours': 'Mo-Fr   10:00 -19:00'})
+        assert not a.node(None, {'opening_hours': 'Mo-Tu,Th-Fr 09:30-12:00; We 15:00-17:00; 2020 Dec 24,2020 Dec 31 off; Sa,Su off; PH off'})
+
+        # Check 00:00 and 24:00 are both OK
+        assert not a.node(None, {'opening_hours': 'Mo-Su 09:00-00:00'})
+        assert not a.node(None, {'opening_hours': 'Mo-Su 09:00-24:00'})
