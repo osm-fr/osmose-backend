@@ -25,6 +25,11 @@ from .osm_pbf_parser import osm_pbf_parser
 from .OsmState import OsmState
 import subprocess
 from .OsmReader import OsmReader, dummylog
+try: # osmium still optional for now
+    import osmium # type: ignore
+    have_osmium = True
+except:
+    have_osmium = False
 
 
 class OsmPbfReader(OsmReader, osm_pbf_parser.Visitor):
@@ -43,6 +48,13 @@ class OsmPbfReader(OsmReader, osm_pbf_parser.Visitor):
         self.set_since_timestamp(int(since_timestamp.timestamp()) if since_timestamp else 0)
 
     def timestamp(self):
+        if have_osmium:
+            try:
+                osmobject = osmium.io.Reader(self._pbf_file)
+                return dateutil.parser.isoparse(osmobject.header().get('osmosis_replication_timestamp')).replace(tzinfo=None)
+            except:
+                pass
+
         if self._state_file:
             osm_state = OsmState(self._state_file)
             return osm_state.timestamp()
