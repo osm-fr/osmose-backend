@@ -237,7 +237,7 @@ msgstr ""
 msgid "Special building (large)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:218
+#: ../analysers/analyser_osmosis_highway_deadend.py:220
 msgid "Unconnected cycleway"
 msgstr ""
 
@@ -720,12 +720,12 @@ msgstr ""
 msgid "Name contains successive spaces"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:96
+#: ../plugins/TagRemove_Incompatibles.py:101
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:99
+#: ../plugins/TagRemove_Incompatibles.py:104
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:102
+#: ../plugins/TagRemove_Incompatibles.py:107
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1130,7 +1130,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:233
+#: ../analysers/analyser_osmosis_highway_deadend.py:235
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1751,7 +1751,7 @@ msgstr ""
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:226
+#: ../analysers/analyser_osmosis_highway_deadend.py:228
 msgid "Unconnected highway"
 msgstr ""
 
@@ -2273,7 +2273,7 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:216
+#: ../analysers/analyser_osmosis_highway_deadend.py:218
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:116
 msgid "The end of the way is not connected to another way."
 msgstr ""
@@ -2283,19 +2283,19 @@ msgid ""
 "road network to ensure continuity, especially for routes planner"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:223
+#: ../analysers/analyser_osmosis_highway_deadend.py:225
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:228
+#: ../analysers/analyser_osmosis_highway_deadend.py:230
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:231
+#: ../analysers/analyser_osmosis_highway_deadend.py:233
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -4516,7 +4516,7 @@ msgstr ""
 msgid "Guess with probability: {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:220
+#: ../analysers/analyser_osmosis_highway_deadend.py:222
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."

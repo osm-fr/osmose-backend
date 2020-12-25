@@ -41,14 +41,15 @@
 # Sidjy <gross.c@gmail.com>, 2015
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
+# Thibault Drevet <thibault.drevet@gmail.com>, 2020
 # Philippe Verdy, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-12-15 19:34+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2020-12-18 21:19+0000\n"
+"Last-Translator: Thibault Drevet <thibault.drevet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -521,7 +522,7 @@ msgstr "Initiale collée au nom"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:31
 msgid "Badly written word"
-msgstr "Mot mal écrit"
+msgstr "Mot mal orthographié"
 
 #: ../plugins/Name_Multiple.py:33
 msgid "The name tag contains two names"
@@ -2422,7 +2423,7 @@ msgstr ""
 msgid ""
 "Way node tagged like way. Probably due to a wrong selection when\n"
 "editing, nodes in the way have the same tags that way."
-msgstr ""
+msgstr "Nœud de chemin étiqueté comme le chemin. Des nœuds du chemin ont les mêmes propriétés que ceux du chemin, ce qui est probablement lié à une mauvaise sélection lors de l'édition."
 
 #: ../analysers/analyser_osmosis_node_like_way.py:85
 msgid "Check and remove tag from node."
@@ -2708,7 +2709,7 @@ msgstr "* Rue Piere Curie ==> Rue Pierre Curie\n* Rue du Général de Gaules ==>
 
 #: ../analysers/analyser_osmosis_tag_typo.py:152
 msgid "The tag is misspelled. Detection is based on statistics."
-msgstr ""
+msgstr "L'attribut est mal orthographié. La détection est basée sur des statistiques."
 
 #: ../analysers/analyser_osmosis_tag_typo.py:154
 msgid "Check that the correction does not change the intent of the tag."
@@ -2894,7 +2895,7 @@ msgstr "Il manque probablement une lettre en capitale."
 
 #: ../plugins/Name_MisspelledWordByRegex.py:33
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
-msgstr "Souvent manque un accent sur une lettre capitale (par ex. Ecole ppur École"
+msgstr "Souvent un accent manquant sur une lettre capitale (par ex. Ecole pour École)"
 
 #: ../plugins/Name_Multiple.py:35
 msgid ""
@@ -3393,7 +3394,7 @@ msgstr ""
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
-msgstr ""
+msgstr "Cartographiez l'objet correspondant si l'imagerie est à jour et si la détection de l'objet est correcte."
 
 #: ../analysers/analyser_merge_traffic_signs.py:85
 msgid ""
@@ -3992,17 +3993,17 @@ msgstr ""
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
-msgstr ""
+msgstr "Si après vérification vous êtes sûr qu'il s'agit d'une nouvelle donnée et que celle-ci est appropriée pour OpenStreetMap,  alors vous pouvez l'ajouter."
 
 #: ../analysers/Analyser_Merge.py:902
 msgid "Be sure that it is not already existing in another place."
-msgstr ""
+msgstr "Assurez-vous que l'objet n'existe pas ailleurs."
 
 #: ../analysers/Analyser_Merge.py:907
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
-msgstr ""
+msgstr "Cette information provient d'une source de données ouverte, sans aucune vérification au préalable d'un individu."
 
 #: ../analysers/Analyser_Merge.py:920
 msgid ""
