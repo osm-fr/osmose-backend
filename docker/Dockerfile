@@ -9,6 +9,7 @@ RUN apt-get update && \
         g++ \
         gcc \
         git \
+        libarchive-dev \
         libboost-python-dev \
         libosmpbf-dev \
         libprotobuf-dev \

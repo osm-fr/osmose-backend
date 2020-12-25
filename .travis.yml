@@ -8,6 +8,7 @@ addons:
   postgresql: 10
   apt:
     packages:
+    - libarchive-dev
     - postgresql-10-postgis-2.4
     - postgresql-10-postgis-2.4-scripts
     # for shp2pgsql
