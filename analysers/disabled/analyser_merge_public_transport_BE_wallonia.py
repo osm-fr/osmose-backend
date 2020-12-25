@@ -33,7 +33,7 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
             Source(
                 url = u"http://opendata.awt.be/dataset/tec",
                 name = u"Données TEC",
-                file = "public_transport_BE_wallonia.csv.bz2",
+                file = "public_transport_BE_wallonia.csv.bz2", bz2 = True,
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = u"|", header = False)),
             Load("X coordinate", "Y coordinate", srid = 31370,

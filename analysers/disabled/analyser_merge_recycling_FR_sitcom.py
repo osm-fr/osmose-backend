@@ -38,7 +38,7 @@ class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
             u"http://www.sitcom40.fr/",
             u"Emplacements d'apport volontaire",
             CSV(Source(attribution = u"Sitcom Côte Sud Landes", millesime = "07/2017",
-                    file = "recycling_FR_sitcom.csv.bz2")),
+                    file = "recycling_FR_sitcom.csv.bz2", bz2 = True)),
             Load("Y", "X", # lat/lon inverted
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

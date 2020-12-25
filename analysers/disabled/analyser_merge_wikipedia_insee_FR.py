@@ -31,7 +31,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
         self.init(
             u"http://wikipedia.fr",
             "wikipedia insee",
-            CSV(Source(file = "wikipedia_insee_FR.csv.bz2")),
+            CSV(Source(file = "wikipedia_insee_FR.csv.bz2", bz2 = True)),
             Load(create = """
                     insee VARCHAR(254) PRIMARY KEY,
                     title VARCHAR(254)"""),

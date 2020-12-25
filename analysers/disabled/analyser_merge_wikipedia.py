@@ -330,7 +330,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         self.init(
             u"http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/",
             "Wikipedia-World",
-            CSV(Source(file = "wikipedia_point_fr.csv.bz2"),
+            CSV(Source(file = "wikipedia_point_fr.csv.bz2", bz2 = True),
                 csv = False, separator = None, null = None),
             LoadGeomCentroid(),
                 create = self.create_table,

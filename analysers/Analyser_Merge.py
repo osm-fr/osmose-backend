@@ -312,7 +312,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, extract = None, gzip = False, filter = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -321,7 +321,8 @@ class Source:
         @param fileUrlCache: days for file in cache
         @param zip: extract file from zip
         @param extract: extract file from any archive format
-        @param gzip: uncompress as gzip
+        @param gzip: uncompress from bz2
+        @param gzip: uncompress from gzip
         @param filter: lambda expression applied on text file before loading
         """
         self.attribution = attribution
@@ -332,6 +333,7 @@ class Source:
         self.fileUrlCache = fileUrlCache
         self.zip = zip
         self.extract = extract
+        self.bz2 = bz2
         self.gzip = gzip
         self.filter = filter
 
@@ -362,27 +364,31 @@ class Source:
 
     def open(self, binary = False):
         if self.file:
-            f = bz2.BZ2File(self.file)
+            f = open(self.file, 'rb')
         elif self.fileUrl:
             f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
-            if self.zip:
-                z = zipfile.ZipFile(f, 'r').open(self.zip)
-                f = io.BytesIO(z.read())
-                f.seek(0)
-            elif self.extract:
-                import libarchive.public # type: ignore
-                with libarchive.public.memory_reader(f.read()) as archive:
-                    f = io.BytesIO()
-                    for entry in archive:
-                        if entry.pathname == self.extract:
-                            for block in entry.get_blocks():
-                                f.write(block)
-                            break
-                f.seek(0)
-            elif self.gzip:
-                d = gzip.open(downloader.path(self.fileUrl, self.fileUrlCache), mode='r')
-                f = io.BytesIO(d.read())
-                f.seek(0)
+
+        if self.zip:
+            z = zipfile.ZipFile(f, 'r').open(self.zip)
+            f = io.BytesIO(z.read())
+            f.seek(0)
+        elif self.extract:
+            import libarchive.public # type: ignore
+            with libarchive.public.memory_reader(f.read()) as archive:
+                f = io.BytesIO()
+                for entry in archive:
+                    if entry.pathname == self.extract:
+                        for block in entry.get_blocks():
+                            f.write(block)
+                        break
+            f.seek(0)
+        elif self.bz2:
+            f = io.BytesIO(bz2.decompress(f.read()))
+            f.seek(0)
+        elif self.gzip:
+            f = io.BytesIO(gzip.decompress(f.read()))
+            f.seek(0)
+
         if not binary:
             f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
             f.seek(0)

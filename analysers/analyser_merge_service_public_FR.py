@@ -42,7 +42,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             u"https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
             CSV(Source(attribution = "Service-Public.fr", millesime = "11/2020",
-                    file = "service_public_FR.csv.bz2")),
+                    file = "service_public_FR.csv.bz2", bz2 = True)),
             Load("longitude", "latitude",
                 select = {"category": select}),
             Mapping(
