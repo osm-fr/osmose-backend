@@ -25,6 +25,7 @@ addons:
     - protobuf-compiler
     # for PyKOpeningHours
     - cmake
+    - extra-cmake-modules
     - qtbase5-dev
     - flex
     - bison
