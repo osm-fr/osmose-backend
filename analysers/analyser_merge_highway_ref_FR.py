@@ -42,7 +42,7 @@ class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
                 select = Select(
                     types = ["ways"],
                     tags = [
-                        {"highway": ["motorway", "trunk", "primary", "secondary", "terciary"]}, ]),
+                        {"highway": ["motorway", "trunk", "primary", "secondary", "tertiary"]}, ]),
                 osmRef = "ref",
                 conflationDistance = 100,
                 generate = Generate(
