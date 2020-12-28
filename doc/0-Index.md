@@ -37,7 +37,7 @@ They can be written in [MapCSS](https://josm.openstreetmap.de/wiki/Help/Styles/M
 
 The MapCSS code is compiled into Python using `mapcss2osmose.py` from the `mapcss` directory.
 
-### Osmose Analyzers
+### Osmosis Analyzers
 This kind of analyzer handles more complex checks. It can deal with geometries using [PostGIS](https://postgis.net/docs/reference.html) functions. It can also validate tags, topological or semantics relation between objects.
 
 The main part of the rules are written in SQL.
