@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
                     fileUrl = "https://www.data.gouv.fr/fr/datasets/r/479b8047-f8e3-4536-9a07-12f96c9a3cd7",
                     zip = "inventaire-des-defibrillateurs-automatises-externes-dans-le-gers.shp")),
             LoadGeomCentroid(srid = 2154),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

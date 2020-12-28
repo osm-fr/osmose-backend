@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
@@ -36,7 +36,7 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
                     file = "hydrant_point_CH_lausanne.csv.bz2", bz2 = True),
                 separator = u";"),
             Load("@lat", "@lon"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = [{"emergency": "fire_hydrant"},{"amenity": "fire_hydrant"}]),

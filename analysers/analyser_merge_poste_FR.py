@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
@@ -48,7 +48,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                      fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                  separator = u";"),
             Load("Longitude", "Latitude"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "post_office"}),

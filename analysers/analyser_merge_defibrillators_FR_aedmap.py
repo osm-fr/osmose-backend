@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 from modules import reaccentue
 
 class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge):
             Load("Longitude", "Latitude",
                  xFunction = self.float_comma,
                  yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),

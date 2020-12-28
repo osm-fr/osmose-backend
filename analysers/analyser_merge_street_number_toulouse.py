@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Mapping, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Generate
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -35,7 +35,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
             Load("X_WGS84", "Y_WGS84",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 generate = Generate(
                     static2 = {
                         "source": lambda a: a.parser.source.attribution,

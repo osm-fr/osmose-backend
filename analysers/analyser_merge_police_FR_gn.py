@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from collections import OrderedDict
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Police_FR_gn(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                 separator = u";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS",
                 where = lambda row: u"Centre d'information et de recrutement" not in row["service"] and u"motorisé" not in row["service"] ),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "police"}),

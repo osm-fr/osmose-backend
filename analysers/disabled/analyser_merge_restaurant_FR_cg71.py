@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 import re
 
 
@@ -43,7 +43,7 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
             Load("LONGITUDE", "LATITUDE",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "restaurant"}),

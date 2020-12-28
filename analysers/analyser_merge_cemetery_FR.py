@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
                     fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/.gpkg/cimetiere.gpkg")),
             LoadGeomCentroid(
                 select = {"etat_de_l_objet": "En service"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = [

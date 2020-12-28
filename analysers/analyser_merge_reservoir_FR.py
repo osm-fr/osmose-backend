@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_Merge_Reservoir_FR(Analyser_Merge_Dynamic):
@@ -75,7 +75,7 @@ class SubAnalyser_Merge_Reservoir_FR(SubAnalyser_Merge_Dynamic):
                     fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/.gpkg/reservoir.gpkg")),
             LoadGeomCentroid(
                 select = select),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = tags),

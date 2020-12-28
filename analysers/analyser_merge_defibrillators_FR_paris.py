@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d2b94d3d-977d-4dcb-ab8c-77e2568de736"),
                 separator = u";"),
             Load("longitude", "latitude"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

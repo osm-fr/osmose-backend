@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
             Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "post_box"}),

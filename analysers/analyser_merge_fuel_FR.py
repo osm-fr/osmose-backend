@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Fuel_FR(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                     fileUrl = u"https://files.pavie.info/depot/remote/carburants_gouv.geojson"),
                 extractor = lambda geojson: geojson),
             Load("geom_x", "geom_y"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "fuel"}),

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
                     fileUrl = u"https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&request=GetFeature&typename=gin_nettoiement.gintoilettepublique&SRSNAME=urn:ogc:def:crs:EPSG::4326"),
                 extractor = lambda geojson: geojson),
             Load("geom_x", "geom_y"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "toilets"}),

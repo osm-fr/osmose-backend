@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
@@ -36,7 +36,7 @@ class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
             GeoJSON(Source(attribution = u"Ville de Lorient",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/01f2a133-4929-4001-906c-412f682d0d59")),
             Load("geom_x", "geom_y"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

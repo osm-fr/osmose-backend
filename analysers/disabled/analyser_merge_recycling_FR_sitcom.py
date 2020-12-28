@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
@@ -42,7 +42,7 @@ class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
             Load("Y", "X", # lat/lon inverted
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "recycling", "recycling_type": "container"}),

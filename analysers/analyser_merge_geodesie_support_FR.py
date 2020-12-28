@@ -24,7 +24,7 @@ import csv
 import re
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
@@ -65,7 +65,7 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
                     ele VARCHAR(254),
                     ref VARCHAR(254)""",
                 where = lambda res: not 'ruine' in res['description'].lower() and not 'ancien' in res['description'].lower() and not u'détruit' in res['description'].lower() and re.search(topic, res['description'], re.IGNORECASE)),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = osmTags),

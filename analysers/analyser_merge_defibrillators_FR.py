@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 import unidecode
 import re
 from modules import reaccentue
@@ -68,7 +68,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     fileUrl = u"https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=CSV&projection=WGS84")),
             Load("c_long_coor1", "c_lat_coor1",
                  select = {"c_etat_fonct": u"En fonctionnement", "c_doublon": u"f"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),

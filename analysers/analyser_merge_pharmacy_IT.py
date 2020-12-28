@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 from modules import italian_strings
 
 
@@ -46,7 +46,7 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = {

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
@@ -39,7 +39,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
                 select = {
                     "realisation": u"Réalisé",
                     "nature": [u"Arceau vélo", u"Rack", u"Potelet"]}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_parking"}),

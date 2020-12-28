@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
@@ -48,7 +48,7 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
                     ville_cp VARCHAR(254),
                     reseau VARCHAR(254)""",
                 select = {"reseau": select}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = osmTags),

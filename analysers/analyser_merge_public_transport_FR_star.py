@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
@@ -44,7 +44,7 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
             Load("Coordonnées", "Coordonnées",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"highway": "bus_stop"}),

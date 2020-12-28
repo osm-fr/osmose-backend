@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 def transform_phone(phone_number):
     if len(phone_number) > 6 and phone_number.startswith("0"):
@@ -45,7 +45,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                     file = "service_public_FR.csv.bz2", bz2 = True)),
             Load("longitude", "latitude",
                 select = {"category": select}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = osmTags),

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
@@ -36,7 +36,7 @@ class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
             GeoJSON(Source(attribution = u"Mairie de Cugnaux",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6820eaf-f988-47c4-bc6f-634e0a4da013")),
             Load("geom_x", "geom_y"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

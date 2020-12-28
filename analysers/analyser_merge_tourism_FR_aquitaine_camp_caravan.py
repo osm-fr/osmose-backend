@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
@@ -39,7 +39,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
             Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"tourism": "caravan_site"}),
@@ -68,7 +68,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
             Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"tourism": "camp_site"}),

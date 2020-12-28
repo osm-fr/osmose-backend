@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
@@ -78,7 +78,7 @@ administrative schools for a single physical school.''')
                 yFunction = lambda y: y is not None and y.split(',')[0] or None,
                 select = {"Code état établissement": ["1", "3"]},
                 where = lambda res: res["Code postal"] and self.is_in(res["Code postal"])),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"amenity": "school"}),

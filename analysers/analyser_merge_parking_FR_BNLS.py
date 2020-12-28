@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
@@ -55,7 +55,7 @@ on the wiki. Add a node or add tags if already existing.''')
             Load("Xlong", "Ylat",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "parking"}),

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
                     encoding = "iso-8859-14"),
                     separator = u";"),
             Load("XCOORD", "YCOORD", srid = 2154),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

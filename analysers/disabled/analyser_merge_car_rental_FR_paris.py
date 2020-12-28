@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
             Load("XY", "XY",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways",  "nodes"],
                     tags = {"amenity": "car_rental", "network": "Autolib'"}),

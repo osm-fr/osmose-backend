@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
                     fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'en_empac_p.shp')),
             LoadGeomCentroid(
                 select = {"ident": "%"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "recycling"}),

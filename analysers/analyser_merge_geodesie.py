@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 doc = dict(
     detail = T_(
@@ -59,7 +59,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                     description VARCHAR(4096),
                     ele VARCHAR(254),
                     ref VARCHAR(254)"""),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"man_made": "survey_point"}),
@@ -102,7 +102,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
                     source VARCHAR(254),
                     lat VARCHAR(254),
                     lon VARCHAR(254)"""),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["relations"],
                     tags = {

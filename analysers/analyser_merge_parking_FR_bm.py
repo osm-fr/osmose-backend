@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
             SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
                     fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'st_park_p.shp')),
             LoadGeomCentroid(),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "parking"}),
@@ -73,7 +73,7 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
             SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
                     fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/grs_gigc_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'grs_gigc_p.shp')),
             LoadGeomCentroid(),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                     fileUrl = "https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"),
                 separator = u";"),
             Load(u"Longitude pylône (DD)", u"Latitude pylône (DD)"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = [{"power": "tower", "operator": "RTE"}, {"power": "pole", "operator": "RTE"}, {"power": "terminal", "operator": "RTE"}, {"power": "portal", "operator": "RTE"}, {"power": "insulator", "operator": "RTE"},

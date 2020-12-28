@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                 fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'tb_arret_p.shp')),
             LoadGeomCentroid(
                 select = {"reseau": [None, "BUS"]}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"highway": "bus_stop"}),

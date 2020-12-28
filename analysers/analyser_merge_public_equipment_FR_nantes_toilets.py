@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
 import json
 
 
@@ -40,7 +40,7 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
             Load("geo_shape.coordinates", "geo_shape.coordinates",
                 xFunction = lambda c: c and json.loads(c)[0],
                 yFunction = lambda c: c and json.loads(c)[1]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "toilets"}),

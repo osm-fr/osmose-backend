@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
@@ -43,7 +43,7 @@ class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
                 select = {"ZDEr_LIBELLE_TYPE_ARRET": select},
                 xFunction = lambda x: x.split(",")[0],
                 yFunction = lambda y: y.split(",")[1]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = osmTags),

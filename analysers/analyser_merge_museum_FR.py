@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 import re
 
 class Analyser_Merge_Museum_FR(Analyser_Merge):
@@ -44,7 +44,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                  where = lambda row: row["geolocalisation"],
                  xFunction = lambda x: x and x.split(',')[1],
                  yFunction = lambda y: y and y.split(',')[0]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"tourism": "museum"}),

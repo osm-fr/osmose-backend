@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
                 select = {"NATURE": "Poids"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways"],
                     tags = {
@@ -73,7 +73,7 @@ class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
                 select = {"NATURE": "Hauteur"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways"],
                     tags = {

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                     fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = u";"),
             Load("Longitude poste (DD)", "Latitude poste (DD)"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways"],
                     tags = [

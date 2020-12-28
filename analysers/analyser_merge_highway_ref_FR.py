@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
             LoadGeomCentroid(
                 where = lambda res: res["route"][0] in ('A', 'D', 'N'),
                 map = lambda res: {"_x": float(res["_x"]), "_y": float(res["_y"]), 'route': res['route'].replace('A', 'A ').replace('D', 'D ').replace('N', 'N ').replace('P', 'P ') }),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways"],
                     tags = [

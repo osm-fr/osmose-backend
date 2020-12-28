@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Mapping, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Generate
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -34,7 +34,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
             Load("geo_point_2d", "geo_point_2d",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0])),
-            Mapping(
+            Conflate(
                 generate = Generate(
                     static2 = {"source": self.source},
                     mapping1 = {"addr:housenumber": "numero"},

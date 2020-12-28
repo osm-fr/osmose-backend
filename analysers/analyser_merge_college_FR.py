@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_College_FR(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
             Load("longitude (X)", "latitude (Y)",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"amenity": ["college", "university"]}),
