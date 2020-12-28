@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
@@ -36,7 +36,7 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
             SHP(Source(attribution = u"data.gouv.fr:Toulouse métropole",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/15cbc8a3-411b-4690-894a-d84a7e6cac7b", zip = "defibrillateurs.shp")),
             LoadGeomCentroid(),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

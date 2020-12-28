@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
                  xFunction = self.float_comma,
                  yFunction = self.float_comma,
                  select = {"detail": ["Ordure ménagère", "Ordure ménagère (Accès clé)"]}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "waste_disposal"}),

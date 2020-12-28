@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
@@ -36,7 +36,7 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
             CSV(Source(attribution = u"Défibrillateurs Montfort Communauté",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/ad484c5d-0566-4bd4-9bb4-1ca418031968")),
             Load("X","Y"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),

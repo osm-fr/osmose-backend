@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select
 
 
 class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
@@ -43,7 +43,7 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
                 xFunction = lambda x: float(x)/100000,
                 yFunction = lambda y: float(y)/100000,
                 where = lambda res: res["CLASS"] == c and res["TCD"] == str(tcd) and res["STCD"] == str(stcd)),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = osmTypes,
                     tags = osmTags),

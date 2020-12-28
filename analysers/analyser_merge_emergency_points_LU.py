@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
@@ -39,7 +39,7 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
                        encoding="iso-8859-1"),
                 separator=";"),
             Load("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
-            Mapping(
+            Conflate(
                 select=Select(
                     types=["nodes"],
                     tags={"highway": "emergency_access_point"}),

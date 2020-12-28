@@ -39,8 +39,8 @@ street numbers are checked.'''),
 '''Pay attention to the data freshness.'''))
 
         self.init( url, name, parser, load, mapping)
-        self.mapping.select = Select(
+        self.conflate.select = Select(
             types = ["nodes", "ways"],
             tags = [{"addr:housenumber": None}])
-        self.mapping.extraJoin = "addr:housenumber"
-        self.mapping.conflationDistance = 100
+        self.conflate.extraJoin = "addr:housenumber"
+        self.conflate.conflationDistance = 100

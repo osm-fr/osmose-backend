@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
                 extractor = lambda geojson: geojson),
             Load("geom_x", "geom_y",
                 srid = 3950),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "toilets"}),

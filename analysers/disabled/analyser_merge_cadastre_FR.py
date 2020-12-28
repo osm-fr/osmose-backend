@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class _Analyser_Merge_Cadastre_Point_ID_calvaire_FR(Analyser_Merge):
@@ -36,7 +36,7 @@ class _Analyser_Merge_Cadastre_Point_ID_calvaire_FR(Analyser_Merge):
             CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2", bz2 = True)),
             Load("X", "Y",
                 select = {"tex": "%calvaire%"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"historic": "wayside_cross"}),
@@ -58,7 +58,7 @@ class Analyser_Merge_Cadastre_Point_ID_borne_incendie_FR(Analyser_Merge):
             CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2", bz2 = True)),
             Load("X", "Y",
                 select = {"tex": "%borne incendie%"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "ire_hydrant"}),

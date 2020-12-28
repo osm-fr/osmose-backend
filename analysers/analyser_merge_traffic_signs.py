@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import CSV, Load, Conflate, Select, Generate
 from .Analyser_Merge_Mapillary import Source_Mapillary
 
 
@@ -90,7 +90,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
             CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, source = source, layer = layer)),
             Load("X", "Y",
                 select = {"value": object}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = otype,
                     tags = selectTags),

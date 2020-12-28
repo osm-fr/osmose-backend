@@ -702,7 +702,7 @@ class Load(object):
         else:
             return " AND ".join(where)
 
-    def run(self, osmosis, parser, mapping, db_schema, default_table_base_name, version):
+    def run(self, osmosis, parser, conflate, db_schema, default_table_base_name, version):
         """
         @return if data loaded in data base
         """
@@ -784,10 +784,10 @@ class Load(object):
                                 res[k] = mult_space.sub(' ', res[k].strip()) # Strip and remove duplicate space
                             except AttributeError:
                                 pass
-                        tags = mapping.generate.tagFactory(res)
+                        tags = conflate.generate.tagFactory(res)
                         tags[1].update(tags[0])
                         giscurs.execute(sql02.format(official = tableOfficial), {
-                            "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
+                            "ref": tags[1].get(conflate.osmRef) if conflate.osmRef != "NULL" else None,
                             "tags": tags[1],
                             "tags1": tags[0],
                             "fields": dict(zip(dict(res).keys(), map(lambda s: (s is None and None) or u'{0}'.format(s), dict(res).values()))),
@@ -807,7 +807,7 @@ class Load(object):
                 order_by = "ORDER BY {0}".format(l)
             else:
                 distinct = order_by = ""
-            osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo).format(table = table, x = self.x, y = self.y, where = self.formatCSVSelect(), distinct = distinct, order_by = order_by), insertOfficial)
+            osmosis.run0((sql01_ref if conflate.osmRef != "NULL" else sql01_geo).format(table = table, x = self.x, y = self.y, where = self.formatCSVSelect(), distinct = distinct, order_by = order_by), insertOfficial)
             osmosis.run(sql02b.format(official = tableOfficial))
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM {0}".format(tableOfficial))
@@ -905,7 +905,7 @@ class Generate:
         except ValueError:
             return None
 
-class Mapping:
+class Conflate:
     def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, generate = Generate()):
         """
         How data is mapped with OSM data.
@@ -971,7 +971,7 @@ OpenData and OSM.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.update_official = self.def_class(back_in_stack = 3, **kwargs)
 
-    def init(self, url, name, parser, load = Load(), mapping = Mapping()):
+    def init(self, url, name, parser, load = Load(), conflate = Conflate()):
         """
         @param url: remote URL of data source, webpage
         @param name: official name of the data set
@@ -980,7 +980,7 @@ OpenData and OSM.'''))
         self.name = name
         self.parser = parser
         self.load = load
-        self.mapping = mapping
+        self.conflate = conflate
 
         if hasattr(self, 'missing_official'):
             self.classs[self.missing_official['id']] = self.missing_official
@@ -1006,9 +1006,9 @@ OpenData and OSM.'''))
         for (id, c) in self.classs.items():
             c['resource'] = url
 
-        if not isinstance(self.mapping.select.tags, list):
-            self.mapping.select.tags = [self.mapping.select.tags]
-        self.mapping.generate.eval_static(self)
+        if not isinstance(self.conflate.select.tags, list):
+            self.conflate.select.tags = [self.conflate.select.tags]
+        self.conflate.generate.eval_static(self)
         self.load.osmosis = self
         self.load.polygon_id = self.config.polygon_id
 
@@ -1031,7 +1031,7 @@ OpenData and OSM.'''))
 
     def analyser_osmosis_common(self):
         self.run("SET search_path TO {0}".format(self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public'])))
-        table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
+        table = self.load.run(self, self.parser, self.conflate, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
         if not table:
             self.logger.log(u"Empty bbox, abort")
             return
@@ -1040,7 +1040,7 @@ OpenData and OSM.'''))
         if self.load.srid:
             typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
             typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
-            if self.mapping.osmRef == "NULL" or self.possible_merge:
+            if self.conflate.osmRef == "NULL" or self.possible_merge:
                 typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
             else:
                 typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
@@ -1049,7 +1049,7 @@ OpenData and OSM.'''))
             typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
             typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
-        where = "((" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + "))"
+        where = "((" + (") OR (".join(map(lambda x: self.where(x), self.conflate.select.tags))) + "))"
         self.run("CREATE TEMP TABLE osm_item AS " +
             ("UNION ALL".join(
                 map(lambda type:
@@ -1070,28 +1070,28 @@ OpenData and OSM.'''))
                         tags != ''::hstore AND
                         {where})""").format(
                             type = type[0].upper(),
-                            ref = self.mapping.osmRef,
+                            ref = self.conflate.osmRef,
                             geomSelect = typeSelect[type[0].upper()],
                             geom = typeGeom[type[0].upper()],
                             shape = typeShape[type[0].upper()],
                             from_ = type,
                             bbox = self.load.bbox,
-                            distance = self.mapping.conflationDistance or 0, where = where),
-                    self.mapping.select.types
+                            distance = self.conflate.conflationDistance or 0, where = where),
+                    self.conflate.select.types
                 )
             ))
         )
-        if self.mapping.osmRef != "NULL":
+        if self.conflate.osmRef != "NULL":
             self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
 
         joinClause = []
-        if self.mapping.osmRef != "NULL":
+        if self.conflate.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
         elif self.load.srid:
-            joinClause.append("ST_DWithin(official.geom, osm_item.shape, {0})".format(self.mapping.conflationDistance))
-        if self.mapping.extraJoin:
-            joinClause.append("official.tags->'{tag}' = osm_item.tags->'{tag}'".format(tag=self.mapping.extraJoin))
+            joinClause.append("ST_DWithin(official.geom, osm_item.shape, {0})".format(self.conflate.conflationDistance))
+        if self.conflate.extraJoin:
+            joinClause.append("official.tags->'{tag}' = osm_item.tags->'{tag}'".format(tag=self.conflate.extraJoin))
         joinClause = " AND\n".join(joinClause) + "\n"
 
         # Missing official
@@ -1102,14 +1102,14 @@ OpenData and OSM.'''))
                 "class": self.missing_official['id'],
                 "subclass": str(stablehash64("{0}{1}{2}".format(
                     res[0], res[1],
-                    sorted(self.mapping.generate.subclass_hash(res[3]).items())) )),
+                    sorted(self.conflate.generate.subclass_hash(res[3]).items())) )),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
-                "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-                "fix": self.passTags(res[2]) if self.mapping.generate.missing_official_fix and res[2] != {} else None,
+                "text": self.conflate.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
+                "fix": self.passTags(res[2]) if self.conflate.generate.missing_official_fix and res[2] != {} else None,
             } )
 
-        if self.mapping.osmRef != "NULL":
+        if self.conflate.osmRef != "NULL":
             self.run(sql20.format(official = table, joinClause = joinClause))
             self.run(sql21)
             if self.missing_osm:
@@ -1121,7 +1121,7 @@ OpenData and OSM.'''))
                 # Invalid OSM
                 self.run(sql23.format(official = table, joinClause = joinClause), lambda res: {
                     "class": self.missing_osm['id'],
-                    "subclass": str(stablehash64(res[5])) if self.mapping.osmRef != "NULL" else None,
+                    "subclass": str(stablehash64(res[5])) if self.conflate.osmRef != "NULL" else None,
                     "data": [self.typeMapping[res[1]], None, self.positionAsText]
                 } )
 
@@ -1130,19 +1130,19 @@ OpenData and OSM.'''))
                 possible_merge_joinClause = []
                 possible_merge_orderBy = ""
                 if self.load.srid:
-                    possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.mapping.conflationDistance))
+                    possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
                     possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
-                if self.mapping.extraJoin:
-                    possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.mapping.extraJoin))
+                if self.conflate.extraJoin:
+                    possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy), lambda res: {
                     "class": self.possible_merge['id'],
                     "subclass": str(stablehash64("{0}{1}".format(
                         res[0],
-                        sorted(self.mapping.generate.subclass_hash(res[3]).items())) )),
+                        sorted(self.conflate.generate.subclass_hash(res[3]).items())) )),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
-                    "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                    "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
+                    "text": self.conflate.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
+                    "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.generate.tag_keep_multiple_values),
                 } )
 
             self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
@@ -1181,10 +1181,10 @@ OpenData and OSM.'''))
                 "class": self.update_official['id'],
                 "subclass": str(stablehash64("{0}{1}".format(
                     res[0],
-                    sorted(self.mapping.generate.subclass_hash(res[5]).items())) )),
+                    sorted(self.conflate.generate.subclass_hash(res[5]).items())) )),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
-                "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
-                "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
+                "text": self.conflate.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
+                "fix": self.mergeTags(res[4], res[3], self.conflate.osmRef, self.conflate.generate.tag_keep_multiple_values),
             } )
 
 
@@ -1244,8 +1244,8 @@ OpenData and OSM.'''))
                     else:
                         column[k] += 1
         column = sorted(column, key=column.get, reverse=True)
-        column = list(filter(lambda a: a != self.mapping.osmRef and not a in self.mapping.select.tags[0], column))
-        column = [self.mapping.osmRef] + list(self.mapping.select.tags[0].keys()) + column
+        column = list(filter(lambda a: a != self.conflate.osmRef and not a in self.conflate.select.tags[0], column))
+        column = [self.conflate.osmRef] + list(self.conflate.select.tags[0].keys()) + column
         buffer = io.StringIO()
         writer = csv.writer(buffer, lineterminator=u'\n')
         writer.writerow(head + column)

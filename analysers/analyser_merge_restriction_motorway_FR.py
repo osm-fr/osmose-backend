@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
                     file = "restriction_motorway_FR.csv.bz2", bz2 = True)),
             Load("X", "Y",
                 where = lambda row: row["REST_POIDS"] != "0"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways"],
                     tags = {
@@ -64,7 +64,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
                     file = "restriction_motorway_FR.csv.bz2", bz2 = True)),
             Load("X", "Y",
                 where = lambda row: row["REST_HAUT"] != "0"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["ways"],
                     tags = {

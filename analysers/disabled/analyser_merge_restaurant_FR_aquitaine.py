@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
@@ -42,7 +42,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                     'CATRES': list(self.amenity_type.keys())},
                 xFunction = self.degree,
                 yFunction = self.degree),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": ["restaurant", "fast_food", "bar", "pub", "cafe"]}),

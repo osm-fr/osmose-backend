@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
@@ -35,7 +35,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
             Load(create = """
                     insee VARCHAR(254) PRIMARY KEY,
                     title VARCHAR(254)"""),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["relations"],
                     tags = {

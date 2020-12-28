@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
             Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_rental"}),

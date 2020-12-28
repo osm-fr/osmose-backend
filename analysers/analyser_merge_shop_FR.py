@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
 from modules import reaccentue
 
 
@@ -65,7 +65,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                     (not res["complementAdresseEtablissement"] or (" APP" not in res["complementAdresseEtablissement"] and " CHEZ " not in res["complementAdresseEtablissement"])) and
                     (not trancheEffectifs or (res["trancheEffectifsEtablissement"] and res["trancheEffectifsEtablissement"] != "NN" and int(res["trancheEffectifsEtablissement"]) > trancheEffectifs)) ),
                 unique = ["siren", "nic"]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = selectTags),

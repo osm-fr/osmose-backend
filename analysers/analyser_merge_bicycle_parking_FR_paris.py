@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 STANDS_TYPES = {
     "Arceau autre": "stands",
@@ -59,7 +59,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                 xFunction = lambda x: self.float_comma(x.split(',')[1]),
                 yFunction = lambda y: self.float_comma(y.split(',')[0])
             ),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_parking"}),
@@ -90,7 +90,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                 xFunction = lambda x: self.float_comma(x.split(',')[1]),
                 yFunction = lambda y: self.float_comma(y.split(',')[0])
             ),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "motorcycle_parking"}),
@@ -121,7 +121,7 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                 xFunction = lambda x: self.float_comma(x.split(',')[1]),
                 yFunction = lambda y: self.float_comma(y.split(',')[0])
             ),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": ["bicycle_parking",

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
             GeoJSON(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2020",
                 fileUrl = u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=geojson&timezone=Europe/Berlin")),
             Load("geom_x", "geom_y"),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "bicycle_rental"}),

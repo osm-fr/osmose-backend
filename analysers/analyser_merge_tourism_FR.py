@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_tourism_FR(Analyser_Merge_Dynamic):
@@ -49,7 +49,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
             Load("Longitude", "Latitude",
                 select = {'type': type_},
                 unique = ["elem"]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = osm_types,
                     tags = tags_select),

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -38,7 +38,7 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 from modules import downloader
 from modules import italian_strings
 import csv
@@ -59,7 +59,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv')),
             Load('Longitudine', 'Latitudine',
                 where = lambda row: row['Bandiera'] != 'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = {'amenity': 'fuel'}),

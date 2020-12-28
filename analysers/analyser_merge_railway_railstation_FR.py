@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                     fileUrl = u"https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/files/24e02fa969496e2caa5863a365c66ec2/download/")),
             Load("stop_lon", "stop_lat",
                 select = {"stop_id": "StopPoint:OCETrain%"}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"railway": ["station", "halt"]}),

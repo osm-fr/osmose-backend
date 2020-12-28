@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
 
 class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -40,7 +40,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
                     fileUrl = u"https://services.sandre.eaufrance.fr/geo/odp?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
             Load("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
                 select = {"DateMiseHorServiceOuvrageDepollution": None}),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"man_made": "wastewater_plant"}),

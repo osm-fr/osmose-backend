@@ -23,7 +23,7 @@
 import csv
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
 
 
 class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
@@ -57,7 +57,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             Load("EquGpsX", "EquGpsY",
                 select = {"EquipementTypeLib": topic},
                 where = lambda row: self.validLatLon(row)),
-            Mapping(
+            Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = osmTags),
