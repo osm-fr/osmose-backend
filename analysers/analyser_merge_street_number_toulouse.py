@@ -30,7 +30,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
             u"http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue",
             u"GrandToulouse-N° de rue",
             CSV(Source(attribution = "ToulouseMetropole", millesime = "2012-10-04",
-                    file = "address_france_toulouse.csv.bz2"),
+                    file = "address_france_toulouse.csv.bz2", bz2 = True),
                 separator = u";"),
             Load("X_WGS84", "Y_WGS84",
                 xFunction = self.float_comma,

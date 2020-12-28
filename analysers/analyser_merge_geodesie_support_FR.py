@@ -54,7 +54,7 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques",
             CSV(Source(attribution = u"©IGN 2010 dans le cadre de la cartographie réglementaire",
-                    file = "geodesie.csv.bz2"),
+                    file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
             Load("lon", "lat",
                 create = """

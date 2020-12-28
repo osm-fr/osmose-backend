@@ -38,7 +38,7 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
             "https://environnement.clissonsevremaine.fr/",
             "Points d'apport volontaire",
             CSV(Source(attribution = "Clisson Sèvre et Maine Agglo", millesime = "05/2019",
-                    file = "PAV_CSMA.csv.bz2")),
+                    file = "PAV_CSMA.csv.bz2", bz2 = True)),
             Load("X", "Y",
                  xFunction = self.float_comma,
                  yFunction = self.float_comma,

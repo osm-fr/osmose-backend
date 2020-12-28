@@ -312,7 +312,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, gzip = False, filter = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -320,7 +320,9 @@ class Source:
         @param urlFile: remote URL of source file
         @param fileUrlCache: days for file in cache
         @param zip: extract file from zip
-        @param gzip: uncompress as gzip
+        @param extract: extract file from any archive format
+        @param gzip: uncompress from bz2
+        @param gzip: uncompress from gzip
         @param filter: lambda expression applied on text file before loading
         """
         self.attribution = attribution
@@ -330,6 +332,8 @@ class Source:
         self.fileUrl = fileUrl
         self.fileUrlCache = fileUrlCache
         self.zip = zip
+        self.extract = extract
+        self.bz2 = bz2
         self.gzip = gzip
         self.filter = filter
 
@@ -358,24 +362,39 @@ class Source:
             # Do nothing about ZIP
             return downloader.path(self.fileUrl, self.fileUrlCache)
 
-    def open(self):
+    def open(self, binary = False):
         if self.file:
-            f = bz2.BZ2File(self.file)
+            f = open(self.file, 'rb')
         elif self.fileUrl:
             f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
-            if self.zip:
-                z = zipfile.ZipFile(f, 'r').open(self.zip)
-                f = io.BytesIO(z.read())
-                f.seek(0)
-            elif self.gzip:
-                d = gzip.open(downloader.path(self.fileUrl, self.fileUrlCache), mode='r')
-                f = io.BytesIO(d.read())
-                f.seek(0)
-        f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
-        f.seek(0)
-        if self.filter:
-            f = io.StringIO(self.filter(f.read()))
+
+        if self.zip:
+            z = zipfile.ZipFile(f, 'r').open(self.zip)
+            f = io.BytesIO(z.read())
             f.seek(0)
+        elif self.extract:
+            import libarchive.public # type: ignore
+            with libarchive.public.memory_reader(f.read()) as archive:
+                f = io.BytesIO()
+                for entry in archive:
+                    if entry.pathname == self.extract:
+                        for block in entry.get_blocks():
+                            f.write(block)
+                        break
+            f.seek(0)
+        elif self.bz2:
+            f = io.BytesIO(bz2.decompress(f.read()))
+            f.seek(0)
+        elif self.gzip:
+            f = io.BytesIO(gzip.decompress(f.read()))
+            f.seek(0)
+
+        if not binary:
+            f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
+            f.seek(0)
+            if self.filter:
+                f = io.StringIO(self.filter(f.read()))
+                f.seek(0)
         return f
 
     def as_tag_value(self):
@@ -609,18 +628,25 @@ class GDAL(Parser):
         return True
 
     def import_(self, table, srid, osmosis):
-        gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco UNLOGGED=ON -t_srs EPSG:4326 '{}' ".format(
-            osmosis.config.osmosis_manager.db_string,
-            osmosis.config.osmosis_manager.db_user,
-            table,
-            self.source.path()
-        )
-        osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
-        osmosis.giscurs.execute("COMMIT")
-        print(gdal)
-        if os.system(gdal):
-            raise Exception("ogr2ogr error")
-        osmosis.giscurs.execute("BEGIN")
+        try:
+            tmp_file = tempfile.NamedTemporaryFile(mode = 'wb', delete = False)
+            tmp_file.write(self.source.open(binary = True).read())
+            tmp_file.close()
+
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco UNLOGGED=ON -t_srs EPSG:4326 '{}' ".format(
+                osmosis.config.osmosis_manager.db_string,
+                osmosis.config.osmosis_manager.db_user,
+                table,
+                tmp_file.name
+            )
+            osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
+            osmosis.giscurs.execute("COMMIT")
+            print(gdal)
+            if os.system(gdal):
+                raise Exception("ogr2ogr error")
+            osmosis.giscurs.execute("BEGIN")
+        finally:
+            os.remove(tmp_file.name)
 
 GPKG = GDAL
 

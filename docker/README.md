@@ -115,6 +115,19 @@ docker-compose down -v
 ```
 
 
+## Run the tests
+
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for details. But, for short:
+```
+pytest plugins/TagFix_Housenumber.py
+./tools/pytest.sh lint
+./tools/pytest.sh mypy
+./tools/pytest.sh sax # Run all plugins tests
+./tools/pytest.sh merge # Not required, run all test on merge from analysers directory
+./tools/pytest.sh other # Not required, run all other analysers and non analyser tests
+```
+
+
 ## Alternative 1: Develop with Jupyter
 
 Download and load a country into the Database:

@@ -48,7 +48,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques",
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
-                    file = "geodesie.csv.bz2"),
+                    file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
             Load("lon", "lat",
                 where = lambda res: not(u'Point constaté détruit' in res[u'description'] or u'Point non retrouvé' in res[u'description']), # No more uniq ref
@@ -90,7 +90,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
             u"http://geodesie.ign.fr",
             u"Fiches géodésiques-site",
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
-                    file = "geodesie_site.csv.bz2"),
+                    file = "geodesie_site.csv.bz2", bz2 = True),
                 header = False),
             Load("lon", "lat",
                 create = """

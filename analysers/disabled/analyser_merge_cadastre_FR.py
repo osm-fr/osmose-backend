@@ -33,7 +33,7 @@ class _Analyser_Merge_Cadastre_Point_ID_calvaire_FR(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/58e5924b88ee3802ca255566/",
             u"PCI Vecteur (Plan Cadastral Informatisé) - Point_id",
-            CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2")),
+            CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2", bz2 = True)),
             Load("X", "Y",
                 select = {"tex": "%calvaire%"}),
             Mapping(
@@ -55,7 +55,7 @@ class Analyser_Merge_Cadastre_Point_ID_borne_incendie_FR(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/58e5924b88ee3802ca255566/",
             u"PCI Vecteur (Plan Cadastral Informatisé) - Point_id",
-            CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2")),
+            CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2", bz2 = True)),
             Load("X", "Y",
                 select = {"tex": "%borne incendie%"}),
             Mapping(
