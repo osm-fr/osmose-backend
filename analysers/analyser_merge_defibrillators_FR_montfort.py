@@ -32,8 +32,8 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
 
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-montfort-communaute-1/",
-            u"Défibrillateurs Montfort Communauté ",
-            CSV(Source(attribution = u"Défibrillateurs Montfort Communauté ",
+            u"Défibrillateurs Montfort Communauté",
+            CSV(Source(attribution = u"Défibrillateurs Montfort Communauté",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/ad484c5d-0566-4bd4-9bb4-1ca418031968")),
             Load("X","Y"),
             Mapping(
