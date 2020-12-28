@@ -315,6 +315,8 @@ class Source:
     def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
         """
         Describe the source file.
+        @param attribution: Author of the data, for the OSM source tag
+        @param millesime: date of the last release
         @param encoding: file charset encoding
         @param file: file name in storage
         @param urlFile: remote URL of source file
