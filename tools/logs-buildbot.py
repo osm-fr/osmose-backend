@@ -76,6 +76,7 @@ if __name__ == "__main__":
   parser.add_argument("--force", action="store_true", help="Force re-downloading previous logs")
   parser.add_argument("--no-buildbot-check", action="store_true", help="Don't check if Buildbot server has more recent builds ")
   parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch")
+  parser.add_argument("--past-build", action="store", metavar="BUILD", type=int, default=0, help="Check build before %(metavar)s")
 
   group = parser.add_argument_group('various statistics')
   group.add_argument("--country-stats", dest="stats_country", action="store_true", help="Statistics per country")
@@ -141,12 +142,15 @@ if __name__ == "__main__":
       nums = sorted([int(i) for i in os.listdir(c_dir)], reverse=True)
       list_builds = nums[:]
     else:
-      builds = json.loads(requests.get(buildbot_api + "builders/%d/builds?complete__eq=true&order=-complete_at&limit=%d" % (builders[country], args.num_builds)).text)
+      builds = json.loads(requests.get(buildbot_api + "builders/%d/builds?complete__eq=true&order=-complete_at&limit=%d" % (builders[country], args.num_builds + args.past_build)).text)
       list_builds = [int(i["buildid"]) for i in builds["builds"]]
       if len(list_builds) == 0:
         continue
 
-    orig_list_builds = list_builds[:]
+    if args.past_build > 0:
+      orig_list_builds = list_builds[args.past_build:]
+    else:
+      orig_list_builds = list_builds[:]
 
     list_builds = orig_list_builds[:]
     for i in orig_list_builds:
