@@ -205,12 +205,11 @@ class OsmOsisManager:
     gisconn = self.osmosis().conn()
     giscurs = gisconn.cursor()
 
-    try:
-      diff_path = conf.download["diff_path"]
-      osm_state = OsmState(os.path.join(diff_path, "state.txt")).timestamp()
-    except:
-      from modules.OsmPbf import OsmPbfReader
-      osm_state = OsmPbfReader(conf.download["dst"], None).timestamp()
+    diff_path = conf.download["diff_path"]
+    state_file = os.path.join(diff_path, "state.txt")
+
+    from modules.OsmPbf import OsmPbfReader
+    osm_state = OsmPbfReader(conf.download["dst"], state_file=state_file).timestamp()
 
     giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state])
 
