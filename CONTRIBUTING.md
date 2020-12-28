@@ -9,6 +9,33 @@ free to make direct pull request for adding a new analyzer.
 There are no written rules about this project or any specific coding style.
 However, please try to make the code similar to the already existing code.
 
+## Tests
+
+We try to have tests on analyzers, but there are not present on all. When
+adding new code try to add or improve the corresponding code tests.
+
+Code tests can be run on one source code file using pytest, from root
+directory:
+```
+pytest plugins/TagFix_Housenumber.py
+```
+
+Full test can be run with the help of the script `tools/pytest.sh`:
+```
+./tools/pytest.sh sax # Run all plugins tests
+./tools/pytest.sh merge # Run all test on merge from analysers directory
+./tools/pytest.sh other # Run all other analysers and non analyser tests
+```
+
+Beside code test, we have static code analysis and linting:
+```
+./tools/pytest.sh lint
+./tools/pytest.sh mypy
+```
+Only a subset of standard Python linting is active.
+
+For code pull request, `sax`, `lint` and `mypy` are required to pass.
+
 ## Fetching josm translations
 
 JOSM translations are used by some MapCSS plugins, and can be retrieved by bzr:
