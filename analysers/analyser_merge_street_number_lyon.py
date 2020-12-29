@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, SHP, LoadGeomCentroid, Conflate, Generate
+from .Analyser_Merge import Source, SHP, LoadGeomCentroid, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -34,7 +34,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
                 zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
             LoadGeomCentroid(),
             Conflate(
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source": self.source},
                     mapping1 = {"addr:housenumber": "numero"},
                     text = lambda tags, fields: {"en": u"{0} {1}".format(fields["numero"], fields["voie"])} )))

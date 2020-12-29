@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "library"}),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "library"},
                     static2 = {"source": self.source},
                     mapping1 = {

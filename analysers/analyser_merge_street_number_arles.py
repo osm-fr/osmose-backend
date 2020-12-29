@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, SHP, LoadGeomCentroid, Conflate, Generate
+from .Analyser_Merge import Source, SHP, LoadGeomCentroid, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -33,7 +33,7 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
                     fileUrl = u"http://webcarto.agglo-accm.fr/ressources/donnees_ouvertes/adresse.adr_accm_adresse.zip", zip = "adr_accm_adresse.shp")),
             LoadGeomCentroid(srid = 2154),
             Conflate(
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source": self.source},
                     mapping1 = {"addr:housenumber": lambda res: str(res["NUM_VOI"]) + (res["SUF_VOI"] if res["SUF_VOI"] else "")},
                     text = lambda tags, fields: {"en": fields["ADRESSE"]} )))

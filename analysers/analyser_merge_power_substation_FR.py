@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
@@ -53,7 +53,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         {"power": "substation", "operator": "RTE", "substation": ["transmission", "distribution"]}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "power": "substation",
                         "operator": "RTE"},

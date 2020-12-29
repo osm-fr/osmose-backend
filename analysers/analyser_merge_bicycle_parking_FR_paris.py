@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 STANDS_TYPES = {
     "Arceau autre": "stands",
@@ -64,7 +64,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_parking"}),
                 conflationDistance = 20,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "bicycle_parking"},
                     static2 = {"source": self.source},
                     mapping1 = tag_mapping )))
@@ -95,7 +95,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"amenity": "motorcycle_parking"}),
                 conflationDistance = 20,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "motorcycle_parking"},
                     static2 = {"source": self.source},
                     mapping1 = tag_mapping )))
@@ -127,7 +127,7 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     tags = {"amenity": ["bicycle_parking",
                                         "motorcycle_parking"]}),
                 conflationDistance = 20,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "motorcycle_parking", "bicycle": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = tag_mapping )))

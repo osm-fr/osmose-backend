@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 # http://de.wikipedia.org/wiki/Wikipedia:WikiProjekt_Georeferenzierung/Wikipedia-World/en
@@ -343,7 +343,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
                     tags = {"name": None}),
                 osmRef = "wikipedia",
                 conflationDistance = conflationDistance,
-                generate = Generate(
+                mapping = Mapping(
                     mapping1 = {"wikipedia": lambda fields: fields["lang"]+":"+fields["titel"]},
                     text = lambda tags, fields: {fields["lang"]: fields["titel"]} )))
 

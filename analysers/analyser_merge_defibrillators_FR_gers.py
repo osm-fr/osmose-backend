@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
@@ -42,7 +42,7 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
                     types = ["nodes", "ways", "relations"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                 text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["etablissement"], fields["horaire"], fields["detail"]]))} )))

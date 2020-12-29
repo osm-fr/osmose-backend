@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Conflate, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -35,7 +35,7 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
             Load("X", "Y", srid = 2154,
                 where = lambda res: res["NUM_VOI"] != "0"),
             Conflate(
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source": self.source},
                     mapping1 = {"addr:housenumber": "NUM_SUF"},
                     text = lambda tags, fields: {"en": "{0} {1}".format(fields["NUM_SUF"], fields["LIB_OFF"])} )))

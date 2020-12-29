@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Charging_station_FR(Analyser_Merge):
@@ -60,7 +60,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                     tags={"amenity": "charging_station"}),
                 conflationDistance=100,
                 osmRef="ref:EU:EVSE",
-                generate=Generate(
+                mapping=Mapping(
                     static1={
                         "amenity": "charging_station",
                         "motorcar": "yes"},

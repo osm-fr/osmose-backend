@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
@@ -44,7 +44,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_parking"}),
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "bicycle_parking"},
                     static2 = {"source": self.source},
                     mapping1 = {"capacity": lambda res: None if res["nombre"] in (None, "0") else res["nombre"] if res["nature"] == "Rack" else str(int(res["nombre"])*2)} )))

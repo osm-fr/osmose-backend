@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
@@ -48,7 +48,7 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
                         "bridge": None,
                         "maxweight": None}),
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source:maxweight": self.source},
                     mapping1 = {"maxweight": lambda fields: self.et(fields["ETIQUETTES"])},
                     text = lambda tags, fields: {"en": fields["NOM_RD"]})))
@@ -80,7 +80,7 @@ class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
                         "highway": None,
                         "maxheight": None}),
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source:maxheight": self.source},
                     mapping1 = {"maxheight": lambda fields: self.et(fields["ETIQUETTES"])},
                     text = lambda tags, fields: {"en": fields["NOM_RD"]})))

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Fuel_FR(Analyser_Merge):
@@ -47,17 +47,17 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                     tags = {"amenity": "fuel"}),
                 osmRef = "ref:FR:prix-carburants",
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "fuel"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:prix-carburants": "id",
-                        "fuel:e85": lambda res: "yes" if res["prices.E85"] else Generate.delete_tag,
-                        "fuel:lpg": lambda res: "yes" if res["prices.GPLc"] else Generate.delete_tag,
-                        "fuel:e10": lambda res: "yes" if res["prices.E10"] else Generate.delete_tag,
-                        "fuel:octane_95": lambda res: "yes" if res["prices.SP95"] else Generate.delete_tag,
-                        "fuel:octane_98": lambda res: "yes" if res["prices.SP98"] else Generate.delete_tag,
-                        "fuel:diesel": lambda res: "yes" if res["prices.Gazole"] else Generate.delete_tag,
+                        "fuel:e85": lambda res: "yes" if res["prices.E85"] else Mapping.delete_tag,
+                        "fuel:lpg": lambda res: "yes" if res["prices.GPLc"] else Mapping.delete_tag,
+                        "fuel:e10": lambda res: "yes" if res["prices.E10"] else Mapping.delete_tag,
+                        "fuel:octane_95": lambda res: "yes" if res["prices.SP95"] else Mapping.delete_tag,
+                        "fuel:octane_98": lambda res: "yes" if res["prices.SP98"] else Mapping.delete_tag,
+                        "fuel:diesel": lambda res: "yes" if res["prices.Gazole"] else Mapping.delete_tag,
                         "vending_machine": lambda res: "fuel" if res["services"] and "Automate CB 24/24" in res["services"] else None,
                         "toilets": lambda res: "yes" if res["services"] and "Toilettes publiques" in res["services"] else None,
                         "compressed_air": lambda res: "yes" if res["services"] and "Station de gonflage" in res["services"] else None,

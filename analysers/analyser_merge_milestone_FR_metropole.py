@@ -20,7 +20,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -54,7 +54,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                     tags = [{"highway": "milestone"}]),
                 osmRef = "nat_ref",
                 conflationDistance = 150,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"highway": "milestone"},
                     static2 = {"source:nat_ref": self.source},
                     mapping1 = {

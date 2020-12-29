@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 from modules import downloader
 from modules import italian_strings
 import csv
@@ -65,23 +65,23 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     tags = {'amenity': 'fuel'}),
                 osmRef = 'ref:mise',
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {'amenity': 'fuel'},
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:mise': 'idImpianto',
                         'operator': lambda res: italian_strings.normalize_common(res['Gestore']),
                         'brand': 'Bandiera',
-                        'fuel:octane_95': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_95) != 0 else Generate.delete_tag,
-                        'fuel:octane_98': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_98) != 0 else Generate.delete_tag,
-                        'fuel:octane_100': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_100) != 0 else Generate.delete_tag,
-                        'fuel:diesel': lambda res: 'yes' if (int(res['Carburanti']) & DIESEL) != 0 else Generate.delete_tag,
-                        'fuel:diesel:class2': lambda res: 'yes' if (int(res['Carburanti']) & DIESEL_CL2) != 0 else Generate.delete_tag,
-                        'fuel:GTL_diesel': lambda res: 'yes' if (int(res['Carburanti']) & GTL_DIESEL) != 0 else Generate.delete_tag,
-                        'fuel:HGV_diesel': lambda res: 'yes' if (int(res['Carburanti']) & HGV_DIESEL) != 0 else Generate.delete_tag,
-                        'fuel:lng': lambda res: 'yes' if (int(res['Carburanti']) & LNG) != 0 else Generate.delete_tag,
-                        'fuel:lpg': lambda res: 'yes' if (int(res['Carburanti']) & LPG) != 0 else Generate.delete_tag,
-                        'fuel:cng': lambda res: 'yes' if (int(res['Carburanti']) & CNG) != 0 else Generate.delete_tag,
+                        'fuel:octane_95': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_95) != 0 else Mapping.delete_tag,
+                        'fuel:octane_98': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_98) != 0 else Mapping.delete_tag,
+                        'fuel:octane_100': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_100) != 0 else Mapping.delete_tag,
+                        'fuel:diesel': lambda res: 'yes' if (int(res['Carburanti']) & DIESEL) != 0 else Mapping.delete_tag,
+                        'fuel:diesel:class2': lambda res: 'yes' if (int(res['Carburanti']) & DIESEL_CL2) != 0 else Mapping.delete_tag,
+                        'fuel:GTL_diesel': lambda res: 'yes' if (int(res['Carburanti']) & GTL_DIESEL) != 0 else Mapping.delete_tag,
+                        'fuel:HGV_diesel': lambda res: 'yes' if (int(res['Carburanti']) & HGV_DIESEL) != 0 else Mapping.delete_tag,
+                        'fuel:lng': lambda res: 'yes' if (int(res['Carburanti']) & LNG) != 0 else Mapping.delete_tag,
+                        'fuel:lpg': lambda res: 'yes' if (int(res['Carburanti']) & LPG) != 0 else Mapping.delete_tag,
+                        'fuel:cng': lambda res: 'yes' if (int(res['Carburanti']) & CNG) != 0 else Mapping.delete_tag,
                     },
                 text = lambda tags, fields: {'en': '{0}, {1}'.format(fields['Indirizzo'], fields['Comune'])} )))
 

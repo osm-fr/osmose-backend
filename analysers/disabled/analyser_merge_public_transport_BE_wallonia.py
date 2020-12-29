@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
@@ -59,7 +59,7 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
                     tags = [{"highway": "bus_stop"}, {"public_transport": "platform"}]),
                 osmRef = "ref",
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -45,7 +45,7 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
                         "amenity": "parking",
                         "park_ride": None}),
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "parking", "park_ride": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {"capacity": lambda res: int(float(res["NB_PL_PR"])) if res["NB_PL_PR"] != "0" else None} )))

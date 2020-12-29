@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
@@ -54,7 +54,7 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
                     tags = osmTags),
                 osmRef = "ref:FR:RATP",
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = defaultTag,
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:RATP": "id"},

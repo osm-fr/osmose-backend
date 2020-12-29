@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
@@ -49,7 +49,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                     tags = {"amenity": "post_box"}),
                 osmRef = "ref",
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     missing_official_fix = False,
                     static1 = {
                         "amenity": "post_box",

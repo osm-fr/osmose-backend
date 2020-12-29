@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "toilets"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "toilets",
                         "access": "public"},

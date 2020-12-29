@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
@@ -48,7 +48,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                       {"power": "tower", "operator": False}, {"power": "pole", "operator": False}, {"power": "terminal", "operator": False}, {"power": "portal", "operator": False}, {"power": "insulator", "operator": False}]),
 #                osmRef = "ref:FR:RTE", # Commented initial. Only issues missing tower. Then when the missing tower number lower, uncomment to integrate ref into OSM.
                 conflationDistance = 10,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "power": "tower",
                         "operator": "RTE"},

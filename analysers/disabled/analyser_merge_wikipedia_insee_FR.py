@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
                         "boundary": "administrative",
                         "admin_level": "8"}),
                 osmRef = "ref:INSEE",
-                generate = Generate(
+                mapping = Mapping(
                     mapping1 = {
                         "ref:INSEE": "insee",
                         "wikipedia": lambda res: "fr:"+res["title"]} )))

@@ -23,7 +23,7 @@
 import csv
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
@@ -62,7 +62,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     types = ["nodes", "ways", "relations"],
                     tags = osmTags),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = dict(dict(**osmTags), **defaultTags),
                     static2 = {"source": self.source},
                     mapping1 = {"surface": self.surface},

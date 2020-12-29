@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class _Analyser_Merge_Cadastre_Point_ID_calvaire_FR(Analyser_Merge):
@@ -41,7 +41,7 @@ class _Analyser_Merge_Cadastre_Point_ID_calvaire_FR(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"historic": "wayside_cross"}),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"historic": "wayside_cross"},
                     static2 = {"source": self.source},
                 text = lambda tags, fields: {"en": u"%s, confidence: %s" % (fields["tex"], 1)} )))
@@ -63,7 +63,7 @@ class Analyser_Merge_Cadastre_Point_ID_borne_incendie_FR(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"emergency": "ire_hydrant"}),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"emergency": "fire_hydrant"},
                     static2 = {"source": self.source},
                 text = lambda tags, fields: {"en": u"%s, confidence: %s" % (fields["tex"], 1)} )))

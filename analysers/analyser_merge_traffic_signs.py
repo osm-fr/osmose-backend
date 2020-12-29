@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import CSV, Load, Conflate, Select, Mapping
 from .Analyser_Merge_Mapillary import Source_Mapillary
 
 
@@ -95,7 +95,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     types = otype,
                     tags = selectTags),
                 conflationDistance = conflation,
-                generate = Generate(
+                mapping = Mapping(
                     subclass_hash = lambda fields: {'image_key': fields['image_key'], 'value': fields['value']},
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},

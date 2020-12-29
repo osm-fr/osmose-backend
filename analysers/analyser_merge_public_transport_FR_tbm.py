@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"highway": "bus_stop"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",

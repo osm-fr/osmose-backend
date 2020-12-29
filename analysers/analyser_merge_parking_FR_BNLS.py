@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
@@ -61,7 +61,7 @@ on the wiki. Add a node or add tags if already existing.''')
                     tags = {"amenity": "parking"}),
                 conflationDistance = 200,
                 osmRef = "ref:FR:BNLS",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "parking"},
                     static2 = {

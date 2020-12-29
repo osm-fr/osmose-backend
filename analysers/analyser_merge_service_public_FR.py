@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 def transform_phone(phone_number):
     if len(phone_number) > 6 and phone_number.startswith("0"):
@@ -50,7 +50,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                     types = ["nodes", "ways", "relations"],
                     tags = osmTags),
                 conflationDistance = 500,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = defaultTag,
                     static2 = {"source": self.source},
                     mapping1 = dict({"wheelchair": lambda res: self.accTable[res["wheelchair_access"]] if res["wheelchair_access"] else None,

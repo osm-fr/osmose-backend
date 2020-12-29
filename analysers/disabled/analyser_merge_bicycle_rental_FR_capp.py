@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
@@ -42,7 +42,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_rental"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "bicycle_rental",
                         "operator": "IDEcycle"},

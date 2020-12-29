@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
@@ -54,7 +54,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                     tags = {"amenity": "post_office"}),
                 osmRef = "ref:FR:LaPoste",
                 conflationDistance = 1000,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "post_office"},
                     static2 = {
                         "source": self.source,
