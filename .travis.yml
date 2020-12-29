@@ -5,12 +5,12 @@ python:
 services:
   - postgresql
 addons:
-  postgresql: 10
+  postgresql: 13
   apt:
     packages:
     - libarchive-dev
-    - postgresql-12-postgis-3
-    - postgresql-12-postgis-3-scripts
+    - postgresql-13-postgis-3
+    - postgresql-13-postgis-3-scripts
     # for shp2pgsql
     - postgis
     # for python3
