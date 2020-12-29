@@ -702,7 +702,7 @@ class Load(object):
         else:
             return " AND ".join(where)
 
-    def run(self, osmosis, parser, mapping, db_schema, default_table_base_name, time):
+    def run(self, osmosis, parser, mapping, db_schema, default_table_base_name, version):
         """
         @return if data loaded in data base
         """
@@ -717,7 +717,7 @@ class Load(object):
         self.data = False
         def setDataTrue():
             self.data = True
-        osmosis.run0("SELECT * FROM meta WHERE name='{0}' AND update={1}".format(table, time), lambda res: setDataTrue())
+        osmosis.run0("SELECT * FROM meta WHERE name='{0}' AND update={1}".format(table, version), lambda res: setDataTrue())
         if not self.data:
             osmosis.logger.log(u"Load source into database")
             osmosis.run("DROP TABLE IF EXISTS {0}".format(table))
@@ -733,7 +733,7 @@ class Load(object):
                 osmosis.run("CREATE UNLOGGED TABLE {0} ({1})".format(table, self.create))
             parser.import_(table, self.srid, osmosis)
             osmosis.run("DELETE FROM meta WHERE name = '{0}'".format(table))
-            osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, time))
+            osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, version))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
             parser.close()
@@ -748,7 +748,7 @@ class Load(object):
         self.data = False
         def setData(res):
             self.data = res
-        osmosis.run0("SELECT bbox FROM meta WHERE name='{0}' AND bbox IS NOT NULL AND update IS NOT NULL AND update={1}".format(tableOfficial, time), lambda res: setData(res))
+        osmosis.run0("SELECT bbox FROM meta WHERE name='{0}' AND bbox IS NOT NULL AND update IS NOT NULL AND update={1}".format(tableOfficial, version), lambda res: setData(res))
         if not self.data:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
             if self.pip:
@@ -822,7 +822,7 @@ class Load(object):
 
             osmosis.run("DELETE FROM meta WHERE name='{0}'".format(tableOfficial))
             if self.bbox is not None:
-                osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, '{2}')".format(tableOfficial, time, self.bbox))
+                osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, '{2}')".format(tableOfficial, version, self.bbox))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
         else:
