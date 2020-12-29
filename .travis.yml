@@ -1,7 +1,7 @@
-dist: bionic
+dist: focal
 language: python
 python:
-  - "3.6_with_system_site_packages"
+  - "3.8"
 services:
   - postgresql
 addons:
@@ -9,8 +9,8 @@ addons:
   apt:
     packages:
     - libarchive-dev
-    - postgresql-10-postgis-2.4
-    - postgresql-10-postgis-2.4-scripts
+    - postgresql-12-postgis-3
+    - postgresql-12-postgis-3-scripts
     # for shp2pgsql
     - postgis
     # for python3
