@@ -40,8 +40,8 @@ class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
             CSV(Source(attribution = u"Sitcom Côte Sud Landes", millesime = "07/2017",
                     file = "recycling_FR_sitcom.csv.bz2", bz2 = True)),
             Load("Y", "X", # lat/lon inverted
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

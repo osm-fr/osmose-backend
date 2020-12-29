@@ -40,8 +40,8 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                 select = {
                     'TYPRES': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],
                     'CATRES': list(self.amenity_type.keys())},
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

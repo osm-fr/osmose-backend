@@ -33,8 +33,8 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
                     file = "address_france_toulouse.csv.bz2", bz2 = True),
                 separator = u";"),
             Load("X_WGS84", "Y_WGS84",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 mapping = Mapping(
                     static2 = {

@@ -37,8 +37,8 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/eda0e9ba-cec4-48f5-bd24-985d1d614c23/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -66,8 +66,8 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/13d7f8ab-bd69-4815-b02c-d8134663b849/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

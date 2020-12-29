@@ -36,8 +36,8 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
                     fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=20", zip = "Sta_Velo_Agglo_WGS84.csv")),
             Load("X", "Y",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes"],

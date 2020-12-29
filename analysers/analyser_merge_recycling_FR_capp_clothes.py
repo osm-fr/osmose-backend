@@ -36,8 +36,8 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
                     fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=7", zip = "Dod_Bat_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma,
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma,
                 select = {"USAGE_": "En service"}),
             Conflate(
                 select = Select(

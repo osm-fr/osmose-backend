@@ -112,7 +112,7 @@ class Source_Fuel(Source):
             carburante = self.FUEL_TYPE_MAP.get(row[1].upper())
             if (impianto & carburante) != 0:
                 continue
-            dt_price = Generate.date_format(row[4], '%d/%m/%Y %H:%M:%S')
+            dt_price = Mapping.date_format(row[4], '%d/%m/%Y %H:%M:%S')
             if not dt_price or self.diff_days(dt_price) > 30:
                 continue
             impianto |= carburante

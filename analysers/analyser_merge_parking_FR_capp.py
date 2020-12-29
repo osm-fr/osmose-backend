@@ -36,8 +36,8 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
                     fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -69,8 +69,8 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
                     fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 select = {"Types": "Stationnement Handi"},
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

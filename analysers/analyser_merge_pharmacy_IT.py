@@ -43,8 +43,8 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV'),
                 separator = ';'),
             Load('LONGITUDINE', 'LATITUDINE',
-                xFunction = self.float_comma,
-                yFunction = self.float_comma,
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma,
                 where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
             Conflate(
                 select = Select(
@@ -65,6 +65,6 @@ class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
                     },
                     mapping2 = {
                         'operator': lambda res: italian_strings.normalize_pharmacy(res['DESCRIZIONEFARMACIA']),
-                        'source:start_date': lambda res: Generate.date_format(res['DATAINIZIOVALIDITA'])
+                        'source:start_date': lambda res: Mapping.date_format(res['DATAINIZIOVALIDITA'])
                     },
                 text = lambda tags, fields: {'en': '{0}, {1}'.format(fields['INDIRIZZO'], fields['DESCRIZIONECOMUNE'])} )))

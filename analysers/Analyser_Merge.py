@@ -831,6 +831,21 @@ class Load(object):
         if not(self.srid and not self.bbox): # Abort condition
             return tableOfficial
 
+    @staticmethod
+    def float_comma(val):
+        """Convert decimal comma separeted to dot."""
+        if val is not None:
+            return float(val.replace(',', '.'))
+
+    @staticmethod
+    def degree(val):
+        """Convert coordinate in degree, minute, second to decimal degrees."""
+        if val is not None and u'°' in val:
+            # 01°13'23,8 -> 1,334388
+            return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
+        else:
+            return val
+
 class LoadGeomCentroid(Load):
     def __init__(self, *args, **kwargs):
         super(LoadGeomCentroid, self).__init__(("ST_X(ST_PointOnSurface(geom))",), ("ST_Y(ST_PointOnSurface(geom))",), *args, **kwargs)
@@ -1011,17 +1026,6 @@ OpenData and OSM.'''))
         self.conflate.mapping.eval_static(self)
         self.load.osmosis = self
         self.load.polygon_id = self.config.polygon_id
-
-    def float_comma(self, val):
-        if val is not None:
-            return float(val.replace(',', '.'))
-
-    def degree(self, val):
-        if val is not None and u'°' in val:
-            # 01°13'23,8 -> 1,334388
-            return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
-        else:
-            return val
 
     def source(self, a):
         return a.parser.source.as_tag_value()
@@ -1328,6 +1332,6 @@ class Test(TestAnalyserOsmosis):
     #                 self.check_num_err(min=0, max=5)
 
     def test_date_formatter(self):
-        self.assertEqual(Generate.date_format('27/04/1990'), '1990-04-27')
-        self.assertEqual(Generate.date_format('04/27/1990', '%m/%d/%Y'), '1990-04-27')
-        self.assertEqual(Generate.date_format('31/04/1990'), None)
+        self.assertEqual(Mapping.date_format('27/04/1990'), '1990-04-27')
+        self.assertEqual(Mapping.date_format('04/27/1990', '%m/%d/%Y'), '1990-04-27')
+        self.assertEqual(Mapping.date_format('31/04/1990'), None)
