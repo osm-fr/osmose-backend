@@ -26,9 +26,11 @@ jobs:
           protobuf-compiler \
           osmosis \
           cmake \
+          extra-cmake-modules \
           qtbase5-dev \
           flex \
           bison
+
     - uses: actions/checkout@v2
 
     - name: Setup env
@@ -38,6 +40,7 @@ jobs:
         chown $USER /data/work/$USER /data/work/$USER/cache
         # compile osm pbf parser
         cd modules/osm_pbf_parser && make && cd ../../
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -90,9 +93,11 @@ jobs:
           protobuf-compiler \
           osmosis \
           cmake \
+          extra-cmake-modules \
           qtbase5-dev \
           flex \
           bison
+
     - uses: actions/checkout@v2
 
     - name: Setup env
@@ -102,6 +107,7 @@ jobs:
         chown $USER /data/work/$USER /data/work/$USER/cache
         # compile osm pbf parser
         cd modules/osm_pbf_parser && make && cd ../../
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -160,9 +166,11 @@ jobs:
           protobuf-compiler \
           osmosis \
           cmake \
+          extra-cmake-modules \
           qtbase5-dev \
           flex \
           bison
+
     - uses: actions/checkout@v2
 
     - name: Setup env
@@ -172,6 +180,7 @@ jobs:
         chown $USER /data/work/$USER /data/work/$USER/cache
         # compile osm pbf parser
         cd modules/osm_pbf_parser && make && cd ../../
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
