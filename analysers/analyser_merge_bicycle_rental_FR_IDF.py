@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "bicycle_rental"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "bicycle_rental",
                         "network": u"Vélib’",

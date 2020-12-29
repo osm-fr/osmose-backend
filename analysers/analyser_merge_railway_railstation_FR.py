@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
@@ -47,7 +47,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                     tags = {"railway": ["station", "halt"]}),
                 osmRef = "uic_ref",
                 conflationDistance = 500,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "railway": "station",
                         "operator": "SNCF"},

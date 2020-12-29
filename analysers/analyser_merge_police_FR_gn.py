@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from collections import OrderedDict
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Police_FR_gn(Analyser_Merge):
@@ -49,7 +49,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                     tags = {"amenity": "police"}),
                 conflationDistance = 500,
                 osmRef = "ref:FR:GendarmerieNationale",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "police",
                         "name": "Gendarmerie nationale",

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
 import json
 
 
@@ -45,7 +45,7 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "toilets"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "toilets",
                         "access": "public"},

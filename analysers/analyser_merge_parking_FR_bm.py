@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
@@ -46,7 +46,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
                     tags = {"amenity": "parking"}),
                 osmRef = "ref:FR:CUB",
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "parking"},
                     static2 = {"source": self.source},
                     mapping1 = {
@@ -80,7 +80,7 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
                         "amenity": "parking",
                         "capacity:disabled": None}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "parking",
                         "capacity:disabled": "yes"},

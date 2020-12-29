@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_tourism_FR(Analyser_Merge_Dynamic):
@@ -54,7 +54,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
                     types = osm_types,
                     tags = tags_select),
                 conflationDistance = conflationDistance,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = tags_generate,
                     static2 = {"source": self.source},
                     mapping1 = {

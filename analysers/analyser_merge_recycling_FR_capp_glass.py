@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "recycling"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "recycling",
                         "recycling:glass_bottles": "yes",

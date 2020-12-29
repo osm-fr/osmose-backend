@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
@@ -47,7 +47,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                     tags = {"highway": "bus_stop"}),
                 osmRef = "ref:FR:TransGironde",
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from modules import Stablehash
 
@@ -47,7 +47,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                     types = ["ways", "relations"],
                     tags = {"power": "plant"}),
                 conflationDistance = 5000,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "power": "plant"},
                     static2 = {"source": self.source},

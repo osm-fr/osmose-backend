@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 import re
 
 class Analyser_Merge_Museum_FR(Analyser_Merge):
@@ -50,7 +50,7 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     tags = {"tourism": "museum"}),
                 conflationDistance = 300,
                 osmRef = u"ref:FR:museofile",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"tourism": "museum"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:museofile": "ref"},

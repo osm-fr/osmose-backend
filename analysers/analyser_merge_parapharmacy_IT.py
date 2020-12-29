@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 from modules import italian_strings
 
 
@@ -54,7 +54,7 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
                         'dispensing': 'no'}),
                 osmRef = 'ref:msal',
                 conflationDistance = 80,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         'amenity': 'pharmacy',
                         'dispensing': 'no'},

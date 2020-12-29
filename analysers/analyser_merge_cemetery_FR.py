@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
@@ -44,7 +44,7 @@ class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
                         {"landuse": "cemetery"},
                         {"amenity": "grave_yard"} ]),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "landuse": "cemetery"},
                     static2 = {"source": self.source},

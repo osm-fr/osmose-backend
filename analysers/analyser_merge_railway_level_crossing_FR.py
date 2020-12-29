@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"railway": ["level_crossing", "crossing"]}),
                 conflationDistance = 150,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source": self.source},
                     mapping1 = {"railway": lambda res: self.type[res["TYPE"]]} )))
 

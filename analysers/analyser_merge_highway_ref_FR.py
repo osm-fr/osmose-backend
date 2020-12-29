@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
@@ -45,6 +45,6 @@ class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
                         {"highway": ["motorway", "trunk", "primary", "secondary", "tertiary"]}, ]),
                 osmRef = "ref",
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     mapping1 = {
                         "ref": "route"}, )))

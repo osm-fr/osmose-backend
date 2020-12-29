@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 import unidecode
 import re
 from modules import reaccentue
@@ -73,7 +73,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
                     mapping1 = {

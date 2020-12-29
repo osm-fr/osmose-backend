@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 from functools import reduce
 
 
@@ -102,7 +102,7 @@ World Heritage.'''))
                         "ref:mhs": lambda t: "{0} NOT LIKE 'PM%' AND {0} NOT LIKE 'IA%'".format(t)}), # Not a Palissy ref nor "Inventaire général du patrimoine culturel" ref
                 osmRef = "ref:mhs",
                 conflationDistance = 1000,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"heritage:operator": "mhs"},
                     static2 = {"source:heritage": self.source},
                     mapping1 = {

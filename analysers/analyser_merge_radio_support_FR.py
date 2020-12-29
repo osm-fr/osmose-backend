@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 from io import open
 
 class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
@@ -59,7 +59,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
                     tags = tags_select),
                 conflationDistance = 50,
                 osmRef = "ref:FR:ANFR",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = tags_generate,
                     static2 = {"source": self.source},
                     mapping1 = {

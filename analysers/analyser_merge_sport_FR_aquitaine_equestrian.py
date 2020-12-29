@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
@@ -44,7 +44,7 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"sport": "equestrian"}),
                 conflationDistance = 1000,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"sport": "equestrian"},
                     static2 = {"source": self.source},
                     mapping1 = {

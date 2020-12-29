@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -46,7 +46,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
                     tags = {"man_made": "wastewater_plant"}),
                 conflationDistance = 200,
                 osmRef = "ref:sandre",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"man_made": "wastewater_plant"},
                     static2 = {"source": self.source},
                     mapping1 = {

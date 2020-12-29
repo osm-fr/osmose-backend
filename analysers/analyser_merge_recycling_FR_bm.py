@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
@@ -47,7 +47,7 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
                     tags = {"amenity": "recycling"}),
                 osmRef = "ref:FR:CUB",
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "recycling",
                         "recycling:glass_bottles": "yes",

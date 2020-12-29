@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
@@ -49,7 +49,7 @@ class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
                     tags = osmTags),
                 osmRef = "ref:FR:STIF",
                 conflationDistance = conflationDistance,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = defaultTag,
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:STIF": "ZDEr_ID_REF_A"},

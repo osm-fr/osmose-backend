@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from dateutil.parser import parse
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
@@ -76,7 +76,7 @@ class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
                     tags = {"emergency": "fire_hydrant"}),
                 osmRef = osmRef,
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"emergency": "fire_hydrant"},
                     static2 = {"source": self.source},
                     mapping1 = {

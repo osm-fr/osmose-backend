@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
@@ -51,7 +51,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
                     tags = {"amenity": "car_rental", "network": "Autolib'"}),
                 osmRef = "ref:FR:Paris:DSP",
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "car_rental",
                         "network": "Autolib'",

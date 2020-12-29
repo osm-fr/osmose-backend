@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
@@ -48,7 +48,7 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
                         "ref:INSEE": None}),
                 osmRef = "postal_code",
                 extraJoin = "ref:INSEE",
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source:postal_code": self.source},
                     mapping1 = {
                         "ref:INSEE": "Code_commune_INSEE",

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
@@ -44,7 +44,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"tourism": "caravan_site"}),
                 conflationDistance = 500,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"tourism": "caravan_site"},
                     static2 = {"source": self.source},
                     mapping1 = {
@@ -73,7 +73,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"tourism": "camp_site"}),
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"tourism": "camp_site"},
                     static2 = {"source": self.source},
                     mapping1 = {

@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
 from modules import reaccentue
 
 
@@ -70,7 +70,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                     types = ['nodes', 'ways'],
                     tags = selectTags),
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = generateTags,
                     static2 = {"source": self.source},
                     mapping1 = {

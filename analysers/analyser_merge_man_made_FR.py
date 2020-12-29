@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
@@ -139,7 +139,7 @@ class SubAnalyser_Merge_Man_Made_FR(SubAnalyser_Merge_Dynamic):
                     types = ["nodes", "ways"],
                     tags = tags),
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = generate_tags,
                     static2 = {"source": self.source},
                     mapping2 = {

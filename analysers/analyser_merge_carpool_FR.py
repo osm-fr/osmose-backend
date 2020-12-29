@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Carpool_FR(Analyser_Merge):
@@ -49,7 +49,7 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                     tags = [{"amenity": "parking", "carpool": "yes"}, {"amenity":"car_pooling"}, {"amenity":"parking", "carpool":"designated"}]),
                 osmRef = "ref:FR:BNCLC",
                 conflationDistance = 300,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {"amenity": "parking", "carpool": "designated"},
                     static2 = {"source": self.source},
                     mapping1 = {

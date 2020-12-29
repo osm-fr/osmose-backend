@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
                     tags={"highway": "emergency_access_point"}),
                 osmRef = "ref",
                 conflationDistance=50,
-                generate=Generate(
+                mapping=Mapping(
                     static1={
                         "highway": "emergency_access_point"
                     },

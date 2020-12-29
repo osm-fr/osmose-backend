@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
@@ -84,7 +84,7 @@ administrative schools for a single physical school.''')
                     tags = {"amenity": "school"}),
                 osmRef = "ref:UAI",
                 conflationDistance = 50,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {
                         "source": self.source,
                         "amenity": "school"},

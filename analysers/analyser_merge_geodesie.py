@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 doc = dict(
     detail = T_(
@@ -65,7 +65,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                     tags = {"man_made": "survey_point"}),
                 osmRef = "ref",
                 extraJoin = "description",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "man_made": "survey_point"},
                     static2 = {
@@ -109,7 +109,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
                         "type": "site",
                         "site": "geodesic"}),
                 osmRef = "ref",
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "type": "site",
                         "site": "geodesic"},

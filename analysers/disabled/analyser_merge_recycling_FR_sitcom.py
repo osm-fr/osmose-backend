@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
@@ -48,7 +48,7 @@ class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
                     tags = {"amenity": "recycling", "recycling_type": "container"}),
                 osmRef = "ref:FR:SITCOM",
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "recycling",
                         "recycling_type": "container"},

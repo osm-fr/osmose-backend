@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
@@ -46,7 +46,7 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
                     tags = {"amenity": "bicycle_rental"}),
                 osmRef = "ref",
                 conflationDistance = 100,
-                generate = Generate(
+                mapping = Mapping(
                     static1 = {
                         "amenity": "bicycle_rental",
                         "network": "VCUB"},

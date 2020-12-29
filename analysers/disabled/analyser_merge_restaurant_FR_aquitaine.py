@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
@@ -47,7 +47,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": ["restaurant", "fast_food", "bar", "pub", "cafe"]}),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source": self.source},
                     mapping1 = {
                         "amenity": lambda fields: self.amenity_type[fields["CATRES"]],

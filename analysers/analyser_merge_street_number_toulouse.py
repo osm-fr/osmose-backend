@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Conflate, Generate
+from .Analyser_Merge import Source, CSV, Load, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -36,7 +36,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Conflate(
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {
                         "source": lambda a: a.parser.source.attribution,
                         "source:date": lambda a: a.parser.source.millesime},

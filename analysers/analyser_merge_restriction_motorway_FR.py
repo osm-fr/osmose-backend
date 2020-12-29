@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
@@ -45,7 +45,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
                         "bridge": None,
                         "maxweight": None}),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source:maxweight": self.source},
                     mapping1 = {
                         "maxweight": "REST_POIDS"})))
@@ -71,7 +71,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
                         "highway": ["motorway", "trunk", "primary", "secondary"],
                         "maxheight": None}),
                 conflationDistance = 200,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source:maxheight": self.source},
                     mapping1 = {
                         "maxheight": "REST_HAUT"})))

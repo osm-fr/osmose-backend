@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
                     types = ["nodes"],
                     tags = [{"emergency": "fire_hydrant"},{"amenity": "fire_hydrant"}]),
                 conflationDistance = 150,
-                generate = Generate(
+                mapping = Mapping(
                     static2 = {"source": self.source},
                     mapping1 = {
                         "emergency": "emergency",
