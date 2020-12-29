@@ -47,6 +47,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                     types = ["ways", "relations"],
                     tags = {"power": "plant"}),
                 conflationDistance = 5000,
+                tag_keep_multiple_values = ["voltage"],
                 mapping = Mapping(
                     static1 = {
                         "power": "plant"},
@@ -58,7 +59,6 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                         "plant:output:electricity": lambda fields: int(float(fields["puisMaxRac"]) * 1000)},
                     mapping2 = {
                         "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
-                    tag_keep_multiple_values = ["voltage"],
                     text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
 
     filiere = {
