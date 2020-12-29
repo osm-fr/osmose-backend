@@ -1,0 +1,203 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+      env:
+        USER: root
+
+    steps:
+
+    - run: |
+        apt-get update
+        apt-get install --yes --no-install-recommends \
+          postgresql-client \
+          g++ \
+          libarchive-dev \
+          libboost-python-dev \
+          libosmpbf-dev \
+          libprotobuf-dev \
+          make \
+          pkg-config \
+          protobuf-compiler \
+          osmosis \
+          cmake \
+          qtbase5-dev \
+          flex \
+          bison
+    - uses: actions/checkout@v2
+
+    - name: Setup env
+      run: |
+        # configure paths used for tmp files
+        mkdir -p /data/work/$USER /data/work/$USER/cache
+        chown $USER /data/work/$USER /data/work/$USER/cache
+        # compile osm pbf parser
+        cd modules/osm_pbf_parser && make && cd ../../
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Lint
+      run: |
+        ./tools/pytest.sh lint
+
+    - name: MyPy
+      run: |
+        ./tools/pytest.sh mypy
+
+  tests:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+      env:
+        USER: root
+
+    services:
+      postgres:
+        image: postgis/postgis:13-3.0-alpine
+        env:
+          POSTGRES_PASSWORD: -osmose-
+
+    env:
+      DB_HOST: postgres
+      DB_BASE_TEST: osmose
+      PGPASSWORD: -osmose-
+
+    steps:
+
+    - run: |
+        apt-get update
+        apt-get install --yes --no-install-recommends \
+          postgresql-client \
+          g++ \
+          libarchive-dev \
+          libboost-python-dev \
+          libosmpbf-dev \
+          libprotobuf-dev \
+          make \
+          pkg-config \
+          protobuf-compiler \
+          osmosis \
+          cmake \
+          qtbase5-dev \
+          flex \
+          bison
+    - uses: actions/checkout@v2
+
+    - name: Setup env
+      run: |
+        # configure paths used for tmp files
+        mkdir -p /data/work/$USER /data/work/$USER/cache
+        chown $USER /data/work/$USER /data/work/$USER/cache
+        # compile osm pbf parser
+        cd modules/osm_pbf_parser && make && cd ../../
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Init Postgres
+      run: |
+        psql -h postgres -U postgres postgres -c 'CREATE USER osmose;'
+        psql -h postgres -U postgres postgres -c "ALTER USER osmose WITH PASSWORD '-osmose-';"
+        psql -h postgres -U postgres postgres -c 'CREATE DATABASE osmose;'
+        psql -h postgres -U postgres postgres -c 'GRANT ALL ON database osmose TO osmose;'
+        psql -h postgres -U postgres osmose -c 'CREATE EXTENSION IF NOT EXISTS hstore; CREATE EXTENSION IF NOT EXISTS fuzzystrmatch; CREATE EXTENSION IF NOT EXISTS unaccent; CREATE EXTENSION IF NOT EXISTS postgis;'
+        psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE ON TABLE spatial_ref_sys TO osmose;"
+        psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
+
+    - name: SAX
+      run: |
+        ./tools/pytest.sh sax
+
+  optional_tests:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+      env:
+        USER: root
+
+    services:
+      postgres:
+        image: postgis/postgis:13-3.0-alpine
+        env:
+          POSTGRES_PASSWORD: -osmose-
+
+    env:
+      DB_HOST: postgres
+      DB_BASE_TEST: osmose
+      PGPASSWORD: -osmose-
+
+    steps:
+
+    - run: |
+        apt-get update
+        apt-get install --yes --no-install-recommends \
+          postgresql-client \
+          g++ \
+          libarchive-dev \
+          libboost-python-dev \
+          libosmpbf-dev \
+          libprotobuf-dev \
+          make \
+          pkg-config \
+          protobuf-compiler \
+          osmosis \
+          cmake \
+          qtbase5-dev \
+          flex \
+          bison
+    - uses: actions/checkout@v2
+
+    - name: Setup env
+      run: |
+        # configure paths used for tmp files
+        mkdir -p /data/work/$USER /data/work/$USER/cache
+        chown $USER /data/work/$USER /data/work/$USER/cache
+        # compile osm pbf parser
+        cd modules/osm_pbf_parser && make && cd ../../
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Init Postgres
+      run: |
+        psql -h postgres -U postgres postgres -c 'CREATE USER osmose;'
+        psql -h postgres -U postgres postgres -c "ALTER USER osmose WITH PASSWORD '-osmose-';"
+        psql -h postgres -U postgres postgres -c 'CREATE DATABASE osmose;'
+        psql -h postgres -U postgres postgres -c 'GRANT ALL ON database osmose TO osmose;'
+        psql -h postgres -U postgres osmose -c 'CREATE EXTENSION IF NOT EXISTS hstore; CREATE EXTENSION IF NOT EXISTS fuzzystrmatch; CREATE EXTENSION IF NOT EXISTS unaccent; CREATE EXTENSION IF NOT EXISTS postgis;'
+        psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE ON TABLE spatial_ref_sys TO osmose;"
+        psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
+
+    - name: Merge
+      run: |
+        ./tools/pytest.sh merge
+      continue-on-error: true
+
+    - name: Other
+      run: |
+        ./tools/pytest.sh other
+      continue-on-error: true
