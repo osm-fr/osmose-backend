@@ -53,6 +53,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         {"power": "substation", "operator": "RTE", "substation": ["transmission", "distribution"]}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
+                tag_keep_multiple_values = ["voltage"],
                 mapping = Mapping(
                     static1 = {
                         "power": "substation",
@@ -63,5 +64,4 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "ref:FR:RTE_nom": "Nom poste"},
                     mapping2 = {
                         "voltage": lambda fields: str((int(float(fields["Tension (kV)"].replace("kV", "")) * 1000))) if fields["Tension (kV)"] not in ("HORS TENSION", "<45kV", "COURANT CONTINU") else None},
-                    tag_keep_multiple_values = ["voltage"],
                     text = lambda tags, fields: T_("Power substation of {0}", fields["Nom poste"]))))

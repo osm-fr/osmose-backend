@@ -60,8 +60,8 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
                     types = otype,
                     tags = selectTags),
                 conflationDistance = conflation,
+                subclass_hash = lambda fields: {'image_key': fields['image_key'], 'value': fields['value']},
                 mapping = Mapping(
-                    subclass_hash = lambda fields: {'image_key': fields['image_key'], 'value': fields['value']},
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {

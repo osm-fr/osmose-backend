@@ -861,25 +861,19 @@ class Select:
         self.tags = tags
 
 class Mapping:
-    def __init__(self, missing_official_fix = True, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, tag_keep_multiple_values = [], subclass_hash = lambda d: d, text = lambda tags, fields: {}):
+    def __init__(self, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, text = lambda tags, fields: {}):
         """
         How fields are mapped to OSM tags.
-        @param missing_official_fix: boolean to generate or not new object with quickfix
         @param static1: dict of primary tags apply as is
         @param static2: dict of secondary tags apply as is, not checked on update process
         @param mapping1: dict of primary tags, if value is string then data set column value is take, else lambda
         @param mapping2: dict of secondary tags, if value is string then data set column value is take, else lambda, not checked on update process
-        @param tag_keep_multiple_values: if tags already have value or multiple values just append the new one
-        @param subclass_hash: lambda return dict from dict fields to be used in subclass hash computation (to be stable)
         @param text: lambda return string, describe this error
         """
-        self.missing_official_fix = missing_official_fix
         self.static1 = static1
         self.static2 = static2
         self.mapping1 = mapping1
         self.mapping2 = mapping2
-        self.tag_keep_multiple_values = tag_keep_multiple_values
-        self.subclass_hash = subclass_hash
         self.text = text
 
     def eval_staticGroup(self, static, analyser):
@@ -921,19 +915,25 @@ class Mapping:
             return None
 
 class Conflate:
-    def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, mapping = Mapping()):
+    def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, missing_official_fix = True, tag_keep_multiple_values = [], subclass_hash = lambda d: d, mapping = Mapping()):
         """
         How data is mapped with OSM data.
         @param select: fetch OSM data, see Select
         @param osmRef: the osm key for join data on reference
         @param conflationDistance: if no osmRef, do do conflation, use this threshold
         @param extraJoin: additional key condition to join on
+        @param missing_official_fix: boolean to generate or not new object with quickfix
+        @param tag_keep_multiple_values: if tags already have value or multiple values just append the new one
+        @param subclass_hash: lambda return dict from dict fields to be used in subclass hash computation (to be stable)
         @param mapping: map the fields to OSM tags, see Mapping
         """
         self.select = select
         self.osmRef = osmRef
         self.conflationDistance = conflationDistance
         self.extraJoin = extraJoin
+        self.missing_official_fix = missing_official_fix
+        self.tag_keep_multiple_values = tag_keep_multiple_values
+        self.subclass_hash = subclass_hash
         self.mapping = mapping
 
 class Analyser_Merge(Analyser_Osmosis):
@@ -1106,11 +1106,11 @@ OpenData and OSM.'''))
                 "class": self.missing_official['id'],
                 "subclass": str(stablehash64("{0}{1}{2}".format(
                     res[0], res[1],
-                    sorted(self.conflate.mapping.subclass_hash(res[3]).items())) )),
+                    sorted(self.conflate.subclass_hash(res[3]).items())) )),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.conflate.mapping.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-                "fix": self.passTags(res[2]) if self.conflate.mapping.missing_official_fix and res[2] != {} else None,
+                "fix": self.passTags(res[2]) if self.conflate.missing_official_fix and res[2] != {} else None,
             } )
 
         if self.conflate.osmRef != "NULL":
@@ -1143,10 +1143,10 @@ OpenData and OSM.'''))
                     "class": self.possible_merge['id'],
                     "subclass": str(stablehash64("{0}{1}".format(
                         res[0],
-                        sorted(self.conflate.mapping.subclass_hash(res[3]).items())) )),
+                        sorted(self.conflate.subclass_hash(res[3]).items())) )),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                    "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.mapping.tag_keep_multiple_values),
+                    "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
                 } )
 
             self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
@@ -1185,10 +1185,10 @@ OpenData and OSM.'''))
                 "class": self.update_official['id'],
                 "subclass": str(stablehash64("{0}{1}".format(
                     res[0],
-                    sorted(self.conflate.mapping.subclass_hash(res[5]).items())) )),
+                    sorted(self.conflate.subclass_hash(res[5]).items())) )),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
-                "fix": self.mergeTags(res[4], res[3], self.conflate.osmRef, self.conflate.mapping.tag_keep_multiple_values),
+                "fix": self.mergeTags(res[4], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
             } )
 
 

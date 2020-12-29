@@ -102,6 +102,7 @@ World Heritage.'''))
                         "ref:mhs": lambda t: "{0} NOT LIKE 'PM%' AND {0} NOT LIKE 'IA%'".format(t)}), # Not a Palissy ref nor "Inventaire général du patrimoine culturel" ref
                 osmRef = "ref:mhs",
                 conflationDistance = 1000,
+                tag_keep_multiple_values = ["heritage:operator"],
                 mapping = Mapping(
                     static1 = {"heritage:operator": "mhs"},
                     static2 = {"source:heritage": self.source},
@@ -110,5 +111,4 @@ World Heritage.'''))
                         "mhs:inscription_date": lambda res: parseDPRO(res[u"Date de Protection"]),
                         "heritage": lambda res: 2 if res[u"Précision sur la Protection"] and u"classement par arrêté" in res[u"Précision sur la Protection"] else 3 if res[u"Précision sur la Protection"] and u"inscription par arrêté" in res[u"Précision sur la Protection"] else None},
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
-                    tag_keep_multiple_values = ["heritage:operator"],
                     text = lambda tags, fields: T_("Historical monument: {0}", ", ".join(filter(lambda x: x, [fields["Date de Protection"], fields["Adresse"], fields["Commune"]]))) )))
