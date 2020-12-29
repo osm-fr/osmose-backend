@@ -36,8 +36,8 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
             CSV(Source(attribution = u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité", millesime = "02/2015",
                     fileUrl = u"http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER")),
             Load("latitude", "longitude",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

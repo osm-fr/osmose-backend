@@ -35,8 +35,8 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
                     fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=14", zip = "Idecycl_WGS84.csv",
                 filter = lambda t: t.replace("\0", ""))),
             Load("X", "Y",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes"],

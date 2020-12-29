@@ -39,8 +39,8 @@ class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge):
             CSV(Source(attribution = u"AEDMAP France",
                     fileUrl = u"https://files.pavie.info/depot/remote/aedmap_merge.csv")),
             Load("Longitude", "Latitude",
-                 xFunction = self.float_comma,
-                 yFunction = self.float_comma),
+                 xFunction = Load.float_comma,
+                 yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes"],

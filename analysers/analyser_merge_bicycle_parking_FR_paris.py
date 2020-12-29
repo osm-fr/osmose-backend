@@ -56,8 +56,8 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                     u"Régime prioritaire": u"2 ROUES",
                     u"Régime particulier": u"Vélos",
                 },
-                xFunction = lambda x: self.float_comma(x.split(',')[1]),
-                yFunction = lambda y: self.float_comma(y.split(',')[0])
+                xFunction = lambda x: Load.float_comma(x.split(',')[1]),
+                yFunction = lambda y: Load.float_comma(y.split(',')[0])
             ),
             Conflate(
                 select = Select(
@@ -87,8 +87,8 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     u"Régime prioritaire": u"2 ROUES",
                     u"Régime particulier": u"Motos",
                 },
-                xFunction = lambda x: self.float_comma(x.split(',')[1]),
-                yFunction = lambda y: self.float_comma(y.split(',')[0])
+                xFunction = lambda x: Load.float_comma(x.split(',')[1]),
+                yFunction = lambda y: Load.float_comma(y.split(',')[0])
             ),
             Conflate(
                 select = Select(
@@ -118,8 +118,8 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     u"Régime prioritaire": u"2 ROUES",
                     u"Régime particulier": u"Mixte",
                 },
-                xFunction = lambda x: self.float_comma(x.split(',')[1]),
-                yFunction = lambda y: self.float_comma(y.split(',')[0])
+                xFunction = lambda x: Load.float_comma(x.split(',')[1]),
+                yFunction = lambda y: Load.float_comma(y.split(',')[0])
             ),
             Conflate(
                 select = Select(

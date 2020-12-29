@@ -53,8 +53,8 @@ on the wiki. Add a node or add tags if already existing.''')
                     fileUrl = "https://www.data.gouv.fr/fr/datasets/r/e32f7675-913b-4e01-b8c8-0a29733e4407"),
                 separator = ";"),
             Load("Xlong", "Ylat",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

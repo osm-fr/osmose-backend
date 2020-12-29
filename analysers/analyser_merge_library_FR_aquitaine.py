@@ -38,8 +38,8 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 where = lambda row: u"Bibliothèque" in row["NOMOFFRE"] or u"Médiathèque" in row["NOMOFFRE"],
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

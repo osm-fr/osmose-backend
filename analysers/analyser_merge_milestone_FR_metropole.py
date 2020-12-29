@@ -45,8 +45,8 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             CSV(Source(attribution = "data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2020",
                     fileUrl = "https://www.data.gouv.fr/fr/datasets/r/7de08adc-74ae-4e62-8967-6f559ff6cbed")),
             Load("x", "y", srid = 2154,
-                xFunction = self.float_comma,
-                yFunction = self.float_comma,
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma,
                 where = lambda row: self.is_milestone(row)),
             Conflate(
                 select = Select(

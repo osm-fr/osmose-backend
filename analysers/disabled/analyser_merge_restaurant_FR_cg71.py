@@ -41,8 +41,8 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                     fileUrl = u"https://www.data.gouv.fr/s/resources/restaurants-od71/20180207-141445/CG71Restaurants.csv", encoding = "ISO-8859-15"),
                 separator = u";"),
             Load("LONGITUDE", "LATITUDE",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

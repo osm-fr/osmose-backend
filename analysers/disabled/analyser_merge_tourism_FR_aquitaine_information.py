@@ -39,8 +39,8 @@ class Analyser_Merge_Tourism_FR_Aquitaine_information(Analyser_Merge):
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/0c7230f7-94ec-473b-9dce-e4cf38fedb44/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

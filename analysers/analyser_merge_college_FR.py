@@ -43,8 +43,8 @@ class Analyser_Merge_College_FR(Analyser_Merge):
                     fileUrl = u"https://api.opendata.onisep.fr/downloads/57da952417293/57da952417293.csv", encoding = "utf-8-sig"),
                 separator = u';'),
             Load("longitude (X)", "latitude (Y)",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

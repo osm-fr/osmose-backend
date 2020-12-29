@@ -37,8 +37,8 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

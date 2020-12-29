@@ -38,8 +38,8 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 select = {"TYPEPRODUITS": "%Vins%"},
-                xFunction = self.degree,
-                yFunction = self.degree),
+                xFunction = Load.degree,
+                yFunction = Load.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

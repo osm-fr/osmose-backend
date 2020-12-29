@@ -37,8 +37,8 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     fileUrl = u"http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
                 separator = u";"),
             Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma,
+                xFunction = Load.float_comma,
+                yFunction = Load.float_comma,
                 where = lambda res: res["TYPE"] != 'PN de classe 00'),
             Conflate(
                 select = Select(
