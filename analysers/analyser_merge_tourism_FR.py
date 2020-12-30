@@ -48,7 +48,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
                     fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/84c2e2e54073df2b931c9f4bf8a3ccf3/b7f07a07-2b8f-4fcb-a74f-fdd68b0f57d5")),
             Load("Longitude", "Latitude",
                 select = {'type': type_},
-                uniq = ["elem"]),
+                unique = ["elem"]),
             Mapping(
                 select = Select(
                     types = osm_types,
