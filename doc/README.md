@@ -12,4 +12,4 @@ If you want to run the Jupyter Notebook in interactive mode, go the [online inst
   * [Minimal MapCSS Plugin](https://github.com/osm-fr/osmose-backend/blob/master/doc/2_0-PluginMapCSS-minimal.ipynb): Interactive introduction to how to make simple validation rule using MapCSS language.
 3. [SQL Analyzer](3-SQL-basics.md): Consideration and concept about making validation rule using the Osmose-QA Osmosis Framework.
   * [Minimal SQL Analyzer](https://github.com/osm-fr/osmose-backend/blob/master/doc/3_0-SQL-minimal.ipynb): Interactive introduction to how to make a complex validation rule using SQL.
-4. OpenData Merge Analyzer (Doc TBD): Consideration and concept about making merge analyzer using the Osmose-QA conflation Framework.
+4. [OpenData Merge Analyzer](4-Merge.md): Consideration and concept about making merge analyzer using the Osmose-QA conflation Framework.
