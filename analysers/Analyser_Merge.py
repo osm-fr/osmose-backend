@@ -681,27 +681,6 @@ class Load(object):
         self.xFunction = xFunction
         self.yFunction = yFunction
 
-    def formatCSVSelect(self):
-        where = []
-        for k, v in self.select.items():
-            if isinstance(v, list):
-                cond = "\"{0}\" IN ('{1}')".format(k, "','".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
-                if None in v:
-                    cond = "(" + cond + " OR \"{0}\" IS NULL)".format(k)
-                where.append(cond)
-            elif v is None or v is False:
-                where.append("\"{0}\" IS NULL".format(k))
-            elif v is True:
-                where.append("\"{0}\" IS NOT NULL".format(k))
-            elif '%' in v:
-                where.append("\"{0}\" LIKE '{1}'".format(k, v.replace("'", "''")))
-            else:
-                where.append("\"{0}\" = '{1}'".format(k, v.replace("'", "''")))
-        if where == []:
-            return "1=1"
-        else:
-            return " AND ".join(where)
-
     def run(self, osmosis, parser, conflate, db_schema, default_table_base_name, version):
         """
         @return if data loaded in data base
@@ -807,7 +786,7 @@ class Load(object):
                 order_by = "ORDER BY {0}".format(l)
             else:
                 distinct = order_by = ""
-            osmosis.run0((sql01_ref if conflate.osmRef != "NULL" else sql01_geo).format(table = table, x = self.x, y = self.y, where = self.formatCSVSelect(), distinct = distinct, order_by = order_by), insertOfficial)
+            osmosis.run0((sql01_ref if conflate.osmRef != "NULL" else sql01_geo).format(table = table, x = self.x, y = self.y, where = Select.where_attributes(self.select), distinct = distinct, order_by = order_by), insertOfficial)
             osmosis.run(sql02b.format(official = tableOfficial))
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM {0}".format(tableOfficial))
@@ -859,6 +838,48 @@ class Select:
         """
         self.types = types
         self.tags = tags
+
+    @staticmethod
+    def where_tags(query):
+        return Select._where(query, attribut_not_exists = "NOT tags?'{}'", attribut_value = "tags->'{}'")
+
+    @staticmethod
+    def where_attributes(query):
+        return Select._where(query, attribut_not_exists = "\"{}\" IS NULL", attribut_value = "\"{}\"")
+
+    @staticmethod
+    def _where(query, attribut_not_exists, attribut_value):
+        if not isinstance(query, list):
+            query = [query]
+        return "((" + (") OR (".join(map(lambda x: Select._where_and(x, attribut_not_exists, attribut_value), query))) + "))"
+
+    @staticmethod
+    def _where_and(query, attribut_not_exists, attribut_value):
+        clauses = []
+        for k, v in query.items():
+            k_not_exists = attribut_not_exists.format(k)
+            k_value = attribut_value.format(k)
+            if v is None or v is False:
+                clauses.append(k_not_exists)
+            elif hasattr(v, '__call__'):
+                clauses.append(v(k_value))
+            elif isinstance(v, list):
+                cond = k_value + " IN ('{}')".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
+                if None in v:
+                    cond = "(" + cond + " OR " + k_not_exists + ")"
+                clauses.append(cond)
+            else:
+                clauses.append("NOT " + k_not_exists)
+                if v is True:
+                    pass
+                elif isinstance(v, dict):
+                    if "like" in v:
+                        clauses.append(k_value + " LIKE '{}'".format(v["like"].replace("'", "''")))
+                    elif "regex" in v:
+                        clauses.append(k_value + " ~ '{}'".format(v["regex"].replace("'", "''")))
+                else:
+                    clauses.append(k_value + " = '{}'".format(v.replace("'", "''")))
+        return " AND ".join(clauses) if clauses else "1=1"
 
 class Mapping:
     def __init__(self, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, text = lambda tags, fields: {}):
@@ -1053,7 +1074,7 @@ OpenData and OSM.'''))
             typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
             typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
-        where = "((" + (") OR (".join(map(lambda x: self.where(x), self.conflate.select.tags))) + "))"
+        where = Select.where_tags(self.conflate.select.tags)
         self.run("CREATE TEMP TABLE osm_item AS " +
             ("UNION ALL".join(
                 map(lambda type:
@@ -1266,26 +1287,6 @@ OpenData and OSM.'''))
         with bz2.BZ2File("{0}/{1}-{2}{3}.csv.bz2".format(self.config.dst_dir, self.name, self.__class__.__name__, ext), mode='w') as csv_bz2_file:
             csv_bz2_file.write(buffer.getvalue().encode('utf-8'))
 
-    def where(self, tags):
-        clauses = []
-        for k, v in tags.items():
-            if v is False:
-                clauses.append("NOT tags?'{0}'".format(k))
-            elif hasattr(v, '__call__'):
-                clauses.append(v("tags->'{0}'".format(k)))
-            else:
-                clauses.append("tags?'{0}'".format(k))
-                if isinstance(v, list):
-                    clauses.append("tags->'{0}' IN ('{1}')".format(k, "','".join(map(lambda i: i.replace("'", "''"), v))))
-                elif isinstance(v, dict):
-                    if "like" in v:
-                        clauses.append("tags->'{0}' LIKE '{1}'".format(k, v["like"].replace("'", "''")))
-                    elif "regex" in v:
-                        clauses.append("tags->'{0}' ~ '{1}'".format(k, v["regex"].replace("'", "''")))
-                elif v:
-                    clauses.append("tags->'{0}' = '{1}'".format(k, v.replace("'", "''")))
-        return " AND ".join(clauses)
-
 ###########################################################################
 from .Analyser_Osmosis import TestAnalyserOsmosis
 
@@ -1335,3 +1336,18 @@ class Test(TestAnalyserOsmosis):
         self.assertEqual(Mapping.date_format('27/04/1990'), '1990-04-27')
         self.assertEqual(Mapping.date_format('04/27/1990', '%m/%d/%Y'), '1990-04-27')
         self.assertEqual(Mapping.date_format('31/04/1990'), None)
+
+    def test_where_formatter(self):
+        self.assertEqual(Select.where_attributes({}), """((1=1))""")
+        self.assertEqual(Select.where_attributes({'a': None}), """(("a" IS NULL))""")
+        self.assertEqual(Select.where_attributes({'a': False}), """(("a" IS NULL))""")
+        self.assertEqual(Select.where_attributes({'a': True}), """((NOT "a" IS NULL))""")
+        self.assertEqual(Select.where_attributes({'a': {'like': 'a%'}}), """((NOT "a" IS NULL AND "a" LIKE 'a%'))""")
+        self.assertEqual(Select.where_attributes({'a': '1'}), """((NOT "a" IS NULL AND "a" = '1'))""")
+        self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """(("a" IN ('1', '2')))""")
+        self.assertEqual(Select.where_attributes({'a': ['1', None]}), """((("a" IN ('1') OR "a" IS NULL)))""")
+        self.assertEqual(Select.where_attributes({'a': '1', 'b': '2'}), """((NOT "a" IS NULL AND "a" = '1' AND NOT "b" IS NULL AND "b" = '2'))""")
+
+        self.assertEqual(Select.where_tags({'a': '1'}), """((NOT NOT tags?'a' AND tags->'a' = '1'))""")
+
+        self.assertEqual(Select.where_attributes([{'a': '1'}, {'b': '2'}]), """((NOT "a" IS NULL AND "a" = '1') OR (NOT "b" IS NULL AND "b" = '2'))""")

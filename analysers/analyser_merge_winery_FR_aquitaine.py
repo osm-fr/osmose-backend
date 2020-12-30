@@ -37,7 +37,7 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
-                select = {"TYPEPRODUITS": "%Vins%"},
+                select = {"TYPEPRODUITS": {"like": "%Vins%"}},
                 xFunction = Load.degree,
                 yFunction = Load.degree),
             Conflate(

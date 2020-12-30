@@ -40,7 +40,7 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
             SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
                     fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'en_empac_p.shp')),
             LoadGeomCentroid(
-                select = {"ident": "%"}),
+                select = {"ident": {"like": "%"}}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
