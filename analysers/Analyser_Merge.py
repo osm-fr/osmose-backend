@@ -1319,9 +1319,7 @@ class Test(TestAnalyserOsmosis):
                 if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
-                    self.analyser_conf.dst = (self.default_xml_res_path +
-                                              "normal/{0}.xml".format(name))
-                    self.xml_res_file = self.analyser_conf.dst
+                    self.xml_res_file = self.analyser_conf.error_file.dst
 
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
                         analyser_obj.analyser()
