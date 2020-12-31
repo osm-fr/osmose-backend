@@ -128,9 +128,9 @@ jobs:
         psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE ON TABLE spatial_ref_sys TO osmose;"
         psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
 
-    - name: SAX
+    - name: Other
       run: |
-        ./tools/pytest.sh sax
+        ./tools/pytest.sh other
 
   optional_tests:
     runs-on: ubuntu-latest
@@ -201,12 +201,12 @@ jobs:
         psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE ON TABLE spatial_ref_sys TO osmose;"
         psql -h postgres -U postgres osmose -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;"
 
+    - name: SAX
+      run: |
+        ./tools/pytest.sh sax
+      continue-on-error: true
+
     - name: Merge
       run: |
         ./tools/pytest.sh merge
-      continue-on-error: true
-
-    - name: Other
-      run: |
-        ./tools/pytest.sh other
       continue-on-error: true
