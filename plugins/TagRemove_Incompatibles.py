@@ -47,8 +47,10 @@ class TagRemove_Incompatibles(Plugin):
                 ['retail', 'amenity', 'marketplace'],
                 ['retail', 'amenity', 'fuel'],
                 ['commercial', 'amenity', 'boat_storage'],
+                ['commercial', 'amenity', 'food_court'],
                 ['military', 'aeroway', 'aerodrome'],
                 ['religious', 'amenity', 'monastery'],
+                ['forest', 'leisure', 'playground'],
             ],
             'water': [
                  ['pond', 'leisure', 'fishing'],
@@ -65,8 +67,12 @@ class TagRemove_Incompatibles(Plugin):
             'natural': [
                 ['water', 'leisure', 'marina'],
                 ['water', 'leisure', 'swimming_area'],
+                ['water', 'leisure', 'swimming_pool'],
                 ['water', 'amenity', 'fountain'], # ?
                 ['sand', 'leisure', 'playground'],
+                ['birds_nest', 'highway', 'street_lamp'],
+                ['wood', 'leisure', 'playground'],
+                ['wood', 'leisure', 'fishing'],
             ],
             'amenity': [
                 ['stables', 'leisure', 'horse_riding'],
@@ -74,6 +80,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['drinking_water', 'man_made', 'water_tap'],
                 ['shelter', 'highway', 'bus_stop'],
                 ['event_venue', 'leisure', 'garden'],
+                ['gambling', 'leisure', 'adult_gaming_centre'],
             ],
         }.items()
 
