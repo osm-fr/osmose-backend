@@ -897,6 +897,14 @@ class Generate:
         tags_secondary = self.tagFactoryGroup(res, self.static2, self.mapping2)
         return [tags, tags_secondary]
 
+    @staticmethod
+    def date_format(date_string, format='%d/%m/%Y'):
+        try:
+            dt = datetime.datetime.strptime(date_string, format)
+            return str(dt.date())
+        except ValueError:
+            return None
+
 class Mapping:
     def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, generate = Generate()):
         """
@@ -1014,13 +1022,6 @@ OpenData and OSM.'''))
             return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
         else:
             return val
-
-    def date_format(self, date_string, format='%d/%m/%Y'):
-        try:
-            dt = datetime.datetime.strptime(date_string, format)
-            return str(dt.date())
-        except ValueError:
-            return None
 
     def source(self, a):
         return a.parser.source.as_tag_value()
@@ -1329,6 +1330,6 @@ class Test(TestAnalyserOsmosis):
                     self.check_num_err(min=0, max=5)
 
     def test_date_formatter(self):
-        self.assertEqual(self.date_format('27/04/1990'), '1990-04-27')
-        self.assertEqual(self.date_format('04/27/1990', '%m/%d/%Y'), '1990-04-27')
-        self.assertEqual(self.date_format('31/04/1990'), None)
+        self.assertEqual(Generate.date_format('27/04/1990'), '1990-04-27')
+        self.assertEqual(Generate.date_format('04/27/1990', '%m/%d/%Y'), '1990-04-27')
+        self.assertEqual(Generate.date_format('31/04/1990'), None)
