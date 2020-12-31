@@ -207,9 +207,10 @@ class OsmOsisManager:
 
     diff_path = conf.download["diff_path"]
     state_file = os.path.join(diff_path, "state.txt")
+    dst_pbf = conf.download.get("dst")
 
     from modules.OsmPbf import OsmPbfReader
-    osm_state = OsmPbfReader(conf.download["dst"], state_file=state_file).timestamp()
+    osm_state = OsmPbfReader(dst_pbf, state_file=state_file).timestamp()
 
     giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state])
 
