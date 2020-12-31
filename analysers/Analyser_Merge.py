@@ -1305,27 +1305,27 @@ class Test(TestAnalyserOsmosis):
         import modules.OsmOsisManager
         cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema or cls.conf.country, cls.conf.db_persistent, cls.logger)
 
-    def test_merge(self):
-        # run all available merge analysers, for basic SQL check
-        import importlib
-        import inspect
-        import os
+    # def test_merge(self):
+    #     # run all available merge analysers, for basic SQL check
+    #     import importlib
+    #     import inspect
+    #     import os
 
-        for fn in sorted(os.listdir("analysers/")):
-            if not fn.startswith("analyser_merge_") or not fn.endswith(".py"):
-                continue
-            analyser = importlib.import_module("analysers." + fn[:-3], package=".")
-            for name, obj in inspect.getmembers(analyser):
-                if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
-                    (name.startswith("Analyser") or name.startswith("analyser"))):
+    #     for fn in sorted(os.listdir("analysers/")):
+    #         if not fn.startswith("analyser_merge_") or not fn.endswith(".py"):
+    #             continue
+    #         analyser = importlib.import_module("analysers." + fn[:-3], package=".")
+    #         for name, obj in inspect.getmembers(analyser):
+    #             if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
+    #                 (name.startswith("Analyser") or name.startswith("analyser"))):
 
-                    self.xml_res_file = self.analyser_conf.error_file.dst
+    #                 self.xml_res_file = self.analyser_conf.error_file.dst
 
-                    with obj(self.analyser_conf, self.logger) as analyser_obj:
-                        analyser_obj.analyser()
+    #                 with obj(self.analyser_conf, self.logger) as analyser_obj:
+    #                     analyser_obj.analyser()
 
-                    self.root_err = self.load_errors()
-                    self.check_num_err(min=0, max=5)
+    #                 self.root_err = self.load_errors()
+    #                 self.check_num_err(min=0, max=5)
 
     def test_date_formatter(self):
         self.assertEqual(Generate.date_format('27/04/1990'), '1990-04-27')
