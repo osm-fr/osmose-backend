@@ -48,6 +48,7 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.json"
         json_str = urlread(nsi_url_for_brands, 30)
         results = json.loads(json_str)
+        results = results['nsi']
         additional_brands = {}
         for tag, brands in results.items():
             if tag.startswith('brands/'):
