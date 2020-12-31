@@ -51,6 +51,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['military', 'aeroway', 'aerodrome'],
                 ['religious', 'amenity', 'monastery'],
                 ['forest', 'leisure', 'playground'],
+                ['farmyard', 'amenity', 'animal_breeding'],
             ],
             'water': [
                  ['pond', 'leisure', 'fishing'],
