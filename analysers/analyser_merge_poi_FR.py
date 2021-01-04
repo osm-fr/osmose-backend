@@ -303,8 +303,8 @@ class SubAnalyser_Merge_Reservoir_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://ign.fr",
             "IGN-Zone d'activité ou d'intérêt",
-            GPKG(Source(attribution = "IGN", millesime = "01/2021",
-                    file = "zone_d_activite_ou_d_interet.gpkg")),
+            GPKG(Source(attribution = "IGN", millesime = "09/2020",
+                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/.gpkg/zone_d_activite_ou_d_interet.gpkg")),
             LoadGeomCentroid(
                 select = select),
             Mapping(
