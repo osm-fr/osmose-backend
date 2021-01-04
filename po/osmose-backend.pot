@@ -720,12 +720,12 @@ msgstr ""
 msgid "Name contains successive spaces"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:101
+#: ../plugins/TagRemove_Incompatibles.py:108
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:104
+#: ../plugins/TagRemove_Incompatibles.py:111
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:107
+#: ../plugins/TagRemove_Incompatibles.py:114
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1919,6 +1919,7 @@ msgstr ""
 msgid "Museum, integration suggestion"
 msgstr ""
 
+#: ../analysers/analyser_merge_poi_FR.py:126
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant not integrated"
 msgstr ""
@@ -3455,10 +3456,6 @@ msgstr ""
 msgid "Car charging station, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_charging_station_FR.py:49
-msgid "Car charging station  update"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_boundary_intersect.py:98
 msgid "Borders crossing each other."
 msgstr ""
@@ -3969,35 +3966,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:899
+#: ../analysers/Analyser_Merge.py:935
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:902
+#: ../analysers/Analyser_Merge.py:938
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:907
+#: ../analysers/Analyser_Merge.py:943
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:920
+#: ../analysers/Analyser_Merge.py:956
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:933
+#: ../analysers/Analyser_Merge.py:969
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:895
+#: ../analysers/Analyser_Merge.py:931
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4531,4 +4528,125 @@ msgid ""
 "\n"
 "See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the "
 "wiki."
+msgstr ""
+
+#: ../analysers/analyser_merge_cemetery_FR.py:31
+msgid "Cemetery not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:49
+msgid "Car charging station update"
+msgstr ""
+
+#: ../analysers/analyser_merge_highway_ref_FR.py:31
+msgid "Highway ref not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:42
+msgid "Lighting mast not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:50
+msgid "Wayside cross not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:59
+msgid "Chimney not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:66
+msgid "Bell tower not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:75
+msgid "Cross not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:84
+msgid "Wind turbine not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:93
+msgid "Minaret not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:104
+msgid "Petroleum well not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:112
+msgid "Flare not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:49
+#: ../analysers/analyser_merge_poi_FR.py:58
+#: ../analysers/analyser_merge_poi_FR.py:68
+#: ../analysers/analyser_merge_poi_FR.py:78
+#: ../analysers/analyser_merge_poi_FR.py:88
+msgid "Place of worship not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:102
+msgid "Townhall not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:112
+msgid "Memorial not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:135
+msgid "Pumping station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:159
+msgid "Viewpoint not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:170
+msgid "Fire station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:187
+#: ../analysers/analyser_merge_poi_FR.py:196
+#: ../analysers/analyser_merge_poi_FR.py:205
+#: ../analysers/analyser_merge_poi_FR.py:214
+msgid "Megalith not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_reservoir_FR.py:38
+msgid "Water tower not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_reservoir_FR.py:46
+msgid "Covered reservoir not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_reservoir_FR.py:54
+msgid "Storage tank not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:43
+msgid "Waterfall not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:56
+msgid "Fountain not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:64
+msgid "Lavoir not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:74
+msgid "Sinkhole not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:82
+msgid "Water well not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:90
+#: ../analysers/analyser_merge_water_FR.py:98
+#: ../analysers/analyser_merge_water_FR.py:107
+msgid "Resurgence not integrated"
 msgstr ""

@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2020-12-24 12:25+0000\n"
-"Last-Translator: Shu Higashi <higa432@gmail.com>\n"
+"PO-Revision-Date: 2021-01-04 21:14+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -246,7 +246,7 @@ msgstr "特殊な建物 (円形)"
 msgid "Special building (large)"
 msgstr "特殊な建物 (巨大)"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:218
+#: ../analysers/analyser_osmosis_highway_deadend.py:220
 msgid "Unconnected cycleway"
 msgstr "自転車道が接続していない"
 
@@ -729,12 +729,12 @@ msgstr "名前が空白で終わっている"
 msgid "Name contains successive spaces"
 msgstr "nameに連続スペースが含まれている"
 
-#: ../plugins/TagRemove_Incompatibles.py:96
+#: ../plugins/TagRemove_Incompatibles.py:108
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "競合しているタグ: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:99
+#: ../plugins/TagRemove_Incompatibles.py:111
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "'bridge'と'tunnel'タグが競合"
 
@@ -965,7 +965,7 @@ msgstr "不正なアクセスレーンの値、整数ではなく制限である
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "進行方向レーン merge_to_* には許可された側にサイドレーンが必要"
 
-#: ../plugins/TagRemove_Incompatibles.py:102
+#: ../plugins/TagRemove_Incompatibles.py:114
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "タグの競合: crossing=no タグに highway=crossing が不在"
@@ -1139,7 +1139,7 @@ msgstr "ポリゴンかマルチポリゴンの一部であるべき。そうで
 msgid "Almost junction, join or use noexit tag"
 msgstr "交差点に酷似しています。接続するかnoexitタグを使用してください"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:233
+#: ../analysers/analyser_osmosis_highway_deadend.py:235
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "通行できない一方通行、もしくは駐車場か駐車場の入口のいずれかがない"
 
@@ -1762,7 +1762,7 @@ msgstr "タグ値: {0}={1} => {2} (rule kr_vs)"
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "materialタグのあるフェンス、fence_typeタグがベター"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:226
+#: ../analysers/analyser_osmosis_highway_deadend.py:228
 msgid "Unconnected highway"
 msgstr "ウェイが接続してない"
 
@@ -1930,6 +1930,7 @@ msgstr "未統合の博物館"
 msgid "Museum, integration suggestion"
 msgstr "未統合の博物館の統合の提案"
 
+#: ../analysers/analyser_merge_poi_FR.py:126
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant not integrated"
 msgstr "未統合のWastewater plant"
@@ -2281,7 +2282,7 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n\nsecondaryがresidentialに直接つながっています。"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:216
+#: ../analysers/analyser_osmosis_highway_deadend.py:218
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:116
 msgid "The end of the way is not connected to another way."
 msgstr "ウェイの終端が別のウェイに正しく接続されていません。"
@@ -2291,19 +2292,19 @@ msgid ""
 "road network to ensure continuity, especially for routes planner"
 msgstr "`highway=cycleway`の終端は道路ネットワークの残りに接続され、連続性を確保していなければなりません。特に routes planner向けに。"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:223
+#: ../analysers/analyser_osmosis_highway_deadend.py:225
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr "小さな仮の経路であっても`cycleway`を道路に接続します。"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:228
+#: ../analysers/analyser_osmosis_highway_deadend.py:230
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr "highwayのうち`motorway` から `tertiary` は重要なウェイです。これらはどこかに、とりわけ主要道路以外のネットワークにつながっているべきです。"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:231
+#: ../analysers/analyser_osmosis_highway_deadend.py:233
 msgid "Review the classification of road or draw the local road network."
 msgstr "道路の分類をレビューするか、地域の道路ネットワークを引きます。"
 
@@ -3457,10 +3458,6 @@ msgstr "未統合の車の充電スタンド"
 msgid "Car charging station, integration suggestion"
 msgstr "車の充電スタンドの統合の提案"
 
-#: ../analysers/analyser_merge_charging_station_FR.py:49
-msgid "Car charging station  update"
-msgstr "車の充電スタンドの更新"
-
 #: ../analysers/analyser_osmosis_boundary_intersect.py:98
 msgid "Borders crossing each other."
 msgstr "相互に交差する境界。"
@@ -3957,35 +3954,35 @@ msgstr "これは道路脇の駐車場ではなく、閉じられているだけ
 msgid "{0} parking  update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/Analyser_Merge.py:899
+#: ../analysers/Analyser_Merge.py:935
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "レビューした結果、新しいデータでOpenStreetMapに登録すべきデータである場合には、追加してください。"
 
-#: ../analysers/Analyser_Merge.py:902
+#: ../analysers/Analyser_Merge.py:938
 msgid "Be sure that it is not already existing in another place."
 msgstr "付近の別の場所に既に存在していないことを十分確認してください。"
 
-#: ../analysers/Analyser_Merge.py:907
+#: ../analysers/Analyser_Merge.py:943
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "これはオープンデータの情報源に報告されているもので、このデータに関する検証は行われていません。"
 
-#: ../analysers/Analyser_Merge.py:920
+#: ../analysers/Analyser_Merge.py:956
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr "これは統合の提案で、オープンデータのソースとOpenStreetMapを混合します。"
 
-#: ../analysers/Analyser_Merge.py:933
+#: ../analysers/Analyser_Merge.py:969
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr "オープンデータとOSMの双方に同じrefが見つかったので更新した方が良いかもしれません。"
 
-#: ../analysers/Analyser_Merge.py:895
+#: ../analysers/Analyser_Merge.py:931
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4502,7 +4499,7 @@ msgstr "`cuisine` の値の提案"
 msgid "Guess with probability: {0}"
 msgstr "ありそうな推測: {0}"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:220
+#: ../analysers/analyser_osmosis_highway_deadend.py:222
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."
@@ -4517,3 +4514,124 @@ msgid ""
 "\n"
 "See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki."
 msgstr "正しく経路案内するために、この駐車施設に至る`highway`の地物があるべきです。道路を追加するか、`parking=*` 自体が正しいか確認してください。\n道路脇の駐車場 (`parking=street_side`)やレーンの場合は適切なタグを付けてください、\n\nウィキの`[parking](https://wiki.openstreetmap.org/wiki/Key:parking)`タグを参照。"
+
+#: ../analysers/analyser_merge_cemetery_FR.py:31
+msgid "Cemetery not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_charging_station_FR.py:49
+msgid "Car charging station update"
+msgstr ""
+
+#: ../analysers/analyser_merge_highway_ref_FR.py:31
+msgid "Highway ref not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:42
+msgid "Lighting mast not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:50
+msgid "Wayside cross not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:59
+msgid "Chimney not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:66
+msgid "Bell tower not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:75
+msgid "Cross not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:84
+msgid "Wind turbine not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:93
+msgid "Minaret not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:104
+msgid "Petroleum well not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:112
+msgid "Flare not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:49
+#: ../analysers/analyser_merge_poi_FR.py:58
+#: ../analysers/analyser_merge_poi_FR.py:68
+#: ../analysers/analyser_merge_poi_FR.py:78
+#: ../analysers/analyser_merge_poi_FR.py:88
+msgid "Place of worship not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:102
+msgid "Townhall not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:112
+msgid "Memorial not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:135
+msgid "Pumping station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:159
+msgid "Viewpoint not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:170
+msgid "Fire station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:187
+#: ../analysers/analyser_merge_poi_FR.py:196
+#: ../analysers/analyser_merge_poi_FR.py:205
+#: ../analysers/analyser_merge_poi_FR.py:214
+msgid "Megalith not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_reservoir_FR.py:38
+msgid "Water tower not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_reservoir_FR.py:46
+msgid "Covered reservoir not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_reservoir_FR.py:54
+msgid "Storage tank not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:43
+msgid "Waterfall not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:56
+msgid "Fountain not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:64
+msgid "Lavoir not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:74
+msgid "Sinkhole not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:82
+msgid "Water well not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:90
+#: ../analysers/analyser_merge_water_FR.py:98
+#: ../analysers/analyser_merge_water_FR.py:107
+msgid "Resurgence not integrated"
+msgstr ""
