@@ -46,7 +46,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
         self.def_class_possible_merge(item = 8411, id = 3, level = 3, tags = ['merge'],
             title = T_('Car charging station, integration suggestion'), **doc)
         self.def_class_update_official(item = 8412, id = 4, level = 3, tags = ['merge'],
-            title = T_('Car charging station  update'), **doc)
+            title = T_('Car charging station update'), **doc)
 
         self.init(
             "https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/",

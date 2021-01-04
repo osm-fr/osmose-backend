@@ -112,7 +112,7 @@ class Source_Fuel(Source):
             carburante = self.FUEL_TYPE_MAP.get(row[1].upper())
             if (impianto & carburante) != 0:
                 continue
-            dt_price = self.date_format(row[4], '%d/%m/%Y %H:%M:%S')
+            dt_price = Generate.date_format(row[4], '%d/%m/%Y %H:%M:%S')
             if not dt_price or self.diff_days(dt_price) > 30:
                 continue
             impianto |= carburante
@@ -181,11 +181,3 @@ class Source_Fuel(Source):
         d1 = datetime.datetime.strptime(date_string, '%Y-%m-%d').date()
         d2 = datetime.date.today()
         return abs((d2 - d1).days)
-
-
-    def date_format(self, date_string, format='%d/%m/%Y'):
-        try:
-            dt = datetime.datetime.strptime(date_string, format)
-            return str(dt.date())
-        except ValueError:
-            return None

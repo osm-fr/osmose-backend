@@ -21,11 +21,11 @@ The **nodes** have the location in the `geom` field:
 The **ways** have the location on `linestring` field:
 * `nodes`: bigint[], node ids of the way,
 * `is_polygon`: boolean, is the `linestring` a loop and valid geometry?
-* `linestring`: geometry(Geometry,4326)
+* `linestring`: geometry(Geometry,4326), as linestring, not as polygon.
 
 The **relations** have no geometry and specific field.
 
-In addition to the basics there are join tables to make the links.
+In addition to the basics, there are join tables to make the links.
 
 The **way_nodes** allow to pass from nodes to ways and vice versa. But note the `ways` table also have the `nodes` fields for better performance when passing from ways to nodes.
 * `way_id`: bigint
@@ -72,6 +72,7 @@ The analyzer inherit from class `Analyser_Osmosis`. It have to implement `__init
 
 The analyzer also have to implement a non diff mode:
 * `analyser_osmosis_common()`: run check not supporting diff mode.
+
 Or a diff mode, with this two methods:
 * `analyser_osmosis_full()`: run check supporting diff mode. but for full data check.
 * `analyser_osmosis_diff()`: run check supporting diff mode. Checks only on data changed from last run.

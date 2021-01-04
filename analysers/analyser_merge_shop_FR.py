@@ -64,7 +64,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                     float(res["geo_score"]) > 0.9 and
                     (not res["complementAdresseEtablissement"] or (" APP" not in res["complementAdresseEtablissement"] and " CHEZ " not in res["complementAdresseEtablissement"])) and
                     (not trancheEffectifs or (res["trancheEffectifsEtablissement"] and res["trancheEffectifsEtablissement"] != "NN" and int(res["trancheEffectifsEtablissement"]) > trancheEffectifs)) ),
-                uniq = ["siren", "nic"]),
+                unique = ["siren", "nic"]),
             Mapping(
                 select = Select(
                     types = ['nodes', 'ways'],
