@@ -33,8 +33,8 @@ class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
         self.init(
             "https://ign.fr",
             "IGN-Point de repère",
-            GPKG(Source(attribution = "IGN", millesime = "01/2021",
-                    file = "point_de_repere.gpkg")),
+            GPKG(Source(attribution = "IGN", millesime = "09/2020",
+                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/.gpkg/point_de_repere.gpkg")),
             LoadGeomCentroid(
                 where = lambda res: res["route"][0] in ('A', 'D', 'N'),
                 map = lambda res: {"_x": float(res["_x"]), "_y": float(res["_y"]), 'route': res['route'].replace('A', 'A ').replace('D', 'D ').replace('N', 'N ').replace('P', 'P ') }),
