@@ -25,7 +25,7 @@ from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dy
 from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Mapping, Select, Generate
 
 
-class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
+class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
@@ -111,10 +111,10 @@ class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
         )]
 
         for r in maping:
-            self.classFactory(SubAnalyser_Merge_Man_Made_FR, r['id'], r['item'], r['id'], r['level'], r['title'], r['select'], r['tags'], r.get('generate_tags', r['tags']))
+            self.classFactory(SubAnalyser_Merge_Water_FR, r['id'], r['item'], r['id'], r['level'], r['title'], r['select'], r['tags'], r.get('generate_tags', r['tags']))
 
 
-class SubAnalyser_Merge_Man_Made_FR(SubAnalyser_Merge_Dynamic):
+class SubAnalyser_Merge_Water_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, item, id, level, title, select, tags, generate_tags):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge'], title = title)
