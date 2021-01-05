@@ -43,7 +43,7 @@ class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
                     tags = [
                         {"landuse": "cemetery"},
                         {"amenity": "grave_yard"} ]),
-                conflationDistance = 100,
+                conflationDistance = 200,
                 generate = Generate(
                     static1 = {
                         "amenity": "cemetery"},

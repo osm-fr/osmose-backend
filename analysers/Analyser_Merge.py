@@ -833,7 +833,7 @@ class Load(object):
 
 class LoadGeomCentroid(Load):
     def __init__(self, *args, **kwargs):
-        super(LoadGeomCentroid, self).__init__(("ST_X(ST_Centroid(geom))",), ("ST_Y(ST_Centroid(geom))",), *args, **kwargs)
+        super(LoadGeomCentroid, self).__init__(("ST_X(ST_PointOnSurface(geom))",), ("ST_Y(ST_PointOnSurface(geom))",), *args, **kwargs)
 
 class Select:
     def __init__(self, types = [], tags = {}):
