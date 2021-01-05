@@ -46,7 +46,7 @@ class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
                 conflationDistance = 200,
                 generate = Generate(
                     static1 = {
-                        "amenity": "cemetery"},
+                        "landuse": "cemetery"},
                     static2 = {"source": self.source},
                     mapping2 = {
                         "name": lambda fields: fields["toponyme"] if fields["statut_du_toponyme"] == "Validé" else None},
