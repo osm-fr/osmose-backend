@@ -22,7 +22,7 @@ for c in osmose_config.config.values():
     x = '0.020000'
     y = '0.005000'
     z = '0.005000'
-    r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'x': x, 'y': y, 'z': z})
+    r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'refresh': 1, 'x': x, 'y': y, 'z': z})
     if r.status_code == 500:
         fails.append([c.country, c.polygon_id, 'Geom Error'])
     elif r.status_code != 200:
