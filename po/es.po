@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-04 21:14+0000\n"
+"PO-Revision-Date: 2021-01-07 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -734,12 +734,12 @@ msgstr "El nombre termina con un espacio"
 msgid "Name contains successive spaces"
 msgstr "El nombre contiene espacios sucesivos"
 
-#: ../plugins/TagRemove_Incompatibles.py:108
+#: ../plugins/TagRemove_Incompatibles.py:109
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Conflicto entre etiquetas: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:111
+#: ../plugins/TagRemove_Incompatibles.py:112
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 
@@ -970,7 +970,7 @@ msgstr "Valor de acceso a carriles erróneo, no debe ser un entero sino una rest
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Carriles de giro merge_to_* necesita una línea paralela en el lado bueno"
 
-#: ../plugins/TagRemove_Incompatibles.py:114
+#: ../plugins/TagRemove_Incompatibles.py:115
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflicto entre etiquetas: crossing=no debe ser utilizado sin un highway=crossing"
@@ -1935,7 +1935,6 @@ msgstr "Museo no integrado"
 msgid "Museum, integration suggestion"
 msgstr "Museo, sugerencia de integración"
 
-#: ../analysers/analyser_merge_poi_FR.py:126
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant not integrated"
 msgstr "Planta de aguas residenciales no integrada"
@@ -4584,22 +4583,22 @@ msgstr ""
 msgid "Memorial not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:135
+#: ../analysers/analyser_merge_poi_FR.py:128
 msgid "Pumping station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:159
+#: ../analysers/analyser_merge_poi_FR.py:152
 msgid "Viewpoint not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:170
+#: ../analysers/analyser_merge_poi_FR.py:163
 msgid "Fire station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:187
-#: ../analysers/analyser_merge_poi_FR.py:196
-#: ../analysers/analyser_merge_poi_FR.py:205
-#: ../analysers/analyser_merge_poi_FR.py:214
+#: ../analysers/analyser_merge_poi_FR.py:180
+#: ../analysers/analyser_merge_poi_FR.py:189
+#: ../analysers/analyser_merge_poi_FR.py:198
+#: ../analysers/analyser_merge_poi_FR.py:207
 msgid "Megalith not integrated"
 msgstr ""
 
@@ -4636,7 +4635,10 @@ msgid "Water well not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_water_FR.py:90
+msgid "Resurgence not integrated"
+msgstr ""
+
 #: ../analysers/analyser_merge_water_FR.py:98
 #: ../analysers/analyser_merge_water_FR.py:107
-msgid "Resurgence not integrated"
+msgid "Spring not integrated"
 msgstr ""

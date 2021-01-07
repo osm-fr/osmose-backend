@@ -8,7 +8,7 @@
 # 藤本理弘 <mfujimot@gmail.com>, 2014-2015
 # Satoshi IIDA <nyampire@gmail.com>, 2014,2016
 # Satoshi IIDA <nyampire@gmail.com>, 2014,2016
-# Shu Higashi <higa432@gmail.com>, 2020
+# Shu Higashi <higa432@gmail.com>, 2020-2021
 # Tom Konda <tom.konda.dev@gmail.com>, 2020
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-04 21:14+0000\n"
+"PO-Revision-Date: 2021-01-07 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -729,12 +729,12 @@ msgstr "名前が空白で終わっている"
 msgid "Name contains successive spaces"
 msgstr "nameに連続スペースが含まれている"
 
-#: ../plugins/TagRemove_Incompatibles.py:108
+#: ../plugins/TagRemove_Incompatibles.py:109
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "競合しているタグ: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:111
+#: ../plugins/TagRemove_Incompatibles.py:112
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "'bridge'と'tunnel'タグが競合"
 
@@ -965,7 +965,7 @@ msgstr "不正なアクセスレーンの値、整数ではなく制限である
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "進行方向レーン merge_to_* には許可された側にサイドレーンが必要"
 
-#: ../plugins/TagRemove_Incompatibles.py:114
+#: ../plugins/TagRemove_Incompatibles.py:115
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "タグの競合: crossing=no タグに highway=crossing が不在"
@@ -1930,7 +1930,6 @@ msgstr "未統合の博物館"
 msgid "Museum, integration suggestion"
 msgstr "未統合の博物館の統合の提案"
 
-#: ../analysers/analyser_merge_poi_FR.py:126
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant not integrated"
 msgstr "未統合のWastewater plant"
@@ -4517,51 +4516,51 @@ msgstr "正しく経路案内するために、この駐車施設に至る`highw
 
 #: ../analysers/analyser_merge_cemetery_FR.py:31
 msgid "Cemetery not integrated"
-msgstr ""
+msgstr "未統合の墓地"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:49
 msgid "Car charging station update"
-msgstr ""
+msgstr "車の充電スタンドの更新"
 
 #: ../analysers/analyser_merge_highway_ref_FR.py:31
 msgid "Highway ref not integrated"
-msgstr ""
+msgstr "未統合の道路参照番号"
 
 #: ../analysers/analyser_merge_man_made_FR.py:42
 msgid "Lighting mast not integrated"
-msgstr ""
+msgstr "未統合の照明柱"
 
 #: ../analysers/analyser_merge_man_made_FR.py:50
 msgid "Wayside cross not integrated"
-msgstr ""
+msgstr "未統合の路傍の十字架"
 
 #: ../analysers/analyser_merge_man_made_FR.py:59
 msgid "Chimney not integrated"
-msgstr ""
+msgstr "未統合の煙突"
 
 #: ../analysers/analyser_merge_man_made_FR.py:66
 msgid "Bell tower not integrated"
-msgstr ""
+msgstr "未統合の鐘楼"
 
 #: ../analysers/analyser_merge_man_made_FR.py:75
 msgid "Cross not integrated"
-msgstr ""
+msgstr "未統合の十字架"
 
 #: ../analysers/analyser_merge_man_made_FR.py:84
 msgid "Wind turbine not integrated"
-msgstr ""
+msgstr "未統合の風力タービン"
 
 #: ../analysers/analyser_merge_man_made_FR.py:93
 msgid "Minaret not integrated"
-msgstr ""
+msgstr "未統合のミナレット"
 
 #: ../analysers/analyser_merge_man_made_FR.py:104
 msgid "Petroleum well not integrated"
-msgstr ""
+msgstr "未統合の油井"
 
 #: ../analysers/analyser_merge_man_made_FR.py:112
 msgid "Flare not integrated"
-msgstr ""
+msgstr "未統合のフレア"
 
 #: ../analysers/analyser_merge_poi_FR.py:49
 #: ../analysers/analyser_merge_poi_FR.py:58
@@ -4569,69 +4568,72 @@ msgstr ""
 #: ../analysers/analyser_merge_poi_FR.py:78
 #: ../analysers/analyser_merge_poi_FR.py:88
 msgid "Place of worship not integrated"
-msgstr ""
+msgstr "未統合の宗教施設"
 
 #: ../analysers/analyser_merge_poi_FR.py:102
 msgid "Townhall not integrated"
-msgstr ""
+msgstr "未統合の役所"
 
 #: ../analysers/analyser_merge_poi_FR.py:112
 msgid "Memorial not integrated"
-msgstr ""
+msgstr "未統合の記念碑"
 
-#: ../analysers/analyser_merge_poi_FR.py:135
+#: ../analysers/analyser_merge_poi_FR.py:128
 msgid "Pumping station not integrated"
-msgstr ""
+msgstr "未統合のポンプ場"
 
-#: ../analysers/analyser_merge_poi_FR.py:159
+#: ../analysers/analyser_merge_poi_FR.py:152
 msgid "Viewpoint not integrated"
-msgstr ""
+msgstr "未統合の展望所"
 
-#: ../analysers/analyser_merge_poi_FR.py:170
+#: ../analysers/analyser_merge_poi_FR.py:163
 msgid "Fire station not integrated"
-msgstr ""
+msgstr "未統合の消防署"
 
-#: ../analysers/analyser_merge_poi_FR.py:187
-#: ../analysers/analyser_merge_poi_FR.py:196
-#: ../analysers/analyser_merge_poi_FR.py:205
-#: ../analysers/analyser_merge_poi_FR.py:214
+#: ../analysers/analyser_merge_poi_FR.py:180
+#: ../analysers/analyser_merge_poi_FR.py:189
+#: ../analysers/analyser_merge_poi_FR.py:198
+#: ../analysers/analyser_merge_poi_FR.py:207
 msgid "Megalith not integrated"
-msgstr ""
+msgstr "未統合のメガリス"
 
 #: ../analysers/analyser_merge_reservoir_FR.py:38
 msgid "Water tower not integrated"
-msgstr ""
+msgstr "未統合の給水塔"
 
 #: ../analysers/analyser_merge_reservoir_FR.py:46
 msgid "Covered reservoir not integrated"
-msgstr ""
+msgstr "未統合の貯水池"
 
 #: ../analysers/analyser_merge_reservoir_FR.py:54
 msgid "Storage tank not integrated"
-msgstr ""
+msgstr "未統合の貯蔵タンク"
 
 #: ../analysers/analyser_merge_water_FR.py:43
 msgid "Waterfall not integrated"
-msgstr ""
+msgstr "未統合の滝"
 
 #: ../analysers/analyser_merge_water_FR.py:56
 msgid "Fountain not integrated"
-msgstr ""
+msgstr "未統合の噴水"
 
 #: ../analysers/analyser_merge_water_FR.py:64
 msgid "Lavoir not integrated"
-msgstr ""
+msgstr "未統合の共同洗濯所"
 
 #: ../analysers/analyser_merge_water_FR.py:74
 msgid "Sinkhole not integrated"
-msgstr ""
+msgstr "未統合の陥没穴"
 
 #: ../analysers/analyser_merge_water_FR.py:82
 msgid "Water well not integrated"
-msgstr ""
+msgstr "未統合の井戸"
 
 #: ../analysers/analyser_merge_water_FR.py:90
+msgid "Resurgence not integrated"
+msgstr "未統合の洞窟（リサージェンス）"
+
 #: ../analysers/analyser_merge_water_FR.py:98
 #: ../analysers/analyser_merge_water_FR.py:107
-msgid "Resurgence not integrated"
+msgid "Spring not integrated"
 msgstr ""

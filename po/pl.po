@@ -9,7 +9,7 @@
 # Jan Kalwasińśki <jan.kalwasinski@protonmail.com>, 2020
 # Debeat <krystian4842@gmail.com>, 2015
 # Teiron, 2016
-# maro21 OSM, 2019-2020
+# maro21 OSM, 2019-2021
 # Teiron, 2016-2017
 # endro, 2014
 # Teiron, 2016
@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-04 21:14+0000\n"
+"PO-Revision-Date: 2021-01-07 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +331,7 @@ msgstr "Brakuje roli street"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:621
 msgid "street role is not an highway"
-msgstr "Rola street nie jest drogą"
+msgstr "Obiekt z rolą street nie jest drogą"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:625
 msgid "Roleless member"
@@ -731,12 +731,12 @@ msgstr "Nazwa kończy się spacją"
 msgid "Name contains successive spaces"
 msgstr "Nazwa zawiera niepotrzebne spacje"
 
-#: ../plugins/TagRemove_Incompatibles.py:108
+#: ../plugins/TagRemove_Incompatibles.py:109
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Sprzeczność między tagami: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:111
+#: ../plugins/TagRemove_Incompatibles.py:112
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Sprzeczność między tagami: 'bridge' i 'tunnel'"
 
@@ -967,7 +967,7 @@ msgstr "Zła wartość dostępu dla \"*:lanes\" – to powinny być wartości ty
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Wartość turn:lanes dla merge_to_left/right jest po niewłaściwej stronie"
 
-#: ../plugins/TagRemove_Incompatibles.py:114
+#: ../plugins/TagRemove_Incompatibles.py:115
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Sprzeczność między tagami: crossing=no należy używać bez highway=crossing"
@@ -1378,7 +1378,7 @@ msgstr "Zbędne ograniczenie skrętu"
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
-msgstr ""
+msgstr "Przedrostek „Nord”, „Sud”, „Est”, „Ouest”, „Center” w nazwie przysiółka lub nazwanego obszaru powinien zostać usunięty z nazwy."
 
 #: ../plugins/Name_Punctuation.py:31
 msgid "Unexpected punctuation in name"
@@ -1932,7 +1932,6 @@ msgstr "Muzeum niezintegrowane"
 msgid "Museum, integration suggestion"
 msgstr "Muzeum, propozycja integracji"
 
-#: ../analysers/analyser_merge_poi_FR.py:126
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:30
 msgid "Wastewater plant not integrated"
 msgstr "Oczyszczalnia ścieków niezintegrowana"
@@ -2461,15 +2460,15 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:623
 msgid "The street must be a highway."
-msgstr ""
+msgstr "Linia z rolą `street` musi być drogą (`highway=*`)."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:627
 msgid "A member without role is present in the relation."
-msgstr ""
+msgstr "Człon relacji bez roli."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:631
 msgid "Address without number is present."
-msgstr ""
+msgstr "Jest tu adres bez numeru domu."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:646
 msgid "Extend the relation to include the way with the same name."
@@ -4519,51 +4518,51 @@ msgstr "Do tego parkingu powinna prowadzić droga dojazdowa dla poprawnego routi
 
 #: ../analysers/analyser_merge_cemetery_FR.py:31
 msgid "Cemetery not integrated"
-msgstr ""
+msgstr "Cmentarz niezintegrowany"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:49
 msgid "Car charging station update"
-msgstr ""
+msgstr "Stacja ładowania pojazdów, aktualizacja"
 
 #: ../analysers/analyser_merge_highway_ref_FR.py:31
 msgid "Highway ref not integrated"
-msgstr ""
+msgstr "Numer drogi niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:42
 msgid "Lighting mast not integrated"
-msgstr ""
+msgstr "Maszt oświetleniowy niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:50
 msgid "Wayside cross not integrated"
-msgstr ""
+msgstr "Przydrożny krzyż niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:59
 msgid "Chimney not integrated"
-msgstr ""
+msgstr "Komin niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:66
 msgid "Bell tower not integrated"
-msgstr ""
+msgstr "Dzwonnica niezintegrowana"
 
 #: ../analysers/analyser_merge_man_made_FR.py:75
 msgid "Cross not integrated"
-msgstr ""
+msgstr "Krzyż niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:84
 msgid "Wind turbine not integrated"
-msgstr ""
+msgstr "Turbina wiatrowa niezintegrowana"
 
 #: ../analysers/analyser_merge_man_made_FR.py:93
 msgid "Minaret not integrated"
-msgstr ""
+msgstr "Minaret niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:104
 msgid "Petroleum well not integrated"
-msgstr ""
+msgstr "Szyb naftowy niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:112
 msgid "Flare not integrated"
-msgstr ""
+msgstr "Pochodnia gazowa niezintegrowana"
 
 #: ../analysers/analyser_merge_poi_FR.py:49
 #: ../analysers/analyser_merge_poi_FR.py:58
@@ -4571,69 +4570,72 @@ msgstr ""
 #: ../analysers/analyser_merge_poi_FR.py:78
 #: ../analysers/analyser_merge_poi_FR.py:88
 msgid "Place of worship not integrated"
-msgstr ""
+msgstr "Świątynia niezintegrowana"
 
 #: ../analysers/analyser_merge_poi_FR.py:102
 msgid "Townhall not integrated"
-msgstr ""
+msgstr "Ratusz niezintegrowany"
 
 #: ../analysers/analyser_merge_poi_FR.py:112
 msgid "Memorial not integrated"
-msgstr ""
+msgstr "Pomnik niezintegrowany"
 
-#: ../analysers/analyser_merge_poi_FR.py:135
+#: ../analysers/analyser_merge_poi_FR.py:128
 msgid "Pumping station not integrated"
-msgstr ""
+msgstr "Przepompownia niezintegrowana"
 
-#: ../analysers/analyser_merge_poi_FR.py:159
+#: ../analysers/analyser_merge_poi_FR.py:152
 msgid "Viewpoint not integrated"
-msgstr ""
+msgstr "Punkt widokowy niezintegrowany"
 
-#: ../analysers/analyser_merge_poi_FR.py:170
+#: ../analysers/analyser_merge_poi_FR.py:163
 msgid "Fire station not integrated"
-msgstr ""
+msgstr "Remiza strażacka niezintegrowana"
 
-#: ../analysers/analyser_merge_poi_FR.py:187
-#: ../analysers/analyser_merge_poi_FR.py:196
-#: ../analysers/analyser_merge_poi_FR.py:205
-#: ../analysers/analyser_merge_poi_FR.py:214
+#: ../analysers/analyser_merge_poi_FR.py:180
+#: ../analysers/analyser_merge_poi_FR.py:189
+#: ../analysers/analyser_merge_poi_FR.py:198
+#: ../analysers/analyser_merge_poi_FR.py:207
 msgid "Megalith not integrated"
-msgstr ""
+msgstr "Megalit niezintegrowany"
 
 #: ../analysers/analyser_merge_reservoir_FR.py:38
 msgid "Water tower not integrated"
-msgstr ""
+msgstr "Wieża ciśnień niezintegrowana"
 
 #: ../analysers/analyser_merge_reservoir_FR.py:46
 msgid "Covered reservoir not integrated"
-msgstr ""
+msgstr "Podziemny zbiornik wodny niezintegrowany"
 
 #: ../analysers/analyser_merge_reservoir_FR.py:54
 msgid "Storage tank not integrated"
-msgstr ""
+msgstr "Zbiornik niezintegrowany"
 
 #: ../analysers/analyser_merge_water_FR.py:43
 msgid "Waterfall not integrated"
-msgstr ""
+msgstr "Wodospad niezintegrowany"
 
 #: ../analysers/analyser_merge_water_FR.py:56
 msgid "Fountain not integrated"
-msgstr ""
+msgstr "Fontanna niezintegrowana"
 
 #: ../analysers/analyser_merge_water_FR.py:64
 msgid "Lavoir not integrated"
-msgstr ""
+msgstr "Pralnia przy rzece niezintegrowana"
 
 #: ../analysers/analyser_merge_water_FR.py:74
 msgid "Sinkhole not integrated"
-msgstr ""
+msgstr "Lej krasowy niezintegrowany"
 
 #: ../analysers/analyser_merge_water_FR.py:82
 msgid "Water well not integrated"
-msgstr ""
+msgstr "Studnia niezintegrowana"
 
 #: ../analysers/analyser_merge_water_FR.py:90
+msgid "Resurgence not integrated"
+msgstr "Źródło niezintegrowane"
+
 #: ../analysers/analyser_merge_water_FR.py:98
 #: ../analysers/analyser_merge_water_FR.py:107
-msgid "Resurgence not integrated"
+msgid "Spring not integrated"
 msgstr ""
