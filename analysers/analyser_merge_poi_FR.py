@@ -119,14 +119,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             #    188 Mémorial
 
         # 23183 Station d'épuration
-        dict(
-            item = 8500,
-            id = 10300,
-            level = 3,
-            title = T_('Wastewater plant not integrated'),
-            select = {'nature': 'Station d\'épuration'},
-            tags = {'man_made': 'wastewater_plant'},
-        ),
+            # Other source
         # 19335 Station de pompage
         dict(
             item = 8500,

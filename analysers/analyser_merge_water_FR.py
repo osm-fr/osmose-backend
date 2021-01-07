@@ -59,7 +59,7 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
         ), dict(
             # Lavoir
             item = 8490,
-            id = 10,
+            id = 101,
             level = 3,
             title = T_('Lavoir not integrated'),
             select = {'nature': 'Lavoir'},
@@ -95,7 +95,7 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
             item = 8510,
             id = 15,
             level = 3,
-            title = T_('Resurgence not integrated'),
+            title = T_('Spring not integrated'),
             select = {'nature': 'Source'},
             tags = [{'natural': 'spring'}, {'natural': 'hot_spring'}],
             generate_tags = {'natural': 'spring'}
@@ -104,7 +104,7 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
             item = 8510,
             id = 16,
             level = 3,
-            title = T_('Resurgence not integrated'),
+            title = T_('Spring not integrated'),
             select = {'nature': 'Source captée'},
             tags = {'natural': 'spring'},
             generate_tags = {'natural': 'spring', 'man_made': 'spring_box'},
