@@ -56,7 +56,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             id = 10002,
             level = 3,
             title = T_('Place of worship not integrated'),
-            select = {'nature': 'Culte chrétien', 'nature_detaillee': ''},
+            select = {'nature': 'Culte chrétien', 'nature_detaillee': None},
             tags = {'amenity': 'place_of_worship'},
             generate_tags = {'amenity': 'place_of_worship', 'religion': 'christian'},
         ),
@@ -100,7 +100,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             id = 10100,
             level = 3,
             title = T_('Townhall not integrated'),
-            select = {'nature': 'Mairie', 'nature_detaillee': ['', 'Mairie de commune associée ou déléguée', 'Mairie annexe', 'Hôtel de ville', 'Mairie d\'arrondissement']},
+            select = {'nature': 'Mairie', 'nature_detaillee': [None, 'Mairie de commune associée ou déléguée', 'Mairie annexe', 'Hôtel de ville', 'Mairie d\'arrondissement']},
             tags = {'amenity': 'townhall'},
         ),
         # 27275 Monument
@@ -150,7 +150,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             id = 10500,
             level = 3,
             title = T_('Viewpoint not integrated'),
-            select = {'nature': 'Point de vue', 'nature_detaillee': ['', 'Table d\'orientation', 'Belvédère']},
+            select = {'nature': 'Point de vue', 'nature_detaillee': [None, 'Table d\'orientation', 'Belvédère']},
             tags = {'tourism': 'viewpoint'},
         ),
             #    229 Observatoire ornithologique
