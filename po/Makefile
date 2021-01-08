@@ -1,4 +1,4 @@
-PYFILES=$(shell find .. ! -path ./venv -name '*.py' -not -type l | grep -v 'Josm_' | sort)
+PYFILES=$(shell find .. ! -path ./venv -name '*.py' -not -type l | grep -v 'Josm_' | grep -v 'disabled' | sort)
 JSON=$(shell find ../merge_data -name '*.json' | sort)
 
 PO:=$(wildcard *.po)
