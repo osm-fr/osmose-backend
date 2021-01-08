@@ -123,8 +123,8 @@ class SubAnalyser_Merge_Water_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://ign.fr",
             "IGN-Détail Hydrographique",
-            GPKG(Source(attribution = "IGN", millesime = "09/2020",
-                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/.gpkg/detail_hydrographique.gpkg")),
+            GPKG(Source(attribution = "IGN", millesime = "09/2020", gzip = True,
+                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/detail_hydrographique.gpkg.gz")),
             LoadGeomCentroid(
                 select = select),
             Conflate(

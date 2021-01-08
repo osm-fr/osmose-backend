@@ -33,8 +33,8 @@ class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
         self.init(
             "https://ign.fr",
             "IGN-Cimetière",
-            GPKG(Source(attribution = "IGN", millesime = "09/2020",
-                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/.gpkg/cimetiere.gpkg")),
+            GPKG(Source(attribution = "IGN", millesime = "09/2020", gzip = True,
+                    fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/cimetiere.gpkg.gz")),
             LoadGeomCentroid(
                 select = {"etat_de_l_objet": "En service"}),
             Conflate(
