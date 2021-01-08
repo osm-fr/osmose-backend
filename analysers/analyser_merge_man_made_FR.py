@@ -63,10 +63,11 @@ class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
             # Clocher
             item = 8100,
             id = 4,
-            title = T_('Bell tower not integrated'),
+            title = T_('Church or Bell tower not integrated'),
             level = 1,
             select = {'nature': 'Clocher'},
-            tags = {'man_made': 'tower', 'tower:type': 'bell_tower'},
+            tags = [{'man_made': 'tower', 'tower:type': 'bell_tower'}, {'amenity': 'place_of_worship'}, {"building": ["cathedral", "church", "chapel"]}],
+            generate_tags = {'man_made': 'tower', 'tower:type': 'bell_tower'},
         ), dict(
             # Croix
             item = 8100,
@@ -90,9 +91,10 @@ class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
             item = 8100,
             id = 7,
             level = 1,
-            title = T_('Minaret not integrated'),
+            title = T_('Mosque or Minaret not integrated'),
             select = {'nature': 'Minaret'},
-            tags = {'man_made': 'tower', 'tower:type': 'minaret'},
+            tags = [{'man_made': 'tower', 'tower:type': 'minaret'}, {'amenity': 'place_of_worship'}],
+            generate_tags = {'man_made': 'tower', 'tower:type': 'minaret'},
             # Phare (300)
             #  not interested
 
