@@ -32,7 +32,7 @@ The support of the diff mode is not implemented.
 
 ## Classes of issues
 
-Like other analyzer merge must define classes, but not using `def_class`. Dedicated helpers available:
+Like other analyzer merge must define classes, picked from these available helpers:
 - `def_class_missing_official`: OpenData set contains an object, but no matching one found in OSM. By convention the item number look like `8yy0` and class `id` is 1.
 - `def_class_missing_osm`: OSM contains an object, but no matching one found in the OpenData set. By convention the item number look like `7xxx` and class `id` is 2.
 - `def_class_possible_merge`: A probable matching object found. By convention the item number look like `8yy1` and class `id` is 3.
@@ -82,7 +82,7 @@ The remote file could be compressed or an archive:
 - `extract`: same as `zip`, but for all archive formats.
 
 Assuming the resource is a text file:
-- `encoding`: define the encoding of the text content, in order to be re-encoded into UTF-8.
+- `encoding`: define the encoding of the text content, in order to be re-encoded into the default UTF-8 encoding.
 - `filter`: a lambda expression applied on text content before loading (text in one big blob). Only to hijack bad formatted content and make it usable. See `Load` option for proper data filters.
 
 ```python
