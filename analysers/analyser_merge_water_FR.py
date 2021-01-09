@@ -30,12 +30,12 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
 
-        maping = [dict(
+        maping = [
             # Amer
             # Baie
             # Balise
             # Banc
-
+        dict(
             # Cascade
             item = 8510,
             id = 4,
@@ -43,19 +43,20 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
             title = T_('Waterfall not integrated'),
             select = {'nature': 'Cascade'},
             tags = {'waterway': 'waterfall'},
-        ), dict(
+
             # Citerne
             # Embouchure
             # Espace maritime
             # Feu
-
-            # Fontaine
-            item = 8510,
-            id = 9,
-            level = 2,
-            title = T_('Fountain not integrated'),
-            select = {'nature': 'Fontaine'},
-            tags = {'amenity': 'fountain'},
+        #), dict(
+        # Too many false positives
+        #    # Fontaine
+        #    item = 8510,
+        #    id = 9,
+        #    level = 2,
+        #    title = T_('Fountain not integrated'),
+        #    select = {'nature': 'Fontaine'},
+        #    tags = {'amenity': 'fountain'},
         ), dict(
             # Lavoir
             item = 8490,
@@ -64,9 +65,9 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
             title = T_('Lavoir not integrated'),
             select = {'nature': 'Lavoir'},
             tags = {'amenity': 'lavoir'},
-        ), dict(
-            # Marais
 
+            # Marais
+        ), dict(
             # Perte
             item = 8510,
             id = 12,
@@ -74,14 +75,14 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
             title = T_('Sinkhole not integrated'),
             select = {'nature': 'Perte'},
             tags = {'natural': 'sinkhole'},
-        ), dict(
-            # Point d'eau / Puits
-            item = 8510,
-            id = 131,
-            level = 3,
-            title = T_('Water well not integrated'),
-            select = {'nature_detaillee': 'Puits'},
-            tags = {'man_made': 'water_well'},
+        #), dict(
+        #    # Point d'eau / Puits
+        #    item = 8510,
+        #    id = 131,
+        #    level = 3,
+        #    title = T_('Water well not integrated'),
+        #    select = {'nature_detaillee': 'Puits'},
+        #    tags = {'man_made': 'water_well'},
         ), dict(
             # Résurgence
             item = 8510,
@@ -90,21 +91,22 @@ class Analyser_Merge_Water_FR(Analyser_Merge_Dynamic):
             title = T_('Resurgence not integrated'),
             select = {'nature': 'Résurgence'},
             tags = {'natural': 'spring'},
-        ), dict(
-            # Source
-            item = 8510,
-            id = 15,
-            level = 3,
-            title = T_('Spring not integrated'),
-            select = {'nature': 'Source'},
-            tags = [{'natural': 'spring'}, {'natural': 'hot_spring'}],
-            generate_tags = {'natural': 'spring'}
+        #), dict(
+        # Too many false positives
+        #    # Source
+        #    item = 8510,
+        #    id = 15,
+        #    level = 3,
+        #    title = T_('Spring not integrated'),
+        #    select = {'nature': 'Source'},
+        #    tags = [{'natural': 'spring'}, {'natural': 'hot_spring'}],
+        #    generate_tags = {'natural': 'spring'}
         ), dict(
             # Source captée
             item = 8510,
             id = 16,
             level = 3,
-            title = T_('Spring not integrated'),
+            title = T_('Spring box not integrated'),
             select = {'nature': 'Source captée'},
             tags = {'natural': 'spring'},
             generate_tags = {'natural': 'spring', 'man_made': 'spring_box'},
