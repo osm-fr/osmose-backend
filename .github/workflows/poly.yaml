@@ -6,6 +6,7 @@ on:
 
 jobs:
   poly:
+    if: github.repository == 'osm-fr/osmose-backend'
     runs-on: ubuntu-latest
 
     steps:
