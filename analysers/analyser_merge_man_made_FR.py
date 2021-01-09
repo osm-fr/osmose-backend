@@ -73,9 +73,9 @@ class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
             item = 8100,
             id = 5,
             level = 3,
-            title = T_('Cross not integrated'),
+            title = T_('Cross or wayside shrine not integrated'),
             select = {'nature': 'Croix'},
-            tags = [{'man_made': 'cross'}, {'historic': 'wayside_cross'}],
+            tags = [{'man_made': 'cross'}, {'historic': ['wayside_cross', 'wayside_shrine']}],
             generate_tags = {'historic': 'wayside_cross'},
         ), dict(
             # Eolienne
