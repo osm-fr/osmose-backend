@@ -340,6 +340,9 @@ class Source:
         self.gzip = gzip
         self.filter = filter
 
+        if self.file and self.fileUrl:
+            raise ValueError("file and fileUrl should not be both set")
+
         if self.file:
             if not os.path.isabs(self.file):
                 self.file = "merge_data/" + self.file
