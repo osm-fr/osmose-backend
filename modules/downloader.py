@@ -26,6 +26,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
+from typing import Optional
 from . import config
 
 
@@ -79,9 +80,12 @@ def http_get(url, tmp_file, date_string=None, get=get):
 
     return True
 
-def update_cache(url, delay, fetch=http_get):
+def get_cache_path(url):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
-    cache = os.path.join(config.dir_cache, file_name)
+    return os.path.join(config.dir_cache, file_name)
+
+def update_cache(url, delay, fetch=http_get):
+    cache = get_cache_path(url)
     tmp_file = cache + ".tmp"
 
     cur_time = time.time()
@@ -125,8 +129,29 @@ def path(url, delay):
 def urlopen(url, delay, mode='r'):
     return open(path(url, delay), mode)
 
-def urlread(url, delay):
+def urlread(url: str, delay: int):
     return open(path(url, delay), 'r', encoding="utf-8").read()
+
+def set_millesime(url, millesime: datetime) -> None:
+    with open(get_cache_path(url) + ".millesime", "w", encoding="utf-8") as millesime_file:
+        if millesime is None:
+            millesime_file.write("0")
+        millesime_file.write(str(int(datetime.timestamp(millesime))))
+
+def get_millesime(url: str, delay: int) -> Optional[datetime]:
+    cache_path = get_cache_path(url)
+    millesime_path = cache_path + ".millesime"
+    try:
+        # Synchronize Millesime file expiration with main cache file
+        statbuf = os.stat(cache_path)
+        if (time.time() - delay*24*60*60) < statbuf.st_mtime:
+            with open(millesime_path, "r", encoding="utf-8") as millesime:
+                raw_millesime = millesime.read()
+                if raw_millesime != "0":
+                    return datetime.fromtimestamp(int(raw_millesime))
+        return None
+    except Exception:
+        return None
 
 if __name__ == "__main__":
     import sys

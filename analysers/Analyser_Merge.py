@@ -399,17 +399,57 @@ class Source:
                 f.seek(0)
         return f
 
+    def _get_millesime(self):
+        if not self.millesime:
+            cached_millesime = downloader.get_millesime(self.fileUrl, self.fileUrlCache)
+            if cached_millesime:
+                self.millesime = cached_millesime
+            else:
+                self.millesime = self.get_millesime()
+                downloader.set_millesime(self.fileUrl, self.millesime)
+        return self.millesime
+
+    def get_millesime(self):
+        """To be overwritten by sources with dynamic millesime"""
+        return None
+
     def as_tag_value(self):
         if "{0}" in self.attribution:
-            return self.attribution.format(self.millesime)
+            return self.attribution.format(self._get_millesime())
         else:
-            return " - ".join(filter(lambda x: x is not None, [self.attribution, self.millesime]))
+            return " - ".join(filter(lambda x: x is not None, [self.attribution, self._get_millesime().strftime("%m/%y")]))
 
     def match_attribution(self, s):
         if "{0}" not in self.attribution:
             return self.attribution in s
         else:
             return self.attribution_re.match(s)
+
+
+class SourceDataGouv(Source):
+
+    data_gouv_api_base = "https://www.data.gouv.fr/api/1"
+    data_gouv_dataset_base = "https://www.data.gouv.fr/fr/datasets/r/"
+
+    def __init__(self, dataset: str, resource: str, attribution=None, encoding: str = "utf-8", fileUrl: str = None, fileUrlCache: int = 30, zip: bool = None, extract: bool = None, bz2: bool = False, gzip: bool = False, filter: bool = None):
+        self.dataset = dataset
+        self.resource = resource
+        super().__init__(
+            attribution=attribution,
+            fileUrl=self.data_gouv_dataset_base + resource,
+            zip=zip,
+            encoding=encoding,
+            millesime=None,
+            fileUrlCache=fileUrlCache,
+            extract=extract,
+            bz2=bz2,
+            filter=filter,
+        )
+
+    def get_millesime(self):
+        last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
+        return datetime.datetime.fromisoformat(last_modified)
+
 
 class Parser:
     def header(self):
