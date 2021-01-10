@@ -450,6 +450,26 @@ class SourceDataGouv(Source):
         last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
         return datetime.datetime.fromisoformat(last_modified)
 
+class SourceOpenDataSoft(Source):
+    def __init__(self, base_url: str, dataset: str, attribution=None, encoding: str = "utf-8", fileUrl: str = None, fileUrlCache: int = 30, zip: bool = None, extract: bool = None, bz2: bool = False, gzip: bool = False, filter: bool = None, timezone: str = "UTC"):
+        self.base_url = base_url
+        self.dataset = dataset
+        super().__init__(
+            attribution=attribution,
+            fileUrl=f"{base_url}/explore/dataset/{dataset}/download/?format=csv&timezone={timezone}&use_labels_for_header=true",
+            zip=zip,
+            encoding=encoding,
+            millesime=None,
+            fileUrlCache=fileUrlCache,
+            extract=extract,
+            bz2=bz2,
+            filter=filter,
+        )
+
+    def get_millesime(self):
+        last_modified = downloader.get(f"{self.base_url}/api/datasets/1.0/{self.dataset}").json()["metas"]["data_processed"]
+        return datetime.datetime.fromisoformat(last_modified)
+
 
 class Parser:
     def header(self):
