@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
@@ -37,8 +37,9 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
         self.init(
             u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
-            CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "05/2016",
-                    fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
+            CSV(SourceOpenDataSoft(attribution = u"data.gouv.fr:LaPoste",
+                    base_url = "https://datanova.legroupe.laposte.fr",
+                    dataset = "laposte_boiterue"),
                 separator = u";"),
             Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],

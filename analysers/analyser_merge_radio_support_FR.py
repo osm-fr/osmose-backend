@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 from io import open
 
 class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
@@ -45,8 +45,8 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/donnees-sur-les-installations-radioelectriques-de-plus-de-5-watts-1/",
             u"Données sur les installations radioélectriques de plus de 5 watts",
-            CSV(Source(attribution = u"data.gouv.fr:ANFR", millesime = "08/2019",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/5da74526-7781-4726-b98b-232756643090", zip = "SUP_SUPPORT.txt", encoding = "ISO-8859-15"),
+            CSV(SourceDataGouv(attribution = u"data.gouv.fr:ANFR",
+                    dataset = "551d4ff3c751df55da0cd89f", resource = "5da74526-7781-4726-b98b-232756643090", zip = "SUP_SUPPORT.txt", encoding = "ISO-8859-15"),
                 separator = u";", quote = u'$'),
             Load(
 ("CASE \"COR_CD_EW_LON\" WHEN 'W' THEN -1*(to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600) WHEN 'E' THEN to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600 END",),
