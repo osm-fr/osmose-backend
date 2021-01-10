@@ -437,40 +437,28 @@ class SourceDataGouv(Source):
     data_gouv_api_base = "https://www.data.gouv.fr/api/1"
     data_gouv_dataset_base = "https://www.data.gouv.fr/fr/datasets/r/"
 
-    def __init__(self, dataset: str, resource: str, attribution=None, encoding: str = "utf-8", fileUrl: str = None, fileUrlCache: int = 30, zip: bool = None, extract: bool = None, bz2: bool = False, gzip: bool = False, filter: bool = None):
+    def __init__(self, dataset: str, resource: str, **kwargs):
         self.dataset = dataset
         self.resource = resource
-        super().__init__(
-            attribution=attribution,
-            fileUrl=self.data_gouv_dataset_base + resource,
-            zip=zip,
-            encoding=encoding,
-            millesime=None,
-            fileUrlCache=fileUrlCache,
-            extract=extract,
-            bz2=bz2,
-            filter=filter,
-        )
+        kwargs.update({
+            "fileUrl": self.data_gouv_dataset_base + resource,
+            "millesime": None,
+        })
+        super().__init__(**kwargs)
 
     def get_millesime(self):
         last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
         return datetime.datetime.fromisoformat(last_modified)
 
 class SourceOpenDataSoft(Source):
-    def __init__(self, base_url: str, dataset: str, attribution=None, encoding: str = "utf-8", fileUrl: str = None, fileUrlCache: int = 30, zip: bool = None, extract: bool = None, bz2: bool = False, gzip: bool = False, filter: bool = None, timezone: str = "UTC"):
+    def __init__(self, base_url: str, dataset: str, timezone: str = "UTC", **kwargs):
         self.base_url = base_url
         self.dataset = dataset
-        super().__init__(
-            attribution=attribution,
-            fileUrl=f"{base_url}/explore/dataset/{dataset}/download/?format=csv&timezone={timezone}&use_labels_for_header=true",
-            zip=zip,
-            encoding=encoding,
-            millesime=None,
-            fileUrlCache=fileUrlCache,
-            extract=extract,
-            bz2=bz2,
-            filter=filter,
-        )
+        kwargs.update({
+            "fileUrl": f"{base_url}/explore/dataset/{dataset}/download/?format=csv&timezone={timezone}&use_labels_for_header=true",
+            "millesime": None,
+        })
+        super().__init__(**kwargs)
 
     def get_millesime(self):
         last_modified = downloader.get(f"{self.base_url}/api/datasets/1.0/{self.dataset}").json()["metas"]["data_processed"]
