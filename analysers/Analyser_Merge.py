@@ -35,6 +35,7 @@ import zipfile
 import tempfile
 import json
 import re
+from typing import Optional
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules.OsmoseTranslation import T_
@@ -399,17 +400,19 @@ class Source:
                 f.seek(0)
         return f
 
-    def _get_millesime(self):
-        if not self.millesime:
+    def _get_millesime(self) -> Optional[str]:
+        if not self.millesime and self.fileUrl:
             cached_millesime = downloader.get_millesime(self.fileUrl, self.fileUrlCache)
             if cached_millesime:
                 self.millesime = cached_millesime
             else:
                 self.millesime = self.get_millesime()
                 downloader.set_millesime(self.fileUrl, self.millesime)
-        return self.millesime
+        if self.millesime is None or type(self.millesime) == str:
+            return self.millesime
+        return self.millesime.strftime("%m/%y")
 
-    def get_millesime(self):
+    def get_millesime(self) -> Optional[datetime.datetime]:
         """To be overwritten by sources with dynamic millesime"""
         return None
 
@@ -417,7 +420,7 @@ class Source:
         if "{0}" in self.attribution:
             return self.attribution.format(self._get_millesime())
         else:
-            return " - ".join(filter(lambda x: x is not None, [self.attribution, self._get_millesime().strftime("%m/%y")]))
+            return " - ".join(filter(lambda x: x is not None, [self.attribution, self._get_millesime()]))
 
     def match_attribution(self, s):
         if "{0}" not in self.attribution:

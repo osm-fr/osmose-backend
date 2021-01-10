@@ -132,11 +132,12 @@ def urlopen(url, delay, mode='r'):
 def urlread(url: str, delay: int):
     return open(path(url, delay), 'r', encoding="utf-8").read()
 
-def set_millesime(url, millesime: datetime) -> None:
+def set_millesime(url, millesime: Optional[datetime]) -> None:
     with open(get_cache_path(url) + ".millesime", "w", encoding="utf-8") as millesime_file:
         if millesime is None:
             millesime_file.write("0")
-        millesime_file.write(str(int(datetime.timestamp(millesime))))
+        else:
+            millesime_file.write(str(int(datetime.timestamp(millesime))))
 
 def get_millesime(url: str, delay: int) -> Optional[datetime]:
     cache_path = get_cache_path(url)
