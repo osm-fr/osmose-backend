@@ -103,7 +103,8 @@ class TagRemove_Incompatibles(Plugin):
                     if k1 in conflict:
                         for (v1, k2, v2) in vs:
                             if tags[k1] == v1 and k2 in conflict and tags[k2] == v2:
-                                conflict.remove(k1)
+                                if k1 in conflict:
+                                    conflict.remove(k1)
                                 conflict.remove(k2)
                 if len(conflict) > 1:
                     return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: {0}", (", ".join(sorted(conflict))))}
@@ -131,6 +132,7 @@ class Test(TestPluginCommon):
                   {"highway": "trunk", "railway": "rail"},
                   {"bridge": "yes", "tunnel": "yes"},
                   {"crossing": "no", "highway": "crossing"},
+                  {"amenity": "fountain", "leisure": "swimming_pool", "natural": "water"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
