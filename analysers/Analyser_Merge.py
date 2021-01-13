@@ -455,7 +455,7 @@ class SourceOpenDataSoft(Source):
         self.base_url = base_url
         self.dataset = dataset
         kwargs.update({
-            "fileUrl": f"{base_url}/explore/dataset/{dataset}/download/?format=csv&timezone={timezone}&use_labels_for_header=true",
+            "fileUrl": f"{base_url}/explore/dataset/{dataset}/download/?format=csv&timezone={timezone}",
             "millesime": None,
         })
         super().__init__(**kwargs)
