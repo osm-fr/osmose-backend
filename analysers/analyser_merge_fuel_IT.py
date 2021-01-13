@@ -110,7 +110,7 @@ class Source_Fuel(Source):
         for row in csvreader:
             impianto = impianti.get(row[0], 0)
             carburante = self.FUEL_TYPE_MAP.get(row[1].upper())
-            if (impianto & carburante) != 0:
+            if not carburante or (impianto & carburante) != 0:
                 continue
             dt_price = Mapping.date_format(row[4], '%d/%m/%Y %H:%M:%S')
             if not dt_price or self.diff_days(dt_price) > 30:
@@ -171,6 +171,7 @@ class Source_Fuel(Source):
         'METANO':                   CNG,
         'R100':                     OCTANE_100,# repsol
         'S-DIESEL':                 GTL_DIESEL,# ?
+        'SSP98':                    OCTANE_98,# ?
         'SUPREME DIESEL':           GTL_DIESEL,# esso
         'V-POWER':                  OCTANE_100,
         'V-POWER DIESEL':           GTL_DIESEL,
