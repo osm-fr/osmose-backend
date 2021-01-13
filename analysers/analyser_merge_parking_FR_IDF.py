@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -32,9 +32,10 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
         self.init(
             u"https://opendata.stif.info/explore/dataset/parcs-relais-idf/information/",
             u"Parcs Relais en Île-de-France",
-            CSV(Source(attribution = u"Île-de-France Mobilités", millesime = "04/2019",
-                    fileUrl = u"https://opendata.stif.info/explore/dataset/parcs-relais-idf/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                    separator = u";"),
+            CSV(SourceOpenDataSoft(
+                attribution="Île-de-France Mobilités",
+                base_url="https://opendata.stif.info",
+                dataset="parcs-relais-idf")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),

@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 from functools import reduce
 
 
@@ -85,10 +85,11 @@ World Heritage.'''))
         self.init(
             u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Immeubles protégés au titre des Monuments Historiques",
-            CSV(Source(attribution = u"Ministère de la Culture", millesime = "06/2019",
-                    fileUrl = u"https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
-                    filter = lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore'))),
-                separator = u';'),
+            CSV(SourceOpenDataSoft(
+                attribution="Ministère de la Culture",
+                base_url="https://data.culture.gouv.fr",
+                dataset="liste-des-immeubles-proteges-au-titre-des-monuments-historiques",
+                filter=lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore')))),
             Load("coordonnees_ban", "coordonnees_ban",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],

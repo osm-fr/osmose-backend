@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 import re
 
 class Analyser_Merge_Museum_FR(Analyser_Merge):
@@ -32,14 +32,17 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
         self.def_class_possible_merge(item = 8011, id = 33, level = 3, tags = ['merge'],
             title = T_('Museum, integration suggestion'))
 
-        re_phone = re.compile(u"^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$")
+        re_phone = re.compile("^0[0-9] [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$")
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/musees-de-france-base-museofile/",
-            u"Musées de France : base Muséofile",
-            CSV(Source(attribution = u"Ministère de la Culture - Muséofile", millesime = "11/2020",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/5ccd6238-4fb0-4b2c-b14a-581909489320"),
-                separator = u';'),
+            "https://www.data.gouv.fr/fr/datasets/musees-de-france-base-museofile/",
+            "Musées de France : base Muséofile",
+            CSV(
+                SourceDataGouv(
+                    attribution="Ministère de la Culture - Muséofile",
+                    dataset="5d12ee8206e3e762c0c89a4c",
+                    resource="5ccd6238-4fb0-4b2c-b14a-581909489320"),
+                separator=';'),
             Load("geolocalisation", "geolocalisation",
                  where = lambda row: row["geolocalisation"],
                  xFunction = lambda x: x and x.split(',')[1],
@@ -49,14 +52,14 @@ class Analyser_Merge_Museum_FR(Analyser_Merge):
                     types = ["nodes", "ways", "relations"],
                     tags = {"tourism": "museum"}),
                 conflationDistance = 300,
-                osmRef = u"ref:FR:museofile",
+                osmRef = "ref:FR:museofile",
                 mapping = Mapping(
                     static1 = {"tourism": "museum"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:museofile": "ref"},
                     mapping2 = {
                         "website": lambda res: None if not res["url_m"] else res["url_m"] if res["url_m"].startswith('http') else 'http://' + res["url_m"],
-                        "phone": lambda res: u"+33 " + res["tel_m"][1:] if res["tel_m"] and re_phone.match(res["tel_m"]) else None,
+                        "phone": lambda res: "+33 " + res["tel_m"][1:] if res["tel_m"] and re_phone.match(res["tel_m"]) else None,
                         "name": lambda res: res["nomusage"][0].upper() + res["nomusage"][1:] if res["nomusage"] else res["nomoff"][0].upper() + res["nomoff"][1:] if res["nomoff"] else None,
                         "official_name": lambda res: res["nomoff"][0].upper() + res["nomoff"][1:] if res["nomusage"] and res["nomoff"].lower() != res["nomusage"].lower() else None},
                     text = lambda tags, fields: {"en": ' '.join(filter(lambda x: x, [fields["adrl1_m"], fields["cp_m"], fields["ville_m"]]))} )))

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
@@ -31,10 +31,12 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-montfort-communaute-1/",
-            u"Défibrillateurs Montfort Communauté",
-            CSV(Source(attribution = u"Défibrillateurs Montfort Communauté",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/ad484c5d-0566-4bd4-9bb4-1ca418031968")),
+            "https://www.data.gouv.fr/fr/datasets/defibrillateurs-montfort-communaute-1/",
+            "Défibrillateurs Montfort Communauté",
+            CSV(SourceDataGouv(
+                attribution="Défibrillateurs Montfort Communauté",
+                dataset="5baca9798b4c411829c4659a",
+                resource="ad484c5d-0566-4bd4-9bb4-1ca418031968")),
             Load("X","Y"),
             Conflate(
                 select = Select(

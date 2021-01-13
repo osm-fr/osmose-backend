@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Police_FR_pn(Analyser_Merge):
@@ -31,11 +31,14 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
             title = T_('Police not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/liste-des-services-de-police-accueillant-du-public-avec-geolocalisation/",
-            u"Liste des points d'accueil de la police nationale",
-            CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
-                separator = u";"),
+            "https://www.data.gouv.fr/fr/datasets/liste-des-services-de-police-accueillant-du-public-avec-geolocalisation/",
+            "Liste des points d'accueil de la police nationale",
+            CSV(
+                SourceDataGouv(
+                    attribution="data.gouv.fr:Ministère de l'Intérieur",
+                    dataset="53ba5222a3a729219b7beade",
+                    resource="2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
+                separator = ";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Conflate(
                 select = Select(

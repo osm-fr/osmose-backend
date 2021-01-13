@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
@@ -37,11 +37,12 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             title = T_('Power substation not integrated'))
 
         self.init(
-            u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
-            u"Postes électriques RTE",
-            CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",
-                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
+            "Postes électriques RTE",
+            CSV(SourceOpenDataSoft(
+                    base_url="https://opendata.reseaux-energies.fr",
+                    attribution="data.gouv.fr:RTE",
+                    dataset="postes-electriques-rte")),
             Load("Longitude poste (DD)", "Latitude poste (DD)"),
             Conflate(
                 select = Select(

@@ -20,18 +20,20 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Conflate, Mapping
+from .Analyser_Merge import SourceOpenDataSoft, CSV, Load, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
 class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 7, "Rennes", logger,
-            u"https://data.rennesmetropole.fr/explore/dataset/rva-bal/information/",
-            u"Référentiel voies et adresses de Rennes Métropole",
-            CSV(Source(attribution = u"Rennes Métropole", millesime = "03/2018",
-                    fileUrl = u"https://data.rennesmetropole.fr/explore/dataset/rva-bal/download/?format=csv"),
-                separator = u";"),
+            "https://data.rennesmetropole.fr/explore/dataset/rva-bal/information/",
+            "Référentiel voies et adresses de Rennes Métropole",
+            CSV(
+                SourceOpenDataSoft(
+                    base_url="https://data.rennesmetropole.fr",
+                    attribution="Rennes Métropole",
+                    dataset="rva-bal")),
             Load("long", "lat",
                 where = lambda res: res["numero"] != "99999"),
             Conflate(

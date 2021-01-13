@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
@@ -33,9 +33,10 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
         self.init(
             u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
             u"Toilettes publiques",
-            CSV(Source(attribution = u"Ville de Rennes", millesime = "07/2017",
-                    fileUrl = u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            CSV(SourceOpenDataSoft(
+                attribution="Ville de Rennes",
+                base_url="https://data.rennesmetropole.fr",
+                dataset="toilettes_publiques_vdr")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

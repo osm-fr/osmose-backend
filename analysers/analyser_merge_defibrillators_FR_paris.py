@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
@@ -33,9 +33,12 @@ class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/batiments-publics-equipes-de-defibrillateurs-a-paris/",
             u"Défibrillateurs à Paris",
-            CSV(Source(attribution = u"data.gouv.fr:Mairie de Paris", millesime = "23/04/2018",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d2b94d3d-977d-4dcb-ab8c-77e2568de736"),
-                separator = u";"),
+            CSV(
+                SourceDataGouv(
+                    attribution="data.gouv.fr:Mairie de Paris",
+                    dataset="5addf594c751df48fa763949",
+                    resource="d2b94d3d-977d-4dcb-ab8c-77e2568de736"),
+                separator=";"),
             Load("longitude", "latitude"),
             Conflate(
                 select = Select(

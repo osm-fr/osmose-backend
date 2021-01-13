@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
@@ -37,8 +37,12 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p',
             'Parking hors voirie',
-            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
-                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'st_park_p.shp')),
+            SHP(SourceOpenDataSoft(
+                attribution="Bordeaux Métropole",
+                base_url="https://opendata.bordeaux-metropole.fr",
+                dataset="st_park_p",
+                format="shp",
+                zip='st_park_p.shp')),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(
@@ -70,8 +74,12 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/grs_gigc_p',
             'Place de stationnement PMR',
-            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
-                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/grs_gigc_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'grs_gigc_p.shp')),
+            SHP(SourceOpenDataSoft(
+                attribution="Bordeaux Métropole",
+                base_url="https://opendata.bordeaux-metropole.fr",
+                dataset="grs_gigc_p",
+                format="shp",
+                zip="grs_gigc_p.shp")),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(

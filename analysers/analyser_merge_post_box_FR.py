@@ -37,10 +37,10 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
         self.init(
             u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
-            CSV(SourceOpenDataSoft(attribution = u"data.gouv.fr:LaPoste",
-                    base_url = "https://datanova.legroupe.laposte.fr",
-                    dataset = "laposte_boiterue"),
-                separator = u";"),
+            CSV(SourceOpenDataSoft(
+                attribution = u"data.gouv.fr:LaPoste",
+                base_url="https://datanova.legroupe.laposte.fr",
+                dataset="laposte_boiterue")),
             Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

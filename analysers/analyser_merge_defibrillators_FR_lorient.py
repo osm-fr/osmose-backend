@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
@@ -31,10 +31,13 @@ class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-municipaux-dae-ville-de-lorient/",
-            u"Localisation des défibrillateurs municipaux (DAE) - Ville de Lorient",
-            GeoJSON(Source(attribution = u"Ville de Lorient",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/01f2a133-4929-4001-906c-412f682d0d59")),
+            "https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-municipaux-dae-ville-de-lorient/",
+            "Localisation des défibrillateurs municipaux (DAE) - Ville de Lorient",
+            GeoJSON(
+                SourceDataGouv(
+                    attribution="Ville de Lorient",
+                    dataset="5c70a7f206e3e755537bb849",
+                    resource="01f2a133-4929-4001-906c-412f682d0d59")),
             Load("geom_x", "geom_y"),
             Conflate(
                 select = Select(

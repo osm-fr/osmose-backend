@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
@@ -38,9 +38,10 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
         self.init(
             u"https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star",
             u"Topologie des points d'arrêt de bus du réseau STAR",
-            CSV(Source(attribution = u"Keolis Rennes", millesime = "09/2016",
-                    fileUrl = u"https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            CSV(SourceOpenDataSoft(
+                attribution="Keolis Rennes",
+                base_url="https://data.rennesmetropole.fr",
+                dataset="topologie-des-points-darret-de-bus-du-reseau-star")),
             Load("Coordonnées", "Coordonnées",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
@@ -33,9 +33,13 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
             u"Passages à niveau",
-            CSV(Source(attribution = u"data.gouv.fr:RFF", millesime = "01/2014",
-                    fileUrl = u"http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
-                separator = u";"),
+            CSV(
+                SourceDataGouv(
+                    attribution="data.gouv.fr:RFF",
+                    dataset="53699bd5a3a729239d205825",
+                    resource="77cd3505-76ef-41ba-aace-82b4df3a376c",
+                    encoding="ISO-8859-15"),
+                separator = ";"),
             Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma,

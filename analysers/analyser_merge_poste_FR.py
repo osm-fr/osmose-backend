@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
@@ -42,11 +42,13 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         self.APBP = re.compile(' (AP|BP|RP)$')
 
         self.init(
-            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont",
-            u"Liste des services disponibles en bureaux de poste, agences postales et relais poste",
-            CSV(Source(attribution = u"LaPoste", millesime = "03/2019",
-                     fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                 separator = u";"),
+            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont",
+            "Liste des services disponibles en bureaux de poste, agences postales et relais poste",
+            CSV(
+                SourceOpenDataSoft(
+                    attribution="LaPoste",
+                    base_url="https://datanova.legroupe.laposte.fr",
+                    dataset="laposte_poincont")),
             Load("Longitude", "Latitude"),
             Conflate(
                 select = Select(

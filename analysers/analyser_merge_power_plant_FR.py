@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from modules import Stablehash
 
@@ -35,10 +35,12 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
         self.init(
             u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
             u"Registre national des installations de production d'électricité et de stockage",
-            CSV(Geocode_Addok_CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2019",
-                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                    columns = 'commune', citycode = 'codeINSEECommune', delimiter = ';', logger = logger),
-                separator = u";"),
+            CSV(Geocode_Addok_CSV(
+                SourceOpenDataSoft(
+                    attribution="data.gouv.fr:RTE",
+                    base_url="https://opendata.reseaux-energies.fr",
+                    dataset="registre-national-installation-production-stockage-electricite-agrege-311217"),
+                columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load("longitude", "latitude",
                 where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 1000,
                 map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001})),

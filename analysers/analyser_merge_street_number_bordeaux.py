@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Conflate, Mapping
+from .Analyser_Merge import SourceOpenDataSoft, CSV, Load, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
@@ -29,8 +29,11 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 3, 'Bordeaux', logger,
             'https://opendata.bordeaux-metropole.fr/explore/dataset/fv_adresse_p',
             'Numéro de voirie de Bordeaux Métropole',
-            CSV(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
-                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/fv_adresse_p/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=,')),
+            CSV(
+                SourceOpenDataSoft(
+                    attribution='Bordeaux Métropole',
+                    base_url="https://opendata.bordeaux-metropole.fr",
+                    dataset="fv_adresse_p")),
             Load('Geo Point', 'Geo Point',
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),

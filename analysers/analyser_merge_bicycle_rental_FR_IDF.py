@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
@@ -35,10 +35,14 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
             title = T_('{0} bicycle update', 'IDF'))
 
         self.init(
-            u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/",
-            u"Vélib' - Disponibilité temps réel",
-            GeoJSON(Source(attribution = u"Autolib Velib Métropole", millesime = "04/2020",
-                fileUrl = u"https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=geojson&timezone=Europe/Berlin")),
+            "https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/",
+            "Vélib' - Disponibilité temps réel",
+            GeoJSON(
+                SourceOpenDataSoft(
+                    attribution="Autolib Velib Métropole",
+                    base_url="https://opendata.paris.fr",
+                    dataset="velib-disponibilite-en-temps-reel",
+                    format="geojson")),
             Load("geom_x", "geom_y"),
             Conflate(
                 select = Select(

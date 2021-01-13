@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
@@ -67,15 +67,14 @@ administrative schools for a single physical school.''')
             trap = trap)
 
         self.init(
-            u"https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
-            u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
-            CSV(Source(attribution = u"Ministère de l'Éducation nationale et de la Jeunesse", millesime = "09/2020",
-                    fileUrl = u"https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",
-                    filter = lambda t: t.replace("Ecole", u"École").replace("ecole", u"école").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire").replace(u"elementaire", u"élémentaire").replace(u"Elémentaire", u"Élémentaire").replace(u"elémentaire", u"élémentaire").replace(u"College", u"Collège")),
-                 separator = u";"),
-            Load("Position", "Position",
-                xFunction = lambda x: x is not None and x.split(',')[1] or None,
-                yFunction = lambda y: y is not None and y.split(',')[0] or None,
+            "https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
+            "Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
+            CSV(SourceOpenDataSoft(
+                attribution="Ministère de l'Éducation nationale et de la Jeunesse",
+                base_url="https://data.education.gouv.fr",
+                dataset="fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
+                filter=lambda t: t.replace("Ecole", "École").replace("ecole", "école").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace("élementaire", "élémentaire").replace("elementaire", "élémentaire").replace("Elémentaire", "Élémentaire").replace("elémentaire", "élémentaire").replace("College", "Collège"))),
+            Load("Longitude", "Latitude",
                 select = {"Code état établissement": ["1", "3"]},
                 where = lambda res: res["Code postal"] and self.is_in(res["Code postal"])),
             Conflate(
@@ -91,7 +90,7 @@ administrative schools for a single physical school.''')
                     mapping1 = {
                         "ref:UAI": "Code établissement",
                         "school:FR": lambda res: self.School_FR_nature_uai[res["Code nature"]],
-                        "operator:type": lambda res: "private" if res[u"Secteur Public/Privé"] == u"Privé" else "public" if res[u"Secteur Public/Privé"] == u"Public" else None},
+                        "operator:type": lambda res: "private" if res["Secteur Public/Privé"] == u"Privé" else "public" if res[u"Secteur Public/Privé"] == u"Public" else None},
                     mapping2 = {"name": lambda res: res["Appellation officielle"].replace(u"ECOLE", u"École").replace(u"ELEMENTAIRE", u"élémentaire") if res["Appellation officielle"] not in [None, u"A COMPLETER", u"École primaire", u"École Primaire", u"ECOLE PRIMAIRE", u"École PRIMAIRE", u"ECOLE Primaire", u"école primaire", u"École primaire publique", u"ECOLE PRIMAIRE PUBLIQUE", u"École Primaire Publique", u"École PRIMAIRE publique", u"École primaire privée", u"ECOLE PRIMAIRE PRIVÉE", u"École primaire intercommunale", u"École primaire Intercommunale", u"École Primaire Intercommunale", u"École élémentaire", u"École Élémentaire", u"ECOLE ELEMENTAIRE", u"École ELEMENTAIRE", u"École Elementaire", u"école élémentaire", u"École élémentaire publique", u"École élémentaire Publique", u"ECOLE ELEMENTAIRE PUBLIQUE", u"École élémentaire privée", u"École élémentaire intercommunale", u"École élémentaire école publique", u"École maternelle", u"ECOLE MATERNELLE", u"École Maternelle", u"École MATERNELLE", u"École Maternelle", u"école maternelle", u"École maternelle publique", u"ECOLE MATERNELLE PUBLIQUE", u"École Maternelle Publique", u"École maternelle Publique", u"école maternelle publique", u"École maternelle intercommunale", u"École maternelle Intercommunale", u"Collège"] else None},
                     text = self.text)))
 

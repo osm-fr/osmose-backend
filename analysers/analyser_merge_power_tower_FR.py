@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
@@ -35,11 +35,12 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             title = T_('Power support, integration suggestion'))
 
         self.init(
-            u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte-au-6-juin-2020",
-            u"Pylones RTE",
-            CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",
-                    fileUrl = "https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"),
-                separator = u";"),
+            "https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte/",
+            "Pylones RTE",
+            CSV(SourceOpenDataSoft(
+                attribution="data.gouv.fr:RTE",
+                base_url="https://opendata.reseaux-energies.fr",
+                dataset="pylones-rte")),
             Load(u"Longitude pylône (DD)", u"Latitude pylône (DD)"),
             Conflate(
                 select = Select(

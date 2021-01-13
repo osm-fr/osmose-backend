@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Carpool_FR(Analyser_Merge):
@@ -35,11 +35,16 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
             title = T_('Carpool parking update'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/base-nationale-consolidee-des-lieux-de-covoiturage",
-            u"Base nationale consolidée des lieux de covoiturage",
-            CSV(Source(attribution = u"Transport.data.gouv.fr", millesime = "09/2019", encoding = "utf-8-sig",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/e0962ca4-2fb9-4257-a569-56704df3243d",
-                    filter = lambda text: text.replace('\r', '\n')), separator = u";"),
+            "https://www.data.gouv.fr/fr/datasets/base-nationale-consolidee-des-lieux-de-covoiturage",
+            "Base nationale consolidée des lieux de covoiturage",
+            CSV(
+                SourceDataGouv(
+                    attribution="Transport.data.gouv.fr",
+                    encoding="utf-8-sig",
+                    dataset="5d6eaffc8b4c417cdc452ac3",
+                    resource="e0962ca4-2fb9-4257-a569-56704df3243d",
+                    filter=lambda text: text.replace('\r', '\n')),
+                separator=";"),
             Load("Xlong", "Ylat",
                 select = {
                     "ouvert": u"true"}),

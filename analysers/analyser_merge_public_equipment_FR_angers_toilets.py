@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_Angers_Toilets(Analyser_Merge):
@@ -33,9 +33,10 @@ class Analyser_Merge_Public_Equipment_FR_Angers_Toilets(Analyser_Merge):
         self.init(
             u"https://data.angers.fr/explore/dataset/sanitaires-publics-angers/",
             u"Toilettes publiques",
-            CSV(Source(attribution = u"Angers Loire Métropole", millesime = "01/2017",
-                    fileUrl = u"https://data.angers.fr/explore/dataset/sanitaires-publics-angers/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            CSV(SourceOpenDataSoft(
+                attribution="Angers Loire Métropole",
+                base_url="https://data.angers.fr",
+                dataset="sanitaires-publics-angers")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from collections import OrderedDict
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Police_FR_gn(Analyser_Merge):
@@ -38,8 +38,11 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
         self.init(
             u"https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/",
             u"Liste des points d'accueil de la gendarmerie nationale",
-            CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6a43ef2-d302-4456-90e9-ff2c47cac562"),
+            CSV(
+                SourceDataGouv(
+                    attribution="data.gouv.fr:Ministère de l'Intérieur",
+                    dataset="5369993fa3a729239d2051cd",
+                    resource="d6a43ef2-d302-4456-90e9-ff2c47cac562"),
                 separator = u";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS",
                 where = lambda row: u"Centre d'information et de recrutement" not in row["service"] and u"motorisé" not in row["service"] ),

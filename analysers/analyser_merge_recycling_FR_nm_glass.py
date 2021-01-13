@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
@@ -37,12 +37,14 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
         self.init(
             u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
             u"Colonnes aériennes de Nantes Métropole",
-            CSV(Source(attribution = "Nantes Métropole {0}", millesime = "12/2020",
-                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = u";"),
-            Load("geo_point_2d", "geo_point_2d",
-                xFunction = lambda geo: float(geo.split(',')[1].strip()),
-                yFunction = lambda geo: float(geo.split(',')[0]),
-                select = {"type_dechet": "Verre"}),
+            GeoJSON(SourceOpenDataSoft(
+                attribution="Nantes Métropole {0}",
+                base_url="https://data.nantesmetropole.fr",
+                dataset="244400404_colonnes-aeriennes-nantes-metropole",
+                format="geojson")),
+            Load(
+                "geom_x", "geom_y",
+                select={"type_dechet": "Verre"}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -55,5 +57,5 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:NM": u"id_colonne"},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x is not None, [fields["type_dechet"], fields["voie"], fields["obs"]]))} )))
+                    mapping1 = {"ref:FR:NM": "id_colonne"},
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x is not None, [fields["type_dechet"], fields["adresse"], fields["observation"]]))} )))

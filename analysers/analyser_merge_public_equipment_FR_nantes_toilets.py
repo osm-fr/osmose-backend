@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, JSON, Load, Conflate, Select, Mapping
 import json
 
 
@@ -34,8 +34,12 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
         self.init(
             u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
             u"Toilettes publiques de Nantes Métropole",
-            JSON(Source(attribution = u"Nantes Métropole", millesime = "07/2020",
-                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole/download/?format=json&timezone=Europe/Berlin"),
+            JSON(
+                SourceOpenDataSoft(
+                    attribution="Nantes Métropole",
+                    base_url="https://data.nantesmetropole.fr",
+                    dataset="244400404_toilettes-publiques-nantes-metropole",
+                    format="json"),
                 extractor = lambda json: map(lambda j: j['fields'], json)),
             Load("geo_shape.coordinates", "geo_shape.coordinates",
                 xFunction = lambda c: c and json.loads(c)[0],

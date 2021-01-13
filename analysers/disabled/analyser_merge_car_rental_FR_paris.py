@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
@@ -37,11 +37,12 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
             title = T_('Paris Autolib\' car rental update'))
 
         self.init(
-            u"http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
-            u"Stations et espaces AutoLib de la métropole parisienne",
-            CSV(Source(attribution = u"Mairie de Paris", millesime = "03/2016",
-                    fileUrl = u"http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne/download/?format=csv&use_labels_for_header=true"),
-                separator = u";"),
+            "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
+            "Stations et espaces AutoLib de la métropole parisienne",
+            CSV(SourceOpenDataSoft(
+                attribution="Mairie de Paris",
+                base_url="http://opendata.paris.fr",
+                dataset="stations_et_espaces_autolib_de_la_metropole_parisienne"))
             Load("XY", "XY",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

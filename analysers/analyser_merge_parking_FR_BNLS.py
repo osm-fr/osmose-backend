@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Parking_FR_BNLS(Analyser_Merge):
@@ -49,9 +49,13 @@ on the wiki. Add a node or add tags if already existing.''')
         self.init(
             "https://www.data.gouv.fr/fr/datasets/base-nationale-des-lieux-de-stationnement/",
             "Base Nationale des Lieux de Stationnement",
-            CSV(Source(attribution = "Équipe du Point d'Accès National", millesime = "2020/04/30", encoding = "utf-8-sig",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/e32f7675-913b-4e01-b8c8-0a29733e4407"),
-                separator = ";"),
+            CSV(
+                SourceDataGouv(
+                    attribution="Équipe du Point d'Accès National",
+                    encoding="utf-8-sig",
+                    dataset="5ea1add4a5a7dac3af82310a",
+                    resource="e32f7675-913b-4e01-b8c8-0a29733e4407"),
+                separator=";"),
             Load("Xlong", "Ylat",
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma),
