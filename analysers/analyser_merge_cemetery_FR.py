@@ -39,7 +39,7 @@ class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
                 select = {"etat_de_l_objet": "En service"}),
             Conflate(
                 select = Select(
-                    types = ["nodes", "ways"],
+                    types = ["nodes", "ways", "relations"],
                     tags = [
                         {"landuse": "cemetery"},
                         {"amenity": "grave_yard"} ]),

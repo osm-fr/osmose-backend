@@ -138,7 +138,7 @@ class SubAnalyser_Merge_Man_Made_FR(SubAnalyser_Merge_Dynamic):
                 select = select),
             Conflate(
                 select = Select(
-                    types = ["nodes", "ways"],
+                    types = ["nodes", "ways", "relations"],
                     tags = tags),
                 conflationDistance = 100,
                 mapping = Mapping(
