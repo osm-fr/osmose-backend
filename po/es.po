@@ -7,7 +7,7 @@
 # Franco, 2018
 # Franco, 2018
 #  <jocelyn.jaubert@gmail.com>, 2013
-# Jorge Sanz <sanchi2@gmail.com>, 2019-2020
+# Jorge Sanz <sanchi2@gmail.com>, 2019-2021
 # Juan Carlos, 2020
 # Juan Carlos, 2020
 # 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-07 21:06+0000\n"
+"PO-Revision-Date: 2021-01-13 20:40+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -38,10 +38,6 @@ msgstr "Aparcamiento de bicicletas Bordeaux no integrado"
 msgid "CAPP bicycle parking not integrated"
 msgstr "Aparcamiento de bicicletas CAPP no integrado"
 
-#: ../analysers/disabled/analyser_merge_bicycle_rental_FR_capp.py:30
-msgid "CAPP bicycle rental not integrated"
-msgstr "Alquiler de bicicletas CAPP no integrado"
-
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
 msgstr "Instituto o Universidad no integrada"
@@ -53,14 +49,6 @@ msgstr "Falta punto geodésico"
 #: ../analysers/analyser_merge_geodesie.py:86
 msgid "Missing survey site"
 msgstr "Falta sitio geodésico"
-
-#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:30
-msgid "Hydrant not integrated"
-msgstr "Hidrante no integrado"
-
-#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:31
-msgid "Hydrant, integration suggestion"
-msgstr "Hidrante, sugerencia de integración"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:31
 msgid "Crossing level not integrated"
@@ -137,58 +125,6 @@ msgstr "Falta de semáforo (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:117
 msgid "Tunnel missing (TMC)"
 msgstr "Falta túnel (TMC)"
-
-#: ../analysers/disabled/analyser_merge_wikipedia_insee_FR.py:30
-msgid "Update Wikipedia tag"
-msgstr "Actualizar etiqueta Wikipedia"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:367
-msgid "Wikipedia, aerodrome integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en aeropuerto"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:379
-msgid "Wikipedia, city integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en ciudad"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:391
-msgid "Wikipedia, school integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en escuela"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:403
-msgid "Wikipedia, forest integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en bosque"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:415
-msgid "Wikipedia, glacier integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en glaciar"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:427
-msgid "Wikipedia, island integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en isla"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:439
-msgid "Wikipedia, peak integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en pico de montaña"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:451
-msgid "Wikipedia, mountain pass integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en paso de montaña"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:463
-msgid "Wikipedia, railway station integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en estación de tren"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:475
-msgid "Wikipedia, water area integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en área de agua"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:489
-msgid "Wikipedia, castle integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en castillo"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:501
-msgid "Wikipedia, church integration suggestion"
-msgstr "Wikipedia, sugerencia de integración en iglesia"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Survey point out of boundary"
@@ -291,10 +227,6 @@ msgstr "Árbol intersecta con edificio"
 #: ../analysers/analyser_osmosis_highway_vs_building.py:370
 msgid "Tree and highway too close"
 msgstr "Árbol y carretera demasiado cerca"
-
-#: ../analysers/disabled/analyser_osmosis_mini_farm.py:44
-msgid "Small farm : consider farmyard or building instead"
-msgstr "Pequeña granja: considerar patio o edificio en su lugar"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:83
 msgid "Swimming-pool, reservoir, pond as natural=water"
@@ -517,10 +449,6 @@ msgstr "Toponimía"
 msgid "Missing altitude"
 msgstr "Falta altitud"
 
-#: ../plugins/disabled/ODbL_migration.py:33
-msgid "ODbL migration damage"
-msgstr "Daño en migración ODbL"
-
 #: ../plugins/Source.py:36
 msgid "Illegal or incomplete source tag"
 msgstr "Etiqueta fuente ilegal o incompleta"
@@ -652,10 +580,6 @@ msgstr "Sufijo wikipedia inválido"
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Etiqueta wikipedia duplicada como sufijo o prefijo"
 
-#: ../plugins/disabled/TagMissing_LookLike.py:86
-msgid "Missing tag by cooccurrence"
-msgstr "Falta etiqueta de cooccurrence"
-
 #: ../plugins/TagRemove_FR.py:33
 msgid "Misused tag in this country"
 msgstr "Etiqueta sin uno en este país"
@@ -677,18 +601,6 @@ msgstr "Importación OpenSeaMap, posición muy aproximativo."
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Etiqueta innecesaria en junction=roundabout"
 
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
-msgid "Paris Autolib' car rental not integrated"
-msgstr "Alquiler de autos París Autolib' no integrado"
-
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:33
-msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr "Alquiler de autos Paris Autolib' sin ref:FR:Paris:DSP"
-
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:35
-msgid "Paris Autolib' car rental integration suggestion"
-msgstr "Alquiler de automóviles Paris Autolib', sugerencia de integración"
-
 #: ../analysers/analyser_osmosis_fantoir.py:109
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiples nombres para el mismo ref FANTOIR"
@@ -704,14 +616,6 @@ msgstr "El tipo de objeto FANTOIR no coincide con la característica OSM"
 #: ../analysers/analyser_merge_police_FR_pn.py:31
 msgid "Police not integrated"
 msgstr "Policía no integrada"
-
-#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:30
-msgid "Wallonia stop not integrated"
-msgstr "Parada Wallonia no integrada"
-
-#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:31
-msgid "Wallonia stop, integration suggestion"
-msgstr "Parada Wallonia, sugerencia de integración"
 
 #: ../analysers/analyser_merge_fuel_FR.py:31
 #: ../analysers/analyser_merge_fuel_IT.py:47
@@ -734,12 +638,12 @@ msgstr "El nombre termina con un espacio"
 msgid "Name contains successive spaces"
 msgstr "El nombre contiene espacios sucesivos"
 
-#: ../plugins/TagRemove_Incompatibles.py:109
+#: ../plugins/TagRemove_Incompatibles.py:110
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Conflicto entre etiquetas: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:112
+#: ../plugins/TagRemove_Incompatibles.py:113
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 
@@ -789,11 +693,6 @@ msgstr "Nombre del idioma sin nombre predeterminado"
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:31
 msgid "Library not integrated"
 msgstr "Biblioteca no integrada"
-
-#: ../analysers/disabled/analyser_merge_restaurant_FR_aquitaine.py:31
-#: ../analysers/disabled/analyser_merge_restaurant_FR_cg71.py:32
-msgid "Restaurant not integrated"
-msgstr "Restaurante no integrado"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:31
 msgid "Winery not integrated"
@@ -925,10 +824,6 @@ msgstr "Carretera intersecta con pequeña pieza de agua"
 msgid "Highway intersecting large water piece"
 msgstr "Carretera intersecta con larga pieza de agua"
 
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:37
-msgid "Paris Autolib' car rental update"
-msgstr "alquiler de automóviles Paris Autolib' actualizado"
-
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:53
 msgid "Historical monument update"
 msgstr "Monumento histórico actualizado"
@@ -970,7 +865,7 @@ msgstr "Valor de acceso a carriles erróneo, no debe ser un entero sino una rest
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Carriles de giro merge_to_* necesita una línea paralela en el lado bueno"
 
-#: ../plugins/TagRemove_Incompatibles.py:115
+#: ../plugins/TagRemove_Incompatibles.py:116
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflicto entre etiquetas: crossing=no debe ser utilizado sin un highway=crossing"
@@ -1269,12 +1164,10 @@ msgid "Power minor_distribution substation, integration suggestion"
 msgstr "Subestación minor_distribution de energía, sugerencia de integración"
 
 #: ../analysers/analyser_osmosis_relation_open.py:75
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:69
 msgid "Open relation type=boundary"
 msgstr "Relación abierta type=boundary"
 
 #: ../analysers/analyser_osmosis_relation_open.py:78
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:72
 msgid "Open relation type=multipolygon"
 msgstr "Relación abierta type=multipolygon"
 
@@ -1294,14 +1187,6 @@ msgstr "Sitio de caravanas Aquitaine no integrado"
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:60
 msgid "Aquitaine camp site not integrated"
 msgstr "Sitio de campamento Aquitaine no integrado"
-
-#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:31
-msgid "Aquitaine tourism information not integrated"
-msgstr "Información turística Aquitaine no integrado"
-
-#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:33
-msgid "Aquitaine tourism information, integration suggestion"
-msgstr "Información turística Aquitaine, sugerencia de integración"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:31
 msgid "Aquitaine museum not integrated"
@@ -1372,10 +1257,6 @@ msgstr "Probablemente falte la etiqueta zone:maxspeed=XX:{0}, según el barrio"
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "Relación de restricción, mala dirección de sentido único en miembro \"from\" a \"to\" "
 
-#: ../plugins/disabled/Structural_Restriction.py:31
-msgid "Useless turn restriction"
-msgstr "Restricción de giro inútil"
-
 #: ../plugins/Name_Cadastre_FR.py:16 ../plugins/Name_Cadastre_FR.py:45
 #: ../plugins/Name_Cadastre_FR.py:70
 msgid ""
@@ -1406,23 +1287,6 @@ msgstr "Este valor de wikidata coincide con una cadena de tiendas, debe estar en
 #: ../plugins/TagFix_Wikidata.py:51
 msgid "Please also check the wikipedia tag."
 msgstr "Por favor, compruebe también la etiqueta wikipedia."
-
-#: ../analysers/disabled/analyser_merge_cadastre_FR.py:31
-#: ../analysers/disabled/analyser_merge_cadastre_FR.py:53
-msgid "Misc not integrated"
-msgstr "Misc no integrado"
-
-#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:31
-msgid "SITCOM recycling not integrated"
-msgstr "Reciclaje SITCOM no integrado"
-
-#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:33
-msgid "SITCOM recycling, integration suggestion"
-msgstr "Reciclaje SITCOM, sugerencia de integración"
-
-#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:35
-msgid "SITCOM recycling update"
-msgstr "Actualización de reciclaje de SITCOM"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:53
 msgid "Direct or too permissive access to motorway"
@@ -1536,7 +1400,6 @@ msgstr "La URL no tiene un esquema válido"
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
-#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:31
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr "{0} parada no integrada"
@@ -1547,7 +1410,6 @@ msgstr "{0} parada no integrada"
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:34
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:34
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:34
-#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:32
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr "{0} parada, integración sugerida"
@@ -1557,7 +1419,6 @@ msgstr "{0} parada, integración sugerida"
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:60
-#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:55
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "{0} paradas de {1}"
@@ -2116,14 +1977,12 @@ msgid "TMC data may be wrong or poorly located."
 msgstr "Los datos de TMC pueden estar incorrectos o mal ubicados."
 
 #: ../analysers/analyser_osmosis_relation_open.py:72
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:66
 msgid ""
 "A relation that should be a closed polygon and it is not. An issue is\n"
 "reported at each end of open part."
 msgstr "Una relación que debería ser un polígono cerrado y no lo es. Un problema es\nreportado en cada extremo de la parte abierta."
 
 #: ../analysers/analyser_osmosis_relation_open.py:87
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:81
 #, python-brace-format
 msgid "Open relation type=boundary admin_level={0}"
 msgstr "Relación abierta type=boundary admin_level={0}"
@@ -2131,9 +1990,6 @@ msgstr "Relación abierta type=boundary admin_level={0}"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:199
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
 msgstr "Los extremos de la interpolación deben tener valores diferentes en la etiqueta \"addr:housenumber\""
-
-msgid "Check the position of node admin_centre role and boundaries."
-msgstr "Compruebe la posición del nodo admin_centre rol y límites."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:190
 msgid ""
@@ -2290,11 +2146,6 @@ msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.pn
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:116
 msgid "The end of the way is not connected to another way."
 msgstr "El final de la vía no está conectado a otra vía."
-
-msgid ""
-"The end of a `highway=cycleway` must be connected to the rest of the\n"
-"road network to ensure continuity, especially for routes planner"
-msgstr "El final de una `highway=cycleway` debe estar conectado al resto de la\n red de carreteras para garantizar la continuidad, especialmente para el planificador de rutas"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:225
 msgid ""
@@ -2774,12 +2625,6 @@ msgstr ""
 msgid "In a relation, a way should be present only once."
 msgstr "En una relación, una vía debería estar presente sólo una vez."
 
-msgid ""
-"Most often, this is an user issue that add several times the same way.\n"
-"The editor JOSM can easily visualize the relationships and see duplicates\n"
-"(in color)."
-msgstr ""
-
 #: ../plugins/Administrative_TooManyWays.py:39
 msgid ""
 "Double check the ways roles in the relation before deleting.\n"
@@ -2787,18 +2632,6 @@ msgid ""
 "Caution: in a route, a path can be taken several times. The multiple\n"
 "presence of this path in the relation `type=route` is not then an issue.\n"
 "Then ensure the roles `forward` and `backward`."
-msgstr ""
-
-#: ../plugins/disabled/Structural_Restriction2.py:37
-msgid "Useless `no_u_turn` restriction, it's already forbidden by local law"
-msgstr ""
-
-#: ../plugins/disabled/TagFix_Brand.py:36
-msgid "Tag name is a brand"
-msgstr "El nombre de etiqueta es una marca"
-
-#: ../plugins/disabled/Wiki.py:32
-msgid "Object taggin type"
 msgstr ""
 
 #: ../plugins/Ele_MontainPass_Peak.py:37
@@ -2972,17 +2805,6 @@ msgstr ""
 #: ../plugins/Name_UpperCaseNumber.py:35
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
 msgstr "Número escrito en mayúsculas: \"N°\" en vez de \"n°\"."
-
-#: ../plugins/disabled/ODbL_migration.py:35
-msgid ""
-"The last contributor to the object is the ODbL migration robot. The\n"
-"result of the edition of this robot is a degradation of the object to\n"
-"make it compatible with ODbL."
-msgstr ""
-
-#: ../plugins/disabled/ODbL_migration.py:39
-msgid "Complete the object and check immediate surroundings."
-msgstr "Complete el objeto y verifique los alrededores cercanos."
 
 #: ../plugins/Phone.py:57
 msgid "Local short code can not be internationalized"
@@ -3543,7 +3365,7 @@ msgstr "Eliminar la etiqueta `{0}`."
 
 #: ../plugins/TagFix_Area.py:38
 msgid "Untagged area object"
-msgstr ""
+msgstr "Objeto de área sin etiquetar"
 
 #: ../plugins/TagFix_Area.py:39
 msgid ""
@@ -3958,35 +3780,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:935
+#: ../analysers/Analyser_Merge.py:971
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:938
+#: ../analysers/Analyser_Merge.py:974
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:943
+#: ../analysers/Analyser_Merge.py:979
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:956
+#: ../analysers/Analyser_Merge.py:992
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:969
+#: ../analysers/Analyser_Merge.py:1005
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:931
+#: ../analysers/Analyser_Merge.py:967
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4062,7 +3884,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Brand.py:34
 msgid "This name is very common, is this store part of the brand network?"
-msgstr ""
+msgstr "Este nombre es muy común, ¿esta tienda forma parte de la red de la marca?"
 
 #: ../plugins/TagFix_Brand.py:36
 msgid ""
@@ -4134,7 +3956,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_way_approximate.py:167
 #, python-brace-format
 msgid "Approximate geometry of {0}"
-msgstr ""
+msgstr "Geometría aproximada de {0}"
 
 #: ../plugins/Phone2.py:16
 msgid "Different value of tag contact:* and *"
@@ -4182,11 +4004,11 @@ msgstr ""
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:114
 #, python-brace-format
 msgid "Historical monument: {0}"
-msgstr ""
+msgstr "Monumento histórico: {0}"
 
 #: tmp.json:1
 msgid "bicycle parking"
-msgstr ""
+msgstr "aparcamiento para bicicletas"
 
 #: tmp.json:2
 msgid "surveillance camera"
@@ -4202,7 +4024,7 @@ msgstr ""
 
 #: tmp.json:5
 msgid "phone booth"
-msgstr ""
+msgstr "Cabina telefónica"
 
 #: tmp.json:6
 msgid "drinking water"
@@ -4210,71 +4032,71 @@ msgstr ""
 
 #: tmp.json:7 tmp.json:33
 msgid "max speed limit 5"
-msgstr ""
+msgstr "límite de velocidad máxima 5"
 
 #: tmp.json:8 tmp.json:34
 msgid "max speed limit 10"
-msgstr ""
+msgstr "límite de velocidad máxima 10"
 
 #: tmp.json:9 tmp.json:35
 msgid "max speed limit 15"
-msgstr ""
+msgstr "límite de velocidad máxima 15"
 
 #: tmp.json:10 tmp.json:36
 msgid "max speed limit 20"
-msgstr ""
+msgstr "límite de velocidad máxima 20"
 
 #: tmp.json:11 tmp.json:38
 msgid "max speed limit 30"
-msgstr ""
+msgstr "límite de velocidad máxima 30"
 
 #: tmp.json:12 tmp.json:39
 msgid "max speed limit 35"
-msgstr ""
+msgstr "límite de velocidad máxima 35"
 
 #: tmp.json:13 tmp.json:40
 msgid "max speed limit 40"
-msgstr ""
+msgstr "límite de velocidad máxima 40"
 
 #: tmp.json:14 tmp.json:41
 msgid "max speed limit 45"
-msgstr ""
+msgstr "límite de velocidad máxima 45"
 
 #: tmp.json:15 tmp.json:42
 msgid "max speed limit 50"
-msgstr ""
+msgstr "límite de velocidad máxima 50"
 
 #: tmp.json:16 tmp.json:44
 msgid "max speed limit 60"
-msgstr ""
+msgstr "límite de velocidad máxima 60"
 
 #: tmp.json:17 tmp.json:46
 msgid "max speed limit 70"
-msgstr ""
+msgstr "límite de velocidad máxima 70"
 
 #: tmp.json:18 tmp.json:48
 msgid "max speed limit 80"
-msgstr ""
+msgstr "límite de velocidad máxima 80"
 
 #: tmp.json:19 tmp.json:49
 msgid "max speed limit 90"
-msgstr ""
+msgstr "límite de velocidad máxima 90"
 
 #: tmp.json:20 tmp.json:50
 msgid "max speed limit 100"
-msgstr ""
+msgstr "límite de velocidad máxima 100"
 
 #: tmp.json:21 tmp.json:51
 msgid "max speed limit 110"
-msgstr ""
+msgstr "límite de velocidad máxima 110"
 
 #: tmp.json:22 tmp.json:52
 msgid "max speed limit 120"
-msgstr ""
+msgstr "límite de velocidad máxima 120"
 
 #: tmp.json:23
 msgid "max speed limit 130"
-msgstr ""
+msgstr "límite de velocidad máxima 130"
 
 #: tmp.json:24
 msgid "max height limit"
@@ -4286,7 +4108,7 @@ msgstr ""
 
 #: tmp.json:26
 msgid "roundabout"
-msgstr ""
+msgstr "rotonda"
 
 #: tmp.json:27
 msgid "road bump"
@@ -4294,7 +4116,7 @@ msgstr ""
 
 #: tmp.json:28
 msgid "traffic signals"
-msgstr ""
+msgstr "señales de tráfico"
 
 #: tmp.json:29
 msgid "living street"
@@ -4314,27 +4136,27 @@ msgstr ""
 
 #: tmp.json:37
 msgid "max speed limit 25"
-msgstr ""
+msgstr "límite de velocidad máxima 25"
 
 #: tmp.json:43
 msgid "max speed limit 55"
-msgstr ""
+msgstr "límite de velocidad máxima 55"
 
 #: tmp.json:45
 msgid "max speed limit 65"
-msgstr ""
+msgstr "límite de velocidad máxima 65"
 
 #: tmp.json:47
 msgid "max speed limit 75"
-msgstr ""
+msgstr "límite de velocidad máxima 75"
 
 #: tmp.json:54
 msgid "Tourism office"
-msgstr ""
+msgstr "Oficina de turismo"
 
 #: tmp.json:55
 msgid "Church"
-msgstr ""
+msgstr "Iglesia"
 
 #: tmp.json:56
 msgid "Camping"
@@ -4342,11 +4164,11 @@ msgstr ""
 
 #: tmp.json:57
 msgid "Restaurant"
-msgstr ""
+msgstr "Restaurante"
 
 #: tmp.json:58
 msgid "Museum"
-msgstr ""
+msgstr "Museo"
 
 #: tmp.json:59
 msgid "Winery"
@@ -4406,12 +4228,12 @@ msgstr ""
 #: ../plugins/TagFix_DuplicateValue.py:120
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
-msgstr ""
+msgstr "Valores duplicados {key}={val}"
 
 #: ../plugins/TagFix_DuplicateValue.py:127
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
-msgstr ""
+msgstr "Valores similares duplicados {key}={val}"
 
 #: ../plugins/TagFix_Postcode.py:101
 #, python-brace-format
@@ -4543,27 +4365,15 @@ msgstr ""
 msgid "Chimney not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_man_made_FR.py:66
-msgid "Bell tower not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_man_made_FR.py:75
-msgid "Cross not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_man_made_FR.py:84
+#: ../analysers/analyser_merge_man_made_FR.py:85
 msgid "Wind turbine not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_man_made_FR.py:93
-msgid "Minaret not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_man_made_FR.py:104
+#: ../analysers/analyser_merge_man_made_FR.py:106
 msgid "Petroleum well not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_man_made_FR.py:112
+#: ../analysers/analyser_merge_man_made_FR.py:114
 msgid "Flare not integrated"
 msgstr ""
 
@@ -4595,13 +4405,6 @@ msgstr ""
 msgid "Fire station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:180
-#: ../analysers/analyser_merge_poi_FR.py:189
-#: ../analysers/analyser_merge_poi_FR.py:198
-#: ../analysers/analyser_merge_poi_FR.py:207
-msgid "Megalith not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_reservoir_FR.py:38
 msgid "Water tower not integrated"
 msgstr ""
@@ -4618,27 +4421,46 @@ msgstr ""
 msgid "Waterfall not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_water_FR.py:56
-msgid "Fountain not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_water_FR.py:64
+#: ../analysers/analyser_merge_water_FR.py:65
 msgid "Lavoir not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_water_FR.py:74
+#: ../analysers/analyser_merge_water_FR.py:75
 msgid "Sinkhole not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_water_FR.py:82
-msgid "Water well not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_water_FR.py:90
+#: ../analysers/analyser_merge_water_FR.py:91
 msgid "Resurgence not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_water_FR.py:98
-#: ../analysers/analyser_merge_water_FR.py:107
-msgid "Spring not integrated"
+#: ../analysers/analyser_merge_man_made_FR.py:66
+msgid "Church or Bell tower not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:76
+msgid "Cross or wayside shrine not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:94
+msgid "Mosque or Minaret not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:180
+msgid "Menhir not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:189
+msgid "Dolmen not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:198
+msgid "Tumulus not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:207
+msgid "Passage grave not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:109
+msgid "Spring box not integrated"
 msgstr ""

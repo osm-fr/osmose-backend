@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-07 21:06+0000\n"
+"PO-Revision-Date: 2021-01-13 20:40+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -33,10 +33,6 @@ msgstr "未統合のボルドー駐輪場データ"
 msgid "CAPP bicycle parking not integrated"
 msgstr "未統合のCAPP駐輪場データ"
 
-#: ../analysers/disabled/analyser_merge_bicycle_rental_FR_capp.py:30
-msgid "CAPP bicycle rental not integrated"
-msgstr "未統合のCAPP自転車レンタル施設"
-
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
 msgstr "未統合の大学データ"
@@ -48,14 +44,6 @@ msgstr "測量基準点が無い"
 #: ../analysers/analyser_merge_geodesie.py:86
 msgid "Missing survey site"
 msgstr "測量サイトが無い"
-
-#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:30
-msgid "Hydrant not integrated"
-msgstr "未統合の消火栓データ"
-
-#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:31
-msgid "Hydrant, integration suggestion"
-msgstr "消火栓データの統合推奨"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:31
 msgid "Crossing level not integrated"
@@ -132,58 +120,6 @@ msgstr "信号機がない (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:117
 msgid "Tunnel missing (TMC)"
 msgstr "トンネルがない (TMC)"
-
-#: ../analysers/disabled/analyser_merge_wikipedia_insee_FR.py:30
-msgid "Update Wikipedia tag"
-msgstr "Wikipediaタグの更新"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:367
-msgid "Wikipedia, aerodrome integration suggestion"
-msgstr "Wikipediaによる飛行場の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:379
-msgid "Wikipedia, city integration suggestion"
-msgstr "Wikipediaによる都市の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:391
-msgid "Wikipedia, school integration suggestion"
-msgstr "Wikipediaによる学校の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:403
-msgid "Wikipedia, forest integration suggestion"
-msgstr "WIkipediaによる森林の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:415
-msgid "Wikipedia, glacier integration suggestion"
-msgstr "Wikipediaによる草地の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:427
-msgid "Wikipedia, island integration suggestion"
-msgstr "Wikipediaによる島の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:439
-msgid "Wikipedia, peak integration suggestion"
-msgstr "Wikipediaによる山頂の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:451
-msgid "Wikipedia, mountain pass integration suggestion"
-msgstr "Wikipediaによる峠の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:463
-msgid "Wikipedia, railway station integration suggestion"
-msgstr "Wikipediaによる鉄道駅の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:475
-msgid "Wikipedia, water area integration suggestion"
-msgstr "Wikipediaによる水域の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:489
-msgid "Wikipedia, castle integration suggestion"
-msgstr "Wikipediaによる城の統合の提案"
-
-#: ../analysers/disabled/analyser_merge_wikipedia.py:501
-msgid "Wikipedia, church integration suggestion"
-msgstr "Wikipediaによる教会の統合の提案"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Survey point out of boundary"
@@ -286,10 +222,6 @@ msgstr "木が建物と交差している"
 #: ../analysers/analyser_osmosis_highway_vs_building.py:370
 msgid "Tree and highway too close"
 msgstr "木と道路が近すぎる"
-
-#: ../analysers/disabled/analyser_osmosis_mini_farm.py:44
-msgid "Small farm : consider farmyard or building instead"
-msgstr "farmが小さすぎる：farmyardまたはbuildingを代わりに使用"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:83
 msgid "Swimming-pool, reservoir, pond as natural=water"
@@ -512,10 +444,6 @@ msgstr "地名"
 msgid "Missing altitude"
 msgstr "altitudeが無い"
 
-#: ../plugins/disabled/ODbL_migration.py:33
-msgid "ODbL migration damage"
-msgstr "ODbL移行ダメージ"
-
 #: ../plugins/Source.py:36
 msgid "Illegal or incomplete source tag"
 msgstr "不正または不完全なsourceタグ"
@@ -647,10 +575,6 @@ msgstr "無効なwikipedia接尾辞"
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "接尾辞または接頭辞としてのwikipediaタグ重複"
 
-#: ../plugins/disabled/TagMissing_LookLike.py:86
-msgid "Missing tag by cooccurrence"
-msgstr "対応するタグが無い"
-
 #: ../plugins/TagRemove_FR.py:33
 msgid "Misused tag in this country"
 msgstr "この国でのタグ用法誤り"
@@ -672,18 +596,6 @@ msgstr "OpenSeaMapからのインポート、位置情報が不正確"
 msgid "Unneeded tag on junction=roundabout"
 msgstr "junction=roundaboutに不要なタグがある"
 
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
-msgid "Paris Autolib' car rental not integrated"
-msgstr "Paris Autolib' レンタカーが統合されていない"
-
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:33
-msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr "Paris Autolib'レンタカーにref:FR:Paris:DSPが無い"
-
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:35
-msgid "Paris Autolib' car rental integration suggestion"
-msgstr "Paris Autolib' レンタカー統合の提案"
-
 #: ../analysers/analyser_osmosis_fantoir.py:109
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "同じref FANTOIRへの重複名"
@@ -699,14 +611,6 @@ msgstr "FANTOIRオブジェクトの種別がOSMの地物に一致しない"
 #: ../analysers/analyser_merge_police_FR_pn.py:31
 msgid "Police not integrated"
 msgstr "未統合の警察"
-
-#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:30
-msgid "Wallonia stop not integrated"
-msgstr "未統合のWallonia stop"
-
-#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:31
-msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonia stopの統合の提案"
 
 #: ../analysers/analyser_merge_fuel_FR.py:31
 #: ../analysers/analyser_merge_fuel_IT.py:47
@@ -729,12 +633,12 @@ msgstr "名前が空白で終わっている"
 msgid "Name contains successive spaces"
 msgstr "nameに連続スペースが含まれている"
 
-#: ../plugins/TagRemove_Incompatibles.py:109
+#: ../plugins/TagRemove_Incompatibles.py:110
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "競合しているタグ: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:112
+#: ../plugins/TagRemove_Incompatibles.py:113
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "'bridge'と'tunnel'タグが競合"
 
@@ -784,11 +688,6 @@ msgstr "nameタグ未指定だが、現地語のname指定あり"
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:31
 msgid "Library not integrated"
 msgstr "未統合の図書館"
-
-#: ../analysers/disabled/analyser_merge_restaurant_FR_aquitaine.py:31
-#: ../analysers/disabled/analyser_merge_restaurant_FR_cg71.py:32
-msgid "Restaurant not integrated"
-msgstr "未統合のレストラン"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:31
 msgid "Winery not integrated"
@@ -920,10 +819,6 @@ msgstr "道路が水路と交差している"
 msgid "Highway intersecting large water piece"
 msgstr "道路が大きい水域と交差している"
 
-#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:37
-msgid "Paris Autolib' car rental update"
-msgstr "Paris Autolib' レンタカーの更新"
-
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:53
 msgid "Historical monument update"
 msgstr "モニュメントの更新"
@@ -965,7 +860,7 @@ msgstr "不正なアクセスレーンの値、整数ではなく制限である
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "進行方向レーン merge_to_* には許可された側にサイドレーンが必要"
 
-#: ../plugins/TagRemove_Incompatibles.py:115
+#: ../plugins/TagRemove_Incompatibles.py:116
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "タグの競合: crossing=no タグに highway=crossing が不在"
@@ -1264,12 +1159,10 @@ msgid "Power minor_distribution substation, integration suggestion"
 msgstr "配電所の統合の提案"
 
 #: ../analysers/analyser_osmosis_relation_open.py:75
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:69
 msgid "Open relation type=boundary"
 msgstr "リレーションtype=boundaryをオープン"
 
 #: ../analysers/analyser_osmosis_relation_open.py:78
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:72
 msgid "Open relation type=multipolygon"
 msgstr "リレーションtype=multipolygonをオープン"
 
@@ -1289,14 +1182,6 @@ msgstr "未統合のAquitaine キャラバンサイト"
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:60
 msgid "Aquitaine camp site not integrated"
 msgstr "未統合のAquitaineキャンプサイト"
-
-#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:31
-msgid "Aquitaine tourism information not integrated"
-msgstr "未統合のAquitaine旅行案内所"
-
-#: ../analysers/disabled/analyser_merge_tourism_FR_aquitaine_information.py:33
-msgid "Aquitaine tourism information, integration suggestion"
-msgstr "Aquitaine旅行案内所の統合の提案"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:31
 msgid "Aquitaine museum not integrated"
@@ -1367,10 +1252,6 @@ msgstr "近隣の状況から見て、おそらくzone:maxspeed=XX:{0}タグが�
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
 msgstr "進行方向制限リレーション、\"from\" または\"to\"メンバー上の不正な一方通行の方向"
 
-#: ../plugins/disabled/Structural_Restriction.py:31
-msgid "Useless turn restriction"
-msgstr "役に立たない進行方向制限"
-
 #: ../plugins/Name_Cadastre_FR.py:16 ../plugins/Name_Cadastre_FR.py:45
 #: ../plugins/Name_Cadastre_FR.py:70
 msgid ""
@@ -1401,23 +1282,6 @@ msgstr "このwikidataタグの値はチェーン店に一致しています。b
 #: ../plugins/TagFix_Wikidata.py:51
 msgid "Please also check the wikipedia tag."
 msgstr "wikipediaタグもチェックしてください"
-
-#: ../analysers/disabled/analyser_merge_cadastre_FR.py:31
-#: ../analysers/disabled/analyser_merge_cadastre_FR.py:53
-msgid "Misc not integrated"
-msgstr "未統合のその他"
-
-#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:31
-msgid "SITCOM recycling not integrated"
-msgstr "未統合のSITCOMリサイクリング"
-
-#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:33
-msgid "SITCOM recycling, integration suggestion"
-msgstr "SITCOMリサイクリングの統合の提案"
-
-#: ../analysers/disabled/analyser_merge_recycling_FR_sitcom.py:35
-msgid "SITCOM recycling update"
-msgstr "SITCOMリサイクリングの更新"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:53
 msgid "Direct or too permissive access to motorway"
@@ -1531,7 +1395,6 @@ msgstr "URLのスキーマが不適切です"
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
-#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:31
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr "{0} stop未統合"
@@ -1542,7 +1405,6 @@ msgstr "{0} stop未統合"
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:34
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:34
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:34
-#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:32
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr "{0} stopの統合の提案"
@@ -1552,7 +1414,6 @@ msgstr "{0} stopの統合の提案"
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:60
-#: ../analysers/disabled/analyser_merge_public_transport_FR_cg71.py:55
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "{1}の{0} stop"
@@ -2111,14 +1972,12 @@ msgid "TMC data may be wrong or poorly located."
 msgstr "TMCデータが誤っているか、精度が粗いものと思われます。"
 
 #: ../analysers/analyser_osmosis_relation_open.py:72
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:66
 msgid ""
 "A relation that should be a closed polygon and it is not. An issue is\n"
 "reported at each end of open part."
 msgstr "閉じたポリゴンであるべきリレーションですが、そうなっていません。閉じていない両端で問題となっています。"
 
 #: ../analysers/analyser_osmosis_relation_open.py:87
-#: ../analysers/disabled/analyser_osmbin_open_relations.py:81
 #, python-brace-format
 msgid "Open relation type=boundary admin_level={0}"
 msgstr "リレーション type=boundary admin_level={0} を開きます"
@@ -2126,9 +1985,6 @@ msgstr "リレーション type=boundary admin_level={0} を開きます"
 #: ../analysers/analyser_osmosis_addr_interpolation.py:199
 msgid "Interpolation ends should have different tag \"addr:housenumber\" values"
 msgstr "補間の終端は\"addr:housenumber\"の値とは異なるタグを持つべきです"
-
-msgid "Check the position of node admin_centre role and boundaries."
-msgstr "ノードのadmin_centreロールと境界の位置をチェックしてください。ies."
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:190
 msgid ""
@@ -2285,11 +2141,6 @@ msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.pn
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:116
 msgid "The end of the way is not connected to another way."
 msgstr "ウェイの終端が別のウェイに正しく接続されていません。"
-
-msgid ""
-"The end of a `highway=cycleway` must be connected to the rest of the\n"
-"road network to ensure continuity, especially for routes planner"
-msgstr "`highway=cycleway`の終端は道路ネットワークの残りに接続され、連続性を確保していなければなりません。特に routes planner向けに。"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:225
 msgid ""
@@ -2769,12 +2620,6 @@ msgstr "INSEEのCOGによる `place=*` の名前が、特にマージされた�
 msgid "In a relation, a way should be present only once."
 msgstr "リレーション内ではウェイは1回だけ現れるべきです。"
 
-msgid ""
-"Most often, this is an user issue that add several times the same way.\n"
-"The editor JOSM can easily visualize the relationships and see duplicates\n"
-"(in color)."
-msgstr "たいてい、これは同じウェイを何回も追加してしまったユーザー側の問題です。JOSMエディタではその関係を簡単に(色で)視覚化して重複を見分けられます。"
-
 #: ../plugins/Administrative_TooManyWays.py:39
 msgid ""
 "Double check the ways roles in the relation before deleting.\n"
@@ -2783,18 +2628,6 @@ msgid ""
 "presence of this path in the relation `type=route` is not then an issue.\n"
 "Then ensure the roles `forward` and `backward`."
 msgstr "削除する前に、リレーション内のウェイのroleをダブルチェックしてください。\n\n警告: routeにおいて、経路は複数回取ることができます。そのためリレーション種別`type=route` 内に複数経路があることは問題ではありません。\nrole `forward` 及び `backward`を確認してください。"
-
-#: ../plugins/disabled/Structural_Restriction2.py:37
-msgid "Useless `no_u_turn` restriction, it's already forbidden by local law"
-msgstr "役に立たない`no_u_turn`制限、地域の法令で既に禁じられている"
-
-#: ../plugins/disabled/TagFix_Brand.py:36
-msgid "Tag name is a brand"
-msgstr "タグのnameはbrand"
-
-#: ../plugins/disabled/Wiki.py:32
-msgid "Object taggin type"
-msgstr "オブジェクトのタグ付けの種別"
 
 #: ../plugins/Ele_MontainPass_Peak.py:37
 msgid "Complete the tag ele=* missing."
@@ -2967,17 +2800,6 @@ msgstr "IGN (フランスの地理的名称の慣習)の\"[charte de\ntoponymie]
 #: ../plugins/Name_UpperCaseNumber.py:35
 msgid "Number written in capital letters: \"N°\" in place of \"n°\"."
 msgstr "大文字で書かれた数字: \"n°\"の代わりに\"N°\"。"
-
-#: ../plugins/disabled/ODbL_migration.py:35
-msgid ""
-"The last contributor to the object is the ODbL migration robot. The\n"
-"result of the edition of this robot is a degradation of the object to\n"
-"make it compatible with ODbL."
-msgstr "このオブジェクトの最終投稿者はODbL切り替えロボットです。ロボットによるこのオブジェクトへの編集結果はODbLと互換を取るためのデグレードです。"
-
-#: ../plugins/disabled/ODbL_migration.py:39
-msgid "Complete the object and check immediate surroundings."
-msgstr "オブジェクトを完成させ、周囲をチェックします。"
 
 #: ../plugins/Phone.py:57
 msgid "Local short code can not be internationalized"
@@ -3953,35 +3775,35 @@ msgstr "これは道路脇の駐車場ではなく、閉じられているだけ
 msgid "{0} parking  update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/Analyser_Merge.py:935
+#: ../analysers/Analyser_Merge.py:971
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "レビューした結果、新しいデータでOpenStreetMapに登録すべきデータである場合には、追加してください。"
 
-#: ../analysers/Analyser_Merge.py:938
+#: ../analysers/Analyser_Merge.py:974
 msgid "Be sure that it is not already existing in another place."
 msgstr "付近の別の場所に既に存在していないことを十分確認してください。"
 
-#: ../analysers/Analyser_Merge.py:943
+#: ../analysers/Analyser_Merge.py:979
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "これはオープンデータの情報源に報告されているもので、このデータに関する検証は行われていません。"
 
-#: ../analysers/Analyser_Merge.py:956
+#: ../analysers/Analyser_Merge.py:992
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr "これは統合の提案で、オープンデータのソースとOpenStreetMapを混合します。"
 
-#: ../analysers/Analyser_Merge.py:969
+#: ../analysers/Analyser_Merge.py:1005
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr "オープンデータとOSMの双方に同じrefが見つかったので更新した方が良いかもしれません。"
 
-#: ../analysers/Analyser_Merge.py:931
+#: ../analysers/Analyser_Merge.py:967
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4538,27 +4360,15 @@ msgstr "未統合の路傍の十字架"
 msgid "Chimney not integrated"
 msgstr "未統合の煙突"
 
-#: ../analysers/analyser_merge_man_made_FR.py:66
-msgid "Bell tower not integrated"
-msgstr "未統合の鐘楼"
-
-#: ../analysers/analyser_merge_man_made_FR.py:75
-msgid "Cross not integrated"
-msgstr "未統合の十字架"
-
-#: ../analysers/analyser_merge_man_made_FR.py:84
+#: ../analysers/analyser_merge_man_made_FR.py:85
 msgid "Wind turbine not integrated"
 msgstr "未統合の風力タービン"
 
-#: ../analysers/analyser_merge_man_made_FR.py:93
-msgid "Minaret not integrated"
-msgstr "未統合のミナレット"
-
-#: ../analysers/analyser_merge_man_made_FR.py:104
+#: ../analysers/analyser_merge_man_made_FR.py:106
 msgid "Petroleum well not integrated"
 msgstr "未統合の油井"
 
-#: ../analysers/analyser_merge_man_made_FR.py:112
+#: ../analysers/analyser_merge_man_made_FR.py:114
 msgid "Flare not integrated"
 msgstr "未統合のフレア"
 
@@ -4590,13 +4400,6 @@ msgstr "未統合の展望所"
 msgid "Fire station not integrated"
 msgstr "未統合の消防署"
 
-#: ../analysers/analyser_merge_poi_FR.py:180
-#: ../analysers/analyser_merge_poi_FR.py:189
-#: ../analysers/analyser_merge_poi_FR.py:198
-#: ../analysers/analyser_merge_poi_FR.py:207
-msgid "Megalith not integrated"
-msgstr "未統合のメガリス"
-
 #: ../analysers/analyser_merge_reservoir_FR.py:38
 msgid "Water tower not integrated"
 msgstr "未統合の給水塔"
@@ -4613,27 +4416,46 @@ msgstr "未統合の貯蔵タンク"
 msgid "Waterfall not integrated"
 msgstr "未統合の滝"
 
-#: ../analysers/analyser_merge_water_FR.py:56
-msgid "Fountain not integrated"
-msgstr "未統合の噴水"
-
-#: ../analysers/analyser_merge_water_FR.py:64
+#: ../analysers/analyser_merge_water_FR.py:65
 msgid "Lavoir not integrated"
 msgstr "未統合の共同洗濯所"
 
-#: ../analysers/analyser_merge_water_FR.py:74
+#: ../analysers/analyser_merge_water_FR.py:75
 msgid "Sinkhole not integrated"
 msgstr "未統合の陥没穴"
 
-#: ../analysers/analyser_merge_water_FR.py:82
-msgid "Water well not integrated"
-msgstr "未統合の井戸"
-
-#: ../analysers/analyser_merge_water_FR.py:90
+#: ../analysers/analyser_merge_water_FR.py:91
 msgid "Resurgence not integrated"
 msgstr "未統合の洞窟（リサージェンス）"
 
-#: ../analysers/analyser_merge_water_FR.py:98
-#: ../analysers/analyser_merge_water_FR.py:107
-msgid "Spring not integrated"
+#: ../analysers/analyser_merge_man_made_FR.py:66
+msgid "Church or Bell tower not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:76
+msgid "Cross or wayside shrine not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_man_made_FR.py:94
+msgid "Mosque or Minaret not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:180
+msgid "Menhir not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:189
+msgid "Dolmen not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:198
+msgid "Tumulus not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:207
+msgid "Passage grave not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_FR.py:109
+msgid "Spring box not integrated"
 msgstr ""
