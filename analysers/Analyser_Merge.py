@@ -469,6 +469,15 @@ class SourceOpenDataSoft(Source):
         return datetime.datetime.fromisoformat(last_modified)
 
 
+class SourceHttpLastModified(Source):
+    """Get URL from Last-Modified HTTP headers"""
+    def get_millesime(self):
+        return datetime.datetime.strptime(
+            downloader.requests_retry_session().head(self.fileUrl).headers['Last-Modified'],
+            downloader.HTTP_DATE_FMT,
+        )
+
+
 class Parser:
     def header(self):
         pass
