@@ -11,15 +11,15 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2019
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014,2019-2020
 # Manuel Tassi <manueltassi91@gmail.com>, 2018-2019
-# Marco <marcxosm@gmail.com>, 2018-2020
+# Marco <marcxosm@gmail.com>, 2018-2021
 # Marco <marcxosm@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-13 20:40+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2021-01-14 07:44+0000\n"
+"Last-Translator: Marco <marcxosm@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1803,7 +1803,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_wastewater_plant_FR.py:34
 msgid "Wastewater plant update"
-msgstr ""
+msgstr "Aggiorna impianto di depurazione"
 
 #: ../plugins/TagFix_Vatin.py:63
 msgid "Invalid 'VAT identification number'"
@@ -1831,7 +1831,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_carpool_FR.py:35
 msgid "Carpool parking update"
-msgstr ""
+msgstr "Aggiorna parcheggio per car pooling"
 
 #: ../analysers/analyser_merge_carpool_FR.py:61
 #, python-brace-format
@@ -1934,7 +1934,7 @@ msgstr ""
 #: ../analysers/analyser_merge_radio_support_FR.py:35
 #, python-brace-format
 msgid "Radio support ({0}) update"
-msgstr ""
+msgstr "Aggiorna supporto radio ({0})"
 
 #: ../analysers/analyser_merge_school_FR.py:54
 msgid ""
@@ -1949,21 +1949,21 @@ msgstr ""
 #: ../analysers/analyser_merge_street_number.py:32
 #, python-brace-format
 msgid "Missing address {0}"
-msgstr ""
+msgstr "Indirizzo mancante {0}"
 
 #: ../analysers/analyser_merge_street_number.py:34
 msgid ""
 "Address in an OpenData set was not found. Only the position and\n"
 "street numbers are checked."
-msgstr ""
+msgstr "Impossibile trovare indirizzo nel set OpenData. Vengono controllati\nsoltanto la posizione e i numeri civici."
 
 #: ../analysers/analyser_merge_street_number.py:37
 msgid "Add or move a number, check the field."
-msgstr ""
+msgstr "Aggiungi o sposta un numero, verifica il campo."
 
 #: ../analysers/analyser_merge_street_number.py:39
 msgid "Pay attention to the data freshness."
-msgstr ""
+msgstr "Verifica che i dati siano recenti."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:33
 msgid "TMC data refers to a not found element of the road network. "
@@ -3179,7 +3179,7 @@ msgstr "{0} non mappato"
 #: ../analysers/analyser_merge_street_objects.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
-msgstr ""
+msgstr "Oggetto ({1}) rilevato da Mapillary ma nessun elemento etichettato con \"{0}\" presente nei dintorni."
 
 #: ../analysers/analyser_merge_street_objects2.py:50
 #: ../analysers/analyser_merge_street_objects.py:50
@@ -3204,7 +3204,7 @@ msgstr ""
 msgid ""
 "Move a feature if it's in the wrong place. Connect the features if "
 "appropriate or update the tags if not."
-msgstr ""
+msgstr "Sposta un elemento se si trova nella posizione non corretta. Se appropriato collega gli elementi oppure aggiorna le etichette."
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:360
 msgid ""
@@ -3427,7 +3427,7 @@ msgstr ""
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
-msgstr ""
+msgstr "Aggiorna velocipedi {0}"
 
 #: ../analysers/analyser_merge_charging_station_FR.py:41
 msgid ""
@@ -3452,7 +3452,7 @@ msgstr ""
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:35
 #, python-brace-format
 msgid "{0} glass recycling update"
-msgstr ""
+msgstr "Aggiorna riciclaggio del vetro {0}"
 
 #: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:121
 #, python-brace-format
@@ -3463,7 +3463,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
-msgstr ""
+msgstr "Segnale stradale ({1}) rilevato da Mapillary ma nei dintorni nessuno elemento etichettato con: {0}"
 
 #: ../plugins/Date.py:35
 msgid ""
@@ -3514,7 +3514,7 @@ msgstr ""
 msgid ""
 "Check the value of the tag in question and update the tagging to reflect "
 "what this feature is."
-msgstr ""
+msgstr "Verifica il valore dell’etichetta in questione e aggiorna la mappatura in modo che rappresenti correttamente l’oggetto."
 
 #: ../plugins/TagFix_BadValue.py:38
 msgid ""
@@ -3542,7 +3542,7 @@ msgstr ""
 #: ../analysers/analyser_merge_parking_FR_bm.py:35
 #, python-brace-format
 msgid "{0} parking update"
-msgstr ""
+msgstr "Aggiorna parcheggio {0}"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:68
 #: ../analysers/analyser_merge_parking_FR_capp.py:63
@@ -3573,7 +3573,7 @@ msgstr ""
 #: ../analysers/analyser_merge_waste_disposal_FR_csma.py:35
 #, python-brace-format
 msgid "{0} waste disposal update"
-msgstr ""
+msgstr "Aggiorna cassonetti dei rifiuti {0}"
 
 #: ../plugins/Number.py:31
 msgid "Invalid numerical value"
@@ -3668,7 +3668,7 @@ msgstr ""
 #: ../analysers/analyser_merge_parapharmacy_IT.py:38
 #: ../analysers/analyser_merge_pharmacy_IT.py:38
 msgid "Pharmacy update"
-msgstr ""
+msgstr "Aggiorna farmacie"
 
 #: ../analysers/analyser_osmosis_relation_route_access.py:108
 #, python-brace-format
@@ -3775,7 +3775,7 @@ msgstr ""
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:46
 #, python-brace-format
 msgid "{0} parking  update"
-msgstr ""
+msgstr "Aggiorna parcheggio {0}"
 
 #: ../analysers/Analyser_Merge.py:971
 msgid ""
@@ -3803,7 +3803,7 @@ msgstr ""
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
-msgstr ""
+msgstr "Viene suggerito l’aggiornamento poiché lo stesso codice di riferimento\nè presente sia su OpenData che su OSM."
 
 #: ../analysers/Analyser_Merge.py:967
 msgid ""
@@ -3843,7 +3843,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_hydrants_FR.py:36
 msgid "Fire hydrant update"
-msgstr ""
+msgstr "Aggiorna idranti"
 
 #: ../plugins/Construction.py:36
 msgid ""
@@ -3891,7 +3891,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:31
 msgid "The list of milestone comes from the CEREMA's database \"RIU\" in France."
-msgstr ""
+msgstr "La lista delle progressive chilometriche proviene dal database \"RIU\" di CEREMA in Francia."
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:36
 msgid "Milestone not integrated"
@@ -3903,7 +3903,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:40
 msgid "Milestone update"
-msgstr ""
+msgstr "Aggiorna progressive chilometriche"
 
 #: ../analysers/analyser_merge_milestone_FR_metropole.py:33
 msgid ""
@@ -3911,7 +3911,7 @@ msgid ""
 "a little different than what is visible on the road. Sometimes, a small "
 "white line perpendicular to the road on the emergency stop strip or the left"
 " flared strip can be seen on satellite images or Mapillary's photos."
-msgstr ""
+msgstr "Quelle progressive chilometriche non possono stare su una strada \"_link\". La posizione del marcatore potrebbe essere leggermente diversa da quella visibile su strada. Talvolta, una piccola linea bianca è visibile sulla corsia di emergenza o a lato strada è visibile sulle foto satellitari o di Mapillary."
 
 #: ../analysers/analyser_merge_emergency_points_LU.py:31
 msgid "Emergency point not integrated"
@@ -4344,7 +4344,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_charging_station_FR.py:49
 msgid "Car charging station update"
-msgstr ""
+msgstr "Aggiorna stazione di ricarica delle auto elettriche"
 
 #: ../analysers/analyser_merge_highway_ref_FR.py:31
 msgid "Highway ref not integrated"
