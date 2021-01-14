@@ -446,7 +446,7 @@ class SourceDataGouv(Source):
         })
         super().__init__(**kwargs)
 
-    def get_millesime(self):
+    def get_millesime(self) -> datetime.datetime:
         last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
         return datetime.datetime.fromisoformat(last_modified)
 
@@ -460,7 +460,7 @@ class SourceOpenDataSoft(Source):
         })
         super().__init__(**kwargs)
 
-    def get_millesime(self):
+    def get_millesime(self) -> datetime.datetime:
         last_modified = downloader.get(f"{self.base_url}/api/datasets/1.0/{self.dataset}").json()["metas"]["data_processed"]
         return datetime.datetime.fromisoformat(last_modified)
 
