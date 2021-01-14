@@ -454,13 +454,12 @@ class SourceOpenDataSoft(Source):
     def __init__(self,
                  base_url: str,
                  dataset: str,
-                 timezone: str = "UTC",
                  format: str = "csv",
                  **kwargs):
         self.base_url = base_url
         self.dataset = dataset
         kwargs.update({
-            "fileUrl": f"{base_url}/explore/dataset/{dataset}/download/?format={format}&timezone={timezone}",
+            "fileUrl": f"{base_url}/explore/dataset/{dataset}/download/?format={format}",
             "millesime": None,
         })
         super().__init__(**kwargs)
