@@ -56,6 +56,7 @@ def get(url, headers={}, session=None):
         session = requests_retry_session()
     return session.get(url, headers=headers, stream=True)
 
+
 def http_get(url, tmp_file, date_string=None, get=get):
     headers = {}
     if date_string:
@@ -67,18 +68,11 @@ def http_get(url, tmp_file, date_string=None, get=get):
     elif not answer.ok:
         answer.raise_for_status()
 
-    # write the file
-    outfile = None
-    try:
-        outfile = open(tmp_file, "wb")
+    with open(tmp_file, "wb") as outfile:
         for data in answer.iter_content(chunk_size=512):
             outfile.write(data)
-    except:
-        raise
-    finally:
-        outfile and outfile.close()
-
     return True
+
 
 def get_cache_path(url):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
