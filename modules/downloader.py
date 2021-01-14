@@ -35,6 +35,7 @@ HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 DEFAULT_RETRY_ON = (500, 502, 503, 504)
 
+
 def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT_RETRY_ON):
     session = requests.Session()
     retry = Retry(
@@ -47,11 +48,11 @@ def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT
     adapter = HTTPAdapter(max_retries=retry)
     session.mount('http://', adapter)
     session.mount('https://', adapter)
+    session.headers['User-Agent'] = 'python-requests - https://osmose.openstreetmap.fr/'
     return session
 
 
 def get(url, headers={}, session=None):
-    headers['User-Agent'] = 'python-requests - http://osmose.openstreetmap.fr'  # "Wget" user-agent may be banned (dati.salute.gov.it)
     if not session:
         session = requests_retry_session()
     return session.get(url, headers=headers, stream=True)
