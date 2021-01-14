@@ -30,6 +30,8 @@ from typing import Optional
 from . import config
 
 
+# Depends on locale
+# https://docs.python.org/3/library/datetime.html?highlight=strftime#strftime-and-strptime-behavior
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
