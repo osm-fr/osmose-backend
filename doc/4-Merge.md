@@ -318,8 +318,8 @@ The `Select` syntax works as well on attributes of OpenData set or on OSM tags. 
 
 The syntax is based on a dictionary where keys are attribute names or OSM keys, and values are literals or with special meanings. All dictionary keys and values must be found at once in the record or the OSM object in order to be selected (it means `AND`).
 
-- `None` or `False`: there is no value for attribute or the tags does not exists: `{'a': None}`.
-- `True`: there is a value or the tag exists `{'a': True}`.
+- `True` or `None`: there is a value or the tag exists `{'a': None}`.
+- `False`: there is no value for attribute or the tags does not exists: `{'a': False}`.
 - literal value: there a key with this exact value `{'a': 'foobar'}`. Note: on OSM tags with multiple  values (`;` separated) it means the literal value is one of the multiple values.
 - list: the value is one of the list `{'a': [1, 2]}`. `None` may be in the list.
 - SQL `LIKE`: the check of the value is done with SQL `LIKE` (string with placeholders) `{'a': {'like': 'a%'}}`.

@@ -859,7 +859,7 @@ class Select:
         for k, v in query.items():
             k_not_exists = attribut_not_exists.format(k)
             k_value = attribut_value.format(k)
-            if v is None or v is False:
+            if v is False:
                 clauses.append(k_not_exists)
             elif hasattr(v, '__call__'):
                 clauses.append(v(k_value))
@@ -870,7 +870,7 @@ class Select:
                 clauses.append(cond)
             else:
                 clauses.append("NOT " + k_not_exists)
-                if v is True:
+                if v is None or v is True:
                     pass
                 elif isinstance(v, dict):
                     if "like" in v:
@@ -1339,9 +1339,9 @@ class Test(TestAnalyserOsmosis):
 
     def test_where_formatter(self):
         self.assertEqual(Select.where_attributes({}), """((1=1))""")
-        self.assertEqual(Select.where_attributes({'a': None}), """(("a" IS NULL))""")
-        self.assertEqual(Select.where_attributes({'a': False}), """(("a" IS NULL))""")
+        self.assertEqual(Select.where_attributes({'a': None}), """((NOT "a" IS NULL))""")
         self.assertEqual(Select.where_attributes({'a': True}), """((NOT "a" IS NULL))""")
+        self.assertEqual(Select.where_attributes({'a': False}), """(("a" IS NULL))""")
         self.assertEqual(Select.where_attributes({'a': {'like': 'a%'}}), """((NOT "a" IS NULL AND "a" LIKE 'a%'))""")
         self.assertEqual(Select.where_attributes({'a': '1'}), """((NOT "a" IS NULL AND "a" = '1'))""")
         self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """(("a" IN ('1', '2')))""")
@@ -1349,5 +1349,6 @@ class Test(TestAnalyserOsmosis):
         self.assertEqual(Select.where_attributes({'a': '1', 'b': '2'}), """((NOT "a" IS NULL AND "a" = '1' AND NOT "b" IS NULL AND "b" = '2'))""")
 
         self.assertEqual(Select.where_tags({'a': '1'}), """((NOT NOT tags?'a' AND tags->'a' = '1'))""")
+        self.assertEqual(Select.where_tags({'a': None}), """((NOT NOT tags?'a'))""")
 
         self.assertEqual(Select.where_attributes([{'a': '1'}, {'b': '2'}]), """((NOT "a" IS NULL AND "a" = '1') OR (NOT "b" IS NULL AND "b" = '2'))""")
