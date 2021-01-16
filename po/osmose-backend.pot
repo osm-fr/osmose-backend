@@ -4359,10 +4359,6 @@ msgstr ""
 msgid "Car charging station update"
 msgstr ""
 
-#: ../analysers/analyser_merge_highway_ref_FR.py:31
-msgid "Highway ref not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_man_made_FR.py:42
 msgid "Lighting mast not integrated"
 msgstr ""
