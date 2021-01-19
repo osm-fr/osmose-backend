@@ -72,7 +72,7 @@ sides.'''))
             err.append({"class": 31614})
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
-            if side in tags and tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "fire_lane"):
+            if side in tags and tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "fire_lane", "separate"):
                 err.append({"class": 31615, "subclass": stablehash64(side)})
 
         return err
@@ -99,5 +99,8 @@ class Test(TestPluginCommon):
                   {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"},
                   {"highway": "r", "parking:condition:right": "private", "parking:condition:left": "private", "parking:lane:both": "perpendicular"},
                   {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"},
+                  {"highway": "r", "parking:lane:left": "separate", "parking:lane:right": "parallel"},
+                  {"highway": "r", "parking:lane:left": "parallel", "parking:lane:right": "separate"},
+                  {"highway": "r", "parking:lane:both": "separate"},
                  ]:
             assert not a.way(None, t, None), t
