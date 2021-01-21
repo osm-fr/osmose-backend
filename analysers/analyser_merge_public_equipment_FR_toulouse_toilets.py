@@ -47,7 +47,7 @@ class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "toilets",
-                        "access": "public"},
+                        "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "wheelchair": lambda res: "yes" if res["accessibilité"] == "Accessible aux personnes à mobilité réduite" else "no" if res["accessibilité"] == "Non accessible aux personnes à mobilité réduite" else None} )))
