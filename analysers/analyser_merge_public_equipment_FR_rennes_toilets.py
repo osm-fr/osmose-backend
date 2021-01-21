@@ -47,7 +47,7 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "toilets",
-                        "access": "public"},
+                        "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "wheelchair": lambda res: "yes" if res["pmr"] == u"OUI" else "no" if res["pmr"] == u"NON" else None} )))
