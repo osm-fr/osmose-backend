@@ -413,7 +413,7 @@ class Source:
                 downloader.set_millesime(self.fileUrl, self.millesime)
         if self.millesime is None or type(self.millesime) == str:
             return self.millesime
-        return self.millesime.strftime("%m/%y")
+        return self.millesime.strftime("%Y-%m")
 
     def get_millesime(self) -> Optional[datetime.datetime]:
         """To be overwritten by sources with dynamic millesime"""
