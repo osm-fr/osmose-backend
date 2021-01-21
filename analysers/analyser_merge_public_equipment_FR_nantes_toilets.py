@@ -32,8 +32,8 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Nantes Métropole'))
 
         self.init(
-            u"https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
-            u"Toilettes publiques de Nantes Métropole",
+            "https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
+            "Toilettes publiques de Nantes Métropole",
             JSON(
                 SourceOpenDataSoft(
                     attribution="Nantes Métropole",

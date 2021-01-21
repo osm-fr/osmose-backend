@@ -47,7 +47,7 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                 separator=";"),
             Load("Xlong", "Ylat",
                 select = {
-                    "ouvert": u"true"}),
+                    "ouvert": "true"}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -63,4 +63,4 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                         "capacity": "nbre_pl",
                         "capacity:disabled": "nbre_pmr",
                         "lit": lambda res: "yes" if res["lumiere"] == "true" else ("no" if res["lumiere"] == "false" else None)},
-                    text = lambda tags, fields: T_("Carpool parking {0}", fields[u"nom_lieu"]) )))
+                    text = lambda tags, fields: T_("Carpool parking {0}", fields["nom_lieu"]) )))

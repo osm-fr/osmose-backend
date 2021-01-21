@@ -35,10 +35,10 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
             title = T_('Post box, integration suggestion'))
 
         self.init(
-            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
-            u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
+            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
+            "Liste des boîtes aux lettres de rue France métropolitaine et DOM",
             CSV(SourceOpenDataSoft(
-                attribution = u"data.gouv.fr:LaPoste",
+                attribution = "data.gouv.fr:LaPoste",
                 base_url="https://datanova.legroupe.laposte.fr",
                 dataset="laposte_boiterue")),
             Load("Latlong", "Latlong",
@@ -57,4 +57,4 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                         "operator": "La Poste"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref": "CO_MUP"},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields[u"VA_NO_VOIE"], fields[u"LB_EXTENSION"].strip(), fields[u"LB_VOIE_EXT"], fields["CO_POSTAL"], fields[u"LB_COM"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields["VA_NO_VOIE"], fields["LB_EXTENSION"].strip(), fields["LB_VOIE_EXT"], fields["CO_POSTAL"], fields["LB_COM"]]))} )))

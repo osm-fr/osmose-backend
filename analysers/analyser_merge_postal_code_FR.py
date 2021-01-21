@@ -33,8 +33,8 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
             title = T_('Postal code, integration suggestion'))
 
         self.init(
-            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
-            u"Base officielle des codes postaux",
+            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
+            "Base officielle des codes postaux",
             CSV(SourceOpenDataSoft(
                 attribution="La Poste",
                 base_url="https://datanova.legroupe.laposte.fr",

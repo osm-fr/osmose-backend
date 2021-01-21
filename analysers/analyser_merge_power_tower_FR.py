@@ -41,7 +41,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                 attribution="data.gouv.fr:RTE",
                 base_url="https://opendata.reseaux-energies.fr",
                 dataset="pylones-rte")),
-            Load(u"Longitude pylône (DD)", u"Latitude pylône (DD)"),
+            Load("Longitude pylône (DD)", "Latitude pylône (DD)"),
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -55,6 +55,6 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                         "operator": "RTE"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref": u"Numéro pylône"},
+                        "ref": "Numéro pylône"},
                     mapping2 = {
-                        "height": lambda fields: fields[u"Hauteur pylône (m)"] if fields[u"Hauteur pylône (m)"] != "0" else None})))
+                        "height": lambda fields: fields["Hauteur pylône (m)"] if fields["Hauteur pylône (m)"] != "0" else None})))

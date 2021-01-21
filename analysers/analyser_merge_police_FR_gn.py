@@ -36,16 +36,16 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
             title = T_('Police/"Gendarmerie" update'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/",
-            u"Liste des points d'accueil de la gendarmerie nationale",
+            "https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/",
+            "Liste des points d'accueil de la gendarmerie nationale",
             CSV(
                 SourceDataGouv(
                     attribution="data.gouv.fr:Ministère de l'Intérieur",
                     dataset="5369993fa3a729239d2051cd",
                     resource="d6a43ef2-d302-4456-90e9-ff2c47cac562"),
-                separator = u";"),
+                separator = ";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS",
-                where = lambda row: u"Centre d'information et de recrutement" not in row["service"] and u"motorisé" not in row["service"] ),
+                where = lambda row: "Centre d'information et de recrutement" not in row["service"] and "motorisé" not in row["service"] ),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

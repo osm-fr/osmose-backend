@@ -72,8 +72,8 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             title = T_('{0}, integration suggestion', title))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
-            u"FINESS Extraction du Fichier des établissements",
+            "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
+            "FINESS Extraction du Fichier des établissements",
             CSV(Source_Finess(
                 attribution="Le ministère des solidarités et de la santé",
                 encoding="ISO-8859-1",

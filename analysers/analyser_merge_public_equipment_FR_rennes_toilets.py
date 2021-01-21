@@ -31,8 +31,8 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Rennes'))
 
         self.init(
-            u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
-            u"Toilettes publiques",
+            "https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
+            "Toilettes publiques",
             CSV(SourceOpenDataSoft(
                 attribution="Ville de Rennes",
                 base_url="https://data.rennesmetropole.fr",
@@ -51,4 +51,4 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
                         "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "wheelchair": lambda res: "yes" if res["pmr"] == u"OUI" else "no" if res["pmr"] == u"NON" else None} )))
+                        "wheelchair": lambda res: "yes" if res["pmr"] == "OUI" else "no" if res["pmr"] == "NON" else None} )))

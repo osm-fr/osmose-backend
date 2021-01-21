@@ -31,8 +31,8 @@ class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/batiments-publics-equipes-de-defibrillateurs-a-paris/",
-            u"Défibrillateurs à Paris",
+            "https://www.data.gouv.fr/fr/datasets/batiments-publics-equipes-de-defibrillateurs-a-paris/",
+            "Défibrillateurs à Paris",
             CSV(
                 SourceDataGouv(
                     attribution="data.gouv.fr:Mairie de Paris",

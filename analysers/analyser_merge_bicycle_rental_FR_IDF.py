@@ -52,7 +52,7 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "bicycle_rental",
-                        "network": u"Vélib’",
+                        "network": "Vélib’",
                         "operator": "Smovengo"},
                     static2 = {"source": self.source},
                     mapping1 = {

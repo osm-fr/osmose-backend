@@ -35,8 +35,8 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
             title = T_('{0} glass recycling update', 'NM'))
 
         self.init(
-            u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
-            u"Colonnes aériennes de Nantes Métropole",
+            "https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
+            "Colonnes aériennes de Nantes Métropole",
             GeoJSON(SourceOpenDataSoft(
                 attribution="Nantes Métropole {0}",
                 base_url="https://data.nantesmetropole.fr",

@@ -33,8 +33,8 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
             title = T_('Power plant not integrated, geocoded at municipality level'))
 
         self.init(
-            u"https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
-            u"Registre national des installations de production d'électricité et de stockage",
+            "https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
+            "Registre national des installations de production d'électricité et de stockage",
             CSV(Geocode_Addok_CSV(
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:RTE",
@@ -60,31 +60,31 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
                         "plant:output:electricity": lambda fields: int(float(fields["puisMaxRac"]) * 1000)},
                     mapping2 = {
-                        "start_date": lambda fields: None if not fields.get(u"dateMiseEnService") else fields[u"dateMiseEnService"][0:4] if fields[u"dateMiseEnService"].endswith('-01-01') or fields[u"dateMiseEnService"].endswith('-12-31') else fields[u"dateMiseEnService"]},
+                        "start_date": lambda fields: None if not fields.get("dateMiseEnService") else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"]},
                     text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
 
     filiere = {
-        u"Autre": {
+        "Autre": {
             None: "",
-            u"Gaz": "",
+            "Gaz": "",
         },
-        u"Bioénergies": {
+        "Bioénergies": {
             None: "",
-            u"Biogaz de station d'épuration": "biogas",
-            u"Bois": "biomass",
-            u"Déchets ménagers": "waste", # For RTE waste is bio-power!
-            u"Déchets papeterie": "biomass",
-            u"Gaz": "biogas",
+            "Biogaz de station d'épuration": "biogas",
+            "Bois": "biomass",
+            "Déchets ménagers": "waste", # For RTE waste is bio-power!
+            "Déchets papeterie": "biomass",
+            "Gaz": "biogas",
         },
-        u"Energies Marines": {None: ""},
-        u"Eolien": {None: "wind"},
-        u"Géothermie": {None: "geothermal"},
-        u"Hydraulique": {None: "hydro"},
-        u"Nucléaire": {"Uranium": "nuclear"},
-        u"Solaire": {None: "solar"},
-        u"Thermique non renouvelable": {
+        "Energies Marines": {None: ""},
+        "Eolien": {None: "wind"},
+        "Géothermie": {None: "geothermal"},
+        "Hydraulique": {None: "hydro"},
+        "Nucléaire": {"Uranium": "nuclear"},
+        "Solaire": {None: "solar"},
+        "Thermique non renouvelable": {
             None: "",
-            u"Charbon": "coal",
-            u"Fioul": "oil",
-            u"Gaz": "gas"},
+            "Charbon": "coal",
+            "Fioul": "oil",
+            "Gaz": "gas"},
      }

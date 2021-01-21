@@ -31,8 +31,8 @@ class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Toulouse'))
 
         self.init(
-            u"https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
-            u"Toilettes publiques",
+            "https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
+            "Toilettes publiques",
             CSV(SourceOpenDataSoft(
                 attribution="Toulouse Métropole",
                 base_url="https://data.toulouse-metropole.fr",

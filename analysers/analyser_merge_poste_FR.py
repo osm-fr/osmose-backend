@@ -73,8 +73,8 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                         "atm": lambda res: self.bool[res["Distributeur_de_billets"]],
                         "stamping_machine": lambda res: self.bool[res["Affranchissement_Libre_Service"]],
                         "wheelchair": lambda res:
-                            "yes" if self.bool[res[u"Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] and self.bool[res[u"Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
-                            "limited" if self.bool[res[u"Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res[u"Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
+                            "yes" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] and self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
+                            "limited" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "no"},
                     mapping2 = {
                         "operator": lambda res:
@@ -84,6 +84,6 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                         "name": lambda res: re.sub(self.APBP, "", res["Libellé_du_site"]),
                         "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "phone": lambda res: ("+33" + res["Numéro_de_téléphone"][1:]) if res["Numéro_de_téléphone"] != "3631" else None},
-                text = lambda tags, fields: {"en": "Post office {0}".format(", ".join(filter(lambda x: x, [fields[u"Précision_du_géocodage"].lower(), fields[u"Adresse"], fields[u"Complément_d_adresse"], fields[u"Lieu_dit"], fields["Code postal"], fields[u"Localité"]])))} )))
+                text = lambda tags, fields: {"en": "Post office {0}".format(", ".join(filter(lambda x: x, [fields["Précision_du_géocodage"].lower(), fields["Adresse"], fields["Complément_d_adresse"], fields["Lieu_dit"], fields["Code postal"], fields["Localité"]])))} )))
 
     bool = {"Non": None, "Oui": "yes"}
