@@ -495,7 +495,6 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
     'merge_school_FR',
     'merge_college_FR',
     'merge_service_public_FR',
-    'merge_pitch_FR',
     'merge_police_FR_gn',
     'merge_police_FR_pn',
     'merge_healthcare_FR_finess',
@@ -525,7 +524,6 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
     include=[
     'merge_college_FR',
     'merge_service_public_FR',
-    'merge_pitch_FR',
     'merge_police_FR_gn',
     'merge_police_FR_pn',
     'merge_postal_code_FR',
@@ -567,7 +565,6 @@ france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
 france_local_db.analyser["merge_service_public_FR"] = "xxx"
-france_local_db.analyser["merge_pitch_FR"] = "xxx"
 france_local_db.analyser["merge_police_FR_gn"] = "xxx"
 france_local_db.analyser["merge_police_FR_pn"] = "xxx"
 france_local_db.analyser["merge_fuel_FR"] = "xxx"
