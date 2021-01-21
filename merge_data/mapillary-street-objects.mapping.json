@@ -85,6 +85,10 @@
         "crossing": "traffic_signals"
       },
       {
+        "highway": "crossing",
+        "flashing_lights": "None"
+      },
+      {
         "railway": "level_crossing",
         "crossing:light": "yes"
       },
