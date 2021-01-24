@@ -86,7 +86,7 @@
       },
       {
         "highway": "crossing",
-        "flashing_lights": "None"
+        "flashing_lights": null
       },
       {
         "railway": "level_crossing",
