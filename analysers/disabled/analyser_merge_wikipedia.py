@@ -332,7 +332,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             "Wikipedia-World",
             CSV(Source(file = "wikipedia_point_fr.csv.bz2", bz2 = True),
                 csv = False, separator = None, null = None),
-            LoadGeomCentroid(),
+            LoadGeomCentroid(
                 create = self.create_table,
                 select = {"lang": wikiLang, "Country": wikiCountry},
                 where = (lambda res: not res["titel"].startswith("Liste ")) if starts is None else
