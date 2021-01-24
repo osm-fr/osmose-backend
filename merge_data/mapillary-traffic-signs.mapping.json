@@ -1026,6 +1026,91 @@
   },
   {
     "item": 8300,
+    "class": 53,
+    "level": 3,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "one-directional roads",
+    "only_for": [
+      "NL"
+    ],
+    "object": [
+      "regulatory--no-entry--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "oneway": null
+      },
+      {
+        "highway": null,
+        "oneway:motor_vehicle": null
+      },
+      {
+        "highway": null,
+        "oneway:vehicle": null
+      },
+      {
+        "highway": null,
+        "oneway:motorcar": null
+      },
+      {
+        "highway": null,
+        "oneway:hgv": null
+      },
+      {
+        "highway": null,
+        "oneway:bus": null
+      },
+      {
+        "highway": null,
+        "oneway:foot": null
+      },
+      {
+        "highway": null,
+        "oneway:psv": null
+      },
+      {
+        "highway": null,
+        "oneway:bicycle": null
+      },
+      {
+        "highway": null,
+        "oneway:moped": null
+      },
+      {
+        "highway": null,
+        "vehicle:backward": null
+      },
+      {
+        "highway": null,
+        "motor_vehicle:backward": null
+      },
+      {
+        "highway": null,
+        "hgv:backward": null
+      },
+      {
+        "highway": null,
+        "hazmat:backward": null
+      },
+      {
+        "highway": null,
+        "bicycle:backward": null
+      },
+      {
+        "highway": null,
+        "access:backward": null
+      }
+    ],
+    "generate_tags": {
+      "oneway": "yes"
+    }
+  },
+  {
+    "item": 8300,
     "class": 101,
     "level": 2,
     "otype": [
