@@ -4470,3 +4470,25 @@ msgstr ""
 #: ../analysers/analyser_merge_water_FR.py:109
 msgid "Spring box not integrated"
 msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:52
+msgid "parking:condition:[side] not applicable"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:54
+msgid ""
+"A parking condition is set for a parking:lane:[side] value that forbids "
+"parking."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:56
+msgid ""
+"parking:condition:[side] should be mapped on separately mapped parking area"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:58
+msgid ""
+"A parking condition is set for a parking:lane:[side] value that indicates\n"
+"that the parking area is mapped separately. Any parking conditions should\n"
+"be tagged on that object instead."
+msgstr ""
