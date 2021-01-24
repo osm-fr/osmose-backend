@@ -213,6 +213,7 @@ class OsmOsisManager:
     osm_state = OsmPbfReader(dst_pbf, state_file=state_file).timestamp()
 
     giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state])
+    self.logger.sub().log("OSM data timestamp: {}".format(osm_state))
 
     gisconn.commit()
     giscurs.close()

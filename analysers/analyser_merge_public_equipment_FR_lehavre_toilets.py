@@ -46,5 +46,5 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "toilets",
-                        "access": "public"},
+                        "access": "yes"},
                     static2 = {"source": self.source})))

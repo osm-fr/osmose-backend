@@ -45,7 +45,7 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "toilets",
-                        "access": "public"},
+                        "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "name": lambda res: res['nom'] if res['nom'] else None,

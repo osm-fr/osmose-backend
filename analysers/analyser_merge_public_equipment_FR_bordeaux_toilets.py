@@ -45,7 +45,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                     static1 = {
                         "amenity": "toilets",
                         "fee": "no",
-                        "access": "public"},
+                        "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "toilets:wheelchair": lambda res: "yes" if res["options"] == u"Handicapé" else None,
