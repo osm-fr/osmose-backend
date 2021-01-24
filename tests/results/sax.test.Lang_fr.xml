@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1555268209">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1550417771">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L34" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -150,6 +150,7 @@
 <detail lang="ja" title="リレーション内ではウェイは1回だけ現れるべきです。" />
 <detail lang="pl" title="Każda linia w relacji powinna wystąpić tylko raz." />
 <fix lang="en" title="Most often, this is a user issue that added several times the same way.&#10;The editor JOSM can easily visualize the relationships and see duplicates&#10;(in color)." />
+<fix lang="fr" title="Le plus souvent, c’est une erreur de l’utilisateur ayant ajouté plusieurs fois le même chemin.&#10;L’éditeur JOSM put facilement visualiser les relations et montrer les doublons&#10;(en couleurs)." />
 <fix lang="ja" title="たいてい、これは同じウェイを何回も追加してしまったユーザー側の問題です。JOSMエディタではその関係を簡単に(色で)視覚化して重複を見分けられます。" />
 <fix lang="pl" title="To najczęściej jest błąd użytkownika, który dodał dwa razy tę samą linię. Edytor JOSM może łatwo pokazywać relacje i oznaczać duplikaty innym kolorem." />
 <trap lang="en" title="Double check the ways roles in the relation before deleting.&#10;&#10;Caution: in a route, a path can be taken several times. The multiple&#10;presence of this path in the relation `type=route` is not then an issue.&#10;Then ensure the roles `forward` and `backward`." />
@@ -640,6 +641,7 @@
 <detail lang="ja" title="この地物がタグ付けされている値は厳密な値(スペース無しのアルファベット小文字)に使われる典型的な形式と一致していません。想定されているタグ付けではないようです。" />
 <fix lang="de" title="Prüfe den Wert des betreffenden Tags und aktualisiere das Tagging, um das Objekt korrekt zu kennzeichnen." />
 <fix lang="en" title="Check the value of the tag in question and update the tagging to reflect what this feature is." />
+<fix lang="it" title="Verifica il valore dell’etichetta in questione e aggiorna la mappatura in modo che rappresenti correttamente l’oggetto." />
 <fix lang="ja" title="疑問のあるタグの値をチェックして、この地物が何なのかをよく考えてタグ付けを更新してください。" />
 <trap lang="de" title="Möglicherweise hat ein Mapper versucht, ein Objekt einzutragen, für das es keine abgestimmte Tagging-Methode gibt.&#10;Der Wert sollte wahrscheinlich dennoch dem typischen Format für Werte des gegebenen Tags entsprechen." />
 <trap lang="en" title="It's possible a mapper was trying to map a feature with no existing agreed upon tagging.&#10;However, this should probably still conform to the typical format used for values of the given tag." />
@@ -764,6 +766,7 @@
 <class id="3091" item="3091" source="http://example.com/plugins/Number.py#L38" level="2" tag="value,fix:chair">
 <classtext lang="de" title="Ungültiger numerischer Wert" />
 <classtext lang="en" title="Invalid numerical value" />
+<classtext lang="fr" title="Valeur numérique non valide" />
 <classtext lang="gl" title="Valor numérico inválido" />
 <classtext lang="hu" title="Érvénytelen számérték" />
 <classtext lang="ja" title="無効な数値" />
@@ -1331,9 +1334,9 @@
 <detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something with a `name` tag." />
 <detail lang="ja" title="このオブジェクトには地物の種類を示すものがありません。`name` タグがある場合には何かしらの種類を示すタグがあることが想定されます。" />
 <detail lang="pl" title="Temu obiektowi brakuje podstawowego tagu, który opisuje, czym jest." />
-<fix lang="de" title="Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt handelt. Als Hauptmerkmale gelten (bei Bedarf mit den geeigneten Präfixen `disused:`, `abandoned:` and `historic:`):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
-<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
-<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="de" title="Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt handelt. Als Hauptmerkmale gelten (bei Bedarf mit den geeigneten Präfixen `disused:`, `abandoned:` and `historic:`):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
 <trap lang="de" title="Es kann sinnvoller sein, das Objekt vollständig zu entfernen, wenn es nicht nützlich ist." />
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 <trap lang="ja" title="有用でない場合はオブジェクトを完全に削除することが適切な場合があります。" />
@@ -2268,6 +2271,14 @@
 <detail lang="ja" title="駐車場の条件はありますが、駐車場の種類がありません。" />
 <detail lang="pl" title="Warunki parkowania, ale bez rodzaju parkowania." />
 </class>
+<class id="31617" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L54" level="3" tag="highway,parking,fix:survey">
+<classtext lang="en" title="parking:condition:[side] not applicable" />
+<detail lang="en" title="A parking condition is set for a parking:lane:[side] value that forbids parking." />
+</class>
+<class id="31618" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L60" level="3" tag="highway,parking,fix:survey">
+<classtext lang="en" title="parking:condition:[side] should be mapped on separately mapped parking area" />
+<detail lang="en" title="A parking condition is set for a parking:lane:[side] value that indicates&#10;that the parking area is mapped separately. Any parking conditions should&#10;be tagged on that object instead." />
+</class>
 <class id="31700" item="3170" source="http://example.com/plugins/TagFix_Role.py#L37" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Rol no adient" />
 <classtext lang="cs" title="Nesprávná role" />
@@ -2344,6 +2355,7 @@
 <class id="32002" item="3200" source="http://example.com/plugins/TagFix_Area.py#L44" level="3" tag="tag,fix:chair">
 <classtext lang="de" title="Fläche ohne beschreibende Eigenschaften" />
 <classtext lang="en" title="Untagged area object" />
+<classtext lang="es" title="Objeto de área sin etiquetar" />
 <classtext lang="hu" title="Címkézetlen terület" />
 <classtext lang="ja" title="タグがないエリアオブジェクト " />
 <classtext lang="pl" title="Obszar bez podstawowego tagu" />
@@ -2927,6 +2939,7 @@
 <classtext lang="it" title="Il suffisso Nord, Sud, Est e Ovest andrebbero rimossi dal nome della località del Catasto. Il posto dovrebbe essere integrato solo una volta." />
 <classtext lang="ja" title="Hamlet や Localityのnameの接尾辞であるNord, Sud, Est, Ouest, CentreはCadastre nameから除去すべきです。Placeは一度だけ統合すべきです。" />
 <classtext lang="nl" title="Gehucht of Plaats-achtervoegsel Nord, Sud, Est, Ouest, Center moeten worden verwijderd van het kadaster naam. Plaats moet slechts één keer worden geïntegreerd." />
+<classtext lang="pl" title="Przedrostek „Nord”, „Sud”, „Est”, „Ouest”, „Center” w nazwie przysiółka lub nazwanego obszaru powinien zostać usunięty z nazwy." />
 <classtext lang="uk" title="Хутір або місцевість містить в назві суфікс північ-, південь-, схід-, захід-, центр-, і його слід видалити з назви кадастру. Місце має бути інтеґроване лише один раз." />
 <classtext lang="zh_CN" title="自然村或地区名称后缀Nord，Sud，Est，Ouest，Center应从Cadastre名称中删除。方位名应该只整合为一个。" />
 </class>
@@ -5438,6 +5451,7 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="The tag `power_source` is deprecated in favour of `generator:source`" />
+<text lang="fr" value="L'attribut `power_source` est dépréciée au profit de `generator:source`" />
 <text lang="pl" value="Tag power_source powinien być zastąpiony tagiem `generator:source`" />
 <text lang="de" value="Der Tag `power_source` sollte ersetzt werden durch `generator:source`" />
 <text lang="ja" value="`power_source`タグは`generator:source`で置き換えられました" />
