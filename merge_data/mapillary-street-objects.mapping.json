@@ -90,6 +90,10 @@
       },
       {
         "barrier": "toll_booth",
+<<<<<<< HEAD
+=======
+        "flashing_lights": null
+>>>>>>> fix_traffic_signals
       },
       {
         "railway": "level_crossing",
