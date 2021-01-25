@@ -89,6 +89,10 @@
         "flashing_lights": null
       },
       {
+        "barrier": "toll_booth",
+        "flashing_lights": null
+      },
+      {
         "railway": "level_crossing",
         "crossing:light": "yes"
       },
