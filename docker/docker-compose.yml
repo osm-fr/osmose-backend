@@ -6,7 +6,7 @@ volumes:
 services:
   postgis:
     shm_size: 1g
-    image: postgis/postgis:13-3.0-alpine
+    image: postgis/postgis:13-3.1-alpine
     volumes:
       - type: bind
         source: ./postgis-init.sh
