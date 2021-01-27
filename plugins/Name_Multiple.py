@@ -32,7 +32,7 @@ class Name_Multiple(Plugin):
         self.errors[705] = self.def_class(item = 5030, level = 1, tags = ['name', 'fix:survey'],
             title = T_('The name tag contains two names'),
             detail = T_(
-'''The tag `name=*` contains two street names, separated by a semicolon,
+'''The tag `name=*` contains multiple names, separated by a semicolon,
 a "/" or a "\\". This issue was probably produced by the fusion of two
 way and the concatenation of the names of the streets.'''),
             fix = T_(
