@@ -83,7 +83,7 @@ be tagged on that object instead.'''))
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
             if side in tags:
-                if tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "fire_lane", "separate"):
+                if tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "no", "fire_lane", "separate"):
                     err.append({"class": 31615, "subclass": stablehash64(side)})
                 condition = side.replace("lane", "condition")
                 if condition in tags:
