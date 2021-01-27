@@ -46,6 +46,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['industrial', 'amenity', 'recycling'],
                 ['retail', 'amenity', 'marketplace'],
                 ['retail', 'amenity', 'fuel'],
+                ['retail', 'shop', 'mall'],
                 ['commercial', 'amenity', 'boat_storage'],
                 ['commercial', 'amenity', 'food_court'],
                 ['commercial', 'amenity', 'driving_school'],
