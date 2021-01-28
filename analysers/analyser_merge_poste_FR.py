@@ -47,8 +47,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
             CSV(
                 SourceOpenDataSoft(
                     attribution="LaPoste",
-                    base_url="https://datanova.legroupe.laposte.fr",
-                    dataset="laposte_poincont")),
+                    url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont")),
             Load("Longitude", "Latitude"),
             Conflate(
                 select = Select(

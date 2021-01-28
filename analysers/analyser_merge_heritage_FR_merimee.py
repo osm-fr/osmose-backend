@@ -87,8 +87,7 @@ World Heritage.'''))
             "Immeubles protégés au titre des Monuments Historiques",
             CSV(SourceOpenDataSoft(
                 attribution="Ministère de la Culture",
-                base_url="https://data.culture.gouv.fr",
-                dataset="liste-des-immeubles-proteges-au-titre-des-monuments-historiques",
+                url="https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques",
                 filter=lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore')))),
             Load("coordonnees_ban", "coordonnees_ban",
                 xFunction = lambda x: x and x.split(',')[1],

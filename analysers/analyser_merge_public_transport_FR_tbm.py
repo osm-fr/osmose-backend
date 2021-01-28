@@ -38,8 +38,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
             'Arrêt physique sur le réseau',
             SHP(SourceOpenDataSoft(
                 attribution='Bordeaux Métropole',
-                base_url='https://opendata.bordeaux-metropole.fr/',
-                dataset="tb_arret_p",
+                url='https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p',
                 format="shp",
                 zip="tb_arret_p.shp")),
             LoadGeomCentroid(

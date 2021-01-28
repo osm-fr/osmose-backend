@@ -71,8 +71,7 @@ administrative schools for a single physical school.''')
             "Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
             CSV(SourceOpenDataSoft(
                 attribution="Ministère de l'Éducation nationale et de la Jeunesse",
-                base_url="https://data.education.gouv.fr",
-                dataset="fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
+                url="https://data.education.gouv.fr/explore/dataset/fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre",
                 filter=lambda t: t.replace("Ecole", "École").replace("ecole", "école").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace("élementaire", "élémentaire").replace("elementaire", "élémentaire").replace("Elémentaire", "Élémentaire").replace("elémentaire", "élémentaire").replace("College", "Collège"))),
             Load("Longitude", "Latitude",
                 select = {"Code état établissement": ["1", "3"]},

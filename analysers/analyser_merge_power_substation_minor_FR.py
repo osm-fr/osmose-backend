@@ -37,8 +37,7 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
             "Postes HTA/BT",
             CSV(SourceOpenDataSoft(
                 attribution="Enedis",
-                base_url="https://data.enedis.fr",
-                dataset="poste-electrique")),
+                url="https://data.enedis.fr/explore/dataset/poste-electrique")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

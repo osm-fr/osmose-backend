@@ -35,8 +35,7 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
             "Toilettes publiques",
             CSV(SourceOpenDataSoft(
                 attribution="Ville de Rennes",
-                base_url="https://data.rennesmetropole.fr",
-                dataset="toilettes_publiques_vdr")),
+                url="https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

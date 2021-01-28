@@ -36,8 +36,7 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
             CSV(
                 SourceOpenDataSoft(
                     attribution="Département des Hauts-de-Seine",
-                    base_url="https://opendata.hauts-de-seine.fr",
-                    dataset="gabarits-et-limitation-de-poids-des-ponts")),
+                    url="https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts")),
             Load("geo_point_2d", "geo_point_2d",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
@@ -70,8 +69,7 @@ class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
             "Gabarits et limitation de poids des ponts",
             CSV(SourceOpenDataSoft(
                 attribution="Département des Hauts-de-Seine",
-                base_url="https://opendata.hauts-de-seine.fr",
-                dataset="gabarits-et-limitation-de-poids-des-ponts")),
+                url="https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts")),
             Load("geo_point_2d", "geo_point_2d",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],

@@ -37,8 +37,7 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
             JSON(
                 SourceOpenDataSoft(
                     attribution="Nantes Métropole",
-                    base_url="https://data.nantesmetropole.fr",
-                    dataset="244400404_toilettes-publiques-nantes-metropole",
+                    url="https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
                     format="json"),
                 extractor = lambda json: map(lambda j: j['fields'], json)),
             Load("geo_shape.coordinates", "geo_shape.coordinates",

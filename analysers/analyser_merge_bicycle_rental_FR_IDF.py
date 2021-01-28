@@ -40,8 +40,7 @@ class Analyser_Merge_Bicycle_Rental_FR_IDF(Analyser_Merge):
             GeoJSON(
                 SourceOpenDataSoft(
                     attribution="Autolib Velib Métropole",
-                    base_url="https://opendata.paris.fr",
-                    dataset="velib-disponibilite-en-temps-reel",
+                    url="https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel",
                     format="geojson")),
             Load("geom_x", "geom_y"),
             Conflate(

@@ -35,8 +35,7 @@ class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
             "Toilettes publiques",
             CSV(SourceOpenDataSoft(
                 attribution="Toulouse Métropole",
-                base_url="https://data.toulouse-metropole.fr",
-                dataset="sanisettes")),
+                url="https://data.toulouse-metropole.fr/explore/dataset/sanisettes")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

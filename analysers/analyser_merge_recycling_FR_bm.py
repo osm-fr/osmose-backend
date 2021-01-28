@@ -39,8 +39,7 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
             'Emplacements d''apport volontaire',
             SHP(SourceOpenDataSoft(
                 attribution='Bordeaux Métropole',
-                base_url="https://opendata.bordeaux-metropole.fr",
-                dataset="en_empac_p",
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p",
                 format="shp",
                 zip='en_empac_p.shp')),
             LoadGeomCentroid(

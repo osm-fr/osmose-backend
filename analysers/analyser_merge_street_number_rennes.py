@@ -31,9 +31,8 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
             "Référentiel voies et adresses de Rennes Métropole",
             CSV(
                 SourceOpenDataSoft(
-                    base_url="https://data.rennesmetropole.fr",
-                    attribution="Rennes Métropole",
-                    dataset="rva-bal")),
+                    url="https://data.rennesmetropole.fr/explore/dataset/rva-bal",
+                    attribution="Rennes Métropole")),
             Load("long", "lat",
                 where = lambda res: res["numero"] != "99999"),
             Conflate(

@@ -41,8 +41,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
             "Stations et espaces AutoLib de la métropole parisienne",
             CSV(SourceOpenDataSoft(
                 attribution="Mairie de Paris",
-                base_url="http://opendata.paris.fr",
-                dataset="stations_et_espaces_autolib_de_la_metropole_parisienne")),
+                url="http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne")),
             Load("XY", "XY",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

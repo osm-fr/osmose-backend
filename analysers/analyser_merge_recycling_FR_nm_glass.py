@@ -39,8 +39,7 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
             "Colonnes aériennes de Nantes Métropole",
             GeoJSON(SourceOpenDataSoft(
                 attribution="Nantes Métropole {0}",
-                base_url="https://data.nantesmetropole.fr",
-                dataset="244400404_colonnes-aeriennes-nantes-metropole",
+                url="https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
                 format="geojson")),
             Load(
                 "geom_x", "geom_y",

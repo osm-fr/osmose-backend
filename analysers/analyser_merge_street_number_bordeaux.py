@@ -32,8 +32,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
             CSV(
                 SourceOpenDataSoft(
                     attribution='Bordeaux Métropole',
-                    base_url="https://opendata.bordeaux-metropole.fr",
-                    dataset="fv_adresse_p")),
+                    url="https://opendata.bordeaux-metropole.fr/explore/dataset/fv_adresse_p")),
             Load('Geo Point', 'Geo Point',
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),

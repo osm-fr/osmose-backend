@@ -39,8 +39,7 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
             'Station VCUB',
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
-                base_url="https://opendata.bordeaux-metropole.fr",
-                dataset="tb_stvel_p",
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p",
                 format="shp",
                 zip="tb_stvel_p.shp")),
             LoadGeomCentroid(),

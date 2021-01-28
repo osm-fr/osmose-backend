@@ -39,8 +39,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             "Pylones RTE",
             CSV(SourceOpenDataSoft(
                 attribution="data.gouv.fr:RTE",
-                base_url="https://opendata.reseaux-energies.fr",
-                dataset="pylones-rte")),
+                url="https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte")),
             Load("Longitude pylône (DD)", "Latitude pylône (DD)"),
             Conflate(
                 select = Select(

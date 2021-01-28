@@ -36,8 +36,7 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
             CSV(
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:Ville d'Issy-les-Moulineaux",
-                    base_url="https://data.issy.com",
-                    dataset="defibrillateurs-issy-les-moulineaux")),
+                    url="https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux")),
             Load("Coordonnées géographiques", "Coordonnées géographiques",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),

@@ -39,8 +39,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
             'Parking hors voirie',
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
-                base_url="https://opendata.bordeaux-metropole.fr",
-                dataset="st_park_p",
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p",
                 format="shp",
                 zip='st_park_p.shp')),
             LoadGeomCentroid(),
@@ -76,8 +75,7 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
             'Place de stationnement PMR',
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
-                base_url="https://opendata.bordeaux-metropole.fr",
-                dataset="grs_gigc_p",
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/grs_gigc_p",
                 format="shp",
                 zip="grs_gigc_p.shp")),
             LoadGeomCentroid(),

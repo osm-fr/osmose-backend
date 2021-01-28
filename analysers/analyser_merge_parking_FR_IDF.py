@@ -34,8 +34,7 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
             "Parcs Relais en Île-de-France",
             CSV(SourceOpenDataSoft(
                 attribution="Île-de-France Mobilités",
-                base_url="https://opendata.stif.info",
-                dataset="parcs-relais-idf")),
+                url="https://opendata.stif.info/explore/dataset/parcs-relais-idf")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),

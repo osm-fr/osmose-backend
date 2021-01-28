@@ -35,8 +35,7 @@ class Analyser_Merge_Public_Equipment_FR_Angers_Toilets(Analyser_Merge):
             "Toilettes publiques",
             CSV(SourceOpenDataSoft(
                 attribution="Angers Loire Métropole",
-                base_url="https://data.angers.fr",
-                dataset="sanitaires-publics-angers")),
+                url="https://data.angers.fr/explore/dataset/sanitaires-publics-angers")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

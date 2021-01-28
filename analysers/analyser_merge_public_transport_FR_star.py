@@ -40,8 +40,7 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
             "Topologie des points d'arrêt de bus du réseau STAR",
             CSV(SourceOpenDataSoft(
                 attribution="Keolis Rennes",
-                base_url="https://data.rennesmetropole.fr",
-                dataset="topologie-des-points-darret-de-bus-du-reseau-star")),
+                url="https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star")),
             Load("Coordonnées", "Coordonnées",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),

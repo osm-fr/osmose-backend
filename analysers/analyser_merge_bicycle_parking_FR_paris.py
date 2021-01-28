@@ -50,8 +50,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
             "Stationnement sur voie publique - emplacements vélos",
             CSV(SourceOpenDataSoft(
                 attribution="Ville de Paris",
-                base_url="https://opendata.paris.fr",
-                dataset="stationnement-voie-publique-emplacements")),
+                url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
                     "Régime prioritaire": "2 ROUES",
@@ -81,8 +80,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             "Stationnement sur voie publique - emplacements motos",
             CSV(SourceOpenDataSoft(attribution = "Ville de Paris",
-                    base_url = "https://opendata.paris.fr",
-                    dataset = "stationnement-voie-publique-emplacements")),
+                    url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
                     "Régime prioritaire": "2 ROUES",
@@ -112,8 +110,7 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             "Stationnement sur voie publique - emplacements deux roues",
             CSV(SourceOpenDataSoft(attribution = "Ville de Paris",
-                    base_url = "https://opendata.paris.fr",
-                    dataset = "stationnement-voie-publique-emplacements")),
+                    url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
                     "Régime prioritaire": "2 ROUES",

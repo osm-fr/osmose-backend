@@ -38,8 +38,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
             CSV(Geocode_Addok_CSV(
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:RTE",
-                    base_url="https://opendata.reseaux-energies.fr",
-                    dataset="registre-national-installation-production-stockage-electricite-agrege-311217"),
+                    url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217"),
                 columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load("longitude", "latitude",
                 where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 1000,

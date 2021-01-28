@@ -31,8 +31,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
             "Adresses postales de Nantes Métropole",
             CSV(SourceOpenDataSoft(
                 attribution="Nantes Métropole {0}",
-                base_url="https://data.nantesmetropole.fr",
-                dataset="244400404_adresses-postales-nantes-metropole")),
+                url="https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole")),
             Load("Géolocalisation", "Géolocalisation",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0])),

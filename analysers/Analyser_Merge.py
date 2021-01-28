@@ -450,16 +450,21 @@ class SourceDataGouv(Source):
         last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
         return datetime.datetime.fromisoformat(last_modified)
 
+
 class SourceOpenDataSoft(Source):
+
+    url_re = re.compile(r"(https?://.+)/explore/dataset/([^/?#]+)")
+
     def __init__(self,
-                 base_url: str,
-                 dataset: str,
+                 url: str,
                  format: str = "csv",
                  **kwargs):
-        self.base_url = base_url
-        self.dataset = dataset
+        url_match = self.url_re.match(url)
+        if url_match is None:
+            raise ValueError(f"Invalid url: {url}")
+        self.base_url, self.dataset = url_match.groups()
         kwargs.update({
-            "fileUrl": f"{base_url}/explore/dataset/{dataset}/download/?format={format}&csv_separator=,&use_labels_for_header=true",
+            "fileUrl": f"{self.base_url}/explore/dataset/{self.dataset}/download/?format={format}&csv_separator=,&use_labels_for_header=true",
             "millesime": None,
         })
         super().__init__(**kwargs)
