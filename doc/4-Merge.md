@@ -63,14 +63,73 @@ class Analyser_Merge_Charging_station_FR(Analyser_Merge):
 
 ## OpenData set Source
 
-The OpenData set is available online and can be fetched by a URL. On edge case, the data can be included directly on the Osmose-QA backed repository, but we try to avoid this case.
+The OpenData set is available online and can be fetched online. On edge case, the data can be included directly on the Osmose-QA backed repository, but we try to avoid this case.
 
-The OpenData set have this attributes:
-- URL of the Data, included in an archive or not:
+There are multiple OpenData classes to facilitate retrieving data, depending on the source.
+
+### SourceOpenDataSoft
+A lot of OpenData providers use [OpenDataSoft](https://www.opendatasoft.com/). It can usually be identified by the presence of `/explore/dataset/` in the URL.
+
+It uses the following attributes:
+- `url`: The URL of the dataset
+- `format`: Requested format of the file. Usually `csv` (default), `json` or `shp`
+
+Example:
+
+```python
+from .Analyser_Merge import SourceOpenDataSoft
+
+    SourceOpenDataSoft(
+        attribution='La Poste',
+        url='https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue',
+    )
+```
+
+### SourceDataGouv
+Data shared on [data.gouv.fr](https://data.gouv.fr/) can be retrieved with this class.
+
+It uses the following attributes:
+- `dataset`: Dataset identifier. It can be seen by clicking on Details on the dataset page.
+- `resource`: The resource (file) identifier. It can be seen by clicking on the resource in the dataset page. It's the end of the "stable URL"
+
+Example:
+
+```python
+from .Analyser_Merge import SourceDataGouv
+
+    SourceDataGouv(
+        attribution='data.gouv.fr:Etalab',
+        dataset='5c70a7f206e3e755537bb849',
+        resource='01f2a133-4929-4001-906c-412f682d0d59',
+    )
+```
+
+### SourceHttpLastModified
+Retrieve the `millesime` from the `Last-modified` HTTP header. Otherwise it is identical to `Source`.
+
+### Source
+Base class that can be used data sources not covered by specific classes.
+
+It uses the following attributes:
+- Either:
   - `fileUrl`: remote content file URL.
   - `file`: local content file from the `merge_data` directory, avoid this case.
-- `attribution`: Author of the data, for the OSM `source` tag.
 - `millesime`: optional, date of the last release, for the OSM `source` tag. Note: since it is hard coded, it is not automatically updated when the remote data is updated. May be required with the attribution in some jurisdiction.
+
+```python
+from .Analyser_Merge import Source
+
+    Source(
+        attribution='data.gouv.fr:Etalab',
+        fileUrl='https://www.data.gouv.fr/fr/datasets/r/01f2a133-4929-4001-906c-412f682d0d59',
+        millesime='01/2020',
+    )
+```
+
+### Common attributes
+
+All above OpenData sets accept these attributes:
+- `attribution`: Author of the data, for the OSM `source` tag.
 
 Remote files are fetched and saved in the Osmose-QA Backend cache, the delay can be adjusted:
 - `fileUrlCache`: cache delay in days, default to 30 days.
@@ -84,16 +143,6 @@ The remote file could be compressed or an archive:
 Assuming the resource is a text file:
 - `encoding`: define the encoding of the text content, in order to be re-encoded into the default UTF-8 encoding.
 - `filter`: a lambda expression applied on text content before loading (text in one big blob). Only to hijack bad formatted content and make it usable. See `Load` option for proper data filters.
-
-```python
-from .Analyser_Merge import Source
-
-    Source(
-        attribution='data.gouv.fr:Etalab',
-        millesime='01/2020',
-        fileUrl='https://www.data.gouv.fr/fr/datasets/r/01f2a133-4929-4001-906c-412f682d0d59',
-    )
-```
 
 Alongside that and outside of the source attributes, can be found:
 - **URL** of a comprehensive web description of the data set: for human, link found on Osmose-QA frontend help for OSM contributors.
