@@ -477,7 +477,7 @@ france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
 france_departement("rhone_alpes/savoie", 7425, "FR-73")
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74", include=[
     # Annecy
-    'merge_public_transport_FR_sibra'
+    'merge_public_transport_FR_sibra',
 ])
 
 
