@@ -9,6 +9,7 @@ import re
 import sys
 import requests
 
+from typing import List, Dict, Any, Union, Optional
 from termcolor import colored
 
 def analyse_log(filename):
@@ -93,12 +94,12 @@ if __name__ == "__main__":
   buildbot_root = u"https://buildbot.osmose.openstreetmap.fr"
   buildbot_api = buildbot_root + "/api/v2/"
 
-  builders_json = json.loads(requests.get(buildbot_api + "builders").text)
+  builders_json: Dict[str, Any] = json.loads(requests.get(buildbot_api + "builders").text)
   builders = {}
   for b in builders_json["builders"]:
     builders[b["name"]] = b["builderid"]
 
-  all_country = []
+  all_country: List[str] = []
   list_country = set()
   for country in args.country:
     found = False
@@ -107,7 +108,7 @@ if __name__ == "__main__":
       found = True
     elif country.endswith("*"):
       if not all_country:
-        all_country = builders.keys()
+        all_country = list(builders.keys())
         if "osmose-frontend" in all_country:
           all_country.remove("osmose-frontend")
         if "osmose-backend" in all_country:
@@ -127,7 +128,7 @@ if __name__ == "__main__":
   timedelta_zero = datetime.timedelta(0)
 
   if args.stats_global:
-    global_tasks_longest = {}
+    global_tasks_longest: Dict[Any, Any] = {}
     global_countries_longest = {}
     global_total_time = timedelta_zero
 
@@ -163,10 +164,10 @@ if __name__ == "__main__":
       print("  downloading %d" % i)
       try:
         u = buildbot_api + "builds/%d/steps/1/logs/stdio/contents" % i
-        log = json.loads(requests.get(u).text)
+        log: Dict[str, List[Dict[str, str]]] = json.loads(requests.get(u).text)
         with open(log_name, 'w') as f:
-          for c in log["logchunks"]:
-            for line in c["content"].split("\n"):
+          for cc in log["logchunks"]:
+            for line in cc["content"].split("\n"):
               # need to remove first character, encoding stdio/stderr
               f.write(line[1:] + "\n")
 
@@ -183,10 +184,10 @@ if __name__ == "__main__":
       stats = {}
       longer_than_day = False
       timedelta_long = datetime.timedelta(days=100)
-      tasks_longest = {}
-      tasks_shortest = {}
-      tasks_increase = {}
-      tasks_decrease = {}
+      tasks_longest: Dict[Any, Any] = {}
+      tasks_shortest: Dict[Any, Any] = {}
+      tasks_increase: Dict[Any, Any] = {}
+      tasks_decrease: Dict[Any, Any] = {}
       prev_i = None
 
       orig_list_builds = list_builds[:]
@@ -235,6 +236,8 @@ if __name__ == "__main__":
         for t in range(num_big_tasks):
           taskname = big_tasks[t]
           print(" - ", end=' ')
+          color: Optional[str] = None
+          attrs: Optional[Union[str, List[str]]] = None
           if tasks_longest[taskname][1] == i:
             color = "red"
             attrs = ["bold"]
