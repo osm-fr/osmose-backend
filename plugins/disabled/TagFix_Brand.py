@@ -21,7 +21,7 @@
 
 #from plugins.Plugin import Plugin
 from modules.OsmoseTranslation import T_
-from Plugin import Plugin
+from plugins.Plugin import Plugin
 import unicodedata
 
 
