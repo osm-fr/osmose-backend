@@ -100,12 +100,12 @@ for country, country_conf in config.config.items():
             print("Warning(%s): no poly fetched : %s" % (country, country_conf.download['poly']))
         else:
             polygonFilter = IssuesFile_PolygonFilter.PolygonFilter(country_conf.polygon_id, cache_delay=1)
-            if not polygonFilter.polygon.is_valid:
+            if not polygonFilter.pip.polygon.is_valid:
                 print("Error(%s) boundary not valid (r_id=%s)" % (country, country_conf.polygon_id))
             if not poly.is_valid:
                 print("Error(%s) poly not valid (%s)" % (country, country_conf.polygon_id))
             try:
-                if not poly.contains(polygonFilter.polygon):
+                if not poly.contains(polygonFilter.pip.polygon):
                     print("Error(%s) poly inside boundary (%s)" % (country, country_conf.download_repo))
             except:
                 print("Error(%s) evaluating intersection" % country)
