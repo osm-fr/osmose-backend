@@ -90,7 +90,7 @@ Data shared on [data.gouv.fr](https://data.gouv.fr/) can be retrieved with this 
 
 It uses the following attributes:
 - `dataset`: Dataset identifier. It can be seen by clicking on Details on the dataset page.
-- `resource`: The resource (file) identifier. It can be seen by clicking on the resource in the dataset page. It's the end of the "stable URL"
+- `resource`: The resource (file) identifier. It can be seen by clicking on the resource in the dataset page. It's the end of the "stable URL".
 
 Example:
 
