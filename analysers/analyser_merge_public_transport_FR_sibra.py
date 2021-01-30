@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
@@ -36,8 +36,10 @@ class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
         self.init(
             u"https://transport.data.gouv.fr/datasets/offre-de-transports-sibra-a-annecy-gtfs",
             u"Réseau urbain Sibra",
-            GTFS(Source(attribution = u"SIBRA", millesime = "08/2020",
-                    fileUrl = u"https://static.data.gouv.fr/resources/offre-de-transports-sibra-a-annecy-gtfs/20200821-090711/gtfs-sibra-jybus-202009.zip")),
+            GTFS(SourceDataGouv(
+                attribution="SIBRA",
+                dataset="5bd9843e634f413220f7f04a",
+                resource="df07e60d-47bf-4cf2-b5d2-ad4af4c7d586")),
             Load("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
