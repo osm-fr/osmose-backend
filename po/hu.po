@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-24 15:32+0000\n"
+"PO-Revision-Date: 2021-01-30 13:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -629,12 +629,12 @@ msgstr "Név szóközzel végződik"
 msgid "Name contains successive spaces"
 msgstr "Névben egymást követő szóközök vannak"
 
-#: ../plugins/TagRemove_Incompatibles.py:110
+#: ../plugins/TagRemove_Incompatibles.py:114
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Ellentmondás a következő címkék között: [{0}]"
 
-#: ../plugins/TagRemove_Incompatibles.py:113
+#: ../plugins/TagRemove_Incompatibles.py:117
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Ellentmondás a [bridge] és [tunnel] címkék között"
 
@@ -856,7 +856,7 @@ msgstr "Hibás [access lanes] érték: ne egész szám legyen, hanem korlátozá
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "A [merge_to_…] címkéjű bekanyarodósávokhoz egy oldalsó sáv is szükséges a megfelelő oldalon"
 
-#: ../plugins/TagRemove_Incompatibles.py:116
+#: ../plugins/TagRemove_Incompatibles.py:120
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Címkék közötti ellentmondás: a [crossing=no] csak [highway=crossing] nélkül használható"
@@ -1386,6 +1386,7 @@ msgid "The URL does not have a valid scheme"
 msgstr "Az URL sémája érvénytelen"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
@@ -1396,6 +1397,7 @@ msgid "{0} stop not integrated"
 msgstr "{0} megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:34
@@ -1406,6 +1408,7 @@ msgid "{0} stop, integration suggestion"
 msgstr "{0} megálló: kiegészítési javaslat"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:57
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
@@ -2692,13 +2695,6 @@ msgstr ""
 
 #: ../plugins/Name_MisspelledWordByRegex.py:33
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
-msgstr ""
-
-#: ../plugins/Name_Multiple.py:35
-msgid ""
-"The tag `name=*` contains two street names, separated by a semicolon,\n"
-"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
-"way and the concatenation of the names of the streets."
 msgstr ""
 
 #: ../plugins/Name_Multiple.py:39
@@ -4021,67 +4017,67 @@ msgstr "telefonfülke"
 msgid "drinking water"
 msgstr "ivóvíz"
 
-#: tmp.json:7 tmp.json:33
+#: tmp.json:7 tmp.json:34
 msgid "max speed limit 5"
 msgstr "sebességkorlátozás: 5 km/h"
 
-#: tmp.json:8 tmp.json:34
+#: tmp.json:8 tmp.json:35
 msgid "max speed limit 10"
 msgstr "sebességkorlátozás: 10 km/h"
 
-#: tmp.json:9 tmp.json:35
+#: tmp.json:9 tmp.json:36
 msgid "max speed limit 15"
 msgstr "sebességkorlátozás: 15 km/h"
 
-#: tmp.json:10 tmp.json:36
+#: tmp.json:10 tmp.json:37
 msgid "max speed limit 20"
 msgstr "sebességkorlátozás: 20 km/h"
 
-#: tmp.json:11 tmp.json:38
+#: tmp.json:11 tmp.json:39
 msgid "max speed limit 30"
 msgstr "sebességkorlátozás: 30 km/h"
 
-#: tmp.json:12 tmp.json:39
+#: tmp.json:12 tmp.json:40
 msgid "max speed limit 35"
 msgstr "sebességkorlátozás: 35 km/h"
 
-#: tmp.json:13 tmp.json:40
+#: tmp.json:13 tmp.json:41
 msgid "max speed limit 40"
 msgstr "sebességkorlátozás: 40 km/h"
 
-#: tmp.json:14 tmp.json:41
+#: tmp.json:14 tmp.json:42
 msgid "max speed limit 45"
 msgstr "sebességkorlátozás: 45 km/h"
 
-#: tmp.json:15 tmp.json:42
+#: tmp.json:15 tmp.json:43
 msgid "max speed limit 50"
 msgstr "sebességkorlátozás: 50 km/h"
 
-#: tmp.json:16 tmp.json:44
+#: tmp.json:16 tmp.json:45
 msgid "max speed limit 60"
 msgstr "sebességkorlátozás: 60 km/h"
 
-#: tmp.json:17 tmp.json:46
+#: tmp.json:17 tmp.json:47
 msgid "max speed limit 70"
 msgstr "sebességkorlátozás: 70 km/h"
 
-#: tmp.json:18 tmp.json:48
+#: tmp.json:18 tmp.json:49
 msgid "max speed limit 80"
 msgstr "sebességkorlátozás: 80 km/h"
 
-#: tmp.json:19 tmp.json:49
+#: tmp.json:19 tmp.json:50
 msgid "max speed limit 90"
 msgstr "sebességkorlátozás: 90 km/h"
 
-#: tmp.json:20 tmp.json:50
+#: tmp.json:20 tmp.json:51
 msgid "max speed limit 100"
 msgstr "sebességkorlátozás: 100 km/h"
 
-#: tmp.json:21 tmp.json:51
+#: tmp.json:21 tmp.json:52
 msgid "max speed limit 110"
 msgstr "sebességkorlátozás: 110 km/h"
 
-#: tmp.json:22 tmp.json:52
+#: tmp.json:22 tmp.json:53
 msgid "max speed limit 120"
 msgstr "sebességkorlátozás: 120 km/h"
 
@@ -4125,51 +4121,51 @@ msgstr ""
 msgid "stop"
 msgstr ""
 
-#: tmp.json:37
+#: tmp.json:38
 msgid "max speed limit 25"
 msgstr "sebességkorlátozás: 25 km/h"
 
-#: tmp.json:43
+#: tmp.json:44
 msgid "max speed limit 55"
 msgstr "sebességkorlátozás: 55"
 
-#: tmp.json:45
+#: tmp.json:46
 msgid "max speed limit 65"
 msgstr "sebességkorlátozás: 65"
 
-#: tmp.json:47
+#: tmp.json:48
 msgid "max speed limit 75"
 msgstr "sebességkorlátozás: 75"
 
-#: tmp.json:54
+#: tmp.json:55
 msgid "Tourism office"
 msgstr "Tourinform iroda"
 
-#: tmp.json:55
+#: tmp.json:56
 msgid "Church"
 msgstr "Templom"
 
-#: tmp.json:56
+#: tmp.json:57
 msgid "Camping"
 msgstr "Kemping"
 
-#: tmp.json:57
+#: tmp.json:58
 msgid "Restaurant"
 msgstr "Étterem"
 
-#: tmp.json:58
+#: tmp.json:59
 msgid "Museum"
 msgstr "Múzeum"
 
-#: tmp.json:59
+#: tmp.json:60
 msgid "Winery"
 msgstr "Borászat"
 
-#: tmp.json:60
+#: tmp.json:61
 msgid "Viewpoint"
 msgstr "Kilátóhely"
 
-#: tmp.json:61
+#: tmp.json:62
 msgid "Picnic site"
 msgstr "Piknikezőhely"
 
@@ -4261,7 +4257,7 @@ msgid ""
 "`public_transport=platform` nor `highway=bus_stop`."
 msgstr ""
 
-#: tmp.json:53
+#: tmp.json:54
 msgid "cycling infrastructure"
 msgstr ""
 
@@ -4472,4 +4468,15 @@ msgid ""
 "A parking condition is set for a parking:lane:[side] value that indicates\n"
 "that the parking area is mapped separately. Any parking conditions should\n"
 "be tagged on that object instead."
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:35
+msgid ""
+"The tag `name=*` contains multiple names, separated by a semicolon,\n"
+"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
+"way and the concatenation of the names of the streets."
+msgstr ""
+
+#: tmp.json:33
+msgid "one-directional roads"
 msgstr ""

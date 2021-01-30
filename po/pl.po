@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-21 17:11+0000\n"
-"Last-Translator: maro21 OSM\n"
+"PO-Revision-Date: 2021-01-30 13:56+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -635,12 +635,12 @@ msgstr "Nazwa kończy się spacją"
 msgid "Name contains successive spaces"
 msgstr "Nazwa zawiera niepotrzebne spacje"
 
-#: ../plugins/TagRemove_Incompatibles.py:110
+#: ../plugins/TagRemove_Incompatibles.py:114
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Sprzeczność między tagami: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:113
+#: ../plugins/TagRemove_Incompatibles.py:117
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Sprzeczność między tagami: 'bridge' i 'tunnel'"
 
@@ -862,7 +862,7 @@ msgstr "Zła wartość dostępu dla \"*:lanes\" – to powinny być wartości ty
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Wartość turn:lanes dla merge_to_left/right jest po niewłaściwej stronie"
 
-#: ../plugins/TagRemove_Incompatibles.py:116
+#: ../plugins/TagRemove_Incompatibles.py:120
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Sprzeczność między tagami: crossing=no należy używać bez highway=crossing"
@@ -1392,6 +1392,7 @@ msgid "The URL does not have a valid scheme"
 msgstr "Adres strony internetowej nie ma poprawnego formatu"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
@@ -1402,6 +1403,7 @@ msgid "{0} stop not integrated"
 msgstr "Przystanek {0} niezintegrowany"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:34
@@ -1412,6 +1414,7 @@ msgid "{0} stop, integration suggestion"
 msgstr "Przystanek {0}, propozycja integracji"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:57
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
@@ -2698,13 +2701,6 @@ msgstr "Może brakować wielkiej litery lub znaku diakrytycznego."
 
 #: ../plugins/Name_MisspelledWordByRegex.py:33
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
-msgstr ""
-
-#: ../plugins/Name_Multiple.py:35
-msgid ""
-"The tag `name=*` contains two street names, separated by a semicolon,\n"
-"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
-"way and the concatenation of the names of the streets."
 msgstr ""
 
 #: ../plugins/Name_Multiple.py:39
@@ -4027,67 +4023,67 @@ msgstr "budka telefoniczna"
 msgid "drinking water"
 msgstr "woda pitna"
 
-#: tmp.json:7 tmp.json:33
+#: tmp.json:7 tmp.json:34
 msgid "max speed limit 5"
 msgstr "ograniczenie prędkości 5 km/h"
 
-#: tmp.json:8 tmp.json:34
+#: tmp.json:8 tmp.json:35
 msgid "max speed limit 10"
 msgstr "ograniczenie prędkości 10 km/h"
 
-#: tmp.json:9 tmp.json:35
+#: tmp.json:9 tmp.json:36
 msgid "max speed limit 15"
 msgstr "ograniczenie prędkości 15 km/h"
 
-#: tmp.json:10 tmp.json:36
+#: tmp.json:10 tmp.json:37
 msgid "max speed limit 20"
 msgstr "ograniczenie prędkości 20 km/h"
 
-#: tmp.json:11 tmp.json:38
+#: tmp.json:11 tmp.json:39
 msgid "max speed limit 30"
 msgstr "ograniczenie prędkości 30 km/h"
 
-#: tmp.json:12 tmp.json:39
+#: tmp.json:12 tmp.json:40
 msgid "max speed limit 35"
 msgstr "ograniczenie prędkości 35 km/h"
 
-#: tmp.json:13 tmp.json:40
+#: tmp.json:13 tmp.json:41
 msgid "max speed limit 40"
 msgstr "ograniczenie prędkości 40 km/h"
 
-#: tmp.json:14 tmp.json:41
+#: tmp.json:14 tmp.json:42
 msgid "max speed limit 45"
 msgstr "ograniczenie prędkości 45 km/h"
 
-#: tmp.json:15 tmp.json:42
+#: tmp.json:15 tmp.json:43
 msgid "max speed limit 50"
 msgstr "ograniczenie prędkości 50 km/h"
 
-#: tmp.json:16 tmp.json:44
+#: tmp.json:16 tmp.json:45
 msgid "max speed limit 60"
 msgstr "ograniczenie prędkości 60 km/h"
 
-#: tmp.json:17 tmp.json:46
+#: tmp.json:17 tmp.json:47
 msgid "max speed limit 70"
 msgstr "ograniczenie prędkości 70 km/h"
 
-#: tmp.json:18 tmp.json:48
+#: tmp.json:18 tmp.json:49
 msgid "max speed limit 80"
 msgstr "ograniczenie prędkości 80 km/h"
 
-#: tmp.json:19 tmp.json:49
+#: tmp.json:19 tmp.json:50
 msgid "max speed limit 90"
 msgstr "ograniczenie prędkości 90 km/h"
 
-#: tmp.json:20 tmp.json:50
+#: tmp.json:20 tmp.json:51
 msgid "max speed limit 100"
 msgstr "ograniczenie prędkości 100 km/h"
 
-#: tmp.json:21 tmp.json:51
+#: tmp.json:21 tmp.json:52
 msgid "max speed limit 110"
 msgstr "ograniczenie prędkości 110 km/h"
 
-#: tmp.json:22 tmp.json:52
+#: tmp.json:22 tmp.json:53
 msgid "max speed limit 120"
 msgstr "ograniczenie prędkości 120 km/h"
 
@@ -4131,51 +4127,51 @@ msgstr "przejście dla zwierząt"
 msgid "stop"
 msgstr "znak stop"
 
-#: tmp.json:37
+#: tmp.json:38
 msgid "max speed limit 25"
 msgstr "ograniczenie prędkości 25 km/h"
 
-#: tmp.json:43
+#: tmp.json:44
 msgid "max speed limit 55"
 msgstr "ograniczenie prędkości 55 km/h"
 
-#: tmp.json:45
+#: tmp.json:46
 msgid "max speed limit 65"
 msgstr "ograniczenie prędkości 65 km/h"
 
-#: tmp.json:47
+#: tmp.json:48
 msgid "max speed limit 75"
 msgstr "ograniczenie prędkości 75 km/h"
 
-#: tmp.json:54
+#: tmp.json:55
 msgid "Tourism office"
 msgstr "Informacja turystyczna"
 
-#: tmp.json:55
+#: tmp.json:56
 msgid "Church"
 msgstr "Kościół"
 
-#: tmp.json:56
+#: tmp.json:57
 msgid "Camping"
 msgstr "Kamping"
 
-#: tmp.json:57
+#: tmp.json:58
 msgid "Restaurant"
 msgstr "Restauracja"
 
-#: tmp.json:58
+#: tmp.json:59
 msgid "Museum"
 msgstr "Muzeum"
 
-#: tmp.json:59
+#: tmp.json:60
 msgid "Winery"
 msgstr "Winiarnia"
 
-#: tmp.json:60
+#: tmp.json:61
 msgid "Viewpoint"
 msgstr "Punkt widokowy"
 
-#: tmp.json:61
+#: tmp.json:62
 msgid "Picnic site"
 msgstr "Miejsce na piknik"
 
@@ -4267,7 +4263,7 @@ msgid ""
 "`public_transport=platform` nor `highway=bus_stop`."
 msgstr "`public_transport=stop_position` bez `public_transport=platform` lub `highway=bus_stop` w pobliżu."
 
-#: tmp.json:53
+#: tmp.json:54
 msgid "cycling infrastructure"
 msgstr "infrastruktura rowerowa"
 
@@ -4345,10 +4341,6 @@ msgstr "Cmentarz niezintegrowany"
 #: ../analysers/analyser_merge_charging_station_FR.py:49
 msgid "Car charging station update"
 msgstr "Stacja ładowania pojazdów, aktualizacja"
-
-#: ../analysers/analyser_merge_highway_ref_FR.py:31
-msgid "Highway ref not integrated"
-msgstr "Numer drogi niezintegrowany"
 
 #: ../analysers/analyser_merge_man_made_FR.py:42
 msgid "Lighting mast not integrated"
@@ -4460,4 +4452,37 @@ msgstr ""
 
 #: ../analysers/analyser_merge_water_FR.py:109
 msgid "Spring box not integrated"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:52
+msgid "parking:condition:[side] not applicable"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:54
+msgid ""
+"A parking condition is set for a parking:lane:[side] value that forbids "
+"parking."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:56
+msgid ""
+"parking:condition:[side] should be mapped on separately mapped parking area"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:58
+msgid ""
+"A parking condition is set for a parking:lane:[side] value that indicates\n"
+"that the parking area is mapped separately. Any parking conditions should\n"
+"be tagged on that object instead."
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:35
+msgid ""
+"The tag `name=*` contains multiple names, separated by a semicolon,\n"
+"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
+"way and the concatenation of the names of the streets."
+msgstr ""
+
+#: tmp.json:33
+msgid "one-directional roads"
 msgstr ""
