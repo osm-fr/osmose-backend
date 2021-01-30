@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
@@ -38,8 +38,11 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         self.init(
             "https://www.data.gouv.fr/fr/datasets/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/",
             "Horaires théoriques du réseau de transport 'CG 33 -TRANSGIRONDE'",
-            GTFS(Source(attribution = "Conseil général de la Gironde", millesime = "04/2018",
-                    fileUrl = "https://static.data.gouv.fr/resources/horaires-theoriques-du-reseau-de-transport-cg-33-transgironde/20180423-150005/download_CD33_GTFS_lignes_reg.zip", encoding = "ISO-8859-15")),
+            GTFS(SourceDataGouv(
+                attribution="Conseil général de la Gironde",
+                dataset="5ab11a52c751df688f5268c4",
+                resource="06b4ab72-01b2-4561-9fbf-7e02ee0dd613",
+                encoding="ISO-8859-15")),
             Load("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(

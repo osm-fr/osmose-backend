@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
@@ -31,10 +31,12 @@ class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-9/",
-            u"Défibrillateurs",
-            GeoJSON(Source(attribution = u"Mairie de Cugnaux",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6820eaf-f988-47c4-bc6f-634e0a4da013")),
+            "https://www.data.gouv.fr/fr/datasets/defibrillateurs-9/",
+            "Défibrillateurs",
+            GeoJSON(SourceDataGouv(
+                attribution="Mairie de Cugnaux",
+                dataset="58d284c0c751df3538a279f1",
+                resource="d6820eaf-f988-47c4-bc6f-634e0a4da013")),
             Load("geom_x", "geom_y"),
             Conflate(
                 select = Select(

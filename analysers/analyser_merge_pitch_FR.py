@@ -49,10 +49,12 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             title = T_('Pitch not integrated {0}', topic))
 
         self.init(
-            u"http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
-            u"Recensement des équipements sportifs, espaces et sites de pratiques",
-            CSV(Source(attribution = u"Le ministère de la ville, de la jeunesse et des sports", millesime = "01/2018",
-                    fileUrl = u"https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20180112-114703/20180110_RES_FichesEquipements.zip", zip = "20180110_RES_FichesEquipements.csv", encoding = "ISO-8859-15"),
+            "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
+            "Recensement des équipements sportifs, espaces et sites de pratiques",
+            # Source fileUrl is HTTP 404, but keeping it as per
+            # https://github.com/osm-fr/osmose-backend/pull/1092#pullrequestreview-577717867
+            CSV(Source(attribution = "Le ministère de la ville, de la jeunesse et des sports", millesime = "01/2018",
+                    fileUrl = "https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20180112-114703/20180110_RES_FichesEquipements.zip", zip = "20180110_RES_FichesEquipements.csv", encoding = "ISO-8859-15"),
                 separator = u';'),
             Load("EquGpsX", "EquGpsY",
                 select = {"EquipementTypeLib": topic},
@@ -75,14 +77,14 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             return []
 
     surfaceMap = {
-        u"Sable": "sand",
-        u"Gazon naturel": "grass",
-        u"Bitume": "asphalt",
-        u"Béton": "concrete",
-        u"Gazon synthétique": "artificial_turf",
-        u"Bois": "wood",
-        u"Terre battue": "clay",
-        u"Métal": "metal",
+        "Sable": "sand",
+        "Gazon naturel": "grass",
+        "Bitume": "asphalt",
+        "Béton": "concrete",
+        "Gazon synthétique": "artificial_turf",
+        "Bois": "wood",
+        "Terre battue": "clay",
+        "Métal": "metal",
     }
 
     def surface(self, res):

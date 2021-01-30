@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import SourceHttpLastModified, CSV, Load, Conflate, Select, Mapping
 from modules import reaccentue
 
 
@@ -54,10 +54,12 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
         dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
 
         self.init(
-            u"http://www.sirene.fr/sirene/public/static/open-data",
-            u"Sirene",
-            CSV(Source(attribution = u"INSEE", millesime = "06/2019", gzip = True,
-                fileUrl = u"http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_{0}.csv.gz".format(dep_code))),
+            "http://www.sirene.fr/sirene/public/static/open-data",
+            "Sirene",
+            CSV(SourceHttpLastModified(
+                attribution="INSEE",
+                gzip=True,
+                fileUrl="http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_{0}.csv.gz".format(dep_code))),
             Load("longitude", "latitude",
                 select = {"activitePrincipaleEtablissement": classs, "geo_type": "housenumber", "etatAdministratifEtablissement": "A"},
                 where = lambda res: (

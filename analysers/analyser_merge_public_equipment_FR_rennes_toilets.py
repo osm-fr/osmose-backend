@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
@@ -31,11 +31,11 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Rennes'))
 
         self.init(
-            u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
-            u"Toilettes publiques",
-            CSV(Source(attribution = u"Ville de Rennes", millesime = "07/2017",
-                    fileUrl = u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
+            "Toilettes publiques",
+            CSV(SourceOpenDataSoft(
+                attribution="Ville de Rennes",
+                url="https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
@@ -50,4 +50,4 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
                         "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "wheelchair": lambda res: "yes" if res["pmr"] == u"OUI" else "no" if res["pmr"] == u"NON" else None} )))
+                        "wheelchair": lambda res: "yes" if res["pmr"] == "OUI" else "no" if res["pmr"] == "NON" else None} )))

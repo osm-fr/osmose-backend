@@ -25,7 +25,7 @@ import csv
 import io
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
@@ -72,10 +72,13 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             title = T_('{0}, integration suggestion', title))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
-            u"FINESS Extraction du Fichier des établissements",
-            CSV(Source_Finess(attribution = 'Le ministère des solidarités et de la santé', millesime = '03/2019', encoding = 'ISO-8859-1',
-                    fileUrl = 'https://www.data.gouv.fr/fr/datasets/r/16ee2cd3-b9fe-459e-8a57-46e03ba3adbd')),
+            "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
+            "FINESS Extraction du Fichier des établissements",
+            CSV(Source_Finess(
+                attribution="Le ministère des solidarités et de la santé",
+                encoding="ISO-8859-1",
+                dataset="53699569a3a729239d2046eb",
+                resource="16ee2cd3-b9fe-459e-8a57-46e03ba3adbd")),
             Load("coordxet", "coordyet", srid = srid,
                 select = {"categetab": categories},
                 where = lambda res: is_in(res["departement"])),
@@ -102,11 +105,11 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             return "+33" + number[1:]
 
 
-class Source_Finess(Source):
+class Source_Finess(SourceDataGouv):
     def open(self):
         # Cheat the parent open
         self.encoding = 'UTF-8'
-        f = Source.open(self)
+        f = super().open()
 
         csvreader = csv.reader(f, delimiter=u';')
         structureet = [u'nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]

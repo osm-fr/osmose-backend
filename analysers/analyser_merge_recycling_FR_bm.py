@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
@@ -37,8 +37,11 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p',
             'Emplacements d''apport volontaire',
-            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
-                    fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'en_empac_p.shp')),
+            SHP(SourceOpenDataSoft(
+                attribution='Bordeaux Métropole',
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p",
+                format="shp",
+                zip='en_empac_p.shp')),
             LoadGeomCentroid(
                 select = {"ident": {"like": "%"}}),
             Conflate(

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
@@ -37,8 +37,11 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
         self.init(
             'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p',
             'Station VCUB',
-            SHP(Source(attribution = 'Bordeaux Métropole', millesime = '02/2020',
-                fileUrl = 'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p/download/?format=shp&timezone=Europe/Berlin&lang=fr', zip = 'tb_stvel_p.shp')),
+            SHP(SourceOpenDataSoft(
+                attribution="Bordeaux Métropole",
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p",
+                format="shp",
+                zip="tb_stvel_p.shp")),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(

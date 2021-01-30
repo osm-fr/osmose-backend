@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 STANDS_TYPES = {
     "Arceau autre": "stands",
@@ -46,15 +46,15 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
             title = T_('Paris bicycle parking not integrated'))
 
         self.init(
-            u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
-            u"Stationnement sur voie publique - emplacements vélos",
-            CSV(Source(attribution = u"Ville de Paris", millesime = "02/2018",
-                    fileUrl = u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
+            "Stationnement sur voie publique - emplacements vélos",
+            CSV(SourceOpenDataSoft(
+                attribution="Ville de Paris",
+                url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
-                    u"Régime prioritaire": u"2 ROUES",
-                    u"Régime particulier": u"Vélos",
+                    "Régime prioritaire": "2 ROUES",
+                    "Régime particulier": "Vélos",
                 },
                 xFunction = lambda x: Load.float_comma(x.split(',')[1]),
                 yFunction = lambda y: Load.float_comma(y.split(',')[0])
@@ -77,15 +77,14 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             title = T_('Paris motorcycle parking not integrated'))
 
         self.init(
-            u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
-            u"Stationnement sur voie publique - emplacements motos",
-            CSV(Source(attribution = u"Ville de Paris", millesime = "02/2018",
-                    fileUrl = u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
+            "Stationnement sur voie publique - emplacements motos",
+            CSV(SourceOpenDataSoft(attribution = "Ville de Paris",
+                    url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
-                    u"Régime prioritaire": u"2 ROUES",
-                    u"Régime particulier": u"Motos",
+                    "Régime prioritaire": "2 ROUES",
+                    "Régime particulier": "Motos",
                 },
                 xFunction = lambda x: Load.float_comma(x.split(',')[1]),
                 yFunction = lambda y: Load.float_comma(y.split(',')[0])
@@ -108,15 +107,14 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             title = T_('Paris shared motorcycle/motorcycle parking not integrated'))
 
         self.init(
-            u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
-            u"Stationnement sur voie publique - emplacements deux roues",
-            CSV(Source(attribution = u"Ville de Paris", millesime = "02/2018",
-                    fileUrl = u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
+            "Stationnement sur voie publique - emplacements deux roues",
+            CSV(SourceOpenDataSoft(attribution = "Ville de Paris",
+                    url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
-                    u"Régime prioritaire": u"2 ROUES",
-                    u"Régime particulier": u"Mixte",
+                    "Régime prioritaire": "2 ROUES",
+                    "Régime particulier": "Mixte",
                 },
                 xFunction = lambda x: Load.float_comma(x.split(',')[1]),
                 yFunction = lambda y: Load.float_comma(y.split(',')[0])

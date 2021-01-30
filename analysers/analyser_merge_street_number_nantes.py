@@ -20,22 +20,23 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Source, CSV, Load, Conflate, Mapping
+from .Analyser_Merge import SourceOpenDataSoft, CSV, Load, Conflate, Mapping
 from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
 class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 2, "Nantes", logger,
-            u"https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole",
-            u"Adresses postales de Nantes Métropole",
-            CSV(Source(attribution = "Nantes Métropole {0}", millesime = "08/2018",
-                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole/download/?format=csv"), separator = u";"),
-            Load("geo_point_2d", "geo_point_2d",
+            "https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole",
+            "Adresses postales de Nantes Métropole",
+            CSV(SourceOpenDataSoft(
+                attribution="Nantes Métropole {0}",
+                url="https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole")),
+            Load("Géolocalisation", "Géolocalisation",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0])),
             Conflate(
                 mapping = Mapping(
                     static2 = {"source": self.source},
-                    mapping1 = {"addr:housenumber": "numero"},
-                    text = lambda tags, fields: {"en": fields["adresse"]} )))
+                    mapping1 = {"addr:housenumber": "Numéro adresse"},
+                    text = lambda tags, fields: {"en": fields["Adresse"]} )))

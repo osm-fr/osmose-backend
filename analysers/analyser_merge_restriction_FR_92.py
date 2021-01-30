@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
@@ -31,11 +31,12 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
             title = T_('maxweight Restriction not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/gabarits-et-limitation-de-poids-des-ponts/",
-            u"Gabarits et limitation de poids des ponts",
-            CSV(Source(attribution = u"Département des Hauts-de-Seine", millesime = "04/2017",
-                    fileUrl = u"https://opendata.hauts-de-seine.fr//explore/dataset/gabarits-et-limitation-de-poids-des-ponts/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts/",
+            "Gabarits et limitation de poids des ponts",
+            CSV(
+                SourceOpenDataSoft(
+                    attribution="Département des Hauts-de-Seine",
+                    url="https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts")),
             Load("geo_point_2d", "geo_point_2d",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
@@ -64,11 +65,11 @@ class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
             title = T_('maxheight Restriction not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/gabarits-et-limitation-de-poids-des-ponts/",
-            u"Gabarits et limitation de poids des ponts",
-            CSV(Source(attribution = u"Département des Hauts-de-Seine", millesime = "04/2017",
-                    fileUrl = u"https://opendata.hauts-de-seine.fr//explore/dataset/gabarits-et-limitation-de-poids-des-ponts/download?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts/",
+            "Gabarits et limitation de poids des ponts",
+            CSV(SourceOpenDataSoft(
+                attribution="Département des Hauts-de-Seine",
+                url="https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts")),
             Load("geo_point_2d", "geo_point_2d",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
@@ -31,12 +31,15 @@ class Analyser_merge_defibrillators_FR_saintmalo(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/defibrillateurs-1/",
-            u"Ville de Saint-Malo",
-            CSV(Source(attribution = u"Ville de Saint-Malo",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/75e18892-529f-4037-b38f-a9e4d9c39a91",
-                    encoding = "iso-8859-14"),
-                    separator = u";"),
+            "https://www.data.gouv.fr/fr/datasets/defibrillateurs-1/",
+            "Ville de Saint-Malo",
+            CSV(
+                SourceDataGouv(
+                    attribution="Ville de Saint-Malo",
+                    dataset="54295e4188ee380326a5915d",
+                    resource="75e18892-529f-4037-b38f-a9e4d9c39a91",
+                    encoding="iso-8859-14"),
+                separator=";"),
             Load("XCOORD", "YCOORD", srid = 2154),
             Conflate(
                 select = Select(

@@ -35,6 +35,7 @@ import zipfile
 import tempfile
 import json
 import re
+from typing import Optional
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules.OsmoseTranslation import T_
@@ -339,6 +340,9 @@ class Source:
         self.gzip = gzip
         self.filter = filter
 
+        if self.file and self.fileUrl:
+            raise ValueError("file and fileUrl should not be both set")
+
         if self.file:
             if not os.path.isabs(self.file):
                 self.file = "merge_data/" + self.file
@@ -399,17 +403,85 @@ class Source:
                 f.seek(0)
         return f
 
+    def _get_millesime(self) -> Optional[str]:
+        if not self.millesime and self.fileUrl:
+            cached_millesime = downloader.get_millesime(self.fileUrl, self.fileUrlCache)
+            if cached_millesime:
+                self.millesime = cached_millesime
+            else:
+                self.millesime = self.get_millesime()
+                downloader.set_millesime(self.fileUrl, self.millesime)
+        if self.millesime is None or type(self.millesime) == str:
+            return self.millesime
+        return self.millesime.strftime("%Y-%m")
+
+    def get_millesime(self) -> Optional[datetime.datetime]:
+        """To be overwritten by sources with dynamic millesime"""
+        return None
+
     def as_tag_value(self):
         if "{0}" in self.attribution:
-            return self.attribution.format(self.millesime)
+            return self.attribution.format(self._get_millesime())
         else:
-            return " - ".join(filter(lambda x: x is not None, [self.attribution, self.millesime]))
+            return " - ".join(filter(lambda x: x is not None, [self.attribution, self._get_millesime()]))
 
     def match_attribution(self, s):
         if "{0}" not in self.attribution:
             return self.attribution in s
         else:
             return self.attribution_re.match(s)
+
+
+class SourceDataGouv(Source):
+
+    data_gouv_api_base = "https://www.data.gouv.fr/api/1"
+    data_gouv_dataset_base = "https://www.data.gouv.fr/fr/datasets/r/"
+
+    def __init__(self, dataset: str, resource: str, **kwargs):
+        self.dataset = dataset
+        self.resource = resource
+        kwargs.update({
+            "fileUrl": self.data_gouv_dataset_base + resource,
+            "millesime": None,
+        })
+        super().__init__(**kwargs)
+
+    def get_millesime(self) -> datetime.datetime:
+        last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
+        return datetime.datetime.fromisoformat(last_modified)
+
+
+class SourceOpenDataSoft(Source):
+
+    url_re = re.compile(r"(https?://.+)/explore/dataset/([^/?#]+)")
+
+    def __init__(self,
+                 url: str,
+                 format: str = "csv",
+                 **kwargs):
+        url_match = self.url_re.match(url)
+        if url_match is None:
+            raise ValueError(f"Invalid url: {url}")
+        self.base_url, self.dataset = url_match.groups()
+        kwargs.update({
+            "fileUrl": f"{self.base_url}/explore/dataset/{self.dataset}/download/?format={format}&csv_separator=,&use_labels_for_header=true",
+            "millesime": None,
+        })
+        super().__init__(**kwargs)
+
+    def get_millesime(self) -> datetime.datetime:
+        last_modified = downloader.get(f"{self.base_url}/api/datasets/1.0/{self.dataset}").json()["metas"]["data_processed"]
+        return datetime.datetime.fromisoformat(last_modified)
+
+
+class SourceHttpLastModified(Source):
+    """Get URL from Last-Modified HTTP headers"""
+    def get_millesime(self):
+        return datetime.datetime.strptime(
+            downloader.requests_retry_session().head(self.fileUrl).headers['Last-Modified'],
+            downloader.HTTP_DATE_FMT,
+        )
+
 
 class Parser:
     def header(self):

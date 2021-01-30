@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
@@ -33,11 +33,11 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
             title = T_('Power minor_distribution substation, integration suggestion'))
 
         self.init(
-            u"https://data.enedis.fr/explore/dataset/poste-electrique/",
-            u"Postes HTA/BT",
-            CSV(Source(attribution = u"Enedis", millesime = "06/2018",
-                    fileUrl = u"https://data.enedis.fr/explore/dataset/poste-electrique/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://data.enedis.fr/explore/dataset/poste-electrique/",
+            "Postes HTA/BT",
+            CSV(SourceOpenDataSoft(
+                attribution="Enedis",
+                url="https://data.enedis.fr/explore/dataset/poste-electrique")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
@@ -31,11 +31,11 @@ class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Toulouse'))
 
         self.init(
-            u"https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
-            u"Toilettes publiques",
-            CSV(Source(attribution = u"Toulouse Métropole", millesime = "12/2017",
-                    fileUrl = u"https://data.toulouse-metropole.fr/explore/dataset/sanisettes/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = u";"),
+            "https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
+            "Toilettes publiques",
+            CSV(SourceOpenDataSoft(
+                attribution="Toulouse Métropole",
+                url="https://data.toulouse-metropole.fr/explore/dataset/sanisettes")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

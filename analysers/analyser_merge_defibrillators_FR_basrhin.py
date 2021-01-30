@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
@@ -31,10 +31,13 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/donnee-thematique-localisation-des-defibrillateurs-automatiques-externes-dae-bas-rhin/",
-            u"DONNEE THEMATIQUE : Localisation des Défibrillateurs Automatiques Externes (DAE) - Bas-Rhin",
-            GeoJSON(Source(attribution = u"data.gouv.fr:Service Départemental d'Incendie et de Secours du Bas-Rhin", millesime = "27/01/2020",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/b84312e9-b198-4f1d-b2ad-8e4df5b7cb5b")),
+            "https://www.data.gouv.fr/fr/datasets/donnee-thematique-localisation-des-defibrillateurs-automatiques-externes-dae-bas-rhin/",
+            "DONNEE THEMATIQUE : Localisation des Défibrillateurs Automatiques Externes (DAE) - Bas-Rhin",
+            GeoJSON(
+                SourceDataGouv(
+                    attribution="data.gouv.fr:Service Départemental d'Incendie et de Secours du Bas-Rhin",
+                    dataset="59256d13c751df5259330037",
+                    resource="b84312e9-b198-4f1d-b2ad-8e4df5b7cb5b")),
             Load("geom_x", "geom_y"),
             Conflate(
                 select = Select(

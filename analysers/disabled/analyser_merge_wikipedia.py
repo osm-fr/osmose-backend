@@ -335,8 +335,8 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             LoadGeomCentroid(
                 create = self.create_table,
                 select = {"lang": wikiLang, "Country": wikiCountry},
-                where = (lambda res: not res["titel"].startswith("Liste ")) if starts is None else
-                    (lambda res: res["titel"].startswith(starts)) ),
+                where = (lambda res: not res["titel"].startswith("Liste ") if starts is None else
+                    (lambda res: res["titel"].startswith(starts)))),
             Conflate(
                 select = Select(
                     types = osmTypes,

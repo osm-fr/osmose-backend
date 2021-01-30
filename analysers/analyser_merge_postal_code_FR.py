@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
@@ -33,11 +33,11 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
             title = T_('Postal code, integration suggestion'))
 
         self.init(
-            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
-            u"Base officielle des codes postaux",
-            CSV(Source(attribution = u"La Poste", millesime = "12/2014",
-                    fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal/download/?format=csv&use_labels_for_header=true"),
-                separator = u";"),
+            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
+            "Base officielle des codes postaux",
+            CSV(SourceOpenDataSoft(
+                attribution="La Poste",
+                url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal")),
             Load(srid = None),
             Conflate(
                 select = Select(

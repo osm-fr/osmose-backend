@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
@@ -35,11 +35,11 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
             title = T_('Post box, integration suggestion'))
 
         self.init(
-            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
-            u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
-            CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "05/2016",
-                    fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
-                separator = u";"),
+            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
+            "Liste des boîtes aux lettres de rue France métropolitaine et DOM",
+            CSV(SourceOpenDataSoft(
+                attribution = "data.gouv.fr:LaPoste",
+                url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue")),
             Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
@@ -56,4 +56,4 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                         "operator": "La Poste"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref": "CO_MUP"},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields[u"VA_NO_VOIE"], fields[u"LB_EXTENSION"].strip(), fields[u"LB_VOIE_EXT"], fields["CO_POSTAL"], fields[u"LB_COM"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields["VA_NO_VOIE"], fields["LB_EXTENSION"].strip(), fields["LB_VOIE_EXT"], fields["CO_POSTAL"], fields["LB_COM"]]))} )))

@@ -20,7 +20,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
 
 class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -42,8 +42,10 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
         self.init(
             "https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
             "Bornage du réseau routier national",
-            CSV(Source(attribution = "data.gouv.fr:Ministère de la Transition écologique et solidaire", millesime = "01/2020",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/7de08adc-74ae-4e62-8967-6f559ff6cbed")),
+            CSV(SourceDataGouv(
+                attribution="data.gouv.fr:Ministère de la Transition écologique et solidaire",
+                dataset="57a83c3dc751df5b90bb5dd5",
+                resource="7de08adc-74ae-4e62-8967-6f559ff6cbed")),
             Load("x", "y", srid = 2154,
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma,

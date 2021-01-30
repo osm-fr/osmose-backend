@@ -26,13 +26,17 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
+from typing import Optional
 from . import config
 
 
+# Depends on locale
+# https://docs.python.org/3/library/datetime.html?highlight=strftime#strftime-and-strptime-behavior
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
 DEFAULT_RETRY_ON = (500, 502, 503, 504)
+
 
 def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT_RETRY_ON):
     session = requests.Session()
@@ -46,14 +50,15 @@ def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT
     adapter = HTTPAdapter(max_retries=retry)
     session.mount('http://', adapter)
     session.mount('https://', adapter)
+    session.headers['User-Agent'] = 'python-requests - https://osmose.openstreetmap.fr/'
     return session
 
 
 def get(url, headers={}, session=None):
-    headers['User-Agent'] = 'python-requests - http://osmose.openstreetmap.fr'  # "Wget" user-agent may be banned (dati.salute.gov.it)
     if not session:
         session = requests_retry_session()
     return session.get(url, headers=headers, stream=True)
+
 
 def http_get(url, tmp_file, date_string=None, get=get):
     headers = {}
@@ -66,22 +71,18 @@ def http_get(url, tmp_file, date_string=None, get=get):
     elif not answer.ok:
         answer.raise_for_status()
 
-    # write the file
-    outfile = None
-    try:
-        outfile = open(tmp_file, "wb")
+    with open(tmp_file, "wb") as outfile:
         for data in answer.iter_content(chunk_size=512):
             outfile.write(data)
-    except:
-        raise
-    finally:
-        outfile and outfile.close()
-
     return True
 
-def update_cache(url, delay, fetch=http_get):
+
+def get_cache_path(url):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
-    cache = os.path.join(config.dir_cache, file_name)
+    return os.path.join(config.dir_cache, file_name)
+
+def update_cache(url, delay, fetch=http_get):
+    cache = get_cache_path(url)
     tmp_file = cache + ".tmp"
 
     cur_time = time.time()
@@ -125,8 +126,30 @@ def path(url, delay):
 def urlopen(url, delay, mode='r'):
     return open(path(url, delay), mode)
 
-def urlread(url, delay):
+def urlread(url: str, delay: int):
     return open(path(url, delay), 'r', encoding="utf-8").read()
+
+def set_millesime(url: str, millesime: Optional[datetime]) -> None:
+    with open(get_cache_path(url) + ".millesime", "w", encoding="utf-8") as millesime_file:
+        if millesime is None:
+            millesime_file.write("0")
+        else:
+            millesime_file.write(str(int(datetime.timestamp(millesime))))
+
+def get_millesime(url: str, delay: int) -> Optional[datetime]:
+    cache_path = get_cache_path(url)
+    millesime_path = cache_path + ".millesime"
+    try:
+        # Synchronize Millesime file expiration with main cache file
+        statbuf = os.stat(cache_path)
+        if (time.time() - delay*24*60*60) < statbuf.st_mtime:
+            with open(millesime_path, "r", encoding="utf-8") as millesime:
+                raw_millesime = millesime.read()
+                if raw_millesime != "0":
+                    return datetime.fromtimestamp(int(raw_millesime))
+        return None
+    except Exception:
+        return None
 
 if __name__ == "__main__":
     import sys

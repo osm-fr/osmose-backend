@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
@@ -31,12 +31,13 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux/information",
-            u"Défibrillateurs à la Ville d'Issy-les-Moulineaux",
-            CSV(Source(attribution = u"data.gouv.fr:Ville d'Issy-les-Moulineaux",
-                    fileUrl = u"https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux/download/?format=csv&timezone=Europe/Berlin"),
-                separator = u";"),
-            Load("coordonnees_geographiques", "coordonnees_geographiques",
+            "https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux/information",
+            "Défibrillateurs à la Ville d'Issy-les-Moulineaux",
+            CSV(
+                SourceOpenDataSoft(
+                    attribution="data.gouv.fr:Ville d'Issy-les-Moulineaux",
+                    url="https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux")),
+            Load("Coordonnées géographiques", "Coordonnées géographiques",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),
             Conflate(
@@ -47,4 +48,4 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {"emergency": "defibrillator"},
                     static2 = {"source": self.source},
-                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["titre"], fields["localisation"], fields["acces"], fields["horaires"]]))} )))
+                text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["Titre"], fields["Localisation"], fields["Accès"], fields["Horaires"]]))} )))

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
@@ -31,10 +31,14 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge):
             title = T_('Defibrillator not integrated'))
 
         self.init(
-            u"https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-appartenant-au-departement-des-hautes-alpes/",
-            u"Localisation des défibrillateurs appartenant au département des Hautes Alpes ",
-            SHP(Source(attribution = u"data.gouv.fr:Département des Hautes-Alpes",
-                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/a3a2d9c1-2157-41f5-b2e3-7984ce05e902", zip = "dept05_defibrillateurs.shp")),
+            "https://www.data.gouv.fr/fr/datasets/localisation-des-defibrillateurs-appartenant-au-departement-des-hautes-alpes/",
+            "Localisation des défibrillateurs appartenant au département des Hautes Alpes ",
+            SHP(
+                SourceDataGouv(
+                    attribution="data.gouv.fr:Département des Hautes-Alpes",
+                    dataset="5acb4dc2c751df71629a1e28",
+                    resource="a3a2d9c1-2157-41f5-b2e3-7984ce05e902",
+                    zip="dept05_defibrillateurs.shp")),
             LoadGeomCentroid(srid = 2154),
             Conflate(
                 select = Select(

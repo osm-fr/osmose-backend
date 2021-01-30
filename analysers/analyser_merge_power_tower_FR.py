@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
@@ -35,12 +35,12 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             title = T_('Power support, integration suggestion'))
 
         self.init(
-            u"https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte-au-6-juin-2020",
-            u"Pylones RTE",
-            CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",
-                    fileUrl = "https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"),
-                separator = u";"),
-            Load(u"Longitude pylône (DD)", u"Latitude pylône (DD)"),
+            "https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte/",
+            "Pylones RTE",
+            CSV(SourceOpenDataSoft(
+                attribution="data.gouv.fr:RTE",
+                url="https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte")),
+            Load("Longitude pylône (DD)", "Latitude pylône (DD)"),
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -54,6 +54,6 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                         "operator": "RTE"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref": u"Numéro pylône"},
+                        "ref": "Numéro pylône"},
                     mapping2 = {
-                        "height": lambda fields: fields[u"Hauteur pylône (m)"] if fields[u"Hauteur pylône (m)"] != "0" else None})))
+                        "height": lambda fields: fields["Hauteur pylône (m)"] if fields["Hauteur pylône (m)"] != "0" else None})))
