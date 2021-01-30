@@ -87,6 +87,7 @@ from .Analyser_Merge import SourceOpenDataSoft
 
 ### SourceDataGouv
 Data shared on [data.gouv.fr](https://data.gouv.fr/) can be retrieved with this class.
+[transport.data.gouv.fr](https://transport.data.gouv.fr/) data comes from [data.gouv.fr](https://data.gouv.fr/), so you can also use this OpenData class.
 
 It uses the following attributes:
 - `dataset`: Dataset identifier. It can be seen by clicking on Details on the dataset page.
