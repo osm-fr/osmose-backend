@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-30 13:56+0000\n"
+"PO-Revision-Date: 2021-02-01 20:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1174,7 +1174,7 @@ msgstr "{0} sont différents"
 msgid "maxweight Restriction not integrated"
 msgstr "Restriction de poids “maxweight” non intégrée"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:64
+#: ../analysers/analyser_merge_restriction_FR_92.py:65
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:58
 msgid "maxheight Restriction not integrated"
 msgstr "Restriction de hauteur “maxheight” non intégrée"
@@ -1386,7 +1386,7 @@ msgstr "Parking pour vélo à Paris non intégré"
 msgid "Paris motorcycle parking not integrated"
 msgstr "Parking pour motos à Paris non intégré"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:108
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "Parking pour deux-roues à Paris non intégré"
 
@@ -1445,11 +1445,11 @@ msgid "{0} stop, integration suggestion"
 msgstr "arrêt {0}, proposition d’intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
-#: ../analysers/analyser_merge_public_transport_FR_sibra.py:57
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:60
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:63
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "arrêt {0} de {1}"
@@ -1460,7 +1460,7 @@ msgstr "arrêt {0} de {1}"
 msgid "{0} stop update"
 msgstr "arrêt {0} mis à jour"
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:58
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:61
 #, python-brace-format
 msgid "{0} stop {1}"
 msgstr "arrêt {0} de {1}"
@@ -1746,7 +1746,7 @@ msgstr "L’attribut “addr:street” ne correspond à aucun nom de rue à prox
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "Mauvaise utilisation de “addr:interpolation” en combinaison avec d’autres attributs"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:62
+#: ../analysers/analyser_merge_power_plant_FR.py:63
 #, python-format, python-brace-format
 msgid "Power plant {0}"
 msgstr "Centrale électrique {0}"
@@ -1867,7 +1867,7 @@ msgstr "Parking de covoiturage, intégration possible"
 msgid "Carpool parking update"
 msgstr "Parking de covoiturage à mettre à jour"
 
-#: ../analysers/analyser_merge_carpool_FR.py:61
+#: ../analysers/analyser_merge_carpool_FR.py:66
 #, python-brace-format
 msgid "Carpool parking {0}"
 msgstr "Parking de covoiturage {0}"
@@ -3571,7 +3571,7 @@ msgstr "{0} parking, proposition d'intégration"
 msgid "{0} parking update"
 msgstr "{0} parking, mise à jour"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:68
+#: ../analysers/analyser_merge_parking_FR_bm.py:71
 #: ../analysers/analyser_merge_parking_FR_capp.py:63
 #, python-brace-format
 msgid "{0} parking for disabled not integrated"
@@ -3804,35 +3804,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr "{0} parking mise à jour"
 
-#: ../analysers/Analyser_Merge.py:971
+#: ../analysers/Analyser_Merge.py:1043
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "Si après vérification vous êtes sûr qu'il s'agit d'une nouvelle donnée et que celle-ci est appropriée pour OpenStreetMap,  alors vous pouvez l'ajouter."
 
-#: ../analysers/Analyser_Merge.py:974
+#: ../analysers/Analyser_Merge.py:1046
 msgid "Be sure that it is not already existing in another place."
 msgstr "Assurez-vous que l'objet n'existe pas ailleurs."
 
-#: ../analysers/Analyser_Merge.py:979
+#: ../analysers/Analyser_Merge.py:1051
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "Cette information provient d'une source de données ouverte, sans aucune vérification au préalable d'un individu."
 
-#: ../analysers/Analyser_Merge.py:992
+#: ../analysers/Analyser_Merge.py:1064
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1005
+#: ../analysers/Analyser_Merge.py:1077
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:967
+#: ../analysers/Analyser_Merge.py:1039
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4355,16 +4355,6 @@ msgid ""
 "road network to ensure continuity, especially for routes planner."
 msgstr "La fin d’une piste cyclable (`highway=cycleway`) doit être connectée au reste du\nréseau routier pour assurer la continuité, notamment pour les planificateurs d’itinéraires."
 
-#: ../analysers/analyser_osmosis_parking_highway.py:72
-msgid ""
-"There should be a `highway` feature leading to this parking facility\n"
-"to allow for correct routing. Add a road or check if `parking=*` is\n"
-"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
-"then add appropriate tags.\n"
-"\n"
-"See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki."
-msgstr ""
-
 #: ../analysers/analyser_merge_cemetery_FR.py:31
 msgid "Cemetery not integrated"
 msgstr "Cimetière non intégré"
@@ -4516,4 +4506,14 @@ msgstr ""
 
 #: tmp.json:33
 msgid "one-directional roads"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:72
+msgid ""
+"There should be a `highway` feature leading to this parking facility\n"
+"to allow for correct routing. Add a road or check if `parking=*` is\n"
+"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
+"then add appropriate tags.\n"
+"\n"
+"See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
 msgstr ""

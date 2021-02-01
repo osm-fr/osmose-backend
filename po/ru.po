@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-13 20:40+0000\n"
+"PO-Revision-Date: 2021-02-01 20:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -629,12 +629,12 @@ msgstr "Название заканчивается на пробел"
 msgid "Name contains successive spaces"
 msgstr "Название содержит череду пробелов"
 
-#: ../plugins/TagRemove_Incompatibles.py:110
+#: ../plugins/TagRemove_Incompatibles.py:114
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Конфликт между тегами: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:113
+#: ../plugins/TagRemove_Incompatibles.py:117
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Конфликт между тегами: 'bridge' и 'tunnel'"
 
@@ -856,7 +856,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:116
+#: ../plugins/TagRemove_Incompatibles.py:120
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1137,7 +1137,7 @@ msgstr ""
 msgid "maxweight Restriction not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:64
+#: ../analysers/analyser_merge_restriction_FR_92.py:65
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:58
 msgid "maxheight Restriction not integrated"
 msgstr ""
@@ -1349,7 +1349,7 @@ msgstr ""
 msgid "Paris motorcycle parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:108
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr ""
 
@@ -1386,6 +1386,7 @@ msgid "The URL does not have a valid scheme"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
@@ -1396,6 +1397,7 @@ msgid "{0} stop not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:34
@@ -1406,10 +1408,11 @@ msgid "{0} stop, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:60
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:63
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr ""
@@ -1420,7 +1423,7 @@ msgstr ""
 msgid "{0} stop update"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:58
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:61
 #, python-brace-format
 msgid "{0} stop {1}"
 msgstr ""
@@ -1706,7 +1709,7 @@ msgstr ""
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:62
+#: ../analysers/analyser_merge_power_plant_FR.py:63
 #, python-format, python-brace-format
 msgid "Power plant {0}"
 msgstr ""
@@ -1827,7 +1830,7 @@ msgstr ""
 msgid "Carpool parking update"
 msgstr ""
 
-#: ../analysers/analyser_merge_carpool_FR.py:61
+#: ../analysers/analyser_merge_carpool_FR.py:66
 #, python-brace-format
 msgid "Carpool parking {0}"
 msgstr ""
@@ -2694,13 +2697,6 @@ msgstr ""
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
 msgstr ""
 
-#: ../plugins/Name_Multiple.py:35
-msgid ""
-"The tag `name=*` contains two street names, separated by a semicolon,\n"
-"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
-"way and the concatenation of the names of the streets."
-msgstr ""
-
 #: ../plugins/Name_Multiple.py:39
 msgid ""
 "* If duplicate, delete a one.\n"
@@ -3538,7 +3534,7 @@ msgstr ""
 msgid "{0} parking update"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:68
+#: ../analysers/analyser_merge_parking_FR_bm.py:71
 #: ../analysers/analyser_merge_parking_FR_capp.py:63
 #, python-brace-format
 msgid "{0} parking for disabled not integrated"
@@ -3771,35 +3767,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:971
+#: ../analysers/Analyser_Merge.py:1043
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:974
+#: ../analysers/Analyser_Merge.py:1046
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:979
+#: ../analysers/Analyser_Merge.py:1051
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:992
+#: ../analysers/Analyser_Merge.py:1064
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1005
+#: ../analysers/Analyser_Merge.py:1077
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:967
+#: ../analysers/Analyser_Merge.py:1039
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4021,67 +4017,67 @@ msgstr ""
 msgid "drinking water"
 msgstr ""
 
-#: tmp.json:7 tmp.json:33
+#: tmp.json:7 tmp.json:34
 msgid "max speed limit 5"
 msgstr ""
 
-#: tmp.json:8 tmp.json:34
+#: tmp.json:8 tmp.json:35
 msgid "max speed limit 10"
 msgstr ""
 
-#: tmp.json:9 tmp.json:35
+#: tmp.json:9 tmp.json:36
 msgid "max speed limit 15"
 msgstr ""
 
-#: tmp.json:10 tmp.json:36
+#: tmp.json:10 tmp.json:37
 msgid "max speed limit 20"
 msgstr ""
 
-#: tmp.json:11 tmp.json:38
+#: tmp.json:11 tmp.json:39
 msgid "max speed limit 30"
 msgstr ""
 
-#: tmp.json:12 tmp.json:39
+#: tmp.json:12 tmp.json:40
 msgid "max speed limit 35"
 msgstr ""
 
-#: tmp.json:13 tmp.json:40
+#: tmp.json:13 tmp.json:41
 msgid "max speed limit 40"
 msgstr ""
 
-#: tmp.json:14 tmp.json:41
+#: tmp.json:14 tmp.json:42
 msgid "max speed limit 45"
 msgstr ""
 
-#: tmp.json:15 tmp.json:42
+#: tmp.json:15 tmp.json:43
 msgid "max speed limit 50"
 msgstr ""
 
-#: tmp.json:16 tmp.json:44
+#: tmp.json:16 tmp.json:45
 msgid "max speed limit 60"
 msgstr ""
 
-#: tmp.json:17 tmp.json:46
+#: tmp.json:17 tmp.json:47
 msgid "max speed limit 70"
 msgstr ""
 
-#: tmp.json:18 tmp.json:48
+#: tmp.json:18 tmp.json:49
 msgid "max speed limit 80"
 msgstr ""
 
-#: tmp.json:19 tmp.json:49
+#: tmp.json:19 tmp.json:50
 msgid "max speed limit 90"
 msgstr ""
 
-#: tmp.json:20 tmp.json:50
+#: tmp.json:20 tmp.json:51
 msgid "max speed limit 100"
 msgstr ""
 
-#: tmp.json:21 tmp.json:51
+#: tmp.json:21 tmp.json:52
 msgid "max speed limit 110"
 msgstr ""
 
-#: tmp.json:22 tmp.json:52
+#: tmp.json:22 tmp.json:53
 msgid "max speed limit 120"
 msgstr ""
 
@@ -4125,51 +4121,51 @@ msgstr ""
 msgid "stop"
 msgstr ""
 
-#: tmp.json:37
+#: tmp.json:38
 msgid "max speed limit 25"
 msgstr ""
 
-#: tmp.json:43
+#: tmp.json:44
 msgid "max speed limit 55"
 msgstr ""
 
-#: tmp.json:45
+#: tmp.json:46
 msgid "max speed limit 65"
 msgstr ""
 
-#: tmp.json:47
+#: tmp.json:48
 msgid "max speed limit 75"
 msgstr ""
 
-#: tmp.json:54
+#: tmp.json:55
 msgid "Tourism office"
 msgstr ""
 
-#: tmp.json:55
+#: tmp.json:56
 msgid "Church"
 msgstr ""
 
-#: tmp.json:56
+#: tmp.json:57
 msgid "Camping"
 msgstr ""
 
-#: tmp.json:57
+#: tmp.json:58
 msgid "Restaurant"
 msgstr ""
 
-#: tmp.json:58
+#: tmp.json:59
 msgid "Museum"
 msgstr ""
 
-#: tmp.json:59
+#: tmp.json:60
 msgid "Winery"
 msgstr ""
 
-#: tmp.json:60
+#: tmp.json:61
 msgid "Viewpoint"
 msgstr ""
 
-#: tmp.json:61
+#: tmp.json:62
 msgid "Picnic site"
 msgstr ""
 
@@ -4261,7 +4257,7 @@ msgid ""
 "`public_transport=platform` nor `highway=bus_stop`."
 msgstr ""
 
-#: tmp.json:53
+#: tmp.json:54
 msgid "cycling infrastructure"
 msgstr ""
 
@@ -4322,26 +4318,12 @@ msgid ""
 "road network to ensure continuity, especially for routes planner."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:72
-msgid ""
-"There should be a `highway` feature leading to this parking facility\n"
-"to allow for correct routing. Add a road or check if `parking=*` is\n"
-"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
-"then add appropriate tags.\n"
-"\n"
-"See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki."
-msgstr ""
-
 #: ../analysers/analyser_merge_cemetery_FR.py:31
 msgid "Cemetery not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_charging_station_FR.py:49
 msgid "Car charging station update"
-msgstr ""
-
-#: ../analysers/analyser_merge_highway_ref_FR.py:31
-msgid "Highway ref not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_man_made_FR.py:42
@@ -4454,4 +4436,47 @@ msgstr ""
 
 #: ../analysers/analyser_merge_water_FR.py:109
 msgid "Spring box not integrated"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:52
+msgid "parking:condition:[side] not applicable"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:54
+msgid ""
+"A parking condition is set for a parking:lane:[side] value that forbids "
+"parking."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:56
+msgid ""
+"parking:condition:[side] should be mapped on separately mapped parking area"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:58
+msgid ""
+"A parking condition is set for a parking:lane:[side] value that indicates\n"
+"that the parking area is mapped separately. Any parking conditions should\n"
+"be tagged on that object instead."
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:35
+msgid ""
+"The tag `name=*` contains multiple names, separated by a semicolon,\n"
+"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
+"way and the concatenation of the names of the streets."
+msgstr ""
+
+#: tmp.json:33
+msgid "one-directional roads"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:72
+msgid ""
+"There should be a `highway` feature leading to this parking facility\n"
+"to allow for correct routing. Add a road or check if `parking=*` is\n"
+"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
+"then add appropriate tags.\n"
+"\n"
+"See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
 msgstr ""

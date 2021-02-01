@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-01-26 06:19+0000\n"
-"Last-Translator: Shu Higashi <higa432@gmail.com>\n"
+"PO-Revision-Date: 2021-02-01 20:52+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -633,12 +633,12 @@ msgstr "名前が空白で終わっている"
 msgid "Name contains successive spaces"
 msgstr "nameに連続スペースが含まれている"
 
-#: ../plugins/TagRemove_Incompatibles.py:110
+#: ../plugins/TagRemove_Incompatibles.py:114
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "競合しているタグ: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:113
+#: ../plugins/TagRemove_Incompatibles.py:117
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "'bridge'と'tunnel'タグが競合"
 
@@ -860,7 +860,7 @@ msgstr "不正なアクセスレーンの値、整数ではなく制限である
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "進行方向レーン merge_to_* には許可された側にサイドレーンが必要"
 
-#: ../plugins/TagRemove_Incompatibles.py:116
+#: ../plugins/TagRemove_Incompatibles.py:120
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "タグの競合: crossing=no タグに highway=crossing が不在"
@@ -1141,7 +1141,7 @@ msgstr "{0} は異なる"
 msgid "maxweight Restriction not integrated"
 msgstr "未統合の最大重量制限"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:64
+#: ../analysers/analyser_merge_restriction_FR_92.py:65
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:58
 msgid "maxheight Restriction not integrated"
 msgstr "未統合の最大高制限"
@@ -1353,7 +1353,7 @@ msgstr "未統合のParis bicycle parking"
 msgid "Paris motorcycle parking not integrated"
 msgstr "未統合のParis motorcycle parking"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:108
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "未統合のParis shared motorcycle/motorcycle parking"
 
@@ -1390,6 +1390,7 @@ msgid "The URL does not have a valid scheme"
 msgstr "URLのスキーマが不適切です"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
@@ -1400,6 +1401,7 @@ msgid "{0} stop not integrated"
 msgstr "{0} stop未統合"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:34
@@ -1410,10 +1412,11 @@ msgid "{0} stop, integration suggestion"
 msgstr "{0} stopの統合の提案"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
+#: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:60
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:63
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "{1}の{0} stop"
@@ -1424,7 +1427,7 @@ msgstr "{1}の{0} stop"
 msgid "{0} stop update"
 msgstr "{0} stopの更新"
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:58
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:61
 #, python-brace-format
 msgid "{0} stop {1}"
 msgstr "{0} stop {1}"
@@ -1710,7 +1713,7 @@ msgstr "\"addr:street\"タグが周辺の通りの名前と一致しない"
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "addr:interpolationと他のタグとの誤用"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:62
+#: ../analysers/analyser_merge_power_plant_FR.py:63
 #, python-format, python-brace-format
 msgid "Power plant {0}"
 msgstr "発電所 {0}"
@@ -1831,7 +1834,7 @@ msgstr "Carpool parkingの統合の提案"
 msgid "Carpool parking update"
 msgstr "Carpool parkingの更新"
 
-#: ../analysers/analyser_merge_carpool_FR.py:61
+#: ../analysers/analyser_merge_carpool_FR.py:66
 #, python-brace-format
 msgid "Carpool parking {0}"
 msgstr "Carpool parking {0}"
@@ -2698,13 +2701,6 @@ msgstr "おそらく頭文字が無い。"
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
 msgstr "頭文字にアクセントが無いことがよくあります(例. Ecole for École)"
 
-#: ../plugins/Name_Multiple.py:35
-msgid ""
-"The tag `name=*` contains two street names, separated by a semicolon,\n"
-"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
-"way and the concatenation of the names of the streets."
-msgstr "`name=*`タグにセミコロン、  \"/\"、または \"\\\" で区切られた街路名が2つあります。2つのウェイを一本化した際に、このように街路名が連結されることがあります。"
-
 #: ../plugins/Name_Multiple.py:39
 msgid ""
 "* If duplicate, delete a one.\n"
@@ -3542,7 +3538,7 @@ msgstr "{0} parkingの統合の提案"
 msgid "{0} parking update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:68
+#: ../analysers/analyser_merge_parking_FR_bm.py:71
 #: ../analysers/analyser_merge_parking_FR_capp.py:63
 #, python-brace-format
 msgid "{0} parking for disabled not integrated"
@@ -3775,35 +3771,35 @@ msgstr "これは道路脇の駐車場ではなく、閉じられているだけ
 msgid "{0} parking  update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/Analyser_Merge.py:971
+#: ../analysers/Analyser_Merge.py:1043
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "レビューした結果、新しいデータでOpenStreetMapに登録すべきデータである場合には、追加してください。"
 
-#: ../analysers/Analyser_Merge.py:974
+#: ../analysers/Analyser_Merge.py:1046
 msgid "Be sure that it is not already existing in another place."
 msgstr "付近の別の場所に既に存在していないことを十分確認してください。"
 
-#: ../analysers/Analyser_Merge.py:979
+#: ../analysers/Analyser_Merge.py:1051
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "これはオープンデータの情報源に報告されているもので、このデータに関する検証は行われていません。"
 
-#: ../analysers/Analyser_Merge.py:992
+#: ../analysers/Analyser_Merge.py:1064
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr "これは統合の提案で、オープンデータのソースとOpenStreetMapを混合します。"
 
-#: ../analysers/Analyser_Merge.py:1005
+#: ../analysers/Analyser_Merge.py:1077
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr "オープンデータとOSMの双方に同じrefが見つかったので更新した方が良いかもしれません。"
 
-#: ../analysers/Analyser_Merge.py:967
+#: ../analysers/Analyser_Merge.py:1039
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4025,67 +4021,67 @@ msgstr "電話ボックス"
 msgid "drinking water"
 msgstr "飲用水"
 
-#: tmp.json:7 tmp.json:33
+#: tmp.json:7 tmp.json:34
 msgid "max speed limit 5"
 msgstr "最大速度制限 5"
 
-#: tmp.json:8 tmp.json:34
+#: tmp.json:8 tmp.json:35
 msgid "max speed limit 10"
 msgstr "最大速度制限 10"
 
-#: tmp.json:9 tmp.json:35
+#: tmp.json:9 tmp.json:36
 msgid "max speed limit 15"
 msgstr "最大速度制限 15"
 
-#: tmp.json:10 tmp.json:36
+#: tmp.json:10 tmp.json:37
 msgid "max speed limit 20"
 msgstr "最大速度制限 20"
 
-#: tmp.json:11 tmp.json:38
+#: tmp.json:11 tmp.json:39
 msgid "max speed limit 30"
 msgstr "最大速度制限 30"
 
-#: tmp.json:12 tmp.json:39
+#: tmp.json:12 tmp.json:40
 msgid "max speed limit 35"
 msgstr "最大速度制限 35"
 
-#: tmp.json:13 tmp.json:40
+#: tmp.json:13 tmp.json:41
 msgid "max speed limit 40"
 msgstr "最大速度制限 40"
 
-#: tmp.json:14 tmp.json:41
+#: tmp.json:14 tmp.json:42
 msgid "max speed limit 45"
 msgstr "最大速度制限 45"
 
-#: tmp.json:15 tmp.json:42
+#: tmp.json:15 tmp.json:43
 msgid "max speed limit 50"
 msgstr "最大速度制限 50"
 
-#: tmp.json:16 tmp.json:44
+#: tmp.json:16 tmp.json:45
 msgid "max speed limit 60"
 msgstr "最大速度制限 60"
 
-#: tmp.json:17 tmp.json:46
+#: tmp.json:17 tmp.json:47
 msgid "max speed limit 70"
 msgstr "最大速度制限 70"
 
-#: tmp.json:18 tmp.json:48
+#: tmp.json:18 tmp.json:49
 msgid "max speed limit 80"
 msgstr "最大速度制限 80"
 
-#: tmp.json:19 tmp.json:49
+#: tmp.json:19 tmp.json:50
 msgid "max speed limit 90"
 msgstr "最大速度制限 90"
 
-#: tmp.json:20 tmp.json:50
+#: tmp.json:20 tmp.json:51
 msgid "max speed limit 100"
 msgstr "最大速度制限 100"
 
-#: tmp.json:21 tmp.json:51
+#: tmp.json:21 tmp.json:52
 msgid "max speed limit 110"
 msgstr "最大速度制限 110"
 
-#: tmp.json:22 tmp.json:52
+#: tmp.json:22 tmp.json:53
 msgid "max speed limit 120"
 msgstr "最大速度制限 120"
 
@@ -4129,51 +4125,51 @@ msgstr "動物飛び出し注意"
 msgid "stop"
 msgstr "一時停止"
 
-#: tmp.json:37
+#: tmp.json:38
 msgid "max speed limit 25"
 msgstr "最大速度制限 25"
 
-#: tmp.json:43
+#: tmp.json:44
 msgid "max speed limit 55"
 msgstr "最大速度制限 55"
 
-#: tmp.json:45
+#: tmp.json:46
 msgid "max speed limit 65"
 msgstr "最大速度制限 65"
 
-#: tmp.json:47
+#: tmp.json:48
 msgid "max speed limit 75"
 msgstr "最大速度制限 75"
 
-#: tmp.json:54
+#: tmp.json:55
 msgid "Tourism office"
 msgstr "旅行代理店"
 
-#: tmp.json:55
+#: tmp.json:56
 msgid "Church"
 msgstr "教会"
 
-#: tmp.json:56
+#: tmp.json:57
 msgid "Camping"
 msgstr "キャンプ"
 
-#: tmp.json:57
+#: tmp.json:58
 msgid "Restaurant"
 msgstr "レストラン"
 
-#: tmp.json:58
+#: tmp.json:59
 msgid "Museum"
 msgstr "博物館"
 
-#: tmp.json:59
+#: tmp.json:60
 msgid "Winery"
 msgstr "ワイナリ"
 
-#: tmp.json:60
+#: tmp.json:61
 msgid "Viewpoint"
 msgstr "展望所"
 
-#: tmp.json:61
+#: tmp.json:62
 msgid "Picnic site"
 msgstr "ピクニック場"
 
@@ -4265,7 +4261,7 @@ msgid ""
 "`public_transport=platform` nor `highway=bus_stop`."
 msgstr "近くに`public_transport=platform` も `highway=bus_stop`も無いのに`public_transport=stop_position`だけがある。"
 
-#: tmp.json:53
+#: tmp.json:54
 msgid "cycling infrastructure"
 msgstr "サイクリングのインフラ"
 
@@ -4325,16 +4321,6 @@ msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."
 msgstr "`highway=cycleway`の終端は道路ネットワークの残りに接続され、連続性を確保していなければなりません。特に routes planner向けに。"
-
-#: ../analysers/analyser_osmosis_parking_highway.py:72
-msgid ""
-"There should be a `highway` feature leading to this parking facility\n"
-"to allow for correct routing. Add a road or check if `parking=*` is\n"
-"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
-"then add appropriate tags.\n"
-"\n"
-"See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki."
-msgstr "正しく経路案内するために、この駐車施設に至る`highway`の地物があるべきです。道路を追加するか、`parking=*` 自体が正しいか確認してください。\n道路脇の駐車場 (`parking=street_side`)やレーンの場合は適切なタグを付けてください、\n\nウィキの`[parking](https://wiki.openstreetmap.org/wiki/Key:parking)`タグを参照。"
 
 #: ../analysers/analyser_merge_cemetery_FR.py:31
 msgid "Cemetery not integrated"
@@ -4477,3 +4463,24 @@ msgid ""
 "that the parking area is mapped separately. Any parking conditions should\n"
 "be tagged on that object instead."
 msgstr "駐車の条件が parking:lane:[side] の値としてセットされ、駐車エリアが個々にマッピングされているということを示しています。そうではなくて、あらゆる駐車の条件はオブジェクト上にマッピングされるべきです。"
+
+#: ../plugins/Name_Multiple.py:35
+msgid ""
+"The tag `name=*` contains multiple names, separated by a semicolon,\n"
+"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
+"way and the concatenation of the names of the streets."
+msgstr ""
+
+#: tmp.json:33
+msgid "one-directional roads"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:72
+msgid ""
+"There should be a `highway` feature leading to this parking facility\n"
+"to allow for correct routing. Add a road or check if `parking=*` is\n"
+"correct. If it is a street side parking (`parking=street_side`) or lane,\n"
+"then add appropriate tags.\n"
+"\n"
+"See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
+msgstr ""
