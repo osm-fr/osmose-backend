@@ -74,7 +74,7 @@ to allow for correct routing. Add a road or check if `parking=*` is
 correct. If it is a street side parking (`parking=street_side`) or lane,
 then add appropriate tags.
 
-See `[parking](https://wiki.openstreetmap.org/wiki/Key:parking)` tag on the wiki.'''))
+See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki.'''))
 
     def analyser_osmosis_common(self):
         self.run(sql10.format(""))
