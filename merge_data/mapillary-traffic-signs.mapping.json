@@ -1041,8 +1041,16 @@
     ],
     "select_tags": [
       {
+        "waterway": null,
+        "oneway": null
+      },
+      {
         "highway": null,
         "oneway": null
+      },
+      {
+        "highway": null,
+        "oneway:conditional": null
       },
       {
         "highway": null,
@@ -1105,9 +1113,7 @@
         "access:backward": null
       }
     ],
-    "generate_tags": {
-      "oneway": "yes"
-    }
+    "generate_tags": {}
   },
   {
     "item": 8300,
