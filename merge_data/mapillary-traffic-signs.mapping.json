@@ -1033,9 +1033,6 @@
     ],
     "conflation": 200,
     "title": "one-directional roads",
-    "only_for": [
-      "NL"
-    ],
     "object": [
       "regulatory--no-entry--g1"
     ],
