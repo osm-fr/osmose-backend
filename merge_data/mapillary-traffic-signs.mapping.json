@@ -1033,16 +1033,21 @@
     ],
     "conflation": 200,
     "title": "one-directional roads",
-    "only_for": [
-      "NL"
-    ],
     "object": [
       "regulatory--no-entry--g1"
     ],
     "select_tags": [
       {
+        "waterway": null,
+        "oneway": null
+      },
+      {
         "highway": null,
         "oneway": null
+      },
+      {
+        "highway": null,
+        "oneway:conditional": null
       },
       {
         "highway": null,
@@ -1105,9 +1110,7 @@
         "access:backward": null
       }
     ],
-    "generate_tags": {
-      "oneway": "yes"
-    }
+    "generate_tags": {}
   },
   {
     "item": 8300,
