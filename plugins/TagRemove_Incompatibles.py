@@ -73,11 +73,11 @@ class TagRemove_Incompatibles(Plugin):
                 ['water', 'leisure', 'marina'],
                 ['water', 'leisure', 'swimming_area'],
                 ['water', 'leisure', 'swimming_pool'],
+                ['water', 'leisure', 'fishing'],
                 ['water', 'amenity', 'fountain'], # ?
                 ['sand', 'leisure', 'playground'],
                 ['birds_nest', 'highway', 'street_lamp'],
                 ['wood', 'leisure', 'playground'],
-                ['wood', 'leisure', 'fishing'],
             ],
             'amenity': [
                 ['stables', 'leisure', 'horse_riding'],
