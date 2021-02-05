@@ -339,7 +339,7 @@ In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstr
             title = T_('Unfinished power minor line'),
             detail = T_(
 '''The line ends in a vacuum, and should be connected to another line or
-a transformer (`power=transformer`) or a generator (`power=generator`)
+a transformer (`power=transformer`), a generator (`power=generator`)
 or marked as transitioning into ground (`location:transition=yes`).'''),
             trap = T_(
 '''It's possible that disused power features could be disconnected from the network.
