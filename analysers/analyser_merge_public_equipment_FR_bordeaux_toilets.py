@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
@@ -31,11 +31,11 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Bordeaux'))
 
         self.init(
-            u"http://opendata.bordeaux.fr/content/toilettes-publiques",
-            u"Toilettes publiques",
-            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2019",
-                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER")),
-            Load("x_long", "y_lat"),
+            "https://opendata.bordeaux-metropole.fr/explore/dataset/bor_sigsanitaire",
+            "Toilettes publiques",
+            GeoJSON(SourceOpenDataSoft(attribution = "Ville de Bordeaux", format="geojson",
+                    url = "https://opendata.bordeaux-metropole.fr/explore/dataset/bor_sigsanitaire")),
+            Load("geom_x", "geom_y"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -48,5 +48,5 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                         "access": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "toilets:wheelchair": lambda res: "yes" if res["options"] == u"Handicapé" else None,
-                        "toilets:position": lambda res: "urinal" if res["typologie"] == u"Urinoir" else None} )))
+                        "toilets:wheelchair": lambda res: "yes" if res["handi"] == "OUI" else "no",
+                        "toilets:position": lambda res: "urinal" if res["type"] == "URINOIR" else None} )))
