@@ -35,10 +35,10 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
             title = T_('Railway station, integration suggestion'))
 
         self.init(
-            u"https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
-            u"Horaires prévus des trains TER",
-            GTFS(Source(attribution = u"SNCF", millesime = "08/2017",
-                    fileUrl = u"https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/files/24e02fa969496e2caa5863a365c66ec2/download/")),
+            "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
+            "Horaires prévus des trains TER",
+            GTFS(Source(attribution = "SNCF", millesime = "08/2017",
+                    fileUrl = "https://eu.ftp.opendatasoft.com/sncf/gtfs/export-ter-gtfs-last.zip")),
             Load("stop_lon", "stop_lat",
                 select = {"stop_id": {"like": "StopPoint:OCETrain%"}}),
             Conflate(
