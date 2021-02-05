@@ -27,6 +27,7 @@ class Josm_multiple(PluginMapCSS):
         err = []
 
 
+        # *["telecom:medium"=~/.+;(.+)?/]
         # *["addr:street"=~/.+;(.+)?/]
         # *[highway=~/.+;(.+)?/]
         # *[lanes=~/.+;(.+)?/]
@@ -34,8 +35,12 @@ class Josm_multiple(PluginMapCSS):
         # *[name=~/.+;(.+)?/]
         # *[surface=~/.+;(.+)?/]
         # *[water=~/.+;(.+)?/]
-        if ('addr:street' in keys) or ('highway' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('name' in keys) or ('surface' in keys) or ('water' in keys):
+        if ('addr:street' in keys) or ('highway' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('name' in keys) or ('surface' in keys) or ('telecom:medium' in keys) or ('water' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')))
@@ -66,7 +71,7 @@ class Josm_multiple(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} with multiple values","{0.key}")
-                err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr('{0} with multiple values', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9005001, 'subclass': 126367661, 'text': mapcss.tr('{0} with multiple values', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[source=~/^(;.*|.*;;.*|.*;)$/]
         # *["source:addr"=~/^(;.*|.*;;.*|.*;)$/]
@@ -91,8 +96,9 @@ class Josm_multiple(PluginMapCSS):
         # *["building:use"=~/^(;.*|.*;;.*|.*;)$/]
         # *[traffic_sign=~/^(;.*|.*;;.*|.*;)$/]
         # *[voltage=~/^(;.*|.*;;.*|.*;)$/]
+        # *[sport=~/^(;.*|.*;;.*|.*;)$/]
         # *[cuisine=~/^(;.*|.*;;.*|.*;)$/]
-        if ('addr:housenumber' in keys) or ('alt_name' in keys) or ('attribution' in keys) or ('building:use' in keys) or ('cuisine' in keys) or ('destination' in keys) or ('exit_to' in keys) or ('fixme' in keys) or ('int_ref' in keys) or ('name' in keys) or ('note' in keys) or ('old_ref' in keys) or ('ref' in keys) or ('route_ref' in keys) or ('source' in keys) or ('source:addr' in keys) or ('source:maxspeed' in keys) or ('source:name' in keys) or ('source:position' in keys) or ('source:postcode' in keys) or ('source_ref' in keys) or ('surface' in keys) or ('traffic_sign' in keys) or ('voltage' in keys):
+        if ('addr:housenumber' in keys) or ('alt_name' in keys) or ('attribution' in keys) or ('building:use' in keys) or ('cuisine' in keys) or ('destination' in keys) or ('exit_to' in keys) or ('fixme' in keys) or ('int_ref' in keys) or ('name' in keys) or ('note' in keys) or ('old_ref' in keys) or ('ref' in keys) or ('route_ref' in keys) or ('source' in keys) or ('source:addr' in keys) or ('source:maxspeed' in keys) or ('source:name' in keys) or ('source:position' in keys) or ('source:postcode' in keys) or ('source_ref' in keys) or ('sport' in keys) or ('surface' in keys) or ('traffic_sign' in keys) or ('voltage' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -185,6 +191,10 @@ class Josm_multiple(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -198,7 +208,7 @@ class Josm_multiple(PluginMapCSS):
                 # assertMatch:"node ref=A1;"
                 # assertMatch:"node ref=A1;;A2"
                 # assertNoMatch:"node ref=A1;A2"
-                err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr('empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9005002, 'subclass': 1082723721, 'text': mapcss.tr('empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -208,6 +218,7 @@ class Josm_multiple(PluginMapCSS):
         err = []
 
 
+        # *["telecom:medium"=~/.+;(.+)?/]
         # *["addr:street"=~/.+;(.+)?/]
         # *[highway=~/.+;(.+)?/]
         # *[lanes=~/.+;(.+)?/]
@@ -215,8 +226,12 @@ class Josm_multiple(PluginMapCSS):
         # *[name=~/.+;(.+)?/]
         # *[surface=~/.+;(.+)?/]
         # *[water=~/.+;(.+)?/]
-        if ('addr:street' in keys) or ('highway' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('name' in keys) or ('surface' in keys) or ('water' in keys):
+        if ('addr:street' in keys) or ('highway' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('name' in keys) or ('surface' in keys) or ('telecom:medium' in keys) or ('water' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')))
@@ -247,7 +262,7 @@ class Josm_multiple(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} with multiple values","{0.key}")
-                err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr('{0} with multiple values', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9005001, 'subclass': 126367661, 'text': mapcss.tr('{0} with multiple values', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[source=~/^(;.*|.*;;.*|.*;)$/]
         # *["source:addr"=~/^(;.*|.*;;.*|.*;)$/]
@@ -272,8 +287,9 @@ class Josm_multiple(PluginMapCSS):
         # *["building:use"=~/^(;.*|.*;;.*|.*;)$/]
         # *[traffic_sign=~/^(;.*|.*;;.*|.*;)$/]
         # *[voltage=~/^(;.*|.*;;.*|.*;)$/]
+        # *[sport=~/^(;.*|.*;;.*|.*;)$/]
         # *[cuisine=~/^(;.*|.*;;.*|.*;)$/]
-        if ('addr:housenumber' in keys) or ('alt_name' in keys) or ('attribution' in keys) or ('building:use' in keys) or ('cuisine' in keys) or ('destination' in keys) or ('exit_to' in keys) or ('fixme' in keys) or ('int_ref' in keys) or ('name' in keys) or ('note' in keys) or ('old_ref' in keys) or ('ref' in keys) or ('route_ref' in keys) or ('source' in keys) or ('source:addr' in keys) or ('source:maxspeed' in keys) or ('source:name' in keys) or ('source:position' in keys) or ('source:postcode' in keys) or ('source_ref' in keys) or ('surface' in keys) or ('traffic_sign' in keys) or ('voltage' in keys):
+        if ('addr:housenumber' in keys) or ('alt_name' in keys) or ('attribution' in keys) or ('building:use' in keys) or ('cuisine' in keys) or ('destination' in keys) or ('exit_to' in keys) or ('fixme' in keys) or ('int_ref' in keys) or ('name' in keys) or ('note' in keys) or ('old_ref' in keys) or ('ref' in keys) or ('route_ref' in keys) or ('source' in keys) or ('source:addr' in keys) or ('source:maxspeed' in keys) or ('source:name' in keys) or ('source:position' in keys) or ('source:postcode' in keys) or ('source_ref' in keys) or ('sport' in keys) or ('surface' in keys) or ('traffic_sign' in keys) or ('voltage' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -369,11 +385,15 @@ class Josm_multiple(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
-                err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr('empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9005002, 'subclass': 1082723721, 'text': mapcss.tr('empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -383,6 +403,7 @@ class Josm_multiple(PluginMapCSS):
         err = []
 
 
+        # *["telecom:medium"=~/.+;(.+)?/]
         # *["addr:street"=~/.+;(.+)?/]
         # *[highway=~/.+;(.+)?/]
         # *[lanes=~/.+;(.+)?/]
@@ -390,8 +411,12 @@ class Josm_multiple(PluginMapCSS):
         # *[name=~/.+;(.+)?/]
         # *[surface=~/.+;(.+)?/]
         # *[water=~/.+;(.+)?/]
-        if ('addr:street' in keys) or ('highway' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('name' in keys) or ('surface' in keys) or ('water' in keys):
+        if ('addr:street' in keys) or ('highway' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('name' in keys) or ('surface' in keys) or ('telecom:medium' in keys) or ('water' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')))
@@ -422,7 +447,7 @@ class Josm_multiple(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} with multiple values","{0.key}")
-                err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr('{0} with multiple values', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9005001, 'subclass': 126367661, 'text': mapcss.tr('{0} with multiple values', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[source=~/^(;.*|.*;;.*|.*;)$/]
         # *["source:addr"=~/^(;.*|.*;;.*|.*;)$/]
@@ -447,8 +472,9 @@ class Josm_multiple(PluginMapCSS):
         # *["building:use"=~/^(;.*|.*;;.*|.*;)$/]
         # *[traffic_sign=~/^(;.*|.*;;.*|.*;)$/]
         # *[voltage=~/^(;.*|.*;;.*|.*;)$/]
+        # *[sport=~/^(;.*|.*;;.*|.*;)$/]
         # *[cuisine=~/^(;.*|.*;;.*|.*;)$/]
-        if ('addr:housenumber' in keys) or ('alt_name' in keys) or ('attribution' in keys) or ('building:use' in keys) or ('cuisine' in keys) or ('destination' in keys) or ('exit_to' in keys) or ('fixme' in keys) or ('int_ref' in keys) or ('name' in keys) or ('note' in keys) or ('old_ref' in keys) or ('ref' in keys) or ('route_ref' in keys) or ('source' in keys) or ('source:addr' in keys) or ('source:maxspeed' in keys) or ('source:name' in keys) or ('source:position' in keys) or ('source:postcode' in keys) or ('source_ref' in keys) or ('surface' in keys) or ('traffic_sign' in keys) or ('voltage' in keys):
+        if ('addr:housenumber' in keys) or ('alt_name' in keys) or ('attribution' in keys) or ('building:use' in keys) or ('cuisine' in keys) or ('destination' in keys) or ('exit_to' in keys) or ('fixme' in keys) or ('int_ref' in keys) or ('name' in keys) or ('note' in keys) or ('old_ref' in keys) or ('ref' in keys) or ('route_ref' in keys) or ('source' in keys) or ('source:addr' in keys) or ('source:maxspeed' in keys) or ('source:name' in keys) or ('source:position' in keys) or ('source:postcode' in keys) or ('source_ref' in keys) or ('sport' in keys) or ('surface' in keys) or ('traffic_sign' in keys) or ('voltage' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -544,11 +570,15 @@ class Josm_multiple(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
-                err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr('empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9005002, 'subclass': 1082723721, 'text': mapcss.tr('empty value in semicolon-separated \'\'{0}\'\'', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -567,9 +597,9 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'ref': ';'}), expected={'class': 9005002, 'subclass': 978530936})
-        self.check_err(n.node(data, {'ref': ';A1'}), expected={'class': 9005002, 'subclass': 978530936})
-        self.check_not_err(n.node(data, {'ref': 'A1'}), expected={'class': 9005002, 'subclass': 978530936})
-        self.check_err(n.node(data, {'ref': 'A1;'}), expected={'class': 9005002, 'subclass': 978530936})
-        self.check_err(n.node(data, {'ref': 'A1;;A2'}), expected={'class': 9005002, 'subclass': 978530936})
-        self.check_not_err(n.node(data, {'ref': 'A1;A2'}), expected={'class': 9005002, 'subclass': 978530936})
+        self.check_err(n.node(data, {'ref': ';'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_err(n.node(data, {'ref': ';A1'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_not_err(n.node(data, {'ref': 'A1'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_err(n.node(data, {'ref': 'A1;'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_err(n.node(data, {'ref': 'A1;;A2'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_not_err(n.node(data, {'ref': 'A1;A2'}), expected={'class': 9005002, 'subclass': 1082723721})

@@ -76,7 +76,7 @@ class Josm_combinations(PluginMapCSS):
         # node[ntd_id][!highway]
         # *[border_type][!boundary]
         # *[piste:difficulty][!piste:type]
-        # *[place][!name][place!=islet]
+        # *[place][!name][place!=islet][place!=plot][noname!=yes]
         # *[transformer][!power]
         # *[source:date][!source]
         # *[source:name][!name][noname!=yes]
@@ -119,7 +119,7 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'islet', 'islet'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'islet', 'islet') and mapcss._tag_capture(capture_tags, 3, tags, 'place') != mapcss._value_const_capture(capture_tags, 3, 'plot', 'plot') and mapcss._tag_capture(capture_tags, 4, tags, 'noname') != mapcss._value_const_capture(capture_tags, 4, 'yes', 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -229,7 +229,7 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 # assertMatch:"node source:addr:postcode=postman"
-                err.append({'class': 9001001, 'subclass': 1995355179, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001001, 'subclass': 956537030, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # node[railway:switch][railway!=switch]
         # *[generator:source][power!=generator]
@@ -247,8 +247,9 @@ class Josm_combinations(PluginMapCSS):
         # *[artwork_type][tourism!=artwork][exhibit!=artwork]
         # *[castle_type][historic!=castle]
         # *[parking][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking)$/][parking!=yes][parking!=no]
+        # *[zoo][tourism!=zoo]
         # *[bunker_type][military!=bunker]
-        if ('artwork_type' in keys) or ('board_type' in keys) or ('bunker_type' in keys) or ('castle_type' in keys) or ('fire_hydrant:type' in keys) or ('generator:method' in keys) or ('generator:source' in keys) or ('generator:type' in keys) or ('information' in keys) or ('lamp_type' in keys) or ('manhole' in keys) or ('map_type' in keys) or ('parking' in keys) or ('railway:switch' in keys) or ('recycling_type' in keys) or ('shelter_type' in keys) or ('site_type' in keys):
+        if ('artwork_type' in keys) or ('board_type' in keys) or ('bunker_type' in keys) or ('castle_type' in keys) or ('fire_hydrant:type' in keys) or ('generator:method' in keys) or ('generator:source' in keys) or ('generator:type' in keys) or ('information' in keys) or ('lamp_type' in keys) or ('manhole' in keys) or ('map_type' in keys) or ('parking' in keys) or ('railway:switch' in keys) or ('recycling_type' in keys) or ('shelter_type' in keys) or ('site_type' in keys) or ('zoo' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -316,28 +317,22 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'zoo') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'zoo', 'zoo'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bunker_type') and mapcss._tag_capture(capture_tags, 1, tags, 'military') != mapcss._value_const_capture(capture_tags, 1, 'bunker', 'bunker'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 641101944, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1216906377, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[iata][aeroway!=aerodrome][aeroway!=helipad]
-        # *[icao][aeroway!=aerodrome][aeroway!=helipad]
         # *[bridge:movable][bridge!=movable][man_made!=bridge]
         # *[substation][power!=substation][pipeline!=substation]
         # *[reservoir_type][landuse!=reservoir][water!=reservoir]
-        if ('bridge:movable' in keys) or ('iata' in keys) or ('icao' in keys) or ('reservoir_type' in keys) or ('substation' in keys):
+        if ('bridge:movable' in keys) or ('reservoir_type' in keys) or ('substation' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'helipad', 'helipad'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'icao') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'helipad', 'helipad'))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge:movable') and mapcss._tag_capture(capture_tags, 1, tags, 'bridge') != mapcss._value_const_capture(capture_tags, 1, 'movable', 'movable') and mapcss._tag_capture(capture_tags, 2, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 2, 'bridge', 'bridge'))
@@ -353,7 +348,24 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 1276936968, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1195794842, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[iata][aeroway!=aerodrome][aeroway!=heliport][aeroway!=helipad]
+        # *[icao][aeroway!=aerodrome][aeroway!=heliport][aeroway!=helipad]
+        if ('iata' in keys) or ('icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'heliport', 'heliport') and mapcss._tag_capture(capture_tags, 3, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 3, 'helipad', 'helipad'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'icao') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'heliport', 'heliport') and mapcss._tag_capture(capture_tags, 3, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 3, 'helipad', 'helipad'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.tag}","{2.tag}","{3.tag}")
+                err.append({'class': 9001001, 'subclass': 1908755652, 'text': mapcss.tr('{0} without {1}, {2} or {3}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'))})
 
         # node[traffic_sign=maxspeed][!maxspeed][!/^maxspeed:.+/]
         # node[actuator=manual][!handle]
@@ -418,14 +430,9 @@ class Josm_combinations(PluginMapCSS):
                 # assertNoMatch:"node traffic_sign=maxspeed maxspeed:hgv:conditional=\"80 @ (weight>7.5 AND 22:00-05:00)\""
                 err.append({'class': 9001001, 'subclass': 2003345826, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
-        # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
         # *[segregated][!highway][railway!=crossing]
-        if ('segregated' in keys) or ('smoothness' in keys):
+        if ('segregated' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'smoothness') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4f156c8f, '^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$'), mapcss._tag_capture(capture_tags, 2, tags, 'amenity')))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'segregated') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and mapcss._tag_capture(capture_tags, 2, tags, 'railway') != mapcss._value_const_capture(capture_tags, 2, 'crossing', 'crossing'))
@@ -433,7 +440,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 1366851391, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 413539177, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         # *[amenity=recycling][recycling_type!=container][recycling_type!=centre]
         if ('amenity' in keys):
@@ -446,6 +453,18 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 747056792, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/][barrier!=kerb][!kerb]
+        if ('smoothness' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'smoothness') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4f156c8f, '^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$'), mapcss._tag_capture(capture_tags, 2, tags, 'amenity')) and mapcss._tag_capture(capture_tags, 3, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 3, 'kerb', 'kerb') and not mapcss._tag_capture(capture_tags, 4, tags, 'kerb'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}, {2}, {3} or {4}","{0.key}","{1.key}","{2.tag}","{3.tag}","{4.key}")
+                err.append({'class': 9001001, 'subclass': 1922079652, 'text': mapcss.tr('{0} without {1}, {2}, {3} or {4}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'), mapcss._tag_uncapture(capture_tags, '{4.key}'))})
 
         # *[intermittent][!waterway][natural!~/^(water|spring)$/][landuse!~/^(basin|reservoir)$/][ford!=yes]
         # *[boat][!waterway][natural!=water][landuse!~/^(basin|reservoir)$/][ford!=yes]
@@ -701,14 +720,14 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[place][place!=farm][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
+        # *[place][place!=farm][place!=plot][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
         # *[boundary][/^addr:/]
         # *[highway][/^addr:/][highway!=services][highway!=rest_area][!"addr:postcode"]
         if ('boundary' in keys) or ('highway' in keys) or ('place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') != mapcss._value_const_capture(capture_tags, 1, 'farm', 'farm') and mapcss._tag_capture(capture_tags, 2, tags, self.re_0737b0c4))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') != mapcss._value_const_capture(capture_tags, 1, 'farm', 'farm') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'plot', 'plot') and mapcss._tag_capture(capture_tags, 3, tags, self.re_0737b0c4))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -724,7 +743,7 @@ class Josm_combinations(PluginMapCSS):
                 # assertNoMatch:"node place=foo  addr:postcode=12345"
                 # assertMatch:"node place=foo addr:housenumber=5 addr:postcode=12345"
                 # assertMatch:"node place=foo addr:housenumber=5"
-                err.append({'class': 9001002, 'subclass': 2039567622, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'addr:*')})
+                err.append({'class': 9001002, 'subclass': 1053814004, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'addr:*')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
         if ('addr:postcode' in keys and 'postal_code' in keys):
@@ -751,11 +770,11 @@ class Josm_combinations(PluginMapCSS):
                 err.append({'class': 9001002, 'subclass': 1415856502, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # node[lanes][!barrier][!ford][highway!=mini_roundabout][!junction][leisure!~/^(bowling_alley|slipway|swimming_pool|track)$/][!traffic_calming]!.only_one_tag
-        # *[tunnel][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel]
-        # *[bridge][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=bridge][building!=bridge]
-        # *[psv][!highway][!railway][!waterway][barrier!=bollard][amenity!~/^parking.*/]
-        # *[width][!highway][!railway][!waterway][!aeroway][!cycleway][!footway][!barrier][!man_made][!entrance][natural!=stone][leisure!=track]
-        # *[maxspeed][!highway][!railway][traffic_sign!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:forward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:backward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][type!=enforcement][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/][!traffic_calming][aerialway!=zip_line]
+        # *[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel]
+        # *[bridge][!highway][!area:highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=bridge][building!=bridge]
+        # *[psv][!highway][!area:highway][!railway][!waterway][barrier!=bollard][amenity!~/^parking.*/]
+        # *[width][!highway][!area:highway][!railway][!waterway][!aeroway][!cycleway][!footway][!barrier][!man_made][!entrance][natural!=stone][leisure!=track]
+        # *[maxspeed][!highway][!area:highway][!railway][traffic_sign!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:forward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:backward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][type!=enforcement][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/][!traffic_calming][aerialway!=zip_line]
         if ('bridge' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('psv' in keys) or ('tunnel' in keys) or ('width' in keys):
             match = False
             if not match:
@@ -764,28 +783,28 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tunnel') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 5, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 5, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 6, tags, 'route') != mapcss._value_const_capture(capture_tags, 6, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 7, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 7, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'tunnel', 'tunnel'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tunnel') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 6, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 6, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 7, tags, 'route') != mapcss._value_const_capture(capture_tags, 7, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 11, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 11, 'tunnel', 'tunnel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 5, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 5, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 6, tags, 'route') != mapcss._value_const_capture(capture_tags, 6, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 7, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 7, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'bridge', 'bridge') and mapcss._tag_capture(capture_tags, 11, tags, 'building') != mapcss._value_const_capture(capture_tags, 11, 'bridge', 'bridge'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 6, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 6, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 7, tags, 'route') != mapcss._value_const_capture(capture_tags, 7, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 11, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 11, 'bridge', 'bridge') and mapcss._tag_capture(capture_tags, 12, tags, 'building') != mapcss._value_const_capture(capture_tags, 12, 'bridge', 'bridge'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'psv') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and mapcss._tag_capture(capture_tags, 4, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 4, 'bollard', 'bollard') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_213d4d09, '^parking.*'), mapcss._tag_capture(capture_tags, 5, tags, 'amenity')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'psv') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and mapcss._tag_capture(capture_tags, 5, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 5, 'bollard', 'bollard') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_213d4d09, '^parking.*'), mapcss._tag_capture(capture_tags, 6, tags, 'amenity')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'aeroway') and not mapcss._tag_capture(capture_tags, 5, tags, 'cycleway') and not mapcss._tag_capture(capture_tags, 6, tags, 'footway') and not mapcss._tag_capture(capture_tags, 7, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 8, tags, 'man_made') and not mapcss._tag_capture(capture_tags, 9, tags, 'entrance') and mapcss._tag_capture(capture_tags, 10, tags, 'natural') != mapcss._value_const_capture(capture_tags, 10, 'stone', 'stone') and mapcss._tag_capture(capture_tags, 11, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 11, 'track', 'track'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'aeroway') and not mapcss._tag_capture(capture_tags, 6, tags, 'cycleway') and not mapcss._tag_capture(capture_tags, 7, tags, 'footway') and not mapcss._tag_capture(capture_tags, 8, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 9, tags, 'man_made') and not mapcss._tag_capture(capture_tags, 10, tags, 'entrance') and mapcss._tag_capture(capture_tags, 11, tags, 'natural') != mapcss._value_const_capture(capture_tags, 11, 'stone', 'stone') and mapcss._tag_capture(capture_tags, 12, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 12, 'track', 'track'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 3, tags, 'traffic_sign')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign:forward')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward')) and mapcss._tag_capture(capture_tags, 6, tags, 'type') != mapcss._value_const_capture(capture_tags, 6, 'enforcement', 'enforcement') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 7, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 7, tags, 'waterway')) and not mapcss._tag_capture(capture_tags, 8, tags, 'traffic_calming') and mapcss._tag_capture(capture_tags, 9, tags, 'aerialway') != mapcss._value_const_capture(capture_tags, 9, 'zip_line', 'zip_line'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:forward')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 6, tags, 'traffic_sign:backward')) and mapcss._tag_capture(capture_tags, 7, tags, 'type') != mapcss._value_const_capture(capture_tags, 7, 'enforcement', 'enforcement') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 8, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 8, tags, 'waterway')) and not mapcss._tag_capture(capture_tags, 9, tags, 'traffic_calming') and mapcss._tag_capture(capture_tags, 10, tags, 'aerialway') != mapcss._value_const_capture(capture_tags, 10, 'zip_line', 'zip_line'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} on suspicious object","{0.key}")
-                err.append({'class': 9001002, 'subclass': 1006648331, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1283815405, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[highway][waterway][waterway!=dam][waterway!=weir]
         # *[landuse][building][landuse!=retail]
@@ -1169,7 +1188,7 @@ class Josm_combinations(PluginMapCSS):
         # way[have_riverbank][!waterway]
         # *[border_type][!boundary]
         # *[piste:difficulty][!piste:type]
-        # *[place][!name][place!=islet]
+        # *[place][!name][place!=islet][place!=plot][noname!=yes]
         # *[transformer][!power]
         # *[source:date][!source]
         # *[source:name][!name][noname!=yes]
@@ -1340,7 +1359,7 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'islet', 'islet'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'islet', 'islet') and mapcss._tag_capture(capture_tags, 3, tags, 'place') != mapcss._value_const_capture(capture_tags, 3, 'plot', 'plot') and mapcss._tag_capture(capture_tags, 4, tags, 'noname') != mapcss._value_const_capture(capture_tags, 4, 'yes', 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1449,7 +1468,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 283899795, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001001, 'subclass': 1452726368, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[generator:source][power!=generator]
         # *[generator:method][power!=generator]
@@ -1463,8 +1482,9 @@ class Josm_combinations(PluginMapCSS):
         # *[castle_type][historic!=castle]
         # *[parking][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking)$/][parking!=yes][parking!=no]
         # way[cutline][man_made!=cutline]
+        # *[zoo][tourism!=zoo]
         # *[bunker_type][military!=bunker]
-        if ('artwork_type' in keys) or ('bunker_type' in keys) or ('castle_type' in keys) or ('cutline' in keys) or ('fence_type' in keys) or ('generator:method' in keys) or ('generator:source' in keys) or ('generator:type' in keys) or ('information' in keys) or ('parking' in keys) or ('recycling_type' in keys) or ('shelter_type' in keys) or ('site_type' in keys):
+        if ('artwork_type' in keys) or ('bunker_type' in keys) or ('castle_type' in keys) or ('cutline' in keys) or ('fence_type' in keys) or ('generator:method' in keys) or ('generator:source' in keys) or ('generator:type' in keys) or ('information' in keys) or ('parking' in keys) or ('recycling_type' in keys) or ('shelter_type' in keys) or ('site_type' in keys) or ('zoo' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -1516,29 +1536,23 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'zoo') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'zoo', 'zoo'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bunker_type') and mapcss._tag_capture(capture_tags, 1, tags, 'military') != mapcss._value_const_capture(capture_tags, 1, 'bunker', 'bunker'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 583945071, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1847752037, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[iata][aeroway!=aerodrome][aeroway!=helipad]
-        # *[icao][aeroway!=aerodrome][aeroway!=helipad]
         # *[bridge:movable][bridge!=movable][man_made!=bridge]
         # *[substation][power!=substation][pipeline!=substation]
         # *[reservoir_type][landuse!=reservoir][water!=reservoir]
         # way[waterway=pressurised][tunnel!=flooded][man_made!=pipeline]
-        if ('bridge:movable' in keys) or ('iata' in keys) or ('icao' in keys) or ('reservoir_type' in keys) or ('substation' in keys) or ('waterway' in keys):
+        if ('bridge:movable' in keys) or ('reservoir_type' in keys) or ('substation' in keys) or ('waterway' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'helipad', 'helipad'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'icao') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'helipad', 'helipad'))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge:movable') and mapcss._tag_capture(capture_tags, 1, tags, 'bridge') != mapcss._value_const_capture(capture_tags, 1, 'movable', 'movable') and mapcss._tag_capture(capture_tags, 2, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 2, 'bridge', 'bridge'))
@@ -1558,7 +1572,24 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 269128108, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 214618643, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[iata][aeroway!=aerodrome][aeroway!=heliport][aeroway!=helipad]
+        # *[icao][aeroway!=aerodrome][aeroway!=heliport][aeroway!=helipad]
+        if ('iata' in keys) or ('icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'heliport', 'heliport') and mapcss._tag_capture(capture_tags, 3, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 3, 'helipad', 'helipad'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'icao') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'heliport', 'heliport') and mapcss._tag_capture(capture_tags, 3, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 3, 'helipad', 'helipad'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.tag}","{2.tag}","{3.tag}")
+                err.append({'class': 9001001, 'subclass': 1908755652, 'text': mapcss.tr('{0} without {1}, {2} or {3}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'))})
 
         # way[railway=construction][!construction]
         # way[highway=construction][!construction]
@@ -1623,17 +1654,12 @@ class Josm_combinations(PluginMapCSS):
                 err.append({'class': 9001001, 'subclass': 785528357, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[bridge:structure][!bridge][man_made!=bridge]
-        # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
         # *[segregated][!highway][railway!=crossing]
-        if ('bridge:structure' in keys) or ('segregated' in keys) or ('smoothness' in keys):
+        if ('bridge:structure' in keys) or ('segregated' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge:structure') and not mapcss._tag_capture(capture_tags, 1, tags, 'bridge') and mapcss._tag_capture(capture_tags, 2, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 2, 'bridge', 'bridge'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'smoothness') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4f156c8f, '^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$'), mapcss._tag_capture(capture_tags, 2, tags, 'amenity')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -1642,7 +1668,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 1340059227, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1408612243, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         # way[usage=penstock][man_made!=pipeline]
         # way[usage=penstock][waterway!=pressurised]
@@ -1672,6 +1698,18 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 747056792, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/][barrier!=kerb][!kerb]
+        if ('smoothness' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'smoothness') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4f156c8f, '^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$'), mapcss._tag_capture(capture_tags, 2, tags, 'amenity')) and mapcss._tag_capture(capture_tags, 3, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 3, 'kerb', 'kerb') and not mapcss._tag_capture(capture_tags, 4, tags, 'kerb'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}, {2}, {3} or {4}","{0.key}","{1.key}","{2.tag}","{3.tag}","{4.key}")
+                err.append({'class': 9001001, 'subclass': 1922079652, 'text': mapcss.tr('{0} without {1}, {2}, {3} or {4}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'), mapcss._tag_uncapture(capture_tags, '{4.key}'))})
 
         # *[intermittent][!waterway][natural!~/^(water|spring)$/][landuse!~/^(basin|reservoir)$/][ford!=yes]
         # *[boat][!waterway][natural!=water][landuse!~/^(basin|reservoir)$/][ford!=yes]
@@ -2010,14 +2048,14 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[place][place!=farm][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
+        # *[place][place!=farm][place!=plot][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
         # *[boundary][/^addr:/]
         # *[highway][/^addr:/][highway!=services][highway!=rest_area][!"addr:postcode"]
         if ('boundary' in keys) or ('highway' in keys) or ('place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') != mapcss._value_const_capture(capture_tags, 1, 'farm', 'farm') and mapcss._tag_capture(capture_tags, 2, tags, self.re_0737b0c4))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') != mapcss._value_const_capture(capture_tags, 1, 'farm', 'farm') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'plot', 'plot') and mapcss._tag_capture(capture_tags, 3, tags, self.re_0737b0c4))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -2030,7 +2068,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","addr:*")
-                err.append({'class': 9001002, 'subclass': 2039567622, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'addr:*')})
+                err.append({'class': 9001002, 'subclass': 1053814004, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'addr:*')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
         if ('addr:postcode' in keys and 'postal_code' in keys):
@@ -2116,52 +2154,52 @@ class Josm_combinations(PluginMapCSS):
                 # suggestAlternative:"highway=path + foot=designated + bicycle=designated + segregated=yes"
                 err.append({'class': 9001002, 'subclass': 393240150, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # way[oneway][!highway][!railway][!aerialway][attraction!=summer_toboggan][aeroway!~/^(runway|taxiway)$/][leisure!=track][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/]
-        # way[lanes][!barrier][!ford][!highway][!junction][leisure!~/^(bowling_alley|slipway|swimming_pool|track)$/][!traffic_calming]!.only_one_tag
-        # *[tunnel][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel]
-        # *[bridge][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=bridge][building!=bridge]
-        # *[psv][!highway][!railway][!waterway][barrier!=bollard][amenity!~/^parking.*/]
-        # *[width][!highway][!railway][!waterway][!aeroway][!cycleway][!footway][!barrier][!man_made][!entrance][natural!=stone][leisure!=track]
-        # *[maxspeed][!highway][!railway][traffic_sign!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:forward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:backward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][type!=enforcement][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/][!traffic_calming][aerialway!=zip_line]
-        # way[incline][!highway][!railway][aeroway!~/^(runway|taxiway)$/][attraction!=summer_toboggan][leisure!=slipway]
+        # way[oneway][!highway][!area:highway][!railway][!aerialway][attraction!=summer_toboggan][aeroway!~/^(runway|taxiway)$/][leisure!=track][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/]
+        # way[lanes][!barrier][!ford][!highway][!area:highway][!junction][leisure!~/^(bowling_alley|slipway|swimming_pool|track)$/][!traffic_calming]!.only_one_tag
+        # *[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel]
+        # *[bridge][!highway][!area:highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=bridge][building!=bridge]
+        # *[psv][!highway][!area:highway][!railway][!waterway][barrier!=bollard][amenity!~/^parking.*/]
+        # *[width][!highway][!area:highway][!railway][!waterway][!aeroway][!cycleway][!footway][!barrier][!man_made][!entrance][natural!=stone][leisure!=track]
+        # *[maxspeed][!highway][!area:highway][!railway][traffic_sign!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:forward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:backward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][type!=enforcement][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/][!traffic_calming][aerialway!=zip_line]
+        # way[incline][!highway][!area:highway][!railway][aeroway!~/^(runway|taxiway)$/][attraction!=summer_toboggan][leisure!=slipway]
         if ('bridge' in keys) or ('incline' in keys) or ('lanes' in keys) or ('maxspeed' in keys) or ('oneway' in keys) or ('psv' in keys) or ('tunnel' in keys) or ('width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'oneway') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'aerialway') and mapcss._tag_capture(capture_tags, 4, tags, 'attraction') != mapcss._value_const_capture(capture_tags, 4, 'summer_toboggan', 'summer_toboggan') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_1dcd648f, '^(runway|taxiway)$'), mapcss._tag_capture(capture_tags, 5, tags, 'aeroway')) and mapcss._tag_capture(capture_tags, 6, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 6, 'track', 'track') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 7, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 7, tags, 'waterway')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'oneway') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'aerialway') and mapcss._tag_capture(capture_tags, 5, tags, 'attraction') != mapcss._value_const_capture(capture_tags, 5, 'summer_toboggan', 'summer_toboggan') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_1dcd648f, '^(runway|taxiway)$'), mapcss._tag_capture(capture_tags, 6, tags, 'aeroway')) and mapcss._tag_capture(capture_tags, 7, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 7, 'track', 'track') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 8, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 8, tags, 'waterway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (not set_only_one_tag and mapcss._tag_capture(capture_tags, 0, tags, 'lanes') and not mapcss._tag_capture(capture_tags, 1, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 2, tags, 'ford') and not mapcss._tag_capture(capture_tags, 3, tags, 'highway') and not mapcss._tag_capture(capture_tags, 4, tags, 'junction') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_49fc2c26, '^(bowling_alley|slipway|swimming_pool|track)$'), mapcss._tag_capture(capture_tags, 5, tags, 'leisure')) and not mapcss._tag_capture(capture_tags, 6, tags, 'traffic_calming'))
+                try: match = (not set_only_one_tag and mapcss._tag_capture(capture_tags, 0, tags, 'lanes') and not mapcss._tag_capture(capture_tags, 1, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 2, tags, 'ford') and not mapcss._tag_capture(capture_tags, 3, tags, 'highway') and not mapcss._tag_capture(capture_tags, 4, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 5, tags, 'junction') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_49fc2c26, '^(bowling_alley|slipway|swimming_pool|track)$'), mapcss._tag_capture(capture_tags, 6, tags, 'leisure')) and not mapcss._tag_capture(capture_tags, 7, tags, 'traffic_calming'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tunnel') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 5, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 5, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 6, tags, 'route') != mapcss._value_const_capture(capture_tags, 6, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 7, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 7, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'tunnel', 'tunnel'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tunnel') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 6, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 6, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 7, tags, 'route') != mapcss._value_const_capture(capture_tags, 7, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 11, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 11, 'tunnel', 'tunnel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 5, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 5, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 6, tags, 'route') != mapcss._value_const_capture(capture_tags, 6, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 7, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 7, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'bridge', 'bridge') and mapcss._tag_capture(capture_tags, 11, tags, 'building') != mapcss._value_const_capture(capture_tags, 11, 'bridge', 'bridge'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 6, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 6, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 7, tags, 'route') != mapcss._value_const_capture(capture_tags, 7, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 11, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 11, 'bridge', 'bridge') and mapcss._tag_capture(capture_tags, 12, tags, 'building') != mapcss._value_const_capture(capture_tags, 12, 'bridge', 'bridge'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'psv') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and mapcss._tag_capture(capture_tags, 4, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 4, 'bollard', 'bollard') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_213d4d09, '^parking.*'), mapcss._tag_capture(capture_tags, 5, tags, 'amenity')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'psv') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and mapcss._tag_capture(capture_tags, 5, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 5, 'bollard', 'bollard') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_213d4d09, '^parking.*'), mapcss._tag_capture(capture_tags, 6, tags, 'amenity')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'aeroway') and not mapcss._tag_capture(capture_tags, 5, tags, 'cycleway') and not mapcss._tag_capture(capture_tags, 6, tags, 'footway') and not mapcss._tag_capture(capture_tags, 7, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 8, tags, 'man_made') and not mapcss._tag_capture(capture_tags, 9, tags, 'entrance') and mapcss._tag_capture(capture_tags, 10, tags, 'natural') != mapcss._value_const_capture(capture_tags, 10, 'stone', 'stone') and mapcss._tag_capture(capture_tags, 11, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 11, 'track', 'track'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'aeroway') and not mapcss._tag_capture(capture_tags, 6, tags, 'cycleway') and not mapcss._tag_capture(capture_tags, 7, tags, 'footway') and not mapcss._tag_capture(capture_tags, 8, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 9, tags, 'man_made') and not mapcss._tag_capture(capture_tags, 10, tags, 'entrance') and mapcss._tag_capture(capture_tags, 11, tags, 'natural') != mapcss._value_const_capture(capture_tags, 11, 'stone', 'stone') and mapcss._tag_capture(capture_tags, 12, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 12, 'track', 'track'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 3, tags, 'traffic_sign')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign:forward')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward')) and mapcss._tag_capture(capture_tags, 6, tags, 'type') != mapcss._value_const_capture(capture_tags, 6, 'enforcement', 'enforcement') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 7, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 7, tags, 'waterway')) and not mapcss._tag_capture(capture_tags, 8, tags, 'traffic_calming') and mapcss._tag_capture(capture_tags, 9, tags, 'aerialway') != mapcss._value_const_capture(capture_tags, 9, 'zip_line', 'zip_line'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:forward')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 6, tags, 'traffic_sign:backward')) and mapcss._tag_capture(capture_tags, 7, tags, 'type') != mapcss._value_const_capture(capture_tags, 7, 'enforcement', 'enforcement') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 8, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 8, tags, 'waterway')) and not mapcss._tag_capture(capture_tags, 9, tags, 'traffic_calming') and mapcss._tag_capture(capture_tags, 10, tags, 'aerialway') != mapcss._value_const_capture(capture_tags, 10, 'zip_line', 'zip_line'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'incline') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_1dcd648f, '^(runway|taxiway)$'), mapcss._tag_capture(capture_tags, 3, tags, 'aeroway')) and mapcss._tag_capture(capture_tags, 4, tags, 'attraction') != mapcss._value_const_capture(capture_tags, 4, 'summer_toboggan', 'summer_toboggan') and mapcss._tag_capture(capture_tags, 5, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 5, 'slipway', 'slipway'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'incline') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_1dcd648f, '^(runway|taxiway)$'), mapcss._tag_capture(capture_tags, 4, tags, 'aeroway')) and mapcss._tag_capture(capture_tags, 5, tags, 'attraction') != mapcss._value_const_capture(capture_tags, 5, 'summer_toboggan', 'summer_toboggan') and mapcss._tag_capture(capture_tags, 6, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 6, 'slipway', 'slipway'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} on suspicious object","{0.key}")
-                err.append({'class': 9001002, 'subclass': 1570064488, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1054299364, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[highway][barrier]
         # *[highway][waterway][waterway!=dam][waterway!=weir]
@@ -2682,27 +2720,27 @@ class Josm_combinations(PluginMapCSS):
                     'cycleway'])
                 }})
 
-        # way[highway=path][foot][foot!=no][foot!=use_sidepath][!segregated][bicycle][bicycle!=no][bicycle!=use_sidepath][bicycle!=dismount]!.unpaved_surface
-        # way[highway=footway][bicycle][bicycle!=no][bicycle!=use_sidepath][!segregated][bicycle!=dismount]!.unpaved_surface
-        # way[highway=cycleway][foot][foot!=no][foot!=use_sidepath][!segregated]!.unpaved_surface
+        # way[highway=path][!segregated][foot=designated][bicycle=designated]
+        # way[highway=footway][!segregated][bicycle=designated]
+        # way[highway=cycleway][!segregated][foot=designated]
         if ('bicycle' in keys and 'foot' in keys and 'highway' in keys) or ('bicycle' in keys and 'highway' in keys) or ('foot' in keys and 'highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_unpaved_surface and mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'path') and mapcss._tag_capture(capture_tags, 1, tags, 'foot') and mapcss._tag_capture(capture_tags, 2, tags, 'foot') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no') and mapcss._tag_capture(capture_tags, 3, tags, 'foot') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath') and not mapcss._tag_capture(capture_tags, 4, tags, 'segregated') and mapcss._tag_capture(capture_tags, 5, tags, 'bicycle') and mapcss._tag_capture(capture_tags, 6, tags, 'bicycle') != mapcss._value_const_capture(capture_tags, 6, 'no', 'no') and mapcss._tag_capture(capture_tags, 7, tags, 'bicycle') != mapcss._value_const_capture(capture_tags, 7, 'use_sidepath', 'use_sidepath') and mapcss._tag_capture(capture_tags, 8, tags, 'bicycle') != mapcss._value_const_capture(capture_tags, 8, 'dismount', 'dismount'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'path') and not mapcss._tag_capture(capture_tags, 1, tags, 'segregated') and mapcss._tag_capture(capture_tags, 2, tags, 'foot') == mapcss._value_capture(capture_tags, 2, 'designated') and mapcss._tag_capture(capture_tags, 3, tags, 'bicycle') == mapcss._value_capture(capture_tags, 3, 'designated'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (not set_unpaved_surface and mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway') and mapcss._tag_capture(capture_tags, 1, tags, 'bicycle') and mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no') and mapcss._tag_capture(capture_tags, 3, tags, 'bicycle') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath') and not mapcss._tag_capture(capture_tags, 4, tags, 'segregated') and mapcss._tag_capture(capture_tags, 5, tags, 'bicycle') != mapcss._value_const_capture(capture_tags, 5, 'dismount', 'dismount'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'footway') and not mapcss._tag_capture(capture_tags, 1, tags, 'segregated') and mapcss._tag_capture(capture_tags, 2, tags, 'bicycle') == mapcss._value_capture(capture_tags, 2, 'designated'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (not set_unpaved_surface and mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, 'foot') and mapcss._tag_capture(capture_tags, 2, tags, 'foot') != mapcss._value_const_capture(capture_tags, 2, 'no', 'no') and mapcss._tag_capture(capture_tags, 3, tags, 'foot') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath') and not mapcss._tag_capture(capture_tags, 4, tags, 'segregated'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway') and not mapcss._tag_capture(capture_tags, 1, tags, 'segregated') and mapcss._tag_capture(capture_tags, 2, tags, 'foot') == mapcss._value_capture(capture_tags, 2, 'designated'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # throwWarning:tr("Combined foot- and cycleway without {0}.","{4.key}")
-                err.append({'class': 9001001, 'subclass': 1959566007, 'text': mapcss.tr('Combined foot- and cycleway without {0}.', mapcss._tag_uncapture(capture_tags, '{4.key}'))})
+                # throwWarning:tr("Combined foot- and cycleway without {0}.","{1.key}")
+                err.append({'class': 9001001, 'subclass': 130310293, 'text': mapcss.tr('Combined foot- and cycleway without {0}.', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[construction][construction!=yes][construction!=minor][highway][highway!=construction]
         if ('construction' in keys and 'highway' in keys):
@@ -3008,7 +3046,7 @@ class Josm_combinations(PluginMapCSS):
 
         # *[border_type][!boundary]
         # *[piste:difficulty][!piste:type]
-        # *[place][!name][place!=islet]
+        # *[place][!name][place!=islet][place!=plot][noname!=yes]
         # *[transformer][!power]
         # *[source:date][!source]
         # *[source:name][!name][noname!=yes]
@@ -3047,7 +3085,7 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'islet', 'islet'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'islet', 'islet') and mapcss._tag_capture(capture_tags, 3, tags, 'place') != mapcss._value_const_capture(capture_tags, 3, 'plot', 'plot') and mapcss._tag_capture(capture_tags, 4, tags, 'noname') != mapcss._value_const_capture(capture_tags, 4, 'yes', 'yes'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -3156,7 +3194,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 1859745811, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001001, 'subclass': 1063128178, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[generator:source][power!=generator]
         # *[generator:method][power!=generator]
@@ -3168,8 +3206,9 @@ class Josm_combinations(PluginMapCSS):
         # *[artwork_type][tourism!=artwork][exhibit!=artwork]
         # *[castle_type][historic!=castle]
         # *[parking][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking)$/][parking!=yes][parking!=no]
+        # *[zoo][tourism!=zoo]
         # *[bunker_type][military!=bunker]
-        if ('artwork_type' in keys) or ('bunker_type' in keys) or ('castle_type' in keys) or ('generator:method' in keys) or ('generator:source' in keys) or ('generator:type' in keys) or ('information' in keys) or ('parking' in keys) or ('recycling_type' in keys) or ('shelter_type' in keys) or ('site_type' in keys):
+        if ('artwork_type' in keys) or ('bunker_type' in keys) or ('castle_type' in keys) or ('generator:method' in keys) or ('generator:source' in keys) or ('generator:type' in keys) or ('information' in keys) or ('parking' in keys) or ('recycling_type' in keys) or ('shelter_type' in keys) or ('site_type' in keys) or ('zoo' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -3213,28 +3252,22 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'zoo') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'zoo', 'zoo'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bunker_type') and mapcss._tag_capture(capture_tags, 1, tags, 'military') != mapcss._value_const_capture(capture_tags, 1, 'bunker', 'bunker'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 682469048, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001001, 'subclass': 957877692, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[iata][aeroway!=aerodrome][aeroway!=helipad]
-        # *[icao][aeroway!=aerodrome][aeroway!=helipad]
         # *[bridge:movable][bridge!=movable][man_made!=bridge]
         # *[substation][power!=substation][pipeline!=substation]
         # *[reservoir_type][landuse!=reservoir][water!=reservoir]
-        if ('bridge:movable' in keys) or ('iata' in keys) or ('icao' in keys) or ('reservoir_type' in keys) or ('substation' in keys):
+        if ('bridge:movable' in keys) or ('reservoir_type' in keys) or ('substation' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'helipad', 'helipad'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'icao') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'helipad', 'helipad'))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge:movable') and mapcss._tag_capture(capture_tags, 1, tags, 'bridge') != mapcss._value_const_capture(capture_tags, 1, 'movable', 'movable') and mapcss._tag_capture(capture_tags, 2, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 2, 'bridge', 'bridge'))
@@ -3250,7 +3283,24 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 1276936968, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1195794842, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[iata][aeroway!=aerodrome][aeroway!=heliport][aeroway!=helipad]
+        # *[icao][aeroway!=aerodrome][aeroway!=heliport][aeroway!=helipad]
+        if ('iata' in keys) or ('icao' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'heliport', 'heliport') and mapcss._tag_capture(capture_tags, 3, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 3, 'helipad', 'helipad'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'icao') and mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 1, 'aerodrome', 'aerodrome') and mapcss._tag_capture(capture_tags, 2, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 2, 'heliport', 'heliport') and mapcss._tag_capture(capture_tags, 3, tags, 'aeroway') != mapcss._value_const_capture(capture_tags, 3, 'helipad', 'helipad'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.tag}","{2.tag}","{3.tag}")
+                err.append({'class': 9001001, 'subclass': 1908755652, 'text': mapcss.tr('{0} without {1}, {2} or {3}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'))})
 
         # relation[boundary=administrative][!admin_level]
         # relation[route=bicycle][!network][type=route]
@@ -3334,14 +3384,9 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 1900191245, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
-        # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
         # *[segregated][!highway][railway!=crossing]
-        if ('segregated' in keys) or ('smoothness' in keys):
+        if ('segregated' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'smoothness') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4f156c8f, '^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$'), mapcss._tag_capture(capture_tags, 2, tags, 'amenity')))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'segregated') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and mapcss._tag_capture(capture_tags, 2, tags, 'railway') != mapcss._value_const_capture(capture_tags, 2, 'crossing', 'crossing'))
@@ -3349,7 +3394,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
-                err.append({'class': 9001001, 'subclass': 1366851391, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+                err.append({'class': 9001001, 'subclass': 413539177, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         # *[amenity=recycling][recycling_type!=container][recycling_type!=centre]
         if ('amenity' in keys):
@@ -3362,6 +3407,18 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 747056792, 'text': mapcss.tr('{0} without {1} or {2}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/][barrier!=kerb][!kerb]
+        if ('smoothness' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'smoothness') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4f156c8f, '^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$'), mapcss._tag_capture(capture_tags, 2, tags, 'amenity')) and mapcss._tag_capture(capture_tags, 3, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 3, 'kerb', 'kerb') and not mapcss._tag_capture(capture_tags, 4, tags, 'kerb'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}, {2}, {3} or {4}","{0.key}","{1.key}","{2.tag}","{3.tag}","{4.key}")
+                err.append({'class': 9001001, 'subclass': 1922079652, 'text': mapcss.tr('{0} without {1}, {2}, {3} or {4}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{3.tag}'), mapcss._tag_uncapture(capture_tags, '{4.key}'))})
 
         # *[intermittent][!waterway][natural!~/^(water|spring)$/][landuse!~/^(basin|reservoir)$/][ford!=yes]
         # *[boat][!waterway][natural!=water][landuse!~/^(basin|reservoir)$/][ford!=yes]
@@ -3584,14 +3641,14 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[place][place!=farm][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
+        # *[place][place!=farm][place!=plot][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
         # *[boundary][/^addr:/]
         # *[highway][/^addr:/][highway!=services][highway!=rest_area][!"addr:postcode"]
         if ('boundary' in keys) or ('highway' in keys) or ('place' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') != mapcss._value_const_capture(capture_tags, 1, 'farm', 'farm') and mapcss._tag_capture(capture_tags, 2, tags, self.re_0737b0c4))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss._tag_capture(capture_tags, 1, tags, 'place') != mapcss._value_const_capture(capture_tags, 1, 'farm', 'farm') and mapcss._tag_capture(capture_tags, 2, tags, 'place') != mapcss._value_const_capture(capture_tags, 2, 'plot', 'plot') and mapcss._tag_capture(capture_tags, 3, tags, self.re_0737b0c4))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -3604,7 +3661,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","addr:*")
-                err.append({'class': 9001002, 'subclass': 2039567622, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'addr:*')})
+                err.append({'class': 9001002, 'subclass': 1053814004, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'addr:*')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
         if ('addr:postcode' in keys and 'postal_code' in keys):
@@ -3630,37 +3687,37 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1415856502, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
-        # *[tunnel][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel]
-        # *[bridge][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=bridge][building!=bridge]
-        # *[psv][!highway][!railway][!waterway][barrier!=bollard][amenity!~/^parking.*/]
-        # *[width][!highway][!railway][!waterway][!aeroway][!cycleway][!footway][!barrier][!man_made][!entrance][natural!=stone][leisure!=track]
-        # *[maxspeed][!highway][!railway][traffic_sign!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:forward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:backward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][type!=enforcement][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/][!traffic_calming][aerialway!=zip_line]
+        # *[tunnel][!highway][!area:highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=tunnel]
+        # *[bridge][!highway][!area:highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor][man_made!=wildlife_crossing][man_made!=bridge][building!=bridge]
+        # *[psv][!highway][!area:highway][!railway][!waterway][barrier!=bollard][amenity!~/^parking.*/]
+        # *[width][!highway][!area:highway][!railway][!waterway][!aeroway][!cycleway][!footway][!barrier][!man_made][!entrance][natural!=stone][leisure!=track]
+        # *[maxspeed][!highway][!area:highway][!railway][traffic_sign!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:forward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][traffic_sign:backward!~/^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$/][type!=enforcement][waterway!~/^(canal|fairway|lock|river|tidal_channel)$/][!traffic_calming][aerialway!=zip_line]
         if ('bridge' in keys) or ('maxspeed' in keys) or ('psv' in keys) or ('tunnel' in keys) or ('width' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tunnel') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 5, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 5, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 6, tags, 'route') != mapcss._value_const_capture(capture_tags, 6, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 7, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 7, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'tunnel', 'tunnel'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tunnel') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 6, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 6, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 7, tags, 'route') != mapcss._value_const_capture(capture_tags, 7, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 11, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 11, 'tunnel', 'tunnel'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 5, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 5, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 6, tags, 'route') != mapcss._value_const_capture(capture_tags, 6, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 7, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 7, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'bridge', 'bridge') and mapcss._tag_capture(capture_tags, 11, tags, 'building') != mapcss._value_const_capture(capture_tags, 11, 'bridge', 'bridge'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'bridge') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'piste:type') and mapcss._tag_capture(capture_tags, 6, tags, 'public_transport') != mapcss._value_const_capture(capture_tags, 6, 'platform', 'platform') and mapcss._tag_capture(capture_tags, 7, tags, 'route') != mapcss._value_const_capture(capture_tags, 7, 'ferry', 'ferry') and mapcss._tag_capture(capture_tags, 8, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 8, 'pipeline', 'pipeline') and mapcss._tag_capture(capture_tags, 9, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 9, 'goods_conveyor', 'goods_conveyor') and mapcss._tag_capture(capture_tags, 10, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 10, 'wildlife_crossing', 'wildlife_crossing') and mapcss._tag_capture(capture_tags, 11, tags, 'man_made') != mapcss._value_const_capture(capture_tags, 11, 'bridge', 'bridge') and mapcss._tag_capture(capture_tags, 12, tags, 'building') != mapcss._value_const_capture(capture_tags, 12, 'bridge', 'bridge'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'psv') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and mapcss._tag_capture(capture_tags, 4, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 4, 'bollard', 'bollard') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_213d4d09, '^parking.*'), mapcss._tag_capture(capture_tags, 5, tags, 'amenity')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'psv') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and mapcss._tag_capture(capture_tags, 5, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 5, 'bollard', 'bollard') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_213d4d09, '^parking.*'), mapcss._tag_capture(capture_tags, 6, tags, 'amenity')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss._tag_capture(capture_tags, 3, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 4, tags, 'aeroway') and not mapcss._tag_capture(capture_tags, 5, tags, 'cycleway') and not mapcss._tag_capture(capture_tags, 6, tags, 'footway') and not mapcss._tag_capture(capture_tags, 7, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 8, tags, 'man_made') and not mapcss._tag_capture(capture_tags, 9, tags, 'entrance') and mapcss._tag_capture(capture_tags, 10, tags, 'natural') != mapcss._value_const_capture(capture_tags, 10, 'stone', 'stone') and mapcss._tag_capture(capture_tags, 11, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 11, 'track', 'track'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'width') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss._tag_capture(capture_tags, 4, tags, 'waterway') and not mapcss._tag_capture(capture_tags, 5, tags, 'aeroway') and not mapcss._tag_capture(capture_tags, 6, tags, 'cycleway') and not mapcss._tag_capture(capture_tags, 7, tags, 'footway') and not mapcss._tag_capture(capture_tags, 8, tags, 'barrier') and not mapcss._tag_capture(capture_tags, 9, tags, 'man_made') and not mapcss._tag_capture(capture_tags, 10, tags, 'entrance') and mapcss._tag_capture(capture_tags, 11, tags, 'natural') != mapcss._value_const_capture(capture_tags, 11, 'stone', 'stone') and mapcss._tag_capture(capture_tags, 12, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 12, 'track', 'track'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 3, tags, 'traffic_sign')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign:forward')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:backward')) and mapcss._tag_capture(capture_tags, 6, tags, 'type') != mapcss._value_const_capture(capture_tags, 6, 'enforcement', 'enforcement') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 7, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 7, tags, 'waterway')) and not mapcss._tag_capture(capture_tags, 8, tags, 'traffic_calming') and mapcss._tag_capture(capture_tags, 9, tags, 'aerialway') != mapcss._value_const_capture(capture_tags, 9, 'zip_line', 'zip_line'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'area:highway') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 4, tags, 'traffic_sign')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 5, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 5, tags, 'traffic_sign:forward')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_27d9cb1c, '^((.*;)?maxspeed(;.*)?|[A-Z][A-Z]:.+)$'), mapcss._tag_capture(capture_tags, 6, tags, 'traffic_sign:backward')) and mapcss._tag_capture(capture_tags, 7, tags, 'type') != mapcss._value_const_capture(capture_tags, 7, 'enforcement', 'enforcement') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 8, self.re_2fc1bb0a, '^(canal|fairway|lock|river|tidal_channel)$'), mapcss._tag_capture(capture_tags, 8, tags, 'waterway')) and not mapcss._tag_capture(capture_tags, 9, tags, 'traffic_calming') and mapcss._tag_capture(capture_tags, 10, tags, 'aerialway') != mapcss._value_const_capture(capture_tags, 10, 'zip_line', 'zip_line'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} on suspicious object","{0.key}")
-                err.append({'class': 9001002, 'subclass': 1489385031, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001002, 'subclass': 1997044826, 'text': mapcss.tr('{0} on suspicious object', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[highway][waterway][waterway!=dam][waterway!=weir]
         # *[landuse][building][landuse!=retail]
@@ -3938,11 +3995,11 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'source:addr:postcode': 'postman'}), expected={'class': 9001001, 'subclass': 1995355179})
+        self.check_err(n.node(data, {'source:addr:postcode': 'postman'}), expected={'class': 9001001, 'subclass': 956537030})
         self.check_not_err(n.node(data, {'maxspeed:hgv:conditional': '80 @ (weight>7.5 AND 22:00-05:00)', 'traffic_sign': 'maxspeed'}), expected={'class': 9001001, 'subclass': 2003345826})
-        self.check_not_err(n.node(data, {'addr:postcode': '12345', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 2039567622})
-        self.check_err(n.node(data, {'addr:housenumber': '5', 'addr:postcode': '12345', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 2039567622})
-        self.check_err(n.node(data, {'addr:housenumber': '5', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 2039567622})
+        self.check_not_err(n.node(data, {'addr:postcode': '12345', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 1053814004})
+        self.check_err(n.node(data, {'addr:housenumber': '5', 'addr:postcode': '12345', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 1053814004})
+        self.check_err(n.node(data, {'addr:housenumber': '5', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 1053814004})
         self.check_not_err(n.node(data, {'highway': 'street_lamp', 'natural': 'birds_nest'}), expected={'class': 9001002, 'subclass': 1750941961})
         self.check_not_err(n.node(data, {'amenity': 'restaurant', 'sport': '10pin'}), expected={'class': 9001001, 'subclass': 2099444702})
         self.check_not_err(n.node(data, {'natural': 'beach', 'sport': 'beachvolleyball'}), expected={'class': 9001001, 'subclass': 2099444702})

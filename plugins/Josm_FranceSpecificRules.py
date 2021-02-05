@@ -21,6 +21,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.errors[30403] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure'), title = mapcss.tr('missing tag'))
         self.errors[40103] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag', 'infrastructure'), title = mapcss.tr('deprecated tagging'))
         self.errors[40104] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('ref', 'infrastructure'), title = mapcss.tr('deprecated tagging'))
+        self.errors[40105] = self.def_class(item = 4010, level = 3, tags = [], title = mapcss.tr('misused tag in this country'))
         self.errors[40612] = self.def_class(item = 4061, level = 2, tags = mapcss.list_('parking', 'amenity', 'fix:chair'), title = mapcss.tr('Does this station still sell SP95, or has it been replaced by the SP95-E10?'))
         self.errors[9019001] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules highway milestone'))
         self.errors[9019002] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules nat_ref in France'))
@@ -230,6 +231,24 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 err.append({'class': 9019003, 'subclass': 323412661, 'text': {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'ref'])
+                }})
+
+        # *[amenity=kindergarten][school:FR=maternelle]
+        if ('amenity' in keys and 'school:FR' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten') and mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("misused tag in this country")
+                # -osmoseItemClassLevel:"4010/40105/3"
+                # throwWarning:"amenity=kindergarten is no longer used for an 'école maternelle' in France, use amenity=school"
+                # suggestAlternative:"amenity=school"
+                # fixAdd:"amenity=school"
+                err.append({'class': 40105, 'subclass': 0, 'text': {'en': 'amenity=kindergarten is no longer used for an \'école maternelle\' in France, use amenity=school'}, 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','school']])
                 }})
 
         return err
@@ -546,6 +565,24 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # throwWarning:tr("{0} no tag forward if oneway","{2.tag}")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} no tag forward if oneway', mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
+        # *[amenity=kindergarten][school:FR=maternelle]
+        if ('amenity' in keys and 'school:FR' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten') and mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("misused tag in this country")
+                # -osmoseItemClassLevel:"4010/40105/3"
+                # throwWarning:"amenity=kindergarten is no longer used for an 'école maternelle' in France, use amenity=school"
+                # suggestAlternative:"amenity=school"
+                # fixAdd:"amenity=school"
+                err.append({'class': 40105, 'subclass': 0, 'text': {'en': 'amenity=kindergarten is no longer used for an \'école maternelle\' in France, use amenity=school'}, 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','school']])
+                }})
+
         return err
 
     def relation(self, data, tags, members):
@@ -692,6 +729,24 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseItemClassLevel:"3040/30403/3"
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 30403, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *[amenity=kindergarten][school:FR=maternelle]
+        if ('amenity' in keys and 'school:FR' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten') and mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("misused tag in this country")
+                # -osmoseItemClassLevel:"4010/40105/3"
+                # throwWarning:"amenity=kindergarten is no longer used for an 'école maternelle' in France, use amenity=school"
+                # suggestAlternative:"amenity=school"
+                # fixAdd:"amenity=school"
+                err.append({'class': 40105, 'subclass': 0, 'text': {'en': 'amenity=kindergarten is no longer used for an \'école maternelle\' in France, use amenity=school'}, 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['amenity','school']])
+                }})
 
         return err
 

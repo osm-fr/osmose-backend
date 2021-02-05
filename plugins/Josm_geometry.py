@@ -487,6 +487,7 @@ class Josm_geometry(PluginMapCSS):
         # way[man_made=survey_point]
         # way[aeroway=holding_position]
         # way[power=transformer]
+        # way[transformer]
         # way[power=pole]
         # way[power=catenary_mast]
         # way[power=terminal]
@@ -505,7 +506,7 @@ class Josm_geometry(PluginMapCSS):
         # way[highway=turning_loop]
         # way[highway=turning_circle]
         # way[highway=motorway_junction]
-        if ('aeroway' in keys) or ('amenity' in keys) or ('door' in keys) or ('emergency' in keys) or ('entrance' in keys) or ('highway' in keys) or ('line_attachment' in keys) or ('line_management' in keys) or ('man_made' in keys) or ('natural' in keys) or ('power' in keys) or ('railway' in keys):
+        if ('aeroway' in keys) or ('amenity' in keys) or ('door' in keys) or ('emergency' in keys) or ('entrance' in keys) or ('highway' in keys) or ('line_attachment' in keys) or ('line_management' in keys) or ('man_made' in keys) or ('natural' in keys) or ('power' in keys) or ('railway' in keys) or ('transformer' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -546,6 +547,10 @@ class Josm_geometry(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'transformer'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -621,7 +626,7 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
-                err.append({'class': 9003007, 'subclass': 324235919, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9003007, 'subclass': 2124268250, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[restriction][restriction=~/^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$/]
         # way[type=multipolygon]
