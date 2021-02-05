@@ -17,7 +17,7 @@ You can install python dependencies in the system or in a virtualenv.
 
 Install the following packages on the system:
 ```
-apt install python3-dateutil python3-polib python3-psycopg2 python3-shapely python3-regex python3-requests
+sudo apt install python3-dateutil python3-polib python3-psycopg2 python3-shapely python3-regex python3-requests cmake extra-cmake-modules qtbase5-dev flex bison libarchive-dev
 ```
 
 ### Alt: python dependencies in a virtualenv
