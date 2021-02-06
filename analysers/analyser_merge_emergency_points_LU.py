@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourcePublicLu, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
@@ -34,8 +34,9 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
         self.init(
             "https://data.public.lu/fr/datasets/linstallation-des-points-de-secours-rettungspunkte",
             "Points de secours",
-            CSV(Source(attribution="Corps grand-ducal d'incendie et de secours",
-                       fileUrl="https://data.public.lu/fr/datasets/r/b8d9d38a-7894-49fb-ab88-94072fe2c722",
+            CSV(SourcePublicLu(attribution="Corps grand-ducal d'incendie et de secours",
+                       dataset="5eec6f76d2bfb251e132f1ba",
+                       resource="b8d9d38a-7894-49fb-ab88-94072fe2c722",
                        encoding="iso-8859-1"),
                 separator=";"),
             Load("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
