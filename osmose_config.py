@@ -287,7 +287,6 @@ france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine
     'merge_bicycle_rental_FR_bm',
     'merge_public_equipment_FR_bordeaux_toilets',
     'merge_public_transport_FR_tbm',
-    'merge_street_number_bordeaux',
     # Gironde
     'merge_public_transport_FR_transgironde',
 ])
@@ -323,7 +322,6 @@ france_departement("bretagne/ille_et_vilaine", 7465, "FR-35", include=[
     # Rennes
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
-    'merge_street_number_rennes',
     'merge_defibrillators_FR_montfort',
     'merge_defibrillators_FR_saintmalo',
 ])
@@ -389,7 +387,6 @@ france_departement("languedoc_roussillon/gard", 7461, "FR-30")
 france_departement("languedoc_roussillon/herault", 7429, "FR-34", include=[
     # Montpellier
     'merge_public_equipment_FR_montpellier_toilets',
-    'merge_street_number_montpellier',
 ])
 france_departement("languedoc_roussillon/lozere", 7421, "FR-48")
 france_departement("languedoc_roussillon/pyrenees_orientales", 7466, "FR-66")
@@ -411,7 +408,6 @@ france_departement("midi_pyrenees/aveyron", 7451, "FR-12")
 france_departement("midi_pyrenees/haute_garonne", 7413, "FR-31", include=[
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
-    'merge_street_number_toulouse',
     'merge_defibrillators_FR_toulouse',
     'merge_defibrillators_FR_cugnaux',
 ])
@@ -430,7 +426,6 @@ france_departement("pays_de_la_loire/loire_atlantique", 7432, "FR-44", include=[
     # Nantes
     'merge_recycling_FR_nm_glass',
     'merge_public_equipment_FR_nantes_toilets',
-    'merge_street_number_nantes',
     'merge_recycling_FR_csma',
     'merge_waste_disposal_FR_csma',
 ])
@@ -456,10 +451,7 @@ france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05", inc
   'merge_defibrillators_FR_hautesalpes',
 ])
 france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06")
-france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13", include=[
-    # Arles
-    'merge_street_number_arles',
-])
+france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13")
 france_departement("provence_alpes_cote_d_azur/var", 7390, "FR-83")
 france_departement("provence_alpes_cote_d_azur/vaucluse", 7445, "FR-84")
 
@@ -471,7 +463,6 @@ france_departement("rhone_alpes/loire", 7420, "FR-42")
 france_departement("rhone_alpes/rhone", 7378, "FR-69", include=[
     # Lyon
     'merge_public_equipment_FR_lyon_toilets',
-    'merge_street_number_lyon',
 ])
 france_departement("rhone_alpes/savoie", 7425, "FR-73")
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74", include=[
