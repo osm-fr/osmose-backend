@@ -434,14 +434,12 @@ class Source:
 
 class SourceDataGouv(Source):
 
-    data_gouv_api_base = "https://www.data.gouv.fr/api/1"
-    data_gouv_dataset_base = "https://www.data.gouv.fr/fr/datasets/r/"
-
-    def __init__(self, dataset: str, resource: str, **kwargs):
+    def __init__(self, dataset: str, resource: str, data_gouv_api_base: str = "https://www.data.gouv.fr/api/1", data_gouv_dataset_base: str = "https://www.data.gouv.fr/fr/datasets/r/", **kwargs):
         self.dataset = dataset
         self.resource = resource
+        self.data_gouv_api_base = data_gouv_api_base
         kwargs.update({
-            "fileUrl": self.data_gouv_dataset_base + resource,
+            "fileUrl": data_gouv_dataset_base + resource,
             "millesime": None,
         })
         super().__init__(**kwargs)
@@ -449,6 +447,11 @@ class SourceDataGouv(Source):
     def get_millesime(self) -> datetime.datetime:
         last_modified = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/").json()["last_modified"]
         return datetime.datetime.fromisoformat(last_modified)
+
+
+class SourcePublicLu(SourceDataGouv):
+    def __init__(self, dataset: str, resource: str, **kwargs):
+        super().__init__(dataset, resource, data_gouv_api_base="https://data.public.lu/api/1", data_gouv_dataset_base="https://data.public.lu/fr/datasets/r/", **kwargs)
 
 
 class SourceOpenDataSoft(Source):
