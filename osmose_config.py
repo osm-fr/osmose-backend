@@ -358,7 +358,6 @@ france_departement("haute_normandie/seine_maritime", 7426, "FR-76", include=[
 
 include_ile_de_france = [
     # Île-de-france
-    'merge_public_transport_FR_ratp',
     'merge_public_transport_FR_stif',
     'merge_bicycle_rental_FR_IDF',
     'merge_parking_FR_IDF',
