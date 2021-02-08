@@ -62,15 +62,15 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
             trap = T_("Location of defibrillators from this dataset can be very approximative. Check carefully the position before adding to OSM."))
 
         self.init(
-            u"https://geo.data.gouv.fr/fr/datasets/a701db3964e8fd81823c92afc029f138ffa207b3",
-            u"Défibrillateurs de la base nationale GeoDAE",
+            "https://geo.data.gouv.fr/fr/datasets/a701db3964e8fd81823c92afc029f138ffa207b3",
+            "Défibrillateurs de la base nationale GeoDAE",
             CSV(Source(
                 attribution="Direction Générale de la Santé",
                 fileUrl="https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=CSV&projection=WGS84",
                 millesime=None,
             )),
             Load("c_long_coor1", "c_lat_coor1",
-                 select = {"c_etat_fonct": u"En fonctionnement", "c_doublon": u"f"}),
+                 select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "f"}),
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -80,7 +80,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     static1 = {"emergency": "defibrillator"},
                     mapping1 = {
                         "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
-                        "indoor": lambda res: "yes" if res["c_acc"] == u"Intérieur" else "no" if res["c_acc"] == u"Extérieur" else None,
+                        "indoor": lambda res: "yes" if res["c_acc"] == "Intérieur" else "no" if res["c_acc"] == "Extérieur" else None,
                         "access": lambda res: "yes" if res["c_acc_lib"] == "t" else "permissive" if res["c_acc_lib"] == "f" else None,
                         "security_desk": lambda res: "yes" if res["c_acc_pcsec"] == "t" else "no" if res["c_acc_pcsec"] == "f" else None,
                         "reception_desk": lambda res: "yes" if res["c_acc_acc"] == "t" else "no" if res["c_acc_acc"] == "f" else None,
@@ -93,7 +93,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                         "source": lambda res: ("Direction Générale de la Santé - " + res["c__edit_datemaj|timePosition"].split("T")[0]),
                     },
                     text = lambda tags, fields: {"en": " - ".join(filter(lambda x: x, [
-                        u"POSITION APPROXIMATIVE À VÉRIFIER" if fields["c_etat_valid"] == u"en attente de validation" else None,
+                        "POSITION APPROXIMATIVE À VÉRIFIER" if fields["c_etat_valid"] == "en attente de validation" else None,
                         fields["c_nom"],
                         "Horaires : "+fields["c_disp_j"][1:-1]+" "+fields["c_disp_h"][1:-1] if fields["c_disp_j"] and fields["c_disp_h"] else None,
                         " ".join(filter(lambda x: x, [
