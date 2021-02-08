@@ -64,8 +64,11 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
         self.init(
             u"https://geo.data.gouv.fr/fr/datasets/a701db3964e8fd81823c92afc029f138ffa207b3",
             u"Défibrillateurs de la base nationale GeoDAE",
-            CSV(Source(attribution = u"Direction Générale de la Santé",
-                    fileUrl = u"https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=CSV&projection=WGS84")),
+            CSV(Source(
+                attribution="Direction Générale de la Santé",
+                fileUrl="https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=CSV&projection=WGS84",
+                millesime=None,
+            )),
             Load("c_long_coor1", "c_lat_coor1",
                  select = {"c_etat_fonct": u"En fonctionnement", "c_doublon": u"f"}),
             Conflate(
@@ -75,7 +78,6 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                 conflationDistance = 100,
                 mapping = Mapping(
                     static1 = {"emergency": "defibrillator"},
-                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
                         "indoor": lambda res: "yes" if res["c_acc"] == u"Intérieur" else "no" if res["c_acc"] == u"Extérieur" else None,
@@ -87,7 +89,8 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                         "opening_hours": lambda res: self.normalizeHours(res["c_disp_j"], res["c_disp_h"]),
                         "start_date": "c_date_instal|timePosition",
                         "operator:ref:FR:SIREN": lambda res: res["c_expt_siren"] if "c_expt_siren" in res else None,
-                        "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if "c_expt_rais" in res else None
+                        "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if "c_expt_rais" in res else None,
+                        "source": lambda res: ("Direction Générale de la Santé - " + res["c__edit_datemaj|timePosition"].split("T")[0]),
                     },
                     text = lambda tags, fields: {"en": " - ".join(filter(lambda x: x, [
                         u"POSITION APPROXIMATIVE À VÉRIFIER" if fields["c_etat_valid"] == u"en attente de validation" else None,
