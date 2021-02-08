@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-02-01 20:52+0000\n"
+"PO-Revision-Date: 2021-02-08 20:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -245,15 +245,15 @@ msgstr "Niepoprawny wielokąt"
 msgid "Lone power tower or pole"
 msgstr "Samotny słup energetyczny"
 
-#: ../analysers/analyser_osmosis_powerline.py:346
+#: ../analysers/analyser_osmosis_powerline.py:348
 msgid "Connection between different voltages"
 msgstr "Połączenie różnych napięć"
 
-#: ../analysers/analyser_osmosis_powerline.py:349
+#: ../analysers/analyser_osmosis_powerline.py:351
 msgid "Non power node on power way"
 msgstr "Węzeł niezwiązany z energetyką na linii"
 
-#: ../analysers/analyser_osmosis_powerline.py:357
+#: ../analysers/analyser_osmosis_powerline.py:359
 msgid "Missing power tower or pole"
 msgstr "Brakuje słupa energetycznego"
 
@@ -460,7 +460,7 @@ msgstr "Powielone węzły"
 
 #: ../plugins/Structural_Multipolygon.py:31
 msgid "Inadequate role for multipolygon"
-msgstr "Nieodpowiednia rola dla relacji multipolygon"
+msgstr "Nieodpowiednia rola w relacji multipolygon"
 
 #: ../plugins/Structural_Multipolygon.py:35
 msgid "Inadequate member for multipolygon"
@@ -535,7 +535,7 @@ msgstr "Wiele wartości"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:38
 msgid "Possible improvement for note or comment tag"
-msgstr "Możliwe ulepszenie dla tagu note lub comment"
+msgstr "Możliwe ulepszenie tagu note lub comment"
 
 #: ../plugins/TagFix_Postcode.py:76
 msgid "Invalid postcode"
@@ -579,7 +579,7 @@ msgstr "Zdublowany tag wikipedia jako przyrostek i przedrostek"
 
 #: ../plugins/TagRemove_FR.py:33
 msgid "Misused tag in this country"
-msgstr "Niepotrzebny tag dla tego kraju"
+msgstr "Niepotrzebny tag w tym kraju"
 
 #: ../plugins/TagRemove_Incompatibles.py:31
 msgid "Tag conflict"
@@ -600,7 +600,7 @@ msgstr "Niepotrzebny tag na junction=roundabout"
 
 #: ../analysers/analyser_osmosis_fantoir.py:109
 msgid "Multiple name for the same ref FANTOIR"
-msgstr "Różne nazwy dla tego samego ref FANTOIR"
+msgstr "Różne nazwy tego samego ref FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:642
 msgid "Tag \"addr:city\" not matching a city"
@@ -753,7 +753,7 @@ msgstr "Brakuje tagu indoor lub building:part"
 
 #: ../plugins/TagFix_MultipleTag.py:101
 msgid "Missing tag ref for emergency access point"
-msgstr "Brakuje tagu ref dla emergency access point"
+msgstr "Punktowi dostępu dla służb ratowniczych brakuje tagu ref"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:107
 msgid "Object tagged twice as node and way"
@@ -809,7 +809,7 @@ msgstr "Import z Naptan, wymagane potwierdzenie w terenie"
 msgid "Unfinished power major line"
 msgstr "Niedokończona linia wysokiego napięcia"
 
-#: ../analysers/analyser_osmosis_powerline.py:338
+#: ../analysers/analyser_osmosis_powerline.py:339
 msgid "Unfinished power minor line"
 msgstr "Niedokończona linia średniego lub niskiego napięcia"
 
@@ -856,11 +856,11 @@ msgstr "Zła kolejność pasów do skrętu"
 
 #: ../plugins/Highway_Lanes.py:61
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr "Zła wartość dostępu dla \"*:lanes\" – to powinny być wartości typu \"yes\"/\"no\", a nie liczba"
+msgstr "Zła wartość dostępu tagu „*:lanes” – to powinny być wartości typu „yes”/„no”, a nie liczba"
 
 #: ../plugins/Highway_Lanes.py:66
 msgid "Turn lanes merge_to_* need an aside lane on good side"
-msgstr "Wartość turn:lanes dla merge_to_left/right jest po niewłaściwej stronie"
+msgstr "Wartość turn:lanes merge_to_left/right jest po niewłaściwej stronie"
 
 #: ../plugins/TagRemove_Incompatibles.py:120
 msgid ""
@@ -887,7 +887,7 @@ msgstr "Zduplikowana geometria węzła, ale inne tagi"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Prawdopodobnie brakuje highway=traffic_signals w pobliżu"
 
-#: ../analysers/analyser_osmosis_powerline.py:362
+#: ../analysers/analyser_osmosis_powerline.py:364
 msgid "Unmatched voltage of line on substation"
 msgstr "Niedopasowane napięcie linii na podstacji"
 
@@ -929,7 +929,7 @@ msgstr "Niektóre znaki nie pasują do zestawu znaków tego języka"
 #: ../plugins/Name_Toponymy_FR.py:158
 #, python-format, python-brace-format
 msgid "Missing capital letter for: {0}"
-msgstr "Brak wielkiej litery dla: {0}"
+msgstr "Brak wielkiej litery: {0}"
 
 #: ../plugins/Source_FR.py:38
 msgid "Source tag contains AAAA"
@@ -946,7 +946,7 @@ msgstr "Pomnik wojenny to nie historic=monument"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:65
 msgid "Put a tag for a village hall or a community center"
-msgstr "Dodaj tag dla świetlicy lub ośrodka kultury"
+msgstr "Dodaj tag do świetlicy lub ośrodka kultury"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:67
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
@@ -959,7 +959,7 @@ msgstr "Dodaj tag school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:80
 msgid "FANTOIR numeric type is for ways"
-msgstr "Wartość liczbowa tagu FANTOIR jest dla dróg"
+msgstr "Wartość liczbowa tagu FANTOIR jest do dróg"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:96
 msgid "A living_street in France is a Zone 20"
@@ -980,17 +980,17 @@ msgstr "Strefa 30 ma ograniczenie prędkości 30 km/h"
 #: ../plugins/TagFix_Note_Lang_fr.py:108
 #, python-format, python-brace-format
 msgid "Use start_date tag for \"{0}\""
-msgstr "Użyj tagu start_date dla \"{0}\""
+msgstr "Użyj tagu start_date do \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:112 ../plugins/TagFix_Note_Lang_fr.py:115
 #, python-format, python-brace-format
 msgid "Use opening_hours tag for \"{0}\""
-msgstr "Użyj tagu opening_hours dla \"{0}\""
+msgstr "Użyj tagu opening_hours do \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:120
 #, python-format, python-brace-format
 msgid "Use construction tag for \"{0}\""
-msgstr "Użyj tagu construction dla \"{0}\""
+msgstr "Użyj tagu construction do \"{0}\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:124 ../plugins/TagFix_Note_Lang_fr.py:127
 #, python-format, python-brace-format
@@ -1046,7 +1046,7 @@ msgstr "Autostrada bez tagu ref, nat_ref, int_ref lub noref"
 
 #: ../plugins/TagFix_MultipleTag.py:56
 msgid "Tag highway missing for tracktype or lanes"
-msgstr "Brak tagu \"highway\" dla \"tracktype\" lub \"lanes\""
+msgstr "Brak tagu \"highway\" do \"tracktype\" lub \"lanes\""
 
 #: ../plugins/TagFix_MultipleTag.py:72
 msgid "Missing relation type"
@@ -1060,11 +1060,11 @@ msgstr "Prawdopodobnie brakuje tagu traffic_signals:direction lub przejścia na 
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:180
 msgid "Possible missing direction tag on stop or a give way"
-msgstr "Prawdopodobnie brakuje tagu direction dla highway=give_way / =stop"
+msgstr "Prawdopodobnie brakuje tagu direction do highway=give_way / =stop"
 
 #: ../plugins/TagFix_MultipleTag.py:121
 msgid "Suspicious name for a container"
-msgstr "Podejrzana nazwa dla pojemnika"
+msgstr "Pojemnik ma podejrzaną nazwę"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:67
 #, python-format, python-brace-format
@@ -1106,7 +1106,7 @@ msgstr "Bardzo podobna nazwa"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:381
 msgid "Public transport relation route not in route_master relation"
-msgstr "Brak relacji route_master dla relacji trasy transportu publicznego"
+msgstr "Relacji trasy transportu publicznego brakuje relacji route_master"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 msgid ""
@@ -1572,7 +1572,7 @@ msgstr "Niedozwolony znak w numerze telefonu"
 
 #: ../plugins/Phone.py:65
 msgid "Bad separator for multiple values"
-msgstr "Zły separator dla wielu wartości"
+msgstr "Zły separator wielu wartości"
 
 #: ../plugins/TagFix_Maxspeed.py:95
 #, python-brace-format
@@ -1680,12 +1680,12 @@ msgstr "Parking park & ride w Île-de-France niezintegrowany"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:129
 msgid "Missing municipality ref tag"
-msgstr "Brak tagu ref dla gminy"
+msgstr "Brak tagu ref gminy"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:147
 #, python-brace-format
 msgid "Missing municipality ref tag {0}"
-msgstr "Brak tagu ref dla gminy {0}"
+msgstr "Brak tagu ref gminy {0}"
 
 #: ../analysers/analyser_osmosis_addr_interpolation.py:191
 msgid "Interpolation on nodes without tag \"addr:housenumber\""
@@ -1845,7 +1845,7 @@ msgstr "Parking do carpoolingu {0}"
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
-msgstr "Wartość tagu FANTOIR od B do W jest dla miejsc locality, hamlet, isolated_dwelling, islet lub neighbourhood"
+msgstr "Wartość tagu FANTOIR od B do W jest do miejsc locality, hamlet, isolated_dwelling, islet lub neighbourhood"
 
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:67
 msgid "Camp pitchs outside a camp site"
@@ -2165,7 +2165,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_features.py:80
 msgid "Crossing for which it lacks the road or railway. "
-msgstr "Brakuje drogi lub torowiska dla tego przejazdu."
+msgstr "Ten przejazd nie jest połączony z torowiskiem lub drogą."
 
 #: ../analysers/analyser_osmosis_highway_features.py:84
 msgid "The node must be common to rail and road."
@@ -2175,7 +2175,7 @@ msgstr "Ten węzeł musi być częścią drogi (`highway=*`)."
 msgid ""
 "Check the consistency of highway type for\n"
 "`highway=trunk_link|primary_link|secondary_link`."
-msgstr "Sprawdź spójność kategorii drogi dla `highway=trunk_link|primary_link|secondary_link`."
+msgstr "Sprawdź spójność kategorii drogi `highway=trunk_link|primary_link|secondary_link`."
 
 #: ../analysers/analyser_osmosis_highway_link.py:137
 msgid ""
@@ -2487,7 +2487,7 @@ msgid ""
 "For roundabout `junction=roundabout`: change the direction by\n"
 "reversing the order of nodes in the path. In JOSM, select the roundabout\n"
 "and use the tool reverse path (shortcut: 'R')."
-msgstr "Dla linii z tagiem `junction=roundabout`: odwróć kierunek linii przez odwrócenie kolejności węzłów.\nW iD: zaznacz linię i naciśnij [V] lub wybierz z menu „Odwróć”.\nW JOSM: zaznacz linię i naciśnij [R] lub użyj narzędzia „Odwróć drogę”."
+msgstr "Linia z tagiem `junction=roundabout`: odwróć jej kierunek przez odwrócenie kolejności węzłów.\nW iD: zaznacz linię i naciśnij [V] lub wybierz z menu „Odwróć”.\nW JOSM: zaznacz linię i naciśnij [R] lub użyj narzędzia „Odwróć drogę”."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:56
 msgid ""
@@ -2990,7 +2990,7 @@ msgstr "Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana."
 msgid ""
 "Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a\n"
 "bridge."
-msgstr "Brakuje tagu `maxheight=*` lub `maxheight:*` dla tunelu lub drogi pod wiaduktem."
+msgstr "Tunelowi lub drodze pod wiaduktem brakuje tagu `maxheight=*` lub `maxheight:*`."
 
 #: ../plugins/TagFix_MultipleTag.py:78
 msgid ""
@@ -3116,7 +3116,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_FR.py:35
 msgid "`designation=*` is a United Kingdom-specific tag."
-msgstr "[`designation=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:designation) to specyficzny tag dla Wielkiej Brytanii."
+msgstr "[`designation=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:designation) to specyficzny tag używany w Wielkiej Brytanii."
 
 #: ../plugins/TagRemove_FR.py:37
 msgid "Translate it to another tag or remove."
@@ -3156,7 +3156,7 @@ msgid ""
 "The tags `oneway=*` and `ref=*` are not necessary on the roundabouts.\n"
 "The tag `name=*` must be present if this is the name of the roundabout\n"
 "and not a road connected, same thing for `ref=*`."
-msgstr "Tagi `oneway=*` i `ref=*` nie są potrzebne na rondach.\nTag `name=*` musi być podany, jeśli jest to nazwa tego ronda, a nie połaczonej doń drogi. Tak samo dla `ref=*`."
+msgstr "Tagi `oneway=*` i `ref=*` nie są potrzebne na rondach.\nTag `name=*` musi być podany, jeśli jest to nazwa tego ronda, a nie połaczonej doń drogi. Tak samo w przypadku `ref=*`."
 
 #: ../plugins/TagWatchFrViPofm.py:71
 msgid ""
@@ -3302,42 +3302,43 @@ msgstr "Budynek ma charakterystyczny kształt i powinien być odpowiednio otagow
 msgid ""
 "There should be a `highway` feature leading to this parking facility to "
 "allow for correct routing."
-msgstr "Do tego parkingu powinna prowadzić droga dojazdowa dla poprawnego routingu, jeśli jest to parking naziemny (`parking=surface`). Dodaj drogę lub popraw wartość `parking=*`.\n\nJeśli jest to parking przy jezdni (`parking=street_side`) lub pas na jezdni (`parking=lane`), popraw tagowanie.\nZobacz [rodzaje parkingów na Wiki](https://wiki.openstreetmap.org/wiki/Pl:Key:parking)."
+msgstr "Do tego parkingu powinna prowadzić droga dojazdowa do poprawnego routingu, jeśli jest to parking naziemny (`parking=surface`). Dodaj drogę lub popraw wartość `parking=*`.\n\nJeśli jest to parking przy jezdni (`parking=street_side`) lub pas na jezdni (`parking=lane`), popraw tagowanie.\nZobacz [rodzaje parkingów na Wiki](https://wiki.openstreetmap.org/wiki/Pl:Key:parking)."
 
 #: ../analysers/analyser_osmosis_powerline.py:327
-#: ../analysers/analyser_osmosis_powerline.py:335
-#: ../analysers/analyser_osmosis_powerline.py:343
+#: ../analysers/analyser_osmosis_powerline.py:336
+#: ../analysers/analyser_osmosis_powerline.py:345
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 msgstr "Nieużywane obiekty elektroenergetyczne mogą być odłączone od sieci. W tym wypadku użyj prefiksu `disused:`."
 
 #: ../analysers/analyser_osmosis_powerline.py:332
-#: ../analysers/analyser_osmosis_powerline.py:340
+#: ../analysers/analyser_osmosis_powerline.py:341
 msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
-"a transformer (`power=transformer`) or a generator (`power=generator`)."
-msgstr "Ta linia kończy się niespodziewanie, a powinna być podłączona do innej linii, transformatora (`power=transformer`) lub generatora (`power=generator`)."
+"a transformer (`power=transformer`), a generator (`power=generator`)\n"
+"or marked as transitioning into ground (`location:transition=yes`)."
+msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:347
+#: ../analysers/analyser_osmosis_powerline.py:349
 msgid ""
 "Two power lines meet at this point, but have inconsistent voltages "
 "(`voltage=*`)."
 msgstr "Dwie linie elektroenergetyczne łączą się w tym punkcie, ale mają różne napięcia (`voltage=*`)."
 
-#: ../analysers/analyser_osmosis_powerline.py:351
+#: ../analysers/analyser_osmosis_powerline.py:353
 msgid ""
 "Power lines can only form a straight line between supports and therefore shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
 msgstr "Linie elektroenergetyczne muszą tworzyć linię prostą pomiędzy słupami i w związku z tym nie powinny mieć dodatkowych węzłów, które nie są otagowane `power`."
 
-#: ../analysers/analyser_osmosis_powerline.py:354
+#: ../analysers/analyser_osmosis_powerline.py:356
 msgid ""
 "If this node is a tower or pole, use the tag `power=tower` or\n"
 "`power=pole`. Otherwise remove it."
 msgstr "Jeśli ten węzeł to słup elektryczny, to otaguj go odpowiednio jako `power=tower` lub `power=pole`. W przeciwnym razie usuń go."
 
-#: ../analysers/analyser_osmosis_powerline.py:359
+#: ../analysers/analyser_osmosis_powerline.py:361
 msgid ""
 "Based on the statistical frequency of the poles on this power line,\n"
 "there's likely an unmapped pole nearby."
@@ -3669,7 +3670,7 @@ msgstr "Apteka, aktualizacja"
 #: ../analysers/analyser_osmosis_relation_route_access.py:108
 #, python-brace-format
 msgid "Way access mismatch relation route={0}"
-msgstr "Niedopasowany dostęp do drogi dla relacji route={0}"
+msgstr "Niedopasowany dostęp do drogi w relacji route={0}"
 
 #: ../plugins/TagFix_MultipleTag.py:46
 msgid "The way has a tag `junction=*` but without `highway=*`."
@@ -4231,12 +4232,12 @@ msgstr "Powielone podobne wartości {key}={val}"
 #: ../plugins/TagFix_Postcode.py:101
 #, python-brace-format
 msgid "Invalid area postcode {postcode} for country code {country}"
-msgstr "Niepoprawny kod pocztowy obszaru {postcode} dla kodu kraju {country}"
+msgstr "Kod pocztowy obszaru {postcode} nie zgadza się z kodem kraju {country}"
 
 #: ../plugins/TagFix_Postcode.py:103
 #, python-brace-format
 msgid "Invalid street level postcode {postcode} for country code {country}"
-msgstr "Niepoprawny kod pocztowy ulicy {postcode} dla kodu kraju {country}"
+msgstr "Kod pocztowy ulicy {postcode} nie zgadza się z kodem kraju {country}"
 
 #: ../plugins/Website.py:45
 #, python-brace-format
@@ -4277,11 +4278,11 @@ msgstr "Wartość tagu capacity powinna być dodatnia."
 
 #: ../plugins/Capacity.py:41
 msgid "Specific capacity is greater than total capacity"
-msgstr "Wartość tagu capacity:* jest większa niż dla capacity"
+msgstr "Wartość tagu capacity:* jest większa niż wartość tagu capacity"
 
 #: ../plugins/Capacity.py:42
 msgid "A capacity:* value is greater than the total capacity."
-msgstr "Wartość tagu capacity:* jest większa niż dla capacity."
+msgstr "Wartość tagu capacity:* jest większa niż wartość tagu capacity."
 
 #: ../plugins/Capacity.py:58 ../plugins/Capacity.py:96
 #, python-brace-format

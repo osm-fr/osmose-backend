@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-02-01 20:52+0000\n"
+"PO-Revision-Date: 2021-02-08 20:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -254,15 +254,15 @@ msgstr "Ungültiges Polygon"
 msgid "Lone power tower or pole"
 msgstr "Einzeln stehender, unverbundener Strommast"
 
-#: ../analysers/analyser_osmosis_powerline.py:346
+#: ../analysers/analyser_osmosis_powerline.py:348
 msgid "Connection between different voltages"
 msgstr "Verbindung zwischen verschiedenen Spannungen"
 
-#: ../analysers/analyser_osmosis_powerline.py:349
+#: ../analysers/analyser_osmosis_powerline.py:351
 msgid "Non power node on power way"
 msgstr "Knoten ohne power=* an Stromleitung"
 
-#: ../analysers/analyser_osmosis_powerline.py:357
+#: ../analysers/analyser_osmosis_powerline.py:359
 msgid "Missing power tower or pole"
 msgstr "Fehlender Strommast oder Pylon"
 
@@ -818,7 +818,7 @@ msgstr "Naptan Import, Überprüfung nötig."
 msgid "Unfinished power major line"
 msgstr "Stromleitung ist nicht mit location:transition=yes oder transformer=* abgeschlossen."
 
-#: ../analysers/analyser_osmosis_powerline.py:338
+#: ../analysers/analyser_osmosis_powerline.py:339
 msgid "Unfinished power minor line"
 msgstr "Unvollständige Neben-Stromleitung"
 
@@ -896,7 +896,7 @@ msgstr "Punkte mit duplizierter Geometrie, aber unterschiedlichen Merkmalen"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Möglicherweise fehlende highway=traffic_signals in der Nähe"
 
-#: ../analysers/analyser_osmosis_powerline.py:362
+#: ../analysers/analyser_osmosis_powerline.py:364
 msgid "Unmatched voltage of line on substation"
 msgstr "Nicht übereinstimmende Spannung (V): Stromleitung - Transformatorenstation"
 
@@ -3314,39 +3314,40 @@ msgid ""
 msgstr "Bitte ergänze den Zufahrtsweg zum Parkplatz, um eine korrekte Streckenführung zu ermöglichen."
 
 #: ../analysers/analyser_osmosis_powerline.py:327
-#: ../analysers/analyser_osmosis_powerline.py:335
-#: ../analysers/analyser_osmosis_powerline.py:343
+#: ../analysers/analyser_osmosis_powerline.py:336
+#: ../analysers/analyser_osmosis_powerline.py:345
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 msgstr "Möglicherweise handelt es sich um nicht (mehr) genutzte Einrichtungen, die vom Stromnetz getrennt wurden. Verwende in diesem Fall das `disused:` [Präfix](https://wiki.openstreetmap.org/wiki/DE:Lifecycle_prefix) "
 
 #: ../analysers/analyser_osmosis_powerline.py:332
-#: ../analysers/analyser_osmosis_powerline.py:340
+#: ../analysers/analyser_osmosis_powerline.py:341
 msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
-"a transformer (`power=transformer`) or a generator (`power=generator`)."
-msgstr "Dieses Leitungsende sollte entweder mit einer anderen Leitung, einem Transformator (`power=transformer`) oder einem Generator (`power=generator`) verbunden werden."
+"a transformer (`power=transformer`), a generator (`power=generator`)\n"
+"or marked as transitioning into ground (`location:transition=yes`)."
+msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:347
+#: ../analysers/analyser_osmosis_powerline.py:349
 msgid ""
 "Two power lines meet at this point, but have inconsistent voltages "
 "(`voltage=*`)."
 msgstr "An diesem Punkt treffen zwei Stromleitungen zusammen, die verschiedene Spannungen (`voltage=*`) aufweisen."
 
-#: ../analysers/analyser_osmosis_powerline.py:351
+#: ../analysers/analyser_osmosis_powerline.py:353
 msgid ""
 "Power lines can only form a straight line between supports and therefore shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
 msgstr "Stromleitungen können nur geradlinig zwischen Strommasten verlaufen und sollten daher keine zusätzlichen Knoten haben, die nicht mit `power` gekennzeichnet sind."
 
-#: ../analysers/analyser_osmosis_powerline.py:354
+#: ../analysers/analyser_osmosis_powerline.py:356
 msgid ""
 "If this node is a tower or pole, use the tag `power=tower` or\n"
 "`power=pole`. Otherwise remove it."
 msgstr "Wenn sich an diesem Punkt ein Strommast befindet, sollten die Merkmale `power=tower` oder\n`power=pole` verwendet werden. Andernfalls sollte der Punkt gelöscht werden."
 
-#: ../analysers/analyser_osmosis_powerline.py:359
+#: ../analysers/analyser_osmosis_powerline.py:361
 msgid ""
 "Based on the statistical frequency of the poles on this power line,\n"
 "there's likely an unmapped pole nearby."
