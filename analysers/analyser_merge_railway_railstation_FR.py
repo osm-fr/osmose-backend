@@ -52,6 +52,6 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                         "railway": "station",
                         "operator": "SNCF"},
                     static2 = {"source": self.source},
-                    mapping1 = {"uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1]},
+                    mapping1 = {"uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1]},
                     mapping2 = {"name": lambda res: res["stop_name"].replace("gare de ", "")},
                     text = lambda tags, fields: {"en": fields["stop_name"][0].upper() + fields["stop_name"][1:]} )))
