@@ -73,17 +73,21 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
         return additional_brands
 
     def node(self, data, tags):
-        if "name" in tags and not "brand" in tags:
+        if "name" in tags and (not "brand" in tags or not "brand:wikidata" in tags):
             for main_key in ["shop", "amenity"]:
                 if main_key in tags:
-                    nsi_key = "{}/{}|{}".format(main_key, tags[main_key], tags["name"]).lower()
+                    if "brand" in tags:
+                        nsi_key = "{}/{}|{}".format(main_key, tags[main_key], tags["brand"]).lower()
+                    else:
+                        nsi_key = "{}/{}|{}".format(main_key, tags[main_key], tags["name"]).lower()
                     if nsi_key in self.brands_from_nsi:
                         brands_tags = self.brands_from_nsi[nsi_key]["tags"]
                         tags_to_add = {}
                         for tag in brands_tags:
                             if not tags.get(tag):
                                 tags_to_add[tag] = brands_tags[tag]
-                        return {"class": 31301, "subclass": 0, "fix": {"+": tags_to_add}}
+                        if tags_to_add:
+                            return {"class": 31301, "subclass": 0, "fix": {"+": tags_to_add}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -106,7 +110,8 @@ class Test(TestPluginCommon):
         a.init(None)
 
         assert a.node(None, {"name": "Kiabi", "shop": "clothes"})
-        assert not a.node(None, {"brand": "Kiabi", "shop": "clothes", "name": "Kiabi"})
+        assert a.node(None, {"name": "Kiabi", "shop": "clothes", "brand": "Kiabi"})
+        assert not a.node(None, {"brand": "Kiabi", "shop": "clothes", "name": "Kiabi","brand:wikidata": "Q3196299"})
         assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
 
     def test_CA(self):
