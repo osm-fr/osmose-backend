@@ -55,7 +55,6 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
                     mapping1={
                         "capacity": lambda res: None if res["nombre"] in (None, "0") else str(int(res["nombre"])*2),
                         "cargo_bike": lambda res: "yes" if res["typologie"] == "ARCEAU_VELO_CARGO" else None,
-                        "ref": "gid",
                     }
                 )
             )
@@ -92,7 +91,6 @@ class Analyser_Merge_Motorcycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
                     static2={"source": self.source},
                     mapping1={
                         "capacity": lambda res: None if res["nombre"] in (None, "0") else str(int(res["nombre"])*2),
-                        "ref": "gid",
                     }
                 )
             )
