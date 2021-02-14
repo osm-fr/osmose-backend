@@ -285,6 +285,7 @@ france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine
     'merge_recycling_FR_bm',
     'merge_parking_FR_bm',
     'merge_bicycle_rental_FR_bm',
+    'merge_cycle_parking_FR_bm',
     'merge_public_equipment_FR_bordeaux_toilets',
     'merge_public_transport_FR_tbm',
     # Gironde
