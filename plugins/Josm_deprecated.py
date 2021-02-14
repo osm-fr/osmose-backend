@@ -1530,7 +1530,7 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002011, 'subclass': 1752615188, 'text': mapcss.tr('{0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[/^.$/]
-        # node[/^..$/]
+        # node[/^..$/][!kp][!pk]
         if True:
             match = False
             if not match:
@@ -1539,13 +1539,15 @@ class Josm_deprecated(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_34c15d62))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_34c15d62) and not mapcss._tag_capture(capture_tags, 1, tags, 'kp') and not mapcss._tag_capture(capture_tags, 2, tags, 'pk'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("uncommon short key")
                 # assertMatch:"node f=b"
                 # assertMatch:"node fo=bar"
-                err.append({'class': 9002012, 'subclass': 1803276827, 'text': mapcss.tr('uncommon short key')})
+                # assertNoMatch:"node kp=5"
+                # assertNoMatch:"node pk=7"
+                err.append({'class': 9002012, 'subclass': 79709106, 'text': mapcss.tr('uncommon short key')})
 
         # *[sport=hockey]
         if ('sport' in keys):
@@ -1663,62 +1665,99 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
-        # *[kp][highway=milestone]
-        # *[kp][railway=milestone]
-        # *[kp][waterway=milestone]
-        if ('highway' in keys and 'kp' in keys) or ('kp' in keys and 'railway' in keys) or ('kp' in keys and 'waterway' in keys):
+        # *[kp][railway!=milestone]
+        if ('kp' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'milestone', 'milestone'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"distance"
                 # fixChangeKey:"kp => distance"
-                err.append({'class': 9002001, 'subclass': 1078799228, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1256703107, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['distance', mapcss.tag(tags, 'kp')]]),
                     '-': ([
                     'kp'])
                 }})
 
-        # *[pk][highway=milestone]
-        # *[pk][railway=milestone]
-        # *[pk][waterway=milestone]
-        if ('highway' in keys and 'pk' in keys) or ('pk' in keys and 'railway' in keys) or ('pk' in keys and 'waterway' in keys):
+        # *[pk][railway!=milestone]
+        if ('pk' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'milestone', 'milestone'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"distance"
                 # fixChangeKey:"pk => distance"
-                err.append({'class': 9002001, 'subclass': 719029418, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1339969759, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['distance', mapcss.tag(tags, 'pk')]]),
                     '-': ([
                     'pk'])
+                }})
+
+        # *[kp][railway=milestone]
+        if ('kp' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"kp => railway:position"
+                err.append({'class': 9002001, 'subclass': 1667272140, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'kp')]]),
+                    '-': ([
+                    'kp'])
+                }})
+
+        # *[pk][railway=milestone]
+        if ('pk' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"pk => railway:position"
+                err.append({'class': 9002001, 'subclass': 691355164, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'pk')]]),
+                    '-': ([
+                    'pk'])
+                }})
+
+        # *[distance][railway=milestone]
+        if ('distance' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'distance') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"distance => railway:position"
+                err.append({'class': 9002001, 'subclass': 113691181, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'distance')]]),
+                    '-': ([
+                    'distance'])
                 }})
 
         # *[postcode]
@@ -4199,6 +4238,28 @@ class Josm_deprecated(PluginMapCSS):
                     'tower:type'])
                 }})
 
+        # *[tower:type=transition]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transition'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location:transition=yes"
+                # fixAdd:"location:transition=yes"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1124904944, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['location:transition','yes']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
         # *[tower:type=transposing]
         if ('tower:type' in keys):
             match = False
@@ -4380,6 +4441,28 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1675908395, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['line_management','termination']]),
+                    '-': ([
+                    'pole:type'])
+                }})
+
+        # node[pole:type=transition]
+        if ('pole:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'transition'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_pole_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location:transition=yes"
+                # fixAdd:"location:transition=yes"
+                # fixRemove:"pole:type"
+                set_power_pole_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1266956723, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['location:transition','yes']]),
                     '-': ([
                     'pole:type'])
                 }})
@@ -4966,6 +5049,27 @@ class Josm_deprecated(PluginMapCSS):
                     ['fixme', mapcss.tag(tags, 'Fixme')]]),
                     '-': ([
                     'Fixme'])
+                }})
+
+        # *[amenity=embassy]
+        if ('amenity' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'embassy'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"office=diplomatic + diplomatic=embassy"
+                # fixChangeKey:"amenity => diplomatic"
+                # fixAdd:"office=diplomatic"
+                err.append({'class': 9002001, 'subclass': 1751915206, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['diplomatic', mapcss.tag(tags, 'amenity')],
+                    ['office','diplomatic']]),
+                    '-': ([
+                    'amenity'])
                 }})
 
         return err
@@ -6638,62 +6742,99 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
-        # *[kp][highway=milestone]
-        # *[kp][railway=milestone]
-        # *[kp][waterway=milestone]
-        if ('highway' in keys and 'kp' in keys) or ('kp' in keys and 'railway' in keys) or ('kp' in keys and 'waterway' in keys):
+        # *[kp][railway!=milestone]
+        if ('kp' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'milestone', 'milestone'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"distance"
                 # fixChangeKey:"kp => distance"
-                err.append({'class': 9002001, 'subclass': 1078799228, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1256703107, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['distance', mapcss.tag(tags, 'kp')]]),
                     '-': ([
                     'kp'])
                 }})
 
-        # *[pk][highway=milestone]
-        # *[pk][railway=milestone]
-        # *[pk][waterway=milestone]
-        if ('highway' in keys and 'pk' in keys) or ('pk' in keys and 'railway' in keys) or ('pk' in keys and 'waterway' in keys):
+        # *[pk][railway!=milestone]
+        if ('pk' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'milestone', 'milestone'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"distance"
                 # fixChangeKey:"pk => distance"
-                err.append({'class': 9002001, 'subclass': 719029418, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1339969759, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['distance', mapcss.tag(tags, 'pk')]]),
                     '-': ([
                     'pk'])
+                }})
+
+        # *[kp][railway=milestone]
+        if ('kp' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"kp => railway:position"
+                err.append({'class': 9002001, 'subclass': 1667272140, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'kp')]]),
+                    '-': ([
+                    'kp'])
+                }})
+
+        # *[pk][railway=milestone]
+        if ('pk' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"pk => railway:position"
+                err.append({'class': 9002001, 'subclass': 691355164, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'pk')]]),
+                    '-': ([
+                    'pk'])
+                }})
+
+        # *[distance][railway=milestone]
+        if ('distance' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'distance') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"distance => railway:position"
+                err.append({'class': 9002001, 'subclass': 113691181, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'distance')]]),
+                    '-': ([
+                    'distance'])
                 }})
 
         # *[postcode]
@@ -9147,6 +9288,28 @@ class Josm_deprecated(PluginMapCSS):
                     'tower:type'])
                 }})
 
+        # *[tower:type=transition]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transition'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location:transition=yes"
+                # fixAdd:"location:transition=yes"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1124904944, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['location:transition','yes']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
         # *[tower:type=transposing]
         if ('tower:type' in keys):
             match = False
@@ -9769,7 +9932,8 @@ class Josm_deprecated(PluginMapCSS):
         # way[cycleway=none]
         # way[cycleway:left=none]
         # way[cycleway:right=none]
-        if ('cycleway' in keys) or ('cycleway:left' in keys) or ('cycleway:right' in keys):
+        # way[shoulder=none]
+        if ('cycleway' in keys) or ('cycleway:left' in keys) or ('cycleway:right' in keys) or ('shoulder' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -9783,12 +9947,16 @@ class Josm_deprecated(PluginMapCSS):
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 0, 'none'))
                 except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'shoulder') == mapcss._value_capture(capture_tags, 0, 'none'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("{0.key}","=no")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # fixAdd:concat("{0.key}","=no")
-                err.append({'class': 9002001, 'subclass': 1292581247, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1752530337, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     (mapcss.concat(mapcss._tag_uncapture(capture_tags, '{0.key}'), '=no')).split('=', 1)])
                 }})
@@ -9813,6 +9981,27 @@ class Josm_deprecated(PluginMapCSS):
                     ['fixme', mapcss.tag(tags, 'Fixme')]]),
                     '-': ([
                     'Fixme'])
+                }})
+
+        # *[amenity=embassy]
+        if ('amenity' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'embassy'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"office=diplomatic + diplomatic=embassy"
+                # fixChangeKey:"amenity => diplomatic"
+                # fixAdd:"office=diplomatic"
+                err.append({'class': 9002001, 'subclass': 1751915206, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['diplomatic', mapcss.tag(tags, 'amenity')],
+                    ['office','diplomatic']]),
+                    '-': ([
+                    'amenity'])
                 }})
 
         return err
@@ -11379,62 +11568,99 @@ class Josm_deprecated(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
-        # *[kp][highway=milestone]
-        # *[kp][railway=milestone]
-        # *[kp][waterway=milestone]
-        if ('highway' in keys and 'kp' in keys) or ('kp' in keys and 'railway' in keys) or ('kp' in keys and 'waterway' in keys):
+        # *[kp][railway!=milestone]
+        if ('kp' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'milestone', 'milestone'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"distance"
                 # fixChangeKey:"kp => distance"
-                err.append({'class': 9002001, 'subclass': 1078799228, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1256703107, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['distance', mapcss.tag(tags, 'kp')]]),
                     '-': ([
                     'kp'])
                 }})
 
-        # *[pk][highway=milestone]
-        # *[pk][railway=milestone]
-        # *[pk][waterway=milestone]
-        if ('highway' in keys and 'pk' in keys) or ('pk' in keys and 'railway' in keys) or ('pk' in keys and 'waterway' in keys):
+        # *[pk][railway!=milestone]
+        if ('pk' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'milestone', 'milestone'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.key}")
                 # suggestAlternative:"distance"
                 # fixChangeKey:"pk => distance"
-                err.append({'class': 9002001, 'subclass': 719029418, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9002001, 'subclass': 1339969759, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['distance', mapcss.tag(tags, 'pk')]]),
                     '-': ([
                     'pk'])
+                }})
+
+        # *[kp][railway=milestone]
+        if ('kp' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'kp') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"kp => railway:position"
+                err.append({'class': 9002001, 'subclass': 1667272140, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'kp')]]),
+                    '-': ([
+                    'kp'])
+                }})
+
+        # *[pk][railway=milestone]
+        if ('pk' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'pk') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.key}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"pk => railway:position"
+                err.append({'class': 9002001, 'subclass': 691355164, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'pk')]]),
+                    '-': ([
+                    'pk'])
+                }})
+
+        # *[distance][railway=milestone]
+        if ('distance' in keys and 'railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'distance') and mapcss._tag_capture(capture_tags, 1, tags, 'railway') == mapcss._value_capture(capture_tags, 1, 'milestone'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"railway:position"
+                # fixChangeKey:"distance => railway:position"
+                err.append({'class': 9002001, 'subclass': 113691181, 'text': mapcss.tr('{0} is deprecated for {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:position', mapcss.tag(tags, 'distance')]]),
+                    '-': ([
+                    'distance'])
                 }})
 
         # *[postcode]
@@ -13546,6 +13772,28 @@ class Josm_deprecated(PluginMapCSS):
                     'tower:type'])
                 }})
 
+        # *[tower:type=transition]
+        if ('tower:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transition'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpower_tower_type_warning
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"location:transition=yes"
+                # fixAdd:"location:transition=yes"
+                # fixRemove:"tower:type"
+                set_power_tower_type_warning = True
+                err.append({'class': 9002001, 'subclass': 1124904944, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['location:transition','yes']]),
+                    '-': ([
+                    'tower:type'])
+                }})
+
         # *[tower:type=transposing]
         if ('tower:type' in keys):
             match = False
@@ -14050,6 +14298,27 @@ class Josm_deprecated(PluginMapCSS):
                     'Fixme'])
                 }})
 
+        # *[amenity=embassy]
+        if ('amenity' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'embassy'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"office=diplomatic + diplomatic=embassy"
+                # fixChangeKey:"amenity => diplomatic"
+                # fixAdd:"office=diplomatic"
+                err.append({'class': 9002001, 'subclass': 1751915206, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['diplomatic', mapcss.tag(tags, 'amenity')],
+                    ['office','diplomatic']]),
+                    '-': ([
+                    'amenity'])
+                }})
+
         return err
 
 
@@ -14072,8 +14341,10 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {'name': 'Fixme'}), expected={'class': 9002005, 'subclass': 642340557})
         self.check_err(n.node(data, {'name': 'fixme'}), expected={'class': 9002005, 'subclass': 642340557})
         self.check_not_err(n.node(data, {'name': 'valid name'}), expected={'class': 9002005, 'subclass': 642340557})
-        self.check_err(n.node(data, {'f': 'b'}), expected={'class': 9002012, 'subclass': 1803276827})
-        self.check_err(n.node(data, {'fo': 'bar'}), expected={'class': 9002012, 'subclass': 1803276827})
+        self.check_err(n.node(data, {'f': 'b'}), expected={'class': 9002012, 'subclass': 79709106})
+        self.check_err(n.node(data, {'fo': 'bar'}), expected={'class': 9002012, 'subclass': 79709106})
+        self.check_not_err(n.node(data, {'kp': '5'}), expected={'class': 9002012, 'subclass': 79709106})
+        self.check_not_err(n.node(data, {'pk': '7'}), expected={'class': 9002012, 'subclass': 79709106})
         self.check_not_err(n.node(data, {'emergency_telephone_code': '456', 'highway': 'emergency_access_point'}), expected={'class': 9002001, 'subclass': 1339208019})
         self.check_not_err(n.node(data, {'emergency_telephone_code': '456', 'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 1339208019})
         self.check_err(n.node(data, {'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 1339208019})

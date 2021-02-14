@@ -99,6 +99,6 @@ class Analyser_Merge_PEI_SDIS_71(_Analyser_Merge_Afigeo_Hydrants):
             dataset_name="Points d'eau incendie répertoriés en Saône-et-Loire",
             source=Source(attribution="Service départemental d'incendie et de secours 71",
                 millesime='2020-04',
-                fileUrl='https://trouver.ternum-bfc.fr/dataset/59d07ea2-ca9a-444a-b977-0e32b280af1c/resource/ddfa8db8-0cf5-4e72-9504-072c96b2c328/service_proxy?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=pei71_acbdd5c&OUTPUTFORMAT=geojson&CRSNAME=EPSG:4326'),
+                fileUrl='https://trouver.ternum-bfc.fr/dataset/59d07ea2-ca9a-444a-b977-0e32b280af1c/resource/28a825c9-44b4-48ed-89da-27a9b874a8b7/service_proxy?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=_20210128_pei_346b0c1&OUTPUTFORMAT=geojson&CRSNAME=EPSG:4326'),
             osmRef='ref:FR:SDIS71',
             logger=logger)
