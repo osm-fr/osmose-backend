@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1339122590">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="211716044">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L34" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -80,7 +80,7 @@
 <classtext lang="zh_CN" title="junction=roundabout不需要的标签" />
 <detail lang="en" title="The tags `oneway=*` and `ref=*` are not necessary on the roundabouts.&#10;The tag `name=*` must be present if this is the name of the roundabout&#10;and not a road connected, same thing for `ref=*`." />
 <detail lang="ja" title="`oneway=*` と `ref=*`タグはロータリーでは不要です。&#10;`name=*`はそれがロータリーの名前である場合には必要で、接続している道路名ではありません。  `ref=*`も同じです。" />
-<detail lang="pl" title="Tagi `oneway=*` i `ref=*` nie są potrzebne na rondach.&#10;Tag `name=*` musi być podany, jeśli jest to nazwa tego ronda, a nie połaczonej doń drogi. Tak samo dla `ref=*`." />
+<detail lang="pl" title="Tagi `oneway=*` i `ref=*` nie są potrzebne na rondach.&#10;Tag `name=*` musi być podany, jeśli jest to nazwa tego ronda, a nie połaczonej doń drogi. Tak samo w przypadku `ref=*`." />
 </class>
 <class id="103" item="1010" source="http://example.com/plugins/Structural_DuplicateNodes.py#L54" level="2" tag="geom,fix:chair">
 <classtext lang="ca" title="Nodes duplicats" />
@@ -232,6 +232,7 @@
 <classtext lang="uk" title="Іменний теґ з двома назвами" />
 <classtext lang="zh_CN" title="名称标签包含两个名称" />
 <detail lang="en" title='The tag `name=*` contains multiple names, separated by a semicolon,&#10;a "/" or a "\". This issue was probably produced by the fusion of two&#10;way and the concatenation of the names of the streets.' />
+<detail lang="ja" title='`name=*`タグにセミコロン、  "/"、または "\" で区切られた名前が複数あります。2つのウェイを一本化した際など、このように名前が連結されることがあります。' />
 <fix lang="en" title="* If duplicate, delete a one.&#10;* Otherwise, a survey is required: check if it is a street whose name&#10;changes at a crossroads, if this is the case, cut the street and set the&#10;proper names of both part." />
 <fix lang="fr" title="S'il y a un double, supprimez-en un. Sinon, une vérification sur place est nécessaire : vérifiez s'il s'agit d'une rue dont le nom change à un carrefour ; si c'est le cas, coupez la rue et corrigez les noms exacts des deux parties." />
 <fix lang="ja" title="* もし重複していれば、ひとつ削除します。&#10;* そうでない場合、サーベイが必要です。道路の交点で名前が変わる街路なのかチェックして、そうであれば街路をカットしてそれぞれの部分に適切な名前を付けます。" />
@@ -323,7 +324,7 @@
 <detail lang="de" title="Der Name des Merkmals enthält ausschließlich Großbuchstaben.&#10;Dies ist für die meisten benannten Merkmalen unüblich." />
 <detail lang="en" title="This feature is tagged with a name which contains a fully uppercase word (or words).&#10; This is not expected for the majority of named features." />
 <detail lang="ja" title="この地物は全て大文字でnameがタグ付けされています。これは大多数の地物では想定されていません。" />
-<detail lang="pl" title='Ten obiekt ma nazwę pisaną wielkimi literami. W większości przypadków nazwa powinna być pisana wielką literą, nawet gdy nazwa wersalikami jest na szyldzie lub w logo firmy. Np. "Nokia", nie "NOKIA".' />
+<detail lang="pl" title="Ten obiekt ma nazwę pisaną wielkimi literami. W większości przypadków nazwę należy pisać wielką literą, nawet gdy nazwa wersalikami jest na szyldzie lub w logo firmy. Np. „Nokia”, nie „NOKIA”." />
 <trap lang="de" title="Es ist dennoch möglich, dass ein Name nur Großbuchstaben enthält.&#10;Dies gilt insbesondere für Firmen-/Markennamen oder Abkürzungen." />
 <trap lang="en" title="While uncommon, it is possible for a name to have uppercase words.&#10; This is particularly the case for corporate/branded locations as well as acronyms." />
 <trap lang="ja" title="一般的ではありませんが、nameに大文字が使われることがあります。&#10; これはとりわけ頭文字と同様に企業/ブランドの位置に使われます。（訳注：日本では看板などにアルファベット大文字が表記されることは一般的です）" />
@@ -789,7 +790,7 @@
 <classtext lang="ja" title="multipolygonに対する不適切なrole" />
 <classtext lang="lt" title="Netinkama rolė multipoligonui" />
 <classtext lang="nl" title="Ontoereikend role voor een multipolygoon" />
-<classtext lang="pl" title="Nieodpowiednia rola dla relacji multipolygon" />
+<classtext lang="pl" title="Nieodpowiednia rola w relacji multipolygon" />
 <classtext lang="pt" title="Papel inadequado para multi-polígono" />
 <classtext lang="pt_BR" title="Papel inadequado para multipolígono" />
 <classtext lang="uk" title="Хибна роль для мультиполігону" />
@@ -997,6 +998,7 @@
 <class id="20302" item="2030" source="http://example.com/plugins/Bicycle.validator.mapcss" level="1" tag="tag,highway,cycleway,fix:survey">
 <classtext lang="cs" title="Opposite nebo opposite lane stejným směrem jako je jednosměrka" />
 <classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
+<classtext lang="es" title="Carril opuesto en la misma vía de un oneway" />
 <classtext lang="fr" title="Voie en sens opposé sur le même chemin en sens unique" />
 <classtext lang="gl" title="Carril oposto ou oposto na mesma vía que no camiño de ida" />
 <classtext lang="hu" title="Szembejövő út vagy sáv az egyirányú utca irányába" />
@@ -1087,7 +1089,7 @@
 <classtext lang="ja" title="緊急アクセスポイントにrefタグが無い" />
 <classtext lang="lt" title="Pagalbos prieigos taškui trūksta ref žymos" />
 <classtext lang="nl" title="Ontbrekende tag ref spoed toegans punten" />
-<classtext lang="pl" title="Brakuje tagu ref dla emergency access point" />
+<classtext lang="pl" title="Punktowi dostępu dla służb ratowniczych brakuje tagu ref" />
 <classtext lang="pt" title="Falta etiqueta ref no ponto de acesso de emergência" />
 <classtext lang="pt_BR" title="Falta etiqueta ref no ponto de acesso de emergência" />
 <classtext lang="uk" title="Відсутній теґ ref для точки доступу служби порятунку" />
@@ -1105,7 +1107,7 @@
 <classtext lang="it" title="Etichetta highway mancante per tracktype oppure lanes" />
 <classtext lang="ja" title="tracktypeやlanesに対するhighwayタグが無い" />
 <classtext lang="nl" title="Tag highway ontbreekt voor tracktype of rijwegen" />
-<classtext lang="pl" title='Brak tagu "highway" dla "tracktype" lub "lanes"' />
+<classtext lang="pl" title='Brak tagu "highway" do "tracktype" lub "lanes"' />
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
@@ -1248,7 +1250,7 @@
 <classtext lang="it" title="Manca l’etichetta public_transport:version su una relazione di linea di tipo public_transport" />
 <classtext lang="ja" title=" public_transportルートリレーションにpublic_transport:versionタグがない " />
 <classtext lang="nl" title="public_transport:version tag ontbreekt op een public_transport route relatie" />
-<classtext lang="pl" title='Brak tagu "public_transport:version" dla relacji transportu publicznego' />
+<classtext lang="pl" title="Relacji transportu publicznego brakuje tagu „public_transport:version”" />
 <classtext lang="ru" title="Отсутствует тег public_transport:version в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="缺少public_transport：public_transport路径关系上的版本标记" />
@@ -1266,7 +1268,7 @@
 <classtext lang="it" title="Manca l’etichetta network su una relazione di tipo public_transport" />
 <classtext lang="ja" title="public_transportリレーションにnetworkタグがない " />
 <classtext lang="nl" title="network tag op public_transport relatie ontbreekt" />
-<classtext lang="pl" title='Brak tagu "network" dla relacji transportu publicznego' />
+<classtext lang="pl" title="Relacji transportu publicznego brakuje tagu „network”" />
 <classtext lang="ru" title="Отсутствует тег network в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ network на зв'язку public_transport" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少网络标记" />
@@ -1284,7 +1286,7 @@
 <classtext lang="it" title="Manca l’etichetta operator su una relazione di tipo public_transport" />
 <classtext lang="ja" title="public_transportリレーションにoperatorタグがない" />
 <classtext lang="nl" title="operator tag op public_transport relatie ontbreekt" />
-<classtext lang="pl" title='Brak tagu "operator" dla relacji transportu publicznego' />
+<classtext lang="pl" title="Relacji transportu publicznego brakuje tagu „operator”" />
 <classtext lang="ru" title="Отсутствует тег operator в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ operator у зв'язку громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少运运营单位标记" />
@@ -1302,7 +1304,7 @@
 <classtext lang="it" title="Manca l‘etichetta from/to su una relazione di tipo public_transport" />
 <classtext lang="ja" title="public_transportリレーションにfromとtoのタグがない " />
 <classtext lang="nl" title="from/to tag op een public_transport weg relatie ontbreekt " />
-<classtext lang="pl" title='Brak tagu "from" lub "to" dla relacji transportu publicznego' />
+<classtext lang="pl" title="Relacji transportu publicznego brakuje tagu „from” lub „to”" />
 <classtext lang="ru" title="Отсутствуют теги form/to в отношение маршрута public_transport" />
 <classtext lang="uk" title="Відсутній теґ from/to у зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport路径关系上缺少from/to标签" />
@@ -1320,7 +1322,7 @@
 <classtext lang="it" title="Manca l’etichetta public_transport sulla fermata di trasporto pubblico" />
 <classtext lang="ja" title="public_transportタグが公共交通機関の停止場所にない " />
 <classtext lang="nl" title="public_transport tag ontbreekt op een public transport halte" />
-<classtext lang="pl" title='Brak tagu "public_transport" dla przystanku' />
+<classtext lang="pl" title="Przystankowi brakuje tagu „public_transport”" />
 <classtext lang="ru" title="Отсутствует тег public_transport на месте остановки общественного транспорта" />
 <classtext lang="uk" title="Відсутній теґ public_transport на public_transport_stop" />
 <classtext lang="zh_CN" title="公共交通站点缺少public_transport标记" />
@@ -1655,7 +1657,7 @@
 </class>
 <class id="30402" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure">
 <classtext lang="cs" title="Chybějící značka" />
-<classtext lang="de" title="fehlendes Merkmal" />
+<classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
 <classtext lang="es" title="Etiqueta extraña" />
 <classtext lang="fr" title="attribut manquant" />
@@ -1674,7 +1676,7 @@
 </class>
 <class id="30403" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure">
 <classtext lang="cs" title="Chybějící značka" />
-<classtext lang="de" title="fehlendes Merkmal" />
+<classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
 <classtext lang="es" title="Etiqueta extraña" />
 <classtext lang="fr" title="attribut manquant" />
@@ -1802,10 +1804,10 @@
 <class id="30913" item="3091" source="http://example.com/plugins/Capacity.py#L43" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
 <classtext lang="en" title="Specific capacity is greater than total capacity" />
 <classtext lang="ja" title="個別の収容数が総収容数より大きい" />
-<classtext lang="pl" title="Wartość tagu capacity:* jest większa niż dla capacity" />
+<classtext lang="pl" title="Wartość tagu capacity:* jest większa niż wartość tagu capacity" />
 <detail lang="en" title="A capacity:* value is greater than the total capacity." />
 <detail lang="ja" title="capacity:* の値が総収容数より大きい" />
-<detail lang="pl" title="Wartość tagu capacity:* jest większa niż dla capacity." />
+<detail lang="pl" title="Wartość tagu capacity:* jest większa niż wartość tagu capacity." />
 </class>
 <class id="30931" item="3093" source="http://example.com/plugins/Website.py#L40" level="2" tag="value,fix:chair">
 <classtext lang="cs" title="URL obsahuje mezeru" />
@@ -1851,7 +1853,7 @@
 <classtext lang="it" title="Le corsie di preselezione con merge_to_* necessitano di una corsia accanto sul lato giusto" />
 <classtext lang="ja" title="進行方向レーン merge_to_* には許可された側にサイドレーンが必要" />
 <classtext lang="nl" title="Afslag rijstroken merge_to_ * heeft een zijrijstrook nodig op de goede zij" />
-<classtext lang="pl" title="Wartość turn:lanes dla merge_to_left/right jest po niewłaściwej stronie" />
+<classtext lang="pl" title="Wartość turn:lanes merge_to_left/right jest po niewłaściwej stronie" />
 <classtext lang="uk" title="Смуги повороту merge_to_* потребує сторону смуги з хорошого боку" />
 <classtext lang="zh_CN" title="转车道merge_to_*需要旁边的车道" />
 <detail lang="en" title="The `merge_to_right` or `merge_to_left` lane must be on the same way&#10;as the destination lane and the `merge_to_right` must be on the *left&#10;side* and `the merge_to_left` on the *right side*." />
@@ -1996,7 +1998,7 @@
 <classtext lang="it" title="Valore di accesso alle corsie errato, non dovrebbe essere un numero intero ma un divieto" />
 <classtext lang="ja" title="不正なアクセスレーンの値、整数ではなく制限であるべき" />
 <classtext lang="nl" title="Verkeerde rijstroken toegang waarde, moet niet een geheel getal maar een beperking zijn" />
-<classtext lang="pl" title='Zła wartość dostępu dla "*:lanes" – to powinny być wartości typu "yes"/"no", a nie liczba' />
+<classtext lang="pl" title="Zła wartość dostępu tagu „*:lanes” – to powinny być wartości typu „yes”/„no”, a nie liczba" />
 <classtext lang="uk" title="Помилкове значення смуг доступу, не має бути цілим числом, а обмеженням" />
 <classtext lang="zh_CN" title="进入车道值不良，不应该是一个整数，而应该是一个限制" />
 <detail lang="en" title="`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is&#10;the number of lanes." />
@@ -2108,11 +2110,15 @@
 </class>
 <class id="31617" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L54" level="3" tag="highway,parking,fix:survey">
 <classtext lang="en" title="parking:condition:[side] not applicable" />
+<classtext lang="ja" title="parking:condition:[side] は適用できません" />
 <detail lang="en" title="A parking condition is set for a parking:lane:[side] value that forbids parking." />
+<detail lang="ja" title="駐車を禁じる条件が parking:lane:[side] の値としてセットされています。" />
 </class>
 <class id="31618" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L60" level="3" tag="highway,parking,fix:survey">
 <classtext lang="en" title="parking:condition:[side] should be mapped on separately mapped parking area" />
+<classtext lang="ja" title="parking:condition:[side] は駐車エリアに個々にマッピングすべきです" />
 <detail lang="en" title="A parking condition is set for a parking:lane:[side] value that indicates&#10;that the parking area is mapped separately. Any parking conditions should&#10;be tagged on that object instead." />
+<detail lang="ja" title="駐車の条件が parking:lane:[side] の値としてセットされ、駐車エリアが個々にマッピングされているということを示しています。そうではなくて、あらゆる駐車の条件はオブジェクト上にマッピングされるべきです。" />
 </class>
 <class id="31700" item="3170" source="http://example.com/plugins/TagFix_Role.py#L37" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Rol no adient" />
@@ -2269,7 +2275,7 @@
 <classtext lang="it" title="Nome sospetto per contenitore" />
 <classtext lang="ja" title="コンテナには疑わしい名前" />
 <classtext lang="nl" title="Verkeerde naam voor een container" />
-<classtext lang="pl" title="Podejrzana nazwa dla pojemnika" />
+<classtext lang="pl" title="Pojemnik ma podejrzaną nazwę" />
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
 </class>
@@ -2372,6 +2378,9 @@
 <classtext lang="uk" title="небажане (застаріле) теґування" />
 <classtext lang="zh_CN" title="已弃用的标签" />
 <classtext lang="zh_TW" title="不建議的標籤" />
+</class>
+<class id="40105" item="4010" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3">
+<classtext lang="en" title="misused tag in this country" />
 </class>
 <class id="40201" item="4020" source="http://example.com/plugins/TagFix_MultipleTag.py#L95" level="1" tag="highway,roundabout">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -2745,7 +2754,7 @@
 <detail lang="en" title="Missing `maxheight=*` or `maxheight:*` for a tunnel or a way under a&#10;bridge." />
 <detail lang="gl" title="Falta `maxheight=*` ou `maxheight:*` para un túnel ou unha vía baixo unha ponte." />
 <detail lang="ja" title="トンネルまたは橋の下のウェイに`maxheight=*`または`maxheight:*` がありません。" />
-<detail lang="pl" title="Brakuje tagu `maxheight=*` lub `maxheight:*` dla tunelu lub drogi pod wiaduktem." />
+<detail lang="pl" title="Tunelowi lub drodze pod wiaduktem brakuje tagu `maxheight=*` lub `maxheight:*`." />
 <detail lang="uk" title="Відсутній `maxheight=*` або `maxheight:*` для тунелю або шляху під&#10;мостом." />
 </class>
 <class id="91001" item="9100" source="http://example.com/plugins/Power.validator.mapcss" level="2" tag="power,fix:chair,geom">
@@ -2861,7 +2870,7 @@
 </class>
 <class id="9001001" item="9001" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/combinations.mapcss" level="3" tag="tag">
 <classtext lang="cs" title="Chybějící značka" />
-<classtext lang="de" title="fehlendes Merkmal" />
+<classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
 <classtext lang="es" title="Etiqueta extraña" />
 <classtext lang="fr" title="attribut manquant" />
@@ -2880,7 +2889,7 @@
 </class>
 <class id="9001002" item="9001" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/combinations.mapcss" level="3" tag="tag">
 <classtext lang="cs" title="podezřelá kombinace značek" />
-<classtext lang="de" title="verdächtige Merkmalskombination" />
+<classtext lang="de" title="Verdächtige Merkmalskombination" />
 <classtext lang="en" title="suspicious tag combination" />
 <classtext lang="es" title="Combinación de etiquetas sospechosa" />
 <classtext lang="fr" title="combinaison suspecte d’attributs" />
@@ -2919,7 +2928,7 @@
 <class id="9001004" item="9001" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/combinations.mapcss" level="3" tag="tag">
 <classtext lang="ca" title="ús incomplet de {{0.key}} a una via sense {{1.key}}" />
 <classtext lang="cs" title="nekompletní použití {{0.key}} na cestě bez {{1.key}}" />
-<classtext lang="de" title="unvollständige Nutzung von {{0.key}} auf einer Linie ohne {{1.key}}" />
+<classtext lang="de" title="Unvollständige Nutzung von {{0.key}} auf einer Linie ohne {{1.key}}" />
 <classtext lang="en" title="incomplete usage of {{0.key}} on a way without {{1.key}}" />
 <classtext lang="es" title="uso incompleto de {{0.key}} en lugar de {{1.key}}" />
 <classtext lang="fr" title="usage partiel de {{0.key}} sur un chemin sans {{1.key}}" />
@@ -3026,7 +3035,7 @@
 <class id="9002005" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
 <classtext lang="ca" title="Utilització incorrecta de l''etiqueta {{0.key}}. Suprimiu {{0.key}}={{0.value}}, perquè és evident que manca el nom, fins i tot sense una altra etiqueta." />
 <classtext lang="cs" title="Špatné použití značky {{0.key}}. Odstraňte {{0.key}}={{0.value}}, protože je jasné, že název chybí i bez přidané značky." />
-<classtext lang="de" title="Falsche Verwendung von Merkmal {{0.key}}. Entfernen Sie {{0.key}}={{0.value}}, weil klar ist, dass der Name auch ohne ein zusätzliches Merkmal noch fehlt." />
+<classtext lang="de" title="Falsche Verwendung von Merkmal {{0.key}}. Entfernen Sie {{0.key}}={{0.value}}, weil das Fehlen des Namens auch ohne dieses zusätzliches Merkmal klar ist." />
 <classtext lang="en" title="Wrong usage of {{0.key}} tag. Remove {{0.key}}={{0.value}}, because it is clear that the name is missing even without an additional tag." />
 <classtext lang="es" title="Uso incorrecto de la etiqueta {{0.key}}. Elimine {{0.key}}={{0.value}}, debido a que queda claro que el nombre está ausente incluso sin una etiqueta adicional ." />
 <classtext lang="fr" title="Usage incorrect du tag {{0.key}}. Supprimez {{0.key}}={{0.value}} car il est évident que le nom est manquant même sans un tag additionnel." />
@@ -3435,7 +3444,7 @@
 </class>
 <class id="9003009" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="2" tag="geom">
 <classtext lang="cs" title="Objekt na pozici 0.00E 0.00N. Na tomto místě ale nic není, kromě meteorologické bóje, který již byla zmapována dříve." />
-<classtext lang="de" title="Objekt an Position 0.00E 0.00N. Hier ist nichts an dieser Position außer einer, bereits gemappten, Wetter-Boje." />
+<classtext lang="de" title="Objekt an Position 0.00E 0.00N. Es ist nichts an dieser Position außer einer bereits gemappten Wetter-Boje." />
 <classtext lang="en" title="Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy." />
 <classtext lang="es" title="Objecto en la posición 0.00E 0.00N. No hay nada en esta ubicación excepto una boya climática." />
 <classtext lang="fr" title="Objet a la position 0.00E 0.00N. Il n y a rien a cette position excepté une bouée météo déjà cartographiée" />
@@ -3559,7 +3568,7 @@
 </class>
 <class id="9004009" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="cs" title="Chybějící značka" />
-<classtext lang="de" title="fehlendes Merkmal" />
+<classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
 <classtext lang="es" title="Etiqueta extraña" />
 <classtext lang="fr" title="attribut manquant" />
@@ -3598,7 +3607,7 @@
 </class>
 <class id="9004011" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="cs" title="podezřelá kombinace značek" />
-<classtext lang="de" title="verdächtige Merkmalskombination" />
+<classtext lang="de" title="Verdächtige Merkmalskombination" />
 <classtext lang="en" title="suspicious tag combination" />
 <classtext lang="es" title="Combinación de etiquetas sospechosa" />
 <classtext lang="fr" title="combinaison suspecte d’attributs" />
@@ -3638,11 +3647,11 @@
 </class>
 <class id="9004013" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="cs" title="Hodnota {{0.key}} by měla být buď {{1.value}}, {{2.value}}, nebo {{3.value}}. Pro chodníky použijte spíše sidewalk=left|right|both|no." />
-<classtext lang="de" title="Wert von {{0.key}} sollte entweder {{1.value}}, {{2.value}} oder {{3.value}} sein. Für Bürgersteige nutze sidewalk=left|right|both|no stattdessen." />
+<classtext lang="de" title="Wert von {{0.key}} sollte entweder {{1.value}}, {{2.value}} oder {{3.value}} sein. Für Gehsteige nutze sidewalk=left|right|both|no stattdessen." />
 <classtext lang="en" title="Value of {{0.key}} should either be {{1.value}}, {{2.value}} or {{3.value}}. For sidewalks use sidewalk=left|right|both|no instead." />
 <classtext lang="es" title="El valor de {{0.key}} debería ser {{1.value}}, {{2.value}} o {{3.value}}. Para veredas o aceras utilice sidewalk=left|right|both|no en su lugar." />
 <classtext lang="fr" title="La valeur de {{0.key}} doit être soit {{1.value}}, {{2.value}} ou {{3.value}}. Pour les trottoirs, utilisez plutôt sidewalk=left|right|both|no." />
-<classtext lang="nl" title="Waarde van {{0.key}} zou ofwel moeten zijn {{1.value}}, {{2.value}} of {{3.value}}. Gebruik voor trottoirs in plaats daravan sidewalk=left|right|both|no." />
+<classtext lang="nl" title="Waarde van {{0.key}} zou moeten zijn {{1.value}}, {{2.value}} of {{3.value}}. Gebruik voor trottoirs sidewalk=left|right|both|no." />
 <classtext lang="ru" title="Значением {{0.key}} должно быть {{1.value}}, {{2.value}} или {{3.value}}. Для тротуаров вместо этого используйте sidewalk=left|right|both|no." />
 <classtext lang="uk" title="Значення для {{0.key}} має бути {{1.value}}, чи {{2.value}} або {{3.value}}. Для тротуарів натомість використовуйте sidewalk=left|right|both|no." />
 </class>
@@ -3962,7 +3971,7 @@
 </class>
 <class id="9007001" item="9007" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/relation.mapcss" level="3" tag="tag,relation">
 <classtext lang="cs" title="Chybějící značka" />
-<classtext lang="de" title="fehlendes Merkmal" />
+<classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
 <classtext lang="es" title="Etiqueta extraña" />
 <classtext lang="fr" title="attribut manquant" />
@@ -4460,7 +4469,7 @@
 <classtext lang="it" title="Verificare se la nota può essere eliminata" />
 <classtext lang="ja" title="メモを削除できるかチェックします" />
 <classtext lang="nl" title="Controleer of de nota verwijderd kan worden" />
-<classtext lang="pl" title="Sprawdź, czy tag note może być usunięty" />
+<classtext lang="pl" title="Sprawdź, czy tag note można usunąć" />
 <classtext lang="ru" title="Проверь может ли заметка быть удалена" />
 <classtext lang="uk" title="Перевірте, чи можна видалити нотатку" />
 <classtext lang="zh_CN" title="检查笔记是否可以删除" />
@@ -4566,7 +4575,7 @@
 <classtext lang="it" title="Il colore della linea di trasporto pubblico dovrebbe stare nell’etichetta colour" />
 <classtext lang="ja" title="公共交通機関のラインカラーはcolourタグにあるべきです" />
 <classtext lang="nl" title="De kluer van een openbaar vervoer lijn moet in een colour tag" />
-<classtext lang="pl" title='Kolor dla linii transportu publicznego powinien być w tagu "colour", nie "color"' />
+<classtext lang="pl" title="Kolor linii transportu publicznego powinien być w tagu „colour”, nie „color”" />
 <classtext lang="ru" title="Цвет линии общественного транспорта должен быть в теге colour" />
 <classtext lang="uk" title="Колір лінії громадського транспорту повинен мати теґ colour" />
 <classtext lang="zh_TW" title="大眾運輸路線的顏色應當用顏色標籤" />
