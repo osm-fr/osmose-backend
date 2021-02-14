@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-02-08 20:03+0000\n"
+"PO-Revision-Date: 2021-02-14 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -57,10 +57,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:31
-msgid "Bordeaux bicycle parking not integrated"
-msgstr "Parking à vélos de Bordeaux non intégré"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:31
 msgid "CAPP bicycle parking not integrated"
@@ -1422,7 +1418,6 @@ msgstr "L’URL contient une espace"
 msgid "The URL does not have a valid scheme"
 msgstr "L’URL ne débute pas par un protocole reconnu"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
@@ -1433,7 +1428,6 @@ msgstr "L’URL ne débute pas par un protocole reconnu"
 msgid "{0} stop not integrated"
 msgstr "arrêt {0} non intégré"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
@@ -1444,7 +1438,6 @@ msgstr "arrêt {0} non intégré"
 msgid "{0} stop, integration suggestion"
 msgstr "arrêt {0}, proposition d’intégration"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
@@ -1946,7 +1939,7 @@ msgstr "Équipement sportif non intégré {0}"
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:31
-#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:31
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:39
 #: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:32
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:31
@@ -1979,25 +1972,6 @@ msgstr "Vérifiez la position. Attention, les données du Ministère peuvent con
 #: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
 msgstr "L'emplacement peut être assez approximatif."
-
-#: ../analysers/analyser_merge_street_number.py:32
-#, python-brace-format
-msgid "Missing address {0}"
-msgstr "Adresse manquante {0}"
-
-#: ../analysers/analyser_merge_street_number.py:34
-msgid ""
-"Address in an OpenData set was not found. Only the position and\n"
-"street numbers are checked."
-msgstr "L'adresse n'a pas été trouvée dans un jeu de données ouvertes. Seule la position\nainsi que le numéro dans la rue ont été vérifiés."
-
-#: ../analysers/analyser_merge_street_number.py:37
-msgid "Add or move a number, check the field."
-msgstr "Ajoutez ou déplacez un nombre. Vérifiez le champ."
-
-#: ../analysers/analyser_merge_street_number.py:39
-msgid "Pay attention to the data freshness."
-msgstr "Faites attention à la fraîcheur des données."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:33
 msgid "TMC data refers to a not found element of the road network. "
@@ -3805,35 +3779,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr "{0} parking mise à jour"
 
-#: ../analysers/Analyser_Merge.py:1043
+#: ../analysers/Analyser_Merge.py:1046
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "Si après vérification vous êtes sûr qu'il s'agit d'une nouvelle donnée et que celle-ci est appropriée pour OpenStreetMap,  alors vous pouvez l'ajouter."
 
-#: ../analysers/Analyser_Merge.py:1046
+#: ../analysers/Analyser_Merge.py:1049
 msgid "Be sure that it is not already existing in another place."
 msgstr "Assurez-vous que l'objet n'existe pas ailleurs."
 
-#: ../analysers/Analyser_Merge.py:1051
+#: ../analysers/Analyser_Merge.py:1054
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "Cette information provient d'une source de données ouverte, sans aucune vérification au préalable d'un individu."
 
-#: ../analysers/Analyser_Merge.py:1064
+#: ../analysers/Analyser_Merge.py:1067
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1077
+#: ../analysers/Analyser_Merge.py:1080
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1039
+#: ../analysers/Analyser_Merge.py:1042
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4517,4 +4491,22 @@ msgid ""
 "then add appropriate tags.\n"
 "\n"
 "See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
+msgstr ""
+
+#: ../analysers/analyser_merge_cycle_parking_FR_bm.py:32
+msgid "Bordeaux Metropole bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_cycle_parking_FR_bm.py:69
+msgid "Bordeaux Metropole motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:41
+#, python-brace-format
+msgid "{0} toilets, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:43
+#, python-brace-format
+msgid "{0} toilets update"
 msgstr ""

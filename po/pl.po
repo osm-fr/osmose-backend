@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-02-08 20:03+0000\n"
+"PO-Revision-Date: 2021-02-14 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -26,10 +26,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:31
-msgid "Bordeaux bicycle parking not integrated"
-msgstr "Parking rowerowy w Bordeaux niezintegrowany"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:31
 msgid "CAPP bicycle parking not integrated"
@@ -1391,7 +1387,6 @@ msgstr "Adres strony internetowej zawiera spację"
 msgid "The URL does not have a valid scheme"
 msgstr "Adres strony internetowej nie ma poprawnego formatu"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
@@ -1402,7 +1397,6 @@ msgstr "Adres strony internetowej nie ma poprawnego formatu"
 msgid "{0} stop not integrated"
 msgstr "Przystanek {0} niezintegrowany"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
@@ -1413,7 +1407,6 @@ msgstr "Przystanek {0} niezintegrowany"
 msgid "{0} stop, integration suggestion"
 msgstr "Przystanek {0}, propozycja integracji"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
@@ -1915,7 +1908,7 @@ msgstr "Boisko niezintegrowane {0}"
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:31
-#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:31
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:39
 #: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:32
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:31
@@ -1948,25 +1941,6 @@ msgstr ""
 #: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
 msgstr ""
-
-#: ../analysers/analyser_merge_street_number.py:32
-#, python-brace-format
-msgid "Missing address {0}"
-msgstr "Brakuje adresu {0}"
-
-#: ../analysers/analyser_merge_street_number.py:34
-msgid ""
-"Address in an OpenData set was not found. Only the position and\n"
-"street numbers are checked."
-msgstr ""
-
-#: ../analysers/analyser_merge_street_number.py:37
-msgid "Add or move a number, check the field."
-msgstr ""
-
-#: ../analysers/analyser_merge_street_number.py:39
-msgid "Pay attention to the data freshness."
-msgstr "Zwróć uwagę na aktualność danych."
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:33
 msgid "TMC data refers to a not found element of the road network. "
@@ -3318,7 +3292,7 @@ msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`), a generator (`power=generator`)\n"
 "or marked as transitioning into ground (`location:transition=yes`)."
-msgstr ""
+msgstr "Ta linia kończy się niespodziewanie, a powinna być podłączona do innej linii, transformatora (`power=transformer`), generatora (`power=generator`) lub być oznaczona jako przejście pod ziemię (`location:transition=yes`)."
 
 #: ../analysers/analyser_osmosis_powerline.py:349
 msgid ""
@@ -3454,7 +3428,7 @@ msgstr "Recykling szkła {0}, aktualizacja"
 #: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:121
 #, python-brace-format
 msgid "The tag `{0}` is deprecated in favour of {1}"
-msgstr "Tag {0} powinien być zastąpiony tagiem {1}"
+msgstr "Tag {0} należy zastąpić tagiem {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:84
 #, python-brace-format
@@ -3488,7 +3462,7 @@ msgstr "Nieoczekiwany znak {0}"
 msgid ""
 "This feature is tagged with a name which contains a fully uppercase word (or words).\n"
 " This is not expected for the majority of named features."
-msgstr "Ten obiekt ma nazwę pisaną wielkimi literami. W większości przypadków nazwa powinna być pisana wielką literą, nawet gdy nazwa wersalikami jest na szyldzie lub w logo firmy. Np. \"Nokia\", nie \"NOKIA\"."
+msgstr "Ten obiekt ma nazwę pisaną wielkimi literami. W większości przypadków nazwę należy pisać wielką literą, nawet gdy nazwa wersalikami jest na szyldzie lub w logo firmy. Np. „Nokia”, nie „NOKIA”."
 
 #: ../plugins/Name_UpperCase.py:43
 msgid ""
@@ -3774,35 +3748,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1043
+#: ../analysers/Analyser_Merge.py:1046
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1046
+#: ../analysers/Analyser_Merge.py:1049
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1051
+#: ../analysers/Analyser_Merge.py:1054
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1064
+#: ../analysers/Analyser_Merge.py:1067
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1077
+#: ../analysers/Analyser_Merge.py:1080
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1039
+#: ../analysers/Analyser_Merge.py:1042
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4486,4 +4460,22 @@ msgid ""
 "then add appropriate tags.\n"
 "\n"
 "See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
+msgstr ""
+
+#: ../analysers/analyser_merge_cycle_parking_FR_bm.py:32
+msgid "Bordeaux Metropole bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_cycle_parking_FR_bm.py:69
+msgid "Bordeaux Metropole motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:41
+#, python-brace-format
+msgid "{0} toilets, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:43
+#, python-brace-format
+msgid "{0} toilets update"
 msgstr ""

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-02-08 20:03+0000\n"
+"PO-Revision-Date: 2021-02-14 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Galician (http://www.transifex.com/openstreetmap-france/osmose/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,10 +22,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:31
-msgid "Bordeaux bicycle parking not integrated"
-msgstr "Aparcadoiro de bicicletas Bordeaux non integrado"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:31
 msgid "CAPP bicycle parking not integrated"
@@ -1387,7 +1383,6 @@ msgstr "A URL contén un espazo"
 msgid "The URL does not have a valid scheme"
 msgstr "A URL non ten un esquema válido"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:32
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
@@ -1398,7 +1393,6 @@ msgstr "A URL non ten un esquema válido"
 msgid "{0} stop not integrated"
 msgstr "{0} paraxe non integrada"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:34
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
@@ -1409,7 +1403,6 @@ msgstr "{0} paraxe non integrada"
 msgid "{0} stop, integration suggestion"
 msgstr "{0} paraxe, integración suxerida"
 
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:62
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:65
@@ -1911,7 +1904,7 @@ msgstr "Cancha non integrada {0}"
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:31
-#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:31
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:39
 #: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:31
 #: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:32
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:31
@@ -1944,25 +1937,6 @@ msgstr "Comproba a localización. Ten en conta que os datos do Ministerio poden 
 #: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
 msgstr "A localización pode que sexa moi aproximada."
-
-#: ../analysers/analyser_merge_street_number.py:32
-#, python-brace-format
-msgid "Missing address {0}"
-msgstr "Falta o enderezo {0}"
-
-#: ../analysers/analyser_merge_street_number.py:34
-msgid ""
-"Address in an OpenData set was not found. Only the position and\n"
-"street numbers are checked."
-msgstr "Non se atopou o enderezo en ningún conxunto de datos OpenData. Só se comproban a posición e os números da rúa."
-
-#: ../analysers/analyser_merge_street_number.py:37
-msgid "Add or move a number, check the field."
-msgstr "Engade ou move un número; verifica o campo."
-
-#: ../analysers/analyser_merge_street_number.py:39
-msgid "Pay attention to the data freshness."
-msgstr "Fíxate no nivel de actualización dos datos"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:33
 msgid "TMC data refers to a not found element of the road network. "
@@ -3770,35 +3744,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1043
+#: ../analysers/Analyser_Merge.py:1046
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1046
+#: ../analysers/Analyser_Merge.py:1049
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1051
+#: ../analysers/Analyser_Merge.py:1054
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1064
+#: ../analysers/Analyser_Merge.py:1067
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1077
+#: ../analysers/Analyser_Merge.py:1080
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1039
+#: ../analysers/Analyser_Merge.py:1042
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4482,4 +4456,22 @@ msgid ""
 "then add appropriate tags.\n"
 "\n"
 "See [parking](https://wiki.openstreetmap.org/wiki/Key:parking) tag on the wiki."
+msgstr ""
+
+#: ../analysers/analyser_merge_cycle_parking_FR_bm.py:32
+msgid "Bordeaux Metropole bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_cycle_parking_FR_bm.py:69
+msgid "Bordeaux Metropole motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:41
+#, python-brace-format
+msgid "{0} toilets, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:43
+#, python-brace-format
+msgid "{0} toilets update"
 msgstr ""
