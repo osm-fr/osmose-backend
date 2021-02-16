@@ -300,5 +300,27 @@
       "social_facility:for": "child"
     },
     "tags_generate2": {}
+    },
+  {
+    "categories": [
+      "223"
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 60,
+    "level": 3,
+    "title:fr": "Établissement de Protection Maternelle et Infantile (PMI)",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "ambulatory_care",
+      "social_facility:for": "child"
+    },
+    "tags_generate2": {}
   }
 ]
