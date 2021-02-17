@@ -69,8 +69,8 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
                 nsi_name = tag[len(nsiprefix):]
                 for preset in presets:
                     if "locationSet" in preset:
-                        if ("include" in preset["locationSet"] and 
-                                self.country_code not in preset["locationSet"]["include"] and 
+                        if ("include" in preset["locationSet"] and
+                                self.country_code not in preset["locationSet"]["include"] and
                                 "001" not in preset["locationSet"]["include"]):
                             continue
                         if "exclude" in preset["locationSet"] and self.country_code in preset["locationSet"]["exclude"]:
