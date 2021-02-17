@@ -3,9 +3,9 @@ Docker
 
 osmose-backend can be run in a Docker container. This avoids setting
 up and configuring Python, Java and PostgreSQL on your system.
-The osmose-backend docker image requires a running instance of PostgreSQL
-(PostGIS). An instance of osmose-frontend is also required to display the
-issues on a web interface.
+Note : A PostgreSQL docker is automatically installed and run by 
+docker-compose and doesn't need be installed manually. 
+The osmose-frontend docker may also be run but is not mandatory
 
 
 Setup
