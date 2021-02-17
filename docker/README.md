@@ -1,10 +1,12 @@
 Docker
 ======
 
-You can run osmose-backend in a Docker container. The advantage is that
-you do not need to setup and configure Python, Java and PostgreSQL on
-your system. The PostgreSQL and eventually the Osmose Frontend are
-dependencies.
+osmose-backend can be run in a Docker container. This avoids setting
+up and configuring Python, Java and PostgreSQL on your system.
+
+Note : A PostgreSQL docker is automatically installed and run by 
+docker-compose and doesn't need be installed manually. 
+The osmose-frontend docker may also be run but is not mandatory.
 
 
 Setup
@@ -16,7 +18,7 @@ version.
 
 Confirmed to be working with docker `18.09.1` and docker-compose `1.23.2`.
 
-To build the docker image run this command from the docker repository:
+To build the docker image run this command from the docker folder:
 ```
 docker-compose build
 ```
@@ -25,14 +27,14 @@ docker-compose build
 Running on a single country
 ===========================
 
-The `./work` directory on your host must to be writable by anyone, as the
+The `./work` directory on your host must be writable by anyone, as the
 `osmose` user in the container will have some random UID (probably 1000).
 ```
 chmod a+w ./work
 ```
 
-Taking the Monaco (a quick and small one) as an example, once you have
-the docker image, you can run Osmose analysers like this:
+Taking Monaco (a quick and small one) as an example, once the docker
+image is built, you can run Osmose analyzers using:
 ```
 docker-compose --project-name monaco run --rm backend ./osmose_run.py --country=monaco
 docker-compose --project-name monaco down # Destroy the loaded data base
@@ -42,25 +44,25 @@ This will run interactively and you will see the output scrolling on your
 screen. The container will be deleted at the end of the process. All
 downloaded and output data will be saved in the `./work` directory.
 
-To run with a password file and enable results to be uploaded to the
-frontend you must adapt `osmose_config_password.py`.
+To enable results to be uploaded to the frontend you must configure
+the frontend passwords in `osmose_config_password.py`.
 
 
 Tuning
 ======
 
-The database configuration can be tuned using the SQL in the environment
-variable `POSTGRESQL_POSTCREATION`. It is executed at startup by the
-postgres user.
+The database configuration can be tuned by setting the `POSTGRESQL_POSTCREATION`
+environment variable to a SQL statement. The SQL statement will be executed at
+startup using the postgres user account.
 
 
-Develop on Osmose with docker
-=============================
+Develop on Osmose using docker
+==============================
 
 * A Backend alone with the **Jupyter** web editor and visualizer can be
 used.
-* Alternatively, with docker-compose you can run a **full development
-environment** with backend and frontend. In develop mode the Backend can
+* Alternatively, using docker-compose, you can run a **full development
+environment** with backend and frontend. In develop mode, the Backend can
 run an analysis and send the results to the local Frontend without
 requiring extra configuration or upload password.
 
@@ -75,7 +77,7 @@ docker-compose -f docker-compose.yml -f docker-compose-dev.yml build
 
 ## Start Docker Backend container
 
-At the first time only:
+On the first execution only:
 ```
 chmod a+w ../modules/osm_pbf_parser/
 ```
@@ -85,13 +87,13 @@ Enter the container with:
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 ```
 
-At the first time only, compile the OSM PBF parser:
+On the first execution only, compile the OSM PBF parser:
 ```
 cd modules/osm_pbf_parser/ && make && cd -
 ```
 
 Note: when exiting the backend, the dependency Database container will still be
-running. You can stop them with `docker-compose stop`.
+running. You can stop it with `docker-compose stop`.
 
 
 ## Access to the Database
@@ -134,14 +136,14 @@ Download and load a country into the Database:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 --rm backend ./osmose_run.py --no-clean --country=monaco --skip-analyser --skip-upload
 ```
-You does not need to load the country each time. It saves in the Database.
+You do not need to load the country each time. It remains in the Database.
 
 
 Then run the jupyter-notebook web server:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run -p 8888:8888 --rm backend jupyter-notebook
 ```
-Note the `8888:8888`, which expose the port `8888` to localhost.
+Note the `8888:8888`, which exposes port `8888` to localhost.
 
 Follow the displayed link on http://localhost:8888/...
 
@@ -152,23 +154,22 @@ own analyzer code.
 
 ## Alternative 2: Develop with Full environment
 
-From docker container you can test analysers:
+From docker container you can test all the analyzers using:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend
 ```
 
-From docker container you can test analyzer:
+To test a specific analyzer:
 ```
 ./osmose_run.py --no-clean --country=monaco --analyser=osmosis_highway_floating_islands
 ```
 
-For running one plugin only use:
+To run one plugin only use:
 ```
 ./osmose_run.py --no-clean --country=monaco --analyser=sax --plugin=Name_Multiple
 ```
 
-The execution time of the process, depending on the area, may be long
-or longer:
+The execution time of the process may be pretty long, depending on the area:
 ```
 [...]
 2018-01-25 20:19:04   DROP SCHEMA monaco
@@ -178,8 +179,8 @@ or longer:
 
 The files containing the results will be in `./work/results`.
 
-To debug, stay on container, edit the python files from the outside, then run
-again `osmose-run`. You can add the option `--skip-init` to speedup.
+To debug, keep the container running, edit the python files from outside the container,
+then run `osmose-run` again. You can add the `--skip-init` parameter to speed up the execution.
 
 ### Showing the results on the Osmose Frontend Map
 
@@ -196,7 +197,7 @@ For a detailed description of the procedure see
 https://github.com/osm-fr/osmose-frontend/tree/master/docker
 
 
-To upload the results of the analysis to the frontend use:
+To upload the results of the analysis to the frontend, use:
 ```
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
 ```
