@@ -39,38 +39,54 @@ class TagFix_Brand(Plugin):
 If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to link frequent names to brands and their tags.'''),
             resource="https://nsi.guide/")
 
+        self.errors[31302] = self.def_class(item=3130, level=3, tags=['operator'],
+            title=T_("Operator can be completed with operator:wikidata"),
+            detail=T_(
+'''The name of the operator on this object is generally associated with additional tags, especially operator:wikidata. All objects with the same operator should be tagged the same way.'''),
+            fix=T_(
+'''If this is indeed the operator in question, add `operator:wikidata`.
+If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to register common operators.'''),
+            resource="https://nsi.guide/")
+
         if not self.father.config.options.get("country"):
             return False
         self.country_code = self.father.config.options.get("country").split("-")[0].lower()
-        self.brands_from_nsi = self._get_brands()
 
-    def _get_brands(self):
-        nsi_url_for_brands = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.json"
-        json_str = urlread(nsi_url_for_brands, 30)
+        nsi = self._download_nsi()
+        self.brands_from_nsi = self._parse_category_from_nsi(nsi, "brands/", "brand")
+        self.operators_from_nsi = self._parse_category_from_nsi(nsi, "operators/", "operator")
+
+    def _download_nsi(self):
+        nsi_url = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.json"
+        json_str = urlread(nsi_url, 30)
         results = json.loads(json_str)
-        results = results['nsi']
-        additional_brands = {}
-        for tag, brands in results.items():
-            if tag.startswith('brands/'):
-                brand_nsi_name = tag[len('brands/'):]
-                for brand in brands:
-                    if "locationSet" in brand:
-                        if "include" in brand["locationSet"] and self.country_code not in brand["locationSet"]["include"] and "001" not in brand["locationSet"]["include"]:
+        return results['nsi']
+
+    def _parse_category_from_nsi(self, nsi, nsiprefix, key):
+        additional_presets = {}
+        for tag, presets in nsi.items():
+            if tag.startswith(nsiprefix):
+                nsi_name = tag[len(nsiprefix):]
+                for preset in presets:
+                    if "locationSet" in preset:
+                        if ("include" in preset["locationSet"] and
+                                self.country_code not in preset["locationSet"]["include"] and
+                                "001" not in preset["locationSet"]["include"]):
                             continue
-                        if "exclude" in brand["locationSet"] and self.country_code in brand["locationSet"]["exclude"]:
+                        if "exclude" in preset["locationSet"] and self.country_code in preset["locationSet"]["exclude"]:
                             continue
-                    if "matchTags" in brand:
-                        for additional_tag in brand["matchTags"]:
-                            nsi_key = "{}|{}".format(additional_tag, brand["tags"]["name"])
-                            additional_brands[nsi_key.lower()] = brand
-                    if "matchNames" in brand:
-                        for additional_name in brand["matchNames"]:
-                            nsi_key = "{}|{}".format(brand_nsi_name, additional_name)
-                            additional_brands[nsi_key.lower()] = brand
-                    if "name" in brand["tags"]:
-                        additional_brands["{}|{}".format(brand_nsi_name, brand["tags"]["name"]).lower()] = brand
-                    additional_brands["{}|{}".format(brand_nsi_name, brand["displayName"]).lower()] = brand
-        return additional_brands
+                    if "matchTags" in preset:
+                        for additional_tag in preset["matchTags"]:
+                            nsi_key = "{}|{}".format(additional_tag, preset["tags"][key])
+                            additional_presets[nsi_key.lower()] = preset
+                    if "matchNames" in preset:
+                        for additional_name in preset["matchNames"]:
+                            nsi_key = "{}|{}".format(nsi_name, additional_name)
+                            additional_presets[nsi_key.lower()] = preset
+                    if "name" in preset["tags"]:
+                        additional_presets["{}|{}".format(nsi_name, preset["tags"]["name"]).lower()] = preset
+                    additional_presets["{}|{}".format(nsi_name, preset["displayName"]).lower()] = preset
+        return additional_presets
 
     def node(self, data, tags):
         if "name" in tags and (not "brand" in tags or not "brand:wikidata" in tags):
@@ -88,6 +104,19 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
                                 tags_to_add[tag] = brands_tags[tag]
                         if tags_to_add:
                             return {"class": 31301, "subclass": 0, "fix": {"+": tags_to_add}}
+
+        if "operator" in tags and not "operator:wikidata" in tags:
+            for main_key in ["shop", "amenity", "emergency"]:
+                if main_key in tags:
+                    nsi_key = "{}/{}|{}".format(main_key, tags[main_key], tags["operator"]).lower()
+                    if nsi_key in self.operators_from_nsi:
+                        operators_tags = self.operators_from_nsi[nsi_key]["tags"]
+                        tags_to_add = {}
+                        for tag in operators_tags:
+                            if not tags.get(tag):
+                                tags_to_add[tag] = operators_tags[tag]
+                        if tags_to_add:
+                            return {"class": 31302, "subclass": 0, "fix": {"+": tags_to_add}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -109,10 +138,17 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
+        # Brands
         assert a.node(None, {"name": "Kiabi", "shop": "clothes"})
         assert a.node(None, {"name": "Kiabi", "shop": "clothes", "brand": "Kiabi"})
         assert not a.node(None, {"brand": "Kiabi", "shop": "clothes", "name": "Kiabi","brand:wikidata": "Q3196299"})
         assert not a.node(None, {"name": "National Bank", "amenity": "bank", "atm": "yes"})
+
+        # Operators
+        assert a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille"})
+        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Bataillon de marins-pompiers de Marseille", "operator:wikidata": "Q2891011"})
+        assert not a.node(None, {"name": "Beautify fire station", "amenity": "fire_station", "operator": "Unknown firestation"})
+
 
     def test_CA(self):
         a = TagFix_Brand(None)
