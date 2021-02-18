@@ -4492,3 +4492,22 @@ msgstr ""
 #, python-brace-format
 msgid "{0} toilets update"
 msgstr ""
+
+#: ../plugins/TagFix_Brand.py:43
+msgid "Operator can be completed with operator:wikidata"
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:45
+msgid ""
+"The name of the operator on this object is generally associated with "
+"additional tags, especially operator:wikidata. All objects with the same "
+"operator should be tagged the same way."
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:47
+msgid ""
+"If this is indeed the operator in question, add `operator:wikidata`.\n"
+"If not, see if you can improve the [name-suggestion-index project](https://"
+"github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which "
+"is used to register common operators."
+msgstr ""
