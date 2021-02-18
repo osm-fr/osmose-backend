@@ -28,11 +28,11 @@ from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate,
 class Analyser_Merge_Police_FR_gn(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8190, id = 1, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8190, id = 1, level = 3, tags = ['merge', 'amenity', 'fix:survey', 'fix:picture'],
             title = T_('Police/"Gendarmerie" not integrated'))
-        self.def_class_possible_merge(item = 8191, id = 3, level = 3, tags = ['merge'],
+        self.def_class_possible_merge(item = 8191, id = 3, level = 3, tags = ['merge', 'amenity', 'fix:chair'],
             title = T_('Police/"Gendarmerie", integration suggestion'))
-        self.def_class_update_official(item = 8192, id = 4, level = 3, tags = ['merge'],
+        self.def_class_update_official(item = 8192, id = 4, level = 3, tags = ['merge', 'amenity', 'fix:picture', 'fix:survey'],
             title = T_('Police/"Gendarmerie" update'))
 
         self.init(

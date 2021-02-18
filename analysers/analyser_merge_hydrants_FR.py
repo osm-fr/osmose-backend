@@ -28,11 +28,11 @@ from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Sel
 class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
     def __init__(self, config, source_url, dataset_name, source, osmRef, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8090, id = 11, level = 3, tags = ['merge', 'emergency'],
+        self.def_class_missing_official(item = 8090, id = 11, level = 3, tags = ['merge', 'emergency', 'fix:imagery', 'fix:picture', 'fix:survey'],
             title = T_('Fire hydrant not integrated'))
-        self.def_class_possible_merge(item = 8091, id = 13, level = 3, tags = ['merge', 'emergency'],
+        self.def_class_possible_merge(item = 8091, id = 13, level = 3, tags = ['merge', 'emergency', 'fix:chair', 'fix:picture'],
             title = T_('Fire hydrant integration suggestion'))
-        self.def_class_update_official(item = 8092, id = 14, level = 3, tags = ['merge', 'emergency'],
+        self.def_class_update_official(item = 8092, id = 14, level = 3, tags = ['merge', 'emergency', 'fix:imagery', 'fix:picture', 'fix:survey'],
             title = T_('Fire hydrant update'))
 
         def extract_water_source(res):

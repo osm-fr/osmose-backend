@@ -38,7 +38,7 @@ class Analyser_Merge_tourism_FR(Analyser_Merge_Dynamic):
 class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, items, classs, title, type_, tags_select, osm_types, conflationDistance, tags_generate):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.def_class_missing_official(item = items, id = classs, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = items, id = classs, level = 3, tags = ['merge', 'fix:survey', 'fix:picture'],
             title = T_('{0} not integrated', T_(title)))
 
         self.init(

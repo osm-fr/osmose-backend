@@ -65,7 +65,7 @@ class Analyser_Merge_Reservoir_FR(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Reservoir_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, item, id, level, title, select, tags, height = True):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge', 'water'], title = title)
+        self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge', 'water', 'fix:survey', 'fix:imagery'], title = title)
 
         select.update({'etat_de_l_objet': 'En service'})
         self.init(

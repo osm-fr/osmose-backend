@@ -33,7 +33,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 
     def __init__(self, config, logger, item, clas, level, select, osmTags, defaultTag, defaultTagMapping = {}):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = item, id = clas, level = level, tags = ['merge'],
+        self.def_class_missing_official(item = item, id = clas, level = level, tags = ['merge', 'fix:survey', 'fix:picture'],
             title = T_('Public service not integrated'),
             trap = T_(
 '''The location can be quite rough.'''))

@@ -35,11 +35,11 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8180, id = 33, level = 3, tags = ['merge', 'public equipment'],
+        self.def_class_missing_official(item = 8180, id = 33, level = 3, tags = ['merge', 'public equipment', 'fix:survey', 'fix:picture'],
             title = T_('{0} toilets not integrated', 'Grand Lyon'))
-        self.def_class_possible_merge(item = 8181, id = 34, level = 3, tags = ['merge', 'public equipment'],
+        self.def_class_possible_merge(item = 8181, id = 34, level = 3, tags = ['merge', 'public equipment', 'fix:chair'],
             title = T_('{0} toilets, integration suggestion', 'Grand Lyon'))
-        self.def_class_update_official(item = 8182, id = 35, level = 3, tags = ['merge', 'public equipment'],
+        self.def_class_update_official(item = 8182, id = 35, level = 3, tags = ['merge', 'public equipment', 'fix:chair'],
             title = T_('{0} toilets update', 'Grand Lyon'))
 
         self.init(

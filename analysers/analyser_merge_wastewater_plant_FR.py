@@ -26,11 +26,11 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select,
 class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8380, id = 1, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8380, id = 1, level = 3, tags = ['merge', 'fix:survey', 'fix:imagery'],
             title = T_('Wastewater plant not integrated'))
-        self.def_class_possible_merge(item = 8381, id = 3, level = 3, tags = ['merge'],
+        self.def_class_possible_merge(item = 8381, id = 3, level = 3, tags = ['merge', 'fix:chair'],
             title = T_('Wastewater plant, integration suggestion'))
-        self.def_class_update_official(item = 8382, id = 4, level = 3, tags = ['merge'],
+        self.def_class_update_official(item = 8382, id = 4, level = 3, tags = ['merge', 'fix:chair'],
             title = T_('Wastewater plant update'))
 
         self.init(

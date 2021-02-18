@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select
 class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8140, id = 1, level = 3, tags = ['merge', 'tourism'],
+        self.def_class_missing_official(item = 8140, id = 1, level = 3, tags = ['merge', 'tourism', 'fix:survey', 'fix:imagery'],
             title = T_('Aquitaine caravan site not integrated'))
 
         self.init(

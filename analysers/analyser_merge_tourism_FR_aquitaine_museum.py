@@ -27,9 +27,9 @@ from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select
 class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8010, id = 11, level = 3, tags = ['merge', 'tourism'],
+        self.def_class_missing_official(item = 8010, id = 11, level = 3, tags = ['merge', 'tourism', 'fix:survey', 'fix:picture'],
             title = T_('Aquitaine museum not integrated'))
-        self.def_class_possible_merge(item = 8011, id = 13, level = 3, tags = ['merge', 'tourism'],
+        self.def_class_possible_merge(item = 8011, id = 13, level = 3, tags = ['merge', 'tourism', 'fix:chair'],
             title = T_('Aquitaine museum, integration suggestion'))
 
         self.init(

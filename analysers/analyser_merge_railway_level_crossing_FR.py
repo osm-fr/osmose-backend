@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate,
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8060, id = 1, level = 3, tags = ['merge', 'railway'],
+        self.def_class_missing_official(item = 8060, id = 1, level = 3, tags = ['merge', 'railway', 'fix:survey', 'fix:imagery'],
             title = T_('Crossing level not integrated'))
 
         self.init(

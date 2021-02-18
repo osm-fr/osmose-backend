@@ -79,7 +79,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                 ['`{}={}`'.format(kv[0], kv[1] if kv[1] else '*') for kv in selection.items()]
             ))
 
-        self.def_class_missing_official(item = item, id = classs, level = level, tags = ['merge'] + tags,
+        self.def_class_missing_official(item = item, id = classs, level = level, tags = ['merge', 'highway', 'fix:picture', 'fix:survey'] + tags,
             title = T_('Unmapped {0}', T_(title)),
             detail = T_('Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}', '\n\n- ' + '\n- '.join(missing_tags), T_(title)),
             fix = T_('Add the appropriate highway tagging if the imagery is up-to-date and sign detection is correct.'))

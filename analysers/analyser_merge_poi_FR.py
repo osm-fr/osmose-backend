@@ -290,7 +290,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_POI_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, item, id, level, title, select, tags, generate_tags, height = True):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge', 'water'], title = title)
+        self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge', 'fix:survey', 'fix:picture'], title = title)
 
         select.update({'etat_de_l_objet': 'En service'})
         self.init(
