@@ -126,7 +126,7 @@ class Analyser_Merge_Man_Made_FR(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Man_Made_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, item, id, level, title, select, tags, generate_tags, height = True):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge'], title = title)
+        self.def_class_missing_official(item = item, id = id, level = level, tags = ['merge', 'fix:imagery', 'fix:survey'], title = title)
 
         select.update({'etat_de_l_objet': 'En service'})
         self.init(

@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conf
 class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8480, id = 8, level = 1, tags = ['merge', 'public equipment', 'fix:imagery'],
+        self.def_class_missing_official(item = 8480, id = 8, level = 1, tags = ['merge', 'public equipment', 'fix:imagery', 'fix:survey'],
             title = T_('Cemetery not integrated'))
 
         self.init(

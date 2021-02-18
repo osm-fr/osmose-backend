@@ -28,7 +28,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
     def __init__(self, config, logger=None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(
-            item=8150, id=50, level=3, tags=['merge', 'public equipment', 'bicycle'],
+            item=8150, id=50, level=3, tags=['merge', 'public equipment', 'bicycle', 'fix:picture', 'fix:survey'],
             title=T_('Bordeaux Metropole bicycle parking not integrated'))
         self.init(
             "https://opendata.bordeaux-metropole.fr/explore/dataset/st_arceau_p",
@@ -65,7 +65,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
     def __init__(self, config, logger=None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(
-            item=8150, id=60, level=3, tags=['merge', 'public equipment', 'motorcycle'],
+            item=8150, id=60, level=3, tags=['merge', 'public equipment', 'motorcycle', 'fix:picture', 'fix:survey'],
             title=T_('Bordeaux Metropole motorcycle parking not integrated'))
         self.init(
             "https://opendata.bordeaux-metropole.fr/explore/dataset/st_arceau_p",

@@ -27,11 +27,11 @@ from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Confl
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8025, id = 1, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_official(item = 8025, id = 1, level = 3, tags = ['merge', 'post', 'fix:survey', 'fix:picture'],
             title = T_('Post box not integrated'))
-        self.def_class_missing_osm(item = 7051, id = 2, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_osm(item = 7051, id = 2, level = 3, tags = ['merge', 'post', 'fix:chair'],
             title = T_('Post box without tag "ref" or invalid'))
-        self.def_class_possible_merge(item = 8026, id = 3, level = 3, tags = ['merge', 'post'],
+        self.def_class_possible_merge(item = 8026, id = 3, level = 3, tags = ['merge', 'post', 'fix:chair'],
             title = T_('Post box, integration suggestion'))
 
         self.init(

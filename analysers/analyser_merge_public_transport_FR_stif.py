@@ -28,9 +28,9 @@ class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
     def __init__(self, config, logger, clas, conflationDistance, select, osmTags, defaultTag):
         Analyser_Merge.__init__(self, config, logger)
         place = "STIF"
-        self.def_class_missing_official(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
+        self.def_class_missing_official(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', place))
-        self.def_class_possible_merge(item = 8041, id = 3+10*clas, level = 3, tags = ['merge', 'railway', 'public transport'],
+        self.def_class_possible_merge(item = 8041, id = 3+10*clas, level = 3, tags = ['merge', 'railway', 'public transport', 'fix:chair'],
             title = T_('{0} stop, integration suggestion', place))
 
         self.init(

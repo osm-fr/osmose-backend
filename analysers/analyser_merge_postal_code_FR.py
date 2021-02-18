@@ -27,9 +27,9 @@ from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Confl
 class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_osm(item = 7160, id = 2, level = 3, tags = ['merge', 'post'],
+        self.def_class_missing_osm(item = 7160, id = 2, level = 3, tags = ['merge', 'post', 'fix:chair'],
             title = T_('admin_level 8 without tag "postal_code"'))
-        self.def_class_possible_merge(item = 8221, id = 3, level = 3, tags = ['merge', 'post'],
+        self.def_class_possible_merge(item = 8221, id = 3, level = 3, tags = ['merge', 'post', 'fix:chair'],
             title = T_('Postal code, integration suggestion'))
 
         self.init(

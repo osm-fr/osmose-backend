@@ -26,7 +26,7 @@ from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Confl
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8130, id = 751, level = 3, tags = ['merge', 'parking'],
+        self.def_class_missing_official(item = 8130, id = 751, level = 3, tags = ['merge', 'parking', 'fix:imagery', 'fix:survey'],
             title = T_('P+R parking in Île-de-France not integrated'))
 
         self.init(

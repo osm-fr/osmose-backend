@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Confl
 class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8320, id = 3, level = 3, tags = ['merge', 'maxweight'],
+        self.def_class_missing_official(item = 8320, id = 3, level = 3, tags = ['merge', 'maxweight', 'fix:survey', 'fix:picture'],
             title = T_('maxweight Restriction not integrated'))
 
         self.init(

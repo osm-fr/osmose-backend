@@ -43,7 +43,7 @@ class Analyser_Merge_Street_Objects(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, object, selectTags, generateTags, mapping, source, layer):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
-        self.def_class_missing_official(item = 8360, id = classs, level = level, tags = ['merge', 'leisure'],
+        self.def_class_missing_official(item = 8360, id = classs, level = level, tags = ['merge', 'leisure', 'fix:survey', 'fix:picture'],
             title = T_('Unmapped {0}', T_(title)),
             detail = T_('Street object ({1}) detected by Mapillary, but no nearby "{0}" tagging.',
                 ', '.join(map(lambda kv: '{0}={1}'.format(kv[0], kv[1] if kv[1] else '*'), generateTags.items())), T_(title)),

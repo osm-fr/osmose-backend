@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate,
 class Analyser_Merge_Police_FR_pn(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8190, id = 10, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8190, id = 10, level = 3, tags = ['merge', 'amenity', 'fix:survey', 'fix:picture'],
             title = T_('Police not integrated'))
 
         self.init(

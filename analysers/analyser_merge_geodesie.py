@@ -37,10 +37,10 @@ in relation.'''))
 class Analyser_Merge_Geodesie(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8070, id = 1, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8070, id = 1, level = 3, tags = ['merge', 'infrastructure', 'fix:survey', 'fix:picture'],
             title = T_('Missing survey point'),
             **doc)
-        self.def_class_moved_official(item = 8070, id = 3, level = 3, tags = ['merge'],
+        self.def_class_moved_official(item = 8070, id = 3, level = 3, tags = ['merge', 'infrastructure', 'fix:survey', 'fix:picture'],
             title = T_('Moved survey point'),
             **doc)
 

@@ -28,13 +28,13 @@ from modules import italian_strings
 class Analyser_Merge_Pharmacy_IT(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8210, id = 11, level = 3, tags = ['merge', 'highway'],
+        self.def_class_missing_official(item = 8210, id = 11, level = 3, tags = ['merge', 'amenity', 'fix:picture', 'fix:survey'],
             title = T_('Pharmacy not integrated'))
-        self.def_class_missing_osm(item = 7150, id = 12, level = 3, tags = ['merge', 'highway'],
+        self.def_class_missing_osm(item = 7150, id = 12, level = 3, tags = ['merge', 'amenity', 'fix:chair'],
             title = T_('Pharmacy without tag `ref:msal` or invalid'))
-        self.def_class_possible_merge(item = 8211, id = 13, level = 3, tags = ['merge', 'highway'],
+        self.def_class_possible_merge(item = 8211, id = 13, level = 3, tags = ['merge', 'amenity', 'fix:chair'],
             title = T_('Pharmacy integration suggestion'))
-        self.def_class_update_official(item = 8212, id = 14, level = 3, tags = ['merge', 'highway'],
+        self.def_class_update_official(item = 8212, id = 14, level = 3, tags = ['merge', 'amenity', 'fix:chair', 'fix:survey'],
             title = T_('Pharmacy update'))
 
         self.init(

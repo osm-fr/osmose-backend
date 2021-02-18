@@ -27,7 +27,7 @@ from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Confl
 class Analyser_merge_defibrillators_FR_cugnaux(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8370, id = 110, level = 3, tags = ['merge'],
+        self.def_class_missing_official(item = 8370, id = 110, level = 3, tags = ['merge', "emergency", "fix:picture", "fix:survey"],
             title = T_('Defibrillator not integrated'))
 
         self.init(

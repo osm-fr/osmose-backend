@@ -42,7 +42,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, missing_official, missing_osm, classs, level, title, trancheEffectifs, selectTags, generateTags):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger)
         classss = int(classs.replace('.', '0')[:-1]) * 100 + ord(classs[-1]) - 65
-        self.def_class_missing_official(item = missing_official, id = classss+1, level = level, tags = ['merge'],
+        self.def_class_missing_official(item = missing_official, id = classss+1, level = level, tags = ['merge', 'fix:survey', 'fix:picture'],
             title = T_('{0} not integrated', classs + ', ' + title))
         #self.def_class_missing_osm(item = missing_osm, id = classss+2, level = level, tags = ['merge'],
         #    title = T_('{0} without tag "{1}" or invalid', title, 'ref:FR:SIRET'))

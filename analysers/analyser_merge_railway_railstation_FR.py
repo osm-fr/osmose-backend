@@ -27,11 +27,11 @@ from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8050, id = 1, level = 3, tags = ['merge', 'railway'],
+        self.def_class_missing_official(item = 8050, id = 1, level = 3, tags = ['merge', 'railway', 'fix:imagery', 'fix:survey'],
             title = T_('Railway station not integrated'))
-        self.def_class_missing_osm(item = 7100, id = 2, level = 3, tags = ['merge', 'railway'],
+        self.def_class_missing_osm(item = 7100, id = 2, level = 3, tags = ['merge', 'railway', 'fix:chair'],
             title = T_('Railway station without tag "uic_ref" or invalid'))
-        self.def_class_possible_merge(item = 8051, id = 3, level = 3, tags = ['merge', 'railway'],
+        self.def_class_possible_merge(item = 8051, id = 3, level = 3, tags = ['merge', 'railway', 'fix:chair'],
             title = T_('Railway station, integration suggestion'))
 
         self.init(

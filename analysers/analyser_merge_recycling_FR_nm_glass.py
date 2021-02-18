@@ -27,11 +27,11 @@ from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, C
 class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8120, id = 21, level = 3, tags = ['merge', 'recycling'],
+        self.def_class_missing_official(item = 8120, id = 21, level = 3, tags = ['merge', 'recycling', 'fix:survey', 'fix:picture'],
             title = T_('{0} glass recycling not integrated', 'NM'))
-        self.def_class_possible_merge(item = 8121, id = 23, level = 3, tags = ['merge', 'recycling'],
+        self.def_class_possible_merge(item = 8121, id = 23, level = 3, tags = ['merge', 'recycling', 'fix:chair'],
             title = T_('{0} glass recycling, integration suggestion', 'NM'))
-        self.def_class_update_official(item = 8122, id = 24, level = 3, tags = ['merge', 'recycling'],
+        self.def_class_update_official(item = 8122, id = 24, level = 3, tags = ['merge', 'recycling', 'fix:chair'],
             title = T_('{0} glass recycling update', 'NM'))
 
         self.init(
