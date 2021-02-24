@@ -252,7 +252,7 @@ The `mapping` can be just the value of an record attribute or a computed one fro
     }
 ```
 
-There is two sets of static tags (`static1`, `static2`) and two of mapping tags (`mapping1`, `mapping2`). First level tags (`static1` and `mapping1`) are used in a different way later in configuration than second level tags (`static2` and `mapping2`).
+There is two sets of static tags (`static1`, `static2`) and two of mapping tags (`mapping1`, `mapping2`). First level tags (`static1` and `mapping1`) are used in a different way later in configuration than second level tags (`static2` and `mapping2`). Only first level tags are used to trigger an update suggestion, so it should be used mainly for most important tags to follow. Second level tags may contain metadata tags (source) or textual information that might be of better quality in OSM (description, names when they are not standardized in open data...).
 
 When a tag value is `None` the key is excluded from the tag set.
 
