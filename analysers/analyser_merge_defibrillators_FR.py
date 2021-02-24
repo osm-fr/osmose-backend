@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
 import unidecode
 import re
 from modules import reaccentue
@@ -60,37 +60,46 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
         self.def_class_missing_official(item = 8370, id = 120, level = 3, tags = ["merge", "emergency", "fix:picture", "fix:survey"],
             title = T_("Defibrillator not integrated"),
             trap = T_("Location of defibrillators from this dataset can be very approximative. Check carefully the position before adding to OSM."))
+        self.def_class_possible_merge(item = 8371, id = 13, level = 3, tags = ['merge', 'emergency', 'fix:chair', 'fix:picture'],
+            title = T_('Defibrillator integration suggestion'),
+            trap = T_("Location of defibrillators from this dataset can be very approximative. Check carefully the position before adding to OSM."))
+        self.def_class_update_official(item = 8372, id = 14, level = 3, tags = ['merge', 'emergency', 'fix:picture', 'fix:survey'],
+            title = T_('Defibrillator update'))
 
         self.init(
             "https://geo.data.gouv.fr/fr/datasets/a701db3964e8fd81823c92afc029f138ffa207b3",
             "Défibrillateurs de la base nationale GeoDAE",
-            CSV(Source(
+            GeoJSON(Source(
                 attribution="Direction Générale de la Santé",
-                fileUrl="https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=CSV&projection=WGS84",
+                fileUrl="https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=GeoJSON&projection=WGS84",
                 millesime=None,
             )),
-            Load("c_long_coor1", "c_lat_coor1",
+            Load("geom_x", "geom_y",
                  select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "f"}),
             Conflate(
                 select = Select(
                     types = ["nodes"],
                     tags = {"emergency": "defibrillator"}),
+                osmRef = "ref:FR:GeoDAE",
                 conflationDistance = 100,
                 mapping = Mapping(
                     static1 = {"emergency": "defibrillator"},
                     mapping1 = {
-                        "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
+                        "ref:FR:GeoDAE": "c_gid",
                         "indoor": lambda res: "yes" if res["c_acc"] == "Intérieur" else "no" if res["c_acc"] == "Extérieur" else None,
                         "access": lambda res: "yes" if res["c_acc_lib"] == "t" else "permissive" if res["c_acc_lib"] == "f" else None,
-                        "security_desk": lambda res: "yes" if res["c_acc_pcsec"] == "t" else "no" if res["c_acc_pcsec"] == "f" else None,
-                        "reception_desk": lambda res: "yes" if res["c_acc_acc"] == "t" else "no" if res["c_acc_acc"] == "f" else None,
                         "level": lambda res: self.normalizeEtage(res["c_acc_etg"]),
-                        "defibrillator:location": lambda res: res["c_acc_complt"] if "c_acc_complt" in res else reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
-                        "opening_hours": lambda res: self.normalizeHours(res["c_disp_j"], res["c_disp_h"]),
-                        "start_date": "c_date_instal|timePosition",
-                        "operator:ref:FR:SIREN": lambda res: res["c_expt_siren"] if "c_expt_siren" in res else None,
+                        "opening_hours": lambda res: self.normalizeHours(res["c_disp_j"], res["c_disp_h"])
+                    },
+                    mapping2 = {
+                        "name": lambda res: reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] and res["c_acc_complt"] else None,
                         "operator": lambda res: reaccentue.reaccentue(res["c_expt_rais"]) if "c_expt_rais" in res else None,
                         "source": lambda res: ("Direction Générale de la Santé - " + res["c__edit_datemaj|timePosition"].split("T")[0]),
+                        "defibrillator:location": lambda res: res["c_acc_complt"] if "c_acc_complt" in res else reaccentue.reaccentue(res["c_nom"]) if res["c_nom"] else None,
+                        "start_date": "c_date_instal|timePosition",
+                        "security_desk": lambda res: "yes" if res["c_acc_pcsec"] == "t" else "no" if res["c_acc_pcsec"] == "f" else None,
+                        "reception_desk": lambda res: "yes" if res["c_acc_acc"] == "t" else "no" if res["c_acc_acc"] == "f" else None,
+                        "operator:ref:FR:SIREN": lambda res: res["c_expt_siren"] if "c_expt_siren" in res else None
                     },
                     text = lambda tags, fields: {"en": " - ".join(filter(lambda x: x, [
                         "POSITION APPROXIMATIVE À VÉRIFIER" if fields["c_etat_valid"] == "en attente de validation" else None,
