@@ -211,7 +211,8 @@ def execc(conf, logger, analysers, options, osmosis_manager):
         logger.log(logger.log_av_r + conf.country + " : " + analyser + logger.log_ap)
 
         password = conf.analyser.get(analyser)
-        if not password or password == "xxx":
+
+        if not options.skip_upload and (not password or password == "xxx"):
             logger.sub().err("No password to upload result to %s" % conf.updt_url)
 
         try:
