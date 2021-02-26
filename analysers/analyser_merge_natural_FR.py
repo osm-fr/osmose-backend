@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import SourceIGN, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
@@ -275,7 +275,7 @@ class SubAnalyser_Merge_Orography_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://ign.fr",
             "IGN-Détail orographique",
-            GPKG(Source(attribution = "IGN", millesime = "12/2020", gzip = True,
+            GPKG(SourceIGN(attribution = "IGN", gzip = True,
                     fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/detail_orographique.gpkg.gz")),
             LoadGeomCentroid(
                 select = select),
