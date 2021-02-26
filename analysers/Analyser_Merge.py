@@ -487,6 +487,12 @@ class SourceHttpLastModified(Source):
             downloader.HTTP_DATE_FMT,
         )
 
+class SourceIGN(Source):
+    """Get millesime from IGN BDTOPO MetaData"""
+    def get_millesime(self) -> datetime.datetime:
+        response = downloader.get("https://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/meta.json")
+        response.raise_for_status()
+        return datetime.datetime.fromisoformat(response.json()["millesime"])
 
 class Parser:
     def header(self):
@@ -1154,7 +1160,7 @@ OpenData and OSM.'''))
             typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
             typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
             typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
-        self.logger.log(u"Retrive OSM item")
+        self.logger.log(u"Retrieve OSM item")
         where = Select.where_tags(self.conflate.select.tags)
         self.run("CREATE TEMP TABLE osm_item AS " +
             ("UNION ALL".join(
