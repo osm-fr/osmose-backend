@@ -113,7 +113,11 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.classs[4] = self.def_class(item = 1210, level = 1, tags = ['highway'],
             title = T_('Small highway group apart from the main network or with insufficient access upstream'),
             detail = T_(
-'''The end of the way is not connected to another way.'''))
+'''The end of the way is not connected to another way.'''),
+            fix = T_(
+'''The way or the group of the ways must be connected to an entry point:
+* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` or `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,
+* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`.'''))
         self.callback10 = lambda res: {"class":4, "subclass":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
