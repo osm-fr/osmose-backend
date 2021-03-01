@@ -64,10 +64,10 @@ If not, see if you can improve the [name-suggestion-index project](https://githu
 
     def _parse_category_from_nsi(self, nsi, nsiprefix, key):
         additional_presets = {}
-        for tag, presets in nsi.items():
-            if tag.startswith(nsiprefix):
+        for tag, details in nsi.items():
+            if tag.startswith(nsiprefix) and "items" in details:
                 nsi_name = tag[len(nsiprefix):]
-                for preset in presets:
+                for preset in details["items"]:
                     if "locationSet" in preset:
                         if ("include" in preset["locationSet"] and
                                 self.country_code not in preset["locationSet"]["include"] and
