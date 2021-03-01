@@ -40,13 +40,15 @@ SELECT
     coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:neighbourhood', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS name
 FROM
     ways
-    LEFT JOIN relation_members ON
-        ways.id = relation_members.member_id AND
-        relation_members.member_type = 'W'
-    LEFT JOIN relations ON
-        relation_members.relation_id = relations.id AND
-        relations.tags?'type' AND
-        relations.tags->'type' IN ('associatedStreet', 'street')
+    LEFT JOIN (
+        relation_members
+        INNER JOIN relations ON
+            relation_members.relation_id = relations.id AND
+            relations.tags?'type' AND
+            relations.tags->'type' IN ('associatedStreet', 'street'))
+    ON
+            ways.id = relation_members.member_id AND
+            relation_members.member_type = 'W'
 WHERE
     ways.tags != ''::hstore AND
     ways.tags ?| ARRAY['addr:housenumber', 'addr:housename']
@@ -69,13 +71,15 @@ SELECT
     coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:neighbourhood', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS name
 FROM
     nodes
-    LEFT JOIN relation_members ON
-        nodes.id = relation_members.member_id AND
-        relation_members.member_type = 'N'
-    LEFT JOIN relations ON
-        relation_members.relation_id = relations.id AND
-        relations.tags?'type' AND
-        relations.tags->'type' IN ('associatedStreet', 'street')
+    LEFT JOIN (
+        relation_members 
+        INNER JOIN relations ON
+            relation_members.relation_id = relations.id AND
+            relations.tags?'type' AND
+            relations.tags->'type' IN ('associatedStreet', 'street'))
+    ON
+            nodes.id = relation_members.member_id AND
+            relation_members.member_type = 'N'
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename']
