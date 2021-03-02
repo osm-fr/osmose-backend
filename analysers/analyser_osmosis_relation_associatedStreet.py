@@ -72,7 +72,7 @@ SELECT
 FROM
     nodes
     LEFT JOIN (
-        relation_members 
+        relation_members
         INNER JOIN relations ON
             relation_members.relation_id = relations.id AND
             relations.tags?'type' AND
