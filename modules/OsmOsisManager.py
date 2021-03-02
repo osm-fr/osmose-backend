@@ -424,10 +424,9 @@ class OsmOsisManager:
           cmd += ["--force-update-of-old-planet"]
           cmd += [pbf_file]
           # pyosmium-up-to-date returns:
-          #   - 0 on full update
+          #   - 0 on full update, or if pbf is already up-to-date
           #   - 1 on partial update
-          #   - 3 when no update to be done - TODO: to be removed with pyosmium 3.1.3
-          ret = self.logger.execute_err(cmd, valid_return_code=(0, 1, 3))
+          ret = self.logger.execute_err(cmd, valid_return_code=(0, 1))
 
           if ret == 0 or ret == 1:
             shutil.move(tmp_pbf_file, pbf_file)
