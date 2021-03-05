@@ -149,8 +149,8 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
 '''There is one `waterway=riverbank` but there is no `waterway=river`
 inside it.'''),
             fix = T_(
-'''After checking, create a "river" line inside te "riverbank"
-polygon.'''))
+'''After checking, create a "river" line inside the "riverbank"
+polygon or eliminate "riverbank" polygon.'''))
         self.classs_change[2] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
             title = T_('Unconnected waterway or wrong way flow'),
             detail = T_(
