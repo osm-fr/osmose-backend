@@ -59,7 +59,9 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                     static1 = {"amenity": "post_office"},
                     static2 = {
                         "source": self.source,
-                        "brand": "La Poste"},
+                        "brand": "La Poste",
+                        # "brand:wikidata": "Q373724", # non consensuel
+                        "brand:wikipedia": "fr:La Poste (entreprise française)"},
                     mapping1 = {
                         "ref:FR:LaPoste": "#Identifiant_du_site",
                         "post_office:type": lambda res:
@@ -80,6 +82,14 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                             None if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
                             None if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
                             "La Poste", # BP: Bureau de poste; other
+                        # "operator:wikidata": lambda res: # non consensuel
+                        #    None if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
+                        #    None if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
+                        #    "Q373724", # BP: Bureau de poste; other
+                        "operator:wikipedia": lambda res:
+                            None if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
+                            None if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
+                            "fr:La Poste (entreprise française)", # BP: Bureau de poste; other
                         "name": lambda res: re.sub(self.APBP, "", res["Libellé_du_site"]),
                         "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "phone": lambda res: ("+33" + res["Numéro_de_téléphone"][1:]) if res["Numéro_de_téléphone"] != "3631" else None},
