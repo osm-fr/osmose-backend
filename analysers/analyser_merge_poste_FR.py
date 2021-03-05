@@ -60,7 +60,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                     static2 = {
                         "source": self.source,
                         "brand": "La Poste",
-                        # "brand:wikidata": "Q373724", # non consensuel
+                        # "brand:wikidata": "Q373724", # non-consensual
                         "brand:wikipedia": "fr:La Poste (entreprise française)"},
                     mapping1 = {
                         "ref:FR:LaPoste": "#Identifiant_du_site",
