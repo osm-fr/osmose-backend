@@ -58,7 +58,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
             CSV(Source_Fuel(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
                     fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv')),
             Load('Longitudine', 'Latitudine',
-                where = lambda row: row['Bandiera'] != 'Pompe Bianche' and row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
+                where = lambda row: row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
             Conflate(
                 select = Select(
                     types = ['nodes', 'ways'],
@@ -71,7 +71,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     mapping1 = {
                         'ref:mise': 'idImpianto',
                         'operator': lambda res: italian_strings.normalize_common(res['Gestore']),
-                        'brand': 'Bandiera',
+                        'brand': lambda res: res['Bandiera'] if res['Bandiera'] != 'Pompe Bianche' else Mapping.delete_tag,
                         'fuel:octane_95': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_95) != 0 else Mapping.delete_tag,
                         'fuel:octane_98': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_98) != 0 else Mapping.delete_tag,
                         'fuel:octane_100': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_100) != 0 else Mapping.delete_tag,
