@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2016                                      ##
+## Copyrights Frédéric Rodrigo 2016, Noémie Lehuby 2021                  ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -118,7 +118,8 @@ SELECT DISTINCT ON (relations.id, ways.id)
   relations.id,
   relation_members.member_type,
   ways.id AS mid,
-  relation_members.member_role as mrole,
+  relation_members.member_role AS mrole,
+  relation_members.sequence_id AS morder,
   ST_Transform(ways.linestring, {0}) AS geom
 FROM
   relations
@@ -140,7 +141,8 @@ SELECT DISTINCT ON (relations.id, nodes.id)
   relations.id,
   relation_members.member_type,
   nodes.id AS mid,
-  relation_members.member_role as mrole,
+  relation_members.member_role AS mrole,
+  relation_members.sequence_id AS morder,
   ST_Transform(nodes.geom, {0}) AS geom
 FROM
   relations
@@ -366,6 +368,133 @@ WHERE
     w_bs.id IS NULL
 """
 
+sql100 = """
+CREATE OR REPLACE FUNCTION generate_linestring_geom(route_id bigint) RETURNS geometry(MultiLineString, 4326) LANGUAGE PLPGSQL AS $$
+declare
+   f record;
+   full_way geometry(LineString, 4326);
+   last_roundabout geometry(LineString, 4326);
+begin
+    for f in
+        select ways.id, ways.linestring AS geom from relation_members
+        join relations on
+            relations.id = relation_members.relation_id
+          JOIN ways ON
+            ways.id = relation_members.member_id
+        WHERE
+          relations.tags->'type' = 'route' AND
+          relation_members.member_type = 'W' AND
+          relation_members.member_role NOT IN ('stop', 'stop_exit_only', 'stop_entry_only', 'platform', 'platform_exit_only', 'platform_entry_only') AND
+          relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
+          (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand') AND
+          ST_NPoints(linestring) >= 2
+          and relations.id = route_id
+        order by relation_members.sequence_id
+    loop
+      case
+           when full_way is null then
+                full_way := f.geom;
+           when st_endpoint(f.geom) = st_startpoint(f.geom) then
+                last_roundabout := f.geom;
+           when last_roundabout is not null then
+                case
+                    when ST_Intersects(last_roundabout,st_startpoint(f.geom))  then
+                        full_way:= ST_MakeLine(full_way,f.geom);
+                    when ST_Intersects(last_roundabout,st_endpoint(f.geom)) then
+                        full_way:= ST_MakeLine(full_way,ST_Reverse(f.geom));
+                    else
+                        return null;
+                end case;
+                last_roundabout = NULL;
+           when st_endpoint(full_way) = st_startpoint(f.geom) then
+                 full_way:= ST_MakeLine(full_way,f.geom);
+           when st_endpoint(full_way) = st_endpoint(f.geom) then
+                 full_way:= ST_MakeLine(full_way,ST_Reverse(f.geom));
+           when st_startpoint(full_way) = st_endpoint(f.geom) then
+                 full_way:= ST_MakeLine(ST_Reverse(full_way),ST_Reverse(f.geom));
+           when st_startpoint(full_way) = st_startpoint(f.geom) then
+                 full_way:= ST_MakeLine(ST_Reverse(full_way),f.geom);
+           else
+                raise notice 'kapout';
+                RAISE NOTICE 'full linestring: %', st_astext(st_makeline(full_way));
+                return null;
+      end case;
+    end loop;
+   return full_way;
+end;
+$$;
+"""
+
+sql101 = """
+CREATE TEMP TABLE route_linestring AS
+SELECT id,
+       ST_Transform(generate_linestring_geom(id), {0}) AS geom
+FROM relations
+WHERE relations.tags->'type' = 'route'
+  AND relations.tags->'route' IN ('train',
+                             'subway',
+                             'monorail',
+                             'tram',
+                             'bus',
+                             'trolleybus',
+                             'aerialway',
+                             'ferry',
+                             'coach',
+                             'funicular',
+                             'share_taxi',
+                             'light_rail',
+                             'school_bus')
+  AND (NOT relations.tags?(relations.tags->'route')
+       OR relations.tags->(relations.tags->'route') != 'on_demand')
+"""
+
+sql101b = """
+CREATE INDEX route_linestring_idx ON route_linestring USING gist(geom)
+"""
+
+sql102 = """
+CREATE TEMP TABLE platform_that_can_project AS
+(
+SELECT route_linestring.id AS route_id,
+       stop_platform.member_type || stop_platform.mid AS stop_id,
+       stop_platform.geom AS stop,
+       ROW_NUMBER () OVER (PARTITION BY route_linestring.id
+                     ORDER BY stop_platform.morder) AS stop_order,
+       ROW_NUMBER () OVER (PARTITION BY route_linestring.id
+                     ORDER BY ST_LineLocatePoint(route_linestring.geom, stop_platform.geom)) AS projected_stop_order
+FROM stop_platform
+JOIN route_linestring ON route_linestring.id = stop_platform.id
+WHERE stop_platform.mrole in ('platform',
+                              'platform_exit_only',
+                              'platform_entry_only')
+  AND stop_platform.member_type='N'
+  AND ST_LineLocatePoint(route_linestring.geom, ST_ClosestPoint(route_linestring.geom, stop_platform.geom)) <> 1
+)
+"""
+
+sql102b = """
+CREATE INDEX platform_that_can_project_idx ON platform_that_can_project USING gist(stop)
+"""
+
+sql103 = """
+SELECT DISTINCT ON (route_id)
+  platform_that_can_project.route_id,
+  ST_AsText(ST_Transform(platform_that_can_project.stop,4326)) AS geom
+FROM platform_that_can_project
+WHERE stop_order <> projected_stop_order
+"""
+
+sql110 = """
+SELECT 
+  platform_that_can_project.route_id, 
+  platform_that_can_project.stop_id, 
+  ST_AsText(ST_Transform(platform_that_can_project.stop, 4326))
+FROM platform_that_can_project
+JOIN route_linestring ON route_linestring.id = platform_that_can_project.route_id    
+WHERE ST_DWithin(route_linestring.geom, platform_that_can_project.stop, 50) AND
+  NOT ST_Intersects(ST_Buffer(route_linestring.geom,50,'side=right'), platform_that_can_project.stop)
+"""
+
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
     requires_tables_common = ['highways']
 
@@ -393,6 +522,10 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.classs[10] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
             title = T_('Stop position without platform nor bus stop'),
             fix = T_('A bus `public_transport=stop_position` without close `public_transport=platform` nor `highway=bus_stop`.'))
+        self.classs[11] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('The stops may not be in the right order'))
+        self.classs[12] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
+            title = T_('The platform is not on the right side of the road'))
 
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.any_full, self.positionAsText]}
@@ -406,6 +539,8 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.callback80 = lambda res: {"class":8, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback90 = lambda res: {"class":9, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callbackA0 = lambda res: {"class":10, "data":[self.node_full, self.positionAsText]}
+        self.callback100 = lambda res: {"class":11, "data":[self.relation_full, self.positionAsText]}
+        self.callback110 = lambda res: {"class":12, "data":[self.relation_full, self.any_full, self.positionAsText]}
 
 
     def analyser_osmosis_common(self):
@@ -423,4 +558,10 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql70, self.callback70)
         self.run(sql80, self.callback80)
         self.run(sql90, self.callback90)
-        self.run(sqlA0.format(self.config.options.get("proj")), self.callbackA0)
+        self.run(sql100)
+        self.run(sql101.format(self.config.options.get("proj")))
+        self.run(sql101b)
+        self.run(sql102)
+        self.run(sql102b)
+        self.run(sql103, self.callback100)
+        self.run(sql110, self.callback110)
