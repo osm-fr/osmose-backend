@@ -144,15 +144,24 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
         #  7093 Point de vue
         dict(
             #   3971
-            #   2303 Table d'orientation
             #    590 Belvédère
             item = 8450,
             id = 10500,
             level = 3,
             title = T_('Viewpoint not integrated'),
-            select = {'nature': 'Point de vue', 'nature_detaillee': [None, 'Table d\'orientation', 'Belvédère']},
+            select = {'nature': 'Point de vue', 'nature_detaillee': [None, 'Belvédère']},
             tags = {'tourism': 'viewpoint'},
         ),
+        dict(
+            #   2303 Table d'orientation
+            item = 8450,
+            id = 10501,
+            level = 3,
+            title = T_('Toposcope not integrated'),
+            select = {'nature': 'Point de vue', 'nature_detaillee': 'Table d\'orientation'},
+            tags = {'tourism': 'viewpoint', 'information': 'map', 'map_type': 'toposcope'},
+        ),
+        dict(
             #    229 Observatoire ornithologique
         #  6683 Stade
         #  6590 Caserne de pompiers
