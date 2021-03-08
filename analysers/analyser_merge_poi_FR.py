@@ -161,7 +161,6 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             select = {'nature': 'Point de vue', 'nature_detaillee': 'Table d\'orientation'},
             tags = {'tourism': 'viewpoint', 'information': 'map', 'map_type': 'toposcope'},
         ),
-        dict(
             #    229 Observatoire ornithologique
         #  6683 Stade
         #  6590 Caserne de pompiers
