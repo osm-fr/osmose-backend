@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
@@ -31,19 +31,15 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
             title = T_('Crossing level not integrated'))
 
         self.init(
-            "https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
+            "https://data.sncf.com/explore/dataset/liste-des-passages-a-niveau",
             "Passages à niveau",
-            CSV(
-                SourceDataGouv(
-                    attribution="data.gouv.fr:RFF",
-                    dataset="53699bd5a3a729239d205825",
-                    resource="77cd3505-76ef-41ba-aace-82b4df3a376c",
-                    encoding="ISO-8859-15"),
-                separator = ";"),
-            Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)",
-                xFunction = Load.float_comma,
-                yFunction = Load.float_comma,
-                where = lambda res: res["TYPE"] != 'PN de classe 00'),
+            GeoJSON(
+                SourceOpenDataSoft(
+                    attribution="SNCF Réseau",
+                    url="https://data.sncf.com/explore/dataset/liste-des-passages-a-niveau",
+                    format="geojson")),
+            Load("geom_x", "geom_y",
+                where = lambda res: res["mnemo"] != "CLASSE 00"),
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -51,27 +47,35 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                 conflationDistance = 150,
                 mapping = Mapping(
                     static2 = {"source": self.source},
-                    mapping1 = {"railway": lambda res: self.type[res["TYPE"]]} )))
+                    mapping1 = {"railway": lambda res: self.type[res["mnemo"]]},
+                    mapping2 = {"ref": lambda res: self.ref(res["libelle"])} )))
+
+    def ref(self, libelle):
+        if libelle.startswith("PN"):
+            libelle = libelle[2:]
+        libelle = libelle.strip()
+        return libelle
 
     type = {
-        "PN de classe 00": None,
-        "PN privé isolé pour piétons avec portillons": "crossing",
-        "PN privé isolé pour piétons sans portillons": "crossing",
-        "PN privé pour voitures avec barrières avec passage piétons accolé privé": "level_crossing",
-        "PN privé pour voitures avec barrières avec passage piétons accolé public": "level_crossing",
-        "PN privé pour voitures avec barrières sans passage piétons accolé": "level_crossing",
-        "PN privé pour voitures sans barrières": "level_crossing",
-        "PN public isolé pour piétons avec portillons": "crossing",
-        "PN public isolé pour piétons sans portillons": "crossing",
-        "PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à distance": "level_crossing",
-        "PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
-        "PN public pour voitures avec barrières gardé sans passage piétons accolé à pied d'oeuvre et distance": "level_crossing",
-        "PN public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à distance": "level_crossing",
-        "PN public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
-        "PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 et SAL 2B": "level_crossing",
-        "PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 + ilôt séparateur": "level_crossing",
-        "PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 4": "level_crossing",
-        "PN public pour voitures sans barrières avec SAL 0": "level_crossing",
-        "PN public pour voitures sans barrières protection assurée par un agent": "level_crossing",
-        "PN public pour voitures sans barrières sans SAL": "level_crossing",
+        "CLASSE 00": None, # secondaire
+        "CLASSE 46": "crossing", # privé isolé pour piétons avec portillons
+        "CLASSE 45": "crossing", # privé isolé pour piétons sans portillons
+        "CLASSE 44": "level_crossing", # privé pour voitures avec barrières avec passage piétons accolé privé
+        "CLASSE 43": "level_crossing", # privé pour voitures avec barrières avec passage piétons accolé public
+        "CLASSE 42": "level_crossing", # privé pour voitures avec barrières sans passage piétons accolé
+        "CLASSE 41": "level_crossing", # privé pour voitures sans barrières
+        "CLASSE 32": "crossing", # public isolé pour piétons avec portillons
+        "CLASSE 31": "crossing", # public isolé pour piétons sans portillons
+        "CLASSE 16": "level_crossing", # public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à pied d'oeuvre distance
+        "CLASSE 15": "level_crossing", # public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à distance
+        "CLASSE 14": "level_crossing", # public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à pied d'oeuvre
+        "CLASSE 13": "level_crossing", # public pour voitures avec barrières gardé sans passage piétons accolé à pied d'oeuvre et distance
+        "CLASSE 12": "level_crossing", # public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à distance
+        "CLASSE 11": "level_crossing", # public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à pied d'oeuvre
+        "CLASSE 17": "level_crossing", # public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 et SAL 2B
+        "CLASSE 18": "level_crossing", # public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 + ilôt séparateur
+        "CLASSE 19": "level_crossing", # public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 4
+        "CLASSE 21": "level_crossing", # public pour voitures sans barrières avec SAL 0
+        "CLASSE 10": "level_crossing", # public pour voitures sans barrières protection assurée par un agent
+        "CLASSE 20": "level_crossing", # public pour voitures sans barrières sans SAL
     }
