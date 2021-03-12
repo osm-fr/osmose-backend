@@ -50,7 +50,7 @@ class TagFix_Deprecated(Plugin):
         # Tag template can take one or two params, with trailing | possible
         data = re.sub(
             r'{{(?:Tag|Key)\s?\|(.+?)\|?\s?}}',
-            lambda x: '`{}`'.format(x.group(1).replace("|", "=")),
+            lambda x: '`{}`'.format(x.group(1).replace("||", "=").replace("|", "=")),
             data,
             flags=re.I
         )
