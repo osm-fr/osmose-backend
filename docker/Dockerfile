@@ -9,6 +9,7 @@ RUN apt-get update && \
         flex \
         g++ \
         gcc \
+        gdal-bin \
         git \
         libarchive-dev \
         libboost-python-dev \

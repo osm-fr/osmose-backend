@@ -80,7 +80,7 @@ class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
                     static1 = {"emergency": "fire_hydrant"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        osmRef: "ID_SDIS",
+                        osmRef: "id_sdis",
                         "water_source": extract_water_source,
                         "fire_hydrant:type": lambda res: "pillar" if res.get('TYPE_PEI') == 'PI' else None,
                         "fire_hydrant:diameter": clean_numerical_tag("DIAM_PEI"),

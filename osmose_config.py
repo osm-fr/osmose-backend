@@ -262,8 +262,6 @@ france_departement = gen_country('europe', 'france', download_repo=OSMFR, langua
     'osmosis_highway_zone',
     'merge_milestone_FR_metropole',
     'merge_shop_FR',
-    'merge_defibrillators_FR',
-    'merge_defibrillators_FR_aedmap',
 ], **{'addr:city-admin_level': '8,9'})
 
 france_departement("alsace/bas_rhin", 7415, "FR-67", include=[
@@ -582,6 +580,8 @@ france_local_db.analyser["merge_man_made_FR"] = "xxx"
 france_local_db.analyser["merge_poi_FR"] = "xxx"
 france_local_db.analyser["merge_reservoir_FR"] = "xxx"
 france_local_db.analyser["merge_water_FR"] = "xxx"
+france_local_db.analyser["merge_defibrillators_FR"] = "xxx"
+france_local_db.analyser["merge_defibrillators_FR_aedmap"] = "xxx"
 
 #########################################################################
 
@@ -1168,7 +1168,7 @@ default_country("central-america", "united_kingdom_montserrat", 537257, {"countr
 default_country("central-america", "united_kingdom_turks_and_caicos_islands", 547479, {"country": "TC", "language": "en", "driving_side": "left", "proj": 32619}, download_repo=OSMFR, download_country="turks_and_caicos_islands")
 default_country("central-america", "united_kingdom_virgin_islands", 285454, {"country": "VG", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="british_virgin_islands")
 default_country("central-america", "usa_puerto_rico", 4422604, {"country": "PR", "language": ["es", "en"], "proj": 32619, "boundary_detail_level": 6}, download_repo=OSMFR, download_country="puerto_rico")
-default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI", "language": "en", "proj": 4437}, download_repo=OSMFR, download_country="usa_virgin_islands")
+default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI", "language": "en", "driving_side": "left", "proj": 4437}, download_repo=OSMFR, download_country="usa_virgin_islands")
 
 
 #########################################################################
