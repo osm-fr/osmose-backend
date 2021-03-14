@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-02-14 19:31+0000\n"
+"PO-Revision-Date: 2021-03-12 19:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -2521,12 +2521,6 @@ msgid ""
 "inside it."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:152
-msgid ""
-"After checking, create a \"river\" line inside te \"riverbank\"\n"
-"polygon."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_waterway.py:157
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
@@ -3934,6 +3928,7 @@ msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
 #: ../analysers/analyser_merge_defibrillators_FR.py:62
+#: ../analysers/analyser_merge_defibrillators_FR.py:65
 msgid ""
 "Location of defibrillators from this dataset can be very approximative. "
 "Check carefully the position before adding to OSM."
@@ -4345,11 +4340,11 @@ msgstr ""
 msgid "Pumping station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:152
+#: ../analysers/analyser_merge_poi_FR.py:151
 msgid "Viewpoint not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:163
+#: ../analysers/analyser_merge_poi_FR.py:171
 msgid "Fire station not integrated"
 msgstr ""
 
@@ -4393,19 +4388,19 @@ msgstr ""
 msgid "Mosque or Minaret not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:180
+#: ../analysers/analyser_merge_poi_FR.py:188
 msgid "Menhir not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:189
+#: ../analysers/analyser_merge_poi_FR.py:197
 msgid "Dolmen not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:198
+#: ../analysers/analyser_merge_poi_FR.py:206
 msgid "Tumulus not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_poi_FR.py:207
+#: ../analysers/analyser_merge_poi_FR.py:215
 msgid "Passage grave not integrated"
 msgstr ""
 
@@ -4472,4 +4467,46 @@ msgstr ""
 #: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:43
 #, python-brace-format
 msgid "{0} toilets update"
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:43
+msgid "Operator can be completed with operator:wikidata"
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:45
+msgid ""
+"The name of the operator on this object is generally associated with "
+"additional tags, especially operator:wikidata. All objects with the same "
+"operator should be tagged the same way."
+msgstr ""
+
+#: ../plugins/TagFix_Brand.py:47
+msgid ""
+"If this is indeed the operator in question, add `operator:wikidata`.\n"
+"If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to register common operators."
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR.py:64
+msgid "Defibrillator integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_defibrillators_FR.py:67
+msgid "Defibrillator update"
+msgstr ""
+
+#: ../analysers/analyser_merge_poi_FR.py:160
+msgid "Toposcope not integrated"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:118
+msgid ""
+"The way or the group of the ways must be connected to an entry point:\n"
+"* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` or `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
+"* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:152
+msgid ""
+"After checking, create a \"river\" line inside the \"riverbank\"\n"
+"polygon or eliminate the \"riverbank\" polygon."
 msgstr ""

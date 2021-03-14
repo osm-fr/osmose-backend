@@ -4,10 +4,11 @@
 # Jo <winfixit@gmail.com>, 2018
 # ali zaroili <ali.zaroili@gmail.com>, 2018
 # d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2019
+# Ali z <ali.zaroili@outlook.be>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2019\n"
+"Last-Translator: Ali z <ali.zaroili@outlook.be>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/openstreetmap-france/teams/17462/nl/)\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -205,3 +206,4 @@ msgstr ""
 #: ../transport.validator.mapcss:235
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
+"Is dit een bus- of tramhalte? Voeg een tag toe met het juiste platform"
