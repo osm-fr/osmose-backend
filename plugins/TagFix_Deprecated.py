@@ -50,7 +50,7 @@ class TagFix_Deprecated(Plugin):
         # Tag template can take one or two params, with trailing | possible
         data = re.sub(
             r'{{(?:Tag|Key)\s?\|(.+?)\|?\s?}}',
-            lambda x: '`{}`'.format(x.group(1).replace("|", "=")),
+            lambda x: '`{}`'.format(x.group(1).replace("||", "=").replace("|", "=")),
             data,
             flags=re.I
         )
@@ -115,10 +115,20 @@ features](https://wiki.openstreetmap.org/wiki/Deprecated_features)''')
                     "text": T_('The tag `{0}` is deprecated in favour of {1}', k, self.Deprecated[k][None])
                 })
             elif tags[k] in self.Deprecated[k]:
+                suggestion = self.Deprecated[k][tags[k]]
+                fix = None
+                if suggestion.count("`") == 2 and "=" in suggestion and not "*" in suggestion:
+                    # limited to suggestions with only one tag=key possibility
+                    (sk, sv) = suggestion.split("`")[1].split("=")
+                    if k == sk:
+                        fix = {"~":{sk: sv}}
+                    else:
+                        fix = {"-":[k], "+":{sk: sv}}
                 err.append({
                     "class": 40102,
                     "subclass": stablehash(k),
-                    "text": T_('The tag `{0}` is deprecated in favour of {1}', "=".join([k, tags[k]]), self.Deprecated[k][tags[k]])
+                    "text": T_('The tag `{0}` is deprecated in favour of {1}', "=".join([k, tags[k]]), self.Deprecated[k][tags[k]]),
+                    "fix": fix
                 })
         return err
 
@@ -136,14 +146,27 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Deprecated(None)
         a.init(None)
-        for d in [{"amenity":"ev_charging"},
-                  {"highway":"incline_steep"},
-                  {"power_source":"pedalier"},
-                  {"highway":"ford"},
-                 ]:
-            self.check_err(a.node(None, d), d)
+        #                erroneous tag/value           proposed suggestion
+        for (d, f) in [({"amenity":"ev_charging"},   {"~": {"amenity": "charging_station"}}),
+                       ({"highway":"incline_steep"}, None),
+                       ({"power_source":"pedalier"}, None),
+                       ({"highway":"ford"},          None),
+                       ({"access":"public"},         {"~": {"access": "yes"}}),
+                       ({"noexit":"no"},             {"-": ["noexit"],  "+": {"fixme": "Continue"}}),
+                       ({"amenity":"car_repair"},    {"-": ["amenity"], "+": {"shop": "car_repair"}}),
+                       ({"amenity":"nursery"},       None), # not supported, as 2 k=v are possible
+                       ({"man_made":"water_tank"},   None), # not supported, as 2 k=v are needed
+                      ]:
+            err = a.node(None, d)
+            self.check_err(err, d)
             self.check_err(a.way(None, d, None), d)
             self.check_err(a.relation(None, d, None), d)
+            if f:
+                fix = err[0]["fix"]
+                self.assertEqual(fix, f)
+            else:
+                if "fix" in err[0]:
+                    self.assertEqual(err[0]["fix"], None)
 
         for d in [{"onway":"yes"},
                   {"waterway":"stream"},
