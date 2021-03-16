@@ -82,15 +82,15 @@ class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
                     mapping1 = {
                         osmRef: "id_sdis",
                         "water_source": extract_water_source,
-                        "fire_hydrant:type": lambda res: "pillar" if res.get('TYPE_PEI') == 'PI' else None,
-                        "fire_hydrant:diameter": clean_numerical_tag("DIAM_PEI"),
-                        "pressure": clean_numerical_tag("PRESS_STAT"),
-                        "water_volume": clean_numerical_tag("VOLUME"),
-                        "ref": clean_numerical_tag("REF_TERR"),
-                        "start_date": lambda res: parse(res.get('DATE_MES')).date() if res.get('DATE_MES') else None,
-                        "survey:date": lambda res: parse(res.get('DATE_RO')).date() if res.get('DATE_RO') else None,
-                        "operator": "NOM_GEST"},
-                text = lambda tags, fields: {"en": fields['SITUATION']} )))
+                        "fire_hydrant:type": lambda res: "pillar" if res.get('type_pei') == 'PI' else None,
+                        "fire_hydrant:diameter": clean_numerical_tag("diam_pei"),
+                        "pressure": clean_numerical_tag("press_stat"),
+                        "water_volume": clean_numerical_tag("volume"),
+                        "ref": clean_numerical_tag("ref_terr"),
+                        "start_date": lambda res: parse(res.get('date_ct')).date() if res.get('date_ct') else None,
+                        "survey:date": lambda res: parse(res.get('date_ro')).date() if res.get('date_ro') else None,
+                        "operator": "nom_gest"},
+                text = lambda tags, fields: {"en": fields['situation']} )))
 
 class Analyser_Merge_PEI_SDIS_71(_Analyser_Merge_Afigeo_Hydrants):
     def __init__(self, config, logger = None):
