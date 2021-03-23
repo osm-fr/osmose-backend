@@ -938,24 +938,25 @@ class Select:
             k_value = attribut_value.format(k)
             if v is False:
                 clauses.append(k_not_exists)
-            elif hasattr(v, '__call__'):
-                clauses.append(v(k_value))
-            elif isinstance(v, list):
-                cond = k_value + " IN ('{}')".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
-                if None in v:
-                    cond = "(" + cond + " OR " + k_not_exists + ")"
-                clauses.append(cond)
             else:
                 clauses.append("NOT " + k_not_exists)
-                if v is None or v is True:
-                    pass
-                elif isinstance(v, dict):
-                    if "like" in v:
-                        clauses.append(k_value + " LIKE '{}'".format(v["like"].replace("'", "''")))
-                    elif "regex" in v:
-                        clauses.append(k_value + " ~ '{}'".format(v["regex"].replace("'", "''")))
+                if hasattr(v, '__call__'):
+                    clauses.append(v(k_value))
+                elif isinstance(v, list):
+                    cond = k_value + " IN ('{}')".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
+                    if None in v:
+                        cond = "(" + cond + " OR " + k_not_exists + ")"
+                    clauses.append(cond)
                 else:
-                    clauses.append(k_value + " = '{}'".format(v.replace("'", "''")))
+                    if v is None or v is True:
+                        pass
+                    elif isinstance(v, dict):
+                        if "like" in v:
+                            clauses.append(k_value + " LIKE '{}'".format(v["like"].replace("'", "''")))
+                        elif "regex" in v:
+                            clauses.append(k_value + " ~ '{}'".format(v["regex"].replace("'", "''")))
+                    else:
+                        clauses.append(k_value + " = '{}'".format(v.replace("'", "''")))
         return " AND ".join(clauses) if clauses else "1=1"
 
 class Mapping:
