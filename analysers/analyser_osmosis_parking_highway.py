@@ -53,7 +53,7 @@ WHERE
   pr.tags != ''::hstore AND
   pr.tags?'amenity' AND
   pr.tags->'amenity' = 'parking' AND
-  (NOT pr.tags?'parking' OR pr.tags->'parking' != 'street_side') AND
+  (NOT pr.tags?'parking' OR pr.tags->'parking' NOT IN ('street_side', 'lane')) AND
   highway.id IS NULL
 """
 
