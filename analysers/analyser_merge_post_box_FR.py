@@ -49,7 +49,6 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                     tags = {"amenity": "post_box"}),
                 osmRef = "ref",
                 conflationDistance = 50,
-                missing_official_fix = False,
                 mapping = Mapping(
                     static1 = {
                         "amenity": "post_box",
