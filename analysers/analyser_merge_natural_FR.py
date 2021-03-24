@@ -44,7 +44,7 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
         ),
         #   38194 Rochers
         dict(
-             #    7034
+            #    7034
             item = 8530,
             id = 110,
             level = 3,
@@ -53,7 +53,7 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             tags = {'natural': 'rock'},
         ),
         dict(
-             #   31138 Bloc rocheux isolé
+            #   31138 Bloc rocheux isolé
             item = 8530,
             id = 111,
             level = 3,
@@ -62,7 +62,7 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             tags = {'natural': 'stone'},
         ),
         dict(
-             #      22 Cheminée de fée
+            #      22 Cheminée de fée
             item = 8530,
             id = 112,
             level = 3,
@@ -114,8 +114,8 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
         ),
         #    8335 Grotte
         dict(
-             #    7064
-             #    1271 Cave
+            #    7064
+            #    1271 Cave
             item = 8530,
             id = 160,
             level = 2,
@@ -134,7 +134,7 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
         ),
         #    1998 Ile
         dict(
-             #    1993
+            #    1993
             item = 8530,
             id = 180,
             level = 1,
@@ -143,7 +143,7 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             tags = {'place': 'island'},
         ),
         dict(
-             #       5 Presqu'île
+            #       5 Presqu'île
             item = 8530,
             id = 181,
             level = 1,
