@@ -3420,7 +3420,7 @@ msgstr ""
 msgid "{0} glass recycling update"
 msgstr ""
 
-#: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:121
+#: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:130
 #, python-brace-format
 msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr ""
@@ -3752,35 +3752,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1046
+#: ../analysers/Analyser_Merge.py:1048
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1049
+#: ../analysers/Analyser_Merge.py:1051
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1054
+#: ../analysers/Analyser_Merge.py:1056
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1067
+#: ../analysers/Analyser_Merge.py:1069
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1080
+#: ../analysers/Analyser_Merge.py:1082
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1042
+#: ../analysers/Analyser_Merge.py:1044
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4533,4 +4533,28 @@ msgstr ""
 msgid ""
 "After checking, create a \"river\" line inside the \"riverbank\"\n"
 "polygon or eliminate the \"riverbank\" polygon."
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:84
+msgid "Peak not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:111
+msgid "Saddle not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:122
+msgid "Cave entrance not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:161
+msgid "Pit not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:170
+msgid "Beach not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:179
+msgid "Cape not integrated"
 msgstr ""

@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-03-10 05:16+0000\n"
-"Last-Translator: Shu Higashi <higa432@gmail.com>\n"
+"PO-Revision-Date: 2021-03-25 22:07+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2525,12 +2525,6 @@ msgid ""
 "inside it."
 msgstr "`waterway=riverbank`がひとつありますが、その中に`waterway=river`がありません。"
 
-#: ../analysers/analyser_osmosis_waterway.py:152
-msgid ""
-"After checking, create a \"river\" line inside te \"riverbank\"\n"
-"polygon."
-msgstr "チェックしてから、\"riverbank\"ポリゴン内に\"river\"ラインを作成します。"
-
 #: ../analysers/analyser_osmosis_waterway.py:157
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
@@ -3423,7 +3417,7 @@ msgstr "{0} ガラスリサイクリングの統合の提案"
 msgid "{0} glass recycling update"
 msgstr "{0} ガラスリサイクリングの提案"
 
-#: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:121
+#: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:130
 #, python-brace-format
 msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr "`{0}`タグは{1}で置き換えられました"
@@ -3746,35 +3740,35 @@ msgstr "これは道路脇の駐車場ではなく、閉じられているだけ
 msgid "{0} parking  update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/Analyser_Merge.py:1046
+#: ../analysers/Analyser_Merge.py:1048
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "レビューした結果、新しいデータでOpenStreetMapに登録すべきデータである場合には、追加してください。"
 
-#: ../analysers/Analyser_Merge.py:1049
+#: ../analysers/Analyser_Merge.py:1051
 msgid "Be sure that it is not already existing in another place."
 msgstr "付近の別の場所に既に存在していないことを十分確認してください。"
 
-#: ../analysers/Analyser_Merge.py:1054
+#: ../analysers/Analyser_Merge.py:1056
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "これはオープンデータの情報源に報告されているもので、このデータに関する検証は行われていません。"
 
-#: ../analysers/Analyser_Merge.py:1067
+#: ../analysers/Analyser_Merge.py:1069
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr "これは統合の提案で、オープンデータのソースとOpenStreetMapを混合します。"
 
-#: ../analysers/Analyser_Merge.py:1080
+#: ../analysers/Analyser_Merge.py:1082
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr "オープンデータとOSMの双方に同じrefが見つかったので更新した方が良いかもしれません。"
 
-#: ../analysers/Analyser_Merge.py:1042
+#: ../analysers/Analyser_Merge.py:1044
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -3938,6 +3932,7 @@ msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr "maxspeed と source:maxspeed または maxspeed:type が不一致"
 
 #: ../analysers/analyser_merge_defibrillators_FR.py:62
+#: ../analysers/analyser_merge_defibrillators_FR.py:65
 msgid ""
 "Location of defibrillators from this dataset can be very approximative. "
 "Check carefully the position before adding to OSM."
@@ -4349,11 +4344,11 @@ msgstr "未統合の記念碑"
 msgid "Pumping station not integrated"
 msgstr "未統合のポンプ場"
 
-#: ../analysers/analyser_merge_poi_FR.py:152
+#: ../analysers/analyser_merge_poi_FR.py:151
 msgid "Viewpoint not integrated"
 msgstr "未統合の展望所"
 
-#: ../analysers/analyser_merge_poi_FR.py:163
+#: ../analysers/analyser_merge_poi_FR.py:171
 msgid "Fire station not integrated"
 msgstr "未統合の消防署"
 
@@ -4397,19 +4392,19 @@ msgstr "未統合の十字架や路傍の神仏"
 msgid "Mosque or Minaret not integrated"
 msgstr "未統合のモスクやミナレット"
 
-#: ../analysers/analyser_merge_poi_FR.py:180
+#: ../analysers/analyser_merge_poi_FR.py:188
 msgid "Menhir not integrated"
 msgstr "未統合のメンヒル"
 
-#: ../analysers/analyser_merge_poi_FR.py:189
+#: ../analysers/analyser_merge_poi_FR.py:197
 msgid "Dolmen not integrated"
 msgstr "未統合のドルメン"
 
-#: ../analysers/analyser_merge_poi_FR.py:198
+#: ../analysers/analyser_merge_poi_FR.py:206
 msgid "Tumulus not integrated"
 msgstr "未統合の墳丘墓"
 
-#: ../analysers/analyser_merge_poi_FR.py:207
+#: ../analysers/analyser_merge_poi_FR.py:215
 msgid "Passage grave not integrated"
 msgstr "未統合の羨道墳"
 
@@ -4494,3 +4489,52 @@ msgid ""
 "If this is indeed the operator in question, add `operator:wikidata`.\n"
 "If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to register common operators."
 msgstr "これが本当にoperatorであれば、`operator:wikidata` タグを追加します。\nそうでない場合は、operatorの登録によく使われる [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md)を改善することができます。"
+
+#: ../analysers/analyser_merge_defibrillators_FR.py:64
+msgid "Defibrillator integration suggestion"
+msgstr "AEDの統合の提案"
+
+#: ../analysers/analyser_merge_defibrillators_FR.py:67
+msgid "Defibrillator update"
+msgstr "AEDの統合"
+
+#: ../analysers/analyser_merge_poi_FR.py:160
+msgid "Toposcope not integrated"
+msgstr "未統合のトポスコープ"
+
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:118
+msgid ""
+"The way or the group of the ways must be connected to an entry point:\n"
+"* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` or `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
+"* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`."
+msgstr "ウェイやそのグループは入り口のポイントに接続していなければなりません:\n* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` または `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n* bicycle: `railway=platform`, `public_transport=platform` または `highway=pedestrian`。"
+
+#: ../analysers/analyser_osmosis_waterway.py:152
+msgid ""
+"After checking, create a \"river\" line inside the \"riverbank\"\n"
+"polygon or eliminate the \"riverbank\" polygon."
+msgstr "チェックしてから、\"riverbank\"ポリゴン内に\"river\"ラインを作成するか、\"riverbank\"ポリゴンを除去します。"
+
+#: ../analysers/analyser_merge_natural_FR.py:84
+msgid "Peak not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:111
+msgid "Saddle not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:122
+msgid "Cave entrance not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:161
+msgid "Pit not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:170
+msgid "Beach not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_natural_FR.py:179
+msgid "Cape not integrated"
+msgstr ""
