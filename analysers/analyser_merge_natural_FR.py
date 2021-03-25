@@ -32,45 +32,45 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
 
         maping = [
         #   40806 Vallée
-        dict(
-            #   40802
-            #       4 Ancien glacier
-            item = 8530,
-            id = 100,
-            level = 3,
-            title = T_('Valley not integrated'),
-            select = {'nature': 'Vallée'},
-            tags = {'natural': 'valley'},
-        ),
+#       dict(
+#           #   40802
+#           #       4 Ancien glacier
+#           item = 8530,
+#           id = 100,
+#           level = 3,
+#           title = T_('Valley not integrated'),
+#           select = {'nature': 'Vallée'},
+#           tags = {'natural': 'valley'},
+#       ),
         #   38194 Rochers
-        dict(
-            #    7034
-            item = 8530,
-            id = 110,
-            level = 3,
-            title = T_('Rock not integrated'),
-            select = {'nature': 'Rochers', 'nature_detaillee': 'None'},
-            tags = {'natural': 'rock'},
-        ),
-        dict(
-            #   31138 Bloc rocheux isolé
-            item = 8530,
-            id = 111,
-            level = 3,
-            title = T_('Stone not integrated'),
-            select = {'nature': 'Rochers', 'nature_detaillee': 'Bloc rocheux isolé'},
-            tags = {'natural': 'stone'},
-        ),
-        dict(
-            #      22 Cheminée de fée
-            item = 8530,
-            id = 112,
-            level = 3,
-            title = T_('Hoodoo not integrated'),
-            select = {'nature': 'Rochers', 'nature_detaillee': 'Cheminée de fée'},
-            tags = {'natural': 'rock'},
-            generate_tags = {'natural': 'rock', 'rock': 'hoodoo'},
-        ),
+#       dict(
+#           #    7034
+#           item = 8530,
+#           id = 110,
+#           level = 3,
+#           title = T_('Rock not integrated'),
+#           select = {'nature': 'Rochers', 'nature_detaillee': 'None'},
+#           tags = {'natural': 'rock'},
+#       ),
+#       dict(
+#           #   31138 Bloc rocheux isolé
+#           item = 8530,
+#           id = 111,
+#           level = 3,
+#           title = T_('Stone not integrated'),
+#           select = {'nature': 'Rochers', 'nature_detaillee': 'Bloc rocheux isolé'},
+#           tags = {'natural': 'stone'},
+#       ),
+#       dict(
+#           #      22 Cheminée de fée
+#           item = 8530,
+#           id = 112,
+#           level = 3,
+#           title = T_('Hoodoo not integrated'),
+#           select = {'nature': 'Rochers', 'nature_detaillee': 'Cheminée de fée'},
+#           tags = {'natural': 'rock'},
+#           generate_tags = {'natural': 'rock', 'rock': 'hoodoo'},
+#       ),
         # Sommet, Pic, Montagne
         dict(
             #   36228 Sommet
@@ -86,23 +86,23 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             tags = {'natural': 'peak'},
         ),
         #   18204 Versant
-        dict(
-            item = 8530,
-            id = 130,
-            level = 3,
-            title = T_('Moutainside not integrated'),
-            select = {'nature': 'Versant'},
-            tags = {'natural': 'mountainside'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 130,
+#           level = 3,
+#           title = T_('Moutainside not integrated'),
+#           select = {'nature': 'Versant'},
+#           tags = {'natural': 'mountainside'},
+#       ),
         #   10468 Crête
-        dict(
-            item = 8530,
-            id = 140,
-            level = 3,
-            title = T_('Ridge not integrated'),
-            select = {'nature': 'Crête'},
-            tags = {'natural': 'ridge'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 140,
+#           level = 3,
+#           title = T_('Ridge not integrated'),
+#           select = {'nature': 'Crête'},
+#           tags = {'natural': 'ridge'},
+#       ),
         #   10063 Col
         dict(
             item = 8530,
@@ -124,33 +124,33 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             tags = {'natural': 'cave_entrance'},
         ),
         #    4184 Plaine
-        dict(
-            item = 8530,
-            id = 170,
-            level = 3,
-            title = T_('Plain not integrated'),
-            select = {'nature': 'Plaine'},
-            tags = {'natural': 'plain'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 170,
+#           level = 3,
+#           title = T_('Plain not integrated'),
+#           select = {'nature': 'Plaine'},
+#           tags = {'natural': 'plain'},
+#       ),
         #    1998 Ile
-        dict(
-            #    1993
-            item = 8530,
-            id = 180,
-            level = 1,
-            title = T_('Island not integrated'),
-            select = {'nature': 'Ile', 'nature_detaillee': 'None'},
-            tags = {'place': 'island'},
-        ),
-        dict(
-            #       5 Presqu'île
-            item = 8530,
-            id = 181,
-            level = 1,
-            title = T_('Peninsula not integrated'),
-            select = {'nature': 'Ile', 'nature_detaillee': 'Presqu\'île'},
-            tags = {'natural': 'peninsula'},
-        ),
+#       dict(
+#           #    1993
+#           item = 8530,
+#           id = 180,
+#           level = 1,
+#           title = T_('Island not integrated'),
+#           select = {'nature': 'Ile', 'nature_detaillee': 'None'},
+#           tags = {'place': 'island'},
+#       ),
+#       dict(
+#           #       5 Presqu'île
+#           item = 8530,
+#           id = 181,
+#           level = 1,
+#           title = T_('Peninsula not integrated'),
+#           select = {'nature': 'Ile', 'nature_detaillee': 'Presqu\'île'},
+#           tags = {'natural': 'peninsula'},
+#       ),
         #    1697 Gouffre
              #    1118
              #     579 Aven
@@ -181,86 +181,86 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             tags = {'natural': 'cape'},
         ),
         #    1434 Récif
-        dict(
-            item = 8530,
-            id = 220,
-            level = 3,
-            title = T_('Reef not integrated'),
-            select = {'nature': 'Récif'},
-            tags = {'natural': 'reef'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 220,
+#           level = 3,
+#           title = T_('Reef not integrated'),
+#           select = {'nature': 'Récif'},
+#           tags = {'natural': 'reef'},
+#       ),
         #    1262 Dépression
-        dict(
-            item = 8530,
-            id = 230,
-            level = 3,
-            title = T_('Sinkhole not integrated'),
-            select = {'nature': 'Dépression'},
-            tags = {'natural': 'sinkhole'},
-        ),
+#      dict(
+#           item = 8530,
+#           id = 230,
+#           level = 3,
+#           title = T_('Sinkhole not integrated'),
+#           select = {'nature': 'Dépression'},
+#           tags = {'natural': 'sinkhole'},
+#       ),
         #     600 Gorge
-        dict(
-            item = 8530,
-            id = 240,
-            level = 3,
-            title = T_('Gorge not integrated'),
-            select = {'nature': 'Gorge'},
-            tags = {'natural': 'gorge'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 240,
+#           level = 3,
+#           title = T_('Gorge not integrated'),
+#           select = {'nature': 'Gorge'},
+#           tags = {'natural': 'gorge'},
+#       ),
         #     286 Escarpement
-        dict(
-            item = 8530,
-            id = 250,
-            level = 3,
-            title = T_('Cliff not integrated'),
-            select = {'nature': 'Escarpement'},
-            tags = {'natural': 'cliff'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 250,
+#           level = 3,
+#           title = T_('Cliff not integrated'),
+#           select = {'nature': 'Escarpement'},
+#           tags = {'natural': 'cliff'},
+#       ),
         #     250 Dune
-        dict(
-            item = 8530,
-            id = 250,
-            level = 3,
-            title = T_('Dune not integrated'),
-            select = {'nature': 'Dune'},
-            tags = {'natural': 'dune'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 250,
+#           level = 3,
+#           title = T_('Dune not integrated'),
+#           select = {'nature': 'Dune'},
+#           tags = {'natural': 'dune'},
+#       ),
         #     159 Volcan
-        dict(
-            item = 8530,
-            id = 260,
-            level = 1,
-            title = T_('Volcano not integrated'),
-            select = {'nature': 'Volcan'},
-            tags = {'natural': 'volcano'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 260,
+#           level = 1,
+#           title = T_('Volcano not integrated'),
+#           select = {'nature': 'Volcan'},
+#           tags = {'natural': 'volcano'},
+#       ),
         #     142 Cirque
-        dict(
-            item = 8530,
-            id = 270,
-            level = 3,
-            title = T_('Cirque not integrated'),
-            select = {'nature': 'Cirque'},
-            tags = {'natural': 'cirque'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 270,
+#           level = 3,
+#           title = T_('Cirque not integrated'),
+#           select = {'nature': 'Cirque'},
+#           tags = {'natural': 'cirque'},
+#       ),
         #      36 Terril
-        dict(
-            item = 8530,
-            id = 280,
-            level = 3,
-            title = T_('Spoil heap not integrated'),
-            select = {'nature': 'Terril'},
-            tags = {'man_made': 'spoil_heap'},
-        ),
+#       dict(
+#           item = 8530,
+#           id = 280,
+#           level = 3,
+#           title = T_('Spoil heap not integrated'),
+#           select = {'nature': 'Terril'},
+#           tags = {'man_made': 'spoil_heap'},
+#       ),
         #      10 Isthme
-        dict(
-            item = 8530,
-            id = 290,
-            level = 2,
-            title = T_('Isthmus not integrated'),
-            select = {'nature': 'Isthme'},
-            tags = {'natural': 'isthmus'},
-        )
+#       dict(
+#           item = 8530,
+#           id = 290,
+#           level = 2,
+#           title = T_('Isthmus not integrated'),
+#           select = {'nature': 'Isthme'},
+#           tags = {'natural': 'isthmus'},
+#       )
         ]
 
         for r in maping:
