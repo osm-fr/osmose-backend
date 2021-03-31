@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-03-25 22:07+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2021-03-26 13:49+0000\n"
+"Last-Translator: Ali z <ali.zaroili@outlook.be>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1834,7 +1834,7 @@ msgstr "Carpool parking {0}"
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling, islet or "
 "neighbourhood"
-msgstr ""
+msgstr "FANTOIR B tot W type is voor plaats, gehucht, geïsoleerde_woning of wijk"
 
 #: ../analysers/analyser_osmosis_camp_pitch_out_of_camp_site.py:67
 msgid "Camp pitchs outside a camp site"
@@ -2131,7 +2131,7 @@ msgstr "Snelweg van  `motorway` naar `tertiary` zijn belangrijke wegen. Zij zoud
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:233
 msgid "Review the classification of road or draw the local road network."
-msgstr ""
+msgstr "Herzie de classificatie van de weg of teken het lokale wegennet."
 
 #: ../analysers/analyser_osmosis_highway_features.py:80
 msgid "Crossing for which it lacks the road or railway. "
@@ -2276,7 +2276,7 @@ msgstr "Deze toren moet waarschijnlijk worden aangesloten op een hoogspanningsli
 msgid ""
 "There is only a part of the required tag `addr:*=*`. They do not\n"
 "provide a consistent address."
-msgstr ""
+msgstr "Er is slechts een deel van de vereiste tag `addr: * = *`. Zij geven \ngeen consistent adres op."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:619
 msgid "The street is not present in relation with the role `street`."
@@ -2296,7 +2296,7 @@ msgstr "Adres zonder nummer is aanwezig."
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:646
 msgid "Extend the relation to include the way with the same name."
-msgstr ""
+msgstr "Breid de relatie uit om de weg met dezelfde naam in te voegen."
 
 #: ../analysers/analyser_osmosis_relation_large.py:76
 msgid ""
@@ -2308,7 +2308,7 @@ msgstr ""
 msgid ""
 "[The relationships are not\n"
 "classes](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categories)."
-msgstr ""
+msgstr "[De relaties zijn geen\nclasses](https://wiki.openstreetmap.org/wiki/Relations/Relations_are_not_Categories)."
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:202
 msgid ""
@@ -2392,7 +2392,7 @@ msgstr ""
 msgid ""
 "After verifying that it is an access roads to the roundabout and they\n"
 "were well oriented, set the tag `oneway=yes` on the two segments."
-msgstr ""
+msgstr "Na te hebben gecontroleerd dat het een toegangsweg is naar de rotonde en goed georiënteerd is, zet dan de tag `oneway= yes` op de twee segmenten."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:282
 msgid ""
@@ -2411,7 +2411,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:294
 msgid "Separate the junction nodes into several separate ones ."
-msgstr ""
+msgstr "Scheid de knooppunten in verschillende afzonderlijke knooppunten."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:298
 msgid "Way through the roundabout without stopping."
@@ -2450,7 +2450,7 @@ msgid ""
 "The circulation of the roundabout is draw clockwise, but in countries\n"
 "where they driveon the right the sense of roundabouts is\n"
 "counterclockwise, and vice versa for the other countries."
-msgstr ""
+msgstr "De rijrichting van de rotonde is met de klok mee, maar in landen waar ze rechts rijden is het tegen de klok in, en vice versa voor de andere landen."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:52
 msgid ""
@@ -2604,7 +2604,7 @@ msgstr "Vervolledig de tag ele=* ."
 
 #: ../plugins/Highway_Lanes.py:34
 msgid "Non-numeric value, `lanes=*` must have an integer value."
-msgstr ""
+msgstr "Niet-numerieke waarde, `lanes = *` moet een geheel getal hebben."
 
 #: ../plugins/Highway_Lanes.py:38
 msgid ""
@@ -2614,7 +2614,7 @@ msgstr "Je kunt niet tegelijkertijd een tag en de variante instellen met\nprefix
 
 #: ../plugins/Highway_Lanes.py:45
 msgid "You can not set opposite lanes data on a one way."
-msgstr ""
+msgstr "Je kan gegevens van tegenoverliggende rijstroken niet op een enkelweg zetten. "
 
 #: ../plugins/Highway_Lanes.py:49
 msgid ""
@@ -2930,7 +2930,7 @@ msgid ""
 "`all`, `alphabetic` and Number.\n"
 "* Tag `addr:inclusion=*` is only valid with values: `actual`, `estimate`\n"
 "and `potential`."
-msgstr ""
+msgstr "* Tag `addr:interpolation=*` is alleen geldig met waarden:  `even`, `odd`,\n`all`, `alphabetic` en Nummer.\n* Tag `addr:inclusion=*` is alleen geldig met waarden:  `actual`, `estimate`\nen `potential`."
 
 #: ../plugins/TagFix_MultipleTag_FR.py:38
 msgid ""
@@ -3010,23 +3010,23 @@ msgstr "Controleer de postcode zoals beschreven op \n[Wikipedia](https://en.wiki
 
 #: ../plugins/TagFix_Role.py:34
 msgid "The role is not a keyword as expected."
-msgstr ""
+msgstr "De rol is geen trefwoord zoals verwacht."
 
 #: ../plugins/TagFix_Role.py:36
 msgid ""
 "Determine the right role, possibly set the value of the role in a\n"
 "tag."
-msgstr ""
+msgstr "Bepaal de juiste rol, stel eventueel de waarde van de rol in een\ntag."
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:70
 msgid ""
 "To characterize the trees `natural=tree`, there are two main tag:\n"
 "`type` and `species`."
-msgstr ""
+msgstr "Om de bomen `natural = tree` te karakteriseren, zijn er twee hoofdtags: \n`type` en `soort`."
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:73
 msgid "Put the right data in the correct tag, in this case species."
-msgstr ""
+msgstr "Zet de juiste data in de juiste tag, in dit geval soort."
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:75
 msgid "Specify the language for the tag `species`: `species:en=oak`"
@@ -3190,7 +3190,7 @@ msgstr ""
 msgid ""
 "Speed camera should be mapped as a node on the highway or use an enforcement"
 " relation."
-msgstr ""
+msgstr "Snelheidscameras moeten als knooppunt op de snelweg in kaart worden gebracht of een enforcement relatie gebruiken. "
 
 #: ../plugins/Name_Script.py:55
 msgid "Unexpected symbol in name"
@@ -3260,7 +3260,7 @@ msgstr "Zie [mogelijke\nroles](https://wiki.openstreetmap.org/wiki/Relation:boun
 msgid ""
 "The shape of the building is characteristic and as such would be\n"
 "tagged."
-msgstr ""
+msgstr "De vorm van het gebouw is karakteristiek en zou ook zo moeten zijn getagd."
 
 #: ../analysers/analyser_osmosis_parking_highway.py:68
 msgid ""
@@ -3282,7 +3282,7 @@ msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`), a generator (`power=generator`)\n"
 "or marked as transitioning into ground (`location:transition=yes`)."
-msgstr ""
+msgstr "De lijn eindigt in een vacuüm en moet worden aangesloten op een\nandere lijn of een transformator (`power = transformer`), een generator\n (` power = generator`) of gemarkeerd als overgang onder de grond\n (`location: transition = yes`)."
 
 #: ../analysers/analyser_osmosis_powerline.py:349
 msgid ""
@@ -3306,7 +3306,7 @@ msgstr "Als dit knooppunt een toren of paal is, gebruik dan de tag `power = towe
 msgid ""
 "Based on the statistical frequency of the poles on this power line,\n"
 "there's likely an unmapped pole nearby."
-msgstr ""
+msgstr "Gebaseerd op de statistische frequentie van de polen op deze\n hoogspanningslijn, er is waarschijnlijk een niet-getagged paal in de buurt."
 
 #: ../plugins/TagFix_Area.py:33
 msgid "Redundant area tagging"
@@ -3441,7 +3441,7 @@ msgstr "De ingevoerde datum is niet in het verwachte formaat zoals beschreven op
 #: ../plugins/TagFix_BadValue.py:110 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
-msgstr ""
+msgstr "Betreft tag: '{0}'"
 
 #: ../plugins/Name_Punctuation.py:39
 #, python-brace-format
@@ -3634,7 +3634,7 @@ msgstr "Apotheker bijwerken"
 #: ../analysers/analyser_osmosis_relation_route_access.py:108
 #, python-brace-format
 msgid "Way access mismatch relation route={0}"
-msgstr ""
+msgstr "Weg toegang komt niet overeen met relatie route = {0}"
 
 #: ../plugins/TagFix_MultipleTag.py:46
 msgid "The way has a tag `junction=*` but without `highway=*`."
@@ -3699,7 +3699,7 @@ msgstr "In het land leveren alle apotheken medicijnen op recept"
 msgid ""
 "All pharmacies in the country sell on prescription by a doctor. It requires a\n"
 "tag `dispensing=yes` in addition to `amenity=pharmacy`."
-msgstr ""
+msgstr "Alle apothekers in het land verkopen op recept van een arts. Het vereist een tag `dispensing = yes` naast` amenity = pharmacy`."
 
 #: ../plugins/TagFix_Pharmacy.py:40
 msgid ""
@@ -3711,7 +3711,7 @@ msgstr ""
 msgid ""
 "The side was not recognized, see\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
-msgstr ""
+msgstr "De zijde wordt niet herkend, zie\n[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 
 #: ../plugins/Highway_Parking_Lane.py:45
 msgid ""
@@ -3775,7 +3775,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:166
 msgid "An other node very close have already a traffic signals."
-msgstr ""
+msgstr "Een ander knooppunt heel dichtbij heeft al verkeerslichten."
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:141
 msgid "Bad lanes number or `turn:lanes` before and after this node"
@@ -3812,7 +3812,7 @@ msgid ""
 "`construction:date`, `temporary:date_on`, `date_on` and the object has\n"
 "been in construction for more than two years or opening data is\n"
 "exceeded."
-msgstr ""
+msgstr "Er is geen tag met `opening_date`, `check_date`, `open_date`,\n`construction:date`, `temporary:date_on`, `date_on` en het object is\nal meer dan twee jaar in aanbouw of openingsdata is overschreden. "
 
 #: ../plugins/Covid19.py:16 ../plugins/Covid19.py:93 ../plugins/Covid19.py:184
 #: ../plugins/Covid19.py:262
@@ -3899,7 +3899,7 @@ msgstr "De stop_position is geen onderdeel van een weg"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:389
 msgid "The platform is part of a way, it should have the role stop"
-msgstr ""
+msgstr "Het platform maakt deel uit van een weg, het zou de rol halte moeten hebben"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:391
 msgid "The stop is not part of a way"
@@ -3918,7 +3918,7 @@ msgstr ""
 
 #: ../plugins/Phone2.py:16
 msgid "Different value of tag contact:* and *"
-msgstr ""
+msgstr "Verschillende waarden van contact:* en * tag"
 
 #: ../plugins/Phone2.py:54 ../plugins/Phone2.py:90 ../plugins/Phone2.py:126
 #, python-brace-format
@@ -4059,11 +4059,11 @@ msgstr "maximale snelheidslimiet 130"
 
 #: tmp.json:24
 msgid "max height limit"
-msgstr ""
+msgstr "max hoogte limiet"
 
 #: tmp.json:25
 msgid "max weight limit"
-msgstr ""
+msgstr "max gewichtslimiet"
 
 #: tmp.json:26
 msgid "roundabout"
