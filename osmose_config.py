@@ -1141,6 +1141,7 @@ default_country("central-america", "el_salvador", 1520612, {"country": "SV", "la
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
 default_country("central-america", "honduras", 287670, {"country": "HN", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "panama", 287668, {"country": "PA", "language": "es", "proj": 32617}, download_repo=OSMFR)
+default_country("central-america", "trinidad_and_tobago", 555717, {"country": "TT", "language": "en", "driving_side": "left","proj": 32620}, download_repo=OSMFR)
 
 
 # caribbean
@@ -1222,7 +1223,6 @@ default_country("south-america", "paraguay", 287077, {"country": "PY", "language
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
 default_country("south-america", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32602}, download_repo=OSMFR)
 default_country("south-america", "tonga", 2186665, {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
-default_country("south-america", "trinidad_and_tobago", 555717, {"country": "TT", "language": "en", "driving_side": "left","proj": 32620}, download_repo=OSMFR)
 default_country("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "united_kingdom_falkland", 2185374, {"country": "FK", "language": "en", "driving_side": "left", "proj": 32721}, download_repo=OSMFR, download_country="falkland")
 default_country("south-america", "united_kingdom_pitcairn", 2185375, {"country": "PN", "language": "en", "driving_side": "left", "proj": 32709}, download_repo=OSMFR, download_country="pitcairn")
