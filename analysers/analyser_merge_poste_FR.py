@@ -68,7 +68,6 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                             "post_annex" if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
                             "post_partner" if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
                             None, # BP: Bureau de poste; other
-                        "addr:postcode": "Code_postal",
                         # localite
                         # pays
                         "atm": lambda res: self.bool[res["Distributeur_de_billets"]],
