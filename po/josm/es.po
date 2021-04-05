@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-13 03:34+0100\n"
-"PO-Revision-Date: 2021-02-10 18:51+0000\n"
-"Last-Translator: Emilio Gomez Fernandez <Unknown>\n"
+"POT-Creation-Date: 2021-04-01 23:49+0200\n"
+"PO-Revision-Date: 2021-03-10 23:44+0000\n"
+"Last-Translator: sanchi <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-02-14 05:55+0000\n"
-"X-Generator: Launchpad (build b3a93345a124168b715ec9ae0945884caa15f58f)\n"
+"X-Launchpad-Export-Date: 2021-04-02 05:55+0000\n"
+"X-Generator: Launchpad (build 57f1f603f707b9cfa764cae8dd0f3999026b4763)\n"
 "Language: es\n"
 "X-Language: es_ES\n"
 "X-Source-Language: C\n"
@@ -1074,7 +1074,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1224
 #: ../core/resources/data/validator/deprecated.mapcss:1286
 #: ../core/resources/data/validator/deprecated.mapcss:1361
-#: ../core/resources/data/validator/geometry.mapcss:293
+#: ../core/resources/data/validator/geometry.mapcss:298
 #: ../core/resources/data/validator/numeric.mapcss:459
 #: ../core/resources/data/validator/religion.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:109
@@ -1234,80 +1234,80 @@ msgstr "Edificio dentro de un edificio"
 msgid "Overlapping buildings"
 msgstr "Edificios superpuestos"
 
-#: ../core/resources/data/validator/geometry.mapcss:194
+#: ../core/resources/data/validator/geometry.mapcss:195
 msgid "Overlapping Water Areas"
 msgstr "Láminas de agua superpuestas"
 
-#: ../core/resources/data/validator/geometry.mapcss:200
+#: ../core/resources/data/validator/geometry.mapcss:205
 msgid "Water area inside water area"
 msgstr "Área de agua dentro del área de agua"
 
-#: ../core/resources/data/validator/geometry.mapcss:204
+#: ../core/resources/data/validator/geometry.mapcss:209
 msgid "Overlapping Areas"
 msgstr "Áreas superpuestas"
 
-#: ../core/resources/data/validator/geometry.mapcss:209
-#: ../core/resources/data/validator/geometry.mapcss:210
-#: ../core/resources/data/validator/geometry.mapcss:224
-#: ../core/resources/data/validator/geometry.mapcss:225
-#: ../core/resources/data/validator/geometry.mapcss:228
+#: ../core/resources/data/validator/geometry.mapcss:214
+#: ../core/resources/data/validator/geometry.mapcss:215
 #: ../core/resources/data/validator/geometry.mapcss:229
-#: ../core/resources/data/validator/geometry.mapcss:232
+#: ../core/resources/data/validator/geometry.mapcss:230
 #: ../core/resources/data/validator/geometry.mapcss:233
-#: ../core/resources/data/validator/geometry.mapcss:236
+#: ../core/resources/data/validator/geometry.mapcss:234
 #: ../core/resources/data/validator/geometry.mapcss:237
-#: ../core/resources/data/validator/geometry.mapcss:240
+#: ../core/resources/data/validator/geometry.mapcss:238
 #: ../core/resources/data/validator/geometry.mapcss:241
+#: ../core/resources/data/validator/geometry.mapcss:242
+#: ../core/resources/data/validator/geometry.mapcss:245
+#: ../core/resources/data/validator/geometry.mapcss:246
 #, java-format
 msgid "{0} inside {1}"
 msgstr "{0} dentro {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:215
+#: ../core/resources/data/validator/geometry.mapcss:220
 msgid "Overlapping Identical Natural Areas"
 msgstr "Áreas naturales idénticas superpuesta"
 
-#: ../core/resources/data/validator/geometry.mapcss:219
+#: ../core/resources/data/validator/geometry.mapcss:224
 msgid "Overlapping Identical Landuses"
 msgstr "Superposición de esos del suelo idénticos"
 
-#: ../core/resources/data/validator/geometry.mapcss:294
+#: ../core/resources/data/validator/geometry.mapcss:299
 msgid "isolated node which must be connected to a way"
 msgstr "nodo aislado que debe estar conectado a una vía"
 
-#: ../core/resources/data/validator/geometry.mapcss:303
+#: ../core/resources/data/validator/geometry.mapcss:308
 msgid "node connects waterway and bridge"
 msgstr "el nodo conecta vía fluvial y puente"
 
-#: ../core/resources/data/validator/geometry.mapcss:309
-#: ../core/resources/data/validator/geometry.mapcss:322
+#: ../core/resources/data/validator/geometry.mapcss:314
+#: ../core/resources/data/validator/geometry.mapcss:327
 #, java-format
 msgid "{0} node connected to a highway"
 msgstr "{0} nodo conectado a una carretera"
 
-#: ../core/resources/data/validator/geometry.mapcss:328
+#: ../core/resources/data/validator/geometry.mapcss:333
 #, java-format
 msgid "{0} node connected to an underground object"
 msgstr "{0} nodo conectado a un objeto subterráneo"
 
-#: ../core/resources/data/validator/geometry.mapcss:333
+#: ../core/resources/data/validator/geometry.mapcss:338
 msgid "suspicious roundabout direction"
 msgstr "Dirección de rotonda sospechosa"
 
-#: ../core/resources/data/validator/geometry.mapcss:338
+#: ../core/resources/data/validator/geometry.mapcss:343
 #, java-format
 msgid "{0} on a large area"
 msgstr "{0} en un área grande"
 
-#: ../core/resources/data/validator/geometry.mapcss:344
+#: ../core/resources/data/validator/geometry.mapcss:349
 #, java-format
 msgid "{0} on a small area"
 msgstr "{0} en un área pequeña"
 
-#: ../core/resources/data/validator/geometry.mapcss:351
+#: ../core/resources/data/validator/geometry.mapcss:356
 msgid "Too large building"
 msgstr "Edificio demasiado grande"
 
-#: ../core/resources/data/validator/geometry.mapcss:356
+#: ../core/resources/data/validator/geometry.mapcss:361
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
@@ -1315,17 +1315,17 @@ msgstr ""
 "Vía fluvial que finaliza sin una conexión con otro curso de agua o la "
 "dirección de la vía fluvial es errónea."
 
-#: ../core/resources/data/validator/geometry.mapcss:362
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "Coastline inside {1}"
 msgstr "Línea de costa hacia adentro {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:369
+#: ../core/resources/data/validator/geometry.mapcss:374
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr "{0} debería estar en el nodo donde {1} y {2} se intersectan"
 
-#: ../core/resources/data/validator/geometry.mapcss:378
+#: ../core/resources/data/validator/geometry.mapcss:383
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
@@ -1334,11 +1334,11 @@ msgstr ""
 "{0} es la etiqueta para la navegación lineal. Para etiquetar el área de agua "
 "utilice {1} + {2}."
 
-#: ../core/resources/data/validator/geometry.mapcss:392
+#: ../core/resources/data/validator/geometry.mapcss:397
 msgid "Ferry route is not connected to the road network or branches."
 msgstr "La ruta de ferry no está conectada a la red de caminos o ramales."
 
-#: ../core/resources/data/validator/geometry.mapcss:400
+#: ../core/resources/data/validator/geometry.mapcss:405
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr ""
 "La ruta de ferry no está conectada a una terminal de ferry o ramales."
@@ -1594,7 +1594,7 @@ msgstr "{0} no es necesario"
 #: ../core/resources/data/validator/unnecessary.mapcss:45
 #: ../core/resources/data/validator/unnecessary.mapcss:67
 #: ../core/resources/data/validator/unnecessary.mapcss:74
-#: ../core/resources/data/validator/unnecessary.mapcss:159
+#: ../core/resources/data/validator/unnecessary.mapcss:161
 msgid "unnecessary tag"
 msgstr "Etiqueta innecesaria"
 
@@ -1625,7 +1625,7 @@ msgstr "{0} junto con {1} y {2}. Elimine {0}."
 msgid "descriptive name"
 msgstr "nombre descriptivo"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:158
+#: ../core/resources/data/validator/unnecessary.mapcss:160
 #, java-format
 msgid "{0} should not be uploaded"
 msgstr "{0} no debe cargarse"

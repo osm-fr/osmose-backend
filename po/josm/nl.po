@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-13 03:34+0100\n"
-"PO-Revision-Date: 2021-02-13 14:10+0000\n"
-"Last-Translator: Michel Smits <Unknown>\n"
+"POT-Creation-Date: 2021-04-01 23:49+0200\n"
+"PO-Revision-Date: 2021-04-03 10:29+0000\n"
+"Last-Translator: DiGro <Unknown>\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-02-14 04:53+0000\n"
-"X-Generator: Launchpad (build b3a93345a124168b715ec9ae0945884caa15f58f)\n"
+"X-Launchpad-Export-Date: 2021-04-04 04:32+0000\n"
+"X-Generator: Launchpad (build 57f1f603f707b9cfa764cae8dd0f3999026b4763)\n"
 "Language: nl\n"
 
 #: ../core/resources/data/validator/addresses.mapcss:3
@@ -1072,7 +1072,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1224
 #: ../core/resources/data/validator/deprecated.mapcss:1286
 #: ../core/resources/data/validator/deprecated.mapcss:1361
-#: ../core/resources/data/validator/geometry.mapcss:293
+#: ../core/resources/data/validator/geometry.mapcss:298
 #: ../core/resources/data/validator/numeric.mapcss:459
 #: ../core/resources/data/validator/religion.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:109
@@ -1083,7 +1083,7 @@ msgstr "{0}"
 
 #: ../core/resources/data/validator/deprecated.mapcss:667
 msgid "key with uncommon character"
-msgstr "sleutel met niet algemeen teken"
+msgstr "sleutel met ongebruikelijk teken"
 
 #: ../core/resources/data/validator/deprecated.mapcss:676
 msgid "uncommon short key"
@@ -1234,80 +1234,80 @@ msgstr "Gebouw binnen gebouw"
 msgid "Overlapping buildings"
 msgstr "Overlappende gebouwen"
 
-#: ../core/resources/data/validator/geometry.mapcss:194
+#: ../core/resources/data/validator/geometry.mapcss:195
 msgid "Overlapping Water Areas"
 msgstr "Overlappende watergebieden"
 
-#: ../core/resources/data/validator/geometry.mapcss:200
+#: ../core/resources/data/validator/geometry.mapcss:205
 msgid "Water area inside water area"
 msgstr "Watergebied binnen watergebied"
 
-#: ../core/resources/data/validator/geometry.mapcss:204
+#: ../core/resources/data/validator/geometry.mapcss:209
 msgid "Overlapping Areas"
 msgstr "Overlappende gebieden"
 
-#: ../core/resources/data/validator/geometry.mapcss:209
-#: ../core/resources/data/validator/geometry.mapcss:210
-#: ../core/resources/data/validator/geometry.mapcss:224
-#: ../core/resources/data/validator/geometry.mapcss:225
-#: ../core/resources/data/validator/geometry.mapcss:228
+#: ../core/resources/data/validator/geometry.mapcss:214
+#: ../core/resources/data/validator/geometry.mapcss:215
 #: ../core/resources/data/validator/geometry.mapcss:229
-#: ../core/resources/data/validator/geometry.mapcss:232
+#: ../core/resources/data/validator/geometry.mapcss:230
 #: ../core/resources/data/validator/geometry.mapcss:233
-#: ../core/resources/data/validator/geometry.mapcss:236
+#: ../core/resources/data/validator/geometry.mapcss:234
 #: ../core/resources/data/validator/geometry.mapcss:237
-#: ../core/resources/data/validator/geometry.mapcss:240
+#: ../core/resources/data/validator/geometry.mapcss:238
 #: ../core/resources/data/validator/geometry.mapcss:241
+#: ../core/resources/data/validator/geometry.mapcss:242
+#: ../core/resources/data/validator/geometry.mapcss:245
+#: ../core/resources/data/validator/geometry.mapcss:246
 #, java-format
 msgid "{0} inside {1}"
 msgstr "{0} binnen {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:215
+#: ../core/resources/data/validator/geometry.mapcss:220
 msgid "Overlapping Identical Natural Areas"
 msgstr "Overlappende identieke natuurlijke gebieden"
 
-#: ../core/resources/data/validator/geometry.mapcss:219
+#: ../core/resources/data/validator/geometry.mapcss:224
 msgid "Overlapping Identical Landuses"
 msgstr "Overlappende identieke Landuses"
 
-#: ../core/resources/data/validator/geometry.mapcss:294
+#: ../core/resources/data/validator/geometry.mapcss:299
 msgid "isolated node which must be connected to a way"
 msgstr "geïsoleerde knoop die zou moeten zijn verbonden aan een weg"
 
-#: ../core/resources/data/validator/geometry.mapcss:303
+#: ../core/resources/data/validator/geometry.mapcss:308
 msgid "node connects waterway and bridge"
 msgstr "knoop verbindt waterweg en brug"
 
-#: ../core/resources/data/validator/geometry.mapcss:309
-#: ../core/resources/data/validator/geometry.mapcss:322
+#: ../core/resources/data/validator/geometry.mapcss:314
+#: ../core/resources/data/validator/geometry.mapcss:327
 #, java-format
 msgid "{0} node connected to a highway"
 msgstr "{0} knoop verbonden met een highway"
 
-#: ../core/resources/data/validator/geometry.mapcss:328
+#: ../core/resources/data/validator/geometry.mapcss:333
 #, java-format
 msgid "{0} node connected to an underground object"
 msgstr "{0} knoop verbonden met ondergronds object"
 
-#: ../core/resources/data/validator/geometry.mapcss:333
+#: ../core/resources/data/validator/geometry.mapcss:338
 msgid "suspicious roundabout direction"
 msgstr "verdachte richting rotonde"
 
-#: ../core/resources/data/validator/geometry.mapcss:338
+#: ../core/resources/data/validator/geometry.mapcss:343
 #, java-format
 msgid "{0} on a large area"
 msgstr "{0} op een groot gebied"
 
-#: ../core/resources/data/validator/geometry.mapcss:344
+#: ../core/resources/data/validator/geometry.mapcss:349
 #, java-format
 msgid "{0} on a small area"
 msgstr "{0} op een klein gebied"
 
-#: ../core/resources/data/validator/geometry.mapcss:351
+#: ../core/resources/data/validator/geometry.mapcss:356
 msgid "Too large building"
 msgstr "Gebouw te groot"
 
-#: ../core/resources/data/validator/geometry.mapcss:356
+#: ../core/resources/data/validator/geometry.mapcss:361
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
@@ -1315,17 +1315,17 @@ msgstr ""
 "Waterweg eindigt zonder een verbinding met een andere waterweg of de "
 "richting van de waterweg is verkeerd."
 
-#: ../core/resources/data/validator/geometry.mapcss:362
+#: ../core/resources/data/validator/geometry.mapcss:367
 #, java-format
 msgid "Coastline inside {1}"
 msgstr "Kustlijn binnen {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:369
+#: ../core/resources/data/validator/geometry.mapcss:374
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr "{0} zou op de node moeten zijn waar {1} en {2} kruisen"
 
-#: ../core/resources/data/validator/geometry.mapcss:378
+#: ../core/resources/data/validator/geometry.mapcss:383
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
@@ -1334,11 +1334,11 @@ msgstr ""
 "{0} is de tag voor de lineaire waterweg. Gebruik in plaats daarvan {1} + {2} "
 "om het watergebied te taggen."
 
-#: ../core/resources/data/validator/geometry.mapcss:392
+#: ../core/resources/data/validator/geometry.mapcss:397
 msgid "Ferry route is not connected to the road network or branches."
 msgstr "Ferryroute is niet verbonden met het wegennetwerk of takken daarvan."
 
-#: ../core/resources/data/validator/geometry.mapcss:400
+#: ../core/resources/data/validator/geometry.mapcss:405
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr ""
 "Veerroute is niet verbonden met een terminal voor het veer of aftakkingen."
@@ -1589,7 +1589,7 @@ msgstr "{0} is niet nodig"
 #: ../core/resources/data/validator/unnecessary.mapcss:45
 #: ../core/resources/data/validator/unnecessary.mapcss:67
 #: ../core/resources/data/validator/unnecessary.mapcss:74
-#: ../core/resources/data/validator/unnecessary.mapcss:159
+#: ../core/resources/data/validator/unnecessary.mapcss:161
 msgid "unnecessary tag"
 msgstr "onnodige tag"
 
@@ -1620,7 +1620,7 @@ msgstr "{0} samen met {1} en {2}. Verwijder {0}."
 msgid "descriptive name"
 msgstr "beschrijvende naam"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:158
+#: ../core/resources/data/validator/unnecessary.mapcss:160
 #, java-format
 msgid "{0} should not be uploaded"
 msgstr "{0} zou niet moeten worden geüpload"
