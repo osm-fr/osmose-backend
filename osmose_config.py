@@ -498,6 +498,7 @@ france_departement_dom = gen_country(None, country_base='france', download_repo=
     'merge_cemetery_FR',
     'merge_man_made_FR',
     'merge_poi_FR',
+    'merge_natural_FR',
     'merge_reservoir_FR',
     'merge_water_FR',
 ], **{'addr:city-admin_level': '8,9'})
@@ -578,6 +579,7 @@ france_local_db.analyser["merge_tourism_FR"] = "xxx"
 france_local_db.analyser["merge_cemetery_FR"] = "xxx"
 france_local_db.analyser["merge_man_made_FR"] = "xxx"
 france_local_db.analyser["merge_poi_FR"] = "xxx"
+france_local_db.analyser["merge_natural_FR"] = "xxx"
 france_local_db.analyser["merge_reservoir_FR"] = "xxx"
 france_local_db.analyser["merge_water_FR"] = "xxx"
 france_local_db.analyser["merge_defibrillators_FR"] = "xxx"
