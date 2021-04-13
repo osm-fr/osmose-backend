@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-03-26 13:49+0000\n"
+"PO-Revision-Date: 2021-04-12 17:49+0000\n"
 "Last-Translator: Ali z <ali.zaroili@outlook.be>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -2110,7 +2110,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n"
 "\n"
 "Secondary connecting directly to the residentials."
-msgstr ""
+msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n\nSecundaire weg rechtstreeks verbonden met straat."
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:218
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:116
@@ -2320,7 +2320,7 @@ msgstr ""
 msgid ""
 "Remove the ring without tag. Add in the relation the one with the tags\n"
 "as `inner` role."
-msgstr ""
+msgstr "Verwijder de ring zonder tag. Voeg in de relatie degene met de tags toe als 'inner' rol. "
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:210
 msgid ""
@@ -2348,7 +2348,7 @@ msgstr "Sluit de weg om een polygoon te maken of voeg een multipolygoon toe. "
 msgid ""
 "Some required member are missing, eg. there is a `from` and `via`\n"
 "role, but missing the `to` role."
-msgstr ""
+msgstr "Sommige vereiste leden ontbreken, bijv. er is `from` en` via` role, maar mist de 'to' role."
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:375
 msgid "The ways in the restriction must be continuous."
@@ -2368,7 +2368,7 @@ msgstr ""
 msgid ""
 "It must match the highest level of connected routes, except `motorway`\n"
 "and `trunk`."
-msgstr ""
+msgstr "Het moet met het hoogste niveau van de verbonden wegen\novereenkomen , behalve 'motorway' en `trunk`."
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:267
 msgid "Adjust the tag `highway=*` of the roundabout."
@@ -2457,7 +2457,7 @@ msgid ""
 "For roundabout `junction=roundabout`: change the direction by\n"
 "reversing the order of nodes in the path. In JOSM, select the roundabout\n"
 "and use the tool reverse path (shortcut: 'R')."
-msgstr ""
+msgstr "Voor rotonde `junction=roundabout`: verander de richting\n van de volgorde van knooppunten in het pad. Selecteer in JOSM de rotonde\nen gebruik de tool reverse path (sneltoets: 'R')."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:56
 msgid ""
@@ -2565,7 +2565,7 @@ msgid ""
 "[`place`](https://wiki.openstreetmap.org/wiki/Key:place). It should not\n"
 "be associated with tags such as `amenity`, `highway`. When the case, the\n"
 "tag `place=*` should be removed."
-msgstr ""
+msgstr "De tag `place = *` wordt vaak misbruikt, zie\n[`place`](https://wiki.openstreetmap.org/wiki/Key:place). Het zou niet\ngeassocieerd moeten worden met tags als `amenity`, `highway`. Wanneer dit het geval is, de\ntag `place=*`  moet verwijderd worden."
 
 #: ../plugins/Administrative_INSEE_Name.py:48
 msgid ""
@@ -2657,7 +2657,7 @@ msgstr ""
 
 #: ../plugins/Highway_Parking_Lane.py:50
 msgid "A parking condition is present but without parking kind."
-msgstr ""
+msgstr "Een parkeer gelegenheid is aanwezig maar zonder parkeersoort."
 
 #: ../plugins/Name_Dictionary.py:35
 msgid "Probably missing a capital."
@@ -2673,14 +2673,14 @@ msgid ""
 "* Otherwise, a survey is required: check if it is a street whose name\n"
 "changes at a crossroads, if this is the case, cut the street and set the\n"
 "proper names of both part."
-msgstr ""
+msgstr "* Als het dubbel is, verwijder er dan een.\n* Anders is een survey vereist: controleer of het een straat is waarvan\nde naam verandert aan een kruispunt, als dit het geval is, snijd dan de straat door en geef de namen van beide delen op."
 
 #: ../plugins/Name_Multiple.py:44
 msgid ""
 "Some streets have not the same names on the each side, especially if\n"
 "the houses by both sides are on different city. In this case, you can use\n"
 "the tag `name:left=*` and `name:right=*`."
-msgstr ""
+msgstr "Sommige straten hebben niet aan elke kant dezelfde naam, vooral als\nde huizen aan beide kanten in verschillende steden liggen. In dit geval , kan je \nde tag `name:left=*` and `name:right=*` gebruiken."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:51
 msgid "An abbreviation is present."
@@ -2692,7 +2692,7 @@ msgstr "Schrijf het type weg met alle letters."
 
 #: ../plugins/Name_Quotation.py:31
 msgid "Unbalanced quotation mark or bracket in name"
-msgstr ""
+msgstr "Onevenwichtig aanhalingsteken of haakje in naam"
 
 #: ../plugins/Name_Saint_FR.py:35
 msgid ""
@@ -2728,7 +2728,7 @@ msgid ""
 "`name:ar=Salaam` should be either `name:en=Salaam` (if known by\n"
 "untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`\n"
 "(original)."
-msgstr ""
+msgstr "Meestal is er een verkeerde taal gekozen. Soms is het woord\ngetranslitereerd, en moet worden teruggezet naar het oorspronkelijke alfabet.\n`name:ar=Salaam` zou ofwel `name:en=Salaam` (indien bekend bij\nonvertaalde naam) of `name:en=Peace` (vertaald) of `name:ar=سلام`\n(origineel)."
 
 #: ../plugins/Name_Script.py:50
 msgid ""
@@ -2778,19 +2778,19 @@ msgid ""
 "Correct the source and the location of the object if necessary. If the\n"
 "source is illegal, promptly notify the contributor to remove\n"
 "contributions."
-msgstr ""
+msgstr "Corrigeer indien nodig de bron en de locatie van het object. Als de\nbron illegaal is, stel de bijdrager onmiddellijk op de hoogte om de\nbijdrage te verwijderen ."
 
 #: ../plugins/Source.py:47
 msgid ""
 "An administrative boundary does not contain tag `source=*` sourcing\n"
 "the origin."
-msgstr ""
+msgstr "Een administratieve grens bevat geen `source = *` tag voeg\nde bron toe."
 
 #: ../plugins/Source.py:50
 msgid ""
 "If the limit comes from the French Cadastre, add the appropriate\n"
 "`source=*`."
-msgstr ""
+msgstr "Als de limiet afkomstig is van het Franse kadaster, voegt u de juiste `source = *` toe."
 
 #: ../plugins/Structural_DuplicateNodes.py:36
 msgid "A path passes several times by the same node."
@@ -2902,7 +2902,7 @@ msgid ""
 "The tag or combination key/value is no longer used. List of deprecated\n"
 "features comes from [Deprecated\n"
 "features](https://wiki.openstreetmap.org/wiki/Deprecated_features)"
-msgstr ""
+msgstr "De tag of combinatie sleutel / waarde wordt niet meer. Lijst met verouderdefuncties komt van [Deprecated\nfeatures](https://wiki.openstreetmap.org/wiki/Deprecated_features)"
 
 #: ../plugins/TagFix_DuplicateValue.py:35
 msgid ""
@@ -2948,7 +2948,7 @@ msgstr "Voeg `dispensing=yes` tag toe."
 
 #: ../plugins/TagFix_MultipleTag.py:48 ../plugins/TagFix_MultipleTag.py:54
 msgid "Check if it is really an highway and it is not already mapped."
-msgstr ""
+msgstr "Controleer of het echt een weg is en of het niet al in kaart is gebracht."
 
 #: ../plugins/TagFix_MultipleTag.py:60
 msgid ""
@@ -3076,7 +3076,7 @@ msgstr "Een `wikipedia = *` moet aanwezig zijn voordat `wikipedia: LANG = *` tag
 msgid ""
 "`highway=road` has been used, choose a correct value, such as\n"
 "`highway=unclassified`."
-msgstr ""
+msgstr "`highway=road` is gebruikt, kies een juiste waarde, zoals\n`highway=unclassified`."
 
 #: ../plugins/TagRemove_FR.py:35
 msgid "`designation=*` is a United Kingdom-specific tag."
@@ -3184,7 +3184,7 @@ msgstr "Waterweg kruist een waterweg"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:59
 msgid "Disconnected speed camera"
-msgstr ""
+msgstr "Niet gebruikte snelheidscamera"
 
 #: ../analysers/analyser_osmosis_relation_enforcement.py:60
 msgid ""
@@ -3274,7 +3274,7 @@ msgstr ""
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
-msgstr ""
+msgstr "Het is mogelijk dat niet-gebruikte stroomvoorzieningen worden losgekoppeld van het netwerk.\nMaak in dat geval gebruik van de  `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 
 #: ../analysers/analyser_osmosis_powerline.py:332
 #: ../analysers/analyser_osmosis_powerline.py:341
@@ -3349,12 +3349,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Area.py:48
 msgid "This feature is already implicitly not an area."
-msgstr ""
+msgstr "Deze functie is al geen gebied."
 
 #: ../plugins/TagFix_Area.py:61
 #, python-brace-format
 msgid "Tags, {0}, already make this an area."
-msgstr ""
+msgstr "Tags, {0}, maken dit al een gebied."
 
 #: ../plugins/TagFix_MultipleTag.py:64
 msgid ""
@@ -3370,7 +3370,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:73
 msgid "The relation is missing a `type` tag to define what it represents."
-msgstr ""
+msgstr "De relatie mist 'type' tag om te definiëren wat het vertegenwoordigt."
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
@@ -3418,7 +3418,7 @@ msgstr "{0} glas recycling bijwerken"
 #: ../plugins/TagFix_Deprecated.py:115 ../plugins/TagFix_Deprecated.py:130
 #, python-brace-format
 msgid "The tag `{0}` is deprecated in favour of {1}"
-msgstr ""
+msgstr "De tag '{0}' is verouderd ten gunste van {1}"
 
 #: ../analysers/analyser_merge_traffic_signs.py:84
 #, python-brace-format
@@ -3583,7 +3583,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "The area of this feature is too small to possibly be a building."
-msgstr ""
+msgstr "De oppervlakte van deze functie is te klein om mogelijk een gebouw te zijn."
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:183
 msgid ""
@@ -3597,7 +3597,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:192
 msgid "Merge the building parts together as appropriate."
-msgstr ""
+msgstr "Voeg de bouwdelen zo nodig samen."
 
 #: ../plugins/TagFix_MultipleTag.py:105 ../plugins/TagFix_MultipleTag.py:111
 msgid "Overly permissive access"
@@ -3658,7 +3658,7 @@ msgstr ""
 #: ../plugins/TagFix_Note_Lang_fr.py:104
 #, python-format, python-brace-format
 msgid "Use a tag to specify end: \"{0}\""
-msgstr ""
+msgstr "Gebruik een tag om het eind te specificeren: \"{0}\""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:33
 msgid "Wayside cross node without `material` tag"
@@ -3672,7 +3672,7 @@ msgstr ""
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:38
 msgid "Fill the tag `material=*` as specific as possible."
-msgstr ""
+msgstr "Vul zo mogelijk de tag `material = *`  in."
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:40
 msgid ""
@@ -3705,7 +3705,7 @@ msgstr "Alle apothekers in het land verkopen op recept van een arts. Het vereist
 msgid ""
 "Chemist shops (\"parapharmacie\" in French) do not fall into this\n"
 "classification. They do not have a specific tag for the moment."
-msgstr ""
+msgstr "Drogisterijen (\"parapharmacie\" in het Frans) vallen hier niet\nonder deze classificatie. Ze hebben momenteel geen specifieke tag."
 
 #: ../plugins/Highway_Parking_Lane.py:33
 msgid ""
@@ -3746,7 +3746,7 @@ msgstr "Als u na een beoordeling zeker weet dat het nieuwe gegevens zijn en gesc
 
 #: ../analysers/Analyser_Merge.py:1051
 msgid "Be sure that it is not already existing in another place."
-msgstr ""
+msgstr "Zorg ervoor dat het niet al op een andere plaats bestaat."
 
 #: ../analysers/Analyser_Merge.py:1056
 msgid ""
@@ -3758,13 +3758,13 @@ msgstr ""
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
-msgstr ""
+msgstr "Dit is een integratie suggestie, mixing OpenData source en\nOpenStreetMap."
 
 #: ../analysers/Analyser_Merge.py:1082
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
-msgstr ""
+msgstr "Dit is een update suggestie omdat dezelfde ref op OpenData en OSM kan worden gevonden ."
 
 #: ../analysers/Analyser_Merge.py:1044
 msgid ""
@@ -3786,7 +3786,7 @@ msgid ""
 "Some elements, including the peak (natural=peak) and mountain_pass\n"
 "(mountain_pass=yes), has an elevation. This is shown in OSM with tag\n"
 "ele=* in meters."
-msgstr ""
+msgstr "Enkele elementen, waaronder top (natural=peak) en  bergpassen\n(mountain_pass=yes), hebben een hoogte.. Dit wordt getoond in OSM met tag ele=* in meters."
 
 #: ../plugins/TagFix_Brand.py:38
 msgid ""
@@ -3938,7 +3938,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:39
 msgid "Level should be used for buildings, shops, amenities, etc."
-msgstr ""
+msgstr "Niveau moet worden gebruikt voor gebouwen, winkels, voorzieningen, enz."
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "Remove level and check if layer is needed instead"
@@ -4459,7 +4459,7 @@ msgstr "Fiets parking Bordeaux Metropole niet geïntegreerd"
 
 #: ../analysers/analyser_merge_cycle_parking_FR_bm.py:69
 msgid "Bordeaux Metropole motorcycle parking not integrated"
-msgstr ""
+msgstr "Motorijvoertuigen parking Bordeaux Metropole niet geïntegreerd"
 
 #: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:41
 #, python-brace-format
@@ -4515,7 +4515,7 @@ msgstr "Maak na het controleren een 'rivier' lijn binnen de' rivieroever' polygo
 
 #: ../analysers/analyser_merge_natural_FR.py:84
 msgid "Peak not integrated"
-msgstr ""
+msgstr "Piek niet geïntegreerd"
 
 #: ../analysers/analyser_merge_natural_FR.py:111
 msgid "Saddle not integrated"
@@ -4523,7 +4523,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_natural_FR.py:122
 msgid "Cave entrance not integrated"
-msgstr ""
+msgstr "Grotingang niet geïntegreerd"
 
 #: ../analysers/analyser_merge_natural_FR.py:161
 msgid "Pit not integrated"
@@ -4531,8 +4531,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_natural_FR.py:170
 msgid "Beach not integrated"
-msgstr ""
+msgstr "Strand niet geïntegreerd"
 
 #: ../analysers/analyser_merge_natural_FR.py:179
 msgid "Cape not integrated"
-msgstr ""
+msgstr "Kaap niet geintegreerd"

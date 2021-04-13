@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Adrien Pavie <panieravide@riseup.net>, 2020
+# ALEX HO <alexandre.ho.1998_linkedin@m4x.org>, 2021
 # Antonin Curtit, 2020
 # Antonin Curtit, 2020
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017,2020
@@ -13,7 +14,7 @@
 # deuzeffe, 2018
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2020
 # frodrigo <fred.rodrigo@gmail.com>, 2014
-# Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
+# bagage <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016,2019
 # Gilles MOREL <contact@gilles-morel.fr>, 2018
@@ -21,6 +22,7 @@
 # Jacques Lavignotte <jacques@lavignotte.org>, 2020
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
+# Jean-Claude Repetto <transifex@repetto.org>, 2021
 # Jérôme Amagat <jerome.amagat@gmail.com>, 2021
 # Jorg722, 2019
 #  <jocelyn.jaubert@gmail.com>, 2013
@@ -49,8 +51,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-03-25 22:07+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2021-04-06 21:30+0000\n"
+"Last-Translator: ALEX HO <alexandre.ho.1998_linkedin@m4x.org>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2895,7 +2897,7 @@ msgstr ""
 
 #: ../plugins/Structural_Useless_Relation.py:33
 msgid "The relation only contains one member."
-msgstr ""
+msgstr "La relation ne contient qu'un seul membre."
 
 #: ../plugins/Structural_Useless_Relation.py:35
 msgid ""
@@ -2906,7 +2908,7 @@ msgstr ""
 
 #: ../plugins/Structural_Useless_Relation.py:39
 msgid "Do not remove a relation without understanding why it is there."
-msgstr ""
+msgstr "Ne pas retirer une relation sans comprendre pourquoi elle a été instaurée."
 
 #: ../plugins/Structural_Waterway.py:32
 msgid "A waterway cannot flow in closed loop."
@@ -2914,7 +2916,7 @@ msgstr "Un cours d’eau ne peut pas former une boucle fermée."
 
 #: ../plugins/Structural_Waterway.py:34
 msgid "It is probably a river bank `waterway=riverbank`."
-msgstr ""
+msgstr "C'est probablement le lit d'un cours d'eau `waterway=riverbank`"
 
 #: ../plugins/TagFix_BadKey.py:33
 msgid ""
@@ -2930,7 +2932,7 @@ msgstr ""
 
 #: ../plugins/TagFix_BadKey.py:40
 msgid "There certainly false positives."
-msgstr ""
+msgstr "Ce sont probablement des faux-positifs."
 
 #: ../plugins/TagFix_Deprecated.py:95
 msgid ""
@@ -2975,7 +2977,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:41
 msgid "Eg. replace \"Chemin Rural dit des Vignes\" by \"Chemin des Vignes\"."
-msgstr ""
+msgstr "Par exemple, remplacer \"Chemin Rural dit des Vignes\" par \"Chemin des Vignes\""
 
 #: ../plugins/TagFix_Pharmacy.py:38
 msgid "Add tag `dispensing=yes`."
@@ -3323,7 +3325,7 @@ msgstr ""
 msgid ""
 "Two power lines meet at this point, but have inconsistent voltages "
 "(`voltage=*`)."
-msgstr ""
+msgstr "Deux lignes électriques se rejoignent à ce nœud, mais ont des tensions incompatibles (`voltage=*`)."
 
 #: ../analysers/analyser_osmosis_powerline.py:353
 msgid ""
@@ -3724,7 +3726,7 @@ msgstr ""
 #: ../plugins/TagFix_Destination.py:69
 #, python-brace-format
 msgid "{0} contains a pipe character"
-msgstr ""
+msgstr "{0} contient un caractère \"barre verticale\""
 
 #: ../plugins/TagFix_Pharmacy.py:33
 msgid "In the country all pharmacies deliver drugs under prescription"
@@ -4550,24 +4552,24 @@ msgstr ""
 
 #: ../analysers/analyser_merge_natural_FR.py:84
 msgid "Peak not integrated"
-msgstr ""
+msgstr "Sommet non intégré"
 
 #: ../analysers/analyser_merge_natural_FR.py:111
 msgid "Saddle not integrated"
-msgstr ""
+msgstr "Col non intégré"
 
 #: ../analysers/analyser_merge_natural_FR.py:122
 msgid "Cave entrance not integrated"
-msgstr ""
+msgstr "Grotte non intégrée"
 
 #: ../analysers/analyser_merge_natural_FR.py:161
 msgid "Pit not integrated"
-msgstr ""
+msgstr "Gouffre non intégré"
 
 #: ../analysers/analyser_merge_natural_FR.py:170
 msgid "Beach not integrated"
-msgstr ""
+msgstr "Plage non intégrée"
 
 #: ../analysers/analyser_merge_natural_FR.py:179
 msgid "Cape not integrated"
-msgstr ""
+msgstr "Cap non intégré"
