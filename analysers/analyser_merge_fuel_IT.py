@@ -70,7 +70,6 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                     static2 = {'source': self.source},
                     mapping1 = {
                         'ref:mise': 'idImpianto',
-                        'operator': lambda res: italian_strings.normalize_common(res['Gestore']),
                         'brand': lambda res: res['Bandiera'] if res['Bandiera'] != 'Pompe Bianche' else Mapping.delete_tag,
                         'fuel:octane_95': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_95) != 0 else Mapping.delete_tag,
                         'fuel:octane_98': lambda res: 'yes' if (int(res['Carburanti']) & OCTANE_98) != 0 else Mapping.delete_tag,
@@ -82,6 +81,9 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                         'fuel:lng': lambda res: 'yes' if (int(res['Carburanti']) & LNG) != 0 else Mapping.delete_tag,
                         'fuel:lpg': lambda res: 'yes' if (int(res['Carburanti']) & LPG) != 0 else Mapping.delete_tag,
                         'fuel:cng': lambda res: 'yes' if (int(res['Carburanti']) & CNG) != 0 else Mapping.delete_tag,
+                    },
+                    mapping2 = {
+                        'operator': lambda res: italian_strings.normalize_common(res['Gestore']).replace(' % ', ' - '),
                     },
                 text = lambda tags, fields: {'en': '{0}, {1}'.format(fields['Indirizzo'], fields['Comune'])} )))
 
