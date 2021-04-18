@@ -523,8 +523,8 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
 france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
 france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
 france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
-france_com(["south-america", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
-france_com(["south-america", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_format=None, phone_len=8, phone_len_short=6, phone_local_prefix=None, phone_international='00')
+france_com(["oceania", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
+france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_format=None, phone_len=8, phone_len_short=6, phone_local_prefix=None, phone_international='00')
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
     phone_code="687", phone_len=6, phone_format=r"^[+]%s([- ./]*[0-9]){5}[0-9]$", phone_international='00')
 
@@ -920,7 +920,7 @@ us_state("wyoming", 161991, "US-WY", proj=26913)
 
 default_country("oceania", "usa_guam", 306001, {"country": "GU", "language": "en", "proj": 32654}, download_repo=OSMFR, download_country="guam")
 default_country("oceania", "usa_northern_mariana_islands", 306004, {"country": "MP", "language": "en", "proj": 32654}, download_repo=OSMFR, download_country="northern_mariana_islands")
-default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS", "language": "en", "proj": 32601}, download_repo=OSMFR, download_country="american_samoa")
+default_country("oceania", "usa_american_samoa", 2177187, {"country": "AS", "language": "en", "proj": 32601}, download_repo=OSMFR, download_country="american_samoa")
 
 #########################################################################
 
@@ -1176,13 +1176,19 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 
 default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left", "addr:street_distance": 2000})
 
+default_country("oceania", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
 default_country("oceania", "marshall_islands", 571771, {"country": "MH", "language": "en", "proj": 32660}, download_repo=OSMFR)
 default_country("oceania", "nauru", 571804, {"country": "NR", "language": "en", "driving_side": "left", "proj": 32659}, download_repo=OSMFR)
+default_country("oceania", "niue", 1558556, {"country": "NU", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
 default_country("oceania", "palau", 571805, {"country": "PW", "language": "en", "proj": 32653}, download_repo=OSMFR)
 default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "en", "speed_limit_unit": "mph", "proj": 32656}, download_repo=OSMFR)
 default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
+default_country("oceania", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32602}, download_repo=OSMFR)
 default_country("oceania", "solomon_islands", 1857436, {"country": "SB", "language": "en", "driving_side": "left", "proj": 32657}, download_repo=OSMFR)
+default_country("oceania", "new_zealand_tokelau", 2186600, {"country": "TK", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR, download_country="tokelau")
+default_country("oceania", "tonga", 2186665, {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
 default_country("oceania", "tuvalu", 2177266, {"country": "TV", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
+default_country("oceania", "united_kingdom_pitcairn", 2185375, {"country": "PN", "language": "en", "driving_side": "left", "proj": 32709}, download_repo=OSMFR, download_country="pitcairn")
 default_country("oceania", "vanuatu", 2177246, {"country": "VU", "language": ["en", "fr"], "proj": 32658}, download_repo=OSMFR)
 
 #########################################################################
@@ -1212,20 +1218,14 @@ au_state("norfolk_island", 2574988, "NF", proj=32658)
 
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
-default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
 colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
 del(colombia.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("south-america", "ecuador", 108089, {"country": "EC", "language": "es", "proj": 32727})
 default_country("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
-default_country("south-america", "new_zealand_tokelau", 2186600, {"country": "TK", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR, download_country="tokelau")
-default_country("south-america", "niue", 1558556, {"country": "NU", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
-default_country("south-america", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32602}, download_repo=OSMFR)
-default_country("south-america", "tonga", 2186665, {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
 default_country("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "united_kingdom_falkland", 2185374, {"country": "FK", "language": "en", "driving_side": "left", "proj": 32721}, download_repo=OSMFR, download_country="falkland")
-default_country("south-america", "united_kingdom_pitcairn", 2185375, {"country": "PN", "language": "en", "driving_side": "left", "proj": 32709}, download_repo=OSMFR, download_country="pitcairn")
 default_country("south-america", "united_kingdom_south_georgia_and_south_sandwich", 1983628, {"country": "GS", "language": "en", "driving_side": "left", "proj": 32725}, download_repo=OSMFR, download_country="south_georgia_and_south_sandwich")
 default_country("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
 default_country("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
