@@ -19,14 +19,23 @@ for c in osmose_config.config.values():
     print('  ', c.country, c.polygon_id)
 
     # generate relation boundary
+    r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'refresh': 1})
+    if r.status_code == 500:
+        fails.append([c.country, c.polygon_id, 'Geom Error'])
+        continue
+    elif r.status_code != 200:
+        fails.append([c.country, c.polygon_id, 'Error'])
+        continue
+
+    # generate simplified relation boundary
     x = '0.020000'
     y = '0.005000'
     z = '0.005000'
-    r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'refresh': 1, 'x': x, 'y': y, 'z': z})
+    r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'x': x, 'y': y, 'z': z})
     if r.status_code == 500:
-        fails.append([c.country, c.polygon_id, 'Geom Error'])
+        fails.append([c.country, c.polygon_id, 'Geom Error when simplified'])
     elif r.status_code != 200:
-        fails.append([c.country, c.polygon_id, 'Error'])
+        fails.append([c.country, c.polygon_id, 'Error when simplified'])
     else:
         r = requests.get(polygon_union_url, params={'id': c.polygon_id, 'params': '{}-{}-{}'.format(x,y,z)})
         if r.status_code != 200:
