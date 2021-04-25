@@ -490,9 +490,18 @@ SELECT
   platform_that_can_project.stop_id, 
   ST_AsText(ST_Transform(platform_that_can_project.stop, 4326))
 FROM platform_that_can_project
-JOIN route_linestring ON route_linestring.id = platform_that_can_project.route_id    
+JOIN route_linestring ON route_linestring.id = platform_that_can_project.route_id   
+JOIN (
+  SELECT 
+    platform_that_can_project.route_id AS route_id,
+    MAX(platform_that_can_project.stop_order) AS last_platform
+  FROM platform_that_can_project 
+  GROUP BY platform_that_can_project.route_id
+) AS y ON platform_that_can_project.route_id = y.route_id 
 WHERE ST_DWithin(route_linestring.geom, platform_that_can_project.stop, 50) AND
-  NOT ST_Intersects(ST_Buffer(route_linestring.geom,50,'side=right'), platform_that_can_project.stop)
+  NOT ST_Intersects(ST_Buffer(route_linestring.geom,50,'side=right'), platform_that_can_project.stop) AND
+  platform_that_can_project.stop_order <> last_platform AND
+  platform_that_can_project.stop_order <> 1
 """
 
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
