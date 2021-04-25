@@ -939,15 +939,18 @@ class Select:
             if v is False:
                 clauses.append(k_not_exists)
             else:
-                clauses.append("NOT " + k_not_exists)
                 if hasattr(v, '__call__'):
+                    clauses.append("NOT " + k_not_exists)
                     clauses.append(v(k_value))
                 elif isinstance(v, list):
                     cond = k_value + " IN ('{}')".format("', '".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i is not None, v))))
                     if None in v:
                         cond = "(" + cond + " OR " + k_not_exists + ")"
+                    else:
+                        clauses.append("NOT " + k_not_exists)
                     clauses.append(cond)
                 else:
+                    clauses.append("NOT " + k_not_exists)
                     if v is None or v is True:
                         pass
                     elif isinstance(v, dict):
@@ -1422,7 +1425,7 @@ class Test(TestAnalyserOsmosis):
         self.assertEqual(Select.where_attributes({'a': False}), """(("a" IS NULL))""")
         self.assertEqual(Select.where_attributes({'a': {'like': 'a%'}}), """((NOT "a" IS NULL AND "a" LIKE 'a%'))""")
         self.assertEqual(Select.where_attributes({'a': '1'}), """((NOT "a" IS NULL AND "a" = '1'))""")
-        self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """(("a" IN ('1', '2')))""")
+        self.assertEqual(Select.where_attributes({'a': ['1', '2']}), """((NOT "a" IS NULL AND "a" IN ('1', '2')))""")
         self.assertEqual(Select.where_attributes({'a': ['1', None]}), """((("a" IN ('1') OR "a" IS NULL)))""")
         self.assertEqual(Select.where_attributes({'a': '1', 'b': '2'}), """((NOT "a" IS NULL AND "a" = '1' AND NOT "b" IS NULL AND "b" = '2'))""")
 
