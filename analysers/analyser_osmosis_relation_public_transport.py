@@ -370,14 +370,14 @@ WHERE
 
 sql100 = """
 CREATE OR REPLACE FUNCTION generate_linestring_geom(route_id bigint) RETURNS geometry(MultiLineString, 4326) LANGUAGE PLPGSQL AS $$
-declare
+DECLARE
    f record;
    full_way geometry(LineString, 4326);
    last_roundabout geometry(LineString, 4326);
-begin
-    for f in
-        select ways.id, ways.linestring AS geom from relation_members
-        join relations on
+BEGIN
+    FOR f IN
+        SELECT ways.id, ways.linestring AS geom FROM relation_members
+        JOIN relations ON
             relations.id = relation_members.relation_id
           JOIN ways ON
             ways.id = relation_members.member_id
@@ -387,40 +387,40 @@ begin
           relation_members.member_role NOT IN ('stop', 'stop_exit_only', 'stop_entry_only', 'platform', 'platform_exit_only', 'platform_entry_only') AND
           relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
           (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand') AND
-          ST_NPoints(linestring) >= 2
-          and relations.id = route_id
-        order by relation_members.sequence_id
-    loop
-      case
-           when full_way is null then
+          ST_NPoints(linestring) >= 2 AND
+          relations.id = route_id
+        ORDER BY relation_members.sequence_id
+    LOOP
+      CASE
+           WHEN full_way is null THEN
                 full_way := f.geom;
-           when st_endpoint(f.geom) = st_startpoint(f.geom) then
+           WHEN st_endpoint(f.geom) = st_startpoint(f.geom) THEN
                 last_roundabout := f.geom;
-           when last_roundabout is not null then
-                case
-                    when ST_Intersects(last_roundabout,st_startpoint(f.geom))  then
+           WHEN last_roundabout is not null THEN
+                CASE
+                    WHEN ST_Intersects(last_roundabout,st_startpoint(f.geom))  THEN
                         full_way:= ST_MakeLine(full_way,f.geom);
-                    when ST_Intersects(last_roundabout,st_endpoint(f.geom)) then
+                    WHEN ST_Intersects(last_roundabout,st_endpoint(f.geom)) THEN
                         full_way:= ST_MakeLine(full_way,ST_Reverse(f.geom));
-                    else
-                        return null;
-                end case;
+                    ELSE
+                        RETURN null;
+                END CASE;
                 last_roundabout = NULL;
-           when st_endpoint(full_way) = st_startpoint(f.geom) then
+           WHEN st_endpoint(full_way) = st_startpoint(f.geom) THEN
                  full_way:= ST_MakeLine(full_way,f.geom);
-           when st_endpoint(full_way) = st_endpoint(f.geom) then
+           WHEN st_endpoint(full_way) = st_endpoint(f.geom) THEN
                  full_way:= ST_MakeLine(full_way,ST_Reverse(f.geom));
-           when st_startpoint(full_way) = st_endpoint(f.geom) then
+           WHEN st_startpoint(full_way) = st_endpoint(f.geom) THEN
                  full_way:= ST_MakeLine(ST_Reverse(full_way),ST_Reverse(f.geom));
-           when st_startpoint(full_way) = st_startpoint(f.geom) then
+           WHEN st_startpoint(full_way) = st_startpoint(f.geom) THEN
                  full_way:= ST_MakeLine(ST_Reverse(full_way),f.geom);
-           else
+           ELSE
                 -- RAISE NOTICE 'full linestring: %', st_astext(st_makeline(full_way));
-                return null;
-      end case;
-    end loop;
-   return full_way;
-end;
+                RETURN NULL;
+      END CASE;
+    END LOOP;
+   RETURN full_way;
+END;
 $$;
 """
 
@@ -464,7 +464,7 @@ SELECT route_linestring.id AS route_id,
                      ORDER BY ST_LineLocatePoint(ST_OffsetCurve(route_linestring.geom, -10), stop_platform.geom) DESC) AS projected_stop_order
 FROM stop_platform
 JOIN route_linestring ON route_linestring.id = stop_platform.id
-WHERE stop_platform.mrole in ('platform',
+WHERE stop_platform.mrole IN ('platform',
                               'platform_exit_only',
                               'platform_entry_only')
   AND stop_platform.member_type='N'
@@ -486,19 +486,19 @@ WHERE stop_order <> projected_stop_order
 """
 
 sql110 = """
-SELECT 
-  platform_that_can_project.route_id, 
-  platform_that_can_project.stop_id, 
+SELECT
+  platform_that_can_project.route_id,
+  platform_that_can_project.stop_id,
   ST_AsText(ST_Transform(platform_that_can_project.stop, 4326))
 FROM platform_that_can_project
-JOIN route_linestring ON route_linestring.id = platform_that_can_project.route_id   
+JOIN route_linestring ON route_linestring.id = platform_that_can_project.route_id
 JOIN (
-  SELECT 
+  SELECT
     platform_that_can_project.route_id AS route_id,
     MAX(platform_that_can_project.stop_order) AS last_platform
-  FROM platform_that_can_project 
+  FROM platform_that_can_project
   GROUP BY platform_that_can_project.route_id
-) AS y ON platform_that_can_project.route_id = y.route_id 
+) AS y ON platform_that_can_project.route_id = y.route_id
 WHERE ST_DWithin(route_linestring.geom, platform_that_can_project.stop, 50) AND
   NOT ST_Intersects(ST_Buffer(route_linestring.geom,50,'side=right'), platform_that_can_project.stop) AND
   route_linestring.public_transport_mode IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus') AND
@@ -569,6 +569,7 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql70, self.callback70)
         self.run(sql80, self.callback80)
         self.run(sql90, self.callback90)
+        self.run(sqlA0.format(self.config.options.get("proj")), self.callbackA0)
         self.run(sql100)
         self.run(sql101.format(self.config.options.get("proj")))
         self.run(sql101b)
