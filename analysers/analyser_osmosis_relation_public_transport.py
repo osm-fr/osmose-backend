@@ -427,6 +427,7 @@ $$;
 sql101 = """
 CREATE TEMP TABLE route_linestring AS
 SELECT id,
+       relations.tags->'route' AS public_transport_mode,
        ST_Transform(generate_linestring_geom(id), {0}) AS geom
 FROM relations
 WHERE relations.tags->'type' = 'route'
@@ -500,6 +501,7 @@ JOIN (
 ) AS y ON platform_that_can_project.route_id = y.route_id 
 WHERE ST_DWithin(route_linestring.geom, platform_that_can_project.stop, 50) AND
   NOT ST_Intersects(ST_Buffer(route_linestring.geom,50,'side=right'), platform_that_can_project.stop) AND
+  route_linestring.public_transport_mode IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus') AND
   platform_that_can_project.stop_order <> last_platform AND
   platform_that_can_project.stop_order <> 1
 """
