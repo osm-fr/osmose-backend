@@ -415,8 +415,7 @@ begin
            when st_startpoint(full_way) = st_startpoint(f.geom) then
                  full_way:= ST_MakeLine(ST_Reverse(full_way),f.geom);
            else
-                raise notice 'kapout';
-                RAISE NOTICE 'full linestring: %', st_astext(st_makeline(full_way));
+                -- RAISE NOTICE 'full linestring: %', st_astext(st_makeline(full_way));
                 return null;
       end case;
     end loop;
@@ -461,13 +460,14 @@ SELECT route_linestring.id AS route_id,
        ROW_NUMBER () OVER (PARTITION BY route_linestring.id
                      ORDER BY stop_platform.morder) AS stop_order,
        ROW_NUMBER () OVER (PARTITION BY route_linestring.id
-                     ORDER BY ST_LineLocatePoint(route_linestring.geom, stop_platform.geom)) AS projected_stop_order
+                     ORDER BY ST_LineLocatePoint(ST_OffsetCurve(route_linestring.geom, -10), stop_platform.geom) DESC) AS projected_stop_order
 FROM stop_platform
 JOIN route_linestring ON route_linestring.id = stop_platform.id
 WHERE stop_platform.mrole in ('platform',
                               'platform_exit_only',
                               'platform_entry_only')
   AND stop_platform.member_type='N'
+  AND GeometryType(ST_OffsetCurve(route_linestring.geom, -10)) = 'LINESTRING'
   AND ST_LineLocatePoint(route_linestring.geom, ST_ClosestPoint(route_linestring.geom, stop_platform.geom)) <> 1
 )
 """
