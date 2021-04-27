@@ -55,6 +55,7 @@ SELECT
     id,
     nodes[array_length(nodes,1)] AS start,
     nodes[array_length(nodes,1)] AS end,
+    tags->'waterway' AS waterway,
     linestring
 FROM
     {0}ways AS ways
@@ -72,7 +73,8 @@ sql22 = """
 CREATE TEMP TABLE {0}connx AS
 SELECT
     ww.id,
-    ww.end
+    ww.end,
+    ww.waterway
 FROM
     {0}water_ends AS ww
     JOIN way_nodes ON
@@ -89,7 +91,8 @@ sql23 = """
 CREATE TEMP TABLE {0}_{1}_coastline_sinkhole AS
 SELECT
     ww.id,
-    ww.end
+    ww.end,
+    ww.waterway
 FROM
     {0}water_ends AS ww
     JOIN way_nodes ON
@@ -103,7 +106,8 @@ FROM
 UNION ALL
 SELECT
     ww.id,
-    ww.end
+    ww.end,
+    ww.waterway
 FROM
     {0}water_ends AS ww
     JOIN nodes ON
@@ -116,12 +120,14 @@ FROM
 sql24 = """
 SELECT
     t.id,
-    ST_AsText(nodes.geom)
+    ST_AsText(nodes.geom),
+    waterway
 FROM
     (
         SELECT
             id,
-            "end"
+            "end",
+            waterway
         FROM
             {0}water_ends
     EXCEPT
@@ -151,16 +157,23 @@ inside it.'''),
             fix = T_(
 '''After checking, create a "river" line inside the "riverbank"
 polygon or eliminate the "riverbank" polygon.'''))
-        self.classs_change[2] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
-            title = T_('Unconnected waterway or wrong way flow'),
-            detail = T_(
+
+        detail = T_(
 '''A `waterway=river` or a `waterway=stream` is an oriented way. The
-water must flow into another waterway or meet a `natural=coastline`.'''),
-            fix = T_(
-'''Link the waterway or invert its flow direction.'''))
+water must flow into another waterway or meet a `natural=coastline`.''')
+        fix = T_(
+'''Link the waterway or invert its flow direction.''')
+        self.classs_change[2] = self.def_class(item = 1220, level = 2, tags = ['waterway', 'fix:imagery'],
+            title = T_('Unconnected river or wrong way flow'),
+            detail = detail,
+            fix = fix)
+        self.classs_change[3] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
+            title = T_('Unconnected stream or wrong way flow'),
+            detail = detail,
+            fix = fix)
 
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":2 if res[2] == "river" else 3, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
