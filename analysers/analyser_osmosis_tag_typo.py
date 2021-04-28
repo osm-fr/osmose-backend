@@ -60,6 +60,7 @@ FROM
             'stars', 'start',
             'right', 'light',
             'truck',
+            'tracks',
             'size', 'site',
             'weight', 'height',
             'lawyer',
