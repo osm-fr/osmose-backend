@@ -294,7 +294,7 @@ FROM
 WHERE nodes.tags != ''::hstore AND
     nodes.tags?'public_transport' AND
     nodes.tags->'public_transport' = 'stop_position' AND
-    node_id is null;
+    node_id IS NULL;
 """
 
 sql80 = """
@@ -392,30 +392,43 @@ BEGIN
         ORDER BY relation_members.sequence_id
     LOOP
       CASE
-           WHEN full_way is null THEN
+           WHEN full_way IS NULL THEN
                 full_way := f.geom;
-           WHEN st_endpoint(f.geom) = st_startpoint(f.geom) THEN
+           WHEN ST_EndPoint(f.geom) = ST_StartPoint(f.geom) THEN
                 last_roundabout := f.geom;
-           WHEN last_roundabout is not null THEN
+           WHEN last_roundabout IS NOT NULL THEN
                 CASE
-                    WHEN ST_Intersects(last_roundabout,st_startpoint(f.geom))  THEN
+                    WHEN ST_Intersects(last_roundabout,ST_StartPoint(f.geom)) THEN
+                        CASE
+                          WHEN ST_LineLocatePoint(last_roundabout, ST_EndPoint(full_way)) > ST_LineLocatePoint(last_roundabout, ST_StartPoint(f.geom)) THEN
+                            full_way:= ST_MakeLine(full_way,ST_LineSubstring(last_roundabout, ST_LineLocatePoint(last_roundabout, ST_EndPoint(full_way)), 1));
+                            full_way:= ST_MakeLine(full_way,ST_LineSubstring(last_roundabout, 0, ST_LineLocatePoint(last_roundabout, ST_StartPoint(f.geom))));
+                          ELSE
+                            full_way:= ST_MakeLine(full_way,ST_LineSubstring(last_roundabout, ST_LineLocatePoint(last_roundabout, ST_EndPoint(full_way)), ST_LineLocatePoint(last_roundabout, ST_StartPoint(f.geom))));
+                        END CASE;
                         full_way:= ST_MakeLine(full_way,f.geom);
-                    WHEN ST_Intersects(last_roundabout,st_endpoint(f.geom)) THEN
+                    WHEN ST_Intersects(last_roundabout,ST_EndPoint(f.geom)) THEN
+                        CASE
+                          WHEN ST_LineLocatePoint(last_roundabout, ST_EndPoint(full_way)) > ST_LineLocatePoint(last_roundabout, ST_EndPoint(f.geom)) THEN
+                            full_way:= ST_MakeLine(full_way,ST_LineSubstring(last_roundabout, ST_LineLocatePoint(last_roundabout, ST_EndPoint(full_way)), 1));
+                            full_way:= ST_MakeLine(full_way,ST_LineSubstring(last_roundabout, 0, ST_LineLocatePoint(last_roundabout, ST_EndPoint(f.geom))));
+                          ELSE
+                            full_way:= ST_MakeLine(full_way,ST_LineSubstring(last_roundabout, ST_LineLocatePoint(last_roundabout, ST_EndPoint(full_way)), ST_LineLocatePoint(last_roundabout, ST_EndPoint(f.geom))));
+                        END CASE;
                         full_way:= ST_MakeLine(full_way,ST_Reverse(f.geom));
                     ELSE
-                        RETURN null;
+                        RETURN NULL;
                 END CASE;
                 last_roundabout = NULL;
-           WHEN st_endpoint(full_way) = st_startpoint(f.geom) THEN
+           WHEN ST_EndPoint(full_way) = ST_StartPoint(f.geom) THEN
                  full_way:= ST_MakeLine(full_way,f.geom);
-           WHEN st_endpoint(full_way) = st_endpoint(f.geom) THEN
+           WHEN ST_EndPoint(full_way) = ST_EndPoint(f.geom) THEN
                  full_way:= ST_MakeLine(full_way,ST_Reverse(f.geom));
-           WHEN st_startpoint(full_way) = st_endpoint(f.geom) THEN
+           WHEN ST_StartPoint(full_way) = ST_EndPoint(f.geom) THEN
                  full_way:= ST_MakeLine(ST_Reverse(full_way),ST_Reverse(f.geom));
-           WHEN st_startpoint(full_way) = st_startpoint(f.geom) THEN
+           WHEN ST_StartPoint(full_way) = ST_StartPoint(f.geom) THEN
                  full_way:= ST_MakeLine(ST_Reverse(full_way),f.geom);
            ELSE
-                -- RAISE NOTICE 'full linestring: %', st_astext(st_makeline(full_way));
                 RETURN NULL;
       END CASE;
     END LOOP;
