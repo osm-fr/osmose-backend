@@ -475,7 +475,12 @@ SELECT route_linestring.id AS route_id,
        ROW_NUMBER () OVER (PARTITION BY route_linestring.id
                      ORDER BY stop_platform.morder) AS stop_order,
        ROW_NUMBER () OVER (PARTITION BY route_linestring.id
-                     ORDER BY ST_LineLocatePoint(ST_OffsetCurve(route_linestring.geom, -10), stop_platform.geom) DESC) AS projected_stop_order
+                     ORDER BY ST_LineLocatePoint(ST_OffsetCurve(route_linestring.geom, -10), stop_platform.geom) DESC) AS projected_stop_order,
+       (CASE
+          WHEN LEAD(stop_platform.morder, 1) OVER (PARTITION BY route_linestring.id
+                     ORDER BY stop_platform.morder) IS NULL THEN 1
+          ELSE 0
+       END) AS is_last_platform
 FROM stop_platform
 JOIN route_linestring ON route_linestring.id = stop_platform.id
 WHERE stop_platform.mrole IN ('platform',
@@ -506,17 +511,10 @@ SELECT
   ST_AsText(ST_Transform(platform_that_can_project.stop, 4326))
 FROM platform_that_can_project
 JOIN route_linestring ON route_linestring.id = platform_that_can_project.route_id
-JOIN (
-  SELECT
-    platform_that_can_project.route_id AS route_id,
-    MAX(platform_that_can_project.stop_order) AS last_platform
-  FROM platform_that_can_project
-  GROUP BY platform_that_can_project.route_id
-) AS y ON platform_that_can_project.route_id = y.route_id
 WHERE ST_DWithin(route_linestring.geom, platform_that_can_project.stop, 50) AND
   NOT ST_Intersects(ST_Buffer(route_linestring.geom, 50, 'side={}'), platform_that_can_project.stop) AND
   route_linestring.public_transport_mode IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus') AND
-  platform_that_can_project.stop_order <> last_platform AND
+  platform_that_can_project.is_last_platform <> 1 AND
   platform_that_can_project.stop_order <> 1
 """
 
