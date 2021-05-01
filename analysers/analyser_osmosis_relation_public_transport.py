@@ -459,6 +459,7 @@ WHERE relations.tags->'type' = 'route'
                              'school_bus')
   AND (NOT relations.tags?(relations.tags->'route')
        OR relations.tags->(relations.tags->'route') != 'on_demand')
+  AND generate_linestring_geom(id) IS NOT NULL
 """
 
 sql101b = """
@@ -482,7 +483,7 @@ WHERE stop_platform.mrole IN ('platform',
                               'platform_entry_only')
   AND stop_platform.member_type='N'
   AND GeometryType(ST_OffsetCurve(route_linestring.geom, -10)) = 'LINESTRING'
-  AND ST_LineLocatePoint(route_linestring.geom, ST_ClosestPoint(route_linestring.geom, stop_platform.geom)) <> 1
+  AND ST_LineLocatePoint(route_linestring.geom, ST_ClosestPoint(route_linestring.geom, stop_platform.geom)) NOT IN (0, 1)
 )
 """
 
@@ -513,7 +514,7 @@ JOIN (
   GROUP BY platform_that_can_project.route_id
 ) AS y ON platform_that_can_project.route_id = y.route_id
 WHERE ST_DWithin(route_linestring.geom, platform_that_can_project.stop, 50) AND
-  NOT ST_Intersects(ST_Buffer(route_linestring.geom,50,'side=right'), platform_that_can_project.stop) AND
+  NOT ST_Intersects(ST_Buffer(route_linestring.geom, 50, 'side={}'), platform_that_can_project.stop) AND
   route_linestring.public_transport_mode IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus') AND
   platform_that_can_project.stop_order <> last_platform AND
   platform_that_can_project.stop_order <> 1
@@ -566,6 +567,10 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.callback100 = lambda res: {"class":11, "data":[self.relation_full, self.positionAsText]}
         self.callback110 = lambda res: {"class":12, "data":[self.relation_full, self.any_full, self.positionAsText]}
 
+        if self.config.options.get("driving_side") == "left":
+            self.buffer_driving_side = "left"
+        else:
+            self.buffer_driving_side = "right"
 
     def analyser_osmosis_common(self):
         self.run(sql00)
@@ -589,4 +594,4 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql102)
         self.run(sql102b)
         self.run(sql103, self.callback100)
-        self.run(sql110, self.callback110)
+        self.run(sql110.format(self.buffer_driving_side), self.callback110)
