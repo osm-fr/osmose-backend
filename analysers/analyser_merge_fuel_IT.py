@@ -83,7 +83,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
                         'fuel:cng': lambda res: 'yes' if (int(res['Carburanti']) & CNG) != 0 else Mapping.delete_tag,
                     },
                     mapping2 = {
-                        'operator': lambda res: italian_strings.normalize_common(res['Gestore']).replace(' % ', ' - '),
+                        'operator': lambda res: italian_strings.normalize_common(res['Gestore']).replace(' % ', ' - ') if res['Gestore'] else None,
                     },
                 text = lambda tags, fields: {'en': '{0}, {1}'.format(fields['Indirizzo'], fields['Comune'])} )))
 
