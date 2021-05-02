@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-03-25 22:07+0000\n"
+"PO-Revision-Date: 2021-05-02 20:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -163,11 +163,11 @@ msgstr "建筑间的间隙"
 msgid "Large building intersection cluster"
 msgstr "大型建筑物交叉口群集"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:69
+#: ../analysers/analyser_osmosis_building_shapes.py:70
 msgid "Special building (round)"
 msgstr "特殊建筑 (圆)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:72
+#: ../analysers/analyser_osmosis_building_shapes.py:73
 msgid "Special building (large)"
 msgstr "特殊建筑 (大)"
 
@@ -329,7 +329,7 @@ msgstr "相反环岛"
 msgid "Soundex test"
 msgstr "Soundex 测试"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:150
+#: ../analysers/analyser_osmosis_tag_typo.py:151
 msgid "Typo in tag"
 msgstr "有错字的标签"
 
@@ -345,11 +345,10 @@ msgstr "缺少标签或角色的道路"
 msgid "Missing tag or role on relation"
 msgstr "缺少标签或角色的关系"
 
-#: ../analysers/analyser_osmosis_waterway.py:147
+#: ../analysers/analyser_osmosis_waterway.py:153
 msgid "Riverbank without river"
 msgstr "没有河流的河岸"
 
-#: ../analysers/analyser_osmosis_waterway.py:155
 msgid "Unconnected waterway or wrong way flow"
 msgstr "没有连接的水路或错误的流向"
 
@@ -481,10 +480,10 @@ msgstr "一个节点的线路"
 msgid "Deprecated tag"
 msgstr "已弃用的标签"
 
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "查看多个标签"
 
@@ -662,15 +661,15 @@ msgstr "土地用途不在地面上"
 msgid "Natural feature underground"
 msgstr "自然特征在地下"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
 msgid "Default and local language name not the same"
 msgstr "默认和本地语言名称不一样"
 
-#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
 msgid "Local language name without default name"
 msgstr "没有默认名称的本地语言名称"
 
-#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
+#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
 msgid "Language name without default name"
 msgstr "没有默认名称的语言名称"
 
@@ -780,7 +779,7 @@ msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除
 msgid "Inconsistent Access"
 msgstr "访问不一致"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:379
+#: ../analysers/analyser_osmosis_relation_public_transport.py:531
 msgid "Non route relation member in route_master relation"
 msgstr "非路由关系成员在route_master关系中"
 
@@ -1087,11 +1086,11 @@ msgstr "重复的维基百科标签"
 msgid "Should not contain tag ref={0}"
 msgstr "不应该包含标签ref={0}"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:86
+#: ../analysers/analyser_osmosis_highway_name_close.py:87
 msgid "Close similar name"
 msgstr "关闭相似的名字"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:381
+#: ../analysers/analyser_osmosis_relation_public_transport.py:533
 msgid "Public transport relation route not in route_master relation"
 msgstr "公共交通关系路线不在 route_master 关系中"
 
@@ -1102,11 +1101,11 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于associatedStreet关系中"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:375
+#: ../analysers/analyser_osmosis_relation_public_transport.py:527
 msgid "The track of this route contains gaps"
 msgstr "这条路线的轨迹包含空白"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:377
+#: ../analysers/analyser_osmosis_relation_public_transport.py:529
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
@@ -1114,13 +1113,13 @@ msgstr "站点或平台离这条路线的轨迹太远"
 msgid "Missing international prefix"
 msgstr "缺少国际前缀"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:383
+#: ../analysers/analyser_osmosis_relation_public_transport.py:535
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "网络，运营商，参考，颜色标签应该是相同的路线和route_master关系"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:402
+#: ../analysers/analyser_osmosis_relation_public_transport.py:558
 #, python-format, python-brace-format
 msgid "{0} are different"
 msgstr "{0}是不同的"
@@ -1757,6 +1756,7 @@ msgstr ""
 msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
 
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1766,7 +1766,6 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2496,11 +2495,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:152
+#: ../analysers/analyser_osmosis_tag_typo.py:153
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:154
+#: ../analysers/analyser_osmosis_tag_typo.py:155
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -2512,19 +2511,19 @@ msgstr ""
 msgid "The object is sometimes duplicate."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:149
+#: ../analysers/analyser_osmosis_waterway.py:155
 msgid ""
 "There is one `waterway=riverbank` but there is no `waterway=river`\n"
 "inside it."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:157
+#: ../analysers/analyser_osmosis_waterway.py:162
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
 "water must flow into another waterway or meet a `natural=coastline`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:160
+#: ../analysers/analyser_osmosis_waterway.py:165
 msgid "Link the waterway or invert its flow direction."
 msgstr ""
 
@@ -3123,21 +3122,21 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:47
 #: ../analysers/analyser_merge_street_objects.py:47
+#: ../analysers/analyser_merge_street_objects2.py:47
 #: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:48
 #: ../analysers/analyser_merge_street_objects.py:48
+#: ../analysers/analyser_merge_street_objects2.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:50
 #: ../analysers/analyser_merge_street_objects.py:50
+#: ../analysers/analyser_merge_street_objects2.py:50
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
@@ -3199,15 +3198,15 @@ msgstr ""
 msgid "Untagged named object"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
@@ -3251,7 +3250,7 @@ msgid ""
 "relations."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_shapes.py:66
+#: ../analysers/analyser_osmosis_building_shapes.py:67
 msgid ""
 "The shape of the building is characteristic and as such would be\n"
 "tagged."
@@ -3367,20 +3366,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr ""
@@ -3482,15 +3481,15 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:38
+#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_capp.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:41
+#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3733,35 +3732,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1048
+#: ../analysers/Analyser_Merge.py:1052
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1051
+#: ../analysers/Analyser_Merge.py:1055
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1056
+#: ../analysers/Analyser_Merge.py:1060
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1069
+#: ../analysers/Analyser_Merge.py:1073
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1082
+#: ../analysers/Analyser_Merge.py:1086
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1044
+#: ../analysers/Analyser_Merge.py:1048
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -3882,25 +3881,25 @@ msgstr ""
 msgid "Hole between administrative boundaries of admin_level {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:385
+#: ../analysers/analyser_osmosis_relation_public_transport.py:537
 msgid ""
 "The bus stop is part of a way, it should have public_transport=stop_position"
 " tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:387
+#: ../analysers/analyser_osmosis_relation_public_transport.py:539
 msgid "The stop_position is not part of a way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:389
+#: ../analysers/analyser_osmosis_relation_public_transport.py:541
 msgid "The platform is part of a way, it should have the role stop"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:391
+#: ../analysers/analyser_osmosis_relation_public_transport.py:543
 msgid "The stop is not part of a way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:392
+#: ../analysers/analyser_osmosis_relation_public_transport.py:544
 msgid ""
 "Change the role in the relation to platform or add the stop to the way and "
 "turn it to a public_transport=stop_position"
@@ -4214,11 +4213,11 @@ msgid ""
 "Contact the contributor submiting the nodes or remove those."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:394
+#: ../analysers/analyser_osmosis_relation_public_transport.py:546
 msgid "Stop position without platform nor bus stop"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:395
+#: ../analysers/analyser_osmosis_relation_public_transport.py:547
 msgid ""
 "A bus `public_transport=stop_position` without close "
 "`public_transport=platform` nor `highway=bus_stop`."
@@ -4502,7 +4501,7 @@ msgid ""
 "* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:152
+#: ../analysers/analyser_osmosis_waterway.py:158
 msgid ""
 "After checking, create a \"river\" line inside the \"riverbank\"\n"
 "polygon or eliminate the \"riverbank\" polygon."
@@ -4530,4 +4529,20 @@ msgstr ""
 
 #: ../analysers/analyser_merge_natural_FR.py:179
 msgid "Cape not integrated"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:549
+msgid "The stops may not be in the right order"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:551
+msgid "The platform is not on the right side of the road"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:167
+msgid "Unconnected river or wrong way flow"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:171
+msgid "Unconnected stream or wrong way flow"
 msgstr ""
