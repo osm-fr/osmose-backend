@@ -384,9 +384,13 @@ class OsmOsisManager:
     pbf_file = conf.download["dst"]
     from osmium.replication.utils import get_replication_header # type: ignore
 
-    # check if osmosis_* headers for replication are present
-    url, seq, ts = get_replication_header(pbf_file)
-    if url is None or seq is None or ts is None:
+    try:
+      # check if osmosis_* headers for replication are present
+      url, seq, ts = get_replication_header(pbf_file)
+      if url is None or seq is None or ts is None:
+        return False
+    except:
+      # can happen if pbf file is corrupted
       return False
 
     return True
