@@ -22,7 +22,7 @@
 # http://www.regular-expressions.info/unicode.html#script
 # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 language2scripts = {
-  'ar': ['Arabic', '[\u064B-\u064E\u0650-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac' Arabic,Syriac frequent at least in Iraq,
+  'ar': ['Arabic', '[\u064B-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac' Arabic,Syriac frequent at least in Iraq,
   'az': ['Arabic', 'Cyrillic', 'Latin'],
   'be': ['Cyrillic'],
   'ber': ['Tifinagh'],
@@ -41,7 +41,7 @@ language2scripts = {
   'es': ['Latin'],
   'et': ['Latin'],
   'eu': ['Latin'],
-  'fa': ['Arabic', '[\u064B-\u064E\u0650-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac'
+  'fa': ['Arabic', '[\u064B-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac'
   'fi': ['Latin'],
   'fo': ['Latin'],
   'fr': [u'[A-Za-zÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆéàèùâêîôûëïüÿçœæ]'],
