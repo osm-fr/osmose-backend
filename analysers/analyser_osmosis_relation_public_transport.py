@@ -475,7 +475,7 @@ SELECT route_linestring.id AS route_id,
        ROW_NUMBER () OVER (PARTITION BY route_linestring.id
                      ORDER BY stop_platform.morder) AS stop_order,
        ROW_NUMBER () OVER (PARTITION BY route_linestring.id
-                     ORDER BY ST_LineLocatePoint(ST_OffsetCurve(route_linestring.geom, -10), stop_platform.geom) DESC) AS projected_stop_order,
+                     ORDER BY ST_LineLocatePoint(route_linestring.geom, stop_platform.geom) DESC) AS projected_stop_order,
        (CASE
           WHEN LEAD(stop_platform.morder, 1) OVER (PARTITION BY route_linestring.id
                      ORDER BY stop_platform.morder) IS NULL THEN 1
@@ -487,7 +487,7 @@ WHERE stop_platform.mrole IN ('platform',
                               'platform_exit_only',
                               'platform_entry_only')
   AND stop_platform.member_type='N'
-  AND GeometryType(ST_OffsetCurve(route_linestring.geom, -10)) = 'LINESTRING'
+  AND GeometryType(route_linestring.geom) = 'LINESTRING'
   AND ST_LineLocatePoint(route_linestring.geom, ST_ClosestPoint(route_linestring.geom, stop_platform.geom)) NOT IN (0, 1)
 )
 """
