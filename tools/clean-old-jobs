@@ -1,0 +1,35 @@
+#! /bin/bash
+
+# Find jobs older than 2 days, and kill them
+OLD_JOBS=$(ps -U osmose -o pid,etime,args | grep osmose_run.py | awk '$2~/^[2-9].?-/ { print  }' | sed "s/.*--country \([^ ]*\) .*/\1/")
+
+if [ "x$OLD_JOBS" != "x" ]; then
+  echo "Old jobs found:"
+  echo $OLD_JOBS
+  kill $(ps -U osmose -o pid,etime,args | grep osmose_run.py | awk '$2~/^[2-9].?-/ { print $1 }')
+fi
+
+sleep 1
+
+# Get list of running jobs, to keep them alive
+RUNNING=$(ps -U osmose -o pid,etime,args | grep osmose_run.py | grep python3 | sed "s/.*--country \([^ ]*\) .*/\1/")
+if [ "x$RUNNING" != "x" ]; then
+  echo "Jobs still running:"
+  echo $RUNNING
+fi
+
+# Remove postgres schemas not associated to a running job
+SCHEMA_OSMOSE=$(psql -t osmose -c "SELECT schema_name FROM information_schema.schemata;" | egrep -v "(pg_catalog|public|information_schema|osmose)")
+if [ "x$SCHEMA_OSMOSE" != "x" ]; then
+  echo "Psql schemas to remove:"
+  for i in $SCHEMA_OSMOSE; do
+    if [[ "$RUNNING" == *"$i"* ]]; then
+      echo "$i (still running, so not removed)"
+    else
+      echo "$i"
+      # Set lock_timeout, as schema could be blocked by a 'CREATE TABLE'
+      # TODO: investigate how to kill these postgres jobs
+      psql osmose -c "SET LOCAL lock_timeout = '4s'; DROP SCHEMA $i CASCADE"
+    fi
+  done
+fi
