@@ -485,7 +485,7 @@ SELECT
     stop_platform.member_type || stop_platform.mid AS stop_id,
     stop_platform.geom AS stop,
     ROW_NUMBER () OVER (PARTITION BY route_linestring.id ORDER BY stop_platform.morder) AS stop_order,
-    ROW_NUMBER () OVER (PARTITION BY route_linestring.id ORDER BY ST_LineLocatePoint(route_linestring.geom, stop_platform.geom) DESC) AS projected_stop_order,
+    ROW_NUMBER () OVER (PARTITION BY route_linestring.id ORDER BY ST_LineLocatePoint(route_linestring.geom, stop_platform.geom)) AS projected_stop_order,
     CASE
         WHEN LEAD(stop_platform.morder, 1) OVER (PARTITION BY route_linestring.id ORDER BY stop_platform.morder) IS NULL THEN 1
         ELSE 0
