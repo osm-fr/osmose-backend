@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 ###########################################################################
@@ -21,6 +21,13 @@
 ###########################################################################
 
 import sys
+import logging
+
+logger = logging.getLogger('shapely.geos')
+logging_handler_out = logging.StreamHandler(sys.stdout)
+logger.addHandler(logging_handler_out)
+logger.setLevel(logging.INFO)
+
 from shapely.geometry import MultiPolygon
 
 sys.path.append("..")
@@ -57,7 +64,7 @@ def parse_poly(lines):
 
         elif in_ring:
             # we are in a ring and picking up new coordinates.
-            ring.append(map(float, line.split()))
+            ring.append(list(map(float, line.split())))
 
         elif not in_ring and line.strip() == 'END':
             # we are at the end of the whole polygon.
@@ -80,7 +87,7 @@ def parse_poly(lines):
 
 def load_poly(poly):
     try:
-        print(poly)
+        #print(poly)
         s = downloader.urlread(poly, 1)
         return parse_poly(s.split('\n'))
     except IOError as e:
@@ -94,18 +101,18 @@ for country, country_conf in config.config.items():
     elif not 'poly' in country_conf.download:
         print("Warning(%s): no poly declared" % country)
     else:
-        #print "%s" % country
+        #print("%s" % country)
         poly = load_poly(country_conf.download['poly'])
         if not poly:
             print("Warning(%s): no poly fetched : %s" % (country, country_conf.download['poly']))
         else:
             polygonFilter = IssuesFile_PolygonFilter.PolygonFilter(country_conf.polygon_id, cache_delay=1)
-            if not polygonFilter.pip.polygon.is_valid:
+            if not polygonFilter.pip.polygon.polygon.is_valid:
                 print("Error(%s) boundary not valid (r_id=%s)" % (country, country_conf.polygon_id))
             if not poly.is_valid:
-                print("Error(%s) poly not valid (%s)" % (country, country_conf.polygon_id))
+                print("Error(%s) poly not valid (r_id=%s)" % (country, country_conf.polygon_id))
             try:
-                if not poly.contains(polygonFilter.pip.polygon):
-                    print("Error(%s) poly inside boundary (%s)" % (country, country_conf.download_repo))
+                if not poly.contains(polygonFilter.pip.polygon.polygon):
+                    print("Error(%s) poly inside boundary (r_id=%s, poly=%s)" % (country, country_conf.polygon_id, country_conf.download['poly']))
             except:
-                print("Error(%s) evaluating intersection" % country)
+                print("Error(%s) evaluating intersection (r_id=%s, poly=%s)" % (country, country_conf.polygon_id, country_conf.download['poly']))
