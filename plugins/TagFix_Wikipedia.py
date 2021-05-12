@@ -377,4 +377,4 @@ class Test(TestPluginCommon):
         self.analyser.init(None)
 
         assert not self.analyser.node(None, {"wikipedia": u"uk:Нова Воля", "wikipedia:ru": u"Новая Воля"})
-        assert self.analyser.node(None, {"wikipedia": u"uk:Подільськ", "wikipedia:pl": u"Podilśk"})
+        assert self.analyser.node(None, {"wikipedia": u"uk:Подільськ", "wikipedia:pl": u"Podolsk (Ukraina)"})
