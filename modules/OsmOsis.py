@@ -47,6 +47,7 @@ class OsmOsis:
                     time.sleep(1)
         psycopg2.extras.register_hstore(self._PgConn)
         self._PgCurs = self._PgConn.cursor()
+        self._PgCurs.execute("SET LOCAL statement_timeout = '2h';")
         if schema_path:
             self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)
 
