@@ -607,4 +607,6 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql102)
         self.run(sql102b)
         self.run(sql103, self.callback100)
-        self.run(sql110.format(self.buffer_driving_side), self.callback110)
+        postgis_version = self.config.osmosis_manager.postgis_version()
+        if postgis_version >= [2, 5]:
+            self.run(sql110.format(self.buffer_driving_side), self.callback110)
