@@ -42,9 +42,7 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                     attribution="Transport.data.gouv.fr",
                     encoding="utf-8-sig",
                     dataset="5d6eaffc8b4c417cdc452ac3",
-                    resource="e0962ca4-2fb9-4257-a569-56704df3243d",
-                    filter=lambda text: text.replace('\r', '\n')),
-                separator=";"),
+                    resource="46362a9d-053e-4ba0-be58-bca4417a2de8")),
             Load("Xlong", "Ylat",
                 select = {
                     "ouvert": "true"}),
