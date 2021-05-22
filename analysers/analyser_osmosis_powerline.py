@@ -144,23 +144,44 @@ CREATE INDEX idx_line_terminators_geom ON line_terminators USING GIST(geom)
 
 sql26 = """
 SELECT
+    id,
+    ST_AsText(geom),
+    power
+FROM (
+SELECT
     line_ends1.id,
-    ST_AsText(line_ends1.geom),
+    line_ends1.geom,
     line_ends1.power
 FROM
     line_ends1
-    LEFT JOIN line_terminators ON
+
+EXCEPT
+
+SELECT
+    line_ends1.id,
+    line_ends1.geom,
+    line_ends1.power
+FROM
+    line_ends1
+    JOIN line_terminators ON
         ST_DWithin(line_ends1.geom, line_terminators.geom, 150)
-    LEFT JOIN ways ON
+
+EXCEPT
+
+SELECT
+    line_ends1.id,
+    line_ends1.geom,
+    line_ends1.power
+FROM
+    line_ends1
+    JOIN ways ON
         ways.id != line_ends1.wid AND
         tags != ''::hstore AND
         tags?'power' AND
         tags->'power' IN ('line', 'minor_line', 'cable') AND
         ways.linestring && line_ends1.geom AND
         line_ends1.id = ANY(ways.nodes)
-WHERE
-    line_terminators.geom IS NULL AND
-    ways.id IS NULL
+) AS t
 """
 
 sql30 = """
