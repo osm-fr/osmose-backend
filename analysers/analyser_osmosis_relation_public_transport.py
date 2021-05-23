@@ -339,33 +339,59 @@ WHERE
 """
 
 sqlA0 = """
+CREATE TEMP TABLE n_bs AS
+SELECT
+    geom
+FROM
+    nodes
+WHERE
+    tags != ''::hstore AND
+    (
+        (tags?'public_transport' AND tags->'public_transport' = 'platform') OR
+        (tags?'highway' AND tags->'highway' = 'bus_stop')
+    )
+"""
+
+sqlA1 = """
+CREATE INDEX n_bs_idx_geom ON n_bs USING gist(geom)
+"""
+
+sqlA2 = """
+CREATE TEMP TABLE w_bs AS
+SELECT
+    linestring
+FROM
+    ways
+WHERE
+    tags != ''::hstore AND
+    (
+        (tags?'public_transport' AND tags->'public_transport' = 'platform') OR
+        (tags?'highway' AND tags->'highway' = 'bus_stop')
+    )
+"""
+
+sqlA3 = """
+CREATE INDEX w_bs_idx_geom ON w_bs USING gist(linestring)
+"""
+
+sqlA4 = """
 SELECT
     sp.id,
     ST_AsText(sp.geom) AS geom
 FROM
     nodes AS sp
-    LEFT JOIN nodes AS n_bs ON
-        ST_Intersects(ST_Transform(ST_Buffer(ST_Transform(sp.geom, {0}), 100), 4326), n_bs.geom) AND
-        n_bs.tags != ''::hstore AND
-        (
-            (n_bs.tags?'public_transport' AND n_bs.tags->'public_transport' = 'platform') OR
-            (n_bs.tags?'highway' AND n_bs.tags->'highway' = 'bus_stop')
-        )
-    LEFT JOIN ways AS w_bs ON
-        ST_Intersects(ST_Transform(ST_Buffer(ST_Transform(sp.geom, {0}), 100), 4326), w_bs.linestring) AND
-        w_bs.tags != ''::hstore AND
-        (
-            (w_bs.tags?'public_transport' AND w_bs.tags->'public_transport' = 'platform') OR
-            (w_bs.tags?'highway' AND w_bs.tags->'highway' = 'bus_stop')
-        )
+    LEFT JOIN n_bs ON
+        ST_Intersects(ST_Transform(ST_Buffer(ST_Transform(sp.geom, {0}), 100), 4326), n_bs.geom)
+    LEFT JOIN w_bs ON
+        ST_Intersects(ST_Transform(ST_Buffer(ST_Transform(sp.geom, {0}), 100), 4326), w_bs.linestring)
 WHERE
     sp.tags != ''::hstore AND
     sp.tags?'public_transport' AND
     sp.tags->'public_transport' = 'stop_position' AND
     sp.tags?'bus' AND
     sp.tags->'bus' = 'yes' AND
-    n_bs.id IS NULL AND
-    w_bs.id IS NULL
+    n_bs.geom IS NULL AND
+    w_bs.linestring IS NULL
 """
 
 sql100 = """
@@ -600,7 +626,11 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql70, self.callback70)
         self.run(sql80, self.callback80)
         self.run(sql90, self.callback90)
-        self.run(sqlA0.format(self.config.options.get("proj")), self.callbackA0)
+        self.run(sqlA0)
+        self.run(sqlA1)
+        self.run(sqlA2)
+        self.run(sqlA3)
+        self.run(sqlA4.format(self.config.options.get("proj")), self.callbackA0)
         self.run(sql100)
         self.run(sql101.format(self.config.options.get("proj")))
         self.run(sql101b)
