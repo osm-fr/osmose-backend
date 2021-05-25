@@ -45,20 +45,16 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = [
-                        {"power": "substation", "substation": "minor_distribution", "operator": False},
-                        {"power": "substation", "substation": "minor_distribution", "operator": "EDF"},
-                        {"power": "substation", "substation": "minor_distribution", "operator": "ERDF"},
-                        {"power": "substation", "substation": "minor_distribution", "operator": "Enedis"},
-                        {"power": None, "transformer": "distribution", "operator": False},
-                        {"power": None, "transformer": "distribution", "operator": "EDF"},
-                        {"power": None, "transformer": "distribution", "operator": "ERDF"},
-                        {"power": None, "transformer": "distribution", "operator": "Enedis"}]),
+                        {"power": "substation", "substation": "minor_distribution", "operator": [False, "EDF", "ERDF", "Enedis"]},
+                        {"power": None, "transformer": "distribution", "operator": [False, "EDF", "ERDF", "Enedis"]},
+                        {"power": "substation", "substation": "distribution", "operator": [False, "EDF", "ERDF", "Enedis"]}]),
                 conflationDistance = 50,
                 mapping = Mapping(
                     static1 = {
                         "power": "substation",
-                        "substation": "minor_distribution",
-                        "voltage": "20000;400",
+                        "voltage": "20000",
                         "operator": "Enedis"},
-                    static2 = {"source": self.source},
+                    static2 = {
+                        "substation": "minor_distribution",
+                        "source": self.source},
                 )))
