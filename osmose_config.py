@@ -797,9 +797,46 @@ default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GE
 #########################################################################
 
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
-mexico = default_country("north-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
-del(mexico.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
+
+#########################################################################
+
+mexico_state = gen_country('north-america', 'mexico', download_repo=OSMFR, language='es', proj=32614, exclude=[
+    "osmosis_highway_name_close"  # Complicated Street Numbering
+])
+
+mexico_state("aguascalientes", 2610002, "MX-AGU")
+mexico_state("baja_california", 2589601, "MX-BCN")
+mexico_state("baja_california_sur", 2589611, "MX-BCS")
+mexico_state("campeche", 2568834, "MX-CAM")
+mexico_state("chiapas", 2556679, "MX-CHP")
+mexico_state("chihuahua", 1673425, "MX-CHH")
+mexico_state("coahuila", 1661524, "MX-COA")
+mexico_state("colima", 2340912, "MX-COL")
+mexico_state("durango", 2399740, "MX-DUR")
+mexico_state("guanajuato", 2340909, "MX-GUA")
+mexico_state("guerrero", 2439316, "MX-GRO")
+mexico_state("hidalgo", 1376490, "MX-HID")
+mexico_state("jalisco", 2340910, "MX-JAL")
+mexico_state("mexico_city", 1376330, "MX-CMX")
+mexico_state("michoacan", 2340636, "MX-MIC")
+mexico_state("morelos", 1376332, "MX-MOR")
+mexico_state("nayarit", 7695827, "MX-NAY")
+mexico_state("nuevo_leon", 1661523, "MX-NLE")
+mexico_state("oaxaca", 2529822, "MX-OAX")
+mexico_state("puebla", 1376491, "MX-PUE")
+mexico_state("queretaro", 2340903, "MX-QUE")
+mexico_state("quintana_roo", 2614434, "MX-ROO")
+mexico_state("san_luis_potosi", 4086617, "MX-SLP")
+mexico_state("sinaloa", 2455086, "MX-SIN")
+mexico_state("sonora", 1673426, "MX-SON")
+mexico_state("state_of_mexico", 1376489, "MX-MEX")
+mexico_state("tabasco", 2556680, "MX-TAB")
+mexico_state("tamaulipas", 2415518, "MX-TAM")
+mexico_state("tlaxcala", 1375274, "MX-TLA")
+mexico_state("veracruz", 2415761, "MX-VER")
+mexico_state("yucatan", 2614435, "MX-YUC")
+mexico_state("zacatecas", 2399704, "MX-ZAC")
 
 #########################################################################
 
