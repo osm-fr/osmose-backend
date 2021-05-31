@@ -54,8 +54,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",
-                        "bus": "yes",
-                        "network": "TransGironde"},
+                        "bus": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
