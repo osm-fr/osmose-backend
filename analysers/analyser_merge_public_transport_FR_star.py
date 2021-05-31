@@ -54,8 +54,7 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",
-                        "bus": "yes",
-                        "network": "STAR"},
+                        "bus": "yes"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:STAR": "Code",

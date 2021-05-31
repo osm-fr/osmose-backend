@@ -52,8 +52,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",
-                        "bus": "yes",
-                        "network": "TBM"},
+                        "bus": "yes"},
                     static2 = {"source": self.source},
                     mapping2 = {
                         "name": lambda res: res['nomarret'],
