@@ -4,6 +4,7 @@
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Nico Rikken <nico@nicorikken.eu> 2021                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -78,6 +79,17 @@ However, this should probably still conform to the typical format used for value
                                             "paving_stones:20", "paving_stones:30", "paving_stones:50",
                                             "cobblestone:10", "cobblestone:20", "cobblestone:flattened"),
                                  "shop": ( "e-cigarette" ),
+                                 "sport": ( "american_football", "australian_football",
+                                            "canadian_football", "cliff_diving", "climbing_adventure",
+                                            "cycle_polo", "dog_agility", "dog_racing", "field_hockey",
+                                            "five-a-side", "free_flying", "gaelic_games", "horse_racing",
+                                            "ice_hockey", "ice_skating", "ice_stock", "jiu-jitsu",
+                                            "martial_arts", "miniature_golf", "model_aerodrome",
+                                            "obstacle_course", "paddle_tennis", "pedal_car_racing",
+                                            "pesäpallo", "pole_dance", "rc_car", "roller_skating",
+                                            "rugby_league", "rugby_union", "scuba_diving", "shot-put",
+                                            "ski_jumping", "table_tennis", "table_soccer", "water_polo",
+                                            "water_ski", "zurkhaneh_sport" ),
                                  "barrier": ( "full-height_turnstile" ),
                                  "man_made": ( "MDF" ),
                                 }
