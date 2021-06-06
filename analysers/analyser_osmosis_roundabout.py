@@ -72,11 +72,13 @@ present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)
 for more info.'''),
                 fix = T_(
 '''If it is really a roundabout, add the tag `junction=roundabout`,
-verify that the path is in the counter-clockwise when driving side is on
-right, and remove the tag `oneway=yes` if present.'''),
+verify that the way direction is counter-clockwise when the driving side is
+on the right, and remove the tag `oneway=yes` if present.'''),
                 trap = T_(
 '''Ensure that it is a roundabout, using satellite imagery or a local
-survey.'''))
+survey.
+
+Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead.'''))
 
             self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
