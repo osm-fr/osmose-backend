@@ -1001,7 +1001,8 @@
     "title": "stop",
     "only_for": [
       "CA-ON",
-      "CA-QC"
+      "CA-QC",
+      "US-OK"
     ],
     "object": [
       "regulatory--stop--g1",
