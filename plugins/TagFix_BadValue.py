@@ -4,6 +4,7 @@
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Nico Rikken <nico@nicorikken.eu> 2021                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -78,6 +79,7 @@ However, this should probably still conform to the typical format used for value
                                             "paving_stones:20", "paving_stones:30", "paving_stones:50",
                                             "cobblestone:10", "cobblestone:20", "cobblestone:flattened"),
                                  "shop": ( "e-cigarette" ),
+                                 "sport": ( "five-a-side", "jiu-jitsu", "pesäpallo", "shot-put" ),
                                  "barrier": ( "full-height_turnstile" ),
                                  "man_made": ( "MDF" ),
                                 }
