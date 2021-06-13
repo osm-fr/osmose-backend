@@ -42,7 +42,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                 format="shp",
                 zip="tb_arret_p.shp")),
             LoadGeomCentroid(
-                select = {"reseau": [None, "BUS"]}),
+                select = {"reseau": [False, "BUS"]}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

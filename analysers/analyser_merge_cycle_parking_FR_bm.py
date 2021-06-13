@@ -41,7 +41,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
             )),
             LoadGeomCentroid(
                 select={
-                    "typologie": [None, "ARCEAU_VELO_CARGO"],
+                    "typologie": [False, "ARCEAU_VELO_CARGO"],
                 }
             ),
             Conflate(

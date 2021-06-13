@@ -371,7 +371,7 @@ The syntax is based on a dictionary where keys are attribute names or OSM keys, 
 - `True` or `None`: there is a value or the tag exists `{'a': None}`.
 - `False`: there is no value for attribute or the tags does not exists: `{'a': False}`.
 - literal value: there a key with this exact value `{'a': 'foobar'}`. Note: on OSM tags with multiple  values (`;` separated) it means the literal value is one of the multiple values.
-- list: the value is one of the list `{'a': [1, 2]}`. `None` may be in the list.
+- list: the value is one of the list `{'a': [1, 2]}`. `False` may be in the list.
 - SQL `LIKE`: the check of the value is done with SQL `LIKE` (string with placeholders) `{'a': {'like': 'a%'}}`.
 - Regex: the check of the value is done with a regex: `{'a': {'regex': 'ab.*z'}}`
 

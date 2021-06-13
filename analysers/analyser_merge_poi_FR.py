@@ -100,7 +100,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             id = 10100,
             level = 3,
             title = T_('Townhall not integrated'),
-            select = {'nature': 'Mairie', 'nature_detaillee': [None, 'Mairie de commune associée ou déléguée', 'Mairie annexe', 'Hôtel de ville', 'Mairie d\'arrondissement']},
+            select = {'nature': 'Mairie', 'nature_detaillee': [False, 'Mairie de commune associée ou déléguée', 'Mairie annexe', 'Hôtel de ville', 'Mairie d\'arrondissement']},
             tags = {'amenity': 'townhall'},
         ),
         # 27275 Monument
@@ -149,7 +149,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             id = 10500,
             level = 3,
             title = T_('Viewpoint not integrated'),
-            select = {'nature': 'Point de vue', 'nature_detaillee': [None, 'Belvédère']},
+            select = {'nature': 'Point de vue', 'nature_detaillee': [False, 'Belvédère']},
             tags = {'tourism': 'viewpoint'},
         ),
         dict(
