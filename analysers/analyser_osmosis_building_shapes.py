@@ -38,7 +38,7 @@ WHERE
     ST_MaxDistance(polygon_proj, polygon_proj) > 5 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'man_made', 'note:qadastre'] = ''::hstore AND
     tags->'building' NOT IN ('hut', 'ger', 'yurt', 'slurry_tank') AND
-    tags->'man_made' NOT IN ('water_tower', 'reservoir_covered', 'wastewater_plant', 'storage_tank', 'windmill', 'dovecote')
+    tags->'man_made' NOT IN ('water_tower', 'reservoir_covered', 'wastewater_plant', 'storage_tank', 'windmill', 'dovecote', 'silo')
 """
 
 sql20 = """
@@ -80,6 +80,7 @@ tagged.''')
                 {"+":{"man_made":"storage_tank"}},
                 {"+":{"man_made":"windmill"}},
                 {"+":{"man_made":"dovecote"}},
+                {"+":{"man_made":"silo"}},
                 {"+":{"building":"hut"}},
                 {"+":{"building":"yurt"}},
                 {"+":{"building":"ger"}},
