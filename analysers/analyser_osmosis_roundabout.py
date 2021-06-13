@@ -44,6 +44,7 @@ WHERE
     NOT ways.is_area AND
     NOT ways.is_construction AND
     (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- no name or start with 'Rond' or 'Giratoire' (French)
+    NOT ways.tags->'oneway' = 'no' AND
     -- geometry
     ways.is_polygon AND -- It's a polygon
     ST_NPoints(ways.linestring) < 24 AND
