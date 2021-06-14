@@ -7,6 +7,7 @@
 # alain2003, 2014
 # Ali z <ali.zaroili@outlook.be>, 2021
 # ali zaroili <ali.zaroili@gmail.com>, 2014,2016-2018
+# danieldegroot2 <danieldegroot18@gmail.com>, 2021
 # Ivo Pit, 2020
 # d8c0ea79bf25224e2a05d5edf10ab5e4_c9b605c, 2014,2017-2020
 msgid ""
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-05-02 20:57+0000\n"
+"PO-Revision-Date: 2021-06-14 18:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -233,19 +234,19 @@ msgstr "Alleenstaande clusters knopen"
 msgid "Invalid polygon"
 msgstr "Ongeldig polygoon"
 
-#: ../analysers/analyser_osmosis_powerline.py:323
+#: ../analysers/analyser_osmosis_powerline.py:344
 msgid "Lone power tower or pole"
 msgstr "Geïsoleerd hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_powerline.py:348
+#: ../analysers/analyser_osmosis_powerline.py:369
 msgid "Connection between different voltages"
 msgstr "Verbinding tussen verschillende spanningen"
 
-#: ../analysers/analyser_osmosis_powerline.py:351
+#: ../analysers/analyser_osmosis_powerline.py:372
 msgid "Non power node on power way"
 msgstr "Geen spanningsknoop op spanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:359
+#: ../analysers/analyser_osmosis_powerline.py:380
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
@@ -784,7 +785,7 @@ msgstr "Inclusief auto, paard, bromfiets, hazmat en ga zo maar door, tenzij uitd
 msgid "Inconsistent Access"
 msgstr "Inconsistent Toegang"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:531
+#: ../analysers/analyser_osmosis_relation_public_transport.py:572
 msgid "Non route relation member in route_master relation"
 msgstr "Niet route relatie lid in route_master relatie"
 
@@ -796,11 +797,11 @@ msgstr "Object moet dichtbij de kust of water"
 msgid "Naptan import, survey needed."
 msgstr "Naptan import, overzicht nodig."
 
-#: ../analysers/analyser_osmosis_powerline.py:330
+#: ../analysers/analyser_osmosis_powerline.py:351
 msgid "Unfinished power major line"
 msgstr "Onvoltooid grote hoogspanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:339
+#: ../analysers/analyser_osmosis_powerline.py:360
 msgid "Unfinished power minor line"
 msgstr "Onvoltooid kleine hoogspanningslijn"
 
@@ -878,7 +879,7 @@ msgstr "Dubbele knoop geometrie maar verschillende tags"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Mogelijk highway=traffic_signals dichtbij ontbreekt"
 
-#: ../analysers/analyser_osmosis_powerline.py:364
+#: ../analysers/analyser_osmosis_powerline.py:385
 msgid "Unmatched voltage of line on substation"
 msgstr "Spanning niet gelijk op de lijn van het substation"
 
@@ -1095,7 +1096,7 @@ msgstr "Kan geen tag ref={0} bevatten"
 msgid "Close similar name"
 msgstr "Bijna dezelfde naam"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:533
+#: ../analysers/analyser_osmosis_relation_public_transport.py:574
 msgid "Public transport relation route not in route_master relation"
 msgstr "Public transport relatie route niet in route_master relatie"
 
@@ -1106,11 +1107,11 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber of addr:housename zonder addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet moet in een associatedStreet relatie zijn"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:527
+#: ../analysers/analyser_osmosis_relation_public_transport.py:568
 msgid "The track of this route contains gaps"
 msgstr "De track van deze route bevat gaten"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:529
+#: ../analysers/analyser_osmosis_relation_public_transport.py:570
 msgid "The stop or platform is too far from the track of this route"
 msgstr "De halte of het platform bevindt zich te ver van het pad van deze route"
 
@@ -1118,13 +1119,13 @@ msgstr "De halte of het platform bevindt zich te ver van het pad van deze route"
 msgid "Missing international prefix"
 msgstr "international prefix ontbreekt"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:535
+#: ../analysers/analyser_osmosis_relation_public_transport.py:576
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "network, operator, ref, colour tag moet dezelfde zijn op route en route_master relations"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:558
+#: ../analysers/analyser_osmosis_relation_public_transport.py:599
 #, python-format, python-brace-format
 msgid "{0} are different"
 msgstr "{0} is verschillend"
@@ -1404,9 +1405,9 @@ msgstr "{0} halte, integratie suggestie "
 
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
-#: ../analysers/analyser_merge_public_transport_FR_star.py:65
+#: ../analysers/analyser_merge_public_transport_FR_star.py:64
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:57
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:63
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:62
 #, python-brace-format
 msgid "{0} stop of {1}"
 msgstr "{0} halte van {1}"
@@ -1417,7 +1418,7 @@ msgstr "{0} halte van {1}"
 msgid "{0} stop update"
 msgstr "{0} halte bijwerken"
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:61
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:60
 #, python-brace-format
 msgid "{0} stop {1}"
 msgstr "{0} halte {1}"
@@ -1562,7 +1563,7 @@ msgstr "Niet toegestane karakter in telefoonnummer "
 msgid "Bad separator for multiple values"
 msgstr "Verkeerde separator voor meerdere waarden"
 
-#: ../plugins/TagFix_Maxspeed.py:95
+#: ../plugins/TagFix_Maxspeed.py:96
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr "Dissonant {0} en {1}"
@@ -1824,7 +1825,7 @@ msgstr "Carpool parking integratie suggestie "
 msgid "Carpool parking update"
 msgstr "Carpool parking bijwerken"
 
-#: ../analysers/analyser_merge_carpool_FR.py:66
+#: ../analysers/analyser_merge_carpool_FR.py:64
 #, python-brace-format
 msgid "Carpool parking {0}"
 msgstr "Carpool parking {0}"
@@ -2267,7 +2268,7 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
 msgstr "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.png)"
 
-#: ../analysers/analyser_osmosis_powerline.py:325
+#: ../analysers/analyser_osmosis_powerline.py:346
 msgid "This tower should probably be connected to a power line."
 msgstr "Deze toren moet waarschijnlijk worden aangesloten op een hoogspanningslijn."
 
@@ -2420,29 +2421,31 @@ msgstr "Weg dwars door rotonde."
 msgid "Check if it is really a roundabout and cut the way."
 msgstr "Controleer of het echt een rotonde is en knip de weg uit. "
 
-#: ../analysers/analyser_osmosis_roundabout.py:68
+#: ../analysers/analyser_osmosis_roundabout.py:69
 msgid "Missing `junction=roundabout`"
 msgstr "junction=roundabout ontbreekt"
 
-#: ../analysers/analyser_osmosis_roundabout.py:70
+#: ../analysers/analyser_osmosis_roundabout.py:71
 msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
 msgstr "Dit lijkt op een rotonde, maar de tag  `junction=roundabout` is niet\naanwezig. Zie [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\nvoor meer info. "
 
-#: ../analysers/analyser_osmosis_roundabout.py:74
+#: ../analysers/analyser_osmosis_roundabout.py:75
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
-"verify that the path is in the counter-clockwise when driving side is on\n"
-"right, and remove the tag `oneway=yes` if present."
-msgstr "Als het echt een rotonde is, voeg dan de tag `junction = roundabout` toe,\ncontroleer of het pad linksom is als de rijzijde rechts is ingeschakeld, en\nverwijder de tag `oneway = yes` indien aanwezig. "
+"verify that the way direction is in the counter-clockwise when driving side is\n"
+"on the right, and remove the tag `oneway=yes` if present."
+msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:78
+#: ../analysers/analyser_osmosis_roundabout.py:79
 msgid ""
 "Ensure that it is a roundabout, using satellite imagery or a local\n"
-"survey."
-msgstr "Zorg ervoor dat het een rotonde is, met behulp van satellietbeelden of\nlokaal."
+"survey.\n"
+"\n"
+"Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead."
+msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:48
 msgid ""
@@ -3195,7 +3198,7 @@ msgstr "Snelheidscameras moeten als knooppunt op de snelweg in kaart worden gebr
 msgid "Unexpected symbol in name"
 msgstr "Onverwachte symbool in naam"
 
-#: ../plugins/TagFix_BadValue.py:32
+#: ../plugins/TagFix_BadValue.py:33
 msgid "Bad tag value"
 msgstr "Verkeerde waarde tag"
 
@@ -3267,41 +3270,41 @@ msgid ""
 "allow for correct routing."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:327
-#: ../analysers/analyser_osmosis_powerline.py:336
-#: ../analysers/analyser_osmosis_powerline.py:345
+#: ../analysers/analyser_osmosis_powerline.py:348
+#: ../analysers/analyser_osmosis_powerline.py:357
+#: ../analysers/analyser_osmosis_powerline.py:366
 msgid ""
 "It's possible that disused power features could be disconnected from the network.\n"
 "In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 msgstr "Het is mogelijk dat niet-gebruikte stroomvoorzieningen worden losgekoppeld van het netwerk.\nMaak in dat geval gebruik van de  `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix)."
 
-#: ../analysers/analyser_osmosis_powerline.py:332
-#: ../analysers/analyser_osmosis_powerline.py:341
+#: ../analysers/analyser_osmosis_powerline.py:353
+#: ../analysers/analyser_osmosis_powerline.py:362
 msgid ""
 "The line ends in a vacuum, and should be connected to another line or\n"
 "a transformer (`power=transformer`), a generator (`power=generator`)\n"
 "or marked as transitioning into ground (`location:transition=yes`)."
 msgstr "De lijn eindigt in een vacuüm en moet worden aangesloten op een\nandere lijn of een transformator (`power = transformer`), een generator\n (` power = generator`) of gemarkeerd als overgang onder de grond\n (`location: transition = yes`)."
 
-#: ../analysers/analyser_osmosis_powerline.py:349
+#: ../analysers/analyser_osmosis_powerline.py:370
 msgid ""
 "Two power lines meet at this point, but have inconsistent voltages "
 "(`voltage=*`)."
 msgstr "Op dit punt komen twee stroomkabels samen, maar deze hebben inconsistente spanningen (`voltage = *`)."
 
-#: ../analysers/analyser_osmosis_powerline.py:353
+#: ../analysers/analyser_osmosis_powerline.py:374
 msgid ""
 "Power lines can only form a straight line between supports and therefore shouldn't\n"
 "have additional nodes that aren't tagged as a `power` feature."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:356
+#: ../analysers/analyser_osmosis_powerline.py:377
 msgid ""
 "If this node is a tower or pole, use the tag `power=tower` or\n"
 "`power=pole`. Otherwise remove it."
 msgstr "Als dit knooppunt een toren of paal is, gebruik dan de tag `power = tower` of `power= pool`. anders verwijder je deze."
 
-#: ../analysers/analyser_osmosis_powerline.py:361
+#: ../analysers/analyser_osmosis_powerline.py:382
 msgid ""
 "Based on the statistical frequency of the poles on this power line,\n"
 "there's likely an unmapped pole nearby."
@@ -3436,8 +3439,8 @@ msgstr "De ingevoerde datum is niet in het verwachte formaat zoals beschreven op
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:87 ../plugins/TagFix_BadKey.py:89
-#: ../plugins/TagFix_BadKey.py:91 ../plugins/TagFix_BadValue.py:105
-#: ../plugins/TagFix_BadValue.py:110 ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:91 ../plugins/TagFix_BadValue.py:107
+#: ../plugins/TagFix_BadValue.py:112 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr "Betreft tag: '{0}'"
@@ -3464,19 +3467,19 @@ msgstr ""
 msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr "`height = {0}` is erg groot, overweeg om dat te wijzigen in `ele = *`"
 
-#: ../plugins/TagFix_BadValue.py:34
+#: ../plugins/TagFix_BadValue.py:35
 msgid ""
 "This feature is tagged with a value which does not match the typical format used for tags with distinct values\n"
 " (lowercase alphanumeric characters with no spaces). It's most likely not an expected tagging."
 msgstr ""
 
-#: ../plugins/TagFix_BadValue.py:36
+#: ../plugins/TagFix_BadValue.py:37
 msgid ""
 "Check the value of the tag in question and update the tagging to reflect "
 "what this feature is."
 msgstr ""
 
-#: ../plugins/TagFix_BadValue.py:38
+#: ../plugins/TagFix_BadValue.py:39
 msgid ""
 "It's possible a mapper was trying to map a feature with no existing agreed upon tagging.\n"
 "However, this should probably still conform to the typical format used for values of the given tag."
@@ -3886,25 +3889,25 @@ msgstr ""
 msgid "Hole between administrative boundaries of admin_level {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:537
+#: ../analysers/analyser_osmosis_relation_public_transport.py:578
 msgid ""
 "The bus stop is part of a way, it should have public_transport=stop_position"
 " tag"
 msgstr "De bushalte is een onderdeel van een weg, deze zou de tag public_transport = stop_position moeten hebben"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:539
+#: ../analysers/analyser_osmosis_relation_public_transport.py:580
 msgid "The stop_position is not part of a way"
 msgstr "De stop_position is geen onderdeel van een weg"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:541
+#: ../analysers/analyser_osmosis_relation_public_transport.py:582
 msgid "The platform is part of a way, it should have the role stop"
 msgstr "Het platform maakt deel uit van een weg, het zou de rol halte moeten hebben"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:543
+#: ../analysers/analyser_osmosis_relation_public_transport.py:584
 msgid "The stop is not part of a way"
 msgstr "De halte maakt geen onderdeel van een weg uit"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:544
+#: ../analysers/analyser_osmosis_relation_public_transport.py:585
 msgid ""
 "Change the role in the relation to platform or add the stop to the way and "
 "turn it to a public_transport=stop_position"
@@ -3924,7 +3927,7 @@ msgstr "Verschillende waarden van contact:* en * tag"
 msgid "Different values of {0} and of {1}"
 msgstr "Verschillende waarden van {0} en van {1}"
 
-#: ../plugins/TagFix_Maxspeed.py:80
+#: ../plugins/TagFix_Maxspeed.py:81
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
@@ -4218,11 +4221,11 @@ msgid ""
 "Contact the contributor submiting the nodes or remove those."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:546
+#: ../analysers/analyser_osmosis_relation_public_transport.py:587
 msgid "Stop position without platform nor bus stop"
 msgstr "Stoppositie zonder perron of bushalte"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:547
+#: ../analysers/analyser_osmosis_relation_public_transport.py:588
 msgid ""
 "A bus `public_transport=stop_position` without close "
 "`public_transport=platform` nor `highway=bus_stop`."
@@ -4230,7 +4233,7 @@ msgstr ""
 
 #: tmp.json:54
 msgid "cycling infrastructure"
-msgstr ""
+msgstr "fietsinfrastructuur"
 
 #: ../plugins/Capacity.py:33
 msgid "Invalid capacity value"
@@ -4536,11 +4539,11 @@ msgstr "Strand niet geïntegreerd"
 msgid "Cape not integrated"
 msgstr "Kaap niet geintegreerd"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:549
+#: ../analysers/analyser_osmosis_relation_public_transport.py:590
 msgid "The stops may not be in the right order"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:551
+#: ../analysers/analyser_osmosis_relation_public_transport.py:592
 msgid "The platform is not on the right side of the road"
 msgstr ""
 
