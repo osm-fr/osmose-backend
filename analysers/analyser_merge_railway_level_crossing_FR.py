@@ -43,7 +43,9 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
             Conflate(
                 select = Select(
                     types = ["nodes"],
-                    tags = {"railway": ["level_crossing", "crossing"]}),
+                    tags = [
+                        {"railway": ["level_crossing", "crossing"]},
+                        {"disused:railway": ["level_crossing", "crossing"]} ]),
                 conflationDistance = 150,
                 mapping = Mapping(
                     static2 = {"source": self.source},
