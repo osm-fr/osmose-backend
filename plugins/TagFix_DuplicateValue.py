@@ -50,7 +50,8 @@ similar.'''),
             'ref', 'created_by', 'is_in',
             'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid',
             'source:geometry:date', 'source:geometry:ref', # Belgium, Flanders
-            'opening_hours', 'service_times', 'collection_times', 'opening_hours:kitchen',
+            'source:date',
+            'service_times', 'collection_times',
             'phone', 'contact:phone', 'fax', 'contact:fax',
             'url',
             'technology', 'cables', 'position', 'passenger', 'couplings:diameters',
@@ -74,6 +75,7 @@ similar.'''),
             re.compile('.+:conditional'),
             re.compile('railway:signal:.+'),
             re.compile('turn:lanes.*'),
+            re.compile('opening_hours(:.+)?'),
        ))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
