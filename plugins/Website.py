@@ -38,7 +38,7 @@ class Website(Plugin):
 
         self.errors[30931] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
             title = T_('The URL contains a space'))
-        self.errors[30932] = self.def_class(item = 3093, level = 2, tags = ['value', 'fix:chair'],
+        self.errors[30932] = self.def_class(item = 3093, level = 3, tags = ['value', 'fix:chair'],
             title = T_('The URL does not have a valid scheme'))
 
     def _bad_url(self, tag, tags):
