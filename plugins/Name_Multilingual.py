@@ -31,13 +31,13 @@ class Name_Multilingual(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         language = self.father.config.options.get("language")
-        if not(language and self.father.config.options.get("multilingual-style")):
+        if not(language and self.father.config.options.get("multilingual_style")):
             return False
 
         self.errors[50604] = self.def_class(item = 5060, level = 2, tags = ['name', 'fix:chair'],
             title = T_('Multilingual not matching'))
         self.lang = lang = self.father.config.options.get("language")
-        style = self.father.config.options.get("multilingual-style")
+        style = self.father.config.options.get("multilingual_style")
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
         if style == "be":
             self.aggregator = lambda tags: [
@@ -207,7 +207,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "nl"], "multilingual-style": "be"}
+            options = {"language": ["fr", "nl"], "multilingual_style": "be"}
         class father:
             config = _config()
         self.p.father = father()
@@ -253,7 +253,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "ar", "zgh", "ber"], "multilingual-style": "ma"}
+            options = {"language": ["fr", "ar", "zgh", "ber"], "multilingual_style": "ma"}
         class father:
             config = _config()
         self.p.father = father()
@@ -297,7 +297,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "ar"], "multilingual-style": "dj"}
+            options = {"language": ["fr", "ar"], "multilingual_style": "dj"}
         class father:
             config = _config()
         self.p.father = father()
