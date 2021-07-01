@@ -179,7 +179,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                 return 0x11
 
             if osmosis_manager:
-                osmosis_manager.init_database(conf)
+                osmosis_manager.init_database(conf, options)
 
             if options.change:
                 osmosis_manager.init_change(conf)

@@ -151,7 +151,7 @@ class OsmOsisManager:
     return True
 
 
-  def init_database(self, conf):
+  def init_database(self, conf, options):
     # import osmosis
 
     # drop schema if present - might be remaining from a previous failing import
@@ -170,7 +170,7 @@ class OsmOsisManager:
       self.psql_f(script)
 
     # data
-    if conf.import_tool == "osmosis-parallel":
+    if options.import_tool == "osmosis-parallel":
       # Run osmosis and psql import in parallel, thanks to named fifos to send
       # generated tables directly to COPY functions.
       parallel = True
