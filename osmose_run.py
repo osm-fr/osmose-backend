@@ -549,6 +549,9 @@ if __name__ == "__main__":
     parser.add_option("--extract-update-tool", dest="pbf_update_tool", action="store", default="osmosis",
                       help="Use \"osmosis\" (default) or \"osmium\" to update the OSM extract")
 
+    parser.add_option("--import-tool", dest="import_tool", action="store", default="osmosis",
+                      help="Use \"osmosis\" (default) or \"osmosis-parallel\" to import to postgresql database")
+
     parser.add_option("--version", dest="version", action="store_true",
                       help="Output version information and exit")
 
