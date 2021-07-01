@@ -50,8 +50,16 @@ class template_config:
         dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_linestring.sql",
         dir_scripts + "/osmosis/CreateMetainfo.sql",
     ]
+    osmosis_import_prepare_scripts = [
+        dir_scripts + "/osmosis/ImportDatabase_Prepare.sql",
+    ]
     osmosis_import_scripts = [
-        dir_scripts + "/osmosis/ImportDatabase.sql",
+        dir_scripts + "/osmosis/ImportDatabase_Nodes.sql",
+        dir_scripts + "/osmosis/ImportDatabase_Ways.sql",
+        dir_scripts + "/osmosis/ImportDatabase_WayNodes.sql",
+        dir_scripts + "/osmosis/ImportDatabase_Relations.sql",
+        dir_scripts + "/osmosis/ImportDatabase_RelationMembers.sql",
+        dir_scripts + "/osmosis/ImportDatabase_Users.sql",
     ]
     osmosis_post_scripts = [
         dir_scripts + "/osmosis/CreateTagsIndex.sql",

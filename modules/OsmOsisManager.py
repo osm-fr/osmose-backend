@@ -185,6 +185,9 @@ class OsmOsisManager:
     try:
       self.logger.execute_err(cmd)
 
+      for script in conf.osmosis_import_prepare_scripts:
+        self.psql_f(script, cwd=dir_country_tmp)
+
       for script in conf.osmosis_import_scripts:
         self.psql_f(script, cwd=dir_country_tmp)
 
