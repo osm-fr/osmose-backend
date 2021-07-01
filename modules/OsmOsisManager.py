@@ -99,11 +99,11 @@ class OsmOsisManager:
     self.logger.execute_out(cmd)
 
 
-  def psql_f(self, script, cwd=None):
+  def psql_f(self, script, cwd=None, background=False):
     cmd  = ["psql"]
     cmd += self.db_psql_args
     cmd += ["-f", script, "-v", "ON_ERROR_STOP=1"]
-    self.logger.execute_out(cmd, cwd=cwd)
+    return self.logger.execute_out(cmd, cwd=cwd, background=background)
 
 
   def set_pgsql_schema(self, reset=False):
