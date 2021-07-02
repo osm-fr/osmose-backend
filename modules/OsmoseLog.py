@@ -63,8 +63,11 @@ class logger:
     def sub(self):
         return sublog(self, 1)
 
-    def execute_err(self, cmd, valid_return_code=(0,)):
+    def execute_err(self, cmd, valid_return_code=(0,), background=False):
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if background:
+            return proc
+
         while True:
             cerr = proc.stderr.readline().decode('utf-8').strip()
             if cerr == '' and proc.poll() is not None:
@@ -79,8 +82,11 @@ class logger:
             raise RuntimeError("'%s' exited with status %s" % (' '.join(cmd), repr(proc.returncode)))
         return proc.returncode
 
-    def execute_out(self, cmd, cwd=None, valid_return_code=(0,)):
+    def execute_out(self, cmd, cwd=None, valid_return_code=(0,), background=False):
         proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if background:
+            return proc
+
         while True:
             cerr = proc.stdout.readline().decode('utf-8').strip()
             if cerr == '' and proc.poll() is not None:

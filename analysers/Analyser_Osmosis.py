@@ -536,12 +536,16 @@ class TestAnalyserOsmosis(TestAnalyser):
     def load_osm(cls, osm_file, dst, analyser_options=None, skip_db=False):
         import modules.OsmOsisManager
         (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
+        class c_options:
+            import_tool = "osmosis"
+        options = c_options()
+
         if not skip_db:
             import pytest
             osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, cls.logger)
             if not osmosis_manager.check_database():
                 pytest.skip("database not present")
-            osmosis_manager.init_database(conf)
+            osmosis_manager.init_database(conf, options)
 
         # create directory for results
         import os
