@@ -211,7 +211,7 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):
                 err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
-            if tags.get("highway") in ("footway", "bridleway", "steps", "path", "cycleway", "pedestrian", "track", "bus_guideway", "raceway"):
+            if tags.get("highway") in ("footway", "bridleway", "steps", "path", "cycleway", "pedestrian", "track", "bus_guideway", "busway", "raceway"):
                 err.append({"class": 32201, "subclass": 0, "text": T_("Including car, horse, moped, hazmat and so on, unless explicitly excluded")})
 
         if (tags.get("tracktype") or tags.get("lanes")) and not tags.get("highway") and not tags.get("disused:highway") and not tags.get("abandoned:highway") and not tags.get("construction:highway") and not tags.get("proposed:highway") and not tags.get("planned:highway") and not tags.get("leisure") == "track":
