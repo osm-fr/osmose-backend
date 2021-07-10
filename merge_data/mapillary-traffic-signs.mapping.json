@@ -1002,7 +1002,7 @@
     "only_for": [
       "CA-ON",
       "CA-QC",
-      "US-OK"
+      "US"
     ],
     "object": [
       "regulatory--stop--g1",
