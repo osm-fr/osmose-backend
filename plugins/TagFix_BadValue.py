@@ -81,7 +81,7 @@ However, this should probably still conform to the typical format used for value
                                  "shop": ( "e-cigarette" ),
                                  "sport": ( "five-a-side", "jiu-jitsu", "pesäpallo", "shot-put" ),
                                  "barrier": ( "full-height_turnstile" ),
-                                 "man_made": ( "MDF" ),
+                                 "man_made": ( "MDF", "piste:halfpipe" ),
                                 }
         self.check_list_closed = set( (
             'area',
