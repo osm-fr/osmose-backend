@@ -43,6 +43,7 @@ class TagRemove_Incompatibles(Plugin):
         self.WHITE_LIST = {
             'landuse': [
                 ['school', 'amenity', 'school'],
+                ['school', 'landuse', 'education'],
                 ['industrial', 'amenity', 'recycling'],
                 ['retail', 'amenity', 'marketplace'],
                 ['retail', 'amenity', 'fuel'],
