@@ -15,6 +15,8 @@ from termcolor import colored
 def analyse_log(filename):
   re_timestamp = re.compile("^[0-9]{4}-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]")
 
+  log_with_color = False
+
   first_timestamp = None
   cur_timestamp = None
 
@@ -25,6 +27,11 @@ def analyse_log(filename):
   f = open(filename, "r")
   for line in f:
     if not re_timestamp.match(line):
+      continue
+
+    if "[0" in line:
+      log_with_color = True
+    elif log_with_color:
       continue
 
     # hack for lines with multiple timestamps
