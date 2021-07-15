@@ -233,6 +233,7 @@ def at(asset_lat, asset_lon, lat, lon):
 import math
 import random as py_random
 str_value_num_wrapper = lambda function: lambda s: str_value(function(s.to_n()))
+str_value_num_wrapper2 = lambda function: lambda s, ss: str_value(function(str_value(s).to_n(), str_value(ss).to_n()))
 asin = str_value_num_wrapper(math.asin)
 atan = str_value_num_wrapper(math.atan)
 atan2 = str_value_num_wrapper(math.atan2)
@@ -244,6 +245,7 @@ floor = str_value_num_wrapper(math.floor)
 log = str_value_num_wrapper(math.log)
 #max = max
 #min = min
+mod = str_value_num_wrapper2(lambda a, b: a % b)
 random = py_random.random
 round_ = str_value_num_wrapper(lambda f: round(f))
 signum = str_value_num_wrapper(lambda x: (x > 0) - (x < 0))

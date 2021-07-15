@@ -48,7 +48,7 @@ be used if the value is valid.''')
         )
 
         self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population", "admin_level", "ele"]
-        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
+        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|cm|km|nmi|km/h|mph|knots|t|kg|st|lt|cwt)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:.*$')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
@@ -87,7 +87,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Number(None)
         a.init(None)
-        for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft", "10'", "10'11\"", "1'9.8\"", "1.18\"", "-6"]:
+        for d in ["194", "14 m", "0.6m", "1cm", "narrow", "8 km", "400m", "10'", "10'11\"", "1'9.8\"", "1.18\"", "-6"]:
             assert not a.node(None, {"width":d}), ("width='{0}'".format(d))
 
         for d in ["3,75", "foo", "18,4m", "4810"]:
@@ -95,7 +95,7 @@ class Test(TestPluginCommon):
             self.check_err(a.way(None, {"height":d}, None), ("height='{0}'".format(d)))
             self.check_err(a.relation(None, {"height":d}, None), ("height='{0}'".format(d)))
 
-        for d in ["foo", "18kph", "1", "30 km/h", "30 c"]:
+        for d in ["foo", "18kph", "1", "30 c"]:
             self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d)))
 
         for d in ["50", "FR:urban", "35 mph", "10 knots"]:

@@ -16,19 +16,23 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         tags = capture_tags = {} # noqa
         self.errors[20806] = self.def_class(item = 2080, level = 3, tags = mapcss.list_('parking', 'amenity', 'fix:chair'), title = mapcss.tr('Missing tag carpool on area'))
         self.errors[21600] = self.def_class(item = 2160, level = 3, tags = mapcss.list_('tag', 'railway'), title = mapcss.tr('Missing tag gauge on rail'))
-        self.errors[30401] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure'), title = mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[30402] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure'), title = mapcss.tr('missing tag'))
-        self.errors[30403] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure'), title = mapcss.tr('missing tag'))
-        self.errors[40103] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag', 'infrastructure'), title = mapcss.tr('deprecated tagging'))
-        self.errors[40104] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('ref', 'infrastructure'), title = mapcss.tr('deprecated tagging'))
+        self.errors[30401] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[30402] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'power'), title = mapcss.tr('missing tag'))
+        self.errors[30403] = self.def_class(item = 3040, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'telecom'), title = mapcss.tr('missing tag'))
+        self.errors[40103] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('tag', 'infrastructure', 'power'), title = mapcss.tr('deprecated tagging'))
+        self.errors[40104] = self.def_class(item = 4010, level = 3, tags = mapcss.list_('ref', 'infrastructure', 'power'), title = mapcss.tr('deprecated tagging'))
         self.errors[40105] = self.def_class(item = 4010, level = 3, tags = [], title = mapcss.tr('misused tag in this country'))
         self.errors[40612] = self.def_class(item = 4061, level = 2, tags = mapcss.list_('parking', 'amenity', 'fix:chair'), title = mapcss.tr('Does this station still sell SP95, or has it been replaced by the SP95-E10?'))
         self.errors[9019001] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules highway milestone'))
         self.errors[9019002] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules nat_ref in France'))
-        self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
+        self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('missing tag'))
+        self.errors[9019004] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
         self.re_0c53237c = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$')
+        self.re_107d2c86 = re.compile(r'PT[1-9]{1}[0-9]*')
+        self.re_173ac8d4 = re.compile(r'[0-9]{5}[A-Z0-9]{3}')
+        self.re_23d0d993 = re.compile(r'[A-Z0-9]{3}')
         self.re_299ea34e = re.compile(r'^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$')
         self.re_30299d59 = re.compile(r'^(Enedis|GRDF)$')
         self.re_3863901a = re.compile(r'^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$')
@@ -36,6 +40,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.re_4bae79a8 = re.compile(r'[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}')
         self.re_55ee32ac = re.compile(r'^(motorway|trunk|primary|secondary|tertiary)$')
         self.re_6388df2b = re.compile(r'^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]))$')
+        self.re_6ac6c83c = re.compile(r'^(pole|tower)$')
         self.re_7510958f = re.compile(r'^(([1-9][0-9]|0[1-9])PR([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[DGU](|C))$')
 
 
@@ -45,12 +50,12 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         err = []
 
 
-        # *[name=~/(?i)co.?voiturage/][amenity!=car_pooling][!carpool][inside("FR")]
-        if ('name' in keys):
+        # *[name=~/(?i)co.?voiturage/][amenity][amenity!=car_pooling][!carpool][inside("FR")]
+        if ('amenity' in keys and 'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 3, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -88,7 +93,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-                # -osmoseTags:list("tag","infrastructure")
+                # -osmoseTags:list("tag","infrastructure","power")
                 # -osmoseItemClassLevel:"4010/40103/3"
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"operator=Enedis"
@@ -107,7 +112,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"4010/40104/3"
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"ref:FR:gdo"
@@ -127,7 +132,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"3040/30401/3"
                 # throwWarning:tr("{0} is invalid","{0.tag}")
                 err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
@@ -146,10 +151,22 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"3040/30402/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 30402, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+
+        # node[power=~/^(pole|tower)$/][!operator][inside("FR")]
+        if ('power' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6ac6c83c), mapcss._tag_capture(capture_tags, 0, tags, 'power')) and not mapcss._tag_capture(capture_tags, 1, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
+                err.append({'class': 9019003, 'subclass': 567532769, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *["ref:FR:ARCEP"][telecom!=connection_point]
         # *["ref:FR:ARCEP"]["telecom:medium"!=fibre]
@@ -180,10 +197,62 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","telecom")
                 # -osmoseItemClassLevel:"3040/30403/3"
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 30403, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *["ref:FR:Orange"]["ref:FR:Orange"!~/PT[1-9]{1}[0-9]*/][inside("FR")]
+        if ('ref:FR:Orange' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like PT123 without trailing zeros","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without trailing zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:Orange:NRO' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:PTT"]["ref:FR:PTT"!~/[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:PTT' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:PTT:NRA"]["ref:FR:PTT:NRA"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:PTT:NRA' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # node[highway=milestone][operator][nat_ref][nat_ref!~/^(([1-9][0-9]|0[1-9])PR([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[DGU](|C))$/][inside("FR")]
         if ('highway' in keys and 'nat_ref' in keys and 'operator' in keys):
@@ -228,7 +297,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # throwWarning:"Unusual ref for motorway_junction; use of 'ref=*' for the exit destination ref?"
                 # fixRemove:"ref"
                 # assertMatch:"node highway=motorway_junction ref=N7"
-                err.append({'class': 9019003, 'subclass': 323412661, 'text': {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9019004, 'subclass': 323412661, 'text': {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'ref'])
                 }})
@@ -276,12 +345,12 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertMatchWithContext:list("way railway=rail","inside=FR")
                 err.append({'class': 21600, 'subclass': 0, 'text': mapcss.tr('Missing tag gauge on rail')})
 
-        # *[name=~/(?i)co.?voiturage/][amenity!=car_pooling][!carpool][inside("FR")]
-        if ('name' in keys):
+        # *[name=~/(?i)co.?voiturage/][amenity][amenity!=car_pooling][!carpool][inside("FR")]
+        if ('amenity' in keys and 'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 3, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -292,6 +361,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way name='Aire de covoiturage' amenity=car_pooling","inside=FR")
                 # -osmoseAssertMatchWithContext:list("way name='Aire de covoiturage' amenity=car_sharing","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("way name='Aire de covoiturage' amenity=parking carpool=designated","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way name='Station Covoiturage' public_transport=platform","inside=FR")
                 err.append({'class': 20806, 'subclass': 0, 'text': mapcss.tr('Missing tag carpool on area'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['amenity','car_pooling'],
@@ -321,7 +391,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-                # -osmoseTags:list("tag","infrastructure")
+                # -osmoseTags:list("tag","infrastructure","power")
                 # -osmoseItemClassLevel:"4010/40103/3"
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"operator=Enedis"
@@ -340,7 +410,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"4010/40104/3"
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"ref:FR:gdo"
@@ -360,7 +430,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"3040/30401/3"
                 # throwWarning:tr("{0} is invalid","{0.tag}")
                 err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
@@ -379,7 +449,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"3040/30402/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 30402, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
@@ -413,10 +483,62 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","telecom")
                 # -osmoseItemClassLevel:"3040/30403/3"
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 30403, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *["ref:FR:Orange"]["ref:FR:Orange"!~/PT[1-9]{1}[0-9]*/][inside("FR")]
+        if ('ref:FR:Orange' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like PT123 without trailing zeros","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without trailing zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:Orange:NRO' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:PTT"]["ref:FR:PTT"!~/[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:PTT' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:PTT:NRA"]["ref:FR:PTT:NRA"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:PTT:NRA' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[highway=~/^(motorway|trunk|primary|secondary|tertiary)$/][nat_ref][operator][!junction][inside("FR")]
         if ('highway' in keys and 'nat_ref' in keys and 'operator' in keys):
@@ -591,12 +713,12 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         err = []
 
 
-        # *[name=~/(?i)co.?voiturage/][amenity!=car_pooling][!carpool][inside("FR")]
-        if ('name' in keys):
+        # *[name=~/(?i)co.?voiturage/][amenity][amenity!=car_pooling][!carpool][inside("FR")]
+        if ('amenity' in keys and 'name' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 2, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 3, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -633,7 +755,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-                # -osmoseTags:list("tag","infrastructure")
+                # -osmoseTags:list("tag","infrastructure","power")
                 # -osmoseItemClassLevel:"4010/40103/3"
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"operator=Enedis"
@@ -652,7 +774,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"4010/40104/3"
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"ref:FR:gdo"
@@ -672,7 +794,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and mapcss.inside(self.father.config.options, 'FR'))
                 except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"3040/30401/3"
                 # throwWarning:tr("{0} is invalid","{0.tag}")
                 err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
@@ -691,7 +813,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","power")
                 # -osmoseItemClassLevel:"3040/30402/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 30402, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
@@ -725,10 +847,62 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-                # -osmoseTags:list("ref","infrastructure")
+                # -osmoseTags:list("ref","infrastructure","telecom")
                 # -osmoseItemClassLevel:"3040/30403/3"
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 30403, 'subclass': 0, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        # *["ref:FR:Orange"]["ref:FR:Orange"!~/PT[1-9]{1}[0-9]*/][inside("FR")]
+        if ('ref:FR:Orange' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like PT123 without trailing zeros","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without trailing zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:Orange:NRO' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:PTT"]["ref:FR:PTT"!~/[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:PTT' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *["ref:FR:PTT:NRA"]["ref:FR:PTT:NRA"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
+        if ('ref:FR:PTT:NRA' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA')) and mapcss.inside(self.father.config.options, 'FR'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # -osmoseTags:list("ref","infrastructure","telecom")
+                # -osmoseItemClassLevel:"3040/30401/3"
+                # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[amenity=kindergarten][school:FR=maternelle]
         if ('amenity' in keys and 'school:FR' in keys):
@@ -773,7 +947,7 @@ class Test(TestPluginCommon):
             self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
-        self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019003, 'subclass': 323412661})
+        self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019004, 'subclass': 323412661})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'railway': 'disused'}, [0]), expected={'class': 21600, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
@@ -786,6 +960,8 @@ class Test(TestPluginCommon):
             self.check_err(n.way(data, {'amenity': 'car_sharing', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'amenity': 'parking', 'carpool': 'designated', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {'name': 'Station Covoiturage', 'public_transport': 'platform'}, [0]), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '62A901609CD_2', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):

@@ -1,6 +1,4 @@
 #-*- coding: utf-8 -*-
-import sys
-
 from plugins.Plugin import TestPluginCommon
 from plugins.Josm_deprecated import Josm_deprecated
 
@@ -15,10 +13,5 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        # Order of dict is different in py2 and py3
-        if sys.version_info < (3, ):
-            self.check_err(n.node(data, {u'is_in:sea': u'A', u'is_in:country:': u'B'}), expected={'class': 9002001, 'subclass': 355584917, 'fix': {'-': ['is_in:sea']}})
-            self.check_err(n.node(data, {u'is_in:country': u'A', u'is_in:sea': u'B'}), expected={'class': 9002001, 'subclass': 355584917, 'fix': {'-': ['is_in:sea']}})
-        else:
-            self.check_err(n.node(data, {u'is_in:sea': u'A', u'is_in:country:': u'B'}), expected={'class': 9002001, 'subclass': 355584917, 'fix': {'-': ['is_in:sea']}})
-            self.check_err(n.node(data, {u'is_in:country': u'A', u'is_in:sea': u'B'}), expected={'class': 9002001, 'subclass': 355584917, 'fix': {'-': ['is_in:country']}})
+        self.check_err(n.node(data, {u'is_in:sea': 'A', 'is_in:country:': 'B'}), expected={'class': 9002001, 'subclass': 1573738944, 'fix': {'-': ['is_in:sea']}})
+        self.check_err(n.node(data, {u'is_in:country': 'A', 'is_in:sea': 'B'}), expected={'class': 9002001, 'subclass': 1573738944, 'fix': {'-': ['is_in:country']}})

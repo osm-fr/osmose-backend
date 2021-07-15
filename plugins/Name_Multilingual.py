@@ -31,13 +31,13 @@ class Name_Multilingual(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         language = self.father.config.options.get("language")
-        if not(language and self.father.config.options.get("multilingual-style")):
+        if not(language and self.father.config.options.get("multilingual_style")):
             return False
 
         self.errors[50604] = self.def_class(item = 5060, level = 2, tags = ['name', 'fix:chair'],
             title = T_('Multilingual not matching'))
         self.lang = lang = self.father.config.options.get("language")
-        style = self.father.config.options.get("multilingual-style")
+        style = self.father.config.options.get("multilingual_style")
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
         if style == "be":
             self.aggregator = lambda tags: [
@@ -45,6 +45,33 @@ class Name_Multilingual(Plugin):
               {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
             ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.split = self.split_be
+        elif style == "sp_eu":
+            def aggregator(tags):
+                name = tags.get("name")
+                if name is not None and ("-" in name or "(" in name):
+                    return []
+                separator = " / " if name is None or " / " in name else "/"
+                return [
+                  {"name": tags["name:"+lang[0]].strip()},
+                  {"name": tags["name:"+lang[1]].strip()},
+                  {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
+                  {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0].strip()]},
+                ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
+            self.aggregator = aggregator
+            self.split = self.split_sp_eu
+        elif style == "sp_ast":
+            def aggregator(tags):
+                name = tags.get("name")
+                if name is not None and ("-" in name or "(" in name):
+                    return []
+                separator = " / " if name is None or " / " in name else "/"
+                return [
+                  {"name": tags["name:"+lang[0]].strip()},
+                  {"name": tags["name:"+lang[1]].strip()},
+                  {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
+                ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
+            self.aggregator = aggregator
+            self.split = self.split_sp_ast
         elif style == "xk":
             self.aggregator = lambda tags: [
               {"name": tags["name:"+lang[0]].strip()},
@@ -128,8 +155,8 @@ class Name_Multilingual(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-    def split_be(self, name):
-        s = list(map(lambda a: a.strip(), name.split(' - ')))
+    def split_delimitor(self, name, delimitor, ordered):
+        s = list(map(lambda a: a.strip(), name.split(delimitor)))
         ret = []
         if len(s) == 1:
             for (lang, regex_) in self.lang_regex_script:
@@ -138,9 +165,20 @@ class Name_Multilingual(Plugin):
         elif len(s) == 2:
             if self.lang_regex_script[0][1].match(s[0]) and self.lang_regex_script[1][1].match(s[1]):
                 ret.append({"name:" + self.lang[0]: s[0], "name:" + self.lang[1]: s[1]})
-            if self.lang_regex_script[1][1].match(s[0]) and self.lang_regex_script[0][1].match(s[1]):
+            if not ordered and self.lang_regex_script[1][1].match(s[0]) and self.lang_regex_script[0][1].match(s[1]):
                 ret.append({"name:" + self.lang[0]: s[1], "name:" + self.lang[1]: s[0]})
         return ret
+
+    def split_be(self, name):
+        return self.split_delimitor(name, ' - ', False)
+
+    def split_sp_eu(self, name):
+        if "-" not in name and "(" not in name:
+            return self.split_delimitor(name, '/', False)
+
+    def split_sp_ast(self, name):
+        if "-" not in name and "(" not in name:
+            return self.split_delimitor(name, '/', True)
 
     char_common = regex.compile(r"[\p{Common}]", flags=regex.V1)
     char_ma = {
@@ -207,7 +245,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "nl"], "multilingual-style": "be"}
+            options = {"language": ["fr", "nl"], "multilingual_style": "be"}
         class father:
             config = _config()
         self.p.father = father()
@@ -253,7 +291,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "ar", "zgh", "ber"], "multilingual-style": "ma"}
+            options = {"language": ["fr", "ar", "zgh", "ber"], "multilingual_style": "ma"}
         class father:
             config = _config()
         self.p.father = father()
@@ -297,7 +335,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "ar"], "multilingual-style": "dj"}
+            options = {"language": ["fr", "ar"], "multilingual_style": "dj"}
         class father:
             config = _config()
         self.p.father = father()
