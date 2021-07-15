@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-06-14 18:57+0000\n"
+"PO-Revision-Date: 2021-07-04 19:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -624,12 +624,12 @@ msgstr "Название заканчивается на пробел"
 msgid "Name contains successive spaces"
 msgstr "Название содержит череду пробелов"
 
-#: ../plugins/TagRemove_Incompatibles.py:114
+#: ../plugins/TagRemove_Incompatibles.py:116
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Конфликт между тегами: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:117
+#: ../plugins/TagRemove_Incompatibles.py:119
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Конфликт между тегами: 'bridge' и 'tunnel'"
 
@@ -851,7 +851,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:120
+#: ../plugins/TagRemove_Incompatibles.py:122
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1386,6 +1386,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
+#: ../analysers/analyser_merge_public_transport_IN_kerala_bus.py:31
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr ""
@@ -2432,7 +2433,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_roundabout.py:75
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
-"verify that the way direction is in the counter-clockwise when driving side is\n"
+"verify that the way direction is counter-clockwise when the driving side is\n"
 "on the right, and remove the tag `oneway=yes` if present."
 msgstr ""
 
@@ -4183,12 +4184,12 @@ msgstr ""
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:120
+#: ../plugins/TagFix_DuplicateValue.py:122
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:127
+#: ../plugins/TagFix_DuplicateValue.py:129
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
 msgstr ""
