@@ -31,19 +31,19 @@ class Phone2(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'phone') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:phone') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'phone')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:phone') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'phone'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'fax') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:fax') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:fax') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'fax')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'fax')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:fax')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:fax') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'fax'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'email') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:email') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:email') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'email')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'email')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:email')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:email') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'email'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'website') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:website') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'website')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'website')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:website')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'website'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Different value of tag contact:* and *")
@@ -69,19 +69,19 @@ class Phone2(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'phone') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:phone') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'phone')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:phone') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'phone'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'fax') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:fax') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:fax') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'fax')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'fax')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:fax')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:fax') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'fax'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'email') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:email') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:email') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'email')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'email')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:email')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:email') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'email'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'website') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:website') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'website')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'website')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:website')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'website'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Different value of tag contact:* and *")
@@ -105,19 +105,19 @@ class Phone2(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'phone') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:phone') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'phone')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:phone') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'phone'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'fax') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:fax') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:fax') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'fax')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'fax')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:fax')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:fax') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'fax'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'email') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:email') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:email') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'email')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'email')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:email')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:email') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'email'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'website') and mapcss._tag_capture(capture_tags, 1, tags, 'contact:website') and mapcss._tag_capture(capture_tags, 2, tags, 'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'website')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'website')) and (mapcss._tag_capture(capture_tags, 1, tags, 'contact:website')) and (mapcss._tag_capture(capture_tags, 2, tags, 'contact:website') != mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'website'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Different value of tag contact:* and *")

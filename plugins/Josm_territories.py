@@ -35,11 +35,11 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'DE,AT'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'DE,AT')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'DE,AT'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'DE,AT')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
@@ -51,11 +51,11 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'LI,CH'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'LI,CH')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'LI,CH'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'LI,CH')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
@@ -75,11 +75,11 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'DE,AT'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'DE,AT')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'DE,AT'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'DE,AT')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
@@ -95,11 +95,11 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'LI,CH'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'LI,CH')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'LI,CH'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'LI,CH')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
@@ -121,11 +121,11 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'DE,AT'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'DE,AT')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'DE,AT'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_559797c8, '(?i).*Strasser.*'), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'DE,AT')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
@@ -137,11 +137,11 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'LI,CH'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'LI,CH')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'LI,CH'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'LI,CH')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
@@ -152,7 +152,7 @@ class Josm_territories(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'associatedStreet') and mapcss.inside(self.father.config.options, 'DE'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'associatedStreet')) and (mapcss.inside(self.father.config.options, 'DE')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")

@@ -65,35 +65,35 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_cardinal:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_cardinal:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_isolated_danger') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_isolated_danger:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_isolated_danger:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_isolated_danger')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_isolated_danger:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_isolated_danger:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_isolated_danger') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_isolated_danger:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_isolated_danger:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_isolated_danger')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_isolated_danger:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_isolated_danger:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_safe_water') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_safe_water:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_safe_water:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_safe_water')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_safe_water:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_safe_water:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_special_purpose') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_special_purpose:color'), mapcss._value_capture(capture_tags, 1, ';')) and not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_special_purpose:colour_pattern'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_special_purpose')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_special_purpose:color'), mapcss._value_capture(capture_tags, 1, ';'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_special_purpose:colour_pattern')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Multi-colour {0} without {1}","{0.value}","{2.key}")
@@ -125,91 +125,91 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_lateral:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_lateral:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_lateral:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_lateral:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_cardinal:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_cardinal:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_cardinal:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_cardinal:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_cardinal:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_cardinal:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_isolated_danger:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_isolated_danger:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_isolated_danger:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_isolated_danger:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_isolated_danger:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_isolated_danger:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_isolated_danger:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_isolated_danger:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_installation:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_installation:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_installation:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_installation:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_safe_water:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_safe_water:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_safe_water:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_safe_water:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_safe_water:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_safe_water:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_safe_water:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_safe_water:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_special_purpose:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_special_purpose:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:buoy_special_purpose:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_special_purpose:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_special_purpose:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_special_purpose:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:beacon_special_purpose:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_special_purpose:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:topmark:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:topmark:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:topmark:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:topmark:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:daymark:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:daymark:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:daymark:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:daymark:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:bridge:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:bridge:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:bridge:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:bridge:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:building:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:building:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:building:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:building:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:landmark:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:landmark:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:landmark:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:landmark:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:light_float:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:light_float:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:light_float:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:light_float:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:light_vessel:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:light_vessel:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:light_vessel:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:light_vessel:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:pile:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:pile:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:pile:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:pile:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:platform:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:platform:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:platform:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:platform:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:mooring:colour_pattern') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:mooring:colour_pattern')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:mooring:colour_pattern')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_141d4d2f, 'horizontal|vertical|diagonal|squared|stripes|border|cross|saltire'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:mooring:colour_pattern'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Unrecognized {0}: {1}","{0.key}","{0.value}")
@@ -221,11 +221,11 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} have no IALA or system defind ({1})","{0.value}","{1.key}")
@@ -283,195 +283,195 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starboard', 'preferred_channel_starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starboard', 'preferred_channel_starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starbord', 'preferred_channel_starbord'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starbord', 'preferred_channel_starbord')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_port', 'preferred_channel_port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starboard', 'preferred_channel_starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starboard', 'preferred_channel_starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starboard', 'preferred_channel_starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-a')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'preferred_channel_starboard', 'preferred_channel_starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'port', 'port')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'iala-b')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'starboard', 'starboard')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_32e3abb7, 'starboard|waterway_left|channel_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_32e3abb7, 'starboard|waterway_left|channel_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_288a42ac, 'port|waterway_right|channel_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_288a42ac, 'port|waterway_right|channel_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red;green') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_61629c48, 'preferred_channel_starboard|preferred_channel_port|waterway_separation|channel_separation'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red;green')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_61629c48, 'preferred_channel_starboard|preferred_channel_port|waterway_separation|channel_separation'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_281803e9, 'preferred_channel_starboard|turnoff_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_281803e9, 'preferred_channel_starboard|turnoff_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_637abe26, 'preferred_channel_port|turnoff_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_637abe26, 'preferred_channel_port|turnoff_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_right', 'danger_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_right', 'danger_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_left', 'danger_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_left', 'danger_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_right', 'turnoff_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_right', 'turnoff_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_left', 'turnoff_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_left', 'turnoff_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_right', 'junction_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_right', 'junction_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_left', 'junction_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_left', 'junction_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right') and mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'red'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right')) and (mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'red')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left') and mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'green'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left')) and (mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'green')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'bridge_pier', 'bridge_pier') and not mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:buoy_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'bridge_pier', 'bridge_pier')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_32e3abb7, 'starboard|waterway_left|channel_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_32e3abb7, 'starboard|waterway_left|channel_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_288a42ac, 'port|waterway_right|channel_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_288a42ac, 'port|waterway_right|channel_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red;green') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_61629c48, 'preferred_channel_starboard|preferred_channel_port|waterway_separation|channel_separation'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red;green')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_61629c48, 'preferred_channel_starboard|preferred_channel_port|waterway_separation|channel_separation'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_281803e9, 'preferred_channel_starboard|turnoff_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;green;red')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_281803e9, 'preferred_channel_starboard|turnoff_right'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_637abe26, 'preferred_channel_port|turnoff_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;red;green')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_637abe26, 'preferred_channel_port|turnoff_left'), mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_right', 'danger_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_right', 'danger_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_left', 'danger_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'danger_left', 'danger_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_right', 'turnoff_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_right', 'turnoff_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_left', 'turnoff_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'white;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'turnoff_left', 'turnoff_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_right', 'junction_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white;red')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_right', 'junction_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_left', 'junction_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white;green')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'junction_left', 'junction_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'red;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'green;white')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right') and mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'red'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_right', 'harbour_right')) and (mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'red')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left') and mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'green'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'harbour_left', 'harbour_left')) and (mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour') == mapcss._value_capture(capture_tags, 4, 'green')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow') and mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'bridge_pier', 'bridge_pier') and not mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_lateral')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon_lateral:system') == mapcss._value_capture(capture_tags, 1, 'cevni')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_lateral:colour') == mapcss._value_capture(capture_tags, 2, 'yellow')) and (mapcss._tag_capture(capture_tags, 3, tags, 'seamark:beacon_lateral:category') != mapcss._value_const_capture(capture_tags, 3, 'bridge_pier', 'bridge_pier')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'seamark:topmark:colour')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Probably wrong category on {0}, {1} colour mean {2} in {3}","{0.value}","{2.value}","{3.value}","{1.value}")
@@ -489,35 +489,35 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'north', 'north'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'north', 'north')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'north', 'north'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'north', 'north')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow;black') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'east', 'east'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow;black')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'east', 'east')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow;black') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'east', 'east'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'black;yellow;black')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'east', 'east')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'south', 'south'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'south', 'south')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'south', 'south'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'south', 'south')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black;yellow') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'west', 'west'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'buoy_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black;yellow')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:buoy_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'west', 'west')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black;yellow') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'west', 'west'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'beacon_cardinal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:beacon:cardinal:colour') == mapcss._value_capture(capture_tags, 1, 'yellow;black;yellow')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:beacon_cardinal:category') != mapcss._value_const_capture(capture_tags, 2, 'west', 'west')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Probably wrong category on {0}, the colour combination {1} usually mean {2}","{0.value}","{1.value}","{2.value}")
@@ -528,7 +528,7 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'wreck') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:wreck:category'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'wreck')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:wreck:category')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} have no {1}","{0.value}","{1.key}")
@@ -539,7 +539,7 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:wreck:category') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:type') != mapcss._value_const_capture(capture_tags, 1, 'wreck', 'wreck'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:wreck:category')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:type') != mapcss._value_const_capture(capture_tags, 1, 'wreck', 'wreck')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} set without {1}={2}","{0.key}","{1.key}","{1.value}")
@@ -550,7 +550,7 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'rock') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:rock:water_level'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:type') == mapcss._value_capture(capture_tags, 0, 'rock')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:rock:water_level')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without {1}","{0.value}","{1.key}")
@@ -570,43 +570,43 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:system')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:category') and not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:system'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:category')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:system')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
@@ -712,387 +712,387 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_1389a933), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_336a6c28), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_253b0e7a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0c508f2a), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:3:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:3:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:3:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:4:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:4:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:4:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:5:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:5:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:5:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:6:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:6:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:6:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:7:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:7:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:7:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:8:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:8:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:8:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:9:system') == mapcss._value_capture(capture_tags, 0, 'cevni')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:9:function') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:9:category') == mapcss._value_capture(capture_tags, 2, 'berthing_lateral_limit')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'prohibition', 'prohibition')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7c5430c7), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09200db5), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'restriction', 'restriction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_39084725), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'recommendation', 'recommendation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_09c0bae9), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'bniwr2')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_430e795b), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0b7ab6fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0b7ab6fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0b7ab6fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0b7ab6fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0b7ab6fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'regulation', 'regulation')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_0b7ab6fc), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2a269778), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2a269778), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2a269778), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2a269778), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:1:category'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc') and mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2a269778), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system') == mapcss._value_capture(capture_tags, 0, 'ppwbc')) and (mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:system') != mapcss._value_const_capture(capture_tags, 1, 'information', 'information')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_2a269778), mapcss._tag_capture(capture_tags, 2, tags, 'seamark:notice:2:category'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("In {0} {1}={2} require {3}={4}","{0.value}","{2.key}","{2.value}","{1.key}","{1.value}")
@@ -1105,15 +1105,15 @@ class Josm_Seamark(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_01dd9715, 'right|left'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:bank')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:system'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_01dd9715, 'right|left'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:bank'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_01dd9715, 'right|left'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:bank')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:1:system'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_01dd9715, 'right|left'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:1:bank'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_01dd9715, 'right|left'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:bank')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, 'seamark:notice:2:system'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_01dd9715, 'right|left'), mapcss._tag_capture(capture_tags, 1, tags, 'seamark:notice:2:bank'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} sign require {1} set to left or right","{0.value}","{1.key}")

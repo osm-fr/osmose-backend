@@ -29,7 +29,7 @@ class Josm_ItalySpecific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing') and mapcss.inside(self.father.config.options, 'IT'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing')) and (mapcss.inside(self.father.config.options, 'IT')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
@@ -50,7 +50,7 @@ class Josm_ItalySpecific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing') and mapcss.inside(self.father.config.options, 'IT'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing')) and (mapcss.inside(self.father.config.options, 'IT')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
@@ -71,7 +71,7 @@ class Josm_ItalySpecific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy') and not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing') and mapcss.inside(self.father.config.options, 'IT'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'pharmacy')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'dispensing')) and (mapcss.inside(self.father.config.options, 'IT')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")

@@ -30,7 +30,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -49,7 +49,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -68,7 +68,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -84,7 +84,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -110,7 +110,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -132,7 +132,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -154,7 +154,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -173,7 +173,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -201,7 +201,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'takeaway:covid19') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'takeaway') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -219,7 +219,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'delivery:covid19') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'delivery') != mapcss._value_const_capture(capture_tags, 1, 'yes', 'yes')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -237,7 +237,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3f390088), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"
@@ -253,7 +253,7 @@ class Covid19(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19')) and not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'opening_hours:covid19')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_64916a2b, 'same|off|open|restricted'), mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours:covid19'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4010/202004/2"

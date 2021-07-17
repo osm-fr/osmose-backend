@@ -31,7 +31,7 @@ class Josm_relation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'type'))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'type')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("relation without type")
@@ -49,27 +49,27 @@ class Josm_relation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route') and not mapcss._tag_capture(capture_tags, 1, tags, 'route'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'route')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, 'route_master'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route_master')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'route_master')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary') and not mapcss._tag_capture(capture_tags, 1, tags, 'boundary') and not mapcss._tag_capture(capture_tags, 2, tags, 'disused:boundary'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'boundary')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'disused:boundary')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'public_transport') and not mapcss._tag_capture(capture_tags, 1, tags, 'public_transport'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'public_transport')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'public_transport')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'waterway') and not mapcss._tag_capture(capture_tags, 1, tags, 'waterway'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'waterway')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'waterway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'enforcement') and not mapcss._tag_capture(capture_tags, 1, tags, 'enforcement'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'enforcement')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'enforcement')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -94,7 +94,7 @@ class Josm_relation(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'restriction') and not mapcss._tag_capture(capture_tags, 1, tags, self.re_67b11051))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'restriction')) and (not mapcss._tag_capture(capture_tags, 1, tags, self.re_67b11051)))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
