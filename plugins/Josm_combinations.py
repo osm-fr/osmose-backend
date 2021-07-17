@@ -639,28 +639,33 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 229130622, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
-        # *[lanes][eval(number_of_tags())=1]
-        # *[surface][eval(number_of_tags())=1]
-        # *[access][eval(number_of_tags())=1]
-        # *[area][eval(number_of_tags())=1]!.area_yes_autofix
-        # *[name][eval(number_of_tags())=1]
-        # *[ref][eval(number_of_tags())=1]
-        # *[lit][eval(number_of_tags())=1]
-        if ('access' in keys) or ('area' in keys) or ('lanes' in keys) or ('lit' in keys) or ('name' in keys) or ('ref' in keys) or ('surface' in keys):
+        # node[access][eval(number_of_tags())=1]
+        # node[area][eval(number_of_tags())=1]!.area_yes_autofix
+        # node[lanes][eval(number_of_tags())=1]
+        # node[layer][eval(number_of_tags())=1]
+        # node[lit][eval(number_of_tags())=1]
+        # node[name][eval(number_of_tags())=1]
+        # node[ref][eval(number_of_tags())=1]
+        # node[surface][eval(number_of_tags())=1]
+        if ('access' in keys) or ('area' in keys) or ('lanes' in keys) or ('layer' in keys) or ('lit' in keys) or ('name' in keys) or ('ref' in keys) or ('surface' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and len(tags) == 1)
+                except mapcss.RuleAbort: pass
+            # Skip selector using undeclared class area_yes_autofix
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lanes') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1)
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'layer') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and len(tags) == 1)
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lit') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
-            # Skip selector using undeclared class area_yes_autofix
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and len(tags) == 1)
@@ -671,17 +676,17 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lit') and len(tags) == 1)
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
             if match:
                 # setonly_one_tag
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 set_only_one_tag = True
-                err.append({'class': 9001001, 'subclass': 499696734, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001001, 'subclass': 729897947, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[name][area][eval(number_of_tags())=2]
-        # *[name][ref][eval(number_of_tags())=2]
+        # node[name][area][eval(number_of_tags())=2]
+        # node[name][ref][eval(number_of_tags())=2]
         if ('area' in keys and 'name' in keys) or ('name' in keys and 'ref' in keys):
             match = False
             if not match:
@@ -695,9 +700,9 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 788702375, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001001, 'subclass': 1930775280, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
-        # *[tourism=attraction][eval(number_of_tags())=1]
+        # node[tourism=attraction][eval(number_of_tags())=1]
         if ('tourism' in keys):
             match = False
             if not match:
@@ -707,9 +712,9 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0}","{0.tag}")
-                err.append({'class': 9001001, 'subclass': 463560683, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9001001, 'subclass': 413890824, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # *[name][tourism=attraction][eval(number_of_tags())=2]
+        # node[name][tourism=attraction][eval(number_of_tags())=2]
         if ('name' in keys and 'tourism' in keys):
             match = False
             if not match:
@@ -719,7 +724,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001001, 'subclass': 13522860, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[place][place!=farm][place!=plot][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
         # *[boundary][/^addr:/]
@@ -1962,28 +1967,38 @@ class Josm_combinations(PluginMapCSS):
                 # suggestAlternative:"waterway=weir + ford=yes"
                 err.append({'class': 9001002, 'subclass': 842989092, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # *[lanes][eval(number_of_tags())=1]
-        # *[surface][eval(number_of_tags())=1]
-        # *[access][eval(number_of_tags())=1]
-        # *[area][eval(number_of_tags())=1]!.area_yes_autofix
-        # *[name][eval(number_of_tags())=1]
-        # *[ref][eval(number_of_tags())=1]
-        # *[lit][eval(number_of_tags())=1]
-        if ('access' in keys) or ('area' in keys) or ('lanes' in keys) or ('lit' in keys) or ('name' in keys) or ('ref' in keys) or ('surface' in keys):
+        # way[access][eval(number_of_tags())=1]
+        # way[area][eval(number_of_tags())=1]!.area_yes_autofix
+        # way[lanes][eval(number_of_tags())=1]
+        # way[layer][eval(number_of_tags())=1]
+        # way[level][eval(number_of_tags())=1]
+        # way[lit][eval(number_of_tags())=1]
+        # way[name][eval(number_of_tags())=1]
+        # way[ref][eval(number_of_tags())=1]
+        # way[surface][eval(number_of_tags())=1]
+        if ('access' in keys) or ('area' in keys) or ('lanes' in keys) or ('layer' in keys) or ('level' in keys) or ('lit' in keys) or ('name' in keys) or ('ref' in keys) or ('surface' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and len(tags) == 1)
+                except mapcss.RuleAbort: pass
+            # Skip selector using undeclared class area_yes_autofix
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lanes') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1)
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'layer') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and len(tags) == 1)
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'level') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
-            # Skip selector using undeclared class area_yes_autofix
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lit') and len(tags) == 1)
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and len(tags) == 1)
@@ -1994,17 +2009,17 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lit') and len(tags) == 1)
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1)
                 except mapcss.RuleAbort: pass
             if match:
                 # setonly_one_tag
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 set_only_one_tag = True
-                err.append({'class': 9001001, 'subclass': 499696734, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9001001, 'subclass': 396232069, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[name][area][eval(number_of_tags())=2]
-        # *[name][ref][eval(number_of_tags())=2]
+        # way[name][area][eval(number_of_tags())=2]
+        # way[name][ref][eval(number_of_tags())=2]
         if ('area' in keys and 'name' in keys) or ('name' in keys and 'ref' in keys):
             match = False
             if not match:
@@ -2018,9 +2033,9 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 788702375, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001001, 'subclass': 24958270, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
-        # *[tourism=attraction][eval(number_of_tags())=1]
+        # way[tourism=attraction][eval(number_of_tags())=1]
         if ('tourism' in keys):
             match = False
             if not match:
@@ -2030,9 +2045,9 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0}","{0.tag}")
-                err.append({'class': 9001001, 'subclass': 463560683, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9001001, 'subclass': 557203641, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # *[name][tourism=attraction][eval(number_of_tags())=2]
+        # way[name][tourism=attraction][eval(number_of_tags())=2]
         if ('name' in keys and 'tourism' in keys):
             match = False
             if not match:
@@ -2042,7 +2057,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+                err.append({'class': 9001001, 'subclass': 1755320367, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[place][place!=farm][place!=plot][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
         # *[boundary][/^addr:/]
@@ -3554,88 +3569,6 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 1590654104, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
-
-        # *[lanes][eval(number_of_tags())=1]
-        # *[surface][eval(number_of_tags())=1]
-        # *[access][eval(number_of_tags())=1]
-        # *[area][eval(number_of_tags())=1]!.area_yes_autofix
-        # *[name][eval(number_of_tags())=1]
-        # *[ref][eval(number_of_tags())=1]
-        # *[lit][eval(number_of_tags())=1]
-        if ('access' in keys) or ('area' in keys) or ('lanes' in keys) or ('lit' in keys) or ('name' in keys) or ('ref' in keys) or ('surface' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lanes') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            # Skip selector using undeclared class area_yes_autofix
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'lit') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            if match:
-                # setonly_one_tag
-                # group:tr("missing tag")
-                # throwWarning:tr("incomplete object: only {0}","{0.key}")
-                set_only_one_tag = True
-                err.append({'class': 9001001, 'subclass': 499696734, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
-
-        # *[name][area][eval(number_of_tags())=2]
-        # *[name][ref][eval(number_of_tags())=2]
-        if ('area' in keys and 'name' in keys) or ('name' in keys and 'ref' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'area') and len(tags) == 2)
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'ref') and len(tags) == 2)
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 788702375, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
-
-        # *[tourism=attraction][eval(number_of_tags())=1]
-        if ('tourism' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'attraction') and len(tags) == 1)
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-                # throwWarning:tr("incomplete object: only {0}","{0.tag}")
-                err.append({'class': 9001001, 'subclass': 463560683, 'text': mapcss.tr('incomplete object: only {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
-
-        # *[name][tourism=attraction][eval(number_of_tags())=2]
-        if ('name' in keys and 'tourism' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') == mapcss._value_capture(capture_tags, 1, 'attraction') and len(tags) == 2)
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr('incomplete object: only {0} and {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[place][place!=farm][place!=plot][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
         # *[boundary][/^addr:/]

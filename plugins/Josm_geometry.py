@@ -23,6 +23,7 @@ class Josm_geometry(PluginMapCSS):
         self.errors[9003008] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr('{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9003009] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr('Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.'))
         self.errors[9003011] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
+        self.errors[9003012] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a relation', mapcss._tag_uncapture(capture_tags, '{0.key}')))
 
         self.re_22f56734 = re.compile(r'^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$')
 
@@ -659,6 +660,29 @@ class Josm_geometry(PluginMapCSS):
             if match:
                 # throwWarning:tr("{0} on a closed way. Should be used on an unclosed way.","{1.tag}")
                 err.append({'class': 9003011, 'subclass': 2100265426, 'text': mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
+
+        return err
+
+    def relation(self, data, tags, members):
+        capture_tags = {}
+        keys = tags.keys()
+        err = []
+
+
+        # relation[area?]
+        if ('area' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'area') in ('yes', 'true', '1'))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} on a relation","{0.key}")
+                # fixRemove:"{0.key}"
+                err.append({'class': 9003012, 'subclass': 922972473, 'text': mapcss.tr('{0} on a relation', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
 
         return err
 

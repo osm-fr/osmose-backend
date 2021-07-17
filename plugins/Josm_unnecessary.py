@@ -33,7 +33,6 @@ class Josm_unnecessary(PluginMapCSS):
         self.re_337f006b = re.compile(r'^(?i)(school|école|Школа)$')
         self.re_33dfa05b = re.compile(r'^(?i)(church|église|biserica)$')
         self.re_3ad2c525 = re.compile(r'^(?i)(école primaire)$')
-        self.re_3ad9e1f5 = re.compile(r'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
         self.re_3b098aea = re.compile(r'^gpx:')
         self.re_480c7ba6 = re.compile(r'^(?i)(building|bangunan)$')
         self.re_480ecdbb = re.compile(r'^(?i)(école élémentaire)$')
@@ -62,20 +61,15 @@ class Josm_unnecessary(PluginMapCSS):
 
 
         # *[access][highway=proposed]
-        # *[motor_vehicle?][!vehicle][!access][bicycle_road!=yes][highway=~/^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$/]
         # *[bridge=no]
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if ('access' in keys and 'highway' in keys) or ('bridge' in keys) or ('building' in keys) or ('elevation' in keys) or ('highway' in keys and 'motor_vehicle' in keys) or ('layer' in keys):
+        if ('access' in keys and 'highway' in keys) or ('bridge' in keys) or ('building' in keys) or ('elevation' in keys) or ('layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'proposed'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'motor_vehicle') in ('yes', 'true', '1') and not mapcss._tag_capture(capture_tags, 1, tags, 'vehicle') and not mapcss._tag_capture(capture_tags, 2, tags, 'access') and mapcss._tag_capture(capture_tags, 3, tags, 'bicycle_road') != mapcss._value_const_capture(capture_tags, 3, 'yes', 'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -97,7 +91,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary","{0.tag}")
                 # fixRemove:"{0.key}"
-                err.append({'class': 9010001, 'subclass': 2110229428, 'text': mapcss.tr('{0} is unnecessary', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010001, 'subclass': 1306695721, 'text': mapcss.tr('{0} is unnecessary', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -425,20 +419,15 @@ class Josm_unnecessary(PluginMapCSS):
 
 
         # *[access][highway=proposed]
-        # *[motor_vehicle?][!vehicle][!access][bicycle_road!=yes][highway=~/^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$/]
         # *[bridge=no]
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if ('access' in keys and 'highway' in keys) or ('bridge' in keys) or ('building' in keys) or ('elevation' in keys) or ('highway' in keys and 'motor_vehicle' in keys) or ('layer' in keys):
+        if ('access' in keys and 'highway' in keys) or ('bridge' in keys) or ('building' in keys) or ('elevation' in keys) or ('layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'proposed'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'motor_vehicle') in ('yes', 'true', '1') and not mapcss._tag_capture(capture_tags, 1, tags, 'vehicle') and not mapcss._tag_capture(capture_tags, 2, tags, 'access') and mapcss._tag_capture(capture_tags, 3, tags, 'bicycle_road') != mapcss._value_const_capture(capture_tags, 3, 'yes', 'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -461,13 +450,52 @@ class Josm_unnecessary(PluginMapCSS):
                 # throwWarning:tr("{0} is unnecessary","{0.tag}")
                 # fixRemove:"{0.key}"
                 # assertMatch:"way bridge=no"
-                # assertNoMatch:"way highway=motorway access=no motor_vehicle=yes"
-                # assertMatch:"way highway=motorway motor_vehicle=yes"
                 # assertMatch:"way highway=proposed access=no"
                 # assertMatch:"way layer=0"
-                err.append({'class': 9010001, 'subclass': 2110229428, 'text': mapcss.tr('{0} is unnecessary', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010001, 'subclass': 1306695721, 'text': mapcss.tr('{0} is unnecessary', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
+        # way:closed[amenity][area?][!highway]
+        # way:closed[building][area?]
+        # way:closed[landuse][area?][!highway]
+        # way:closed[leisure][area?][!highway][leisure!=track][leisure!=slipway]
+        # way:closed[natural][area?]
+        # way:closed[shop][area?]
+        if ('amenity' in keys and 'area' in keys) or ('area' in keys and 'building' in keys) or ('area' in keys and 'landuse' in keys) or ('area' in keys and 'leisure' in keys) or ('area' in keys and 'natural' in keys) or ('area' in keys and 'shop' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') and mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and not mapcss._tag_capture(capture_tags, 2, tags, 'highway') and nds[0] == nds[-1])
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'building') and mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and nds[0] == nds[-1])
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'landuse') and mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and not mapcss._tag_capture(capture_tags, 2, tags, 'highway') and nds[0] == nds[-1])
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') and mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and not mapcss._tag_capture(capture_tags, 2, tags, 'highway') and mapcss._tag_capture(capture_tags, 3, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 3, 'track', 'track') and mapcss._tag_capture(capture_tags, 4, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 4, 'slipway', 'slipway') and nds[0] == nds[-1])
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'natural') and mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and nds[0] == nds[-1])
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'shop') and mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and nds[0] == nds[-1])
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} is unnecessary for {1}","{2.tag}","{1.key}")
+                # fixRemove:"{2.key}"
+                err.append({'class': 9010001, 'subclass': 1347803818, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{2.key}')])
                 }})
 
         # *[gnis:Class="Populated Place"][place=city]
@@ -790,20 +818,15 @@ class Josm_unnecessary(PluginMapCSS):
 
 
         # *[access][highway=proposed]
-        # *[motor_vehicle?][!vehicle][!access][bicycle_road!=yes][highway=~/^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$/]
         # *[bridge=no]
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if ('access' in keys and 'highway' in keys) or ('bridge' in keys) or ('building' in keys) or ('elevation' in keys) or ('highway' in keys and 'motor_vehicle' in keys) or ('layer' in keys):
+        if ('access' in keys and 'highway' in keys) or ('bridge' in keys) or ('building' in keys) or ('elevation' in keys) or ('layer' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'proposed'))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'motor_vehicle') in ('yes', 'true', '1') and not mapcss._tag_capture(capture_tags, 1, tags, 'vehicle') and not mapcss._tag_capture(capture_tags, 2, tags, 'access') and mapcss._tag_capture(capture_tags, 3, tags, 'bicycle_road') != mapcss._value_const_capture(capture_tags, 3, 'yes', 'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, 'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -825,7 +848,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary","{0.tag}")
                 # fixRemove:"{0.key}"
-                err.append({'class': 9010001, 'subclass': 2110229428, 'text': mapcss.tr('{0} is unnecessary', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010001, 'subclass': 1306695721, 'text': mapcss.tr('{0} is unnecessary', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
@@ -1148,11 +1171,9 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {'gpx:time': '2018-01-01T12:00:00Z'}), expected={'class': 9010001, 'subclass': 690304391})
         self.check_err(n.node(data, {'gpxd:color': '#FF0000'}), expected={'class': 9010001, 'subclass': 690304391})
         self.check_not_err(n.node(data, {'source': 'gpx:foo'}), expected={'class': 9010001, 'subclass': 690304391})
-        self.check_err(n.way(data, {'bridge': 'no'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
-        self.check_not_err(n.way(data, {'access': 'no', 'highway': 'motorway', 'motor_vehicle': 'yes'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
-        self.check_err(n.way(data, {'highway': 'motorway', 'motor_vehicle': 'yes'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
-        self.check_err(n.way(data, {'access': 'no', 'highway': 'proposed'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
-        self.check_err(n.way(data, {'layer': '0'}, [0]), expected={'class': 9010001, 'subclass': 2110229428})
+        self.check_err(n.way(data, {'bridge': 'no'}, [0]), expected={'class': 9010001, 'subclass': 1306695721})
+        self.check_err(n.way(data, {'access': 'no', 'highway': 'proposed'}, [0]), expected={'class': 9010001, 'subclass': 1306695721})
+        self.check_err(n.way(data, {'layer': '0'}, [0]), expected={'class': 9010001, 'subclass': 1306695721})
         self.check_not_err(n.way(data, {'emergency': 'designated'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {'emergency': 'permissive'}, [0]), expected={'class': 9010002, 'subclass': 325672362})
         self.check_err(n.way(data, {'amenity': 'grave_yard', 'name': 'Cmentarz'}, [0]), expected={'class': 9010003, 'subclass': 773913345})
