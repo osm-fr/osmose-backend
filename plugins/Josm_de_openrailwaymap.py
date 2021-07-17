@@ -76,27 +76,27 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:combined:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:combined:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hl') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hl')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hl') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hl')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hl') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:combined:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hl')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:combined:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"{1.value} signals only exist as light signals"
@@ -118,11 +118,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 3, 'semaphore', 'semaphore'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main:form') != mapcss._value_const_capture(capture_tags, 3, 'semaphore', 'semaphore')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:vr') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 3, 'semaphore', 'semaphore'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:vr')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 3, 'semaphore', 'semaphore')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"hp signals only exist as semaphore or light signals"
@@ -137,7 +137,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, 'DE-KVB:hp') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:combined:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, 'DE-KVB:hp')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:combined:form') != mapcss._value_const_capture(capture_tags, 2, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"KVB hp signals only exist as light signals"
@@ -153,7 +153,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:vr') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 2, 'yes') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 3, 'light', 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:vr')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 2, 'yes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:form') != mapcss._value_const_capture(capture_tags, 3, 'light', 'light')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Vr repeated signals only exist as light signals"
@@ -168,11 +168,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:minor:states') == mapcss._value_capture(capture_tags, 0, 'DE-ESO:sh0;DE-ESO:gsp2'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:minor:states') == mapcss._value_capture(capture_tags, 0, 'DE-ESO:sh0;DE-ESO:gsp2')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:minor:states') == mapcss._value_capture(capture_tags, 0, 'sh0;gsp2'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:minor:states') == mapcss._value_capture(capture_tags, 0, 'sh0;gsp2')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Signal Gsp 2 was renamed to Wn 7 in 2008"
@@ -192,7 +192,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:train_protection') == mapcss._value_capture(capture_tags, 0, 'DE-ESO:ne14') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:train_protection:type') != mapcss._value_const_capture(capture_tags, 1, 'block_marker', 'block_marker'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:train_protection') == mapcss._value_capture(capture_tags, 0, 'DE-ESO:ne14')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:train_protection:type') != mapcss._value_const_capture(capture_tags, 1, 'block_marker', 'block_marker')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Ne 14 sign requires additional tag railway:signal:train_protection:type=block_marker"
@@ -214,19 +214,19 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_77700681, '^(.*;)?DE-ESO:kennlicht(;.*)?$'), mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:states')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_77700681, '^(.*;)?DE-ESO:kennlicht(;.*)?$'), mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:states'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp') and mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:states'), mapcss._value_capture(capture_tags, 2, 'DE-ESO:kennlicht')) and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 3, 'no'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:states'), mapcss._value_capture(capture_tags, 2, 'DE-ESO:kennlicht'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 3, 'no')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp') and mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:states'), mapcss._value_capture(capture_tags, 2, 'DE-ESO:kennlicht')) and not mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:shortened'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:hp')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main:states'), mapcss._value_capture(capture_tags, 2, 'DE-ESO:kennlicht'))) and (not mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant:shortened')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_103aec5a), mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main')) and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main') != mapcss._value_const_capture(capture_tags, 2, 'DE-ESO:hp', 'DE-ESO:hp'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_103aec5a), mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:main'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main') != mapcss._value_const_capture(capture_tags, 2, 'DE-ESO:hp', 'DE-ESO:hp')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"main and repeated distant signal usually are not at the same place"
@@ -254,19 +254,19 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_103aec5a), mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant')) and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant') != mapcss._value_const_capture(capture_tags, 3, 'DE-ESO:vr', 'DE-ESO:vr'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_103aec5a), mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:distant') != mapcss._value_const_capture(capture_tags, 3, 'DE-ESO:vr', 'DE-ESO:vr')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 2, 'DE-ESO:vr') and not mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 2, 'DE-ESO:vr')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main') != mapcss._value_const_capture(capture_tags, 3, 'DE-ESO:hp', 'DE-ESO:hp'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:main')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main') != mapcss._value_const_capture(capture_tags, 3, 'DE-ESO:hp', 'DE-ESO:hp')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 2, 'DE-ESO:vr') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 3, 'DE-ESO:hp') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_77700681, '^(.*;)?DE-ESO:kennlicht(;.*)?$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:main:states')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 2, 'DE-ESO:vr')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 3, 'DE-ESO:hp')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_77700681, '^(.*;)?DE-ESO:kennlicht(;.*)?$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:main:states'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"German distant signals can't be repeated and shortened at the same time"
@@ -288,11 +288,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 0, 'DE-ESO:ks') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:main') == mapcss._value_capture(capture_tags, 0, 'DE-ESO:ks')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:main') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway:signal:main')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:ks')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"German Ks signals can't have main and distant signal at the same place, try a combined signal instead"
@@ -307,7 +307,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:minor') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:sh') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:minor:form') == mapcss._value_capture(capture_tags, 2, 'semaphore') and mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:minor:states'), mapcss._value_capture(capture_tags, 3, 'DE-ESO:hp0')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:minor') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:sh')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:minor:form') == mapcss._value_capture(capture_tags, 2, 'semaphore')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:minor:states'), mapcss._value_capture(capture_tags, 3, 'DE-ESO:hp0'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Sh semaphore signals cannot display Hp 0, but only Sh 0"
@@ -324,7 +324,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:minor') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:sh') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:minor:form') == mapcss._value_capture(capture_tags, 2, 'light') and mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:minor:states'), mapcss._value_capture(capture_tags, 3, 'DE-ESO:sh0')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:minor') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:sh')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:minor:form') == mapcss._value_capture(capture_tags, 2, 'light')) and (mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:minor:states'), mapcss._value_capture(capture_tags, 3, 'DE-ESO:sh0'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Sh light signals cannot display Sh 0, but only Hp 0"
@@ -342,11 +342,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3v') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit_distant:form') == mapcss._value_capture(capture_tags, 2, 'sign') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit_distant:speed') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_707f42a1, '^[1-9][0-9]?[05]$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit_distant:speed')) and mapcss._tag_capture(capture_tags, 5, tags, 'railway:signal:speed_limit_distant:speed') != mapcss._value_capture(capture_tags, 5, 5))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3v')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit_distant:form') == mapcss._value_capture(capture_tags, 2, 'sign')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit_distant:speed')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_707f42a1, '^[1-9][0-9]?[05]$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit_distant:speed'))) and (mapcss._tag_capture(capture_tags, 5, tags, 'railway:signal:speed_limit_distant:speed') != mapcss._value_capture(capture_tags, 5, 5)))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3v') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit_distant:form') == mapcss._value_capture(capture_tags, 2, 'sign') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit_distant:speed') > mapcss._value_capture(capture_tags, 3, 160))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3v')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit_distant:form') == mapcss._value_capture(capture_tags, 2, 'sign')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit_distant:speed') > mapcss._value_capture(capture_tags, 3, 160)))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Zs3v sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160"
@@ -369,11 +369,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'sign') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit:speed') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_707f42a1, '^[1-9][0-9]?[05]$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit:speed')) and mapcss._tag_capture(capture_tags, 5, tags, 'railway:signal:speed_limit:speed') != mapcss._value_capture(capture_tags, 5, 5))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'sign')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit:speed')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_707f42a1, '^[1-9][0-9]?[05]$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit:speed'))) and (mapcss._tag_capture(capture_tags, 5, tags, 'railway:signal:speed_limit:speed') != mapcss._value_capture(capture_tags, 5, 5)))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'sign') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit:speed') > mapcss._value_capture(capture_tags, 3, 160))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'sign')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit:speed') > mapcss._value_capture(capture_tags, 3, 160)))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Zs3 sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160"
@@ -395,7 +395,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3v') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'light') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit_distant:speed') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_38b81466, '^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit_distant:speed')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3v')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'light')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit_distant:speed')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_38b81466, '^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit_distant:speed'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Zs3v light signal states should have the form 'speed[;speed …][;off][;?], speeds can only be multiples of 10"
@@ -417,7 +417,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'light') and mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit:speed') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_38b81466, '^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit:speed')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:zs3')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'light')) and (mapcss._tag_capture(capture_tags, 3, tags, 'railway:signal:speed_limit:speed')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 4, self.re_38b81466, '^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$'), mapcss._tag_capture(capture_tags, 4, tags, 'railway:signal:speed_limit:speed'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Zs3 light signal states should have the form 'speed[;speed …][;off][;?], speeds can only be multiples of 10"
@@ -439,7 +439,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal') and mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:db:zs10') and mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'light'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'signal')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, 'DE-ESO:db:zs10')) and (mapcss._tag_capture(capture_tags, 2, tags, 'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, 'light')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"It is unclear if Zs10 light signals have ever been placed, please double check."
@@ -462,11 +462,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4fd6fb40), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4fd6fb40), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_057dc3df), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_057dc3df), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Tracks should not be named by their timetable number (KBS xy). Use a route relation with route=railway, instead."
@@ -482,11 +482,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4fd6fb40), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4fd6fb40), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_057dc3df), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_057dc3df), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"ref=* should be a VzG number (without \"VzG\"). Use a route relation with route=railway for KBS numbers, instead."
@@ -500,7 +500,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480b052a), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480b052a), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"ref=* should be a VzG number without \"VzG\""
@@ -513,7 +513,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480b052a), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_480b052a), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"VzG numbers should be tagged as ref=* without \"VzG\""
@@ -526,7 +526,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_36ee52ff), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_36ee52ff), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"ref=* should only be a VzG number, it should not contain the track number"
@@ -539,7 +539,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_555f3b4c), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_555f3b4c), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Track names should be real names. VzG numbers should be tagged ref=*. KBS numbers should be mapped as a relation with route=railway."
@@ -562,11 +562,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_12ca7ec2), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_12ca7ec2), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_27c794aa), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_27c794aa), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Track names should be real names. KBS numbers should be mapped as a relation with route=railway."
@@ -587,7 +587,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_48fcc4a9), mapcss._tag_capture(capture_tags, 1, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_48fcc4a9), mapcss._tag_capture(capture_tags, 1, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Track names should be real names. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*."
@@ -609,11 +609,11 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_12ca7ec2), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_12ca7ec2), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_27c794aa), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_27c794aa), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway."
@@ -633,7 +633,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_48fcc4a9), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_48fcc4a9), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*."
@@ -655,15 +655,15 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'EBO'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'EBO')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'ESBO'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'ESBO')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'BOStrab'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'BOStrab')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"workrules={1.value} is deprecated, change to workrules=DE:{1.value}"
@@ -685,7 +685,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'BOA'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'BOA')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"workrules=BOA is deprecated, replace by an adequate value"
@@ -699,7 +699,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'DE-BOStrab'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'DE-BOStrab')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"workrules: separate country and ruleset by : , not by -"
@@ -717,7 +717,7 @@ class Josm_de_openrailwaymap(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') and mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'DE-EBO'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'workrules') == mapcss._value_capture(capture_tags, 1, 'DE-EBO')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:"workrules: separate country and ruleset by : , not by -"

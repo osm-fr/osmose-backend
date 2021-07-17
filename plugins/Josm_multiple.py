@@ -39,35 +39,35 @@ class Josm_multiple(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'lanes')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'lanes'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'surface')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'water')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'water'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} with multiple values","{0.key}")
@@ -102,103 +102,103 @@ class Josm_multiple(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:addr')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:addr'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:maxspeed')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:maxspeed'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:position')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:position'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:postcode')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:postcode'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'int_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'int_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'old_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'old_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'route_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'route_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'attribution')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'attribution'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'alt_name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'alt_name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'note')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'note'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'fixme')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'fixme'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'destination')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'destination'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'exit_to')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'exit_to'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'surface')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'building:use')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'building:use'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
@@ -230,35 +230,35 @@ class Josm_multiple(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'lanes')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'lanes'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'surface')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'water')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'water'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} with multiple values","{0.key}")
@@ -293,103 +293,103 @@ class Josm_multiple(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:addr')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:addr'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:maxspeed')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:maxspeed'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:position')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:position'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:postcode')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:postcode'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'int_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'int_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'old_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'old_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'route_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'route_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'attribution')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'attribution'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'alt_name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'alt_name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'note')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'note'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'fixme')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'fixme'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'destination')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'destination'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'exit_to')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'exit_to'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'surface')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'building:use')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'building:use'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
@@ -415,35 +415,35 @@ class Josm_multiple(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'telecom:medium'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'addr:street'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'lanes')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'lanes'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'surface')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'water')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53db61ac), mapcss._tag_capture(capture_tags, 0, tags, 'water'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} with multiple values","{0.key}")
@@ -478,103 +478,103 @@ class Josm_multiple(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:addr')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:addr'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:maxspeed')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:maxspeed'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:position')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:position'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:postcode')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source:postcode'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'int_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'int_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'old_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'old_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'source_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'route_ref')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'route_ref'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'attribution')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'attribution'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'alt_name')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'alt_name'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'note')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'note'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'fixme')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'fixme'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'destination')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'destination'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'exit_to')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'exit_to'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'surface')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'building:use')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'building:use'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'traffic_sign'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'voltage'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'sport'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_579c7c6a), mapcss._tag_capture(capture_tags, 0, tags, 'cuisine'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")

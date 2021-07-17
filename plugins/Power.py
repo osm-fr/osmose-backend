@@ -30,7 +30,7 @@ class Power(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer') and mapcss._tag_capture(capture_tags, 1, tags, 'voltage'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag")
@@ -43,7 +43,7 @@ class Power(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer') and not mapcss._tag_capture(capture_tags, 1, tags, 'frequency'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'frequency')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag")
@@ -66,7 +66,7 @@ class Power(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("geom")
@@ -87,7 +87,7 @@ class Power(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("geom")

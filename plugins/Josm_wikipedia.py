@@ -68,7 +68,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_07f8e639, '(?i)^[-a-z]{2,12}:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_07f8e639, '(?i)^[-a-z]{2,12}:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wikipedia tag has no language given, use ''wikipedia''=''language:page title''")
@@ -82,7 +82,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f8e639), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1f90813f, '^https?:\/\/'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_294645af, '^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f8e639), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1f90813f, '^https?:\/\/'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_294645af, '^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia tag has an unknown language prefix")
@@ -96,11 +96,11 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_1f90813f), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_1f90813f), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_091c4afa), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_091c4afa), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -115,7 +115,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53b6f173), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53b6f173), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia ''{0}'' language is obsolete, use ''{1}'' instead","be-x-old","be-tarask")
@@ -132,7 +132,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_034ab801), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_034ab801), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia ''{0}'' language is invalid, use ''{1}'' instead","cz","cs")
@@ -149,7 +149,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_210c6ccc), mapcss._tag_capture(capture_tags, 0, tags, 'wikimedia_commons')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_210c6ccc), mapcss._tag_capture(capture_tags, 0, tags, 'wikimedia_commons'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -166,7 +166,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -183,7 +183,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753) and mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753)) and (mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -196,7 +196,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_536e5b67), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_536e5b67), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia title should not start with a space after language code")
@@ -213,7 +213,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67c3b565), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67c3b565), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia title should not have ''{0}'' prefix","wiki/")
@@ -230,7 +230,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have first letter capitalized")
@@ -249,7 +249,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_08b52119), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_08b52119), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
@@ -288,95 +288,95 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:da:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:da:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:dk:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:dk:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'de:de:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'de:de:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'dk:dk:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'dk:dk:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:de:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:de:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:en:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:en:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:es:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:es:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:eu:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:eu:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:ja:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:ja:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pl:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pl:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pt:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pt:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:zh:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:zh:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'es:es:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'es:es:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'eu:eu:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'eu:eu:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'fr:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'fr:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ja:ja:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ja:ja:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:en:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:en:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:pl:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:pl:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pt:pt:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pt:pt:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:ru:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:ru:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'zh:zh:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'zh:zh:'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia language seems to be duplicated, e.g. en:en:Foo")
@@ -394,7 +394,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikidata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b567f18, '^Q[1-9][0-9]{0,8}$'), mapcss._tag_capture(capture_tags, 1, tags, 'wikidata')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikidata')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b567f18, '^Q[1-9][0-9]{0,8}$'), mapcss._tag_capture(capture_tags, 1, tags, 'wikidata'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
@@ -411,7 +411,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value looks like a {1} value","{0.key}","wikidata")
@@ -432,7 +432,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and mapcss._tag_capture(capture_tags, 1, tags, self.re_79319bf9))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_79319bf9)))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("''{0}'' tag is set, but no ''{1}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article.","{1.key}","{0.key}")
@@ -454,7 +454,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_07f8e639, '(?i)^[-a-z]{2,12}:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_07f8e639, '(?i)^[-a-z]{2,12}:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wikipedia tag has no language given, use ''wikipedia''=''language:page title''")
@@ -465,7 +465,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f8e639), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1f90813f, '^https?:\/\/'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_294645af, '^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f8e639), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1f90813f, '^https?:\/\/'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_294645af, '^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia tag has an unknown language prefix")
@@ -477,11 +477,11 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_1f90813f), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_1f90813f), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_091c4afa), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_091c4afa), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -494,7 +494,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53b6f173), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53b6f173), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia ''{0}'' language is obsolete, use ''{1}'' instead","be-x-old","be-tarask")
@@ -509,7 +509,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_034ab801), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_034ab801), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia ''{0}'' language is invalid, use ''{1}'' instead","cz","cs")
@@ -524,7 +524,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_210c6ccc), mapcss._tag_capture(capture_tags, 0, tags, 'wikimedia_commons')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_210c6ccc), mapcss._tag_capture(capture_tags, 0, tags, 'wikimedia_commons'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -539,7 +539,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -554,7 +554,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753) and mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753)) and (mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -565,7 +565,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_536e5b67), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_536e5b67), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia title should not start with a space after language code")
@@ -580,7 +580,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67c3b565), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67c3b565), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia title should not have ''{0}'' prefix","wiki/")
@@ -595,7 +595,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have first letter capitalized")
@@ -610,7 +610,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_08b52119), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_08b52119), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
@@ -647,95 +647,95 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:da:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:da:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:dk:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:dk:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'de:de:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'de:de:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'dk:dk:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'dk:dk:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:de:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:de:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:en:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:en:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:es:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:es:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:eu:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:eu:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:ja:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:ja:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pl:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pl:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pt:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pt:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:zh:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:zh:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'es:es:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'es:es:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'eu:eu:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'eu:eu:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'fr:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'fr:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ja:ja:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ja:ja:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:en:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:en:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:pl:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:pl:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pt:pt:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pt:pt:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:ru:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:ru:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'zh:zh:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'zh:zh:'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia language seems to be duplicated, e.g. en:en:Foo")
@@ -750,7 +750,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikidata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b567f18, '^Q[1-9][0-9]{0,8}$'), mapcss._tag_capture(capture_tags, 1, tags, 'wikidata')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikidata')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b567f18, '^Q[1-9][0-9]{0,8}$'), mapcss._tag_capture(capture_tags, 1, tags, 'wikidata'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
@@ -761,7 +761,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value looks like a {1} value","{0.key}","wikidata")
@@ -772,7 +772,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and mapcss._tag_capture(capture_tags, 1, tags, self.re_79319bf9))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_79319bf9)))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("''{0}'' tag is set, but no ''{1}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article.","{1.key}","{0.key}")
@@ -791,7 +791,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_07f8e639, '(?i)^[-a-z]{2,12}:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_07f8e639, '(?i)^[-a-z]{2,12}:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wikipedia tag has no language given, use ''wikipedia''=''language:page title''")
@@ -802,7 +802,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f8e639), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1f90813f, '^https?:\/\/'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_294645af, '^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f8e639), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1f90813f, '^https?:\/\/'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_294645af, '^(ab|ace|ady|af|ak|als|am|an|ang|ar|arc|arz|as|ast|atj|av|ay|az|azb|ba|ban|bar|bat-smg|bcl|be|be-x-old|bg|bh|bi|bjn|bm|bn|bo|bpy|br|bs|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|chr|chy|ckb|co|cr|crh|cs|csb|cu|cv|cy|da|de|din|diq|dsb|dty|dv|dz|ee|el|eml|en|eo|es|et|eu|ext|fa|ff|fi|fiu-vro|fj|fo|fr|frp|frr|fur|fy|ga|gag|gan|gcr|gd|gl|glk|gn|gom|gor|got|gu|gv|ha|hak|haw|he|hi|hif|hr|hsb|ht|hu|hy|hyw|ia|id|ie|ig|ik|ilo|inh|io|is|it|iu|ja|jam|jbo|jv|ka|kaa|kab|kbd|kbp|kg|ki|kk|kl|km|kn|ko|koi|krc|ks|ksh|ku|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|lmo|ln|lo|lrc|lt|ltg|lv|mai|map-bms|mdf|mg|mhr|mi|min|mk|ml|mn|mnw|mr|mrj|ms|mt|mwl|my|myv|mzn|na|nah|nap|nds|nds-nl|ne|new|nl|nn|no|nov|nqo|nrm|nso|nv|ny|oc|olo|om|or|os|pa|pag|pam|pap|pcd|pdc|pfl|pi|pih|pl|pms|pnb|pnt|ps|pt|qu|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rw|sa|sah|sat|sc|scn|sco|sd|se|sg|sh|shn|si|simple|sk|sl|sm|sn|so|sq|sr|srn|ss|st|stq|su|sv|sw|szl|szy|ta|tcy|te|tet|tg|th|ti|tk|tl|tn|to|tpi|tr|ts|tt|tum|tw|ty|tyv|udm|ug|uk|ur|uz|ve|vec|vep|vi|vls|vo|wa|war|wo|wuu|xal|xh|xmf|yi|yo|za|zea|zh|zh-classical|zh-min-nan|zh-yue|zu):'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia tag has an unknown language prefix")
@@ -814,11 +814,11 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_1f90813f), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_1f90813f), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_091c4afa), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_091c4afa), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -831,7 +831,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53b6f173), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53b6f173), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia ''{0}'' language is obsolete, use ''{1}'' instead","be-x-old","be-tarask")
@@ -846,7 +846,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_034ab801), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_034ab801), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia ''{0}'' language is invalid, use ''{1}'' instead","cz","cs")
@@ -861,7 +861,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_210c6ccc), mapcss._tag_capture(capture_tags, 0, tags, 'wikimedia_commons')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_210c6ccc), mapcss._tag_capture(capture_tags, 0, tags, 'wikimedia_commons'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -876,7 +876,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_19995c46), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -891,7 +891,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753) and mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_79a96753)) and (mapcss.regexp_test(self.re_04adb5d2, mapcss._match_regex(tags, self.re_79a96753))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
@@ -902,7 +902,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_536e5b67), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_536e5b67), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia title should not start with a space after language code")
@@ -917,7 +917,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67c3b565), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67c3b565), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia title should not have ''{0}'' prefix","wiki/")
@@ -932,7 +932,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5940ff7c), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1ac7f364, '^jbo:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 2, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have first letter capitalized")
@@ -947,7 +947,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_08b52119), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_08b52119), mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2d3d5d3d, '(?i)^[-a-z]{2,12}:https?:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
@@ -984,95 +984,95 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:da:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:da:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:dk:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'da:dk:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'de:de:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'de:de:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'dk:dk:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'dk:dk:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:de:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:de:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:en:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:en:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:es:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:es:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:eu:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:eu:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:ja:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:ja:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pl:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pl:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pt:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:pt:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:zh:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'en:zh:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'es:es:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'es:es:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'eu:eu:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'eu:eu:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'fr:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'fr:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ja:ja:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ja:ja:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:en:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:en:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:pl:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pl:pl:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pt:pt:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'pt:pt:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:fr:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:fr:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:ru:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'ru:ru:'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'zh:zh:')))
+                try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia'), mapcss._value_capture(capture_tags, 0, 'zh:zh:'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia language seems to be duplicated, e.g. en:en:Foo")
@@ -1087,7 +1087,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikidata') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b567f18, '^Q[1-9][0-9]{0,8}$'), mapcss._tag_capture(capture_tags, 1, tags, 'wikidata')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikidata')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4b567f18, '^Q[1-9][0-9]{0,8}$'), mapcss._tag_capture(capture_tags, 1, tags, 'wikidata'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
@@ -1098,7 +1098,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2dd1bee3), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value looks like a {1} value","{0.key}","wikidata")
@@ -1109,7 +1109,7 @@ class Josm_wikipedia(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and mapcss._tag_capture(capture_tags, 1, tags, self.re_79319bf9))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_79319bf9)))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("''{0}'' tag is set, but no ''{1}'' tag. Make sure to set ''wikipedia=language:value'' for the main article and optional ''wikipedia:language=value'' only for additional articles that are not just other language variants of the main article.","{1.key}","{0.key}")

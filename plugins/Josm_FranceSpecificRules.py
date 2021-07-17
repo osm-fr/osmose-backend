@@ -55,7 +55,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 3, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'carpool')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -75,7 +75,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss._tag_capture(capture_tags, 1, tags, 'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, 'yes') and not mapcss._tag_capture(capture_tags, 2, tags, 'fuel:e10') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'fuel:e10')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -89,7 +89,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'operator') == mapcss._value_capture(capture_tags, 0, 'ERDF') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'operator') == mapcss._value_capture(capture_tags, 0, 'ERDF')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -108,7 +108,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:ERDF:gdo') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:ERDF:gdo')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -129,7 +129,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","power")
@@ -143,11 +143,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'substation') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo') and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_30299d59), mapcss._tag_capture(capture_tags, 3, tags, 'operator')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'substation')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_30299d59), mapcss._tag_capture(capture_tags, 3, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'switch') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo') and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'Enedis') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'switch')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'Enedis')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -161,7 +161,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6ac6c83c), mapcss._tag_capture(capture_tags, 0, tags, 'power')) and not mapcss._tag_capture(capture_tags, 1, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6ac6c83c), mapcss._tag_capture(capture_tags, 0, tags, 'power'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'operator')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -177,23 +177,23 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom') != mapcss._value_const_capture(capture_tags, 1, 'connection_point', 'connection_point'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom') != mapcss._value_const_capture(capture_tags, 1, 'connection_point', 'connection_point')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SFR') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SFR')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'copper', 'copper'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'copper', 'copper')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -207,7 +207,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -220,7 +220,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -233,7 +233,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -246,7 +246,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -259,7 +259,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'milestone') and mapcss._tag_capture(capture_tags, 1, tags, 'operator') and mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_7510958f, '^(([1-9][0-9]|0[1-9])PR([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[DGU](|C))$'), mapcss._tag_capture(capture_tags, 3, tags, 'nat_ref')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'milestone')) and (mapcss._tag_capture(capture_tags, 1, tags, 'operator')) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_7510958f, '^(([1-9][0-9]|0[1-9])PR([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[DGU](|C))$'), mapcss._tag_capture(capture_tags, 3, tags, 'nat_ref'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules highway milestone")
@@ -274,7 +274,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'milestone') and mapcss._tag_capture(capture_tags, 1, tags, 'operator') and mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref') and not mapcss._tag_capture(capture_tags, 3, tags, 'distance') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'milestone')) and (mapcss._tag_capture(capture_tags, 1, tags, 'operator')) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'distance')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules highway milestone")
@@ -290,7 +290,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b90619c), mapcss._tag_capture(capture_tags, 1, tags, 'ref')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b90619c), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"'destination:ref=*' tag on the exiting 'highway=*_link'"
@@ -307,7 +307,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten') and mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten')) and (mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("misused tag in this country")
@@ -333,7 +333,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'rail') and not mapcss._tag_capture(capture_tags, 1, tags, 'gauge') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'rail')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'gauge')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag","railway")
@@ -350,7 +350,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 3, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'carpool')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -373,7 +373,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss._tag_capture(capture_tags, 1, tags, 'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, 'yes') and not mapcss._tag_capture(capture_tags, 2, tags, 'fuel:e10') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'fuel:e10')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -387,7 +387,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'operator') == mapcss._value_capture(capture_tags, 0, 'ERDF') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'operator') == mapcss._value_capture(capture_tags, 0, 'ERDF')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -406,7 +406,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:ERDF:gdo') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:ERDF:gdo')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -427,7 +427,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","power")
@@ -441,11 +441,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'substation') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo') and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_30299d59), mapcss._tag_capture(capture_tags, 3, tags, 'operator')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'substation')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_30299d59), mapcss._tag_capture(capture_tags, 3, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'switch') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo') and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'Enedis') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'switch')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'Enedis')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -463,23 +463,23 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom') != mapcss._value_const_capture(capture_tags, 1, 'connection_point', 'connection_point'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom') != mapcss._value_const_capture(capture_tags, 1, 'connection_point', 'connection_point')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SFR') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SFR')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'copper', 'copper'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'copper', 'copper')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -493,7 +493,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -506,7 +506,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -519,7 +519,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -532,7 +532,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -545,7 +545,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref') and mapcss._tag_capture(capture_tags, 2, tags, 'operator') and not mapcss._tag_capture(capture_tags, 3, tags, 'junction') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (mapcss._tag_capture(capture_tags, 2, tags, 'operator')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'junction')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -562,11 +562,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:backward') and mapcss._tag_capture(capture_tags, 2, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'operator')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:forward') and mapcss._tag_capture(capture_tags, 2, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:forward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'operator')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -581,7 +581,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_3863901a, '^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and mapcss._tag_capture(capture_tags, 3, tags, 'operator') != mapcss._value_const_capture(capture_tags, 3, 'VILLE DE PARIS', 'VILLE DE PARIS') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_3863901a, '^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') != mapcss._value_const_capture(capture_tags, 3, 'VILLE DE PARIS', 'VILLE DE PARIS')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -596,7 +596,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'junction') == mapcss._value_capture(capture_tags, 0, 'roundabout') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_0c53237c, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 3, tags, 'nat_ref')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'junction') == mapcss._value_capture(capture_tags, 0, 'roundabout')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_0c53237c, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 3, tags, 'nat_ref'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -611,7 +611,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6388df2b, '^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'VILLE DE PARIS') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6388df2b, '^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'VILLE DE PARIS')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -627,11 +627,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:forward') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0c53237c, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:forward')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:forward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0c53237c, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:forward'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:backward') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0c53237c, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:backward')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:backward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_0c53237c, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:backward'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -646,7 +646,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_299ea34e), mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref') and not mapcss._tag_capture(capture_tags, 3, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_299ea34e), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'operator')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -661,11 +661,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_299ea34e), mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:forward') and not mapcss._tag_capture(capture_tags, 3, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_299ea34e), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:forward')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'operator')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_299ea34e), mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:backward') and not mapcss._tag_capture(capture_tags, 3, tags, 'operator') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_299ea34e), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:backward')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'operator')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -692,7 +692,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten') and mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten')) and (mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("misused tag in this country")
@@ -718,7 +718,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') and mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling') and not mapcss._tag_capture(capture_tags, 3, tags, 'carpool') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_045a0f34), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 2, 'car_pooling', 'car_pooling')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'carpool')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -737,7 +737,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss._tag_capture(capture_tags, 1, tags, 'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, 'yes') and not mapcss._tag_capture(capture_tags, 2, tags, 'fuel:e10') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'fuel:octane_95') == mapcss._value_capture(capture_tags, 1, 'yes')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'fuel:e10')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("parking","amenity","fix:chair")
@@ -751,7 +751,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'operator') == mapcss._value_capture(capture_tags, 0, 'ERDF') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'operator') == mapcss._value_capture(capture_tags, 0, 'ERDF')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -770,7 +770,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:ERDF:gdo') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:ERDF:gdo')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
@@ -791,7 +791,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:gdo')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4bae79a8, '[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","power")
@@ -805,11 +805,11 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'substation') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo') and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_30299d59), mapcss._tag_capture(capture_tags, 3, tags, 'operator')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'substation')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_30299d59), mapcss._tag_capture(capture_tags, 3, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'switch') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo') and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'Enedis') and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'switch')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:gdo')) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'Enedis')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -827,23 +827,23 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom') != mapcss._value_const_capture(capture_tags, 1, 'connection_point', 'connection_point'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom') != mapcss._value_const_capture(capture_tags, 1, 'connection_point', 'connection_point')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:ARCEP')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SFR') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:SFR')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'fibre', 'fibre')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'copper', 'copper'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT')) and (mapcss._tag_capture(capture_tags, 1, tags, 'telecom:medium') != mapcss._value_const_capture(capture_tags, 1, 'copper', 'copper')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
@@ -857,7 +857,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_107d2c86, 'PT[1-9]{1}[0-9]*'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -870,7 +870,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:Orange:NRO')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:Orange:NRO'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -883,7 +883,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_23d0d993, '[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -896,7 +896,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA')) and mapcss.inside(self.father.config.options, 'FR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:PTT:NRA')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_173ac8d4, '[0-9]{5}[A-Z0-9]{3}'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:PTT:NRA'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
@@ -909,7 +909,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten') and mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'kindergarten')) and (mapcss._tag_capture(capture_tags, 1, tags, 'school:FR') == mapcss._value_capture(capture_tags, 1, 'maternelle')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("misused tag in this country")

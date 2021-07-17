@@ -38,7 +38,7 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right') and mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:left')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("cycleway","fix:chair")
@@ -52,7 +52,7 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'sidewalk') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1825c777, 'footway|construction'), mapcss._tag_capture(capture_tags, 1, tags, 'highway')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'sidewalk')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1825c777, 'footway|construction'), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("footway","fix:chair")
@@ -68,7 +68,7 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'service') and mapcss._tag_capture(capture_tags, 1, tags, 'service') == mapcss._value_capture(capture_tags, 1, 'psv') and mapcss._tag_capture(capture_tags, 2, tags, 'psv') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'service')) and (mapcss._tag_capture(capture_tags, 1, tags, 'service') == mapcss._value_capture(capture_tags, 1, 'psv')) and (mapcss._tag_capture(capture_tags, 2, tags, 'psv') != mapcss._value_const_capture(capture_tags, 2, 'yes', 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
@@ -90,7 +90,7 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway') == mapcss._value_capture(capture_tags, 1, 'track'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway') == mapcss._value_capture(capture_tags, 1, 'track')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("cycleway","fix:chair")
@@ -109,15 +109,15 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, 'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, 'cycleway')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, 'bicycle'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, 'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, 'cycleway'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, 'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:left')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, 'bicycle'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, 'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:left'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, 'bicycle')) and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, 'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:right')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5b286a0d), mapcss._tag_capture(capture_tags, 0, tags, 'bicycle'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_6781a1fd, 'no|none|separate'), mapcss._tag_capture(capture_tags, 2, tags, 'cycleway:right'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:chair")
@@ -137,11 +137,11 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway')) and not mapcss._tag_capture(capture_tags, 1, tags, 'oneway'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'oneway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway')) and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, 'no'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("cycleway","fix:survey")
@@ -160,19 +160,19 @@ class Bicycle(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right')) and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, 'yes') and mapcss.setting(self.father.config.options, 'driving_side') != 'left')
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss.setting(self.father.config.options, 'driving_side') != 'left'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left')) and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, '-1') and mapcss.setting(self.father.config.options, 'driving_side') != 'left')
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, '-1')) and (mapcss.setting(self.father.config.options, 'driving_side') != 'left'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left')) and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, 'yes') and mapcss.setting(self.father.config.options, 'driving_side') == 'left')
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, 'yes')) and (mapcss.setting(self.father.config.options, 'driving_side') == 'left'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right')) and mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, '-1') and mapcss.setting(self.father.config.options, 'driving_side') == 'left')
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:right'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'oneway') == mapcss._value_capture(capture_tags, 1, '-1')) and (mapcss.setting(self.father.config.options, 'driving_side') == 'left'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("cycleway","fix:survey")

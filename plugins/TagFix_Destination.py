@@ -35,19 +35,19 @@ class TagFix_Destination(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'destination') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 2, tags, 'destination'), mapcss._value_capture(capture_tags, 2, '|')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'destination')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 2, tags, 'destination'), mapcss._value_capture(capture_tags, 2, '|'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d) and not mapcss._tag_capture(capture_tags, 3, tags, self.re_60b51c01) and mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349)) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_60b51c01)) and (mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'destination') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 2, tags, 'destination'), mapcss._value_capture(capture_tags, 2, '|')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'destination')) and (mapcss.string_contains(mapcss._tag_capture(capture_tags, 2, tags, 'destination'), mapcss._value_capture(capture_tags, 2, '|'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d) and not mapcss._tag_capture(capture_tags, 3, tags, self.re_60b51c01) and mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349)))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_53d7e349)) and (not mapcss._tag_capture(capture_tags, 2, tags, self.re_49b44b3d)) and (not mapcss._tag_capture(capture_tags, 3, tags, self.re_60b51c01)) and (mapcss.regexp_test(self.re_262d3d80, mapcss._match_regex(tags, self.re_53d7e349))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Pipe characters should not be used in destination tag, only in destination:lanes")

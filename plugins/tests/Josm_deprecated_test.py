@@ -13,5 +13,5 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {u'is_in:sea': 'A', 'is_in:country:': 'B'}), expected={'class': 9002001, 'subclass': 1573738944, 'fix': {'-': ['is_in:sea']}})
-        self.check_err(n.node(data, {u'is_in:country': 'A', 'is_in:sea': 'B'}), expected={'class': 9002001, 'subclass': 1573738944, 'fix': {'-': ['is_in:country']}})
+        self.check_err(n.node(data, {u'is_in:sea': 'A', 'is_in:country:': 'B'}), expected={'class': 9002001, 'subclass': 1024340790, 'fix': {'-': ['is_in:sea']}})
+        self.check_err(n.node(data, {u'is_in:country': 'A', 'is_in:sea': 'B'}), expected={'class': 9002001, 'subclass': 1024340790, 'fix': {'-': ['is_in:country']}})

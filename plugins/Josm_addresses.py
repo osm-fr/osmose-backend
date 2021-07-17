@@ -33,7 +33,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, 'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'addr:housename')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and (mapcss._tag_capture(capture_tags, 1, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 2, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'addr:housename'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
@@ -46,7 +46,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb') and mapcss.inside(self.father.config.options, 'BA'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb')) and (mapcss.inside(self.father.config.options, 'BA')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setok_housenumber
@@ -57,7 +57,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_ok_housenumber and mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4983542e, '[0-9]'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber')))
+                try: match = ((not set_ok_housenumber) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4983542e, '[0-9]'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without number","{0.key}")
@@ -76,7 +76,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, 'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'addr:housename')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and (mapcss._tag_capture(capture_tags, 1, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 2, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'addr:housename'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
@@ -87,7 +87,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb') and mapcss.inside(self.father.config.options, 'BA'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb')) and (mapcss.inside(self.father.config.options, 'BA')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setok_housenumber
@@ -98,7 +98,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_ok_housenumber and mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4983542e, '[0-9]'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber')))
+                try: match = ((not set_ok_housenumber) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4983542e, '[0-9]'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without number","{0.key}")
@@ -124,7 +124,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, 'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'addr:housename')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and (mapcss._tag_capture(capture_tags, 1, tags, 'addr:housename')) and (mapcss._tag_capture(capture_tags, 2, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'addr:housename'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
@@ -135,7 +135,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb') and mapcss.inside(self.father.config.options, 'BA'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb')) and (mapcss.inside(self.father.config.options, 'BA')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setok_housenumber
@@ -146,7 +146,7 @@ class Josm_addresses(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not set_ok_housenumber and mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4983542e, '[0-9]'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber')))
+                try: match = ((not set_ok_housenumber) and (mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4983542e, '[0-9]'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:housenumber'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without number","{0.key}")

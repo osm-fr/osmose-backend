@@ -29,7 +29,7 @@ class Josm_religion(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}","{0.tag}")
@@ -57,7 +57,7 @@ class Josm_religion(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}","{0.tag}")
@@ -85,7 +85,7 @@ class Josm_religion(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'religion') == mapcss._value_capture(capture_tags, 0, 'catholic')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}","{0.tag}")

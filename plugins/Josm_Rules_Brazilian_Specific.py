@@ -161,7 +161,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:street') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -173,7 +173,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'route') != mapcss._value_const_capture(capture_tags, 1, 'road', 'road') and not mapcss._tag_capture(capture_tags, 2, tags, 'public_transport') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_72d45155, 'route|street'), mapcss._tag_capture(capture_tags, 3, tags, 'type')) and mapcss._tag_capture(capture_tags, 4, tags, 'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_5849be19), mapcss._tag_capture(capture_tags, 5, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_15690541, '^(?i)estrada de ferro'), mapcss._tag_capture(capture_tags, 6, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'route') != mapcss._value_const_capture(capture_tags, 1, 'road', 'road')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'public_transport')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_72d45155, 'route|street'), mapcss._tag_capture(capture_tags, 3, tags, 'type'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_5849be19), mapcss._tag_capture(capture_tags, 5, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_15690541, '^(?i)estrada de ferro'), mapcss._tag_capture(capture_tags, 6, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -185,7 +185,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4bd3b925), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4bd3b925), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -197,7 +197,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_178f5446), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_178f5446), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("palavra abreviada em {0}","{0.key}")
@@ -208,7 +208,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7f53e992), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7f53e992), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome supérfluo/incompleto de local de lazer")
@@ -219,7 +219,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_52ab3b8b), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_52ab3b8b), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome supérfluo/incompleto de local de saúde")
@@ -230,7 +230,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ab76b11), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4cf86823), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ab76b11), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4cf86823), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -242,7 +242,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'farm') and mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'name'), mapcss._value_capture(capture_tags, 1, 'Sitio ')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'farm')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'name'), mapcss._value_capture(capture_tags, 1, 'Sitio '))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -254,7 +254,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_20c7dd98), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_20c7dd98), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -282,59 +282,59 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'designation') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'designation') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_ref')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_ref'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'alt_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'alt_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'int_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'int_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'loc_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'loc_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'nat_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'nat_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'official_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'official_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'reg_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'reg_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'short_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'short_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'sorting_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'sorting_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -350,7 +350,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'source') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'source') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -362,7 +362,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65710fdb), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65710fdb), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto com nomenclatura incorreta")
@@ -375,11 +375,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxheight') and mapcss._tag_capture(capture_tags, 1, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 1, 'height_restrictor', 'height_restrictor') and not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss._tag_capture(capture_tags, 1, tags, 'barrier') != mapcss._value_const_capture(capture_tags, 1, 'height_restrictor', 'height_restrictor')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') != mapcss._value_const_capture(capture_tags, 1, 'speed_camera', 'speed_camera') and not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway') != mapcss._value_const_capture(capture_tags, 1, 'speed_camera', 'speed_camera')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} não deve ser utilizado em nó; utilizar a restrição na via","{0.key}")
@@ -390,7 +390,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'noname') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'noname') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -402,7 +402,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'designation') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'designation')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} é uma chave utilizada apenas no Reino Unido","{0.key}")
@@ -415,7 +415,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and not mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} sem pelo menos uma das tags: {1} ou {2}","{0.value}","{1.key}","{2.key}")
@@ -426,7 +426,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_152c10ee), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 100000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_152c10ee), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 100000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -442,7 +442,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_591572a5), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 10000) and mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 100000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_591572a5), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 10000)) and (mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 100000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -458,7 +458,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3aeda39d, 'hamlet|island|isolated_dwelling|neighbourhood|suburb|village'), mapcss._tag_capture(capture_tags, 1, tags, 'place')) and mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 10000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3aeda39d, 'hamlet|island|isolated_dwelling|neighbourhood|suburb|village'), mapcss._tag_capture(capture_tags, 1, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 10000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -481,15 +481,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'city') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'city')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'town') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'town')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'village') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'village')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} sem nome","{0.value}")
@@ -501,11 +501,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0db5b64e), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'addr:city') == mapcss._value_capture(capture_tags, 1, mapcss.tag(tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0db5b64e), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'addr:city') == mapcss._value_capture(capture_tags, 1, mapcss.tag(tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'suburb') and mapcss._tag_capture(capture_tags, 1, tags, 'addr:suburb') == mapcss._value_capture(capture_tags, 1, mapcss.tag(tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'suburb')) and (mapcss._tag_capture(capture_tags, 1, tags, 'addr:suburb') == mapcss._value_capture(capture_tags, 1, mapcss.tag(tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -521,7 +521,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_10f1c360), mapcss._tag_capture(capture_tags, 0, tags, 'addr:city')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_10f1c360), mapcss._tag_capture(capture_tags, 0, tags, 'addr:city'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve conter apenas o nome da cidade","{0.key}")
@@ -532,7 +532,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2cd1e949), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_5d3348cb, 'city|farm|neighbourhood|suburb|town|village'), mapcss._tag_capture(capture_tags, 2, tags, 'place')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2cd1e949), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_5d3348cb, 'city|farm|neighbourhood|suburb|town|village'), mapcss._tag_capture(capture_tags, 2, tags, 'place'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -544,7 +544,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_20fc5143), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_64387998, '^(?i)Bairro d(a|e|o)s?\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_20fc5143), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_64387998, '^(?i)Bairro d(a|e|o)s?\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -556,7 +556,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6416be64), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6416be64), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -568,7 +568,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') == mapcss._value_capture(capture_tags, 0, '0') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'iata') == mapcss._value_capture(capture_tags, 0, '0')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} com valor = {1}","{0.key}","{0.value}")
@@ -579,7 +579,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_362f879f), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1d232d4c), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_362f879f), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1d232d4c), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -597,11 +597,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_044c8944), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_044c8944), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6c0d6e9e), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b304b9b), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6c0d6e9e), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b304b9b), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -618,7 +618,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_35bb0f2f), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_35bb0f2f), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -635,7 +635,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_160d1bfc), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_160d1bfc), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -665,7 +665,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7b7c453d), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'hospital') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7b7c453d), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'hospital')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -681,7 +681,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2dbaea13), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3eb0ab44), mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2dbaea13), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3eb0ab44), mapcss._tag_capture(capture_tags, 1, tags, 'amenity'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("SAMU classificado de forma errada")
@@ -693,7 +693,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53abc074), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_53abc074), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto não deve possuir {0}","{1.key}")
@@ -704,7 +704,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'speed_camera') and not mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'speed_camera')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("adicionar {0} ao {1}","{1.key}","{0.tag}")
@@ -715,7 +715,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'crossing') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'crossing')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'railway')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser utilizado com {1}={0} ou {2}={0}","{0.key}","{1.key}","{2.key}")
@@ -727,11 +727,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'designation')) and not mapcss._tag_capture(capture_tags, 2, tags, 'icao') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'designation'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'icao')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and not mapcss._tag_capture(capture_tags, 2, tags, 'icao') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'icao')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -749,7 +749,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') == mapcss._value_capture(capture_tags, 0, 'permissive') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'access') == mapcss._value_capture(capture_tags, 0, 'permissive')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -771,7 +771,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -787,7 +787,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'postal_code')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'postal_code'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -807,7 +807,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'alt_source') and mapcss._tag_capture(capture_tags, 1, tags, 'source') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_source')) and (mapcss._tag_capture(capture_tags, 1, tags, 'source')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve estar incluído em {1}, separado por '';'' caso necessário","{0.key}","{1.key}")
@@ -818,7 +818,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'landuse') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("especificar valor correto para {0} ao invés de ''{1}''","{0.key}",tag("landuse"))
@@ -829,7 +829,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'long_name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'long_name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("chave inválida: {0}","{0.key}")
@@ -843,7 +843,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'building:levels') < mapcss._value_capture(capture_tags, 0, 1) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:levels') < mapcss._value_capture(capture_tags, 0, 1)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -855,7 +855,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'hires') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'hires') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não se deve utilizar {0} para demarcar áreas de cobertura de imagem","{0.key}")
@@ -866,7 +866,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'tower') and mapcss._tag_capture(capture_tags, 1, tags, 'tower:type') == mapcss._value_capture(capture_tags, 1, 'lighting') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'tower')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tower:type') == mapcss._value_capture(capture_tags, 1, 'lighting')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("uso incorreto de {0}","{0.tag}")
@@ -883,11 +883,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'motel') and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'motel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01454d46), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01454d46), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -903,7 +903,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'love_hotel') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') and mapcss._tag_capture(capture_tags, 2, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 2, 'motel', 'motel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'love_hotel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism')) and (mapcss._tag_capture(capture_tags, 2, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 2, 'motel', 'motel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -915,7 +915,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5cd37790), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'motel', 'motel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5cd37790), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'motel', 'motel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -929,11 +929,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6efb8049), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6efb8049), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6566db6a), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6566db6a), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -946,11 +946,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6024a566), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6024a566), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_139e342b), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_139e342b), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -962,7 +962,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, 'ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -977,7 +977,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'layer') < mapcss._value_capture(capture_tags, 1, 0) and not mapcss._tag_capture(capture_tags, 2, tags, 'tunnel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'layer') < mapcss._value_capture(capture_tags, 1, 0)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'tunnel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -989,7 +989,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'layer') > mapcss._value_capture(capture_tags, 1, 0) and not mapcss._tag_capture(capture_tags, 2, tags, 'bridge') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'layer') > mapcss._value_capture(capture_tags, 1, 0)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'bridge')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1004,7 +1004,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_38a8f0ff), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'building') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_38a8f0ff), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'building')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível ausência de tag {0}","{1.key}")
@@ -1015,7 +1015,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'route') == mapcss._value_capture(capture_tags, 0, 'ferry') and not mapcss._tag_capture(capture_tags, 1, tags, 'duration') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'route') == mapcss._value_capture(capture_tags, 0, 'ferry')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'duration')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("ausência do tempo de duração ({0}) da balsa","{1.key}")
@@ -1027,11 +1027,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05a345c7), mapcss._tag_capture(capture_tags, 2, tags, 'landuse')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05a345c7), mapcss._tag_capture(capture_tags, 2, tags, 'landuse'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_12b48afb), mapcss._tag_capture(capture_tags, 2, tags, 'natural')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_12b48afb), mapcss._tag_capture(capture_tags, 2, tags, 'natural'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível definição incorreta para praça: ''{0}''","{2.key}")
@@ -1043,7 +1043,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17fd35b3, '^pt:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17fd35b3, '^pt:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("utilizar prefixo em português (pt:) para {0}","{0.key}")
@@ -1066,7 +1066,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_131cc885), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_131cc885), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome utilizado de forma incorreta")
@@ -1081,19 +1081,19 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'admin_level') and not mapcss._tag_capture(capture_tags, 1, tags, 'capital') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'admin_level')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'capital')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'border_type') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'border_type')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("nó não deve possuir {0}","{0.tag}")
@@ -1106,15 +1106,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'national_park') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'national_park')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'nature_reserve') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'nature_reserve')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -1125,7 +1125,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area') and not mapcss._tag_capture(capture_tags, 1, tags, 'protect_class') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'protect_class')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -1136,7 +1136,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'protect_class') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5ac7053e, '^(1(a|b)?|[1-9][0-9]?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'protect_class')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'protect_class')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5ac7053e, '^(1(a|b)?|[1-9][0-9]?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'protect_class'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("valor incorreto para {0}","{0.key}")
@@ -1147,7 +1147,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'protect_class') and mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'protected_area', 'protected_area') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'protect_class')) and (mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'protected_area', 'protected_area')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("ausência de boundary=protected_area")
@@ -1158,7 +1158,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'destination') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'destination')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser usado apenas em ways","{0.key}")
@@ -1169,7 +1169,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'exit_to') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'exit_to')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("utilize ''destination'' no caminho de saída ao invés de ''exit_to''")
@@ -1180,7 +1180,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction') and mapcss._tag_capture(capture_tags, 1, tags, 'ref') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_20188fb1, '^[0-9]+( |-)*([A-Z])?$'), mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction')) and (mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_20188fb1, '^[0-9]+( |-)*([A-Z])?$'), mapcss._tag_capture(capture_tags, 2, tags, 'ref'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1192,7 +1192,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction') and mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1204,7 +1204,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'junction') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'junction')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1218,7 +1218,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2ffc377d), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2ffc377d), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1230,7 +1230,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_39d67968), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_39d67968), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1242,7 +1242,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'alt_ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
@@ -1254,7 +1254,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface')) and (len(tags) == 1) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto incompleto: possui apenas {0}","{0.key}")
@@ -1266,11 +1266,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'surface') and len(tags) == 2 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (len(tags) == 2) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'website') and len(tags) == 2 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'website')) and (len(tags) == 2) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto incompleto: possui apenas {0} e {1}","{0.key}","{1.key}")
@@ -1281,7 +1281,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'peak') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_292e0bb5), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural') == mapcss._value_capture(capture_tags, 0, 'peak')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_292e0bb5), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1294,7 +1294,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'pitch') and mapcss._tag_capture(capture_tags, 1, tags, 'sport') == mapcss._value_capture(capture_tags, 1, 'tennis') and mapcss._tag_capture(capture_tags, 2, tags, 'surface') == mapcss._value_capture(capture_tags, 2, 'unpaved') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'pitch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'sport') == mapcss._value_capture(capture_tags, 1, 'tennis')) and (mapcss._tag_capture(capture_tags, 2, tags, 'surface') == mapcss._value_capture(capture_tags, 2, 'unpaved')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1311,7 +1311,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_604bb645), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_604bb645), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1324,7 +1324,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss._tag_capture(capture_tags, 1, tags, 'brand') == mapcss._value_capture(capture_tags, 1, 'BR') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'brand') == mapcss._value_capture(capture_tags, 1, 'BR')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1341,7 +1341,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'shop') == mapcss._value_capture(capture_tags, 0, 'gas') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_31732cd0), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'shop') == mapcss._value_capture(capture_tags, 0, 'gas')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_31732cd0), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1354,7 +1354,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_57b8ef8e) and not mapcss._tag_capture(capture_tags, 1, tags, 'is_in:iso_3166_2') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_57b8ef8e)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'is_in:iso_3166_2')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("chave inválida: {0}","{0.key}")
@@ -1365,7 +1365,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and not mapcss._tag_capture(capture_tags, 1, tags, 'note') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'note')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1385,7 +1385,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and mapcss._tag_capture(capture_tags, 1, tags, 'note') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'note')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
@@ -1397,7 +1397,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2e8e4f2b), mapcss._tag_capture(capture_tags, 0, tags, 'source')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2e8e4f2b), mapcss._tag_capture(capture_tags, 0, tags, 'source'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("objeto contém Google como source")
@@ -1408,7 +1408,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1421,7 +1421,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government') and mapcss._tag_capture(capture_tags, 1, tags, 'government') != mapcss._value_const_capture(capture_tags, 1, 'legislative', 'legislative') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government')) and (mapcss._tag_capture(capture_tags, 1, tags, 'government') != mapcss._value_const_capture(capture_tags, 1, 'legislative', 'legislative')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1434,11 +1434,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1450,7 +1450,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7ec1fb9a), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7ec1fb9a), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1463,7 +1463,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_13f4c147), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_13f4c147), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1476,7 +1476,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'charging_station') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'charging_station')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1488,7 +1488,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'shop') == mapcss._value_capture(capture_tags, 1, 'tyres') and not mapcss._tag_capture(capture_tags, 2, tags, 'repair') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop') == mapcss._value_capture(capture_tags, 1, 'tyres')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'repair')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1501,7 +1501,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'shop') != mapcss._value_const_capture(capture_tags, 1, 'tyres', 'tyres') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop') != mapcss._value_const_capture(capture_tags, 1, 'tyres', 'tyres')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1514,7 +1514,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6e34cd0f), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 1, 'bandstand', 'bandstand') and mapcss._tag_capture(capture_tags, 2, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 2, 'park', 'park') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6e34cd0f), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 1, 'bandstand', 'bandstand')) and (mapcss._tag_capture(capture_tags, 2, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 2, 'park', 'park')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1527,7 +1527,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1541,7 +1541,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground') and mapcss._tag_capture(capture_tags, 1, tags, 'landuse') == mapcss._value_capture(capture_tags, 1, 'recreation_ground') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landuse') == mapcss._value_capture(capture_tags, 1, 'recreation_ground')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1557,7 +1557,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_524288b6, '^BR[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_524288b6, '^BR[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1569,7 +1569,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ddbb7eb), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ddbb7eb), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1585,7 +1585,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_408831d0), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_408831d0), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1602,11 +1602,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'phone') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1619,11 +1619,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1650,7 +1650,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_568a42f4), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_568a42f4), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1663,11 +1663,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, 'name') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fcb6bab, '^(?i)ciclovia .*'), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'cycleway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fcb6bab, '^(?i)ciclovia .*'), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1054eb5a, 'bridleway|bus_stop|cycleway|crossing|footway|give_way|motorway_junction|path|raceway|rest_area|services|speed_camera|steps|stop'), mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and mapcss._tag_capture(capture_tags, 2, tags, 'name') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_60ad6838, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodoanel|Rodovia|Rotatória|Rótula|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 3, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_1054eb5a, 'bridleway|bus_stop|cycleway|crossing|footway|give_way|motorway_junction|path|raceway|rest_area|services|speed_camera|steps|stop'), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'name')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_60ad6838, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodoanel|Rodovia|Rotatória|Rótula|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 3, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1679,7 +1679,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:street') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1691,7 +1691,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7a5b2736), mapcss._tag_capture(capture_tags, 2, tags, 'name')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_7a5b2736), mapcss._tag_capture(capture_tags, 2, tags, 'name'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1703,7 +1703,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'route') != mapcss._value_const_capture(capture_tags, 1, 'road', 'road') and not mapcss._tag_capture(capture_tags, 2, tags, 'public_transport') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_72d45155, 'route|street'), mapcss._tag_capture(capture_tags, 3, tags, 'type')) and mapcss._tag_capture(capture_tags, 4, tags, 'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_5849be19), mapcss._tag_capture(capture_tags, 5, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_15690541, '^(?i)estrada de ferro'), mapcss._tag_capture(capture_tags, 6, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'route') != mapcss._value_const_capture(capture_tags, 1, 'road', 'road')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'public_transport')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_72d45155, 'route|street'), mapcss._tag_capture(capture_tags, 3, tags, 'type'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_5849be19), mapcss._tag_capture(capture_tags, 5, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_15690541, '^(?i)estrada de ferro'), mapcss._tag_capture(capture_tags, 6, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1715,7 +1715,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'track') and mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_20cf30ba), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'track')) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_20cf30ba), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não classificar via como {0}","{0.tag}")
@@ -1728,7 +1728,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4bd3b925), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4bd3b925), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1740,7 +1740,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_178f5446), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_178f5446), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("palavra abreviada em {0}","{0.key}")
@@ -1751,7 +1751,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_667ce569), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_667ce569), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} com nome supérfluo/incompleto","{0.key}")
@@ -1764,7 +1764,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7f53e992), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7f53e992), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome supérfluo/incompleto de local de lazer")
@@ -1775,7 +1775,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_52ab3b8b), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_52ab3b8b), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome supérfluo/incompleto de local de saúde")
@@ -1786,7 +1786,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ab76b11), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4cf86823), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ab76b11), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4cf86823), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1798,7 +1798,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'farm') and mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'name'), mapcss._value_capture(capture_tags, 1, 'Sitio ')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'farm')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'name'), mapcss._value_capture(capture_tags, 1, 'Sitio '))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1810,7 +1810,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_20c7dd98), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_20c7dd98), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1825,7 +1825,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'type') == mapcss._value_capture(capture_tags, 1, 'route') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'type') == mapcss._value_capture(capture_tags, 1, 'route')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} não deve possuir {1}","{0.key}","{1.tag}")
@@ -1839,7 +1839,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and not mapcss._tag_capture(capture_tags, 1, tags, 'ref') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_375e3de4), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_375e3de4), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1851,7 +1851,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7633bf4e), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7633bf4e), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1880,7 +1880,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'source') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'source') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1892,7 +1892,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65710fdb), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65710fdb), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto com nomenclatura incorreta")
@@ -1904,7 +1904,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'designation') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'designation')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} é uma chave utilizada apenas no Reino Unido","{0.key}")
@@ -1923,7 +1923,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6b6e390d), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss._tag_capture(capture_tags, 2, tags, 'ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6b6e390d), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -1935,7 +1935,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_152c10ee), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 100000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_152c10ee), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 100000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1951,7 +1951,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_591572a5), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 10000) and mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 100000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_591572a5), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 10000)) and (mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 100000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1967,7 +1967,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3aeda39d, 'hamlet|island|isolated_dwelling|neighbourhood|suburb|village'), mapcss._tag_capture(capture_tags, 1, tags, 'place')) and mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 10000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3aeda39d, 'hamlet|island|isolated_dwelling|neighbourhood|suburb|village'), mapcss._tag_capture(capture_tags, 1, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 10000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -1990,15 +1990,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'city') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'city')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'town') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'town')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'village') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'village')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} sem nome","{0.value}")
@@ -2009,7 +2009,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_10f1c360), mapcss._tag_capture(capture_tags, 0, tags, 'addr:city')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_10f1c360), mapcss._tag_capture(capture_tags, 0, tags, 'addr:city'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve conter apenas o nome da cidade","{0.key}")
@@ -2020,7 +2020,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2cd1e949), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_5d3348cb, 'city|farm|neighbourhood|suburb|town|village'), mapcss._tag_capture(capture_tags, 2, tags, 'place')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2cd1e949), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_5d3348cb, 'city|farm|neighbourhood|suburb|town|village'), mapcss._tag_capture(capture_tags, 2, tags, 'place'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2032,7 +2032,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_20fc5143), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_64387998, '^(?i)Bairro d(a|e|o)s?\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_20fc5143), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_64387998, '^(?i)Bairro d(a|e|o)s?\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2044,7 +2044,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') == mapcss._value_capture(capture_tags, 0, '0') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'iata') == mapcss._value_capture(capture_tags, 0, '0')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} com valor = {1}","{0.key}","{0.value}")
@@ -2055,7 +2055,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_362f879f), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1d232d4c), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_362f879f), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1d232d4c), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2073,11 +2073,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_044c8944), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_044c8944), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6c0d6e9e), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b304b9b), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6c0d6e9e), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b304b9b), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2094,7 +2094,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_35bb0f2f), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_35bb0f2f), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2111,7 +2111,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_160d1bfc), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_160d1bfc), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2141,7 +2141,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7b7c453d), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'hospital') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7b7c453d), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'hospital')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2157,7 +2157,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2dbaea13), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3eb0ab44), mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2dbaea13), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3eb0ab44), mapcss._tag_capture(capture_tags, 1, tags, 'amenity'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("SAMU classificado de forma errada")
@@ -2172,19 +2172,19 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'give_way') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'give_way')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'mini_roundabout') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'mini_roundabout')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'stop') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'stop')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'turning_circle') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'turning_circle')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser utilizado apenas em nós","{0.tag}")
@@ -2195,7 +2195,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'junction') == mapcss._value_capture(capture_tags, 1, 'circular') and not mapcss._tag_capture(capture_tags, 2, tags, 'oneway') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'junction') == mapcss._value_capture(capture_tags, 1, 'circular')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'oneway') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2211,7 +2211,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'crossing') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'crossing')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'railway')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser utilizado com {1}={0} ou {2}={0}","{0.key}","{1.key}","{2.key}")
@@ -2223,11 +2223,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'designation')) and not mapcss._tag_capture(capture_tags, 2, tags, 'icao') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'designation'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'icao')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and not mapcss._tag_capture(capture_tags, 2, tags, 'icao') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'icao')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2245,7 +2245,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') == mapcss._value_capture(capture_tags, 0, 'permissive') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'access') == mapcss._value_capture(capture_tags, 0, 'permissive')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2267,7 +2267,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2283,7 +2283,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'postal_code')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'postal_code'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2303,7 +2303,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'addr:postcode') and mapcss._tag_capture(capture_tags, 2, tags, 'highway') != mapcss._value_const_capture(capture_tags, 2, 'services', 'services') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'addr:postcode')) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway') != mapcss._value_const_capture(capture_tags, 2, 'services', 'services')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2322,7 +2322,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'alt_source') and mapcss._tag_capture(capture_tags, 1, tags, 'source') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_source')) and (mapcss._tag_capture(capture_tags, 1, tags, 'source')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve estar incluído em {1}, separado por '';'' caso necessário","{0.key}","{1.key}")
@@ -2333,7 +2333,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'landuse') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("especificar valor correto para {0} ao invés de ''{1}''","{0.key}",tag("landuse"))
@@ -2344,7 +2344,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'long_name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'long_name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("chave inválida: {0}","{0.key}")
@@ -2358,7 +2358,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'building:levels') < mapcss._value_capture(capture_tags, 0, 1) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:levels') < mapcss._value_capture(capture_tags, 0, 1)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2370,7 +2370,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'hires') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'hires') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não se deve utilizar {0} para demarcar áreas de cobertura de imagem","{0.key}")
@@ -2382,11 +2382,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'motel') and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'motel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01454d46), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01454d46), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2402,7 +2402,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'love_hotel') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') and mapcss._tag_capture(capture_tags, 2, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 2, 'motel', 'motel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'love_hotel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism')) and (mapcss._tag_capture(capture_tags, 2, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 2, 'motel', 'motel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2414,7 +2414,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5cd37790), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'motel', 'motel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5cd37790), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'motel', 'motel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2428,11 +2428,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6efb8049), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6efb8049), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6566db6a), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6566db6a), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2445,11 +2445,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6024a566), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6024a566), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_139e342b), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_139e342b), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2461,7 +2461,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, 'ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2487,7 +2487,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'motorway_junction')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} deve ser utilizado apenas no nó de saída da rodovia","{0.tag}")
@@ -2499,7 +2499,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_38a8f0ff), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'building') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_38a8f0ff), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'building')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível ausência de tag {0}","{1.key}")
@@ -2510,7 +2510,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_066203d3, '^[0-9]+$'), mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_066203d3, '^[0-9]+$'), mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2522,7 +2522,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_67c67cf2, '^[0-9]+0$'), mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_67c67cf2, '^[0-9]+0$'), mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2534,7 +2534,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'route') == mapcss._value_capture(capture_tags, 0, 'ferry') and not mapcss._tag_capture(capture_tags, 1, tags, 'duration') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'route') == mapcss._value_capture(capture_tags, 0, 'ferry')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'duration')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("ausência do tempo de duração ({0}) da balsa","{1.key}")
@@ -2546,11 +2546,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05a345c7), mapcss._tag_capture(capture_tags, 2, tags, 'landuse')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05a345c7), mapcss._tag_capture(capture_tags, 2, tags, 'landuse'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_12b48afb), mapcss._tag_capture(capture_tags, 2, tags, 'natural')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_12b48afb), mapcss._tag_capture(capture_tags, 2, tags, 'natural'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível definição incorreta para praça: ''{0}''","{2.key}")
@@ -2562,7 +2562,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17fd35b3, '^pt:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17fd35b3, '^pt:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("utilizar prefixo em português (pt:) para {0}","{0.key}")
@@ -2577,11 +2577,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'lane') and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left') == mapcss._value_capture(capture_tags, 1, 'lane') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'lane')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:left') == mapcss._value_capture(capture_tags, 1, 'lane')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'lane') and mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 1, 'lane') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway') == mapcss._value_capture(capture_tags, 0, 'lane')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 1, 'lane')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("uso incorreto de {0} com {1}","{0.tag}","{1.tag}")
@@ -2605,7 +2605,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_131cc885), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_131cc885), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome utilizado de forma incorreta")
@@ -2625,7 +2625,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58f616c9, '^(city_block|farm|hamlet|island|islet|isolated_dwelling|neighbourhood|square)$'), mapcss._tag_capture(capture_tags, 1, tags, 'place')) and not mapcss._tag_capture(capture_tags, 2, tags, 'admin_level') and not mapcss._tag_capture(capture_tags, 3, tags, 'boundary') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58f616c9, '^(city_block|farm|hamlet|island|islet|isolated_dwelling|neighbourhood|square)$'), mapcss._tag_capture(capture_tags, 1, tags, 'place'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'admin_level')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'boundary')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2654,15 +2654,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'national_park') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'national_park')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'nature_reserve') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'nature_reserve')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -2673,7 +2673,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area') and not mapcss._tag_capture(capture_tags, 1, tags, 'protect_class') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'protect_class')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -2684,7 +2684,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'protect_class') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5ac7053e, '^(1(a|b)?|[1-9][0-9]?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'protect_class')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'protect_class')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5ac7053e, '^(1(a|b)?|[1-9][0-9]?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'protect_class'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("valor incorreto para {0}","{0.key}")
@@ -2695,7 +2695,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'protect_class') and mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'protected_area', 'protected_area') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'protect_class')) and (mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'protected_area', 'protected_area')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("ausência de boundary=protected_area")
@@ -2706,7 +2706,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2ffc377d), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2ffc377d), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2718,7 +2718,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_39d67968), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_39d67968), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2730,7 +2730,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'alt_ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
@@ -2742,7 +2742,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'path') and mapcss._tag_capture(capture_tags, 1, tags, 'tracktype') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'path')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tracktype')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("uso incorreto de {0}","{1.key}")
@@ -2757,7 +2757,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface')) and (len(tags) == 1) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto incompleto: possui apenas {0}","{0.key}")
@@ -2769,11 +2769,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'surface') and len(tags) == 2 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (len(tags) == 2) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'website') and len(tags) == 2 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'website')) and (len(tags) == 2) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto incompleto: possui apenas {0} e {1}","{0.key}","{1.key}")
@@ -2784,7 +2784,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f31a73), mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and mapcss._tag_capture(capture_tags, 1, tags, 'ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_07f31a73), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2800,7 +2800,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'pitch') and mapcss._tag_capture(capture_tags, 1, tags, 'sport') == mapcss._value_capture(capture_tags, 1, 'tennis') and mapcss._tag_capture(capture_tags, 2, tags, 'surface') == mapcss._value_capture(capture_tags, 2, 'unpaved') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'pitch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'sport') == mapcss._value_capture(capture_tags, 1, 'tennis')) and (mapcss._tag_capture(capture_tags, 2, tags, 'surface') == mapcss._value_capture(capture_tags, 2, 'unpaved')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2817,7 +2817,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'track') and not mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR') and nds[0] == nds[-1])
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'track')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2829,7 +2829,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_604bb645), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_604bb645), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2842,7 +2842,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss._tag_capture(capture_tags, 1, tags, 'brand') == mapcss._value_capture(capture_tags, 1, 'BR') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'brand') == mapcss._value_capture(capture_tags, 1, 'BR')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2859,7 +2859,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'shop') == mapcss._value_capture(capture_tags, 0, 'gas') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_31732cd0), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'shop') == mapcss._value_capture(capture_tags, 0, 'gas')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_31732cd0), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2872,7 +2872,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_57b8ef8e) and not mapcss._tag_capture(capture_tags, 1, tags, 'is_in:iso_3166_2') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_57b8ef8e)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'is_in:iso_3166_2')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("chave inválida: {0}","{0.key}")
@@ -2883,7 +2883,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and not mapcss._tag_capture(capture_tags, 1, tags, 'note') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'note')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -2903,7 +2903,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and mapcss._tag_capture(capture_tags, 1, tags, 'note') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'note')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
@@ -2915,7 +2915,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2e8e4f2b), mapcss._tag_capture(capture_tags, 0, tags, 'source')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2e8e4f2b), mapcss._tag_capture(capture_tags, 0, tags, 'source'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("objeto contém Google como source")
@@ -2926,7 +2926,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2939,7 +2939,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government') and mapcss._tag_capture(capture_tags, 1, tags, 'government') != mapcss._value_const_capture(capture_tags, 1, 'legislative', 'legislative') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government')) and (mapcss._tag_capture(capture_tags, 1, tags, 'government') != mapcss._value_const_capture(capture_tags, 1, 'legislative', 'legislative')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2952,11 +2952,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2968,7 +2968,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7ec1fb9a), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7ec1fb9a), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2981,7 +2981,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_13f4c147), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_13f4c147), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -2994,7 +2994,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'charging_station') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'charging_station')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3006,7 +3006,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'shop') == mapcss._value_capture(capture_tags, 1, 'tyres') and not mapcss._tag_capture(capture_tags, 2, tags, 'repair') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop') == mapcss._value_capture(capture_tags, 1, 'tyres')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'repair')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3019,7 +3019,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'shop') != mapcss._value_const_capture(capture_tags, 1, 'tyres', 'tyres') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop') != mapcss._value_const_capture(capture_tags, 1, 'tyres', 'tyres')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3033,11 +3033,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_04873a60), mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and mapcss._tag_capture(capture_tags, 1, tags, 'name') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_280004fd, '^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_04873a60), mapcss._tag_capture(capture_tags, 0, tags, 'waterway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_280004fd, '^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_04873a60), mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and mapcss._tag_capture(capture_tags, 1, tags, 'alt_name') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_280004fd, '^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b'), mapcss._tag_capture(capture_tags, 2, tags, 'alt_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_04873a60), mapcss._tag_capture(capture_tags, 0, tags, 'waterway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'alt_name')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_280004fd, '^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b'), mapcss._tag_capture(capture_tags, 2, tags, 'alt_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3049,7 +3049,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6e34cd0f), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 1, 'bandstand', 'bandstand') and mapcss._tag_capture(capture_tags, 2, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 2, 'park', 'park') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6e34cd0f), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 1, 'bandstand', 'bandstand')) and (mapcss._tag_capture(capture_tags, 2, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 2, 'park', 'park')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3062,7 +3062,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3076,7 +3076,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground') and mapcss._tag_capture(capture_tags, 1, tags, 'landuse') == mapcss._value_capture(capture_tags, 1, 'recreation_ground') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landuse') == mapcss._value_capture(capture_tags, 1, 'recreation_ground')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3092,7 +3092,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_524288b6, '^BR[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_524288b6, '^BR[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3104,7 +3104,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ddbb7eb), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ddbb7eb), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3120,7 +3120,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_408831d0), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_408831d0), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3137,11 +3137,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'phone') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3154,11 +3154,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3182,7 +3182,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_073e5345), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_073e5345), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3194,7 +3194,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'addr:street') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:street')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_6bf570a0, '^(Aeroporto|Alameda|Área|Avenida|([1-9][0-9]?º )?Beco|Boulevard|Calçadão|Caminho|Campo|Chácara|Colônia|Condomínio|Conjunto|Contorno|Distrito|Elevado|Esplanada|Estação|Estrada|Favela|Fazenda|Feira|Jardim|Ladeira|Lago|Lagoa|Largo|Loteamento|Marginal|Morro|Núcleo|([1-9][0-9]?ª )?Paralela|Parque|Passagem|Passarela|Pátio|Ponte|Praça|Quadra|Recanto|Residencial|Rodovia|Rotatória|Rua|Servidão|Setor|Sítio|([1-9][0-9]?ª )?Subida|([1-9][0-9]?ª )?Travessa|Trecho|Trevo|Túnel|Vale|Vereda|Via|Viadutos?|Viela|Vila|(Anel|Complexo|Dispositivo) (Rodo)?(V|v)iário) .*'), mapcss._tag_capture(capture_tags, 1, tags, 'addr:street'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3206,7 +3206,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (not mapcss._tag_capture(capture_tags, 0, tags, 'highway') and mapcss._tag_capture(capture_tags, 1, tags, 'route') != mapcss._value_const_capture(capture_tags, 1, 'road', 'road') and not mapcss._tag_capture(capture_tags, 2, tags, 'public_transport') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_72d45155, 'route|street'), mapcss._tag_capture(capture_tags, 3, tags, 'type')) and mapcss._tag_capture(capture_tags, 4, tags, 'name') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_5849be19), mapcss._tag_capture(capture_tags, 5, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_15690541, '^(?i)estrada de ferro'), mapcss._tag_capture(capture_tags, 6, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((not mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'route') != mapcss._value_const_capture(capture_tags, 1, 'road', 'road')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'public_transport')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_72d45155, 'route|street'), mapcss._tag_capture(capture_tags, 3, tags, 'type'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'name')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 5, self.re_5849be19), mapcss._tag_capture(capture_tags, 5, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 6, self.re_15690541, '^(?i)estrada de ferro'), mapcss._tag_capture(capture_tags, 6, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3218,7 +3218,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4bd3b925), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4bd3b925), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3230,7 +3230,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_178f5446), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_178f5446), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("palavra abreviada em {0}","{0.key}")
@@ -3241,7 +3241,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7f53e992), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7f53e992), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome supérfluo/incompleto de local de lazer")
@@ -3252,7 +3252,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_52ab3b8b), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_52ab3b8b), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome supérfluo/incompleto de local de saúde")
@@ -3263,7 +3263,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ab76b11), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4cf86823), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ab76b11), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4cf86823), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3275,7 +3275,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'farm') and mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'name'), mapcss._value_capture(capture_tags, 1, 'Sitio ')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'farm')) and (mapcss.startswith(mapcss._tag_capture(capture_tags, 1, tags, 'name'), mapcss._value_capture(capture_tags, 1, 'Sitio '))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3287,7 +3287,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_20c7dd98), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_20c7dd98), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3302,7 +3302,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route') and mapcss._tag_capture(capture_tags, 1, tags, 'highway') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route')) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("relação não deve possuir {0}","{1.key}")
@@ -3326,59 +3326,59 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'designation') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'designation') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_ref')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_ref'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'addr:housename'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'designation'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'alt_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'alt_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'int_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'int_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'loc_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'loc_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'nat_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'nat_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'official_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'official_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'old_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'reg_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'reg_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'short_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'short_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'sorting_name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'sorting_name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3394,7 +3394,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'source') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'source') == mapcss._value_capture(capture_tags, 0, mapcss.tag(tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3406,7 +3406,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65710fdb), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65710fdb), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto com nomenclatura incorreta")
@@ -3418,7 +3418,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'designation') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'designation')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} é uma chave utilizada apenas no Reino Unido","{0.key}")
@@ -3431,7 +3431,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_152c10ee), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 100000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_152c10ee), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 100000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3447,7 +3447,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_591572a5), mapcss._tag_capture(capture_tags, 0, tags, 'place')) and mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 10000) and mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 100000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_591572a5), mapcss._tag_capture(capture_tags, 0, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'population') >= mapcss._value_capture(capture_tags, 1, 10000)) and (mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 100000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3463,7 +3463,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3aeda39d, 'hamlet|island|isolated_dwelling|neighbourhood|suburb|village'), mapcss._tag_capture(capture_tags, 1, tags, 'place')) and mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 10000) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_3aeda39d, 'hamlet|island|isolated_dwelling|neighbourhood|suburb|village'), mapcss._tag_capture(capture_tags, 1, tags, 'place'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'population') < mapcss._value_capture(capture_tags, 2, 10000)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3486,15 +3486,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'city') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'city')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'town') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'town')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'village') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place') == mapcss._value_capture(capture_tags, 0, 'village')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} sem nome","{0.value}")
@@ -3505,7 +3505,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_10f1c360), mapcss._tag_capture(capture_tags, 0, tags, 'addr:city')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_10f1c360), mapcss._tag_capture(capture_tags, 0, tags, 'addr:city'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve conter apenas o nome da cidade","{0.key}")
@@ -3516,7 +3516,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2cd1e949), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_5d3348cb, 'city|farm|neighbourhood|suburb|town|village'), mapcss._tag_capture(capture_tags, 2, tags, 'place')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2cd1e949), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_5d3348cb, 'city|farm|neighbourhood|suburb|town|village'), mapcss._tag_capture(capture_tags, 2, tags, 'place'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3528,7 +3528,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_20fc5143), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_64387998, '^(?i)Bairro d(a|e|o)s?\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_20fc5143), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_64387998, '^(?i)Bairro d(a|e|o)s?\b'), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3540,7 +3540,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'iata') == mapcss._value_capture(capture_tags, 0, '0') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'iata') == mapcss._value_capture(capture_tags, 0, '0')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} com valor = {1}","{0.key}","{0.value}")
@@ -3551,7 +3551,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_362f879f), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1d232d4c), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_362f879f), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1d232d4c), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3569,11 +3569,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_044c8944), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_044c8944), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6c0d6e9e), mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b304b9b), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6c0d6e9e), mapcss._tag_capture(capture_tags, 0, tags, 'amenity'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3b304b9b), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3590,7 +3590,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_35bb0f2f), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_35bb0f2f), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3607,7 +3607,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_160d1bfc), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'school')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_160d1bfc), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3637,7 +3637,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7b7c453d), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'hospital') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7b7c453d), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') == mapcss._value_capture(capture_tags, 1, 'hospital')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3653,7 +3653,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2dbaea13), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3eb0ab44), mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2dbaea13), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3eb0ab44), mapcss._tag_capture(capture_tags, 1, tags, 'amenity'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("SAMU classificado de forma errada")
@@ -3668,19 +3668,19 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'give_way') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'give_way')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'mini_roundabout') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'mini_roundabout')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'stop') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'stop')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'turning_circle') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'turning_circle')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser utilizado apenas em nós","{0.tag}")
@@ -3693,15 +3693,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'enforcement') == mapcss._value_capture(capture_tags, 0, 'maxspeed') and not mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'enforcement') == mapcss._value_capture(capture_tags, 0, 'maxspeed')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'enforcement') == mapcss._value_capture(capture_tags, 0, 'maxheight') and not mapcss._tag_capture(capture_tags, 1, tags, 'maxheight') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'enforcement') == mapcss._value_capture(capture_tags, 0, 'maxheight')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'maxheight')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'enforcement') == mapcss._value_capture(capture_tags, 0, 'maxweight') and not mapcss._tag_capture(capture_tags, 1, tags, 'maxweight') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'enforcement') == mapcss._value_capture(capture_tags, 0, 'maxweight')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'maxweight')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("adicionar {0} ao {1}","{1.key}","{0.tag}")
@@ -3712,7 +3712,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'crossing') and not mapcss._tag_capture(capture_tags, 1, tags, 'highway') and not mapcss._tag_capture(capture_tags, 2, tags, 'railway') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'crossing')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'railway')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser utilizado com {1}={0} ou {2}={0}","{0.key}","{1.key}","{2.key}")
@@ -3724,11 +3724,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'designation')) and not mapcss._tag_capture(capture_tags, 2, tags, 'icao') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'designation'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'icao')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and not mapcss._tag_capture(capture_tags, 2, tags, 'icao') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_7afc6883), mapcss._tag_capture(capture_tags, 1, tags, 'ref'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'icao')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3746,7 +3746,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'access') == mapcss._value_capture(capture_tags, 0, 'permissive') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'access') == mapcss._value_capture(capture_tags, 0, 'permissive')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3768,7 +3768,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'addr:postcode'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3784,7 +3784,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'postal_code')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_57bee688), mapcss._tag_capture(capture_tags, 0, tags, 'postal_code'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3804,7 +3804,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'alt_source') and mapcss._tag_capture(capture_tags, 1, tags, 'source') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_source')) and (mapcss._tag_capture(capture_tags, 1, tags, 'source')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve estar incluído em {1}, separado por '';'' caso necessário","{0.key}","{1.key}")
@@ -3815,7 +3815,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'landuse') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("especificar valor correto para {0} ao invés de ''{1}''","{0.key}",tag("landuse"))
@@ -3826,7 +3826,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'long_name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'long_name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("chave inválida: {0}","{0.key}")
@@ -3840,7 +3840,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'building:levels') < mapcss._value_capture(capture_tags, 0, 1) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:levels') < mapcss._value_capture(capture_tags, 0, 1)) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3852,7 +3852,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'hires') in ('yes', 'true', '1') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'hires') in ('yes', 'true', '1')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não se deve utilizar {0} para demarcar áreas de cobertura de imagem","{0.key}")
@@ -3864,11 +3864,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'motel') and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tourism') == mapcss._value_capture(capture_tags, 0, 'motel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01454d46), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01454d46), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'love_hotel', 'love_hotel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -3884,7 +3884,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'love_hotel') and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') and mapcss._tag_capture(capture_tags, 2, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 2, 'motel', 'motel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'love_hotel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism')) and (mapcss._tag_capture(capture_tags, 2, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 2, 'motel', 'motel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3896,7 +3896,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5cd37790), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'motel', 'motel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5cd37790), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'tourism') != mapcss._value_const_capture(capture_tags, 1, 'motel', 'motel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3910,11 +3910,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6efb8049), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6efb8049), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6566db6a), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6566db6a), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3927,11 +3927,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6024a566), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6024a566), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_139e342b), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_139e342b), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3943,7 +3943,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome') and mapcss._tag_capture(capture_tags, 1, tags, 'ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss._tag_capture(capture_tags, 1, tags, 'ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3955,7 +3955,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'layer') < mapcss._value_capture(capture_tags, 1, 0) and not mapcss._tag_capture(capture_tags, 2, tags, 'tunnel') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'layer') < mapcss._value_capture(capture_tags, 1, 0)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'tunnel')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3967,7 +3967,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'waterway') and mapcss._tag_capture(capture_tags, 1, tags, 'layer') > mapcss._value_capture(capture_tags, 1, 0) and not mapcss._tag_capture(capture_tags, 2, tags, 'bridge') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'layer') > mapcss._value_capture(capture_tags, 1, 0)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'bridge')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -3982,7 +3982,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_38a8f0ff), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'building') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_38a8f0ff), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'building')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível ausência de tag {0}","{1.key}")
@@ -3993,7 +3993,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'route') == mapcss._value_capture(capture_tags, 0, 'ferry') and not mapcss._tag_capture(capture_tags, 1, tags, 'duration') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'route') == mapcss._value_capture(capture_tags, 0, 'ferry')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'duration')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("ausência do tempo de duração ({0}) da balsa","{1.key}")
@@ -4005,11 +4005,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05a345c7), mapcss._tag_capture(capture_tags, 2, tags, 'landuse')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_05a345c7), mapcss._tag_capture(capture_tags, 2, tags, 'landuse'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and not mapcss._tag_capture(capture_tags, 1, tags, 'leisure') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_12b48afb), mapcss._tag_capture(capture_tags, 2, tags, 'natural')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4a8ca94e), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_12b48afb), mapcss._tag_capture(capture_tags, 2, tags, 'natural'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível definição incorreta para praça: ''{0}''","{2.key}")
@@ -4021,7 +4021,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17fd35b3, '^pt:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'wikipedia')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_17fd35b3, '^pt:'), mapcss._tag_capture(capture_tags, 1, tags, 'wikipedia'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("utilizar prefixo em português (pt:) para {0}","{0.key}")
@@ -4044,7 +4044,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_131cc885), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_131cc885), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome utilizado de forma incorreta")
@@ -4056,7 +4056,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') and mapcss._tag_capture(capture_tags, 1, tags, 'type') != mapcss._value_const_capture(capture_tags, 1, 'boundary', 'boundary') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'type') != mapcss._value_const_capture(capture_tags, 1, 'boundary', 'boundary')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir ''type=boundary''","{0.key}")
@@ -4067,7 +4067,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary') and not mapcss._tag_capture(capture_tags, 1, tags, 'boundary') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'boundary')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'boundary')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser utilizado junto com {1}","{0.tag}","{1.key}")
@@ -4078,7 +4078,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'admin_level') and mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'administrative', 'administrative') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'admin_level')) and (mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'administrative', 'administrative')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -4094,7 +4094,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'administrative') and not mapcss._tag_capture(capture_tags, 1, tags, 'admin_level') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'administrative')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'admin_level')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -4105,7 +4105,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'place') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58f616c9, '^(city_block|farm|hamlet|island|islet|isolated_dwelling|neighbourhood|square)$'), mapcss._tag_capture(capture_tags, 1, tags, 'place')) and not mapcss._tag_capture(capture_tags, 2, tags, 'admin_level') and not mapcss._tag_capture(capture_tags, 3, tags, 'boundary') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58f616c9, '^(city_block|farm|hamlet|island|islet|isolated_dwelling|neighbourhood|square)$'), mapcss._tag_capture(capture_tags, 1, tags, 'place'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'admin_level')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'boundary')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4117,7 +4117,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'administrative') and mapcss._tag_capture(capture_tags, 1, tags, 'type') == mapcss._value_capture(capture_tags, 1, 'multipolygon') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'administrative')) and (mapcss._tag_capture(capture_tags, 1, tags, 'type') == mapcss._value_capture(capture_tags, 1, 'multipolygon')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -4135,15 +4135,15 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'national_park') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'national_park')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'nature_reserve') and not mapcss._tag_capture(capture_tags, 1, tags, 'name') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'nature_reserve')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -4154,7 +4154,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area') and not mapcss._tag_capture(capture_tags, 1, tags, 'protect_class') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary') == mapcss._value_capture(capture_tags, 0, 'protected_area')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'protect_class')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve possuir {1}","{0.tag}","{1.key}")
@@ -4165,7 +4165,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'protect_class') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5ac7053e, '^(1(a|b)?|[1-9][0-9]?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'protect_class')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'protect_class')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5ac7053e, '^(1(a|b)?|[1-9][0-9]?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'protect_class'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("valor incorreto para {0}","{0.key}")
@@ -4176,7 +4176,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'protect_class') and mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'protected_area', 'protected_area') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'protect_class')) and (mapcss._tag_capture(capture_tags, 1, tags, 'boundary') != mapcss._value_const_capture(capture_tags, 1, 'protected_area', 'protected_area')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("ausência de boundary=protected_area")
@@ -4187,7 +4187,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'destination') and mapcss._tag_capture(capture_tags, 1, tags, 'type') != mapcss._value_const_capture(capture_tags, 1, 'waterway', 'waterway') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'destination')) and (mapcss._tag_capture(capture_tags, 1, tags, 'type') != mapcss._value_const_capture(capture_tags, 1, 'waterway', 'waterway')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} deve ser usado apenas em ways","{0.key}")
@@ -4198,7 +4198,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2ffc377d), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2ffc377d), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4210,7 +4210,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_39d67968), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_39d67968), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4222,7 +4222,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'alt_ref') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'alt_ref')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
@@ -4234,7 +4234,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'surface') and len(tags) == 1 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface')) and (len(tags) == 1) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto incompleto: possui apenas {0}","{0.key}")
@@ -4246,11 +4246,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'surface') and len(tags) == 2 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'surface')) and (len(tags) == 2) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'name') and mapcss._tag_capture(capture_tags, 1, tags, 'website') and len(tags) == 2 and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name')) and (mapcss._tag_capture(capture_tags, 1, tags, 'website')) and (len(tags) == 2) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto incompleto: possui apenas {0} e {1}","{0.key}","{1.key}")
@@ -4261,7 +4261,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'pitch') and mapcss._tag_capture(capture_tags, 1, tags, 'sport') == mapcss._value_capture(capture_tags, 1, 'tennis') and mapcss._tag_capture(capture_tags, 2, tags, 'surface') == mapcss._value_capture(capture_tags, 2, 'unpaved') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'pitch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'sport') == mapcss._value_capture(capture_tags, 1, 'tennis')) and (mapcss._tag_capture(capture_tags, 2, tags, 'surface') == mapcss._value_capture(capture_tags, 2, 'unpaved')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -4278,7 +4278,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_604bb645), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_604bb645), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4291,7 +4291,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel') and mapcss._tag_capture(capture_tags, 1, tags, 'brand') == mapcss._value_capture(capture_tags, 1, 'BR') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'fuel')) and (mapcss._tag_capture(capture_tags, 1, tags, 'brand') == mapcss._value_capture(capture_tags, 1, 'BR')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4308,7 +4308,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'shop') == mapcss._value_capture(capture_tags, 0, 'gas') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_31732cd0), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'shop') == mapcss._value_capture(capture_tags, 0, 'gas')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_31732cd0), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4321,7 +4321,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, self.re_57b8ef8e) and not mapcss._tag_capture(capture_tags, 1, tags, 'is_in:iso_3166_2') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, self.re_57b8ef8e)) and (not mapcss._tag_capture(capture_tags, 1, tags, 'is_in:iso_3166_2')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("chave inválida: {0}","{0.key}")
@@ -4332,7 +4332,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and not mapcss._tag_capture(capture_tags, 1, tags, 'note') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'note')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -4352,7 +4352,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber')) and mapcss._tag_capture(capture_tags, 1, tags, 'note') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0b27200b), mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'note')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
@@ -4364,7 +4364,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2e8e4f2b), mapcss._tag_capture(capture_tags, 0, tags, 'source')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2e8e4f2b), mapcss._tag_capture(capture_tags, 0, tags, 'source'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("objeto contém Google como source")
@@ -4375,7 +4375,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4388,7 +4388,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government') and mapcss._tag_capture(capture_tags, 1, tags, 'government') != mapcss._value_const_capture(capture_tags, 1, 'legislative', 'legislative') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 2, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government')) and (mapcss._tag_capture(capture_tags, 1, tags, 'government') != mapcss._value_const_capture(capture_tags, 1, 'legislative', 'legislative')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_46ab4d8d), mapcss._tag_capture(capture_tags, 2, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4401,11 +4401,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'townhall')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office') == mapcss._value_capture(capture_tags, 0, 'government')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_793b22ec), mapcss._tag_capture(capture_tags, 1, tags, 'name'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4417,7 +4417,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7ec1fb9a), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7ec1fb9a), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4430,7 +4430,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_13f4c147), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_13f4c147), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'amenity') != mapcss._value_const_capture(capture_tags, 1, 'townhall', 'townhall')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4443,7 +4443,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'charging_station') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'charging_station')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4455,7 +4455,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'shop') == mapcss._value_capture(capture_tags, 1, 'tyres') and not mapcss._tag_capture(capture_tags, 2, tags, 'repair') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop') == mapcss._value_capture(capture_tags, 1, 'tyres')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'repair')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4468,7 +4468,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'shop') != mapcss._value_const_capture(capture_tags, 1, 'tyres', 'tyres') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_126ba9a9), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop') != mapcss._value_const_capture(capture_tags, 1, 'tyres', 'tyres')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4481,7 +4481,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6e34cd0f), mapcss._tag_capture(capture_tags, 0, tags, 'name')) and mapcss._tag_capture(capture_tags, 1, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 1, 'bandstand', 'bandstand') and mapcss._tag_capture(capture_tags, 2, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 2, 'park', 'park') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6e34cd0f), mapcss._tag_capture(capture_tags, 0, tags, 'name'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 1, 'bandstand', 'bandstand')) and (mapcss._tag_capture(capture_tags, 2, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 2, 'park', 'park')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4494,7 +4494,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4508,7 +4508,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground') and mapcss._tag_capture(capture_tags, 1, tags, 'landuse') == mapcss._value_capture(capture_tags, 1, 'recreation_ground') and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure') == mapcss._value_capture(capture_tags, 0, 'recreation_ground')) and (mapcss._tag_capture(capture_tags, 1, tags, 'landuse') == mapcss._value_capture(capture_tags, 1, 'recreation_ground')) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4524,7 +4524,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_524288b6, '^BR[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_524288b6, '^BR[0-9]{14}$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4536,7 +4536,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ddbb7eb), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5ddbb7eb), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -4552,7 +4552,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_408831d0), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_408831d0), mapcss._tag_capture(capture_tags, 0, tags, 'ref:vatin'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
@@ -4569,11 +4569,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'phone') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone') and not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_243f4993, '^(\+55|0800)'), mapcss._tag_capture(capture_tags, 1, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
@@ -4586,11 +4586,11 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone')) and mapcss.inside(self.father.config.options, 'BR'))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_7a246e93), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'BR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
