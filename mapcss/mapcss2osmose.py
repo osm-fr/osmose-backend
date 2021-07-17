@@ -611,7 +611,7 @@ def to_p(t):
     elif t['type'] == 'simple_selector':
         # to_p(t['type_selector']) + Ignore
         sp = list(map(to_p, t['class_selectors'])) + list(map(to_p, t['predicates'])) + list(map(to_p, t['pseudo_class']))
-        return "(" + " and ".join(sp) + ")"
+        return "((" + ") and (".join(sp) + "))"
     elif t['type'] == 'class_selector':
         return ("not " if t['not'] else "") + "set_" + t['class']
     elif t['type'] == 'predicate_simple':
