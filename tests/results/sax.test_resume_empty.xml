@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="473712892">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="645441179">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L34" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -37,6 +37,7 @@
 <classtext lang="zh_CN" title="插值线路中的标签无效" />
 <detail lang="de" title="Die Linie der Adressinterpolation sollte ausschließlich die Tags addr:interpolation=* und optional addr:inclusion=* enthalten." />
 <detail lang="en" title="Interpolation way only valid with addr:interpolation=* and optional&#10;addr:inclusion=*." />
+<detail lang="es" title="La forma de interpolación solo es válida con addr:interpolation=* y &#10;opcionalmente addr:inclusion=*." />
 <detail lang="ja" title="補間ウェイはaddr:interpolation=* が必須で、addr:inclusion=* は任意です。" />
 <detail lang="nl" title="Invoegmethode alleen geldig met addr: interpolation = * en optioneel addr: inclusion = *. " />
 </class>
@@ -109,16 +110,19 @@
 <classtext lang="zh_TW" title="重覆的 node" />
 <detail lang="de" title="Ein Weg läuft mehrfach durch den selben Knoten." />
 <detail lang="en" title="A path passes several times by the same node." />
+<detail lang="es" title="Un camino pasa varias veces por el mismo nodo." />
 <detail lang="fr" title="Un chemin passe plusieurs fois par le même nœud." />
 <detail lang="gl" title="Un camiño pasa varias veces polo mesmo nodo." />
 <detail lang="ja" title="経路が同じノードを複数回通過しています。" />
 <detail lang="nl" title="Een pad passeert meerdere keren hetzelfde knooppunt." />
 <detail lang="pl" title="Linia przechodzi kilka razy przez ten sam węzeł." />
 <detail lang="uk" title="Стежка кілька разів проходить через одну і ту ж точку." />
+<fix lang="de" title="Es gibt mehrere Arten von Problemen:&#10;&#10;* Ein Weg kreuzt sich selbst und macht eine oder mehrere Schleifen; der Weg&#10;muss in mehrere Abschnitte aufgeteilt werden.&#10;* Ein Weg überlagert sich selbst (oft an einem Endpunkt); der Weg muss geteilt,&#10;der falsche Abschnitt isoliert und danach richtig zusammengefügt werden.&#10;&#10;Es gibt noch viele weitere Fälle. Im Allgemeinen ist es besser, mehrere Straßen&#10;oder Flächen zu erstellen als ein einziges komplexes, damit Werkzeuge, die&#10;OSM-Daten verwenden richtig funktionieren können." />
 <fix lang="en" title="There are several types of issues:&#10;&#10;* A way that makes one or more loops; the way must be split into several&#10;sections.&#10;* A path that goes back on itself (often at one end); the path must be&#10;cut to isolate the wrong section and recreated properly afterwards.&#10;&#10;There are certainly many other cases. In general, it is better to make&#10;several roads / areas than a single complex one so that tools working&#10;with OSM data can function properly." />
 <fix lang="gl" title="Hai varios tipos de problemas:&#10;&#10;* Unha vía que dá unha ou máis voltas; a vía debe partirse en varias seccións.&#10;* Un camiño que volve sobre si mesmo (normalmente sobre un dos extremos); o camiño debe cortarse para illar a sección incorrecta e despois recrearse correctamente.&#10;&#10;Seguramente haxa outros tipos de casos. En xeral, é mellor facer varias vías/áreas que facer unha única vía/área complexa para que así as ferrementas que traballen con datos de OSM poidan funcionar correctamente." />
 <fix lang="ja" title="いくつかの種別の問題があります:&#10;&#10;* ひとつ以上のループを作るウェイ。ウェイはいくつかのセクションに分割しなければなりません。&#10;* 自身に戻っている経路(しばしば終端に)。経路は間違ったセクションを切って孤立させ、後から正しく再作成しなければなりません。&#10;&#10;おそらく多くの他のケースがあります。一般的に、ツールがOSMデータに対して正しく機能するためには、単一の複雑なものよりいくつかの道路/エリアに分けた方がベターです。" />
 <trap lang="en" title="These errors require a good command of your editing tool. Some&#10;corrections are not necessarily intuitive." />
+<trap lang="es" title="Estos errores requieren un buen dominio de su herramienta de edición. &#10;Algunas correcciones no son necesariamente intuitivas." />
 <trap lang="gl" title="Estes erros requiren un bo manexo do teu editor. Algunhas correccións non teñen por que ser intuitivas." />
 <trap lang="ja" title="これらの誤りにはあなたの編集ツールの良いコマンドが必要です。修正の中には必ずしも直感的でないものがあります。" />
 <example lang="en" title="![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)&#10;&#10;Double polygon connected by a string to remove." />
@@ -158,6 +162,7 @@
 <fix lang="fr" title="Le plus souvent, c’est une erreur de l’utilisateur ayant ajouté plusieurs fois le même chemin.&#10;L’éditeur JOSM put facilement visualiser les relations et montrer les doublons&#10;(en couleurs)." />
 <fix lang="ja" title="たいてい、これは同じウェイを何回も追加してしまったユーザー側の問題です。JOSMエディタではその関係を簡単に(色で)視覚化して重複を見分けられます。" />
 <fix lang="pl" title="To najczęściej jest błąd użytkownika, który dodał dwa razy tę samą linię. Edytor JOSM może łatwo pokazywać relacje i oznaczać duplikaty innym kolorem." />
+<trap lang="de" title="Bevor aus einer Relation Wege entfernt werden, ist deren Rolle zu prüfen.&#10;&#10;Achtung: Kann bei einer Route ein Weg mehrfach begangen werden, ist das doppelte&#10;Vorhandensein dieses Wegs in der Relation `type=route` ist korrekt. Hierbei sollte die&#10;korrekte Verwendung der Rollen `forward` und `backward` sichergestellt werden." />
 <trap lang="en" title="Double check the ways roles in the relation before deleting.&#10;&#10;Caution: in a route, a path can be taken several times. The multiple&#10;presence of this path in the relation `type=route` is not then an issue.&#10;Then ensure the roles `forward` and `backward`." />
 <trap lang="ja" title="削除する前に、リレーション内のウェイのroleをダブルチェックしてください。&#10;&#10;警告: routeにおいて、経路は複数回取ることができます。そのためリレーション種別`type=route` 内に複数経路があることは問題ではありません。&#10;role `forward` 及び `backward`を確認してください。" />
 <trap lang="pl" title="Dokładnie sprawdź role tych linii w relacji przed usunięciem.&#10;&#10;Uwaga: w trasach drogi mogą występować kilkakrotnie. Kilkakrotne występowanie tej samej ścieżki lub drogi w relacjach `type=route` nie jest błędem.&#10;Zwróć też uwagę na odpowiednie role `forward` lub `backward`." />
@@ -239,13 +244,17 @@
 <classtext lang="zh_CN" title="名称标签包含两个名称" />
 <detail lang="en" title='The tag `name=*` contains multiple names, separated by a semicolon,&#10;a "/" or a "\". This issue was probably produced by the fusion of two&#10;way and the concatenation of the names of the streets.' />
 <detail lang="ja" title='`name=*`タグにセミコロン、  "/"、または "\" で区切られた名前が複数あります。2つのウェイを一本化した際など、このように名前が連結されることがあります。' />
+<detail lang="pl" title="Tag `name=*` zawiera kilka nazw oddzielonych średnikiem lub ukośnikiem (`/`, `\`).&#10;Ten problem mógł powstać w wyniku połączenia dwóch dróg i konkatenacji nazw ulic." />
+<fix lang="de" title="* Falls doppelt, eine löschen.&#10;* Andernfalls prüfe, ob es sich um eine Straße handelt, deren Name an&#10;einer Kreuzung wechselt. Ist dies der Fall, trenne die Straße und passe&#10;den Straßennamen für beide Teile an." />
 <fix lang="en" title="* If duplicate, delete a one.&#10;* Otherwise, a survey is required: check if it is a street whose name&#10;changes at a crossroads, if this is the case, cut the street and set the&#10;proper names of both part." />
 <fix lang="fr" title="S'il y a un double, supprimez-en un. Sinon, une vérification sur place est nécessaire : vérifiez s'il s'agit d'une rue dont le nom change à un carrefour ; si c'est le cas, coupez la rue et corrigez les noms exacts des deux parties." />
 <fix lang="ja" title="* もし重複していれば、ひとつ削除します。&#10;* そうでない場合、サーベイが必要です。道路の交点で名前が変わる街路なのかチェックして、そうであれば街路をカットしてそれぞれの部分に適切な名前を付けます。" />
+<fix lang="nl" title="* Als het dubbel is, verwijder er dan een.&#10;* Anders is een survey vereist: controleer of het een straat is waarvan&#10;de naam verandert aan een kruispunt, als dit het geval is, snijd dan de straat door en geef de namen van beide delen op." />
 <trap lang="de" title="Einige Straßen haben je Straßenseite unterschiedliche Namen, insbesondere wenn&#10;Häuser einer Straßenseite einer anderen Gemeinde zugeordnet sind. In diesem Fall&#10;sollten die Tags `name:left=*` und `name:right=*` verwenden werden." />
 <trap lang="en" title="Some streets have not the same names on the each side, especially if&#10;the houses by both sides are on different city. In this case, you can use&#10;the tag `name:left=*` and `name:right=*`." />
 <trap lang="fr" title="Certaines rues n'ont pas le même nom de chaque côté, surtout si les maisons des deux côtés se trouvent dans des villes différentes. Dans ce cas, vous pouvez utiliser les balises &quot;nom:gauche=*` et &quot;nom:droite=*`." />
 <trap lang="ja" title="街路によっては通行する側によって名前が違うことがあります。特に両側の家が別の都市にある場合。このケースでは`name:left=*` 及び`name:right=*`タグを使えます。" />
+<trap lang="nl" title="Sommige straten hebben niet aan elke kant dezelfde naam, vooral als&#10;de huizen aan beide kanten in verschillende steden liggen. In dit geval , kan je &#10;de tag `name:left=*` and `name:right=*` gebruiken." />
 </class>
 <class id="706" item="3020" source="http://example.com/plugins/Source.py#L43" level="1" tag="source,fix:chair">
 <classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
@@ -276,6 +285,7 @@
 <fix lang="de" title="Falls erforderlich, korrigiere Quelle und Verortung des Objekts. Stammen die Daten&#10;aus einer unzulässigen Quelle, informiere den Mapper umgehend,&#10;damit er seine Beiträge entfernen kann." />
 <fix lang="en" title="Correct the source and the location of the object if necessary. If the&#10;source is illegal, promptly notify the contributor to remove&#10;contributions." />
 <fix lang="ja" title="必要ならオブジェクトのソースと位置を修正します。ソースが違法なものであれば、投稿者にきちんとその投稿を削除するように伝えます。" />
+<fix lang="nl" title="Corrigeer indien nodig de bron en de locatie van het object. Als de&#10;bron illegaal is, stel de bijdrager onmiddellijk op de hoogte om de&#10;bijdrage te verwijderen ." />
 </class>
 <class id="707" item="2040" source="http://example.com/plugins/Source.py#L51" level="3" tag="source,fix:chair">
 <classtext lang="ca" title="Maca l'etiqueta source" />
@@ -301,11 +311,13 @@
 <detail lang="de" title="Diese Verwaltungsgrenze enthält keinen Tag, der die Datenquelle angibt." />
 <detail lang="en" title="An administrative boundary does not contain tag `source=*` sourcing&#10;the origin." />
 <detail lang="ja" title="行政界に情報源を示す `source=*` タグがありません。" />
+<detail lang="nl" title="Een administratieve grens bevat geen `source = *` tag voeg&#10;de bron toe." />
 <fix lang="de" title="Stammen die Grenzverläufe aus den französischen Katasterdaten, füge die passende Quelle mit&#10;`source=*` hinzu." />
 <fix lang="en" title="If the limit comes from the French Cadastre, add the appropriate&#10;`source=*`." />
 <fix lang="es" title="Si el límite proviene del Catastro francés, añada el `source=*&#10; apropiado." />
 <fix lang="fr" title="Si la limite provient du Cadastre Français, ajoutez le tag `source=*` approprié. " />
 <fix lang="ja" title="制限がフランスのCadastre由来のものであれば、適切な`source=*`を付けます。" />
+<fix lang="nl" title="Als de limiet afkomstig is van het Franse kadaster, voegt u de juiste `source = *` toe." />
 <fix lang="pl" title="Jeśli to ograniczenie pochodzi z francuskiego kadastru, dodaj odpowiednie źródło w `source=*`." />
 </class>
 <class id="803" item="5010" source="http://example.com/plugins/Name_UpperCase.py#L44" level="1" tag="name,fix:chair">
@@ -334,6 +346,7 @@
 <detail lang="pl" title="Ten obiekt ma nazwę pisaną wielkimi literami. W większości przypadków nazwę należy pisać wielką literą, nawet gdy nazwa wersalikami jest na szyldzie lub w logo firmy. Np. „Nokia”, nie „NOKIA”." />
 <trap lang="de" title="Es ist dennoch möglich, dass ein Name nur Großbuchstaben enthält.&#10;Dies gilt insbesondere für Firmen-/Markennamen oder Abkürzungen." />
 <trap lang="en" title="While uncommon, it is possible for a name to have uppercase words.&#10; This is particularly the case for corporate/branded locations as well as acronyms." />
+<trap lang="it" title="Anche se poco comune, è possibile che un nome abbia tutte le lettere maiuscole.&#10;Ciò succede particolarmente nel caso di sedi di marchi o aziende così come quando sono presenti acronimi." />
 <trap lang="ja" title="一般的ではありませんが、nameに大文字が使われることがあります。&#10; これはとりわけ頭文字と同様に企業/ブランドの位置に使われます。（訳注：日本では看板などにアルファベット大文字が表記されることは一般的です）" />
 <trap lang="pl" title="Nazwa składająca się z samych wielkich liter jest możliwa w przypadku, gdy jest skrótowcem, np. KFC, IBM." />
 </class>
@@ -362,6 +375,7 @@
 <detail lang="de" title="Für einige Elemente, darunter Berggipfel (natural=peak) und Gebirgspässe&#10;(mountain_pass=yes), kann die Höhenlage angegeben werden. Die Angabe erfolgt über das Tag&#10;ele=* in Metern." />
 <detail lang="en" title="Some elements, including the peak (natural=peak) and mountain_pass&#10;(mountain_pass=yes), has an elevation. This is shown in OSM with tag&#10;ele=* in meters." />
 <detail lang="ja" title="山頂 (natural=peak) や 峠(mountain_pass=yes) を含むエレメントの中には高度を含むものがあります。これはOSM内にele=* タグを使ってメートル単位で表示されています。" />
+<detail lang="nl" title="Enkele elementen, waaronder top (natural=peak) en  bergpassen&#10;(mountain_pass=yes), hebben een hoogte.. Dit wordt getoond in OSM met tag ele=* in meters." />
 <detail lang="pl" title="Niektóre obiekty, takie jak szczyt (`natural=peak`) czy przełęcz (`mountain_pass=yes`), powinny mieć podaną wysokość w tagu `ele=`." />
 <fix lang="de" title="Das fehlende Merkmal ele=* hinzufügen." />
 <fix lang="en" title="Complete the tag ele=* missing." />
@@ -527,6 +541,7 @@
 <detail lang="pl" title="Linia ma tag area=yes, ale nie jest zamknięta." />
 <detail lang="uk" title="Лінія з теґом area=yes, незамкнена." />
 <fix lang="en" title="If the object is not a surface, remove the tag `area=yes`, otherwise&#10;ensure that the way is a loop." />
+<fix lang="es" title="Si el objeto no es una superficie, elimine la etiqueta `area=yes`, de lo contrario asegúrese de que el camino sea un bucle." />
 <fix lang="ja" title="オブジェクトが表面でない場合、`area=yes`タグを削除するか、そのウェイががループしていることを確認します。" />
 <fix lang="nl" title="Als het object geen oppervlak is, verwijder dan de `area = yes` tag, anders&#10;zorg je ervoor dat de weg een lus is." />
 <fix lang="pl" title="Jeśli obiekt nie jest obszarem, usuń tag `area=yes`. W przeciwnym wypadku upewnij się, że ta linia jest pętlą." />
@@ -539,7 +554,7 @@
 <example lang="pl" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
 <example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
 </class>
-<class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L39" level="1" tag="value,fix:chair">
+<class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L40" level="1" tag="value,fix:chair">
 <classtext lang="de" title="Untypischer Wert" />
 <classtext lang="en" title="Bad tag value" />
 <classtext lang="es" title="Valor de etiqueta incorrecto" />
@@ -587,7 +602,9 @@
 <fix lang="pl" title="Sprawdź klucz tagu i popraw." />
 <fix lang="uk" title="Перевірте ключ теґу та виправте" />
 <trap lang="en" title="There certainly false positives." />
+<trap lang="es" title="Ciertamente hay falsos positivos." />
 <trap lang="eu" title="Ziurrekin positibo faltsuak daude." />
+<trap lang="fr" title="Ce sont probablement des faux-positifs." />
 <trap lang="ja" title="もちろん偽陽性（誤検出）はありえます。" />
 <trap lang="nl" title="Deze zijn zeker valse positieven." />
 <trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
@@ -608,6 +625,7 @@
 <classtext lang="zh_TW" title="重覆的數值" />
 <detail lang="de" title="Das Tag enthält zwei Werte (getrennt durch ';') die sehr&#10;ähnlich sind." />
 <detail lang="en" title="The tag contains two values (separated by ';') which are very&#10;similar." />
+<detail lang="es" title="La etiqueta contiene dos valores (separados por ';') que son muy similares." />
 <detail lang="ja" title="タグは(';'で区切られた)酷似した2つの値を含んでいます。" />
 <detail lang="nl" title="De tag bevat twee waarden (gescheiden door ';') die zeer vergelijkbaar zijn. " />
 <fix lang="de" title="Lösche einen Wert." />
@@ -621,6 +639,7 @@
 <fix lang="uk" title="Видаліть одне значення." />
 <trap lang="de" title="In einigen Fällen können alle Werte erforderlich sein." />
 <trap lang="en" title="In some case all values maybe required." />
+<trap lang="es" title="En algunos casos, se pueden necesitar todos los valores." />
 <trap lang="eu" title="Kasu batzuetan balio guztiak beharrezkoak dira." />
 <trap lang="ja" title="場合により、すべての値が必要となるかも知れません。" />
 <trap lang="nl" title="In sommige gevallen kunnen alle waarden vereist zijn." />
@@ -657,6 +676,7 @@
 <detail lang="pl" title="Tag zawiera wiele wartości." />
 <detail lang="uk" title="Теґ містить кілька значень." />
 <fix lang="en" title="Check the accuracy of the values, if necessary, delete the obsolete&#10;values." />
+<fix lang="es" title="Verifique la precisión de los valores, si es necesario, elimine los &#10;valores obsoletos." />
 <fix lang="hu" title="Ellenőrizze az értékek pontosságát, szükség szerint törölje az elavult értékeket." />
 <fix lang="ja" title="値の正確性を確認して、必要なら古い値を削除します。" />
 <fix lang="uk" title="Перевірте точність значень, при необхідності, видаліть застарілі&#10;значення." />
@@ -691,6 +711,7 @@
 <class id="3091" item="3091" source="http://example.com/plugins/Number.py#L38" level="2" tag="value,fix:chair">
 <classtext lang="de" title="Ungültiger numerischer Wert" />
 <classtext lang="en" title="Invalid numerical value" />
+<classtext lang="es" title="Valor numérico no válido" />
 <classtext lang="fr" title="Valeur numérique non valide" />
 <classtext lang="gl" title="Valor numérico inválido" />
 <classtext lang="hu" title="Érvénytelen számérték" />
@@ -699,15 +720,18 @@
 <classtext lang="pl" title="Niepoprawna wartość numeryczna" />
 <detail lang="de" title="Das Tag erfordert einen numerischen Wert mit Punkt als Dezimaltrennzeichen, kein Komma.&#10;Für Richtlinien zu numerischen Werten mit Einheiten, siehe [das Wiki](https://wiki.openstreetmap.org/wiki/DE:Map_Features/Units)." />
 <detail lang="en" title="The tag expects a numeric value with decimals using a period character&#10;and not a comma. \ For guidelines on numeric values with units see [the&#10;wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)." />
+<detail lang="es" title="La etiqueta espera un valor numérico con decimales usando un carácter&#10;de punto y no una coma. \ Para obtener pautas sobre valores numéricos &#10;con unidades, consulte [la wiki] (https://wiki.openstreetmap.org/wiki/Map_Features/Units)." />
 <detail lang="ja" title="このタグは10進数を想定しており小数点はピリオドであってカンマではありません。\ 単位付きの数値に関するガイドラインは[the wiki](https://wiki.openstreetmap.org/wiki/Map_Features/Units)参照。" />
 <detail lang="nl" title="De tag verwacht een numerieke waarde met decimalen met een punt-teken&#10;en geen komma. \Voor richtlijnen over numerieke waarden met eenheden, zie&#10;[het wiki] (https://wiki.openstreetmap.org/wiki/Map_Features/Units)." />
 <fix lang="de" title="Stelle sicher, dass der Wert numerisch und im korrekten Format eingetragen ist (mit gültigen Einheiten, falls erforderlich)." />
 <fix lang="en" title="Make sure the relevant tag value is numeric and in the expected format&#10;(with valid units if required)." />
+<fix lang="es" title="Asegúrese de que el valor de la etiqueta relevante sea numérico y tenga el formato esperado&#10;(con unidades válidas si es necesario)." />
 <fix lang="ja" title="関連するタグ値は数値であり、想定される形式(必要なら有効な単位付き)であることを確認してください。" />
 </class>
 <class id="3092" item="3091" source="http://example.com/plugins/Number.py#L47" level="2" tag="value,fix:chair">
 <classtext lang="de" title="Verdächtiger Zahlenwert" />
 <classtext lang="en" title="Suspicious numerical value" />
+<classtext lang="es" title="Valor numérico sospechoso" />
 <classtext lang="gl" title="Valor numérico sospeitoso" />
 <classtext lang="hu" title="Gyanús számérték" />
 <classtext lang="ja" title="疑わしい数値" />
@@ -715,12 +739,15 @@
 <classtext lang="pl" title="Podejrzana wartość numeryczna" />
 <detail lang="de" title="Das Merkmal weist einen ungewöhnlich hohen oder niedrigen Zahlenwert für&#10;das angegebene Tag auf." />
 <detail lang="en" title="The feature is tagged with an uncommonly high or low numeric value for&#10;the specified tag." />
+<detail lang="es" title="La función está etiquetada con un valor numérico excepcionalmente &#10;alto o bajo para la etiqueta especificada." />
 <detail lang="ja" title="指定されたタグとしてはこの地物は異常に高いあるいは低い数値でタグ付けされている。" />
 <fix lang="en" title="Check that the value is accurate. Consider whether another tag should&#10;be used if the value is valid." />
+<fix lang="es" title="Compruebe que el valor sea exacto. Considere si otra etiqueta debería &#10;se utilizará si el valor es válido." />
 <fix lang="ja" title="その値が正確かどうかチェックしてください。値が有効であれば、別のタグを使うべきかどうかよく考えてください。" />
 </class>
 <class id="3097" item="3092" source="http://example.com/plugins/Phone2.validator.mapcss" level="2" tag="tag">
 <classtext lang="en" title="Different value of tag contact:* and *" />
+<classtext lang="es" title="Valor diferente de las etiquetas contact: * y *" />
 <classtext lang="ja" title="contact:* と * タグとで値が異なる" />
 <classtext lang="nl" title="Verschillende waarden van contact:* en * tag" />
 </class>
@@ -749,6 +776,7 @@
 <detail lang="de" title="Dieses Tag gilt als überholt und sollte nicht mehr verwendet werden. Für eine Liste überholter Tags, siehe [das Wiki](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="en" title="The tag or combination key/value is no longer used. List of deprecated&#10;features comes from [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="ja" title="このタグまたはキー/値の組合せは今では使われていません。非推奨の地物の一覧は  [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)を参照しています" />
+<detail lang="nl" title="De tag of combinatie sleutel / waarde wordt niet meer. Lijst met verouderdefuncties komt van [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="pl" title="Ten tag lub połączenie klucz/wartość nie jest już używane.&#10;Lista przestarzałych tagów pochodzi z [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 </class>
 <class id="4060" item="4060" source="http://example.com/plugins/TagRemove_OpenSeaMap.py#L38" level="2" tag="waterway,fix:imagery">
@@ -942,6 +970,7 @@
 <detail lang="de" title="Die Relation besteht nur aus einem Mitglied." />
 <detail lang="en" title="The relation only contains one member." />
 <detail lang="es" title="La relación solo contiene un miembro." />
+<detail lang="fr" title="La relation ne contient qu'un seul membre." />
 <detail lang="ja" title="リレーションにはメンバーがひとつしかありません。" />
 <detail lang="nl" title="De relatie bevat slechts één lid. " />
 <detail lang="pl" title="Ta relacja ma tylko jeden człon." />
@@ -955,6 +984,7 @@
 <trap lang="de" title="Die Relation nicht löschen ohne zu verstehen, warum sie angelegt wurde." />
 <trap lang="en" title="Do not remove a relation without understanding why it is there." />
 <trap lang="es" title="No elimine una relación sin comprender por qué está allí." />
+<trap lang="fr" title="Ne pas retirer une relation sans comprendre pourquoi elle a été instaurée." />
 <trap lang="ja" title="リレーションがそこにある理由を理解せずに削除してはいけません。" />
 <trap lang="nl" title="Verwijder een relatie niet zonder te begrijpen waarom deze er is. " />
 <trap lang="pl" title="Nie usuwaj relacji, jeśli nie rozumiesz, dlaczego ona istnieje." />
@@ -992,6 +1022,7 @@
 <fix lang="de" title="Es handelt sich möglicherweise um ein Ufer `waterway=riverbank`." />
 <fix lang="en" title="It is probably a river bank `waterway=riverbank`." />
 <fix lang="es" title="Probablemente sea la orilla del río `waterway=riverbank`." />
+<fix lang="fr" title="C'est probablement le lit d'un cours d'eau `waterway=riverbank`" />
 <fix lang="ja" title="これはおそらく川岸`waterway=riverbank`です。" />
 <fix lang="nl" title="Het is waarschijnlijk een rivieroever `waterway=riverbank`." />
 <fix lang="uk" title="Це ймовірно берег річки `waterway=riverbank`." />
@@ -1092,6 +1123,7 @@
 <trap lang="de" title="Prüfen, ob es sich wirklich um eine Straße handelt und nicht bereits eingetragen wurde." />
 <trap lang="en" title="Check if it is really an highway and it is not already mapped." />
 <trap lang="ja" title="これが本当に道路で既にマッピングされていないかチェックしてください。" />
+<trap lang="nl" title="Controleer of het echt een weg is en of het niet al in kaart is gebracht." />
 <trap lang="pl" title="Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana." />
 </class>
 <class id="20801" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L54" level="1" tag="tag,highway,fix:chair">
@@ -1120,6 +1152,7 @@
 <trap lang="de" title="Prüfen, ob es sich wirklich um eine Straße handelt und nicht bereits eingetragen wurde." />
 <trap lang="en" title="Check if it is really an highway and it is not already mapped." />
 <trap lang="ja" title="これが本当に道路で既にマッピングされていないかチェックしてください。" />
+<trap lang="nl" title="Controleer of het echt een weg is en of het niet al in kaart is gebracht." />
 <trap lang="pl" title="Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana." />
 </class>
 <class id="20802" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L101" level="2" tag="highway">
@@ -1218,9 +1251,9 @@
 <detail lang="it" title="All’oggetto manca un tag che definisca che tipo di elemento sia. Ciò è inatteso per qualcosa con tag ‘name’." />
 <detail lang="ja" title="このオブジェクトには地物の種類を示すものがありません。`name` タグがある場合には何かしらの種類を示すタグがあることが想定されます。" />
 <detail lang="pl" title="Temu obiektowi brakuje podstawowego tagu, który opisuje, czym jest." />
-<fix lang="de" title="Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt handelt. Als Hauptmerkmale gelten (bei Bedarf mit den geeigneten Präfixen `disused:`, `abandoned:` and `historic:`):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `area:highway`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `cemetery`, `checkpoint`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
-<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `area:highway`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `cemetery`, `checkpoint`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
-<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `area:highway`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `cemetery`, `checkpoint`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="de" title="Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt handelt. Als Hauptmerkmale gelten (bei Bedarf mit den geeigneten Präfixen `disused:`, `abandoned:` and `historic:`):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `area:highway`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `cemetery`, `checkpoint`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `telecom`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="en" title="Add a top level tag to state what this feature is. Considered top level tags are (with derived `disused:`, `abandoned:` and `historic:` variants):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `area:highway`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `cemetery`, `checkpoint`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `telecom`, `tourism`, `traffic_sign`, `type`, `waterway`" />
+<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):&#10;&#10;`advertising`, `aerialway`, `aeroway`, `amenity`, `area:highway`, `attraction`, `barrier`, `boundary`, `building`, `building:part`, `cemetery`, `checkpoint`, `club`, `craft`, `emergency`, `entrance`, `ford`, `geological`, `golf`, `health_facility:type`, `healthcare`, `highway`, `historic`, `indoor`, `information`, `junction`, `landuse`, `leisure`, `man_made`, `military`, `mountain_pass`, `natural`, `office`, `piste:type`, `place`, `power`, `public_transport`, `railway`, `route`, `seamark:type`, `shop`, `sport`, `telecom`, `tourism`, `traffic_sign`, `type`, `waterway`" />
 <trap lang="de" title="Es kann sinnvoller sein, das Objekt vollständig zu entfernen, wenn es nicht nützlich ist." />
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 <trap lang="ja" title="有用でない場合はオブジェクトを完全に削除することが適切な場合があります。" />
@@ -1246,6 +1279,7 @@
 <detail lang="en" title="The relation is missing a `type` tag to define what it represents." />
 <detail lang="it" title="Alla relazione manca un tag ‘type’ che definisca cosa essa rappresenta." />
 <detail lang="ja" title="このリレーションにはそれが何を表しているかを定義する`type`タグがありません。" />
+<detail lang="nl" title="De relatie mist 'type' tag om te definiëren wat het vertegenwoordigt." />
 <detail lang="pl" title="Relacji brakuje tagu `type=*`." />
 </class>
 <class id="21201" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L97" level="3" tag="indoor">
@@ -1666,6 +1700,7 @@
 <detail lang="de" title="Level sollte verwendet werden für Gebäude, Geschäfte, Einrichtungen etc." />
 <detail lang="en" title="Level should be used for buildings, shops, amenities, etc." />
 <detail lang="ja" title="level は buildings, shops, amenityなどに使うべきです。" />
+<detail lang="nl" title="Niveau moet worden gebruikt voor gebouwen, winkels, voorzieningen, enz." />
 <detail lang="pl" title="Tag `level=*` powinien być używany ze sklepami, usługami itp." />
 <trap lang="de" title="Das level-Tag entfernen und prüfen, ob stattdessen das layer-Tag verwendet werden sollte." />
 <trap lang="en" title="Remove level and check if layer is needed instead" />
@@ -1704,10 +1739,10 @@
 <classtext lang="uk" title="{{0.key}}={{0.value}} з {{1.key}}={{1.value}}" />
 <classtext lang="zh_CN" title="{{0.key}}={{0.value}} 和 {{1.key}}={{1.value}}" />
 </class>
-<class id="30401" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure">
-<classtext lang="en" title="{{0.key}}={{0.value}} is invalid" />
+<class id="30401" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure,telecom">
+<classtext lang="en" title="{{0.key}}={{0.value}} is invalid. Should look like 12345ABC" />
 </class>
-<class id="30402" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure">
+<class id="30402" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure,power">
 <classtext lang="cs" title="Chybějící značka" />
 <classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
@@ -1726,7 +1761,7 @@
 <classtext lang="zh_CN" title="标签丢失" />
 <classtext lang="zh_TW" title="缺少標籤" />
 </class>
-<class id="30403" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure">
+<class id="30403" item="3040" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure,telecom">
 <classtext lang="cs" title="Chybějící značka" />
 <classtext lang="de" title="Fehlendes Merkmal" />
 <classtext lang="en" title="missing tag" />
@@ -1768,7 +1803,9 @@
 <fix lang="pl" title="Sprawdź klucz tagu i popraw." />
 <fix lang="uk" title="Перевірте ключ теґу та виправте" />
 <trap lang="en" title="There certainly false positives." />
+<trap lang="es" title="Ciertamente hay falsos positivos." />
 <trap lang="eu" title="Ziurrekin positibo faltsuak daude." />
+<trap lang="fr" title="Ce sont probablement des faux-positifs." />
 <trap lang="ja" title="もちろん偽陽性（誤検出）はありえます。" />
 <trap lang="nl" title="Deze zijn zeker valse positieven." />
 <trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
@@ -1797,7 +1834,9 @@
 <fix lang="pl" title="Sprawdź klucz tagu i popraw." />
 <fix lang="uk" title="Перевірте ключ теґу та виправте" />
 <trap lang="en" title="There certainly false positives." />
+<trap lang="es" title="Ciertamente hay falsos positivos." />
 <trap lang="eu" title="Ziurrekin positibo faltsuak daude." />
+<trap lang="fr" title="Ce sont probablement des faux-positifs." />
 <trap lang="ja" title="もちろん偽陽性（誤検出）はありえます。" />
 <trap lang="nl" title="Deze zijn zeker valse positieven." />
 <trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
@@ -1818,6 +1857,7 @@
 <classtext lang="zh_TW" title="相似的值" />
 <detail lang="de" title="Das Tag enthält zwei Werte (getrennt durch ';') die sehr&#10;ähnlich sind." />
 <detail lang="en" title="The tag contains two values (separated by ';') which are very&#10;similar." />
+<detail lang="es" title="La etiqueta contiene dos valores (separados por ';') que son muy similares." />
 <detail lang="ja" title="タグは(';'で区切られた)酷似した2つの値を含んでいます。" />
 <detail lang="nl" title="De tag bevat twee waarden (gescheiden door ';') die zeer vergelijkbaar zijn. " />
 <fix lang="de" title="Lösche einen Wert." />
@@ -1831,6 +1871,7 @@
 <fix lang="uk" title="Видаліть одне значення." />
 <trap lang="de" title="In einigen Fällen können alle Werte erforderlich sein." />
 <trap lang="en" title="In some case all values maybe required." />
+<trap lang="es" title="En algunos casos, se pueden necesitar todos los valores." />
 <trap lang="eu" title="Kasu batzuetan balio guztiak beharrezkoak dira." />
 <trap lang="ja" title="場合により、すべての値が必要となるかも知れません。" />
 <trap lang="nl" title="In sommige gevallen kunnen alle waarden vereist zijn." />
@@ -1892,7 +1933,7 @@
 <classtext lang="uk" title="Веб-лінк містить пробіл" />
 <classtext lang="zh_CN" title="链接包含空格" />
 </class>
-<class id="30932" item="3093" source="http://example.com/plugins/Website.py#L42" level="2" tag="value,fix:chair">
+<class id="30932" item="3093" source="http://example.com/plugins/Website.py#L42" level="3" tag="value,fix:chair">
 <classtext lang="cs" title="Adresa URL nemá platné schéma" />
 <classtext lang="de" title="Der URL hat kein gültiges Schema" />
 <classtext lang="en" title="The URL does not have a valid scheme" />
@@ -1945,6 +1986,7 @@
 <classtext lang="ru" title="Недопустимое значение числа полос" />
 <classtext lang="uk" title="Помилкове значення lanes" />
 <classtext lang="zh_CN" title="不良的车道值" />
+<detail lang="de" title="Nicht-numerischer Wert. `lanes=*` muss einen ganzzahligen Wert haben." />
 <detail lang="en" title="Non-numeric value, `lanes=*` must have an integer value." />
 <detail lang="fr" title="Valeur non-numérique : 'lanes=*' doit être un nombre entier. " />
 <detail lang="ja" title="数値でない、`lanes=*` は整数値" />
@@ -1965,6 +2007,7 @@
 <classtext lang="pl" title="Sprzeczność w użyciu *:lanes lub *:lanes:(forward|backward|both_ways)" />
 <classtext lang="uk" title="Конфлікт в застосуванні *:lanes або *:lanes:(forward|backward|both_ways)" />
 <classtext lang="zh_CN" title="使用之间的冲突 *:lanes 或 *:lanes:(forward|backward|both_ways)" />
+<detail lang="de" title="`forward`, `backward` und `both_ways` sollten bei einem Objekt&#10;nicht gleichzeitig als eigenes Tag und als Präfix verwendet werden." />
 <detail lang="en" title="You can not set at the same time a tag and the variante with this&#10;prefix `forward`, `backward`, `both_ways`." />
 <detail lang="ja" title="この接頭辞`forward`, `backward`, `both_ways`をタグとバリアントに&#10;同時にセットすることはできません。" />
 <detail lang="nl" title="Je kunt niet tegelijkertijd een tag en de variante instellen met&#10;prefix `forward`, `backward`, `both_ways`." />
@@ -2002,6 +2045,7 @@
 <classtext lang="pl" title="Niepoprawne użycie *:lanes:(backward|both_ways) na drodze jednokierunkowej" />
 <classtext lang="uk" title="Недійсне використання *:lanes:(backward|both_ways) на oneway highway" />
 <classtext lang="zh_CN" title="无效的使用 *:lanes:(backward|both_ways) 在单向公路上" />
+<detail lang="de" title="Attribute für Gegenspuren sollten nicht für Einbahnstraßen verwendet werden." />
 <detail lang="en" title="You can not set opposite lanes data on a one way." />
 <detail lang="es" title="No se puede definir datos de carriles opuestos en una vía." />
 <detail lang="ja" title="一方通行に対向レーンのデータをセットすることはできません。" />
@@ -2024,6 +2068,7 @@
 <classtext lang="zh_CN" title="未知车道值" />
 <detail lang="de" title="[Zulässige&#10;Werte](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 <detail lang="en" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
+<detail lang="es" title="[Valores&#10; válidos](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 <detail lang="ja" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 <detail lang="nl" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 </class>
@@ -2051,6 +2096,7 @@
 <detail lang="pl" title="Pas do skrętu w prawo musi być po prawej, a do skrętu w lewo po lewej." />
 </class>
 <class id="31608" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L59" level="2" tag="highway,fix:chair">
+<classtext lang="de" title='Unterschiede zwischen Fahrspurnummern mit gleichem Suffix ("", forward, backward oder both_ways)' />
 <classtext lang="en" title='Conflict between lanes number of same sufix ("", forward, backward or both_ways)' />
 <classtext lang="ja" title="接頭辞が同じ車線タグ ('', forward, backward, both_ways) で車線数に差異が存在" />
 <classtext lang="nl" title="Conflict tussen rijstroken nummers of zelfde sufix ('', forward, backward or both_ways)" />
@@ -2154,6 +2200,7 @@
 <classtext lang="uk" title="Помилкове значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="不良的parking:lane:[side]值" />
 <fix lang="en" title="See values at&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
+<fix lang="es" title="Ver valores en&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <fix lang="ja" title="[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)の値を参照。" />
 <fix lang="nl" title="Zie waarden op&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <fix lang="pl" title="Zobacz możliwe wartości [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)." />
@@ -2177,10 +2224,12 @@
 <classtext lang="ru" title="parking:condition:[side] без parking:lane:[side]" />
 <classtext lang="uk" title="parking:condition:[side] без значення parking:lane:[side]" />
 <classtext lang="zh_CN" title="parking:condition:[side] 无 parking:lane:[side] 值" />
+<detail lang="de" title="Eine Parkbedingung ist vorhanden, aber die Art des Parkplatzes ist nicht angegeben." />
 <detail lang="en" title="A parking condition is present but without parking kind." />
 <detail lang="es" title="Una condición de aparcamiento está presente pero sin tipo de aparcamiento." />
 <detail lang="fr" title="Une mention de stationnement est présente mais sans type de stationnement." />
 <detail lang="ja" title="駐車場の条件はありますが、駐車場の種類がありません。" />
+<detail lang="nl" title="Een parkeer gelegenheid is aanwezig maar zonder parkeersoort." />
 <detail lang="pl" title="Warunki parkowania, ale bez rodzaju parkowania." />
 </class>
 <class id="31617" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L54" level="3" tag="highway,parking,fix:survey">
@@ -2215,6 +2264,7 @@
 <classtext lang="uk" title="Неадекватна роль" />
 <classtext lang="zh_CN" title="作用不足" />
 <detail lang="en" title="The role is not a keyword as expected." />
+<detail lang="es" title="El rol no es una palabra clave como se esperaba." />
 <detail lang="ja" title="roleは想定されたキーワードではありません。" />
 <detail lang="nl" title="De rol is geen trefwoord zoals verwacht." />
 <detail lang="pl" title="Wartość `role` nie jest słowem kluczowym." />
@@ -2298,6 +2348,7 @@
 <detail lang="de" title="Das Objekt ist bereits durch seine Merkmale implizit keine Fläche." />
 <detail lang="en" title="This feature is already implicitly not an area." />
 <detail lang="ja" title="この地物は既にエリアではないという意味を含んでいます。" />
+<detail lang="nl" title="Deze functie is al geen gebied." />
 <fix lang="de" title="Entferne das `area=no` Tag." />
 <fix lang="en" title="Remove the `area=no` tag." />
 <fix lang="es" title="Eliminar la etiqueta `area=no`." />
@@ -2421,9 +2472,10 @@
 <detail lang="de" title="Dieses Tag gilt als überholt und sollte nicht mehr verwendet werden. Für eine Liste überholter Tags, siehe [das Wiki](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="en" title="The tag or combination key/value is no longer used. List of deprecated&#10;features comes from [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="ja" title="このタグまたはキー/値の組合せは今では使われていません。非推奨の地物の一覧は  [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)を参照しています" />
+<detail lang="nl" title="De tag of combinatie sleutel / waarde wordt niet meer. Lijst met verouderdefuncties komt van [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="pl" title="Ten tag lub połączenie klucz/wartość nie jest już używane.&#10;Lista przestarzałych tagów pochodzi z [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 </class>
-<class id="40103" item="4010" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="tag,infrastructure">
+<class id="40103" item="4010" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="tag,infrastructure,power">
 <classtext lang="cs" title="zastaralé značení" />
 <classtext lang="de" title="veraltete Merkmale" />
 <classtext lang="en" title="deprecated tagging" />
@@ -2443,7 +2495,7 @@
 <classtext lang="zh_CN" title="已弃用的标签" />
 <classtext lang="zh_TW" title="不建議的標籤" />
 </class>
-<class id="40104" item="4010" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure">
+<class id="40104" item="4010" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="ref,infrastructure,power">
 <classtext lang="cs" title="zastaralé značení" />
 <classtext lang="de" title="veraltete Merkmale" />
 <classtext lang="en" title="deprecated tagging" />
@@ -2538,6 +2590,7 @@
 <detail lang="en" title="`highway=road` has been used, choose a correct value, such as&#10;`highway=unclassified`." />
 <detail lang="es" title="Se ha utilizado `highway=road`, elige un valor correcto, como&#10;`highway=unclassified`." />
 <detail lang="ja" title="仮の値である`highway=road`が使われています。`highway=unclassified`などの正しい値を選んでください。" />
+<detail lang="nl" title="`highway=road` is gebruikt, kies een juiste waarde, zoals&#10;`highway=unclassified`." />
 </class>
 <class id="40612" item="4061" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="2" tag="parking,amenity,fix:chair">
 <classtext lang="en" title="Does this station still sell SP95, or has it been replaced by the SP95-E10?" />
@@ -2723,8 +2776,10 @@
 <detail lang="ja" title="言葉がその言語の適切なアルファベットで書かれていない。" />
 <detail lang="nl" title="Woorden zijn niet geschreven in het juiste alfabet van de taal." />
 <detail lang="pl" title="Słowa nie są zapisane odpowiednim alfabetem tego języka." />
+<fix lang="de" title="In der Regel wurde ein falsches Sprachkürzel gewählt. Manchmal wurde der&#10;Name transliteriert und sollte in das ursprüngliche Alphabet zurückgewandelt werden.&#10;`name:ar=Salaam` sollte entweder in `name:en=Salaam` (transkribiert),&#10;`name:en=Peace` (wörtlich übersetzt) und `name:ar=سلام` (original) geändert werden." />
 <fix lang="en" title="Usually, a wrong language has been chosen. Sometimes the word has been&#10;transliterated, and needs to be changed back to the original alphabet.&#10;`name:ar=Salaam` should be either `name:en=Salaam` (if known by&#10;untranslated name) or `name:en=Peace` (translated) or `name:ar=سلام`&#10;(original)." />
 <fix lang="ja" title="たいてい、誤った言語が選ばれています。しばしば言葉が翻字されており、オリジナルのアルファベットに戻す必要があります。&#10;`name:ar=Salaam` は`name:en=Salaam` (未翻訳名が知られている場合) または `name:en=Peace` (翻訳済) または `name:ar=سلام`&#10;(オリジナル) であるべきです。" />
+<fix lang="nl" title="Meestal is er een verkeerde taal gekozen. Soms is het woord&#10;getranslitereerd, en moet worden teruggezet naar het oorspronkelijke alfabet.&#10;`name:ar=Salaam` zou ofwel `name:en=Salaam` (indien bekend bij&#10;onvertaalde naam) of `name:en=Peace` (vertaald) of `name:ar=سلام`&#10;(origineel)." />
 </class>
 <class id="50702" item="5070" source="http://example.com/plugins/Name_Script.py#L53" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Netisknutelný znak" />
@@ -2782,6 +2837,7 @@
 <detail lang="uk" title="Використаний символ замість літери відповідної&#10;абетки." />
 <fix lang="de" title="Ändere das Zeichen in ein Satzzeichen oder anderes passenderes Zeichen." />
 <fix lang="en" title="Change the character into a punctuation mark or something else more&#10;appropriate." />
+<fix lang="es" title="Cambia el carácter por un signo de puntuación o algo más &#10;apropiado." />
 <fix lang="it" title="Cambia il carattere con un segno di interpunzione o qualcosa di più appropriato." />
 <fix lang="ja" title="文字を句読点などのより適切なものに変更します。" />
 </class>
@@ -2792,6 +2848,7 @@
 <classtext lang="fr" title="Guillemets ou crochets non équilibrés." />
 <classtext lang="hu" title="Hiányzó fél idézőjel vagy zárójel a névben" />
 <classtext lang="ja" title="name内の引用符またはかっこの係り受けが取れていない" />
+<classtext lang="nl" title="Onevenwichtig aanhalingsteken of haakje in naam" />
 <classtext lang="pl" title="Nierówna liczba nawiasów lub cudzysłowów" />
 <classtext lang="uk" title="Незбалансовані лапки або дужки в назві" />
 </class>
@@ -2922,7 +2979,7 @@
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
 </class>
-<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L80" level="1" tag="tag,highway">
+<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L81" level="1" tag="tag,highway">
 <classtext lang="en" title="Discordant maxspeed and source:maxspeed or maxspeed:type" />
 <classtext lang="gl" title="'maxspeed e 'source:maxspeed' ou 'maxspeed:type' difiren" />
 <classtext lang="ja" title="maxspeed と source:maxspeed または maxspeed:type が不一致" />
@@ -3406,6 +3463,9 @@
 <classtext lang="zh_CN" title="{{0.key}}的值反常" />
 </class>
 <class id="9002021" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
+<classtext lang="en" title="{{0.key}}={{0.value}} as a tag on an object. Roles are specified in the relation members list instead." />
+</class>
+<class id="9002022" item="9002" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/deprecated.mapcss" level="3" tag="tag,deprecated">
 <classtext lang="cs" title="{{0.key}}={{0.value}} je nekonkrétní" />
 <classtext lang="de" title="{{0.key}}={{0.value}} ist unspezifisch" />
 <classtext lang="en" title="{{0.key}}={{0.value}} is unspecific" />
@@ -3573,6 +3633,9 @@
 <classtext lang="pt_BR" title="{{1.key}}={{1.value}} de forma fechada. Deve ser usado de forma não fechada." />
 <classtext lang="ru" title="{{1.key}}={{1.value}} на замкнутой линии. Следует использовать на незамкнутой линии." />
 <classtext lang="uk" title="{{1.key}}={{1.value}} на замкненій лінії. Має використовуватись не незамкненій лінії." />
+</class>
+<class id="9003012" item="9003" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/geometry.mapcss" level="3" tag="geom">
+<classtext lang="en" title="{{0.key}} on a relation" />
 </class>
 <class id="9004001" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
 <classtext lang="ca" title="nom abreviat del carrer" />
@@ -3760,6 +3823,24 @@
 <classtext lang="pt_BR" title="O valor de {{0.key}} deve ser {{1.value}}, {{2.value}} ou {{3.value}}. Para calçadas, use sidewalk=left|right|both|no." />
 <classtext lang="ru" title="Значением {{0.key}} должно быть {{1.value}}, {{2.value}} или {{3.value}}. Для тротуаров вместо этого используйте sidewalk=left|right|both|no." />
 <classtext lang="uk" title="Значення для {{0.key}} має бути {{1.value}}, чи {{2.value}} або {{3.value}}. Для тротуарів натомість використовуйте sidewalk=left|right|both|no." />
+</class>
+<class id="9004014" item="9004" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/highway.mapcss" level="3" tag="tag,highway">
+<classtext lang="ca" title="valor no usual per a {{0.key}}" />
+<classtext lang="cs" title="neobvyklá hodnota {{0.key}}" />
+<classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}" />
+<classtext lang="en" title="unusual value of {{0.key}}" />
+<classtext lang="es" title="valor poco común de {{0.key}}" />
+<classtext lang="fr" title="valeur inhabituelle de {{0.key}}" />
+<classtext lang="hu" title="{{0.key}} értéke szokatlan" />
+<classtext lang="it" title="valore inusuale di {{0.key}}" />
+<classtext lang="ja" title="{{0.key}}は異常値です" />
+<classtext lang="nl" title="ongebruikelijke waarde van {{0.key}}" />
+<classtext lang="pl" title="Niespotykana wartość {{0.key}}" />
+<classtext lang="pt" title="valor incomum de  {{0.key}}" />
+<classtext lang="pt_BR" title="valor não usual de {{0.key}}" />
+<classtext lang="ru" title="необычное значение {{0.key}}" />
+<classtext lang="uk" title="незвичайне значення {{0.key}}" />
+<classtext lang="zh_CN" title="{{0.key}}的值反常" />
 </class>
 <class id="9005001" item="9005" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/multiple.mapcss" level="3" tag="tag,value">
 <classtext lang="ca" title="{{0.key}} amb valors múltiples" />
@@ -3970,54 +4051,6 @@
 <classtext lang="ru" title="необычное значение {{0.key}}: используйте . вместо , в качестве десятичного разделителя" />
 <classtext lang="uk" title='неочікуване значення {{0.key}}: використовуйте "."(крапку) замість "," (коми) як десятковий розділювач' />
 </class>
-<class id="9006018" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
-<classtext lang="cs" title="neobvyklá hodnota {{0.key}}: metr je výchozí jednotkou; desetinný oddělovač je tečka; uvádíte-li jednotky oddělte je mezerou" />
-<classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: Meter ist Standard; Punkt ist Dezimaltrennzeichen; bei Einheiten setzte ein Leerzeichen vor die Einheit" />
-<classtext lang="en" title="unusual value of {{0.key}}: meters is default; point is decimal separator; if units, put space then unit" />
-<classtext lang="es" title="valor inusual de {{0.key}}: la unidad por defecto es metros; el separador decimal es el punto; si está ingresando la unidad introduzca un espacio entre el número y la unidad" />
-<classtext lang="fr" title="valeur inhabituelle de {{0.key}}: en mètres par défaut; le point est le séparateur décimal; s’il faut des unités, mettre une espace puis l’unité" />
-<classtext lang="hu" title="{{0.key}} szokatlan érték: méter az alapértelmezett; pont a tizedes elválasztó; ha mértékegységet adsz meg, tegyél elé szóközt" />
-<classtext lang="it" title="valore inusuale di {{0.key}}: il metro è l’unità di misura predefinita; il separatore decimale è il punto; se aggiungi l’unità di misura, inserisci uno spazio poi l’unità" />
-<classtext lang="ja" title="{{0.key}}は異常値です: メートルがデフォルトの単位で小数点は数値の区切りです。もし、単位があるならばスペースを入れてから単位を入力してください" />
-<classtext lang="nl" title="ongebruikelijke waarde van {{0.key}}: meters is standaard; punt is decimaal scheidingsteken; indien eenheden, plaats spatie dan eenheid" />
-<classtext lang="pl" title="nietypowa wartość {{0.key}}: metry są domyślne; punkt to separator dziesiętny; jeśli jednostki, wstaw spację, a następnie jednostkę" />
-<classtext lang="pt" title="valor invulgar de {{0.key}}: a medida padrão é o metro; o ponto é o separador decimal; se especificar unidades, colocar espaço antes da unidade" />
-<classtext lang="pt_BR" title="valor incomum de {{0.key}}: metros é o padrão; ponto é separador decimal; se unidades, coloque espaço e unidade" />
-<classtext lang="ru" title="необычное значение {{0.key}}: по умолчанию метры; точка в качестве десятичного разделителя; при указании единицы измерения добавьте перед ней пробел" />
-<classtext lang="uk" title='неочікуване значення {{0.key}}: типово в метрах; використовуйте "."(крапку) як десятковий розділювач; перед одиницями виміру ставте пробіл' />
-</class>
-<class id="9006019" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
-<classtext lang="cs" title="neobvyklá hodnota {{0.key}}: tuna je výchozí jednotkou; desetinný oddělovač je tečka; uvádíte-li jednotky oddělte je mezerou" />
-<classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: Tonne ist Standard; Punkt ist Dezimaltrennzeichen; bei Einheiten setzte ein Leerzeichen vor die Einheit" />
-<classtext lang="en" title="unusual value of {{0.key}}: tonne is default; point is decimal separator; if units, put space then unit" />
-<classtext lang="es" title="valor inusual de {{0.key}}: la unidad por defecto es tonelada; el separador decimal es el punto; si está ingresando la unidad introduzca un espacio entre el número y la unidad" />
-<classtext lang="fr" title="valeur inhabituelle de {{0.key}}: tonne par défaut; le point est le séparateur décimal; s’il faut des unités, mettre une espace puis l’unité" />
-<classtext lang="hu" title="{{0.key}} szokatlan érték: tonna az alapértelmezett; pont a tizedes elválasztó; ha mértékegységet adsz meg, tegyél elé szóközt" />
-<classtext lang="it" title="valore inusuale di {{0.key}}: la tonnellata è l’unità di misura predefinita; il separatore decimale è il punto; se aggiungi l’unità di misura, inserisci uno spazio poi l’unità" />
-<classtext lang="ja" title="{{0.key}}は異常値です: トンがデフォルトの単位で小数点は数値の区切りです。もし、単位があるならばスペースを入れてから単位を入力してください" />
-<classtext lang="nl" title="ongebruikelijke waarde van {{0.key}}: ton is standaard; punt is decimaal scheidingsteken; indien eenheden, plaats spatie dan eenheid" />
-<classtext lang="pl" title="nietypowa wartość {{0.key}}: tona jest domyślna; punkt to separator dziesiętny; jeśli jednostki, wstaw spację, a następnie jednostkę" />
-<classtext lang="pt" title="valor invulgar de {{0.key}}: a medida padrão é a tonelada; o ponto é o separador decimal; se especificar unidades, colocar espaço antes da unidade" />
-<classtext lang="pt_BR" title="valor incomum de {{0.key}}: tonelada é o padrão; ponto é separador decimal; se unidades, coloque espaço e unidade" />
-<classtext lang="ru" title="необычное значение {{0.key}}: по умолчанию тонны; точка в качестве десятичного разделителя; при указании единицы измерения добавьте перед ней пробел" />
-<classtext lang="uk" title='неочікуване значення {{0.key}}: типово в тонах; використовуйте "."(крапку) як десятковий розділювач; перед одиницями виміру ставте пробіл' />
-</class>
-<class id="9006020" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
-<classtext lang="cs" title="neobvyklá hodnota {{0.key}}: kilometr je výchozí jednotkou; desetinný oddělovač je tečka; uvádíte-li jednotky oddělte je mezerou" />
-<classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: Kilometer ist Standard; Punkt ist Dezimaltrennzeichen; bei Einheiten setzte ein Leerzeichen vor die Einheit" />
-<classtext lang="en" title="unusual value of {{0.key}}: kilometers is default; point is decimal separator; if units, put space then unit" />
-<classtext lang="es" title="valor inusual de {{0.key}}: la unidad por defecto es kilómetro; el separador decimal es el punto; si está ingresando la unidad introduzca un espacio entre el número y la unidad" />
-<classtext lang="fr" title="valeur inhabituelle de {{0.key}}: en kilomètres par défaut; le point est le séparateur décimal; s’il faut des unités, mettre une espace puis l’unité" />
-<classtext lang="hu" title="{{0.key}} szokatlan érték: kilométer az alapértelmezett; pont a tizedes elválasztó; ha mértékegységet adsz meg, tegyél elé szóközt" />
-<classtext lang="it" title="valore inusuale di {{0.key}}: il kilometro è l’unità di misura predefinita; il separatore decimale è il punto; se aggiungi l’unità di misura, inserisci uno spazio poi l’unità" />
-<classtext lang="ja" title="{{0.key}}は異常値です: キロメートルがデフォルトの単位で小数点は数値の区切りです。もし、単位があるならばスペースを入れてから単位を入力してください" />
-<classtext lang="nl" title="ongebruikelijke waarde van {{0.key}}: kilometers is standaard; punt is decimaal scheidingsteken; indien eenheden, plaats spatie dan eenheid" />
-<classtext lang="pl" title="nietypowa wartość {{0.key}}: kilometry są domyślne; punkt to separator dziesiętny; jeśli jednostki, wstaw spację, a następnie jednostkę" />
-<classtext lang="pt" title="valor invulgar de {{0.key}}: a medida padrão é o quilómetro; o ponto é o separador decimal; se especificar unidades, colocar espaço antes da unidade" />
-<classtext lang="pt_BR" title="valor incomum de {{0.key}}: quilômetros é o padrão; ponto é separador decimal; se unidades, coloque espaço e unidade" />
-<classtext lang="ru" title="необычное значение {{0.key}}: по умолчанию километры; точка в качестве десятичного разделителя; при указании единицы измерения добавьте перед ней пробел" />
-<classtext lang="uk" title='неочікуване значення {{0.key}}: типово в кілометрах; використовуйте "."(крапку) як десятковий розділювач; перед одиницями виміру ставте пробіл' />
-</class>
 <class id="9006021" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
 <classtext lang="cs" title="Nepotřebný počet desetinných míst" />
 <classtext lang="de" title="Überflüssige Anzahl von Dezimalstellen" />
@@ -4042,7 +4075,10 @@
 <classtext lang="ru" title="Теги аэропорта" />
 <classtext lang="uk" title="Теґування аеропортів" />
 </class>
-<class id="9006023" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
+<class id="9006023" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="2" tag="tag,value">
+<classtext lang="en" title="negative {{0.key}} value" />
+</class>
+<class id="9006024" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
 <classtext lang="cs" title="neobvyklá hodnota {{0.key}}: použijte zkratku jednotky a mezery mezi hodnotou a jednotkou" />
 <classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: nutze die Abkürzung der Einheit und Leerzeichen zwischen Zahlenwert und Einheit" />
 <classtext lang="en" title="unusual value of {{0.key}}: use abbreviation for unit and space between value and unit" />
@@ -4054,7 +4090,29 @@
 <classtext lang="ru" title="необычное значение {{0.key}}: используйте сокращение для единиц измерения и пробел между значением и единицей" />
 <classtext lang="uk" title="незвичайне значення у {{0.key}}: використовуйте одиниці виміру через пробіл від значення" />
 </class>
-<class id="9006024" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
+<class id="9006025" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
+<classtext lang="cs" title="zbytečná značka" />
+<classtext lang="de" title="unnötiges Merkmal" />
+<classtext lang="en" title="unnecessary tag" />
+<classtext lang="es" title="Etiqueta innecesaria" />
+<classtext lang="fr" title="clé superflue" />
+<classtext lang="gl" title="etiqueta innecesaria" />
+<classtext lang="hu" title="fölösleges címke" />
+<classtext lang="it" title="etichetta non necessaria" />
+<classtext lang="ja" title="不要なタグ" />
+<classtext lang="nl" title="onnodige tag" />
+<classtext lang="pl" title="zbędny znacznik" />
+<classtext lang="pt" title="etiqueta desnecessária" />
+<classtext lang="pt_BR" title="tag desnecessária" />
+<classtext lang="ru" title="ненужный тег" />
+<classtext lang="uk" title="непотрібний теґ" />
+<classtext lang="zh_CN" title="多余的标签" />
+<classtext lang="zh_TW" title="不需要的標籤" />
+</class>
+<class id="9006026" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
+<classtext lang="en" title="unusual value of {0.key}: kilometers is default; only positive values; point is decimal separator; if units, put space then unit" />
+</class>
+<class id="9006027" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
 <classtext lang="ca" title="La definició de {{0.key}}={{0.value}} no és clara" />
 <classtext lang="cs" title="Definice {{0.key}}={{0.value}} je nejasná" />
 <classtext lang="de" title="Definition von {{0.key}}={{0.value}} ist unklar" />
@@ -4073,7 +4131,7 @@
 <classtext lang="zh_CN" title="{{0.key}}={{0.value}} 的定义模糊" />
 <classtext lang="zh_TW" title="{{0.key}}={{0.value}} 的定義不清楚" />
 </class>
-<class id="9006025" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
+<class id="9006028" item="9006" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/numeric.mapcss" level="3" tag="tag,value">
 <classtext lang="cs" title="neobvyklá hodnota {{0.key}}: nastavte jednotky např. minutes, nebo hours; pouze kladná čísla; desetinná tečka; mezera mezi hodnotou a jednotkou" />
 <classtext lang="de" title="ungewöhnlicher Wert von {{0.key}}: lege die Einheit fest, z. B. minutes oder hours; nur positive Werte; Punkt ist Dezimaltrennzeichen; Leerzeichen zwischen Wert und Einheit" />
 <classtext lang="en" title="unusual value of {{0.key}}: set unit e.g. minutes or hours; only positive values; point is decimal separator; space between value and unit" />
@@ -4946,6 +5004,25 @@
 <classtext lang="en" title="validation rules nat_ref in France" />
 </class>
 <class id="9019003" item="9019" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3">
+<classtext lang="cs" title="Chybějící značka" />
+<classtext lang="de" title="Fehlendes Merkmal" />
+<classtext lang="en" title="missing tag" />
+<classtext lang="es" title="Etiqueta extraña" />
+<classtext lang="fr" title="attribut manquant" />
+<classtext lang="hu" title="hiányzó címke" />
+<classtext lang="it" title="etichetta mancante" />
+<classtext lang="ja" title="タグが欠落している" />
+<classtext lang="lt" title="trūkstama žyma" />
+<classtext lang="nl" title="ontbrekende tag" />
+<classtext lang="pl" title="brakujący znacznik" />
+<classtext lang="pt" title="falta etiqueta" />
+<classtext lang="pt_BR" title="faltando etiqueta" />
+<classtext lang="ru" title="отсутствующий тег" />
+<classtext lang="uk" title="відсутній теґ" />
+<classtext lang="zh_CN" title="标签丢失" />
+<classtext lang="zh_TW" title="缺少標籤" />
+</class>
+<class id="9019004" item="9019" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3">
 <classtext lang="en" title="Unusual ref for motorway_junction; use of 'ref=*' for the exit destination ref?" />
 </class>
 <class id="50109001" item="5010" source="http://example.com/plugins/Name_MisspelledWordByRegex_Lang_fa.validator.mapcss" level="2" tag="name,fix:chair">
