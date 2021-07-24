@@ -120,7 +120,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                             .replace("none", "N").replace(";", "").split("|")
                         t = ''.join(map(lambda e: "N" if len(e) == 0 else " " if e[0] != e[-1] else e[0], map(sorted, t)))
                         t = t.replace('U', '') # Ignore reverse
-                        # Ignore single none on the outside lanes: it could be a bus lane 
+                        # Ignore single none on the outside lanes: it could be a bus lane
                         t = t.replace('rN', 'r').replace('Nl', 'l').replace('N', ' ')
                         last_left = self.rindex_(t, "l")
                         first_space = self.index_(t, " ")
