@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import SourceIGN, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Reservoir_FR(Analyser_Merge_Dynamic):
@@ -71,7 +71,7 @@ class SubAnalyser_Merge_Reservoir_FR(SubAnalyser_Merge_Dynamic):
         self.init(
             "https://ign.fr",
             "IGN-Construction ponctuelle",
-            GPKG(Source(attribution = "IGN", millesime = "09/2020", gzip = True,
+            GPKG(SourceIGN(attribution = "IGN", gzip = True,
                     fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/reservoir.gpkg.gz")),
             LoadGeomCentroid(
                 select = select),

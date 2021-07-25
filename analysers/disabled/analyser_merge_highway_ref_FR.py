@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceIGN, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
@@ -33,7 +33,7 @@ class Analyser_Merge_Highway_Ref_FR(Analyser_Merge):
         self.init(
             "https://ign.fr",
             "IGN-Point de repère",
-            GPKG(Source(attribution = "IGN", millesime = "09/2020", gzip = True,
+            GPKG(SourceIGN(attribution = "IGN", gzip = True,
                     fileUrl = "http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/point_de_repere.gpkg.gz")),
             LoadGeomCentroid(
                 where = lambda res: res["route"][0] in ('A', 'D', 'N'),
