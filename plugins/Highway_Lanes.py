@@ -121,7 +121,12 @@ side* and `the merge_to_left` on the *right side*.'''))
                         t = ''.join(map(lambda e: "N" if len(e) == 0 else " " if e[0] != e[-1] else e[0], map(sorted, t)))
                         t = t.replace('U', '') # Ignore reverse
                         # Ignore single none on the outside lanes: it could be a bus lane
-                        t = t.replace('rN', 'r').replace('Nl', 'l').replace('N', ' ')
+                        # Treat all other nones as throughs (multiple bus lanes or a dedicated lane in between two turns is unlikely)
+                        if t[0:2] == "Nl":
+                            t = t[1:]
+                        if t[-2:] == "rN":
+                            t = t[0:-1]
+                        t = t.replace('N', ' ')
                         last_left = self.rindex_(t, "l")
                         first_space = self.index_(t, " ")
                         last_space = self.rindex_(t, " ")
