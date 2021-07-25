@@ -111,14 +111,22 @@ side* and `the merge_to_left` on the *right side*.'''))
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
                         t = tags_lanes[tl] \
-                            .replace("left", "l").replace("slight_left", "l").replace("sharp_left", "l") \
+                            .replace("slight_left", "l").replace("sharp_left", "l") \
                             .replace("through", " ") \
-                            .replace("right", "r").replace("slight_right", "r").replace("sharp_right", "r") \
+                            .replace("slight_right", "r").replace("sharp_right", "r") \
                             .replace("reverse", "U") \
                             .replace("merge_to_left", "r").replace("merge_to_right", "l") \
-                            .replace("none", " ").replace(";", "").split("|")
-                        t = ''.join(map(lambda e: " " if len(e) == 0 or e[0] != e[-1] else e[0], map(sorted, t)))
+                            .replace("left", "l").replace("right", "r") \
+                            .replace("none", "N").replace(";", "").split("|")
+                        t = ''.join(map(lambda e: "N" if len(e) == 0 else " " if e[0] != e[-1] else e[0], map(sorted, t)))
                         t = t.replace('U', '') # Ignore reverse
+                        # Ignore single none on the outside lanes: it could be a bus lane
+                        # Treat all other nones as throughs (multiple bus lanes or a dedicated lane in between two turns is unlikely)
+                        if t[0:2] == "Nl":
+                            t = t[1:]
+                        if t[-2:] == "rN":
+                            t = t[0:-1]
+                        t = t.replace('N', ' ')
                         last_left = self.rindex_(t, "l")
                         first_space = self.index_(t, " ")
                         last_space = self.rindex_(t, " ")
@@ -314,6 +322,7 @@ class Test(TestPluginCommon):
 
         for t in [{"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left||right"},
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;right|right"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "4", "turn:lanes": "left|left;right|right|none"},
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;right|merge_to_left"},
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;left|merge_to_left"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
@@ -325,10 +334,12 @@ class Test(TestPluginCommon):
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
 
-        for t in [{"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|right|"},
+        for t in [{"highway": "residential", "oneway": "yes", "lanes": "4", "turn:lanes": "left|right||"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|right|through"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "right|left"},
                   {"highway": "another", "turn:lanes": "merge_to_left"},
                   {"highway": "another", "turn:lanes": "merge_to_left|none"},
                   {"highway": "another", "turn:lanes": "none|merge_to_right"},
+                  {"highway": "another", "turn:lanes": "slight_right|through|right"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
