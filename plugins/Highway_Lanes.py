@@ -111,7 +111,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                                 err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
                                 err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
-                            elif (t != tt and t[0:9] == "merge_to_"):
+                            elif (not unknown and t != tt and t[0:9] == "merge_to_"):
                                 # merge_to_* ;-separated with another turn
                                 err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
                         i += 1
