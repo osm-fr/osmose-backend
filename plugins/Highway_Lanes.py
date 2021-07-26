@@ -105,14 +105,20 @@ side* and `the merge_to_left` on the *right side*.'''))
                     unknown = False
                     i = 0
                     for tt in ttt:
+                        hasTurn = False
+                        hasMerge = False
                         for t in set(tt.split(";")):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
                                 err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
                                 err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
-                            elif (not unknown and t != tt and t[0:9] == "merge_to_"):
-                                # merge_to_* ;-separated with another turn
+                            elif (not unknown and t[0:9] == "merge_to_"):
+                                hasMerge = True
+                            elif (not unknown):
+                                hasTurn = True
+                            if (not unknown and hasMerge and hasTurn):
+                                # a combination of merge_to_* with a turn (other than another merge_to_*)
                                 err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
                         i += 1
                     if not unknown:
@@ -333,6 +339,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;right|merge_to_left"},
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;left|merge_to_left"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|merge_to_left;merge_to_right|right"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
