@@ -1447,18 +1447,18 @@ msgstr ""
 msgid "Unknown turn lanes value \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:185
+#: ../plugins/Highway_Lanes.py:193
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:241
+#: ../plugins/Highway_Lanes.py:249
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:246
+#: ../plugins/Highway_Lanes.py:254
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -1466,20 +1466,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:248
+#: ../plugins/Highway_Lanes.py:256
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:250
+#: ../plugins/Highway_Lanes.py:258
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:252
+#: ../plugins/Highway_Lanes.py:260
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -3755,35 +3755,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1052
+#: ../analysers/Analyser_Merge.py:1058
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1055
+#: ../analysers/Analyser_Merge.py:1061
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1060
+#: ../analysers/Analyser_Merge.py:1066
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1073
+#: ../analysers/Analyser_Merge.py:1079
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1086
+#: ../analysers/Analyser_Merge.py:1092
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1048
+#: ../analysers/Analyser_Merge.py:1054
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
