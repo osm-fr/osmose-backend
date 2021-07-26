@@ -68,6 +68,10 @@ the number of lanes.'''))
 '''The `merge_to_right` or `merge_to_left` lane must be on the same way
 as the destination lane and the `merge_to_right` must be on the *left
 side* and `the merge_to_left` on the *right side*.'''))
+        self.errors[316011] = self.def_class(item = 3160, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Combined merge and turn lane'),
+            detail = T_(
+'''It is very unlikely that merge_to_* and a regular turn will be combined in one lane.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -89,7 +93,7 @@ side* and `the merge_to_left` on the *right side*.'''))
 
         err = []
 
-        # Check trun lanes values
+        # Check turn lanes values
         tl = "turn:lanes" in tags_lanes
         tlf = "turn:lanes:forward" in tags_lanes
         tlb = "turn:lanes:backward" in tags_lanes
@@ -107,6 +111,9 @@ side* and `the merge_to_left` on the *right side*.'''))
                                 err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
                                 err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
+                            elif (t != tt and t[0:9] == "merge_to_"):
+                                # a merge_to_* ;-separated with another turn lane 
+                                err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)}})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
@@ -340,6 +347,7 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "merge_to_left"},
                   {"highway": "another", "turn:lanes": "merge_to_left|none"},
                   {"highway": "another", "turn:lanes": "none|merge_to_right"},
+                  {"highway": "another", "turn:lanes": "merge_to_right;through|through"},
                   {"highway": "another", "turn:lanes": "slight_right|through|right"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
