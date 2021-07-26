@@ -71,7 +71,7 @@ side* and `the merge_to_left` on the *right side*.'''))
         self.errors[316011] = self.def_class(item = 3160, level = 3, tags = ['highway', 'fix:chair'],
             title = T_('Combined merge and turn lane'),
             detail = T_(
-'''It is very unlikely that merge_to_* and a regular turn will be combined in one lane.'''))
+'''It is unlikely that merge_to_* and a regular turn are indicated on a single lane.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -113,7 +113,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                                 err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
                             elif (t != tt and t[0:9] == "merge_to_"):
                                 # a merge_to_* ;-separated with another turn lane 
-                                err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)}})
+                                err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
