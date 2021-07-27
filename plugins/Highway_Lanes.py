@@ -113,14 +113,14 @@ side* and `the merge_to_left` on the *right side*.'''))
 
                         if ("merge_to_left" in settt and i == 0) or ("merge_to_right" in settt and i == len(ttt) - 1):
                             # A lane must exist in the merging direction
-                            err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
+                            err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + tt + '|' + str(i))})
 
                         elif (not unknown and len(settt) > 1 and
                               ((len(settt) > 2 and ("merge_to_right" in settt or "merge_to_left" in settt)) or
                                ("merge_to_right" in settt and not "merge_to_left" in settt) or
                                ("merge_to_left" in settt and not "merge_to_right" in settt))):
                             # a combination of merge_to_* with a turn (other than another merge_to_*)
-                            err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
+                            err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
 
                         i += 1
                     if not unknown:
