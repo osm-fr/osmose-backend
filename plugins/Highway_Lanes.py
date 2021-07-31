@@ -102,20 +102,20 @@ side* and `the merge_to_left` on the *right side*.'''))
             for tl in ["turn:lanes", "turn:lanes:forward", "turn:lanes:backward", "turn:lanes:both_ways"]:
                 if tl in tags_lanes:
                     ttt = tags_lanes[tl].split("|")
-                    unknown = False
+                    unknown_turn_lanes_value = False
                     i = 0
                     for tt in ttt:
                         settt = set(tt.split(";"))
                         for t in settt:
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
-                                unknown = True
+                                unknown_turn_lanes_value = True
                                 err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Unknown turn lanes value \"{0}\"", t)})
 
                         if ("merge_to_left" in settt and i == 0) or ("merge_to_right" in settt and i == len(ttt) - 1):
                             # A lane must exist in the merging direction
                             err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + tt + '|' + str(i))})
 
-                        elif (not unknown and len(settt) > 1 and
+                        elif (not unknown_turn_lanes_value and len(settt) > 1 and
                               ((len(settt) > 2 and ("merge_to_right" in settt or "merge_to_left" in settt)) or
                                ("merge_to_right" in settt and not "merge_to_left" in settt) or
                                ("merge_to_left" in settt and not "merge_to_right" in settt))):
@@ -123,7 +123,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                             err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
 
                         i += 1
-                    if not unknown:
+                    if not unknown_turn_lanes_value:
                         # merge_to_left is a on the right and vice versa
                         t = tags_lanes[tl] \
                             .replace("slight_left", "l").replace("sharp_left", "l") \
