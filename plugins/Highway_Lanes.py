@@ -72,6 +72,10 @@ side* and `the merge_to_left` on the *right side*.'''))
             title = T_('Combined merge and turn lane'),
             detail = T_(
 '''It is unlikely that merge_to_* and a regular turn are indicated on a single lane.'''))
+        self.errors[316012] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Combined `none` and indicated turn'),
+            detail = T_(
+'''A `none` (or empty value) turn lane cannot be combined with other types of turns within the same lane.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -115,11 +119,16 @@ side* and `the merge_to_left` on the *right side*.'''))
                             # A lane must exist in the merging direction
                             err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + tt + '|' + str(i))})
 
+                        elif (not unknown_turn_lanes_value and len(settt) > 1 and ("none" in settt or "" in settt)):
+                            # A single turn lane containing both `none` and `something`
+                            if (not ("none" in settt and "" in settt and len(settt) == 2)):
+                                err.append({"class": 316012, "subclass": 3 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined none and indicated turn: \"{0}\"", tt)})
+
                         elif (not unknown_turn_lanes_value and len(settt) > 1 and
                               ((len(settt) > 2 and ("merge_to_right" in settt or "merge_to_left" in settt)) or
                                ("merge_to_right" in settt and not "merge_to_left" in settt) or
                                ("merge_to_left" in settt and not "merge_to_right" in settt))):
-                            # a combination of merge_to_* with a turn (other than another merge_to_*)
+                            # A combination of merge_to_* with a turn (other than another merge_to_*)
                             err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
 
                         i += 1
@@ -356,6 +365,7 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "merge_to_left"},
                   {"highway": "another", "turn:lanes": "merge_to_left|none"},
                   {"highway": "another", "turn:lanes": "none|merge_to_right"},
+                  {"highway": "another", "turn:lanes": "none;right"},
                   {"highway": "another", "turn:lanes": "merge_to_right;through|through"},
                   {"highway": "another", "turn:lanes": "slight_right|through|right"},
                  ]:
