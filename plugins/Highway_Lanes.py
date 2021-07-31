@@ -69,13 +69,13 @@ the number of lanes.'''))
 as the destination lane and the `merge_to_right` must be on the *left
 side* and `the merge_to_left` on the *right side*.'''))
         self.errors[316011] = self.def_class(item = 3160, level = 3, tags = ['highway', 'fix:chair'],
-            title = T_('Combined merge and turn lane'),
+            title = T_('Merge lane and other turn lane in a single lane'),
             detail = T_(
-'''It is unlikely that merge_to_* and a regular turn are indicated on a single lane.'''))
+'''It is unlikely that merge_to_* and another turn lane value are indicated on a single lane.'''))
         self.errors[316012] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Combined `none` and indicated turn'),
+            title = T_('Indicated turn lane together with `none`'),
             detail = T_(
-'''A `none` (or empty value) turn lane cannot be combined with other types of turns within the same lane.'''))
+'''A `none` (or empty value) turn lane cannot be combined with other types of turn lanes within the same lane.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -122,14 +122,14 @@ side* and `the merge_to_left` on the *right side*.'''))
                         elif (not unknown_turn_lanes_value and len(settt) > 1 and ("none" in settt or "" in settt)):
                             # A single turn lane containing both `none` and `something`
                             if (not ("none" in settt and "" in settt and len(settt) == 2)):
-                                err.append({"class": 316012, "subclass": 3 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined none and indicated turn: \"{0}\"", tt)})
+                                err.append({"class": 316012, "subclass": 3 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined none and indicated turn lane: \"{0}\"", tt)})
 
                         elif (not unknown_turn_lanes_value and len(settt) > 1 and
                               ((len(settt) > 2 and ("merge_to_right" in settt or "merge_to_left" in settt)) or
                                ("merge_to_right" in settt and not "merge_to_left" in settt) or
                                ("merge_to_left" in settt and not "merge_to_right" in settt))):
                             # A combination of merge_to_* with a turn (other than another merge_to_*)
-                            err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined merge and turn lane: \"{0}\"", tt)})
+                            err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Merge together with another turn lane: \"{0}\"", tt)})
 
                         i += 1
                     if not unknown_turn_lanes_value:
