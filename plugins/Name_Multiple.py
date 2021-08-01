@@ -27,6 +27,8 @@ import re
 
 class Name_Multiple(Plugin):
 
+    not_for = ["ES-NC", "ES-PV", "ES-AS"]
+
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[705] = self.def_class(item = 5030, level = 1, tags = ['name', 'fix:survey'],
