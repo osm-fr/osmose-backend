@@ -68,6 +68,14 @@ the number of lanes.'''))
 '''The `merge_to_right` or `merge_to_left` lane must be on the same way
 as the destination lane and the `merge_to_right` must be on the *left
 side* and `the merge_to_left` on the *right side*.'''))
+        self.errors[316011] = self.def_class(item = 3160, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Merge lane and other turn lane in a single lane'),
+            detail = T_(
+'''It is unlikely that merge_to_* and another turn lane value are indicated on a single lane.'''))
+        self.errors[316012] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Indicated turn lane together with `none`'),
+            detail = T_(
+'''A `none` (or empty value) turn lane cannot be combined with other types of turn lanes within the same lane.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -89,7 +97,7 @@ side* and `the merge_to_left` on the *right side*.'''))
 
         err = []
 
-        # Check trun lanes values
+        # Check turn lanes values
         tl = "turn:lanes" in tags_lanes
         tlf = "turn:lanes:forward" in tags_lanes
         tlb = "turn:lanes:backward" in tags_lanes
@@ -98,17 +106,33 @@ side* and `the merge_to_left` on the *right side*.'''))
             for tl in ["turn:lanes", "turn:lanes:forward", "turn:lanes:backward", "turn:lanes:both_ways"]:
                 if tl in tags_lanes:
                     ttt = tags_lanes[tl].split("|")
-                    unknown = False
+                    unknown_turn_lanes_value = False
                     i = 0
                     for tt in ttt:
-                        for t in set(tt.split(";")):
+                        settt = set(tt.split(";"))
+                        for t in settt:
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
-                                unknown = True
+                                unknown_turn_lanes_value = True
                                 err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Unknown turn lanes value \"{0}\"", t)})
-                            if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
-                                err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + t + '|' + str(i))})
+
+                        if ("merge_to_left" in settt and i == 0) or ("merge_to_right" in settt and i == len(ttt) - 1):
+                            # A lane must exist in the merging direction
+                            err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + tt + '|' + str(i))})
+
+                        elif (not unknown_turn_lanes_value and len(settt) > 1 and ("none" in settt or "" in settt)):
+                            # A single turn lane containing both `none` and `something`
+                            if (not ("none" in settt and "" in settt and len(settt) == 2)):
+                                err.append({"class": 316012, "subclass": 3 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined none and indicated turn lane: \"{0}\"", tt)})
+
+                        elif (not unknown_turn_lanes_value and len(settt) > 1 and
+                              ((len(settt) > 2 and ("merge_to_right" in settt or "merge_to_left" in settt)) or
+                               ("merge_to_right" in settt and not "merge_to_left" in settt) or
+                               ("merge_to_left" in settt and not "merge_to_right" in settt))):
+                            # A combination of merge_to_* with a turn (other than another merge_to_*)
+                            err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Merge together with another turn lane: \"{0}\"", tt)})
+
                         i += 1
-                    if not unknown:
+                    if not unknown_turn_lanes_value:
                         # merge_to_left is a on the right and vice versa
                         t = tags_lanes[tl] \
                             .replace("slight_left", "l").replace("sharp_left", "l") \
@@ -326,6 +350,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;right|merge_to_left"},
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;left|merge_to_left"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|merge_to_left;merge_to_right|right"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
@@ -340,6 +365,8 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "merge_to_left"},
                   {"highway": "another", "turn:lanes": "merge_to_left|none"},
                   {"highway": "another", "turn:lanes": "none|merge_to_right"},
+                  {"highway": "another", "turn:lanes": "none;right"},
+                  {"highway": "another", "turn:lanes": "merge_to_right;through|through"},
                   {"highway": "another", "turn:lanes": "slight_right|through|right"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
