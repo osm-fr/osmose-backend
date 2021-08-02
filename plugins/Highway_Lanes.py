@@ -133,17 +133,17 @@ side* and `the merge_to_left` on the *right side*.'''))
 
                         i += 1
                     if not unknown_turn_lanes_value:
-                        # merge_to_left is a on the right and vice versa
                         t = tags_lanes[tl] \
                             .replace("slight_left", "l").replace("sharp_left", "l") \
                             .replace("through", " ") \
                             .replace("slight_right", "r").replace("sharp_right", "r") \
                             .replace("reverse", "U") \
-                            .replace("merge_to_left", "r").replace("merge_to_right", "l") \
+                            .replace("merge_to_left", "M").replace("merge_to_right", "M") \
                             .replace("left", "l").replace("right", "r") \
                             .replace("none", "N").replace(";", "").split("|")
                         t = ''.join(map(lambda e: "N" if len(e) == 0 else " " if e[0] != e[-1] else e[0], map(sorted, t)))
                         t = t.replace('U', '') # Ignore reverse
+                        t = t.replace('M', '') # Ignore merge_to_left/right (handled by error 31600)
                         # Ignore single none on the outside lanes: it could be a bus lane
                         # Treat all other nones as throughs (multiple bus lanes or a dedicated lane in between two turns is unlikely)
                         if t[0:2] == "Nl":
