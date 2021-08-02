@@ -353,6 +353,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|merge_to_left;merge_to_right|right"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
+                  {"highway": "another", "turn:lanes": "through|merge_to_right|through"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
                   {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
                   {"highway": "another", "lanes": "1", "lanes:both_ways": "1"},
