@@ -151,7 +151,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                             .replace(";", "").split("|")
 
                         # Empty equals a 'none', otherwise sort values within a single lane (as left;right equals right;left)
-                        t = ''.join(map(lambda e: "N" if len(e) == 0 else ''.join(sorted(e)), t))
+                        t = ''.join(map(lambda e: "N" if len(e) == 0 else e[0] if len(e) == 1 else ''.join(sorted(e)), t))
 
                         t = t.replace('-', '') # Ignored values
 
