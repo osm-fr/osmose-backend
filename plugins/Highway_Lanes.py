@@ -107,6 +107,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                 if tl in tags_lanes:
                     ttt = tags_lanes[tl].split("|")
                     unknown_turn_lanes_value = False
+                    bad_turn_lanes_value = False
                     i = 0
                     for tt in ttt:
                         settt = set(tt.split(";"))
@@ -118,11 +119,13 @@ side* and `the merge_to_left` on the *right side*.'''))
                         if ("merge_to_left" in settt and i == 0) or ("merge_to_right" in settt and i == len(ttt) - 1):
                             # A lane must exist in the merging direction
                             err.append({"class": 31600, "subclass": 1 + stablehash64(tl + '|' + tt + '|' + str(i))})
+                            bad_turn_lanes_value = True
 
                         elif (not unknown_turn_lanes_value and len(settt) > 1 and ("none" in settt or "" in settt)):
                             # A single turn lane containing both `none` and `something`
                             if (not ("none" in settt and "" in settt and len(settt) == 2)):
                                 err.append({"class": 316012, "subclass": 3 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Combined none and indicated turn lane: \"{0}\"", tt)})
+                                bad_turn_lanes_value = True
 
                         elif (not unknown_turn_lanes_value and len(settt) > 1 and
                               ((len(settt) > 2 and ("merge_to_right" in settt or "merge_to_left" in settt)) or
@@ -132,7 +135,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                             err.append({"class": 316011, "subclass": 2 + stablehash64(tl + '|' + tt + '|' + str(i)), "text": T_("Merge together with another turn lane: \"{0}\"", tt)})
 
                         i += 1
-                    if not unknown_turn_lanes_value:
+                    if not unknown_turn_lanes_value and not bad_turn_lanes_value:
                         t = tags_lanes[tl] \
                             .replace("slight_left", "l").replace("sharp_left", "l") \
                             .replace("through", " ") \
