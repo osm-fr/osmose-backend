@@ -143,16 +143,11 @@ side* and `the merge_to_left` on the *right side*.'''))
                         throughvalue = "4"
                         t = tags_lanes[tl] \
                             .replace("reverse", "-") \
-                            .replace("merge_to_right", "-") \
-                            .replace("merge_to_left", "-") \
+                            .replace("merge_to_right", "-").replace("merge_to_left", "-") \
                             .replace("none", "N") \
-                            .replace("sharp_left", "1") \
-                            .replace("slight_left", "3") \
-                            .replace("left", "2") \
+                            .replace("sharp_left", "1").replace("slight_left", "3").replace("left", "2") \
                             .replace("through", throughvalue) \
-                            .replace("slight_right", "5") \
-                            .replace("sharp_right", "7") \
-                            .replace("right", "6") \
+                            .replace("slight_right", "5").replace("sharp_right", "7").replace("right", "6") \
                             .replace(";", "").split("|")
 
                         # Empty equals a 'none', otherwise sort values within a single lane (as left;right equals right;left)
