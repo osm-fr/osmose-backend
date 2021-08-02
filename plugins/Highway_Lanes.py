@@ -136,34 +136,39 @@ side* and `the merge_to_left` on the *right side*.'''))
 
                         i += 1
                     if not unknown_turn_lanes_value and not bad_turn_lanes_value:
+                        # Sequence (left-to-right) should be sharp_left (1)|left (2)|slight_left (3)|through (4)|slight_right (5)|right (6)|sharp_right (7)
+                        # Reverse (depends on driving direction) and merge_to_* (can be anywhere except
+                        #  outer lane in merging direction; already handled by error 31600) are ignored
+                        # None is a special case: considered as 'through' except when outer lane
+                        throughvalue = "4"
                         t = tags_lanes[tl] \
-                            .replace("slight_left", "l").replace("sharp_left", "l") \
-                            .replace("through", " ") \
-                            .replace("slight_right", "r").replace("sharp_right", "r") \
-                            .replace("reverse", "U") \
-                            .replace("merge_to_left", "M").replace("merge_to_right", "M") \
-                            .replace("left", "l").replace("right", "r") \
-                            .replace("none", "N").replace(";", "").split("|")
-                        t = ''.join(map(lambda e: "N" if len(e) == 0 else " " if e[0] != e[-1] else e[0], map(sorted, t)))
-                        t = t.replace('U', '') # Ignore reverse
-                        t = t.replace('M', '') # Ignore merge_to_left/right (handled by error 31600)
+                            .replace("reverse", "-") \
+                            .replace("merge_to_right", "-") \
+                            .replace("merge_to_left", "-") \
+                            .replace("none", "N") \
+                            .replace("sharp_left", "1") \
+                            .replace("slight_left", "3") \
+                            .replace("left", "2") \
+                            .replace("through", throughvalue) \
+                            .replace("slight_right", "5") \
+                            .replace("sharp_right", "7") \
+                            .replace("right", "6") \
+                            .replace(";", "").split("|")
+
+                        # Empty equals a 'none', otherwise sort values within a single lane (as left;right equals right;left)
+                        t = ''.join(map(lambda e: "N" if len(e) == 0 else ''.join(sorted(e)), t))
+
+                        t = t.replace('-', '') # Ignored values
+
                         # Ignore single none on the outside lanes: it could be a bus lane
                         # Treat all other nones as throughs (multiple bus lanes or a dedicated lane in between two turns is unlikely)
-                        if t[0:2] == "Nl":
+                        if t[0:1] == "N":
                             t = t[1:]
-                        if t[-2:] == "rN":
+                        if t[-1:] == "N":
                             t = t[0:-1]
-                        t = t.replace('N', ' ')
-                        last_left = self.rindex_(t, "l")
-                        first_space = self.index_(t, " ")
-                        last_space = self.rindex_(t, " ")
-                        first_right = self.index_(t, "r")
-                        # Check right is on the right and left is on the left...
-                        if not(
-                            (last_left is None or first_space is None or last_left < first_space) and
-                            (first_space is None or last_space is None or first_space <= last_space) and
-                            (last_space is None or first_right is None or last_space < first_right) and
-                            (last_left is None or first_right is None or last_left < first_right)):
+                        t = t.replace('N', throughvalue)
+
+                        if t != ''.join(sorted(t)):
                             err.append({"class": 31607, "subclass": 1 + stablehash64(tl)})
 
         # Check access lanes values
@@ -355,6 +360,8 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
                   {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|merge_to_left;merge_to_right|right"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
+                  {"highway": "another", "turn:lanes": "left;reverse|left|left;through|through|right;sharp_right"},
+                  {"highway": "another", "turn:lanes": "reverse|sharp_left|left|slight_left||through|none|slight_right|right|sharp_right|merge_to_left"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
                   {"highway": "another", "turn:lanes": "through|merge_to_right|through"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
@@ -372,5 +379,9 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "none;right"},
                   {"highway": "another", "turn:lanes": "merge_to_right;through|through"},
                   {"highway": "another", "turn:lanes": "slight_right|through|right"},
+                  {"highway": "another", "turn:lanes": "right;through|through|right"},
+                  {"highway": "another", "turn:lanes": "through|right;left|through"},
+                  {"highway": "another", "turn:lanes": "left;right|left;right"},
+                  {"highway": "another", "turn:lanes": "left|sharp_left|through"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
