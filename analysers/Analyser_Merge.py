@@ -43,6 +43,7 @@ from modules.Stablehash import stablehash64, hexastablehash
 from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
+from modules import DictCursorUnicode
 from functools import reduce
 
 try:
@@ -769,10 +770,7 @@ class Load(object):
         @return if data loaded in data base
         """
         table_base_name = self.table_name or default_table_base_name
-        if len(table_base_name) <= 63: # 63 max postgres relation name
-            table = table_base_name
-        else:
-            table = table_base_name[-(63-10):]+hexastablehash(table_base_name)[-10:]
+        table = DictCursorUnicode.identifier(table_base_name)
 
         osmosis.run("CREATE UNLOGGED TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
@@ -787,7 +785,7 @@ class Load(object):
                 header = parser.header()
                 if header:
                     if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(c[0:50]), header))
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
                 else:
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema.format(schema = db_schema))

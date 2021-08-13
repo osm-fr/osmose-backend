@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2017                                      ##
+## Copyrights Frederic Rodrigo 2017-2021                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,18 +20,25 @@
 ###########################################################################
 
 import psycopg2.extras
+from .Stablehash import hexastablehash
 
 
-class DictRowUnicode50(psycopg2.extras.DictRow):
+def identifier(name):
+    if len(name) <= 63: # 63 max postgres name length
+        return name
+    else:
+        return name[-(63-10):]+hexastablehash(name)[-10:]
+
+class DictRowUnicode63(psycopg2.extras.DictRow):
     def __getitem__(self, x):
         if isinstance(x, str):
-            return super(DictRowUnicode50, self).__getitem__(x[:50])
+            return super(DictRowUnicode63, self).__getitem__(identifier(x))
         else:
-            return super(DictRowUnicode50, self).__getitem__(x)
+            return super(DictRowUnicode63, self).__getitem__(x)
 
-class DictCursorUnicode50(psycopg2.extras.DictCursor):
+class DictCursorUnicode63(psycopg2.extras.DictCursor):
     def __init__(self, *args, **kwargs):
         # Overwrite row_factory from parent psycopg2.extras.DictCursor
-        kwargs['row_factory'] = DictRowUnicode50
+        kwargs['row_factory'] = DictRowUnicode63
         psycopg2.extras.DictCursorBase.__init__(self, *args, **kwargs)
         self._prefetch = 1
