@@ -38,7 +38,8 @@ FROM
         highway_level.id = way_nodes.way_id
 WHERE
     NOT way_ends.is_roundabout AND
-    way_ends.level <= 3
+    way_ends.level <= 3 AND
+    NOT (way_ends.is_link AND highway_level.level = 5) -- Ignore *_link connected to highway=service, on Service and rest area.
 GROUP BY
     way_ends.id,
     way_ends.nid,
