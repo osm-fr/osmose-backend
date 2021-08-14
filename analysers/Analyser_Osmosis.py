@@ -165,7 +165,7 @@ ANALYZE {0}.buildings;
         # open database connections + output file
         self.apiconn = self.config.osmosis_manager.osmosis()
         self.gisconn = self.apiconn.conn()
-        self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)
+        self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode63)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):

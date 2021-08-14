@@ -43,8 +43,10 @@ FROM
         ST_Intersects(ST_MakePolygon(rb.linestring), ww.linestring)
 WHERE
     rb.tags != ''::hstore AND
-    rb.tags?'waterway' AND
-    rb.tags->'waterway' = 'riverbank' AND
+    (
+        (rb.tags?'waterway' AND rb.tags->'waterway' = 'riverbank') OR
+        (rb.tags?'water' AND rb.tags->'water' = 'river')
+    ) AND
     rb.is_polygon AND
     ww.id IS NULL
 """
@@ -150,14 +152,13 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
-            title = T_('Riverbank without river'),
+            title = T_('River bank without river'),
             detail = T_(
-'''There is one `waterway=riverbank` but there is no `waterway=river`
-inside it.'''),
+'''There is one `natural=water` + `water=river` (or `waterway=riverbank`)
+but there is no `waterway=river|canal|stream` inside it.'''),
             fix = T_(
-'''After checking, create a "river" line inside the "riverbank"
-polygon or eliminate the "riverbank" polygon.'''))
-
+'''After checking, create a "river" line inside the river bank polygon or
+eliminate the river bank polygon.'''))
         detail = T_(
 '''A `waterway=river` or a `waterway=stream` is an oriented way. The
 water must flow into another waterway or meet a `natural=coastline`.''')

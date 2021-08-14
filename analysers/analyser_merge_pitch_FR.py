@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2016                                 ##
+## Copyrights Frédéric Rodrigo 2014-2021                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,7 +23,7 @@
 import csv
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
@@ -49,15 +49,15 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             title = T_('Pitch not integrated {0}', topic))
 
         self.init(
-            "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
-            "Recensement des équipements sportifs, espaces et sites de pratiques",
+            "https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/table/",
+            "Data ES",
             # Source fileUrl is HTTP 404, but keeping it as per
             # https://github.com/osm-fr/osmose-backend/pull/1092#pullrequestreview-577717867
-            CSV(Source(attribution = "Le ministère de la ville, de la jeunesse et des sports", millesime = "01/2018",
-                    fileUrl = "https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20180112-114703/20180110_RES_FichesEquipements.zip", zip = "20180110_RES_FichesEquipements.csv", encoding = "ISO-8859-15"),
-                separator = u';'),
-            Load("EquGpsX", "EquGpsY",
-                select = {"EquipementTypeLib": topic},
+            CSV(SourceOpenDataSoft(
+                    attribution = "Le ministère de la ville, de la jeunesse et des sports",
+                    url = "https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/")),
+            Load("Longitude (WGS84)", "Latitude (WGS84)",
+                select = {"Type d'équipement sportif": topic},
                 where = lambda row: self.validLatLon(row)),
             Conflate(
                 select = Select(
@@ -68,10 +68,10 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     static1 = dict(dict(**osmTags), **defaultTags),
                     static2 = {"source": self.source},
                     mapping1 = {"surface": self.surface},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i is not None, [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i != "None", [fields["Numéro de l'installation sportive"], fields["Type d'équipement sportif"], fields["Nom de l'installation sportive"], fields["Nom du bâtiment"]]))} )))
 
     def validLatLon(self, row):
-        if abs(float(row["EquGpsX"])) <= 180 and abs(float(row["EquGpsY"])) <= 90:
+        if abs(float(row["Longitude (WGS84)"])) <= 180 and abs(float(row["Latitude (WGS84)"])) <= 90:
             return row
         else:
             return []
@@ -85,10 +85,10 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
         "Bois": "wood",
         "Terre battue": "clay",
         "Métal": "metal",
+        # 2967 Carrelage
+        # 4637 Parquet
     }
 
+
     def surface(self, res):
-        if res["NatureSolLib"] in self.surfaceMap:
-            return self.surfaceMap[res["NatureSolLib"]]
-        else:
-            return None
+        return self.surfaceMap.get(res["Nature du sol"])
