@@ -495,13 +495,13 @@ WHERE
 """
 
 sqlC1 = """
-CREATE TEMP TABLE {1}admin_8 AS
+CREATE TEMP TABLE admin_8 AS
 SELECT
     'R'::char(1) AS type,
     id,
     tags->'name' AS city
 FROM
-    {1}relations
+    relations
 WHERE
     tags?'type' AND
     tags->'type' = 'boundary' AND
@@ -522,9 +522,9 @@ FROM
         c.city
     FROM
         (SELECT city FROM addr_city GROUP BY city) AS c
-        NATURAL LEFT JOIN {0}admin_8
+        NATURAL LEFT JOIN admin_8
     WHERE
-        {0}admin_8.city IS NULL
+        admin_8.city IS NULL
     ) AS t
     NATURAL JOIN addr_city
 """
@@ -680,6 +680,10 @@ provide a consistent address.'''))
         self.run(sql91)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
+        if self.config.options.get("addr:city-admin_level"):
+            self.run(sqlC0)
+            self.run(sqlC1.format( "','".join(self.config.options.get("addr:city-admin_level").split(','))))
+            self.run(sqlC2, self.callbackC2)
         if "proj" in self.config.options:
             self.run(sqlD0)
             self.run(sqlD1.format(self.config.options.get("addr:street_distance", 500)), self.callbackD1)
@@ -692,10 +696,6 @@ provide a consistent address.'''))
         self.run(sql41.format(""), self.callback41)
         self.run(sql50.format("", ""), self.callback50)
         self.run(sql51.format("", ""), self.callback51)
-        if self.config.options.get("addr:city-admin_level"):
-            self.run(sqlC0)
-            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
-            self.run(sqlC2.format(""), self.callbackC2)
 
     def analyser_osmosis_diff(self):
         self.run(sql20.format("touched_"), self.callback20)
@@ -707,8 +707,3 @@ provide a consistent address.'''))
         self.run(sql50.format("not_touched_", "touched_"), self.callback50)
         self.run(sql51.format("touched_", ""), self.callback51)
         self.run(sql51.format("not_touched_", "touched_"), self.callback51)
-        if self.config.options.get("addr:city-admin_level"):
-            # TODO: not all touched cases are covered here
-            self.run(sqlC0)
-            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
-            self.run(sqlC2.format("touched_"), self.callbackC2)
