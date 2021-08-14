@@ -658,7 +658,7 @@ provide a consistent address.'''))
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText]}
-        self.callbackD1 = lambda res: {"class":19, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, None, self.positionAsText], "text":{"en": res[2]}}
+        self.callbackD1 = lambda res: {"class":19, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, None, self.positionAsText], "text": T_("No street with name \"{0}\" found around", res[2])}
         self.callbackF0 = lambda res: {"class":18, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
 
     def analyser_osmosis_common(self):
