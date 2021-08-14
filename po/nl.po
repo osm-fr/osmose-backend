@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-07-04 19:02+0000\n"
+"PO-Revision-Date: 2021-08-14 15:29+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -250,31 +250,31 @@ msgstr "Geen spanningsknoop op spanningslijn"
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:617
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:621
 msgid "No street role"
 msgstr "Geen straat role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:621
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:625
 msgid "street role is not an highway"
 msgstr "Straat role is niet een weg"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:625
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:629
 msgid "Roleless member"
 msgstr "Nummer zonder role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:633
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:637
 msgid "Number twice in the street"
 msgstr "Nummer dubbel in straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:635
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:639
 msgid "Many street names"
 msgstr "Te veel straat namen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:637
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:641
 msgid "Many relations on one street"
 msgstr "Te veel relaties op één straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:639
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:643
 msgid "House too far away from street"
 msgstr "Huis te ver weg van straat"
 
@@ -351,7 +351,6 @@ msgstr "Tag of role op weg ontbreekt"
 msgid "Missing tag or role on relation"
 msgstr "Tag of role op relatie ontbreekt"
 
-#: ../analysers/analyser_osmosis_waterway.py:153
 msgid "Riverbank without river"
 msgstr "Rivieroever zonder een rivier"
 
@@ -418,7 +417,7 @@ msgstr "initiaal vast aan de naam"
 msgid "Badly written word"
 msgstr "Verkeerd geschreven woord"
 
-#: ../plugins/Name_Multiple.py:33
+#: ../plugins/Name_Multiple.py:35
 msgid "The name tag contains two names"
 msgstr "De tag naam bevat twee namen"
 
@@ -594,7 +593,7 @@ msgstr "Onnodig tag op junction=roundabout"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Meerdere namen voor dezelfde ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:642
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:646
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Tag \"addr:city\" komt met geen enkele stad overeen"
 
@@ -993,7 +992,7 @@ msgstr "\"{0}\" kan worden ingesteld in bepaalde tag"
 msgid "Non printable char"
 msgstr "Niet afdrukbare karakter"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:629
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:633
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Lid zonder addr:housenumber noch addr:housename"
 
@@ -1100,7 +1099,7 @@ msgstr "Bijna dezelfde naam"
 msgid "Public transport relation route not in route_master relation"
 msgstr "Public transport relatie route niet in route_master relatie"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:616
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
@@ -1189,7 +1188,7 @@ msgstr "Aquitaine museum, integratie suggestie"
 msgid "Invalid Opening Hours"
 msgstr "Ongeldige Opening Uren"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:644
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:648
 msgid "Missing highway in associatedStreet relation"
 msgstr "Ontbrekende weg in associatedStreet relatie"
 
@@ -1451,23 +1450,23 @@ msgstr "lanes in {0}(-{1}+{2}), lanes out {3}(-{4}+{5})"
 msgid "{0} deviation of {1}m"
 msgstr "{0} afwijking van {1}m"
 
-#: ../plugins/Highway_Lanes.py:107
+#: ../plugins/Highway_Lanes.py:117
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
 msgstr "Onbekende omkeer rijstroken waarde \"{0}\""
 
-#: ../plugins/Highway_Lanes.py:185
+#: ../plugins/Highway_Lanes.py:220
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr "lanes={0} is niet een integer "
 
-#: ../plugins/Highway_Lanes.py:241
+#: ../plugins/Highway_Lanes.py:276
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr "op éénrichtingsweg, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 
-#: ../plugins/Highway_Lanes.py:246
+#: ../plugins/Highway_Lanes.py:281
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -1475,20 +1474,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr "op tweerichtingsweg, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 
-#: ../plugins/Highway_Lanes.py:248
+#: ../plugins/Highway_Lanes.py:283
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr "op tweerichtingsweg, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 
-#: ../plugins/Highway_Lanes.py:250
+#: ../plugins/Highway_Lanes.py:285
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr "op tweerichtingsweg, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})"
 
-#: ../plugins/Highway_Lanes.py:252
+#: ../plugins/Highway_Lanes.py:287
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -1697,7 +1696,7 @@ msgstr "Interpolatie einde moet een \"addr:housenumber\" tag hebben"
 msgid "Interpolation on nodes of multiple \"associatedStreet\" relations"
 msgstr "Interpolatie op nodes van meerdere \"associatedStreet\" relaties"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:648
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:652
 msgid "Tag \"addr:street\" not matching a street name around"
 msgstr "\"addr:street\" tag komt niet overeen met een straatnaam in de buurt"
 
@@ -1730,9 +1729,9 @@ msgstr "Dubbele waarden"
 msgid "Similar values"
 msgstr "Vergelijkbare waarden"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:72
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:76
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:81
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:73
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:77
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:82
 #, python-brace-format
 msgid "Sudden highway type change (level {0})"
 msgstr "verkeerde weg type (level {0})"
@@ -2100,13 +2099,13 @@ msgid ""
 "`highway=secondary` should not becoming a residential."
 msgstr "![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)\n\n`highway=secondary` mag geen residentieel straat worden."
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid ""
 "A way connects directly to the street classification much\n"
 "smaller."
 msgstr "Een weg sluit veel rechtstreeks aan op de straatindeling kleiner. "
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:67
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:68
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n"
 "\n"
@@ -2273,29 +2272,29 @@ msgstr "![](https://wiki.openstreetmap.org/w/images/9/9a/Osmose-eg-error-1040.pn
 msgid "This tower should probably be connected to a power line."
 msgstr "Deze toren moet waarschijnlijk worden aangesloten op een hoogspanningslijn."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:614
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:618
 msgid ""
 "There is only a part of the required tag `addr:*=*`. They do not\n"
 "provide a consistent address."
 msgstr "Er is slechts een deel van de vereiste tag `addr: * = *`. Zij geven \ngeen consistent adres op."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:619
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:623
 msgid "The street is not present in relation with the role `street`."
 msgstr "De straat is niet aanwezig in relatie tot de rol `street`."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:623
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:627
 msgid "The street must be a highway."
 msgstr "De straat moet een snelweg zijn."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:627
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:631
 msgid "A member without role is present in the relation."
 msgstr "In de relatie is een lid zonder rol aanwezig."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:631
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:635
 msgid "Address without number is present."
 msgstr "Adres zonder nummer is aanwezig."
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:646
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:650
 msgid "Extend the relation to include the way with the same name."
 msgstr "Breid de relatie uit om de weg met dezelfde naam in te voegen."
 
@@ -2520,19 +2519,18 @@ msgstr "Voeg tags, rol toe in een relatie of verwijder deze."
 msgid "The object is sometimes duplicate."
 msgstr "Het object is soms dubbel."
 
-#: ../analysers/analyser_osmosis_waterway.py:155
 msgid ""
 "There is one `waterway=riverbank` but there is no `waterway=river`\n"
 "inside it."
 msgstr "Er is één `waterway = riverbank` maar er is geen` waterway = river` binnenin."
 
-#: ../analysers/analyser_osmosis_waterway.py:162
+#: ../analysers/analyser_osmosis_waterway.py:163
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
 "water must flow into another waterway or meet a `natural=coastline`."
 msgstr "Een `waterway = river` of een` waterway = stream` is een georiënteerde weg.\nHet water moet  in een andere waterweg stromen of een `natural = coastline` ontmoeten. "
 
-#: ../analysers/analyser_osmosis_waterway.py:165
+#: ../analysers/analyser_osmosis_waterway.py:166
 msgid "Link the waterway or invert its flow direction."
 msgstr "Verbind de waterweg of keer de stroomrichting om."
 
@@ -2670,7 +2668,7 @@ msgstr ""
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
 msgstr "Vaak een accent ontbreekt op een hoofdletter (bijv. Ecole voor École)"
 
-#: ../plugins/Name_Multiple.py:39
+#: ../plugins/Name_Multiple.py:41
 msgid ""
 "* If duplicate, delete a one.\n"
 "* Otherwise, a survey is required: check if it is a street whose name\n"
@@ -2678,7 +2676,7 @@ msgid ""
 "proper names of both part."
 msgstr "* Als het dubbel is, verwijder er dan een.\n* Anders is een survey vereist: controleer of het een straat is waarvan\nde naam verandert aan een kruispunt, als dit het geval is, snijd dan de straat door en geef de namen van beide delen op."
 
-#: ../plugins/Name_Multiple.py:44
+#: ../plugins/Name_Multiple.py:46
 msgid ""
 "Some streets have not the same names on the each side, especially if\n"
 "the houses by both sides are on different city. In this case, you can use\n"
@@ -3741,35 +3739,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr "{0} parking  bijwerken"
 
-#: ../analysers/Analyser_Merge.py:1052
+#: ../analysers/Analyser_Merge.py:1056
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "Als u na een beoordeling zeker weet dat het nieuwe gegevens zijn en geschikt zijn voor OpenStreetMap, dan kun je het toevoegen."
 
-#: ../analysers/Analyser_Merge.py:1055
+#: ../analysers/Analyser_Merge.py:1059
 msgid "Be sure that it is not already existing in another place."
 msgstr "Zorg ervoor dat het niet al op een andere plaats bestaat."
 
-#: ../analysers/Analyser_Merge.py:1060
+#: ../analysers/Analyser_Merge.py:1064
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1073
+#: ../analysers/Analyser_Merge.py:1077
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr "Dit is een integratie suggestie, mixing OpenData source en\nOpenStreetMap."
 
-#: ../analysers/Analyser_Merge.py:1086
+#: ../analysers/Analyser_Merge.py:1090
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr "Dit is een update suggestie omdat dezelfde ref op OpenData en OSM kan worden gevonden ."
 
-#: ../analysers/Analyser_Merge.py:1048
+#: ../analysers/Analyser_Merge.py:1052
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4165,7 +4163,7 @@ msgid ""
 "`water=pond`/`water=basin`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:671
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:675
 #, python-brace-format
 msgid "Multiple numbers \"{numbers}\" in way \"{way}\""
 msgstr "Meerdere nummers \"{numbers}\" in weg \"{way}\""
@@ -4435,7 +4433,7 @@ msgid ""
 "be tagged on that object instead."
 msgstr ""
 
-#: ../plugins/Name_Multiple.py:35
+#: ../plugins/Name_Multiple.py:37
 msgid ""
 "The tag `name=*` contains multiple names, separated by a semicolon,\n"
 "a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
@@ -4510,7 +4508,6 @@ msgid ""
 "* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:158
 msgid ""
 "After checking, create a \"river\" line inside the \"riverbank\"\n"
 "polygon or eliminate the \"riverbank\" polygon."
@@ -4548,10 +4545,61 @@ msgstr ""
 msgid "The platform is not on the right side of the road"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:167
+#: ../analysers/analyser_osmosis_waterway.py:168
 msgid "Unconnected river or wrong way flow"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_waterway.py:171
+#: ../analysers/analyser_osmosis_waterway.py:172
 msgid "Unconnected stream or wrong way flow"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:661
+#, python-brace-format
+msgid "No street with name \"{0}\" found around"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:155
+msgid "River bank without river"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:157
+msgid ""
+"There is one `natural=water` + `water=river` (or `waterway=riverbank`)\n"
+"but there is no `waterway=river|canal|stream` inside it."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:160
+msgid ""
+"After checking, create a \"river\" line inside the river bank polygon or\n"
+"eliminate the river bank polygon."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:72
+msgid "Merge lane and other turn lane in a single lane"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:74
+msgid ""
+"It is unlikely that merge_to_* and another turn lane value are indicated on "
+"a single lane."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:76
+msgid "Indicated turn lane together with `none`"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:78
+msgid ""
+"A `none` (or empty value) turn lane cannot be combined with other types of "
+"turn lanes within the same lane."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:127
+#, python-brace-format
+msgid "Combined none and indicated turn lane: \"{0}\""
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:135
+#, python-brace-format
+msgid "Merge together with another turn lane: \"{0}\""
 msgstr ""
