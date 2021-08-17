@@ -28,13 +28,13 @@ SELECT
     rb.id,
     ST_AsText(way_locate(rb.linestring))
 FROM
-    {0}ways AS rb
+    ways AS rb
     LEFT JOIN (
         SELECT
             id,
             linestring
         FROM
-            {1}ways
+            ways
         WHERE
             tags != ''::hstore AND
             tags?'waterway' AND
@@ -176,9 +176,10 @@ water must flow into another waterway or meet a `natural=coastline`.''')
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2 if res[2] == "river" else 3, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_full(self):
-        self.run(sql10.format("", ""), self.callback10)
+    def analyser_osmosis_common(self):
+        self.run(sql10, self.callback10)
 
+    def analyser_osmosis_full(self):
         self.run(sql20.format(""))
         self.run(sql21.format(""))
         self.run(sql22.format(""))
@@ -186,9 +187,6 @@ water must flow into another waterway or meet a `natural=coastline`.''')
         self.run(sql24.format("", ""), self.callback20)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_", ""), self.callback10)
-        self.run(sql10.format("not_touched_", "touched_"), self.callback10)
-
         self.run(sql20.format("touched_"))
         self.run(sql21.format("touched_"))
         self.run(sql22.format("touched_"))
