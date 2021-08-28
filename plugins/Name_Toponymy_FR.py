@@ -35,11 +35,9 @@ class Name_Toponymy_FR(Plugin):
             title = T_('Toponymy'),
             detail = T_(
 '''Apply of "[charte de
-toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)" of
+toponymie](https://web.archive.org/web/2019/http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)" of
 IGN (French geographic name conventions)'''),
-            resource = 'http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf')
-
-        ## http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf
+            resource = 'https://web.archive.org/web/2019/http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf')
 
         # article 4.9 Majuscules et minuscules
         special  = [u""]
