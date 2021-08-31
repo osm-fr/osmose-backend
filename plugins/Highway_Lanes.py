@@ -164,7 +164,7 @@ side* and `the merge_to_left` on the *right side*.'''))
                         t = t.replace('N', throughvalue)
 
                         if t != ''.join(sorted(t)):
-                            err.append({"class": 31607, "subclass": 1 + stablehash64(tl)})
+                            err.append({"class": 31607, "subclass": 1 + stablehash64(tl), "text": T_("Bad turn lanes order in \"{0}\"", tl)})
 
         # Check access lanes values
 
