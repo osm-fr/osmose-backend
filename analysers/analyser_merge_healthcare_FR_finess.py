@@ -78,7 +78,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
                 attribution="Le ministère des solidarités et de la santé",
                 encoding="ISO-8859-1",
                 dataset="53699569a3a729239d2046eb",
-                resource="46af2a4f-fb07-4da6-806b-b90e1888e30a")),
+                resource="407bdde4-e6c8-4edf-9b20-1a67ab80fc37")),
             Load("coordxet", "coordyet", srid = srid,
                 select = {"categetab": categories},
                 where = lambda res: is_in(res["departement"])),
