@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-08-14 15:29+0000\n"
+"PO-Revision-Date: 2021-09-26 17:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -485,10 +485,10 @@ msgstr "Weg met 1 node"
 msgid "Deprecated tag"
 msgstr "Deprecated tag"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Bekijk meerdere tags"
 
@@ -666,15 +666,15 @@ msgstr "Landuse kenmerk niet op de grond"
 msgid "Natural feature underground"
 msgstr "Natural kenmerk ondergronds"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr "Standaard en lokale taal namen niet hetzelfde"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Lokale taal naam zonder Standaard naam"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr "Naam taal zonder standaardnaam"
 
@@ -917,7 +917,7 @@ msgstr "Ontbrekende koppelteken na \"Saint(e)\""
 msgid "Some value chars does not match the language charset"
 msgstr "Sommige karakter waarde komen niet overeen met de taal charset"
 
-#: ../plugins/Name_Toponymy_FR.py:158
+#: ../plugins/Name_Toponymy_FR.py:156
 #, python-format, python-brace-format
 msgid "Missing capital letter for: {0}"
 msgstr "Ontbrekende hoofdletter voor:{0}"
@@ -1278,7 +1278,7 @@ msgstr " check ook de wikipedia tag."
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:53
 msgid "Direct or too permissive access to motorway"
-msgstr "Directe of teveel toegang tot een weg"
+msgstr "Directe of te veel toegang tot een weg"
 
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:183
 msgid "Opposite or opposite lane in the same way of the oneway"
@@ -1762,7 +1762,6 @@ msgstr "voorwaardelijke intervals tag is net geldig"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "voorwaardelijke intervals passen niet bij openingsuren"
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1772,6 +1771,7 @@ msgstr "voorwaardelijke intervals passen niet bij openingsuren"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2164,7 +2164,7 @@ msgstr "![](https://wiki.openstreetmap.org/w/images/b/b5/Osmose-eg-error-1110.pn
 msgid ""
 "Check if the highway is a `*_link`, else remove `*_link`. Be sure to check "
 "both ends of the way."
-msgstr "Controleer of de snelweg een `* _link` is, of anders verwijder` * _link`. Zorg ervoor dat je de beide uiteinden van de weg controleert. "
+msgstr "Controleer of de snelweg een `* _link` is, of anders verwijder` * _link`. Zorg ervoor dat u de beide uiteinden van de weg controleert. "
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:89
 msgid "Noexit on node with exit"
@@ -2681,7 +2681,7 @@ msgid ""
 "Some streets have not the same names on the each side, especially if\n"
 "the houses by both sides are on different city. In this case, you can use\n"
 "the tag `name:left=*` and `name:right=*`."
-msgstr "Sommige straten hebben niet aan elke kant dezelfde naam, vooral als\nde huizen aan beide kanten in verschillende steden liggen. In dit geval , kan je \nde tag `name:left=*` and `name:right=*` gebruiken."
+msgstr "Sommige straten hebben niet aan elke kant dezelfde naam, vooral als\nde huizen aan beide kanten in verschillende steden liggen. In dit geval kunt u\nde tag `name:left=*` and `name:right=*` gebruiken."
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:51
 msgid "An abbreviation is present."
@@ -2753,7 +2753,6 @@ msgid ""
 "appropriate."
 msgstr ""
 
-#: ../plugins/Name_Toponymy_FR.py:37
 msgid ""
 "Apply of \"[charte de\n"
 "toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)\" of\n"
@@ -2852,7 +2851,7 @@ msgstr "Een weg heeft de area=yes tag, maar is niet gesloten. "
 msgid ""
 "If the object is not a surface, remove the tag `area=yes`, otherwise\n"
 "ensure that the way is a loop."
-msgstr "Als het object geen oppervlak is, verwijder dan de `area = yes` tag, anders\nzorg je ervoor dat de weg een lus is."
+msgstr "Als het object geen oppervlak is, verwijder dan de `area = yes` tag, anders\nzorgt u ervoor dat de weg een lus is."
 
 #: ../plugins/Structural_UnclosedArea.py:37
 msgid ""
@@ -3129,21 +3128,21 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr "Eenvoudige en veel voorkomende fouten, de lijst is beschikbaar \n[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 
-#: ../analysers/analyser_merge_street_objects.py:47
 #: ../analysers/analyser_merge_street_objects2.py:47
+#: ../analysers/analyser_merge_street_objects.py:47
 #: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "Unmapped {0}"
 
-#: ../analysers/analyser_merge_street_objects.py:48
 #: ../analysers/analyser_merge_street_objects2.py:48
+#: ../analysers/analyser_merge_street_objects.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr "Straatobject ({1}) gedetecteerd door Mapillary, maar geen \"{0}\" tags in de buurt."
 
-#: ../analysers/analyser_merge_street_objects.py:50
 #: ../analysers/analyser_merge_street_objects2.py:50
+#: ../analysers/analyser_merge_street_objects.py:50
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
@@ -3205,15 +3204,15 @@ msgstr "Verkeerde waarde tag"
 msgid "Untagged named object"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_street_objects2.py:71
+#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr "Waargenomen tussen {0} en {1}"
 
-#: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_street_objects2.py:72
+#: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
@@ -3301,7 +3300,7 @@ msgstr ""
 msgid ""
 "If this node is a tower or pole, use the tag `power=tower` or\n"
 "`power=pole`. Otherwise remove it."
-msgstr "Als dit knooppunt een toren of paal is, gebruik dan de tag `power = tower` of `power= pool`. anders verwijder je deze."
+msgstr "Als dit knooppunt een toren of paal is, gebruik dan de tag `power = tower` of `power= pool`. anders verwijdert u deze."
 
 #: ../analysers/analyser_osmosis_powerline.py:382
 msgid ""
@@ -3373,20 +3372,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "De relatie mist 'type' tag om te definiëren wat het vertegenwoordigt."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "{0} fietsverhuur niet geïntegreerd"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "{0} fietsverhuur integratie suggestie"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "{0} fiets bijwerken"
@@ -3488,15 +3487,15 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr "Tankstation zonder `ref: mise` tag of ongeldig"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_capp.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "{0} parking niet toegevoegd"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "{0} parking integratie suggestie"
@@ -3743,7 +3742,7 @@ msgstr "{0} parking  bijwerken"
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
-msgstr "Als u na een beoordeling zeker weet dat het nieuwe gegevens zijn en geschikt zijn voor OpenStreetMap, dan kun je het toevoegen."
+msgstr "Als u na een beoordeling zeker weet dat het nieuwe gegevens zijn en geschikt zijn voor OpenStreetMap, dan kunt u het toevoegen."
 
 #: ../analysers/Analyser_Merge.py:1059
 msgid "Be sure that it is not already existing in another place."
@@ -4602,4 +4601,16 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:135
 #, python-brace-format
 msgid "Merge together with another turn lane: \"{0}\""
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:167
+#, python-brace-format
+msgid "Bad turn lanes order in \"{0}\""
+msgstr ""
+
+#: ../plugins/Name_Toponymy_FR.py:37
+msgid ""
+"Apply of \"[charte de\n"
+"toponymie](https://web.archive.org/web/2019/http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)\" of\n"
+"IGN (French geographic name conventions)"
 msgstr ""

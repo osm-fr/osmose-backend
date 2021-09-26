@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-08-14 15:29+0000\n"
+"PO-Revision-Date: 2021-09-26 17:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -499,10 +499,10 @@ msgstr "Weg mit nur einem Knoten"
 msgid "Deprecated tag"
 msgstr "Veraltetes Merkmal"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Mehrfache Tags beachten"
 
@@ -680,15 +680,15 @@ msgstr "Flächennutzungsmerkmal nicht auf Bodenlevel"
 msgid "Natural feature underground"
 msgstr "Naturmerkmal unter Bodenlevel"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr "Standardsprache und örtliche Sprache unterschiedlich"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Lokaler Sprachname ohne Standardname"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr "Sprachname ohne Standardname"
 
@@ -931,7 +931,7 @@ msgstr "Fehlender Bindestrich nach \"Saint(e)\""
 msgid "Some value chars does not match the language charset"
 msgstr "Einzelne Zeichen des Wertes passen gehören nicht zum Zeichensatz der Sprache"
 
-#: ../plugins/Name_Toponymy_FR.py:158
+#: ../plugins/Name_Toponymy_FR.py:156
 #, python-format, python-brace-format
 msgid "Missing capital letter for: {0}"
 msgstr "Fehlender Großbuchstabe für: {0}"
@@ -1776,7 +1776,6 @@ msgstr "Bedingtes Intervall-Tag ist nicht gültig"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "Bedingte Intervalle passen nicht in die Öffnungszeit"
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1786,6 +1785,7 @@ msgstr "Bedingte Intervalle passen nicht in die Öffnungszeit"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2767,7 +2767,6 @@ msgid ""
 "appropriate."
 msgstr "Ändere das Zeichen in ein Satzzeichen oder anderes passenderes Zeichen."
 
-#: ../plugins/Name_Toponymy_FR.py:37
 msgid ""
 "Apply of \"[charte de\n"
 "toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)\" of\n"
@@ -3143,21 +3142,21 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr "Einfache und häufige Fehler, die Auflistung befindet sich\n[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 
-#: ../analysers/analyser_merge_street_objects.py:47
 #: ../analysers/analyser_merge_street_objects2.py:47
+#: ../analysers/analyser_merge_street_objects.py:47
 #: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "{0} fehlt"
 
-#: ../analysers/analyser_merge_street_objects.py:48
 #: ../analysers/analyser_merge_street_objects2.py:48
+#: ../analysers/analyser_merge_street_objects.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr "Straßenobjekt ({1}) von Mapillary erkannt, aber kein \"{0}\" in der Nähe vorhanden."
 
-#: ../analysers/analyser_merge_street_objects.py:50
 #: ../analysers/analyser_merge_street_objects2.py:50
+#: ../analysers/analyser_merge_street_objects.py:50
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
@@ -3219,15 +3218,15 @@ msgstr "Untypischer Wert"
 msgid "Untagged named object"
 msgstr "Benanntes Objekt ohne Eigenschaften"
 
-#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_street_objects2.py:71
+#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr "Erkannt zwischen {0} und {1}"
 
-#: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_street_objects2.py:72
+#: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
@@ -3387,20 +3386,20 @@ msgstr "Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt hande
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "Der Relation fehlt ein `type` Tag, um zu beschreiben, was sie repräsentiert."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "{0} Fahrradverleih nicht eingetragen"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "{0} Fahrradverleih, Vorschlag zur Eintragung"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "{0} Fahrradverleih aktualisiert"
@@ -3502,15 +3501,15 @@ msgstr "Möglicherweise hat ein Mapper versucht, ein Objekt einzutragen, für da
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_capp.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "{0} Parkplatz nicht eingetragen"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "{0} Parkplatz, Vorschlag zur Eintragung"
@@ -4616,4 +4615,16 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:135
 #, python-brace-format
 msgid "Merge together with another turn lane: \"{0}\""
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:167
+#, python-brace-format
+msgid "Bad turn lanes order in \"{0}\""
+msgstr ""
+
+#: ../plugins/Name_Toponymy_FR.py:37
+msgid ""
+"Apply of \"[charte de\n"
+"toponymie](https://web.archive.org/web/2019/http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)\" of\n"
+"IGN (French geographic name conventions)"
 msgstr ""

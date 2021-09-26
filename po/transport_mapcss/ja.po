@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Tom Konda <tom.konda.dev@gmail.com>, 2020
-# Shu Higashi <higa432@gmail.com>, 2020
+# Shu Higashi <higa432@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Shu Higashi <higa432@gmail.com>, 2020\n"
+"Last-Translator: Shu Higashi <higa432@gmail.com>, 2021\n"
 "Language-Team: Japanese (https://www.transifex.com/openstreetmap-france/teams/17462/ja/)\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -183,15 +183,15 @@ msgstr "このstopはバス用ですかトラム用ですか？platformの種類
 
 #: ../transport.validator.mapcss:360
 msgid "Subway entrances should be mapped as nodes"
-msgstr ""
+msgstr "地下鉄の入口はノードでマッピングします"
 
 #: ../transport.validator.mapcss:376
 msgid ""
 "The station entrance should be in a station: add it to a stop_area relation"
-msgstr ""
+msgstr "駅の入口は駅の中にあるべきです: stop_areaリレーションに追加してください"
 
 #: ../transport.validator.mapcss:392
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
-msgstr ""
+msgstr "駅の入口は建物または道路(steps, footway, etc)の一部であるべきです"
