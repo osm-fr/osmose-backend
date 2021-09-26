@@ -6,6 +6,15 @@ cd ..
 
 # pytest is configured by pytest.ini and conftest.py
 
+PYTEST=$(which pytest || true)
+if [ "x$PYTEST" = "x" ]; then
+  PYTEST=$(which pytest-3 || true)
+fi
+if [ "x$PYTEST" = "x" ]; then
+  echo "Couldn't find pytest or pytest-3"
+  exit 1
+fi
+
 if [ "x$1" = "x" ]; then
   TEST_SUITE="all"
 else
@@ -21,4 +30,4 @@ case $TEST_SUITE in
   *)     PYTEST_PARAM="";;
 esac
 
-python3 $(which pytest) $PYTEST_PARAM
+python3 $PYTEST $PYTEST_PARAM
