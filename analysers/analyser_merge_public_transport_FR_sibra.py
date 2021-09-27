@@ -34,12 +34,12 @@ class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
             title = T_('{0} stop, integration suggestion', place))
 
         self.init(
-            u"https://transport.data.gouv.fr/datasets/offre-de-transports-sibra-a-annecy-gtfs",
-            u"Réseau urbain Sibra",
+            "https://www.data.gouv.fr/fr/datasets/offre-de-transports-sibra-a-annecy-gtfs/",
+            "Réseau urbain Sibra",
             GTFS(SourceDataGouv(
                 attribution="SIBRA",
                 dataset="5bd9843e634f413220f7f04a",
-                resource="df07e60d-47bf-4cf2-b5d2-ad4af4c7d586")),
+                resource="1ab9c56f-0108-4bf1-87ce-dc78bb4c8b63")),
             Load("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
