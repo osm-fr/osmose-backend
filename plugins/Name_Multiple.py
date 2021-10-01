@@ -50,6 +50,7 @@ the tag `name:left=*` and `name:right=*`.'''))
         self.NoExtra = False
         self.HighwayOnly = False
         self.allowSlash = False
+
         if self.father.config.options.get("country"):
             self.NoExtra = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['DE', 'US', 'CA']))
 
@@ -73,10 +74,16 @@ the tag `name:left=*` and `name:right=*`.'''))
         if self.NoExtra:
             return
 
-        if not self.allowSlash and '/' in tags["name"] and not self.streetSubNumberRe.match(tags["name"]):
-            return {"class": 705, "subclass": 1, "text": {"en": "name={0}".format(tags["name"])}}
         if '+' in tags["name"][0:-1]:
             return {"class": 705, "subclass": 2, "text": {"en": "name={0}".format(tags["name"])}}
+
+        if '/' in tags["name"] and not self.allowSlash:
+            # Accept / in bus and tram stop names
+            if u"public_transport" in tags and tags["public_transport"] in ["platform", "stop_position"]:
+                return
+
+            if not self.streetSubNumberRe.match(tags["name"]):
+                return {"class": 705, "subclass": 1, "text": {"en": "name={0}".format(tags["name"])}}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon, with_options
@@ -101,6 +108,7 @@ class Test(TestPluginCommon):
             assert not p.way(None, {"name": "Profil+"}, None)
             assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
             assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
+            assert not p.way(None, {"name": u"streetA/streetB", "public_transport": "platform"}, None)
 
         with with_options(p, {'country': 'US-TX'}):
             p.init(None)
