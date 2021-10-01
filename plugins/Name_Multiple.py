@@ -79,7 +79,7 @@ the tag `name:left=*` and `name:right=*`.'''))
 
         if '/' in tags["name"] and not self.allowSlash:
             # Accept / in bus and tram stop names
-            if u"public_transport" in tags and tags["public_transport"] in ["platform", "stop_position"]:
+            if "public_transport" in tags and tags["public_transport"] in ["platform", "stop_position"]:
                 return
 
             if not self.streetSubNumberRe.match(tags["name"]):
@@ -108,7 +108,7 @@ class Test(TestPluginCommon):
             assert not p.way(None, {"name": "Profil+"}, None)
             assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
             assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
-            assert not p.way(None, {"name": u"streetA/streetB", "public_transport": "platform"}, None)
+            assert not p.way(None, {"name": "streetA/streetB", "public_transport": "platform"}, None)
 
         with with_options(p, {'country': 'US-TX'}):
             p.init(None)
