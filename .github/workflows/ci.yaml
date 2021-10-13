@@ -6,7 +6,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: python:3.7-buster
+      image: python:3.9
       env:
         USER: root
 
@@ -62,7 +62,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     container:
-      image: python:3.7-buster
+      image: python:3.9
       env:
         USER: root
 
@@ -139,7 +139,7 @@ jobs:
   optional_tests:
     runs-on: ubuntu-latest
     container:
-      image: python:3.7-buster
+      image: python:3.9
       env:
         USER: root
 
