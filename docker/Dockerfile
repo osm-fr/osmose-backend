@@ -1,4 +1,4 @@
-FROM python:3.7-buster
+FROM python:3.9
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
@@ -22,10 +22,10 @@ RUN apt-get update && \
         postgis \
         postgresql-client \
         protobuf-compiler \
-        python-dev \
-        python-pip \
-        python-setuptools \
-        python-wheel \
+        python3-dev \
+        python3-pip \
+        python3-setuptools \
+        python3-wheel \
         qtbase5-dev \
         && apt-get clean
 
