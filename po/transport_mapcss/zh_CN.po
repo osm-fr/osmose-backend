@@ -2,10 +2,12 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # jie x, 2018
+# anodern, 2021
+# Noémie <nlehuby@zaclys.net>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: jie x, 2018\n"
+"Last-Translator: Noémie <nlehuby@zaclys.net>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/openstreetmap-france/teams/17462/zh_CN/)\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -94,104 +96,105 @@ msgstr "指定它是停靠点（站台）还是位于铁轨上的位置（stop_p
 
 #: ../transport.validator.mapcss:244 ../transport.validator.mapcss:251
 msgid "Missing legacy tag on a public transport stop"
-msgstr "在公共交通站点遗失遗留标记"
+msgstr "公共交通站点缺少传统标签"
 
 #: ../transport.validator.mapcss:137
 msgid ""
 "The network tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "路线和主路线的网络标签应一致：{0} vs {1}"
 
 #: ../transport.validator.mapcss:142
 msgid ""
 "The operator tag should be the same for the route and the route_master : {0}"
 " vs {1}"
-msgstr ""
+msgstr "路线和主路线的运营者标签应一致：{0} vs {1}"
 
 #: ../transport.validator.mapcss:147
 msgid ""
 "The ref tag should be the same for the route and the route_master : {0} vs "
 "{1}"
-msgstr ""
+msgstr "路线和主路线的编号标签应一致：{0} vs {1}"
 
 #: ../transport.validator.mapcss:152
 msgid ""
 "The colour tag should be the same for the route and the route_master : {0} "
 "vs {1}"
-msgstr ""
+msgstr "路线和主路线的颜色标签应一致：{0} vs {1}"
 
 #: ../transport.validator.mapcss:157
 msgid ""
 "The public transport mode should be the same for the route and the "
 "route_master : {0} vs {1}"
-msgstr ""
+msgstr "路线和主路线的公共交通模式标签应一致：{0} vs {1}"
 
 #: ../transport.validator.mapcss:163
 msgid "Check the colour tag"
-msgstr ""
+msgstr "检查颜色标签"
 
 #: ../transport.validator.mapcss:170
 msgid "The colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "颜色代码应以'#'开头，后接3或6位16进制数字"
 
 #: ../transport.validator.mapcss:178
 msgid "The color of the public transport line should be in a colour tag"
-msgstr ""
+msgstr "表示公共交通路线的颜色应使用colour标签"
 
 #: ../transport.validator.mapcss:204
 msgid "A bus stop is supposed to be a node"
-msgstr ""
+msgstr "公交停车点应绘制为点"
 
 #: ../transport.validator.mapcss:316
 msgid "The interval is invalid (try a number of minutes)"
-msgstr ""
+msgstr "间隔时间无效（尝试使用多少分钟）"
 
 #: ../transport.validator.mapcss:332
 msgid "The duration is invalid (try a number of minutes)"
-msgstr ""
+msgstr "单程运行时间无效（尝试使用多少分钟）"
 
 #: ../transport.validator.mapcss:345
 msgid "Missing interval tag to specify the main interval"
-msgstr ""
+msgstr "缺少表示间隔的标签"
 
 #: ../transport.validator.mapcss:351
 msgid "Missing opening_hours tag"
-msgstr ""
+msgstr "缺少运营时间标签"
 
 #: ../transport.validator.mapcss:303 ../transport.validator.mapcss:309
 msgid "Missing name on a public transport stop"
-msgstr ""
+msgstr "公共交通站点缺少名称标签"
 
 #: ../transport.validator.mapcss:192
 msgid ""
 "Check the operator tag : this operator does not exist, it may be a typo"
-msgstr ""
+msgstr "检查运营者标签：这个运营者不存在，可能是输入错误"
 
 #: ../transport.validator.mapcss:198
 msgid "Check the network tag : this network does not exist, it may be a typo"
-msgstr ""
+msgstr "检查网络标签：这个网络不存在，可能是输入错误"
 
 #: ../transport.validator.mapcss:215
 msgid ""
 "A bus station is usually a large area where many buses stop, check if you "
 "can draw this area"
-msgstr ""
+msgstr "公交枢纽站通常是包含了很多公交站的大型区域，如果可以的话请绘制为区域"
 
 #: ../transport.validator.mapcss:243
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
-msgstr ""
+msgstr "这是公交站还是电车站？添加更精确的标记来描述站台的类型"
 
-#: ../transport.validator.mapcss:360
+#: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
-msgstr ""
+msgstr "地铁出入口应绘制为点"
 
-#: ../transport.validator.mapcss:376
-msgid ""
-"The station entrance should be in a station: add it to a stop_area relation"
-msgstr ""
-
-#: ../transport.validator.mapcss:392
+#: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
-msgstr ""
+msgstr "车站出入口应作为建筑或道路（steps, footway等）的一部分"
+
+#: ../transport.validator.mapcss:375
+msgid ""
+"The station entrance should be in part of a station: add it to a stop_area "
+"relation"
+msgstr "车站出入口应属于某个车站：将其添加到stop_area关系"

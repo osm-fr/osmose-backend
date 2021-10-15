@@ -180,17 +180,18 @@ msgstr "轉運站通常是大型區域，擁有多個公車站，如果可能請
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr "這是公車站還是街車站？請加精準的標籤來描述等車區"
 
-#: ../transport.validator.mapcss:360
+#: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
 msgstr ""
 
-#: ../transport.validator.mapcss:376
-msgid ""
-"The station entrance should be in a station: add it to a stop_area relation"
-msgstr ""
-
-#: ../transport.validator.mapcss:392
+#: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
+msgstr ""
+
+#: ../transport.validator.mapcss:375
+msgid ""
+"The station entrance should be in part of a station: add it to a stop_area "
+"relation"
 msgstr ""
