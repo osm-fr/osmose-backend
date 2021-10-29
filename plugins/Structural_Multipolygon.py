@@ -76,7 +76,6 @@ class Structural_Multipolygon(Plugin):
         elif outer == 1 and inner == 0 and len(err_roles) == 0:
             err.append({"class": 11704, "subclass": 1})
 
-
         return err
 
 ###########################################################################
