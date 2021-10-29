@@ -41,7 +41,7 @@ class Structural_Multipolygon(Plugin):
 '''At least one outer ring must be present.'''),
             fix = T_(
 '''Find the way outside, it may be deleted, check the history.'''))
-        self.errors[11704] = self.def_class(item = 1170, level = 3, tags = ['relation', 'multipolygon', 'fix:chair'],
+        self.errors[11704] = self.def_class(item = 1170, level = 2, tags = ['relation', 'multipolygon', 'fix:chair'],
             title = T_('This multipolygon is a simple polygon'),
             detail = T_(
 '''Multipolygon relation actually defines a simple polygon.'''))
