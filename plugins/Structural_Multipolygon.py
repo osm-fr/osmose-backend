@@ -41,7 +41,7 @@ class Structural_Multipolygon(Plugin):
 '''At least one outer ring must be present.'''),
             fix = T_(
 '''Find the way outside, it may be deleted, check the history.'''))
-        self.errors[11704] = self.def_class(item = 1170, level = 3, tags = ['relation', 'multipolygon', 'fix:chair'],
+        self.errors[11704] = self.def_class(item = 1170, level = 2, tags = ['relation', 'multipolygon', 'fix:chair'],
             title = T_('This multipolygon is a simple polygon'),
             detail = T_(
 '''Multipolygon relation actually defines a simple polygon.'''))
@@ -73,7 +73,7 @@ class Structural_Multipolygon(Plugin):
 
         if outer == 0:
             err.append({"class": 11703, "subclass": 1})
-        elif outer == 1 and inner == 0:
+        elif outer == 1 and inner == 0 and len(err_roles) == 0:
             err.append({"class": 11704, "subclass": 1})
 
         return err

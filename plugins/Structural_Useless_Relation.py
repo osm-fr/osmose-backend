@@ -43,6 +43,10 @@ sometimes be justified.'''),
             if tags.get("site") == "geodesic":
                 return
             if tags.get("type") in ("defaults", "route", "route_master", "associatedStreet"):
+                # 1 member allowed
+                return
+            if tags.get("type") == "multipolygon":
+                # Tested by Structural_Multipolygon plugin
                 return
             return {"class": 12001, "subclass": 1}
 
