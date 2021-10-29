@@ -66,14 +66,15 @@ class Structural_Multipolygon(Plugin):
                 err_members.append(u"{0} - {1}".format(member['type'], member['role']))
 
         err = []
-        if len(err_members) > 0:
-            err.append({"class": 11702, "subclass": 1, "text": {"en": ', '.join(err_members)}})
         if len(err_roles) > 0:
             err.append({"class": 11701, "subclass": 1, "text": {"en": ', '.join(err_roles)}})
-        elif outer == 1 and inner == 0:
-            err.append({"class": 11704, "subclass": 1})
+        if len(err_members) > 0:
+            err.append({"class": 11702, "subclass": 1, "text": {"en": ', '.join(err_members)}})
+
         if outer == 0:
             err.append({"class": 11703, "subclass": 1})
+        elif outer == 1 and inner == 0 and len(err_roles) == 0:
+            err.append({"class": 11704, "subclass": 1})
 
 
         return err
