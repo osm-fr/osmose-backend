@@ -216,21 +216,20 @@ msgstr ""
 "Ist dies eine Bus- oder Tramhaltestelle? Ergänze ein Tag, um die Art des "
 "Bahnsteigs zu präzisieren"
 
-#: ../transport.validator.mapcss:360
+#: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
 msgstr "U-Bahneingänge sollen als Punkte gemappt werden"
 
-#: ../transport.validator.mapcss:376
-msgid ""
-"The station entrance should be in a station: add it to a stop_area relation"
-msgstr ""
-"Der Bahnhofseingag soll in einem Banhof sein: Mach ihn zum Teil einer "
-"stop_area Relation"
-
-#: ../transport.validator.mapcss:392
+#: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr ""
 "Der Bahnhofseingag soll Teil eines Gebäudes oder eines Weges (Stufen, "
 "Fußweg, etc.) sein"
+
+#: ../transport.validator.mapcss:375
+msgid ""
+"The station entrance should be in part of a station: add it to a stop_area "
+"relation"
+msgstr ""

@@ -3,7 +3,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Petr Schönmann <pschonmann@gmail.com>, 2018
 # majkaz, 2019
-# trendspotter, 2019
+# trendspotter <jirka.p@volny.cz>, 2019
 # TK, 2020
 # 
 msgid ""
@@ -200,17 +200,18 @@ msgstr ""
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr ""
 
-#: ../transport.validator.mapcss:360
+#: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
 msgstr ""
 
-#: ../transport.validator.mapcss:376
-msgid ""
-"The station entrance should be in a station: add it to a stop_area relation"
-msgstr ""
-
-#: ../transport.validator.mapcss:392
+#: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
+msgstr ""
+
+#: ../transport.validator.mapcss:375
+msgid ""
+"The station entrance should be in part of a station: add it to a stop_area "
+"relation"
 msgstr ""

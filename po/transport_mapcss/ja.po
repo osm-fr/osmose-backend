@@ -181,17 +181,18 @@ msgstr "バス・ステーションは通常多くのバスが停まる大きな
 msgid "Is this a bus or tram stop ? Add a tag to precise the kind of platform"
 msgstr "このstopはバス用ですかトラム用ですか？platformの種類を詳述するタグを追加します"
 
-#: ../transport.validator.mapcss:360
+#: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
 msgstr "地下鉄の入口はノードでマッピングします"
 
-#: ../transport.validator.mapcss:376
-msgid ""
-"The station entrance should be in a station: add it to a stop_area relation"
-msgstr "駅の入口は駅の中にあるべきです: stop_areaリレーションに追加してください"
-
-#: ../transport.validator.mapcss:392
+#: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr "駅の入口は建物または道路(steps, footway, etc)の一部であるべきです"
+
+#: ../transport.validator.mapcss:375
+msgid ""
+"The station entrance should be in part of a station: add it to a stop_area "
+"relation"
+msgstr ""

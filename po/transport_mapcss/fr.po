@@ -219,21 +219,22 @@ msgstr ""
 "Est-ce un arrêt de bus ou de tramway ? Ajouter un attribut pour préciser le "
 "type d'arrêt."
 
-#: ../transport.validator.mapcss:360
+#: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
 msgstr "Les bouches de métro doivent être cartographiées sur des nœuds"
 
-#: ../transport.validator.mapcss:376
-msgid ""
-"The station entrance should be in a station: add it to a stop_area relation"
-msgstr ""
-"La bouche de métro doit être dans une station : l'ajouter à une relation "
-"\"stop_area\""
-
-#: ../transport.validator.mapcss:392
+#: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr ""
 "La bouche de métro doit faire partie d'un bâtiment ou d'un élément de voirie"
 " (escalier, chemin piéton, etc)"
+
+#: ../transport.validator.mapcss:375
+msgid ""
+"The station entrance should be in part of a station: add it to a stop_area "
+"relation"
+msgstr ""
+"La bouche de métro doit être dans une station : l'ajouter à une relation "
+"\"stop_area\""

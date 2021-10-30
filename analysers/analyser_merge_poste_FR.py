@@ -64,7 +64,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                         "brand:wikipedia": "fr:La Poste (entreprise française)"},
                     mapping1 = {
                         "ref:FR:LaPoste": "#Identifiant_du_site",
-                        "post_office:type": lambda res:
+                        "post_office": lambda res:
                             "post_annex" if res["Libellé_du_site"].endswith(" AP") else # Bureau de poste annexe
                             "post_partner" if res["Libellé_du_site"].endswith(" RP") else # Relais poste commerçant
                             None, # BP: Bureau de poste; other
