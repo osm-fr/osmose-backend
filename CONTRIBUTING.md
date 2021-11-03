@@ -14,7 +14,7 @@ However, please try to make the code similar to the already existing code.
 We try to have tests on analyzers, but there are not present on all. When
 adding new code try to add or improve the corresponding code tests.
 
-It is recommeded to run tests using [Docker](docker/README.md).
+It is recommended to run tests using [Docker](docker/README.md).
 
 Code tests can be run on one source code file using pytest, from root
 directory:
