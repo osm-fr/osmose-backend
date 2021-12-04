@@ -61,7 +61,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
             ),
             Conflate(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways"],
                     tags = {"amenity": "bicycle_parking"}),
                 conflationDistance = 20,
                 mapping = Mapping(
@@ -91,7 +91,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             ),
             Conflate(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways"],
                     tags = {"amenity": "motorcycle_parking"}),
                 conflationDistance = 20,
                 mapping = Mapping(
@@ -121,7 +121,7 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             ),
             Conflate(
                 select = Select(
-                    types = ["nodes"],
+                    types = ["nodes", "ways"],
                     tags = {"amenity": ["bicycle_parking",
                                         "motorcycle_parking"]}),
                 conflationDistance = 20,
