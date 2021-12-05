@@ -42,8 +42,11 @@ class TagRemove_Incompatibles(Plugin):
         self.CONFLICT[4] = set(['information', 'place'])
         self.WHITE_LIST = {
             'landuse': [
-                ['school', 'amenity', 'school'],
-                ['school', 'landuse', 'education'],
+                ['school', 'amenity', 'school'], # deprecated
+                ['education', 'amenity', 'school'],
+                ['education', 'amenity', 'university'],
+                ['education', 'amenity', 'college'],
+                ['education', 'amenity', 'kindergarten'],
                 ['industrial', 'amenity', 'recycling'],
                 ['retail', 'amenity', 'marketplace'],
                 ['retail', 'amenity', 'fuel'],
