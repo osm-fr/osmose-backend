@@ -74,15 +74,15 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
         # Sommet, Pic, Montagne
         dict(
             #   36228 Sommet
-            #        36225
-            #            3 Inselberg
+            #   36225
+            #       3 Inselberg
             #    2501 Pic
             #     617 Montagne
             item = 8530,
             id = 120,
             level = 2,
             title = T_('Peak not integrated'),
-            select = {'nature': ['Sommet', 'Pic', 'Montagne']},
+            select = {'nature': ['Pic']},
             tags = {'natural': 'peak'},
         ),
         #   18204 Versant
