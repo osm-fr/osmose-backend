@@ -3,12 +3,12 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Christian Ostermann, 2019
 # ToniE <osm-ToniE@web.de>, 2020
-# kjon kjon <kjon@gmx.de>, 2020
 # Manfred Brandl <manfred@brandl.net>, 2021
+# kjon kjon <kjon@gmx.de>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Manfred Brandl <manfred@brandl.net>, 2021\n"
+"Last-Translator: kjon kjon <kjon@gmx.de>, 2021\n"
 "Language-Team: German (https://www.transifex.com/openstreetmap-france/teams/17462/de/)\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -233,3 +233,5 @@ msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
+"Der Eingang zur Station sollte als Teil der Haltestelle zu einer stop_area "
+"Relation hinzugefügt werden"

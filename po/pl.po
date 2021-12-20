@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-09-26 17:53+0000\n"
+"PO-Revision-Date: 2021-12-20 17:08+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -354,12 +354,6 @@ msgstr "Brakuje tagu lub roli na linii"
 msgid "Missing tag or role on relation"
 msgstr "Brakuje tagu lub roli na relacji"
 
-msgid "Riverbank without river"
-msgstr "Brzeg rzeki bez rzeki"
-
-msgid "Unconnected waterway or wrong way flow"
-msgstr "Niepołączony ciek lub zły kierunek przepływu"
-
 #: ../plugins/Administrative_INSEE_Name.py:33
 msgid "Place node without name tag"
 msgstr "Węzeł place bez nazwy"
@@ -488,10 +482,10 @@ msgstr "Droga z jednym węzłem"
 msgid "Deprecated tag"
 msgstr "Przestarzały tag"
 
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Przyjrzyj się grupie tagów"
 
@@ -629,12 +623,12 @@ msgstr "Nazwa kończy się spacją"
 msgid "Name contains successive spaces"
 msgstr "Nazwa zawiera niepotrzebne spacje"
 
-#: ../plugins/TagRemove_Incompatibles.py:116
+#: ../plugins/TagRemove_Incompatibles.py:119
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Sprzeczność między tagami: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:119
+#: ../plugins/TagRemove_Incompatibles.py:122
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Sprzeczność między tagami: 'bridge' i 'tunnel'"
 
@@ -669,15 +663,15 @@ msgstr "Obiekt landuse nie na ziemi"
 msgid "Natural feature underground"
 msgstr "Obiekt naturalny pod ziemią"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
 msgid "Default and local language name not the same"
 msgstr "Domyślny i lokalny język nie są takie same"
 
-#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
 msgid "Local language name without default name"
 msgstr "Nazwa w lokalnym języku bez domyślnej nazwy"
 
-#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
+#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
 msgid "Language name without default name"
 msgstr "Nazwa w innym języku bez domyślnej nazwy"
 
@@ -856,7 +850,7 @@ msgstr "Zła wartość dostępu tagu „*:lanes” – to powinny być wartości
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Wartość turn:lanes merge_to_left/right jest po niewłaściwej stronie"
 
-#: ../plugins/TagRemove_Incompatibles.py:122
+#: ../plugins/TagRemove_Incompatibles.py:125
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Sprzeczność między tagami: crossing=no należy używać bez highway=crossing"
@@ -1765,6 +1759,7 @@ msgstr "Tag przedziałów warunkowych jest niepoprawny"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1774,7 +1769,6 @@ msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2522,11 +2516,6 @@ msgstr "Dodaj tagi, role w relacji lub usuń."
 msgid "The object is sometimes duplicate."
 msgstr "Obiekt jest czasami duplikatem."
 
-msgid ""
-"There is one `waterway=riverbank` but there is no `waterway=river`\n"
-"inside it."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_waterway.py:163
 msgid ""
 "A `waterway=river` or a `waterway=stream` is an oriented way. The\n"
@@ -2754,12 +2743,6 @@ msgstr ""
 msgid ""
 "Change the character into a punctuation mark or something else more\n"
 "appropriate."
-msgstr ""
-
-msgid ""
-"Apply of \"[charte de\n"
-"toponymie](education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)\" of\n"
-"IGN (French geographic name conventions)"
 msgstr ""
 
 #: ../plugins/Name_UpperCaseNumber.py:35
@@ -3131,21 +3114,21 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr "Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 
-#: ../analysers/analyser_merge_street_objects2.py:47
 #: ../analysers/analyser_merge_street_objects.py:47
+#: ../analysers/analyser_merge_street_objects2.py:47
 #: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "Do zmapowania: {0}"
 
-#: ../analysers/analyser_merge_street_objects2.py:48
 #: ../analysers/analyser_merge_street_objects.py:48
+#: ../analysers/analyser_merge_street_objects2.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:50
 #: ../analysers/analyser_merge_street_objects.py:50
+#: ../analysers/analyser_merge_street_objects2.py:50
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
@@ -3207,15 +3190,15 @@ msgstr "Błędna wartość tagu"
 msgid "Untagged named object"
 msgstr "Sama nazwa bez podstawowego tagu"
 
-#: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
+#: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr "Zaobserwowano między {0} a {1}"
 
-#: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_street_objects.py:72
+#: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
@@ -3375,20 +3358,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "Relacji brakuje tagu `type=*`."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "Wypożyczalnia rowerów {0} niezintegrowana"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "Wypożyczalnia rowerów {0}, propozycja integracji"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "Wypożyczalnia rowerów {0}, aktualizacja"
@@ -3490,15 +3473,15 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr "Stacja paliw bez tagu \"ref:mise\" lub tag niepoprawny"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:38
+#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_capp.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "Parking {0} niezintegrowany"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:41
+#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "Parking {0}, propozycja integracji"
@@ -4508,11 +4491,6 @@ msgid ""
 "The way or the group of the ways must be connected to an entry point:\n"
 "* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` or `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
 "* bicycle: `railway=platform`, `public_transport=platform` or `highway=pedestrian`."
-msgstr ""
-
-msgid ""
-"After checking, create a \"river\" line inside the \"riverbank\"\n"
-"polygon or eliminate the \"riverbank\" polygon."
 msgstr ""
 
 #: ../analysers/analyser_merge_natural_FR.py:84

@@ -3,10 +3,11 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2018
 # Franco, 2018
 # Jorge Sanz <sanchi2@gmail.com>, 2020
+# Hugoren Martinako <aumpfbahn@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jorge Sanz <sanchi2@gmail.com>, 2020\n"
+"Last-Translator: Hugoren Martinako <aumpfbahn@gmail.com>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/openstreetmap-france/teams/17462/es/)\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -217,16 +218,20 @@ msgstr ""
 
 #: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
-msgstr ""
+msgstr "Las entradas al metro deberían ser mapeadas como nodos"
 
 #: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr ""
+"La entrada de la estación debería ser parte de un edificio o de un vial "
+"(escaleras, aceras, etc...)"
 
 #: ../transport.validator.mapcss:375
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
+"La entrada de la estación debería ser parte de la estación: añádela a una "
+"relación stop_area "
