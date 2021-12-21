@@ -102,4 +102,4 @@ Wrong tag for private swimming pool.'''))
             {"-":["natural"], "+":{"landuse":"basin"}},
             {"-":["natural"], "+":{"landuse":"pond"}},
             {"+":{"water":"pond"}},
-            ]})
+        ]})

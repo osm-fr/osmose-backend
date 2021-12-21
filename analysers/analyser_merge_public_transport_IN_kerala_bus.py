@@ -50,7 +50,7 @@ class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "name": lambda res: res["Name"].title()
-                        }
+                    }
                 )
             )
         )

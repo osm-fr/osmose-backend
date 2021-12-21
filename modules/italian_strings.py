@@ -23,40 +23,40 @@ from functools import reduce
 
 
 COMMON_WORDS_MAP = {
-  'A': 'a',
-  'Dei': 'dei',
-  'Del': 'del',
-  'Di': 'di',
-  'Ed': 'ed',
-  'E': 'e',
-  'F.Lli': 'F.lli',
-  'In': 'in',
-  'Responsabilita\'': 'Responsabilità',
-  'Sas': 'S.A.S.',
-  'Sigla': 'sigla',
-  'Snc': 'S.N.C.',
-  'Societa\'': 'Società',
-  'S.P.A.': 'S.p.A.',
-  'Spa': 'S.p.A.',
-  'Srl': 'S.R.L.',
+    'A': 'a',
+    'Dei': 'dei',
+    'Del': 'del',
+    'Di': 'di',
+    'Ed': 'ed',
+    'E': 'e',
+    'F.Lli': 'F.lli',
+    'In': 'in',
+    'Responsabilita\'': 'Responsabilità',
+    'Sas': 'S.A.S.',
+    'Sigla': 'sigla',
+    'Snc': 'S.N.C.',
+    'Societa\'': 'Società',
+    'S.P.A.': 'S.p.A.',
+    'Spa': 'S.p.A.',
+    'Srl': 'S.R.L.',
 }
 
 
 TITLES_MAP = {
-  'Dott.Ri': 'Dott.ri',
-  'Dott.Ssa': 'Dott.ssa',
-  'Dott.Sse': 'Dott.sse',
-  'Dr.I': 'Dott.ri',
-  'Dr.Ssa': 'Dott.ssa',
+    'Dott.Ri': 'Dott.ri',
+    'Dott.Ssa': 'Dott.ssa',
+    'Dott.Sse': 'Dott.sse',
+    'Dr.I': 'Dott.ri',
+    'Dr.Ssa': 'Dott.ssa',
 }
 
 
 ROMAN_NUMBERS_MAP = {
-  'Vii': 'VII',
-  'Vi': 'VI',
-  'Xiv': 'XIV',
-  'Xxiii': 'XXIII',
-  'Xx': 'XX',
+    'Vii': 'VII',
+    'Vi': 'VI',
+    'Xiv': 'XIV',
+    'Xxiii': 'XXIII',
+    'Xx': 'XX',
 }
 
 PHARMACY_WORDS_MAP = reduce(lambda x, y: dict(x, **y), (COMMON_WORDS_MAP, TITLES_MAP, ROMAN_NUMBERS_MAP))
@@ -115,6 +115,6 @@ class Test(unittest.TestCase):
             self.assertEqual(normalize_common(s), t)
 
         for (s, t) in [
-             ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.'),
+            ('Farmacia Dell\'Olmina Di A. Leardi E Dott.ssa B. Torretta E C. S.a.s.', 'Farmacia Dell\'Olmina di A. Leardi e Dott.ssa B. Torretta e C. S.A.S.'),
         ]:
             self.assertEqual(normalize_pharmacy(s), t)

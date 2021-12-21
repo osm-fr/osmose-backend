@@ -64,7 +64,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                         "shop": lambda res: ";".join(filter(lambda x: x, (
                             "convenience" if res["services"] and "Boutique alimentaire" in res["services"] else None,
                             "gas" if res["services"] and "Vente de gaz domestique (Butane, Propane)" in res["services"] else None,
-                            ))),
+                        ))),
                         "hgv:lanes": lambda res: "yes" if res["services"] and "Piste poids lourds" in res["services"] else None,
                         "vending": lambda res: "fuel" if res["services"] and "Automate CB 24/24" in res["services"] else None},
                 text = lambda tags, fields: {"en": "{0}, {1}".format(fields["addr"], fields["city"])} )))

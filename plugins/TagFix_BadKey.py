@@ -52,24 +52,25 @@ separator '_' or ':'. See
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart1Less = re.compile("^[-.a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
-        self.exceptions = set( ("ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
-                                "USGS-LULC",
-                                "aims-id",
-                                "au.gov.abs",
-                                "catmp-RoadID",
-                                "dc-gis",
-                                "drive-through",
-                                "e-road",
-                                "nhd-shp",
-                                "voltage-high", "voltage-low",
-                                "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
-                                "strassen-nrw", # DE import
-                                "hazmat",
-                             ) )
+        self.exceptions = set((
+            "ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
+            "USGS-LULC",
+            "aims-id",
+            "au.gov.abs",
+            "catmp-RoadID",
+            "dc-gis",
+            "drive-through",
+            "e-road",
+            "nhd-shp",
+            "voltage-high", "voltage-low",
+            "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
+            "strassen-nrw", # DE import
+            "hazmat",
+        ))
 
         self.exceptions_whole = set((
-                                "railway:memor2+", "railway:tbl1+",
-                                ))
+            "railway:memor2+", "railway:tbl1+",
+        ))
     def node(self, data, tags):
         err = []
         keys = tags.keys()

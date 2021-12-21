@@ -65,8 +65,8 @@ class SubAnalyser_Merge_Street_Objects2(SubAnalyser_Merge_Dynamic):
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {
-                       "mapillary": "image_key",
-                       "survey:date": lambda res: res["last_seen_at"][0:10]},
+                        "mapillary": "image_key",
+                        "survey:date": lambda res: res["last_seen_at"][0:10]},
                     text = lambda tags, fields:
                         T_('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
                         T_('Observed on {0}', fields["first_seen_at"][0:10]) )))

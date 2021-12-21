@@ -69,25 +69,25 @@ class TagFix_MultipleValue(Plugin):
 values.'''))
 
         self.SimpleValuedTag = set((
-                    'addr:street', 'admin_level', 'amenity', 'attraction',
-                    'bicycle', 'building',
-                    'cycleway',
-                    'ele', 'est_width',
-                    'foot',
-                    'highway',
-                    'landuse', 'lanes', 'layer',
-                    'left:city', 'left:country', 'left:departement', 'left:village',
-                    'leisure',
-                    'maxspeed', 'motorcar', 'mtb:scale',
-                    'name', 'natural',
-                    'oneway',
-                    'power',
-                    'railway',
-                    'right:city', 'right:country', 'right:departement', 'right:village',
-                    'smoothness', 'surface',
-                    'tracktype', 'trail_visibility', 'type',
-                    'waterway', 'width', 'wikipedia', 'wires', 'wood',
-                   ))
+            'addr:street', 'admin_level', 'amenity', 'attraction',
+            'bicycle', 'building',
+            'cycleway',
+            'ele', 'est_width',
+            'foot',
+            'highway',
+            'landuse', 'lanes', 'layer',
+            'left:city', 'left:country', 'left:departement', 'left:village',
+            'leisure',
+            'maxspeed', 'motorcar', 'mtb:scale',
+            'name', 'natural',
+            'oneway',
+            'power',
+            'railway',
+            'right:city', 'right:country', 'right:departement', 'right:village',
+            'smoothness', 'surface',
+            'tracktype', 'trail_visibility', 'type',
+            'waterway', 'width', 'wikipedia', 'wires', 'wood',
+       ))
 
 
     def node(self, data, tags):

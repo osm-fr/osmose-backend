@@ -51,8 +51,8 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
             Load(
 ("CASE \"COR_CD_EW_LON\" WHEN 'W' THEN -1*(to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600) WHEN 'E' THEN to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600 END",),
 ("CASE \"COR_CD_NS_LAT\" WHEN 'S' THEN -1*(to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600) WHEN 'N' THEN to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600 END",),
-                  select = {"NAT_ID": NAT_IDs},
-                  unique = ("SUP_ID",)),
+                select = {"NAT_ID": NAT_IDs},
+                unique = ("SUP_ID",)),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -66,7 +66,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
                         "ref:FR:ANFR": "SUP_ID",
                         "operator": lambda fields: self.owner[int(fields["TPO_ID"])] if fields["TPO_ID"] and int(fields["TPO_ID"]) in self.owner else None,
                         "height": lambda fields: fields["SUP_NM_HAUT"].replace(",", ".") if fields["SUP_NM_HAUT"] else None,
-                        },
+                    },
                     text = lambda tags, fields: {"en": "{0}, address: {1}, {2}{3}".format(
                         (lambda x: self.Tour_Mat_Pylone[fields["NAT_ID"]] if x == "Tour, mât et pylône" else x)(title),
                         ", ".join(filter(lambda x: x != "None", [fields["ADR_LB_LIEU"], fields["ADR_LB_ADD1"], fields["ADR_LB_ADD2"], fields["ADR_LB_ADD3"],fields["ADR_NM_CP"]])),

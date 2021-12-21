@@ -60,7 +60,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['farmyard', 'amenity', 'animal_breeding'],
             ],
             'water': [
-                 ['pond', 'leisure', 'fishing'],
+                ['pond', 'leisure', 'fishing'],
             ],
             'place': [
                 ['square', 'area', 'yes'],

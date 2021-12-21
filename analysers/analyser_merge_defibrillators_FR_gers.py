@@ -34,10 +34,10 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge):
             "https://www.data.gouv.fr/fr/datasets/inventaire-des-defibrillateurs-automatises-externes-dae-dans-le-gers-1/",
             "Inventaire des Défibrillateurs Automatisés Externes (DAE) dans le Gers",
             SHP(SourceDataGouv(
-                    attribution="Département du Gers",
-                    dataset="5d26ec979ce2e73529f50c5e",
-                    resource="479b8047-f8e3-4536-9a07-12f96c9a3cd7",
-                    zip="inventaire-des-defibrillateurs-automatises-externes-dans-le-gers.shp")),
+                attribution="Département du Gers",
+                dataset="5d26ec979ce2e73529f50c5e",
+                resource="479b8047-f8e3-4536-9a07-12f96c9a3cd7",
+                zip="inventaire-des-defibrillateurs-automatises-externes-dans-le-gers.shp")),
             LoadGeomCentroid(srid = 2154),
             Conflate(
                 select = Select(

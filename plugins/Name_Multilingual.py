@@ -41,8 +41,8 @@ class Name_Multilingual(Plugin):
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
         if style == "be":
             self.aggregator = lambda tags: [
-              {"name": tags["name:"+lang[0]].strip() + " - " + tags["name:"+lang[1].strip()]},
-              {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
+                {"name": tags["name:"+lang[0]].strip() + " - " + tags["name:"+lang[1].strip()]},
+                {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
             ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.split = self.split_be
         elif style == "sp_eu":
@@ -52,10 +52,10 @@ class Name_Multilingual(Plugin):
                     return []
                 separator = " / " if name is None or " / " in name else "/"
                 return [
-                  {"name": tags["name:"+lang[0]].strip()},
-                  {"name": tags["name:"+lang[1]].strip()},
-                  {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
-                  {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0].strip()]},
+                    {"name": tags["name:"+lang[0]].strip()},
+                    {"name": tags["name:"+lang[1]].strip()},
+                    {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
+                    {"name": tags["name:"+lang[1]].strip() + separator + tags["name:"+lang[0].strip()]},
                 ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.aggregator = aggregator
             self.split = self.split_sp_eu
@@ -66,30 +66,30 @@ class Name_Multilingual(Plugin):
                     return []
                 separator = " / " if name is None or " / " in name else "/"
                 return [
-                  {"name": tags["name:"+lang[0]].strip()},
-                  {"name": tags["name:"+lang[1]].strip()},
-                  {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
+                    {"name": tags["name:"+lang[0]].strip()},
+                    {"name": tags["name:"+lang[1]].strip()},
+                    {"name": tags["name:"+lang[0]].strip() + separator + tags["name:"+lang[1].strip()]},
                 ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.aggregator = aggregator
             self.split = self.split_sp_ast
         elif style == "xk":
             self.aggregator = lambda tags: [
-              {"name": tags["name:"+lang[0]].strip()},
-              {"name": tags["name:"+lang[1]].strip()},
-              {"name": tags["name:"+lang[0]].strip() + " - " + tags["name:"+lang[1].strip()]},
-              {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
+                {"name": tags["name:"+lang[0]].strip()},
+                {"name": tags["name:"+lang[1]].strip()},
+                {"name": tags["name:"+lang[0]].strip() + " - " + tags["name:"+lang[1].strip()]},
+                {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
             ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.split = self.split_be
         elif style == "ma":
             self.aggregator = lambda tags: [
-              {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")])))}
+                {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")])))}
             ]
             self.split = self.split_ma
         elif style == "dj":
             self.aggregator = lambda tags: [
-              {"name": " / ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:ar")])))}
+                {"name": " / ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:ar")])))}
             ] if tags.get("name:fr") and tags.get("name:fr")[-1] in '0123456789' else [
-              {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:ar")])))}
+                {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:ar")])))}
             ]
             self.split = self.split_dj
 
