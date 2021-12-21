@@ -129,47 +129,47 @@ class Analyser_Merge_ServicePublic_FR_Prison(_Analyser_Merge_ServicePublic_Name_
 class Analyser_Merge_ServicePublic_FR_Prefecture(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 8110, 8, 3, ["prefecture", "sous_pref"],
-                        {"office": "government", "government": "prefecture"},
-                        {"office": "government", "government": "prefecture"})
+            {"office": "government", "government": "prefecture"},
+            {"office": "government", "government": "prefecture"})
 
 class Analyser_Merge_ServicePublic_FR_CG(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 9, 3, "cg",
-                        {"office": "government", "government": "parliament"},
-                        {"office": "government", "government": "parliament", "admin_level": "6"})
+            {"office": "government", "government": "parliament"},
+            {"office": "government", "government": "parliament", "admin_level": "6"})
 
 class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 10, 3, "tresorerie",
-                        [{"office": "tax"}, {"office": "government", "government": "tax"}],
-                        {"office": "government", "government": "tax"})
+            [{"office": "tax"}, {"office": "government", "government": "tax"}],
+            {"office": "government", "government": "tax"})
 
 class Analyser_Merge_ServicePublic_FR_CAF(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 11, 3, "caf",
-                        {"office": "government", "government": "social_welfare", "operator": "Caisse d'Allocations Familiales"},
-                        {"office": "government", "government": "social_welfare", "operator": "Caisse d'Allocations Familiales", "operator:wikidata":"Q1395254"})
+            {"office": "government", "government": "social_welfare", "operator": "Caisse d'Allocations Familiales"},
+            {"office": "government", "government": "social_welfare", "operator": "Caisse d'Allocations Familiales", "operator:wikidata":"Q1395254"})
 
 class Analyser_Merge_ServicePublic_FR_CPAM(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 12, 3, "cpam",
-                        {"office": "government", "government": "social_security", "operator": "Caisse Primaire d'Assurance Maladie"},
-                        {"office": "government", "government": "social_security", "operator": "Caisse Primaire d'Assurance Maladie", "operator:wikidata":"Q2110238"})
+            {"office": "government", "government": "social_security", "operator": "Caisse Primaire d'Assurance Maladie"},
+            {"office": "government", "government": "social_security", "operator": "Caisse Primaire d'Assurance Maladie", "operator:wikidata":"Q2110238"})
 
 class Analyser_Merge_ServicePublic_FR_URSSAF(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 13, 3, "urssaf",
-                        [{"office": "tax"}, {"office": "government", "government": "tax"}],
-                        {"office": "government", "government": "tax", "operator": "URSSAF", "operator:wikidata":"Q3550086"})
+            [{"office": "tax"}, {"office": "government", "government": "tax"}],
+            {"office": "government", "government": "tax", "operator": "URSSAF", "operator:wikidata":"Q3550086"})
 
 class Analyser_Merge_ServicePublic_FR_CCI(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 14, 3, ["chambre_agriculture", "chambre_metier", "cci"],
-                        {"office": "government", "government": "chamber_of_commerce"},
-                        {"office": "government", "government": "chamber_of_commerce"})
+            {"office": "government", "government": "chamber_of_commerce"},
+            {"office": "government", "government": "chamber_of_commerce"})
 
 class Analyser_Merge_ServicePublic_FR_CR(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 8110, 15, 3, "cr",
-                        {"office": "government", "government": "parliament"},
-                        {"office": "government", "government": "parliament", "admin_level": "4"})
+            {"office": "government", "government": "parliament"},
+            {"office": "government", "government": "parliament", "admin_level": "4"})

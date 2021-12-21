@@ -454,7 +454,7 @@ france_departement("poitou_charentes/vienne", 7377, "FR-86")
 
 france_departement("provence_alpes_cote_d_azur/alpes_de_haute_provence", 7380, "FR-04")
 france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05", include=[
-  'merge_defibrillators_FR_hautesalpes',
+    'merge_defibrillators_FR_hautesalpes',
 ])
 france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06")
 france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13")
@@ -551,7 +551,7 @@ france_local_db.db_schema_path = "\"$user\",osmosis,public"
 france_local_db.sql_post_scripts += [
     france_local_db.dir_scripts + "/osmosis/CreateFunctions.sql",
     france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
-  ]
+]
 
 france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find state.txt
 
@@ -972,8 +972,8 @@ default_country("oceania", "usa_american_samoa", 2177187, {"country": "AS", "lan
 #########################################################################
 
 canada_options = {'download_repo': OSMFR, 'addr:street_distance': 2000,
-  'phone_code': '1', 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
-  'exclude': [
+    'phone_code': '1', 'phone_len': 10, 'phone_format': r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", 'suffix_separators': "x",
+    'exclude': [
     'osmosis_waterway',
 ]}
 canada_province = gen_country('north-america', 'canada', language='en', **canada_options)

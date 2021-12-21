@@ -152,8 +152,8 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
 #           tags = {'natural': 'peninsula'},
 #       ),
         #    1697 Gouffre
-             #    1118
-             #     579 Aven
+        #         1118
+        #          579 Aven
         dict(
             item = 8530,
             id = 190,

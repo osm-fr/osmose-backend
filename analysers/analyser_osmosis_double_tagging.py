@@ -98,20 +98,20 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         doc = dict(
-          fix = T_(
+            fix = T_(
 '''An entity must be present only once, remove one and eventually merge
 the tags.'''),
-          example = T_(
+            example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)'''))
         self.classs_change[1] = self.def_class(item = 4080, level = 1, tags = ['tag', 'fix:chair'],
-          title = T_('Object tagged twice as node and way'),
-          **doc)
+            title = T_('Object tagged twice as node and way'),
+            **doc)
         self.classs_change[2] = self.def_class(item = 4080, level = 1, tags = ['tag', 'fix:chair'],
-          title = T_('Object tagged twice as way and relation'),
-          **doc)
+            title = T_('Object tagged twice as way and relation'),
+            **doc)
         self.classs_change[3] = self.def_class(item = 4080, level = 1, tags = ['tag', 'fix:chair'],
-          title = T_('Object tagged twice as node and relation'),
-          **doc)
+            title = T_('Object tagged twice as node and relation'),
+            **doc)
 
     def analyser_osmosis_full(self):
         self.run(sql10)

@@ -40,8 +40,8 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             "https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
             "Postes électriques RTE",
             CSV(SourceOpenDataSoft(
-                    url="https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
-                    attribution="data.gouv.fr:RTE")),
+                url="https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
+                attribution="data.gouv.fr:RTE")),
             Load("Longitude poste (DD)", "Latitude poste (DD)"),
             Conflate(
                 select = Select(

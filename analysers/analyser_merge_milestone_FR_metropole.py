@@ -62,7 +62,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                     mapping1 = {
                         "distance": 'pr',
                         "nat_ref": lambda row: self.transform_to_plo(row) }
-                    )))
+                )))
 
     def is_milestone(self,row):
         if len(row['depPr']) == 3:

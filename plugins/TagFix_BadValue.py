@@ -42,7 +42,7 @@ However, this should probably still conform to the typical format used for value
 
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
-        self.check_list_open = set( (
+        self.check_list_open = set((
             'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
             'barrier', 'bicycle', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'construction',
             'covered', 'craft', 'crossing', 'cutting',
@@ -63,7 +63,7 @@ However, this should probably still conform to the typical format used for value
             'usage',
             'vehicle',
             'wall', 'waterway', 'wheelchair', 'wood'
-            ) )
+        ))
         self.check_list_open_node = self.check_list_open
         self.check_list_open_way = self.check_list_open
         self.check_list_open_relation = self.check_list_open.copy()
@@ -83,11 +83,11 @@ However, this should probably still conform to the typical format used for value
                                  "barrier": ( "full-height_turnstile" ),
                                  "man_made": ( "MDF", "piste:halfpipe" ),
                                 }
-        self.check_list_closed = set( (
+        self.check_list_closed = set((
             'area',
             'narrow',
             'oneway',
-            ) )
+        ))
         self.allow_closed = { "area": ( "yes", "no", ),
                             "narrow": ( "yes", "no", ),
                             "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),

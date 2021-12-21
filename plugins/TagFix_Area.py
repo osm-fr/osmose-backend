@@ -38,9 +38,8 @@ class TagFix_Area(Plugin):
             title = T_('Untagged area object'),
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`.'),
             fix = self.merge_doc(
-              T_('Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:'),
-              {'en': ', '.join(map(lambda x: '`{}`'.format(x), sorted(self.area_yes_good)))}
-            ),
+                T_('Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:'),
+                {'en': ', '.join(map(lambda x: '`{}`'.format(x), sorted(self.area_yes_good)))} ),
             trap = T_('It may be more appropriate to remove the object completely if it isn\'t useful.')
         )
         self.errors[32003] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],

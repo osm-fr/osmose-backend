@@ -84,7 +84,7 @@ tagged.''')
                 {"+":{"building":"hut"}},
                 {"+":{"building":"yurt"}},
                 {"+":{"building":"ger"}},
-                ]}
+            ]}
             self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":[
                 {"+":{"man_made":"works"}},
                 {"+":{"shop":"mall"}},
@@ -92,7 +92,7 @@ tagged.''')
                 {"~":{"building":"warehouse"}},
                 {"~":{"building":"industrial"}},
                 {"~":{"building":"greenhouse"}},
-                ]}
+            ]}
 
     def analyser_osmosis_full(self):
         if "proj" in self.config.options:

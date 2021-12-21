@@ -1179,14 +1179,14 @@ OpenData and OSM.'''))
                         ST_SetSRID(ST_Expand(ST_GeomFromText('{bbox}'), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.load.srid else "") + """
                         tags != ''::hstore AND
                         {where})""").format(
-                            type = type[0].upper(),
-                            ref = self.conflate.osmRef,
-                            geomSelect = typeSelect[type[0].upper()],
-                            geom = typeGeom[type[0].upper()],
-                            shape = typeShape[type[0].upper()],
-                            from_ = type,
-                            bbox = self.load.bbox,
-                            distance = self.conflate.conflationDistance or 0, where = where),
+                        type = type[0].upper(),
+                        ref = self.conflate.osmRef,
+                        geomSelect = typeSelect[type[0].upper()],
+                        geom = typeGeom[type[0].upper()],
+                        shape = typeShape[type[0].upper()],
+                        from_ = type,
+                        bbox = self.load.bbox,
+                        distance = self.conflate.conflationDistance or 0, where = where),
                     self.conflate.select.types
                 )
             ))
