@@ -56,7 +56,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
     # Get the relevant tags with *:conditional
     tags_conditional = {}
     for tag in tags:
-      if tags[tag][-12:] == ":conditional":
+      if tag[-12:] == ":conditional":
         tags_conditional[tag] = tags[tag]
     if len(tags_conditional) == 0:
       return
@@ -69,7 +69,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
       bad_tag = False
 
       if not "@" in tag_value:
-        err.append({"class": 33501, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Missing `@`")})
+        err.append({"class": 33501, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Missing `@` in \"{0}\"", tag)})
         continue
 
       # Conditionals are split by semicolons, i.e. value @ condition; value @ condition
@@ -83,7 +83,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
       for c in tag_value:
         if c == "@":
           if len(tmp_str.strip()) == 0:
-            err.append({"class": 33501, "subclass": 1 + stablehash64(tag + '|' + tag_value), "text": T_("Missing value for the condition")})
+            err.append({"class": 33501, "subclass": 1 + stablehash64(tag + '|' + tag_value), "text": T_("Missing value for the condition in \"{0}\"", tag)})
             bad_tag = True
             break
           tmp_str = ""
@@ -93,13 +93,13 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
         elif c == ")":
           parentheses -= 1
           if parentheses == -1:
-            err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses")})
+            err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses in \"{0}\"", tag)})
             bad_tag = True
             break
         elif c == ";" and parentheses == 0:
           tmp_str = tmp_str.strip()
           if len(tmp_str) == 0:
-            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition")})
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition in \"{0}\"", tag)})
             bad_tag = True
             break
           conditions.append(tmp_str)
@@ -112,11 +112,11 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
           # Last condition wouldn't be added in the loop
           tmp_str = tmp_str.strip()
           if len(tmp_str) == 0:
-            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition")})
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition in \"{0}\"", tag)})
             continue
           conditions.append(tmp_str)
         else:
-          err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses")})
+          err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses in \"{0}\"", tag)})
           continue
 
       # Check the position of AND is ok
@@ -126,12 +126,12 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
           tmp_ANDsplitted = tmp_cond.upper().split(" AND ")
           for splittedANDpart in tmp_ANDsplitted:
             if len(splittedANDpart.strip()) == 0:
-              err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator")})
+              err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
               bad_tag = True
               break
 
           if not bad_tag and tmp_cond.count(" AND ") != tmp_cond.upper().count(" AND "):
-            err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value)}) # Recommendation to use uppercase "AND". Not a true error
+            err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Lowercase version of `AND` in \"{0}\"", tag)}) # Recommendation to use uppercase "AND". Not a true error
 
       if bad_tag:
         continue
@@ -145,7 +145,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
 
         maxYear = int(max(years_str))
         if maxYear < self.currentYear:
-          err.append({"class": 33503, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Condition \"{0}\" was only valid until {1}", condition, maxYear)})
+          err.append({"class": 33503, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Condition \"{0}\" in \"{1}\" was only valid until {2}", condition, tag, maxYear)})
 
     if err != []:
       return err
