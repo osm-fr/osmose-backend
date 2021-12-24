@@ -23,6 +23,7 @@ from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 import re
 from datetime import date
+from modules.Stablehash import stablehash64
 
 class ConditionalRestrictions(Plugin):
   def init(self, logger):
@@ -30,8 +31,25 @@ class ConditionalRestrictions(Plugin):
     
     self.ReYear = re.compile(r'20\d\d') # Update in 2099
     self.currentYear = date.today().year
-    # TODO define errors
-    
+
+    self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Bad conditional restriction'),
+            detail = T_(
+'''Conditional restrictions should follow `value @ condition; value2 @ condition2 syntax.'''))
+    self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Use uppercase `and` to combine conditions'),
+            detail = T_(
+'''For readability, `AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
+    self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
+            title = T_('Expired conditional'),
+            detail = T_(
+'''This conditional was only valid up to a date in the past. It can likely be removed'''),
+            trap = T_(
+'''Other tags might need to be updated too to reflect the new situation'''))
+
+
+
+
   def way(self, data, tags, nds):
     # Currently only checking highways with conditionals
     if not "highway" in tags:
@@ -53,7 +71,7 @@ class ConditionalRestrictions(Plugin):
       bad_tag = False
 
       if not "@" in tag_value:
-        err.append({}) # TODO - not a conditional
+        err.append({"class": 33501, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Missing `@`")})
         continue
 
       # Conditionals are split by semicolons, i.e. value @ condition; value @ condition
@@ -67,7 +85,7 @@ class ConditionalRestrictions(Plugin):
       for c in tag_value:
         if c == "@":
           if len(tmp_str.strip()) == 0:
-            err.append({}) # TODO - no value before @
+            err.append({"class": 33501, "subclass": 1 + stablehash64(tag + '|' + tag_value), "text": T_("Missing value for the condition")})
             bad_tag = True
             break
           tmp_str = ""
@@ -77,13 +95,13 @@ class ConditionalRestrictions(Plugin):
         elif c == ")":
           parentheses -= 1
           if parentheses == -1:
-            err.append({}) # TODO - mismatch in ( and ) count
+            err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses")})
             bad_tag = True
             break
         elif c == ";" and parentheses == 0:
           tmp_str = tmp_str.strip()
           if len(tmp_str) == 0:
-            err.append({}) # TODO - no value after @
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition")})
             bad_tag = True
             break
           conditions.append(tmp_str)
@@ -95,11 +113,11 @@ class ConditionalRestrictions(Plugin):
         # Last condition wouldn't be added in the loop
         tmp_str = tmp_str.strip()
         if len(tmp_str) == 0:
-          err.append({}) # TODO - no value after @
+          err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition")})
           continue
         conditions.append(tmp_str)
       else:
-        err.append({}) # TODO - mismatch in ( and ) count
+        err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses")})
         continue
 
       # Check the position of AND is ok
@@ -109,12 +127,12 @@ class ConditionalRestrictions(Plugin):
           tmp_ANDsplitted = tmp_cond.upper().split(" AND ")
           for splittedANDpart in tmp_ANDsplitted:
             if len(splittedANDpart.strip()) == 0:
-              err.append({}) # TODO - AND without condition before or after
+              err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator")})
               bad_tag = True
               break
 
           if not bad_tag and tmp_cond.count(" AND ") != tmp_cond.upper().count(" AND "):
-            err.append({}) # TODO - recommendation: use uppercase "AND". Not an error though
+            err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value)}) # Recommendation to use uppercase "AND". Not a true error
 
       if bad_tag:
         continue
@@ -128,9 +146,10 @@ class ConditionalRestrictions(Plugin):
 
         maxYear = int(max(years_str))
         if maxYear < self.currentYear:
-          err.append({}) # TODO - outdated condition
+          err.append({"class": 33503, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Condition was only valid until {0}", maxYear)})
 
-
+    if err != []:
+      return err
 
 
 
