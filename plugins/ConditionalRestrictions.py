@@ -198,7 +198,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "yes@"},
                   {"highway": "residential", "access:conditional": "@wet"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND AND 2020 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND 2020 Oct 7 AND)"; delivery @ wet},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND 2020 Oct 7 AND); delivery @ wet"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22 and 2020 Oct 7); delivery @ wet"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
