@@ -146,7 +146,7 @@ class ConditionalRestrictions(Plugin):
 
         maxYear = int(max(years_str))
         if maxYear < self.currentYear:
-          err.append({"class": 33503, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Condition was only valid until {0}", maxYear)})
+          err.append({"class": 33503, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Condition \"{0}\" was only valid until {1}", condition, maxYear)})
 
     if err != []:
       return err
@@ -161,4 +161,44 @@ class Test(TestPluginCommon):
         a = ConditionalRestrictions(None)
         a.init(None)
         
-        # TODO write tests
+        # Valid conditionals
+        for t in [{"highway": "residential"},
+                  {"highway": "residential", "access": "no"},
+                  {"highway": "residential", "access:conditional": "no @ wet"},
+                  {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00)"},
+                  {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-20:00); 100 @ (22:00-06:00)"},
+                  {"highway": "residential", "access:forward:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00)"},
+                  {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
+                  {"highway": "residential", "access:conditional": "no @ 2099"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 7)"},
+                 ]:
+          assert not a.way(None, t, None), a.way(None, t, None)
+            
+        # Expired conditionals
+        for t in [{"highway": "residential", "access:forward:conditional": "no @ 2020"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); delivery @ 2099"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); destination @ length < 4"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7 AND weight > 5)"},
+                 ]:
+          assert not a.way(None, t, None), a.way(None, t, None)
+          
+        # Invalid conditionals
+        for t in [{"highway": "residential", "access:conditional": "no"},
+                  {"highway": "residential", "access:forward:conditional": "no @ 2098;2099"},
+                  {"highway": "residential", "access:conditional": "delivery @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00"},
+                  {"highway": "residential", "access:conditional": "delivery @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00)"},
+                  {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00"},
+                  {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00))"},
+                  {"highway": "residential", "access:conditional": "delivery @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00);yes@wet"},
+                  {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00;yes@wet"},
+                  {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00));yes@wet"},
+                  {"highway": "residential", "access:conditional": "yes@()"},
+                  {"highway": "residential", "access:conditional": "yes@"},
+                  {"highway": "residential", "access:conditional": "@wet"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND AND 2020 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND 2020 Oct 7 AND)"; delivery @ wet},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 and 2020 Oct 7); delivery @ wet"},
+                 ]:
+          assert not a.way(None, t, None), a.way(None, t, None)
