@@ -20,11 +20,16 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from plugins.Plugin import 
+from plugins.Plugin import Plugin
+import re
+from datetime import date
 
 class ConditionalRestrictions(Plugin):
   def init(self, logger):
     Plugin.init(self, logger)
+    
+    self.ReYear = re.compile(r'20\d\d') # Update in 2099
+    self.currentYear = date.today().year
     # TODO define errors
     
   def way(self, data, tags, nds):
@@ -55,7 +60,7 @@ class ConditionalRestrictions(Plugin):
       # Herein, condition can also contain semicolons, e.g. no @ (Mo 06:00-24:00; Tu-Fr 00:00-24:00)
       # In this case, the condition is wrapped in parentheses ( )
       # Additionally, there's the magic keyword 'AND' to combine conditions
-      
+
       # Get the parts after the @ excluding parentheses and put them in the list conditions
       # Also validate the syntax of value @ (condition); value @ condition is obeyed
       tmp_str = ""
@@ -85,7 +90,7 @@ class ConditionalRestrictions(Plugin):
           tmp_str = ""
         else:
           tmp_str += c
-      
+
       if parentheses == 0 and not bad_tag:
         # Last condition wouldn't be added in the loop
         tmp_str = tmp_str.strip()
@@ -96,7 +101,7 @@ class ConditionalRestrictions(Plugin):
       else:
         err.append({}) # TODO - mismatch in ( and ) count
         continue
-      
+
       # Check the position of AND is ok
       if not bad_tag:
         for condition in conditions:
@@ -113,12 +118,22 @@ class ConditionalRestrictions(Plugin):
 
       if bad_tag:
         continue
-      
-      ## TODO continue: find and validate years
-      
-      
-      
-  
+
+
+      # Find outdated conditional restrictions, i.e. temporary road closures
+      for condition in conditions:
+        years_str = re.findall(self.ReYear, condition)
+        if len(years_str) == 0:
+          continue
+
+        maxYear = int(max(years_str))
+        if maxYear < self.currentYear:
+          err.append({}) # TODO - outdated condition
+
+
+
+
+
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
 
