@@ -33,17 +33,17 @@ class ConditionalRestrictions(Plugin):
     self.currentYear = date.today().year
 
     self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Bad conditional restriction'),
-            detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
+        title = T_('Bad conditional restriction'),
+        detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
 Combined restrictions should follow `value @ (condition1 AND condition2)
 Parentheses `()` should be used if the condition itself contains semicolons `;` too'''))
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
-            title = T_('Use uppercase `and` to combine conditions'),
-            detail = T_('''For readability, `AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
+        title = T_('Use uppercase `and` to combine conditions'),
+        detail = T_('''For readability, `AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
-            title = T_('Expired conditional'),
-            detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed'''),
-            trap = T_('''Other tags might need to be updated too to reflect the new situation'''))
+        title = T_('Expired conditional'),
+        detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed'''),
+        trap = T_('''Other tags might need to be updated too to reflect the new situation'''))
 
 
 
