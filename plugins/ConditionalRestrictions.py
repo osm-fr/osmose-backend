@@ -49,10 +49,6 @@ Parentheses `()` must be used around the condition if the condition itself conta
 
 
   def way(self, data, tags, nds):
-    # Currently only checking highways with conditionals
-    if not "highway" in tags:
-      return
-
     # Get the relevant tags with *:conditional
     tags_conditional = {}
     for tag in tags:
@@ -155,6 +151,12 @@ Parentheses `()` must be used around the condition if the condition itself conta
 
 
 
+  def node(self, data, tags):
+    return self.way(data, tags, None)
+
+  def relation(self, data, tags, members):
+    return self.way(data, tags, None)
+
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
 
@@ -204,3 +206,11 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 and 2099 Oct 7); delivery @ wet"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
+
+          # Nodes
+          assert not a.node(None, {"barrier": "lift_gate", "access:conditional": "no @ wet"})
+          assert a.node(None, {"barrier": "lift_gate", "access:conditional": "no @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00"})
+
+          # Relations
+          assert not a.relation(None, {"type": "restriction", "restriction:conditional": "no_u_turn @ (06:00-22:00)"}, None)
+          assert a.relation(None, {"type": "restriction", "restriction:conditional": "no_u_turn @ 06:00-22:00)"}, None)
