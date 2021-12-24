@@ -53,6 +53,8 @@ Parentheses `()` must be used around the condition if the condition itself conta
     tags_conditional = {}
     for tag in tags:
       if tag[-12:] == ":conditional":
+        if "source:" in tag or "note:" in tag or "fixme:" in tag.lower():
+          continue
         tags_conditional[tag] = tags[tag]
     if len(tags_conditional) == 0:
       return
@@ -168,7 +170,7 @@ class Test(TestPluginCommon):
         # Valid conditionals
         for t in [{"highway": "residential"},
                   {"highway": "residential", "access": "no"},
-                  {"highway": "residential", "access:conditional": "no @ wet"},
+                  {"highway": "residential", "access:conditional": "no @ wet", "source:access:conditional": "survey"},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00)"},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-20:00); 100 @ (22:00-06:00)"},
                   {"highway": "residential", "access:forward:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00)"},
