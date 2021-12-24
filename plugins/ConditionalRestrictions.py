@@ -53,7 +53,7 @@ Parentheses `()` must be used around the condition if the condition itself conta
     tags_conditional = {}
     for tag in tags:
       if tag[-12:] == ":conditional":
-        if "source:" in tag or "note:" in tag or "fixme:" in tag.lower():
+        if "source:" in tag or "note:" in tag or "fixme:" in tag:
           continue
         tags_conditional[tag] = tags[tag]
     if len(tags_conditional) == 0:
