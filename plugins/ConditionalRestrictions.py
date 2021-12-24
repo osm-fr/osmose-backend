@@ -107,16 +107,17 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
         else:
           tmp_str += c
 
-      if parentheses == 0 and not bad_tag:
-        # Last condition wouldn't be added in the loop
-        tmp_str = tmp_str.strip()
-        if len(tmp_str) == 0:
-          err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition")})
+      if not bad_tag:
+        if parentheses == 0:
+          # Last condition wouldn't be added in the loop
+          tmp_str = tmp_str.strip()
+          if len(tmp_str) == 0:
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition")})
+            continue
+          conditions.append(tmp_str)
+        else:
+          err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses")})
           continue
-        conditions.append(tmp_str)
-      else:
-        err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses")})
-        continue
 
       # Check the position of AND is ok
       if not bad_tag:
