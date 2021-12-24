@@ -35,8 +35,8 @@ class ConditionalRestrictions(Plugin):
     self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
         title = T_('Bad conditional restriction'),
         detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
-Combined restrictions should follow `value @ (condition1 AND condition2)
-Parentheses `()` should be used if the condition itself contains semicolons `;` too'''))
+Combined restrictions should follow `value @ (condition1 AND condition2)`
+Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`'''))
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Use uppercase `and` to combine conditions'),
         detail = T_('''For readability, `AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
@@ -80,6 +80,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
       # Get the parts after the @ excluding parentheses and put them in the list conditions
       # Also validate the syntax of value @ (condition); value @ condition is obeyed
       tmp_str = ""
+      condition_started = False
       for c in tag_value:
         if c == "@":
           if len(tmp_str.strip()) == 0:
@@ -87,6 +88,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
             bad_tag = True
             break
           tmp_str = ""
+          condition_started = True
         elif c == "(":
           parentheses += 1
           continue
@@ -98,11 +100,12 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
             break
         elif c == ";" and parentheses == 0:
           tmp_str = tmp_str.strip()
-          if len(tmp_str) == 0:
-            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition in \"{0}\"", tag)})
+          if not condition_started or len(tmp_str) == 0:
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition or parentheses in \"{0}\"", tag)})
             bad_tag = True
             break
           conditions.append(tmp_str)
+          condition_started = False
           tmp_str = ""
         else:
           tmp_str += c
@@ -111,8 +114,8 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
         if parentheses == 0:
           # Last condition wouldn't be added in the loop
           tmp_str = tmp_str.strip()
-          if len(tmp_str) == 0:
-            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition in \"{0}\"", tag)})
+          if not condition_started or len(tmp_str) == 0:
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition or parentheses in \"{0}\"", tag)})
             continue
           conditions.append(tmp_str)
         else:
@@ -122,7 +125,7 @@ Parentheses `()` should be used if the condition itself contains semicolons `;` 
       # Check the position of AND is ok
       if not bad_tag:
         for condition in conditions:
-          tmp_cond = " " + condition + " "
+          tmp_cond = " " + condition.replace(" ", "  ") + " "
           tmp_ANDsplitted = tmp_cond.upper().split(" AND ")
           for splittedANDpart in tmp_ANDsplitted:
             if len(splittedANDpart.strip()) == 0:
@@ -196,8 +199,8 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "yes@()"},
                   {"highway": "residential", "access:conditional": "yes@"},
                   {"highway": "residential", "access:conditional": "@wet"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND AND 2020 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND 2020 Oct 7 AND); delivery @ wet"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22 and 2020 Oct 7); delivery @ wet"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 7 AND); delivery @ wet"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 and 2099 Oct 7); delivery @ wet"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
