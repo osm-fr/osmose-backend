@@ -28,24 +28,22 @@ from modules.Stablehash import stablehash64
 class ConditionalRestrictions(Plugin):
   def init(self, logger):
     Plugin.init(self, logger)
-    
+
     self.ReYear = re.compile(r'20\d\d') # Update in 2099
     self.currentYear = date.today().year
 
     self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Bad conditional restriction'),
-            detail = T_(
-'''Conditional restrictions should follow `value @ condition; value2 @ condition2 syntax.'''))
+            detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
+Combined restrictions should follow `value @ (condition1 AND condition2)
+Parentheses `()` should be used if the condition itself contains semicolons `;` too'''))
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
             title = T_('Use uppercase `and` to combine conditions'),
-            detail = T_(
-'''For readability, `AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
+            detail = T_('''For readability, `AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
             title = T_('Expired conditional'),
-            detail = T_(
-'''This conditional was only valid up to a date in the past. It can likely be removed'''),
-            trap = T_(
-'''Other tags might need to be updated too to reflect the new situation'''))
+            detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed'''),
+            trap = T_('''Other tags might need to be updated too to reflect the new situation'''))
 
 
 
@@ -54,7 +52,7 @@ class ConditionalRestrictions(Plugin):
     # Currently only checking highways with conditionals
     if not "highway" in tags:
       return
-    
+
     # Get the relevant tags with *:conditional
     tags_conditional = {}
     for tag in tags:
@@ -62,7 +60,7 @@ class ConditionalRestrictions(Plugin):
         tags_conditional[tag] = tags[tag]
     if len(tags_conditional) == 0:
       return
-    
+
     err = []
     for tag in tags_conditional:
       tag_value = tags_conditional[tag]
@@ -160,7 +158,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = ConditionalRestrictions(None)
         a.init(None)
-        
+
         # Valid conditionals
         for t in [{"highway": "residential"},
                   {"highway": "residential", "access": "no"},
@@ -174,7 +172,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 7)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
-            
+
         # Expired conditionals
         for t in [{"highway": "residential", "access:forward:conditional": "no @ 2020"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7)"},
@@ -183,7 +181,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7 AND weight > 5)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
-          
+
         # Invalid conditionals
         for t in [{"highway": "residential", "access:conditional": "no"},
                   {"highway": "residential", "access:forward:conditional": "no @ 2098;2099"},
