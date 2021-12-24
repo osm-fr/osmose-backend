@@ -181,7 +181,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); destination @ length < 4"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7 AND weight > 5)"},
                  ]:
-          assert not a.way(None, t, None), a.way(None, t, None)
+          assert a.way(None, t, None), a.way(None, t, None)
 
         # Invalid conditionals
         for t in [{"highway": "residential", "access:conditional": "no"},
@@ -200,4 +200,4 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22 AND 2020 Oct 7 AND); delivery @ wet"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22 and 2020 Oct 7); delivery @ wet"},
                  ]:
-          assert not a.way(None, t, None), a.way(None, t, None)
+          assert a.way(None, t, None), a.way(None, t, None)
