@@ -35,8 +35,8 @@ class ConditionalRestrictions(Plugin):
     self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
         title = T_('Bad conditional restriction'),
         detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
-Combined restrictions should follow `value @ (condition1 AND condition2)`
-Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`'''))
+Combined restrictions should follow `value @ (condition1 AND condition2)`.
+Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''))
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Use uppercase `AND` to combine conditions'),
         detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
