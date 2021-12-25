@@ -39,7 +39,7 @@ Combined restrictions should follow `value @ (condition1 AND condition2)`.
 Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''))
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Use uppercase `AND` to combine conditions'),
-        detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions'''))
+        detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions.'''))
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Expired conditional'),
         detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed'''),
