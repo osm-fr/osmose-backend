@@ -38,7 +38,7 @@ class ConditionalRestrictions(Plugin):
 Combined restrictions should follow `value @ (condition1 AND condition2)`.
 Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''))
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
-        title = T_('Use uppercase `AND` to combine conditions'),
+        title = T_('Combine conditions using `AND`'),
         detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions.'''))
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Expired conditional'),
@@ -86,7 +86,6 @@ Parentheses `()` must be used around the condition if the condition itself conta
           condition_started = True
         elif c == "(":
           parentheses += 1
-          continue
         elif c == ")":
           parentheses -= 1
           if parentheses == -1:
