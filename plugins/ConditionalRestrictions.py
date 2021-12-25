@@ -148,8 +148,6 @@ Parentheses `()` must be used around the condition if the condition itself conta
     if err != []:
       return err
 
-
-
   def node(self, data, tags):
     return self.way(data, tags, None)
 
