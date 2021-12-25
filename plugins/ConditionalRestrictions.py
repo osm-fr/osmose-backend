@@ -42,8 +42,8 @@ Parentheses `()` must be used around the condition if the condition itself conta
         detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions.'''))
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Expired conditional'),
-        detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed'''),
-        trap = T_('''Other tags might need to be updated too to reflect the new situation'''))
+        detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed.'''),
+        trap = T_('''Other tags might need to be updated too to reflect the new situation.'''))
 
   def way(self, data, tags, nds):
     # Get the relevant tags with *:conditional
