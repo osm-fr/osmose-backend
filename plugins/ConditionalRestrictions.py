@@ -45,9 +45,6 @@ Parentheses `()` must be used around the condition if the condition itself conta
         detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed'''),
         trap = T_('''Other tags might need to be updated too to reflect the new situation'''))
 
-
-
-
   def way(self, data, tags, nds):
     # Get the relevant tags with *:conditional
     tags_conditional = {}
