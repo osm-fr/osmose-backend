@@ -133,7 +133,6 @@ Parentheses `()` must be used around the condition if the condition itself conta
       if bad_tag:
         continue
 
-
       # Find outdated conditional restrictions, i.e. temporary road closures
       for condition in conditions:
         years_str = re.findall(self.ReYear, condition)
