@@ -36,10 +36,12 @@ class ConditionalRestrictions(Plugin):
         title = T_('Bad conditional restriction'),
         detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
 Combined restrictions should follow `value @ (condition1 AND condition2)`.
-Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''))
+Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''),
+        resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Combine conditions using `AND`'),
-        detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions.'''))
+        detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions.'''),
+        resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Expired conditional'),
         detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed.'''),
@@ -162,6 +164,7 @@ class Test(TestPluginCommon):
 
         # Valid conditionals
         for t in [{"highway": "residential"},
+                  {"highway": "residential", "access:conditional": "no@wet"}, # note: remove if we start warning about missing spaces around @
                   {"highway": "residential", "access:conditional": "no @ wet", "source:access:conditional": "survey"},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-19:00)"},
                   {"highway": "residential", "maxspeed:conditional": "20 @ (06:00-20:00); 100 @ (22:00-06:00)"},
@@ -192,9 +195,9 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "delivery @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00);yes@wet"},
                   {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00;yes@wet"},
                   {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00));yes@wet"},
-                  {"highway": "residential", "access:conditional": "yes@()"},
-                  {"highway": "residential", "access:conditional": "yes@"},
-                  {"highway": "residential", "access:conditional": "@wet"},
+                  {"highway": "residential", "access:conditional": "yes @ ()"},
+                  {"highway": "residential", "access:conditional": "yes @"},
+                  {"highway": "residential", "access:conditional": "@ wet"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 7)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 7 AND); delivery @ wet"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 and 2099 Oct 7); delivery @ wet"},
