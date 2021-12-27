@@ -29,10 +29,10 @@ SELECT
     ST_AsText(nodes.geom),
     MIN(ways.id)
 FROM
-    {0}nodes AS nodes
+    nodes AS nodes
     JOIN way_nodes ON
         way_nodes.node_id = nodes.id
-    JOIN {1}ways AS ways ON
+    JOIN ways AS ways ON
         ways.id = way_nodes.way_id AND
         ways.tags != ''::hstore AND
         ways.tags ?| ARRAY['highway', 'railway']
@@ -74,7 +74,7 @@ HAVING
 class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = self.def_class(item = 7090, level = 2, tags = ['railway', 'highway', 'fix:imagery'],
+        self.classs[1] = self.def_class(item = 7090, level = 2, tags = ['railway', 'highway', 'fix:imagery'],
             title = T_('Missing way on level crossing'),
             detail = T_(
 '''Crossing for which it lacks the road or railway. '''))
@@ -87,11 +87,5 @@ class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
+        self.run(sql10, self.callback10)
         self.run(sql30, self.callback30)
-
-    def analyser_osmosis_full(self):
-        self.run(sql10.format("", ""), self.callback10)
-
-    def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_", "not_touched_"), self.callback10)
-        self.run(sql10.format("", "touched_"), self.callback10)
