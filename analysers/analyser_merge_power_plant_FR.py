@@ -84,6 +84,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
         "Thermique non renouvelable": {
             None: "",
             "Charbon": "coal",
+            "Déchets ménagers": "waste",
             "Fioul": "oil",
             "Gaz": "gas"},
     }
