@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-12-20 17:08+0000\n"
+"PO-Revision-Date: 2021-12-27 20:48+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -328,7 +328,7 @@ msgid "Roundabout crossing"
 msgstr "ラウンドアバウトの交差"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:46
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:75
 msgid "Reverse roundabout"
 msgstr "ラウンドアバウトの走行方向逆転"
 
@@ -630,12 +630,12 @@ msgstr "競合しているタグ: {0}"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "'bridge'と'tunnel'タグが競合"
 
-#: ../plugins/TagFix_MultipleTag.py:172
+#: ../plugins/TagFix_MultipleTag.py:171
 #, python-format, python-brace-format
 msgid "mini roundabout direction in this country is usually \"{0}\""
 msgstr "この国でのミニ・ラウンドアバウトの方向は通常は \"{0}\""
 
-#: ../plugins/TagFix_MultipleTag.py:184
+#: ../plugins/TagFix_MultipleTag.py:183
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "\"fee\"タグの代わりに\"toll\"タグを使用してください"
 
@@ -721,11 +721,11 @@ msgstr "郵便ポストの統合の提案"
 msgid "Bridge structure missing"
 msgstr "橋の構造がない"
 
-#: ../plugins/TagFix_MultipleTag.py:95
+#: ../plugins/TagFix_MultipleTag.py:94
 msgid "Roundabout as area"
 msgstr "エリアで描かれたラウンドアバウト"
 
-#: ../plugins/TagFix_MultipleTag.py:97
+#: ../plugins/TagFix_MultipleTag.py:96
 msgid "Level or repeat_on tag missing"
 msgstr "levelまたはrepeat_onタグが無い"
 
@@ -733,11 +733,11 @@ msgstr "levelまたはrepeat_onタグが無い"
 msgid "Building in parts"
 msgstr "partsの中の建物"
 
-#: ../plugins/TagFix_MultipleTag.py:99
+#: ../plugins/TagFix_MultipleTag.py:98
 msgid "Indoor or buildingpart tag missing"
 msgstr "indoorタグまたはbuildingpartタグがない"
 
-#: ../plugins/TagFix_MultipleTag.py:101
+#: ../plugins/TagFix_MultipleTag.py:100
 msgid "Missing tag ref for emergency access point"
 msgstr "緊急アクセスポイントにrefタグが無い"
 
@@ -765,12 +765,12 @@ msgstr "無関係な道路と電力のオブジェクトの交差"
 msgid "Name with uppercase"
 msgstr "大文字の名前"
 
-#: ../plugins/TagFix_MultipleTag.py:213
+#: ../plugins/TagFix_MultipleTag.py:212
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "明示的に除外されていない限り、スキー、乗馬、原付、危険物積載車両等を含む"
 
-#: ../plugins/TagFix_MultipleTag.py:215
+#: ../plugins/TagFix_MultipleTag.py:214
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "明示的に除外されていない限り、車両、乗馬、原付、危険物積載車両等を含む"
@@ -1034,7 +1034,7 @@ msgstr "ref, nat_ref, int_ref,norefタグがいずれも無い高速道路"
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "tracktypeやlanesに対するhighwayタグが無い"
 
-#: ../plugins/TagFix_MultipleTag.py:72
+#: ../plugins/TagFix_MultipleTag.py:71
 msgid "Missing relation type"
 msgstr "リレーションのtypeが無い"
 
@@ -1048,7 +1048,7 @@ msgstr "traffic_signals:directionタグまたはcrossingタグが信号機に存
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "directionタグが一時停止またはゆずれに存在する可能性"
 
-#: ../plugins/TagFix_MultipleTag.py:121
+#: ../plugins/TagFix_MultipleTag.py:120
 msgid "Suspicious name for a container"
 msgstr "コンテナには疑わしい名前"
 
@@ -1317,7 +1317,7 @@ msgstr "警察/\"Gendarmerie\"の更新"
 msgid "Missing access way to parking"
 msgstr "駐車場にアクセスする道路がない"
 
-#: ../plugins/TagFix_MultipleTag.py:119
+#: ../plugins/TagFix_MultipleTag.py:118
 msgid "Probably only for bottles, not any type of glass"
 msgstr "おそらくあらゆる種類のガラスではなくボトルのみ"
 
@@ -2464,7 +2464,7 @@ msgid ""
 msgstr "これがロータリーであることを確認してください(例えば、広場の周囲で反対方向に側道が無いとか、クロスしていない交差点にある交通島で分離されているなど)。"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:60
-#: ../plugins/TagFix_MultipleTag.py:91
+#: ../plugins/TagFix_MultipleTag.py:90
 msgid ""
 "![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)\n"
 "\n"
@@ -2940,14 +2940,14 @@ msgid ""
 "bridge."
 msgstr "トンネルまたは橋の下のウェイに`maxheight=*`または`maxheight:*` がありません。"
 
-#: ../plugins/TagFix_MultipleTag.py:78
+#: ../plugins/TagFix_MultipleTag.py:77
 msgid ""
 "The circulation of the roundabout is draw clockwise, but in countries\n"
 "where they drive on the right the sense of roundabouts is\n"
 "counterclockwise, and vice versa for the other countries."
 msgstr "ロータリーの循環方向が時計回りですが、車両が右側通行の国ではロータリーは反時計回りという感覚で運転し、それ以外の国ではその反対です。（訳注：日本は左側通行なので時計回りが正しい）"
 
-#: ../plugins/TagFix_MultipleTag.py:82
+#: ../plugins/TagFix_MultipleTag.py:81
 msgid ""
 "For the mini roundabouts `highway=mini_roundabout`: the tag\n"
 "`direction=*` indicates the direction, in countries driven on the right,\n"
@@ -2955,7 +2955,7 @@ msgid ""
 "tag."
 msgstr "ミニロータリー`highway=mini_roundabout`に対して、 `direction=*`タグは方向を示します。車両が右側通行の国ではデフォルトは`direction=anticlockwise`（反時計回り）です。この場合、タグとして無意味です。（訳注：日本は左側通行なので時計回り）"
 
-#: ../plugins/TagFix_MultipleTag.py:87
+#: ../plugins/TagFix_MultipleTag.py:86
 msgid ""
 "Make sure that it is a roundabout (for example, no a side way in\n"
 "oposite direction around a square or a central roundabout, ordriveways\n"
@@ -3300,7 +3300,7 @@ msgstr "冗長なエリアのタグ付け"
 msgid "This feature is already implicitly an area due to another tag."
 msgstr "この地物には別のタグでエリアの意味が含まれています。"
 
-#: ../plugins/TagFix_Area.py:35 ../plugins/TagFix_Area.py:49
+#: ../plugins/TagFix_Area.py:35 ../plugins/TagFix_Area.py:48
 #, python-brace-format
 msgid "Remove the `{0}` tag."
 msgstr "`{0}` タグを削除。"
@@ -3321,21 +3321,21 @@ msgid ""
 "`area=yes` features are:"
 msgstr "トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り:"
 
-#: ../plugins/TagFix_Area.py:44 ../plugins/TagFix_MultipleTag.py:69
+#: ../plugins/TagFix_Area.py:43 ../plugins/TagFix_MultipleTag.py:68
 msgid ""
 "It may be more appropriate to remove the object completely if it isn't "
 "useful."
 msgstr "有用でない場合はオブジェクトを完全に削除することが適切な場合があります。"
 
-#: ../plugins/TagFix_Area.py:47
+#: ../plugins/TagFix_Area.py:46
 msgid "Redundant area negation"
 msgstr "冗長なエリアの否定"
 
-#: ../plugins/TagFix_Area.py:48
+#: ../plugins/TagFix_Area.py:47
 msgid "This feature is already implicitly not an area."
 msgstr "この地物は既にエリアではないという意味を含んでいます。"
 
-#: ../plugins/TagFix_Area.py:61
+#: ../plugins/TagFix_Area.py:60
 #, python-brace-format
 msgid "Tags, {0}, already make this an area."
 msgstr "タグ, {0}, はこれがエリアであることを表しています。"
@@ -3352,7 +3352,7 @@ msgid ""
 " are (with derived `disused:`, `abandoned:` and `historic:` variants):"
 msgstr "トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り (派生する`disused:`, `abandoned:`そして`historic:`バリアント付き):"
 
-#: ../plugins/TagFix_MultipleTag.py:73
+#: ../plugins/TagFix_MultipleTag.py:72
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "このリレーションにはそれが何を表しているかを定義する`type`タグがありません。"
 
@@ -3420,8 +3420,8 @@ msgstr "入力されている日付は下記に記述された形式に合って
 #: ../plugins/Name_UpperCase.py:66 ../plugins/Number.py:69
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
-#: ../plugins/TagFix_BadKey.py:87 ../plugins/TagFix_BadKey.py:89
-#: ../plugins/TagFix_BadKey.py:91 ../plugins/TagFix_BadValue.py:107
+#: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
+#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:107
 #: ../plugins/TagFix_BadValue.py:112 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
@@ -3583,11 +3583,11 @@ msgstr "適切な場合は、ノードを接合して建物をつなぎます。
 msgid "Merge the building parts together as appropriate."
 msgstr "建物の部分を適切にマージします。"
 
-#: ../plugins/TagFix_MultipleTag.py:105 ../plugins/TagFix_MultipleTag.py:111
+#: ../plugins/TagFix_MultipleTag.py:104 ../plugins/TagFix_MultipleTag.py:110
 msgid "Overly permissive access"
 msgstr "緩すぎるアクセス制限"
 
-#: ../plugins/TagFix_MultipleTag.py:107 ../plugins/TagFix_MultipleTag.py:113
+#: ../plugins/TagFix_MultipleTag.py:106 ../plugins/TagFix_MultipleTag.py:112
 msgid ""
 "The tags `access=yes` and `access=permissive` mark a feature as wide open to"
 " all transport modes. This is almost never the case and more specific tags "
@@ -4592,4 +4592,76 @@ msgid ""
 "Apply of \"[charte de\n"
 "toponymie](https://web.archive.org/web/2019/http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf)\" of\n"
 "IGN (French geographic name conventions)"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:36
+msgid "Bad conditional restriction"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:37
+msgid ""
+"Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.\n"
+"Combined restrictions should follow `value @ (condition1 AND condition2)`.\n"
+"Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:42
+msgid "Combine conditions using `AND`"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:43
+msgid ""
+"`AND` (uppercase) is to be preferred over lowercase variants when combining "
+"restrictions."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:46
+msgid "Expired conditional"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:47
+msgid ""
+"This conditional was only valid up to a date in the past. It can likely be "
+"removed."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:48
+msgid "Other tags might need to be updated too to reflect the new situation."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:69
+#, python-brace-format
+msgid "Missing `@` in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:84
+#, python-brace-format
+msgid "Missing value for the condition in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:94
+#: ../plugins/ConditionalRestrictions.py:118
+#, python-brace-format
+msgid "Mismatch in the number of parentheses in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:100
+#: ../plugins/ConditionalRestrictions.py:114
+#, python-brace-format
+msgid "Missing condition or parentheses in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:128
+#, python-brace-format
+msgid "Missing condition before or after AND combinator in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:133
+#, python-brace-format
+msgid "Lowercase version of `AND` in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:146
+#, python-brace-format
+msgid "Condition \"{0}\" in \"{1}\" was only valid until {2}"
 msgstr ""
