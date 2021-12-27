@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
 import unidecode
 import re
 from modules import reaccentue
@@ -67,13 +67,13 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
             title = T_('Defibrillator update'))
 
         self.init(
-            "https://geo.data.gouv.fr/fr/datasets/a701db3964e8fd81823c92afc029f138ffa207b3",
-            "Défibrillateurs de la base nationale GeoDAE",
-            GeoJSON(Source(
-                attribution="Direction Générale de la Santé",
-                fileUrl="https://transcode.geo.data.gouv.fr/services/5e2a1fbefa4268bc25629472/feature-types/ms:geodae_publique?format=GeoJSON&projection=WGS84",
-                millesime=None,
-            )),
+            "https://www.data.gouv.fr/fr/datasets/geodae-base-nationale-des-defibrillateurs/",
+            "Géo'DAE - Base Nationale des Défibrillateurs",
+            GeoJSON(
+                SourceDataGouv(
+                    attribution="Ministère de la Santé",
+                    dataset="61556e1e9d6adb2df86eb0fc",
+                    resource="86ea48a0-dd94-4a23-b71c-80d3041d7db2")),
             Load("geom_x", "geom_y",
                  select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "f"}),
             Conflate(
