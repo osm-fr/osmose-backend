@@ -82,7 +82,7 @@ class Analyser_Merge_Natural_FR(Analyser_Merge_Dynamic):
             id = 120,
             level = 2,
             title = T_('Peak not integrated'),
-            select = {'nature': ['Pic']},
+            select = {'nature': ['Sommet', 'Pic']},
             tags = {'natural': 'peak'},
         ),
         #   18204 Versant
