@@ -62,10 +62,10 @@ SELECT
   h1.name,
   h2.name
 FROM
-  {0}highways_name AS h1
-  JOIN {1}highways_name AS h2 ON
+  highways_name AS h1
+  JOIN highways_name AS h2 ON
     h1.linestring && h2.linestring AND
-    ({2} OR h1.id < h2.id) AND
+    h1.id < h2.id AND
     h1.namep != h2.namep AND
     abs(length(h1.name) - length(h2.name)) <= 1 AND
     levenshtein(h1.namep, h2.namep) = 1
@@ -83,20 +83,11 @@ class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
         self.alphabet = 'language' in config.options and languages.languages_are_alphabets(config.options['language'])
 
         if self.alphabet:
-            self.classs_change[1] = self.def_class(item = 5080, level = 1, tags = ['highway', 'name'],
+            self.classs[1] = self.def_class(item = 5080, level = 1, tags = ['highway', 'name'],
                 title = T_('Close similar name'))
 
-    def analyser_osmosis_full(self):
+    def analyser_osmosis_common(self):
         if self.alphabet:
             self.run(sql10)
             self.run(sql11)
-            self.run(sql12.format('', '', 'false'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": ', '.join([res[3], res[4]])}})
-
-    def analyser_osmosis_diff(self):
-        if self.alphabet:
-            self.run(sql10)
-            self.run(sql11)
-            self.create_view_touched('highways_name', 'W')
-            self.create_view_not_touched('highways_name', 'W')
-            self.run(sql12.format('touched_', 'touched_', 'false'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
-            self.run(sql12.format('touched_', 'not_touched_', 'true'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+            self.run(sql12, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": ', '.join([res[3], res[4]])}})
