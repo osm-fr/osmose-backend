@@ -490,6 +490,7 @@ class Josm_geometry(PluginMapCSS):
         # way[transformer]
         # way[power=pole]
         # way[power=catenary_mast]
+        # way[power=connection]
         # way[power=terminal]
         # way[power=tower]!:closed
         # way[amenity=vending_machine]
@@ -558,6 +559,10 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'connection')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'terminal')))
                 except mapcss.RuleAbort: pass
             if not match:
@@ -622,7 +627,7 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
-                err.append({'class': 9003007, 'subclass': 1800793405, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9003007, 'subclass': 1374694710, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # way[restriction][restriction=~/^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$/]
         # way[type=multipolygon]

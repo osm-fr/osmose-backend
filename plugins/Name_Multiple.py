@@ -56,7 +56,7 @@ the tag `name:left=*` and `name:right=*`.'''))
 
             self.HighwayOnly = self.father.config.options.get("country").startswith('BY')
 
-            self.allowSlash = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['CH', 'DJ']))
+            self.allowSlash = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['CH', 'DJ', 'DK']))
 
         self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
 

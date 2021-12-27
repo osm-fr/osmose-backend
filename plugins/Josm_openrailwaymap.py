@@ -56,6 +56,7 @@ class Josm_openrailwaymap(PluginMapCSS):
         self.errors[9015042] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'interlocking relation without type=railway'})
         self.errors[9015043] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'interlocking relation with type other than railway'})
         self.errors[9015044] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr('{0}={1} without name', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
+        self.errors[9015045] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'track numbers inside a station should be railway:track_ref, not ref'})
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
         self.re_0e3375d5 = re.compile(r'[Vv]iadu[ck]t')
@@ -804,6 +805,30 @@ class Josm_openrailwaymap(PluginMapCSS):
                     ['railway:track_ref', mapcss.tag(tags, 'name')]]),
                     '-': ([
                     'name'])
+                }})
+
+        # way[railway][railway!=platform][service][ref]
+        if ('railway' in keys and 'ref' in keys and 'service' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway')) and (mapcss._tag_capture(capture_tags, 1, tags, 'railway') != mapcss._value_const_capture(capture_tags, 1, 'platform', 'platform')) and (mapcss._tag_capture(capture_tags, 2, tags, 'service')) and (mapcss._tag_capture(capture_tags, 3, tags, 'ref')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # suggestAlternative:"railway:track_ref"
+                # throwError:"track numbers inside a station should be railway:track_ref, not ref"
+                # fixChangeKey:"ref=>railway:track_ref"
+                # assertMatch:"way railway=light_rail service=siding ref=14"
+                # assertNoMatch:"way railway=platform ref=3"
+                # assertNoMatch:"way railway=rail ref=1234"
+                # assertMatch:"way railway=rail service=crossover ref=4a"
+                # assertNoMatch:"way railway=rail service=siding railway:track_ref=14b"
+                # assertMatch:"way railway=rail service=siding ref=4"
+                err.append({'class': 9015045, 'subclass': 194113748, 'text': {'en': 'track numbers inside a station should be railway:track_ref, not ref'}, 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['railway:track_ref', mapcss.tag(tags, 'ref')]]),
+                    '-': ([
+                    'ref'])
                 }})
 
         # way[railway=platform]["railway:track_ref"][!ref]
@@ -1703,6 +1728,12 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'name': '14b', 'railway': 'rail'}, [0]), expected={'class': 9015007, 'subclass': 85438379})
         self.check_err(n.way(data, {'name': '4', 'railway': 'rail'}, [0]), expected={'class': 9015007, 'subclass': 85438379})
         self.check_err(n.way(data, {'name': '4a', 'railway': 'rail'}, [0]), expected={'class': 9015007, 'subclass': 85438379})
+        self.check_err(n.way(data, {'railway': 'light_rail', 'ref': '14', 'service': 'siding'}, [0]), expected={'class': 9015045, 'subclass': 194113748})
+        self.check_not_err(n.way(data, {'railway': 'platform', 'ref': '3'}, [0]), expected={'class': 9015045, 'subclass': 194113748})
+        self.check_not_err(n.way(data, {'railway': 'rail', 'ref': '1234'}, [0]), expected={'class': 9015045, 'subclass': 194113748})
+        self.check_err(n.way(data, {'railway': 'rail', 'ref': '4a', 'service': 'crossover'}, [0]), expected={'class': 9015045, 'subclass': 194113748})
+        self.check_not_err(n.way(data, {'railway': 'rail', 'railway:track_ref': '14b', 'service': 'siding'}, [0]), expected={'class': 9015045, 'subclass': 194113748})
+        self.check_err(n.way(data, {'railway': 'rail', 'ref': '4', 'service': 'siding'}, [0]), expected={'class': 9015045, 'subclass': 194113748})
         self.check_err(n.way(data, {'railway': 'platform', 'railway:track_ref': '3', 'ref': '3'}, [0]), expected={'class': 9015008, 'subclass': 226422824})
         self.check_not_err(n.way(data, {'railway': 'platform', 'railway:track_ref': '3', 'ref': '4'}, [0]), expected={'class': 9015008, 'subclass': 226422824})
         self.check_err(n.way(data, {'railway': 'platform', 'railway:track_ref': '3'}, [0]), expected={'class': 9015008, 'subclass': 226422824})

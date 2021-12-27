@@ -15,8 +15,6 @@ tokens {
    ZOOM_SELECTOR,
    ATTRIBUTE_SELECTOR,
    CLASS_SELECTOR,
-   ROLE_SELECTOR,
-   INDEX_SELECTOR,
    PSEUDO_CLASS_SELECTOR,
    LAYER_ID_SELECTOR,         // .text is the layer id
    DECLARATION_BLOCK,
@@ -80,10 +78,7 @@ OP_MINUS: '-';
 OP_NOT: '!'; // NOTE: boolean not -> !(expr)
 
 SET: ('s' | 'S') ('e' | 'E') ('t' | 'T');
-ROLE: ('r' | 'R') ('o' | 'O') ('l' | 'L') ('e' | 'E');
-INDEX: ('i' | 'I') ('n' | 'N') ('d' | 'D') ('e' | 'E') ('x' | 'X');
 IMPORT: '@' ('i' | 'I') ('m' | 'M') ('p' | 'P') ('o' | 'O')('r' | 'R') ('t' | 'T');
-
 
 fragment DIGIT:  '0'..'9';
 fragment CHAR: 'a'..'z' | 'A'..'Z';
@@ -167,8 +162,8 @@ selector
 simple_selector_operator : OP_LT | OP_INCLUDED_IN | OP_INTERSECTS | OP_SUBSET | OP_SUPERSET | OP_NOSUBSET | OP_NOSUPERSET;
 
 link_selector
-    : LBRACKET ROLE valueOperator valueExpression RBRACKET
-    | LBRACKET INDEX numericOperator v=int_ RBRACKET
+    : LBRACKET cssident /* ROLE */ valueOperator valueExpression RBRACKET
+    | LBRACKET cssident /* INDEX */ numericOperator v=int_ RBRACKET
     ;
 
 layer_id_selector

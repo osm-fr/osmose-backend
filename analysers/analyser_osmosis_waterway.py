@@ -52,7 +52,7 @@ WHERE
 """
 
 sql20 = """
-CREATE TEMP TABLE {0}water_ends AS
+CREATE TEMP TABLE water_ends AS
 SELECT
     id,
     nodes[array_length(nodes,1)] AS start,
@@ -60,7 +60,7 @@ SELECT
     tags->'waterway' AS waterway,
     linestring
 FROM
-    {0}ways AS ways
+    ways AS ways
 WHERE
     tags != ''::hstore AND
     tags?'waterway' AND
@@ -68,17 +68,17 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX idx_{0}water_ends_linestring ON {0}water_ends USING GIST(linestring)
+CREATE INDEX idx_water_ends_linestring ON water_ends USING GIST(linestring)
 """
 
 sql22 = """
-CREATE TEMP TABLE {0}connx AS
+CREATE TEMP TABLE connx AS
 SELECT
     ww.id,
     ww.end,
     ww.waterway
 FROM
-    {0}water_ends AS ww
+    water_ends AS ww
     JOIN way_nodes ON
         way_nodes.node_id = ww.end AND
         way_nodes.way_id != ww.id
@@ -90,17 +90,17 @@ FROM
 """
 
 sql23 = """
-CREATE TEMP TABLE {0}_{1}_coastline_sinkhole AS
+CREATE TEMP TABLE coastline_sinkhole AS
 SELECT
     ww.id,
     ww.end,
     ww.waterway
 FROM
-    {0}water_ends AS ww
+    water_ends AS ww
     JOIN way_nodes ON
         way_nodes.node_id = ww.end AND
         way_nodes.way_id != ww.id
-    JOIN {1}ways AS ways ON
+    JOIN ways AS ways ON
         ways.id = way_nodes.way_id AND
         ways.tags != ''::hstore AND
         ways.tags?'natural' AND
@@ -111,7 +111,7 @@ SELECT
     ww.end,
     ww.waterway
 FROM
-    {0}water_ends AS ww
+    water_ends AS ww
     JOIN nodes ON
         nodes.id = ww.end AND
         nodes.tags != ''::hstore AND
@@ -131,17 +131,17 @@ FROM
             "end",
             waterway
         FROM
-            {0}water_ends
+            water_ends
     EXCEPT
         SELECT
             *
         FROM
-            {0}_{1}_coastline_sinkhole
+            coastline_sinkhole
     EXCEPT
         SELECT
             *
         FROM
-            {0}connx
+            connx
     ) AS t
     JOIN nodes ON
         nodes.id = t."end"
@@ -151,7 +151,7 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
+        self.classs[1] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
             title = T_('River bank without river'),
             detail = T_(
 '''There is one `natural=water` + `water=river` (or `waterway=riverbank`)
@@ -164,11 +164,11 @@ eliminate the river bank polygon.'''))
 water must flow into another waterway or meet a `natural=coastline`.''')
         fix = T_(
 '''Link the waterway or invert its flow direction.''')
-        self.classs_change[2] = self.def_class(item = 1220, level = 2, tags = ['waterway', 'fix:imagery'],
+        self.classs[2] = self.def_class(item = 1220, level = 2, tags = ['waterway', 'fix:imagery'],
             title = T_('Unconnected river or wrong way flow'),
             detail = detail,
             fix = fix)
-        self.classs_change[3] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
+        self.classs[3] = self.def_class(item = 1220, level = 3, tags = ['waterway', 'fix:imagery'],
             title = T_('Unconnected stream or wrong way flow'),
             detail = detail,
             fix = fix)
@@ -178,23 +178,8 @@ water must flow into another waterway or meet a `natural=coastline`.''')
 
     def analyser_osmosis_common(self):
         self.run(sql10, self.callback10)
-
-    def analyser_osmosis_full(self):
-        self.run(sql20.format(""))
-        self.run(sql21.format(""))
-        self.run(sql22.format(""))
-        self.run(sql23.format("", ""))
-        self.run(sql24.format("", ""), self.callback20)
-
-    def analyser_osmosis_diff(self):
-        self.run(sql20.format("touched_"))
-        self.run(sql21.format("touched_"))
-        self.run(sql22.format("touched_"))
-        self.run(sql23.format("touched_", ""))
-        self.run(sql24.format("touched_", ""), self.callback20)
-
-        self.run(sql20.format("not_touched_"))
-        self.run(sql21.format("not_touched_"))
-        self.run(sql22.format("not_touched_"))
-        self.run(sql23.format("not_touched_", "touched_"))
-        self.run(sql24.format("not_touched_", "touched_"), self.callback20)
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql22)
+        self.run(sql23)
+        self.run(sql24, self.callback20)

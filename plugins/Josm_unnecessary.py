@@ -498,6 +498,42 @@ class Josm_unnecessary(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{2.key}')])
                 }})
 
+        # way:closed[highway=rest_area][area?]
+        # way:closed[highway=services][area?]
+        # way:closed[aeroway=aerodrome][area?]
+        # way:closed[waterway=riverbank][area?]
+        # way:closed[aeroway=helipad][area?]
+        if ('aeroway' in keys and 'area' in keys) or ('area' in keys and 'highway' in keys) or ('area' in keys and 'waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'rest_area')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'services')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} is unnecessary for {1}","{2.tag}","{1.tag}")
+                # fixRemove:"{2.key}"
+                err.append({'class': 9010001, 'subclass': 579216316, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{2.key}')])
+                }})
+
         # *[gnis:Class="Populated Place"][place=city]
         # *[gnis:Class="Populated Place"][place=town]
         # *[gnis:Class="Populated Place"][place=village]
