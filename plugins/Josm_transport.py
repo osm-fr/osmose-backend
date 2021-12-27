@@ -34,7 +34,8 @@ class Josm_transport(PluginMapCSS):
         self.errors[9014024] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Missing opening_hours tag'))
         self.errors[9014025] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Check the operator tag : this operator does not exist, it may be a typo'))
         self.errors[9014026] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Check the network tag : this network does not exist, it may be a typo'))
-        self.errors[9014027] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The line variant does not belong to any line, add it to the route_master relation'))
+        self.errors[9014027] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('Subway entrances should be mapped as nodes'))
+        self.errors[9014028] = self.def_class(item = 9014, level = 2, tags = mapcss.list_('tag', 'public_transport'), title = mapcss.tr('The line variant does not belong to any line, add it to the route_master relation'))
 
         self.re_25554804 = re.compile(r'STIF|Kéolis|Véolia')
         self.re_2fe0817d = re.compile(r'^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$')
@@ -197,6 +198,23 @@ class Josm_transport(PluginMapCSS):
             if match:
                 # throwError:tr("A bus stop is supposed to be a node")
                 err.append({'class': 9014019, 'subclass': 1153984743, 'text': mapcss.tr('A bus stop is supposed to be a node')})
+
+        # way[railway=subway_entrance]
+        # way[railway=train_station_entrance]
+        if ('railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'subway_entrance')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'train_station_entrance')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("Subway entrances should be mapped as nodes")
+                # assertMatch:"way railway=subway_entrance"
+                err.append({'class': 9014027, 'subclass': 514884813, 'text': mapcss.tr('Subway entrances should be mapped as nodes')})
 
         return err
 
@@ -426,7 +444,7 @@ class Josm_transport(PluginMapCSS):
             # Skip selector using undeclared class pt_route, route_ok
             if match:
                 # throwError:tr("The line variant does not belong to any line, add it to the route_master relation")
-                err.append({'class': 9014027, 'subclass': 1286525207, 'text': mapcss.tr('The line variant does not belong to any line, add it to the route_master relation')})
+                err.append({'class': 9014028, 'subclass': 1286525207, 'text': mapcss.tr('The line variant does not belong to any line, add it to the route_master relation')})
 
         # relation.pt_route[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
         # relation.pt_route_master[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
@@ -509,6 +527,22 @@ class Josm_transport(PluginMapCSS):
                 # throwError:tr("Missing opening_hours tag")
                 err.append({'class': 9014024, 'subclass': 210081506, 'text': mapcss.tr('Missing opening_hours tag')})
 
+        # relation[railway=subway_entrance]
+        # relation[railway=train_station_entrance]
+        if ('railway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'subway_entrance')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'train_station_entrance')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("Subway entrances should be mapped as nodes")
+                err.append({'class': 9014027, 'subclass': 569512108, 'text': mapcss.tr('Subway entrances should be mapped as nodes')})
+
         return err
 
 
@@ -533,6 +567,7 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {'public_transport': 'stop_position', 'railway': 'tram_stop'}), expected={'class': 21411, 'subclass': 1})
         self.check_err(n.node(data, {'railway': 'tram_stop'}), expected={'class': 21411, 'subclass': 1})
         self.check_err(n.node(data, {'bus': 'yes', 'public_transport': 'platform'}), expected={'class': 21412, 'subclass': 0})
+        self.check_err(n.way(data, {'railway': 'subway_entrance'}, [0]), expected={'class': 9014027, 'subclass': 514884813})
         self.check_not_err(n.relation(data, {'public_transport:version': '1', 'route': 'bus', 'type': 'route'}, []), expected={'class': 21401, 'subclass': 0})
         self.check_err(n.relation(data, {'route': 'bus', 'type': 'route'}, []), expected={'class': 21401, 'subclass': 0})
         self.check_not_err(n.relation(data, {'network': 'BiBiBus', 'route': 'bus', 'type': 'route'}, []), expected={'class': 21402, 'subclass': 0})

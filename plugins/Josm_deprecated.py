@@ -33,8 +33,9 @@ class Josm_deprecated(PluginMapCSS):
         self.errors[9002018] = self.def_class(item = 9002, level = 2, tags = ["tag", "deprecated"], title = mapcss.tr('misspelled value'))
         self.errors[9002019] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('wrong value: {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9002020] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}')))
-        self.errors[9002021] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}')))
-        self.errors[9002022] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9002021] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels'))
+        self.errors[9002022] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9002023] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
 
         self.re_01eb1711 = re.compile(r'^(yes|both|no)$')
         self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
@@ -66,7 +67,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_power_pole_type_warning = set_power_tower_type_warning = set_samecolor = False
+        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -1302,7 +1303,7 @@ class Josm_deprecated(PluginMapCSS):
                 }})
 
         # *[building][levels]
-        # *[building:part=yes][levels]
+        # *[building:part][levels]
         if ('building' in keys and 'levels' in keys) or ('building:part' in keys and 'levels' in keys):
             match = False
             if not match:
@@ -1311,19 +1312,32 @@ class Josm_deprecated(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
                 except mapcss.RuleAbort: pass
             if match:
+                # setlevels_building
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{1.key}")
                 # suggestAlternative:"building:levels"
                 # fixChangeKey:"levels => building:levels"
-                err.append({'class': 9002001, 'subclass': 293177436, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                set_levels_building = True
+                err.append({'class': 9002001, 'subclass': 869936714, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['building:levels', mapcss.tag(tags, 'levels')]]),
                     '-': ([
                     'levels'])
                 }})
+
+        # *[levels]!.levels_building
+        if ('levels' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_levels_building) and (mapcss._tag_capture(capture_tags, 0, tags, 'levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Unusual key {0}, maybe {1} or {2} is meant","{0.key}","level","building:levels")
+                err.append({'class': 9002021, 'subclass': 1172699526, 'text': mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels')})
 
         # *[protected_class]
         if ('protected_class' in keys):
@@ -5106,6 +5120,97 @@ class Josm_deprecated(PluginMapCSS):
                     'building:roof:shape'])
                 }})
 
+        # *[man_made=pumping_rig][!pump_mechanism][!mechanical_driver][!mechanical_coupling]
+        if ('man_made' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpumping_ring_no_mech
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=petroleum_well"
+                # suggestAlternative:"man_made=water_well"
+                # fixAdd:"mechanical_coupling=nodding_donkey"
+                # fixAdd:"mechanical_driver=combustion_engine"
+                # fixAdd:"pump_mechanism=piston"
+                set_pumping_ring_no_mech = True
+                err.append({'class': 9002001, 'subclass': 6568074, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['mechanical_coupling','nodding_donkey'],
+                    ['mechanical_driver','combustion_engine'],
+                    ['pump_mechanism','piston']])
+                }})
+
+        # *[man_made=pumping_rig]!.pumping_ring_no_mech
+        if ('man_made' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_pumping_ring_no_mech) and (mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=petroleum_well"
+                # suggestAlternative:"man_made=water_well"
+                err.append({'class': 9002001, 'subclass': 1031026578, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[pump:type=beam_pump][!pump_mechanism][!mechanical_driver][!mechanical_coupling]
+        if ('pump:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pump:type') == mapcss._value_capture(capture_tags, 0, 'beam_pump')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setbeam_pump_no_mech
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"pump_mechanism"
+                # fixAdd:"mechanical_coupling=nodding_donkey"
+                # fixAdd:"mechanical_driver=combustion_engine"
+                # fixRemove:"pump:type"
+                # fixAdd:"pump_mechanism=piston"
+                set_beam_pump_no_mech = True
+                err.append({'class': 9002001, 'subclass': 1519103279, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['mechanical_coupling','nodding_donkey'],
+                    ['mechanical_driver','combustion_engine'],
+                    ['pump_mechanism','piston']]),
+                    '-': ([
+                    'pump:type'])
+                }})
+
+        # *[pump:type]!.beam_pump_no_mech
+        if ('pump:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_beam_pump_no_mech) and (mapcss._tag_capture(capture_tags, 0, tags, 'pump:type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"pump_mechanism"
+                err.append({'class': 9002001, 'subclass': 2015679777, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[substance=heat]
+        if ('substance' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'substance') == mapcss._value_capture(capture_tags, 0, 'heat')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"substance=hot_water"
+                # suggestAlternative:"substance=steam"
+                err.append({'class': 9002001, 'subclass': 1528467304, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # *[landuse=school]
         if ('landuse' in keys):
             match = False
@@ -5132,7 +5237,7 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # throwWarning:tr("{0} as a tag on an object. Roles are specified in the relation members list instead.","{0.tag}","{0.key}")
                 # assertMatch:"node role=stop"
-                err.append({'class': 9002021, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9002022, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -5140,7 +5245,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_power_pole_type_warning = set_power_tower_type_warning = set_samecolor = False
+        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -6337,7 +6442,7 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"sidewalk=left"
                 # suggestAlternative:"sidewalk=right"
                 # suggestAlternative:"sidewalk=separate"
-                err.append({'class': 9002022, 'subclass': 36539821, 'text': mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9002023, 'subclass': 36539821, 'text': mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[waterway=water_point]
         if ('waterway' in keys):
@@ -6398,7 +6503,7 @@ class Josm_deprecated(PluginMapCSS):
                 }})
 
         # *[building][levels]
-        # *[building:part=yes][levels]
+        # *[building:part][levels]
         if ('building' in keys and 'levels' in keys) or ('building:part' in keys and 'levels' in keys):
             match = False
             if not match:
@@ -6407,19 +6512,32 @@ class Josm_deprecated(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
                 except mapcss.RuleAbort: pass
             if match:
+                # setlevels_building
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{1.key}")
                 # suggestAlternative:"building:levels"
                 # fixChangeKey:"levels => building:levels"
-                err.append({'class': 9002001, 'subclass': 293177436, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                set_levels_building = True
+                err.append({'class': 9002001, 'subclass': 869936714, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['building:levels', mapcss.tag(tags, 'levels')]]),
                     '-': ([
                     'levels'])
                 }})
+
+        # *[levels]!.levels_building
+        if ('levels' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_levels_building) and (mapcss._tag_capture(capture_tags, 0, tags, 'levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Unusual key {0}, maybe {1} or {2} is meant","{0.key}","level","building:levels")
+                err.append({'class': 9002021, 'subclass': 1172699526, 'text': mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels')})
 
         # *[protected_class]
         if ('protected_class' in keys):
@@ -10099,6 +10217,97 @@ class Josm_deprecated(PluginMapCSS):
                     'building:roof:shape'])
                 }})
 
+        # *[man_made=pumping_rig][!pump_mechanism][!mechanical_driver][!mechanical_coupling]
+        if ('man_made' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpumping_ring_no_mech
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=petroleum_well"
+                # suggestAlternative:"man_made=water_well"
+                # fixAdd:"mechanical_coupling=nodding_donkey"
+                # fixAdd:"mechanical_driver=combustion_engine"
+                # fixAdd:"pump_mechanism=piston"
+                set_pumping_ring_no_mech = True
+                err.append({'class': 9002001, 'subclass': 6568074, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['mechanical_coupling','nodding_donkey'],
+                    ['mechanical_driver','combustion_engine'],
+                    ['pump_mechanism','piston']])
+                }})
+
+        # *[man_made=pumping_rig]!.pumping_ring_no_mech
+        if ('man_made' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_pumping_ring_no_mech) and (mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=petroleum_well"
+                # suggestAlternative:"man_made=water_well"
+                err.append({'class': 9002001, 'subclass': 1031026578, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[pump:type=beam_pump][!pump_mechanism][!mechanical_driver][!mechanical_coupling]
+        if ('pump:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pump:type') == mapcss._value_capture(capture_tags, 0, 'beam_pump')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setbeam_pump_no_mech
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"pump_mechanism"
+                # fixAdd:"mechanical_coupling=nodding_donkey"
+                # fixAdd:"mechanical_driver=combustion_engine"
+                # fixRemove:"pump:type"
+                # fixAdd:"pump_mechanism=piston"
+                set_beam_pump_no_mech = True
+                err.append({'class': 9002001, 'subclass': 1519103279, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['mechanical_coupling','nodding_donkey'],
+                    ['mechanical_driver','combustion_engine'],
+                    ['pump_mechanism','piston']]),
+                    '-': ([
+                    'pump:type'])
+                }})
+
+        # *[pump:type]!.beam_pump_no_mech
+        if ('pump:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_beam_pump_no_mech) and (mapcss._tag_capture(capture_tags, 0, tags, 'pump:type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"pump_mechanism"
+                err.append({'class': 9002001, 'subclass': 2015679777, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[substance=heat]
+        if ('substance' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'substance') == mapcss._value_capture(capture_tags, 0, 'heat')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"substance=hot_water"
+                # suggestAlternative:"substance=steam"
+                err.append({'class': 9002001, 'subclass': 1528467304, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # *[landuse=school]
         if ('landuse' in keys):
             match = False
@@ -10124,7 +10333,7 @@ class Josm_deprecated(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} as a tag on an object. Roles are specified in the relation members list instead.","{0.tag}","{0.key}")
-                err.append({'class': 9002021, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9002022, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -10132,7 +10341,7 @@ class Josm_deprecated(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_bbq_autofix = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_power_pole_type_warning = set_power_tower_type_warning = set_samecolor = False
+        set_bbq_autofix = set_beam_pump_no_mech = set_diaper___checked = set_diaper_checked = set_generic_power_tower_type_warning = set_levels_building = set_power_pole_type_warning = set_power_tower_type_warning = set_pumping_ring_no_mech = set_samecolor = False
 
         # *[barrier=wire_fence]
         if ('barrier' in keys):
@@ -11328,7 +11537,7 @@ class Josm_deprecated(PluginMapCSS):
                 }})
 
         # *[building][levels]
-        # *[building:part=yes][levels]
+        # *[building:part][levels]
         if ('building' in keys and 'levels' in keys) or ('building:part' in keys and 'levels' in keys):
             match = False
             if not match:
@@ -11337,19 +11546,32 @@ class Josm_deprecated(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
                 except mapcss.RuleAbort: pass
             if match:
+                # setlevels_building
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{1.key}")
                 # suggestAlternative:"building:levels"
                 # fixChangeKey:"levels => building:levels"
-                err.append({'class': 9002001, 'subclass': 293177436, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                set_levels_building = True
+                err.append({'class': 9002001, 'subclass': 869936714, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     ['building:levels', mapcss.tag(tags, 'levels')]]),
                     '-': ([
                     'levels'])
                 }})
+
+        # *[levels]!.levels_building
+        if ('levels' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_levels_building) and (mapcss._tag_capture(capture_tags, 0, tags, 'levels')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("Unusual key {0}, maybe {1} or {2} is meant","{0.key}","level","building:levels")
+                err.append({'class': 9002021, 'subclass': 1172699526, 'text': mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels')})
 
         # *[protected_class]
         if ('protected_class' in keys):
@@ -14474,6 +14696,97 @@ class Josm_deprecated(PluginMapCSS):
                     'building:roof:shape'])
                 }})
 
+        # *[man_made=pumping_rig][!pump_mechanism][!mechanical_driver][!mechanical_coupling]
+        if ('man_made' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setpumping_ring_no_mech
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=petroleum_well"
+                # suggestAlternative:"man_made=water_well"
+                # fixAdd:"mechanical_coupling=nodding_donkey"
+                # fixAdd:"mechanical_driver=combustion_engine"
+                # fixAdd:"pump_mechanism=piston"
+                set_pumping_ring_no_mech = True
+                err.append({'class': 9002001, 'subclass': 6568074, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['mechanical_coupling','nodding_donkey'],
+                    ['mechanical_driver','combustion_engine'],
+                    ['pump_mechanism','piston']])
+                }})
+
+        # *[man_made=pumping_rig]!.pumping_ring_no_mech
+        if ('man_made' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_pumping_ring_no_mech) and (mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"man_made=petroleum_well"
+                # suggestAlternative:"man_made=water_well"
+                err.append({'class': 9002001, 'subclass': 1031026578, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[pump:type=beam_pump][!pump_mechanism][!mechanical_driver][!mechanical_coupling]
+        if ('pump:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pump:type') == mapcss._value_capture(capture_tags, 0, 'beam_pump')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setbeam_pump_no_mech
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"pump_mechanism"
+                # fixAdd:"mechanical_coupling=nodding_donkey"
+                # fixAdd:"mechanical_driver=combustion_engine"
+                # fixRemove:"pump:type"
+                # fixAdd:"pump_mechanism=piston"
+                set_beam_pump_no_mech = True
+                err.append({'class': 9002001, 'subclass': 1519103279, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['mechanical_coupling','nodding_donkey'],
+                    ['mechanical_driver','combustion_engine'],
+                    ['pump_mechanism','piston']]),
+                    '-': ([
+                    'pump:type'])
+                }})
+
+        # *[pump:type]!.beam_pump_no_mech
+        if ('pump:type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_beam_pump_no_mech) and (mapcss._tag_capture(capture_tags, 0, tags, 'pump:type')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"pump_mechanism"
+                err.append({'class': 9002001, 'subclass': 2015679777, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[substance=heat]
+        if ('substance' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'substance') == mapcss._value_capture(capture_tags, 0, 'heat')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"substance=hot_water"
+                # suggestAlternative:"substance=steam"
+                err.append({'class': 9002001, 'subclass': 1528467304, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # *[landuse=school]
         if ('landuse' in keys):
             match = False
@@ -14499,7 +14812,7 @@ class Josm_deprecated(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} as a tag on an object. Roles are specified in the relation members list instead.","{0.tag}","{0.key}")
-                err.append({'class': 9002021, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9002022, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         return err
 
@@ -14537,7 +14850,7 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {'emergency_telephone_code': '123', 'highway': 'emergency_access_point'}), expected={'class': 9002001, 'subclass': 663070970})
         self.check_not_err(n.node(data, {'emergency_telephone_code': '123', 'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 663070970})
         self.check_not_err(n.node(data, {'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 663070970})
-        self.check_err(n.node(data, {'role': 'stop'}), expected={'class': 9002021, 'subclass': 2041296832})
+        self.check_err(n.node(data, {'role': 'stop'}), expected={'class': 9002022, 'subclass': 2041296832})
         self.check_not_err(n.way(data, {'barrier': 'fence'}, [0]), expected={'class': 9002001, 'subclass': 1107799632})
         self.check_err(n.way(data, {'barrier': 'wire_fence'}, [0]), expected={'class': 9002001, 'subclass': 1107799632})
         self.check_err(n.way(data, {'access': 'designated'}, [0]), expected={'class': 9002002, 'subclass': 2057594338})

@@ -21,7 +21,7 @@ class Josm_highway(PluginMapCSS):
         self.errors[9004008] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('wrong highway tag on a node'))
         self.errors[9004009] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('missing tag'))
         self.errors[9004010] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
-        self.errors[9004011] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('suspicious tag combination'))
+        self.errors[9004011] = self.def_class(item = 9004, level = 2, tags = ["tag", "highway"], title = mapcss.tr('suspicious tag combination'))
         self.errors[9004012] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[9004013] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('Value of {0} should either be {1}, {2} or {3}. For sidewalks use {4} instead.', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.value}'), mapcss._tag_uncapture(capture_tags, '{2.value}'), mapcss._tag_uncapture(capture_tags, '{3.value}'), 'sidewalk=left|right|both|no'))
         self.errors[9004014] = self.def_class(item = 9004, level = 3, tags = ["tag", "highway"], title = mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}')))
@@ -30,10 +30,11 @@ class Josm_highway(PluginMapCSS):
         self.re_23c50386 = re.compile(r'^(|none|((sharp_|slight_|merge_to_|slide_)?(left|right)|reverse|through)(;((sharp_|slight_|merge_to_|slide_)?(left|right)|reverse|through))*)(\|(|none|((sharp_|slight_|merge_to_|slide_)?(left|right)|reverse|through)(;((sharp_|slight_|merge_to_|slide_)?(left|right)|reverse|through))*))*$')
         self.re_3092b7ac = re.compile(r'^.*_link$')
         self.re_33052a50 = re.compile(r'^(none|((sharp_|slight_|merge_to_|slide_)?(left|right)|reverse|through)(;((sharp_|slight_|merge_to_|slide_)?(left|right)|reverse|through))*)$')
-        self.re_3dc5dd7c = re.compile(r'motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway')
         self.re_4186cb68 = re.compile(r'(?i).* (Ave|Blvd|Bnd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Cv|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Trl|Vw|Wy|Xing)[.]?$')
+        self.re_447f4d65 = re.compile(r'motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|busway|bus_guideway|bridleway')
         self.re_4dcdb354 = re.compile(r'^footway:')
         self.re_55ee32ac = re.compile(r'^(motorway|trunk|primary|secondary|tertiary)$')
+        self.re_5757d731 = re.compile(r'^((motorway|trunk|primary|secondary|tertiary)(_link)?|residential|unclassified)$')
         self.re_61bbe299 = re.compile(r'footway:')
 
 
@@ -43,12 +44,12 @@ class Josm_highway(PluginMapCSS):
         err = []
         set_fixable_footway = set_link_road = set_major_road = set_minor_road = set_not_fixable_footway = False
 
-        # node[highway=~/motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway/][highway!=motorway_junction][highway!=services]
+        # node[highway=~/motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|busway|bus_guideway|bridleway/][highway!=motorway_junction][highway!=services]
         if ('highway' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3dc5dd7c), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway') != mapcss._value_const_capture(capture_tags, 1, 'motorway_junction', 'motorway_junction')) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway') != mapcss._value_const_capture(capture_tags, 2, 'services', 'services')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_447f4d65), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'highway') != mapcss._value_const_capture(capture_tags, 1, 'motorway_junction', 'motorway_junction')) and (mapcss._tag_capture(capture_tags, 2, tags, 'highway') != mapcss._value_const_capture(capture_tags, 2, 'services', 'services')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong highway tag on a node")
@@ -69,7 +70,7 @@ class Josm_highway(PluginMapCSS):
                 # assertNoMatch:"node highway=traffic_calming"
                 # assertNoMatch:"node highway=traffic_signals"
                 # assertNoMatch:"node highway=turning_circle"
-                err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr('wrong highway tag on a node')})
+                err.append({'class': 9004008, 'subclass': 224371448, 'text': mapcss.tr('wrong highway tag on a node')})
 
         # node[footway=crossing]
         if ('footway' in keys):
@@ -461,6 +462,44 @@ class Josm_highway(PluginMapCSS):
                 # assertMatch:"way turn=through|right"
                 err.append({'class': 9004014, 'subclass': 1634496690, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
+        # way[highway=~/^((motorway|trunk|primary|secondary|tertiary)(_link)?|residential|unclassified)$/][area=yes]
+        if ('area' in keys and 'highway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5757d731), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') == mapcss._value_capture(capture_tags, 1, 'yes')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwError:tr("Area with {0} above {1} is invalid","highway=*","highway=service")
+                # suggestAlternative:"area:highway=*"
+                # assertNoMatch:"way highway=service area=yes"
+                # assertMatch:"way highway=trunk area=yes"
+                # assertNoMatch:"way highway=trunk"
+                err.append({'class': 9004011, 'subclass': 610375152, 'text': mapcss.tr('Area with {0} above {1} is invalid', 'highway=*', 'highway=service')})
+
+        return err
+
+    def relation(self, data, tags, members):
+        capture_tags = {}
+        keys = tags.keys()
+        err = []
+        set_fixable_footway = set_link_road = set_major_road = set_minor_road = set_not_fixable_footway = False
+
+        # relation[highway=~/^((motorway|trunk|primary|secondary|tertiary)(_link)?|residential|unclassified)$/][type=multipolygon]
+        if ('highway' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5757d731), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'type') == mapcss._value_capture(capture_tags, 1, 'multipolygon')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwError:tr("Area with {0} above {1} is invalid","highway=*","highway=service")
+                # suggestAlternative:"area:highway=*"
+                # assertMatch:"relation highway=trunk type=multipolygon"
+                err.append({'class': 9004011, 'subclass': 2126629809, 'text': mapcss.tr('Area with {0} above {1} is invalid', 'highway=*', 'highway=service')})
+
         return err
 
 
@@ -478,23 +517,23 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.node(data, {'highway': 'bus_stop'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'crossing'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'emergency_access_point'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'give_way'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'mini_roundabout'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'motorway_junction'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'passing_place'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_err(n.node(data, {'highway': 'primary'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_err(n.node(data, {'highway': 'primary_link'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'rest_area'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'services'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'speed_camera'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'stop'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'street_lamp'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'traffic_calming'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'traffic_signals'}), expected={'class': 9004008, 'subclass': 325492196})
-        self.check_not_err(n.node(data, {'highway': 'turning_circle'}), expected={'class': 9004008, 'subclass': 325492196})
+        self.check_not_err(n.node(data, {'highway': 'bus_stop'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'crossing'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'emergency_access_point'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'give_way'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'mini_roundabout'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'motorway_junction'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'passing_place'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_err(n.node(data, {'highway': 'primary'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_err(n.node(data, {'highway': 'primary_link'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'rest_area'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'services'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'speed_camera'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'stop'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'street_lamp'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'traffic_calming'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'traffic_signals'}), expected={'class': 9004008, 'subclass': 224371448})
+        self.check_not_err(n.node(data, {'highway': 'turning_circle'}), expected={'class': 9004008, 'subclass': 224371448})
         self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Bou Blvd.'}, [0]), expected={'class': 9004001, 'subclass': 1120623403})
         self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Bou blvd.'}, [0]), expected={'class': 9004001, 'subclass': 1120623403})
         self.check_err(n.way(data, {'highway': 'unclassified', 'name': 'Foo Ave'}, [0]), expected={'class': 9004001, 'subclass': 1120623403})
@@ -525,3 +564,7 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'turn': 'straight'}, [0]), expected={'class': 9004014, 'subclass': 1634496690})
         self.check_not_err(n.way(data, {'turn': 'through;right'}, [0]), expected={'class': 9004014, 'subclass': 1634496690})
         self.check_err(n.way(data, {'turn': 'through|right'}, [0]), expected={'class': 9004014, 'subclass': 1634496690})
+        self.check_not_err(n.way(data, {'area': 'yes', 'highway': 'service'}, [0]), expected={'class': 9004011, 'subclass': 610375152})
+        self.check_err(n.way(data, {'area': 'yes', 'highway': 'trunk'}, [0]), expected={'class': 9004011, 'subclass': 610375152})
+        self.check_not_err(n.way(data, {'highway': 'trunk'}, [0]), expected={'class': 9004011, 'subclass': 610375152})
+        self.check_err(n.relation(data, {'highway': 'trunk', 'type': 'multipolygon'}, []), expected={'class': 9004011, 'subclass': 2126629809})
