@@ -38,10 +38,6 @@ class ConditionalRestrictions(Plugin):
 Combined restrictions should follow `value @ (condition1 AND condition2)`.
 Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''),
         resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
-    self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
-        title = T_('Combine conditions using `AND`'),
-        detail = T_('''`AND` (uppercase) is to be preferred over lowercase variants when combining restrictions.'''),
-        resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Expired conditional'),
         detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed.'''),
@@ -88,16 +84,20 @@ Parentheses `()` must be used around the condition if the condition itself conta
           condition_started = True
         elif c == "(":
           parentheses += 1
+          if not condition_started:
+            err.append({"class": 33501, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Missing `@` in \"{0}\"", tag)})
+            bad_tag = True
+            break
         elif c == ")":
           parentheses -= 1
           if parentheses == -1:
             err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses in \"{0}\"", tag)})
             bad_tag = True
             break
-        elif c == ";" and parentheses == 0:
+        elif c == ";" and parentheses == 0 and condition_started:
           tmp_str = tmp_str.strip()
-          if not condition_started or len(tmp_str) == 0:
-            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition or parentheses in \"{0}\"", tag)})
+          if len(tmp_str) == 0:
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition, `@` or parentheses in \"{0}\"", tag)})
             bad_tag = True
             break
           conditions.append(tmp_str)
@@ -111,7 +111,7 @@ Parentheses `()` must be used around the condition if the condition itself conta
           # Last condition wouldn't be added in the loop
           tmp_str = tmp_str.strip()
           if not condition_started or len(tmp_str) == 0:
-            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition or parentheses in \"{0}\"", tag)})
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition, `@` or parentheses in \"{0}\"", tag)})
             continue
           conditions.append(tmp_str)
         else:
@@ -128,9 +128,6 @@ Parentheses `()` must be used around the condition if the condition itself conta
               err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
               bad_tag = True
               break
-
-          if not bad_tag and tmp_cond.count(" AND ") != tmp_cond.upper().count(" AND "):
-            err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Lowercase version of `AND` in \"{0}\"", tag)}) # Recommendation to use uppercase "AND". Not a true error
 
       if bad_tag:
         continue
@@ -173,6 +170,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 7)"},
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 7)"},
+                  {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
 
@@ -200,7 +198,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "@ wet"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 7)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 7 AND); delivery @ wet"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 and 2099 Oct 7); delivery @ wet"},
+                  {"highway": "residential", "maxweight:conditional": "27000 lbs (axles=2); 41400 lbs @ (axles=3); 48600 lbs @ (axles>=4)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
