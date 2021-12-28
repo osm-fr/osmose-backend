@@ -238,7 +238,7 @@ SELECT DISTINCT ON (nodes.id)
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    {0}ways AS ways
+    ways
     JOIN nodes ON
         nodes.id = ANY (ways.nodes[2:array_length(nodes,1)-1]) AND
         NOT nodes.tags?'power'
@@ -368,7 +368,7 @@ In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstr
         self.classs[3] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
             title = T_('Connection between different voltages'),
             detail = T_('Two power lines meet at this point, but have inconsistent voltages (`voltage=*`).'))
-        self.classs_change[4] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
+        self.classs[4] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
             title = T_('Non power node on power way'),
             detail = T_(
 '''Power lines can only form a straight line between supports and therefore shouldn't
@@ -399,16 +399,15 @@ there's likely an unmapped pole nearby.'''))
         self.run(sql30)
         self.run(sql31)
         self.run(sql32, lambda res: {"class":3, "data":[self.node, self.positionAsText]} )
+        self.run(sql40, self.callback40)
         self.run(sql60, lambda res: {"class":7, "data":[self.way_full, self.any_full, self.positionAsText]} )
 
     def analyser_osmosis_full(self):
-        self.run(sql40.format(""), self.callback40)
         self.run(sql50.format(""))
         self.run(sql51)
         self.run(sql52, self.callback50)
 
     def analyser_osmosis_diff(self):
-        self.run(sql40.format("touched_"), self.callback40)
         self.run(sql50.format("touched_"))
         self.run(sql51)
         self.run(sql52, self.callback50)
