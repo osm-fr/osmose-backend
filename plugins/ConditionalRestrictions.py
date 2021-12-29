@@ -44,7 +44,7 @@ Parentheses `()` must be used around the condition if the condition itself conta
         detail = T_('''Although valid, it is recommended to format conditional restrictions with:
 - spaces around the `@`;
 - uppercase `AND` (in combined restrictions);
-- parentheses around all-but-the-simplest conditions. 
+- parentheses around all-but-the-simplest conditions.
 This helps to prevent errors and improves readability.
 For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'''),
         resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
