@@ -209,6 +209,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "delivery @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00);yes@wet"},
                   {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00;yes@wet"},
                   {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00));yes@wet"},
+                  {"highway": "residential", "bicycle:conditional": "designated @ (Fr-Mo 22:00-00:00); (Fr-Mo 22:00-24:00)"},
                   {"highway": "residential", "access:conditional": "yes @ ()"},
                   {"highway": "residential", "access:conditional": "yes @"},
                   {"highway": "residential", "access:conditional": "@ wet"},
