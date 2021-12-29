@@ -218,17 +218,17 @@ class Test(TestPluginCommon):
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
-          # Optimizable, yet valid conditions
-          for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 7"},
+        # Optimizable, yet valid conditions
+        for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 7"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ snow"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ (20:00-22:00)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
-          # Nodes
-          assert not a.node(None, {"barrier": "lift_gate", "access:conditional": "no @ wet"})
-          assert a.node(None, {"barrier": "lift_gate", "access:conditional": "no @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00"})
+        # Nodes
+        assert not a.node(None, {"barrier": "lift_gate", "access:conditional": "no @ wet"})
+        assert a.node(None, {"barrier": "lift_gate", "access:conditional": "no @ Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00"})
 
-          # Relations
-          assert not a.relation(None, {"type": "restriction", "restriction:conditional": "no_u_turn @ (06:00-22:00)"}, None)
-          assert a.relation(None, {"type": "restriction", "restriction:conditional": "no_u_turn @ 06:00-22:00)"}, None)
+        # Relations
+        assert not a.relation(None, {"type": "restriction", "restriction:conditional": "no_u_turn @ (06:00-22:00)"}, None)
+        assert a.relation(None, {"type": "restriction", "restriction:conditional": "no_u_turn @ 06:00-22:00)"}, None)
