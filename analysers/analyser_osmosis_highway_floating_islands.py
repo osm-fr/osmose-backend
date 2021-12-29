@@ -100,6 +100,7 @@ FROM
     ST_Intersects(islands.linestring, highways.linestring)
 WHERE
   NOT highways.is_construction AND
+  (NOT tags?'golf' OR tags->'golf' != 'cartpath') AND
   highways.level IS NOT NULL AND
   islands.linestring IS NULL
 """
