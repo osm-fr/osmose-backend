@@ -30,6 +30,7 @@ class ConditionalRestrictions(Plugin):
     Plugin.init(self, logger)
 
     self.ReYear = re.compile(r'20\d\d') # Update in 2099
+    self.ReSimpleCondition = re.compile(r'^\w+$', re.ASCII)
     self.currentYear = date.today().year
 
     self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
@@ -37,6 +38,15 @@ class ConditionalRestrictions(Plugin):
         detail = T_('''Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.
 Combined restrictions should follow `value @ (condition1 AND condition2)`.
 Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''),
+        resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
+    self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
+        title = T_('Suboptimal conditional restriction'),
+        detail = T_('''Although valid, it is recommended to format conditional restrictions with:
+- spaces around the `@`;
+- uppercase `AND` (in combined restrictions);
+- parentheses around all-but-the-simplest conditions. 
+This helps to prevent errors and improves readability.
+For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'''),
         resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
     self.errors[33503] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Expired conditional'),
@@ -142,6 +152,12 @@ Parentheses `()` must be used around the condition if the condition itself conta
         if maxYear < self.currentYear:
           err.append({"class": 33503, "subclass": 0 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Condition \"{0}\" in \"{1}\" was only valid until {2}", condition, tag, maxYear)})
 
+      # No parentheses around conditions
+      if tag_value.count("(") < len(conditions):
+        if not (tag_value.count("(") == len(conditions) - 1 and not tag_value[-1] == ")" and re.search(self.ReSimpleCondition, conditions[-1])):
+          # Accept no parentheses around the last one if the last condition was a simple one
+          err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Add parentheses around the condition in \"{0}\"", tag)})
+
     if err != []:
       return err
 
@@ -178,7 +194,7 @@ class Test(TestPluginCommon):
         for t in [{"highway": "residential", "access:forward:conditional": "no @ 2020"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7)"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); delivery @ 2099"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); destination @ length < 4"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); destination @ (length < 4)"},
                   {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7 AND weight > 5)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
@@ -199,6 +215,13 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 7)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 7 AND); delivery @ wet"},
                   {"highway": "residential", "maxweight:conditional": "27000 lbs (axles=2); 41400 lbs @ (axles=3); 48600 lbs @ (axles>=4)"},
+                 ]:
+          assert a.way(None, t, None), a.way(None, t, None)
+
+          # Optimizable, yet valid conditions
+          for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 7"},
+                    {"highway": "residential", "access:conditional": "no @ wet; no @ snow"},
+                    {"highway": "residential", "access:conditional": "no @ wet; no @ (20:00-22:00)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
