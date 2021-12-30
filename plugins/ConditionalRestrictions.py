@@ -40,7 +40,7 @@ Combined restrictions should follow `value @ (condition1 AND condition2)`.
 Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`.'''),
         resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions")
     self.errors[33502] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
-        title = T_('Suboptimal conditional restriction'),
+        title = T_('Improve style of conditional'),
         detail = T_('''Although valid, it is recommended to format conditional restrictions with:
 - spaces around the `@`;
 - uppercase `AND` (in combined restrictions);
@@ -210,6 +210,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00;yes@wet"},
                   {"highway": "residential", "access:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00));yes@wet"},
                   {"highway": "residential", "bicycle:conditional": "designated @ (Fr-Mo 22:00-00:00); (Fr-Mo 22:00-24:00)"},
+                  {"highway": "residential", "access:conditional": "no @ (Mo-Fr 22:00-00:00);"},
                   {"highway": "residential", "access:conditional": "yes @ ()"},
                   {"highway": "residential", "access:conditional": "yes @"},
                   {"highway": "residential", "access:conditional": "@ wet"},
