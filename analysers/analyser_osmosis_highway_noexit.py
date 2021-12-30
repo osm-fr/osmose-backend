@@ -38,7 +38,8 @@ FROM
       nodes.tags?'noexit' AND
       nodes.tags->'noexit' = 'yes'
 WHERE
-    NOT ways.is_construction
+    NOT ways.is_construction AND
+    NOT ways.is_area
 GROUP BY
     nodes.id,
     nodes.geom
