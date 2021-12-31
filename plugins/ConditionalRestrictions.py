@@ -156,7 +156,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
       if tag_value.count("(") < len(conditions):
         if not (tag_value.count("(") == len(conditions) - 1 and not tag_value[-1] == ")" and re.search(self.ReSimpleCondition, conditions[-1])):
           # Accept no parentheses around the last one if the last condition was a simple one
-          err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Add parentheses around the condition in \"{0}\"", tag)})
+          err.append({"class": 33502, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Add parentheses around the condition(s) in \"{0}\"", tag)})
 
     if err != []:
       return err
