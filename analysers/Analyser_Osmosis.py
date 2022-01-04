@@ -355,14 +355,31 @@ ANALYZE {0}.buildings;
             types = {'N': 'node', 'W': 'way', 'R': 'relation'}
             for t, ids in self.already_issued_objects.items():
                 if ids:
-                    sql = "SELECT v.id, l.id FROM (VALUES ({0})) AS v(id) LEFT JOIN {1}s AS l ON v.id = l.id WHERE l.id IS NULL;".format('),('.join(map(str, ids)), types[t])
+                    sql = """
+-- Touched
+SELECT id
+FROM touched_{1}s
+    JOIN (VALUES ({0})) AS v(id) USING (id)
+UNION ALL
+-- Deleted
+SELECT id
+FROM (VALUES ({0})) AS v(id)
+    LEFT JOIN {1}s AS l USING(id)
+WHERE l.id IS NULL
+"""
+                    sql = sql.format('),('.join(map(str, ids)), types[t])
                     self.giscurs.execute(sql)
                     for res in self.giscurs.fetchall():
                         self.error_file.delete(types[t], res[0])
         else:
             # Change
             for t in ["node", "way", "relation"]:
-                sql = "(SELECT id FROM actions WHERE data_type='{0}' AND action='D') UNION ALL (SELECT id FROM touched_{1}s) EXCEPT (SELECT id FROM actions WHERE data_type='{0}' AND action='C')".format(t[0].upper(), t)
+                sql = """
+SELECT id FROM actions WHERE data_type='{0}' AND action IN ('D', 'C')
+UNION ALL
+SELECT id FROM touched_{1}s
+"""
+                sql = sql.format(t[0].upper(), t)
                 self.giscurs.execute(sql)
                 for res in self.giscurs.fetchall():
                     self.error_file.delete(t, res[0])
