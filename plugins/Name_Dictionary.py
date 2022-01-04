@@ -32,7 +32,7 @@ class P_Name_Dictionary(Plugin):
         self.errors[703] = self.def_class(item = 5010, level = 2, tags = ['name', 'fix:chair'],
             title = T_('Word not found in dictionary'),
             fix = T_(
-'''Probably missing a capital.'''))
+'''Probably missing a capital, accent or typo.'''))
         self.errors[704] = self.def_class(item = 5010, level = 1, tags = ['value', 'fix:chair'],
             title = T_('Encoding problem'))
 
@@ -128,7 +128,7 @@ class P_Name_Dictionary(Plugin):
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    return {"class": 703, "subclass": stablehash64(tag), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
+                    return {"class": 703, "subclass": stablehash64(tag), "text": {"en": WordComplet}, "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}}
                 else:
                     raise Exception("Could not find correction for {0}".format(WordComplet))
             else:
