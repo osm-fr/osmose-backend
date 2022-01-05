@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
@@ -34,15 +34,14 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
             title = T_('{0} stop, integration suggestion', place))
 
         self.init(
-            'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p',
-            'Arrêt physique sur le réseau',
-            SHP(SourceOpenDataSoft(
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/sv_arret_p',
+            'Arrêt physique sur le réseau SAEIV',
+            GeoJSON(SourceOpenDataSoft(
                 attribution='Bordeaux Métropole',
-                url='https://opendata.bordeaux-metropole.fr/explore/dataset/tb_arret_p',
-                format="shp",
-                zip="tb_arret_p.shp")),
-            LoadGeomCentroid(
-                select = {"reseau": [False, "BUS"]}),
+                url='https://opendata.bordeaux-metropole.fr/explore/dataset/sv_arret_p',
+                format='geojson')),
+            Load('geom_x', 'geom_y',
+                select = {'vehicule': 'BUS'}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -55,6 +54,6 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                         "bus": "yes"},
                     static2 = {"source": self.source},
                     mapping2 = {
-                        "name": lambda res: res['nomarret'],
-                        "shelter": lambda res: "yes" if res["mobilie1"] and "abribus" in res["mobilie1"].lower() else "no" if res["mobilie1"] and "poteau" in res["mobilie1"].lower() else None},
-                    text = lambda tags, fields: T_("{0} stop {1}", place, fields["nomarret"]) )))
+                        'name': lambda res: res['libelle']},
+                    # 'shelter': lambda res: "yes" if res["mobilie1"] and "abribus" in res["mobilie1"].lower() else "no" if res["mobilie1"] and "poteau" in res["mobilie1"].lower() else None},
+                    text = lambda tags, fields: T_("{0} stop {1}", place, fields["libelle"]) )))
