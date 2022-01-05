@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2021-12-27 20:48+0000\n"
+"PO-Revision-Date: 2022-01-05 21:12+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -1206,7 +1206,7 @@ msgstr ""
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:114
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:115
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1412,7 +1412,7 @@ msgstr ""
 msgid "{0} stop update"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:60
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:59
 #, python-brace-format
 msgid "{0} stop {1}"
 msgstr ""
@@ -2107,7 +2107,7 @@ msgid ""
 msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:218
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:116
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:117
 msgid "The end of the way is not connected to another way."
 msgstr ""
 
@@ -2160,11 +2160,11 @@ msgid ""
 "both ends of the way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:89
+#: ../analysers/analyser_osmosis_highway_noexit.py:90
 msgid "Noexit on node with exit"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:91
+#: ../analysers/analyser_osmosis_highway_noexit.py:92
 msgid "Noexit on way with multiple exits"
 msgstr ""
 
@@ -2649,7 +2649,6 @@ msgstr ""
 msgid "A parking condition is present but without parking kind."
 msgstr ""
 
-#: ../plugins/Name_Dictionary.py:35
 msgid "Probably missing a capital."
 msgstr ""
 
@@ -4483,7 +4482,7 @@ msgstr ""
 msgid "Toposcope not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:118
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:119
 msgid ""
 "The way or the group of the ways must be connected to an entry point:\n"
 "* road: `route=ferry`, `man_made=pier`, `aeroway=taxiway|runway|apron`, `railway=platform` or `highway=motorway|motorway_link|trunk|trunk_link|primary|primary_link`,\n"
@@ -4593,74 +4592,99 @@ msgid ""
 "IGN (French geographic name conventions)"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:36
+#: ../plugins/ConditionalRestrictions.py:37
 msgid "Bad conditional restriction"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:37
+#: ../plugins/ConditionalRestrictions.py:38
 msgid ""
 "Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.\n"
 "Combined restrictions should follow `value @ (condition1 AND condition2)`.\n"
 "Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:42
 msgid "Combine conditions using `AND`"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:43
 msgid ""
 "`AND` (uppercase) is to be preferred over lowercase variants when combining "
 "restrictions."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:46
+#: ../plugins/ConditionalRestrictions.py:52
 msgid "Expired conditional"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:47
+#: ../plugins/ConditionalRestrictions.py:53
 msgid ""
 "This conditional was only valid up to a date in the past. It can likely be "
 "removed."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:48
+#: ../plugins/ConditionalRestrictions.py:54
 msgid "Other tags might need to be updated too to reflect the new situation."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:69
+#: ../plugins/ConditionalRestrictions.py:75
+#: ../plugins/ConditionalRestrictions.py:98
 #, python-brace-format
 msgid "Missing `@` in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:84
+#: ../plugins/ConditionalRestrictions.py:90
 #, python-brace-format
 msgid "Missing value for the condition in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:94
-#: ../plugins/ConditionalRestrictions.py:118
+#: ../plugins/ConditionalRestrictions.py:104
+#: ../plugins/ConditionalRestrictions.py:128
 #, python-brace-format
 msgid "Mismatch in the number of parentheses in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:100
-#: ../plugins/ConditionalRestrictions.py:114
 #, python-brace-format
 msgid "Missing condition or parentheses in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:128
+#: ../plugins/ConditionalRestrictions.py:138
 #, python-brace-format
 msgid "Missing condition before or after AND combinator in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:133
 #, python-brace-format
 msgid "Lowercase version of `AND` in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:146
+#: ../plugins/ConditionalRestrictions.py:153
 #, python-brace-format
 msgid "Condition \"{0}\" in \"{1}\" was only valid until {2}"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:43
+msgid "Improve style of conditional"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:44
+msgid ""
+"Although valid, it is recommended to format conditional restrictions with:\n"
+"- spaces around the `@`;\n"
+"- uppercase `AND` (in combined restrictions);\n"
+"- parentheses around all-but-the-simplest conditions.\n"
+"This helps to prevent errors and improves readability.\n"
+"For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:110
+#: ../plugins/ConditionalRestrictions.py:124
+#, python-brace-format
+msgid "Missing condition, `@` or parentheses in \"{0}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:159
+#, python-brace-format
+msgid "Add parentheses around the condition(s) in \"{0}\""
+msgstr ""
+
+#: ../plugins/Name_Dictionary.py:35
+msgid "Probably missing a capital, accent or typo."
 msgstr ""
