@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
@@ -35,14 +35,13 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
             title = T_('{0} bicycle update', 'BM'))
 
         self.init(
-            'https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p',
-            'Station VCUB',
-            SHP(SourceOpenDataSoft(
+            'https://opendata.bordeaux-metropole.fr/explore/dataset/ci_vcub_p',
+            'Station VCUB en temps réel',
+            GeoJSON(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
-                url="https://opendata.bordeaux-metropole.fr/explore/dataset/tb_stvel_p",
-                format="shp",
-                zip="tb_stvel_p.shp")),
-            LoadGeomCentroid(),
+                url="https://opendata.bordeaux-metropole.fr/explore/dataset/ci_vcub_p",
+                format="geojson")),
+            Load("geom_x", "geom_y"),
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -52,11 +51,12 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
                 mapping = Mapping(
                     static1 = {
                         "amenity": "bicycle_rental",
-                        "network": "VCUB"},
+                        "network": "VCUB",
+                        "vending": "subscription"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": "nom",
-                        "ref": "numstat",
-                        "capacity": "nbsuppor",
-                        "vending": lambda res: "subscription" if res["termbanc"] == "OUI" else None,
-                        "description": lambda res: "VCUB+" if res["tarif"] == "VLS PLUS" else None} )))
+                        "ref": "ident",
+                        # "capacity": lambda res: int(res["nbplaces"]) + int(res["nbvelos"]),
+                        "description": lambda res: "VCUB+" if res["type"] == "VLS+" else None},
+                    mapping2 = {
+                        "name": "nom"} )))
