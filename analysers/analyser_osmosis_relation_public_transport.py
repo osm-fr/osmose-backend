@@ -280,7 +280,7 @@ WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'highway' AND nodes.tags->'highway' = 'bus_stop' AND
     nodes.tags->'public_transport' != 'stop_position' AND
-    highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform')
+    highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform', 'steps')
 """
 
 sql70 = """
@@ -318,7 +318,7 @@ FROM
 WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('bus', 'trolleybus', 'coach', 'share_taxi', 'school_bus', 'walking_bus') AND
-  highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform')
+  highways.highway NOT IN ('footway', 'path', 'pedestrian', 'platform', 'steps')
 """
 
 sql90 = """
