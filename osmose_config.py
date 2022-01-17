@@ -712,7 +712,7 @@ ch_part('zurich', 1690227, 'CH-ZH', language='de')
 
 fi_part = gen_country('europe', 'finland', download_repo=OSMFR, proj=32635)
 
-fi_part('lapland', 2541341, 'FI-10', language="fi")
+fi_part('lapland', 2541341, 'FI-10', language=["fi", "se"])
 fi_part('north_ostrobothnia', 1724360, 'FI-14', language="fi")
 fi_part('kainuu', 1997164, 'FI-05', language="fi")
 fi_part('north_karelia', 1999428, 'FI-13', language="fi")
