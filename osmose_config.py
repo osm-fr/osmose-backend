@@ -458,6 +458,7 @@ france_departement("provence_alpes_cote_d_azur/hautes_alpes", 7436, "FR-05", inc
 ])
 france_departement("provence_alpes_cote_d_azur/alpes_maritimes", 7385, "FR-06", include=[
     'merge_public_transport_FR_rla',
+    'merge_public_transport_FR_zou_06',
 ]
                    )
 france_departement("provence_alpes_cote_d_azur/bouches_du_rhone", 7393, "FR-13")
