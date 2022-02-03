@@ -47,7 +47,7 @@ class Analyser_Merge_Public_Transport_FR_envibus(Analyser_Merge):
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = [{"highway": "bus_stop", "public_transport": "platform"}, {"highway":"platform"}]),
+                    tags = [{"highway": "bus_stop", "public_transport": "platform"},{"highway": "bus_stop", "public_transport": False}, {"highway":"platform"}]),
                 osmRef = "ref:FR:ENVIBUS",
                 conflationDistance = 50,
                 mapping = Mapping(

@@ -19,10 +19,9 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
 ##                                                                       ##
 ###########################################################################
-import re
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load, Conflate, Select, Mapping, Source
+from .Analyser_Merge import Analyser_Merge, GTFS, Load, Conflate, Select, Mapping, Source
 
 
 class Analyser_Merge_Public_Transport_FR_rpb(Analyser_Merge):
@@ -48,7 +47,7 @@ class Analyser_Merge_Public_Transport_FR_rpb(Analyser_Merge):
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = [{"highway": "bus_stop", "public_transport": "platform"}, {"highway":"platform"}]),
+                    tags = [{"highway": "bus_stop", "public_transport": "platform"},{"highway": "bus_stop", "public_transport": False}, {"highway":"platform"}]),
                 osmRef = "ref:FR:RPB",
                 conflationDistance = 100,
                 mapping = Mapping(
