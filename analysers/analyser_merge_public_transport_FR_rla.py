@@ -48,7 +48,7 @@ class Analyser_Merge_Public_Transport_FR_rla(Analyser_Merge):
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = {"highway": "bus_stop"}),
+                    tags = [{"highway": "bus_stop"}, {"public_transport": "platform"}, {"highway":"platform"}]),
                 osmRef = "ref:FR:RLA",
                 conflationDistance = 100,
                 mapping = Mapping(

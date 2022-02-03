@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2016                                 ##
+## Copyrights Théo Peltier 2022                                          ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -51,7 +51,7 @@ class Analyser_Merge_Public_Transport_FR_zou_06(Analyser_Merge):
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = {"highway": "bus_stop"}),
+                    tags = [{"highway": "bus_stop", "public_transport": "platform"}, {"highway":"platform"}]),
                 osmRef = "ref:FR:RLA",
                 conflationDistance = 50,
                 mapping = Mapping(
