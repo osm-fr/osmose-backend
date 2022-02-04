@@ -55,16 +55,16 @@ be used if the value is valid.''')
 be used if the value is valid.''')
         )
 
-        self.tag_number = ["height", "width", "length", "ele"]
-        self.tag_number_integer = ["population", "admin_level"] # Only positive integers (no units) allowed
-        tag_number_directional = ["maxheight", "maxheight:physical", "maxwidth", "maxlength", "maxweight", "maxspeed", "minspeed"]
+        self.tag_number = ["diameter", "distance", "ele", "height", "length", "width"]
+        self.tag_number_integer = ["admin_level", "capital", "heritage", "population", "step_count"] # Only positive integers (no units) allowed
+        tag_number_directional = ["maxaxleload", "maxheight", "maxheight:physical", "maxlength", "maxspeed", "maxspeed:advisory", "maxweight", "maxwidth", "minspeed"]
 
         # Add suffixes to the directional tags, add everything to tag_number
         for i in ["", ":forward", ":backward"]:
             self.tag_number.extend(list(map(lambda tag: tag + i, tag_number_directional)))
         self.tag_number.extend(self.tag_number_integer)
 
-        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|cm|km|nmi|km/h|mph|knots|t|kg|st|lt|cwt)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
+        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|cm|mm|km|nmi|km/h|mph|knots|t|kg|st|lbs|lt|cwt)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
@@ -75,6 +75,8 @@ be used if the value is valid.''')
                 m = self.Number.match(tags[i])
                 if (not m and
                     not (i == "width" and tags[i] == "narrow") and
+                    not (i == "capital" and tags[i] == "yes") and
+                    not (i == "heritage" and tags[i] == "yes") and
                     not (("maxspeed" in i or "minspeed" in i) and (
                         tags[i] in self.MaxspeedExtraValue or
                         self.MaxspeedClassValue.match(tags[i]) or
@@ -134,7 +136,10 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"maxspeed": "implicit", "traffic_sign": "maxspeed"})
 
         assert not a.node(None, {"maxheight": "default"})
-        
+
+        assert not a.node(None, {"capital":"yes"})
+        assert not a.node(None, {"capital":"2"})
+
         assert not a.node(None, {"width": "4.5", "highway": "residential"})
         assert a.node(None, {"width": "0", "highway": "residential"})
 
