@@ -49,6 +49,9 @@ class Capacity(Plugin):
                 # Ignore errors that should be reported by generic analysers
                 or tags["capacity"] == ""):
             return []
+        # capacity (non-round number in cubic meters or liters) is also for volumes: storage_tank, reservoir_covered, water_tower
+        if "man_made" in tags:
+            return []
         try:
             total_capacity = int(tags["capacity"])
             if total_capacity < 0:
@@ -144,3 +147,5 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"capacity": "1", "capacity:": "a"})
         assert not a.node(None, {"capacity:wheelchair": "1"})
+
+        assert not a.node(None, {"capacity": "123.45 m³", "man_made": "water_tower"}
