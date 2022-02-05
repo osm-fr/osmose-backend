@@ -148,4 +148,4 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"capacity": "1", "capacity:": "a"})
         assert not a.node(None, {"capacity:wheelchair": "1"})
 
-        assert not a.node(None, {"capacity": "123.45 m³", "man_made": "water_tower"}
+        assert not a.node(None, {"capacity": "123.45 m³", "man_made": "water_tower"})
