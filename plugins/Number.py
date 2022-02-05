@@ -49,10 +49,18 @@ be used if the value is valid.''')
         self.errors[3093] = self.def_class(item = 3091, level = 2, tags = ['value', 'fix:chair'],
             title = T_('Suspicious value'),
             detail = T_(
-'''The tag expects a positive, round number without unit'''),
+'''The tag expects a positive, round number without unit.'''),
             fix = T_(
 '''Check that the value is accurate. Consider whether another tag should
 be used if the value is valid.''')
+        )
+        self.errors[3094] = self.def_class(item = 3091, level = 2, tags = ['value', 'fix:chair'],
+            title = T_('Unknown unit'),
+            detail = T_(
+'''The tag uses an unexpected unit.'''),
+            fix = T_(
+'''Check that you have used the correct unit and a supported abbreviation of the unit.'''),
+            resource = "https://wiki.openstreetmap.org/wiki/Map_features/Units"
         )
 
         self.tag_number = ["diameter", "distance", "ele", "height", "length", "width"]
@@ -64,7 +72,11 @@ be used if the value is valid.''')
             self.tag_number.extend(list(map(lambda tag: tag + i, tag_number_directional)))
         self.tag_number.extend(self.tag_number_integer)
 
-        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|cm|mm|km|nmi|km/h|mph|knots|t|kg|st|lbs|lt|cwt)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
+        self.units = ["m", "cm", "mm", "km", "nmi", # distance excluding feet'inch"
+                      "km/h", "mph", "knots", #speed
+                      "t", "kg", "st", "lbs", "lt", "cwt"] #weight
+
+        self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?([a-zA-Z23/]{1,5})|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
@@ -92,6 +104,8 @@ be used if the value is valid.''')
                 if i in self.tag_number_integer and str(int(abs(float(m.group(1))))) != tags[i]:
                     # Expected: positive integer, found: decimal number or number with unit
                     return {"class": 3093, "subclass": 4, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
+                elif m.group(2) and not m.group(2) in self.units:
+                    return {"class": 3094, "subclass": 6, "text": T_("Concerns tag: `{0}`", '='.join([i, tags[i]])) }
                 elif i == "height" and float(m.group(1)) > 500:
                     return {"class": 3092, "subclass": 2, "text": T_("`height={0}` is really tall, consider changing to `ele=*`", m.group(1)),
                              "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
@@ -117,18 +131,18 @@ class Test(TestPluginCommon):
         for d in ["194", "14 m", "0.6m", "1cm", "narrow", "8 km", "400m", "10'", "10'11\"", "1'9.8\"", "1.18\"", "-6"]:
             assert not a.node(None, {"width":d}), ("width='{0}'".format(d))
 
-        for d in ["3,75", "foo", "18,4m", "4810"]:
+        for d in ["3,75", "foo", "18,4m", "4.8 cars", "4810"]:
             self.check_err(a.node(None, {"height":d}), ("height='{0}'".format(d)))
             self.check_err(a.way(None, {"height":d}, None), ("height='{0}'".format(d)))
             self.check_err(a.relation(None, {"height":d}, None), ("height='{0}'".format(d)))
 
         for d in ["foo", "18kph", "1", "30 c"]:
             self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d)))
-            self.check_err(a.node(None, {"minspeed:backward":d}), ("minspeed:backward='{0}'".format(d)))
+            self.check_err(a.node(None, {"maxspeed:backward":d}), ("maxspeed:backward='{0}'".format(d)))
 
         for d in ["50", "FR:urban", "35 mph", "10 knots", "default"]:
             assert not a.node(None, {"maxspeed":d}), ("maxspeed='{0}'".format(d))
-            assert not a.node(None, {"maxspeed:forward":d}), ("maxspeed:forward='{0}'".format(d))
+            assert not a.node(None, {"minspeed:forward":d}), ("minspeed:forward='{0}'".format(d))
 
         t = {"maxspeed":"1", "waterway": "river"}
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
