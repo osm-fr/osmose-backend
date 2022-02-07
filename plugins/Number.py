@@ -73,8 +73,8 @@ be used if the value is valid.''')
         self.tag_number.extend(self.tag_number_integer)
 
         self.units = ["m", "cm", "mm", "km", "nmi", # distance excluding feet'inch"
-                      "km/h", "mph", "knots", #speed
-                      "t", "kg", "st", "lbs", "lt", "cwt"] #weight
+                      "km/h", "mph", "knots", # speed
+                      "t", "kg", "st", "lbs", "lt", "cwt"] # weight
 
         self.Number = re.compile(u"^((?:-?[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?([a-zA-Z23/]{1,5})|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
