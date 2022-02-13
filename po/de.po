@@ -12,7 +12,7 @@
 # osmtools <osm@haraldhartmann.de>, 2017
 # Holger Bruch <holger.bruch@systect.de>, 2019
 # , 2021
-# kjon kjon <kjon@gmx.de>, 2020-2021
+# kjon kjon <kjon@gmx.de>, 2020-2022
 # Loo Nie <looniverse@gmail.com>, 2015
 # Manfred Brandl <manfred@brandl.net>, 2021
 # osmtools <osm@haraldhartmann.de>, 2017
@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2022-01-05 21:12+0000\n"
+"PO-Revision-Date: 2022-02-13 16:23+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -493,10 +493,10 @@ msgstr "Weg mit nur einem Knoten"
 msgid "Deprecated tag"
 msgstr "Veraltetes Merkmal"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Mehrfache Tags beachten"
 
@@ -674,15 +674,15 @@ msgstr "Flächennutzungsmerkmal nicht auf Bodenlevel"
 msgid "Natural feature underground"
 msgstr "Naturmerkmal unter Bodenlevel"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr "Standardsprache und örtliche Sprache unterschiedlich"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Lokaler Sprachname ohne Standardname"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr "Sprachname ohne Standardname"
 
@@ -1770,7 +1770,6 @@ msgstr "Bedingtes Intervall-Tag ist nicht gültig"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "Bedingte Intervalle passen nicht in die Öffnungszeit"
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1780,6 +1779,7 @@ msgstr "Bedingte Intervalle passen nicht in die Öffnungszeit"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2445,7 +2445,7 @@ msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
 "verify that the way direction is counter-clockwise when the driving side is\n"
 "on the right, and remove the tag `oneway=yes` if present."
-msgstr ""
+msgstr "Handelt es sich wirklich um einen Kreisverkehr, ergänze\n`junction=roundabout`, achte auf die korrekte Fahrtrichtung \nund entferne `oneway=yes`, falls vorhanden."
 
 #: ../analysers/analyser_osmosis_roundabout.py:79
 msgid ""
@@ -2453,7 +2453,7 @@ msgid ""
 "survey.\n"
 "\n"
 "Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead."
-msgstr ""
+msgstr "Vergewissere dich mit Luftbildern oder vor Ort, dass es sich \num einen Kreisverkehr handelt.\n\nStelle sicher, dass der Verkehr im Kreisverkehr Vorfahrt hat. \nWenn nicht, verwende stattdessen \"junction=circular\"."
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:48
 msgid ""
@@ -3124,21 +3124,21 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr "Einfache und häufige Fehler, die Auflistung befindet sich\n[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 
-#: ../analysers/analyser_merge_street_objects.py:47
 #: ../analysers/analyser_merge_street_objects2.py:47
+#: ../analysers/analyser_merge_street_objects.py:47
 #: ../analysers/analyser_merge_traffic_signs.py:83
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr "{0} fehlt"
 
-#: ../analysers/analyser_merge_street_objects.py:48
 #: ../analysers/analyser_merge_street_objects2.py:48
+#: ../analysers/analyser_merge_street_objects.py:48
 #, python-brace-format
 msgid "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr "Straßenobjekt ({1}) von Mapillary erkannt, aber kein \"{0}\" in der Nähe vorhanden."
 
-#: ../analysers/analyser_merge_street_objects.py:50
 #: ../analysers/analyser_merge_street_objects2.py:50
+#: ../analysers/analyser_merge_street_objects.py:50
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
@@ -3200,15 +3200,15 @@ msgstr "Untypischer Wert"
 msgid "Untagged named object"
 msgstr "Benanntes Objekt ohne Eigenschaften"
 
-#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_street_objects2.py:71
+#: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr "Erkannt zwischen {0} und {1}"
 
-#: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_street_objects2.py:72
+#: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
 msgid "Observed on {0}"
@@ -3368,20 +3368,20 @@ msgstr "Ergänze ein Hauptmerkmal, um anzugeben, worum es sich beim Objekt hande
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "Der Relation fehlt ein `type` Tag, um zu beschreiben, was sie repräsentiert."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "{0} Fahrradverleih nicht eingetragen"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "{0} Fahrradverleih, Vorschlag zur Eintragung"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "{0} Fahrradverleih aktualisiert"
@@ -3429,7 +3429,8 @@ msgid ""
 msgstr "Das eingegebene Datum hat nicht das erwartete Format, das unter [Key:start_date](https://wiki.openstreetmap.org/wiki/DE:Key:start_date) beschrieben wird."
 
 #: ../plugins/Date.py:91 ../plugins/Date.py:93 ../plugins/Name_UpperCase.py:61
-#: ../plugins/Name_UpperCase.py:66 ../plugins/Number.py:69
+#: ../plugins/Name_UpperCase.py:66 ../plugins/Number.py:99
+#: ../plugins/Number.py:106 ../plugins/Number.py:108 ../plugins/Number.py:115
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
@@ -3456,7 +3457,7 @@ msgid ""
 " This is particularly the case for corporate/branded locations as well as acronyms."
 msgstr "Es ist dennoch möglich, dass ein Name nur Großbuchstaben enthält.\nDies gilt insbesondere für Firmen-/Markennamen oder Abkürzungen."
 
-#: ../plugins/Number.py:71
+#: ../plugins/Number.py:110
 #, python-format, python-brace-format
 msgid "`height={0}` is really tall, consider changing to `ele=*`"
 msgstr "`height={0}` ist sehr hoch. Prüfe, stattdessen `ele=*` zu verwenden."
@@ -3483,15 +3484,15 @@ msgstr "Möglicherweise hat ein Mapper versucht, ein Objekt einzutragen, für da
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_capp.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "{0} Parkplatz nicht eingetragen"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "{0} Parkplatz, Vorschlag zur Eintragung"
@@ -3559,13 +3560,13 @@ msgid ""
 "the specified tag."
 msgstr "Das Merkmal weist einen ungewöhnlich hohen oder niedrigen Zahlenwert für\ndas angegebene Tag auf."
 
-#: ../plugins/Number.py:46
+#: ../plugins/Number.py:46 ../plugins/Number.py:54
 msgid ""
 "Check that the value is accurate. Consider whether another tag should\n"
 "be used if the value is valid."
 msgstr ""
 
-#: ../plugins/Number.py:74
+#: ../plugins/Number.py:113
 #, python-brace-format
 msgid "`{0}` is really slow"
 msgstr "`{0}` ist wirklich langsam"
@@ -4245,17 +4246,17 @@ msgstr ""
 msgid "A capacity:* value is greater than the total capacity."
 msgstr ""
 
-#: ../plugins/Capacity.py:58 ../plugins/Capacity.py:96
+#: ../plugins/Capacity.py:61 ../plugins/Capacity.py:99
 #, python-brace-format
 msgid "\"{0}\" value \"{1}\" is negative"
 msgstr ""
 
-#: ../plugins/Capacity.py:64 ../plugins/Capacity.py:102
+#: ../plugins/Capacity.py:67 ../plugins/Capacity.py:105
 #, python-brace-format
 msgid "\"{0}\" value \"{1}\" is not an integer"
 msgstr ""
 
-#: ../plugins/Capacity.py:85
+#: ../plugins/Capacity.py:88
 #, python-brace-format
 msgid "Specific \"{0}\" value \"{1}\" should be lower than total capacity {2}"
 msgstr ""
@@ -4701,4 +4702,26 @@ msgstr ""
 
 #: ../plugins/Name_Dictionary.py:35
 msgid "Probably missing a capital, accent or typo."
+msgstr ""
+
+#: ../plugins/Number.py:50
+msgid "Suspicious value"
+msgstr ""
+
+#: ../plugins/Number.py:52
+msgid "The tag expects a positive, round number without unit."
+msgstr ""
+
+#: ../plugins/Number.py:58
+msgid "Unknown unit"
+msgstr ""
+
+#: ../plugins/Number.py:60
+msgid "The tag uses an unexpected unit."
+msgstr ""
+
+#: ../plugins/Number.py:62
+msgid ""
+"Check that you have used the correct unit and a supported abbreviation of "
+"the unit."
 msgstr ""
