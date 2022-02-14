@@ -72,7 +72,7 @@ be used if the value is valid.''')
             self.tag_number.extend(list(map(lambda tag: tag + i, tag_number_directional)))
         self.tag_number.extend(self.tag_number_integer)
 
-        self.units = ["m", "cm", "mm", "km", "nmi", # distance excluding feet'inch"
+        self.units = ["m", "cm", "mm", "km", "mi", "nmi", # distance excluding feet'inch"
                       "km/h", "mph", "knots", # speed
                       "t", "kg", "st", "lbs", "lt", "cwt"] # weight
 
