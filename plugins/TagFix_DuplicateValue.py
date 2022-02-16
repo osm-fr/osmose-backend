@@ -58,6 +58,7 @@ similar.'''),
             'healthcare:speciality',
             'traffic_sign',
             'sport',
+            'voltage',
             'addr:flats', 'addr:housenumber', 'addr:unit', 'addr:floor', 'addr:block', 'addr:door',
         ))
         self.BlackListRegex = set((
