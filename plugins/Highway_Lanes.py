@@ -76,6 +76,10 @@ side* and `the merge_to_left` on the *right side*.'''))
             title = T_('Indicated turn lane together with `none`'),
             detail = T_(
 '''A `none` (or empty value) turn lane cannot be combined with other types of turn lanes within the same lane.'''))
+        self.errors[316013] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Conflicting tag values'),
+            detail = T_(
+'''A tag with `:right`, `:left` or `:both` conflicts with the same tag without side specification, or a tag with `:right` or `:left` conflicts with the tag with `:both`.'''))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -286,6 +290,24 @@ side* and `the merge_to_left` on the *right side*.'''))
             elif nl is not None and nl2 is not None and nl < nl2 - nfw_nl2:
                 err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})", nl, nl2, nfw_nl2)})
 
+
+        # Check :right and :left and :both tags
+        for tag in tags:
+            tag_default = tag.replace(":both", "").replace(":left", "").replace(":right", "")
+            if tag_default == tag:
+                continue # tag does not contain :both/:left/:right
+            allowedAlternativeValues = []
+            if tag_default in tags:
+                # Some tags allow left/right/both as values, e.g. sidewalk=both equals sidewalk:left=yes + sidewalk:right=yes or sidewalk:both=yes
+                allowedAlternativeValues = ["left", "right", "both", "yes"]
+            else:
+                tag_default = tag.replace(":left", ":both").replace(":right", ":both")
+            if tag_default in tags:
+                tt = tags[tag].replace("none", "no").replace("opposite_", "")
+                ttd = tags[tag_default].replace("none", "no").replace("opposite_", "")
+                if tt != ttd and not ttd in allowedAlternativeValues:
+                  err.append({"class": 316013, "subclass": 1 + stablehash64(tag), "text": T_("Conflicting values of \"{0}\" and \"{1}\"", tag_default, tag)})
+
         if err != []:
             return err
 
@@ -378,5 +400,28 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "through|right;left|through"},
                   {"highway": "another", "turn:lanes": "left;right|left;right"},
                   {"highway": "another", "turn:lanes": "left|sharp_left|through"},
+                 ]:
+            assert a.way(None, t, None), a.way(None, t, None)
+
+        for t in [{"highway": "residential", "cycleway:right": "lane"},
+                  {"highway": "residential", "cycleway:right": "lane", "cycleway:left": "lane"},
+                  {"highway": "residential", "cycleway": "lane"},
+                  {"highway": "residential", "cycleway:right": "lane", "cycleway": "lane"}, # redundant, not conflicting
+                  {"highway": "residential", "cycleway:right:surface": "asphalt", "cycleway:surface": "asphalt"}, # redundant, not conflicting
+                  {"highway": "residential", "cycleway:right:surface": "asphalt", "cycleway:both:surface": "asphalt"}, # redundant, not conflicting
+                  {"highway": "residential", "sidewalk": "left", "sidewalk:left": "yes"}, # redundant, not conflicting
+                  {"highway": "residential", "sidewalk:both": "yes", "sidewalk:left": "yes"}, # redundant, not conflicting
+                  {"highway": "residential", "sidewalk": "yes", "sidewalk:left": "yes", "sidewalk:right": "yes", "sidewalk:both": "yes"}, # redundant, not conflicting
+                  {"highway": "residential", "sidewalk": "right", "sidewalk:left": "no"}, # redundant, not conflicting
+                  {"highway": "residential", "sidewalk": "none", "sidewalk:left": "no"}, # redundant, not conflicting
+                  {"highway": "residential", "cycleway": "opposite_lane", "cycleway:left": "lane"}, # dubious whether equal
+                  {"highway": "residential", "xxx:both_ways": "yyy", "xxx": "zzz"}, # xxx:both_ways should become (harmless, never-existing) xxx:_ways
+                 ]:
+            assert not a.way(None, t, None), a.way(None, t, None)
+
+        for t in [{"highway": "residential", "cycleway:right": "lane", "cycleway": "shared_lane"},
+                  {"highway": "residential", "sidewalk": "no", "sidewalk:left": "yes"},
+                  {"highway": "residential", "sidewalk:both": "yes", "sidewalk:left": "no"},
+                  {"highway": "residential", "cycleway:right:surface": "asphalt", "cycleway:surface": "paving_stones"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
