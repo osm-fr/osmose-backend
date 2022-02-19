@@ -65,7 +65,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = ConditionalRestrictions(None)
+        a = Highway_Sides(None)
         a.init(None)
 
         for t in [{"highway": "residential", "cycleway:right": "lane"},
