@@ -28,7 +28,7 @@ class Highway_Sides(Plugin):
         Plugin.init(self, logger)
 
         self.errors[33601] = self.def_class(item = 3360, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Conflicting tag values'),
+            title = T_('Conflicting tags for sides of the way'),
             detail = T_(
 '''A tag with `:right`, `:left` or `:both` conflicts with the same tag without side specification, or a tag with `:right` or `:left` conflicts with the tag with `:both`.'''))
 

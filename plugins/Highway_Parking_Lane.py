@@ -78,7 +78,9 @@ be tagged on that object instead.'''))
         if len(sides) > 0:
             err.append({"class": 31611})
 
-        if ("parking:lane:right" in tags or "parking:lane:left" in tags) and "parking:lane:both" in tags:
+        if "parking:lane:both" in tags and (("parking:lane:right" in tags and tags["parking:lane:right"] == tags["parking:lane:both"]) or
+                                            ("parking:lane:left" in tags and tags["parking:lane:left"] == tags["parking:lane:both"])):
+            # Conflicting values are dealt with in Highway_Sides
             err.append({"class": 31614})
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
@@ -120,6 +122,7 @@ class Test(TestPluginCommon):
 
         for t in [{"highway": "r", "parking:lane:both:parallel": "t"},
                   {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"},
+                  {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "no"}, # Checked by Highway_Sides plugin
                   {"highway": "r", "parking:condition:right": "private", "parking:condition:left": "private", "parking:lane:both": "perpendicular"},
                   {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"},
                   {"highway": "r", "parking:lane:left": "separate", "parking:lane:right": "parallel"},
