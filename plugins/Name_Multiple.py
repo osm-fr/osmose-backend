@@ -35,10 +35,10 @@ class Name_Multiple(Plugin):
             title = T_('The name tag contains two names'),
             detail = T_(
 '''The tag `name=*` contains multiple names, separated by a semicolon,
-a "/" or a "\\". This issue was probably produced by the fusion of two
+a "/", a "\\" or a "+". This issue was probably produced by the fusion of two
 way and the concatenation of the names of the streets.'''),
             fix = T_(
-'''* If duplicate, delete a one.
+'''* If duplicate name, delete one.
 * Otherwise, a survey is required: check if it is a street whose name
 changes at a crossroads, if this is the case, cut the street and set the
 proper names of both part.'''),
@@ -74,7 +74,7 @@ the tag `name:left=*` and `name:right=*`.'''))
         if self.NoExtra:
             return
 
-        if '+' in tags["name"][0:-1]:
+        if '+' in tags["name"][0:-1] and not 'P+R' in tags["name"]:
             return {"class": 705, "subclass": 2, "text": {"en": "name={0}".format(tags["name"])}}
 
         if '/' in tags["name"] and not self.allowSlash:
@@ -129,3 +129,4 @@ class Test(TestPluginCommon):
             assert not p.way(None, {"name": u"Avenue 17 / جادة 17"}, None)
 
         assert not p.way(None, {"name": u"Gas station no. 21/2356"}, None)
+        assert not p.way(None, {"name": "Foobar P+R"}, None)
