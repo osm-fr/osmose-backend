@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2022-02-26 16:59+0000\n"
+"PO-Revision-Date: 2022-02-26 19:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "孤立した道路あるいは通行規制ノード"
 msgid "Geodesic mark without building"
 msgstr "建物に記されていない測地点"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:172
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:170
 msgid "Possible crossing=traffic_signals"
 msgstr "crossing=traffic_signalsの可能性"
 
@@ -523,7 +523,7 @@ msgstr "複数の値"
 msgid "Possible improvement for note or comment tag"
 msgstr "改善が必要そうなメモやコメントタグ"
 
-#: ../plugins/TagFix_Postcode.py:76
+#: ../plugins/TagFix_Postcode.py:82
 msgid "Invalid postcode"
 msgstr "無効な郵便番号"
 
@@ -869,7 +869,7 @@ msgstr "重複するノード：位置とタグ"
 msgid "Duplicated node geometry but different tags"
 msgstr "重複するノード：タグの異なる同一位置"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:175
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:173
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "近くにhighway=traffic_signalsが存在する可能性"
 
@@ -1038,13 +1038,13 @@ msgstr "tracktypeやlanesに対するhighwayタグが無い"
 msgid "Missing relation type"
 msgstr "リレーションのtypeが無い"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:178
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:176
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "traffic_signals:directionタグまたはcrossingタグが信号機に存在する可能性"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:180
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:178
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "directionタグが一時停止またはゆずれに存在する可能性"
 
@@ -2169,7 +2169,7 @@ msgstr "出口があるノードにnoexitタグがある"
 msgid "Noexit on way with multiple exits"
 msgstr "複数の出口があるウェイにnoexitタグがある"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:168
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:166
 msgid ""
 "It is very likely that the traffic signals on the junction are\n"
 "inconsistent with each other, see also\n"
@@ -2650,20 +2650,9 @@ msgstr "側道用の駐車場には、街路の側道よりも多くの種類が
 msgid "A parking condition is present but without parking kind."
 msgstr "駐車場の条件はありますが、駐車場の種類がありません。"
 
-msgid "Probably missing a capital."
-msgstr "おそらく頭文字が無い。"
-
 #: ../plugins/Name_MisspelledWordByRegex.py:33
 msgid "Often a lack of accent on a capital letter (eg. Ecole for École)"
 msgstr "頭文字にアクセントが無いことがよくあります(例. Ecole for École)"
-
-#: ../plugins/Name_Multiple.py:41
-msgid ""
-"* If duplicate, delete a one.\n"
-"* Otherwise, a survey is required: check if it is a street whose name\n"
-"changes at a crossroads, if this is the case, cut the street and set the\n"
-"proper names of both part."
-msgstr "* もし重複していれば、ひとつ削除します。\n* そうでない場合、サーベイが必要です。道路の交点で名前が変わる街路なのかチェックして、そうであれば街路をカットしてそれぞれの部分に適切な名前を付けます。"
 
 #: ../plugins/Name_Multiple.py:46
 msgid ""
@@ -2985,7 +2974,7 @@ msgstr "簡単に探せるように`description=*`, `opening_hours=*` あるい�
 msgid "The analysis can provide crazy result."
 msgstr "分析は時として馬鹿げた結果になることがあります。"
 
-#: ../plugins/TagFix_Postcode.py:78
+#: ../plugins/TagFix_Postcode.py:84
 msgid ""
 "Check postcode as decribed on\n"
 "[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)"
@@ -3757,7 +3746,7 @@ msgid ""
 "into OSM, you must do critical review of data integration."
 msgstr "これはオープンデータに由来するものですが、データの品質は十分に検証されていません。取り込む前に十分レビューしてください。やみくもにOSMに取り込んではいけません。データの取り込みは吟味しながら行う必要があります。"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:166
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:164
 msgid "An other node very close have already a traffic signals."
 msgstr "すぐ近くの別のノードに既にtraffic signalsがあります。"
 
@@ -4178,12 +4167,12 @@ msgstr "重複した値 {key}={val}"
 msgid "Duplicated similar values {key}={val}"
 msgstr "重複した類似の値 {key}={val}"
 
-#: ../plugins/TagFix_Postcode.py:101
+#: ../plugins/TagFix_Postcode.py:107
 #, python-brace-format
 msgid "Invalid area postcode {postcode} for country code {country}"
 msgstr "郵便番号 {postcode} は国コード {country}では無効"
 
-#: ../plugins/TagFix_Postcode.py:103
+#: ../plugins/TagFix_Postcode.py:109
 #, python-brace-format
 msgid "Invalid street level postcode {postcode} for country code {country}"
 msgstr "街路レベル郵便番号 {postcode} は国コード {country}では無効"
@@ -4416,13 +4405,6 @@ msgid ""
 "be tagged on that object instead."
 msgstr "駐車の条件が parking:lane:[side] の値としてセットされ、駐車エリアが個々にマッピングされているということを示しています。そうではなくて、あらゆる駐車の条件はオブジェクト上にマッピングされるべきです。"
 
-#: ../plugins/Name_Multiple.py:37
-msgid ""
-"The tag `name=*` contains multiple names, separated by a semicolon,\n"
-"a \"/\" or a \"\\\". This issue was probably produced by the fusion of two\n"
-"way and the concatenation of the names of the streets."
-msgstr "`name=*`タグにセミコロン、  \"/\"、または \"\\\" で区切られた名前が複数あります。2つのウェイを一本化した際など、このように名前が連結されることがあります。"
-
 #: tmp.json:33
 msgid "one-directional roads"
 msgstr "一方通行の道路"
@@ -4605,14 +4587,6 @@ msgid ""
 "Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`."
 msgstr ""
 
-msgid "Combine conditions using `AND`"
-msgstr ""
-
-msgid ""
-"`AND` (uppercase) is to be preferred over lowercase variants when combining "
-"restrictions."
-msgstr ""
-
 #: ../plugins/ConditionalRestrictions.py:52
 msgid "Expired conditional"
 msgstr ""
@@ -4644,17 +4618,9 @@ msgstr ""
 msgid "Mismatch in the number of parentheses in \"{0}\""
 msgstr ""
 
-#, python-brace-format
-msgid "Missing condition or parentheses in \"{0}\""
-msgstr ""
-
 #: ../plugins/ConditionalRestrictions.py:138
 #, python-brace-format
 msgid "Missing condition before or after AND combinator in \"{0}\""
-msgstr ""
-
-#, python-brace-format
-msgid "Lowercase version of `AND` in \"{0}\""
 msgstr ""
 
 #: ../plugins/ConditionalRestrictions.py:153
@@ -4727,4 +4693,19 @@ msgstr ""
 #: ../plugins/Highway_Sides.py:58
 #, python-brace-format
 msgid "Conflicting values of \"{0}\" and \"{1}\""
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:37
+msgid ""
+"The tag `name=*` contains multiple names, separated by a semicolon,\n"
+"a \"/\", a \"\\\" or a \"+\". This issue was probably produced by the fusion of two\n"
+"way and the concatenation of the names of the streets."
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:41
+msgid ""
+"* If duplicate name, delete one.\n"
+"* Otherwise, a survey is required: check if it is a street whose name\n"
+"changes at a crossroads, if this is the case, cut the street and set the\n"
+"proper names of both part."
 msgstr ""
