@@ -62,9 +62,15 @@ class TagFix_Postcode(Plugin):
 
             postcode[iso] = {}
             if format_area != '':
-                postcode[iso]['area'] = self.parse_format(reline, format_area)
+                regex_area = self.parse_format(reline, format_area)
+                if regex_area:
+                    postcode[iso]['area'] = regex_area
             if format_street != '':
-                postcode[iso]['street'] = self.parse_format(reline, format_street)
+                regex_street = self.parse_format(reline, format_street)
+                if regex_street:
+                    postcode[iso]['street'] = regex_street
+                else:
+                    postcode[iso]['street'] = None
 
         return postcode
 
@@ -88,12 +94,12 @@ class TagFix_Postcode(Plugin):
             return
         postcode = self.list_postcode()
         if self.Country in postcode:
-            if 'area' in postcode[self.Country] and postcode[self.Country]['area'] is not None:
-                self.CountryPostcodeArea = re.compile(postcode[self.Country]['area'])
             if 'street' in postcode[self.Country] and postcode[self.Country]['street'] is not None:
                 self.CountryPostcodeStreet = re.compile(postcode[self.Country]['street'])
-            elif 'area' in postcode[self.Country] and postcode[self.Country]['area'] is not None:
-                self.CountryPostcodeStreet = self.CountryPostcodeArea
+            if 'area' in postcode[self.Country]:
+                self.CountryPostcodeArea = re.compile(postcode[self.Country]['area'])
+                if 'street' not in postcode[self.Country]:
+                    self.CountryPostcodeStreet = self.CountryPostcodeArea
 
     def node(self, data, tags):
         err = []
@@ -218,3 +224,13 @@ class Test(TestPluginCommon):
         a.init(None)
         assert not a.node(None, {"postal_code":"30318"})
         assert not a.node(None, {"postal_code":"30318-2522"})
+
+    def test_IE(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "IE", "project": "openstreetmap"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"addr:postcode":"Y35 WY93"})
