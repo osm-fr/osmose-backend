@@ -47,8 +47,8 @@ class Highway_Sides(Plugin):
                 continue # tag does not contain :both/:left/:right
             allowedAlternativeValues = []
             if tag_default in tags:
-                # Some tags allow left/right/both as values, e.g. sidewalk=both equals sidewalk:both=yes
-                allowedAlternativeValues = ["left", "right", "both", "yes"]
+                # Some tags allow i.e. left/right/both as values, e.g. sidewalk=both equals sidewalk:both=yes
+                allowedAlternativeValues = ["left", "right", "both", "yes", "opposite"]
             else:
                 tag_default = tag.replace(":left", ":both").replace(":right", ":both")
             if tag_default in tags:
@@ -83,6 +83,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "sidewalk": "none", "sidewalk:left": "no"}, # redundant, not conflicting
                   {"highway": "residential", "name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"},
                   {"highway": "residential", "cycleway": "opposite_lane", "cycleway:left": "lane"}, # dubious whether equal
+                  {"highway": "residential", "cycleway": "opposite", "cycleway:left": "no"}, # dubious whether equal
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
 
