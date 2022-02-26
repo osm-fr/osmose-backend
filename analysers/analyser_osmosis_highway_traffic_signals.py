@@ -122,7 +122,7 @@ SELECT
     geom,
     tags
 FROM
-    {0}nodes
+    {0}nodes AS nodes
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
@@ -141,7 +141,7 @@ SELECT
 FROM
   {0}stops AS nodes
   JOIN {1}highways AS ways ON
-    ways.linestring && nodes.geom
+    ways.linestring && nodes.geom AND
     nodes.id = ANY (ways.nodes)
 GROUP BY
   nodes.id,
