@@ -126,7 +126,11 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
-    tags->'highway' IN ('stop', 'give_way')
+    tags->'highway' IN ('stop', 'give_way') AND
+    (NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')) AND
+    (NOT nodes.tags?'traffic_sign:direction' OR nodes.tags->'traffic_sign:direction' NOT IN('backward', 'forward')) AND
+    NOT nodes.tags?'traffic_sign:forward' AND
+    NOT nodes.tags?'traffic_sign:backward'
 """
 
 sql41 = """
@@ -136,15 +140,9 @@ SELECT
   ST_AsText(nodes.geom)
 FROM
   {0}stops AS nodes
-  JOIN way_nodes ON
-    way_nodes.node_id = nodes.id
   JOIN {1}highways AS ways ON
-    ways.id = way_nodes.way_id
-WHERE
-  (NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')) AND
-  (NOT nodes.tags?'traffic_sign:direction' OR nodes.tags->'traffic_sign:direction' NOT IN('backward', 'forward')) AND
-  NOT nodes.tags?'traffic_sign:forward' AND
-  NOT nodes.tags?'traffic_sign:backward'
+    ways.linestring && nodes.geom
+    nodes.id = ANY (ways.nodes)
 GROUP BY
   nodes.id,
   nodes.geom
