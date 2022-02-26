@@ -54,6 +54,8 @@ class Highway_Sides(Plugin):
             if tag_default in tags:
                 tt = tags[tag].replace("none", "no").replace("opposite_", "")
                 ttd = tags[tag_default].replace("none", "no").replace("opposite_", "")
+                if tag[0:5] == "name:" and tt in ttd:
+                    continue # 'name' probably equals "name:left" + "/" + name:right, handled by Name_Multiple
                 if tt != ttd and not ttd in allowedAlternativeValues:
                     err.append({"class": 33601, "subclass": 1 + stablehash64(tag), "text": T_("Conflicting values of \"{0}\" and \"{1}\"", tag_default, tag)})
 
@@ -79,6 +81,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "sidewalk": "yes", "sidewalk:left": "yes", "sidewalk:right": "yes", "sidewalk:both": "yes"}, # redundant, not conflicting
                   {"highway": "residential", "sidewalk": "right", "sidewalk:left": "no"}, # redundant, not conflicting
                   {"highway": "residential", "sidewalk": "none", "sidewalk:left": "no"}, # redundant, not conflicting
+                  {"highway": "residential", "name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"},
                   {"highway": "residential", "cycleway": "opposite_lane", "cycleway:left": "lane"}, # dubious whether equal
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
