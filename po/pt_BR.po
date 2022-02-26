@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2022-02-13 16:23+0000\n"
+"PO-Revision-Date: 2022-02-26 16:59+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -4167,12 +4167,12 @@ msgstr ""
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:122
+#: ../plugins/TagFix_DuplicateValue.py:123
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:129
+#: ../plugins/TagFix_DuplicateValue.py:130
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
 msgstr ""
@@ -4710,4 +4710,20 @@ msgstr ""
 msgid ""
 "Check that you have used the correct unit and a supported abbreviation of "
 "the unit."
+msgstr ""
+
+#: ../plugins/Highway_Sides.py:31
+msgid "Conflicting tags for sides of the way"
+msgstr ""
+
+#: ../plugins/Highway_Sides.py:33
+msgid ""
+"A tag with `:right`, `:left` or `:both` conflicts with the same tag without "
+"side specification, or a tag with `:right` or `:left` conflicts with the tag"
+" with `:both`."
+msgstr ""
+
+#: ../plugins/Highway_Sides.py:58
+#, python-brace-format
+msgid "Conflicting values of \"{0}\" and \"{1}\""
 msgstr ""
