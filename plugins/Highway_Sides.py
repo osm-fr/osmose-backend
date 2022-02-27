@@ -47,13 +47,17 @@ class Highway_Sides(Plugin):
                 continue # tag does not contain :both/:left/:right
             allowedAlternativeValues = []
             if tag_default in tags:
-                # Some tags allow i.e. left/right/both as values, e.g. sidewalk=both equals sidewalk:both=yes
-                allowedAlternativeValues = ["left", "right", "both", "yes", "opposite"]
+                # Some tags allow left/right/both as values, e.g. sidewalk=both equals sidewalk:both=yes
+                if simplifyValue(tags[tag]) == "no":
+                    allowedAlternativeValues = ["yes", "left", "right", "separate", "opposite"]
+                else:
+                    allowedAlternativeValues = ["yes", "left", "right", "both"]
             else:
                 tag_default = tag.replace(":left", ":both").replace(":right", ":both")
+
             if tag_default in tags:
-                tt = tags[tag].replace("none", "no").replace("opposite_", "")
-                ttd = tags[tag_default].replace("none", "no").replace("opposite_", "")
+                tt = simplifyValue(tags[tag])
+                ttd = simplifyValue(tags[tag_default])
                 if tag[0:5] == "name:" and tt in ttd:
                     continue # 'name' probably equals "name:left" + "/" + name:right, handled by Name_Multiple
                 if tt != ttd and not ttd in allowedAlternativeValues:
@@ -61,6 +65,11 @@ class Highway_Sides(Plugin):
 
         if err != []:
             return err
+
+    def simplifyValue(val):
+        if val in ["none"]:
+            return "no"
+        return val.replace("opposite_", "")
 
 
 from plugins.Plugin import TestPluginCommon
@@ -84,14 +93,19 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"},
                   {"highway": "residential", "cycleway": "opposite_lane", "cycleway:left": "lane"}, # dubious whether equal
                   {"highway": "residential", "cycleway": "opposite", "cycleway:left": "no"}, # dubious whether equal
+                  {"highway": "residential", "sidewalk": "separate", "sidewalk:left": "separate", "sidewalk:right": "no"},
+                  {"highway": "residential", "sidewalk": "yes", "sidewalk:right": "no", "sidewalk:left": "yes"},
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
 
         for t in [{"highway": "residential", "cycleway:right": "lane", "cycleway": "shared_lane"},
                   {"highway": "residential", "sidewalk": "no", "sidewalk:left": "yes"},
+                  {"highway": "residential", "sidewalk": "separate", "sidewalk:left": "yes", "sidewalk:right": "separate"},
+                  {"highway": "residential", "sidewalk:both": "separate", "sidewalk:left": "separate", "sidewalk:right": "no"},
                   {"highway": "residential", "sidewalk:both": "yes", "sidewalk:left": "no"},
                   {"highway": "residential", "cycleway:both:surface": "asphalt", "cycleway:surface": "paving_stones"},
                   {"highway": "residential", "cycleway:right:surface": "asphalt", "cycleway:surface": "paving_stones"},
+                  {"highway": "residential", "sidewalk": "both", "sidewalk:right": "no"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
 
