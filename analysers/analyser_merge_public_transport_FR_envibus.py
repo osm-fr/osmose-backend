@@ -88,5 +88,5 @@ class Analyser_Merge_Public_Transport_FR_envibus(Analyser_Merge):
         ' De ': ' de ',
         ' Du ': ' du ',
         ' La ': ' la ',
-        'Rd ': 'RD '
+        'Rd ': 'Route départementale '
     }
