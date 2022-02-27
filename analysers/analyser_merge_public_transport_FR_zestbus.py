@@ -77,5 +77,5 @@ class Analyser_Merge_Public_Transport_FR_zestbus(Analyser_Merge):
         ' Du ': ' du ',
         ' La ': ' la ',
         ' et ': ' et ',
-        'Rd ': 'RD ' # Route départementale
+        'Rd ': 'Route départementale '
     }
