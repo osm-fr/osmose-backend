@@ -48,7 +48,7 @@ class Highway_Sides(Plugin):
             allowedAlternativeValues = []
             if tag_default in tags:
                 # Some tags allow left/right/both as values, e.g. sidewalk=both equals sidewalk:both=yes
-                if simplifyValue(tags[tag]) == "no":
+                if self.simplifyValue(tags[tag]) == "no":
                     allowedAlternativeValues = ["yes", "left", "right", "separate", "opposite"]
                 else:
                     allowedAlternativeValues = ["yes", "left", "right", "both"]
@@ -56,8 +56,8 @@ class Highway_Sides(Plugin):
                 tag_default = tag.replace(":left", ":both").replace(":right", ":both")
 
             if tag_default in tags:
-                tt = simplifyValue(tags[tag])
-                ttd = simplifyValue(tags[tag_default])
+                tt = self.simplifyValue(tags[tag])
+                ttd = self.simplifyValue(tags[tag_default])
                 if tag[0:5] == "name:" and tt in ttd:
                     continue # 'name' probably equals "name:left" + "/" + name:right, handled by Name_Multiple
                 if tt != ttd and not ttd in allowedAlternativeValues:
@@ -66,7 +66,7 @@ class Highway_Sides(Plugin):
         if err != []:
             return err
 
-    def simplifyValue(val):
+    def simplifyValue(self, val):
         if val in ["none"]:
             return "no"
         return val.replace("opposite_", "")
