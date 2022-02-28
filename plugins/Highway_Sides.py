@@ -48,17 +48,28 @@ class Highway_Sides(Plugin):
             allowedAlternativeValues = []
             if tag_default in tags:
                 # Some tags allow left/right/both as values, e.g. sidewalk=both equals sidewalk:both=yes
-                allowedAlternativeValues = ["left", "right", "both", "yes"]
+                if self.simplifyValue(tags[tag]) == "no":
+                    allowedAlternativeValues = ["yes", "left", "right", "separate", "opposite"]
+                else:
+                    allowedAlternativeValues = ["yes", "left", "right", "both"]
             else:
                 tag_default = tag.replace(":left", ":both").replace(":right", ":both")
+
             if tag_default in tags:
-                tt = tags[tag].replace("none", "no").replace("opposite_", "")
-                ttd = tags[tag_default].replace("none", "no").replace("opposite_", "")
+                tt = self.simplifyValue(tags[tag])
+                ttd = self.simplifyValue(tags[tag_default])
+                if tag[0:5] == "name:" and tt in ttd:
+                    continue # 'name' probably equals "name:left" + "/" + name:right, handled by Name_Multiple
                 if tt != ttd and not ttd in allowedAlternativeValues:
                     err.append({"class": 33601, "subclass": 1 + stablehash64(tag), "text": T_("Conflicting values of \"{0}\" and \"{1}\"", tag_default, tag)})
 
         if err != []:
             return err
+
+    def simplifyValue(self, val):
+        if val in ["none"]:
+            return "no"
+        return val.replace("opposite_", "")
 
 
 from plugins.Plugin import TestPluginCommon
@@ -79,15 +90,22 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "sidewalk": "yes", "sidewalk:left": "yes", "sidewalk:right": "yes", "sidewalk:both": "yes"}, # redundant, not conflicting
                   {"highway": "residential", "sidewalk": "right", "sidewalk:left": "no"}, # redundant, not conflicting
                   {"highway": "residential", "sidewalk": "none", "sidewalk:left": "no"}, # redundant, not conflicting
+                  {"highway": "residential", "name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"},
                   {"highway": "residential", "cycleway": "opposite_lane", "cycleway:left": "lane"}, # dubious whether equal
+                  {"highway": "residential", "cycleway": "opposite", "cycleway:left": "no"}, # dubious whether equal
+                  {"highway": "residential", "sidewalk": "separate", "sidewalk:left": "separate", "sidewalk:right": "no"},
+                  {"highway": "residential", "sidewalk": "yes", "sidewalk:right": "no", "sidewalk:left": "yes"},
                  ]:
             assert not a.way(None, t, None), a.way(None, t, None)
 
         for t in [{"highway": "residential", "cycleway:right": "lane", "cycleway": "shared_lane"},
                   {"highway": "residential", "sidewalk": "no", "sidewalk:left": "yes"},
+                  {"highway": "residential", "sidewalk": "separate", "sidewalk:left": "yes", "sidewalk:right": "separate"},
+                  {"highway": "residential", "sidewalk:both": "separate", "sidewalk:left": "separate", "sidewalk:right": "no"},
                   {"highway": "residential", "sidewalk:both": "yes", "sidewalk:left": "no"},
                   {"highway": "residential", "cycleway:both:surface": "asphalt", "cycleway:surface": "paving_stones"},
                   {"highway": "residential", "cycleway:right:surface": "asphalt", "cycleway:surface": "paving_stones"},
+                  {"highway": "residential", "sidewalk": "both", "sidewalk:right": "no"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
 
