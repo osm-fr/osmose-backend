@@ -97,10 +97,10 @@ SELECT
   max(ways.id),
   ST_AsText(nodes.geom)
 FROM
-  {0}traffic_signals AS nodes
+  traffic_signals AS nodes
   JOIN way_nodes ON
     way_nodes.node_id = nodes.id
-  JOIN {1}highways AS ways ON
+  JOIN highways AS ways ON
     ways.id = way_nodes.way_id
 WHERE
   (NOT nodes.tags?'traffic_signals:direction' OR nodes.tags->'traffic_signals:direction' NOT IN('backward', 'forward')) AND
@@ -116,13 +116,13 @@ HAVING
 """
 
 sql40 = """
-CREATE TEMP TABLE {0}stops AS
+CREATE TEMP TABLE stops AS
 SELECT
     id,
     geom,
     tags
 FROM
-    {0}nodes AS nodes
+    nodes AS nodes
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
@@ -139,8 +139,8 @@ SELECT
   max(ways.id),
   ST_AsText(nodes.geom)
 FROM
-  {0}stops AS nodes
-  JOIN {1}highways AS ways ON
+  stops AS nodes
+  JOIN highways AS ways ON
     ways.linestring && nodes.geom AND
     nodes.id = ANY (ways.nodes)
 GROUP BY
@@ -172,9 +172,9 @@ inconsistent with each other, see also
         self.classs_change[2] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:imagery'],
             title = T_('Possible missing highway=traffic_signals nearby'),
             **doc)
-        self.classs_change[3] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
+        self.classs[3] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Possible missing traffic_signals:direction tag or crossing on traffic signals'))
-        self.classs_change[4] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
+        self.classs[4] = self.def_class(item = 2090, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Possible missing direction tag on stop or a give way'))
 
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
@@ -191,36 +191,27 @@ inconsistent with each other, see also
             [{"+":{"direction":"backward"}}],
         ] }
 
-    def analyser_osmosis_full(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)
         self.run(sql13)
 
+        self.run(sql30, self.callback30)
+
+        self.run(sql40)
+        self.run(sql41, self.callback40)
+
+    def analyser_osmosis_full(self):
         self.run(sql14.format("", ""), self.callback10)
         self.run(sql20.format(""), self.callback20)
-        self.run(sql30.format("", ""), self.callback30)
-        self.run(sql40.format(""))
-        self.run(sql41.format("", ""), self.callback40)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10)
-        self.run(sql11)
         self.create_view_touched("traffic_signals", "N")
         self.create_view_not_touched("traffic_signals", "N")
-        self.run(sql12)
-        self.run(sql13)
         self.create_view_touched("crossing", "N")
 
         self.run(sql14.format("touched_", ""), self.callback10)
         self.run(sql14.format("not_touched_", "touched_"), self.callback10)
 
         self.run(sql20.format("touched_"), self.callback20)
-
-        self.run(sql30.format("touched_", ""), self.callback30)
-        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
-
-        self.run(sql40.format("touched_"))
-        self.run(sql41.format("touched_", "not_touched_"), self.callback40)
-        self.run(sql40.format(""))
-        self.run(sql41.format("", "touched_"), self.callback40)
