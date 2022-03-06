@@ -552,8 +552,8 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseTags:list("ref","highway")
                 # -osmoseItemClassLevel:"9019/9019002/3"
                 # throwWarning:tr("{0} must be a link road or roundabout","{1.tag}")
-                # -osmoseAssertNoMatchWithContext:list("way highway=primary junction=roundabout nat_ref=62A901609CD_2 operator=SANEF","inside=FR")
-                # -osmoseAssertMatchWithContext:list("way highway=primary nat_ref=62A901609CD_2 operator=SANEF","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way highway=primary junction=roundabout nat_ref=62A901609CD_2D operator=SANEF","inside=FR")
+                # -osmoseAssertMatchWithContext:list("way highway=primary nat_ref=62A901609CD_2D operator=SANEF","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} must be a link road or roundabout', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # way[highway=~/^(motorway|trunk|primary|secondary|tertiary)$/]["nat_ref:backward"][operator][inside("FR")]
@@ -963,9 +963,9 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'name': 'Station Covoiturage', 'public_transport': 'platform'}, [0]), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '62A901609CD_2', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
+            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '62A901609CD_2D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'highway': 'primary', 'nat_ref': '62A901609CD_2', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
+            self.check_err(n.way(data, {'highway': 'primary', 'nat_ref': '62A901609CD_2D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):

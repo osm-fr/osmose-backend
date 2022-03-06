@@ -32,9 +32,10 @@ class Josm_numeric(PluginMapCSS):
         self.errors[9006026] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss.tr('kilometers')))
         self.errors[9006027] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('Definition of {0} is unclear', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9006028] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'minutes', 'hours'))
+        self.errors[9006029] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('imprecise value of {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9006030] = self.def_class(item = 9006, level = 3, tags = ["tag", "value"], title = mapcss.tr('suspicious tag combination'))
 
         self.re_066203d3 = re.compile(r'^[0-9]+$')
-        self.re_08f211f3 = re.compile(r'^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$')
         self.re_09e9525d = re.compile(r'^[0-9]+,[0-9][0-9]?( (t|kg|st|lbs))?$')
         self.re_0ae2edfd = re.compile(r'^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$')
         self.re_0b0f0f56 = re.compile(r'^0$|^(-|\+)?[1-5]$')
@@ -52,6 +53,7 @@ class Josm_numeric(PluginMapCSS):
         self.re_2b84c9ab = re.compile(r'^[0-9]+,[0-9][0-9]?$')
         self.re_2bbc29e4 = re.compile(r'^(([0-9]+(\.[0-9]+)?( (m|ft))?)|([0-9]+\'([0-9]+(\.[0-9]+)?\")?))$')
         self.re_330da7b0 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)? hr)$')
+        self.re_33ecb9da = re.compile(r'^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$')
         self.re_3c02ab12 = re.compile(r'^0*(\.0*)?( (m|ft))?$')
         self.re_41726192 = re.compile(r'^(([0-9]+(\.[0-9]+)?( (m|km|mi|nmi))?)|([0-9]+\'([0-9]+(\.[0-9]+)?\")?))$')
         self.re_43c55ce5 = re.compile(r'(.*[A-Za-z].*)|.*,.*|.*( ).*')
@@ -60,17 +62,21 @@ class Josm_numeric(PluginMapCSS):
         self.re_4a19323d = re.compile(r'^[0-9]+(\.[0-9]+)?(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
         self.re_4c11a9bc = re.compile(r'^[0-9]+(\.[0-9]+)?(( )*(foot|Foot|feet|Feet)|ft)$')
         self.re_4d44d8e0 = re.compile(r'^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$')
-        self.re_4e26566a = re.compile(r'^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$')
         self.re_52f27115 = re.compile(r'^([1-9][0-9]*(\.[0-9]+)?h)$')
         self.re_5478d8af = re.compile(r'^[1-9]([0-9]*)$')
         self.re_55a13238 = re.compile(r'^(([0-9]+(\.[0-9]+)?( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$')
         self.re_55d147d6 = re.compile(r'^[0-9]+,[0-9][0-9]?( (m|km|mi|nmi))?$')
+        self.re_58d78904 = re.compile(r'^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$')
         self.re_5a7f47b9 = re.compile(r'^-?[0-9]+\.[0-9][0-9][0-9]+$')
+        self.re_5a9b9c26 = re.compile(r'^(broad|standard|narrow)$')
         self.re_5ea59bc2 = re.compile(r'^[1-9][0-9]*(\.[0-9]+)?(( )*(metre|metres|meter|meters|Metre|Metres|Meter|Meters)|m)$')
+        self.re_5f1f731d = re.compile(r'^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$')
         self.re_6aa93c30 = re.compile(r'^[A-Z]{3}$')
+        self.re_70dc3282 = re.compile(r'^narrow_gauge$')
         self.re_762a1d1d = re.compile(r'^-?[0-9]+(\.[0-9]+)? ?m$')
         self.re_7afc6883 = re.compile(r'^[A-Z]{4}$')
         self.re_7b1365b7 = re.compile(r'^(AG|AN|AY|BG|BI|BK|C|DA|DB|DF|DG|DI|DN|DR|DT|DX|EB|ED|EE|EF|EG|EH|EI|EK|EL|EN|EP|ES|ET|EV|EY|FA|FB|FC|FD|FE|FG|FH|FI|FJ|FK|FL|FM|FN|FO|FP|FQ|FS|FT|FV|FW|FX|FY|FZ|GA|GB|GC|GE|GF|GG|GL|GM|GO|GQ|GS|GU|GV|HA|HB|HC|HD|HE|HH|HK|HL|HR|HS|HT|HU|K|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ|MB|MD|MG|MH|MK|MM|MN|MP|MR|MS|MT|MU|MW|MY|MZ|NC|NF|NG|NI|NL|NS|NT|NV|NW|NZ|OA|OB|OE|OI|OJ|OK|OL|OM|OO|OP|OR|OS|OT|OY|PA|PB|PC|PF|PG|PH|PJ|PK|PL|PM|PO|PP|PT|PW|RC|RJ|RK|RO|RP|SA|SB|SC|SD|SE|SF|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SP|SS|SU|SV|SW|SY|TA|TB|TD|TF|TG|TI|TJ|TK|TL|TN|TQ|TR|TT|TU|TV|TX|U|UA|UB|UC|UD|UG|UK|UM|UT|VA|VC|VD|VE|VG|VH|VI|VL|VM|VN|VO|VQ|VR|VT|VV|VY|WA|WB|WI|WM|WP|WQ|WR|WS|Y|Z|ZK|ZM)')
+        self.re_7e626945 = re.compile(r'railway$')
         self.re_7f163374 = re.compile(r'^(1|2|3|4|5|6|7|8|9|10|11|12)$')
         self.re_7f19b94b = re.compile(r'^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$')
 
@@ -79,7 +85,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -959,16 +965,16 @@ class Josm_numeric(PluginMapCSS):
                 # throwError:tr("unusual value of {0}","{0.key}")
                 err.append({'class': 9006010, 'subclass': 256087474, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
+        # *[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
         if ('interval' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_08f211f3, '^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5f1f731d, '^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
-                err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9006010, 'subclass': 234727583, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[aeroway=helipad][iata][iata!~/^[A-Z]{3}$/]
         # *[aeroway=aerodrome][iata][iata!~/^[A-Z]{3}$/]
@@ -1204,7 +1210,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -1781,21 +1787,65 @@ class Josm_numeric(PluginMapCSS):
                 # assertMatch:"way frequency=something"
                 err.append({'class': 9006010, 'subclass': 582321238, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # way[gauge][gauge!~/^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$/]
+        # way[gauge][gauge=~/^(broad|standard|narrow)$/]
         if ('gauge' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_4e26566a, '^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a9b9c26), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
                 except mapcss.RuleAbort: pass
             if match:
+                # setimprecise_gauge
+                # suggestAlternative:tr("an integer value in millimeters, without unit")
+                # throwWarning:tr("imprecise value of {0}","{0.tag}")
+                # assertNoMatch:"way gauge=2''10'"
+                # assertNoMatch:"way gauge=1000;1435"
+                # assertNoMatch:"way gauge=1435"
+                # assertMatch:"way gauge=narrow"
+                # assertNoMatch:"way gauge=something"
+                # assertMatch:"way gauge=standard"
+                set_imprecise_gauge = True
+                err.append({'class': 9006029, 'subclass': 1280409235, 'text': mapcss.tr('imprecise value of {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # way[gauge][gauge!~/^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$/]!.imprecise_gauge
+        if ('gauge' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_imprecise_gauge) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58d78904, '^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setunusual_gauge
                 # throwWarning:tr("unusual value of {0}","{0.key}")
+                # assertMatch:"way gauge=2''10'"
                 # assertNoMatch:"way gauge=1000;1435"
                 # assertNoMatch:"way gauge=1435"
                 # assertNoMatch:"way gauge=narrow"
                 # assertMatch:"way gauge=something"
                 # assertNoMatch:"way gauge=standard"
-                err.append({'class': 9006010, 'subclass': 415876153, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                set_unusual_gauge = True
+                err.append({'class': 9006010, 'subclass': 2055848679, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # way[/railway$/=~/^narrow_gauge$/][gauge][gauge!~/^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$/]!.imprecise_gauge!.unusual_gauge
+        if ('gauge' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_imprecise_gauge) and (not set_unusual_gauge) and (mapcss.regexp_test(self.re_70dc3282, mapcss._match_regex(tags, self.re_7e626945))) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_33ecb9da, '^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("unusual {0} value on narrow gauge railway","{1.key}")
+                # assertNoMatch:"way railway=narrow_gauge gauge=2''10'"
+                # assertNoMatch:"way railway=narrow_gauge gauge=1434"
+                # assertMatch:"way railway=narrow_gauge gauge=1435"
+                # assertMatch:"way railway=narrow_gauge gauge=1435;1500"
+                # assertMatch:"way railway=narrow_gauge gauge=60;600"
+                # assertMatch:"way railway=narrow_gauge gauge=88"
+                # assertNoMatch:"way railway=narrow_gauge gauge=89"
+                # assertNoMatch:"way railway=narrow_gauge gauge=narrow"
+                # assertNoMatch:"way railway=narrow_gauge gauge=something"
+                err.append({'class': 9006030, 'subclass': 2028551999, 'text': mapcss.tr('unusual {0} value on narrow gauge railway', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[incline][incline!~/^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$/]
         if ('incline' in keys):
@@ -1959,24 +2009,24 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('ele=', mapcss.round_(mapcss.tag(tags, 'ele')*100)/100)).split('=', 1)])
                 }})
 
-        # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
+        # *[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
         if ('interval' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_08f211f3, '^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5f1f731d, '^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 # assertNoMatch:"way interval=00:05"
                 # assertNoMatch:"way interval=00:05:00"
+                # assertMatch:"way interval=00:15:90"
                 # assertMatch:"way interval=00:65:00"
                 # assertNoMatch:"way interval=03:00:00"
                 # assertMatch:"way interval=0:5:0"
-                # assertMatch:"way interval=123"
                 # assertNoMatch:"way interval=20"
                 # assertNoMatch:"way interval=5"
-                err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 9006010, 'subclass': 234727583, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[aeroway=helipad][iata][iata!~/^[A-Z]{3}$/]
         # *[aeroway=aerodrome][iata][iata!~/^[A-Z]{3}$/]
@@ -2175,7 +2225,7 @@ class Josm_numeric(PluginMapCSS):
         capture_tags = {}
         keys = tags.keys()
         err = []
-        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
+        set_distance_separator_autofix = set_ele_meter_remove_autofix = set_ele_separator_autofix = set_height_foot_autofix = set_height_meter_autofix = set_height_separator_autofix = set_imprecise_gauge = set_maxaxleload_separator_autofix = set_maxheight_foot_autofix = set_maxheight_meter_autofix = set_maxheight_separator_autofix = set_maxlength_foot_autofix = set_maxlength_meter_autofix = set_maxlength_separator_autofix = set_maxstay_autofix = set_maxweight_separator_autofix = set_maxwidth_foot_autofix = set_maxwidth_meter_autofix = set_maxwidth_separator_autofix = set_negative_value = set_roof_height_foot_autofix = set_roof_height_meter_autofix = set_roof_height_separator_autofix = set_unusual_gauge = set_width_foot_autofix = set_width_meter_autofix = set_width_separator_autofix = set_zero_roof_height_flat = False
 
         # *[/^[0-9]+$/]
         if True:
@@ -2681,6 +2731,45 @@ class Josm_numeric(PluginMapCSS):
                 # throwWarning:tr("unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit","{0.key}",tr("kilometers"))
                 err.append({'class': 9006026, 'subclass': 1258177985, 'text': mapcss.tr('unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss.tr('kilometers'))})
 
+        # relation[gauge][gauge=~/^(broad|standard|narrow)$/]
+        if ('gauge' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a9b9c26), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setimprecise_gauge
+                # suggestAlternative:tr("an integer value in millimeters, without unit")
+                # throwWarning:tr("imprecise value of {0}","{0.tag}")
+                set_imprecise_gauge = True
+                err.append({'class': 9006029, 'subclass': 1590792813, 'text': mapcss.tr('imprecise value of {0}', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # relation[gauge][gauge!~/^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$/]!.imprecise_gauge
+        if ('gauge' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_imprecise_gauge) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58d78904, '^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # setunusual_gauge
+                # throwWarning:tr("unusual value of {0}","{0.key}")
+                set_unusual_gauge = True
+                err.append({'class': 9006010, 'subclass': 1964213800, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # relation[/railway$/=~/^narrow_gauge$/][gauge][gauge!~/^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$/]!.imprecise_gauge!.unusual_gauge[type=route]
+        if ('gauge' in keys and 'type' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((not set_imprecise_gauge) and (not set_unusual_gauge) and (mapcss.regexp_test(self.re_70dc3282, mapcss._match_regex(tags, self.re_7e626945))) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_33ecb9da, '^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'type') == mapcss._value_capture(capture_tags, 2, 'route')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("unusual {0} value on narrow gauge railway","{1.key}")
+                err.append({'class': 9006030, 'subclass': 1005704701, 'text': mapcss.tr('unusual {0} value on narrow gauge railway', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+
         # *[population][population!~/^[0-9]+$/]
         if ('population' in keys):
             match = False
@@ -2796,16 +2885,18 @@ class Josm_numeric(PluginMapCSS):
                     (mapcss.concat('ele=', mapcss.round_(mapcss.tag(tags, 'ele')*100)/100)).split('=', 1)])
                 }})
 
-        # *[interval][interval!~/^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$/]
+        # *[interval][interval!~/^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$/]
         if ('interval' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_08f211f3, '^([0-9][0-9]?|[0-9][0-9]:[0-5][0-9](:[0-9][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_5f1f731d, '^([0-9][0-9]?[0-9]?|[0-9]+[0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{0.key}")
-                err.append({'class': 9006010, 'subclass': 549662812, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                # assertNoMatch:"relation interval=120"
+                # assertNoMatch:"relation interval=168:00:00"
+                err.append({'class': 9006010, 'subclass': 234727583, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[aeroway=helipad][iata][iata!~/^[A-Z]{3}$/]
         # *[aeroway=aerodrome][iata][iata!~/^[A-Z]{3}$/]
@@ -3323,11 +3414,27 @@ class Test(TestPluginCommon):
         self.check_not_err(n.way(data, {'frequency': '50'}, [0]), expected={'class': 9006010, 'subclass': 582321238})
         self.check_not_err(n.way(data, {'frequency': '680 kHz'}, [0]), expected={'class': 9006010, 'subclass': 582321238})
         self.check_err(n.way(data, {'frequency': 'something'}, [0]), expected={'class': 9006010, 'subclass': 582321238})
-        self.check_not_err(n.way(data, {'gauge': '1000;1435'}, [0]), expected={'class': 9006010, 'subclass': 415876153})
-        self.check_not_err(n.way(data, {'gauge': '1435'}, [0]), expected={'class': 9006010, 'subclass': 415876153})
-        self.check_not_err(n.way(data, {'gauge': 'narrow'}, [0]), expected={'class': 9006010, 'subclass': 415876153})
-        self.check_err(n.way(data, {'gauge': 'something'}, [0]), expected={'class': 9006010, 'subclass': 415876153})
-        self.check_not_err(n.way(data, {'gauge': 'standard'}, [0]), expected={'class': 9006010, 'subclass': 415876153})
+        self.check_not_err(n.way(data, {'gauge': '2\'\'10\''}, [0]), expected={'class': 9006029, 'subclass': 1280409235})
+        self.check_not_err(n.way(data, {'gauge': '1000;1435'}, [0]), expected={'class': 9006029, 'subclass': 1280409235})
+        self.check_not_err(n.way(data, {'gauge': '1435'}, [0]), expected={'class': 9006029, 'subclass': 1280409235})
+        self.check_err(n.way(data, {'gauge': 'narrow'}, [0]), expected={'class': 9006029, 'subclass': 1280409235})
+        self.check_not_err(n.way(data, {'gauge': 'something'}, [0]), expected={'class': 9006029, 'subclass': 1280409235})
+        self.check_err(n.way(data, {'gauge': 'standard'}, [0]), expected={'class': 9006029, 'subclass': 1280409235})
+        self.check_err(n.way(data, {'gauge': '2\'\'10\''}, [0]), expected={'class': 9006010, 'subclass': 2055848679})
+        self.check_not_err(n.way(data, {'gauge': '1000;1435'}, [0]), expected={'class': 9006010, 'subclass': 2055848679})
+        self.check_not_err(n.way(data, {'gauge': '1435'}, [0]), expected={'class': 9006010, 'subclass': 2055848679})
+        self.check_not_err(n.way(data, {'gauge': 'narrow'}, [0]), expected={'class': 9006010, 'subclass': 2055848679})
+        self.check_err(n.way(data, {'gauge': 'something'}, [0]), expected={'class': 9006010, 'subclass': 2055848679})
+        self.check_not_err(n.way(data, {'gauge': 'standard'}, [0]), expected={'class': 9006010, 'subclass': 2055848679})
+        self.check_not_err(n.way(data, {'gauge': '2\'\'10\'', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_not_err(n.way(data, {'gauge': '1434', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_err(n.way(data, {'gauge': '1435', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_err(n.way(data, {'gauge': '1435;1500', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_err(n.way(data, {'gauge': '60;600', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_err(n.way(data, {'gauge': '88', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_not_err(n.way(data, {'gauge': '89', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_not_err(n.way(data, {'gauge': 'narrow', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
+        self.check_not_err(n.way(data, {'gauge': 'something', 'railway': 'narrow_gauge'}, [0]), expected={'class': 9006030, 'subclass': 2028551999})
         self.check_not_err(n.way(data, {'incline': '-5%'}, [0]), expected={'class': 9006010, 'subclass': 901779967})
         self.check_not_err(n.way(data, {'incline': '10%'}, [0]), expected={'class': 9006010, 'subclass': 901779967})
         self.check_not_err(n.way(data, {'incline': '10°'}, [0]), expected={'class': 9006010, 'subclass': 901779967})
@@ -3340,14 +3447,14 @@ class Test(TestPluginCommon):
         self.check_not_err(n.way(data, {'highway': 'residential', 'lanes': '1'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
         self.check_err(n.way(data, {'highway': 'residential', 'lanes': '1;2'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
         self.check_err(n.way(data, {'highway': 'residential', 'lanes': '5.5'}, [0]), expected={'class': 9006009, 'subclass': 2089206793})
-        self.check_not_err(n.way(data, {'interval': '00:05'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_not_err(n.way(data, {'interval': '00:05:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_err(n.way(data, {'interval': '00:65:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_not_err(n.way(data, {'interval': '03:00:00'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_err(n.way(data, {'interval': '0:5:0'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_err(n.way(data, {'interval': '123'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_not_err(n.way(data, {'interval': '20'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
-        self.check_not_err(n.way(data, {'interval': '5'}, [0]), expected={'class': 9006010, 'subclass': 549662812})
+        self.check_not_err(n.way(data, {'interval': '00:05'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_not_err(n.way(data, {'interval': '00:05:00'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_err(n.way(data, {'interval': '00:15:90'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_err(n.way(data, {'interval': '00:65:00'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_not_err(n.way(data, {'interval': '03:00:00'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_err(n.way(data, {'interval': '0:5:0'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_not_err(n.way(data, {'interval': '20'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_not_err(n.way(data, {'interval': '5'}, [0]), expected={'class': 9006010, 'subclass': 234727583})
         self.check_err(n.way(data, {'aeroway': 'aerodrome', 'iata': 'BE'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
         self.check_not_err(n.way(data, {'aeroway': 'aerodrome', 'iata': 'BER'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
         self.check_err(n.way(data, {'aeroway': 'aerodrome', 'iata': 'BERL'}, [0]), expected={'class': 9006022, 'subclass': 206938530})
@@ -3360,3 +3467,5 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'aeroway': 'aerodrome', 'icao': 'EQQQ'}, [0]), expected={'class': 9006022, 'subclass': 345477776})
         self.check_err(n.way(data, {'maxstay': '0'}, [0]), expected={'class': 9006027, 'subclass': 1756130010})
         self.check_not_err(n.way(data, {'maxstay': 'no'}, [0]), expected={'class': 9006027, 'subclass': 1756130010})
+        self.check_not_err(n.relation(data, {'interval': '120'}, []), expected={'class': 9006010, 'subclass': 234727583})
+        self.check_not_err(n.relation(data, {'interval': '168:00:00'}, []), expected={'class': 9006010, 'subclass': 234727583})
