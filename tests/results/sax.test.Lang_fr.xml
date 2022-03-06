@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1305183656">
-<class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1343360560">
+<class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L34" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
@@ -20,7 +20,7 @@
 <classtext lang="zh_CN" title="无效的 addr:housenumber 值" />
 <classtext lang="zh_TW" title="無效的 addr:housenumber 數值" />
 </class>
-<class id="14" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L35" level="3" tag="addr,fix:chair">
+<class id="14" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L39" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="Chybný tag na vložené cestě" />
 <classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
@@ -41,7 +41,7 @@
 <detail lang="ja" title="補間ウェイはaddr:interpolation=* が必須で、addr:inclusion=* は任意です。" />
 <detail lang="nl" title="Invoegmethode alleen geldig met addr: interpolation = * en optioneel addr: inclusion = *. " />
 </class>
-<class id="15" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L40" level="3" tag="addr,fix:chair">
+<class id="15" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L46" level="3" tag="addr,fix:chair">
 <classtext lang="cs" title="Chybná hodnota addr:interpolation nebo addr:inclusion" />
 <classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
@@ -62,7 +62,7 @@
 <detail lang="nl" title="* Tag `addr:interpolation=*` is alleen geldig met waarden:  `even`, `odd`,&#10;`all`, `alphabetic` en Nummer.&#10;* Tag `addr:inclusion=*` is alleen geldig met waarden:  `actual`, `estimate`&#10;en `potential`." />
 <detail lang="uk" title="* Теґ `addr:interpolation=*` дійсний лише зі значеннями: `even`, `odd`,&#10;`all`, `alphabetic` та числом.&#10;* Теґ `addr:inclusion=*` дійсний лише зі значеннями: `actual`, `estimate`&#10;та `potential`." />
 </class>
-<class id="101" item="4020" source="http://example.com/plugins/TagRemove_Roundabout.py#L30" level="3" tag="highway,roundabout,fix:chair">
+<class id="101" item="4020" source="http://example.com/plugins/TagRemove_Roundabout.py#L35" level="3" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Etiqueta «junction=roundabout» innecessària" />
 <classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
 <classtext lang="de" title="Nicht benötigtes Merkmal bei junction=roundabout" />
@@ -86,7 +86,7 @@
 <detail lang="nl" title="De tags `oneway = *` en `ref = *` zijn niet nodig op rotondes. De tag `name = *` moet aanwezig zijn als dit de naam van de rotonde is en geen weg verbindt, hetzelfde geldt voor `ref = *`." />
 <detail lang="pl" title="Tagi `oneway=*` i `ref=*` nie są potrzebne na rondach.&#10;Tag `name=*` musi być podany, jeśli jest to nazwa tego ronda, a nie połaczonej doń drogi. Tak samo w przypadku `ref=*`." />
 </class>
-<class id="103" item="1010" source="http://example.com/plugins/Structural_DuplicateNodes.py#L33" level="2" tag="geom,fix:chair">
+<class id="103" item="1010" source="http://example.com/plugins/Structural_DuplicateNodes.py#L54" level="2" tag="geom,fix:chair">
 <classtext lang="ca" title="Nodes duplicats" />
 <classtext lang="cs" title="Duplikované uzly" />
 <classtext lang="de" title="Duplizierte Knotenpunkte" />
@@ -131,7 +131,7 @@
 <example lang="ja" title="![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)&#10;&#10;削除すべき線で接続された二重のポリゴン。" />
 <example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/5/5a/Osmose-eg-error-1010.png)&#10;&#10;Подвійні стрілки з'єднаних полігонів видаляються." />
 </class>
-<class id="504" item="6020" source="http://example.com/plugins/Administrative_TooManyWays.py#L30" level="3" tag="boundary,fix:chair">
+<class id="504" item="6020" source="http://example.com/plugins/Administrative_TooManyWays.py#L43" level="3" tag="boundary,fix:chair">
 <classtext lang="ca" title="Via duplicada en la relació" />
 <classtext lang="cs" title="Duplicitní cesta v relaci" />
 <classtext lang="de" title="Doppelter Weg in Relation" />
@@ -168,7 +168,7 @@
 <trap lang="ja" title="削除する前に、リレーション内のウェイのroleをダブルチェックしてください。&#10;&#10;警告: routeにおいて、経路は複数回取ることができます。そのためリレーション種別`type=route` 内に複数経路があることは問題ではありません。&#10;role `forward` 及び `backward`を確認してください。" />
 <trap lang="pl" title="Dokładnie sprawdź role tych linii w relacji przed usunięciem.&#10;&#10;Uwaga: w trasach drogi mogą występować kilkakrotnie. Kilkakrotne występowanie tej samej ścieżki lub drogi w relacjach `type=route` nie jest błędem.&#10;Zwróć też uwagę na odpowiednie role `forward` lub `backward`." />
 </class>
-<class id="701" item="5010" source="http://example.com/plugins/Name_MisspelledWordByRegex.py#L30" level="1" tag="name,fix:chair">
+<class id="701" item="5010" source="http://example.com/plugins/Name_MisspelledWordByRegex.py#L33" level="1" tag="name,fix:chair">
 <classtext lang="ca" title="Paraula mal escrita" />
 <classtext lang="cs" title="Chybně napsané slovo" />
 <classtext lang="de" title="Schlecht geschriebenes Wort" />
@@ -196,7 +196,7 @@
 <detail lang="ja" title="頭文字にアクセントが無いことがよくあります(例. Ecole for École)" />
 <detail lang="nl" title="Vaak een accent ontbreekt op een hoofdletter (bijv. Ecole voor École)" />
 </class>
-<class id="702" item="5020" source="http://example.com/plugins/Name_PoorlyWrittenWayType.py#L48" level="2" tag="name,fix:chair">
+<class id="702" item="5020" source="http://example.com/plugins/Name_PoorlyWrittenWayType.py#L53" level="2" tag="name,fix:chair">
 <classtext lang="ca" title="Tipus de via mal escrit" />
 <classtext lang="cs" title="Chybně napsaný typ cesty" />
 <classtext lang="de" title="Schlecht geschriebener Wegtyp" />
@@ -232,7 +232,7 @@
 <fix lang="ja" title="ウェイのtypeを全ての文字で書きます。" />
 <fix lang="nl" title="Schrijf het type weg met alle letters." />
 </class>
-<class id="703" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L32" level="2" tag="name,fix:chair">
+<class id="703" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L35" level="2" tag="name,fix:chair">
 <classtext lang="ca" title="La paraula no es troba al diccionari" />
 <classtext lang="cs" title="Slovo nenalezeno ve slovníku" />
 <classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
@@ -254,7 +254,7 @@
 <classtext lang="zh_CN" title="词在词典中找不到" />
 <fix lang="en" title="Probably missing a capital, accent or typo." />
 </class>
-<class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L36" level="1" tag="value,fix:chair">
+<class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L37" level="1" tag="value,fix:chair">
 <classtext lang="ca" title="Problema de codificació" />
 <classtext lang="cs" title="Chyba kódování" />
 <classtext lang="de" title="Kodierungsproblem" />
@@ -277,7 +277,7 @@
 <classtext lang="zh_CN" title="编码问题" />
 <classtext lang="zh_TW" title="編碼問題" />
 </class>
-<class id="705" item="5030" source="http://example.com/plugins/Name_Multiple.py#L34" level="1" tag="name,fix:survey">
+<class id="705" item="5030" source="http://example.com/plugins/Name_Multiple.py#L48" level="1" tag="name,fix:survey">
 <classtext lang="ca" title="L'etiqueta name conté dos noms" />
 <classtext lang="cs" title="Značka name obsahuje několik jmen" />
 <classtext lang="de" title="Das Merkmal name enthält zwei Namen" />
@@ -298,21 +298,15 @@
 <classtext lang="pt_BR" title="A etiqueta nome contém 2 nomes" />
 <classtext lang="uk" title="Іменний теґ з двома назвами" />
 <classtext lang="zh_CN" title="名称标签包含两个名称" />
-<detail lang="en" title='The tag `name=*` contains multiple names, separated by a semicolon,&#10;a "/" or a "\". This issue was probably produced by the fusion of two&#10;way and the concatenation of the names of the streets.' />
-<detail lang="ja" title='`name=*`タグにセミコロン、  "/"、または "\" で区切られた名前が複数あります。2つのウェイを一本化した際など、このように名前が連結されることがあります。' />
-<detail lang="pl" title="Tag `name=*` zawiera kilka nazw oddzielonych średnikiem lub ukośnikiem (`/`, `\`).&#10;Ten problem mógł powstać w wyniku połączenia dwóch dróg i konkatenacji nazw ulic." />
-<fix lang="de" title="* Falls doppelt, eine löschen.&#10;* Andernfalls prüfe, ob es sich um eine Straße handelt, deren Name an&#10;einer Kreuzung wechselt. Ist dies der Fall, trenne die Straße und passe&#10;den Straßennamen für beide Teile an." />
-<fix lang="en" title="* If duplicate, delete a one.&#10;* Otherwise, a survey is required: check if it is a street whose name&#10;changes at a crossroads, if this is the case, cut the street and set the&#10;proper names of both part." />
-<fix lang="fr" title="S'il y a un double, supprimez-en un. Sinon, une vérification sur place est nécessaire : vérifiez s'il s'agit d'une rue dont le nom change à un carrefour ; si c'est le cas, coupez la rue et corrigez les noms exacts des deux parties." />
-<fix lang="ja" title="* もし重複していれば、ひとつ削除します。&#10;* そうでない場合、サーベイが必要です。道路の交点で名前が変わる街路なのかチェックして、そうであれば街路をカットしてそれぞれの部分に適切な名前を付けます。" />
-<fix lang="nl" title="* Als het dubbel is, verwijder er dan een.&#10;* Anders is een survey vereist: controleer of het een straat is waarvan&#10;de naam verandert aan een kruispunt, als dit het geval is, snijd dan de straat door en geef de namen van beide delen op." />
+<detail lang="en" title='The tag `name=*` contains multiple names, separated by a semicolon,&#10;a "/", a "\" or a "+". This issue was probably produced by the fusion of two&#10;way and the concatenation of the names of the streets.' />
+<fix lang="en" title="* If duplicate name, delete one.&#10;* Otherwise, a survey is required: check if it is a street whose name&#10;changes at a crossroads, if this is the case, cut the street and set the&#10;proper names of both part." />
 <trap lang="de" title="Einige Straßen haben je Straßenseite unterschiedliche Namen, insbesondere wenn&#10;Häuser einer Straßenseite einer anderen Gemeinde zugeordnet sind. In diesem Fall&#10;sollten die Tags `name:left=*` und `name:right=*` verwenden werden." />
 <trap lang="en" title="Some streets have not the same names on the each side, especially if&#10;the houses by both sides are on different city. In this case, you can use&#10;the tag `name:left=*` and `name:right=*`." />
 <trap lang="fr" title="Certaines rues n'ont pas le même nom de chaque côté, surtout si les maisons des deux côtés se trouvent dans des villes différentes. Dans ce cas, vous pouvez utiliser les balises &quot;nom:gauche=*` et &quot;nom:droite=*`." />
 <trap lang="ja" title="街路によっては通行する側によって名前が違うことがあります。特に両側の家が別の都市にある場合。このケースでは`name:left=*` 及び`name:right=*`タグを使えます。" />
 <trap lang="nl" title="Sommige straten hebben niet aan elke kant dezelfde naam, vooral als&#10;de huizen aan beide kanten in verschillende steden liggen. In dit geval kunt u&#10;de tag `name:left=*` and `name:right=*` gebruiken." />
 </class>
-<class id="706" item="3020" source="http://example.com/plugins/Source.py#L35" level="1" tag="source,fix:chair">
+<class id="706" item="3020" source="http://example.com/plugins/Source.py#L43" level="1" tag="source,fix:chair">
 <classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
 <classtext lang="de" title="Illegale oder unvollständige Quellangabe" />
 <classtext lang="en" title="Illegal or incomplete source tag" />
@@ -345,7 +339,7 @@
 <fix lang="ja" title="必要ならオブジェクトのソースと位置を修正します。ソースが違法なものであれば、投稿者にきちんとその投稿を削除するように伝えます。" />
 <fix lang="nl" title="Corrigeer indien nodig de bron en de locatie van het object. Als de&#10;bron illegaal is, stel de bijdrager onmiddellijk op de hoogte om de&#10;bijdrage te verwijderen ." />
 </class>
-<class id="707" item="2040" source="http://example.com/plugins/Source.py#L44" level="3" tag="source,fix:chair">
+<class id="707" item="2040" source="http://example.com/plugins/Source.py#L51" level="3" tag="source,fix:chair">
 <classtext lang="ca" title="Maca l'etiqueta source" />
 <classtext lang="cs" title="Chybějící značka zdroje" />
 <classtext lang="de" title="Fehlendes Merkmal source" />
@@ -378,7 +372,7 @@
 <fix lang="nl" title="Als de limiet afkomstig is van het Franse kadaster, voegt u de juiste `source = *` toe." />
 <fix lang="pl" title="Jeśli to ograniczenie pochodzi z francuskiego kadastru, dodaj odpowiednie źródło w `source=*`." />
 </class>
-<class id="803" item="5010" source="http://example.com/plugins/Name_UpperCase.py#L37" level="1" tag="name,fix:chair">
+<class id="803" item="5010" source="http://example.com/plugins/Name_UpperCase.py#L44" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Jména s velkými písmeny" />
 <classtext lang="de" title="Name in Großbuchstaben" />
 <classtext lang="en" title="Name with uppercase" />
@@ -408,7 +402,7 @@
 <trap lang="ja" title="一般的ではありませんが、nameに大文字が使われることがあります。&#10; これはとりわけ頭文字と同様に企業/ブランドの位置に使われます。（訳注：日本では看板などにアルファベット大文字が表記されることは一般的です）" />
 <trap lang="pl" title="Nazwa składająca się z samych wielkich liter jest możliwa w przypadku, gdy jest skrótowcem, np. KFC, IBM." />
 </class>
-<class id="804" item="2020" source="http://example.com/plugins/Ele_MontainPass_Peak.py#L30" level="3" tag="tag,fix:survey">
+<class id="804" item="2020" source="http://example.com/plugins/Ele_MontainPass_Peak.py#L37" level="3" tag="tag,fix:survey">
 <classtext lang="ca" title="Manca l'altitud" />
 <classtext lang="cs" title="Chybějící nadm. výška" />
 <classtext lang="de" title="Fehlende Höhe" />
@@ -446,7 +440,7 @@
 <fix lang="pl" title="Dodaj brakujący tag `ele=*`." />
 <fix lang="uk" title="Відсутній завершальний теґ ele=*." />
 </class>
-<class id="900" item="4030" source="http://example.com/plugins/TagRemove_Incompatibles.py#L30" level="1" tag="tag,fix:chair">
+<class id="900" item="4030" source="http://example.com/plugins/TagRemove_Incompatibles.py#L35" level="1" tag="tag,fix:chair">
 <classtext lang="ca" title="Conflicte d'etiquetes" />
 <classtext lang="cs" title="konflikt tagů" />
 <classtext lang="de" title="Merkmalkonflikt" />
@@ -484,7 +478,7 @@
 <trap lang="nl" title="Soms heeft het object beide tags nodig." />
 <trap lang="pl" title="Może się zdarzyć, że oba znaczniki są potrzebne." />
 </class>
-<class id="902" item="5010" source="http://example.com/plugins/Name_Initials.py#L30" level="3" tag="name,fix:chair">
+<class id="902" item="5010" source="http://example.com/plugins/Name_Initials.py#L31" level="3" tag="name,fix:chair">
 <classtext lang="cs" title="Chybný formát zápisu jména" />
 <classtext lang="de" title="Initialen mit Namen verbunden" />
 <classtext lang="en" title="Initial stuck to the name" />
@@ -503,7 +497,7 @@
 <classtext lang="uk" title="Початкове прикріплення до імені" />
 <classtext lang="zh_CN" title="初始坚持名称" />
 </class>
-<class id="903" item="5010" source="http://example.com/plugins/Name_Spaces.py#L31" level="2" tag="name,fix:chair">
+<class id="903" item="5010" source="http://example.com/plugins/Name_Spaces.py#L32" level="2" tag="name,fix:chair">
 <classtext lang="ca" title="Massa espais" />
 <classtext lang="cs" title="Příliš mnoho mezer" />
 <classtext lang="de" title="Doppelte Leerzeichen" />
@@ -526,7 +520,7 @@
 <classtext lang="uk" title="Забагато пробілів" />
 <classtext lang="zh_CN" title="太多空间" />
 </class>
-<class id="905" item="5010" source="http://example.com/plugins/Name_UpperCaseNumber.py#L32" level="1" tag="name,fix:chair">
+<class id="905" item="5010" source="http://example.com/plugins/Name_UpperCaseNumber.py#L35" level="1" tag="name,fix:chair">
 <classtext lang="cs" title="Zkratka čísla by měla být v malých písmenech" />
 <classtext lang="de" title="Die Abkürzung der Nummer sollte in Kleinbuchstaben angegeben werden" />
 <classtext lang="en" title="Abbreviation of number should be in lowercase" />
@@ -549,7 +543,7 @@
 <detail lang="ja" title='大文字で書かれた数字: "n°"の代わりに"N°"。' />
 <detail lang="nl" title='Nummer geschreven in hoofdletters: "N°" in plaats van "n°".' />
 </class>
-<class id="1050" item="1050" source="http://example.com/plugins/TagFix_MultipleTag.py#L74" level="1" tag="highway,roundabout,fix:chair">
+<class id="1050" item="1050" source="http://example.com/plugins/TagFix_MultipleTag.py#L92" level="1" tag="highway,roundabout,fix:chair">
 <classtext lang="ca" title="Rotonda inversa" />
 <classtext lang="cs" title="Reverzní kruhový objezd" />
 <classtext lang="de" title="Kreisverkehr umkehren" />
@@ -593,7 +587,7 @@
 <example lang="pl" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Rondo w kraju z ruchem lewostronnym." />
 <example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)&#10;&#10;Рух за годинниковою стрілкою." />
 </class>
-<class id="1100" item="1100" source="http://example.com/plugins/Structural_UnclosedArea.py#L29" level="3" tag="geom,fix:imagery">
+<class id="1100" item="1100" source="http://example.com/plugins/Structural_UnclosedArea.py#L37" level="3" tag="geom,fix:imagery">
 <classtext lang="ca" title="Àrea sense tancar" />
 <classtext lang="cs" title="Neuzavřená oblast" />
 <classtext lang="de" title="Nicht geschlossene Fläche" />
@@ -639,7 +633,7 @@
 <example lang="pl" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
 <example lang="uk" title="![](https://wiki.openstreetmap.org/w/images/c/cc/Osmose-eg-error-1100.png)" />
 </class>
-<class id="3032" item="3032" source="http://example.com/plugins/TagFix_MultipleTag_Lang_fr.py#L32" level="1" tag="tag,fix:chair">
+<class id="3032" item="3032" source="http://example.com/plugins/TagFix_MultipleTag_Lang_fr.py#L33" level="1" tag="tag,fix:chair">
 <classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
@@ -657,7 +651,7 @@
 <classtext lang="uk" title="Переглянути декілька теґів" />
 <classtext lang="zh_CN" title="查看多个标签" />
 </class>
-<class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L32" level="1" tag="value,fix:chair">
+<class id="3040" item="3040" source="http://example.com/plugins/TagFix_BadValue.py#L40" level="1" tag="value,fix:chair">
 <classtext lang="de" title="Untypischer Wert" />
 <classtext lang="en" title="Bad tag value" />
 <classtext lang="es" title="Valor de etiqueta incorrecto" />
@@ -682,7 +676,7 @@
 <trap lang="en" title="It's possible a mapper was trying to map a feature with no existing agreed upon tagging.&#10;However, this should probably still conform to the typical format used for values of the given tag." />
 <trap lang="ja" title="マッパーは同意の無いタグであっても地物をマッピングすることができます。しかしながら、タグに与える値はおそらく典型的なフォーマットに従うべきです。" />
 </class>
-<class id="3050" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L41" level="1" tag="tag,fix:chair">
+<class id="3050" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L43" level="1" tag="tag,fix:chair">
 <classtext lang="de" title="Unpassender Schlüssel" />
 <classtext lang="en" title="Bad key" />
 <classtext lang="es" title="Clave errónea" />
@@ -715,7 +709,7 @@
 <trap lang="nl" title="Deze zijn zeker valse positieven." />
 <trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
 </class>
-<class id="3060" item="3060" source="http://example.com/plugins/TagFix_DuplicateValue.py#L41" level="3" tag="value,fix:chair">
+<class id="3060" item="3060" source="http://example.com/plugins/TagFix_DuplicateValue.py#L43" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Doppelte Werte" />
 <classtext lang="en" title="Duplicated values" />
 <classtext lang="es" title="Valores duplicados" />
@@ -753,7 +747,7 @@
 <trap lang="nl" title="In sommige gevallen kunnen alle waarden vereist zijn." />
 <trap lang="uk" title="У деяких випадках, можливо, потрібні всі значення." />
 </class>
-<class id="3070" item="3070" source="http://example.com/plugins/TagFix_MultipleValue.py#L63" level="2" tag="value,fix:chair">
+<class id="3070" item="3070" source="http://example.com/plugins/TagFix_MultipleValue.py#L69" level="2" tag="value,fix:chair">
 <classtext lang="ca" title="Valors múltiples" />
 <classtext lang="cs" title="Několik hodnot" />
 <classtext lang="de" title="Mehrere Werte" />
@@ -790,7 +784,7 @@
 <fix lang="ja" title="値の正確性を確認して、必要なら古い値を削除します。" />
 <fix lang="uk" title="Перевірте точність значень, при необхідності, видаліть застарілі&#10;значення." />
 </class>
-<class id="3090" item="3090" source="http://example.com/plugins/Date.py#L32" level="3" tag="value,fix:chair">
+<class id="3090" item="3090" source="http://example.com/plugins/Date.py#L36" level="3" tag="value,fix:chair">
 <classtext lang="ca" title="Format de data incorrecte" />
 <classtext lang="cs" title="Chybný formát data" />
 <classtext lang="de" title="Falsches Datumsformat" />
@@ -818,7 +812,7 @@
 <detail lang="ja" title="入力されている日付は下記に記述された形式に合っていない&#10;[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)" />
 <detail lang="nl" title="De ingevoerde datum is niet in het verwachte formaat zoals beschreven op [Key: start_date] (https://wiki.openstreetmap.org/wiki/Key:start_date)" />
 </class>
-<class id="3091" item="3091" source="http://example.com/plugins/Number.py#L30" level="2" tag="value,fix:chair">
+<class id="3091" item="3091" source="http://example.com/plugins/Number.py#L38" level="2" tag="value,fix:chair">
 <classtext lang="de" title="Ungültiger numerischer Wert" />
 <classtext lang="en" title="Invalid numerical value" />
 <classtext lang="es" title="Valor numérico no válido" />
@@ -839,7 +833,7 @@
 <fix lang="es" title="Asegúrese de que el valor de la etiqueta relevante sea numérico y tenga el formato esperado&#10;(con unidades válidas si es necesario)." />
 <fix lang="ja" title="関連するタグ値は数値であり、想定される形式(必要なら有効な単位付き)であることを確認してください。" />
 </class>
-<class id="3092" item="3091" source="http://example.com/plugins/Number.py#L40" level="2" tag="value,fix:chair">
+<class id="3092" item="3091" source="http://example.com/plugins/Number.py#L47" level="2" tag="value,fix:chair">
 <classtext lang="de" title="Verdächtiger Zahlenwert" />
 <classtext lang="en" title="Suspicious numerical value" />
 <classtext lang="es" title="Valor numérico sospechoso" />
@@ -858,14 +852,14 @@
 <fix lang="es" title="Compruebe que el valor sea exacto. Considere si otra etiqueta debería &#10;se utilizará si el valor es válido." />
 <fix lang="ja" title="その値が正確かどうかチェックしてください。値が有効であれば、別のタグを使うべきかどうかよく考えてください。" />
 </class>
-<class id="3093" item="3091" source="http://example.com/plugins/Number.py#L49" level="2" tag="value,fix:chair">
+<class id="3093" item="3091" source="http://example.com/plugins/Number.py#L55" level="2" tag="value,fix:chair">
 <classtext lang="en" title="Suspicious value" />
 <detail lang="en" title="The tag expects a positive, round number without unit." />
 <fix lang="en" title="Check that the value is accurate. Consider whether another tag should&#10;be used if the value is valid." />
 <fix lang="es" title="Compruebe que el valor sea exacto. Considere si otra etiqueta debería &#10;se utilizará si el valor es válido." />
 <fix lang="ja" title="その値が正確かどうかチェックしてください。値が有効であれば、別のタグを使うべきかどうかよく考えてください。" />
 </class>
-<class id="3094" item="3091" source="http://example.com/plugins/Number.py#L57" resource="https://wiki.openstreetmap.org/wiki/Map_features/Units" level="2" tag="value,fix:chair">
+<class id="3094" item="3091" source="http://example.com/plugins/Number.py#L63" resource="https://wiki.openstreetmap.org/wiki/Map_features/Units" level="2" tag="value,fix:chair">
 <classtext lang="en" title="Unknown unit" />
 <detail lang="en" title="The tag uses an unexpected unit." />
 <fix lang="en" title="Check that you have used the correct unit and a supported abbreviation of the unit." />
@@ -876,7 +870,7 @@
 <classtext lang="ja" title="contact:* と * タグとで値が異なる" />
 <classtext lang="nl" title="Verschillende waarden van contact:* en * tag" />
 </class>
-<class id="3110" item="3110" source="http://example.com/plugins/TagFix_Note_Lang_fr.py#L37" level="3" tag="fixme,fix:chair">
+<class id="3110" item="3110" source="http://example.com/plugins/TagFix_Note_Lang_fr.py#L45" level="3" tag="fixme,fix:chair">
 <classtext lang="cs" title="Možné zlepšení pro poznámku nebo komentář značky" />
 <classtext lang="de" title="Mögliche Verbesserung für Merkmal note oder comment" />
 <classtext lang="en" title="Possible improvement for note or comment tag" />
@@ -914,7 +908,7 @@
 <trap lang="nl" title="De analyse kan een vreemd resultaat opleveren." />
 <trap lang="uk" title="Аналіз може видати шалений результат." />
 </class>
-<class id="3120" item="3120" source="http://example.com/plugins/TagFix_Tree_Lang_fr.py#L67" level="3" tag="natural,fix:imagery">
+<class id="3120" item="3120" source="http://example.com/plugins/TagFix_Tree_Lang_fr.py#L75" level="3" tag="natural,fix:imagery">
 <classtext lang="ca" title="Etiquetatge d'arbres" />
 <classtext lang="cs" title="Značení stromů" />
 <classtext lang="de" title="Baum Tagging" />
@@ -951,7 +945,7 @@
 <trap lang="ja" title="`species`タグには言語を指定します: `species:en=oak`" />
 <trap lang="nl" title="Specificeer de taal voor de tag `species`: `species:en=oak`" />
 </class>
-<class id="4010" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L98" level="2" tag="deprecated,tag,fix:chair">
+<class id="4010" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L100" level="2" tag="deprecated,tag,fix:chair">
 <classtext lang="ca" title="Etiqueta en desús" />
 <classtext lang="cs" title="Již nepoužívaná značka" />
 <classtext lang="de" title="Veraltetes Merkmal" />
@@ -979,7 +973,7 @@
 <detail lang="nl" title="De tag of combinatie sleutel / waarde wordt niet meer. Lijst met verouderdefuncties komt van [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 <detail lang="pl" title="Ten tag lub połączenie klucz/wartość nie jest już używane.&#10;Lista przestarzałych tagów pochodzi z [Deprecated&#10;features](https://wiki.openstreetmap.org/wiki/Deprecated_features)" />
 </class>
-<class id="4060" item="4060" source="http://example.com/plugins/TagRemove_OpenSeaMap.py#L32" level="2" tag="waterway,fix:imagery">
+<class id="4060" item="4060" source="http://example.com/plugins/TagRemove_OpenSeaMap.py#L38" level="2" tag="waterway,fix:imagery">
 <classtext lang="ca" title="Importació de l'OpenSeaMap posició molt aproximada." />
 <classtext lang="cs" title="import z OpenSeaMap, velmi nepřesná pozice" />
 <classtext lang="de" title="OpenSeaMap Import, nur ungefähre Position." />
@@ -1008,7 +1002,7 @@
 <fix lang="nl" title="Verplaats de markering naar de echte positie en verwijder de tag &#10;`seamark:fixme=*`." />
 <fix lang="pl" title="Przenieś znak nawigacyjny na rzeczywistą pozycję i usuń tag `seamark:fixme=*`." />
 </class>
-<class id="4070" item="4070" source="http://example.com/plugins/Construction.py#L33" level="2" tag="tag,fix:survey">
+<class id="4070" item="4070" source="http://example.com/plugins/Construction.py#L39" level="2" tag="tag,fix:survey">
 <classtext lang="ca" title="Construcció finalitzada" />
 <classtext lang="cs" title="Dokončená konstrukce" />
 <classtext lang="de" title="Beendete Baustelle" />
@@ -1035,7 +1029,7 @@
 <detail lang="nl" title="Er is geen tag met `opening_date`, `check_date`, `open_date`,&#10;`construction:date`, `temporary:date_on`, `date_on` en het object is&#10;al meer dan twee jaar in aanbouw of openingsdata is overschreden. " />
 <detail lang="pl" title="Brakuje tagu `opening_date`, `check_date`, `open_date`, `construction:date`, `temporary:date_on`, `date_on`, a obiekt jest w budowie od ponad dwóch lat." />
 </class>
-<class id="11701" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L30" level="2" tag="relation,multipolygon,fix:chair">
+<class id="11701" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L33" level="2" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Chybná role pro multipolygon" />
 <classtext lang="de" title="Unpassende Rolle für Multipolygon" />
 <classtext lang="el" title="Ανεπαρκής ρόλος για πολύ-πολύγονο" />
@@ -1061,7 +1055,7 @@
 <detail lang="ja" title="あり得るrolesは`outer`, `inner` あるは無し(非推奨)です。" />
 <detail lang="nl" title='Mogelijke rollen zijn "outer", "inner" of niets (niet aanbevolen).' />
 </class>
-<class id="11702" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L34" level="2" tag="relation,multipolygon,fix:chair">
+<class id="11702" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L37" level="2" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Chybný člen pro multipolygon" />
 <classtext lang="de" title="Unpassendes Mitglied für Multipolygon" />
 <classtext lang="el" title="Ανεπαρκές μέλος για πολύ-πολύγονο" />
@@ -1090,7 +1084,7 @@
 <detail lang="pl" title="Członami relacji muszą być linie." />
 <detail lang="uk" title="Члени мають бути лініями." />
 </class>
-<class id="11703" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L38" level="1" tag="relation,multipolygon,fix:imagery">
+<class id="11703" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L43" level="1" tag="relation,multipolygon,fix:imagery">
 <classtext lang="cs" title="Chybějící vnější role pro multipolygon" />
 <classtext lang="de" title="Fehlende outer-Rolle bei Multipolygon" />
 <classtext lang="en" title="Missing outer role for multipolygon" />
@@ -1120,7 +1114,7 @@
 <fix lang="it" title="Trova il percorso esterno, potrebbe essere stato cancellato, verifica la cronologia." />
 <fix lang="ja" title="外側のウェイを探してください。削除されているかもしれません。履歴を確認してください。" />
 </class>
-<class id="11704" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L44" level="2" tag="relation,multipolygon,fix:chair">
+<class id="11704" item="1170" source="http://example.com/plugins/Structural_Multipolygon.py#L47" level="2" tag="relation,multipolygon,fix:chair">
 <classtext lang="cs" title="Tento multipolygon je jednoduchý polygon" />
 <classtext lang="de" title="Dieses Multipolygon ist ein einfaches Polygon" />
 <classtext lang="el" title="Αυτό το πολύ-πολύγονο είναι ένα απλό πολύγονο" />
@@ -1146,7 +1140,7 @@
 <detail lang="ja" title="Multipolygon relation が実際は単純なポリゴンを定義している。" />
 <detail lang="uk" title="Зв'язок мультиполігону фактично є звичайним полігоном." />
 </class>
-<class id="12001" item="1200" source="http://example.com/plugins/Structural_Useless_Relation.py#L30" level="2" tag="relation,fix:chair">
+<class id="12001" item="1200" source="http://example.com/plugins/Structural_Useless_Relation.py#L39" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Relació d'un membre" />
 <classtext lang="cs" title="Relace s pouze 1 členem" />
 <classtext lang="de" title="Relation mit nur einem Mitglied" />
@@ -1189,7 +1183,7 @@
 <trap lang="nl" title="Verwijder een relatie niet zonder te begrijpen waarom deze er is. " />
 <trap lang="pl" title="Nie usuwaj relacji, jeśli nie rozumiesz, dlaczego ona istnieje." />
 </class>
-<class id="12200" item="1220" source="http://example.com/plugins/Structural_Waterway.py#L29" level="2" tag="geom,waterway,fix:imagery">
+<class id="12200" item="1220" source="http://example.com/plugins/Structural_Waterway.py#L34" level="2" tag="geom,waterway,fix:imagery">
 <classtext lang="ca" title="Via d'aigua tancada" />
 <classtext lang="cs" title="Uzavřená vodní cesta" />
 <classtext lang="de" title="Geschlossener Wasserweg" />
@@ -1227,7 +1221,7 @@
 <fix lang="nl" title="Het is waarschijnlijk een rivieroever `waterway=riverbank`." />
 <fix lang="uk" title="Це ймовірно берег річки `waterway=riverbank`." />
 </class>
-<class id="12401" item="1240" source="http://example.com/plugins/Structural_WayOneNode.py#L30" level="2" tag="geom,fix:chair">
+<class id="12401" item="1240" source="http://example.com/plugins/Structural_WayOneNode.py#L31" level="2" tag="geom,fix:chair">
 <classtext lang="ca" title="Via amb un node" />
 <classtext lang="cs" title="Cesta s jediným uzlem" />
 <classtext lang="de" title="Weg mit nur einem Knoten" />
@@ -1284,7 +1278,7 @@
 <classtext lang="uk" title="Протилежний напрям руху на шляху з одним напрямом" />
 <classtext lang="zh_CN" title="相反或相反的车道以相同的方式单向行驶" />
 </class>
-<class id="20601" item="2060" source="http://example.com/plugins/Addr_Interpolation.py#L30" level="3" tag="tag,addr">
+<class id="20601" item="2060" source="http://example.com/plugins/Addr_Interpolation.py#L31" level="3" tag="tag,addr">
 <classtext lang="de" title="Fehlerhafte Verwendung von addr:interpolation in Kombination mit weiteren Tags" />
 <classtext lang="en" title="Misusing addr:interpolation in combination with other tags" />
 <classtext lang="es" title="Uso indebido de addr:interpolación en combinación con otras etiquetas" />
@@ -1296,7 +1290,7 @@
 <classtext lang="pl" title="Niewłaściwe użycie addr:interpolation w połączeniu z innymi tagami" />
 <classtext lang="uk" title="Зловживання addr:interpolation в комбінації з іншими теґами" />
 </class>
-<class id="20800" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L43" level="1" tag="tag,highway,roundabout,fix:chair">
+<class id="20800" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L48" level="1" tag="tag,highway,roundabout,fix:chair">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
 <classtext lang="de" title="Merkmal highway fehlt an Kreuzung" />
@@ -1330,7 +1324,7 @@
 <trap lang="pl" title="Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana." />
 <trap lang="zh_CN" title="检查这是否真的是一条道路并且没有被绘制。" />
 </class>
-<class id="20801" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L49" level="1" tag="tag,highway,fix:chair">
+<class id="20801" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L54" level="1" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="Na jednosměrce chybí značka highway" />
 <classtext lang="de" title="Merkmal highway fehlt an Einbahnstraße" />
 <classtext lang="en" title="Tag highway missing on oneway" />
@@ -1363,7 +1357,7 @@
 <trap lang="pl" title="Sprawdź, czy to naprawdę jest droga i czy nie jest już zmapowana." />
 <trap lang="zh_CN" title="检查这是否真的是一条道路并且没有被绘制。" />
 </class>
-<class id="20802" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L99" level="2" tag="highway">
+<class id="20802" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L100" level="2" tag="highway">
 <classtext lang="cs" title="Chybějící tag ref pro nouzový přístupový bod" />
 <classtext lang="de" title="Fehlendes Merkmal ref=* an Rettungspunkt" />
 <classtext lang="en" title="Missing tag ref for emergency access point" />
@@ -1382,7 +1376,7 @@
 <classtext lang="uk" title="Відсутній теґ ref для точки доступу служби порятунку" />
 <classtext lang="zh_CN" title="缺少紧急访问点的标签ref" />
 </class>
-<class id="20803" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L55" level="2" tag="tag,highway,fix:chair">
+<class id="20803" item="2080" source="http://example.com/plugins/TagFix_MultipleTag.py#L56" level="2" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="Chybí tag highway pro tracktype nebo lanes" />
 <classtext lang="de" title="Tag highway fehlt für tracktype oder lanes" />
 <classtext lang="en" title="Tag highway missing for tracktype or lanes" />
@@ -1445,7 +1439,7 @@
 <classtext lang="zh_CN" title="{{0.key}}={{0.value}} 没有 {{1.key}}" />
 <classtext lang="zh_TW" title="{{0.key}}={{0.value}} 沒有 {{1.key}}" />
 </class>
-<class id="21101" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L62" level="2" tag="tag">
+<class id="21101" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L68" level="2" tag="tag">
 <classtext lang="de" title="Benanntes Objekt ohne Eigenschaften" />
 <classtext lang="en" title="Untagged named object" />
 <classtext lang="es" title="Objeto con nombrado sin etiquetar" />
@@ -1467,7 +1461,7 @@
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 <trap lang="ja" title="有用でない場合はオブジェクトを完全に削除することが適切な場合があります。" />
 </class>
-<class id="21102" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L70" level="2" tag="tag">
+<class id="21102" item="2110" source="http://example.com/plugins/TagFix_MultipleTag.py#L72" level="2" tag="tag">
 <classtext lang="cs" title="Chybí typ relace" />
 <classtext lang="de" title="Fehlender Relationstyp" />
 <classtext lang="en" title="Missing relation type" />
@@ -1491,7 +1485,7 @@
 <detail lang="nl" title="De relatie mist 'type' tag om te definiëren wat het vertegenwoordigt." />
 <detail lang="pl" title="Relacji brakuje tagu `type=*`." />
 </class>
-<class id="21201" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L95" level="3" tag="indoor">
+<class id="21201" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L96" level="3" tag="indoor">
 <classtext lang="ca" title="Manca l'etiqueta «level» o «repeat_on»" />
 <classtext lang="cs" title="Chybí úroveň nebo tag repeat_on " />
 <classtext lang="de" title="Merkmal level oder repeat_on fehlt" />
@@ -1509,7 +1503,7 @@
 <classtext lang="uk" title="Відсутній теґ level або repeat_on" />
 <classtext lang="zh_CN" title="Level或repeat_on标记丢失" />
 </class>
-<class id="21202" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L97" level="3" tag="indoor">
+<class id="21202" item="2120" source="http://example.com/plugins/TagFix_MultipleTag.py#L98" level="3" tag="indoor">
 <classtext lang="cs" title="Chybí tag indoor nebo buildingpart" />
 <classtext lang="de" title="Tag indoor oder building:part fehlt" />
 <classtext lang="en" title="Indoor or buildingpart tag missing" />
@@ -1640,7 +1634,7 @@
 <class id="21600" item="2160" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3" tag="tag,railway">
 <classtext lang="en" title="Missing tag gauge on rail" />
 </class>
-<class id="30310" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L45" level="2" tag="value,wikipedia,fix:chair">
+<class id="30310" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L47" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
 <classtext lang="cs" title="Neni URL z Wikipedie" />
 <classtext lang="de" title="Keine Wikipedia-URL" />
@@ -1665,7 +1659,7 @@
 <detail lang="ja" title="誤った値をウィキペディア記事の先頭に表示されているものと置き換えます。その前には言語コードと区切り文字 ':'を付けます&#10;(言語コードが無い場合は、デフォルトで英語版ウィキペディアが検索されますが、この場合は明示的に言語コード&quot;en&quot;を示したほうが良いでしょう。もし記事が英語で記述されていたらサポートされる言語コードは、他のOSMキーで&quot;name:[LANG]=*&quot;として使われる接尾辞の標準的な言語コードBCP47とは異なる場合があります)。" />
 <detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
-<class id="30311" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L48" level="2" tag="value,wikipedia,fix:chair">
+<class id="30311" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L53" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="URL de la Wikipedia en comptes del títol d'article" />
 <classtext lang="cs" title="URL z Wikipedie místo názvu článku" />
 <classtext lang="de" title="Wikipedia-URL statt Artikeltitel" />
@@ -1692,7 +1686,7 @@
 <detail lang="nl" title="De tag `wikipedia = *` moet de titel van het artikel&#10;bevatten en niet de URL van de pagina.&#10;&#10;Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
 <detail lang="uk" title="The tag `wikipedia=*` should include the title of the article&#10;mentioned and not the URL of the page.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
-<class id="30312" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L54" level="2" tag="value,wikipedia,fix:chair">
+<class id="30312" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L61" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Manca la llengua de la Wikipedia abans del nom de l'article" />
 <classtext lang="cs" title="Chybějící jazyk Wikipedie před názvem článku" />
 <classtext lang="de" title="Wikipedia-Sprache fehlt vor Artikeltitel" />
@@ -1717,7 +1711,7 @@
 <detail lang="uk" title="The title must be preceded by the term &quot;en:&quot; when the article is on&#10;the English Wikipedia or the linguistic code of the Wikipedia site.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 <example lang="en" title="`wikipedia=en:Paris`" />
 </class>
-<class id="30313" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L62" level="2" tag="value,wikipedia,fix:chair">
+<class id="30313" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L71" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Usa el títol humà de la pàgina Viquipèdia" />
 <classtext lang="cs" title="Použijte název článku wikipedie bez úprav" />
 <classtext lang="de" title="Wikipedia-Seitentitel in nicht-maschineller Schreibweise verwenden" />
@@ -1744,7 +1738,7 @@
 <detail lang="uk" title="Spaces must not be replaced by underscore but be like in the name of&#10;the article. Same for accented letters. Letter must be readable.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 <example lang="en" title="`wikipedia=ru:Москва` and not&#10;`wikipedia=ru:%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0` nor&#10;`wikipedia=http://ru.wikipedia.org/wiki/Москва`." />
 </class>
-<class id="30314" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L72" level="2" tag="value,wikipedia,fix:chair">
+<class id="30314" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L77" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Manca l'etiqueta Wikipedia primària" />
 <classtext lang="cs" title="Chybí primární značka pro Wikipedii" />
 <classtext lang="de" title="Fehlendes primäres Wikipedia-Merkmal" />
@@ -1770,7 +1764,7 @@
 <detail lang="nl" title="Een `wikipedia = *` moet aanwezig zijn voordat `wikipedia: LANG = *` tags kunnen worden gebruikt .&#10;&#10;Replace the faulty value by the value displayed at the top of the&#10;article on Wikipedia, preceded by the language code and the separator ':'&#10;(in the absence of linguistic code, the item will be searched by default&#10;on the English Wikipedia, but it is advisable in this case to explicitly&#10;indicate the lingusitique code &quot;en&quot; if the article mentioned is in&#10;English, the language codes supported are those editions of Wikipedia in&#10;some cases they are different from the standard language codes BCP47 used&#10;a suffixes in other key OSM as &quot;name:[LANG]=*&quot;)." />
 <detail lang="uk" title="A `wikipedia=*` must be present before using tags&#10;`wikipedia:LANG=*`.&#10;&#10;Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
-<class id="30315" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L78" level="2" tag="value,wikipedia,fix:chair">
+<class id="30315" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L80" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Sufix de wikipedia no vàlid" />
 <classtext lang="cs" title="Chybná přípona wikipedie" />
 <classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
@@ -1793,7 +1787,7 @@
 <detail lang="ja" title="誤った値をウィキペディア記事の先頭に表示されているものと置き換えます。その前には言語コードと区切り文字 ':'を付けます&#10;(言語コードが無い場合は、デフォルトで英語版ウィキペディアが検索されますが、この場合は明示的に言語コード&quot;en&quot;を示したほうが良いでしょう。もし記事が英語で記述されていたらサポートされる言語コードは、他のOSMキーで&quot;name:[LANG]=*&quot;として使われる接尾辞の標準的な言語コードBCP47とは異なる場合があります)。" />
 <detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
-<class id="30316" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L81" level="2" tag="value,wikipedia,fix:chair">
+<class id="30316" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L83" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="ca" title="Etiqueta de Viquipèdia duplicada com a sufix i prefix" />
 <classtext lang="cs" title="Zdvojená značka wikipedie jako před i přípona" />
 <classtext lang="de" title="Doppeltes Wikipedia-Merkmal als Suffix und Präfix" />
@@ -1816,7 +1810,7 @@
 <detail lang="ja" title="誤った値をウィキペディア記事の先頭に表示されているものと置き換えます。その前には言語コードと区切り文字 ':'を付けます&#10;(言語コードが無い場合は、デフォルトで英語版ウィキペディアが検索されますが、この場合は明示的に言語コード&quot;en&quot;を示したほうが良いでしょう。もし記事が英語で記述されていたらサポートされる言語コードは、他のOSMキーで&quot;name:[LANG]=*&quot;として使われる接尾辞の標準的な言語コードBCP47とは異なる場合があります)。" />
 <detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
-<class id="30317" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L84" level="2" tag="value,wikipedia,fix:chair">
+<class id="30317" item="3031" source="http://example.com/plugins/TagFix_Wikipedia.py#L86" level="2" tag="value,wikipedia,fix:chair">
 <classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
 <classtext lang="de" title="Gleiches Wikipedia-Thema in anderer Sprache" />
 <classtext lang="en" title="Same wikipedia topic on other language" />
@@ -1838,7 +1832,7 @@
 <detail lang="ja" title="誤った値をウィキペディア記事の先頭に表示されているものと置き換えます。その前には言語コードと区切り文字 ':'を付けます&#10;(言語コードが無い場合は、デフォルトで英語版ウィキペディアが検索されますが、この場合は明示的に言語コード&quot;en&quot;を示したほうが良いでしょう。もし記事が英語で記述されていたらサポートされる言語コードは、他のOSMキーで&quot;name:[LANG]=*&quot;として使われる接尾辞の標準的な言語コードBCP47とは異なる場合があります)。" />
 <detail lang="uk" title="Замініть недійсне значення на значення, відображене у&#10;верхній частині статті у Вікіпедії, передуючи мовному коду та роздільнику ':'&#10;(за відсутності мовного коду, за замовчуванням&#10;елемент буде шукатися в англомовній Вікіпедії , але в цьому&#10;випадку доцільно чітко вказати лінгвістичний код &quot;en&quot;, якщо згадана стаття є&#10;англійською мовою, мовні коди підтримуються тими виданнями Вікіпедії, в&#10;деяких випадках вони відрізняються від стандартних кодів мови BCP47,&#10;які використовують суфікси інших ключів ОСМ як &quot;ім'я:[МОВА]=*&quot;)." />
 </class>
-<class id="30318" item="3031" source="http://example.com/plugins/TagFix_Wikidata.py#L32" resource="https://www.wikidata.org/wiki/Q507619" level="2" tag="value,wikidata,fix:chair">
+<class id="30318" item="3031" source="http://example.com/plugins/TagFix_Wikidata.py#L34" resource="https://www.wikidata.org/wiki/Q507619" level="2" tag="value,wikidata,fix:chair">
 <classtext lang="cs" title="Tato značka wikidat odpovídá obchodnímu řetězci, měla by být použita ve značce brand:wikidata" />
 <classtext lang="de" title="Dieser wikidata Wert entspricht einer Ladenkette, dafür sollte der brand:wikidata Tag verwendet werden" />
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
@@ -1854,7 +1848,7 @@
 <classtext lang="uk" title="Це значення wikidata збігається з мережею магазинів, і має бути в тезі wikidata" />
 <classtext lang="zh_CN" title="这个维基数据值与连锁店相匹配，它应该是一个brand:wikidata标签。" />
 </class>
-<class id="30320" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L33" level="1" tag="tag,highway,fix:chair">
+<class id="30320" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L34" level="1" tag="tag,highway,fix:chair">
 <classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
@@ -1872,7 +1866,7 @@
 <classtext lang="uk" title="Переглянути декілька теґів" />
 <classtext lang="zh_CN" title="查看多个标签" />
 </class>
-<class id="30323" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L35" level="3" tag="tag,fix:chair">
+<class id="30323" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L36" level="3" tag="tag,fix:chair">
 <classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
@@ -1890,7 +1884,7 @@
 <classtext lang="uk" title="Переглянути декілька теґів" />
 <classtext lang="zh_CN" title="查看多个标签" />
 </class>
-<class id="30327" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L37" level="2" tag="tag,fix:chair">
+<class id="30327" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L40" level="2" tag="tag,fix:chair">
 <classtext lang="ca" title="Via d'aigua amb nivell" />
 <classtext lang="cs" title="vodní tok s úrovní" />
 <classtext lang="de" title="Wasserstraße mit Level" />
@@ -1992,7 +1986,7 @@
 <classtext lang="zh_CN" title="标签丢失" />
 <classtext lang="zh_TW" title="缺少標籤" />
 </class>
-<class id="30501" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L47" level="1" tag="tag,fix:chair">
+<class id="30501" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L49" level="1" tag="tag,fix:chair">
 <classtext lang="de" title="Unpassender Schlüssel-Suffix" />
 <classtext lang="en" title="Bad key suffix" />
 <classtext lang="es" title="Sufijo clave erróneo" />
@@ -2024,7 +2018,7 @@
 <trap lang="nl" title="Deze zijn zeker valse positieven." />
 <trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
 </class>
-<class id="30502" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L44" level="3" tag="tag,fix:chair">
+<class id="30502" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L46" level="3" tag="tag,fix:chair">
 <classtext lang="de" title="Unpassender Schlüssel" />
 <classtext lang="en" title="Bad key" />
 <classtext lang="es" title="Clave errónea" />
@@ -2057,7 +2051,7 @@
 <trap lang="nl" title="Deze zijn zeker valse positieven." />
 <trap lang="uk" title="Там, звичайно, помилкові спрацьовування." />
 </class>
-<class id="30601" item="3060" source="http://example.com/plugins/TagFix_DuplicateValue.py#L44" resource="https://en.wikipedia.org/wiki/Levenshtein_distance" level="3" tag="value,fix:chair">
+<class id="30601" item="3060" source="http://example.com/plugins/TagFix_DuplicateValue.py#L47" resource="https://en.wikipedia.org/wiki/Levenshtein_distance" level="3" tag="value,fix:chair">
 <classtext lang="de" title="Ähnliche Werte" />
 <classtext lang="en" title="Similar values" />
 <classtext lang="es" title="Valores similares" />
@@ -2114,7 +2108,7 @@
 <classtext lang="uk" title="Код кольору повинен мати '#' далі 3 або 6 цифр" />
 <classtext lang="zh_CN" title="颜色代码应以“＃”开头，后跟3或6位数字" />
 </class>
-<class id="30912" item="3091" source="http://example.com/plugins/Capacity.py#L29" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
+<class id="30912" item="3091" source="http://example.com/plugins/Capacity.py#L35" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
 <classtext lang="en" title="Invalid capacity value" />
 <classtext lang="fr" title="Valeur de capacité invalide" />
 <classtext lang="ja" title="無効な収容数" />
@@ -2126,7 +2120,7 @@
 <detail lang="nl" title="Capaciteitstags moeten positieve gehele getallen zijn." />
 <detail lang="pl" title="Wartość tagu capacity powinna być dodatnia." />
 </class>
-<class id="30913" item="3091" source="http://example.com/plugins/Capacity.py#L37" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
+<class id="30913" item="3091" source="http://example.com/plugins/Capacity.py#L43" resource="https://wiki.openstreetmap.org/wiki/Key:capacity" level="2" tag="tag">
 <classtext lang="en" title="Specific capacity is greater than total capacity" />
 <classtext lang="fr" title="La capacité spécifique est supérieure à la capacité totale" />
 <classtext lang="ja" title="個別の収容数が総収容数より大きい" />
@@ -2138,7 +2132,7 @@
 <detail lang="nl" title="Een capaciteit: * waarde is groter dan de totale capaciteit." />
 <detail lang="pl" title="Wartość tagu capacity:* jest większa niż wartość tagu capacity." />
 </class>
-<class id="30931" item="3093" source="http://example.com/plugins/Website.py#L39" level="2" tag="value,fix:chair">
+<class id="30931" item="3093" source="http://example.com/plugins/Website.py#L40" level="2" tag="value,fix:chair">
 <classtext lang="cs" title="URL obsahuje mezeru" />
 <classtext lang="de" title="Der URL enthält ein Leerzeichen" />
 <classtext lang="en" title="The URL contains a space" />
@@ -2155,7 +2149,7 @@
 <classtext lang="uk" title="Веб-лінк містить пробіл" />
 <classtext lang="zh_CN" title="链接包含空格" />
 </class>
-<class id="30932" item="3093" source="http://example.com/plugins/Website.py#L41" level="3" tag="value,fix:chair">
+<class id="30932" item="3093" source="http://example.com/plugins/Website.py#L42" level="3" tag="value,fix:chair">
 <classtext lang="cs" title="Adresa URL nemá platné schéma" />
 <classtext lang="de" title="Der URL hat kein gültiges Schema" />
 <classtext lang="en" title="The URL does not have a valid scheme" />
@@ -2171,7 +2165,7 @@
 <classtext lang="uk" title="Веб-лінк не відповідає чинній схемі" />
 <classtext lang="zh_CN" title="该链接没有有效的方案" />
 </class>
-<class id="31600" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L65" level="2" tag="highway,fix:chair">
+<class id="31600" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L70" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
 <classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
@@ -2188,7 +2182,7 @@
 <detail lang="en" title="The `merge_to_right` or `merge_to_left` lane must be on the same way&#10;as the destination lane and the `merge_to_right` must be on the *left&#10;side* and `the merge_to_left` on the *right side*." />
 <detail lang="ja" title="`merge_to_right` または `merge_to_left` レーンは同じウェイ上になければなりません。&#10;行き先レーン及び `merge_to_right`は *左側 にあってかつ `merge_to_left`は on the *右側*になければならないため。" />
 </class>
-<class id="31601" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L31" level="2" tag="highway,fix:chair">
+<class id="31601" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L34" level="2" tag="highway,fix:chair">
 <classtext lang="ca" title="Valor incorrecte de carrils" />
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
 <classtext lang="de" title="Falscher Wert für lanes" />
@@ -2215,7 +2209,7 @@
 <detail lang="ja" title="数値でない、`lanes=*` は整数値" />
 <detail lang="nl" title="Niet-numerieke waarde, `lanes = *` moet een geheel getal hebben." />
 </class>
-<class id="31603" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L35" level="2" tag="highway,fix:chair">
+<class id="31603" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L39" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Konflikt v použití *:lanes nebo *:lanes:(forward|backward|both_ways)" />
 <classtext lang="de" title="Konflikt bei Nutzung von *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="en" title="Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)" />
@@ -2236,7 +2230,7 @@
 <detail lang="ja" title="この接頭辞`forward`, `backward`, `both_ways`をタグとバリアントに&#10;同時にセットすることはできません。" />
 <detail lang="nl" title="Je kunt niet tegelijkertijd een tag en de variante instellen met&#10;prefix `forward`, `backward`, `both_ways`." />
 </class>
-<class id="31604" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L40" level="2" tag="highway,fix:chair">
+<class id="31604" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L41" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Konflikt v počtu pruhů" />
 <classtext lang="de" title="Konflikt bei Anzahl der Fahrspuren" />
 <classtext lang="en" title="Conflict between lanes number" />
@@ -2254,7 +2248,7 @@
 <classtext lang="uk" title="Конфлікт в кількості lanes" />
 <classtext lang="zh_CN" title="车道号之间的冲突" />
 </class>
-<class id="31605" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L42" level="2" tag="highway,fix:chair">
+<class id="31605" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L45" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybné použití *:lanes:(backward|both_ways) na jednosměrce" />
 <classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
@@ -2276,7 +2270,7 @@
 <detail lang="ja" title="一方通行に対向レーンのデータをセットすることはできません。" />
 <detail lang="nl" title="Je kan gegevens van tegenoverliggende rijstroken niet op een enkelweg zetten. " />
 </class>
-<class id="31606" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L46" level="2" tag="highway,fix:chair">
+<class id="31606" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L50" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Neznámá hodnota odbočovacích pruhů" />
 <classtext lang="de" title="Unbekannter Abbiegespurenwert" />
 <classtext lang="en" title="Unknown turn lanes value" />
@@ -2298,7 +2292,7 @@
 <detail lang="ja" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 <detail lang="nl" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 </class>
-<class id="31607" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L51" level="2" tag="highway,fix:chair">
+<class id="31607" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L54" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybné pořadí pruhů" />
 <classtext lang="de" title="Falsche Abbiegespurreihenfolge" />
 <classtext lang="en" title="Bad turn lanes order" />
@@ -2321,7 +2315,7 @@
 <detail lang="nl" title="Rechts moet aan de rechterkant en links aan de linkerkant zijn." />
 <detail lang="pl" title="Pas do skrętu w prawo musi być po prawej, a do skrętu w lewo po lewej." />
 </class>
-<class id="31608" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L55" level="2" tag="highway,fix:chair">
+<class id="31608" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L59" level="2" tag="highway,fix:chair">
 <classtext lang="de" title='Unterschiede zwischen Fahrspurnummern mit gleichem Suffix ("", forward, backward oder both_ways)' />
 <classtext lang="en" title='Conflict between lanes number of same sufix ("", forward, backward or both_ways)' />
 <classtext lang="fr" title='Conflit entre le nombre de voies du même sufixe ("", forward, backward ou both_ways)' />
@@ -2333,7 +2327,7 @@
 <detail lang="ja" title="多くのレーンタグで定義されたレーンの数は与えられた方向と同じではありません。" />
 <detail lang="pl" title="Liczba pasów zdefiniowanych przez różne tagi nie jest taka sama dla danego kierunku." />
 </class>
-<class id="31609" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L60" level="2" tag="highway,fix:chair">
+<class id="31609" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L64" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybná hodnota přípojných pruhů, má být omezení a ne číslo" />
 <classtext lang="de" title="Unpassender Wert für access lanes. Der Wert beschreibt die Anzahl der Spuren, nicht die Zugangsbeschränkung." />
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
@@ -2351,7 +2345,7 @@
 <detail lang="ja" title="`psv:lanes=*` はアクセス制限のタグですが、`lanes:psv=*` はレーンの数です。" />
 <detail lang="pl" title="`psv:lanes=*` to tag dostępu, podczas gdy `lanes:psv=*` to liczba pasów.&#10;&#10;Porównaj wartości na Taginfo:&#10;- [psv:lanes](https://taginfo.openstreetmap.org/keys/psv%3Alanes#values)&#10;- [lanes:psv](https://taginfo.openstreetmap.org/keys/lanes%3Apsv#values)" />
 </class>
-<class id="31611" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L30" level="3" tag="highway,parking,fix:imagery">
+<class id="31611" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L36" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Chybný parking:lane:[strana]" />
 <classtext lang="de" title="Falsches parking:lane:[side]" />
 <classtext lang="en" title="Bad parking:lane:[side]" />
@@ -2385,7 +2379,7 @@
 <fix lang="pl" title="Prawidłowe wartości to `left`, `right` lub `both`." />
 <fix lang="uk" title="Застосовуйте `left`, `right` чи `both`." />
 </class>
-<class id="31614" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L37" level="3" tag="highway,parking,fix:imagery">
+<class id="31614" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L41" level="3" tag="highway,parking,fix:imagery">
 <classtext lang="cs" title="Příliš mnoho pruhů parking:lane:[strana]" />
 <classtext lang="de" title="Zu viele parking:lane:[side]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
@@ -2408,7 +2402,7 @@
 <detail lang="ja" title="側道用の駐車場には、街路の側道よりも多くの種類があります。" />
 <detail lang="pl" title="Jest więcej rodzajów parkowania niż ulica ma stron.&#10;&#10;Tag `parking:lane:both=*` nie może występować razem z `parking:lane:left=*` i `parking:lane:right=*`." />
 </class>
-<class id="31615" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L42" level="3" tag="highway,parking,fix:chair">
+<class id="31615" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L46" level="3" tag="highway,parking,fix:chair">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
 <classtext lang="de" title="Falscher Wert für parking:lane:[side]" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
@@ -2433,7 +2427,7 @@
 <fix lang="nl" title="Zie waarden op&#10;[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)." />
 <fix lang="pl" title="Zobacz możliwe wartości [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)." />
 </class>
-<class id="31616" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L47" level="3" tag="highway,parking,fix:survey">
+<class id="31616" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L50" level="3" tag="highway,parking,fix:survey">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
 <classtext lang="de" title="parking:condition:[side] ohne Wert parking:lane:[side]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -2460,20 +2454,20 @@
 <detail lang="nl" title="Een parkeer gelegenheid is aanwezig maar zonder parkeersoort." />
 <detail lang="pl" title="Warunki parkowania, ale bez rodzaju parkowania." />
 </class>
-<class id="31617" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L51" level="3" tag="highway,parking,fix:survey">
+<class id="31617" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L54" level="3" tag="highway,parking,fix:survey">
 <classtext lang="en" title="parking:condition:[side] not applicable" />
 <classtext lang="fr" title="parking:condition:[side] non applicable" />
 <classtext lang="ja" title="parking:condition:[side] は適用できません" />
 <detail lang="en" title="A parking condition is set for a parking:lane:[side] value that forbids parking." />
 <detail lang="ja" title="駐車を禁じる条件が parking:lane:[side] の値としてセットされています。" />
 </class>
-<class id="31618" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L55" level="3" tag="highway,parking,fix:survey">
+<class id="31618" item="3161" source="http://example.com/plugins/Highway_Parking_Lane.py#L60" level="3" tag="highway,parking,fix:survey">
 <classtext lang="en" title="parking:condition:[side] should be mapped on separately mapped parking area" />
 <classtext lang="ja" title="parking:condition:[side] は駐車エリアに個々にマッピングすべきです" />
 <detail lang="en" title="A parking condition is set for a parking:lane:[side] value that indicates&#10;that the parking area is mapped separately. Any parking conditions should&#10;be tagged on that object instead." />
 <detail lang="ja" title="駐車の条件が parking:lane:[side] の値としてセットされ、駐車エリアが個々にマッピングされているということを示しています。そうではなくて、あらゆる駐車の条件はオブジェクト上にマッピングされるべきです。" />
 </class>
-<class id="31700" item="3170" source="http://example.com/plugins/TagFix_Role.py#L31" level="2" tag="relation,fix:chair">
+<class id="31700" item="3170" source="http://example.com/plugins/TagFix_Role.py#L37" level="2" tag="relation,fix:chair">
 <classtext lang="ca" title="Rol no adient" />
 <classtext lang="cs" title="Nesprávná role" />
 <classtext lang="de" title="Unpassende Rolle" />
@@ -2506,7 +2500,7 @@
 <fix lang="pl" title="Określ właściwą rolę." />
 <fix lang="uk" title="Визначте правильну роль, можливо встановіть значення ролі в&#10;теґ." />
 </class>
-<class id="31901" item="3190" source="http://example.com/plugins/TagFix_Postcode.py#L75" resource="https://en.wikipedia.org/wiki/List_of_postal_codes" level="3" tag="postcode,fix:chair">
+<class id="31901" item="3190" source="http://example.com/plugins/TagFix_Postcode.py#L86" resource="https://en.wikipedia.org/wiki/List_of_postal_codes" level="3" tag="postcode,fix:chair">
 <classtext lang="ca" title="Codi postal no vàlid" />
 <classtext lang="cs" title="Neplatné PSČ" />
 <classtext lang="de" title="Ungültige Postleitzahl" />
@@ -2534,7 +2528,7 @@
 <detail lang="nl" title="Controleer de postcode zoals beschreven op &#10;[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)" />
 <detail lang="uk" title="Перевірте індекс, описаний в&#10;[Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)" />
 </class>
-<class id="32001" item="3200" source="http://example.com/plugins/TagFix_Area.py#L32" level="3" tag="tag,fix:chair">
+<class id="32001" item="3200" source="http://example.com/plugins/TagFix_Area.py#L35" level="3" tag="tag,fix:chair">
 <classtext lang="de" title="Nicht benötigtes Flächenmerkmal" />
 <classtext lang="en" title="Redundant area tagging" />
 <classtext lang="es" title="Etiquetado de área redundante" />
@@ -2554,7 +2548,7 @@
 <fix lang="pl" title="Usuń tag area=yes." />
 <fix lang="ru" title="Удалите тег `area=yes`." />
 </class>
-<class id="32002" item="3200" source="http://example.com/plugins/TagFix_Area.py#L37" level="3" tag="tag,fix:chair">
+<class id="32002" item="3200" source="http://example.com/plugins/TagFix_Area.py#L43" level="3" tag="tag,fix:chair">
 <classtext lang="de" title="Fläche ohne beschreibende Eigenschaften" />
 <classtext lang="en" title="Untagged area object" />
 <classtext lang="es" title="Objeto de área sin etiquetar" />
@@ -2573,7 +2567,7 @@
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 <trap lang="ja" title="有用でない場合はオブジェクトを完全に削除することが適切な場合があります。" />
 </class>
-<class id="32003" item="3200" source="http://example.com/plugins/TagFix_Area.py#L45" level="3" tag="tag,fix:chair">
+<class id="32003" item="3200" source="http://example.com/plugins/TagFix_Area.py#L48" level="3" tag="tag,fix:chair">
 <classtext lang="de" title="Nicht benötigtes Flächenmerkmal" />
 <classtext lang="en" title="Redundant area negation" />
 <classtext lang="ja" title="冗長なエリアの否定" />
@@ -2591,7 +2585,7 @@
 <fix lang="pl" title="Usuń tag area=no." />
 <fix lang="ru" title="Удалите тег `area=no`." />
 </class>
-<class id="32200" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L103" level="2" tag="highway,fix:chair">
+<class id="32200" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L108" level="2" tag="highway,fix:chair">
 <classtext lang="de" title="Zugangsbeschränkung prüfen " />
 <classtext lang="en" title="Overly permissive access" />
 <classtext lang="hu" title="Túlzottan megengedő használat" />
@@ -2602,7 +2596,7 @@
 <detail lang="ja" title="`access=yes`及び `access=permissive`タグは地物がtransport modesに広く開かれていることをマークします。これはほぼありえないケースで、代わりにより詳細なタグを使うべきです。詳細は[the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)参照。" />
 <detail lang="pl" title="Tag `access=yes` lub `access=permissive` zezwala na wszystkie środki transportu, włączając samochody, konie, motorowery, materiały niebezpieczne itd., chyba że wyraźnie wyłączone. Czytaj więcej na [Wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
 </class>
-<class id="32201" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L109" level="2" tag="highway,fix:chair">
+<class id="32201" item="3220" source="http://example.com/plugins/TagFix_MultipleTag.py#L114" level="2" tag="highway,fix:chair">
 <classtext lang="de" title="Zugangsbeschränkung prüfen " />
 <classtext lang="en" title="Overly permissive access" />
 <classtext lang="hu" title="Túlzottan megengedő használat" />
@@ -2613,7 +2607,7 @@
 <detail lang="ja" title="`access=yes`及び `access=permissive`タグは地物がtransport modesに広く開かれていることをマークします。これはほぼありえないケースで、代わりにより詳細なタグを使うべきです。詳細は[the wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)参照。" />
 <detail lang="pl" title="Tag `access=yes` lub `access=permissive` zezwala na wszystkie środki transportu, włączając samochody, konie, motorowery, materiały niebezpieczne itd., chyba że wyraźnie wyłączone. Czytaj więcej na [Wiki](https://wiki.openstreetmap.org/wiki/Key:access#Transport_mode_restrictions)." />
 </class>
-<class id="32301" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L117" level="2" tag="highway,fix:chair">
+<class id="32301" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L118" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Pravděpodobně jen pro lahve, ne pro jakýkoli druh skla" />
 <classtext lang="de" title="Wahrscheinlich nur für Flaschen, nicht für alle Arten von Glas" />
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
@@ -2629,7 +2623,7 @@
 <classtext lang="uk" title="Ймовірно, лише для пляшок, а не для будь-якого типу скла" />
 <classtext lang="zh_CN" title="可能只适用于瓶子，而不适用于任何类型的玻璃" />
 </class>
-<class id="32302" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L119" level="2" tag="highway,fix:chair">
+<class id="32302" item="3230" source="http://example.com/plugins/TagFix_MultipleTag.py#L120" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Podezřelé jméno pro kontejner" />
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
@@ -2645,7 +2639,7 @@
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
 </class>
-<class id="32501" item="3250" source="http://example.com/plugins/TagFix_Opening_Hours.py#L38" level="3" tag="value,fix:chair">
+<class id="32501" item="3250" source="http://example.com/plugins/TagFix_Opening_Hours.py#L39" level="3" tag="value,fix:chair">
 <classtext lang="cs" title="Neplatná otevírací doba" />
 <classtext lang="de" title="Ungültige Öffnungszeiten" />
 <classtext lang="en" title="Invalid Opening Hours" />
@@ -2661,7 +2655,7 @@
 <classtext lang="uk" title='Помилковий "Час роботи"' />
 <classtext lang="zh_CN" title="营业时间无效" />
 </class>
-<class id="32502" item="3250" source="http://example.com/plugins/TagFix_IntervalConditional.py#L30" level="3" tag="value,fix:chair,public_transport">
+<class id="32502" item="3250" source="http://example.com/plugins/TagFix_IntervalConditional.py#L31" level="3" tag="value,fix:chair,public_transport">
 <classtext lang="de" title="Ungültige bedingte Intervalle" />
 <classtext lang="en" title="Invalid Conditional Intervals" />
 <classtext lang="es" title="Intervalos condicionales inválidos" />
@@ -2674,20 +2668,20 @@
 <classtext lang="pl" title="Niepoprawne przedziały warunkowe" />
 <classtext lang="uk" title="Недійсні умовні інтервали" />
 </class>
-<class id="33501" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L36" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="2" tag="highway,fix:chair">
+<class id="33501" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L41" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="2" tag="highway,fix:chair">
 <classtext lang="en" title="Bad conditional restriction" />
 <detail lang="en" title="Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.&#10;Combined restrictions should follow `value @ (condition1 AND condition2)`.&#10;Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`." />
 </class>
-<class id="33502" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L42" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="3" tag="highway,fix:chair">
+<class id="33502" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L50" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Improve style of conditional" />
 <detail lang="en" title="Although valid, it is recommended to format conditional restrictions with:&#10;- spaces around the `@`;&#10;- uppercase `AND` (in combined restrictions);&#10;- parentheses around all-but-the-simplest conditions.&#10;This helps to prevent errors and improves readability.&#10;For example, use `no @ (weight &gt; 5 AND wet)` rather than `no@weight&gt;5 and wet`." />
 </class>
-<class id="33503" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L51" level="3" tag="highway,fix:chair">
+<class id="33503" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L54" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Expired conditional" />
 <detail lang="en" title="This conditional was only valid up to a date in the past. It can likely be removed." />
 <trap lang="en" title="Other tags might need to be updated too to reflect the new situation." />
 </class>
-<class id="33601" item="3360" source="http://example.com/plugins/Highway_Sides.py#L30" level="2" tag="highway,fix:chair">
+<class id="33601" item="3360" source="http://example.com/plugins/Highway_Sides.py#L33" level="2" tag="highway,fix:chair">
 <classtext lang="en" title="Conflicting tags for sides of the way" />
 <detail lang="en" title="A tag with `:right`, `:left` or `:both` conflicts with the same tag without side specification, or a tag with `:right` or `:left` conflicts with the tag with `:both`." />
 </class>
@@ -2706,7 +2700,7 @@
 <classtext lang="uk" title="psv є кращим за service=psv" />
 <classtext lang="zh_CN" title="psv 是优选的 service=psv" />
 </class>
-<class id="40102" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L101" level="2" tag="deprecated,value,fix:chair">
+<class id="40102" item="4010" source="http://example.com/plugins/TagFix_Deprecated.py#L103" level="2" tag="deprecated,value,fix:chair">
 <classtext lang="de" title="Veralteter Wert" />
 <classtext lang="en" title="Deprecated value" />
 <classtext lang="es" title="Valor obsoleto" />
@@ -2770,7 +2764,7 @@
 <class id="40105" item="4010" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="3">
 <classtext lang="en" title="misused tag in this country" />
 </class>
-<class id="40201" item="4020" source="http://example.com/plugins/TagFix_MultipleTag.py#L93" level="1" tag="highway,roundabout">
+<class id="40201" item="4020" source="http://example.com/plugins/TagFix_MultipleTag.py#L94" level="1" tag="highway,roundabout">
 <classtext lang="ca" title="Rotonda com a àrea" />
 <classtext lang="cs" title="Kruhový objezd jako plocha" />
 <classtext lang="de" title="Kreisverkehr als Bereich" />
@@ -2807,7 +2801,7 @@
 <classtext lang="uk" title="cycleway з cycleway:right і {{cycleway:left}}" />
 <classtext lang="zh_CN" title="cycleway 和 cycleway:right 以及 {{cycleway:left}}" />
 </class>
-<class id="40610" item="4061" source="http://example.com/plugins/TagRemove_Fixme.py#L30" level="3" tag="fixme,fix:chair">
+<class id="40610" item="4061" source="http://example.com/plugins/TagRemove_Fixme.py#L31" level="3" tag="fixme,fix:chair">
 <classtext lang="cs" title="Objekt potřebuje revizi" />
 <classtext lang="de" title="Objekt benötigt Überprüfung" />
 <classtext lang="en" title="Object need review" />
@@ -2824,7 +2818,7 @@
 <classtext lang="uk" title="Об'єкт потребує перегляду" />
 <classtext lang="zh_CN" title="对象需要审核" />
 </class>
-<class id="40611" item="4061" source="http://example.com/plugins/TagRemove_Fixme.py#L32" level="2" tag="fixme,fix:chair,highway">
+<class id="40611" item="4061" source="http://example.com/plugins/TagRemove_Fixme.py#L36" level="2" tag="fixme,fix:chair,highway">
 <classtext lang="cs" title="Klasifikace cesty potřebuje revizi" />
 <classtext lang="de" title="Straßenklassifikation sollte geprüft werden" />
 <classtext lang="en" title="Highway classification need review" />
@@ -2864,14 +2858,14 @@
 <classtext lang="uk" title="Несумісне теґування від {{1.key}}" />
 <classtext lang="zh_CN" title="不一致的标记 {{1.key}}" />
 </class>
-<class id="41100" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L48" level="2" tag="highway,fix:chair">
+<class id="41100" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L49" level="2" tag="highway,fix:chair">
 <classtext lang="de" title="Hochliegendes Gewässer bzw. Wasserlauf ohne Brücken-Attribut" />
 <classtext lang="en" title="Long Waterway/water above ground and no bridge" />
 <classtext lang="ja" title="bridgeタグがないのに地表より上にある長い水路/水系" />
 <classtext lang="nl" title="Lang Waterweg/water bovengronds en geen brug" />
 <classtext lang="pl" title="Długi ciek nad ziemią bez mostu" />
 </class>
-<class id="41101" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L30" level="3" tag="landuse,fix:chair">
+<class id="41101" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L31" level="3" tag="landuse,fix:chair">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
 <classtext lang="de" title="Flächennutzungsmerkmal nicht auf Bodenlevel" />
 <classtext lang="en" title="Landuse feature not on ground" />
@@ -2891,7 +2885,7 @@
 <classtext lang="uk" title="Ознака landuse не на землі" />
 <classtext lang="zh_CN" title="土地用途不在地面上" />
 </class>
-<class id="41102" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L32" level="3" tag="natural,fix:chair">
+<class id="41102" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L33" level="3" tag="natural,fix:chair">
 <classtext lang="cs" title="Přírodní prvek pod úrovní země" />
 <classtext lang="de" title="Naturmerkmal unter Bodenlevel" />
 <classtext lang="en" title="Natural feature underground" />
@@ -2911,7 +2905,7 @@
 <classtext lang="uk" title="Ознака natural під землею" />
 <classtext lang="zh_CN" title="自然特征在地下" />
 </class>
-<class id="41103" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L34" level="3" tag="highway,fix:chair">
+<class id="41103" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L35" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="Highway pod zemí a žádný tunel" />
 <classtext lang="de" title="Straße unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Highway underground and no tunnel" />
@@ -2930,7 +2924,7 @@
 <classtext lang="uk" title="Шлях проходить під землею без тунелю" />
 <classtext lang="zh_CN" title="道路在地下但没有隧道" />
 </class>
-<class id="41104" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L36" level="2" tag="highway,fix:chair">
+<class id="41104" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L37" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="dlouhá Highway pod zemí a žádný tunel" />
 <classtext lang="de" title="Lange Straße unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Long Highway underground and no tunnel" />
@@ -2949,7 +2943,7 @@
 <classtext lang="uk" title="Довгий шлях проходить під землею без тунелю" />
 <classtext lang="zh_CN" title="长道路在地下但没有隧道" />
 </class>
-<class id="41105" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L38" level="3" tag="highway,fix:chair">
+<class id="41105" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L39" level="3" tag="highway,fix:chair">
 <classtext lang="cs" title="Highway nad zemí a žádný most" />
 <classtext lang="de" title="Straße über Grund und keine Brücke" />
 <classtext lang="en" title="Highway above ground and no bridge" />
@@ -2968,7 +2962,7 @@
 <classtext lang="uk" title="Шлях вище землі без мосту" />
 <classtext lang="zh_CN" title="道路在空中但没有桥梁" />
 </class>
-<class id="41106" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L40" level="2" tag="highway,fix:chair">
+<class id="41106" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L41" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="dlouhá Highway nad zemí a žádný most" />
 <classtext lang="de" title="Lange Straße über Grund und keine Brücke" />
 <classtext lang="en" title="Long Highway above ground and no bridge" />
@@ -2987,28 +2981,28 @@
 <classtext lang="uk" title="Довгий шлях вище землі без мосту" />
 <classtext lang="zh_CN" title="长道路在空中但没有桥梁" />
 </class>
-<class id="41107" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L42" level="3" tag="highway,fix:chair">
+<class id="41107" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L43" level="3" tag="highway,fix:chair">
 <classtext lang="de" title="Unterirdisches Gewässer bzw. Wasserlauf ohne Tunnel-Attribut" />
 <classtext lang="en" title="Waterway/water underground and no tunnel" />
 <classtext lang="ja" title="tunnelタグがないのに地下にある水路/水系" />
 <classtext lang="nl" title="Waterweg/water ondergronds en geen tunnel" />
 <classtext lang="pl" title="Ciek pod ziemią bez tunelu" />
 </class>
-<class id="41108" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L44" level="2" tag="highway,fix:chair">
+<class id="41108" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L45" level="2" tag="highway,fix:chair">
 <classtext lang="de" title="Unterirdisches Gewässer bzw. Wasserlauf ohne Tunnel-Attribut" />
 <classtext lang="en" title="Long Waterway/water underground and no tunnel" />
 <classtext lang="ja" title="tunnelタグがないのに地下にある長い水路/水系" />
 <classtext lang="nl" title="Lang Waterweg/water ondergronds en geen tunnel" />
 <classtext lang="pl" title="Długi ciek pod ziemią bez tunelu" />
 </class>
-<class id="41109" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L46" level="3" tag="highway,fix:chair">
+<class id="41109" item="4110" source="http://example.com/plugins/TagRemove_Layer.py#L47" level="3" tag="highway,fix:chair">
 <classtext lang="de" title="Hochliegendes Gewässer bzw. Wasserlauf ohne Brücken-Attribut" />
 <classtext lang="en" title="Waterway/water above ground and no bridge" />
 <classtext lang="ja" title="bridgeタグがないのに地表より上にある水路/水系" />
 <classtext lang="nl" title="Waterweg/water bovengronds en geen brug" />
 <classtext lang="pl" title="Ciek nad ziemią bez mostu" />
 </class>
-<class id="50601" item="5060" source="http://example.com/plugins/Name_Local.py#L41" level="1" tag="name,fix:chair">
+<class id="50601" item="5060" source="http://example.com/plugins/Name_Local.py#L42" level="1" tag="name,fix:chair">
 <classtext lang="ca" title="El nom predeterminat i de la llengua local no coincideixen" />
 <classtext lang="cs" title="Implicitní a lokální jazyk nejsou stejné" />
 <classtext lang="de" title="Standardsprache und örtliche Sprache unterschiedlich" />
@@ -3027,7 +3021,7 @@
 <classtext lang="uk" title="Основна та місцева мови неоднакові" />
 <classtext lang="zh_CN" title="默认和本地语言名称不一样" />
 </class>
-<class id="50602" item="5060" source="http://example.com/plugins/Name_Local.py#L43" level="1" tag="name,fix:chair">
+<class id="50602" item="5060" source="http://example.com/plugins/Name_Local.py#L44" level="1" tag="name,fix:chair">
 <classtext lang="ca" title="Nom de la llengua local sense nom predeterminat" />
 <classtext lang="cs" title="Lokální jméno jazyka bez implicitního jména" />
 <classtext lang="de" title="Lokaler Sprachname ohne Standardname" />
@@ -3046,7 +3040,7 @@
 <classtext lang="uk" title="Назва локальної мови без імені за умовчанням" />
 <classtext lang="zh_CN" title="没有默认名称的本地语言名称" />
 </class>
-<class id="50603" item="5060" source="http://example.com/plugins/Name_Local.py#L45" level="1" tag="name,fix:chair">
+<class id="50603" item="5060" source="http://example.com/plugins/Name_Local.py#L46" level="1" tag="name,fix:chair">
 <classtext lang="ca" title="Nom en una llengua sense nom predeterminat" />
 <classtext lang="cs" title="Jméno jazyka bez implicitního jména" />
 <classtext lang="de" title="Sprachname ohne Standardname" />
@@ -3065,7 +3059,7 @@
 <classtext lang="uk" title="Назва об'єкту іншою мовою без основної" />
 <classtext lang="zh_CN" title="没有默认名称的语言名称" />
 </class>
-<class id="50701" item="5070" source="http://example.com/plugins/Name_Script.py#L36" level="2" tag="name,fix:chair">
+<class id="50701" item="5070" source="http://example.com/plugins/Name_Script.py#L46" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Některé znaky hodnoty neodpovídají znakové sadě jazyka" />
 <classtext lang="de" title="Einzelne Zeichen des Wertes passen gehören nicht zum Zeichensatz der Sprache" />
 <classtext lang="en" title="Some value chars does not match the language charset" />
@@ -3093,7 +3087,7 @@
 <fix lang="ja" title="たいてい、誤った言語が選ばれています。しばしば言葉が翻字されており、オリジナルのアルファベットに戻す必要があります。&#10;`name:ar=Salaam` は`name:en=Salaam` (未翻訳名が知られている場合) または `name:en=Peace` (翻訳済) または `name:ar=سلام`&#10;(オリジナル) であるべきです。" />
 <fix lang="nl" title="Meestal is er een verkeerde taal gekozen. Soms is het woord&#10;getranslitereerd, en moet worden teruggezet naar het oorspronkelijke alfabet.&#10;`name:ar=Salaam` zou ofwel `name:en=Salaam` (indien bekend bij&#10;onvertaalde naam) of `name:en=Peace` (vertaald) of `name:ar=سلام`&#10;(origineel)." />
 </class>
-<class id="50702" item="5070" source="http://example.com/plugins/Name_Script.py#L47" level="2" tag="name,fix:chair">
+<class id="50702" item="5070" source="http://example.com/plugins/Name_Script.py#L53" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Netisknutelný znak" />
 <classtext lang="de" title="Kein druckbares Zeichen" />
 <classtext lang="en" title="Non printable char" />
@@ -3130,7 +3124,7 @@
 <fix lang="pl" title="Usuń ten znak." />
 <fix lang="uk" title="Видаліть символ." />
 </class>
-<class id="50703" item="5070" source="http://example.com/plugins/Name_Script.py#L54" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
+<class id="50703" item="5070" source="http://example.com/plugins/Name_Script.py#L62" resource="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]" level="2" tag="name,fix:chair">
 <classtext lang="de" title="Ungewöhnliches Zeichen im Namen" />
 <classtext lang="en" title="Unexpected symbol in name" />
 <classtext lang="es" title="Simbolo inesperado en el nombre" />
@@ -3156,7 +3150,7 @@
 <fix lang="it" title="Cambia il carattere con un segno di interpunzione o qualcosa di più appropriato." />
 <fix lang="ja" title="文字を句読点などのより適切なものに変更します。" />
 </class>
-<class id="50704" item="5070" source="http://example.com/plugins/Name_Quotation.py#L30" resource="https://en.wikipedia.org/wiki/Bracket#Encoding_in_digital_media" level="2" tag="name,fix:chair">
+<class id="50704" item="5070" source="http://example.com/plugins/Name_Quotation.py#L32" resource="https://en.wikipedia.org/wiki/Bracket#Encoding_in_digital_media" level="2" tag="name,fix:chair">
 <classtext lang="de" title="Name enthält falsche Anführungszeichen oder Klammer" />
 <classtext lang="en" title="Unbalanced quotation mark or bracket in name" />
 <classtext lang="es" title="Comillas o Corchetes desequilibrados en el nombre" />
@@ -3167,7 +3161,7 @@
 <classtext lang="pl" title="Nierówna liczba nawiasów lub cudzysłowów" />
 <classtext lang="uk" title="Незбалансовані лапки або дужки в назві" />
 </class>
-<class id="50705" item="5070" source="http://example.com/plugins/Name_Punctuation.py#L30" level="2" tag="name,fix:chair">
+<class id="50705" item="5070" source="http://example.com/plugins/Name_Punctuation.py#L31" level="2" tag="name,fix:chair">
 <classtext lang="cs" title="Neočekávaná interpunkce v názvu" />
 <classtext lang="de" title="Ungewöhnliche Satzzeichen im Namen" />
 <classtext lang="en" title="Unexpected punctuation in name" />
@@ -3198,7 +3192,7 @@
 <classtext lang="uk" title="Хутір або місцевість містить в назві суфікс північ-, південь-, схід-, захід-, центр-, і його слід видалити з назви кадастру. Місце має бути інтеґроване лише один раз." />
 <classtext lang="zh_CN" title="自然村或地区名称后缀Nord，Sud，Est，Ouest，Center应从Cadastre名称中删除。方位名应该只整合为一个。" />
 </class>
-<class id="71301" item="7130" source="http://example.com/plugins/TagFix_MultipleTag.py#L57" level="3" tag="tag,highway,maxheight,fix:survey">
+<class id="71301" item="7130" source="http://example.com/plugins/TagFix_MultipleTag.py#L61" level="3" tag="tag,highway,maxheight,fix:survey">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
 <classtext lang="cs" title='Chybí značka "maxheight"' />
 <classtext lang="de" title="Fehlendes Merkmal maxheight" />
@@ -3282,7 +3276,7 @@
 <classtext lang="ja" title="この店舗はロックダウン中に臨時営業時間を設けていました。これらのopening hoursはまだ有効ですか？" />
 <classtext lang="pl" title="Czy godziny otwarcia są aktualne?" />
 </class>
-<class id="303210" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L41" level="1" tag="tag,highway,fix:chair">
+<class id="303210" item="3032" source="http://example.com/plugins/TagFix_MultipleTag.py#L42" level="1" tag="tag,highway,fix:chair">
 <classtext lang="de" title="'fence' mit 'material' Tag, lieber 'fence_type' Tag verwenden" />
 <classtext lang="en" title="Fence with material tag, better use fence_type tag" />
 <classtext lang="es" title="Fence con etiqueta de material, mejor use la etiqueta fence_type" />
@@ -3296,7 +3290,7 @@
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
 </class>
-<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L80" level="1" tag="tag,highway">
+<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L81" level="1" tag="tag,highway">
 <classtext lang="en" title="Discordant maxspeed and source:maxspeed or maxspeed:type" />
 <classtext lang="gl" title="'maxspeed e 'source:maxspeed' ou 'maxspeed:type' difiren" />
 <classtext lang="ja" title="maxspeed と source:maxspeed または maxspeed:type が不一致" />
@@ -3306,14 +3300,14 @@
 <classtext lang="en" title="Pipe characters should not be used in destination tag, only in destination:lanes" />
 <classtext lang="ja" title="パイプ文字はdestination タグではなく、destination:lanes内でのみ使います。" />
 </class>
-<class id="316011" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L71" level="3" tag="highway,fix:chair">
+<class id="316011" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L74" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Merge lane and other turn lane in a single lane" />
 <classtext lang="fr" title="Voie de raccordement et autre voie de virage sur une seule voie." />
 <classtext lang="ja" title="レーンと他の方向転換レーンをひとつのレーンにします" />
 <detail lang="en" title="It is unlikely that merge_to_* and another turn lane value are indicated on a single lane." />
 <detail lang="fr" title="Il est peu probable que la valeur merge_to_* et une autre valeur de voie de virage soient indiquées sur une seule voie." />
 </class>
-<class id="316012" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L75" level="2" tag="highway,fix:chair">
+<class id="316012" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L78" level="2" tag="highway,fix:chair">
 <classtext lang="en" title="Indicated turn lane together with `none`" />
 <classtext lang="fr" title='Voie de virage indiquée avec "aucune".' />
 <detail lang="en" title="A `none` (or empty value) turn lane cannot be combined with other types of turn lanes within the same lane." />
@@ -5434,7 +5428,7 @@
 <classtext lang="uk" title="Арабська буква виявлена в назві на фарсі" />
 <classtext lang="zh_CN" title="在波斯语名称中检测到阿拉伯字母" />
 </class>
-<class id="259473529" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="typo-tag,fix:chair">
+<class id="259473529" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="typo-tag,fix:chair">
 <classtext lang="en" title="typo-tag" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5443,7 +5437,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="301849747" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="deprecated,fix:chair">
+<class id="301849747" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="deprecated,fix:chair">
 <classtext lang="en" title="deprecated" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5452,7 +5446,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="467520078" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="value,fix:chair">
+<class id="467520078" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="value,fix:chair">
 <classtext lang="en" title="value" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5461,7 +5455,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="484934813" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="fix:chair">
+<class id="484934813" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="fix:chair">
 <classtext lang="en" title="" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5470,7 +5464,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="737787355" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="shop,fix:chair">
+<class id="737787355" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="shop,fix:chair">
 <classtext lang="en" title="shop" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5479,7 +5473,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="837055326" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="tag,fix:chair">
+<class id="837055326" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="tag,fix:chair">
 <classtext lang="en" title="tag" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5488,7 +5482,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="1100242374" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="ref,fix:chair">
+<class id="1100242374" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="ref,fix:chair">
 <classtext lang="en" title="ref" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5497,7 +5491,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="1258610297" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="typo,fix:chair">
+<class id="1258610297" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="typo,fix:chair">
 <classtext lang="en" title="typo" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5506,7 +5500,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="1398494170" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="name,fix:chair">
+<class id="1398494170" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="name,fix:chair">
 <classtext lang="en" title="name" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5515,7 +5509,7 @@
 <detail lang="pl" title="Proste i częste błędy w tagach. Lista jest dostępna [tutaj](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="uk" title="Список простих та частих помилок міститься&#10;[тут](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 </class>
-<class id="2006017393" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L68" level="2" tag="type-tag,fix:chair">
+<class id="2006017393" item="3030" source="http://example.com/plugins/TagWatchFrViPofm.py#L72" level="2" tag="type-tag,fix:chair">
 <classtext lang="en" title="type-tag" />
 <detail lang="de" title="Einfache und häufige Fehler, die Auflistung befindet sich&#10;[hier](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
 <detail lang="en" title="Simple and frequent errors, the list is available&#10;[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)." />
@@ -5720,25 +5714,25 @@
 <tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
 </node>
 <text lang="en" value="is_in:country is deprecated" />
-<text lang="ru" value="is_in:country устарел" />
-<text lang="nl" value="is_in:country is vervallen" />
 <text lang="el" value="is_in:country είναι παρωχημένο" />
 <text lang="fr" value="is_in:country est déprécié" />
 <text lang="zh_TW" value="is_in:country 已經廢棄" />
-<text lang="es" value="is_in:country está obsoleto" />
-<text lang="pt_BR" value="is_in:country é obsoleto" />
 <text lang="pl" value="is_in:country jest przestarzały" />
-<text lang="pt" value="''is_in:country'' está em desuso" />
 <text lang="it" value="is_in:country è deprecata" />
-<text lang="de" value="is_in:country ist veraltet" />
-<text lang="uk" value="is_in:country заборонено" />
-<text lang="gl" value="is_in:country desusado" />
-<text lang="cs" value="is_in:country je zavržen" />
-<text lang="lt" value="is_in:country pasenusi" />
-<text lang="ja" value="is_in:countryは推奨されていません" />
-<text lang="hu" value="[is_in:country] elavult" />
+<text lang="ru" value="is_in:country устарел" />
 <text lang="zh_CN" value="is_in:country 已过时" />
+<text lang="hu" value="[is_in:country] elavult" />
+<text lang="lt" value="is_in:country pasenusi" />
+<text lang="cs" value="is_in:country je zavržen" />
+<text lang="de" value="is_in:country ist veraltet" />
+<text lang="nl" value="is_in:country is vervallen" />
+<text lang="pt" value="''is_in:country'' está em desuso" />
+<text lang="gl" value="is_in:country desusado" />
+<text lang="pt_BR" value="is_in:country é obsoleto" />
+<text lang="ja" value="is_in:countryは推奨されていません" />
 <text lang="ca" value="is_in:country és obsolet" />
+<text lang="es" value="is_in:country está obsoleto" />
+<text lang="uk" value="is_in:country заборонено" />
 <fixes>
 <fix>
 <node id="489460194">
@@ -5763,16 +5757,16 @@
 <tag k="name" v="Le Bête à Z'Ailes - Baz Bar" />
 </node>
 <text lang="en" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unexpected &quot;̂̀&quot;" />
-<text lang="nl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; onverwacht &quot;̂̀&quot;" />
 <text lang="fr" value="“name”=“Le Bête à Z'Ailes - Baz Bar” : élément “̂̀“ inattendu" />
-<text lang="es" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
 <text lang="it" value="“name”=“Le Bête à Z'Ailes - Baz Bar” inatteso “̂̀”" />
+<text lang="zh_CN" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; 不寻常 &quot;̂̀&quot;" />
+<text lang="hu" value="„name”=„Le Bête à Z'Ailes - Baz Bar” furcsa „̂̀”" />
 <text lang="de" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unerwartet &quot;̂̀&quot;" />
-<text lang="uk" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; несподіваний &quot;̂̀&quot;" />
+<text lang="nl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; onverwacht &quot;̂̀&quot;" />
 <text lang="gl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
 <text lang="ja" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; 想定していない &quot;̂̀&quot;" />
-<text lang="hu" value="„name”=„Le Bête à Z'Ailes - Baz Bar” furcsa „̂̀”" />
-<text lang="zh_CN" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; 不寻常 &quot;̂̀&quot;" />
+<text lang="es" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
+<text lang="uk" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; несподіваний &quot;̂̀&quot;" />
 </error>
 <error class="9001001" subclass="2095780217">
 <location lat="17.9032984" lon="-62.8512634" />
@@ -5782,25 +5776,25 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="power=generator without generator:source" />
-<text lang="ru" value="power=generator без generator:source" />
-<text lang="nl" value="power=generator zonder generator:source" />
 <text lang="fr" value="power=generator sans generator:source" />
 <text lang="zh_TW" value="power=generator 沒有 generator:source" />
-<text lang="es" value="power=generator sin generator:source" />
-<text lang="pt_BR" value="power=generator sem generator:source" />
 <text lang="pl" value="power=generator bez generator:source" />
-<text lang="pt" value="power=generator sem generator:source" />
 <text lang="it" value="power=generator senza generator:source" />
-<text lang="de" value="power=generator ohne generator:source" />
-<text lang="uk" value="power=generator без generator:source" />
-<text lang="gl" value="power=generator sen generator:source" />
-<text lang="cs" value="power=generator bez generator:source" />
-<text lang="lt" value="power=generator be generator:source" />
-<text lang="ja" value="generator:sourceの無いpower=generator" />
-<text lang="hu" value="[power=generator], [generator:source] nélkül" />
+<text lang="ru" value="power=generator без generator:source" />
 <text lang="zh_CN" value="power=generator 没有 generator:source" />
+<text lang="hu" value="[power=generator], [generator:source] nélkül" />
 <text lang="fa" value="power=generator بدون generator:source" />
+<text lang="lt" value="power=generator be generator:source" />
+<text lang="cs" value="power=generator bez generator:source" />
+<text lang="de" value="power=generator ohne generator:source" />
+<text lang="nl" value="power=generator zonder generator:source" />
+<text lang="pt" value="power=generator sem generator:source" />
+<text lang="gl" value="power=generator sen generator:source" />
+<text lang="pt_BR" value="power=generator sem generator:source" />
+<text lang="ja" value="generator:sourceの無いpower=generator" />
 <text lang="ca" value="power=generator sense generator:source" />
+<text lang="es" value="power=generator sin generator:source" />
+<text lang="uk" value="power=generator без generator:source" />
 </error>
 <error class="9002001" subclass="34751027">
 <location lat="17.9032984" lon="-62.8512634" />
@@ -5810,25 +5804,25 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="power_source is deprecated" />
-<text lang="ru" value="power_source устарел" />
-<text lang="nl" value="power_source is vervallen" />
 <text lang="el" value="power_source είναι παρωχημένο" />
 <text lang="fr" value="power_source est déprécié" />
 <text lang="zh_TW" value="power_source 已經廢棄" />
-<text lang="es" value="power_source está obsoleto" />
-<text lang="pt_BR" value="power_source é obsoleto" />
 <text lang="pl" value="power_source jest przestarzały" />
-<text lang="pt" value="''power_source'' está em desuso" />
 <text lang="it" value="power_source è deprecata" />
-<text lang="de" value="power_source ist veraltet" />
-<text lang="uk" value="power_source заборонено" />
-<text lang="gl" value="power_source desusado" />
-<text lang="cs" value="power_source je zavržen" />
-<text lang="lt" value="power_source pasenusi" />
-<text lang="ja" value="power_sourceは推奨されていません" />
-<text lang="hu" value="[power_source] elavult" />
+<text lang="ru" value="power_source устарел" />
 <text lang="zh_CN" value="power_source 已过时" />
+<text lang="hu" value="[power_source] elavult" />
+<text lang="lt" value="power_source pasenusi" />
+<text lang="cs" value="power_source je zavržen" />
+<text lang="de" value="power_source ist veraltet" />
+<text lang="nl" value="power_source is vervallen" />
+<text lang="pt" value="''power_source'' está em desuso" />
+<text lang="gl" value="power_source desusado" />
+<text lang="pt_BR" value="power_source é obsoleto" />
+<text lang="ja" value="power_sourceは推奨されていません" />
 <text lang="ca" value="power_source és obsolet" />
+<text lang="es" value="power_source está obsoleto" />
+<text lang="uk" value="power_source заборонено" />
 </error>
 <error class="4010" subclass="1468904873">
 <location lat="17.9032984" lon="-62.8512634" />
@@ -5838,10 +5832,10 @@
 <tag k="power_source" v="oil" />
 </node>
 <text lang="en" value="The tag `power_source` is deprecated in favour of `generator:source`" />
-<text lang="nl" value="De tag 'power_source' is verouderd ten gunste van `generator:source`" />
 <text lang="fr" value="L'attribut `power_source` est dépréciée au profit de `generator:source`" />
 <text lang="pl" value="Tag power_source należy zastąpić tagiem `generator:source`" />
 <text lang="de" value="Der Tag `power_source` sollte ersetzt werden durch `generator:source`" />
+<text lang="nl" value="De tag 'power_source' is verouderd ten gunste van `generator:source`" />
 <text lang="ja" value="`power_source`タグは`generator:source`で置き換えられました" />
 </error>
 <error class="4060" subclass="0">
@@ -5879,23 +5873,23 @@
 <tag k="name" v="Boulangerie du Centre" />
 </node>
 <text lang="en" value="incomplete object: only name" />
-<text lang="ru" value="неполный объект: только name" />
-<text lang="nl" value="incompleet object: alleen name" />
 <text lang="fr" value="élément incomplet : uniquement name" />
 <text lang="zh_TW" value="不完整的物件：只有 name" />
-<text lang="es" value="objeto incompleto: sólo name" />
-<text lang="pt_BR" value="elemento incompleto: somente name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
-<text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="it" value="oggetto incompleto: solo name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
-<text lang="uk" value="неповний об’єкт: тільки name" />
-<text lang="cs" value="nekompletní objekt: pouze name" />
-<text lang="lt" value="nepilnas objektas: tik name" />
-<text lang="ja" value="不完全なオブジェクト:nameしかない" />
-<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="ru" value="неполный объект: только name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
+<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="lt" value="nepilnas objektas: tik name" />
+<text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
+<text lang="nl" value="incompleet object: alleen name" />
+<text lang="pt" value="objeto incompleto: apenas name" />
+<text lang="pt_BR" value="elemento incompleto: somente name" />
+<text lang="ja" value="不完全なオブジェクト:nameしかない" />
 <text lang="ca" value="objecte incomplet: només name" />
+<text lang="es" value="objeto incompleto: sólo name" />
+<text lang="uk" value="неповний об’єкт: тільки name" />
 </error>
 <error class="21101" subclass="1">
 <location lat="17.9062633" lon="-62.8252834" />
@@ -5909,23 +5903,23 @@
 <tag k="name" v="Gas Station" />
 </node>
 <text lang="en" value="incomplete object: only name" />
-<text lang="ru" value="неполный объект: только name" />
-<text lang="nl" value="incompleet object: alleen name" />
 <text lang="fr" value="élément incomplet : uniquement name" />
 <text lang="zh_TW" value="不完整的物件：只有 name" />
-<text lang="es" value="objeto incompleto: sólo name" />
-<text lang="pt_BR" value="elemento incompleto: somente name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
-<text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="it" value="oggetto incompleto: solo name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
-<text lang="uk" value="неповний об’єкт: тільки name" />
-<text lang="cs" value="nekompletní objekt: pouze name" />
-<text lang="lt" value="nepilnas objektas: tik name" />
-<text lang="ja" value="不完全なオブジェクト:nameしかない" />
-<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="ru" value="неполный объект: только name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
+<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="lt" value="nepilnas objektas: tik name" />
+<text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
+<text lang="nl" value="incompleet object: alleen name" />
+<text lang="pt" value="objeto incompleto: apenas name" />
+<text lang="pt_BR" value="elemento incompleto: somente name" />
+<text lang="ja" value="不完全なオブジェクト:nameしかない" />
 <text lang="ca" value="objecte incomplet: només name" />
+<text lang="es" value="objeto incompleto: sólo name" />
+<text lang="uk" value="неповний об’єкт: тільки name" />
 </error>
 <error class="21101" subclass="1">
 <location lat="17.9065835" lon="-62.8265893" />
@@ -5939,23 +5933,23 @@
 <tag k="name" v="Supermarché Oasis" />
 </node>
 <text lang="en" value="incomplete object: only name" />
-<text lang="ru" value="неполный объект: только name" />
-<text lang="nl" value="incompleet object: alleen name" />
 <text lang="fr" value="élément incomplet : uniquement name" />
 <text lang="zh_TW" value="不完整的物件：只有 name" />
-<text lang="es" value="objeto incompleto: sólo name" />
-<text lang="pt_BR" value="elemento incompleto: somente name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
-<text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="it" value="oggetto incompleto: solo name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
-<text lang="uk" value="неповний об’єкт: тільки name" />
-<text lang="cs" value="nekompletní objekt: pouze name" />
-<text lang="lt" value="nepilnas objektas: tik name" />
-<text lang="ja" value="不完全なオブジェクト:nameしかない" />
-<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="ru" value="неполный объект: только name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
+<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="lt" value="nepilnas objektas: tik name" />
+<text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
+<text lang="nl" value="incompleet object: alleen name" />
+<text lang="pt" value="objeto incompleto: apenas name" />
+<text lang="pt_BR" value="elemento incompleto: somente name" />
+<text lang="ja" value="不完全なオブジェクト:nameしかない" />
 <text lang="ca" value="objecte incomplet: només name" />
+<text lang="es" value="objeto incompleto: sólo name" />
+<text lang="uk" value="неповний об’єкт: тільки name" />
 </error>
 <error class="21101" subclass="1">
 <location lat="17.9070278" lon="-62.828369" />
@@ -5969,23 +5963,23 @@
 <tag k="name" v="Hookipa Surf Shop" />
 </node>
 <text lang="en" value="incomplete object: only name" />
-<text lang="ru" value="неполный объект: только name" />
-<text lang="nl" value="incompleet object: alleen name" />
 <text lang="fr" value="élément incomplet : uniquement name" />
 <text lang="zh_TW" value="不完整的物件：只有 name" />
-<text lang="es" value="objeto incompleto: sólo name" />
-<text lang="pt_BR" value="elemento incompleto: somente name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
-<text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="it" value="oggetto incompleto: solo name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
-<text lang="uk" value="неповний об’єкт: тільки name" />
-<text lang="cs" value="nekompletní objekt: pouze name" />
-<text lang="lt" value="nepilnas objektas: tik name" />
-<text lang="ja" value="不完全なオブジェクト:nameしかない" />
-<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="ru" value="неполный объект: только name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
+<text lang="hu" value="hiányos objektum: csak name" />
+<text lang="lt" value="nepilnas objektas: tik name" />
+<text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
+<text lang="nl" value="incompleet object: alleen name" />
+<text lang="pt" value="objeto incompleto: apenas name" />
+<text lang="pt_BR" value="elemento incompleto: somente name" />
+<text lang="ja" value="不完全なオブジェクト:nameしかない" />
 <text lang="ca" value="objecte incomplet: només name" />
+<text lang="es" value="objeto incompleto: sólo name" />
+<text lang="uk" value="неповний об’єкт: тільки name" />
 </error>
 <error class="21101" subclass="1">
 <location lat="17.9005419" lon="-62.8327042" />
@@ -6100,21 +6094,21 @@
 <nd ref="602655289" />
 </way>
 <text lang="en" value="Unspecific highway type" />
-<text lang="ru" value="Неуточнённый тип дороги" />
-<text lang="nl" value="Niet gespecificeerd type highway" />
 <text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 <text lang="fr" value="Type de route imprécis" />
-<text lang="es" value="Tipo de vía no especificada" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
 <text lang="pl" value="Nieznana wartość highway" />
-<text lang="pt" value="Tipo de estrada/rua não especificada" />
 <text lang="it" value="Tipo di strada non specificato" />
-<text lang="de" value="Unbestimmter Straßentyp" />
-<text lang="uk" value="Невизначений тип дороги" />
-<text lang="cs" value="Nespecifikovaný typ silnice" />
-<text lang="ja" value="道路の種類が未指定" />
-<text lang="hu" value="Nem konkrét úttípus" />
+<text lang="ru" value="Неуточнённый тип дороги" />
 <text lang="zh_CN" value="不特定的道路种类" />
+<text lang="hu" value="Nem konkrét úttípus" />
+<text lang="cs" value="Nespecifikovaný typ silnice" />
+<text lang="de" value="Unbestimmter Straßentyp" />
+<text lang="nl" value="Niet gespecificeerd type highway" />
+<text lang="pt" value="Tipo de estrada/rua não especificada" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
+<text lang="ja" value="道路の種類が未指定" />
+<text lang="es" value="Tipo de vía no especificada" />
+<text lang="uk" value="Невизначений тип дороги" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -6151,21 +6145,21 @@
 <nd ref="602655388" />
 </way>
 <text lang="en" value="Unspecific highway type" />
-<text lang="ru" value="Неуточнённый тип дороги" />
-<text lang="nl" value="Niet gespecificeerd type highway" />
 <text lang="el" value="Απροσδιόριστος τύπος Αυτοκινητοδρόμου" />
 <text lang="fr" value="Type de route imprécis" />
-<text lang="es" value="Tipo de vía no especificada" />
-<text lang="pt_BR" value="Tipo de via não especificada" />
 <text lang="pl" value="Nieznana wartość highway" />
-<text lang="pt" value="Tipo de estrada/rua não especificada" />
 <text lang="it" value="Tipo di strada non specificato" />
-<text lang="de" value="Unbestimmter Straßentyp" />
-<text lang="uk" value="Невизначений тип дороги" />
-<text lang="cs" value="Nespecifikovaný typ silnice" />
-<text lang="ja" value="道路の種類が未指定" />
-<text lang="hu" value="Nem konkrét úttípus" />
+<text lang="ru" value="Неуточнённый тип дороги" />
 <text lang="zh_CN" value="不特定的道路种类" />
+<text lang="hu" value="Nem konkrét úttípus" />
+<text lang="cs" value="Nespecifikovaný typ silnice" />
+<text lang="de" value="Unbestimmter Straßentyp" />
+<text lang="nl" value="Niet gespecificeerd type highway" />
+<text lang="pt" value="Tipo de estrada/rua não especificada" />
+<text lang="pt_BR" value="Tipo de via não especificada" />
+<text lang="ja" value="道路の種類が未指定" />
+<text lang="es" value="Tipo de vía no especificada" />
+<text lang="uk" value="Невизначений тип дороги" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -6193,16 +6187,16 @@
 <nd ref="2093615691" />
 </way>
 <text lang="en" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
-<text lang="nl" value="tag waarde: name=Rue =&gt; description incorrecte (rule ks_vs)" />
 <text lang="fr" value="clé d’attribut : “name”=“Rue” ⇒ “description incorrecte” (règle “ks_vs”)" />
-<text lang="es" value="etiqueta valor: name=Rue =&gt; description incorrecte (regla ks_vs)" />
 <text lang="it" value="valore etichetta: name=Rue =&gt; description incorrecte (regola ks_vs)" />
+<text lang="zh_CN" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+<text lang="hu" value="címkeérték: name=Rue =&gt; description incorrecte (szabály: helyes kulcs =&gt; helyes érték)" />
 <text lang="de" value="Merkmalwert: name=Rue =&gt; description incorrecte (rule ks_vs)" />
-<text lang="uk" value="значення теґу: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+<text lang="nl" value="tag waarde: name=Rue =&gt; description incorrecte (rule ks_vs)" />
 <text lang="gl" value="etiqueta valor: name=Rue =&gt; description incorrecte (regra ks_vs)" />
 <text lang="ja" value="タグ値: name=Rue =&gt; description incorrecte (rule ks_vs)" />
-<text lang="hu" value="címkeérték: name=Rue =&gt; description incorrecte (szabály: helyes kulcs =&gt; helyes érték)" />
-<text lang="zh_CN" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+<text lang="es" value="etiqueta valor: name=Rue =&gt; description incorrecte (regla ks_vs)" />
+<text lang="uk" value="значення теґу: name=Rue =&gt; description incorrecte (rule ks_vs)" />
 </error>
 <error class="9001002" subclass="1053814004">
 <location lat="0" lon="0" />
@@ -6260,24 +6254,24 @@
 <member type="node" ref="489460194" role="label" />
 </relation>
 <text lang="en" value="boundary together with addr:*" />
-<text lang="ru" value="boundary вместе с addr:*" />
-<text lang="nl" value="boundary samen met addr:*" />
 <text lang="fr" value="boundary combiné à addr:*" />
 <text lang="zh_TW" value="boundary 都有 addr:*" />
-<text lang="es" value="boundary junto con addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
-<text lang="pt" value="boundary junto com addr:*" />
 <text lang="it" value="boundary insieme a addr:*" />
-<text lang="de" value="boundary zusammen mit addr:*" />
-<text lang="uk" value="boundary разом з addr:*" />
-<text lang="gl" value="boundary xunto con addr:*" />
-<text lang="cs" value="boundary zároveň s addr:*" />
-<text lang="lt" value="boundary kartu su addr:*" />
-<text lang="ja" value="boundaryとaddr:*が一緒にある" />
-<text lang="hu" value="boundary együtt van a következővel: addr:*" />
+<text lang="ru" value="boundary вместе с addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
+<text lang="hu" value="boundary együtt van a következővel: addr:*" />
+<text lang="lt" value="boundary kartu su addr:*" />
+<text lang="cs" value="boundary zároveň s addr:*" />
+<text lang="de" value="boundary zusammen mit addr:*" />
+<text lang="nl" value="boundary samen met addr:*" />
+<text lang="pt" value="boundary junto com addr:*" />
+<text lang="gl" value="boundary xunto con addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
+<text lang="ja" value="boundaryとaddr:*が一緒にある" />
 <text lang="ca" value="boundary junt amb addr:*" />
+<text lang="es" value="boundary junto con addr:*" />
+<text lang="uk" value="boundary разом з addr:*" />
 </error>
 <error class="9001001" subclass="1547975047">
 <location lat="0" lon="0" />
@@ -6316,21 +6310,21 @@
 <member type="way" ref="70236587" role="inner" />
 </relation>
 <text lang="en" value="boat without waterway, natural=water, landuse=^(basin|reservoir)$ or ford=yes" />
-<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
-<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
 <text lang="fr" value="boat sans waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
-<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
-<text lang="pt_BR" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
 <text lang="pl" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ lub ford=yes" />
-<text lang="pt" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
 <text lang="it" value="boat senza waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
-<text lang="de" value="boat ohne waterway, natural=water, landuse=^(basin|reservoir)$ oder ford=yes" />
-<text lang="uk" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ або ford=yes" />
-<text lang="gl" value="boat sen waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
-<text lang="cs" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ nebo ford=yes" />
-<text lang="ja" value="boatがあるのにwaterway、natural=water、landuse=^(basin|reservoir)$、ford=yesのいずれかがない" />
-<text lang="hu" value="waterway, natural=water, landuse=^(basin|reservoir)$ vagy ford=yes nélküli boat" />
+<text lang="ru" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ или ford=yes" />
 <text lang="zh_CN" value="boat 没有 waterway、natural=water、landuse=^(basin|reservoir)$ 或 ford=yes" />
+<text lang="hu" value="waterway, natural=water, landuse=^(basin|reservoir)$ vagy ford=yes nélküli boat" />
+<text lang="cs" value="boat bez waterway, natural=water, landuse=^(basin|reservoir)$ nebo ford=yes" />
+<text lang="de" value="boat ohne waterway, natural=water, landuse=^(basin|reservoir)$ oder ford=yes" />
+<text lang="nl" value="boat zonder waterway, natural=water, landuse=^(basin|reservoir)$ of ford=yes" />
+<text lang="pt" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
+<text lang="gl" value="boat sen waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
+<text lang="pt_BR" value="boat sem waterway, natural=water, landuse=^(basin|reservoir)$ ou ford=yes" />
+<text lang="ja" value="boatがあるのにwaterway、natural=water、landuse=^(basin|reservoir)$、ford=yesのいずれかがない" />
+<text lang="es" value="boat sin waterway, natural=water, landuse=^(basin|reservoir)$ o ford=yes" />
+<text lang="uk" value="boat без waterway, natural=water, landuse=^(basin|reservoir)$ або ford=yes" />
 </error>
 <error class="50701" subclass="6689005421143404454">
 <location lat="0" lon="0" />
@@ -6375,18 +6369,18 @@
 <member type="relation" ref="2324452" role="subarea" />
 </relation>
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
-<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
 <text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : élément “́́“ inattendu" />
-<text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 <text lang="it" value="“name:ru”=“Кари́бские Нидерла́нды” inatteso “́́”" />
+<text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды" 不寻常 "́́"' />
+<text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
 <text lang="de" value='"name:ru"="Кари́бские Нидерла́нды" unerwartet "́́"' />
-<text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
+<text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
 <text lang="gl" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 <text lang="ja" value='"name:ru"="Кари́бские Нидерла́нды" 想定していない "́́"' />
-<text lang="hu" value="„name:ru”=„Кари́бские Нидерла́нды” furcsa „́́”" />
-<text lang="zh_CN" value='"name:ru"="Кари́бские Нидерла́нды" 不寻常 "́́"' />
+<text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
+<text lang="uk" value='"name:ru"="Кари́бские Нидерла́нды" несподіваний "́́"' />
 </error>
-<error class="9007001" subclass="794807774">
+<error class="9007001" subclass="93004660">
 <location lat="0" lon="0" />
 <relation id="1363079" version="14" timestamp="2014-01-04T21:56:53Z" changeset="19813735" uid="10610" user="RedFox">
 <tag k="addr:postcode" v="97133" />
@@ -6457,23 +6451,23 @@
 <member type="way" ref="255316718" role="outer" />
 </relation>
 <text lang="en" value="boundary relation without boundary tag" />
-<text lang="ru" value="boundary отношение без тега boundary" />
-<text lang="nl" value="boundary relatie zonder boundary tag" />
 <text lang="fr" value="boundary relation sans boundary attribut" />
 <text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
-<text lang="es" value="relación boundary sin etiqueta boundary" />
-<text lang="pt_BR" value="boundary relação sem boundary tag" />
 <text lang="pl" value="boundary relacji bez znacznika boundary" />
-<text lang="pt" value="boundary relação sem a etiqueta boundary" />
 <text lang="it" value="relazione boundary senza etichetta boundary" />
-<text lang="de" value="boundary Relation ohne boundary Merkmal" />
-<text lang="uk" value="boundary зв’язок без теґу boundary" />
-<text lang="cs" value="boundary relace bez boundary značky" />
-<text lang="lt" value="boundary ryšys be boundary žymos" />
-<text lang="ja" value="boundaryリレーションにboundaryタグがない" />
-<text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
+<text lang="ru" value="boundary отношение без тега boundary" />
 <text lang="zh_CN" value="boundary关系没有boundary标签" />
+<text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
+<text lang="lt" value="boundary ryšys be boundary žymos" />
+<text lang="cs" value="boundary relace bez boundary značky" />
+<text lang="de" value="boundary Relation ohne boundary Merkmal" />
+<text lang="nl" value="boundary relatie zonder boundary tag" />
+<text lang="pt" value="boundary relação sem a etiqueta boundary" />
+<text lang="pt_BR" value="boundary relação sem boundary tag" />
+<text lang="ja" value="boundaryリレーションにboundaryタグがない" />
 <text lang="ca" value="boundary relació sense l''etiqueta boundary" />
+<text lang="es" value="relación boundary sin etiqueta boundary" />
+<text lang="uk" value="boundary зв’язок без теґу boundary" />
 </error>
 <error class="9001002" subclass="1053814004">
 <location lat="0" lon="0" />
@@ -6522,24 +6516,24 @@
 <member type="node" ref="271047515" role="label" />
 </relation>
 <text lang="en" value="boundary together with addr:*" />
-<text lang="ru" value="boundary вместе с addr:*" />
-<text lang="nl" value="boundary samen met addr:*" />
 <text lang="fr" value="boundary combiné à addr:*" />
 <text lang="zh_TW" value="boundary 都有 addr:*" />
-<text lang="es" value="boundary junto con addr:*" />
-<text lang="pt_BR" value="boundary junto com addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
-<text lang="pt" value="boundary junto com addr:*" />
 <text lang="it" value="boundary insieme a addr:*" />
-<text lang="de" value="boundary zusammen mit addr:*" />
-<text lang="uk" value="boundary разом з addr:*" />
-<text lang="gl" value="boundary xunto con addr:*" />
-<text lang="cs" value="boundary zároveň s addr:*" />
-<text lang="lt" value="boundary kartu su addr:*" />
-<text lang="ja" value="boundaryとaddr:*が一緒にある" />
-<text lang="hu" value="boundary együtt van a következővel: addr:*" />
+<text lang="ru" value="boundary вместе с addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
+<text lang="hu" value="boundary együtt van a következővel: addr:*" />
+<text lang="lt" value="boundary kartu su addr:*" />
+<text lang="cs" value="boundary zároveň s addr:*" />
+<text lang="de" value="boundary zusammen mit addr:*" />
+<text lang="nl" value="boundary samen met addr:*" />
+<text lang="pt" value="boundary junto com addr:*" />
+<text lang="gl" value="boundary xunto con addr:*" />
+<text lang="pt_BR" value="boundary junto com addr:*" />
+<text lang="ja" value="boundaryとaddr:*が一緒にある" />
 <text lang="ca" value="boundary junt amb addr:*" />
+<text lang="es" value="boundary junto con addr:*" />
+<text lang="uk" value="boundary разом з addr:*" />
 </error>
 </analyser>
 </analysers>
