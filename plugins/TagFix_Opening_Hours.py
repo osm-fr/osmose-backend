@@ -80,7 +80,7 @@ class Test(TestPluginCommon):
 
         # These are OK, no suggestion
         assert not a.node(None, {'opening_hours': 'Mo-Fr 10:00-19:00'})
-        assert not a.node(None, {'opening_hours': 'Mo-Tu,Th-Fr 09:30-12:00; We 15:00-17:00; 2020 Dec 24,2020 Dec 31 off; Sa,Su off; PH off'})
+        assert not a.node(None, {'opening_hours': 'Mo-Tu,Th-Fr 09:30-12:00; We 15:00-17:00; 2020 Dec 24,31 off; Sa,Su off; PH off'})
         assert not a.node(None, {'opening_hours': 'Mo off, Tu-Th 09:00-18:00; Fr 09:00-19:00; Sa 08:00-18:00; Su off'})
 
         # Check 00:00 and 24:00 are both OK
