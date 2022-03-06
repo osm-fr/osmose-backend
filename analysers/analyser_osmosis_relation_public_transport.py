@@ -230,6 +230,7 @@ FROM
         parent.tags->'type' = 'route_master'
 WHERE
     relations.tags->'type' = 'route' AND
+    (NOT relations.tags?'public_transport:version' OR relations.tags->'public_transport:version' != '1') AND
     relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
     relation_locate(relations.id) IS NOT NULL
 GROUP BY

@@ -27,10 +27,12 @@ class Josm_combinations(PluginMapCSS):
         self.re_0aef1f28 = re.compile(r'^cycleway(:|$)')
         self.re_12ce6b85 = re.compile(r':forward')
         self.re_143f11c5 = re.compile(r'^(no|use_sidepath)$')
+        self.re_19e33301 = re.compile(r'^no$')
         self.re_1bc43c40 = re.compile(r'^(left|right|both)$')
         self.re_1dcd648f = re.compile(r'^(runway|taxiway)$')
         self.re_209d461d = re.compile(r'^(path|footway|cycleway|construction|proposed)$')
         self.re_213d4d09 = re.compile(r'^parking.*')
+        self.re_22985ce9 = re.compile(r'^oneway:(bicycle|bus|mofa|moped|psv)$')
         self.re_22ceec1b = re.compile(r'^.*:lanes$')
         self.re_23888fca = re.compile(r'^(motorway|motorway_link|trunk|trunk_link)$')
         self.re_25d98c90 = re.compile(r'_name$')
@@ -1935,10 +1937,10 @@ class Josm_combinations(PluginMapCSS):
         # *[noname?][name]
         # *[actuator][handle][actuator!~/(^|;)manual(;|$)/]
         # *[mechanical_driver][handle][mechanical_driver!~/(^|;)manual(;|$)/]
-        # way[oneway=yes][/:backward/][!traffic_sign:backward][bicycle:backward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
-        # way[oneway=yes][/:forward/][!traffic_sign:forward][bicycle:forward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
-        # way[oneway=-1][/:backward/][!traffic_sign:backward][bicycle:backward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
-        # way[oneway=-1][/:forward/][!traffic_sign:forward][bicycle:forward!=use_sidepath][oneway:bicycle!=no][oneway:psv!=no]
+        # way[oneway=yes][/:backward/][!traffic_sign:backward][bicycle:backward!=use_sidepath][/^oneway:(bicycle|bus|mofa|moped|psv)$/!~/^no$/]
+        # way[oneway=yes][/:forward/][!traffic_sign:forward][bicycle:forward!=use_sidepath][/^oneway:(bicycle|bus|mofa|moped|psv)$/!~/^no$/]
+        # way[oneway=-1][/:backward/][!traffic_sign:backward][bicycle:backward!=use_sidepath][/^oneway:(bicycle|bus|mofa|moped|psv)$/!~/^no$/]
+        # way[oneway=-1][/:forward/][!traffic_sign:forward][bicycle:forward!=use_sidepath][/^oneway:(bicycle|bus|mofa|moped|psv)$/!~/^no$/]
         if ('actuator' in keys and 'handle' in keys) or ('amenity' in keys and 'shop' in keys) or ('frequency' in keys and 'power' in keys) or ('handle' in keys and 'mechanical_driver' in keys) or ('internet_access' in keys and 'internet_access:fee' in keys) or ('name' in keys and 'noname' in keys) or ('oneway' in keys) or ('power' in keys) or ('power' in keys and 'voltage' in keys):
             match = False
             if not match:
@@ -1979,26 +1981,26 @@ class Josm_combinations(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_7346b495)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:backward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (mapcss._tag_capture(capture_tags, 4, tags, 'oneway:bicycle') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway:psv') != mapcss._value_const_capture(capture_tags, 5, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_7346b495)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:backward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (not mapcss.regexp_test(self.re_19e33301, mapcss._match_regex(tags, self.re_22985ce9))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_12ce6b85)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:forward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (mapcss._tag_capture(capture_tags, 4, tags, 'oneway:bicycle') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway:psv') != mapcss._value_const_capture(capture_tags, 5, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, 'yes')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_12ce6b85)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:forward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (not mapcss.regexp_test(self.re_19e33301, mapcss._match_regex(tags, self.re_22985ce9))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, -1)) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_7346b495)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:backward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (mapcss._tag_capture(capture_tags, 4, tags, 'oneway:bicycle') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway:psv') != mapcss._value_const_capture(capture_tags, 5, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, -1)) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_7346b495)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:backward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:backward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (not mapcss.regexp_test(self.re_19e33301, mapcss._match_regex(tags, self.re_22985ce9))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, -1)) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_12ce6b85)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:forward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (mapcss._tag_capture(capture_tags, 4, tags, 'oneway:bicycle') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')) and (mapcss._tag_capture(capture_tags, 5, tags, 'oneway:psv') != mapcss._value_const_capture(capture_tags, 5, 'no', 'no')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'oneway') == mapcss._value_capture(capture_tags, 0, -1)) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_12ce6b85)) and (not mapcss._tag_capture(capture_tags, 2, tags, 'traffic_sign:forward')) and (mapcss._tag_capture(capture_tags, 3, tags, 'bicycle:forward') != mapcss._value_const_capture(capture_tags, 3, 'use_sidepath', 'use_sidepath')) and (not mapcss.regexp_test(self.re_19e33301, mapcss._match_regex(tags, self.re_22985ce9))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
                 # assertMatch:"way power=generator plant:source=combustion"
                 # assertMatch:"way power=plant generator:source=wind"
-                err.append({'class': 9001002, 'subclass': 1619970360, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001002, 'subclass': 1414319801, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[barrier=kerb][kerb=no]
         # way[highway=construction][construction=yes]
@@ -4427,8 +4429,8 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {'height': '4358\'8"', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
         self.check_err(n.node(data, {'height': '58', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
         self.check_not_err(n.node(data, {'height': '75.72', 'man_made': 'communications_tower'}), expected={'class': 9001002, 'subclass': 467978856})
-        self.check_err(n.way(data, {'plant:source': 'combustion', 'power': 'generator'}, [0]), expected={'class': 9001002, 'subclass': 1619970360})
-        self.check_err(n.way(data, {'generator:source': 'wind', 'power': 'plant'}, [0]), expected={'class': 9001002, 'subclass': 1619970360})
+        self.check_err(n.way(data, {'plant:source': 'combustion', 'power': 'generator'}, [0]), expected={'class': 9001002, 'subclass': 1414319801})
+        self.check_err(n.way(data, {'generator:source': 'wind', 'power': 'plant'}, [0]), expected={'class': 9001002, 'subclass': 1414319801})
         self.check_not_err(n.way(data, {'highway': 'primary', 'lanes': '2'}, [0]), expected={'class': 9001001, 'subclass': 1503842400})
         self.check_not_err(n.way(data, {'highway': 'primary', 'lanes': '3', 'lanes:backward': '2'}, [0]), expected={'class': 9001001, 'subclass': 1503842400})
         self.check_not_err(n.way(data, {'highway': 'primary', 'lanes': '3', 'oneway': '-1'}, [0]), expected={'class': 9001001, 'subclass': 1503842400})
