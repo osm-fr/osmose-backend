@@ -70,13 +70,13 @@ class Analyser_Merge_Public_Transport_FR_zou_06(Analyser_Merge):
                         "addr:city": lambda res: self.extract_name(res['stop_name'])[1],
                     },
                     text = lambda tags, fields: T_(f"{place} stop of {fields['stop_name']}")))
-            )
+        )
 
     def extract_name(self, stop_name):
         match = re.match(self.CITY_NAME_EXTRACT_REGEX, stop_name)
         if match:
             return match.group("stop") if not match.group("stop").isupper() else match.group("stop").title(),\
-                   self.replace(match.group("city"))
+                self.replace(match.group("city"))
         return stop_name.title(), None
 
 

@@ -65,7 +65,7 @@ class Analyser_Merge_Public_Transport_FR_envibus(Analyser_Merge):
                         "name": lambda res: self.replace(res['stop_name'].title()),
                     },
                     text = lambda tags, fields: T_(f"{place} stop of {fields['stop_name']}")))
-            )
+        )
 
 
     def replace(self, string):
