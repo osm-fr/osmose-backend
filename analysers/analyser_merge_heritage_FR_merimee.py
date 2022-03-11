@@ -89,10 +89,10 @@ World Heritage.'''))
                 attribution="Ministère de la Culture",
                 url="https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques",
                 filter=lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore')))),
-            Load("coordonnees_ban", "coordonnees_ban",
+            Load("coordonnees_finales", "coordonnees_finales",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
-                select = {"Date de Protection": True}),
+                select = {"Date de protection": True}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
@@ -108,7 +108,7 @@ World Heritage.'''))
                     static2 = {"source:heritage": self.source},
                     mapping1 = {
                         "ref:mhs": "Référence",
-                        "mhs:inscription_date": lambda res: parseDPRO(res["Date de Protection"]),
-                        "heritage": lambda res: 2 if res["Précision sur la Protection"] and "classement par arrêté" in res["Précision sur la Protection"] else 3 if res["Précision sur la Protection"] and "inscription par arrêté" in res["Précision sur la Protection"] else None},
+                        "mhs:inscription_date": lambda res: parseDPRO(res["Date de protection"]),
+                        "heritage": lambda res: 2 if res["Précision sur la protection"] and "classement par arrêté" in res["Précision sur la protection"] else 3 if res["Précision sur la protection"] and "inscription par arrêté" in res["Précision sur la protection"] else None},
                     mapping2 = {"name": lambda res: res["Appellation courante"] if res["Appellation courante"] not in BLACK_WORDS else None},
                     text = lambda tags, fields: T_("Historical monument: {0}", ", ".join(filter(lambda x: x, [fields["Date de Protection"], fields["Adresse"], fields["Commune"]]))) )))

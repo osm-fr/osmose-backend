@@ -42,7 +42,8 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 url="https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
                 attribution="data.gouv.fr:RTE")),
-            Load("Longitude poste (DD)", "Latitude poste (DD)"),
+            Load("Longitude poste (DD)", "Latitude poste (DD)",
+                select = {"Fonction": "POINT DE PIQUAGE"}),
             Conflate(
                 select = Select(
                     types = ["ways"],
@@ -58,7 +59,9 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                     static1 = {
                         "power": "substation",
                         "operator": "RTE"},
-                    static2 = {"source": self.source},
+                    static2 = {
+                        "source": self.source,
+                        "line_management": "branch"},
                     mapping1 = {
                         "ref:FR:RTE": "Code poste",
                         "ref:FR:RTE_nom": "Nom poste"},

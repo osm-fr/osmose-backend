@@ -53,6 +53,8 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     mapping2 = {"ref": lambda res: self.ref(res["libelle"])} )))
 
     def ref(self, libelle):
+        if not libelle:
+            return None
         if libelle.startswith("PN"):
             libelle = libelle[2:]
         libelle = libelle.strip()
