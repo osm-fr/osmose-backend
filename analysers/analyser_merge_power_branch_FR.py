@@ -60,5 +60,5 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "source": self.source,
                         "line_management": "branch"},
                     mapping1 = {
-                        "ref:FR:RTE": "Code poste",
+                        "ref:FR:RTE": "Code poste"},
                     text = lambda tags, fields: T_("Power branch of {0}", fields["Code poste"]))))
