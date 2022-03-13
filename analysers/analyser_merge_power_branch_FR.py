@@ -49,7 +49,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                     types = ["nodes"],
                     tags = [
                         {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": False},
-                        {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": "RTE"},
+                        {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": "RTE"}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 mapping = Mapping(
