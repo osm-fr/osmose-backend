@@ -48,7 +48,7 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = [
                         {"power": "substation", "substation": "minor_distribution"},
-                        {"power": None, "transformer": ["distribution", "main"},
+                        {"power": None, "transformer": ["distribution", "main"]},
                         {"power": "substation", "substation": "distribution"}]),
                 conflationDistance = 50,
                 mapping = Mapping(
