@@ -60,7 +60,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "power": "substation",
                         "operator": "RTE"},
                     static2 = {
-                        "source": self.source,
+                        "source": self.source},
                     mapping1 = {
                         "ref:FR:RTE": "Code poste",
                         "ref:FR:RTE_nom": "Nom poste"},
