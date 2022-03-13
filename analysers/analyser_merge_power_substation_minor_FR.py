@@ -28,10 +28,11 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8280, id = 11, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture'],
-            title = T_('Minor distribution power substation not integrated'),
-            detail = T ('A power substation that directly feeds consumers, known from operator, does not exist in OSM'))
+            title = T_('Minor distribution power substation missing in OSM'),
+            detail = T_('A power substation that directly feeds consumers, known from operator, does not exist in OSM.'))
         self.def_class_possible_merge(item = 8281, id = 13, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power minor_distribution substation, integration suggestion'))
+            title = T_('Power minor distribution substation, integration suggestion'),
+            detail = T_('This existing power substation can be integrated with official values.'))
 
         self.init(
             "https://opendata.agenceore.fr/explore/dataset/postes-de-distribution-publique-postes-htabt/",
