@@ -28,13 +28,17 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_osm(item = 7190, id = 2, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power substation without tag "ref:FR:RTE" or invalid'))
+            title = T_('Power substation is not known from operator'),
+            detail = T_('This existing power substation from OSM is not known to operator. It may have been destroyed or moved.'))
         self.def_class_possible_merge(item = 8281, id = 3, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power substation, integration suggestion'))
+            title = T_('Power substation, integration suggestion'),
+            detail = T_('This existing power substation can be integrated with official attributes.'))
         self.def_class_update_official(item = 8282, id = 4, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power substation update'))
+            title = T_('Power substation update'),
+            detail = T_('This existing power substation can be updated with following values.'))
         self.def_class_missing_official(item = 8280, id = 1, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture', 'fix:imagery'],
-            title = T_('Power substation not integrated'))
+            title = T_('Power substation missing in OSM or without tag "ref:FR:RTE"'),
+            detail = T_('This power substation is missing in OSM or lacks a national identifier known from operator.'))
 
         self.init(
             "https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
@@ -48,10 +52,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                 select = Select(
                     types = ["ways"],
                     tags = [
-                        {"power": "substation", "operator": False, "substation": False},
-                        {"power": "substation", "operator": False, "substation": ["transmission", "distribution", "industrial"]},
-                        {"power": "substation", "operator": "RTE", "substation": False},
-                        {"power": "substation", "operator": "RTE", "substation": ["transmission", "distribution", "industrial"]}]),
+                        {"power": "substation", "operator": [False, "RTE"], "substation": [False, "transmission", "distribution", "industrial"]}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 tag_keep_multiple_values = ["voltage"],
