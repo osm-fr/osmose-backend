@@ -1090,26 +1090,54 @@ msgstr "Attribut “direction” peut-être manquant sur un stop ou laissez-le-p
 msgid "Suspicious name for a container"
 msgstr "Nom suspect pour un container"
 
-#: ../analysers/analyser_merge_power_substation_FR.py:67
-#, python-format, python-brace-format
-msgid "Power substation of {0}"
-msgstr "Poste transformateur électrique de {0}"
-
-#: ../analysers/analyser_merge_power_substation_FR.py:37
-msgid "Power substation not integrated"
-msgstr "Poste transformateur électrique non intégré"
+#: ../analysers/analyser_merge_power_substation_FR.py:31
+msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
+msgstr "Poste électrique sans “ref:FR:RTE” ou incorrect"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:33
 msgid "Power substation, integration suggestion"
-msgstr "Poste transformateur électrique, intégration suggérée"
+msgstr "Poste électrique, intégration suggérée"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:35
 msgid "Power substation update"
-msgstr "Poste transformateur électrique mis à jour"
+msgstr "Poste électrique mis à jour"
+
+#: ../analysers/analyser_merge_power_substation_FR.py:37
+msgid "Power substation not integrated"
+msgstr "Poste électrique non intégré"
+
+#: ../analysers/analyser_merge_power_substation_FR.py:69
+#, python-format, python-brace-format
+msgid "Power substation of {0}"
+msgstr "Poste électrique de {0}"
+
+#: ../analysers/analyser_merge_power_branch_FR.py:31
+msgid "Power transmission branch without tag \"ref:FR:RTE\" or invalid"
+msgstr "Piquage transport électrique sans “ref:FR:RTE” ou incorrect"
+
+#: ../analysers/analyser_merge_power_branch_FR.py:33
+msgid "Power transmission branch, integration suggestion"
+msgstr "Piquage transport électrique, intégration suggérée"
+
+#: ../analysers/analyser_merge_power_branch_FR.py:35
+msgid "Power transmission branch update"
+msgstr "Piquage transport électrique mis à jour"
+
+#: ../analysers/analyser_merge_power_branch_FR.py:37
+msgid "Power transmission branch not integrated"
+msgstr "Piquage transport électrique non intégré"
+
+#: ../analysers/analyser_merge_power_branch_FR.py:64
+msgid "Power substation of {0}"
+msgstr "Piquage transport électrique de {0}"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support not integrated"
 msgstr "Support électrique non intégré"
+
+#: ../analysers/analyser_merge_power_tower_FR.py:33
+msgid "Power support without tag \"ref\" or invalid"
+msgstr "Support électrique sans “ref” ou incorrect"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:35
 msgid "Power support, integration suggestion"
@@ -1679,14 +1707,6 @@ msgstr "Boîte aux lettres sans attribut “ref” ou incorrect"
 #: ../analysers/analyser_merge_poste_FR.py:36
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
 msgstr "Bureau de poste sans attribut “ref:FR:LaPoste” ou incorrect"
-
-#: ../analysers/analyser_merge_power_substation_FR.py:31
-msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
-msgstr "Poste transformateur électrique sans “ref:FR:RTE” ou incorrect"
-
-#: ../analysers/analyser_merge_power_tower_FR.py:33
-msgid "Power support without tag \"ref\" or invalid"
-msgstr "Boîte aux lettres sans attribut “ref” ou incorrect"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:33
 msgid "Railway station without tag \"uic_ref\" or invalid"
