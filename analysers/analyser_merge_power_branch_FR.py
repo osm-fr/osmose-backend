@@ -27,13 +27,13 @@ from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Confl
 class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.def_class_missing_osm(item = 7190, id = 3, level = 3, tags = ['merge', 'power', 'fix:chair'],
+        self.def_class_missing_osm(item = 7190, id = 22, level = 3, tags = ['merge', 'power', 'fix:chair'],
             title = T_('Power transmission branch without tag "ref:FR:RTE" or invalid'))
-        self.def_class_possible_merge(item = 8281, id = 4, level = 3, tags = ['merge', 'power', 'fix:chair'],
+        self.def_class_possible_merge(item = 8281, id = 23, level = 3, tags = ['merge', 'power', 'fix:chair'],
             title = T_('Power transmission branch, integration suggestion'))
-        self.def_class_update_official(item = 8282, id = 5, level = 3, tags = ['merge', 'power', 'fix:chair'],
+        self.def_class_update_official(item = 8282, id = 24, level = 3, tags = ['merge', 'power', 'fix:chair'],
             title = T_('Power transmission branch update'))
-        self.def_class_missing_official(item = 8280, id = 2, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture', 'fix:imagery'],
+        self.def_class_missing_official(item = 8280, id = 21, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture', 'fix:imagery'],
             title = T_('Power transmission branch not integrated'))
 
         self.init(
