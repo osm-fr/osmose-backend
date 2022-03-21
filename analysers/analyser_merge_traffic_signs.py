@@ -95,12 +95,11 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     types = otype,
                     tags = selectTags),
                 conflationDistance = conflation,
-                subclass_hash = lambda fields: {'image_key': fields['image_key'], 'value': fields['value']},
+                subclass_hash = lambda fields: {'id': fields['id'], 'value': fields['value']},
                 mapping = Mapping(
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "mapillary": "image_key",
                         "survey:date": lambda res: res["last_seen_at"][0:10]},
                     text = lambda tags, fields:
                         T_('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
