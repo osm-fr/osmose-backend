@@ -38,28 +38,33 @@ class TagFix_Opening_Hours(Plugin):
         self.errors[32501] = self.def_class(item = 3250, level = 3, tags = ['value', 'fix:chair'],
             title = T_('Invalid Opening Hours'))
 
-    def sanitize_tags(self, tags):
-        if 'opening_hours' not in tags:
-            return
-
+    def sanitize_openinghours(self, openinghours_value):
         parser = OpeningHours()
-        parser.setExpression(tags['opening_hours'])
+        parser.setExpression(openinghours_value)
         if parser.error() == Error.SyntaxError or parser.error() == Error.IncompatibleMode:
-            return {"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}}
+            return {"isValid": False}
         sanitized_field = parser.normalizedExpression()
         # Ignore trivial changes that can be fixed by bots rather than humans like spaces, case errors, etc
         simplify = lambda s: s.replace(' ', '').replace('24:00', '00:00').replace('0', '').lower()
-        if simplify(sanitized_field) != simplify(tags['opening_hours']):
-            return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized_field}}
+        if simplify(sanitized_field) != simplify(openinghours_value):
+            return {"isValid": False, 'fix': sanitized_field}
+        return {"isValid": True}
 
     def node(self, data, tags):
-        return self.sanitize_tags(tags)
+        if 'opening_hours' not in tags:
+            return
+        sanitized = self.sanitize_openinghours(tags['opening_hours'])
+        if not sanitized['isValid']:
+            if "fix" in sanitized:
+                return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized['fix']}}
+            else:
+                return {"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}}
 
     def way(self, data, tags, nds):
-        return self.sanitize_tags(tags)
+        return self.node(data, tags)
 
     def relation(self, data, tags, members):
-        return self.sanitize_tags(tags)
+        return self.node(data, tags)
 
 
 ###########################################################################
