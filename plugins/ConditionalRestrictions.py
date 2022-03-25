@@ -152,8 +152,6 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             # For simplicity: ignore.
             continue
 
-          if not module_PyKOpeningHours:
-            continue
           for c in condition_ANDsplitted:
             # Validate time-based conditionals
             if self.isLikelyOpeningHourSyntax(c):
