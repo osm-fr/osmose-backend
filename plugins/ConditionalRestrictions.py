@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 import re
 from datetime import date
 from modules.Stablehash import stablehash64
-from plugins.TagFix_Opening_Hours import sanitize_openinghours
+from plugins.TagFix_Opening_Hours.TagFix_Opening_Hours import sanitize_openinghours
 
 class ConditionalRestrictions(Plugin):
   def init(self, logger):
