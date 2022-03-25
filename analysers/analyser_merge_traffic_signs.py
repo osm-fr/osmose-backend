@@ -21,6 +21,7 @@
 ###########################################################################
 
 import json
+from datetime import datetime
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import CSV, Load, Conflate, Select, Mapping
@@ -95,13 +96,12 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     types = otype,
                     tags = selectTags),
                 conflationDistance = conflation,
-                subclass_hash = lambda fields: {'image_key': fields['image_key'], 'value': fields['value']},
+                subclass_hash = lambda fields: {'id': fields['id'], 'value': fields['value']},
                 mapping = Mapping(
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "mapillary": "image_key",
                         "survey:date": lambda res: res["last_seen_at"][0:10]},
                     text = lambda tags, fields:
-                        T_('Observed between {0} and {1}', fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
-                        T_('Observed on {0}', fields["first_seen_at"][0:10]) )))
+                        T_('Observed between {0} and {1}', str(datetime.fromtimestamp(int(fields["first_seen_at"])))[0:10], str(datetime.fromtimestamp(int(fields["last_seen_at"])))[0:10]) if fields["first_seen_at"] != fields["last_seen_at"] else
+                        T_('Observed on {0}', str(datetime.fromtimestamp(int(fields["first_seen_at"])))[0:10]) )))

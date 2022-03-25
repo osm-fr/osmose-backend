@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2017                                      ##
+## Copyrights Frédéric Rodrigo 2022                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -28,7 +28,10 @@ from modules.PointInPolygon import PointInPolygon
 from modules import SourceVersion
 from modules import downloader
 from datetime import datetime, timedelta
-from math import ceil
+from vt2geojson.tools import vt_bytes_to_geojson # type: ignore
+from tiletanic import tilecover, tileschemes # type: ignore
+import pyproj
+from shapely.ops import transform
 
 
 class Source_Mapillary(Source):
@@ -49,6 +52,16 @@ class Source_Mapillary(Source):
     def open(self):
         return open(downloader.update_cache(self.fileUrl, 60, self.fetch))
 
+    def tile_generator(self, polygon, zoom=14):
+        wgs84 = pyproj.CRS('EPSG:4326')
+        webMarcator = pyproj.CRS('EPSG:3857')
+        project = pyproj.Transformer.from_crs(wgs84, webMarcator, always_xy=True).transform
+        polygon = transform(project, polygon)
+
+        tiler = tileschemes.WebMercator()
+        for t in tilecover.cover_geometry(tiler, polygon, zoom):
+            yield [t.z, t.x, t.y]
+
     def fetch(self, url, tmp_file, date_string=None):
         pip = PointInPolygon(self.polygon_id, 60)
 
@@ -61,48 +74,42 @@ class Source_Mapillary(Source):
             self.logger.err(row)
             raise
 
+        start_time = (datetime.today() - timedelta(days=365*2)).timestamp()
+        MLY_ACCESS_TOKEN = 'MLY|3804396159685239|c5712d0fb9ef5d4dfef585154b00ffa7'
+
         with open(tmp_file, 'w') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(['accuracy', 'direction', 'image_key', 'first_seen_at', 'last_seen_at', 'value', 'X', 'Y'])
+            writer.writerow(['id', 'first_seen_at', 'last_seen_at', 'value', 'X', 'Y'])
 
-        slice = lambda A, n: [A[i:i+n] for i in range(0, len(A), n)]
+            tiles = list(self.tile_generator(pip.polygon.polygon))
+            n_tiles = len(tiles)
+            for (n, [z, x, y]) in enumerate(tiles):
+                if n % 500 == 0:
+                    self.logger.log(f"{n} / {n_tiles}")
 
-        bboxes = pip.bboxes()
+                if self.layer == 'trafficsigns':
+                    url = f"https://tiles.mapillary.com/maps/vtp/mly_map_feature_traffic_sign/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
+                elif self.layer == 'points':
+                    url = f"https://tiles.mapillary.com/maps/vtp/mly_map_feature_point/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
 
-        start_time = (datetime.today() - timedelta(days=365*2)).isoformat()[0:10]
-        b = 0
-        for traffic_signs_ in slice(traffic_signs, 10):
-            b = b + 1
-            self.logger.log('Batch {0}/{1}: {2}'.format(b, ceil(len(traffic_signs) / 10.0), ','.join(traffic_signs_)))
-            for bbox in bboxes:
-                url = 'https://a.mapillary.com/v3/{source}?bbox={bbox}&client_id={client_id}&layers={layer}&per_page=1000&start_time={start_time}&values={values}&sort_by=key'.format(bbox=','.join(map(str, bbox)), source=self.source, layer=self.layer, client_id='MEpmMTFQclBTUWlacjV6RTUxWWMtZzo5OTc2NjY2MmRiMDUwYmMw', start_time=start_time, values=','.join(traffic_signs_))
-                self.logger.log(url)
-                with open(tmp_file, 'a') as csvfile:
-                    writer = csv.writer(csvfile)
+                r = downloader.get(url).content
+                # Tile on cache alternative
+                # r = downloader.urlopen(url, delay=60, mode='rb').read()
 
-                    r = None
-                    page = 0
-                    while(url):
-                        page = page + 1
-                        self.logger.log("Page {0}".format(page))
-                        r = downloader.get(url)
-                        url = r.links['next']['url'] if 'next' in r.links else None
+                if not r:
+                    continue
+                geojson = vt_bytes_to_geojson(r, x, y, z)
+                # {'type': 'FeatureCollection', 'features': [{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-109.24706518650055, 45.18212758443923]}, 'properties': {'first_seen_at': 1506796436000, 'id': 224422696115054, 'last_seen_at': 1506796436000, 'value': 'complementary--keep-left--g1'}}]}
 
-                        features = r.json()['features']
-                        filtered = 0
-                        self.logger.log('{0} features fetched'.format(len(features)))
-                        for j in features:
-                            p = j['properties']
-                            gc = j['geometry']['coordinates']
-                            if self.source == 'map_features':
-                                image_key = min(map(lambda d: d['image_key'], p['detections']))
-                                row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']]
-                            elif self.source == 'image_detections':
-                                image_key = p['key']
-                                row = [1, p['image_ca'], image_key, p['captured_at'], p['captured_at'], p['value']]
-                            if row[0] > 0.01 and pip.point_inside_polygon(gc[0], gc[1]):
-                                writer.writerow(row + gc)
-                                filtered = filtered + 1
-                        self.logger.log('{0} keeped'.format(filtered))
+                features = filter(lambda feature:
+                    feature['geometry']['type'] == 'Point' and
+                    feature['properties']['last_seen_at'] / 1000 > start_time and
+                    pip.point_inside_polygon(*feature['geometry']['coordinates']),
+                    geojson['features']
+                )
+                for feature in features:
+                    p = feature['properties']
+                    row = [p['id'], int(p['first_seen_at'] / 1000), int(p['last_seen_at'] / 1000), p['value']]
+                    writer.writerow(row + feature['geometry']['coordinates'])
 
         return True

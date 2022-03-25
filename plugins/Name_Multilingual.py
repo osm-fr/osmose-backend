@@ -185,7 +185,7 @@ class Name_Multilingual(Plugin):
         'fr': regex.compile(r"[{0}]".format(gen_regex(language2scripts['fr'])), flags=regex.V1),
         'ar': regex.compile(r"[{0}]".format(gen_regex(language2scripts['ar'])), flags=regex.V1),
         'zgh': regex.compile(r"[{0}]".format(gen_regex(language2scripts['zgh'])), flags=regex.V1),
-    }.items()
+    }
 
     def split_ma(self, name):
         return self.split_diff_alphabets(name, ['ar', 'fr', 'zgh'])
@@ -201,7 +201,8 @@ class Name_Multilingual(Plugin):
 
         for i, c in enumerate(name):
             if not self.char_common.match(c):
-                for (l, re) in self.char_ma:
+                for l in languages:
+                    re = self.char_ma[l]
                     if re.match(c):
                         if min_max[l]['min'] is None:
                             min_max[l]['min'] = i
