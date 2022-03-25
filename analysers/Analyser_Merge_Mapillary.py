@@ -103,13 +103,13 @@ class Source_Mapillary(Source):
 
                 features = filter(lambda feature:
                     feature['geometry']['type'] == 'Point' and
-                    feature['properties']['last_seen_at'] > start_time and
+                    feature['properties']['last_seen_at'] / 1000 > start_time and
                     pip.point_inside_polygon(*feature['geometry']['coordinates']),
                     geojson['features']
                 )
                 for feature in features:
                     p = feature['properties']
-                    row = [p['id'], p['first_seen_at'], p['last_seen_at'], p['value']]
+                    row = [p['id'], int(p['first_seen_at'] / 1000), int(p['last_seen_at'] / 1000), p['value']]
                     writer.writerow(row + feature['geometry']['coordinates'])
 
         return True
