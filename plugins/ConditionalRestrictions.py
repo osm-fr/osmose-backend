@@ -24,14 +24,7 @@ from plugins.Plugin import Plugin
 import re
 from datetime import date
 from modules.Stablehash import stablehash64
-
-try:
-  from PyKOpeningHours.PyKOpeningHours import OpeningHours, Error
-  module_PyKOpeningHours = True
-  from plugins.TagFix_Opening_Hours import sanitize_openinghours
-except ImportError as e:
-  print(e)
-  module_PyKOpeningHours = False
+from plugins.TagFix_Opening_Hours import sanitize_openinghours
 
 class ConditionalRestrictions(Plugin):
   def init(self, logger):
