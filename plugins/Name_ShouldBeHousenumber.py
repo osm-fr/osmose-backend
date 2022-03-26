@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2022                                      ##
+## Copyrights arrival-spring 2022                                        ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -37,15 +37,15 @@ and does not appear to have a main feature key.
 '''While uncommon, it is possible for a name to be only numbers.
  This is particularly the case for some brands or amenities.''')
         )
-        self.numerical = re.compile(r"^[0-9]+$")
+        self.Numerical = re.compile(r"^[0-9]+$")
         self.feature_keys = ["amenity", "craft", "emergency", "leisure", "military", "office", "railway", "shop", "tourism"]
 
     def node(self, data, tags):
         err = []
-        if u"building" in tags:
+        if "building" in tags:
             if not any(feature in tags for feature in self.feature_keys):
-                if u"name" in tags:
-                    if self.Numerical.match(tags[u"name"]):
+                if "name" in tags:
+                    if self.Numerical.match(tags["name"]):
                         err.append({"class": 804, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
         return err
 
@@ -63,15 +63,15 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_ShouldBeHousenumber(None)
         a.init(None)
-        for t in [{u"building": u"yes", u"name": "123"},
-                  {u"building": u"residential", u"name": "5"},
-                  {u"building": u"detached", u"name": "5637"},
+        for t in [{"building": "yes", "name": "123"},
+                  {"building": "residential", "name": "5"},
+                  {"building": "detached", "name": "5637"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
 
-        for t in [{u"building": u"yes", u"name": "12 Flats"},
-                  {u"building": u"yes", u"name": "21", u"shop": "yes"},
-                  {u"building": u"commercial", u"name": "1", u"office": "yes"},
+        for t in [{"building": "yes", "name": "12 Flats"},
+                  {"building": "yes", "name": "21", "shop": "yes"},
+                  {"building": "commercial", "name": "1", "office": "yes"},
                  ]:
             assert not a.node(None, t), t
