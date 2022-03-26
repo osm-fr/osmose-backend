@@ -43,7 +43,7 @@ and does not appear to have a main feature key.
     def node(self, data, tags):
         err = []
         if u"building" in tags:
-            if any(feature in tags for feature in self.feature_keys):
+            if not any(feature in tags for feature in self.feature_keys):
                 if u"name" in tags:
                     if self.Numerical.match(tags[u"name"]):
                         err.append({"class": 804, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
