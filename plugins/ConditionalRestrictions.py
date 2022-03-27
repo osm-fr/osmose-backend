@@ -39,7 +39,7 @@ class ConditionalRestrictions(Plugin):
     self.ReWeekdayMonthOpeningH = re.compile(r'\b[A-Z][a-z]') # i.e. Mar or Mo
     self.ReMonthDayOpeningH = re.compile(r'\w\w\w[\s-]\d') # i.e. sep 1
     self.ReTimeOpeningH = re.compile(r'\d\D[\d-]|sun[sr][ei][ts]') # i.e. 5:30 or 5h30 or 5h-8h
-    
+
     OHplugin = TagFix_Opening_Hours(None)
     self.sanitize_openinghours = OHplugin.sanitize_openinghours
 
@@ -158,7 +158,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
           for c in condition_ANDsplitted:
             # Validate time-based conditionals
             if self.isLikelyOpeningHourSyntax(c):
-              sanitized = self.sanitize_openinghours(None, c)
+              sanitized = self.sanitize_openinghours(c)
               if not sanitized['isValid']:
                 if "fix" in sanitized:
                   err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
