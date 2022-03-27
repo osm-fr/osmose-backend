@@ -38,7 +38,10 @@ class TagFix_Opening_Hours(Plugin):
         self.errors[32501] = self.def_class(item = 3250, level = 3, tags = ['value', 'fix:chair'],
             title = T_('Invalid Opening Hours'))
 
+    # Function is also called from ConditionalRestrictions
     def sanitize_openinghours(self, openinghours_value):
+        if not module_PyKOpeningHours:
+            return
         parser = OpeningHours()
         parser.setExpression(openinghours_value)
         if parser.error() == Error.SyntaxError or parser.error() == Error.IncompatibleMode:
