@@ -32,7 +32,9 @@ class Name_ShouldBeHousenumber(Plugin):
             detail = T_(
 '''This building is tagged with a name which contains only numbers
 and does not appear to have a main feature key.
- For the majority of buildings this should be tagged as the housenumber.'''),
+For the majority of buildings this should be tagged with `addr:housenumber`.'''),
+            fix = T_(
+'''Change the name key to `addr:housenumber` (if it is not already present and is not different).'''),
             trap = T_(
 '''While uncommon, it is possible for a name to be only numbers.
  This is particularly the case for some brands or amenities.''')
@@ -46,7 +48,9 @@ and does not appear to have a main feature key.
             if not any(feature in tags for feature in self.feature_keys):
                 if "name" in tags:
                     if self.Numerical.match(tags["name"]):
-                        err.append({"class": 804, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
+                        err.append({"class": 804,
+                            "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])),
+                            "fix": [{"+": {"addr:housenumber": tags["name"]}}, {"-": ["name"]}]})
         return err
 
     def way(self, data, tags, nds):
