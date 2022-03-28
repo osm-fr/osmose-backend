@@ -161,10 +161,15 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
               sanitized = self.sanitize_openinghours(c)
               if not sanitized['isValid']:
                 if "fix" in sanitized:
+                  # Note: contains both invalid as optimizable cases
+                  # i.e. Monday 08:00-20:00 -> Mo 08:00-20:00 (invalid -> valid)
+                  # but also 2022 Mar 01 - 2022 Nov 02 -> 2022 Mar 01 - Nov 02 (valid -> better & valid)
+                  # Hence, don't set bad tag; allow i.e. expired conditionals to be found
                   err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
                 else:
+                  # Only invalid cases
                   err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\"", c, tag)})
-                bad_tag = True
+                  bad_tag = True
                 break
             else:
               # Validate vehicle property comparisons
@@ -246,7 +251,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (2098 May 22-2099 Oct 7)"},
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 7)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                  ]:
