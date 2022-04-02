@@ -31,10 +31,10 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
             title = T_('{0} toilets not integrated', 'Le Havre'))
 
         self.init(
-            u"https://data.agglo-lehavre.fr/",
-            u"Toilettes publiques",
-            GeoJSON(Source(attribution = u"Ville du Havre", millesime = "12/2017",
-                    fileUrl = u"https://data.agglo-lehavre.fr/api/v1/file/data/159/SANITAIRE/json", zip = "OD.SANITAIRE.json"),
+            'https://data.lehavreseinemetropole.fr',
+            'Sanitaires publics',
+            GeoJSON(Source(attribution = 'Ville du Havre', millesime = '04/2022',
+                    fileUrl ='https://data.lehavreseinemetropole.fr/api/v1/file/data/159/SANITAIRE/json', zip = 'OD.SANITAIRE.json'),
                 extractor = lambda geojson: geojson),
             Load("geom_x", "geom_y",
                 srid = 3950),
