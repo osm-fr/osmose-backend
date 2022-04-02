@@ -36,7 +36,7 @@ class ConditionalRestrictions(Plugin):
     self.currentYear = date.today().year
     self.comparisonOperatorChars = ["<", "=", ">"]
     # Following regex are to detect likely (possibly misspelled) opening_hours syntaxes
-    self.ReWeekdayMonthOpeningH = re.compile(r'\b[A-Z][a-z]') # i.e. Mar or Mo
+    self.ReWeekdayMonthOpeningH = re.compile(r'\b[A-Z][a-z]+') # i.e. Mar or Mo
     self.ReMonthDayOpeningH = re.compile(r'\w\w\w[\s-]\d') # i.e. sep 1
     self.ReTimeOpeningH = re.compile(r'\d\D[\d-]|sun[sr][ei][ts]') # i.e. 5:30 or 5h30 or 5h-8h
 
@@ -202,18 +202,20 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
 
   def isLikelyOpeningHourSyntax(self, condition):
     # Use a scoring system to determine the likelyness of the condition being time/date based
-    # Not perfect, i.e. 'Mar' and '24/7' will fall through (and bad cases like JAN-APR are thus also not detected)
+    # Not perfect, i.e. 'Mar' will fall through (and bad cases like JAN-APR are thus also not detected)
+    if condition == r"24/7":
+      return True
     if len(condition) < 5:
       return False # wet, snow, ..., not a time range
     score = 0
-    treshold = 3
+    threshold = 3
     for s in [",", "[", "-", "+", "/"]:
       if s in condition:
         score += 1 # characters not found in many other types of conditionals
     for s in self.comparisonOperatorChars:
       if s in condition:
         score -= 1 # weight < 25 or so, no meaning in date/time-based conditionals
-    if score >= treshold:
+    if score >= threshold:
       return True
     if score < 0:
       return False
@@ -223,7 +225,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
         score += 1
       elif m and len(m) > 1:
         score += 2
-      if score >= treshold:
+      if score >= threshold:
         return True
     return False
 

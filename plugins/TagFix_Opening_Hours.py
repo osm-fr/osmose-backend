@@ -61,7 +61,7 @@ class TagFix_Opening_Hours(Plugin):
             if "fix" in sanitized:
                 return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized['fix']}}
             else:
-                return {"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}}
+                return {"class": 32501, "subclass": 1, 'text': T_("The `opening_hours` value is invalid and could not be parsed")}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
