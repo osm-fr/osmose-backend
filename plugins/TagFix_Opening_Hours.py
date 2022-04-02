@@ -83,8 +83,8 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {'opening_hours': 'Monday to Friday 8:00AM to 4:30PM'}), expected={"class": 32501, "subclass": 0, 'fix': {'opening_hours': 'Mo-Fr 08:00-16:30'}})
 
         # These return a parse error
-        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00"'}), expected={"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}})
-        self.check_err(a.node(None, {'opening_hours': '09:00-21:00 TEL/072(360)3200'}), expected={"class": 32501, "subclass": 1, 'text': {'en': 'The opening_hours value is invalid and could not be parsed'}})
+        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00"'}), expected={"class": 32501, "subclass": 1, 'text': T_("The `opening_hours` value is invalid and could not be parsed")})
+        self.check_err(a.node(None, {'opening_hours': '09:00-21:00 TEL/072(360)3200'}), expected={"class": 32501, "subclass": 1, 'text': T_("The `opening_hours` value is invalid and could not be parsed")})
 
         # These are OK, no suggestion
         assert not a.node(None, {'opening_hours': 'Mo-Fr 10:00-19:00'})
