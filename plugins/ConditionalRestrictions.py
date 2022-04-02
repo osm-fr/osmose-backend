@@ -253,18 +253,18 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
-                  {"highway": "residential", "access:conditional": "no @ (2098 May 22-2099 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07)"},
+                  {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
 
         # Expired conditionals
         for t in [{"highway": "residential", "access:forward:conditional": "no @ 2020"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); delivery @ 2099"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); destination @ (length < 4)"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7 AND weight > 5)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07); delivery @ 2099"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07); destination @ (length < 4)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07 AND weight > 5)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
@@ -296,14 +296,14 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "yes @ ()"},
                   {"highway": "residential", "access:conditional": "yes @"},
                   {"highway": "residential", "access:conditional": "@ wet"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 7 AND); delivery @ wet"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 07)"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 07 AND); delivery @ wet"},
                   {"highway": "residential", "maxweight:conditional": "27000 lbs (axles=2); 41400 lbs @ (axles=3); 48600 lbs @ (axles>=4)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
         # Optimizable, yet valid conditions
-        for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 7"},
+        for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 07"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ snow"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ (20:00-22:00)"},
                  ]:
