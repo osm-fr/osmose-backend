@@ -25,7 +25,8 @@ import regex as re
 
 # Whitelist of allowed capitals by country code
 UpperCase_WhiteList = {
-    "FR": ["CNFPT", "COSEC", "EHPAD", "MACIF", "MEDEF", "URSSAF"]
+    "FR": ["CNFPT", "COSEC", "EHPAD", "MACIF", "MEDEF", "URSSAF"],
+    "ES": ["FREMAP"],
 }
 
 class Name_UpperCase(Plugin):
