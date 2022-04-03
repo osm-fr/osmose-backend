@@ -30,7 +30,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8270, id = 1, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:imagery'],
-            title = T_('Power plant is missing in OSM, geocoded here at municipality level'))
+            title = T_('Power plant not integrated, geocoded at municipality level'))
 
         self.init(
             "https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
