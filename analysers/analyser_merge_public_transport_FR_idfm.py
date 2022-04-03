@@ -25,13 +25,13 @@ from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Confl
 
 
 class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge):
-    def __init__(self, config, logger, clas, conflationDistance, select, osmTags, defaultTag):
+    def __init__(self, config, logger, clas, conflationDistance, select, osmTags, defaultTag, label):
         Analyser_Merge.__init__(self, config, logger)
         place = "IdFM"
         self.def_class_missing_official(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport', 'fix:survey', 'fix:picture'],
-            title = T_('{0} stop not integrated', place))
+            title = T_('{0} from {1} not integrated', label, place))
         self.def_class_possible_merge(item = 8041, id = 3+10*clas, level = 3, tags = ['merge', 'railway', 'public transport', 'fix:chair'],
-            title = T_('{0} stop, integration suggestion', place))
+            title = T_('{0} from {1}, integration suggestion', label, place))
 
         self.init(
             "https://data.iledefrance-mobilites.fr/explore/dataset/referentiel-arret-tc-idf",
@@ -57,16 +57,16 @@ class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge):
 
 class Analyser_Merge_IdFM_Bus(_Analyser_Merge_Public_Transport_FR_IdFM):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 3, 100, "Arrêt de bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "platform", "bus": "yes"})
+        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 3, 100, "Arrêt de bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "platform", "bus": "yes"}, "Arrêt de bus")
 
 class Analyser_Merge_IdFM_Metro(_Analyser_Merge_Public_Transport_FR_IdFM):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 0, 200, "Station de métro", {"railway": "station"}, {"railway": "station"})
+        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 0, 200, "Station de métro", {"railway": "platform"}, {"railway": "platform"}, "Quai de métro")
 
 class Analyser_Merge_IdFM_Train(_Analyser_Merge_Public_Transport_FR_IdFM):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 1, 500, "Station ferrée / Val", {"railway": "station"}, {"railway": "station"})
+        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 1, 500, "Station ferrée / Val", {"railway": "platform"}, {"railway": "platform"}, "Quai de RER ou Transilien")
 
 class Analyser_Merge_IdFM_Tram(_Analyser_Merge_Public_Transport_FR_IdFM):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 2, 100, "Arrêt de tram", {"railway": "tram_stop"}, {"railway": "tram_stop", "public_transport": "platform", "tram": "yes"})
+        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 2, 100, "Arrêt de tram", {"railway": "platform"}, {"public_transport": "platform", "tram": "yes"}, "Quai de tram")
