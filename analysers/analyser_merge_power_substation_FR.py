@@ -34,8 +34,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
         self.def_class_update_official(item = 8282, id = 4, level = 3, tags = ['merge', 'power', 'fix:chair'],
             title = T_('Power substation update'))
         self.def_class_missing_official(item = 8280, id = 1, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture', 'fix:imagery'],
-            title = T_('Power substation missing in OSM or without tag "ref:FR:RTE"'),
-            detail = T_('This power substation is missing in OSM or lacks a national identifier known from operator.'))
+            title = T_('Power substation missing in OSM or without tag "ref:FR:RTE"'))
 
         self.init(
             "https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
