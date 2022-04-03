@@ -24,7 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
+class Analyser_Merge_Power_Branch_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_osm(item = 7190, id = 22, level = 3, tags = ['merge', 'power', 'fix:chair'],
