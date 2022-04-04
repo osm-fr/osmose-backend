@@ -28,16 +28,18 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.def_class_missing_official(item = 8280, id = 11, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:picture'],
-            title = T_('Power minor_distribution substation not integrated'))
+            title = T_('Minor distribution power substation missing in OSM'),
+            detail = T_('A power substation that directly feeds consumers, known from operator, does not exist in OSM.'))
         self.def_class_possible_merge(item = 8281, id = 13, level = 3, tags = ['merge', 'power', 'fix:chair'],
-            title = T_('Power minor_distribution substation, integration suggestion'))
+            title = T_('Power minor distribution substation, integration suggestion'),
+            detail = T_('This existing power substation can be integrated with official values.'))
 
         self.init(
-            "https://data.enedis.fr/explore/dataset/poste-electrique/",
+            "https://opendata.agenceore.fr/explore/dataset/postes-de-distribution-publique-postes-htabt/",
             "Postes HTA/BT",
             CSV(SourceOpenDataSoft(
-                attribution="Enedis",
-                url="https://data.enedis.fr/explore/dataset/poste-electrique")),
+                attribution="Exploitants contributeurs de l'Agence ORE",
+                url="https://opendata.agenceore.fr/explore/dataset/postes-de-distribution-publique-postes-htabt/")),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
@@ -45,16 +47,18 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = [
-                        {"power": "substation", "substation": "minor_distribution", "operator": [False, "EDF", "ERDF", "Enedis"]},
-                        {"power": None, "transformer": "distribution", "operator": [False, "EDF", "ERDF", "Enedis"]},
-                        {"power": "substation", "substation": "distribution", "operator": [False, "EDF", "ERDF", "Enedis"]}]),
+                        {"power": "substation", "substation": "minor_distribution"},
+                        {"power": None, "transformer": ["distribution", "main"]},
+                        {"power": "substation", "substation": "distribution"}]),
                 conflationDistance = 50,
                 mapping = Mapping(
                     static1 = {
                         "power": "substation",
-                        "voltage": "20000",
-                        "operator": "Enedis"},
+                        "voltage": "20000"},
                     static2 = {
-                        "substation": "minor_distribution",
-                        "source": self.source},
+                        "substation": "minor_distribution"},
+                    mapping2 = {
+                        "operator": "NOM_GRD",
+                        "source": lambda fields: self.source + " - " + fields["NOM_GRD"],
+                        "name": lambda fields: fields["NOM_POSTE"] if fields["NOM_POSTE"] not in ("") else None},
                 )))
