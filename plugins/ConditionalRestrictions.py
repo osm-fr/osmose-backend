@@ -24,14 +24,24 @@ from plugins.Plugin import Plugin
 import re
 from datetime import date
 from modules.Stablehash import stablehash64
+from plugins.TagFix_Opening_Hours import TagFix_Opening_Hours
 
 class ConditionalRestrictions(Plugin):
   def init(self, logger):
     Plugin.init(self, logger)
 
-    self.ReYear = re.compile(r'20\d\d') # Update in 2099
+    self.ReYear = re.compile(r'\b20\d\d\b') # Update in 2099
     self.ReSimpleCondition = re.compile(r'^\w+$', re.ASCII)
+    self.ReAND = re.compile(r'\band\b', re.IGNORECASE)
     self.currentYear = date.today().year
+    self.comparisonOperatorChars = ["<", "=", ">"]
+    # Following regex are to detect likely (possibly misspelled) opening_hours syntaxes
+    self.ReWeekdayMonthOpeningH = re.compile(r'\b[A-Z][a-z]+') # i.e. Mar or Mo
+    self.ReMonthDayOpeningH = re.compile(r'\w\w\w[\s-]\d') # i.e. sep 1
+    self.ReTimeOpeningH = re.compile(r'\d\D[\d-]|sun[sr][ei][ts]') # i.e. 5:30 or 5h30 or 5h-8h
+
+    OHplugin = TagFix_Opening_Hours(None)
+    self.sanitize_openinghours = OHplugin.sanitize_openinghours
 
     self.errors[33501] = self.def_class(item = 3350, level = 2, tags = ['highway', 'fix:chair'],
         title = T_('Bad conditional restriction'),
@@ -52,6 +62,9 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
         title = T_('Expired conditional'),
         detail = T_('''This conditional was only valid up to a date in the past. It can likely be removed.'''),
         trap = T_('''Other tags might need to be updated too to reflect the new situation.'''))
+    self.errors[33504] = self.def_class(item = 3350, level = 3, tags = ['highway', 'fix:chair'],
+        title = T_('Invalid date/time span'),
+        detail = T_('''A date/time-based condition is invalid or poorly formatted. Time-based conditions of a conditional restriction use the same syntax as the key `opening_hours`.'''))
 
   def way(self, data, tags, nds):
     # Get the relevant tags with *:conditional
@@ -128,16 +141,37 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
           err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses in \"{0}\"", tag)})
           continue
 
-      # Check the position of AND is ok
       if not bad_tag:
         for condition in conditions:
-          tmp_cond = " " + condition.replace(" ", "  ") + " "
-          tmp_ANDsplitted = tmp_cond.upper().split(" AND ")
-          for splittedANDpart in tmp_ANDsplitted:
-            if len(splittedANDpart.strip()) == 0:
-              err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
-              bad_tag = True
-              break
+          condition_ANDsplitted = list(map(str.strip, self.ReAND.split(condition)))
+          # Check the position of AND is ok
+          if "" in condition_ANDsplitted:
+            err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
+            bad_tag = True
+            break
+
+          if len(condition_ANDsplitted) != condition.count("AND") + 1:
+            # Likely lower/mixed case 'AND' used. Might also be a opening_hours fallback rule
+            # For simplicity: ignore.
+            continue
+
+          for c in condition_ANDsplitted:
+            # Validate time-based conditionals
+            if self.isLikelyOpeningHourSyntax(c):
+              sanitized = self.sanitize_openinghours(c)
+              if not sanitized['isValid']:
+                if "fix" in sanitized:
+                  err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
+                else:
+                  err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\"", c, tag)})
+                bad_tag = True
+                break
+            else:
+              # Validate vehicle property comparisons
+              if c[0] in self.comparisonOperatorChars or c[-1] in self.comparisonOperatorChars:
+                err.append({"class": 33501, "subclass": 5 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Unexpected <, = or > in \"{0}\"", tag)})
+                bad_tag = True
+                break
 
       if bad_tag:
         continue
@@ -160,6 +194,35 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
 
     if err != []:
       return err
+
+  def isLikelyOpeningHourSyntax(self, condition):
+    # Use a scoring system to determine the likelyness of the condition being time/date based
+    # Not perfect, i.e. 'Mar' will fall through (and bad cases like JAN-APR are thus also not detected)
+    if condition == r"24/7":
+      return True
+    if len(condition) < 5:
+      return False # wet, snow, ..., not a time range
+    score = 0
+    threshold = 3
+    for s in [",", "[", "-", "+", "/"]:
+      if s in condition:
+        score += 1 # characters not found in many other types of conditionals
+    for s in self.comparisonOperatorChars:
+      if s in condition:
+        score -= 1 # weight < 25 or so, no meaning in date/time-based conditionals
+    if score >= threshold:
+      return True
+    if score < 0:
+      return False
+    for r in [self.ReYear, self.ReWeekdayMonthOpeningH, self.ReTimeOpeningH, self.ReMonthDayOpeningH]:
+      m = r.findall(condition)
+      if m and len(m) == 1:
+        score += 1
+      elif m and len(m) > 1:
+        score += 2
+      if score >= threshold:
+        return True
+    return False
 
   def node(self, data, tags):
     return self.way(data, tags, None)
@@ -184,18 +247,32 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:forward:conditional": "delivery @ (Mo-Fr 06:00-11:00,17:00-19:00;Sa 03:30-19:00)"},
                   {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
                   {"highway": "residential", "access:conditional": "no @ 2099"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 7)"},
+                  {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
+                  #{"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07)"}, #https://bugs.kde.org/show_bug.cgi?id=452236
+                  {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
 
         # Expired conditionals
         for t in [{"highway": "residential", "access:forward:conditional": "no @ 2020"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); delivery @ 2099"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7); destination @ (length < 4)"},
-                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 7 AND weight > 5)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07); delivery @ 2099"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07); destination @ (length < 4)"},
+                  {"highway": "residential", "access:conditional": "no @ (2018 May 22-2020 Oct 07 AND weight > 5)"},
+                 ]:
+          assert a.way(None, t, None), a.way(None, t, None)
+
+        # Invalid or suboptimal conditions in conditionals
+        for t in [{"highway": "residential", "access:conditional": "no @ (weight >)"},
+                  {"highway": "residential", "access:conditional": "no @ (foggy AND weight <= AND wet); destination @ snow"},
+                  {"highway": "residential", "access:conditional": "no @ (2098-05-22 - 2099-10-7)"},
+                  {"highway": "residential", "access:conditional": "no @ (22 mei 2099 - 07 okt 2099)"},
+                  #{"highway": "residential", "access:conditional": "no @ (JUL 01-JAN 31)"}, #disabled as TagFix_Opening_Hours calls lower()
+                  {"highway": "residential", "access:conditional": "no @ (6h00-19h00)"},
+                  {"highway": "residential", "access:conditional": "no @ (Ma-Vr 18:00-20:00); destination @ (length < 4)"},
+                  {"highway": "residential", "access:conditional": "no @ (Mei 22 - Okt 7 AND weight > 5)"},
+                  {"highway": "residential", "access:conditional": "no @ (weight > 5 AND mei 22 - okt 7)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
@@ -214,14 +291,14 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "yes @ ()"},
                   {"highway": "residential", "access:conditional": "yes @"},
                   {"highway": "residential", "access:conditional": "@ wet"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 7)"},
-                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 7 AND); delivery @ wet"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 07)"},
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 07 AND); delivery @ wet"},
                   {"highway": "residential", "maxweight:conditional": "27000 lbs (axles=2); 41400 lbs @ (axles=3); 48600 lbs @ (axles>=4)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
         # Optimizable, yet valid conditions
-        for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 7"},
+        for t in [{"highway": "residential", "access:conditional": "no @ 2099 May 22-2099 Oct 07"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ snow"},
                     {"highway": "residential", "access:conditional": "no @ wet; no @ (20:00-22:00)"},
                  ]:
