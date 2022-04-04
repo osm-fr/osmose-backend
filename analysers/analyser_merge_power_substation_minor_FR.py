@@ -59,6 +59,6 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
                         "substation": "minor_distribution"},
                     mapping2 = {
                         "operator": "NOM_GRD",
-                        "source": lambda fields: self.source+"/"+fields["NOM_GRD"],
+                        "source": lambda fields: self.source + " - " + fields["NOM_GRD"],
                         "name": lambda fields: fields["NOM_POSTE"] if fields["NOM_POSTE"] not in ("") else None},
                 )))
