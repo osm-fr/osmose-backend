@@ -48,7 +48,7 @@ class TagFix_Opening_Hours(Plugin):
             return {"isValid": False}
         sanitized_field = parser.normalizedExpression()
         # Ignore trivial changes that can be fixed by bots rather than humans like spaces, case errors, etc
-        simplify = lambda s: s.replace(' ', '').replace('24:00', '00:00').replace('0', '').lower()
+        simplify = lambda s: s.replace(' ', '').replace('24:00', '00:00').replace('0', '')
         if simplify(sanitized_field) != simplify(openinghours_value):
             return {"isValid": False, 'fix': sanitized_field}
         return {"isValid": True}
