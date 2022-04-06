@@ -248,7 +248,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
-                  #{"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07)"}, #https://bugs.kde.org/show_bug.cgi?id=452236
+                  #{"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07)"}, # https://bugs.kde.org/show_bug.cgi?id=452236
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                  ]:
@@ -263,12 +263,12 @@ class Test(TestPluginCommon):
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
-        # Invalid or suboptimal conditions in conditionals
+        # Invalid conditions in conditionals
         for t in [{"highway": "residential", "access:conditional": "no @ (weight >)"},
                   {"highway": "residential", "access:conditional": "no @ (foggy AND weight <= AND wet); destination @ snow"},
                   {"highway": "residential", "access:conditional": "no @ (2098-05-22 - 2099-10-7)"},
                   {"highway": "residential", "access:conditional": "no @ (22 mei 2099 - 07 okt 2099)"},
-                  #{"highway": "residential", "access:conditional": "no @ (JUL 01-JAN 31)"}, #disabled as TagFix_Opening_Hours calls lower()
+                  {"highway": "residential", "access:conditional": "no @ (JUL 01-JAN 31)"},
                   {"highway": "residential", "access:conditional": "no @ (6h00-19h00)"},
                   {"highway": "residential", "access:conditional": "no @ (Ma-Vr 18:00-20:00); destination @ (length < 4)"},
                   {"highway": "residential", "access:conditional": "no @ (Mei 22 - Okt 7 AND weight > 5)"},
