@@ -146,9 +146,9 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
           condition_ANDsplitted = list(map(str.strip, self.ReAND.split(condition)))
           # Check the position of AND is ok
           if "" in condition_ANDsplitted:
-            err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
+            err.append({"class": 33501, "subclass": 4 + stablehash64(tag + '|' + tag_value + '|' + condition), "text": T_("Missing condition before or after AND combinator in \"{0}\"", tag)})
             bad_tag = True
-            break
+            continue
 
           if len(condition_ANDsplitted) != condition.count("AND") + 1:
             # Likely lower/mixed case 'AND' used. Might also be a opening_hours fallback rule
