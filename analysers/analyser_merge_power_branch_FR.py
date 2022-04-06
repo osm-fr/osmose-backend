@@ -48,8 +48,7 @@ class Analyser_Merge_Power_Branch_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = [
-                        {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": False},
-                        {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": "RTE"}]),
+                        {"power": ["tower", "pole", "portal", "insulator", "connection"], "operator": "RTE", "line_management":{"regex":"(^|\(|\|)branch(\||\)|$)"}}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 mapping = Mapping(
