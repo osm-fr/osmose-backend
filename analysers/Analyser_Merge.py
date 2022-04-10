@@ -1195,6 +1195,11 @@ OpenData and OSM.'''))
             self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
 
+        self.giscurs.execute(f"SELECT COUNT(*) FROM {table}")
+        count_official = self.giscurs.fetchone()[0]
+        self.giscurs.execute("SELECT COUNT(*) FROM osm_item")
+        count_osm = self.giscurs.fetchone()[0]
+
         joinClause = []
         if self.conflate.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
@@ -1207,35 +1212,54 @@ OpenData and OSM.'''))
         # Missing official
         self.run(sql10.format(official = table, joinClause = joinClause))
         self.run(sql11)
+        count_missing_official = None
         if self.missing_official:
-            self.run(sql12, lambda res: {
-                "class": self.missing_official['id'],
-                "subclass": str(stablehash64("{0}{1}{2}".format(
-                    res[0], res[1],
-                    sorted(self.conflate.subclass_hash(res[3]).items())) )),
-                "self": lambda r: [0]+r[1:],
-                "data": [self.node_new, self.positionAsText],
-                "text": self.conflate.mapping.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-                "fix": self.passTags(res[2]) if self.conflate.missing_official_fix and res[2] != {} else None,
-            } )
+            count_missing_official = 0
+            def ret(res):
+                nonlocal count_missing_official
+                count_missing_official = count_missing_official + 1
+                return {
+                    "class": self.missing_official['id'],
+                    "subclass": str(stablehash64("{0}{1}{2}".format(
+                        res[0], res[1],
+                        sorted(self.conflate.subclass_hash(res[3]).items())) )),
+                    "self": lambda r: [0]+r[1:],
+                    "data": [self.node_new, self.positionAsText],
+                    "text": self.conflate.mapping.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
+                    "fix": self.passTags(res[2]) if self.conflate.missing_official_fix and res[2] != {} else None,
+                }
+            self.run(sql12, ret)
 
+        count_missing_osm = None
+        count_invalid_osm_ref = None
         if self.conflate.osmRef != "NULL":
             self.run(sql20.format(official = table, joinClause = joinClause))
             self.run(sql21)
             if self.missing_osm:
                 # Missing OSM
-                self.run(sql22, lambda res: {
-                    "class": self.missing_osm['id'],
-                    "data": [self.typeMapping[res[1]], None, self.positionAsText]
-                } )
+                count_missing_osm = 0
+                def ret_missing(res):
+                    nonlocal count_missing_osm
+                    count_missing_osm = count_missing_osm + 1
+                    return {
+                        "class": self.missing_osm['id'],
+                        "data": [self.typeMapping[res[1]], None, self.positionAsText]
+                    }
+                self.run(sql22, ret_missing)
                 # Invalid OSM
-                self.run(sql23.format(official = table, joinClause = joinClause), lambda res: {
-                    "class": self.missing_osm['id'],
-                    "subclass": str(stablehash64(res[5])) if self.conflate.osmRef != "NULL" else None,
-                    "data": [self.typeMapping[res[1]], None, self.positionAsText]
-                } )
+                count_invalid_osm_ref = 0
+                def ret_invalid(res):
+                    nonlocal count_invalid_osm_ref
+                    count_invalid_osm_ref = count_invalid_osm_ref + 1
+                    return {
+                        "class": self.missing_osm['id'],
+                        "subclass": str(stablehash64(res[5])) if self.conflate.osmRef != "NULL" else None,
+                        "data": [self.typeMapping[res[1]], None, self.positionAsText]
+                    }
+                self.run(sql23.format(official = table, joinClause = joinClause), ret_invalid)
 
             # Possible merge
+            count_possible_merge = None
             if self.possible_merge:
                 possible_merge_joinClause = []
                 possible_merge_orderBy = ""
@@ -1245,15 +1269,20 @@ OpenData and OSM.'''))
                 if self.conflate.extraJoin:
                     possible_merge_joinClause.append("missing_official.tags->'{tag}' = missing_osm.tags->'{tag}'".format(tag=self.conflate.extraJoin))
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
-                self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy), lambda res: {
-                    "class": self.possible_merge['id'],
-                    "subclass": str(stablehash64("{0}{1}".format(
-                        res[0],
-                        sorted(self.conflate.subclass_hash(res[3]).items())) )),
-                    "data": [self.typeMapping[res[1]], None, self.positionAsText],
-                    "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                    "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
-                } )
+                count_possible_merge = 0
+                def ret(res):
+                    nonlocal count_possible_merge
+                    count_possible_merge = count_possible_merge + 1
+                    return {
+                        "class": self.possible_merge['id'],
+                        "subclass": str(stablehash64("{0}{1}".format(
+                            res[0],
+                            sorted(self.conflate.subclass_hash(res[3]).items())) )),
+                        "data": [self.typeMapping[res[1]], None, self.positionAsText],
+                        "text": self.conflate.mapping.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
+                        "fix": self.mergeTags(res[5], res[3], self.conflate.osmRef, self.conflate.tag_keep_multiple_values),
+                    }
+                self.run(sql30.format(joinClause = possible_merge_joinClause, orderBy = possible_merge_orderBy), ret)
 
             self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM {0}".format(table), "", ["lon","lat"], lambda r, cc:
                 list((r['lon'], r['lat'])) + cc
@@ -1265,17 +1294,8 @@ OpenData and OSM.'''))
             )
 
             file = io.open("{0}/{1}.metainfo.csv".format(self.config.dst_dir, self.name), "w", encoding="utf8")
-            file.write(u"file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
-            if self.missing_official:
-                self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
-                official_non_merged = self.giscurs.fetchone()[0]
-            else:
-                official_non_merged = 0
-            self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
-            osm_non_merged = self.giscurs.fetchone()[0]
-            self.giscurs.execute("SELECT COUNT(*) FROM match;")
-            merged = self.giscurs.fetchone()[0]
-            file.write(u"\"{0}\",\"{1}\",FIXME,{2},{3},{4}\n".format(self.name, self.parser.source.fileUrl or self.url, official_non_merged, osm_non_merged, merged))
+            file.write("file,origin,osm_date,count_official,count_osm,count_missing_official_in_osm,count_missing_osm_in_official,count_invalid_osm_ref,count_possible_merge\n")
+            file.write(f"\"{self.name}\",\"{self.parser.source.fileUrl or self.url}\",FIXME,{count_official},{count_osm},{count_missing_official},{count_missing_osm},{count_invalid_osm_ref},{count_possible_merge}\n")
             file.close()
 
         # Moved official
