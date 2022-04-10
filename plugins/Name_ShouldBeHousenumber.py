@@ -27,7 +27,7 @@ class Name_ShouldBeHousenumber(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[804] = self.def_class(item = 5010, level = 2, tags = ['name', 'fix:chair'],
+        self.errors[50101] = self.def_class(item = 5010, level = 2, tags = ['name', 'fix:chair'],
             title = T_('Name with only numbers'),
             detail = T_(
 '''This building is tagged with a name which contains only numbers

@@ -315,14 +315,11 @@ france_departement("basse_normandie/calvados", 7453, "FR-14")
 france_departement("basse_normandie/manche", 7404, "FR-50")
 france_departement("basse_normandie/orne", 7419, "FR-61")
 
-france_departement("bourgogne/cote_d_or", 7424, "FR-21")
+france_departement("bourgogne/cote_d_or", 7424, "FR-21", include=[
+    'merge_hydrants_FR_SDIS_21',
+])
 france_departement("bourgogne/nievre", 7448, "FR-58")
 france_departement("bourgogne/saone_et_loire", 7397, "FR-71", include=[
-    #  Côte-d'Or
-    'merge_hydrants_FR_SDIS_21',
-    # Jura
-    'merge_hydrants_FR_SDIS_39',
-    # Saône-et-Loire
     'merge_hydrants_FR_SDIS_71',
 ])
 france_departement("bourgogne/yonne", 7392, "FR-89")
@@ -356,7 +353,9 @@ france_departement("corse/corse_du_sud", 76932, "FR-2A")
 france_departement("corse/haute_corse", 76931, "FR-2B")
 
 france_departement("franche_comte/doubs", 7462, "FR-25")
-france_departement("franche_comte/jura", 7460, "FR-39")
+france_departement("franche_comte/jura", 7460, "FR-39", include=[
+    'merge_hydrants_FR_SDIS_39',
+])
 france_departement("franche_comte/haute_saone", 7423, "FR-70")
 france_departement("franche_comte/territoire_de_belfort", 7410, "FR-90")
 
