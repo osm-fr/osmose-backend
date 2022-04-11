@@ -85,7 +85,10 @@ side* and `the merge_to_left` on the *right side*.'''))
 '''The `only_right` or `only_left` lane must be on the same way as the
 lane to which the traffic can change and must be on the left (for `only_right`)
 or right (for `only_left`) side of the lane to which changing is possible.'''),
-            resource: "https://wiki.openstreetmap.org/wiki/Key:change")
+            resource = "https://wiki.openstreetmap.org/wiki/Key:change")
+
+        self.knownTurnLaneValues = ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]
+        self.knownChangeLaneValues = ["yes", "no", "not_right", "not_left", "only_right", "only_left", ""]
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -122,7 +125,7 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
                     for tt in ttt:
                         settt = set(tt.split(";"))
                         for t in settt:
-                            if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
+                            if t not in self.knownTurnLaneValues:
                                 unknown_turn_lanes_value = True
                                 err.append({"class": 31606, "subclass": 0 + stablehash64(tl + '|' + t + '|' + str(i)), "text": T_("Unknown turn lanes value \"{0}\"", t)})
 
@@ -182,7 +185,7 @@ or right (for `only_left`) side of the lane to which changing is possible.'''),
                 changeLanesValues = tags_lanes[tag_cl].split("|")
                 unknown_change_lanes_value = False
                 for clv in changeLanesValues:
-                    if clv not in ["yes", "no", "not_right", "not_left", "only_right", "only_left", ""]:
+                    if clv not in self.knownChangeLaneValues:
                         err.append({"class": 316013, "subclass": 0 + stablehash64(tag_cl + '|' + clv), "text": T_("Unknown {0} value \"{1}\"", tag_cl, clv)})
                         unknown_change_lanes_value = True
                         break
