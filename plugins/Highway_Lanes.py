@@ -46,8 +46,7 @@ prefix `forward`, `backward`, `both_ways`.'''))
         self.errors[31606] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Unknown turn lanes value'),
             detail = T_(
-'''[Valide
-values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)'''))
+'''[Valid values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)'''))
         self.errors[31607] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Bad turn lanes order'),
             detail = T_(
@@ -76,6 +75,17 @@ side* and `the merge_to_left` on the *right side*.'''))
             title = T_('Indicated turn lane together with `none`'),
             detail = T_(
 '''A `none` (or empty value) turn lane cannot be combined with other types of turn lanes within the same lane.'''))
+        self.errors[316013] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Unknown change lanes value'),
+            detail = T_(
+'''[Valid values](https://wiki.openstreetmap.org/wiki/Key:change#How_to_map)'''))
+        self.errors[316014] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Lane changing value only_* need an aside lane on the good side'),
+            detail = T_(
+'''The `only_right` or `only_left` lane must be on the same way as the
+lane to which the traffic can change and must be on the left (for `only_right`)
+or right (for `only_left`) side of the lane to which changing is possible.'''),
+            resource: "https://wiki.openstreetmap.org/wiki/Key:change")
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -165,6 +175,20 @@ side* and `the merge_to_left` on the *right side*.'''))
 
                         if t != ''.join(sorted(t)):
                             err.append({"class": 31607, "subclass": 1 + stablehash64(tl), "text": T_("Bad turn lanes order in \"{0}\"", tl)})
+
+        # Check change:lanes values
+        for tag_cl in ["change:lanes", "change:lanes:forward", "change:lanes:backward", "change:lanes:both_ways"]:
+            if tag_cl in tags_lanes:
+                changeLanesValues = tags_lanes[tag_cl].split("|")
+                unknown_change_lanes_value = False
+                for clv in changeLanesValues:
+                    if clv not in ["yes", "no", "not_right", "not_left", "only_right", "only_left", ""]:
+                        err.append({"class": 316013, "subclass": 0 + stablehash64(tag_cl + '|' + clv), "text": T_("Unknown {0} value \"{1}\"", tag_cl, clv)})
+                        unknown_change_lanes_value = True
+                        break
+                if not unknown_change_lanes_value:
+                    if changeLanesValues[0] == "only_left" or changeLanesValues[-1] == "only_right":
+                        err.append({"class": 316014, "subclass": 0 + stablehash64(tag_cl), "text": T_("Impossible lane change in tag \"{0}\"", tag_cl)})
 
         # Check access lanes values
 
@@ -378,5 +402,20 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "through|right;left|through"},
                   {"highway": "another", "turn:lanes": "left;right|left;right"},
                   {"highway": "another", "turn:lanes": "left|sharp_left|through"},
+                 ]:
+            assert a.way(None, t, None), a.way(None, t, None)
+
+        for t in [{"highway": "primary", "oneway": "yes", "lanes": "4", "change:lanes": "no|not_right|not_left|yes"},
+                  {"highway": "primary", "oneway": "yes", "lanes": "3", "change:lanes": "only_right|yes|only_left"},
+                  {"highway": "primary", "lanes": "4", "lanes:forward": "2", "change:lanes:forward": "not_left|yes", "lanes:backward": "2", "change:lanes:backward": "not_left|not_right"},
+                  {"highway": "primary", "oneway": "yes", "lanes": "1", "change:lanes": "no"},
+                 ]:
+            assert not a.way(None, t, None), a.way(None, t, None)
+
+        for t in [{"highway": "primary", "oneway": "yes", "lanes": "2", "change:lanes": "not|yes"},
+                  {"highway": "primary", "oneway": "yes", "lanes": "2", "change:lanes": "not_left;not_right|no"},
+                  {"highway": "primary", "oneway": "yes", "lanes": "2", "change:lanes": "only_left|yes"},
+                  {"highway": "primary", "oneway": "yes", "lanes": "2", "change:lanes": "yes|only_right"},
+                  {"highway": "primary", "oneway": "yes", "lanes": "1", "change:lanes": "only_right"},
                  ]:
             assert a.way(None, t, None), a.way(None, t, None)
