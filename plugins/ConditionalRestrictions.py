@@ -39,6 +39,8 @@ class ConditionalRestrictions(Plugin):
     self.ReWeekdayMonthOpeningH = re.compile(r'\b[A-Z][a-z]+') # i.e. Mar or Mo
     self.ReMonthDayOpeningH = re.compile(r'\w\w\w[\s-]\d') # i.e. sep 1
     self.ReTimeOpeningH = re.compile(r'\d\D[\d-]|sun[sr][ei][ts]') # i.e. 5:30 or 5h30 or 5h-8h
+    # Workaround https://bugs.kde.org/show_bug.cgi?id=452236
+    self.kOpeningHours452236 = re.compile(r'(20\d\d [A-Z][a-z][a-z] \d\d?\s?-\s?)20\d\d ([A-Z][a-z][a-z] \d\d?)')
 
     OHplugin = TagFix_Opening_Hours(None)
     self.sanitize_openinghours = OHplugin.sanitize_openinghours
@@ -158,7 +160,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
           for c in condition_ANDsplitted:
             # Validate time-based conditionals
             if self.isLikelyOpeningHourSyntax(c):
-              sanitized = self.sanitize_openinghours(c)
+              sanitized = self.sanitize_openinghours(self.kOpeningHours452236.sub(r"\1\2", c))
               if not sanitized['isValid']:
                 if "fix" in sanitized:
                   err.append({"class": 33504, "subclass": 6 + stablehash64(tag + '|' + tag_value + '|' + c), "text": T_("Involves \"{0}\" in \"{1}\". Consider using \"{2}\"", c, tag, sanitized['fix'])})
@@ -248,7 +250,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:forward:conditional": "no @ (10:00-18:00 AND length>5)"},
                   {"highway": "residential", "access:conditional": "no @ 2099"},
                   {"highway": "residential", "access:conditional": "no @ (weight >= 12020 AND length < 20200)"},
-                  #{"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07)"}, # https://bugs.kde.org/show_bug.cgi?id=452236
+                  {"highway": "residential", "access:conditional": "no @ (2099 May 22-2099 Oct 07 Mo-Su 09:00-18:00)"},
                   {"highway": "residential", "access:conditional": "no @ (2010 May 22-2099 Oct 07)"},
                   {"highway": "residential", "turn:lanes:forward:conditional": "left|through|through;right @ (Mo-Fr 06:00-09:00)"},
                  ]:
@@ -266,6 +268,7 @@ class Test(TestPluginCommon):
         # Invalid conditions in conditionals
         for t in [{"highway": "residential", "access:conditional": "no @ (weight >)"},
                   {"highway": "residential", "access:conditional": "no @ (foggy AND weight <= AND wet); destination @ snow"},
+                  {"highway": "residential", "access:conditional": "no @ (<=4 axles)"},
                   {"highway": "residential", "access:conditional": "no @ (2098-05-22 - 2099-10-7)"},
                   {"highway": "residential", "access:conditional": "no @ (22 mei 2099 - 07 okt 2099)"},
                   {"highway": "residential", "access:conditional": "no @ (JUL 01-JAN 31)"},
