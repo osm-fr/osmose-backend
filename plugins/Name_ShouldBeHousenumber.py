@@ -48,7 +48,7 @@ For the majority of buildings this should be tagged with `addr:housenumber`.''')
             if not any(feature in tags for feature in self.feature_keys):
                 if "name" in tags:
                     if self.Numerical.match(tags["name"]):
-                        err.append({"class": 804,
+                        err.append({"class": 50101,
                             "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])),
                             "fix": [{"+": {"addr:housenumber": tags["name"]}}, {"-": ["name"]}]})
         return err
