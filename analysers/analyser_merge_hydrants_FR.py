@@ -89,5 +89,5 @@ class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
                         "ref": clean_numerical_tag("ref_terr"),
                         "start_date": lambda res: parse(res.get('date_ct')).date() if res.get('date_ct') else None,
                         "survey:date": lambda res: parse(res.get('date_ro')).date() if res.get('date_ro') else None,
-                        "operator": "nom_gest"},
+                        "operator": lambda res: res.get("nom_gest")},
                 text = lambda tags, fields: {"en": fields['situation']} )))

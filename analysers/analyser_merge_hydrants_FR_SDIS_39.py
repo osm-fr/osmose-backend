@@ -27,10 +27,10 @@ from .Analyser_Merge import Source
 class Analyser_Merge_Hydrants_FR_SDIS_39(_Analyser_Merge_Afigeo_Hydrants):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Afigeo_Hydrants.__init__(self, config,
-            source_url='https://trouver.ternum-bfc.fr/dataset/points-deau-incendie-pei-de-cote-dor-du-sdis-21',
+            source_url='https://trouver.ternum-bfc.fr/dataset/points-deau-incendie-pei-du-jura-du-sdis-39',
             dataset_name='Points d\'eau incendie du SDIS 39',
             source=Source(attribution='Service départemental d\'incendie et de secours 39',
                 millesime='2022-03',
-                fileUrl='https://trouver.ternum-bfc.fr/dataset/e2ea75c7-0c44-4894-bd70-6c59a2e665da/resource/806a9dc0-e31d-47a9-ab8d-9da7f6401085/service_proxy?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=pei_b80f3a5&OUTPUTFORMAT=geojson&CRSNAME=EPSG:4326'),
+                fileUrl='https://trouver.ternum-bfc.fr/dataset/676026f4-8cd2-40b6-9670-fa6a46be72d8/resource/0cebd91a-c784-4acf-93cf-df62b724bb51/service_proxy?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=pei_sdis39_ee46e95&OUTPUTFORMAT=geojson&CRSNAME=EPSG:4326'),
             osmRef='ref:FR:SDIS39',
             logger=logger)
