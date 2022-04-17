@@ -617,12 +617,14 @@ default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "e
 default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "kosovo", 2088990, {"country": "XK", "language": ["sq", "sr-Latn"], "proj": 32634, "multilingual_style": "xk"})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
-lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK)
-del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
-del(lithuania.analyser["osmosis_highway_broken_level_continuity"]) # follow official highway classification
+default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK, exclude=[
+    "osmosis_highway_cul-de-sac_level",  # follow official highway classification
+    "osmosis_highway_broken_level_continuity",  # follow official highway classification
+])
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
-luxembourg = default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6})
-luxembourg.analyser["merge_emergency_points_LU"] = "xxx"
+default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6}, include=[
+    "merge_emergency_points_LU",
+])
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
@@ -1152,8 +1154,9 @@ default_country("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg"
 default_country("asia", "taiwan", 3777248, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
 default_country("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
-united_arab_emirates = default_country("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR)
-del(united_arab_emirates.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
+default_country("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR, exclude=[
+    "osmosis_highway_name_close",  # Complicated Street Numbering
+])
 default_country("asia", "united_kingdom_british_indian_ocean_territory", 1993867, {"country": "IO", "language": "en", "driving_side": "left", "proj": 32742}, download_repo=OSMFR, download_country="british_indian_ocean_territory")
 default_country("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
@@ -1285,8 +1288,9 @@ au_state("norfolk_island", 2574988, "NF", proj=32658)
 
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
-colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
-del(colombia.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
+colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618}, exclude=[
+    "osmosis_highway_name_close",  # Complicated Street Numbering
+])
 default_country("south-america", "ecuador", 108089, {"country": "EC", "language": "es", "proj": 32727})
 default_country("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
