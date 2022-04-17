@@ -190,7 +190,7 @@ class default_simple(template_config):
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
-                 download_repo=GEOFABRIK, download_country=None):
+                 download_repo=GEOFABRIK, download_country=None, include=[], exclude=[]):
         part = part + '/' if part is not None else ''
 
         if not download_country:
@@ -215,15 +215,23 @@ class default_country_simple(default_simple):
             self.download["diff"] = self.download_repo + "replication/hour/"
             self.download["state.txt"] = self.download["diff"] + "state.txt"
 
+        for analyser in include:
+            self.analyser[analyser] = 'xxx'
+
+        for analyser in exclude:
+            del(self.analyser[analyser])
+
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
-                 download_repo=GEOFABRIK, download_country=None):
+                 download_repo=GEOFABRIK, download_country=None, include=[], exclude=[]):
 
+        include_extra = [
+            "osmosis_highway_cul-de-sac_level",
+            "osmosis_way_approximate",
+            "osmosis_highway_area_access",
+        ]
         default_country_simple.__init__(self, part, country, polygon_id, analyser_options,
-                                        download_repo, download_country)
-        self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
-        self.analyser["osmosis_way_approximate"] = "xxx"
-        self.analyser["osmosis_highway_area_access"] = "xxx"
+                                        download_repo, download_country, include + include_extra, exclude)
 
 def gen_country(area, path_base=None,
         country_base=None, country_code=None, download_repo=GEOFABRIK, include=[], exclude=[], **analyser_options_default):
@@ -246,13 +254,7 @@ def gen_country(area, path_base=None,
         country = (country or path[-1]).replace('-', '_')
         download_country = '/'.join(filter(lambda a: a is not None, [path_base] + path))
 
-        default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country)
-
-        for analyser in include_default + include:
-            self.analyser[analyser] = 'xxx'
-
-        for analyser in exclude_default + exclude:
-            del(self.analyser[analyser])
+        default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country, include_default + include, exclude_default + exclude)
 
     class gen(default_country):
         __init__ = init
