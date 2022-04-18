@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="211804250">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="293182626">
 <class id="1" item="3270" source="http://example.com/plugins/Cuisine_Guess.py#L35" level="3" tag="fix:survey">
 <classtext lang="en" title="Possible mistake or lack of precision of `cuisine` value" />
 <classtext lang="fr" title="Erreur possible ou manque de précision pour la valeur `cuisine`" />
@@ -2330,7 +2330,7 @@
 <fix lang="en" title="If this is indeed the operator in question, add `operator:wikidata`.&#10;If not, see if you can improve the [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md) which is used to register common operators." />
 <fix lang="ja" title="これが本当にoperatorであれば、`operator:wikidata` タグを追加します。&#10;そうでない場合は、operatorの登録によく使われる [name-suggestion-index project](https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md)を改善することができます。" />
 </class>
-<class id="31600" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L65" level="2" tag="highway,fix:chair">
+<class id="31600" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L64" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
 <classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
@@ -2450,14 +2450,9 @@
 <classtext lang="pl" title='Nieznana wartość tagu "turn:lanes"' />
 <classtext lang="uk" title="Невідомі значення смуг повороту" />
 <classtext lang="zh_CN" title="未知车道值" />
-<detail lang="de" title="[Zulässige&#10;Werte](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
-<detail lang="en" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
-<detail lang="es" title="[Valores&#10; válidos](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
-<detail lang="fr" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
-<detail lang="ja" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
-<detail lang="nl" title="[Valide&#10;values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
+<detail lang="en" title="[Valid values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)" />
 </class>
-<class id="31607" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L51" level="2" tag="highway,fix:chair">
+<class id="31607" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L50" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybné pořadí pruhů" />
 <classtext lang="de" title="Falsche Abbiegespurreihenfolge" />
 <classtext lang="en" title="Bad turn lanes order" />
@@ -2480,7 +2475,7 @@
 <detail lang="nl" title="Rechts moet aan de rechterkant en links aan de linkerkant zijn." />
 <detail lang="pl" title="Pas do skrętu w prawo musi być po prawej, a do skrętu w lewo po lewej." />
 </class>
-<class id="31608" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L55" level="2" tag="highway,fix:chair">
+<class id="31608" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L54" level="2" tag="highway,fix:chair">
 <classtext lang="de" title='Unterschiede zwischen Fahrspurnummern mit gleichem Suffix ("", forward, backward oder both_ways)' />
 <classtext lang="en" title='Conflict between lanes number of same sufix ("", forward, backward or both_ways)' />
 <classtext lang="fr" title='Conflit entre le nombre de voies du même sufixe ("", forward, backward ou both_ways)' />
@@ -2492,7 +2487,7 @@
 <detail lang="ja" title="多くのレーンタグで定義されたレーンの数は与えられた方向と同じではありません。" />
 <detail lang="pl" title="Liczba pasów zdefiniowanych przez różne tagi nie jest taka sama dla danego kierunku." />
 </class>
-<class id="31609" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L60" level="2" tag="highway,fix:chair">
+<class id="31609" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L59" level="2" tag="highway,fix:chair">
 <classtext lang="cs" title="Chybná hodnota přípojných pruhů, má být omezení a ne číslo" />
 <classtext lang="de" title="Unpassender Wert für access lanes. Der Wert beschreibt die Anzahl der Spuren, nicht die Zugangsbeschränkung." />
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
@@ -2833,20 +2828,20 @@
 <classtext lang="pl" title="Niepoprawne przedziały warunkowe" />
 <classtext lang="uk" title="Недійсні умовні інтервали" />
 </class>
-<class id="33501" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L46" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="2" tag="highway,fix:chair">
+<class id="33501" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L48" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="2" tag="highway,fix:chair">
 <classtext lang="en" title="Bad conditional restriction" />
 <detail lang="en" title="Conditional restrictions should follow `value @ condition; value2 @ condition2` syntax.&#10;Combined restrictions should follow `value @ (condition1 AND condition2)`.&#10;Parentheses `()` must be used around the condition if the condition itself contains semicolons `;`, i.e. `value @ (date;date)`." />
 </class>
-<class id="33502" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L52" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="3" tag="highway,fix:chair">
+<class id="33502" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L54" resource="https://wiki.openstreetmap.org/wiki/Conditional_restrictions" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Improve style of conditional" />
 <detail lang="en" title="Although valid, it is recommended to format conditional restrictions with:&#10;- spaces around the `@`;&#10;- uppercase `AND` (in combined restrictions);&#10;- parentheses around all-but-the-simplest conditions.&#10;This helps to prevent errors and improves readability.&#10;For example, use `no @ (weight &gt; 5 AND wet)` rather than `no@weight&gt;5 and wet`." />
 </class>
-<class id="33503" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L61" level="3" tag="highway,fix:chair">
+<class id="33503" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L63" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Expired conditional" />
 <detail lang="en" title="This conditional was only valid up to a date in the past. It can likely be removed." />
 <trap lang="en" title="Other tags might need to be updated too to reflect the new situation." />
 </class>
-<class id="33504" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L65" level="3" tag="highway,fix:chair">
+<class id="33504" item="3350" source="http://example.com/plugins/ConditionalRestrictions.py#L67" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Invalid date/time span" />
 <detail lang="en" title="A date/time-based condition is invalid or poorly formatted. Time-based conditions of a conditional restriction use the same syntax as the key `opening_hours`." />
 </class>
@@ -3494,18 +3489,26 @@
 <classtext lang="en" title="Pipe characters should not be used in destination tag, only in destination:lanes" />
 <classtext lang="ja" title="パイプ文字はdestination タグではなく、destination:lanes内でのみ使います。" />
 </class>
-<class id="316011" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L71" level="3" tag="highway,fix:chair">
+<class id="316011" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L70" level="3" tag="highway,fix:chair">
 <classtext lang="en" title="Merge lane and other turn lane in a single lane" />
 <classtext lang="fr" title="Voie de raccordement et autre voie de virage sur une seule voie." />
 <classtext lang="ja" title="レーンと他の方向転換レーンをひとつのレーンにします" />
 <detail lang="en" title="It is unlikely that merge_to_* and another turn lane value are indicated on a single lane." />
 <detail lang="fr" title="Il est peu probable que la valeur merge_to_* et une autre valeur de voie de virage soient indiquées sur une seule voie." />
 </class>
-<class id="316012" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L75" level="2" tag="highway,fix:chair">
+<class id="316012" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L74" level="2" tag="highway,fix:chair">
 <classtext lang="en" title="Indicated turn lane together with `none`" />
 <classtext lang="fr" title='Voie de virage indiquée avec "aucune".' />
 <detail lang="en" title="A `none` (or empty value) turn lane cannot be combined with other types of turn lanes within the same lane." />
 <detail lang="fr" title="Un couloir de virage &quot;nul&quot; (ou à valeur vide) ne peut pas être combiné avec d'autres types de couloirs de virage dans la même voie." />
+</class>
+<class id="316013" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L78" level="2" tag="highway,fix:chair">
+<classtext lang="en" title="Unknown change lanes value" />
+<detail lang="en" title="[Valid values](https://wiki.openstreetmap.org/wiki/Key:change#How_to_map)" />
+</class>
+<class id="316014" item="3160" source="http://example.com/plugins/Highway_Lanes.py#L82" resource="https://wiki.openstreetmap.org/wiki/Key:change" level="2" tag="highway,fix:chair">
+<classtext lang="en" title="Lane changing value only_* need an aside lane on the good side" />
+<detail lang="en" title="The `only_right` or `only_left` lane must be on the same way as the&#10;lane to which the traffic can change and must be on the left (for `only_right`)&#10;or right (for `only_left`) side of the lane to which changing is possible." />
 </class>
 <class id="9000003" item="9000" source="https://josm.openstreetmap.de/browser/josm/trunk/resources/data/validator/addresses.mapcss" level="3" tag="tag,addr">
 <classtext lang="ca" title="El mateix valor de {{0.key}} i {{1.key}}" />
