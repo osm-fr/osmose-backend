@@ -985,7 +985,7 @@ class Mapping:
     def eval_staticGroup(self, static, analyser):
         for tag, colomn in static.items():
             if inspect.isfunction(colomn) or inspect.ismethod(colomn):
-                r = colomn(analyser)
+                r = colomn()
                 if r:
                     static[tag] = r
 
@@ -1133,8 +1133,8 @@ OpenData and OSM.'''))
         self.load.osmosis = self
         self.load.polygon_id = self.config.polygon_id
 
-    def source(self, a):
-        return a.parser.source.as_tag_value()
+    def source(self):
+        return self.parser.source.as_tag_value()
 
     def analyser_version(self):
         return SourceVersion.version(self.parser.source.time(), self.__class__)
