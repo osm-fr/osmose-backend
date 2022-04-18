@@ -190,7 +190,7 @@ class default_simple(template_config):
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
-                 download_repo=GEOFABRIK, download_country=None):
+                 download_repo=GEOFABRIK, download_country=None, include=[], exclude=[]):
         part = part + '/' if part is not None else ''
 
         if not download_country:
@@ -215,15 +215,23 @@ class default_country_simple(default_simple):
             self.download["diff"] = self.download_repo + "replication/hour/"
             self.download["state.txt"] = self.download["diff"] + "state.txt"
 
+        for analyser in include:
+            self.analyser[analyser] = 'xxx'
+
+        for analyser in exclude:
+            del(self.analyser[analyser])
+
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
-                 download_repo=GEOFABRIK, download_country=None):
+                 download_repo=GEOFABRIK, download_country=None, include=[], exclude=[]):
 
+        include_extra = [
+            "osmosis_highway_cul-de-sac_level",
+            "osmosis_way_approximate",
+            "osmosis_highway_area_access",
+        ]
         default_country_simple.__init__(self, part, country, polygon_id, analyser_options,
-                                        download_repo, download_country)
-        self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
-        self.analyser["osmosis_way_approximate"] = "xxx"
-        self.analyser["osmosis_highway_area_access"] = "xxx"
+                                        download_repo, download_country, include + include_extra, exclude)
 
 def gen_country(area, path_base=None,
         country_base=None, country_code=None, download_repo=GEOFABRIK, include=[], exclude=[], **analyser_options_default):
@@ -246,13 +254,7 @@ def gen_country(area, path_base=None,
         country = (country or path[-1]).replace('-', '_')
         download_country = '/'.join(filter(lambda a: a is not None, [path_base] + path))
 
-        default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country)
-
-        for analyser in include_default + include:
-            self.analyser[analyser] = 'xxx'
-
-        for analyser in exclude_default + exclude:
-            del(self.analyser[analyser])
+        default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country, include_default + include, exclude_default + exclude)
 
     class gen(default_country):
         __init__ = init
@@ -615,12 +617,14 @@ default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "e
 default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "kosovo", 2088990, {"country": "XK", "language": ["sq", "sr-Latn"], "proj": 32634, "multilingual_style": "xk"})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
-lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK)
-del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
-del(lithuania.analyser["osmosis_highway_broken_level_continuity"]) # follow official highway classification
+default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK, exclude=[
+    "osmosis_highway_cul-de-sac_level",  # follow official highway classification
+    "osmosis_highway_broken_level_continuity",  # follow official highway classification
+])
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
-luxembourg = default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6})
-luxembourg.analyser["merge_emergency_points_LU"] = "xxx"
+default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr_LU", "proj": 2169, "boundary_detail_level": 6}, include=[
+    "merge_emergency_points_LU",
+])
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
@@ -798,16 +802,25 @@ no_county('buskerud', 412297, 'NO-06')
 no_county('oppland', 412377, 'NO-05')
 no_county('hedmark', 412436, 'NO-04')
 
-no_county('svalbard', 1337397, 'SJ')
+no_county('svalbard', 1337397, 'SJ', exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 no_county('jan_mayen', 1337126, 'SJ')
 
 #########################################################################
 
-default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK)
+antartica = default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK, exclude=[
+    "merge_traffic_signs",  # Low latitiude, too many tiles z14 to download
+    "merge_street_objects",  # Low latitiude, too many tiles z14 to download
+])
 
 #########################################################################
 
-default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
+default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184}, exclude=[
+    "merge_traffic_signs",  # Hight latitiude, too many tiles z14 to download
+    "merge_street_objects",  # Hight latitiude, too many tiles z14 to download
+])
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
 #########################################################################
@@ -986,9 +999,15 @@ canada_province("british_columbia", 390867, "CA-BC", proj=32609)
 canada_province("manitoba", 390841, "CA-MB", proj=32615)
 canada_province("new_brunswick", 68942, "CA-NB", proj=32619)
 canada_province("newfoundland_and_labrador", 391196, "CA-NL", proj=32621)
-canada_province("northwest_territories", 391220, "CA-NT", proj=32612)
+canada_province("northwest_territories", 391220, "CA-NT", proj=32612, exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 canada_province("nova_scotia", 390558, "CA-NS", proj=32620)
-canada_province("nunavut", 390840, "CA-NU", proj=32616)
+canada_province("nunavut", 390840, "CA-NU", proj=32616, exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 
 canada_ontario_region = gen_country('north-america', 'canada/ontario', proj=32616, country_code='CA-ON', language='en', **canada_options)
 canada_ontario_region('central_ontario', 9330364)
@@ -1135,8 +1154,9 @@ default_country("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg"
 default_country("asia", "taiwan", 3777248, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
 default_country("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
-united_arab_emirates = default_country("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR)
-del(united_arab_emirates.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
+default_country("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR, exclude=[
+    "osmosis_highway_name_close",  # Complicated Street Numbering
+])
 default_country("asia", "united_kingdom_british_indian_ocean_territory", 1993867, {"country": "IO", "language": "en", "driving_side": "left", "proj": 32742}, download_repo=OSMFR, download_country="british_indian_ocean_territory")
 default_country("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
@@ -1268,8 +1288,9 @@ au_state("norfolk_island", 2574988, "NF", proj=32658)
 
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
-colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
-del(colombia.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
+colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618}, exclude=[
+    "osmosis_highway_name_close",  # Complicated Street Numbering
+])
 default_country("south-america", "ecuador", 108089, {"country": "EC", "language": "es", "proj": 32727})
 default_country("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
@@ -1516,7 +1537,10 @@ es_comm("comunitat_valenciana", 349043, "ES-VC", proj=32630, language=["ca", "es
 es_comm("extremadura", 349050, "ES-EX", proj=32629)
 es_comm("galicia", 349036, "ES-GA", proj=32629, language=["gl", "es"])
 es_comm("la_rioja", 348991, "ES-RI", proj=32630)
-es_comm("comunidad_de_madrid", 349055, "ES-MD", proj=32630)
+es_comm("comunidad_de_madrid", 349055, "ES-MD", proj=32630, include=[
+    "merge_water_drinking_ES_madrid",
+    "merge_bicycle_parking_ES_madrid",
+])
 es_comm("comunidad_foral_de_navarra", 349027, "ES-NC", proj=32630, language=["es", "eu"], multilingual_style='sp_eu')
 es_comm("euskadi", 349042, "ES-PV", proj=32630, language=["eu", "es"], multilingual_style='sp_eu')
 es_comm("region_de_murcia", 349047, "ES-MC", proj=32630)
@@ -1616,13 +1640,19 @@ russia_region(["central_federal_district", "vladimir_oblast"], 72197, "RU-VLA", 
 russia_region(["central_federal_district", "voronezh_oblast"], 72181, "RU-VOR", proj=32637)
 russia_region(["central_federal_district", "yaroslavl_oblast"], 81994, "RU-YAR", proj=32637)
 russia_region(["far_eastern_federal_district", "amur_oblast"], 147166, "RU-AMU", proj=32652)
-russia_region(["far_eastern_federal_district", "chukotka_autonomous_okrug"], 151231, "RU-CHU", proj=32659)
+russia_region(["far_eastern_federal_district", "chukotka_autonomous_okrug"], 151231, "RU-CHU", proj=32659, exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 russia_region(["far_eastern_federal_district", "jewish_autonomous_oblast"], 147167, "RU-YEV", proj=32653)
 russia_region(["far_eastern_federal_district", "kamchatka_krai"], 151233, "RU-KAM", proj=32658)
 russia_region(["far_eastern_federal_district", "khabarovsk_krai"], 151223, "RU-KHA", proj=32653)
 russia_region(["far_eastern_federal_district", "magadan_oblast"], 151228, "RU-MAG", proj=32656)
 russia_region(["far_eastern_federal_district", "primorsky_krai"], 151225, "RU-PRI", proj=32653)
-russia_region(["far_eastern_federal_district", "sakha_republic"], 151234, "RU-SA", proj=32652)
+russia_region(["far_eastern_federal_district", "sakha_republic"], 151234, "RU-SA", proj=32652, exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 russia_region(["far_eastern_federal_district", "sakhalin_oblast"], 394235, "RU-SAK", proj=32654)
 russia_region(["north_caucasian_federal_district", "chechen_republic"], 109877, "RU-CE", proj=32638)
 russia_region(["north_caucasian_federal_district", "dagestan_republic"], 109876, "RU-DA", proj=32638)
@@ -1648,7 +1678,10 @@ russia_region(["siberian_federal_district", "buryatia_republic"], 145729, "RU-BU
 russia_region(["siberian_federal_district", "irkutsk_oblast"], 145454, "RU-IRK", proj=32648)
 russia_region(["siberian_federal_district", "kemerovo_oblast"], 144763, "RU-KEM", proj=32645)
 russia_region(["siberian_federal_district", "khakassia_republic"], 190911, "RU-KK", proj=32646)
-russia_region(["siberian_federal_district", "krasnoyarsk_krai"], 190090, "RU-KYA", proj=32646)
+russia_region(["siberian_federal_district", "krasnoyarsk_krai"], 190090, "RU-KYA", proj=32646, exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 russia_region(["siberian_federal_district", "novosibirsk_oblast"], 140294, "RU-NVS", proj=32644)
 russia_region(["siberian_federal_district", "omsk_oblast"], 140292, "RU-OMS", proj=32643)
 russia_region(["siberian_federal_district", "tomsk_oblast"], 140295, "RU-TOM", proj=32644)
@@ -1667,7 +1700,10 @@ russia_region(["ural_federal_district", "khanty_mansi_autonomous_okrug"], 140296
 russia_region(["ural_federal_district", "kurgan_oblast"], 140290, "RU-KGN", proj=32641)
 russia_region(["ural_federal_district", "sverdlovsk_oblast"], 79379, "RU-SVE", proj=32641)
 russia_region(["ural_federal_district", "tyumen_oblast"], 140291, "RU-TYU", proj=32642)
-russia_region(["ural_federal_district", "yamalo_nenets_autonomous_okrug"], 191706, "RU-YAN", proj=32643)
+russia_region(["ural_federal_district", "yamalo_nenets_autonomous_okrug"], 191706, "RU-YAN", proj=32643, exclude=[
+    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
+    "merge_street_objects",  # High latitiude, too many tiles z14 to download
+])
 russia_region(["volga_federal_district", "bashkortostan_republic"], 77677, "RU-BA", proj=32640)
 russia_region(["volga_federal_district", "chuvash_republic"], 80513, "RU-CU", proj=32639)
 russia_region(["volga_federal_district", "kirov_oblast"], 115100, "RU-KIR", proj=32639)
