@@ -25,7 +25,6 @@ import bz2
 import datetime
 import gzip
 import csv
-import inspect
 import psycopg2.extras
 import psycopg2.extensions
 import os
@@ -35,7 +34,7 @@ import zipfile
 import tempfile
 import json
 import re
-from typing import Optional
+from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules.OsmoseTranslation import T_
@@ -966,8 +965,20 @@ class Select:
                         clauses.append(k_value + " = '{}'".format(v.replace("'", "''")))
         return " AND ".join(clauses) if clauses else "1=1"
 
+
+MappingStatic = Dict[str, Union[str, Callable[[], str]]]
+MappingMapping = Dict[str, Union[str, Callable[[Dict[str, str]], str]]]
+MappingText = Callable[[Dict[str, str], Dict[str, str]], Dict[str, str]]
+
 class Mapping:
-    def __init__(self, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, text = lambda tags, fields: {}):
+    def __init__(
+        self,
+        static1: MappingStatic = {},
+        static2: MappingStatic = {},
+        mapping1: MappingMapping = {},
+        mapping2: MappingMapping = {},
+        text: MappingText = lambda tags, fields: {},
+    ):
         """
         How fields are mapped to OSM tags.
         @param static1: dict of primary tags apply as is
@@ -976,15 +987,15 @@ class Mapping:
         @param mapping2: dict of secondary tags, if value is string then data set column value is take, else lambda, not checked on update process
         @param text: lambda return string, describe this error
         """
-        self.static1 = static1
-        self.static2 = static2
-        self.mapping1 = mapping1
-        self.mapping2 = mapping2
-        self.text = text
+        self.static1: MappingStatic = static1
+        self.static2: MappingStatic = static2
+        self.mapping1: MappingMapping = mapping1
+        self.mapping2: MappingMapping = mapping2
+        self.text: MappingText = text
 
-    def eval_staticGroup(self, static, analyser):
+    def eval_staticGroup(self, static: MappingStatic, analyser):
         for tag, colomn in static.items():
-            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
+            if callable(colomn):
                 r = colomn()
                 if r:
                     static[tag] = r
@@ -998,7 +1009,7 @@ class Mapping:
     def tagFactoryGroup(self, res, static, mapping):
         tags = dict(static)
         for tag, colomn in mapping.items():
-            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
+            if callable(colomn):
                 r = colomn(res)
                 if r:
                     tags[tag] = r
