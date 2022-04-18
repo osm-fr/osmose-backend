@@ -1537,7 +1537,10 @@ es_comm("comunitat_valenciana", 349043, "ES-VC", proj=32630, language=["ca", "es
 es_comm("extremadura", 349050, "ES-EX", proj=32629)
 es_comm("galicia", 349036, "ES-GA", proj=32629, language=["gl", "es"])
 es_comm("la_rioja", 348991, "ES-RI", proj=32630)
-es_comm("comunidad_de_madrid", 349055, "ES-MD", proj=32630)
+es_comm("comunidad_de_madrid", 349055, "ES-MD", proj=32630, include=[
+    "merge_water_drinking_ES_madrid",
+    "merge_bicycle_parking_ES_madrid",
+])
 es_comm("comunidad_foral_de_navarra", 349027, "ES-NC", proj=32630, language=["es", "eu"], multilingual_style='sp_eu')
 es_comm("euskadi", 349042, "ES-PV", proj=32630, language=["eu", "es"], multilingual_style='sp_eu')
 es_comm("region_de_murcia", 349047, "ES-MC", proj=32630)
