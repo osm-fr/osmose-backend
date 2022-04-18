@@ -54,5 +54,5 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                         "amenity": "post_box",
                         "operator": "La Poste"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref": "CO_MUP"},
-                text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields["VA_NO_VOIE"], fields["LB_EXTENSION"].strip(), fields["LB_VOIE_EXT"], fields["CO_POSTAL"], fields["LB_COM"]]))} )))
+                    mapping1 = {"ref": "CO_EXT"},
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x, [fields["NUM_VOIE"], fields["LB_CPL_NUM_ADR"], fields["LB_VOIE"], fields["CO_POS"], fields["LB_CMN"]]))} )))
