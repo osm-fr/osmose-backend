@@ -113,6 +113,10 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             err.append({"class": 33501, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Missing `@` in \"{0}\"", tag)})
             bad_tag = True
             break
+          if parentheses == 1 and tmp_str.lstrip() != "":
+            err.append({"class": 33501, "subclass": 3 + stablehash64(tag + '|' + tag_value), "text": T_("Missing condition, `@` or parentheses in \"{0}\"", tag)})
+            bad_tag = True
+            break
         elif c == ")":
           parentheses -= 1
           if parentheses == -1:
@@ -294,6 +298,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "yes @ ()"},
                   {"highway": "residential", "access:conditional": "yes @"},
                   {"highway": "residential", "access:conditional": "@ wet"},
+                  {"highway": "residential", "access:conditional": "no_@_(06:00-19:00)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 07)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 07 AND); delivery @ wet"},
                   {"highway": "residential", "maxweight:conditional": "27000 lbs (axles=2); 41400 lbs @ (axles=3); 48600 lbs @ (axles>=4)"},
