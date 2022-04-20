@@ -84,6 +84,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
       tag_value = tags_conditional[tag]
       conditions = []
       parentheses = 0
+      past_parentheses = False
       bad_tag = False
 
       if not "@" in tag_value:
@@ -100,7 +101,7 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
       tmp_str = ""
       condition_started = False
       for c in tag_value:
-        if c == "@":
+        if c == "@" and not past_parentheses:
           if len(tmp_str.strip()) == 0:
             err.append({"class": 33501, "subclass": 1 + stablehash64(tag + '|' + tag_value), "text": T_("Missing value for the condition in \"{0}\"", tag)})
             bad_tag = True
@@ -113,12 +114,18 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             err.append({"class": 33501, "subclass": 0 + stablehash64(tag + '|' + tag_value), "text": T_("Missing `@` in \"{0}\"", tag)})
             bad_tag = True
             break
+          if parentheses == 1 and tmp_str.lstrip() != "":
+            err.append({"class": 33501, "subclass": 7 + stablehash64(tag + '|' + tag_value), "text": T_("Unexpected \"{0}\" before or after parentheses in \"{1}\"", tmp_str.strip(), tag)})
+            bad_tag = True
+            break
         elif c == ")":
           parentheses -= 1
           if parentheses == -1:
             err.append({"class": 33501, "subclass": 2 + stablehash64(tag + '|' + tag_value), "text": T_("Mismatch in the number of parentheses in \"{0}\"", tag)})
             bad_tag = True
             break
+          if parentheses == 0:
+            past_parentheses = True
         elif c == ";" and parentheses == 0 and condition_started:
           tmp_str = tmp_str.strip()
           if len(tmp_str) == 0:
@@ -127,9 +134,14 @@ For example, use `no @ (weight > 5 AND wet)` rather than `no@weight>5 and wet`.'
             break
           conditions.append(tmp_str)
           condition_started = False
+          past_parentheses = False
           tmp_str = ""
         else:
           tmp_str += c
+          if past_parentheses and c != " ": # tolerate spaces
+            err.append({"class": 33501, "subclass": 7 + stablehash64(tag + '|' + tag_value), "text": T_("Unexpected \"{0}\" before or after parentheses in \"{1}\"", c, tag)})
+            bad_tag = True
+            break
 
       if not bad_tag:
         if parentheses == 0:
@@ -294,6 +306,9 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "access:conditional": "yes @ ()"},
                   {"highway": "residential", "access:conditional": "yes @"},
                   {"highway": "residential", "access:conditional": "@ wet"},
+                  {"highway": "residential", "access:conditional": "no_@_(06:00-19:00)"},
+                  {"highway": "residential", "access:conditional": "no @ (abc)_; no @ (06:00-19:00)"},
+                  {"highway": "residential", "access:conditional": "no @ (abc); no @ (06:00-19:00)_"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND AND 2099 Oct 07)"},
                   {"highway": "residential", "access:conditional": "no @ (2099 May 22 AND 2099 Oct 07 AND); delivery @ wet"},
                   {"highway": "residential", "maxweight:conditional": "27000 lbs (axles=2); 41400 lbs @ (axles=3); 48600 lbs @ (axles>=4)"},
