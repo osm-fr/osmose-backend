@@ -39,7 +39,16 @@ For the majority of buildings this should be tagged with `addr:housenumber`.''')
 relation can be used.'''),
             trap = T_(
 '''While uncommon, it is possible for a name to be only numbers.
- This is particularly the case for some brands or amenities.''')
+This is particularly the case for some brands or amenities.
+
+Additionally, it could also be an apartment block number or building
+number (not an official house number with a postal address, but for
+example "beach cabin #1"); in these cases, ref would be the appropriate
+tag.
+
+Always check with your local community about the preferred tagging style
+of house numbers: in some regions, a separate node inside the building is
+preferred over a tag on the building itself.''')
         )
         self.Numerical = re.compile(r"^[0-9]+$")
         self.feature_keys = ["amenity", "craft", "emergency", "leisure", "military", "office", "railway", "shop", "tourism"]
