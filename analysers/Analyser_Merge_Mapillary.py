@@ -60,7 +60,9 @@ class Source_Mapillary(Source):
 
         tiler = tileschemes.WebMercator()
         for t in tilecover.cover_geometry(tiler, polygon, zoom):
-            yield [t.z, t.x, t.y]
+            # Keep tiles between Noth of Iceland and South of Americas
+            if t.z > 4085 and t.z < 11200:
+                yield [t.z, t.x, t.y]
 
     def fetch(self, url, tmp_file, date_string=None):
         pip = PointInPolygon(self.polygon_id, 60)
@@ -83,6 +85,10 @@ class Source_Mapillary(Source):
 
             tiles = list(self.tile_generator(pip.polygon.polygon))
             n_tiles = len(tiles)
+            if n_tiles > 350000:
+                self.logger.log(f"To many tiles for the area ({n_tiles}), abort.")
+                return True
+
             for (n, [z, x, y]) in enumerate(tiles):
                 if n % 500 == 0:
                     self.logger.log(f"{n} / {n_tiles}")

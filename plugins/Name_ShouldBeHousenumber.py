@@ -34,10 +34,21 @@ class Name_ShouldBeHousenumber(Plugin):
 and does not appear to have a main feature key.
 For the majority of buildings this should be tagged with `addr:housenumber`.'''),
             fix = T_(
-'''Change the name key to `addr:housenumber` (if it is not already present and is not different).'''),
+'''If this `name` is in fact the housenumber, it should be tagged with
+`addr:housenumber` + `addr:street` (or other `addr:*`), alternatively a
+relation can be used.'''),
             trap = T_(
 '''While uncommon, it is possible for a name to be only numbers.
- This is particularly the case for some brands or amenities.''')
+This is particularly the case for some brands or amenities.
+
+Additionally, it could also be an apartment block number or building
+number (not an official house number with a postal address, but for
+example "beach cabin #1"); in these cases, ref would be the appropriate
+tag.
+
+Always check with your local community about the preferred tagging style
+of house numbers: in some regions, a separate node inside the building is
+preferred over a tag on the building itself.''')
         )
         self.Numerical = re.compile(r"^[0-9]+$")
         self.feature_keys = ["amenity", "craft", "emergency", "leisure", "military", "office", "railway", "shop", "tourism"]
@@ -49,8 +60,7 @@ For the majority of buildings this should be tagged with `addr:housenumber`.''')
                 if "name" in tags:
                     if self.Numerical.match(tags["name"]):
                         err.append({"class": 50101,
-                            "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])),
-                            "fix": [{"+": {"addr:housenumber": tags["name"]}}, {"-": ["name"]}]})
+                            "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
         return err
 
     def way(self, data, tags, nds):
