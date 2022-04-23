@@ -270,7 +270,7 @@ msgstr ""
 msgid "House too far away from street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_large.py:74
+#: ../analysers/analyser_osmosis_relation_large.py:75
 msgid "Large relation"
 msgstr ""
 
@@ -752,7 +752,7 @@ msgstr ""
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:38
+#: ../plugins/Name_UpperCase.py:39
 msgid "Name with uppercase"
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:572
+#: ../analysers/analyser_osmosis_relation_public_transport.py:573
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -827,15 +827,15 @@ msgstr ""
 msgid "Unknown turn lanes value"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:52
+#: ../plugins/Highway_Lanes.py:51
 msgid "Bad turn lanes order"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:61
+#: ../plugins/Highway_Lanes.py:60
 msgid "Bad access lanes value, should not be an integer but a restriction"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:66
+#: ../plugins/Highway_Lanes.py:65
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
@@ -996,7 +996,7 @@ msgstr ""
 msgid "Interpolation span on streets: {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_large.py:86
+#: ../analysers/analyser_osmosis_relation_large.py:87
 #, python-format, python-brace-format
 msgid "Large relation of type {0}"
 msgstr ""
@@ -1042,13 +1042,9 @@ msgstr ""
 msgid "Suspicious name for a container"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_substation_FR.py:67
+#: ../analysers/analyser_merge_power_substation_FR.py:66
 #, python-format, python-brace-format
 msgid "Power substation of {0}"
-msgstr ""
-
-#: ../analysers/analyser_merge_power_substation_FR.py:37
-msgid "Power substation not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:33
@@ -1080,7 +1076,7 @@ msgstr ""
 msgid "Close similar name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:574
+#: ../analysers/analyser_osmosis_relation_public_transport.py:575
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
@@ -1091,11 +1087,11 @@ msgid ""
 "in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:568
+#: ../analysers/analyser_osmosis_relation_public_transport.py:569
 msgid "The track of this route contains gaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:570
+#: ../analysers/analyser_osmosis_relation_public_transport.py:571
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
@@ -1103,13 +1099,13 @@ msgstr ""
 msgid "Missing international prefix"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:576
+#: ../analysers/analyser_osmosis_relation_public_transport.py:577
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:599
+#: ../analysers/analyser_osmosis_relation_public_transport.py:600
 #, python-format, python-brace-format
 msgid "{0} are different"
 msgstr ""
@@ -1126,14 +1122,6 @@ msgstr ""
 
 #: ../plugins/Name_UpperCaseNumber.py:33
 msgid "Abbreviation of number should be in lowercase"
-msgstr ""
-
-#: ../analysers/analyser_merge_power_substation_minor_FR.py:31
-msgid "Power minor_distribution substation not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_power_substation_minor_FR.py:33
-msgid "Power minor_distribution substation, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_open.py:75
@@ -1370,7 +1358,6 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
 #: ../analysers/analyser_merge_public_transport_IN_kerala_bus.py:31
@@ -1381,17 +1368,16 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:34
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:34
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:34
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr ""
 
+#: ../analysers/analyser_merge_public_transport_FR_idfm.py:55
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:59
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:58
 #: ../analysers/analyser_merge_public_transport_FR_star.py:64
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:57
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:62
 #, python-brace-format
 msgid "{0} stop of {1}"
@@ -1435,23 +1421,23 @@ msgstr ""
 msgid "{0} deviation of {1}m"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:117
+#: ../plugins/Highway_Lanes.py:130
 #, python-brace-format
 msgid "Unknown turn lanes value \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:247
 #, python-brace-format
 msgid "lanes={0} is not an integer"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:276
+#: ../plugins/Highway_Lanes.py:303
 #, python-brace-format
 msgid ""
 "on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:281
+#: ../plugins/Highway_Lanes.py:308
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + "
@@ -1459,20 +1445,20 @@ msgid ""
 "(non fullwidth backward={6}) - (non fullwidth both_ways={7})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:283
+#: ../plugins/Highway_Lanes.py:310
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:285
+#: ../plugins/Highway_Lanes.py:312
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth "
 "backward={2})"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:287
+#: ../plugins/Highway_Lanes.py:314
 #, python-brace-format
 msgid ""
 "on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth "
@@ -1629,10 +1615,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_poste_FR.py:36
 msgid "Post office without tag \"ref:FR:LaPoste\" or invalid"
-msgstr ""
-
-#: ../analysers/analyser_merge_power_substation_FR.py:31
-msgid "Power substation without tag \"ref:FR:RTE\" or invalid"
 msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:33
@@ -2286,13 +2268,13 @@ msgstr ""
 msgid "Extend the relation to include the way with the same name."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_large.py:76
+#: ../analysers/analyser_osmosis_relation_large.py:77
 msgid ""
 "A relation whose members should be close is geographically\n"
 "spread."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_large.py:79
+#: ../analysers/analyser_osmosis_relation_large.py:80
 msgid ""
 "[The relationships are not\n"
 "classes](https://wiki.openstreetmap.org/wiki/Relations/"
@@ -2603,29 +2585,23 @@ msgstr ""
 msgid "You can not set opposite lanes data on a one way."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:49
-msgid ""
-"[Valide\n"
-"values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)"
-msgstr ""
-
-#: ../plugins/Highway_Lanes.py:54
+#: ../plugins/Highway_Lanes.py:53
 msgid "Right must be on the right and left on the left."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:56
+#: ../plugins/Highway_Lanes.py:55
 msgid ""
 "Conflict between lanes number of same sufix (\"\", forward, backward or "
 "both_ways)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:58
+#: ../plugins/Highway_Lanes.py:57
 msgid ""
 "The number of lanes defined by many lane tags are not the same for a\n"
 "given direction."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:68
+#: ../plugins/Highway_Lanes.py:67
 msgid ""
 "The `merge_to_right` or `merge_to_left` lane must be on the same way\n"
 "as the destination lane and the `merge_to_right` must be on the *left\n"
@@ -3097,28 +3073,25 @@ msgid ""
 "[here](https://wiki.openstreetmap.org/wiki/User:FrViPofm/TagwatchCleaner)."
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:47
-#: ../analysers/analyser_merge_street_objects.py:47
-#: ../analysers/analyser_merge_traffic_signs.py:83
+#: ../analysers/analyser_merge_street_objects.py:48
+#: ../analysers/analyser_merge_traffic_signs.py:84
 #, python-brace-format
 msgid "Unmapped {0}"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:48
-#: ../analysers/analyser_merge_street_objects.py:48
+#: ../analysers/analyser_merge_street_objects.py:49
 #, python-brace-format
 msgid ""
 "Street object ({1}) detected by Mapillary, but no nearby \"{0}\" tagging."
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:50
-#: ../analysers/analyser_merge_street_objects.py:50
+#: ../analysers/analyser_merge_street_objects.py:51
 msgid ""
 "Map the corresponding object if the imagery is up-to-date and object "
 "detection is correct."
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:85
+#: ../analysers/analyser_merge_traffic_signs.py:86
 msgid ""
 "Add the appropriate highway tagging if the imagery is up-to-date and sign "
 "detection is correct."
@@ -3174,14 +3147,12 @@ msgstr ""
 msgid "Untagged named object"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:71
 #: ../analysers/analyser_merge_street_objects.py:71
 #: ../analysers/analyser_merge_traffic_signs.py:106
 #, python-brace-format
 msgid "Observed between {0} and {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_street_objects2.py:72
 #: ../analysers/analyser_merge_street_objects.py:72
 #: ../analysers/analyser_merge_traffic_signs.py:107
 #, python-brace-format
@@ -3396,7 +3367,7 @@ msgstr ""
 msgid "The tag `{0}` is deprecated in favour of {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:84
+#: ../analysers/analyser_merge_traffic_signs.py:85
 #, python-brace-format
 msgid ""
 "Traffic sign ({1}) detected by Mapillary, but no nearby tagging of any:{0}"
@@ -3408,8 +3379,9 @@ msgid ""
 "[Key:start_date](https://wiki.openstreetmap.org/wiki/Key:start_date)"
 msgstr ""
 
-#: ../plugins/Date.py:91 ../plugins/Date.py:93 ../plugins/Name_UpperCase.py:61
-#: ../plugins/Name_UpperCase.py:66 ../plugins/Number.py:99
+#: ../plugins/Date.py:91 ../plugins/Date.py:93
+#: ../plugins/Name_ShouldBeHousenumber.py:63 ../plugins/Name_UpperCase.py:62
+#: ../plugins/Name_UpperCase.py:67 ../plugins/Number.py:99
 #: ../plugins/Number.py:106 ../plugins/Number.py:108 ../plugins/Number.py:115
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
@@ -3425,14 +3397,14 @@ msgstr ""
 msgid "Unexpected character: `{0}`"
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:40
+#: ../plugins/Name_UpperCase.py:41
 msgid ""
 "This feature is tagged with a name which contains a fully uppercase word (or "
 "words).\n"
 " This is not expected for the majority of named features."
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:43
+#: ../plugins/Name_UpperCase.py:44
 msgid ""
 "While uncommon, it is possible for a name to have uppercase words.\n"
 " This is particularly the case for corporate/branded locations as well as "
@@ -3627,7 +3599,7 @@ msgstr ""
 msgid "The way has a tag `oneway=*` but without `highway=*`."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:63
+#: ../plugins/Highway_Lanes.py:62
 msgid ""
 "`psv:lanes=*` is an access restriction tag, while `lanes:psv=*` is\n"
 "the number of lanes."
@@ -3724,35 +3696,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1056
+#: ../analysers/Analyser_Merge.py:1067
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1059
+#: ../analysers/Analyser_Merge.py:1070
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1064
+#: ../analysers/Analyser_Merge.py:1075
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1077
+#: ../analysers/Analyser_Merge.py:1088
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1090
+#: ../analysers/Analyser_Merge.py:1101
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1052
+#: ../analysers/Analyser_Merge.py:1063
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -3873,25 +3845,25 @@ msgstr ""
 msgid "Hole between administrative boundaries of admin_level {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:578
+#: ../analysers/analyser_osmosis_relation_public_transport.py:579
 msgid ""
 "The bus stop is part of a way, it should have public_transport=stop_position "
 "tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:580
+#: ../analysers/analyser_osmosis_relation_public_transport.py:581
 msgid "The stop_position is not part of a way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:582
+#: ../analysers/analyser_osmosis_relation_public_transport.py:583
 msgid "The platform is part of a way, it should have the role stop"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:584
+#: ../analysers/analyser_osmosis_relation_public_transport.py:585
 msgid "The stop is not part of a way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:585
+#: ../analysers/analyser_osmosis_relation_public_transport.py:586
 msgid ""
 "Change the role in the relation to platform or add the stop to the way and "
 "turn it to a public_transport=stop_position"
@@ -3971,159 +3943,155 @@ msgstr ""
 msgid "phone booth"
 msgstr ""
 
-#: tmp.json:6
-msgid "drinking water"
-msgstr ""
-
-#: tmp.json:7 tmp.json:34
+#: tmp.json:6 tmp.json:33
 msgid "max speed limit 5"
 msgstr ""
 
-#: tmp.json:8 tmp.json:35
+#: tmp.json:7 tmp.json:34
 msgid "max speed limit 10"
 msgstr ""
 
-#: tmp.json:9 tmp.json:36
+#: tmp.json:8 tmp.json:35
 msgid "max speed limit 15"
 msgstr ""
 
-#: tmp.json:10 tmp.json:37
+#: tmp.json:9 tmp.json:36
 msgid "max speed limit 20"
 msgstr ""
 
-#: tmp.json:11 tmp.json:39
+#: tmp.json:10 tmp.json:38
 msgid "max speed limit 30"
 msgstr ""
 
-#: tmp.json:12 tmp.json:40
+#: tmp.json:11 tmp.json:39
 msgid "max speed limit 35"
 msgstr ""
 
-#: tmp.json:13 tmp.json:41
+#: tmp.json:12 tmp.json:40
 msgid "max speed limit 40"
 msgstr ""
 
-#: tmp.json:14 tmp.json:42
+#: tmp.json:13 tmp.json:41
 msgid "max speed limit 45"
 msgstr ""
 
-#: tmp.json:15 tmp.json:43
+#: tmp.json:14 tmp.json:42
 msgid "max speed limit 50"
 msgstr ""
 
-#: tmp.json:16 tmp.json:45
+#: tmp.json:15 tmp.json:44
 msgid "max speed limit 60"
 msgstr ""
 
-#: tmp.json:17 tmp.json:47
+#: tmp.json:16 tmp.json:46
 msgid "max speed limit 70"
 msgstr ""
 
-#: tmp.json:18 tmp.json:49
+#: tmp.json:17 tmp.json:48
 msgid "max speed limit 80"
 msgstr ""
 
-#: tmp.json:19 tmp.json:50
+#: tmp.json:18 tmp.json:49
 msgid "max speed limit 90"
 msgstr ""
 
-#: tmp.json:20 tmp.json:51
+#: tmp.json:19 tmp.json:50
 msgid "max speed limit 100"
 msgstr ""
 
-#: tmp.json:21 tmp.json:52
+#: tmp.json:20 tmp.json:51
 msgid "max speed limit 110"
 msgstr ""
 
-#: tmp.json:22 tmp.json:53
+#: tmp.json:21 tmp.json:52
 msgid "max speed limit 120"
 msgstr ""
 
-#: tmp.json:23
+#: tmp.json:22
 msgid "max speed limit 130"
 msgstr ""
 
-#: tmp.json:24
+#: tmp.json:23
 msgid "max height limit"
 msgstr ""
 
-#: tmp.json:25
+#: tmp.json:24
 msgid "max weight limit"
 msgstr ""
 
-#: tmp.json:26
+#: tmp.json:25
 msgid "roundabout"
 msgstr ""
 
-#: tmp.json:27
+#: tmp.json:26
 msgid "road bump"
 msgstr ""
 
-#: tmp.json:28
+#: tmp.json:27
 msgid "traffic signals"
 msgstr ""
 
-#: tmp.json:29
+#: tmp.json:28
 msgid "living street"
 msgstr ""
 
-#: tmp.json:30
+#: tmp.json:29
 msgid "bus stop"
 msgstr ""
 
-#: tmp.json:31
+#: tmp.json:30
 msgid "animal crossing"
 msgstr ""
 
-#: tmp.json:32
+#: tmp.json:31
 msgid "stop"
 msgstr ""
 
-#: tmp.json:38
+#: tmp.json:37
 msgid "max speed limit 25"
 msgstr ""
 
-#: tmp.json:44
+#: tmp.json:43
 msgid "max speed limit 55"
 msgstr ""
 
-#: tmp.json:46
+#: tmp.json:45
 msgid "max speed limit 65"
 msgstr ""
 
-#: tmp.json:48
+#: tmp.json:47
 msgid "max speed limit 75"
 msgstr ""
 
-#: tmp.json:55
+#: tmp.json:54
 msgid "Tourism office"
 msgstr ""
 
-#: tmp.json:56
+#: tmp.json:55
 msgid "Church"
 msgstr ""
 
-#: tmp.json:57
+#: tmp.json:56
 msgid "Camping"
 msgstr ""
 
-#: tmp.json:58
+#: tmp.json:57
 msgid "Restaurant"
 msgstr ""
 
-#: tmp.json:59
+#: tmp.json:58
 msgid "Museum"
 msgstr ""
 
-#: tmp.json:60
+#: tmp.json:59
 msgid "Winery"
 msgstr ""
 
-#: tmp.json:61
+#: tmp.json:60
 msgid "Viewpoint"
 msgstr ""
 
-#: tmp.json:62
+#: tmp.json:61
 msgid "Picnic site"
 msgstr ""
 
@@ -4207,17 +4175,17 @@ msgid ""
 "Contact the contributor submiting the nodes or remove those."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:587
+#: ../analysers/analyser_osmosis_relation_public_transport.py:588
 msgid "Stop position without platform nor bus stop"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:588
+#: ../analysers/analyser_osmosis_relation_public_transport.py:589
 msgid ""
 "A bus `public_transport=stop_position` without close "
 "`public_transport=platform` nor `highway=bus_stop`."
 msgstr ""
 
-#: tmp.json:54
+#: tmp.json:53
 msgid "cycling infrastructure"
 msgstr ""
 
@@ -4420,7 +4388,7 @@ msgid ""
 "be tagged on that object instead."
 msgstr ""
 
-#: tmp.json:33
+#: tmp.json:32
 msgid "one-directional roads"
 msgstr ""
 
@@ -4518,11 +4486,11 @@ msgstr ""
 msgid "Cape not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:590
+#: ../analysers/analyser_osmosis_relation_public_transport.py:591
 msgid "The stops may not be in the right order"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:592
+#: ../analysers/analyser_osmosis_relation_public_transport.py:593
 msgid "The platform is not on the right side of the road"
 msgstr ""
 
@@ -4555,37 +4523,37 @@ msgid ""
 "eliminate the river bank polygon."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:72
+#: ../plugins/Highway_Lanes.py:71
 msgid "Merge lane and other turn lane in a single lane"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:74
+#: ../plugins/Highway_Lanes.py:73
 msgid ""
 "It is unlikely that merge_to_* and another turn lane value are indicated on "
 "a single lane."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:76
+#: ../plugins/Highway_Lanes.py:75
 msgid "Indicated turn lane together with `none`"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:78
+#: ../plugins/Highway_Lanes.py:77
 msgid ""
 "A `none` (or empty value) turn lane cannot be combined with other types of "
 "turn lanes within the same lane."
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:127
+#: ../plugins/Highway_Lanes.py:140
 #, python-brace-format
 msgid "Combined none and indicated turn lane: \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:135
+#: ../plugins/Highway_Lanes.py:148
 #, python-brace-format
 msgid "Merge together with another turn lane: \"{0}\""
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:167
+#: ../plugins/Highway_Lanes.py:180
 #, python-brace-format
 msgid "Bad turn lanes order in \"{0}\""
 msgstr ""
@@ -4598,11 +4566,11 @@ msgid ""
 "IGN (French geographic name conventions)"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:37
+#: ../plugins/ConditionalRestrictions.py:49
 msgid "Bad conditional restriction"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:38
+#: ../plugins/ConditionalRestrictions.py:50
 msgid ""
 "Conditional restrictions should follow `value @ condition; value2 @ "
 "condition2` syntax.\n"
@@ -4611,52 +4579,52 @@ msgid ""
 "contains semicolons `;`, i.e. `value @ (date;date)`."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:52
+#: ../plugins/ConditionalRestrictions.py:64
 msgid "Expired conditional"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:53
+#: ../plugins/ConditionalRestrictions.py:65
 msgid ""
 "This conditional was only valid up to a date in the past. It can likely be "
 "removed."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:54
+#: ../plugins/ConditionalRestrictions.py:66
 msgid "Other tags might need to be updated too to reflect the new situation."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:75
-#: ../plugins/ConditionalRestrictions.py:98
+#: ../plugins/ConditionalRestrictions.py:91
+#: ../plugins/ConditionalRestrictions.py:114
 #, python-brace-format
 msgid "Missing `@` in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:90
+#: ../plugins/ConditionalRestrictions.py:106
 #, python-brace-format
 msgid "Missing value for the condition in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:104
-#: ../plugins/ConditionalRestrictions.py:128
+#: ../plugins/ConditionalRestrictions.py:124
+#: ../plugins/ConditionalRestrictions.py:155
 #, python-brace-format
 msgid "Mismatch in the number of parentheses in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:138
+#: ../plugins/ConditionalRestrictions.py:163
 #, python-brace-format
 msgid "Missing condition before or after AND combinator in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:153
+#: ../plugins/ConditionalRestrictions.py:201
 #, python-brace-format
 msgid "Condition \"{0}\" in \"{1}\" was only valid until {2}"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:43
+#: ../plugins/ConditionalRestrictions.py:55
 msgid "Improve style of conditional"
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:44
+#: ../plugins/ConditionalRestrictions.py:56
 msgid ""
 "Although valid, it is recommended to format conditional restrictions with:\n"
 "- spaces around the `@`;\n"
@@ -4667,13 +4635,13 @@ msgid ""
 "wet`."
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:110
-#: ../plugins/ConditionalRestrictions.py:124
+#: ../plugins/ConditionalRestrictions.py:132
+#: ../plugins/ConditionalRestrictions.py:151
 #, python-brace-format
 msgid "Missing condition, `@` or parentheses in \"{0}\""
 msgstr ""
 
-#: ../plugins/ConditionalRestrictions.py:159
+#: ../plugins/ConditionalRestrictions.py:207
 #, python-brace-format
 msgid "Add parentheses around the condition(s) in \"{0}\""
 msgstr ""
@@ -4715,7 +4683,7 @@ msgid ""
 "with `:both`."
 msgstr ""
 
-#: ../plugins/Highway_Sides.py:58
+#: ../plugins/Highway_Sides.py:64
 #, python-brace-format
 msgid "Conflicting values of \"{0}\" and \"{1}\""
 msgstr ""
@@ -4734,4 +4702,173 @@ msgid ""
 "* Otherwise, a survey is required: check if it is a street whose name\n"
 "changes at a crossroads, if this is the case, cut the street and set the\n"
 "proper names of both part."
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_ES_madrid.py:31
+msgid "Bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_branch_FR.py:31
+msgid "Power connection not known from operator"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_branch_FR.py:33
+msgid "Power connection, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_branch_FR.py:35
+msgid "Power connection update"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_branch_FR.py:37
+msgid "Power connection is missing in OSM or without tag \"ref:FR:RTE\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_branch_FR.py:63
+#, python-brace-format
+msgid "Power branch of {0}"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:31
+msgid "Power substation is not known from operator"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:37
+msgid "Power substation missing in OSM or without tag \"ref:FR:RTE\""
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:31
+msgid "Minor distribution power substation missing in OSM"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:32
+msgid ""
+"A power substation that directly feeds consumers, known from operator, does "
+"not exist in OSM."
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:34
+msgid "Power minor distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:35
+msgid "This existing power substation can be integrated with official values."
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_idfm.py:32
+#, python-brace-format
+msgid "{0} from {1} not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_idfm.py:34
+#, python-brace-format
+msgid "{0} from {1}, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_water_drinking_ES_madrid.py:31
+msgid "Drinking water not integrated"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:68
+msgid "Invalid date/time span"
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:69
+msgid ""
+"A date/time-based condition is invalid or poorly formatted. Time-based "
+"conditions of a conditional restriction use the same syntax as the key "
+"`opening_hours`."
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:118
+#: ../plugins/ConditionalRestrictions.py:142
+#, python-brace-format
+msgid "Unexpected \"{0}\" before or after parentheses in \"{1}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:178
+#, python-brace-format
+msgid "Involves \"{0}\" in \"{1}\". Consider using \"{2}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:180
+#, python-brace-format
+msgid "Involves \"{0}\" in \"{1}\""
+msgstr ""
+
+#: ../plugins/ConditionalRestrictions.py:186
+#, python-brace-format
+msgid "Unexpected <, = or > in \"{0}\""
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:49
+msgid "[Valid values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:79
+msgid "Unknown change lanes value"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:81
+msgid ""
+"[Valid values](https://wiki.openstreetmap.org/wiki/Key:change#How_to_map)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:83
+msgid "Lane changing value only_* need an aside lane on the good side"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:85
+msgid ""
+"The `only_right` or `only_left` lane must be on the same way as the\n"
+"lane to which the traffic can change and must be on the left (for "
+"`only_right`)\n"
+"or right (for `only_left`) side of the lane to which changing is possible."
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:189
+#, python-brace-format
+msgid "Unknown {0} value \"{1}\""
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:194
+#, python-brace-format
+msgid "Impossible lane change in tag \"{0}\""
+msgstr ""
+
+#: ../plugins/Name_ShouldBeHousenumber.py:31
+msgid "Name with only numbers"
+msgstr ""
+
+#: ../plugins/Name_ShouldBeHousenumber.py:33
+msgid ""
+"This building is tagged with a name which contains only numbers\n"
+"and does not appear to have a main feature key.\n"
+"For the majority of buildings this should be tagged with `addr:housenumber`."
+msgstr ""
+
+#: ../plugins/Name_ShouldBeHousenumber.py:37
+msgid ""
+"If this `name` is in fact the housenumber, it should be tagged with\n"
+"`addr:housenumber` + `addr:street` (or other `addr:*`), alternatively a\n"
+"relation can be used."
+msgstr ""
+
+#: ../plugins/Name_ShouldBeHousenumber.py:41
+msgid ""
+"While uncommon, it is possible for a name to be only numbers.\n"
+"This is particularly the case for some brands or amenities.\n"
+"\n"
+"Additionally, it could also be an apartment block number or building\n"
+"number (not an official house number with a postal address, but for\n"
+"example \"beach cabin #1\"); in these cases, ref would be the appropriate\n"
+"tag.\n"
+"\n"
+"Always check with your local community about the preferred tagging style\n"
+"of house numbers: in some regions, a separate node inside the building is\n"
+"preferred over a tag on the building itself."
+msgstr ""
+
+#: ../plugins/TagFix_Opening_Hours.py:64
+msgid "The `opening_hours` value is invalid and could not be parsed"
 msgstr ""
