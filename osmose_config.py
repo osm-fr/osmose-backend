@@ -802,25 +802,16 @@ no_county('buskerud', 412297, 'NO-06')
 no_county('oppland', 412377, 'NO-05')
 no_county('hedmark', 412436, 'NO-04')
 
-no_county('svalbard', 1337397, 'SJ', exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+no_county('svalbard', 1337397, 'SJ')
 no_county('jan_mayen', 1337126, 'SJ')
 
 #########################################################################
 
-antartica = default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK, exclude=[
-    "merge_traffic_signs",  # Low latitiude, too many tiles z14 to download
-    "merge_street_objects",  # Low latitiude, too many tiles z14 to download
-])
+antartica = default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK)
 
 #########################################################################
 
-default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184}, exclude=[
-    "merge_traffic_signs",  # Hight latitiude, too many tiles z14 to download
-    "merge_street_objects",  # Hight latitiude, too many tiles z14 to download
-])
+default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
 #########################################################################
@@ -999,15 +990,9 @@ canada_province("british_columbia", 390867, "CA-BC", proj=32609)
 canada_province("manitoba", 390841, "CA-MB", proj=32615)
 canada_province("new_brunswick", 68942, "CA-NB", proj=32619)
 canada_province("newfoundland_and_labrador", 391196, "CA-NL", proj=32621)
-canada_province("northwest_territories", 391220, "CA-NT", proj=32612, exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+canada_province("northwest_territories", 391220, "CA-NT", proj=32612)
 canada_province("nova_scotia", 390558, "CA-NS", proj=32620)
-canada_province("nunavut", 390840, "CA-NU", proj=32616, exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+canada_province("nunavut", 390840, "CA-NU", proj=32616)
 
 canada_ontario_region = gen_country('north-america', 'canada/ontario', proj=32616, country_code='CA-ON', language='en', **canada_options)
 canada_ontario_region('central_ontario', 9330364)
@@ -1640,19 +1625,13 @@ russia_region(["central_federal_district", "vladimir_oblast"], 72197, "RU-VLA", 
 russia_region(["central_federal_district", "voronezh_oblast"], 72181, "RU-VOR", proj=32637)
 russia_region(["central_federal_district", "yaroslavl_oblast"], 81994, "RU-YAR", proj=32637)
 russia_region(["far_eastern_federal_district", "amur_oblast"], 147166, "RU-AMU", proj=32652)
-russia_region(["far_eastern_federal_district", "chukotka_autonomous_okrug"], 151231, "RU-CHU", proj=32659, exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+russia_region(["far_eastern_federal_district", "chukotka_autonomous_okrug"], 151231, "RU-CHU", proj=32659)
 russia_region(["far_eastern_federal_district", "jewish_autonomous_oblast"], 147167, "RU-YEV", proj=32653)
 russia_region(["far_eastern_federal_district", "kamchatka_krai"], 151233, "RU-KAM", proj=32658)
 russia_region(["far_eastern_federal_district", "khabarovsk_krai"], 151223, "RU-KHA", proj=32653)
 russia_region(["far_eastern_federal_district", "magadan_oblast"], 151228, "RU-MAG", proj=32656)
 russia_region(["far_eastern_federal_district", "primorsky_krai"], 151225, "RU-PRI", proj=32653)
-russia_region(["far_eastern_federal_district", "sakha_republic"], 151234, "RU-SA", proj=32652, exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+russia_region(["far_eastern_federal_district", "sakha_republic"], 151234, "RU-SA", proj=32652)
 russia_region(["far_eastern_federal_district", "sakhalin_oblast"], 394235, "RU-SAK", proj=32654)
 russia_region(["north_caucasian_federal_district", "chechen_republic"], 109877, "RU-CE", proj=32638)
 russia_region(["north_caucasian_federal_district", "dagestan_republic"], 109876, "RU-DA", proj=32638)
@@ -1678,10 +1657,7 @@ russia_region(["siberian_federal_district", "buryatia_republic"], 145729, "RU-BU
 russia_region(["siberian_federal_district", "irkutsk_oblast"], 145454, "RU-IRK", proj=32648)
 russia_region(["siberian_federal_district", "kemerovo_oblast"], 144763, "RU-KEM", proj=32645)
 russia_region(["siberian_federal_district", "khakassia_republic"], 190911, "RU-KK", proj=32646)
-russia_region(["siberian_federal_district", "krasnoyarsk_krai"], 190090, "RU-KYA", proj=32646, exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+russia_region(["siberian_federal_district", "krasnoyarsk_krai"], 190090, "RU-KYA", proj=32646)
 russia_region(["siberian_federal_district", "novosibirsk_oblast"], 140294, "RU-NVS", proj=32644)
 russia_region(["siberian_federal_district", "omsk_oblast"], 140292, "RU-OMS", proj=32643)
 russia_region(["siberian_federal_district", "tomsk_oblast"], 140295, "RU-TOM", proj=32644)
@@ -1700,10 +1676,7 @@ russia_region(["ural_federal_district", "khanty_mansi_autonomous_okrug"], 140296
 russia_region(["ural_federal_district", "kurgan_oblast"], 140290, "RU-KGN", proj=32641)
 russia_region(["ural_federal_district", "sverdlovsk_oblast"], 79379, "RU-SVE", proj=32641)
 russia_region(["ural_federal_district", "tyumen_oblast"], 140291, "RU-TYU", proj=32642)
-russia_region(["ural_federal_district", "yamalo_nenets_autonomous_okrug"], 191706, "RU-YAN", proj=32643, exclude=[
-    "merge_traffic_signs",  # High latitiude, too many tiles z14 to download
-    "merge_street_objects",  # High latitiude, too many tiles z14 to download
-])
+russia_region(["ural_federal_district", "yamalo_nenets_autonomous_okrug"], 191706, "RU-YAN", proj=32643)
 russia_region(["volga_federal_district", "bashkortostan_republic"], 77677, "RU-BA", proj=32640)
 russia_region(["volga_federal_district", "chuvash_republic"], 80513, "RU-CU", proj=32639)
 russia_region(["volga_federal_district", "kirov_oblast"], 115100, "RU-KIR", proj=32639)
