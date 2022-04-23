@@ -61,7 +61,7 @@ class Source_Mapillary(Source):
         tiler = tileschemes.WebMercator()
         for t in tilecover.cover_geometry(tiler, polygon, zoom):
             # Keep tiles between Noth of Iceland and South of Americas
-            if t.z > 4085 and t.z < 11200:
+            if t.y > 4085 and t.y < 11200:
                 yield [t.z, t.x, t.y]
 
     def fetch(self, url, tmp_file, date_string=None):
