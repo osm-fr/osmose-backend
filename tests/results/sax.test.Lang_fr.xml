@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="638223072">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="647438322">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -3004,8 +3004,8 @@
 <class id="50101" item="5010" source="http://example.com/plugins/Name_ShouldBeHousenumber.py#L30" level="2" tag="name,fix:chair">
 <classtext lang="en" title="Name with only numbers" />
 <detail lang="en" title="This building is tagged with a name which contains only numbers&#10;and does not appear to have a main feature key.&#10;For the majority of buildings this should be tagged with `addr:housenumber`." />
-<fix lang="en" title="Change the name key to `addr:housenumber` (if it is not already present and is not different)." />
-<trap lang="en" title="While uncommon, it is possible for a name to be only numbers.&#10; This is particularly the case for some brands or amenities." />
+<fix lang="en" title="If this `name` is in fact the housenumber, it should be tagged with&#10;`addr:housenumber` + `addr:street` (or other `addr:*`), alternatively a&#10;relation can be used." />
+<trap lang="en" title='While uncommon, it is possible for a name to be only numbers.&#10;This is particularly the case for some brands or amenities.&#10;&#10;Additionally, it could also be an apartment block number or building&#10;number (not an official house number with a postal address, but for&#10;example "beach cabin #1"); in these cases, ref would be the appropriate&#10;tag.&#10;&#10;Always check with your local community about the preferred tagging style&#10;of house numbers: in some regions, a separate node inside the building is&#10;preferred over a tag on the building itself.' />
 </class>
 <class id="50601" item="5060" source="http://example.com/plugins/Name_Local.py#L41" level="1" tag="name,fix:chair">
 <classtext lang="ca" title="El nom predeterminat i de la llengua local no coincideixen" />
