@@ -101,7 +101,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "survey:date": lambda res: res["last_seen_at"][0:10]},
+                        "survey:date": lambda res: str(datetime.fromtimestamp(int(res["last_seen_at"])))[0:10]},
                     text = lambda tags, fields:
                         T_('Observed between {0} and {1}', str(datetime.fromtimestamp(int(fields["first_seen_at"])))[0:10], str(datetime.fromtimestamp(int(fields["last_seen_at"])))[0:10]) if fields["first_seen_at"] != fields["last_seen_at"] else
                         T_('Observed on {0}', str(datetime.fromtimestamp(int(fields["first_seen_at"])))[0:10]) )))
