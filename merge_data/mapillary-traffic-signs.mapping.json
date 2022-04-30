@@ -219,6 +219,7 @@
     "title": "max speed limit 35",
     "not_for": [
       "CA",
+      "NL",
       "US"
     ],
     "object": [
@@ -299,6 +300,7 @@
     "title": "max speed limit 45",
     "not_for": [
       "CA",
+      "NL",
       "US"
     ],
     "object": [
@@ -634,6 +636,7 @@
       "IM",
       "JE",
       "LR",
+      "NL",
       "US",
       "WS"
     ],
