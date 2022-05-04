@@ -53,6 +53,7 @@ class TagFix_Maxspeed(Plugin):
         'dk:rural': ['80'],
         'es:urban': ['20', '30', '50'],
         'fr:rural': ['80', '90'],
+        'fr:urban': ['30', '50'],
         'gb:nsl_single': ['60 mph'],
         'gb:nsl_dual': ['70 mph'],
         'gb:motorway': ['70 mph'],
