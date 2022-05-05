@@ -44,27 +44,27 @@ However, this should probably still conform to the typical format used for value
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
         self.check_list_open = set((
             'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
-            'barrier', 'bicycle', 'bicycle_parking', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'bus_bay',
-            'construction', 'covered', 'craft', 'crossing', 'cutting', 'cycleway',
+            'barrier', 'bench', 'bicycle', 'bicycle_parking', 'bin', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'bus', 'bus_bay',
+            'cemetery', 'club', 'construction', 'covered', 'craft', 'crossing', 'crossing_ref', 'cuisine', 'cutting', 'cycleway',
             'disused', 'drive_in', 'drive_through',
-            'electrified', 'embankment', 'emergency',
+            'electrified', 'embankment', 'emergency', 'entrance',
             'fenced', 'foot', 'footway', 'ford',
-            'geological', 'goods',
-            'handrail', 'hgv', 'highway', 'historic',
-            'intermittent', 'internet_access',
+            'geological', 'golf', 'goods',
+            'handrail', 'hazard', 'healthcare', 'hgv', 'highway', 'historic', 'horse',
+            'information', 'intermittent', 'internet_access',
             'junction',
-            'landuse', 'lanes', 'leisure',
-            'man_made', 'military', 'mooring', 'motorboat', 'mountain_pass',
+            'kerb',
+            'landuse', 'lanes', 'leaf_type', 'leaf_cycle', 'leisure', 'location',
+            'material', 'man_made', 'meadow', 'military', 'mooring', 'motor_vehicle', 'motorboat', 'motorcar', 'motorcycle', 'mountain_pass',
             'natural', 'noexit',
             'office',
-            'parking', 'power', 'public_transport',
-            'railway', 'ramp', 'route',
-            'sac_scale', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
-            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility',
-            'traffic_signals', 'tunnel',
-            'usage',
+            'parking', 'place', 'power', 'public_transport',
+            'railway', 'ramp', 'religion', 'route', 'route_master',
+            'sac_scale', 'seasonal', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
+            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'train', 'traffic_signals', 'tunnel',
+            'usage', 'utility',
             'vehicle',
-            'wall', 'water', 'waterway', 'wheelchair', 'wood'
+            'wall', 'water', 'waterway', 'wetland', 'wheelchair', 'wood'
         ))
         self.check_list_open_node = self.check_list_open
         self.check_list_open_way = self.check_list_open
@@ -85,16 +85,20 @@ However, this should probably still conform to the typical format used for value
                                  "barrier": ( "full-height_turnstile" ),
                                  "parking": ( "multi-storey" ),
                                  "bicycle_parking": ( "two-tier" ),
+                                 "electrified": ( "ground-level_power_supply" ),
+                                 "religion": ( "self-realization_fellowship" ),
                                  "man_made": ( "MDF", "piste:halfpipe" ),
                                 }
 
         self.allow_closed = { "area": ( "yes", "no", ),
+                            "backrest": ( "yes", "no", ),
                             "conveying": ( "yes", "forward", "backward", "no", "reversible", ),
                             "crossing": ( "traffic_signals", "uncontrolled", "unmarked", "no", "marked", "zebra", ),
                             "lane_markings": ( "yes", "no", ),
                             "narrow": ( "yes", "no", ),
                             "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),
                             "segregated": ( "yes", "no", ),
+                            "trolley_wire": ( "yes", "no", ),
                           }
         self.check_list_closed = set(self.allow_closed.keys())
 
