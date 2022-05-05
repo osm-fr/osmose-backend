@@ -109,6 +109,8 @@ class Test(TestPluginCommon):
         assert not a.way(None, {'highway': 'primary'}, None)
         assert not a.way(None, {'highway': 'primary', 'maxspeed': '50', 'source:maxspeed': 'FR:urban'}, None)
         assert not a.way(None, {'highway': 'primary', 'maxspeed': '50', 'maxspeed:type': 'FR:urban'}, None)
+        assert not a.way(None, {'highway': 'primary', 'maxspeed': '30', 'source:maxspeed': 'FR:urban'}, None)
+        assert not a.way(None, {'highway': 'primary', 'maxspeed': '30', 'maxspeed:type': 'FR:urban'}, None)
 
-        self.check_err(a.way(None, {'highway': 'primary', 'maxspeed': '30', 'source:maxspeed': 'FR:urban'}, None))
-        self.check_err(a.way(None, {'highway': 'primary', 'maxspeed': '30', 'maxspeed:type': 'FR:urban'}, None))
+        self.check_err(a.way(None, {'highway': 'primary', 'maxspeed': '35', 'source:maxspeed': 'FR:urban'}, None))
+        self.check_err(a.way(None, {'highway': 'primary', 'maxspeed': '35', 'maxspeed:type': 'FR:urban'}, None))
