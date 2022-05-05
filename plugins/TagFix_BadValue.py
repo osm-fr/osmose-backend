@@ -87,15 +87,7 @@ However, this should probably still conform to the typical format used for value
                                  "bicycle_parking": ( "two-tier" ),
                                  "man_made": ( "MDF", "piste:halfpipe" ),
                                 }
-        self.check_list_closed = set((
-            'area',
-            'conveying',
-            'crossing',
-            'lane_markings',
-            'narrow',
-            'oneway',
-            'segregated',
-        ))
+
         self.allow_closed = { "area": ( "yes", "no", ),
                             "conveying": ( "yes", "forward", "backward", "no", "reversible", ),
                             "crossing": ( "traffic_signals", "uncontrolled", "unmarked", "no", "marked", "zebra", ),
@@ -104,6 +96,7 @@ However, this should probably still conform to the typical format used for value
                             "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),
                             "segregated": ( "yes", "no", ),
                           }
+        self.check_list_closed = set(self.allow_closed.keys())
 
     def check(self, data, tags, check_list_open):
         err = []
