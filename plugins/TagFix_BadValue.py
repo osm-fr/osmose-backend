@@ -44,25 +44,27 @@ However, this should probably still conform to the typical format used for value
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
         self.check_list_open = set((
             'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
-            'barrier', 'bicycle', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'construction',
-            'covered', 'craft', 'crossing', 'cutting',
+            'barrier', 'bicycle', 'bicycle_parking', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'bus_bay',
+            'construction', 'covered', 'craft', 'crossing', 'cutting', 'cycleway',
             'disused', 'drive_in', 'drive_through',
             'electrified', 'embankment', 'emergency',
-            'fenced', 'foot', 'ford',
+            'fenced', 'foot', 'footway', 'ford',
             'geological', 'goods',
-            'hgv', 'highway', 'historic',
-            'internet_access',
+            'handrail', 'hgv', 'highway', 'historic',
+            'intermittent', 'internet_access',
+            'junction',
             'landuse', 'lanes', 'leisure',
-            'man_made', 'military', 'mooring', 'motorboat', 'mountain_pass', 'natural', 'noexit',
+            'man_made', 'military', 'mooring', 'motorboat', 'mountain_pass',
+            'natural', 'noexit',
             'office',
-            'power', 'public_transport',
-            'railway', 'route',
-            'sac_scale', 'service', 'shop', 'smoothness', 'sport', 'surface',
+            'parking', 'power', 'public_transport',
+            'railway', 'ramp', 'route',
+            'sac_scale', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
             'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility',
-            'tunnel',
+            'traffic_signals', 'tunnel',
             'usage',
             'vehicle',
-            'wall', 'waterway', 'wheelchair', 'wood'
+            'wall', 'water', 'waterway', 'wheelchair', 'wood'
         ))
         self.check_list_open_node = self.check_list_open
         self.check_list_open_way = self.check_list_open
@@ -81,16 +83,26 @@ However, this should probably still conform to the typical format used for value
                                  "shop": ( "e-cigarette" ),
                                  "sport": ( "five-a-side", "jiu-jitsu", "pesäpallo", "shot-put" ),
                                  "barrier": ( "full-height_turnstile" ),
+                                 "parking": ( "multi-storey" ),
+                                 "bicycle_parking": ( "two-tier" ),
                                  "man_made": ( "MDF", "piste:halfpipe" ),
                                 }
         self.check_list_closed = set((
             'area',
+            'conveying',
+            'crossing',
+            'lane_markings',
             'narrow',
             'oneway',
+            'segregated',
         ))
         self.allow_closed = { "area": ( "yes", "no", ),
+                            "conveying": ( "yes", "forward", "backward", "no", "reversible", ),
+                            "crossing": ( "traffic_signals", "uncontrolled", "unmarked", "no", "marked", "zebra", ),
+                            "lane_markings": ( "yes", "no", ),
                             "narrow": ( "yes", "no", ),
                             "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),
+                            "segregated": ( "yes", "no", ),
                           }
 
     def check(self, data, tags, check_list_open):
