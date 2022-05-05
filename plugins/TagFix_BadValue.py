@@ -45,7 +45,7 @@ However, this should probably still conform to the typical format used for value
         self.check_list_open = set((
             'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
             'barrier', 'bench', 'bicycle', 'bicycle_parking', 'bin', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'bus', 'bus_bay',
-            'cemetery', 'club', 'construction', 'covered', 'craft', 'crossing', 'crossing_ref', 'cuisine', 'cutting', 'cycleway',
+            'cemetery', 'club', 'construction', 'covered', 'craft', 'crossing_ref', 'cuisine', 'cutting', 'cycleway',
             'disused', 'drive_in', 'drive_through',
             'electrified', 'embankment', 'emergency', 'entrance',
             'fenced', 'foot', 'footway', 'ford',
@@ -54,7 +54,7 @@ However, this should probably still conform to the typical format used for value
             'information', 'intermittent', 'internet_access',
             'junction',
             'kerb',
-            'landuse', 'lanes', 'leaf_type', 'leaf_cycle', 'leisure', 'location',
+            'landuse', 'leaf_type', 'leaf_cycle', 'leisure', 'location',
             'material', 'man_made', 'meadow', 'military', 'mooring', 'motor_vehicle', 'motorboat', 'motorcar', 'motorcycle', 'mountain_pass',
             'natural', 'noexit',
             'office',
