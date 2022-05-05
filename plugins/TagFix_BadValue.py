@@ -172,3 +172,6 @@ class Test(TestPluginCommon):
         for t in [{"type": "associatedStreet"},
                  ]:
             assert not a.relation(None, t, None), t
+
+            # Assure keys are not present in both sets
+            assert not a.check_list_open & a.check_list_closed
