@@ -33,12 +33,11 @@ class TagFix_Access(Plugin):
       self.suffixesWay.append(d)
       self.suffixesWay.append(d + ":conditional")
 
-    # Note: emergency is a special case as it's also for hospital facilities
+    # Note: emergency is excluded as it's also for hospital facilities
     self.accessKeys = ["4wd_only", "access", "agricultural", "atv", "bdouble", "bicycle", "boat", "bus", "canoe", "caravan", "carriage", "coach", "disabled", "dog", "foot", "golf_cart", "goods", "hazmat",
                        "hazmat:water", "hgv", "horse", "hov", "inline_skates", "light_rail", "minibus", "mofa", "moped", "motor_vehicle", "motorboat", "motorcar", "motorcycle", "motorhome", "psv",
                        "share_taxi", "ship", "ski:nordic", "ski", "small_electric_vehicle", "snowmobile", "speed_pedelec", "subway", "swimming", "tank", "taxi", "tourist_bus", "trailer", "train", "tram", "vehicle"]
     self.accessValuesGeneral = ["yes", "no", "private", "permissive", "permit", "destination", "delivery", "customers", "designated", "use_sidepath", "dismount", "agricultural", "forestry", "discouraged"]
-    self.discouragedValues = ["unknown"]
 
     self.errors[33701] = self.def_class(item = 3370, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Uncommon access value'),
@@ -46,10 +45,6 @@ class TagFix_Access(Plugin):
         resource="https://wiki.openstreetmap.org/wiki/Key:access",
         trap = T_('''If there is no other tag (or combination of tags) that properly describes the access permissions, custom tags may be used.'''))
     self.errors[33702] = self.def_class(item = 3370, level = 3, tags = ['highway', 'fix:chair'],
-        title = T_('Unspecific access value'),
-        detail = T_('''The value of the access tag is very unspecific, replace it with one of the following: `{0}`.''', ", ".join(self.accessValuesGeneral)),
-        resource="https://wiki.openstreetmap.org/wiki/Key:access")
-    self.errors[33703] = self.def_class(item = 3370, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Transport mode in access value'),
         detail = T_('''The value of the access tag is a transport mode (such as `access=foot`). Consider replacing it with a more specific tag listing the transport mode first, for example `access=no` + `foot=yes`.'''),
         trap = T_('''Ensure that the access remains the same and does not conflict with other tags. This is especially likely if access tags are combined with directional and/or conditional access tags, or when transport modes are mixed with regular access values.'''),
@@ -71,9 +66,7 @@ class TagFix_Access(Plugin):
         if ":conditional" in tag and "@" in accessValue:
           accessValue = accessValue.split("@")[0].strip()
         accessValue = accessValue.strip()
-        if accessValue in self.discouragedValues:
-          err.append({"class": 33702, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Unspecific access value \"{0}\" for key \"{1}\"", accessValue, tag)})
-        elif not accessValue in self.accessValuesGeneral:
+        if not accessValue in self.accessValuesGeneral:
           if accessValue in self.accessKeys or accessValue == "emergency":
             propose = tag + " = ### + " + accessValue + accessTags[tag]["suffix"] + " = yes"
             if len(values) > 1 or "@" in accessVal:
@@ -82,7 +75,7 @@ class TagFix_Access(Plugin):
               propose = propose.replace("###", "no") # assume 'no' holds for all other transport modes
             if "@" in accessVal:
               propose = propose + " @ (...)" # conditional may need to change
-            err.append({"class": 33703, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessValue, tag, propose)})
+            err.append({"class": 33702, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessValue, tag, propose)})
           else:
             err.append({"class": 33701, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Unknown access value \"{0}\" for key \"{1}\"", accessValue, tag)})
 
@@ -126,7 +119,6 @@ class Test(TestPluginCommon):
         # Invalid nodes and ways
         for t in [{"amenity": "parking", "vehicle": "nope"},
                   {"amenity": "parking", "vehicle:conditional": "nope @ wet"},
-                  {"amenity": "parking", "access": "unknown"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
           assert a.node(None, t), a.node(None, t)
@@ -136,7 +128,6 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "vehicle:both_ways:conditional": "nope @ wet"},
                   {"highway": "residential", "horse:backward": "customers;nope"},
                   {"highway": "residential", "horse:backward": "nope; customers"},
-                  {"highway": "residential", "horse:both_ways": "unknown; destination"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
 
