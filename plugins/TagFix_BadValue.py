@@ -124,7 +124,7 @@ However, this should probably still conform to the typical format used for value
 
         for k in keyss:
             if tags[k] == "unknown":
-                err.append({"class": 30404, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                err.append({"class": 40613, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         return err
 
