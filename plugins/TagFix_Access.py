@@ -42,12 +42,12 @@ class TagFix_Access(Plugin):
 
     self.errors[33701] = self.def_class(item = 3370, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Uncommon access value'),
-        detail = T_('''The value of the access tag is not one of the common access values: `{0}`.''', self.accessValuesGeneral.join(", ")),
+        detail = T_('''The value of the access tag is not one of the common access values: `{0}`.''', ", ".join(self.accessValuesGeneral)),
         resource="https://wiki.openstreetmap.org/wiki/Key:access",
         trap = T_('''If there is no other tag (or combination of tags) that properly describes the access permissions, custom tags may be used.'''))
     self.errors[33702] = self.def_class(item = 3370, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Unspecific access value'),
-        detail = T_('''The value of the access tag is very unspecific, replace it with one of the following: `{0}`.''', self.accessValuesGeneral.join(", ")),
+        detail = T_('''The value of the access tag is very unspecific, replace it with one of the following: `{0}`.''', ", ".join(self.accessValuesGeneral)),
         resource="https://wiki.openstreetmap.org/wiki/Key:access")
     self.errors[33703] = self.def_class(item = 3370, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Transport mode in access value'),
