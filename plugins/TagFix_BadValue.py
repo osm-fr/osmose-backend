@@ -43,27 +43,26 @@ However, this should probably still conform to the typical format used for value
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
         self.check_list_open = set((
-            'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
-            'barrier', 'bench', 'bicycle', 'bicycle_parking', 'bin', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'bus', 'bus_bay',
+            'abutters', 'admin_level', 'aerialway', 'aeroway', 'amenity',
+            'barrier', 'bench', 'bicycle_parking', 'bin', 'border_type', 'boundary', 'bridge', 'building', 'bus_bay',
             'cemetery', 'club', 'construction', 'covered', 'craft', 'crossing_ref', 'cuisine', 'cutting', 'cycleway',
             'disused', 'drive_in', 'drive_through',
             'electrified', 'embankment', 'emergency', 'entrance',
-            'fenced', 'foot', 'footway', 'ford',
-            'geological', 'golf', 'goods',
-            'handrail', 'hazard', 'healthcare', 'hgv', 'highway', 'historic', 'horse',
+            'fenced', 'footway', 'ford',
+            'geological', 'golf',
+            'handrail', 'hazard', 'healthcare', 'highway', 'historic',
             'information', 'intermittent', 'internet_access',
             'junction',
             'kerb',
             'landuse', 'leaf_type', 'leaf_cycle', 'leisure', 'location',
-            'material', 'man_made', 'meadow', 'military', 'mooring', 'motor_vehicle', 'motorboat', 'motorcar', 'motorcycle', 'mountain_pass',
+            'material', 'man_made', 'meadow', 'military', 'mooring', 'mountain_pass',
             'natural', 'noexit',
             'office',
             'parking', 'place', 'power', 'public_transport',
             'railway', 'ramp', 'religion', 'route', 'route_master',
             'sac_scale', 'seasonal', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
-            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'train', 'traffic_signals', 'tunnel',
+            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'traffic_signals', 'tunnel',
             'usage', 'utility',
-            'vehicle',
             'wall', 'water', 'waterway', 'wetland', 'wheelchair', 'wood'
         ))
         self.check_list_open_node = self.check_list_open
@@ -139,8 +138,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_BadValue(None)
         a.init(None)
-        for t in [{"access": "vor/dme"},
-                  {"barrier": "AEGTO"},
+        for t in [{"barrier": "AEGTO"},
                   {"barrier": "yes; AEGTO"},
                   {"aerialway": "ta-bar"},
                   {"tunnel": "-1st"},
