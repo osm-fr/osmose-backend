@@ -64,7 +64,7 @@ class TagFix_Access(Plugin):
       for accessVal in values:
         accessValue = accessVal
         if ":conditional" in tag and "@" in accessValue:
-          accessValue = accessValue.split("@")[0].strip()
+          accessValue = accessValue.split("@")[0]
         accessValue = accessValue.strip()
         if not accessValue in self.accessValuesGeneral:
           if accessValue in self.accessKeys or accessValue == "emergency":
