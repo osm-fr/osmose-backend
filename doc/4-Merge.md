@@ -138,7 +138,7 @@ Remote files are fetched and saved in the Osmose-QA Backend cache, the delay can
 The remote file could be compressed or an archive:
 - `bz2` (boolean): the content is compressed in BZip2 format.
 - `gzip` (boolean): the content is compressed in GZip format.
-- `zip`: the remote URL is a ZIP archive and the data is at this path inside the archive.
+- `zip`: the remote URL is a ZIP archive and the data is at this path inside the archive. Path can use unix filename pattern matching.
 - `extract`: same as `zip`, but for all archive formats.
 
 Assuming the resource is a text file:

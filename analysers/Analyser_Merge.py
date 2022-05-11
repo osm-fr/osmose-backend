@@ -34,6 +34,7 @@ import zipfile
 import tempfile
 import json
 import re
+import fnmatch
 from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
@@ -322,7 +323,7 @@ class Source:
         @param file: file name in storage
         @param urlFile: remote URL of source file
         @param fileUrlCache: days for file in cache
-        @param zip: extract file from zip
+        @param zip: extract a file from zip. Unix filename pattern matching.
         @param extract: extract file from any archive format
         @param gzip: uncompress from bz2
         @param gzip: uncompress from gzip
@@ -350,13 +351,23 @@ class Source:
         if self.attribution and "{0}" in self.attribution:
             self.attribution_re = re.compile(self.attribution.replace("{0}", ".*"))
 
+    def zipFile(self):
+        if self.file:
+            f = open(self.file, 'rb')
+        elif self.fileUrl:
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
+
+        z = zipfile.ZipFile(f, 'r')
+        print(z.namelist())
+        filename = next(filter(lambda zipinfo: fnmatch.fnmatch(zipinfo.filename, self.zip), z.infolist()))
+        return filename
+
     def time(self):
         if self.file:
             return int(os.path.getmtime(self.file)+.5)
         elif self.fileUrl:
-            if self.zip:
-                f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
-                date_time = zipfile.ZipFile(f, 'r').getinfo(self.zip).date_time
+            if self.zipFile():
+                date_time = self.zipFile().date_time
                 return int(time.mktime(date_time + (0, 0, -1))+.5)
             else:
                 return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
@@ -374,8 +385,8 @@ class Source:
         elif self.fileUrl:
             f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
 
-        if self.zip:
-            z = zipfile.ZipFile(f, 'r').open(self.zip)
+        if self.zipFile():
+            z = zipfile.ZipFile(f, 'r').open(self.zipFile().filename)
             f = io.BytesIO(z.read())
             f.seek(0)
         elif self.extract:
@@ -689,7 +700,7 @@ class SHP(Parser):
             self.source.encoding,
             srid,
             tmp_file.name,
-            self.source.zip,
+            self.source.zipFile().filename,
             table,
             tmp_file.name
         )
