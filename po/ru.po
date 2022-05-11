@@ -22,10 +22,6 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:31
-msgid "CAPP bicycle parking not integrated"
-msgstr "CAPP велостоянка, может быть интегрирована"
-
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
 msgstr "Колледж, не интегрированный"
@@ -66,14 +62,6 @@ msgstr "Железнодорожная станция не интегриров�
 msgid "Railway station, integration suggestion"
 msgstr "Железнодорожная станция, может быть интегрирована"
 
-#: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:31
-msgid "CAPP clothes recycling not integrated"
-msgstr "Утилизация одежды CAPP не интегрирована"
-
-#: ../analysers/analyser_merge_recycling_FR_capp_glass.py:31
-msgid "CAPP glass recycling not integrated"
-msgstr "Переработка стекла CAPP не интегрирована"
-
 #: ../analysers/analyser_merge_school_FR.py:57
 msgid "School not integrated"
 msgstr "Школа не интегрирована"
@@ -85,34 +73,6 @@ msgstr "Школа, может быть интегрирована"
 #: ../analysers/analyser_merge_service_public_FR.py:37
 msgid "Public service not integrated"
 msgstr "Государственная служба не интегрирована"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:57
-msgid "Bridge missing (TMC)"
-msgstr "Отсутствует мост (TMC)"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:67
-msgid "Rest area missing"
-msgstr "Отсутствует зона отдыха"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:77
-msgid "Roundabout missing (TMC)"
-msgstr "Кольцо отсутствует (TMC)"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:87
-msgid "Services area missing (TMC)"
-msgstr "Область услуг отсутствует (TMC)"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:97
-msgid "Toll missing (TMC)"
-msgstr "Дорожный сбор отсутсвует (TMC)"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:107
-msgid "Traffic signals missing (TMC)"
-msgstr "Отсутсвует светофор (TMC)"
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:117
-msgid "Tunnel missing (TMC)"
-msgstr "Туннель отсутствует (TMC)"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Survey point out of boundary"
@@ -477,10 +437,10 @@ msgstr "Линия из одного узла"
 msgid "Deprecated tag"
 msgstr "Устаревший тег"
 
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr ""
 
@@ -658,15 +618,15 @@ msgstr "Объект землепользования не на земле"
 msgid "Natural feature underground"
 msgstr "Природный объект под землёй"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
+#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
 msgid "Language name without default name"
 msgstr ""
 
@@ -1541,7 +1501,7 @@ msgstr ""
 msgid "Bad separator for multiple values"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:96
+#: ../plugins/TagFix_Maxspeed.py:97
 #, python-brace-format
 msgid "Discordant {0} and {1}"
 msgstr ""
@@ -1736,6 +1696,7 @@ msgstr ""
 msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
 
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1745,7 +1706,6 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -1910,14 +1870,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_service_public_FR.py:39
 msgid "The location can be quite rough."
-msgstr ""
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:33
-msgid "TMC data refers to a not found element of the road network. "
-msgstr ""
-
-#: ../analysers/analyser_merge_tmc_point_FR.py:35
-msgid "TMC data may be wrong or poorly located."
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_open.py:72
@@ -3312,20 +3264,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr ""
@@ -3379,8 +3331,8 @@ msgstr ""
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
-#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:107
-#: ../plugins/TagFix_BadValue.py:112 ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:116
+#: ../plugins/TagFix_BadValue.py:121 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr ""
@@ -3429,15 +3381,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:38
-#: ../analysers/analyser_merge_parking_FR_capp.py:31
+#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:41
+#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3448,7 +3399,6 @@ msgid "{0} parking update"
 msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:71
-#: ../analysers/analyser_merge_parking_FR_capp.py:63
 #, python-brace-format
 msgid "{0} parking for disabled not integrated"
 msgstr ""
@@ -3680,35 +3630,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1067
+#: ../analysers/Analyser_Merge.py:1078
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1070
+#: ../analysers/Analyser_Merge.py:1081
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1075
+#: ../analysers/Analyser_Merge.py:1086
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1088
+#: ../analysers/Analyser_Merge.py:1099
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1101
+#: ../analysers/Analyser_Merge.py:1112
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1063
+#: ../analysers/Analyser_Merge.py:1074
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -3867,7 +3817,7 @@ msgstr ""
 msgid "Different values of {0} and of {1}"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:81
+#: ../plugins/TagFix_Maxspeed.py:82
 msgid "Discordant maxspeed and source:maxspeed or maxspeed:type"
 msgstr ""
 
