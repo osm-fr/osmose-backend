@@ -88,6 +88,7 @@ However, this should probably still conform to the typical format used for value
                                  "electrified": ( "ground-level_power_supply" ),
                                  "religion": ( "self-realization_fellowship" ),
                                  "man_made": ( "MDF", "piste:halfpipe" ),
+                                 "cuisine": ( "tex-mex" ),
                                 }
 
         self.allow_closed = { "area": ( "yes", "no", ),
