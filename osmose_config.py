@@ -300,13 +300,7 @@ france_departement("aquitaine/gironde", 7405, "FR-33", include=include_aquitaine
 ])
 france_departement("aquitaine/landes", 7376, "FR-40", include=include_aquitaine)
 france_departement("aquitaine/lot_et_garonne", 1284995, "FR-47", include=include_aquitaine)
-france_departement("aquitaine/pyrenees_atlantiques", 7450, "FR-64", include=include_aquitaine + [
-    # Pau
-    'merge_recycling_FR_capp_glass',
-    'merge_recycling_FR_capp_clothes',
-    'merge_parking_FR_capp',
-    'merge_bicycle_parking_FR_capp',
-])
+france_departement("aquitaine/pyrenees_atlantiques", 7450, "FR-64", include=include_aquitaine)
 
 france_departement("auvergne/allier", 1450201, "FR-03")
 france_departement("auvergne/cantal", 7381, "FR-15")
