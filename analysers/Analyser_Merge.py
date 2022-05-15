@@ -352,6 +352,8 @@ class Source:
             self.attribution_re = re.compile(self.attribution.replace("{0}", ".*"))
 
     def zipFile(self):
+        if not self.zip:
+            return None
         if self.file:
             f = open(self.file, 'rb')
         elif self.fileUrl:
