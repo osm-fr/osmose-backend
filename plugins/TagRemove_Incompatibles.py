@@ -73,6 +73,7 @@ class TagRemove_Incompatibles(Plugin):
                 ['footway', 'railway', 'disused'],
                 ['path', 'railway', 'disused'],
                 ['service', 'amenity', 'weighbridge'],
+                ['service', 'leisure', 'slipway'],
             ],
             'natural': [
                 ['water', 'leisure', 'marina'],
