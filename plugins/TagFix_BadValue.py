@@ -75,7 +75,6 @@ However, this should probably still conform to the typical format used for value
         self.exceptions_open = { "type": ( "associatedStreet",
                                            "turnlanes:lengths",
                                            "turnlanes:turns",
-                                           "restriction:hgv", "restriction:caravan", "restriction:motorcar", "restriction:bus", "restriction:agricultural", "restriction:bicycle", "restriction:hazmat",
                                            "TMC" ),
                                  "service": ( "drive-through", ),
                                  "aerialway": ( "j-bar", "t-bar", ),
