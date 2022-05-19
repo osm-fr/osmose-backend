@@ -53,7 +53,7 @@ and `potential`.'''))
         if country == 'CH':
             # From open data from cantons Zurich and Bern. See also https://github.com/ltog/osmi-addresses/issues/93
             # Plus allows commas with multiple numbers
-            ch_number = "[1-9][0-9]{0,3}( ?[a-zA-Z]{0,3})?"
+            ch_number = "[1-9][0-9]{0,3}( ?[a-zA-Z]{1,3})?"
             self.housenumber = re.compile(r"^(:?{0})(:?,{0})?$".format(ch_number))
         elif country == 'CZ':
             # https://wiki.openstreetmap.org/wiki/Cs:WikiProject_Czech_Republic/Address_system
