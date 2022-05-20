@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 def transform_phone(phone_number):
     if len(phone_number) > 6 and phone_number.startswith("0"):
@@ -29,10 +29,10 @@ def transform_phone(phone_number):
     else:
         return phone_number
 
-class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
+class _Analyser_Merge_ServicePublic_FR(Analyser_Merge_Point):
 
     def __init__(self, config, logger, item, clas, level, select, osmTags, defaultTag, defaultTagMapping = {}):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = item, id = clas, level = level, tags = ['merge', 'fix:survey', 'fix:picture'],
             title = T_('Public service not integrated'),
             trap = T_(

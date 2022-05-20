@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load_XY, Conflate, Mapping, Select
+from .Analyser_Merge import Analyser_Merge_Point, Source, GeoJSON, Load_XY, Conflate, Mapping, Select
 
 
-class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge):
+class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8040, id = 61, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', 'Kerala'))
 

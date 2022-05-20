@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge):
+class Analyser_Merge_defibrillators_FR_paris(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8370, id = 30, level = 3, tags = ['merge', 'emergency', 'fix:picture', 'fix:survey'],
             title = T_('Defibrillator not integrated'))
 

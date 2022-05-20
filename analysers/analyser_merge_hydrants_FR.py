@@ -22,12 +22,12 @@
 
 from modules.OsmoseTranslation import T_
 from dateutil.parser import parse
-from .Analyser_Merge import Analyser_Merge, GeoJSON, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
-class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge):
+class _Analyser_Merge_Afigeo_Hydrants(Analyser_Merge_Point):
     def __init__(self, config, source_url, dataset_name, source, osmRef, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8090, id = 11, level = 3, tags = ['merge', 'emergency', 'fix:imagery', 'fix:picture', 'fix:survey'],
             title = T_('Fire hydrant not integrated'))
         self.def_class_possible_merge(item = 8091, id = 13, level = 3, tags = ['merge', 'emergency', 'fix:chair', 'fix:picture'],

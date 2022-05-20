@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_College_FR(Analyser_Merge):
+class Analyser_Merge_College_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8030, id = 100, level = 3, tags = ['merge', 'fix:survey', 'fix:imagery'],
             title = T_('College not integrated'))
         self.def_class_missing_osm(item = 7070, id = 101, level = 3, tags = ['merge', 'fix:chair'],

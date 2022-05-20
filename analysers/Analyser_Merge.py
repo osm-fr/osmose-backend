@@ -1066,7 +1066,7 @@ class Conflate:
         self.subclass_hash = subclass_hash
         self.mapping = mapping
 
-class Analyser_Merge(Analyser_Osmosis):
+class Analyser_Merge_Point(Analyser_Osmosis):
 
     def __init__(self, config, logger):
         Analyser_Osmosis.__init__(self, config, logger)

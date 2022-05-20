@@ -22,13 +22,13 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 from functools import reduce
 
 
-class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
+class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         doc = dict(
             detail = T_(
 '''A historical monument is here but is not mapped. The list of monuments

@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
+class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8320, id = 3, level = 3, tags = ['merge', 'maxweight', 'fix:survey', 'fix:picture'],
             title = T_('maxweight Restriction not integrated'))
 
@@ -58,9 +58,9 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
         return v[:-1].replace(",", ".").strip("0")
 
 
-class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
+class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8320, id = 4, level = 3, tags = ['merge', 'maxheight'],
             title = T_('maxheight Restriction not integrated'))
 

@@ -21,13 +21,13 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 from modules import italian_strings
 
 
-class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
+class Analyser_Merge_Parapharmacy_IT(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8210, id = 21, level = 3, tags = ['merge', 'amenity', 'fix:picture', 'fix:survey'],
             title = T_('Pharmacy not integrated'))
         self.def_class_missing_osm(item = 7150, id = 22, level = 3, tags = ['merge', 'amenity', 'fix:chair'],

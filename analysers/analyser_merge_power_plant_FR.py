@@ -21,14 +21,14 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 from .Analyser_Merge_Geocode_Addok_CSV import Geocode_Addok_CSV
 from modules import Stablehash
 
 
-class Analyser_Merge_Power_Plant_FR(Analyser_Merge):
+class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8270, id = 1, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:imagery'],
             title = T_('Power plant not integrated, geocoded at municipality level'))
 

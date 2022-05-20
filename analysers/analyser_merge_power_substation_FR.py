@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
+class Analyser_Merge_Power_Substation_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_osm(item = 7190, id = 2, level = 3, tags = ['merge', 'power', 'fix:chair'],
             title = T_('Power substation is not known from operator'))
         self.def_class_possible_merge(item = 8281, id = 3, level = 3, tags = ['merge', 'power', 'fix:chair'],

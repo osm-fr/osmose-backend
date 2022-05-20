@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
+class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8140, id = 1, level = 3, tags = ['merge', 'tourism', 'fix:survey', 'fix:imagery'],
             title = T_('Aquitaine caravan site not integrated'))
 
@@ -53,9 +53,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))
 
-class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
+class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8140, id = 11, level = 3, tags = ['merge', 'tourism'],
             title = T_('Aquitaine camp site not integrated'))
 

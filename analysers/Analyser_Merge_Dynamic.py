@@ -21,7 +21,7 @@
 ###########################################################################
 
 from .Analyser import Analyser
-from .Analyser_Merge import Analyser_Merge, Source, Load_XY, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, Load_XY, Mapping
 
 
 class Analyser_Merge_Dynamic(Analyser):
@@ -50,17 +50,17 @@ class Analyser_Merge_Dynamic(Analyser):
             return analyser_obj.timestamp()
 
 
-class SubAnalyser_Merge_Dynamic(Analyser_Merge):
+class SubAnalyser_Merge_Dynamic(Analyser_Merge_Point):
 
     def __init__(self, config, error_file, logger):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.error_file = error_file
 
     def init(self, url, name, source = Source(), load = Load_XY(), mapping = Mapping()):
         if not load.table_name: # Rename all table of sub analysers the same
             load.table_name = self.__class__.__name__.lower()[18:]
             load.table_name = '_'.join(load.table_name.split('_')[:-1])
-        Analyser_Merge.init(self, url, name, source, load, mapping)
+        Analyser_Merge_Point.init(self, url, name, source, load, mapping)
 
     def open_error_file(self):
         pass

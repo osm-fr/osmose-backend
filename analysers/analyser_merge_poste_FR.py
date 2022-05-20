@@ -22,14 +22,14 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
 
-class Analyser_Merge_Poste_FR(Analyser_Merge):
+class Analyser_Merge_Poste_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8020, id = 1, level = 3, tags = ['merge', 'post', 'fix:picture', 'fix:survey'],
             title = T_('Post office not integrated'))
         self.def_class_missing_osm(item = 7050, id = 2, level = 3, tags = ['merge', 'post', 'fix:chair'],
