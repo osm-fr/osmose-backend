@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -35,7 +35,7 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Île-de-France Mobilités",
                 url="https://opendata.stif.info/explore/dataset/parcs-relais-idf")),
-            Load("Geo Point", "Geo Point",
+            Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),
             Conflate(

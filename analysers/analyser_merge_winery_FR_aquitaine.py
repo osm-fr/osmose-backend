@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
@@ -36,10 +36,10 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
+            Load_XY("LON", "LAT",
                 select = {"TYPEPRODUITS": {"like": "%Vins%"}},
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

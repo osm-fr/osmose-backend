@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="data.gouv.fr:RTE",
                 url="https://opendata.reseaux-energies.fr/explore/dataset/pylones-rte")),
-            Load("Longitude pylône (DD)", "Latitude pylône (DD)",
+            Load_XY("Longitude pylône (DD)", "Latitude pylône (DD)",
                 select={"Hauteur pylône (m)": lambda t: "{0} IS NOT NULL AND {0} NOT IN ('', '0')".format(t) }),
             Conflate(
                 select = Select(

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_merge_defibrillators_FR_montfort(Analyser_Merge):
                 attribution="Défibrillateurs Montfort Communauté",
                 dataset="5baca9798b4c411829c4659a",
                 resource="ad484c5d-0566-4bd4-9bb4-1ca418031968")),
-            Load("X","Y"),
+            Load_XY("X","Y"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

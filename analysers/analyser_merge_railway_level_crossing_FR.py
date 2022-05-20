@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     attribution="SNCF Réseau",
                     url="https://data.sncf.com/explore/dataset/liste-des-passages-a-niveau",
                     format="geojson")),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                 where = lambda res: res["mnemo"] != "CLASSE 00"),
             Conflate(
                 select = Select(

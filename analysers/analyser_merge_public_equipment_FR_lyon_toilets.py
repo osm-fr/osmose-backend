@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load_XY, Conflate, Select, Mapping
 import json
 
 
@@ -48,7 +48,7 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
             GeoJSON(Source(attribution = u"Grand Lyon", millesime = "02/2020",
                     fileUrl = u"https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=adr_voie_lieu.toilettepublique_latest&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4326&startIndex=0"),
                 extractor = lambda geojson: geojson),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                  where = lambda res: res['provenance'] != 'Open Street Map'),
             Conflate(
                 select = Select(

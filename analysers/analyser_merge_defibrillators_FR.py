@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load_XY, Conflate, Select, Mapping
 import unidecode
 import re
 from modules import reaccentue
@@ -74,7 +74,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     attribution="Ministère de la Santé",
                     dataset="61556e1e9d6adb2df86eb0fc",
                     resource="86ea48a0-dd94-4a23-b71c-80d3041d7db2")),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                  select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "f"}),
             Conflate(
                 select = Select(

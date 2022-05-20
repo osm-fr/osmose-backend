@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
@@ -39,7 +39,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
             "Horaires prévus des trains TER",
             GTFS(Source(attribution = "SNCF", millesime = "08/2017",
                     fileUrl = "https://eu.ftp.opendatasoft.com/sncf/gtfs/export-ter-gtfs-last.zip")),
-            Load("stop_lon", "stop_lat",
+            Load_XY("stop_lon", "stop_lat",
                 select = {"stop_id": {"like": "StopPoint:OCETrain%"}}),
             Conflate(
                 select = Select(

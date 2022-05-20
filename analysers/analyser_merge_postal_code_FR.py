@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="La Poste",
                 url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal")),
-            Load(srid = None),
+            Load_XY(srid = None),
             Conflate(
                 select = Select(
                     types = ["relations"],

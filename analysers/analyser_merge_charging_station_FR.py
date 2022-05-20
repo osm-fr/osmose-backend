@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Charging_station_FR(Analyser_Merge):
@@ -53,7 +53,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
             "Stations de recharge pour véhicules électriques",
             CSV(Source(attribution="data.gouv.fr:Etalab", millesime="01/2020",
                        fileUrl="https://raw.githubusercontent.com/Jungle-Bus/ref-EU-EVSE/gh-pages/opendata_stations.csv")),
-            Load("Xlongitude", "Ylatitude"),
+            Load_XY("Xlongitude", "Ylatitude"),
             Conflate(
                 select=Select(
                     types=["nodes", "ways"],

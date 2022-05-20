@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                 attribution="Nantes Métropole {0}",
                 url="https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole",
                 format="geojson")),
-            Load(
+            Load_XY(
                 "geom_x", "geom_y",
                 select={"type_dechet": "Verre"}),
             Conflate(

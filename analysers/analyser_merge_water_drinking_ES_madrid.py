@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Water_Drinking_ES_Madrid(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_Water_Drinking_ES_Madrid(Analyser_Merge):
                 attribution="Ayuntamiento de Madrid",
                 fileUrl="https://datos.madrid.es/egob/catalogo/300051-13-fuentes.csv"),
                 separator = ';'),
-            Load("Longitud", "Latitud",
+            Load_XY("Longitud", "Latitud",
                 select = {"OBSERVACIONES": "EN SERVICIO"}),
             Conflate(
                 select = Select(

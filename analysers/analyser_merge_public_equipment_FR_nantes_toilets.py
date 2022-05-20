@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, JSON, Load_XY, Conflate, Select, Mapping
 import json
 
 
@@ -40,7 +40,7 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                     url="https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
                     format="json"),
                 extractor = lambda json: map(lambda j: j['fields'], json)),
-            Load("geo_shape.coordinates", "geo_shape.coordinates",
+            Load_XY("geo_shape.coordinates", "geo_shape.coordinates",
                 xFunction = lambda c: c and json.loads(c)[0],
                 yFunction = lambda c: c and json.loads(c)[1]),
             Conflate(

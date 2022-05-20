@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 from io import open
 
 class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
@@ -48,7 +48,7 @@ class _Analyser_Merge_Radio_Support_FR(Analyser_Merge):
             CSV(SourceDataGouv(attribution = "data.gouv.fr:ANFR",
                     dataset = "551d4ff3c751df55da0cd89f", resource = "5da74526-7781-4726-b98b-232756643090", zip = "SUP_SUPPORT.txt", encoding = "ISO-8859-15"),
                 separator = ";", quote = u'$'),
-            Load(
+            Load_XY(
 ("CASE \"COR_CD_EW_LON\" WHEN 'W' THEN -1*(to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600) WHEN 'E' THEN to_number(\"COR_NB_DG_LON\", '99') + to_number(\"COR_NB_MN_LON\", '99') / 60 + to_number(\"COR_NB_SC_LON\", '99') / 3600 END",),
 ("CASE \"COR_CD_NS_LAT\" WHEN 'S' THEN -1*(to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600) WHEN 'N' THEN to_number(\"COR_NB_DG_LAT\", '99') + to_number(\"COR_NB_MN_LAT\", '99') / 60 + to_number(\"COR_NB_SC_LAT\", '99') / 3600 END",),
                 select = {"NAT_ID": NAT_IDs},

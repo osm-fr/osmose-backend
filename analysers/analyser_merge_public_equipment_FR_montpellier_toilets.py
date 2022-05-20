@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
@@ -35,7 +35,7 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
             u"Toilettes publiques",
             GeoJSON(Source(attribution = u"Montpellier Mediterranée Métropole", millesime = "05/2019",
                     fileUrl = u"http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_Publics.json")),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                 select = {u'enservice': u'En Service'}),
             Conflate(
                 select = Select(

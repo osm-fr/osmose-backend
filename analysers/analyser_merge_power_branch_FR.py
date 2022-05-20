@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Branch_FR(Analyser_Merge):
@@ -42,7 +42,7 @@ class Analyser_Merge_Power_Branch_FR(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 url="https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte",
                 attribution="data.gouv.fr:RTE")),
-            Load("Longitude poste (DD)", "Latitude poste (DD)",
+            Load_XY("Longitude poste (DD)", "Latitude poste (DD)",
                 select = {"Fonction": "POINT DE PIQUAGE"}),
             Conflate(
                 select = Select(

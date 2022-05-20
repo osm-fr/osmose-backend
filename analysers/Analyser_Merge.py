@@ -748,7 +748,7 @@ class GDAL(Parser):
 
 GPKG = GDAL
 
-class Load(object):
+class Load_XY(object):
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
             select = {}, unique = None, where = lambda res: True, map = lambda i: i, xFunction = lambda i: i, yFunction = lambda i: i):
         """
@@ -918,7 +918,7 @@ class Load(object):
         else:
             return val
 
-class LoadGeomCentroid(Load):
+class LoadGeomCentroid(Load_XY):
     def __init__(self, *args, **kwargs):
         super(LoadGeomCentroid, self).__init__(("ST_X(ST_PointOnSurface(geom))",), ("ST_Y(ST_PointOnSurface(geom))",), *args, **kwargs)
 
@@ -1116,7 +1116,7 @@ OpenData and OSM.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.update_official = self.def_class(back_in_stack = 3, **kwargs)
 
-    def init(self, url, name, parser, load = Load(), conflate = Conflate()):
+    def init(self, url, name, parser, load = Load_XY(), conflate = Conflate()):
         """
         @param url: remote URL of data source, webpage
         @param name: official name of the data set

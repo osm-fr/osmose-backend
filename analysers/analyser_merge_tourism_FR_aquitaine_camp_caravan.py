@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
@@ -36,9 +36,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/eda0e9ba-cec4-48f5-bd24-985d1d614c23/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+            Load_XY("LON", "LAT",
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -65,9 +65,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/13d7f8ab-bd69-4815-b02c-d8134663b849/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+            Load_XY("LON", "LAT",
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

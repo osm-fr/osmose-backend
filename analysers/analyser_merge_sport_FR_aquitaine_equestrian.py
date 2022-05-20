@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
@@ -36,9 +36,9 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+            Load_XY("LON", "LAT",
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

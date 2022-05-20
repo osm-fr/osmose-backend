@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Mapping, Select
+from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load_XY, Conflate, Mapping, Select
 
 
 class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge):
@@ -36,7 +36,7 @@ class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge):
             GeoJSON(Source(attribution = u"Kerala State Electronics Development Corporation Limited", millesime = "09/2021",
                     fileUrl = u"https://opensdi.kerala.gov.in/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typename=geonode%3AKerala_Bus_Stops&outputFormat=json&srs=EPSG%3A32643&srsName=EPSG%3A4326"),
                 extractor = lambda geojson: geojson),
-            Load("geom_x", "geom_y"),
+            Load_XY("geom_x", "geom_y"),
             Conflate(
                 select = Select(
                     types = ["nodes"],

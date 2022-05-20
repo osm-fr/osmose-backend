@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Exploitants contributeurs de l'Agence ORE",
                 url="https://opendata.agenceore.fr/explore/dataset/postes-de-distribution-publique-postes-htabt/")),
-            Load("Geo Point", "Geo Point",
+            Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
             Conflate(

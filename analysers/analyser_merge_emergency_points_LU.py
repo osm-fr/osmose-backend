@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourcePublicLu, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourcePublicLu, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
@@ -39,7 +39,7 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
                        resource="b8d9d38a-7894-49fb-ab88-94072fe2c722",
                        encoding="iso-8859-1"),
                 separator=";"),
-            Load("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
+            Load_XY("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
             Conflate(
                 select=Select(
                     types=["nodes"],

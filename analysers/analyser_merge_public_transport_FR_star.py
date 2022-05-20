@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
@@ -41,7 +41,7 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Keolis Rennes",
                 url="https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star")),
-            Load("Coordonnées", "Coordonnées",
+            Load_XY("Coordonnées", "Coordonnées",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),
             Conflate(

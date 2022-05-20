@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_merge_defibrillators_FR_basrhin(Analyser_Merge):
                     attribution="data.gouv.fr:Service Départemental d'Incendie et de Secours du Bas-Rhin",
                     dataset="59256d13c751df5259330037",
                     resource="b84312e9-b198-4f1d-b2ad-8e4df5b7cb5b")),
-            Load("geom_x", "geom_y"),
+            Load_XY("geom_x", "geom_y"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

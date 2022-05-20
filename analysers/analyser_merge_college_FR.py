@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_College_FR(Analyser_Merge):
@@ -42,9 +42,9 @@ class Analyser_Merge_College_FR(Analyser_Merge):
             CSV(Source(attribution = u"Etablissements d'enseignement supérieur", millesime = "09/2017",
                     fileUrl = u"https://api.opendata.onisep.fr/downloads/57da952417293/57da952417293.csv", encoding = "utf-8-sig"),
                 separator = u';'),
-            Load("longitude (X)", "latitude (Y)",
-                xFunction = Load.float_comma,
-                yFunction = Load.float_comma),
+            Load_XY("longitude (X)", "latitude (Y)",
+                xFunction = Load_XY.float_comma,
+                yFunction = Load_XY.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

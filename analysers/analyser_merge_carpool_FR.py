@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Carpool_FR(Analyser_Merge):
@@ -43,7 +43,7 @@ class Analyser_Merge_Carpool_FR(Analyser_Merge):
                     encoding="utf-8-sig",
                     dataset="5d6eaffc8b4c417cdc452ac3",
                     resource="46362a9d-053e-4ba0-be58-bca4417a2de8")),
-            Load("Xlong", "Ylat",
+            Load_XY("Xlong", "Ylat",
                 select = {
                     "ouvert": "true"}),
             Conflate(

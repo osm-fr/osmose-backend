@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 from modules import italian_strings
 
 
@@ -42,9 +42,9 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             'Ministero della Salute',
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_7_download_itemDownload0_upFile.CSV'),
                 separator = ';'),
-            Load('LONGITUDINE', 'LATITUDINE',
-                xFunction = lambda x: Load.float_comma(x.replace('\'', '')),# '9,258444
-                yFunction = Load.float_comma,
+            Load_XY('LONGITUDINE', 'LATITUDINE',
+                xFunction = lambda x: Load_XY.float_comma(x.replace('\'', '')),# '9,258444
+                yFunction = Load_XY.float_comma,
                 where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
             Conflate(
                 select = Select(

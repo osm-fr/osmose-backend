@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution = "data.gouv.fr:LaPoste",
                 url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue")),
-            Load("Latlong", "Latlong",
+            Load_XY("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
             Conflate(

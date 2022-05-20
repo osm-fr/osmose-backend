@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
@@ -40,7 +40,7 @@ class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
                 attribution="SIBRA",
                 dataset="5bd9843e634f413220f7f04a",
                 resource="bd213411-2d50-4b71-a89f-2dab76f62b73")),
-            Load("stop_lon", "stop_lat"),
+            Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

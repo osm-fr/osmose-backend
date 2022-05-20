@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
@@ -37,9 +37,9 @@ class Analyser_Merge_Recycling_FR_csma(Analyser_Merge):
             "Points d'apport volontaire",
             CSV(Source(attribution = "Clisson Sèvre et Maine Agglo", millesime = "05/2019",
                     file = "PAV_CSMA.csv.bz2", bz2 = True)),
-            Load("X", "Y",
-                 xFunction = Load.float_comma,
-                 yFunction = Load.float_comma,
+            Load_XY("X", "Y",
+                 xFunction = Load_XY.float_comma,
+                 yFunction = Load_XY.float_comma,
                  select = {"detail": ["Verre", "Papier", "Vêtements"]}),
             Conflate(
                 select = Select(

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 doc = dict(
     detail = T_(
@@ -50,7 +50,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
-            Load("lon", "lat",
+            Load_XY("lon", "lat",
                 where = lambda res: not(u'Point constaté détruit' in res[u'description'] or u'Point non retrouvé' in res[u'description']), # No more unique ref
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
@@ -92,7 +92,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie_site.csv.bz2", bz2 = True),
                 header = False),
-            Load("lon", "lat",
+            Load_XY("lon", "lat",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     ref VARCHAR(254),

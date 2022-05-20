@@ -22,7 +22,7 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
@@ -48,7 +48,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                 SourceOpenDataSoft(
                     attribution="LaPoste",
                     url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_poincont")),
-            Load("Longitude", "Latitude"),
+            Load_XY("Longitude", "Latitude"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

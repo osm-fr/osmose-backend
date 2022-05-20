@@ -20,7 +20,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 
 class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
     def __init__(self, config, logger = None):
@@ -46,9 +46,9 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
                 attribution="data.gouv.fr:Ministère de la Transition écologique et solidaire",
                 dataset="57a83c3dc751df5b90bb5dd5",
                 resource="8b3b36e8-e45a-48c0-8a70-3336d9769948")),
-            Load("x", "y", srid = 2154,
-                xFunction = Load.float_comma,
-                yFunction = Load.float_comma,
+            Load_XY("x", "y", srid = 2154,
+                xFunction = Load_XY.float_comma,
+                yFunction = Load_XY.float_comma,
                 where = lambda row: self.is_milestone(row)),
             Conflate(
                 select = Select(

@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load_XY, Conflate, Select, Mapping
 from modules import downloader
 from modules import italian_strings
 import csv
@@ -57,7 +57,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
             'MISE - Ministero Sviluppo Economico',
             CSV(Source_Fuel(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
                     fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv')),
-            Load('Longitudine', 'Latitudine',
+            Load_XY('Longitudine', 'Latitudine',
                 where = lambda row: row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
             Conflate(
                 select = Select(

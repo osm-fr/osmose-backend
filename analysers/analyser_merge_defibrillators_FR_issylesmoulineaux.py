@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:Ville d'Issy-les-Moulineaux",
                     url="https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux")),
-            Load("Coordonnées géographiques", "Coordonnées géographiques",
+            Load_XY("Coordonnées géographiques", "Coordonnées géographiques",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),
             Conflate(

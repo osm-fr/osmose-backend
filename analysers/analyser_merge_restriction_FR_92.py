@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
@@ -37,7 +37,7 @@ class Analyser_Merge_Restriction_FR_92_Maxweight(Analyser_Merge):
                 SourceOpenDataSoft(
                     attribution="Département des Hauts-de-Seine",
                     url="https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts")),
-            Load("geo_point_2d", "geo_point_2d",
+            Load_XY("geo_point_2d", "geo_point_2d",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
                 select = {"NATURE": "Poids"}),
@@ -70,7 +70,7 @@ class Analyser_Merge_Restriction_FR_92_Maxheight(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Département des Hauts-de-Seine",
                 url="https://opendata.hauts-de-seine.fr/explore/dataset/gabarits-et-limitation-de-poids-des-ponts")),
-            Load("geo_point_2d", "geo_point_2d",
+            Load_XY("geo_point_2d", "geo_point_2d",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
                 select = {"NATURE": "Hauteur"}),

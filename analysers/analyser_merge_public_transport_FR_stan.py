@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge):
@@ -38,7 +38,7 @@ class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge):
             u"Réseau Stan: horaires et lignes",
             GTFS(Source(attribution = u"Métropole du Grand Nancy", millesime = "06/2017",
                     fileUrl = u"http://opendata.grandnancy.eu/?eID=ics_od_datastoredownload&file=333")),
-            Load("stop_lon", "stop_lat"),
+            Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],
