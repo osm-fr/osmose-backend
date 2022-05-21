@@ -569,6 +569,7 @@ france_local_db.analyser["merge_healthcare_FR_finess"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
+france_local_db.analyser["merge_power_line_FR"] = "xxx"
 france_local_db.analyser["merge_power_plant_FR"] = "xxx"
 france_local_db.analyser["merge_power_branch_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
@@ -1501,7 +1502,9 @@ at_state("vorarlberg", 74942, "AT-8")
 
 #########################################################################
 
-es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00')
+es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00', include=[
+    "merge_road_ES",
+])
 
 es_prov('andalucia/almeria', 348997, 'ES-AL', proj=32629)
 es_prov('andalucia/cadiz', 349017, 'ES-CA', proj=32629)
