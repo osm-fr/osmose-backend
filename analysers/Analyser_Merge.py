@@ -1096,14 +1096,13 @@ class Mapping:
             return None
 
 class Conflate:
-    def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, missing_official_fix = True, tag_keep_multiple_values = [], subclass_hash = lambda d: d, mapping = Mapping()):
+    def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, tag_keep_multiple_values = [], subclass_hash = lambda d: d, mapping = Mapping()):
         """
         How data is mapped with OSM data.
         @param select: fetch OSM data, see Select
         @param osmRef: the OSM key for join data on reference, must refer to mapped tag from OpenData set.
         @param conflationDistance: if no osmRef, do do conflation, use this threshold
         @param extraJoin: an additional OSM key to join on, must refer to mapped tag from OpenData set.
-        @param missing_official_fix: boolean to generate or not new object with quickfix
         @param tag_keep_multiple_values: if tags already have value or multiple values just append the new one
         @param subclass_hash: lambda return dict from dict fields to be used in subclass hash computation (to be stable)
         @param mapping: map the fields to OSM tags, see Mapping
@@ -1112,7 +1111,6 @@ class Conflate:
         self.osmRef = osmRef
         self.conflationDistance = conflationDistance
         self.extraJoin = extraJoin
-        self.missing_official_fix = missing_official_fix
         self.tag_keep_multiple_values = tag_keep_multiple_values
         self.subclass_hash = subclass_hash
         self.mapping = mapping
@@ -1383,7 +1381,7 @@ OpenData and OSM.'''))
                     "self": lambda r: [0]+r[1:],
                     "data": [self.node_new, self.positionAsText],
                     "text": self.conflate.mapping.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-                    "fix": self.passTags(res[2]) if self.conflate.missing_official_fix and res[2] != {} else None,
+                    "fix": self.passTags(res[2]) if res[2] != {} else None,
                 }
             self.run(sql12, ret)
 
