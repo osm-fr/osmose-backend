@@ -47,9 +47,9 @@ For other attributes, see common documentations.
 
 ```python
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge
+from .Analyser_Merge import Analyser_Merge_Point
 
-class Analyser_Merge_Charging_station_FR(Analyser_Merge):
+class Analyser_Merge_Charging_station_FR(Analyser_Merge_Point):
     def __init__(self, config, logger=None):
         self.def_class_missing_official(item = 8410, id = 1, level = 3, tags = ['merge'],
             title = T_('Car charging station not integrated'))
@@ -185,16 +185,16 @@ from .Analyser_Merge import LoadGeomCentroid
 
 In other case, the `x` (longitude) and the `y` (latitude) field name must be given:
 ```python
-from .Analyser_Merge import Load
+from .Analyser_Merge import Load_XY
 
-    Load('lon', 'lat', ...)
+    Load_XY('lon', 'lat', ...)
 ```
 
 Note: sometime the both coordinates are in the same field, then the field must be given twice.
 
 A lambda function may be applied to `x` and `y` field to extract or convert to proper number:
 ```python
-    Load('coords', 'coords',
+    Load_XY('coords', 'coords',
         xFunction = lambda x: ...,
         yFunction = lambda y: ...,
     )
@@ -208,8 +208,8 @@ A common usage is to split a unique coordinate field:
 `Load` take care of removing extra spaces and converting to float number.
 
 Helpers function are also available:
-- `Load.float_comma`: Convert decimal comma to dot separated.
-- `Load.degree`: Convert coordinate in degree, minute, second to decimal degrees.
+- `Load_XY.float_comma`: Convert decimal comma to dot separated.
+- `Load_XY.degree`: Convert coordinate in degree, minute, second to decimal degrees.
 
 If the raw data coordinates are not in longitude / latitude (SIRD 4362), the SIRD must be set in order to reproject the data:
 - `srid`: SIRD code of the data coordinates.
