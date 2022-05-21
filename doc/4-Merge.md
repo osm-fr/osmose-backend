@@ -114,6 +114,7 @@ Base class that can be used data sources not covered by specific classes.
 It uses the following attributes:
 - Either:
   - `fileUrl`: remote content file URL.
+  - `post`: in addition of `fileUrl`, use a `POST` query in place of a `GET`. Send the `post` dictionary in the request.
   - `file`: local content file from the `merge_data` directory, avoid this case.
 - `millesime`: optional, date of the last release, for the OSM `source` tag. Note: since it is hard coded, it is not automatically updated when the remote data is updated. May be required with the attribution in some jurisdiction.
 

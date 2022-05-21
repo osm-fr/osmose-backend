@@ -309,7 +309,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, post: Dict[str, str] = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
         """
         Describe the source file.
         @param attribution: Author of the data, for the OSM source tag
@@ -318,6 +318,7 @@ class Source:
         @param file: file name in storage
         @param urlFile: remote URL of source file
         @param fileUrlCache: days for file in cache
+        @param post: post key-value to the URL to get the file to download
         @param zip: extract a file from zip. Unix filename pattern matching.
         @param extract: extract file from any archive format
         @param gzip: uncompress from bz2
@@ -329,6 +330,7 @@ class Source:
         self.encoding = encoding
         self.file = file
         self.fileUrl = fileUrl
+        self.post = post
         self.fileUrlCache = fileUrlCache
         self.zip = zip
         self.extract = extract
@@ -352,7 +354,7 @@ class Source:
         if self.file:
             f = open(self.file, 'rb')
         elif self.fileUrl:
-            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb', post=self.post)
 
         z = zipfile.ZipFile(f, 'r')
         print(z.namelist())
@@ -367,20 +369,20 @@ class Source:
                 date_time = self.zipFile().date_time
                 return int(time.mktime(date_time + (0, 0, -1))+.5)
             else:
-                return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
+                return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache, self.post)+.5)
 
     def path(self):
         if self.file:
             return self.file
         elif self.fileUrl:
             # Do nothing about ZIP
-            return downloader.path(self.fileUrl, self.fileUrlCache)
+            return downloader.path(self.fileUrl, self.fileUrlCache, post=self.post)
 
     def open(self, binary = False):
         if self.file:
             f = open(self.file, 'rb')
         elif self.fileUrl:
-            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb', post=self.post)
 
         if self.zipFile():
             z = zipfile.ZipFile(f, 'r').open(self.zipFile().filename)
@@ -413,7 +415,7 @@ class Source:
 
     def _get_millesime(self) -> Optional[str]:
         if not self.millesime and self.fileUrl:
-            cached_millesime = downloader.get_millesime(self.fileUrl, self.fileUrlCache)
+            cached_millesime = downloader.get_millesime(self.fileUrl, self.fileUrlCache, self.post)
             if cached_millesime:
                 self.millesime = cached_millesime
             else:
@@ -453,7 +455,7 @@ class SourceDataGouv(Source):
         super().__init__(**kwargs)
 
     def get_millesime(self) -> datetime.datetime:
-        response = downloader.get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/")
+        response = downloader.request_get(f"{self.data_gouv_api_base}/datasets/{self.dataset}/resources/{self.resource}/")
         response.raise_for_status()
         return datetime.datetime.fromisoformat(response.json()["last_modified"])
 
@@ -482,7 +484,7 @@ class SourceOpenDataSoft(Source):
         super().__init__(**kwargs)
 
     def get_millesime(self) -> datetime.datetime:
-        response = downloader.get(f"{self.base_url}/api/datasets/1.0/{self.dataset}")
+        response = downloader.request_get(f"{self.base_url}/api/datasets/1.0/{self.dataset}")
         response.raise_for_status()
         return datetime.datetime.fromisoformat(response.json()["metas"]["data_processed"])
 
@@ -498,7 +500,7 @@ class SourceHttpLastModified(Source):
 class SourceIGN(Source):
     """Get millesime from IGN BDTOPO MetaData"""
     def get_millesime(self) -> datetime.datetime:
-        response = downloader.get("https://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/meta.json")
+        response = downloader.request_get("https://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/geopackage/meta.json")
         response.raise_for_status()
         return datetime.datetime.fromisoformat(response.json()["millesime"])
 
