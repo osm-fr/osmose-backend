@@ -121,7 +121,7 @@ VALUES (
 
 sql02b = """
 DROP TABLE IF EXISTS {official} CASCADE;
-CREATE UNLOGGED TABLE {official} AS
+CREATE TABLE {official} AS
 SELECT
   ref,
   tags,
@@ -731,7 +731,7 @@ class GDAL(Parser):
             tmp_file.write(self.source.open(binary = True).read())
             tmp_file.close()
 
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco UNLOGGED=ON -t_srs EPSG:4326 '{}' ".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:4326 '{}' ".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
@@ -784,7 +784,7 @@ class Load(object):
         table_base_name = self.table_name or default_table_base_name
         table = DictCursorUnicode.identifier(table_base_name)
 
-        osmosis.run("CREATE UNLOGGED TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
+        osmosis.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
         self.data = False
         def setDataTrue():
@@ -802,7 +802,7 @@ class Load(object):
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema.format(schema = db_schema))
             if self.create:
-                osmosis.run("CREATE UNLOGGED TABLE {0} ({1})".format(table, self.create))
+                osmosis.run("CREATE TABLE {0} ({1})".format(table, self.create))
             parser.import_(table, self.srid, osmosis)
             osmosis.run("DELETE FROM meta WHERE name = '{0}'".format(table))
             osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, version))
