@@ -188,7 +188,7 @@ class OsmOsisManager:
     else:
       cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
     cmd += ["-quiet"]
-    cmd += ["--write-pgsql-dump", "directory=%s" % dir_country_tmp, "enableLinestringBuilder=yes"]
+    cmd += ["--write-pgsql-dump", "directory=%s" % dir_country_tmp, "enableLinestringBuilder=yes", "enableKeepPartialLinestring=yes"]
 
     if parallel:
       for f in ['nodes.txt',
