@@ -103,6 +103,7 @@ class Test(TestPluginCommon):
         # Valid nodes and ways
         for t in [{"amenity": "parking", "vehicle": "no"},
                   {"amenity": "parking", "vehicle:conditional": "no @ wet"},
+                  {"access": "agricultural", "agricultural": "designated"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
           assert not a.node(None, t), a.node(None, t)
