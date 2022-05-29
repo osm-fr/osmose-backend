@@ -45,7 +45,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge):
             CSV(SourceDataGouv(
                 attribution="data.gouv.fr:Ministère de la Transition écologique et solidaire",
                 dataset="57a83c3dc751df5b90bb5dd5",
-                resource="7de08adc-74ae-4e62-8967-6f559ff6cbed")),
+                resource="8b3b36e8-e45a-48c0-8a70-3336d9769948")),
             Load("x", "y", srid = 2154,
                 xFunction = Load.float_comma,
                 yFunction = Load.float_comma,
