@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, GTFS, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
+class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         place = "SIBRA"
         self.def_class_missing_official(item = 8040, id = 101, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', place))
@@ -40,7 +40,7 @@ class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge):
                 attribution="SIBRA",
                 dataset="5bd9843e634f413220f7f04a",
                 resource="bd213411-2d50-4b71-a89f-2dab76f62b73")),
-            Load("stop_lon", "stop_lat"),
+            Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

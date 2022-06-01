@@ -21,15 +21,15 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 from modules import reaccentue
 
-class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge):
+class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge_Point):
     def cleanName(self, name):
         return reaccentue.reaccentue(name) if name.upper() == name else name
 
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8370, id = 130, level = 3, tags = ["merge", "emergency", "fix:picture", "fix:survey"],
             title = T_("Defibrillator not integrated"))
 
@@ -38,9 +38,9 @@ class Analyser_merge_defibrillators_FR_aedmap(Analyser_Merge):
             u"Défibrillateurs publics",
             CSV(Source(attribution = u"AEDMAP France",
                     fileUrl = u"https://files.pavie.info/depot/remote/aedmap_merge.csv")),
-            Load("Longitude", "Latitude",
-                 xFunction = Load.float_comma,
-                 yFunction = Load.float_comma),
+            Load_XY("Longitude", "Latitude",
+                 xFunction = Load_XY.float_comma,
+                 yFunction = Load_XY.float_comma),
             Conflate(
                 select = Select(
                     types = ["nodes"],

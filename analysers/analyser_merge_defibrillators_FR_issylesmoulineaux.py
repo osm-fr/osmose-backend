@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
+class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8370, id = 10, level = 3, tags = ['merge', "emergency", "fix:picture", "fix:survey"],
             title = T_('Defibrillator not integrated'))
 
@@ -37,7 +37,7 @@ class Analyser_merge_defibrillators_FR_issylesmoulineaux(Analyser_Merge):
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:Ville d'Issy-les-Moulineaux",
                     url="https://data.issy.com/explore/dataset/defibrillateurs-issy-les-moulineaux")),
-            Load("Coordonnées géographiques", "Coordonnées géographiques",
+            Load_XY("Coordonnées géographiques", "Coordonnées géographiques",
                 xFunction = lambda x: x.split(",")[1].strip(),
                 yFunction = lambda y: y.split(",")[0].strip()),
             Conflate(

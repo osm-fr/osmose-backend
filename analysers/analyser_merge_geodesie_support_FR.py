@@ -24,7 +24,7 @@ import csv
 import re
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
@@ -56,7 +56,7 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
             CSV(Source(attribution = u"©IGN 2010 dans le cadre de la cartographie réglementaire",
                     file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
-            Load("lon", "lat",
+            Load_XY("lon", "lat",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),

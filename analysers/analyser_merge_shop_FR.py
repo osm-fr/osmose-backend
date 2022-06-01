@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import SourceHttpLastModified, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import SourceHttpLastModified, CSV, Load_XY, Conflate, Select, Mapping
 from modules import reaccentue
 
 
@@ -60,7 +60,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 attribution="INSEE",
                 gzip=True,
                 fileUrl="http://data.cquest.org/geo_sirene/v2019/last/dep/geo_siret_{0}.csv.gz".format(dep_code))),
-            Load("longitude", "latitude",
+            Load_XY("longitude", "latitude",
                 select = {"activitePrincipaleEtablissement": classs, "geo_type": "housenumber", "etatAdministratifEtablissement": "A"},
                 where = lambda res: (
                     float(res["geo_score"]) > 0.9 and

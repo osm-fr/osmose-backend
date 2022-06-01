@@ -21,13 +21,13 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 from modules import italian_strings
 
 
-class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
+class Analyser_Merge_Parapharmacy_IT(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8210, id = 21, level = 3, tags = ['merge', 'amenity', 'fix:picture', 'fix:survey'],
             title = T_('Pharmacy not integrated'))
         self.def_class_missing_osm(item = 7150, id = 22, level = 3, tags = ['merge', 'amenity', 'fix:chair'],
@@ -42,9 +42,9 @@ class Analyser_Merge_Parapharmacy_IT(Analyser_Merge):
             'Ministero della Salute',
             CSV(Source(attribution = 'Ministero della Salute', fileUrl = 'http://www.dati.salute.gov.it/imgs/C_17_dataset_7_download_itemDownload0_upFile.CSV'),
                 separator = ';'),
-            Load('LONGITUDINE', 'LATITUDINE',
-                xFunction = lambda x: Load.float_comma(x.replace('\'', '')),# '9,258444
-                yFunction = Load.float_comma,
+            Load_XY('LONGITUDINE', 'LATITUDINE',
+                xFunction = lambda x: Load_XY.float_comma(x.replace('\'', '')),# '9,258444
+                yFunction = Load_XY.float_comma,
                 where = lambda row: row['DATAFINEVALIDITA'] == '-' and row['LONGITUDINE'] != '-' and row['LATITUDINE'] != '-'),
             Conflate(
                 select = Select(

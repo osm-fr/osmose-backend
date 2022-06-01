@@ -21,13 +21,13 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, JSON, Load_XY, Conflate, Select, Mapping
 import json
 
 
-class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
+class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8180, id = 5, level = 3, tags = ['merge', 'public equipment', 'fix:survey', 'fix:picture'],
             title = T_('{0} toilets not integrated', 'Nantes Métropole'))
 
@@ -40,7 +40,7 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                     url="https://data.nantesmetropole.fr/explore/dataset/244400404_toilettes-publiques-nantes-metropole",
                     format="json"),
                 extractor = lambda json: map(lambda j: j['fields'], json)),
-            Load("geo_shape.coordinates", "geo_shape.coordinates",
+            Load_XY("geo_shape.coordinates", "geo_shape.coordinates",
                 xFunction = lambda c: c and json.loads(c)[0],
                 yFunction = lambda c: c and json.loads(c)[1]),
             Conflate(

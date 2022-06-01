@@ -21,11 +21,11 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
-class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
+class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8380, id = 1, level = 3, tags = ['merge', 'fix:survey', 'fix:imagery'],
             title = T_('Wastewater plant not integrated'))
         self.def_class_possible_merge(item = 8381, id = 3, level = 3, tags = ['merge', 'fix:chair'],
@@ -38,7 +38,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge):
             u"Stations de traitement des eaux usées - France entière",
             CSV(Source(attribution = u"Sandre", millesime = "09/2019",
                     fileUrl = u"https://services.sandre.eaufrance.fr/geo/odp?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
-            Load("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
+            Load_XY("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
                 select = {"DateMiseHorServiceOuvrageDepollution": None}),
             Conflate(
                 select = Select(

@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
-class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge):
+class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge_Point):
     def __init__(self, config, logger, clas, conflationDistance, select, osmTags, defaultTag, label):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         place = "IdFM"
         self.def_class_missing_official(item = 8040, id = 1+10*clas, level = 3, tags = ['merge', 'railway', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} from {1} not integrated', label, place))

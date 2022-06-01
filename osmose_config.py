@@ -46,8 +46,8 @@ class template_config:
     bin_pyosmium_up_to_date = modules.config.bin_pyosmium_up_to_date
     osmosis_pre_scripts = [
         dir_scripts + "/osmosis/pgsnapshot_schema_0.6.sql",
-#       dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_bbox.sql",
-        dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_linestring.sql",
+#       dir_scripts + "/osmosis/osmosis-0.48.3-34-gb5383475-SNAPSHOT/script/pgsnapshot_schema_0.6_bbox.sql",
+        dir_scripts + "/osmosis/osmosis-0.48.3-34-gb5383475-SNAPSHOT/script/pgsnapshot_schema_0.6_linestring.sql",
         dir_scripts + "/osmosis/CreateMetainfo.sql",
     ]
     osmosis_import_prepare_scripts = [
@@ -67,14 +67,14 @@ class template_config:
     ]
     osmosis_change_init_post_scripts = [  # Scripts to run on database initialisation
         dir_scripts + "/osmosis/pgsimple_schema_0.6_action_drop.sql",
-        dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_action.sql",
+        dir_scripts + "/osmosis/osmosis-0.48.3-34-gb5383475-SNAPSHOT/script/pgsnapshot_schema_0.6_action.sql",
     ]
     osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/CreateTouched.sql",
     ]
     osmosis_resume_init_post_scripts = [  # Scripts to run on database initialisation
         dir_scripts + "/osmosis/pgsimple_schema_0.6_action_drop.sql",
-        dir_scripts + "/osmosis/osmosis-0.47.4/script/pgsnapshot_schema_0.6_action.sql",
+        dir_scripts + "/osmosis/osmosis-0.48.3-34-gb5383475-SNAPSHOT/script/pgsnapshot_schema_0.6_action.sql",
     ]
     osmosis_resume_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/ActionFromTimestamp.sql",
@@ -569,6 +569,7 @@ france_local_db.analyser["merge_healthcare_FR_finess"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
+france_local_db.analyser["merge_power_line_FR"] = "xxx"
 france_local_db.analyser["merge_power_plant_FR"] = "xxx"
 france_local_db.analyser["merge_power_branch_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
@@ -1501,7 +1502,9 @@ at_state("vorarlberg", 74942, "AT-8")
 
 #########################################################################
 
-es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00')
+es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', municipality_ref='ine:municipio', phone_code='34', phone_len=9, phone_len_short=[3, 4, 5], phone_international='00', include=[
+    "merge_road_ES",
+])
 
 es_prov('andalucia/almeria', 348997, 'ES-AL', proj=32629)
 es_prov('andalucia/cadiz', 349017, 'ES-CA', proj=32629)

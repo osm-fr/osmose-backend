@@ -23,7 +23,7 @@
 import json
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_tourism_FR(Analyser_Merge_Dynamic):
@@ -46,7 +46,7 @@ class SubAnalyser_Datatourisme_FR(SubAnalyser_Merge_Dynamic):
             "DATAtourisme, la base nationale des données du tourisme en Open Data",
             CSV(Source(attribution = "data.gouv.fr:DATAtourisme", millesime = "05/2020", fileUrlCache = 7, # 7d to avoid auto-disable of the data source
                     fileUrl = "https://diffuseur.datatourisme.gouv.fr/webservice/84c2e2e54073df2b931c9f4bf8a3ccf3/b7f07a07-2b8f-4fcb-a74f-fdd68b0f57d5")),
-            Load("Longitude", "Latitude",
+            Load_XY("Longitude", "Latitude",
                 select = {'type': type_},
                 unique = ["elem"]),
             Conflate(

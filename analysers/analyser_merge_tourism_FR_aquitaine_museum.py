@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
+class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8010, id = 11, level = 3, tags = ['merge', 'tourism', 'fix:survey', 'fix:picture'],
             title = T_('Aquitaine museum not integrated'))
         self.def_class_possible_merge(item = 8011, id = 13, level = 3, tags = ['merge', 'tourism', 'fix:chair'],
@@ -38,9 +38,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/094df128-7ac5-43e5-a7e9-a5d752317674/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+            Load_XY("LON", "LAT",
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

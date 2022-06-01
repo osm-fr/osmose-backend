@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Mapping, Select
+from .Analyser_Merge import Analyser_Merge_Point, Source, GeoJSON, Load_XY, Conflate, Mapping, Select
 
 
-class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge):
+class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8040, id = 61, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', 'Kerala'))
 
@@ -36,7 +36,7 @@ class Analyser_Merge_Public_Transport_IN_Kerala_Bus_Stops(Analyser_Merge):
             GeoJSON(Source(attribution = u"Kerala State Electronics Development Corporation Limited", millesime = "09/2021",
                     fileUrl = u"https://opensdi.kerala.gov.in/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typename=geonode%3AKerala_Bus_Stops&outputFormat=json&srs=EPSG%3A32643&srsName=EPSG%3A4326"),
                 extractor = lambda geojson: geojson),
-            Load("geom_x", "geom_y"),
+            Load_XY("geom_x", "geom_y"),
             Conflate(
                 select = Select(
                     types = ["nodes"],

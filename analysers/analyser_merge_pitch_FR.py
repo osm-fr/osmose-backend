@@ -23,7 +23,7 @@
 import csv
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
@@ -56,7 +56,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             CSV(SourceOpenDataSoft(
                 attribution = "Le ministère de la ville, de la jeunesse et des sports",
                 url = "https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/")),
-            Load("Longitude (WGS84)", "Latitude (WGS84)",
+            Load_XY("Longitude (WGS84)", "Latitude (WGS84)",
                 select = {"Type d'équipement sportif": topic},
                 where = lambda row: self.validLatLon(row)),
             Conflate(

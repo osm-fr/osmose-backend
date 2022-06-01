@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 doc = dict(
     detail = T_(
@@ -34,9 +34,9 @@ French survey point imported in OSM but not found.'''),
 relation. Must be converted manually, keep the tags and put survey points
 in relation.'''))
 
-class Analyser_Merge_Geodesie(Analyser_Merge):
+class Analyser_Merge_Geodesie(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8070, id = 1, level = 3, tags = ['merge', 'infrastructure', 'fix:survey', 'fix:picture'],
             title = T_('Missing survey point'),
             **doc)
@@ -50,7 +50,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie.csv.bz2", bz2 = True),
                 header = False),
-            Load("lon", "lat",
+            Load_XY("lon", "lat",
                 where = lambda res: not(u'Point constaté détruit' in res[u'description'] or u'Point non retrouvé' in res[u'description']), # No more unique ref
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
@@ -79,9 +79,9 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                     text = lambda tags, fields: {"en": "Survey point {0}".format(tags["ref"]), "fr": "Repères géodésiques {0}".format(tags["ref"]), "es": "Señales geodésicas {0}".format(tags["ref"])} )))
 
 
-class Analyser_Merge_Geodesie_Site(Analyser_Merge):
+class Analyser_Merge_Geodesie_Site(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8070, id = 2, level = 3, tags = ['merge'],
             title = T_('Missing survey site'),
             **doc)
@@ -92,7 +92,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
             CSV(Source(attribution = "©IGN {0} dans le cadre de la cartographie réglementaire", millesime = "2010",
                     file = "geodesie_site.csv.bz2", bz2 = True),
                 header = False),
-            Load("lon", "lat",
+            Load_XY("lon", "lat",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     ref VARCHAR(254),

@@ -26,7 +26,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime
-from typing import Optional
+from typing import Dict, Optional
 from . import config
 
 
@@ -54,35 +54,43 @@ def requests_retry_session(retries=3, backoff_factor=1, status_forcelist=DEFAULT
     return session
 
 
-def get(url, headers={}, session=None):
+def request_get(url, headers={}, session=None):
     if not session:
         session = requests_retry_session()
     return session.get(url, headers=headers, stream=True)
 
-
-def http_get(url, tmp_file, date_string=None, get=get):
-    headers = {}
-    if date_string:
-        headers["If-Modified-Since"] = date_string
-
-    answer = get(url, headers)
-    if answer.status_code == 304:
-        return False
-    elif not answer.ok:
-        answer.raise_for_status()
-
-    with open(tmp_file, "wb") as outfile:
-        for data in answer.iter_content(chunk_size=512):
-            outfile.write(data)
-    return True
+def request_post(data: Dict[str, str]):
+    def p(url, headers={}, session=None):
+        if not session:
+            session = requests_retry_session()
+        return session.post(url, headers=headers, data=data, stream=True)
+    return p
 
 
-def get_cache_path(url):
-    file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
+def http_query(query=request_get):
+    def http_q(url, tmp_file, date_string=None, query=query):
+        headers = {}
+        if date_string:
+            headers["If-Modified-Since"] = date_string
+
+        answer = query(url, headers)
+        if answer.status_code == 304:
+            return False
+        elif not answer.ok:
+            answer.raise_for_status()
+
+        with open(tmp_file, "wb") as outfile:
+            for data in answer.iter_content(chunk_size=512):
+                outfile.write(data)
+        return True
+    return http_q
+
+def get_cache_path(url, extra_cache_key: str = ''):
+    file_name = hashlib.sha1((url+extra_cache_key).encode('utf-8')).hexdigest()
     return os.path.join(config.dir_cache, file_name)
 
-def update_cache(url, delay, fetch=http_get):
-    cache = get_cache_path(url)
+def update_cache(url, delay, extra_cache_key: str = '', fetch = http_query()):
+    cache = get_cache_path(url, extra_cache_key)
     tmp_file = cache + ".tmp"
 
     cur_time = time.time()
@@ -102,13 +110,13 @@ def update_cache(url, delay, fetch=http_get):
             return cache
     except:
         if os.path.exists(cache):
-            print("Error: Fails to download, fall back to obsolete cache: {}".format(url))
+            print("Error: Fails to download, fall back to obsolete cache: {}".format(url+extra_cache_key))
             return cache
         else:
             raise
 
     outfile = open(cache+".url", "w", encoding="utf-8")
-    outfile.write(url)
+    outfile.write(url+extra_cache_key)
     outfile.close()
     os.rename(tmp_file, cache)
 
@@ -117,17 +125,20 @@ def update_cache(url, delay, fetch=http_get):
 
     return cache
 
-def urlmtime(url, delay):
-    return os.stat(update_cache(url, delay)).st_mtime
+def urlmtime(url, delay, post: Optional[Dict[str, str]] = None):
+    return os.stat(update_cache(url, delay, str(post or ''))).st_mtime
 
-def path(url, delay):
-    return update_cache(url, delay)
+def path(url, delay, post: Optional[Dict[str, str]] = None):
+    if post:
+        return update_cache(url, delay, extra_cache_key=str(post or ''), fetch = http_query(request_post(post)))
+    else:
+        return update_cache(url, delay)
 
-def urlopen(url, delay, mode='r'):
-    return open(path(url, delay), mode)
+def urlopen(url, delay, mode='r', post: Optional[Dict[str, str]] = None):
+    return open(path(url, delay, post), mode)
 
-def urlread(url: str, delay: int):
-    return open(path(url, delay), 'r', encoding="utf-8").read()
+def urlread(url: str, delay: int, post: Optional[Dict[str, str]] = None):
+    return open(path(url, delay, post), 'r', encoding="utf-8").read()
 
 def set_millesime(url: str, millesime: Optional[datetime]) -> None:
     with open(get_cache_path(url) + ".millesime", "w", encoding="utf-8") as millesime_file:
@@ -136,8 +147,8 @@ def set_millesime(url: str, millesime: Optional[datetime]) -> None:
         else:
             millesime_file.write(str(int(datetime.timestamp(millesime))))
 
-def get_millesime(url: str, delay: int) -> Optional[datetime]:
-    cache_path = get_cache_path(url)
+def get_millesime(url: str, delay: int, post: Optional[Dict[str, str]] = None) -> Optional[datetime]:
+    cache_path = get_cache_path(url, str(post or ''))
     millesime_path = cache_path + ".millesime"
     try:
         # Synchronize Millesime file expiration with main cache file

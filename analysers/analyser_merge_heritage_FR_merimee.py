@@ -22,13 +22,13 @@
 
 import re
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 from functools import reduce
 
 
-class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
+class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         doc = dict(
             detail = T_(
 '''A historical monument is here but is not mapped. The list of monuments
@@ -89,7 +89,7 @@ World Heritage.'''))
                 attribution="Ministère de la Culture",
                 url="https://data.culture.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques",
                 filter=lambda s: reduce(lambda a, v: a.replace(v, ''), SKIP, (u'' + s).encode('utf-8').replace(b'l\u92', b"l'").replace(b'\x85)', b"...)").decode('utf-8', 'ignore')))),
-            Load("coordonnees_finales", "coordonnees_finales",
+            Load_XY("coordonnees_finales", "coordonnees_finales",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0],
                 select = {"Date de protection": True}),

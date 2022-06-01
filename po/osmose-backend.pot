@@ -572,12 +572,12 @@ msgstr ""
 msgid "Name contains successive spaces"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:119
+#: ../plugins/TagRemove_Incompatibles.py:120
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:122
+#: ../plugins/TagRemove_Incompatibles.py:123
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -799,7 +799,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:125
+#: ../plugins/TagRemove_Incompatibles.py:126
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -3338,8 +3338,8 @@ msgstr ""
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
-#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:116
-#: ../plugins/TagFix_BadValue.py:121 ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:117
+#: ../plugins/TagFix_BadValue.py:122 ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr ""
@@ -3646,35 +3646,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1078
+#: ../analysers/Analyser_Merge.py:1130
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1081
+#: ../analysers/Analyser_Merge.py:1133
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1086
+#: ../analysers/Analyser_Merge.py:1138
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1099
+#: ../analysers/Analyser_Merge.py:1293
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1112
+#: ../analysers/Analyser_Merge.py:1306
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1074
+#: ../analysers/Analyser_Merge.py:1126
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4821,4 +4821,12 @@ msgstr ""
 
 #: ../plugins/TagFix_Opening_Hours.py:64
 msgid "The `opening_hours` value is invalid and could not be parsed"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_line_FR.py:32
+msgid "Power line not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_road_ES.py:32
+msgid "Road not integrated"
 msgstr ""

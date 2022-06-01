@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
+class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8120, id = 33, level = 3, tags = ['merge', 'waste', 'fix:survey', 'fix:picture'],
             title = T_('{0} waste disposal not integrated', 'CSMA'))
         self.def_class_possible_merge(item = 8121, id = 34, level = 3, tags = ['merge', 'waste', 'fix:chair'],
@@ -39,9 +39,9 @@ class Analyser_Merge_waste_disposal_FR_csma(Analyser_Merge):
             "Points d'apport volontaire",
             CSV(Source(attribution = "Clisson Sèvre et Maine Agglo", millesime = "05/2019",
                     file = "PAV_CSMA.csv.bz2", bz2 = True)),
-            Load("X", "Y",
-                 xFunction = Load.float_comma,
-                 yFunction = Load.float_comma,
+            Load_XY("X", "Y",
+                 xFunction = Load_XY.float_comma,
+                 yFunction = Load_XY.float_comma,
                  select = {"detail": ["Ordure ménagère", "Ordure ménagère (Accès clé)"]}),
             Conflate(
                 select = Select(

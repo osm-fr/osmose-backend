@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
+class Analyser_Merge_Parking_FR_bm(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8130, id = 31, level = 3, tags = ['merge', 'parking', 'fix:imagery', 'fix:survey'],
             title = T_('{0} parking not integrated', 'BM'))
         self.def_class_possible_merge(item = 8131, id = 33, level = 3, tags = ['merge', 'parking', 'fix:imagery', 'fix:chair'],
@@ -64,9 +64,9 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
                     text = lambda tags, fields: {"en": "Parking {0}".format(fields["nom"])} )))
 
 
-class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
+class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8130, id = 21, level = 3, tags = ['merge', 'parking'],
             title = T_('{0} parking for disabled not integrated', 'BM'))
 
