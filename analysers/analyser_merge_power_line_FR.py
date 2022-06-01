@@ -21,33 +21,34 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import SourceOpenDataSoft, GDAL, Load, Conflate, Select, Mapping
+from .Analyser_Merge_Network import Analyser_Merge_Network
 
 
-class Analyser_Merge_Water_Drinking_ES_Madrid(Analyser_Merge_Point):
+class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
     def __init__(self, config, logger = None):
-        Analyser_Merge_Point.__init__(self, config, logger)
-        self.def_class_missing_official(item = 8510, id = 21, level = 3, tags = ['merge', 'public equipment', 'water', 'fix:survey', 'fix:picture'],
-            title = T_('Drinking water not integrated'))
+        Analyser_Merge_Network.__init__(self, config, logger)
+        self.def_class_missing_official(item = 8290, id = 10, level = 3, tags = ['merge', 'power', 'fix:survey', 'fix:imagery'],
+            title = T_('Power line not integrated'))
 
         self.init(
-            "https://datos.madrid.es/sites/v/index.jsp?vgnextoid=b8b2e44003b95510VgnVCM1000001d4a900aRCRD",
-            "Fuentes de agua para beber",
-            CSV(Source(
-                attribution="Ayuntamiento de Madrid",
-                fileUrl="https://datos.madrid.es/egob/catalogo/300051-13-fuentes.csv"),
-                separator = ';'),
-            Load_XY("Longitud", "Latitud",
-                select = {"OBSERVACIONES": "EN SERVICIO"}),
+            'https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte/information',
+            'Lignes aériennes RTE',
+            GDAL(SourceOpenDataSoft(
+                url='https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte/information',
+                attribution='RTE',
+                format='geojson')),
+            Load('geom',
+                select={'tension': lambda t: f'{t} != \'HORS TENSION\''}),
             Conflate(
                 select = Select(
-                    types = ["nodes", "ways"],
-                    tags = {"amenity": "drinking_water"}),
-                conflationDistance = 20,
+                    types = ['ways'],
+                    tags = [{'power': 'line'}, {'disused:power': 'line'}]),
+                conflationDistance = 30,
                 mapping = Mapping(
-                    static1 = {"amenity": "drinking_water"},
-                    static2 = {
-                        "source": self.source,
-                        "source:date": "21/01/2022",
-                        "operator": "Ayuntamiento de Madrid"},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["DESCRIPTIO"], fields["MINTNUMERO"], fields["NIMTTIPOVI"], fields["MINTNOMBRE"], fields["NOMBRE_BAR"], fields["NOMBRE_DIS"]]))} )))
+                    static1 = {'power': 'line'},
+                    static2 = {'source': self.source},
+                    mapping1 = {
+                        'voltage': lambda fields: str((int(float(fields['tension'].replace('kV', '')) * 1000))) if fields['tension'] not in ('HORS TENSION', '<45kV', 'COURANT CONTINU') else None,
+                    },
+                    text = lambda tags, fields: {'en': ', '.join(filter(lambda res: res and res != 'None', [fields['tension']]))} )))

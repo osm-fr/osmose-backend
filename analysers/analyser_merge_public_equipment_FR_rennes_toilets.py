@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
+class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8180, id =2, level = 3, tags = ['merge', 'public equipment', 'fix:survey', 'fix:picture'],
             title = T_('{0} toilets not integrated', 'Rennes'))
 
@@ -36,7 +36,7 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Ville de Rennes",
                 url="https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/")),
-            Load("Geo Point", "Geo Point",
+            Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
             Conflate(

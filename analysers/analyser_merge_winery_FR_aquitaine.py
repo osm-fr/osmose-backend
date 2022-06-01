@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
+class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8250, id = 1, level = 3, tags = ['merge', 'amenity', 'fix:survey', 'fix:imagery'],
             title = T_('Winery not integrated'))
 
@@ -36,10 +36,10 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
+            Load_XY("LON", "LAT",
                 select = {"TYPEPRODUITS": {"like": "%Vins%"}},
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

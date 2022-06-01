@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, GTFS, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
+class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8050, id = 1, level = 3, tags = ['merge', 'railway', 'fix:imagery', 'fix:survey'],
             title = T_('Railway station not integrated'))
         self.def_class_missing_osm(item = 7100, id = 2, level = 3, tags = ['merge', 'railway', 'fix:chair'],
@@ -39,7 +39,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
             "Horaires prévus des trains TER",
             GTFS(Source(attribution = "SNCF", millesime = "08/2017",
                     fileUrl = "https://eu.ftp.opendatasoft.com/sncf/gtfs/export-ter-gtfs-last.zip")),
-            Load("stop_lon", "stop_lat",
+            Load_XY("stop_lon", "stop_lat",
                 select = {"stop_id": {"like": "StopPoint:OCETrain%"}}),
             Conflate(
                 select = Select(

@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceIGN, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceIGN, GPKG, LoadGeomCentroid, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge):
+class Analyser_Merge_Public_Cemetery_FR(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8480, id = 8, level = 1, tags = ['merge', 'public equipment', 'fix:imagery', 'fix:survey'],
             title = T_('Cemetery not integrated'))
 

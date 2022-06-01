@@ -24,7 +24,7 @@ import json
 from datetime import datetime
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from .Analyser_Merge import CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import CSV, Load_XY, Conflate, Select, Mapping
 from .Analyser_Merge_Mapillary import Source_Mapillary
 
 
@@ -54,7 +54,7 @@ class SubAnalyser_Merge_Street_Objects(SubAnalyser_Merge_Dynamic):
             "https://www.mapillary.com",
             u"Street Objects from Street-level imagery",
             CSV(Source_Mapillary(attribution = u"Mapillary Street Objects", country = config.options['country'], polygon_id = config.polygon_id, logger = logger, mapping = mapping, source = source, layer = layer)),
-            Load("X", "Y",
+            Load_XY("X", "Y",
                 select = {"value": object}),
             Conflate(
                 select = Select(

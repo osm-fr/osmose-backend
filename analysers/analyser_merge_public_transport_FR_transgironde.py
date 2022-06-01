@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GTFS, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, GTFS, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
+class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         place = "TransGironde"
         self.def_class_missing_official(item = 8040, id = 41, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', place))
@@ -43,7 +43,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                 dataset="5ab11a52c751df688f5268c4",
                 resource="06b4ab72-01b2-4561-9fbf-7e02ee0dd613",
                 encoding="ISO-8859-15")),
-            Load("stop_lon", "stop_lat"),
+            Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

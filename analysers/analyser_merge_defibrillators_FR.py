@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, GeoJSON, Load_XY, Conflate, Select, Mapping
 import unidecode
 import re
 from modules import reaccentue
 
-class Analyser_merge_defibrillators_FR(Analyser_Merge):
+class Analyser_merge_defibrillators_FR(Analyser_Merge_Point):
     def normalizeEtage(self, etg):
         if etg is None:
             return None
@@ -56,7 +56,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
             return None
 
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8370, id = 120, level = 3, tags = ["merge", "emergency", "fix:picture", "fix:survey"],
             title = T_("Defibrillator not integrated"),
             trap = T_("Location of defibrillators from this dataset can be very approximative. Check carefully the position before adding to OSM."))
@@ -74,7 +74,7 @@ class Analyser_merge_defibrillators_FR(Analyser_Merge):
                     attribution="Ministère de la Santé",
                     dataset="61556e1e9d6adb2df86eb0fc",
                     resource="86ea48a0-dd94-4a23-b71c-80d3041d7db2")),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                  select = {"c_etat_fonct": "En fonctionnement", "c_doublon": "f"}),
             Conflate(
                 select = Select(

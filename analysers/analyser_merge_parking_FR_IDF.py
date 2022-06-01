@@ -21,11 +21,11 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
-class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
+class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8130, id = 751, level = 3, tags = ['merge', 'parking', 'fix:imagery', 'fix:survey'],
             title = T_('P+R parking in Île-de-France not integrated'))
 
@@ -35,7 +35,7 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Île-de-France Mobilités",
                 url="https://opendata.stif.info/explore/dataset/parcs-relais-idf")),
-            Load("Geo Point", "Geo Point",
+            Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x.split(",")[1],
                 yFunction = lambda y: y.split(",")[0]),
             Conflate(

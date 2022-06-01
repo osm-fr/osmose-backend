@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
+class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge_Point):
     def __init__(self, config, logger=None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(
             item=8150, id=50, level=3, tags=['merge', 'public equipment', 'bicycle', 'fix:picture', 'fix:survey'],
             title=T_('Bordeaux Metropole bicycle parking not integrated'))
@@ -61,9 +61,9 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
         )
 
 
-class Analyser_Merge_Motorcycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge):
+class Analyser_Merge_Motorcycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge_Point):
     def __init__(self, config, logger=None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(
             item=8150, id=60, level=3, tags=['merge', 'public equipment', 'motorcycle', 'fix:picture', 'fix:survey'],
             title=T_('Bordeaux Metropole motorcycle parking not integrated'))

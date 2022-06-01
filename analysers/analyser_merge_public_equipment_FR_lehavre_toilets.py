@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
+class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8180, id = 7, level = 3, tags = ['merge', 'public equipment', 'fix:survey', 'fix:picture'],
             title = T_('{0} toilets not integrated', 'Le Havre'))
 
@@ -36,7 +36,7 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
             GeoJSON(Source(attribution = 'Ville du Havre', millesime = '04/2022',
                     fileUrl ='https://data.lehavreseinemetropole.fr/api/v1/file/data/159/SANITAIRE/json', zip = 'OD.SANITAIRE.json'),
                 extractor = lambda geojson: geojson),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                 srid = 3950),
             Conflate(
                 select = Select(

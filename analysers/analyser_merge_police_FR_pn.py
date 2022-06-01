@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Police_FR_pn(Analyser_Merge):
+class Analyser_Merge_Police_FR_pn(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8190, id = 10, level = 3, tags = ['merge', 'amenity', 'fix:survey', 'fix:picture'],
             title = T_('Police not integrated'))
 
@@ -39,7 +39,7 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
                     dataset="53ba5222a3a729219b7beade",
                     resource="2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
                 separator = ";"),
-            Load("geocodage_x_GPS", "geocodage_y_GPS"),
+            Load_XY("geocodage_x_GPS", "geocodage_y_GPS"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

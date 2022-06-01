@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
+class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8320, id = 1, level = 3, tags = ['merge', 'maxweight', 'fix:picture'],
             title = T_('maxweight Restriction not integrated'))
 
@@ -35,7 +35,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
             u"ROUTE 500®",
             CSV(Source(attribution = u"IGN", millesime = "06/2017",
                     file = "restriction_motorway_FR.csv.bz2", bz2 = True)),
-            Load("X", "Y",
+            Load_XY("X", "Y",
                 where = lambda row: row["REST_POIDS"] != "0"),
             Conflate(
                 select = Select(
@@ -51,9 +51,9 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
                         "maxweight": "REST_POIDS"})))
 
 
-class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
+class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8320, id = 2, level = 3, tags = ['merge', 'maxheight', 'fix:picture'],
             title = T_('maxheight Restriction not integrated'))
 
@@ -62,7 +62,7 @@ class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
             u"ROUTE 500®",
             CSV(Source(attribution = u"IGN", millesime = "06/2017",
                     file = "restriction_motorway_FR.csv.bz2", bz2 = True)),
-            Load("X", "Y",
+            Load_XY("X", "Y",
                 where = lambda row: row["REST_HAUT"] != "0"),
             Conflate(
                 select = Select(

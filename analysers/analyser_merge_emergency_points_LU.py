@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourcePublicLu, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourcePublicLu, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
+class Analyser_Merge_Emergency_Points_LU(Analyser_Merge_Point):
     def __init__(self, config, logger=None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.missing_official = self.def_class(item=8440, id=1, level=3, tags=['merge', 'emergency', 'fix:survey'],
                                                title=T_('Emergency point not integrated'))
         self.possible_merge = self.def_class(item=8441, id=3, level=3, tags=['merge', 'emergency', 'fix:survey', 'fix:chair'],
@@ -39,7 +39,7 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge):
                        resource="b8d9d38a-7894-49fb-ab88-94072fe2c722",
                        encoding="iso-8859-1"),
                 separator=";"),
-            Load("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
+            Load_XY("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
             Conflate(
                 select=Select(
                     types=["nodes"],

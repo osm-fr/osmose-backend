@@ -22,12 +22,12 @@
 
 from modules.OsmoseTranslation import T_
 from collections import OrderedDict
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Police_FR_gn(Analyser_Merge):
+class Analyser_Merge_Police_FR_gn(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8190, id = 1, level = 3, tags = ['merge', 'amenity', 'fix:survey', 'fix:picture'],
             title = T_('Police/"Gendarmerie" not integrated'))
         self.def_class_possible_merge(item = 8191, id = 3, level = 3, tags = ['merge', 'amenity', 'fix:chair'],
@@ -44,7 +44,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                     dataset="5369993fa3a729239d2051cd",
                     resource="d6a43ef2-d302-4456-90e9-ff2c47cac562"),
                 separator = ";"),
-            Load("geocodage_x_GPS", "geocodage_y_GPS",
+            Load_XY("geocodage_x_GPS", "geocodage_y_GPS",
                 where = lambda row: "Centre d'information et de recrutement" not in row["service"] and "motorisé" not in row["service"] ),
             Conflate(
                 select = Select(

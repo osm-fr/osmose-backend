@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, JSON, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
+class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8230, id = 1, level = 3, tags = ['merge', 'amenity', 'fix:picture', 'fix:survey'],
             title = T_('Library not integrated'))
 
@@ -36,10 +36,10 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
                     fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT",
+            Load_XY("LON", "LAT",
                 where = lambda row: u"Bibliothèque" in row["NOMOFFRE"] or u"Médiathèque" in row["NOMOFFRE"],
-                xFunction = Load.degree,
-                yFunction = Load.degree),
+                xFunction = Load_XY.degree,
+                yFunction = Load_XY.degree),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

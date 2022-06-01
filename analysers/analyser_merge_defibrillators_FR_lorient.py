@@ -21,12 +21,12 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceDataGouv, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, GeoJSON, Load_XY, Conflate, Select, Mapping
 
 
-class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
+class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8370, id = 100, level = 3, tags = ['merge', "emergency", "fix:picture", "fix:survey"],
             title = T_('Defibrillator not integrated'))
 
@@ -38,7 +38,7 @@ class Analyser_merge_defibrillators_FR_lorient(Analyser_Merge):
                     attribution="Ville de Lorient",
                     dataset="5c70a7f206e3e755537bb849",
                     resource="01f2a133-4929-4001-906c-412f682d0d59")),
-            Load("geom_x", "geom_y"),
+            Load_XY("geom_x", "geom_y"),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

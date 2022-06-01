@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, SourceOpenDataSoft, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
 
 STANDS_TYPES = {
     "Arceau autre": "stands",
@@ -39,9 +39,9 @@ tag_mapping = {
 }
 
 
-class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
+class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8150, id = 21, level = 3, tags = ['merge', 'public equipment', 'bicycle', 'fix:survey', 'fix:picture'],
             title = T_('Paris bicycle parking not integrated'))
 
@@ -51,13 +51,13 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
             CSV(SourceOpenDataSoft(
                 attribution="Ville de Paris",
                 url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
-            Load("geo_point_2d", "geo_point_2d",
+            Load_XY("geo_point_2d", "geo_point_2d",
                 select = {
                     "Régime prioritaire": "2 ROUES",
                     "Régime particulier": "Vélos",
                 },
-                xFunction = lambda x: Load.float_comma(x.split(',')[1]),
-                yFunction = lambda y: Load.float_comma(y.split(',')[0])
+                xFunction = lambda x: Load_XY.float_comma(x.split(',')[1]),
+                yFunction = lambda y: Load_XY.float_comma(y.split(',')[0])
             ),
             Conflate(
                 select = Select(
@@ -70,9 +70,9 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                     mapping1 = tag_mapping )))
 
 
-class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
+class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8150, id = 31, level = 3, tags = ['merge', 'public equipment', 'motorcycle', 'fix:survey', 'fix:picture'],
             title = T_('Paris motorcycle parking not integrated'))
 
@@ -81,13 +81,13 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             "Stationnement sur voie publique - emplacements motos",
             CSV(SourceOpenDataSoft(attribution = "Ville de Paris",
                     url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
-            Load("geo_point_2d", "geo_point_2d",
+            Load_XY("geo_point_2d", "geo_point_2d",
                 select = {
                     "Régime prioritaire": "2 ROUES",
                     "Régime particulier": "Motos",
                 },
-                xFunction = lambda x: Load.float_comma(x.split(',')[1]),
-                yFunction = lambda y: Load.float_comma(y.split(',')[0])
+                xFunction = lambda x: Load_XY.float_comma(x.split(',')[1]),
+                yFunction = lambda y: Load_XY.float_comma(y.split(',')[0])
             ),
             Conflate(
                 select = Select(
@@ -100,9 +100,9 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     mapping1 = tag_mapping )))
 
 
-class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
+class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8150, id = 41, level = 3, tags = ['merge', 'public equipment', 'bicycle', 'motorcycle', 'fix:survey', 'fix:picture'],
             title = T_('Paris shared motorcycle/motorcycle parking not integrated'))
 
@@ -111,13 +111,13 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             "Stationnement sur voie publique - emplacements deux roues",
             CSV(SourceOpenDataSoft(attribution = "Ville de Paris",
                     url="https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements")),
-            Load("geo_point_2d", "geo_point_2d",
+            Load_XY("geo_point_2d", "geo_point_2d",
                 select = {
                     "Régime prioritaire": "2 ROUES",
                     "Régime particulier": "Mixte",
                 },
-                xFunction = lambda x: Load.float_comma(x.split(',')[1]),
-                yFunction = lambda y: Load.float_comma(y.split(',')[0])
+                xFunction = lambda x: Load_XY.float_comma(x.split(',')[1]),
+                yFunction = lambda y: Load_XY.float_comma(y.split(',')[0])
             ),
             Conflate(
                 select = Select(

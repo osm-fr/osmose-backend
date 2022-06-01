@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, CSV, Load_XY, Conflate, Select, Mapping
 from modules import downloader
 from modules import italian_strings
 import csv
@@ -40,9 +40,9 @@ LPG        = 1 << 8# fuel:lpg=yes
 CNG        = 1 << 9# fuel:cng=yes
 
 
-class Analyser_Merge_Fuel_IT(Analyser_Merge):
+class Analyser_Merge_Fuel_IT(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8200, id = 11, level = 3, tags = ['merge', 'highway', 'fix:imagery', 'fix:survey'],
             title = T_('Gas station not integrated'))
         self.def_class_missing_osm(item = 7250, id = 12, level = 3, tags = ['merge', 'highway', 'fix:chair'],
@@ -57,7 +57,7 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge):
             'MISE - Ministero Sviluppo Economico',
             CSV(Source_Fuel(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
                     fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv')),
-            Load('Longitudine', 'Latitudine',
+            Load_XY('Longitudine', 'Latitudine',
                 where = lambda row: row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
             Conflate(
                 select = Select(

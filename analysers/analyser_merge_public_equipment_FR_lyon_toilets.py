@@ -21,11 +21,11 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, Source, GeoJSON, Load_XY, Conflate, Select, Mapping
 import json
 
 
-class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
+class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge_Point):
     def ohToStr(self, oh):
         if not oh:
             return None
@@ -34,7 +34,7 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
             return "Opens: " + " | ".join(map(lambda s: s['opens'] + " to " + s['closes'] + " (" + ", ".join(map(lambda x: x[18:], s['dayOfWeek'])) + ")", theJson))
 
     def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
+        Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8180, id = 33, level = 3, tags = ['merge', 'public equipment', 'fix:survey', 'fix:picture'],
             title = T_('{0} toilets not integrated', 'Grand Lyon'))
         self.def_class_possible_merge(item = 8181, id = 34, level = 3, tags = ['merge', 'public equipment', 'fix:chair'],
@@ -48,7 +48,7 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
             GeoJSON(Source(attribution = u"Grand Lyon", millesime = "02/2020",
                     fileUrl = u"https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=adr_voie_lieu.toilettepublique_latest&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4326&startIndex=0"),
                 extractor = lambda geojson: geojson),
-            Load("geom_x", "geom_y",
+            Load_XY("geom_x", "geom_y",
                  where = lambda res: res['provenance'] != 'Open Street Map'),
             Conflate(
                 select = Select(
