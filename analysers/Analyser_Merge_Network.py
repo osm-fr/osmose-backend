@@ -21,6 +21,7 @@
 ###########################################################################
 
 from collections import defaultdict
+from modules.Stablehash import stablehash64
 
 from .Analyser_Merge import Analyser_Merge
 
@@ -101,6 +102,9 @@ class Analyser_Merge_Network(Analyser_Merge):
         self.run(sql21)
         self.run(sql30, lambda res: {
             "class": self.missing_official['id'],
+            "subclass": str(stablehash64("{0}{1}{2}".format(
+                            res[1], res[2],
+                            sorted(self.conflate.subclass_hash(res[3]).items())) )),
             "data": [self.node_new, self.positionAsText],
             "text": self.conflate.mapping.text(defaultdict(lambda: None, res[2]), defaultdict(lambda: None, res[3])),
             "fix": self.passTags(res[2]) if res[2] != {} else None,
