@@ -50,7 +50,7 @@ class Source_Mapillary(Source):
         return Source.time(self)
 
     def open(self):
-        return open(downloader.update_cache(self.fileUrl, 60, self.fetch))
+        return open(downloader.update_cache(self.fileUrl, 60, fetch=self.fetch))
 
     def tile_generator(self, polygon, zoom=14):
         wgs84 = pyproj.CRS('EPSG:4326')
@@ -98,7 +98,7 @@ class Source_Mapillary(Source):
                 elif self.layer == 'points':
                     url = f"https://tiles.mapillary.com/maps/vtp/mly_map_feature_point/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
 
-                r = downloader.get(url).content
+                r = downloader.request_get(url).content
                 # Tile on cache alternative
                 # r = downloader.urlopen(url, delay=60, mode='rb').read()
 

@@ -97,7 +97,7 @@ class Source_Fuel(Source):
         return getattr(self.source, name)
 
     def open(self):
-        return open(downloader.update_cache('join://' + self.source.fileUrl, 60, self.fetch))
+        return open(downloader.update_cache('join://' + self.source.fileUrl, 60, fetch=self.fetch))
 
     def fetch(self, url, tmp_file, date_string=None):
         f = downloader.urlopen(self.fileUrl, 60)
