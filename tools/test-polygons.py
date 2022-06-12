@@ -19,7 +19,12 @@ for c in osmose_config.config.values():
     print('  ', c.country, c.polygon_id)
 
     # generate relation boundary
-    r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'refresh': 1})
+    try:
+        r = requests.post(relation_generation_url, params={'id': c.polygon_id}, data={'refresh': 1}, timeout=120)
+    except requests.exceptions.Timeout:
+        print("      Timeout")
+        fails.append([c.country, c.polygon_id, 'Timeout'])
+        continue
     if r.status_code == 500:
         print("      Geom Error -", r.url)
         fails.append([c.country, c.polygon_id, 'Geom Error'])
@@ -30,7 +35,12 @@ for c in osmose_config.config.values():
         continue
 
     # get associated poly file
-    r = requests.get(polygon_union_url, params={'id': c.polygon_id, 'params': 0})
+    try:
+        r = requests.get(polygon_union_url, params={'id': c.polygon_id, 'params': 0}, timeout=120)
+    except requests.exceptions.Timeout:
+        print("      Poly Timeout")
+        fails.append([c.country, c.polygon_id, 'Poly Timeout'])
+        continue
     if r.status_code != 200:
         print("      Bad geom -", r.url)
         fails.append([c.country, c.polygon_id, 'Bad geom'])
