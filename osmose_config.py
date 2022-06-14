@@ -535,7 +535,7 @@ france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
     phone_code="687", phone_len=6, phone_format=r"^[+]%s([- ./]*[0-9]){5}[0-9]$", phone_international='00')
 
-default_country("merge", "france_taaf", 6063103, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
+default_country("merge", "france_taaf", 2186658, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
 
 ###########################################################################
 
