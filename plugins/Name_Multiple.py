@@ -95,7 +95,7 @@ The tag `name` should have the value `name:right / name:left` or `name:left / na
                     return
                 else:
                     return {"class": 50301, "subclass": 1,
-                            "fix": {"+": {"name": tags["name:right"] + " / " + tags["name:left"]}}}
+                            "fix": {"~": {"name": tags["name:right"] + " / " + tags["name:left"]}}}
 
             if not self.streetSubNumberRe.match(tags["name"]):
                 return {"class": 705, "subclass": 1, "text": {"en": "name={0}".format(tags["name"])}}
