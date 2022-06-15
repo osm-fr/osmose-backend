@@ -124,6 +124,11 @@ class Test(TestPluginCommon):
             assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
             assert not p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
             assert not p.way(None, {"name": "streetA/streetB", "public_transport": "platform"}, None)
+            assert not p.way(None, {"name": u"Gas station no. 21/2356"}, None)
+            assert not p.way(None, {"name": "Foobar P+R"}, None)
+            assert not p.way(None, {"name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"}, None)
+            assert not p.way(None, {"name": "StreetB/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None)
+            self.check_err(p.way(None, {"name": "StreetC/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None))
 
         with with_options(p, {'country': 'US-TX'}):
             p.init(None)
@@ -142,9 +147,3 @@ class Test(TestPluginCommon):
         with with_options(p, {'country': 'DJ'}):
             p.init(None)
             assert not p.way(None, {"name": u"Avenue 17 / جادة 17"}, None)
-
-        assert not p.way(None, {"name": u"Gas station no. 21/2356"}, None)
-        assert not p.way(None, {"name": "Foobar P+R"}, None)
-        assert not p.way(None, {"name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"}, None)
-        assert not p.way(None, {"name": "StreetB/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None)
-        self.check_err(p.way(None, {"name": "StreetC/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None))
