@@ -535,7 +535,7 @@ france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
     phone_code="687", phone_len=6, phone_format=r"^[+]%s([- ./]*[0-9]){5}[0-9]$", phone_international='00')
 
-default_country("merge", "france_taaf", 6063103, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
+default_country("merge", "france_taaf", 2186658, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
 
 ###########################################################################
 
@@ -895,7 +895,7 @@ us_ca_county("sacramento", 396460, "US-CA-SAC")
 us_ca_county("san_benito", 396500, "US-CA-SBT")
 us_ca_county("san_bernardino", 396509, "US-CA-SBD")
 us_ca_county("san_diego", 396482, "US-CA-SDG")
-us_ca_county("san_francisco", 396487, "US-CA-SFO")
+us_ca_county("san_francisco", 111968, "US-CA-SFO")
 us_ca_county("san_joaquin", 396467, "US-CA-SJQ")
 us_ca_county("san_luis_obispo", 396496, "US-CA-SLO")
 us_ca_county("san_mateo", 396498, "US-CA-SMT")
