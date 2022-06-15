@@ -46,6 +46,12 @@ proper names of both part.'''),
 '''Some streets have not the same names on the each side, especially if
 the houses by both sides are on different city. In this case, you can use
 the tag `name:left=*` and `name:right=*`.'''))
+        self.errors[50301] = self.def_class(item = 5030, level = 2, tags = ['name', 'fix:chair'],
+            title = T_('Conflicting names'),
+            detail = T_(
+'''This is a street with different names on each side of the way, given by the keys `name:left` and `name:right`.
+These names do not match with the value of `name`.
+The tag `name` should have the value `name:right / name:left` or `name:left / name:right`.'''))
 
         self.NoExtra = False
         self.HighwayOnly = False
@@ -81,6 +87,15 @@ the tag `name:left=*` and `name:right=*`.'''))
             # Accept / in bus and tram stop names
             if "public_transport" in tags and tags["public_transport"] in ["platform", "stop_position"]:
                 return
+
+            if "name:left" in tags and "name:right" in tags:
+                # name:left and name:right may be combined in name, separated by a /
+                nameparts = [n.strip() for n in tags["name"].split("/")]
+                if tags["name:left"] in nameparts and tags["name:right"] in nameparts and len(nameparts) == 2:
+                    return
+                else:
+                    return {"class": 50301, "subclass": 1,
+                            "fix": {"+": {"name": tags["name:right"] + " / " + tags["name:left"]}}}
 
             if not self.streetSubNumberRe.match(tags["name"]):
                 return {"class": 705, "subclass": 1, "text": {"en": "name={0}".format(tags["name"])}}
@@ -130,3 +145,6 @@ class Test(TestPluginCommon):
 
         assert not p.way(None, {"name": u"Gas station no. 21/2356"}, None)
         assert not p.way(None, {"name": "Foobar P+R"}, None)
+        assert not p.way(None, {"name": "StreetA / StreetB", "name:left": "StreetA", "name:right": "StreetB"}, None)
+        assert not p.way(None, {"name": "StreetB/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None)
+        self.check_err(p.way(None, {"name": "StreetC/StreetA", "name:left": "StreetA", "name:right": "StreetB"}, None))
