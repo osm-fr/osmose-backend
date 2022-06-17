@@ -39,31 +39,33 @@ class TagFix_BadValue(Plugin):
 '''It's possible a mapper was trying to map a feature with no existing agreed upon tagging.
 However, this should probably still conform to the typical format used for values of the given tag.''')
         )
+        self.errors[40613] = self.def_class(item = 4061, level = 3, tags = ['highway', 'fix:chair'],
+        title = T_('Unspecific value'),
+        detail = T_('''The value of the tag is very unspecific. Replace it by a meaningful value.'''))
 
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
         self.check_list_open = set((
-            'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
-            'barrier', 'bench', 'bicycle', 'bicycle_parking', 'bin', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'bus', 'bus_bay',
+            'abutters', 'admin_level', 'aerialway', 'aeroway', 'amenity',
+            'barrier', 'bench', 'bicycle_parking', 'bin', 'border_type', 'boundary', 'bridge', 'building', 'bus_bay',
             'cemetery', 'club', 'construction', 'covered', 'craft', 'crossing_ref', 'cuisine', 'cutting', 'cycleway',
             'disused', 'drive_in', 'drive_through',
             'electrified', 'embankment', 'emergency', 'entrance',
-            'fenced', 'foot', 'footway', 'ford',
-            'geological', 'golf', 'goods',
-            'handrail', 'hazard', 'healthcare', 'hgv', 'highway', 'historic', 'horse',
+            'fenced', 'footway', 'ford',
+            'geological', 'golf',
+            'handrail', 'hazard', 'healthcare', 'highway', 'historic',
             'information', 'intermittent', 'internet_access',
             'junction',
             'kerb',
             'landuse', 'leaf_type', 'leaf_cycle', 'leisure', 'location',
-            'material', 'man_made', 'meadow', 'military', 'mooring', 'motor_vehicle', 'motorboat', 'motorcar', 'motorcycle', 'mountain_pass',
+            'material', 'man_made', 'meadow', 'military', 'mooring', 'mountain_pass',
             'natural', 'noexit',
             'office',
             'parking', 'place', 'power', 'public_transport',
             'railway', 'ramp', 'religion', 'route', 'route_master',
             'sac_scale', 'seasonal', 'service', 'shelter', 'shop', 'shoulder', 'sidewalk', 'smoothness', 'sport', 'surface',
-            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'train', 'traffic_signals', 'tunnel',
+            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility', 'traffic_signals', 'tunnel',
             'usage', 'utility',
-            'vehicle',
             'wall', 'water', 'waterway', 'wetland', 'wheelchair', 'wood'
         ))
         self.check_list_open_node = self.check_list_open
@@ -73,7 +75,6 @@ However, this should probably still conform to the typical format used for value
         self.exceptions_open = { "type": ( "associatedStreet",
                                            "turnlanes:lengths",
                                            "turnlanes:turns",
-                                           "restriction:hgv", "restriction:caravan", "restriction:motorcar", "restriction:bus", "restriction:agricultural", "restriction:bicycle", "restriction:hazmat",
                                            "TMC" ),
                                  "service": ( "drive-through", ),
                                  "aerialway": ( "j-bar", "t-bar", ),
@@ -121,6 +122,10 @@ However, this should probably still conform to the typical format used for value
             if tags[k] not in self.allow_closed[k]:
                 err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
+        for k in keyss:
+            if tags[k] == "unknown":
+                err.append({"class": 40613, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+
         return err
 
     def node(self, data, tags):
@@ -140,13 +145,13 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_BadValue(None)
         a.init(None)
-        for t in [{"access": "vor/dme"},
-                  {"barrier": "AEGTO"},
+        for t in [{"barrier": "AEGTO"},
                   {"barrier": "yes; AEGTO"},
                   {"aerialway": "ta-bar"},
                   {"tunnel": "-1st"},
                   {"area": "a"},
                   {"oneway": "yes;yes"},
+                  {"access": "unknown"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
