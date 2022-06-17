@@ -73,6 +73,7 @@ FROM
             'room', -- vs roof, rooms
             'house', -- vs horse
             'addr2', 'addr3',
+            'kern', -- vs kerb
             'lock_name', -- vs loc_name
             'camp_type', -- vs lamp_type
             'lock_ref', -- vs loc_ref
