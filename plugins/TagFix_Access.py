@@ -72,7 +72,7 @@ class TagFix_Access(Plugin):
       isConditional = ":conditional" in tag
       for accessVal in values:
         accessValue = accessVal
-        if isConditional: 
+        if isConditional:
           if "@" in accessVal:
             accessValue = accessValue.split("@")[0]
           else:
