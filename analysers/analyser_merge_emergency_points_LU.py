@@ -39,7 +39,7 @@ class Analyser_Merge_Emergency_Points_LU(Analyser_Merge_Point):
                        resource="b8d9d38a-7894-49fb-ab88-94072fe2c722",
                        encoding="iso-8859-1"),
                 separator=";"),
-            Load_XY("GEOGRAPHISCHE LÄNGE", "GEOGRAPHISCHE BREITE"),
+            Load_XY("GEOGRAPHISCHE LAENGE", "GEOGRAPHISCHE BREITE"),
             Conflate(
                 select=Select(
                     types=["nodes"],
