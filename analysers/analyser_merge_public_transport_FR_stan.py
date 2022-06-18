@@ -21,7 +21,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, Source, GTFS, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, GTFS, Load_XY, Conflate, Select, Mapping
 
 
 class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge_Point):
@@ -34,10 +34,10 @@ class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge_Point):
             title = T_('{0} stop, integration suggestion', place))
 
         self.init(
-            u"http://opendata.grandnancy.eu/jeux-de-donnees/detail-dune-fiche-de-donnees/?tx_icsoddatastore_pi1%5Buid%5D=108&tx_icsoddatastore_pi1%5BreturnID%5D=447",
-            u"Réseau Stan: horaires et lignes",
-            GTFS(Source(attribution = u"Métropole du Grand Nancy", millesime = "06/2017",
-                    fileUrl = u"http://opendata.grandnancy.eu/?eID=ics_od_datastoredownload&file=333")),
+            "https://www.data.gouv.fr/fr/datasets/arrets-horaires-et-parcours-theoriques-du-reseau-stan-gtfs/",
+            "Arrêts, horaires et parcours théoriques du réseau STAN | GTFS",
+            GTFS(SourceDataGouv(attribution = "Métropole du Grand Nancy",
+                    dataset = "5aa94714c751df666fefc80f", resource = "e7e78cd7-e186-4923-a272-9713fbc28b45")),
             Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(
