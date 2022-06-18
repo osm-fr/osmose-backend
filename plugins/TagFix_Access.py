@@ -37,7 +37,15 @@ class TagFix_Access(Plugin):
     self.accessKeys = ["4wd_only", "access", "agricultural", "atv", "bdouble", "bicycle", "boat", "bus", "canoe", "caravan", "carriage", "coach", "disabled", "dog", "foot", "golf_cart", "goods", "hazmat",
                        "hazmat:water", "hgv", "horse", "hov", "inline_skates", "light_rail", "minibus", "mofa", "moped", "motor_vehicle", "motorboat", "motorcar", "motorcycle", "motorhome", "psv",
                        "share_taxi", "ship", "ski:nordic", "ski", "small_electric_vehicle", "snowmobile", "speed_pedelec", "subway", "swimming", "tank", "taxi", "tourist_bus", "trailer", "train", "tram", "vehicle"]
-    self.accessValuesGeneral = ["yes", "no", "private", "permissive", "permit", "destination", "delivery", "customers", "designated", "use_sidepath", "dismount", "agricultural", "forestry", "discouraged"]
+    self.accessValuesGeneral = ["yes", "no", "private", "permissive", "permit", "destination", "delivery", "customers", "designated", "use_sidepath", "agricultural", "forestry", "discouraged"]
+    self.accessValuesSpecial = {"bicycle": ["dismount"],
+                                "dog": ["leashed", "unleached"],
+                                "horse": ["dismount"],
+                                "mofa": ["dismount"],
+                                "moped": ["dismount"],
+                                "motorcycle": ["dismount"],
+                                "speed_pedelec": ["dismount"],
+                               }
 
     self.errors[30404] = self.def_class(item = 3040, level = 3, tags = ['highway', 'fix:chair'],
         title = T_('Uncommon access value'),
@@ -70,6 +78,9 @@ class TagFix_Access(Plugin):
           else:
             continue # value was split on a ";" in the condition
         accessValue = accessValue.strip()
+        transportMode = accessTags[tag]["transportMode"]
+        if transportMode in self.accessValuesSpecial and accessValue in self.accessValuesSpecial[transportMode]:
+          continue
         if not accessValue in self.accessValuesGeneral:
           if accessValue in self.accessKeys or accessValue == "emergency":
             propose = tag + " = ### + " + accessValue + accessTags[tag]["suffix"] + " = yes"
@@ -109,6 +120,7 @@ class Test(TestPluginCommon):
                   {"amenity": "parking", "vehicle:conditional": "no @ wet"},
                   {"access": "agricultural", "agricultural": "designated"},
                   {"highway": "residential", "hgv:conditional": "no @ (Mo-Fr 00:00-12:00;Sa 0:00-19:00); yes @ (Mo-Fr 12:00-24:00;Sa 19:00-24:00)"},
+                  {"dog": "leashed", "bicycle": "dismount"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
           assert not a.node(None, t), a.node(None, t)
@@ -126,7 +138,8 @@ class Test(TestPluginCommon):
         for t in [{"amenity": "parking", "vehicle": "nope"},
                   {"amenity": "parking", "vehicle:conditional": "nope @ wet"},
                   {"highway": "residential", "canoe:conditional": "no @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); nope @ (snow)"},
-                  {"highway": "residential", "canoe:conditional": "nope @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); no @ (snow)"},
+                  {"highway": "residential", "tank:conditional": "dismount @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); no @ (snow)"},
+                  {"bicycle": "leashed"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
           assert a.node(None, t), a.node(None, t)
