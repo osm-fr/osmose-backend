@@ -49,43 +49,45 @@ FROM
     WHERE
         length(key) > 3 AND
         key NOT IN (
-            'tower', 'power',
-            'food', 'foot',
-            'diet', 'dist',
-            'line', 'lines',
-            'level', 'levels',
-            'color', 'colour',
-            'maxweight', 'maxheight',
-            'stop', 'shop',
-            'stars', 'start',
-            'right', 'light',
+            'tower', -- vs power
+            'food', -- vs foot, ford
+            'diet', -- vs dirt, dist
+            'dist', -- vs dirt, list, diet
+            'lines', -- vs line, lanes
+            'levels', -- vs level
+            'maxweight', -- vs maxheight
+            'stop', -- vs shop, stop
+            'ship', -- vs shop
+            'stars', -- vs start, stairs
+            'right', -- vs light
             'truck',
-            'tracks',
-            'size', 'site',
-            'weight', 'height',
-            'lawyer',
-            'hall', 'well',
-            'clock',
-            'plane',
-            'services', 'service',
-            'room', 'rooms',
-            'house', 'horse',
+            'tracks', -- vs traces
+            'size', -- vs site, side
+            'weight', -- vs height
+            'lawyer', -- vs layer
+            'hall', -- vs wall
+            'well', -- vs wall
+            'clock', -- vs lock
+            'plane', -- vs place, plant, lane
+            'services', -- vs service
+            'room', -- vs roof, rooms
+            'house', -- vs horse
             'addr2', 'addr3',
-            'kerb', 'kern',
-            'lock_name', 'loc_name',
-            'camp_type', 'lamp_type',
-            'static_caravans', 'static_caravan',
-            'loc_ref', 'lock_ref',
-            'charge', 'change',
-            'mail', 'email',
-            'lock', 'rock',
-            'reg_name', 'ref_name',
-            'massage', 'message',
-            'bath',
-            'port',
-            'cave',
-            'produce',
-            'side',
+            'kern', -- vs kerb
+            'lock_name', -- vs loc_name
+            'camp_type', -- vs lamp_type
+            'lock_ref', -- vs loc_ref
+            'change', -- vs charge
+            'mail', -- vs email
+            'lock', -- vs rock, dock
+            'rock', -- vs lock, dock, rack
+            'reg_name', -- vs ref_name
+            'massage', -- vs message
+            'bath', -- vs path
+            'port', -- vs sport, post
+            'cave', -- vs cafe
+            'produce', -- vs product
+            'side', -- vs site, sides, hide
             'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9', -- Tiger mess
 
             -- Regional hiking/cycling/etc. routes. Lesser used ones like 'rhn' for horse riding trigger false positives:
