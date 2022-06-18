@@ -61,19 +61,23 @@ class TagFix_Access(Plugin):
 
     for tag in accessTags:
       values = accessTags[tag]["value"].split(";")
+      isConditional = ":conditional" in tag
       for accessVal in values:
         accessValue = accessVal
-        if ":conditional" in tag and "@" in accessValue:
-          accessValue = accessValue.split("@")[0]
+        if isConditional: 
+          if "@" in accessVal:
+            accessValue = accessValue.split("@")[0]
+          else:
+            continue # value was split on a ";" in the condition
         accessValue = accessValue.strip()
         if not accessValue in self.accessValuesGeneral:
           if accessValue in self.accessKeys or accessValue == "emergency":
             propose = tag + " = ### + " + accessValue + accessTags[tag]["suffix"] + " = yes"
-            if len(values) > 1 or "@" in accessVal:
+            if len(values) > 1 or isConditional:
               propose = propose.replace("###", "...") # i.e. access=bus;destination should become access=destination + bus=yes instead of access=no + bus=yes
             else:
               propose = propose.replace("###", "no") # assume 'no' holds for all other transport modes
-            if "@" in accessVal:
+            if isConditional:
               propose = propose + " @ (...)" # conditional may need to change
             err.append({"class": 30405, "subclass": 0 + stablehash64(tag + '|' + accessValue), "text": T_("Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using \"{2}\" instead", accessValue, tag, propose)})
           else:
@@ -104,6 +108,7 @@ class Test(TestPluginCommon):
         for t in [{"amenity": "parking", "vehicle": "no"},
                   {"amenity": "parking", "vehicle:conditional": "no @ wet"},
                   {"access": "agricultural", "agricultural": "designated"},
+                  {"highway": "residential", "hgv:conditional": "no @ (Mo-Fr 00:00-12:00;Sa 0:00-19:00); yes @ (Mo-Fr 12:00-24:00;Sa 19:00-24:00)"},
                  ]:
           assert not a.way(None, t, None), a.way(None, t, None)
           assert not a.node(None, t), a.node(None, t)
@@ -120,6 +125,8 @@ class Test(TestPluginCommon):
         # Invalid nodes and ways
         for t in [{"amenity": "parking", "vehicle": "nope"},
                   {"amenity": "parking", "vehicle:conditional": "nope @ wet"},
+                  {"highway": "residential", "canoe:conditional": "no @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); nope @ (snow)"},
+                  {"highway": "residential", "canoe:conditional": "nope @ (Mo-Fr 06:00-11:00;Sa 03:30-19:00); no @ (snow)"},
                  ]:
           assert a.way(None, t, None), a.way(None, t, None)
           assert a.node(None, t), a.node(None, t)
