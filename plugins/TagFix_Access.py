@@ -82,7 +82,7 @@ class TagFix_Access(Plugin):
         if transportMode in self.accessValuesSpecial and accessValue in self.accessValuesSpecial[transportMode]:
           continue
         if not accessValue in self.accessValuesGeneral:
-          if accessValue in self.accessKeys or accessValue == "emergency":
+          if (accessValue in self.accessKeys or accessValue == "emergency") and accessValue != transportMode:
             propose = tag + " = ### + " + accessValue + accessTags[tag]["suffix"] + " = yes"
             if len(values) > 1 or isConditional:
               propose = propose.replace("###", "...") # i.e. access=bus;destination should become access=destination + bus=yes instead of access=no + bus=yes
