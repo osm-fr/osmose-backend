@@ -93,7 +93,7 @@ The tag `name` should have the value `name:right / name:left` or `name:left / na
                 nameparts = [n.strip() for n in tags["name"].split("/")]
                 if tags["name:left"] in nameparts and tags["name:right"] in nameparts and len(nameparts) == 2:
                     return
-                else:
+                elif tags["name:right"] != tags["name:left"]:
                     return {"class": 50301, "subclass": 1,
                             "fix": {"~": {"name": tags["name:right"] + " / " + tags["name:left"]}}}
 
