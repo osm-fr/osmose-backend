@@ -118,7 +118,7 @@ class Test(TestPluginCommon):
         # Valid nodes and ways
         for t in [{"amenity": "parking", "vehicle": "no"},
                   {"amenity": "parking", "vehicle:conditional": "no @ wet"},
-                  {"access": "agricultural", "agricultural": "designated"},
+                  {"access": "agricultural", "agricultural": "designated", "agricultural": "agricultural"},
                   {"highway": "residential", "hgv:conditional": "no @ (Mo-Fr 00:00-12:00;Sa 0:00-19:00); yes @ (Mo-Fr 12:00-24:00;Sa 19:00-24:00)"},
                   {"dog": "leashed", "bicycle": "dismount"},
                  ]:
