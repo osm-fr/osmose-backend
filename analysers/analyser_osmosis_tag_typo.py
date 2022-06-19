@@ -72,7 +72,7 @@ FROM
             'services', -- vs service
             'room', -- vs roof, rooms
             'house', -- vs horse
-            'addr2', 'addr3',
+            'addr2', 'addr3', 'addr4', 'addr5',
             'kern', -- vs kerb
             'lock_name', -- vs loc_name
             'camp_type', -- vs lamp_type
