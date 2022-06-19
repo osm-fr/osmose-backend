@@ -51,7 +51,9 @@ the tag `name:left=*` and `name:right=*`.'''))
             detail = T_(
 '''This is a street with different names on each side of the way, given by the keys `name:left` and `name:right`.
 These names do not match with the value of `name`.
-The tag `name` should have the value `name:right / name:left` or `name:left / name:right`.'''))
+The tag `name` should have the value `name:right / name:left` or `name:left / name:right`.'''),
+            trap = T_(
+'''The warning also shows up if `name:left` or `name:right` is spelled incorrectly.'''))
 
         self.NoExtra = False
         self.HighwayOnly = False
