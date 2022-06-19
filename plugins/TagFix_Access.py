@@ -39,7 +39,7 @@ class TagFix_Access(Plugin):
                        "share_taxi", "ship", "ski:nordic", "ski", "small_electric_vehicle", "snowmobile", "speed_pedelec", "subway", "swimming", "tank", "taxi", "tourist_bus", "trailer", "train", "tram", "vehicle"]
     self.accessValuesGeneral = ["yes", "no", "private", "permissive", "permit", "destination", "delivery", "customers", "designated", "use_sidepath", "agricultural", "forestry", "discouraged"]
     self.accessValuesSpecial = {"bicycle": ["dismount"],
-                                "dog": ["leashed", "unleached"],
+                                "dog": ["leashed", "unleashed"],
                                 "horse": ["dismount"],
                                 "mofa": ["dismount"],
                                 "moped": ["dismount"],
