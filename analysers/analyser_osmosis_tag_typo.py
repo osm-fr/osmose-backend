@@ -51,9 +51,11 @@ FROM
         key NOT IN (
             'tower', -- vs power
             'food', -- vs foot, ford
+            'fdot', -- vs foot (Florida)
             'diet', -- vs dirt, dist
             'dist', -- vs dirt, list, diet
             'lines', -- vs line, lanes
+            'wine', -- vs line
             'levels', -- vs level
             'maxweight', -- vs maxheight
             'stop', -- vs shop, stop
