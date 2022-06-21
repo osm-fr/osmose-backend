@@ -42,7 +42,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
         self.init(
             "https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
             "Bornage du réseau routier national",
-            CSV(SourceDataGouv(
+            CSV(separator=';',source=SourceDataGouv(
                 attribution="data.gouv.fr:Ministère de la Transition écologique et solidaire",
                 dataset="57a83c3dc751df5b90bb5dd5",
                 resource="8b3b36e8-e45a-48c0-8a70-3336d9769948")),
