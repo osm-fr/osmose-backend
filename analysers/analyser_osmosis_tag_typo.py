@@ -59,7 +59,7 @@ FROM
             'wine', -- vs line
             'levels', -- vs level
             'maxweight', -- vs maxheight
-            'stop', -- vs shop, stop
+            'stop', -- vs shop
             'ship', -- vs shop
             'stars', -- vs start, stairs
             'right', -- vs light
