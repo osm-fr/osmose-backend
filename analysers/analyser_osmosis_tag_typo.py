@@ -55,6 +55,7 @@ FROM
             'diet', -- vs dirt, dist
             'dist', -- vs dirt, list, diet
             'lines', -- vs line, lanes
+            'linz', -- vs line (New Zealand)
             'wine', -- vs line
             'levels', -- vs level
             'maxweight', -- vs maxheight
