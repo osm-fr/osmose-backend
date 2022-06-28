@@ -41,7 +41,9 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
                 zip='*/*/rt_tramo_vial.shp')),
             Load('geom', srid = 4258,
                 table_name = 'road_es_' + self.secuencialDescDir(config.options['country']),
-                select = {'claseD': ['Carretera convencional', 'Urbano', 'Autovía', 'Carretera multicarril']}),  # Exclude 'Senda' and 'Camino'
+                select = {
+                    'claseD': ['Carretera convencional', 'Urbano', 'Autovía', 'Carretera multicarril'],  # Exclude 'Senda' and 'Camino'
+                    'estadofis': '1'} ),
             Conflate(
                 select = Select(
                     types = ['ways'],

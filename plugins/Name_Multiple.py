@@ -27,7 +27,7 @@ import re
 
 class Name_Multiple(Plugin):
 
-    not_for = ["ES-NC", "ES-PV", "ES-AS"]
+    not_for = ["ES-O", "ES-NA", "ES-BI", "ES-SS", "ES-VI"]
 
     def init(self, logger):
         Plugin.init(self, logger)
