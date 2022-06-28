@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="647438322">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="609092249">
 <class id="10" item="2060" source="http://example.com/plugins/TagFix_Housenumber.py#L33" level="3" tag="addr,fix:survey">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
@@ -253,6 +253,7 @@
 <classtext lang="uk" title="Слово не знайдено в словнику" />
 <classtext lang="zh_CN" title="词在词典中找不到" />
 <fix lang="en" title="Probably missing a capital, accent or typo." />
+<fix lang="es" title="Probablemente falta una mayúscula, acento o error tipográfico." />
 </class>
 <class id="704" item="5010" source="http://example.com/plugins/Name_Dictionary.py#L36" level="1" tag="value,fix:chair">
 <classtext lang="ca" title="Problema de codificació" />
@@ -854,13 +855,16 @@
 </class>
 <class id="3093" item="3091" source="http://example.com/plugins/Number.py#L49" level="2" tag="value,fix:chair">
 <classtext lang="en" title="Suspicious value" />
+<classtext lang="es" title="Valor sospechoso" />
 <detail lang="en" title="The tag expects a positive, round number without unit." />
+<detail lang="es" title="La etiqueta espera un número entero positivo sin unidad." />
 <fix lang="en" title="Check that the value is accurate. Consider whether another tag should&#10;be used if the value is valid." />
 <fix lang="es" title="Compruebe que el valor sea exacto. Considere si otra etiqueta debería &#10;se utilizará si el valor es válido." />
 <fix lang="ja" title="その値が正確かどうかチェックしてください。値が有効であれば、別のタグを使うべきかどうかよく考えてください。" />
 </class>
 <class id="3094" item="3091" source="http://example.com/plugins/Number.py#L57" resource="https://wiki.openstreetmap.org/wiki/Map_features/Units" level="2" tag="value,fix:chair">
 <classtext lang="en" title="Unknown unit" />
+<classtext lang="es" title="Unidad desconocida" />
 <detail lang="en" title="The tag uses an unexpected unit." />
 <fix lang="en" title="Check that you have used the correct unit and a supported abbreviation of the unit." />
 </class>
@@ -1986,6 +1990,16 @@
 <classtext lang="zh_CN" title="标签丢失" />
 <classtext lang="zh_TW" title="缺少標籤" />
 </class>
+<class id="30404" item="3040" source="http://example.com/plugins/TagFix_Access.py#L51" resource="https://wiki.openstreetmap.org/wiki/Key:access" level="3" tag="highway,fix:chair">
+<classtext lang="en" title="Uncommon access value" />
+<detail lang="en" title="The value of the access tag is not one of the common access values: `yes, no, private, permissive, permit, destination, delivery, customers, designated, use_sidepath, agricultural, forestry, discouraged`." />
+<trap lang="en" title="If there is no other tag (or combination of tags) that properly describes the access permissions, custom tags may be used." />
+</class>
+<class id="30405" item="3040" source="http://example.com/plugins/TagFix_Access.py#L56" resource="https://wiki.openstreetmap.org/wiki/Key:access" level="3" tag="highway,fix:chair">
+<classtext lang="en" title="Transport mode in access value" />
+<detail lang="en" title="The value of the access tag is a transport mode (such as `access=foot`). Consider replacing it with a more specific tag listing the transport mode first, for example `access=no` + `foot=yes`." />
+<trap lang="en" title="Ensure that the access remains the same and does not conflict with other tags. This is especially likely if access tags are combined with directional and/or conditional access tags, or when transport modes are mixed with regular access values." />
+</class>
 <class id="30501" item="3050" source="http://example.com/plugins/TagFix_BadKey.py#L47" level="1" tag="tag,fix:chair">
 <classtext lang="de" title="Unpassender Schlüssel-Suffix" />
 <classtext lang="en" title="Bad key suffix" />
@@ -2555,9 +2569,9 @@
 <detail lang="en" title="The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`." />
 <detail lang="it" title="All’oggetto manca un tag che definisca che tipo di elemento sia. Ciò è inatteso per qualcosa che è etichettato con ‘area=yes’." />
 <detail lang="ja" title="このオブジェクトには地物の種類を示すものがありません。`area=yes` タグがある場合には何かしらの種類を示すタグがあることが想定されます。" />
-<fix lang="de" title="Ergänze ein übergeordnetes Tag um kennzeichnen, worum es sich bei dem Merkmal handelt. Übliche Werte für Flächenmerkmale sind:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `power`, `public_transport`, `sport`, `tourism`, `traffic_calming`, `waterway`" />
-<fix lang="en" title="Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `power`, `public_transport`, `sport`, `tourism`, `traffic_calming`, `waterway`" />
-<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `power`, `public_transport`, `sport`, `tourism`, `traffic_calming`, `waterway`" />
+<fix lang="de" title="Ergänze ein übergeordnetes Tag um kennzeichnen, worum es sich bei dem Merkmal handelt. Übliche Werte für Flächenmerkmale sind:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `playground`, `power`, `public_transport`, `sport`, `tourism`, `traffic_calming`, `waterway`" />
+<fix lang="en" title="Add a top level tag to state what this feature is. Considered acceptable `area=yes` features are:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `playground`, `power`, `public_transport`, `sport`, `tourism`, `traffic_calming`, `waterway`" />
+<fix lang="ja" title="トップレベルのタグを追加してこの地物を記述します。考えられる受け入れ可能な`area=yes`の地物は以下の通り:&#10;&#10;`aerialway`, `aeroway`, `amenity`, `barrier`, `highway`, `historic`, `leisure`, `man_made`, `military`, `playground`, `power`, `public_transport`, `sport`, `tourism`, `traffic_calming`, `waterway`" />
 <trap lang="de" title="Es kann sinnvoller sein, das Objekt vollständig zu entfernen, wenn es nicht nützlich ist." />
 <trap lang="en" title="It may be more appropriate to remove the object completely if it isn't useful." />
 <trap lang="ja" title="有用でない場合はオブジェクトを完全に削除することが適切な場合があります。" />
@@ -2633,22 +2647,6 @@
 <classtext lang="pl" title="Pojemnik ma podejrzaną nazwę" />
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
-</class>
-<class id="32501" item="3250" source="http://example.com/plugins/TagFix_Opening_Hours.py#L38" level="3" tag="value,fix:chair">
-<classtext lang="cs" title="Neplatná otevírací doba" />
-<classtext lang="de" title="Ungültige Öffnungszeiten" />
-<classtext lang="en" title="Invalid Opening Hours" />
-<classtext lang="es" title="Horario de apertura invalido" />
-<classtext lang="fa" title="ساعت کاری نامعتبر" />
-<classtext lang="fr" title="Horaires d’ouverture incorrects" />
-<classtext lang="gl" title="Horario de apertura non válido" />
-<classtext lang="hu" title="Érvénytelen nyitva tartás" />
-<classtext lang="it" title="Orari di apertura non validi" />
-<classtext lang="ja" title="無効なOpening Hours" />
-<classtext lang="nl" title="Ongeldige Opening Uren" />
-<classtext lang="pl" title="Niepoprawny format godzin otwarcia" />
-<classtext lang="uk" title='Помилковий "Час роботи"' />
-<classtext lang="zh_CN" title="营业时间无效" />
 </class>
 <class id="32502" item="3250" source="http://example.com/plugins/TagFix_IntervalConditional.py#L30" level="3" tag="value,fix:chair,public_transport">
 <classtext lang="de" title="Ungültige bedingte Intervalle" />
@@ -2841,6 +2839,10 @@
 <class id="40612" item="4061" source="https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules" level="2" tag="parking,amenity,fix:chair">
 <classtext lang="en" title="Does this station still sell SP95, or has it been replaced by the SP95-E10?" />
 </class>
+<class id="40613" item="4061" source="http://example.com/plugins/TagFix_BadValue.py#L42" level="3" tag="highway,fix:chair">
+<classtext lang="en" title="Unspecific value" />
+<detail lang="en" title="The value of the tag is very unspecific. Replace it by a meaningful value." />
+</class>
 <class id="40701" item="4070" source="http://example.com/plugins/Construction2.validator.mapcss" level="1" tag="tag,highway,fix:survey">
 <classtext lang="cs" title="Nekonzistentní značky {{1.key}}" />
 <classtext lang="de" title="Inkonsistentes Tagging von {{1.key}}" />
@@ -3003,9 +3005,16 @@
 </class>
 <class id="50101" item="5010" source="http://example.com/plugins/Name_ShouldBeHousenumber.py#L30" level="2" tag="name,fix:chair">
 <classtext lang="en" title="Name with only numbers" />
+<classtext lang="nl" title="Naam met enkel cijfers" />
 <detail lang="en" title="This building is tagged with a name which contains only numbers&#10;and does not appear to have a main feature key.&#10;For the majority of buildings this should be tagged with `addr:housenumber`." />
+<detail lang="es" title="Este edificio está etiquetado con un nombre que contiene solo números&#10;y no parece tener una etiqueta de función principal. &#10;Para la mayoría de los edificios, esto debe etiquetarse con `addr: housenumber`." />
 <fix lang="en" title="If this `name` is in fact the housenumber, it should be tagged with&#10;`addr:housenumber` + `addr:street` (or other `addr:*`), alternatively a&#10;relation can be used." />
 <trap lang="en" title='While uncommon, it is possible for a name to be only numbers.&#10;This is particularly the case for some brands or amenities.&#10;&#10;Additionally, it could also be an apartment block number or building&#10;number (not an official house number with a postal address, but for&#10;example "beach cabin #1"); in these cases, ref would be the appropriate&#10;tag.&#10;&#10;Always check with your local community about the preferred tagging style&#10;of house numbers: in some regions, a separate node inside the building is&#10;preferred over a tag on the building itself.' />
+</class>
+<class id="50301" item="5030" source="http://example.com/plugins/Name_Multiple.py#L49" level="2" tag="name,fix:chair">
+<classtext lang="en" title="Conflicting names" />
+<detail lang="en" title="This is a street with different names on each side of the way, given by the keys `name:left` and `name:right`.&#10;These names do not match with the value of `name`.&#10;The tag `name` should have the value `name:right / name:left` or `name:left / name:right`." />
+<trap lang="en" title="The warning also shows up if `name:left` or `name:right` is spelled incorrectly." />
 </class>
 <class id="50601" item="5060" source="http://example.com/plugins/Name_Local.py#L41" level="1" tag="name,fix:chair">
 <classtext lang="ca" title="El nom predeterminat i de la llengua local no coincideixen" />
@@ -3295,7 +3304,7 @@
 <classtext lang="uk" title="Огорожа з теґом матеріалу, краще застосувати теґ fence_type" />
 <classtext lang="zh_CN" title="使用材质标签的栅栏，最好使用fence_type标签" />
 </class>
-<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L80" level="1" tag="tag,highway">
+<class id="303241" item="3032" source="http://example.com/plugins/TagFix_Maxspeed.py#L81" level="1" tag="tag,highway">
 <classtext lang="en" title="Discordant maxspeed and source:maxspeed or maxspeed:type" />
 <classtext lang="gl" title="'maxspeed e 'source:maxspeed' ou 'maxspeed:type' difiren" />
 <classtext lang="ja" title="maxspeed と source:maxspeed または maxspeed:type が不一致" />
