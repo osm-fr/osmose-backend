@@ -1508,7 +1508,7 @@ es_prov = gen_country('europe', 'spain', download_repo=OSMFR, language='es', mun
 
 es_prov('andalucia/almeria', 348997, 'ES-AL', proj=32629)
 es_prov('andalucia/cadiz', 349017, 'ES-CA', proj=32629)
-es_prov('andalucia/cordoba', 349016, 'ES-CA', proj=32629)
+es_prov('andalucia/cordoba', 349016, 'ES-CO', proj=32629)
 es_prov('andalucia/granada', 349026, 'ES-GR', proj=32629)
 es_prov('andalucia/huelva', 348995, 'ES-H', proj=32629)
 es_prov('andalucia/jaen', 348998, 'ES-J', proj=32629)
@@ -1551,7 +1551,7 @@ es_prov('comunitat_valenciana/castellon', 349020, 'ES-CS', proj=32630, language=
 es_prov('comunitat_valenciana/valencia', 349000, 'ES-V', proj=32630, language=['ca', 'es'])
 
 es_prov('extremadura/badajoz', 348994, 'ES-BA', proj=32629)
-es_prov('extremadura/caceres', 348994, 'ES-CC', proj=32629)
+es_prov('extremadura/caceres', 1863380, 'ES-CC', proj=32629)
 
 es_prov('galicia/la_coruna', 349021, 'ES-C', proj=32629, language=['gl', 'es'])
 es_prov('galicia/lugo', 348992, 'ES-LU', proj=32629, language=['gl', 'es'])
