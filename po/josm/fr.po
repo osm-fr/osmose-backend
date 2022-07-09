@@ -5,18 +5,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-19 03:34+0100\n"
-"PO-Revision-Date: 2022-02-19 13:29+0000\n"
-"Last-Translator: Don-vip <vincent.privat@gmail.com>\n"
+"POT-Creation-Date: 2022-07-08 03:34+0200\n"
+"PO-Revision-Date: 2022-06-15 09:19+0000\n"
+"Last-Translator: Jérôme BLUM <Unknown>\n"
 "Language-Team: Fr <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2022-02-20 05:00+0000\n"
-"X-Generator: Launchpad (build 131c1c72b6032652fb002ebff08e63a8deeb8d0a)\n"
-"Language: fr\n"
+"X-Launchpad-Export-Date: 2022-07-09 04:54+0000\n"
+"X-Generator: Launchpad (build fe55dd0e7a1a3cf4b2200125c020ff49cb4fe256)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,2669,-1,-1,-1,-1,-1,-1\n"
+"Language: fr\n"
 
 #: ../core/resources/data/validator/numeric.mapcss:282
 #: ../plugins/austriaaddresshelper/src/org/openstreetmap/josm/plugins/austriaaddresshelper/AustriaAddressHelperAction.java:242
@@ -55,10 +55,10 @@ msgstr ""
 "ressemblent a un numéro de maison."
 
 #: ../core/resources/data/validator/addresses.mapcss:29
-#: ../core/resources/data/validator/combinations.mapcss:543
-#: ../core/resources/data/validator/combinations.mapcss:557
-#: ../core/resources/data/validator/combinations.mapcss:572
-#: ../core/resources/data/validator/combinations.mapcss:587
+#: ../core/resources/data/validator/combinations.mapcss:551
+#: ../core/resources/data/validator/combinations.mapcss:565
+#: ../core/resources/data/validator/combinations.mapcss:580
+#: ../core/resources/data/validator/combinations.mapcss:595
 #, java-format
 msgid "Same value of {0} and {1}"
 msgstr "Même valeur pour {0} et {1}"
@@ -71,18 +71,18 @@ msgstr "{0} sans numéro"
 #: ../core/resources/data/validator/combinations.mapcss:73
 #: ../core/resources/data/validator/combinations.mapcss:85
 #: ../core/resources/data/validator/combinations.mapcss:110
-#: ../core/resources/data/validator/combinations.mapcss:186
-#: ../core/resources/data/validator/combinations.mapcss:219
-#: ../core/resources/data/validator/combinations.mapcss:242
-#: ../core/resources/data/validator/combinations.mapcss:249
-#: ../core/resources/data/validator/combinations.mapcss:492
-#: ../core/resources/data/validator/combinations.mapcss:663
-#: ../core/resources/data/validator/combinations.mapcss:715
+#: ../core/resources/data/validator/combinations.mapcss:188
+#: ../core/resources/data/validator/combinations.mapcss:221
+#: ../core/resources/data/validator/combinations.mapcss:244
+#: ../core/resources/data/validator/combinations.mapcss:251
+#: ../core/resources/data/validator/combinations.mapcss:498
+#: ../core/resources/data/validator/combinations.mapcss:671
 #: ../core/resources/data/validator/combinations.mapcss:723
-#: ../core/resources/data/validator/combinations.mapcss:789
-#: ../core/resources/data/validator/combinations.mapcss:876
-#: ../core/resources/data/validator/combinations.mapcss:880
-#: ../core/resources/data/validator/combinations.mapcss:970
+#: ../core/resources/data/validator/combinations.mapcss:731
+#: ../core/resources/data/validator/combinations.mapcss:797
+#: ../core/resources/data/validator/combinations.mapcss:887
+#: ../core/resources/data/validator/combinations.mapcss:891
+#: ../core/resources/data/validator/combinations.mapcss:981
 #: ../core/resources/data/validator/territories.mapcss:28
 #: ../core/resources/data/validator/territories.mapcss:33
 #, java-format
@@ -95,43 +95,43 @@ msgstr "{0} sans {1}"
 #: ../core/resources/data/validator/combinations.mapcss:147
 #: ../core/resources/data/validator/combinations.mapcss:154
 #: ../core/resources/data/validator/combinations.mapcss:160
-#: ../core/resources/data/validator/combinations.mapcss:187
-#: ../core/resources/data/validator/combinations.mapcss:220
-#: ../core/resources/data/validator/combinations.mapcss:236
-#: ../core/resources/data/validator/combinations.mapcss:243
-#: ../core/resources/data/validator/combinations.mapcss:250
-#: ../core/resources/data/validator/combinations.mapcss:256
-#: ../core/resources/data/validator/combinations.mapcss:262
-#: ../core/resources/data/validator/combinations.mapcss:269
-#: ../core/resources/data/validator/combinations.mapcss:275
-#: ../core/resources/data/validator/combinations.mapcss:281
-#: ../core/resources/data/validator/combinations.mapcss:406
-#: ../core/resources/data/validator/combinations.mapcss:414
+#: ../core/resources/data/validator/combinations.mapcss:189
+#: ../core/resources/data/validator/combinations.mapcss:222
+#: ../core/resources/data/validator/combinations.mapcss:238
+#: ../core/resources/data/validator/combinations.mapcss:245
+#: ../core/resources/data/validator/combinations.mapcss:252
+#: ../core/resources/data/validator/combinations.mapcss:258
+#: ../core/resources/data/validator/combinations.mapcss:264
+#: ../core/resources/data/validator/combinations.mapcss:271
+#: ../core/resources/data/validator/combinations.mapcss:277
+#: ../core/resources/data/validator/combinations.mapcss:283
+#: ../core/resources/data/validator/combinations.mapcss:412
 #: ../core/resources/data/validator/combinations.mapcss:420
 #: ../core/resources/data/validator/combinations.mapcss:426
-#: ../core/resources/data/validator/combinations.mapcss:493
-#: ../core/resources/data/validator/combinations.mapcss:519
-#: ../core/resources/data/validator/combinations.mapcss:532
+#: ../core/resources/data/validator/combinations.mapcss:432
+#: ../core/resources/data/validator/combinations.mapcss:499
+#: ../core/resources/data/validator/combinations.mapcss:525
 #: ../core/resources/data/validator/combinations.mapcss:538
-#: ../core/resources/data/validator/combinations.mapcss:664
-#: ../core/resources/data/validator/combinations.mapcss:682
-#: ../core/resources/data/validator/combinations.mapcss:703
-#: ../core/resources/data/validator/combinations.mapcss:716
+#: ../core/resources/data/validator/combinations.mapcss:544
+#: ../core/resources/data/validator/combinations.mapcss:672
+#: ../core/resources/data/validator/combinations.mapcss:690
+#: ../core/resources/data/validator/combinations.mapcss:711
 #: ../core/resources/data/validator/combinations.mapcss:724
-#: ../core/resources/data/validator/combinations.mapcss:784
-#: ../core/resources/data/validator/combinations.mapcss:790
-#: ../core/resources/data/validator/combinations.mapcss:801
-#: ../core/resources/data/validator/combinations.mapcss:814
-#: ../core/resources/data/validator/combinations.mapcss:877
-#: ../core/resources/data/validator/combinations.mapcss:881
-#: ../core/resources/data/validator/combinations.mapcss:887
-#: ../core/resources/data/validator/combinations.mapcss:971
-#: ../core/resources/data/validator/combinations.mapcss:1006
+#: ../core/resources/data/validator/combinations.mapcss:732
+#: ../core/resources/data/validator/combinations.mapcss:792
+#: ../core/resources/data/validator/combinations.mapcss:798
+#: ../core/resources/data/validator/combinations.mapcss:809
+#: ../core/resources/data/validator/combinations.mapcss:822
+#: ../core/resources/data/validator/combinations.mapcss:888
+#: ../core/resources/data/validator/combinations.mapcss:892
+#: ../core/resources/data/validator/combinations.mapcss:898
+#: ../core/resources/data/validator/combinations.mapcss:982
 #: ../core/resources/data/validator/combinations.mapcss:1017
-#: ../core/resources/data/validator/combinations.mapcss:1024
-#: ../core/resources/data/validator/combinations.mapcss:1030
-#: ../core/resources/data/validator/combinations.mapcss:1037
-#: ../core/resources/data/validator/combinations.mapcss:1043
+#: ../core/resources/data/validator/combinations.mapcss:1028
+#: ../core/resources/data/validator/combinations.mapcss:1035
+#: ../core/resources/data/validator/combinations.mapcss:1041
+#: ../core/resources/data/validator/combinations.mapcss:1048
+#: ../core/resources/data/validator/combinations.mapcss:1054
 #: ../core/resources/data/validator/highway.mapcss:74
 #: ../core/resources/data/validator/highway.mapcss:153
 #: ../core/resources/data/validator/highway.mapcss:158
@@ -162,56 +162,56 @@ msgstr ""
 "{0} suspicieux sur la connexion d''une petite route avec une plus grande"
 
 #: ../core/resources/data/validator/combinations.mapcss:146
-#: ../core/resources/data/validator/combinations.mapcss:235
-#: ../core/resources/data/validator/combinations.mapcss:255
-#: ../core/resources/data/validator/combinations.mapcss:531
-#: ../core/resources/data/validator/combinations.mapcss:886
+#: ../core/resources/data/validator/combinations.mapcss:237
+#: ../core/resources/data/validator/combinations.mapcss:257
+#: ../core/resources/data/validator/combinations.mapcss:537
+#: ../core/resources/data/validator/combinations.mapcss:897
 #, java-format
 msgid "{0} without {1} or {2}"
 msgstr "{0} sans {1} ou {2}"
 
 #: ../core/resources/data/validator/combinations.mapcss:153
-#: ../core/resources/data/validator/combinations.mapcss:274
-#: ../core/resources/data/validator/combinations.mapcss:280
+#: ../core/resources/data/validator/combinations.mapcss:276
+#: ../core/resources/data/validator/combinations.mapcss:282
 #, java-format
 msgid "{0} without {1}, {2} or {3}"
 msgstr "{0} sans {1}, {2} ni {3}"
 
 #: ../core/resources/data/validator/combinations.mapcss:159
-#: ../core/resources/data/validator/combinations.mapcss:261
-#: ../core/resources/data/validator/combinations.mapcss:268
+#: ../core/resources/data/validator/combinations.mapcss:263
+#: ../core/resources/data/validator/combinations.mapcss:270
 #, java-format
 msgid "{0} without {1}, {2}, {3} or {4}"
 msgstr "{0} sans {1}, {2}, {3} ou {4}"
 
-#: ../core/resources/data/validator/combinations.mapcss:300
-#: ../core/resources/data/validator/combinations.mapcss:308
-#: ../core/resources/data/validator/combinations.mapcss:327
+#: ../core/resources/data/validator/combinations.mapcss:304
+#: ../core/resources/data/validator/combinations.mapcss:312
 #: ../core/resources/data/validator/combinations.mapcss:333
-#: ../core/resources/data/validator/combinations.mapcss:345
-#: ../core/resources/data/validator/combinations.mapcss:364
+#: ../core/resources/data/validator/combinations.mapcss:339
+#: ../core/resources/data/validator/combinations.mapcss:351
 #: ../core/resources/data/validator/combinations.mapcss:370
-#: ../core/resources/data/validator/combinations.mapcss:434
-#: ../core/resources/data/validator/combinations.mapcss:441
-#: ../core/resources/data/validator/combinations.mapcss:449
-#: ../core/resources/data/validator/combinations.mapcss:458
-#: ../core/resources/data/validator/combinations.mapcss:466
-#: ../core/resources/data/validator/combinations.mapcss:504
-#: ../core/resources/data/validator/combinations.mapcss:613
-#: ../core/resources/data/validator/combinations.mapcss:620
-#: ../core/resources/data/validator/combinations.mapcss:642
-#: ../core/resources/data/validator/combinations.mapcss:652
-#: ../core/resources/data/validator/combinations.mapcss:669
-#: ../core/resources/data/validator/combinations.mapcss:744
-#: ../core/resources/data/validator/combinations.mapcss:750
-#: ../core/resources/data/validator/combinations.mapcss:768
-#: ../core/resources/data/validator/combinations.mapcss:844
-#: ../core/resources/data/validator/combinations.mapcss:892
-#: ../core/resources/data/validator/combinations.mapcss:938
-#: ../core/resources/data/validator/combinations.mapcss:957
-#: ../core/resources/data/validator/combinations.mapcss:965
-#: ../core/resources/data/validator/combinations.mapcss:977
-#: ../core/resources/data/validator/combinations.mapcss:993
+#: ../core/resources/data/validator/combinations.mapcss:376
+#: ../core/resources/data/validator/combinations.mapcss:440
+#: ../core/resources/data/validator/combinations.mapcss:447
+#: ../core/resources/data/validator/combinations.mapcss:455
+#: ../core/resources/data/validator/combinations.mapcss:464
+#: ../core/resources/data/validator/combinations.mapcss:472
+#: ../core/resources/data/validator/combinations.mapcss:510
+#: ../core/resources/data/validator/combinations.mapcss:621
+#: ../core/resources/data/validator/combinations.mapcss:628
+#: ../core/resources/data/validator/combinations.mapcss:650
+#: ../core/resources/data/validator/combinations.mapcss:660
+#: ../core/resources/data/validator/combinations.mapcss:677
+#: ../core/resources/data/validator/combinations.mapcss:752
+#: ../core/resources/data/validator/combinations.mapcss:758
+#: ../core/resources/data/validator/combinations.mapcss:776
+#: ../core/resources/data/validator/combinations.mapcss:855
+#: ../core/resources/data/validator/combinations.mapcss:903
+#: ../core/resources/data/validator/combinations.mapcss:949
+#: ../core/resources/data/validator/combinations.mapcss:968
+#: ../core/resources/data/validator/combinations.mapcss:976
+#: ../core/resources/data/validator/combinations.mapcss:988
+#: ../core/resources/data/validator/combinations.mapcss:1004
 #: ../core/resources/data/validator/deprecated.mapcss:603
 #: ../core/resources/data/validator/deprecated.mapcss:612
 #: ../core/resources/data/validator/deprecated.mapcss:621
@@ -223,102 +223,103 @@ msgstr "{0} sans {1}, {2}, {3} ou {4}"
 msgid "{0} together with {1}"
 msgstr "{0} combiné à {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:301
-#: ../core/resources/data/validator/combinations.mapcss:309
-#: ../core/resources/data/validator/combinations.mapcss:328
+#: ../core/resources/data/validator/combinations.mapcss:305
+#: ../core/resources/data/validator/combinations.mapcss:313
 #: ../core/resources/data/validator/combinations.mapcss:334
-#: ../core/resources/data/validator/combinations.mapcss:346
+#: ../core/resources/data/validator/combinations.mapcss:340
 #: ../core/resources/data/validator/combinations.mapcss:352
-#: ../core/resources/data/validator/combinations.mapcss:359
-#: ../core/resources/data/validator/combinations.mapcss:366
-#: ../core/resources/data/validator/combinations.mapcss:374
-#: ../core/resources/data/validator/combinations.mapcss:382
-#: ../core/resources/data/validator/combinations.mapcss:435
-#: ../core/resources/data/validator/combinations.mapcss:442
-#: ../core/resources/data/validator/combinations.mapcss:446
-#: ../core/resources/data/validator/combinations.mapcss:450
-#: ../core/resources/data/validator/combinations.mapcss:455
-#: ../core/resources/data/validator/combinations.mapcss:460
-#: ../core/resources/data/validator/combinations.mapcss:468
-#: ../core/resources/data/validator/combinations.mapcss:482
+#: ../core/resources/data/validator/combinations.mapcss:358
+#: ../core/resources/data/validator/combinations.mapcss:365
+#: ../core/resources/data/validator/combinations.mapcss:372
+#: ../core/resources/data/validator/combinations.mapcss:380
+#: ../core/resources/data/validator/combinations.mapcss:388
+#: ../core/resources/data/validator/combinations.mapcss:441
+#: ../core/resources/data/validator/combinations.mapcss:448
+#: ../core/resources/data/validator/combinations.mapcss:452
+#: ../core/resources/data/validator/combinations.mapcss:456
+#: ../core/resources/data/validator/combinations.mapcss:461
+#: ../core/resources/data/validator/combinations.mapcss:466
+#: ../core/resources/data/validator/combinations.mapcss:474
 #: ../core/resources/data/validator/combinations.mapcss:488
-#: ../core/resources/data/validator/combinations.mapcss:505
-#: ../core/resources/data/validator/combinations.mapcss:512
-#: ../core/resources/data/validator/combinations.mapcss:544
-#: ../core/resources/data/validator/combinations.mapcss:559
+#: ../core/resources/data/validator/combinations.mapcss:494
+#: ../core/resources/data/validator/combinations.mapcss:511
+#: ../core/resources/data/validator/combinations.mapcss:518
+#: ../core/resources/data/validator/combinations.mapcss:552
 #: ../core/resources/data/validator/combinations.mapcss:567
-#: ../core/resources/data/validator/combinations.mapcss:574
+#: ../core/resources/data/validator/combinations.mapcss:575
 #: ../core/resources/data/validator/combinations.mapcss:582
-#: ../core/resources/data/validator/combinations.mapcss:589
+#: ../core/resources/data/validator/combinations.mapcss:590
 #: ../core/resources/data/validator/combinations.mapcss:597
 #: ../core/resources/data/validator/combinations.mapcss:605
-#: ../core/resources/data/validator/combinations.mapcss:614
-#: ../core/resources/data/validator/combinations.mapcss:621
-#: ../core/resources/data/validator/combinations.mapcss:632
-#: ../core/resources/data/validator/combinations.mapcss:636
-#: ../core/resources/data/validator/combinations.mapcss:643
-#: ../core/resources/data/validator/combinations.mapcss:647
-#: ../core/resources/data/validator/combinations.mapcss:654
-#: ../core/resources/data/validator/combinations.mapcss:672
-#: ../core/resources/data/validator/combinations.mapcss:697
-#: ../core/resources/data/validator/combinations.mapcss:738
-#: ../core/resources/data/validator/combinations.mapcss:745
-#: ../core/resources/data/validator/combinations.mapcss:752
-#: ../core/resources/data/validator/combinations.mapcss:763
-#: ../core/resources/data/validator/combinations.mapcss:769
-#: ../core/resources/data/validator/combinations.mapcss:775
-#: ../core/resources/data/validator/combinations.mapcss:826
-#: ../core/resources/data/validator/combinations.mapcss:837
+#: ../core/resources/data/validator/combinations.mapcss:613
+#: ../core/resources/data/validator/combinations.mapcss:622
+#: ../core/resources/data/validator/combinations.mapcss:629
+#: ../core/resources/data/validator/combinations.mapcss:640
+#: ../core/resources/data/validator/combinations.mapcss:644
+#: ../core/resources/data/validator/combinations.mapcss:651
+#: ../core/resources/data/validator/combinations.mapcss:655
+#: ../core/resources/data/validator/combinations.mapcss:662
+#: ../core/resources/data/validator/combinations.mapcss:680
+#: ../core/resources/data/validator/combinations.mapcss:705
+#: ../core/resources/data/validator/combinations.mapcss:746
+#: ../core/resources/data/validator/combinations.mapcss:753
+#: ../core/resources/data/validator/combinations.mapcss:760
+#: ../core/resources/data/validator/combinations.mapcss:771
+#: ../core/resources/data/validator/combinations.mapcss:777
+#: ../core/resources/data/validator/combinations.mapcss:783
+#: ../core/resources/data/validator/combinations.mapcss:834
 #: ../core/resources/data/validator/combinations.mapcss:845
-#: ../core/resources/data/validator/combinations.mapcss:852
-#: ../core/resources/data/validator/combinations.mapcss:862
-#: ../core/resources/data/validator/combinations.mapcss:868
-#: ../core/resources/data/validator/combinations.mapcss:894
-#: ../core/resources/data/validator/combinations.mapcss:912
-#: ../core/resources/data/validator/combinations.mapcss:939
-#: ../core/resources/data/validator/combinations.mapcss:948
-#: ../core/resources/data/validator/combinations.mapcss:952
-#: ../core/resources/data/validator/combinations.mapcss:958
-#: ../core/resources/data/validator/combinations.mapcss:966
-#: ../core/resources/data/validator/combinations.mapcss:978
-#: ../core/resources/data/validator/combinations.mapcss:994
+#: ../core/resources/data/validator/combinations.mapcss:856
+#: ../core/resources/data/validator/combinations.mapcss:863
+#: ../core/resources/data/validator/combinations.mapcss:873
+#: ../core/resources/data/validator/combinations.mapcss:879
+#: ../core/resources/data/validator/combinations.mapcss:905
+#: ../core/resources/data/validator/combinations.mapcss:923
+#: ../core/resources/data/validator/combinations.mapcss:950
+#: ../core/resources/data/validator/combinations.mapcss:959
+#: ../core/resources/data/validator/combinations.mapcss:963
+#: ../core/resources/data/validator/combinations.mapcss:969
+#: ../core/resources/data/validator/combinations.mapcss:977
+#: ../core/resources/data/validator/combinations.mapcss:989
+#: ../core/resources/data/validator/combinations.mapcss:1005
 #: ../core/resources/data/validator/highway.mapcss:165
 #: ../core/resources/data/validator/highway.mapcss:203
+#: ../core/resources/data/validator/numeric.mapcss:419
 #: ../core/resources/data/validator/relation.mapcss:72
 msgid "suspicious tag combination"
 msgstr "combinaison suspecte d’attributs"
 
-#: ../core/resources/data/validator/combinations.mapcss:351
-#: ../core/resources/data/validator/combinations.mapcss:358
+#: ../core/resources/data/validator/combinations.mapcss:357
+#: ../core/resources/data/validator/combinations.mapcss:364
 #, java-format
 msgid "{0} together with {1} and {2}"
 msgstr "{0} ainsi que {1} et {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:373
+#: ../core/resources/data/validator/combinations.mapcss:379
 #, java-format
 msgid "two objects, one with {0} and one with {1} + {2} + {3}"
 msgstr "Deux objets, un avec {0} et un avec {1} + {2} + {3}"
 
-#: ../core/resources/data/validator/combinations.mapcss:379
+#: ../core/resources/data/validator/combinations.mapcss:385
 #, java-format
 msgid "{0} on an inner multipolygon ring without further tags"
 msgstr "{0} sur une boucle intérieure de multipolygone sans autre étiquette"
 
-#: ../core/resources/data/validator/combinations.mapcss:404
-#: ../core/resources/data/validator/combinations.mapcss:419
+#: ../core/resources/data/validator/combinations.mapcss:410
+#: ../core/resources/data/validator/combinations.mapcss:425
 #, java-format
 msgid "incomplete object: only {0}"
 msgstr "élément incomplet : uniquement {0}"
 
-#: ../core/resources/data/validator/combinations.mapcss:413
-#: ../core/resources/data/validator/combinations.mapcss:425
+#: ../core/resources/data/validator/combinations.mapcss:419
+#: ../core/resources/data/validator/combinations.mapcss:431
 #, java-format
 msgid "incomplete object: only {0} and {1}"
 msgstr "élément incomplet : uniquement {0} et {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:445
-#: ../core/resources/data/validator/combinations.mapcss:454
-#: ../core/resources/data/validator/combinations.mapcss:836
+#: ../core/resources/data/validator/combinations.mapcss:451
+#: ../core/resources/data/validator/combinations.mapcss:460
+#: ../core/resources/data/validator/combinations.mapcss:844
 #: ../core/resources/data/validator/deprecated.mapcss:631
 #: ../core/resources/data/validator/deprecated.mapcss:638
 #: ../core/resources/data/validator/deprecated.mapcss:645
@@ -326,12 +327,12 @@ msgstr "élément incomplet : uniquement {0} et {1}"
 msgid "{0} together with {1} and conflicting values"
 msgstr "{0} avec {1} et valeurs conflictuelles"
 
-#: ../core/resources/data/validator/combinations.mapcss:481
+#: ../core/resources/data/validator/combinations.mapcss:487
 #, java-format
 msgid "{0} on suspicious object"
 msgstr "{0} sur un objet suspicieux"
 
-#: ../core/resources/data/validator/combinations.mapcss:487
+#: ../core/resources/data/validator/combinations.mapcss:493
 #, java-format
 msgid ""
 "{0} together with {1}. The flow direction is defined by the way direction. "
@@ -341,42 +342,42 @@ msgstr ""
 "du chemin. Utilisez {1} sur {0} uniquement dans le rare cas d''une "
 "restriction d''accès."
 
-#: ../core/resources/data/validator/combinations.mapcss:511
+#: ../core/resources/data/validator/combinations.mapcss:517
 msgid "natural water used for swimming pool"
 msgstr "Eau naturelle utilisée pour une piscine"
 
-#: ../core/resources/data/validator/combinations.mapcss:518
+#: ../core/resources/data/validator/combinations.mapcss:524
 msgid "sport without physical feature"
 msgstr "sport sans équipements"
 
-#: ../core/resources/data/validator/combinations.mapcss:537
+#: ../core/resources/data/validator/combinations.mapcss:543
 #, java-format
 msgid "alternative name without {0}"
 msgstr "nom alternatif sans {0}"
 
-#: ../core/resources/data/validator/combinations.mapcss:550
+#: ../core/resources/data/validator/combinations.mapcss:558
 #, java-format
 msgid "incomplete usage of {0} on a way without {1}"
 msgstr "usage partiel de {0} sur un chemin sans {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:564
-#: ../core/resources/data/validator/combinations.mapcss:579
-#: ../core/resources/data/validator/combinations.mapcss:594
+#: ../core/resources/data/validator/combinations.mapcss:572
+#: ../core/resources/data/validator/combinations.mapcss:587
+#: ../core/resources/data/validator/combinations.mapcss:602
 #, java-format
 msgid "Same value of {0}, {1} and {2}"
 msgstr "Même valeur pour {0}, {1} et {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:604
+#: ../core/resources/data/validator/combinations.mapcss:612
 #, java-format
 msgid "{0} and {1} together with {2} and conflicting values"
 msgstr "{0} et {1} tous deux avec {2} et valeurs conflictuelles"
 
-#: ../core/resources/data/validator/combinations.mapcss:626
+#: ../core/resources/data/validator/combinations.mapcss:634
 #, java-format
 msgid "{0} on a relation without {1}"
 msgstr "{0} sur une relation sans {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:631
+#: ../core/resources/data/validator/combinations.mapcss:639
 #, java-format
 msgid ""
 "Long waterway with {0} but without a tag which defines it as tunnel or "
@@ -387,7 +388,7 @@ msgstr ""
 "un souterrain. Supprimez {1} ou ajoutez un tag tunnel si applicable. "
 "Verifiez aussi les ponts enjambant le cours d eau et leurs {1} tags."
 
-#: ../core/resources/data/validator/combinations.mapcss:635
+#: ../core/resources/data/validator/combinations.mapcss:643
 #, java-format
 msgid ""
 "Short waterway with {0} but without a tag which defines it as tunnel or "
@@ -398,37 +399,37 @@ msgstr ""
 "un souterrain. Supprimez {1} ou ajoutez un tag tunnel si applicable. "
 "Verifiez aussi les ponts enjambant le cours d eau et leurs {1} tags."
 
-#: ../core/resources/data/validator/combinations.mapcss:646
+#: ../core/resources/data/validator/combinations.mapcss:654
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {1} and {2}"
 msgstr "{0} combiné à {1} et {2}. Retirer {1} et {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:681
+#: ../core/resources/data/validator/combinations.mapcss:689
 #, java-format
 msgid "possibly missing {0} tag"
 msgstr "Oubli possible de tag {0}"
 
-#: ../core/resources/data/validator/combinations.mapcss:696
+#: ../core/resources/data/validator/combinations.mapcss:704
 #, java-format
 msgid "Different number of lanes in the keys {0} and {1}"
 msgstr "Nombre de voies différents dans les clefs {0} et {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:702
+#: ../core/resources/data/validator/combinations.mapcss:710
 #, java-format
 msgid "street with odd number of {0}, but without {1} and {2} or {3}"
 msgstr "Rue avec un nombre impair de {0}, mais sans {1} et {2} or {3}"
 
-#: ../core/resources/data/validator/combinations.mapcss:732
+#: ../core/resources/data/validator/combinations.mapcss:740
 #, java-format
 msgid "{0} together with {1}. Tag each hydrant separately."
 msgstr "{0} ensemble avec {1}. Marquer chaque bouche d''incendie séparément."
 
-#: ../core/resources/data/validator/combinations.mapcss:737
+#: ../core/resources/data/validator/combinations.mapcss:745
 #, java-format
 msgid "{0} together with {1} on a node. Remove {0}."
 msgstr "{0} avec {1} sur un nœud. Retirer {0}."
 
-#: ../core/resources/data/validator/combinations.mapcss:762
+#: ../core/resources/data/validator/combinations.mapcss:770
 #, java-format
 msgid ""
 "A linear object {0} without {1} has a tag indicating that it is an area."
@@ -436,38 +437,38 @@ msgstr ""
 "Un objet linéaire {0} sans {1} a une balise indiquant qu''il s''agit d''une "
 "zone."
 
-#: ../core/resources/data/validator/combinations.mapcss:774
+#: ../core/resources/data/validator/combinations.mapcss:782
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
 msgstr "{0} avec {1}. Retirez {1}."
 
-#: ../core/resources/data/validator/combinations.mapcss:783
+#: ../core/resources/data/validator/combinations.mapcss:791
 #, java-format
 msgid "Combined foot- and cycleway without {0}."
 msgstr "Piste cyclable et piétonnière combinée sans {0}."
 
-#: ../core/resources/data/validator/combinations.mapcss:800
+#: ../core/resources/data/validator/combinations.mapcss:808
 #, java-format
 msgid "{0} without {1} and {2}"
 msgstr "{0} sans {1} ni {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:813
+#: ../core/resources/data/validator/combinations.mapcss:821
 #, java-format
 msgid "{0} together with {1} but without {2}"
 msgstr "{0} ensemble avec {1} mais sans {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:825
+#: ../core/resources/data/validator/combinations.mapcss:833
 #, java-format
 msgid "{0} together with {1} and conflicting values plus no {2}"
 msgstr "{0} ensemble avec {1} et des valeurs en conflit sans {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:851
-#: ../core/resources/data/validator/combinations.mapcss:861
+#: ../core/resources/data/validator/combinations.mapcss:862
+#: ../core/resources/data/validator/combinations.mapcss:872
 #, java-format
 msgid "{0} together with {1}. Probably {2} is meant."
 msgstr "{0} avec {1}. {2} est probablement voulu."
 
-#: ../core/resources/data/validator/combinations.mapcss:867
+#: ../core/resources/data/validator/combinations.mapcss:878
 #, java-format
 msgid ""
 "{0} together with {1}. Should be used on a minor highway type or a node"
@@ -475,36 +476,36 @@ msgstr ""
 "{0} et {1} ensemble. Devrait être utilisé sur un type d''autoroute mineure "
 "ou un nœud"
 
-#: ../core/resources/data/validator/combinations.mapcss:911
+#: ../core/resources/data/validator/combinations.mapcss:922
 #, java-format
 msgid "{0} together with {1}. Is the fixme fixed?"
 msgstr "{0} en même temps que {1}. Le fixme est-il corrigé ?"
 
-#: ../core/resources/data/validator/combinations.mapcss:923
+#: ../core/resources/data/validator/combinations.mapcss:934
 #, java-format
 msgid "Use {0} only as value of {1}"
 msgstr "Utiliser {0} seulement comme valeur de {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:947
+#: ../core/resources/data/validator/combinations.mapcss:958
 #, java-format
 msgid "{0} together with {1} at right-hand traffic"
 msgstr "{0} en même temps que {1} en circulation à droite"
 
-#: ../core/resources/data/validator/combinations.mapcss:951
+#: ../core/resources/data/validator/combinations.mapcss:962
 #, java-format
 msgid "{0} together with {1} at left-hand traffic"
 msgstr "{0} en même temps que {1} en circulation à gauche"
 
-#: ../core/resources/data/validator/combinations.mapcss:1005
-#: ../core/resources/data/validator/combinations.mapcss:1042
+#: ../core/resources/data/validator/combinations.mapcss:1016
+#: ../core/resources/data/validator/combinations.mapcss:1053
 #, java-format
 msgid "No grooming defined for {0} skiing, add {1}"
 msgstr "Aucun damage défini pour {0} ski, ajoutez {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:1016
-#: ../core/resources/data/validator/combinations.mapcss:1023
-#: ../core/resources/data/validator/combinations.mapcss:1029
-#: ../core/resources/data/validator/combinations.mapcss:1036
+#: ../core/resources/data/validator/combinations.mapcss:1027
+#: ../core/resources/data/validator/combinations.mapcss:1034
+#: ../core/resources/data/validator/combinations.mapcss:1040
+#: ../core/resources/data/validator/combinations.mapcss:1047
 #, java-format
 msgid "No difficulty defined for skiing, add {0}"
 msgstr "Aucune difficulté définie pour le ski, ajoutez {0}"
@@ -756,6 +757,7 @@ msgstr "Aucune difficulté définie pour le ski, ajoutez {0}"
 #: ../core/resources/data/validator/deprecated.mapcss:2308
 #: ../core/resources/data/validator/deprecated.mapcss:2313
 #: ../core/resources/data/validator/deprecated.mapcss:2321
+#: ../core/resources/data/validator/deprecated.mapcss:2331
 #: ../core/resources/data/validator/highway.mapcss:125
 #: ../core/resources/data/validator/highway.mapcss:132
 #, java-format
@@ -1034,6 +1036,7 @@ msgstr "{0} est déprécié"
 #: ../core/resources/data/validator/deprecated.mapcss:2310
 #: ../core/resources/data/validator/deprecated.mapcss:2316
 #: ../core/resources/data/validator/deprecated.mapcss:2326
+#: ../core/resources/data/validator/deprecated.mapcss:2334
 #: ../core/resources/data/validator/highway.mapcss:112
 #: ../core/resources/data/validator/highway.mapcss:118
 #: ../core/resources/data/validator/highway.mapcss:127
@@ -1139,7 +1142,7 @@ msgid "Unspecific tag {0}"
 msgstr "Attribut {0} non spécifique"
 
 #: ../core/resources/data/validator/deprecated.mapcss:543
-#: ../core/resources/data/validator/numeric.mapcss:587
+#: ../core/resources/data/validator/numeric.mapcss:619
 #, java-format
 msgid "Definition of {0} is unclear"
 msgstr "La définition de {0} n’est pas claire"
@@ -1166,7 +1169,7 @@ msgstr ""
 #: ../core/resources/data/validator/deprecated.mapcss:1292
 #: ../core/resources/data/validator/deprecated.mapcss:1367
 #: ../core/resources/data/validator/geometry.mapcss:303
-#: ../core/resources/data/validator/numeric.mapcss:516
+#: ../core/resources/data/validator/numeric.mapcss:546
 #: ../core/resources/data/validator/religion.mapcss:33
 #: ../core/resources/data/validator/unnecessary.mapcss:114
 #: ../core/resources/data/validator/unnecessary.mapcss:150
@@ -1234,9 +1237,9 @@ msgstr "valeur mal orthographiée"
 #: ../core/resources/data/validator/deprecated.mapcss:1236
 #: ../core/resources/data/validator/deprecated.mapcss:1245
 #: ../core/resources/data/validator/deprecated.mapcss:1769
-#: ../core/resources/data/validator/numeric.mapcss:548
-#: ../core/resources/data/validator/numeric.mapcss:557
-#: ../core/resources/data/validator/numeric.mapcss:566
+#: ../core/resources/data/validator/numeric.mapcss:580
+#: ../core/resources/data/validator/numeric.mapcss:589
+#: ../core/resources/data/validator/numeric.mapcss:598
 #, java-format
 msgid "wrong value: {0}"
 msgstr "Mauvaise valeur: {0}"
@@ -1250,18 +1253,18 @@ msgstr "{0} n''est pas un type de bâtiment."
 #: ../core/resources/data/validator/deprecated.mapcss:2019
 #: ../core/resources/data/validator/highway.mapcss:181
 #: ../core/resources/data/validator/numeric.mapcss:384
-#: ../core/resources/data/validator/numeric.mapcss:394
-#: ../core/resources/data/validator/numeric.mapcss:404
-#: ../core/resources/data/validator/numeric.mapcss:440
-#: ../core/resources/data/validator/numeric.mapcss:451
-#: ../core/resources/data/validator/numeric.mapcss:530
-#: ../core/resources/data/validator/numeric.mapcss:534
-#: ../core/resources/data/validator/numeric.mapcss:574
+#: ../core/resources/data/validator/numeric.mapcss:407
+#: ../core/resources/data/validator/numeric.mapcss:434
+#: ../core/resources/data/validator/numeric.mapcss:470
+#: ../core/resources/data/validator/numeric.mapcss:481
+#: ../core/resources/data/validator/numeric.mapcss:560
+#: ../core/resources/data/validator/numeric.mapcss:564
+#: ../core/resources/data/validator/numeric.mapcss:606
 #, java-format
 msgid "unusual value of {0}"
 msgstr "valeur inhabituelle de {0}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:2331
+#: ../core/resources/data/validator/deprecated.mapcss:2339
 #, java-format
 msgid ""
 "{0} as a tag on an object. Roles are specified in the relation members list "
@@ -1572,7 +1575,7 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:303
 #: ../core/resources/data/validator/numeric.mapcss:315
 #: ../core/resources/data/validator/numeric.mapcss:355
-#: ../core/resources/data/validator/numeric.mapcss:493
+#: ../core/resources/data/validator/numeric.mapcss:523
 #, java-format
 msgid "unusual value of {0}: use . instead of , as decimal separator"
 msgstr ""
@@ -1628,40 +1631,54 @@ msgstr "kilomètres"
 msgid "voltage should be in volts with no units/delimiter/spaces"
 msgstr "la tension doit être en Volts sans unité/delimiter/ espace"
 
-#: ../core/resources/data/validator/numeric.mapcss:419
+#: ../core/resources/data/validator/numeric.mapcss:395
+#, java-format
+msgid "imprecise value of {0}"
+msgstr "valeur imprécise de {0}"
+
+#: ../core/resources/data/validator/numeric.mapcss:396
+msgid "an integer value in millimeters, without unit"
+msgstr "une valeur entière en millimètres, sans unité"
+
+#: ../core/resources/data/validator/numeric.mapcss:420
+#, java-format
+msgid "unusual {0} value on narrow gauge railway"
+msgstr "valeur {0} inhabituelle sur un chemin de fer à voie étroite"
+
+#: ../core/resources/data/validator/numeric.mapcss:449
 #, java-format
 msgid "{0} must be a numeric value"
 msgstr "{0} doit être une valeur numérique"
 
-#: ../core/resources/data/validator/numeric.mapcss:429
+#: ../core/resources/data/validator/numeric.mapcss:459
 #, java-format
 msgid "{0} must be a positive integer number"
 msgstr "{0} doit être un nombre entier positif"
 
-#: ../core/resources/data/validator/numeric.mapcss:481
-#: ../core/resources/data/validator/numeric.mapcss:504
+#: ../core/resources/data/validator/numeric.mapcss:511
+#: ../core/resources/data/validator/numeric.mapcss:534
 #, java-format
 msgid "{0} must be a numeric value, in meters and without units"
 msgstr "{0} doit être une valeur numérique, en mètres et sans unité"
 
-#: ../core/resources/data/validator/numeric.mapcss:517
+#: ../core/resources/data/validator/numeric.mapcss:547
 msgid "Unnecessary amount of decimal places"
 msgstr "Quantité inutile de décimales"
 
-#: ../core/resources/data/validator/numeric.mapcss:549
-#: ../core/resources/data/validator/numeric.mapcss:558
-#: ../core/resources/data/validator/numeric.mapcss:567
+#: ../core/resources/data/validator/numeric.mapcss:581
+#: ../core/resources/data/validator/numeric.mapcss:590
+#: ../core/resources/data/validator/numeric.mapcss:599
 #: ../core/resources/data/validator/territories.mapcss:29
 #: ../core/resources/data/validator/territories.mapcss:34
 msgid "Airport tagging"
 msgstr "Marquage d''aéroport"
 
-#: ../core/resources/data/validator/numeric.mapcss:596
-#: ../core/resources/data/validator/numeric.mapcss:608
-#: ../core/resources/data/validator/numeric.mapcss:616
-#: ../core/resources/data/validator/numeric.mapcss:626
-#: ../core/resources/data/validator/numeric.mapcss:636
-#: ../core/resources/data/validator/numeric.mapcss:649
+#: ../core/resources/data/validator/numeric.mapcss:628
+#: ../core/resources/data/validator/numeric.mapcss:640
+#: ../core/resources/data/validator/numeric.mapcss:648
+#: ../core/resources/data/validator/numeric.mapcss:658
+#: ../core/resources/data/validator/numeric.mapcss:668
+#: ../core/resources/data/validator/numeric.mapcss:681
 #, java-format
 msgid ""
 "unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point "
@@ -1671,7 +1688,7 @@ msgstr ""
 "valeurs positives uniquement ; le point est le séparateur décimal ; espace "
 "entre la valeur et l''unité"
 
-#: ../core/resources/data/validator/numeric.mapcss:668
+#: ../core/resources/data/validator/numeric.mapcss:700
 #, java-format
 msgid "Numeric name: {0}. Maybe {1} or {2} is meant."
 msgstr "Nom numérique : {0}. Peut-être que {1} ou {2} est signifié."
