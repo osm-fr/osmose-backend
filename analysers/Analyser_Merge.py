@@ -148,7 +148,7 @@ SELECT
     ST_AsText(ST_Transform(official.geom, 4326)),
     official.tags,
     official.fields,
-    ST_Transform(official.geom, 4326) AS geom
+    official.geom
 FROM
     {official} AS official
     LEFT JOIN osm_item ON
@@ -176,8 +176,8 @@ SELECT
         ELSE ST_AsText(any_locate(osm_item.type, osm_item.id))
     END,
     osm_item.tags,
-    ST_Transform(osm_item.geom, 4326) AS geom,
-    ST_Transform(osm_item.shape, 4326) AS shape
+    osm_item.geom,
+    osm_item.shape
 FROM
     osm_item
     LEFT JOIN {official} AS official ON
@@ -929,7 +929,7 @@ class Load_XY(Load):
     {x}::varchar NOT IN ('', 'null') AND
     {y}::varchar NOT IN ('', 'null')
 """
-        spatialGeom = lambda geom: f"ST_Transform(ST_GeomFromEWKT('SRID=4326;POINT({geom[0]} {geom[1]})'), {self.proj})"
+        spatialGeom = lambda geom: f"ST_Transform(ST_GeomFromEWKT('SRID={srid};POINT({geom[0]} {geom[1]})'), {self.proj})"
         super().__init__((f'ARRAY[{x}, {y}]',), srid, table_name, create, select, unique, where, map, self.geomFunctionPoint, validationGeomSQL, spatialGeom)
 
     def run(self, osmosis, parser, conflate, db_schema, default_table_base_name, version):

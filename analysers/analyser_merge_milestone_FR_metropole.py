@@ -20,7 +20,7 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, CSV, Load_XY, Conflate, Select, Mapping
+from .Analyser_Merge import Analyser_Merge_Point, SourceDataGouv, SHP, LoadGeomCentroid, Conflate, Select, Mapping
 
 class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
@@ -40,16 +40,17 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
             title = T_('Milestone update'), **doc)
 
         self.init(
-            "https://www.data.gouv.fr/fr/datasets/bornage-du-reseau-routier-national/",
-            "Bornage du réseau routier national",
-            CSV(SourceDataGouv(
-                attribution="data.gouv.fr:Ministère de la Transition écologique et solidaire",
-                dataset="57a83c3dc751df5b90bb5dd5",
-                resource="8b3b36e8-e45a-48c0-8a70-3336d9769948")),
-            Load_XY("x", "y", srid = 2154,
-                xFunction = Load_XY.float_comma,
-                yFunction = Load_XY.float_comma,
-                where = lambda row: self.is_milestone(row)),
+            "https://www.data.gouv.fr/fr/datasets/liaisons-du-reseau-routier-national/",
+            "Liaisons du réseau routier national",
+            SHP(SourceDataGouv(
+                attribution="data.gouv.fr:Ministère de la Transition écologique",
+                dataset="57a837e2c751df5b90bb5dd4",
+                resource="92d86944-52e8-44c1-b4cc-b17ac82d70ed",
+                zip='BORNAGE_TOUT.shp')),
+            LoadGeomCentroid(srid = 2154,
+                where = lambda row: (
+                    self.is_milestone(row)
+                )), # Check for valid Lambert98 coords
             Conflate(
                 select = Select(
                     types = ["nodes"],
@@ -61,31 +62,12 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
                     static2 = {"source:nat_ref": self.source},
                     mapping1 = {
                         "distance": 'pr',
-                        "nat_ref": lambda row: self.transform_to_plo(row) }
+                        "nat_ref": 'nom_plo'}
                 )))
 
     def is_milestone(self,row):
-        if len(row['depPr']) == 3:
-            return False
-        elif [ele for ele in ('P', 'N1', 'N2', 'A9', 'N9') if ele in row['route']]:
+        if [ele for ele in ('P', 'N1', 'N2', 'A9', 'N9') if ele in row['route']]:
             #P for temporary ; N1 for future up_class and N2 for down_class road ; A9,N9 in metropole, is not milestone but way_link or roundabout
             return False
         else:
             return True
-
-    def transform_to_plo(self, row):
-        # use plo format, description available at http://dtrf.setra.fr/pdf/pj/Dtrf/0005/Dtrf-0005792/DT5792.pdf
-        #dept must be on 2 caracter
-        dept = row['depPr']
-        if len(dept) == 1:
-            dept = '0' + dept
-
-        #C or '', not 'N'
-        concede = 'C' if row['concessionPr'] == 'C' else ''
-
-        #I is for ignore, sens is D,G or U for droite (sens croissant), gauche (sens décroissant), unique.
-        sens = row['cote']
-        if sens == 'I':
-            sens = 'U'
-
-        return dept + 'PR' + row['pr'] + sens + concede

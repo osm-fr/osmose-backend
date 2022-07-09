@@ -107,5 +107,5 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
             'ES-LO': '9150733',
             'ES-A': '9150705',
             'ES-CS': '9150717',
-            'ES-V': '9150755',
+            'ES-V': '9150754',
         }[code]
