@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Supaplex <bejokeup@gmail.com>, 2020
+# Supaplex <bejokeup@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Supaplex <bejokeup@gmail.com>, 2020\n"
+"Last-Translator: Supaplex <bejokeup@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/openstreetmap-france/teams/17462/zh_TW/)\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -182,16 +182,16 @@ msgstr "這是公車站還是街車站？請加精準的標籤來描述等車區
 
 #: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
-msgstr ""
+msgstr "捷運出口應該標為節點"
 
 #: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
-msgstr ""
+msgstr "車站出入口應當是建築或是路徑 (樓梯、步道等) 的一部分。"
 
 #: ../transport.validator.mapcss:375
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
-msgstr ""
+msgstr "車站出入口應當是車站的一部分：而且也該是 stop_area 關係的一部分"

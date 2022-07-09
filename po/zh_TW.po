@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Supaplex <bejokeup@gmail.com>, 2017-2020
+# Supaplex <bejokeup@gmail.com>, 2017-2020,2022
 # Kuang-che Wu <kcwu@csie.org>, 2016
 # Sean Young <assanges@icloud.com>, 2017
 msgid ""
@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: Sean Young <assanges@icloud.com>, 2017\n"
+"Last-Translator: Supaplex <bejokeup@gmail.com>, 2017-2020,2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,19 +99,19 @@ msgstr "無效的角色"
 
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:110
 msgid "Broken highway level continuity"
-msgstr ""
+msgstr "道路等級並不連續"
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:52
 msgid "Merge building (triangle)"
-msgstr ""
+msgstr "合併建築 (三角形)"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building intersection"
-msgstr ""
+msgstr "建築交叉"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "Large building intersection"
-msgstr ""
+msgstr "大型建築交叉"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:174
 msgid "Building too small"
@@ -119,35 +119,35 @@ msgstr "建物過小"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:181
 msgid "Gap between buildings"
-msgstr "建物間隙"
+msgstr "建物之間有間隙"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:186
 msgid "Large building intersection cluster"
-msgstr ""
+msgstr "大型建築交叉部分"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:70
 msgid "Special building (round)"
-msgstr ""
+msgstr "特殊建築 (圓形)"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:73
 msgid "Special building (large)"
-msgstr ""
+msgstr "特殊建築 (大型)"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:220
 msgid "Unconnected cycleway"
-msgstr ""
+msgstr "未連結的單車道"
 
 #: ../analysers/analyser_osmosis_highway_features.py:78
 msgid "Missing way on level crossing"
-msgstr ""
+msgstr "平交道缺少路徑"
 
 #: ../analysers/analyser_osmosis_highway_features.py:82
 msgid "Lone highway or barrier node"
-msgstr ""
+msgstr "單獨的道路或障礙節點"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:106
 msgid "Geodesic mark without building"
-msgstr ""
+msgstr "測繪標記沒有建築"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:170
 msgid "Possible crossing=traffic_signals"
@@ -156,43 +156,43 @@ msgstr "可能是 crossing=traffic_signals"
 #: ../analysers/analyser_osmosis_highway_link.py:132
 #: ../analysers/analyser_osmosis_highway_link.py:148
 msgid "Bad *_link highway"
-msgstr ""
+msgstr "壞掉的 *_link 道路"
 
 #: ../analysers/analyser_osmosis_highway_link.py:144
 msgid "Highway too long for a *_link"
-msgstr ""
+msgstr "*_link 道路太長了"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:368
 msgid "Highway intersecting building"
-msgstr ""
+msgstr "道路與建築相交"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:369
 msgid "Tree intersecting building"
-msgstr ""
+msgstr "樹與建築相交"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:370
 msgid "Tree and highway too close"
-msgstr ""
+msgstr "樹和道路靠太近了"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:83
 msgid "Swimming-pool, reservoir, pond as natural=water"
-msgstr ""
+msgstr "游泳池、水池與池壇一樣是 natural=water"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:80
 msgid "Way node tagged like way"
-msgstr ""
+msgstr "路徑上的節點像路徑一樣的標籤"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:56
 msgid "Orphan nodes cluster"
-msgstr ""
+msgstr "一大群單獨的節點"
 
 #: ../analysers/analyser_osmosis_polygon.py:94
 msgid "Invalid polygon"
-msgstr ""
+msgstr "無效的多邊形"
 
 #: ../analysers/analyser_osmosis_powerline.py:344
 msgid "Lone power tower or pole"
-msgstr ""
+msgstr "單獨的電塔或是電線桿"
 
 #: ../analysers/analyser_osmosis_powerline.py:369
 msgid "Connection between different voltages"
@@ -291,7 +291,7 @@ msgstr ""
 msgid "Soundex test"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:151
+#: ../analysers/analyser_osmosis_tag_typo.py:164
 msgid "Typo in tag"
 msgstr "tag 拼寫錯誤"
 
@@ -435,10 +435,10 @@ msgstr ""
 msgid "Deprecated tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr ""
 
@@ -576,12 +576,12 @@ msgstr ""
 msgid "Name contains successive spaces"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:119
+#: ../plugins/TagRemove_Incompatibles.py:120
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:122
+#: ../plugins/TagRemove_Incompatibles.py:123
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -616,15 +616,15 @@ msgstr ""
 msgid "Natural feature underground"
 msgstr ""
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr ""
 
@@ -803,7 +803,7 @@ msgstr ""
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:125
+#: ../plugins/TagRemove_Incompatibles.py:126
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -973,7 +973,7 @@ msgstr ""
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:101
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:102
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
@@ -1694,7 +1694,6 @@ msgstr ""
 msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1704,6 +1703,7 @@ msgstr ""
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2427,11 +2427,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:153
+#: ../analysers/analyser_osmosis_tag_typo.py:166
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:155
+#: ../analysers/analyser_osmosis_tag_typo.py:168
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3262,20 +3262,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr ""
@@ -3329,8 +3329,9 @@ msgstr ""
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
-#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:116
-#: ../plugins/TagFix_BadValue.py:121 ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:118
+#: ../plugins/TagFix_BadValue.py:123 ../plugins/TagFix_BadValue.py:127
+#: ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr ""
@@ -3379,14 +3380,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3628,35 +3629,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1078
+#: ../analysers/Analyser_Merge.py:1130
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1081
+#: ../analysers/Analyser_Merge.py:1133
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1086
+#: ../analysers/Analyser_Merge.py:1138
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1099
+#: ../analysers/Analyser_Merge.py:1293
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1112
+#: ../analysers/Analyser_Merge.py:1306
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1074
+#: ../analysers/Analyser_Merge.py:1126
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4789,4 +4790,85 @@ msgstr ""
 
 #: ../plugins/TagFix_Opening_Hours.py:64
 msgid "The `opening_hours` value is invalid and could not be parsed"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_line_FR.py:32
+msgid "Power line not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_road_ES.py:32
+msgid "Road not integrated"
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:50
+msgid "Conflicting names"
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:52
+msgid ""
+"This is a street with different names on each side of the way, given by the keys `name:left` and `name:right`.\n"
+"These names do not match with the value of `name`.\n"
+"The tag `name` should have the value `name:right / name:left` or `name:left / name:right`."
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:56
+msgid ""
+"The warning also shows up if `name:left` or `name:right` is spelled "
+"incorrectly."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:52
+msgid "Uncommon access value"
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:53
+#, python-brace-format
+msgid ""
+"The value of the access tag is not one of the common access values: `{0}`."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:55
+msgid ""
+"If there is no other tag (or combination of tags) that properly describes "
+"the access permissions, custom tags may be used."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:57
+msgid "Transport mode in access value"
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:58
+msgid ""
+"The value of the access tag is a transport mode (such as `access=foot`). "
+"Consider replacing it with a more specific tag listing the transport mode "
+"first, for example `access=no` + `foot=yes`."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:59
+msgid ""
+"Ensure that the access remains the same and does not conflict with other "
+"tags. This is especially likely if access tags are combined with directional"
+" and/or conditional access tags, or when transport modes are mixed with "
+"regular access values."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:94
+#, python-brace-format
+msgid ""
+"Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using "
+"\"{2}\" instead"
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:96
+#, python-brace-format
+msgid "Unknown access value \"{0}\" for key \"{1}\""
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:43
+msgid "Unspecific value"
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:44
+msgid ""
+"The value of the tag is very unspecific. Replace it by a meaningful value."
 msgstr ""

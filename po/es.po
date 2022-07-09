@@ -14,7 +14,7 @@
 # 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014
 # 3c4f354c26c2c190ba28f9c2666d7fdb_003e9d1 <b28923423b98dace80389ae64c99bf93_129697>, 2014-2017
 # Mikel Ortega, 2020
-# Mikel Ortega, 2020
+# Mikel Ortega, 2020,2022
 # Eric Armijo, 2020
 # YoViajo, 2020
 msgid ""
@@ -23,13 +23,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: Jorge Sanz <sanchi2@gmail.com>, 2019-2022\n"
+"Last-Translator: Mikel Ortega, 2020,2022\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College not integrated"
@@ -302,7 +302,7 @@ msgstr "Rotonda invertida"
 msgid "Soundex test"
 msgstr "Prueba Soundex"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:151
+#: ../analysers/analyser_osmosis_tag_typo.py:164
 msgid "Typo in tag"
 msgstr "Error tipográfico en etiqueta"
 
@@ -392,7 +392,7 @@ msgstr "Demasiados espacios"
 
 #: ../plugins/Name_Toponymy_FR.py:35
 msgid "Toponymy"
-msgstr "Toponimía"
+msgstr "Toponimia"
 
 #: ../plugins/Ele_MontainPass_Peak.py:31
 msgid "Missing altitude"
@@ -444,12 +444,12 @@ msgstr "Vía con un nodo"
 
 #: ../plugins/TagFix_Deprecated.py:99
 msgid "Deprecated tag"
-msgstr "Etiqueta deprecada"
+msgstr "Etiqueta obsoleta"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Mira varias etiquetas"
 
@@ -587,12 +587,12 @@ msgstr "El nombre termina con un espacio"
 msgid "Name contains successive spaces"
 msgstr "El nombre contiene espacios sucesivos"
 
-#: ../plugins/TagRemove_Incompatibles.py:119
+#: ../plugins/TagRemove_Incompatibles.py:120
 #, python-format, python-brace-format
 msgid "Conflict between tags: {0}"
 msgstr "Conflicto entre etiquetas: {0}"
 
-#: ../plugins/TagRemove_Incompatibles.py:122
+#: ../plugins/TagRemove_Incompatibles.py:123
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 
@@ -627,15 +627,15 @@ msgstr "Característica de uso del suelo no figura en el suelo"
 msgid "Natural feature underground"
 msgstr "Característica natural en el subsuelo"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr "Idioma predeterminado y local no es lo mismo"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Nombre del idioma local sin nombre predeterminado"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr "Nombre del idioma sin nombre predeterminado"
 
@@ -814,7 +814,7 @@ msgstr "Valor de acceso a carriles erróneo, no debe ser un entero sino una rest
 msgid "Turn lanes merge_to_* need an aside lane on good side"
 msgstr "Carriles de giro merge_to_* necesita una línea paralela en el lado bueno"
 
-#: ../plugins/TagRemove_Incompatibles.py:125
+#: ../plugins/TagRemove_Incompatibles.py:126
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflicto entre etiquetas: crossing=no debe ser utilizado sin un highway=crossing"
@@ -984,7 +984,7 @@ msgstr "Nodo duplicado sin etiqueta"
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Debería ser un polígono, forma parte de un multipolígono o no tener una etiqueta de área"
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:101
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:102
 msgid "Almost junction, join or use noexit tag"
 msgstr "Casi cruce, unir o usar etiqueta noexit"
 
@@ -1705,7 +1705,6 @@ msgstr "Etiqueta no válida de intervalos condicionales"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "Los intervalos condicionales no se ajustan al horario de apertura."
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1715,6 +1714,7 @@ msgstr "Los intervalos condicionales no se ajustan al horario de apertura."
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2438,11 +2438,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:153
+#: ../analysers/analyser_osmosis_tag_typo.py:166
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr "La etiqueta tiene errores de escritura. La detección está basada en estadísticas."
 
-#: ../analysers/analyser_osmosis_tag_typo.py:155
+#: ../analysers/analyser_osmosis_tag_typo.py:168
 msgid "Check that the correction does not change the intent of the tag."
 msgstr "Verificar que la corrección no cambie el propósito de la etiqueta."
 
@@ -2651,7 +2651,7 @@ msgstr "Ha sido usado un caracter no imprimible como una línea de salida (0x000
 
 #: ../plugins/Name_Script.py:53
 msgid "Remove the character."
-msgstr "Quitar el caracter."
+msgstr "Eliminar el carácter."
 
 #: ../plugins/Name_Script.py:57
 msgid ""
@@ -3273,20 +3273,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "{0} actualización de bicicleta"
@@ -3340,8 +3340,9 @@ msgstr ""
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
 #: ../plugins/TagFix_BadKey.py:88 ../plugins/TagFix_BadKey.py:90
-#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:116
-#: ../plugins/TagFix_BadValue.py:121 ../plugins/TagFix_MultipleValue.py:99
+#: ../plugins/TagFix_BadKey.py:92 ../plugins/TagFix_BadValue.py:118
+#: ../plugins/TagFix_BadValue.py:123 ../plugins/TagFix_BadValue.py:127
+#: ../plugins/TagFix_MultipleValue.py:99
 #, python-brace-format
 msgid "Concerns tag: `{0}`"
 msgstr ""
@@ -3349,7 +3350,7 @@ msgstr ""
 #: ../plugins/Name_Punctuation.py:39
 #, python-brace-format
 msgid "Unexpected character: `{0}`"
-msgstr ""
+msgstr "Carácter inesperado: `{0}`"
 
 #: ../plugins/Name_UpperCase.py:41
 msgid ""
@@ -3390,14 +3391,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3639,35 +3640,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1078
+#: ../analysers/Analyser_Merge.py:1130
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1081
+#: ../analysers/Analyser_Merge.py:1133
 msgid "Be sure that it is not already existing in another place."
 msgstr "Asegúrese de que no exista ya en otro lugar."
 
-#: ../analysers/Analyser_Merge.py:1086
+#: ../analysers/Analyser_Merge.py:1138
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1099
+#: ../analysers/Analyser_Merge.py:1293
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1112
+#: ../analysers/Analyser_Merge.py:1306
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1074
+#: ../analysers/Analyser_Merge.py:1126
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -3697,15 +3698,15 @@ msgstr ""
 
 #: ../analysers/analyser_merge_hydrants_FR.py:32
 msgid "Fire hydrant not integrated"
-msgstr ""
+msgstr "Boca de incendios no integrada"
 
 #: ../analysers/analyser_merge_hydrants_FR.py:34
 msgid "Fire hydrant integration suggestion"
-msgstr ""
+msgstr "Sugerencia de integración de boca de incendios"
 
 #: ../analysers/analyser_merge_hydrants_FR.py:36
 msgid "Fire hydrant update"
-msgstr ""
+msgstr "Actualización de boca de incendios"
 
 #: ../plugins/Construction.py:36
 msgid ""
@@ -3872,7 +3873,7 @@ msgstr "aparcamiento para bicicletas"
 
 #: tmp.json:2
 msgid "surveillance camera"
-msgstr ""
+msgstr "cámara de vigilancia"
 
 #: tmp.json:3
 msgid "fire hydrant"
@@ -4415,7 +4416,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_natural_FR.py:170
 msgid "Beach not integrated"
-msgstr ""
+msgstr "Playa no integrada"
 
 #: ../analysers/analyser_merge_natural_FR.py:179
 msgid "Cape not integrated"
@@ -4767,7 +4768,7 @@ msgstr ""
 
 #: ../plugins/Name_ShouldBeHousenumber.py:31
 msgid "Name with only numbers"
-msgstr ""
+msgstr "Nombre solo con números"
 
 #: ../plugins/Name_ShouldBeHousenumber.py:33
 msgid ""
@@ -4800,4 +4801,85 @@ msgstr ""
 
 #: ../plugins/TagFix_Opening_Hours.py:64
 msgid "The `opening_hours` value is invalid and could not be parsed"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_line_FR.py:32
+msgid "Power line not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_road_ES.py:32
+msgid "Road not integrated"
+msgstr "Carretera no integrada"
+
+#: ../plugins/Name_Multiple.py:50
+msgid "Conflicting names"
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:52
+msgid ""
+"This is a street with different names on each side of the way, given by the keys `name:left` and `name:right`.\n"
+"These names do not match with the value of `name`.\n"
+"The tag `name` should have the value `name:right / name:left` or `name:left / name:right`."
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:56
+msgid ""
+"The warning also shows up if `name:left` or `name:right` is spelled "
+"incorrectly."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:52
+msgid "Uncommon access value"
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:53
+#, python-brace-format
+msgid ""
+"The value of the access tag is not one of the common access values: `{0}`."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:55
+msgid ""
+"If there is no other tag (or combination of tags) that properly describes "
+"the access permissions, custom tags may be used."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:57
+msgid "Transport mode in access value"
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:58
+msgid ""
+"The value of the access tag is a transport mode (such as `access=foot`). "
+"Consider replacing it with a more specific tag listing the transport mode "
+"first, for example `access=no` + `foot=yes`."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:59
+msgid ""
+"Ensure that the access remains the same and does not conflict with other "
+"tags. This is especially likely if access tags are combined with directional"
+" and/or conditional access tags, or when transport modes are mixed with "
+"regular access values."
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:94
+#, python-brace-format
+msgid ""
+"Access value \"{0}\" for key \"{1}\" is a transport mode. Consider using "
+"\"{2}\" instead"
+msgstr ""
+
+#: ../plugins/TagFix_Access.py:96
+#, python-brace-format
+msgid "Unknown access value \"{0}\" for key \"{1}\""
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:43
+msgid "Unspecific value"
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:44
+msgid ""
+"The value of the tag is very unspecific. Replace it by a meaningful value."
 msgstr ""
