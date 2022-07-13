@@ -110,7 +110,9 @@ VALUES (
     %(tags)s,
     %(tags1)s,
     %(fields)s,
-    ST_Transform(ST_Force2D({geom}), {proj})
+    CASE WHEN {geom} IS NOT NULL THEN
+        ST_Transform(ST_Force2D({geom}), {proj})
+    ELSE NULL END
 )
 """
 
@@ -838,7 +840,7 @@ class Load(object):
                             pass
                     tags = conflate.mapping.tagFactory(res)
                     tags[1].update(tags[0])
-                    giscurs.execute(sql02.format(official = tableOfficial, proj = self.proj, geom = self.spatialGeom(geom) if geom else 'NULL'), {
+                    giscurs.execute(sql02.format(official = tableOfficial, proj = self.proj, geom = self.spatialGeom(geom)), {
                         "ref": tags[1].get(conflate.osmRef) if conflate.osmRef != "NULL" else None,
                         "tags": tags[1],
                         "tags1": tags[0],
@@ -929,7 +931,7 @@ class Load_XY(Load):
     {x}::varchar NOT IN ('', 'null') AND
     {y}::varchar NOT IN ('', 'null')
 """
-        spatialGeom = lambda geom: f"ST_Transform(ST_GeomFromEWKT('SRID={srid};POINT({geom[0]} {geom[1]})'), {self.proj})"
+        spatialGeom = lambda geom: f"ST_Transform(ST_GeomFromEWKT('SRID={srid};POINT({geom[0]} {geom[1]})'), {self.proj})" if self.srid else "NULL::geometry"
         super().__init__((f'ARRAY[{x}, {y}]',), srid, table_name, create, select, unique, where, map, self.geomFunctionPoint, validationGeomSQL, spatialGeom)
 
     def run(self, osmosis, parser, conflate, db_schema, default_table_base_name, version):
@@ -1209,8 +1211,8 @@ verification on this data.'''))
                         '{type}'::char(1) AS type,
                         id,
                         trim(both from ref) AS ref,
-                        ST_Transform({geom}, {proj}) AS geom,
-                        ST_Transform({shape}, {proj}) AS shape,
+                        ST_Transform({geom}::geometry, {proj}) AS geom,
+                        ST_Transform({shape}::geometry, {proj}) AS shape,
                         tags
                     FROM
                         {from_}
