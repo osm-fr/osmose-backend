@@ -33,29 +33,30 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
             title = T_('Power plant not integrated, geocoded at municipality level'))
 
         self.init(
-            "https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
+            "https://odre.opendatasoft.com/explore/dataset/registre-national-installation-production-stockage-electricite-agrege",
             "Registre national des installations de production d'électricité et de stockage",
             CSV(Geocode_Addok_CSV(
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:RTE",
-                    url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217"),
+                    url="https://odre.opendatasoft.com/explore/dataset/registre-national-installation-production-stockage-electricite-agrege"),
                 columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load_XY("longitude", "latitude",
-                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 1000,
-                map = lambda res: dict(res, **{"_geom": [
-                    float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001,
-                    float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] })),
+                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 250,
+                map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001}),
+                unique = ("codeeicresourceobject",))
             Conflate(
                 select = Select(
                     types = ["ways", "relations"],
                     tags = {"power": "plant"}),
                 conflationDistance = 5000,
+                osmRef = "ref:EU:ENTSOE_EIC",
                 tag_keep_multiple_values = ["voltage"],
                 mapping = Mapping(
                     static1 = {
                         "power": "plant"},
                     static2 = {"source": self.source},
                     mapping1 = {
+                        "ref:EU:ENTSOE_EIC": lambda fields: fields["codeeicresourceobject"],
                         # No voltage tga on power=plant
                         #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
