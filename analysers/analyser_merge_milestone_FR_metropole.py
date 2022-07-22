@@ -70,7 +70,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
             #P for temporary ; N1 for future up_class and N2 for down_class road ; A9,N9 in metropole, is not milestone but way_link or roundabout
             return False
         else:
-            if row['nom_plo'][2:4]=='PR' :
+            if row['nom_plo'][2:4]=='PR':
                 #filter only real milestone (not logical as FRD, FRG etc...)
                 return True
             else :
