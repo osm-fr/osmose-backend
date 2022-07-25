@@ -60,7 +60,7 @@ class Geocode_City_CSV(Source):
             else:
                 self.logger.log("Geocode line {0}".format(i))
                 geocode_url = "https://geo.api.gouv.fr/communes/"+outline[header[self.citycode]]+"?fields=centre&format=json&geometry=centre"
-                json_str = urlread(geocode_url, 60)
+                json_str = downloader.urlread(geocode_url, 60)
 
                 if json_str:
                     rData = json.loads(json_str)
