@@ -45,7 +45,6 @@ class Geocode_City_CSV(Source):
         return open(downloader.update_cache('citycoded://' + self.source.fileUrl, 60, fetch=self.fetch))
 
     def fetch(self, url, tmp_file, date_string=None):
-        service = u'https://geo.api.gouv.fr/communes/'
         outfile = open(tmp_file, 'w', encoding='utf-8')
 
         infile = self.source.open()
@@ -60,16 +59,14 @@ class Geocode_City_CSV(Source):
                 header = outline
             else:
                 self.logger.log("Geocode line {0}".format(i))
-                r = downloader.requests_retry_session().get(url=service+outline[header[self.citycode]], params={
-                    'fields': 'centre',
-                    'format': 'json',
-                    'geometry': 'centre',
-                })
+                geocode_url = "https://geo.api.gouv.fr/communes/"+outline[header[self.citycode]]+"?fields=centre&format=json&geometry=centre"
+                json_str = urlread(geocode_url, 60)
 
-                r.raise_for_status()
-                rData = json.loads(r.text)
-
-                outline.extend(rData["centre"]["coordinates"])
+                if json_str:
+                    rData = json.loads(json_str)
+                    outline.extend(rData["centre"]["coordinates"])
+                else:
+                    outline.extend(["",""])
 
             outfile.write(self.delimiter.join(outline))
             i += 1
