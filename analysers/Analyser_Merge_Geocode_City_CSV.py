@@ -51,7 +51,7 @@ class Geocode_City_CSV(Source):
         infile = self.source.open()
         header = None
         i = 0
-        
+
         for linestr in infile:
             outline = linestr.split(self.delimiter)
 
@@ -70,7 +70,7 @@ class Geocode_City_CSV(Source):
                 rData = json.loads(r.text)
 
                 outline.extend(rData["centre"]["coordinates"])
-            
+
             outfile.write(self.delimiter.join(outline))
             i += 1
 
