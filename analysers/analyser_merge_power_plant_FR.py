@@ -43,7 +43,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
             Load_XY("longitude", "latitude",
                 where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 250,
                 map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001}),
-                unique = ("codeeicresourceobject",)),
+                unique = ("codeEICResourceObject",)),
             Conflate(
                 select = Select(
                     types = ["ways", "relations"],
@@ -56,7 +56,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                         "power": "plant"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:EU:ENTSOE_EIC": lambda fields: fields["codeeicresourceobject"],
+                        "ref:EU:ENTSOE_EIC": lambda fields: fields["codeEICResourceObject"],
                         # No voltage tga on power=plant
                         #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
