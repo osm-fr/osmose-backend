@@ -31,7 +31,7 @@ import json
 
 class Geocode_City_CSV(Source):
 
-    def __init__(self, source, logger, citycode = None, delimiter = ',', encoding = 'utf-8'):
+    def __init__(self, source, logger, citycode, delimiter = ',', encoding = 'utf-8'):
         self.source = source
         self.delimiter = delimiter
         self.citycode = citycode
