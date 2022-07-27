@@ -50,7 +50,7 @@ class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = defaultTag,
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:STIF": lambda fields: fields["id_refa"] and str(fields["id_refa"] or None)},
+                    mapping1 = {"ref:FR:STIF": lambda fields: fields["id_refa"] and int(fields["id_refa"] or None)},
                     mapping2 = {"name": "nom_lda"},
                     text = lambda tags, fields: T_("{0} stop of {1}", place, tags["name"]) )))
 
@@ -63,9 +63,9 @@ class Analyser_Merge_IdFM_Metro(_Analyser_Merge_Public_Transport_FR_IdFM):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 0, 200, "Station de métro", {"railway": "platform"}, {"railway": "platform"}, "Quai de métro")
 
-class Analyser_Merge_IdFM_Train(_Analyser_Merge_Public_Transport_FR_IdFM):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 1, 500, "Station ferrée / Val", {"railway": "platform"}, {"railway": "platform"}, "Quai de RER ou Transilien")
+#class Analyser_Merge_IdFM_Train(_Analyser_Merge_Public_Transport_FR_IdFM):
+#    def __init__(self, config, logger = None):
+#        _Analyser_Merge_Public_Transport_FR_IdFM.__init__(self, config, logger, 1, 500, "Station ferrée / Val", {"railway": "platform"}, {"railway": "platform"}, "Quai de RER ou Transilien")
 
 class Analyser_Merge_IdFM_Tram(_Analyser_Merge_Public_Transport_FR_IdFM):
     def __init__(self, config, logger = None):
