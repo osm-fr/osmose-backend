@@ -48,7 +48,7 @@ similar.'''),
 
         self.BlackList = set((
             'ref', 'created_by', 'is_in',
-            'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid',
+            'CLC:id', 'GNS:id', 'tmc', 'tiger:cfcc', 'statscan:rbuid', 'nysgissam:nysaddresspointid',
             'source:geometry:date', 'source:geometry:ref', # Belgium, Flanders
             'source:date',
             'service_times', 'collection_times',
@@ -77,6 +77,7 @@ similar.'''),
             re.compile('railway:signal:.+'),
             re.compile('turn:lanes.*'),
             re.compile('opening_hours(:.+)?'),
+            re.compile('(.+:)?wikidata'),
        ))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
