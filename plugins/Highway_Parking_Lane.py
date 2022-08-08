@@ -65,7 +65,7 @@ be tagged on that object instead.'''))
         self.errors[31619] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:condition:[side] value'),
             fix = T_('''Use any of the following values: `{0}`''', ", ".join(self.parkingConditionValues)),
-            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition"))
+            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -103,7 +103,7 @@ be tagged on that object instead.'''))
                         err.append({"class": 31615, "subclass": stablehash64(side)})
                 condition = side.replace("lane", "condition")
                 if condition in tags:
-                    if tags[side] == "no":
+                    if tags[side] == "no" and tags[condition][0:2] != "no":
                         # parking:lane:[side] = no together with parking:condition:[side]
                         err.append({"class": 31617, "subclass": stablehash64(side)})
                     elif tags[side] == "separate":
@@ -147,5 +147,6 @@ class Test(TestPluginCommon):
                   {"highway": "r", "parking:lane:left": "parallel", "parking:lane:right": "separate"},
                   {"highway": "r", "parking:lane:both": "separate"},
                   {"highway": "r", "parking:lane:left": "parallel", "parking:condition:left": "free", "parking:lane:right": "separate"},
+                  {"highway": "r", "parking:lane:both": "no", "parking:condition:both": "no_stopping"},
                  ]:
             assert not a.way(None, t, None), t
