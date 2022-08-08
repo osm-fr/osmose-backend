@@ -75,7 +75,7 @@ be tagged on that object instead.'''))
 
         if (("parking:condition:right" in tags and not "parking:lane:right" in tags and not "parking:lane:both" in tags) or
             ("parking:condition:left" in tags and not "parking:lane:left" in tags and not "parking:lane:both" in tags) or
-            ("parking:condition:both" in tags and not "parking:condition:both" in tags)):
+            ("parking:condition:both" in tags and not "parking:lane:both" in tags and not ("parking:lane:left" in tags and "parking:lane:right" in tags))):
             err.append({"class": 31616})
 
         sides = list(map(lambda tag: tag[len("parking:lane:"):].split(":")[0], filter(lambda tag: tag.startswith("parking:lane:"), tags)))
@@ -102,6 +102,8 @@ be tagged on that object instead.'''))
                     else:
                         err.append({"class": 31615, "subclass": stablehash64(side)})
                 condition = side.replace("lane", "condition")
+                if not condition in tags:
+                    condition = "parking:condition:both"
                 if condition in tags:
                     if tags[side] == "no" and tags[condition][0:2] != "no":
                         # parking:lane:[side] = no together with parking:condition:[side]
@@ -130,7 +132,9 @@ class Test(TestPluginCommon):
                   {"highway": "r", "parking:lane:right": "free"},
                   {"highway": "r", "parking:lane:right": "bus_stop"},
                   {"highway": "r", "parking:condition:right": "parallel"},
+                  {"highway": "r", "parking:lane:left": "no", "parking:condition:both": "no"},
                   {"highway": "r", "parking:lane:both": "no", "parking:condition:both": "free"},
+                  {"highway": "r", "parking:lane:left": "no", "parking:lane:right": "parallel", "parking:condition:both": "free"},
                   {"highway": "r", "parking:lane:both": "separate", "parking:condition:both": "free"},
                   {"highway": "r", "parking:lane:both": "yes", "parking:condition:both": "parallel"},
                  ]:
@@ -148,5 +152,6 @@ class Test(TestPluginCommon):
                   {"highway": "r", "parking:lane:both": "separate"},
                   {"highway": "r", "parking:lane:left": "parallel", "parking:condition:left": "free", "parking:lane:right": "separate"},
                   {"highway": "r", "parking:lane:both": "no", "parking:condition:both": "no_stopping"},
+                  {"highway": "r", "parking:condition:both": "private", "parking:lane:left": "parallel", "parking:lane:right": "perpendicular"},
                  ]:
             assert not a.way(None, t, None), t
