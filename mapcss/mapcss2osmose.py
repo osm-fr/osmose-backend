@@ -67,7 +67,7 @@ def simple_selector_pseudo_class(t, c):
     type = simple_selector
     Remove allways true pseudo class
     """
-    t['pseudo_class'] = list(filter(lambda p: not(p['not_class'] and p['pseudo_class'] in ('completely_downloaded', 'in-downloaded-area')), t['pseudo_class']))
+    t['pseudo_class'] = list(filter(lambda p: not (p['not_class'] and p['pseudo_class'] in ('completely_downloaded', 'in-downloaded-area')), t['pseudo_class']))
     return t
 
 def functionExpression_eval(t, c):
@@ -262,7 +262,7 @@ def selector_after_capture(t, c):
     type = selector
     """
     t['_main_tags'] = list(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']))
-    del(c['selector_capture'])
+    del c['selector_capture']
     return t
 
 
@@ -291,7 +291,7 @@ def rule_after_flags(t, c):
     type = rule
     """
     t['_flag'] = c['flags']
-    del(c['flags'])
+    del c['flags']
     return t
 
 def rule_before_set(t, c):
@@ -329,7 +329,7 @@ def rule_after_set(t, c):
     type = rule
     """
     t['_declare_set'] = c['declare_set']
-    del(c['declare_set'])
+    del c['declare_set']
     return t
 
 def selector_after_use_set(t, c):
@@ -337,7 +337,7 @@ def selector_after_use_set(t, c):
     type = selector
     """
     t['_require_set'] = c['use_set']
-    del(c['use_set'])
+    del c['use_set']
     return t
 
 def quoted_uncapture(t, c):

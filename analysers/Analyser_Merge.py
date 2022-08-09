@@ -874,7 +874,7 @@ class Load(object):
         else:
             self.bbox = self.data[0]
 
-        if not(self.srid and not self.bbox): # Abort condition
+        if not (self.srid and not self.bbox): # Abort condition
             return tableOfficial
 
     @staticmethod
@@ -1268,11 +1268,11 @@ verification on this data.'''))
                 if fix["~"][k] not in osm[k].split(";"):
                     fix["~"][k] = osm[k] + ";" + fix["~"][k] # Append new value to the list
                 else:
-                    del(fix["~"][k]) # Value already in the list, change nothing
+                    del fix["~"][k] # Value already in the list, change nothing
         keys = [s for s in (list(fix["+"].keys()) + list(fix["~"].keys())) if s != "name" and not s.startswith("source")]
         if "name" in osm and "name" in official and osm["name"] != official["name"] and len(keys) != 0:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
-            del(fix0["~"]["name"])
+            del fix0["~"]["name"]
             fix = [fix0, fix]
         return fix
 

@@ -219,7 +219,7 @@ class default_country_simple(default_simple):
             self.analyser[analyser] = 'xxx'
 
         for analyser in exclude:
-            del(self.analyser[analyser])
+            del self.analyser[analyser]
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -1090,7 +1090,7 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 for country, c in config.items():
     if c.download and "url" in c.download and "/africa/" in c.download["url"] and not ("mayotte" in c.download["url"] or "reunion" in c.download["url"]):
-        del(c.analyser["osmosis_building_shapes"])
+        del c.analyser["osmosis_building_shapes"]
 
 #########################################################################
 
@@ -1795,7 +1795,7 @@ china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"])
 
 ogf = default_simple("ogf", None, {"project": "opengeofiction"},
         download_url=u"http://opengeofiction.net/backup/ogf_latest.osm.pbf")
-del(ogf.analyser["osmosis_soundex"])
+del ogf.analyser["osmosis_soundex"]
 
 ###########################################################################
 # Merge analysers are uploaded to a different frontend server

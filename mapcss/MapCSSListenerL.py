@@ -99,8 +99,8 @@ class MapCSSListenerL(MapCSSListener):
         v = self.stack.pop()
         self.stack[-1]['predicate_simple'] = {'type': 'predicate_simple',
             'predicate': v['osmtag'] or v['quoted'] or v['regexExpression'][0],
-            'not': not(not(ctx.OP_NOT())),
-            'question_mark': not(not(ctx.QUESTION_MARK()))}
+            'not': not (not (ctx.OP_NOT())),
+            'question_mark': not (not (ctx.QUESTION_MARK()))}
 
 
 #    # Enter a parse tree produced by MapCSSParser#class_selector.
@@ -109,7 +109,7 @@ class MapCSSListenerL(MapCSSListener):
 
     # Exit a parse tree produced by MapCSSParser#class_selector.
     def exitClass_selector(self, ctx:MapCSSParser.Class_selectorContext):
-        self.class_selectors.append({'type': 'class_selector', 'not': not(not(ctx.OP_NOT())), 'class': ctx.cssident().getText()})
+        self.class_selectors.append({'type': 'class_selector', 'not': not (not (ctx.OP_NOT())), 'class': ctx.cssident().getText()})
 
 
 #    # Enter a parse tree produced by MapCSSParser#pseudo_class_selector.
@@ -118,7 +118,7 @@ class MapCSSListenerL(MapCSSListener):
 
     # Exit a parse tree produced by MapCSSParser#pseudo_class_selector.
     def exitPseudo_class_selector(self, ctx:MapCSSParser.Pseudo_class_selectorContext):
-        self.pseudo_class.append({'type': 'pseudo_class', 'not_class': not(not(ctx.OP_NOT())), 'pseudo_class': ctx.cssident().getText()})
+        self.pseudo_class.append({'type': 'pseudo_class', 'not_class': not (not (ctx.OP_NOT())), 'pseudo_class': ctx.cssident().getText()})
 
 
     # Enter a parse tree produced by MapCSSParser#declaration.
@@ -282,6 +282,6 @@ class MapCSSListenerL(MapCSSListener):
         v = self.stack.pop()
         self.stack[-1]['primaryExpression'] = {
             'type': 'primaryExpression',
-            'derefered': not(not(ctx.OP_MUL())),
+            'derefered': not (not (ctx.OP_MUL())),
             'value': (ctx.v and ctx.v.text) or v['osmtag'] or v['quoted'] or v['regexExpression'][0]
         }
