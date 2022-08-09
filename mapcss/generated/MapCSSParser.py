@@ -1,4 +1,4 @@
-# Generated from MapCSS.g4 by ANTLR 4.8
+# Generated from MapCSS.g4 by ANTLR 4.10.1
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -8,179 +8,141 @@ if sys.version_info[1] > 5:
 else:
 	from typing.io import TextIO
 
-
 def serializedATN():
-    with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3T")
-        buf.write("\u016a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
-        buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
-        buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
-        buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
-        buf.write("\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36")
-        buf.write("\4\37\t\37\4 \t \4!\t!\4\"\t\"\4#\t#\3\2\7\2H\n\2\f\2")
-        buf.write("\16\2K\13\2\3\2\3\2\3\3\3\3\3\4\3\4\3\4\7\4T\n\4\f\4\16")
-        buf.write("\4W\13\4\3\4\7\4Z\n\4\f\4\16\4]\13\4\3\4\3\4\3\5\3\5\3")
-        buf.write("\5\3\5\3\5\3\5\3\5\3\5\7\5i\n\5\f\5\16\5l\13\5\3\5\3\5")
-        buf.write("\3\5\3\5\3\5\3\5\5\5t\n\5\3\6\3\6\3\7\3\7\3\7\3\7\3\7")
-        buf.write("\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7\u0084\n\7\3\b\3\b\3\b")
-        buf.write("\3\b\3\t\3\t\3\t\3\t\3\t\7\t\u008f\n\t\f\t\16\t\u0092")
-        buf.write("\13\t\3\t\5\t\u0095\n\t\3\n\3\n\3\13\3\13\3\f\5\f\u009c")
-        buf.write("\n\f\3\f\3\f\3\r\5\r\u00a1\n\r\3\r\3\r\3\r\7\r\u00a6\n")
-        buf.write("\r\f\r\16\r\u00a9\13\r\3\16\3\16\3\16\3\16\3\17\3\17\5")
-        buf.write("\17\u00b1\n\17\3\20\5\20\u00b4\n\20\3\20\3\20\5\20\u00b8")
-        buf.write("\n\20\3\20\5\20\u00bb\n\20\3\20\5\20\u00be\n\20\3\20\5")
-        buf.write("\20\u00c1\n\20\3\21\3\21\3\21\3\21\3\21\5\21\u00c8\n\21")
-        buf.write("\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00d2\n")
-        buf.write("\22\3\23\3\23\5\23\u00d6\n\23\3\24\3\24\3\24\3\24\3\24")
-        buf.write("\3\24\5\24\u00de\n\24\3\25\3\25\3\25\7\25\u00e3\n\25\f")
-        buf.write("\25\16\25\u00e6\13\25\3\25\7\25\u00e9\n\25\f\25\16\25")
-        buf.write("\u00ec\13\25\3\26\3\26\5\26\u00f0\n\26\3\26\3\26\3\26")
-        buf.write("\3\26\3\26\5\26\u00f7\n\26\3\27\3\27\3\30\3\30\5\30\u00fd")
-        buf.write("\n\30\3\31\3\31\5\31\u0101\n\31\3\32\3\32\3\32\3\32\3")
-        buf.write("\32\3\32\5\32\u0109\n\32\3\33\3\33\3\34\3\34\3\35\3\35")
-        buf.write("\3\35\3\35\3\35\5\35\u0114\n\35\3\36\3\36\3\37\3\37\3")
-        buf.write("\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37")
-        buf.write("\3\37\3\37\3\37\3\37\3\37\3\37\3\37\5\37\u012c\n\37\3")
-        buf.write("\37\3\37\3\37\3\37\7\37\u0132\n\37\f\37\16\37\u0135\13")
-        buf.write("\37\3 \3 \3 \3 \3 \3 \3 \5 \u013e\n \3 \3 \3 \7 \u0143")
-        buf.write("\n \f \16 \u0146\13 \3!\3!\5!\u014a\n!\3\"\3\"\3\"\3\"")
-        buf.write("\3\"\7\"\u0151\n\"\f\"\16\"\u0154\13\"\5\"\u0156\n\"\3")
-        buf.write("\"\3\"\3#\3#\3#\3#\3#\5#\u015f\n#\3#\3#\5#\u0163\n#\3")
-        buf.write("#\3#\3#\5#\u0168\n#\3#\2\4<>$\2\4\6\b\n\f\16\20\22\24")
-        buf.write("\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BD\2\t\4\2\5")
-        buf.write("\n\22\22\3\2+,\4\2\r\r))\4\2\16\17\32\33\3\2\16\23\3\2")
-        buf.write("\24\25\3\2\34 \2\u0186\2I\3\2\2\2\4N\3\2\2\2\6P\3\2\2")
-        buf.write("\2\bs\3\2\2\2\nu\3\2\2\2\f\u0083\3\2\2\2\16\u0085\3\2")
-        buf.write("\2\2\20\u0089\3\2\2\2\22\u0096\3\2\2\2\24\u0098\3\2\2")
-        buf.write("\2\26\u009b\3\2\2\2\30\u00a0\3\2\2\2\32\u00aa\3\2\2\2")
-        buf.write("\34\u00b0\3\2\2\2\36\u00c0\3\2\2\2 \u00c7\3\2\2\2\"\u00d1")
-        buf.write("\3\2\2\2$\u00d5\3\2\2\2&\u00dd\3\2\2\2(\u00df\3\2\2\2")
-        buf.write("*\u00f6\3\2\2\2,\u00f8\3\2\2\2.\u00fc\3\2\2\2\60\u0100")
-        buf.write("\3\2\2\2\62\u0108\3\2\2\2\64\u010a\3\2\2\2\66\u010c\3")
-        buf.write("\2\2\28\u0113\3\2\2\2:\u0115\3\2\2\2<\u012b\3\2\2\2>\u013d")
-        buf.write("\3\2\2\2@\u0149\3\2\2\2B\u014b\3\2\2\2D\u0167\3\2\2\2")
-        buf.write("FH\5\4\3\2GF\3\2\2\2HK\3\2\2\2IG\3\2\2\2IJ\3\2\2\2JL\3")
-        buf.write("\2\2\2KI\3\2\2\2LM\7\2\2\3M\3\3\2\2\2NO\5\6\4\2O\5\3\2")
-        buf.write("\2\2PU\5\b\5\2QR\7\3\2\2RT\5\b\5\2SQ\3\2\2\2TW\3\2\2\2")
-        buf.write("US\3\2\2\2UV\3\2\2\2V[\3\2\2\2WU\3\2\2\2XZ\7\3\2\2YX\3")
-        buf.write("\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\^\3\2\2\2][\3\2")
-        buf.write("\2\2^_\5&\24\2_\7\3\2\2\2`t\5\20\t\2ab\5\20\t\2bc\5\20")
-        buf.write("\t\2ct\3\2\2\2de\5\20\t\2ej\7\23\2\2fi\5\f\7\2gi\5\"\22")
-        buf.write("\2hf\3\2\2\2hg\3\2\2\2il\3\2\2\2jh\3\2\2\2jk\3\2\2\2k")
-        buf.write("m\3\2\2\2lj\3\2\2\2mn\5\20\t\2nt\3\2\2\2op\5\20\t\2pq")
-        buf.write("\5\n\6\2qr\5\20\t\2rt\3\2\2\2s`\3\2\2\2sa\3\2\2\2sd\3")
-        buf.write("\2\2\2so\3\2\2\2t\t\3\2\2\2uv\t\2\2\2v\13\3\2\2\2wx\7")
-        buf.write("%\2\2xy\5\26\f\2yz\58\35\2z{\5> \2{|\7&\2\2|\u0084\3\2")
-        buf.write("\2\2}~\7%\2\2~\177\5\26\f\2\177\u0080\5\66\34\2\u0080")
-        buf.write("\u0081\5\60\31\2\u0081\u0082\7&\2\2\u0082\u0084\3\2\2")
-        buf.write("\2\u0083w\3\2\2\2\u0083}\3\2\2\2\u0084\r\3\2\2\2\u0085")
-        buf.write("\u0086\7)\2\2\u0086\u0087\7)\2\2\u0087\u0088\5\26\f\2")
-        buf.write("\u0088\17\3\2\2\2\u0089\u0090\5$\23\2\u008a\u008f\5\22")
-        buf.write("\n\2\u008b\u008f\5 \21\2\u008c\u008f\5\32\16\2\u008d\u008f")
-        buf.write("\5\"\22\2\u008e\u008a\3\2\2\2\u008e\u008b\3\2\2\2\u008e")
-        buf.write("\u008c\3\2\2\2\u008e\u008d\3\2\2\2\u008f\u0092\3\2\2\2")
-        buf.write("\u0090\u008e\3\2\2\2\u0090\u0091\3\2\2\2\u0091\u0094\3")
-        buf.write("\2\2\2\u0092\u0090\3\2\2\2\u0093\u0095\5\16\b\2\u0094")
-        buf.write("\u0093\3\2\2\2\u0094\u0095\3\2\2\2\u0095\21\3\2\2\2\u0096")
-        buf.write("\u0097\7\61\2\2\u0097\23\3\2\2\2\u0098\u0099\t\3\2\2\u0099")
-        buf.write("\25\3\2\2\2\u009a\u009c\7 \2\2\u009b\u009a\3\2\2\2\u009b")
-        buf.write("\u009c\3\2\2\2\u009c\u009d\3\2\2\2\u009d\u009e\7$\2\2")
-        buf.write("\u009e\27\3\2\2\2\u009f\u00a1\7 \2\2\u00a0\u009f\3\2\2")
-        buf.write("\2\u00a0\u00a1\3\2\2\2\u00a1\u00a2\3\2\2\2\u00a2\u00a7")
-        buf.write("\7$\2\2\u00a3\u00a4\t\4\2\2\u00a4\u00a6\7$\2\2\u00a5\u00a3")
-        buf.write("\3\2\2\2\u00a6\u00a9\3\2\2\2\u00a7\u00a5\3\2\2\2\u00a7")
-        buf.write("\u00a8\3\2\2\2\u00a8\31\3\2\2\2\u00a9\u00a7\3\2\2\2\u00aa")
-        buf.write("\u00ab\7%\2\2\u00ab\u00ac\5\34\17\2\u00ac\u00ad\7&\2\2")
-        buf.write("\u00ad\33\3\2\2\2\u00ae\u00b1\5\36\20\2\u00af\u00b1\5")
-        buf.write("<\37\2\u00b0\u00ae\3\2\2\2\u00b0\u00af\3\2\2\2\u00b1\35")
-        buf.write("\3\2\2\2\u00b2\u00b4\7!\2\2\u00b3\u00b2\3\2\2\2\u00b3")
-        buf.write("\u00b4\3\2\2\2\u00b4\u00b7\3\2\2\2\u00b5\u00b8\5\30\r")
-        buf.write("\2\u00b6\u00b8\5\24\13\2\u00b7\u00b5\3\2\2\2\u00b7\u00b6")
-        buf.write("\3\2\2\2\u00b8\u00ba\3\2\2\2\u00b9\u00bb\7\4\2\2\u00ba")
-        buf.write("\u00b9\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00c1\3\2\2\2")
-        buf.write("\u00bc\u00be\7!\2\2\u00bd\u00bc\3\2\2\2\u00bd\u00be\3")
-        buf.write("\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c1\5@!\2\u00c0\u00b3")
-        buf.write("\3\2\2\2\u00c0\u00bd\3\2\2\2\u00c1\37\3\2\2\2\u00c2\u00c3")
-        buf.write("\7!\2\2\u00c3\u00c4\7\r\2\2\u00c4\u00c8\5\26\f\2\u00c5")
-        buf.write("\u00c6\7\r\2\2\u00c6\u00c8\5\26\f\2\u00c7\u00c2\3\2\2")
-        buf.write("\2\u00c7\u00c5\3\2\2\2\u00c8!\3\2\2\2\u00c9\u00ca\7)\2")
-        buf.write("\2\u00ca\u00cb\7!\2\2\u00cb\u00d2\5\26\f\2\u00cc\u00cd")
-        buf.write("\7!\2\2\u00cd\u00ce\7)\2\2\u00ce\u00d2\5\26\f\2\u00cf")
-        buf.write("\u00d0\7)\2\2\u00d0\u00d2\5\26\f\2\u00d1\u00c9\3\2\2\2")
-        buf.write("\u00d1\u00cc\3\2\2\2\u00d1\u00cf\3\2\2\2\u00d2#\3\2\2")
-        buf.write("\2\u00d3\u00d6\5\26\f\2\u00d4\u00d6\7\34\2\2\u00d5\u00d3")
-        buf.write("\3\2\2\2\u00d5\u00d4\3\2\2\2\u00d6%\3\2\2\2\u00d7\u00d8")
-        buf.write("\7\'\2\2\u00d8\u00d9\5(\25\2\u00d9\u00da\7(\2\2\u00da")
-        buf.write("\u00de\3\2\2\2\u00db\u00dc\7\'\2\2\u00dc\u00de\7(\2\2")
-        buf.write("\u00dd\u00d7\3\2\2\2\u00dd\u00db\3\2\2\2\u00de\'\3\2\2")
-        buf.write("\2\u00df\u00e4\5*\26\2\u00e0\u00e1\7*\2\2\u00e1\u00e3")
-        buf.write("\5*\26\2\u00e2\u00e0\3\2\2\2\u00e3\u00e6\3\2\2\2\u00e4")
-        buf.write("\u00e2\3\2\2\2\u00e4\u00e5\3\2\2\2\u00e5\u00ea\3\2\2\2")
-        buf.write("\u00e6\u00e4\3\2\2\2\u00e7\u00e9\7*\2\2\u00e8\u00e7\3")
-        buf.write("\2\2\2\u00e9\u00ec\3\2\2\2\u00ea\u00e8\3\2\2\2\u00ea\u00eb")
-        buf.write("\3\2\2\2\u00eb)\3\2\2\2\u00ec\u00ea\3\2\2\2\u00ed\u00ef")
-        buf.write("\7\"\2\2\u00ee\u00f0\7\r\2\2\u00ef\u00ee\3\2\2\2\u00ef")
-        buf.write("\u00f0\3\2\2\2\u00f0\u00f1\3\2\2\2\u00f1\u00f7\5\26\f")
-        buf.write("\2\u00f2\u00f3\5,\27\2\u00f3\u00f4\7)\2\2\u00f4\u00f5")
-        buf.write("\5.\30\2\u00f5\u00f7\3\2\2\2\u00f6\u00ed\3\2\2\2\u00f6")
-        buf.write("\u00f2\3\2\2\2\u00f7+\3\2\2\2\u00f8\u00f9\5\26\f\2\u00f9")
-        buf.write("-\3\2\2\2\u00fa\u00fd\5\62\32\2\u00fb\u00fd\5B\"\2\u00fc")
-        buf.write("\u00fa\3\2\2\2\u00fc\u00fb\3\2\2\2\u00fd/\3\2\2\2\u00fe")
-        buf.write("\u0101\7-\2\2\u00ff\u0101\7.\2\2\u0100\u00fe\3\2\2\2\u0100")
-        buf.write("\u00ff\3\2\2\2\u0101\61\3\2\2\2\u0102\u0109\7-\2\2\u0103")
-        buf.write("\u0109\7.\2\2\u0104\u0109\7/\2\2\u0105\u0109\7\60\2\2")
-        buf.write("\u0106\u0109\5\24\13\2\u0107\u0109\5\30\r\2\u0108\u0102")
-        buf.write("\3\2\2\2\u0108\u0103\3\2\2\2\u0108\u0104\3\2\2\2\u0108")
-        buf.write("\u0105\3\2\2\2\u0108\u0106\3\2\2\2\u0108\u0107\3\2\2\2")
-        buf.write("\u0109\63\3\2\2\2\u010a\u010b\t\5\2\2\u010b\65\3\2\2\2")
-        buf.write("\u010c\u010d\t\6\2\2\u010d\67\3\2\2\2\u010e\u0114\5\66")
-        buf.write("\34\2\u010f\u0114\7\26\2\2\u0110\u0114\7\27\2\2\u0111")
-        buf.write("\u0114\7\30\2\2\u0112\u0114\7\31\2\2\u0113\u010e\3\2\2")
-        buf.write("\2\u0113\u010f\3\2\2\2\u0113\u0110\3\2\2\2\u0113\u0111")
-        buf.write("\3\2\2\2\u0113\u0112\3\2\2\2\u01149\3\2\2\2\u0115\u0116")
-        buf.write("\t\7\2\2\u0116;\3\2\2\2\u0117\u0118\b\37\1\2\u0118\u0119")
-        buf.write("\7\13\2\2\u0119\u011a\5<\37\2\u011a\u011b\7\f\2\2\u011b")
-        buf.write("\u012c\3\2\2\2\u011c\u011d\7!\2\2\u011d\u012c\5<\37\b")
-        buf.write("\u011e\u011f\5> \2\u011f\u0120\58\35\2\u0120\u0121\5>")
-        buf.write(" \2\u0121\u012c\3\2\2\2\u0122\u0123\5> \2\u0123\u0124")
-        buf.write("\5:\36\2\u0124\u0125\5@!\2\u0125\u012c\3\2\2\2\u0126\u0127")
-        buf.write("\5@!\2\u0127\u0128\5:\36\2\u0128\u0129\5@!\2\u0129\u012c")
-        buf.write("\3\2\2\2\u012a\u012c\5B\"\2\u012b\u0117\3\2\2\2\u012b")
-        buf.write("\u011c\3\2\2\2\u012b\u011e\3\2\2\2\u012b\u0122\3\2\2\2")
-        buf.write("\u012b\u0126\3\2\2\2\u012b\u012a\3\2\2\2\u012c\u0133\3")
-        buf.write("\2\2\2\u012d\u012e\f\7\2\2\u012e\u012f\5\64\33\2\u012f")
-        buf.write("\u0130\5<\37\b\u0130\u0132\3\2\2\2\u0131\u012d\3\2\2\2")
-        buf.write("\u0132\u0135\3\2\2\2\u0133\u0131\3\2\2\2\u0133\u0134\3")
-        buf.write("\2\2\2\u0134=\3\2\2\2\u0135\u0133\3\2\2\2\u0136\u0137")
-        buf.write("\b \1\2\u0137\u0138\7\13\2\2\u0138\u0139\5> \2\u0139\u013a")
-        buf.write("\7\f\2\2\u013a\u013e\3\2\2\2\u013b\u013e\5D#\2\u013c\u013e")
-        buf.write("\5B\"\2\u013d\u0136\3\2\2\2\u013d\u013b\3\2\2\2\u013d")
-        buf.write("\u013c\3\2\2\2\u013e\u0144\3\2\2\2\u013f\u0140\f\5\2\2")
-        buf.write("\u0140\u0141\t\b\2\2\u0141\u0143\5> \6\u0142\u013f\3\2")
-        buf.write("\2\2\u0143\u0146\3\2\2\2\u0144\u0142\3\2\2\2\u0144\u0145")
-        buf.write("\3\2\2\2\u0145?\3\2\2\2\u0146\u0144\3\2\2\2\u0147\u014a")
-        buf.write("\5\24\13\2\u0148\u014a\7\62\2\2\u0149\u0147\3\2\2\2\u0149")
-        buf.write("\u0148\3\2\2\2\u014aA\3\2\2\2\u014b\u014c\5\26\f\2\u014c")
-        buf.write("\u0155\7\13\2\2\u014d\u0152\5> \2\u014e\u014f\7\3\2\2")
-        buf.write("\u014f\u0151\5> \2\u0150\u014e\3\2\2\2\u0151\u0154\3\2")
-        buf.write("\2\2\u0152\u0150\3\2\2\2\u0152\u0153\3\2\2\2\u0153\u0156")
-        buf.write("\3\2\2\2\u0154\u0152\3\2\2\2\u0155\u014d\3\2\2\2\u0155")
-        buf.write("\u0156\3\2\2\2\u0156\u0157\3\2\2\2\u0157\u0158\7\f\2\2")
-        buf.write("\u0158C\3\2\2\2\u0159\u0168\7/\2\2\u015a\u0168\7-\2\2")
-        buf.write("\u015b\u0168\7\60\2\2\u015c\u0168\7.\2\2\u015d\u015f\7")
-        buf.write("\34\2\2\u015e\u015d\3\2\2\2\u015e\u015f\3\2\2\2\u015f")
-        buf.write("\u0160\3\2\2\2\u0160\u0168\5\24\13\2\u0161\u0163\7\34")
-        buf.write("\2\2\u0162\u0161\3\2\2\2\u0162\u0163\3\2\2\2\u0163\u0164")
-        buf.write("\3\2\2\2\u0164\u0168\5\30\r\2\u0165\u0166\7\34\2\2\u0166")
-        buf.write("\u0168\5@!\2\u0167\u0159\3\2\2\2\u0167\u015a\3\2\2\2\u0167")
-        buf.write("\u015b\3\2\2\2\u0167\u015c\3\2\2\2\u0167\u015e\3\2\2\2")
-        buf.write("\u0167\u0162\3\2\2\2\u0167\u0165\3\2\2\2\u0168E\3\2\2")
-        buf.write("\2+IU[hjs\u0083\u008e\u0090\u0094\u009b\u00a0\u00a7\u00b0")
-        buf.write("\u00b3\u00b7\u00ba\u00bd\u00c0\u00c7\u00d1\u00d5\u00dd")
-        buf.write("\u00e4\u00ea\u00ef\u00f6\u00fc\u0100\u0108\u0113\u012b")
-        buf.write("\u0133\u013d\u0144\u0149\u0152\u0155\u015e\u0162\u0167")
-        return buf.getvalue()
-
+    return [
+        4,1,82,360,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
+        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
+        7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
+        2,27,7,27,2,28,7,28,2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,2,33,
+        7,33,1,0,5,0,70,8,0,10,0,12,0,73,9,0,1,0,1,0,1,1,1,1,1,2,1,2,1,2,
+        5,2,82,8,2,10,2,12,2,85,9,2,1,2,5,2,88,8,2,10,2,12,2,91,9,2,1,2,
+        1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,103,8,3,10,3,12,3,106,9,
+        3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,114,8,3,1,4,1,4,1,5,1,5,1,5,1,5,1,
+        5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,3,5,130,8,5,1,6,1,6,1,6,1,6,1,7,1,
+        7,1,7,1,7,1,7,5,7,141,8,7,10,7,12,7,144,9,7,1,7,3,7,147,8,7,1,8,
+        1,8,1,9,1,9,1,10,3,10,154,8,10,1,10,1,10,1,11,3,11,159,8,11,1,11,
+        1,11,1,11,5,11,164,8,11,10,11,12,11,167,9,11,1,12,1,12,1,12,1,12,
+        1,13,1,13,3,13,175,8,13,1,14,3,14,178,8,14,1,14,1,14,3,14,182,8,
+        14,1,14,3,14,185,8,14,1,14,3,14,188,8,14,1,14,3,14,191,8,14,1,15,
+        1,15,1,15,1,15,1,15,3,15,198,8,15,1,16,1,16,1,16,1,16,1,16,1,16,
+        1,16,1,16,3,16,208,8,16,1,17,1,17,3,17,212,8,17,1,18,1,18,1,18,1,
+        18,1,18,1,18,3,18,220,8,18,1,19,1,19,1,19,5,19,225,8,19,10,19,12,
+        19,228,9,19,1,19,5,19,231,8,19,10,19,12,19,234,9,19,1,20,1,20,3,
+        20,238,8,20,1,20,1,20,1,20,1,20,1,20,3,20,245,8,20,1,21,1,21,1,22,
+        1,22,3,22,251,8,22,1,23,1,23,3,23,255,8,23,1,24,1,24,1,24,1,24,1,
+        24,1,24,3,24,263,8,24,1,25,1,25,1,26,1,26,1,27,1,27,1,27,1,27,1,
+        27,3,27,274,8,27,1,28,1,28,1,29,1,29,1,29,1,29,1,29,1,29,1,29,1,
+        29,1,29,1,29,1,29,1,29,1,29,1,29,1,29,1,29,1,29,1,29,1,29,1,29,3,
+        29,298,8,29,1,29,1,29,1,29,1,29,5,29,304,8,29,10,29,12,29,307,9,
+        29,1,30,1,30,1,30,1,30,1,30,1,30,1,30,3,30,316,8,30,1,30,1,30,1,
+        30,5,30,321,8,30,10,30,12,30,324,9,30,1,31,1,31,3,31,328,8,31,1,
+        32,1,32,1,32,1,32,1,32,5,32,335,8,32,10,32,12,32,338,9,32,3,32,340,
+        8,32,1,32,1,32,1,33,1,33,1,33,1,33,1,33,3,33,349,8,33,1,33,1,33,
+        3,33,353,8,33,1,33,1,33,1,33,3,33,358,8,33,1,33,0,2,58,60,34,0,2,
+        4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,
+        50,52,54,56,58,60,62,64,66,0,7,2,0,3,8,16,16,1,0,41,42,2,0,11,11,
+        39,39,2,0,12,13,24,25,1,0,12,17,1,0,18,19,1,0,26,30,388,0,71,1,0,
+        0,0,2,76,1,0,0,0,4,78,1,0,0,0,6,113,1,0,0,0,8,115,1,0,0,0,10,129,
+        1,0,0,0,12,131,1,0,0,0,14,135,1,0,0,0,16,148,1,0,0,0,18,150,1,0,
+        0,0,20,153,1,0,0,0,22,158,1,0,0,0,24,168,1,0,0,0,26,174,1,0,0,0,
+        28,190,1,0,0,0,30,197,1,0,0,0,32,207,1,0,0,0,34,211,1,0,0,0,36,219,
+        1,0,0,0,38,221,1,0,0,0,40,244,1,0,0,0,42,246,1,0,0,0,44,250,1,0,
+        0,0,46,254,1,0,0,0,48,262,1,0,0,0,50,264,1,0,0,0,52,266,1,0,0,0,
+        54,273,1,0,0,0,56,275,1,0,0,0,58,297,1,0,0,0,60,315,1,0,0,0,62,327,
+        1,0,0,0,64,329,1,0,0,0,66,357,1,0,0,0,68,70,3,2,1,0,69,68,1,0,0,
+        0,70,73,1,0,0,0,71,69,1,0,0,0,71,72,1,0,0,0,72,74,1,0,0,0,73,71,
+        1,0,0,0,74,75,5,0,0,1,75,1,1,0,0,0,76,77,3,4,2,0,77,3,1,0,0,0,78,
+        83,3,6,3,0,79,80,5,1,0,0,80,82,3,6,3,0,81,79,1,0,0,0,82,85,1,0,0,
+        0,83,81,1,0,0,0,83,84,1,0,0,0,84,89,1,0,0,0,85,83,1,0,0,0,86,88,
+        5,1,0,0,87,86,1,0,0,0,88,91,1,0,0,0,89,87,1,0,0,0,89,90,1,0,0,0,
+        90,92,1,0,0,0,91,89,1,0,0,0,92,93,3,36,18,0,93,5,1,0,0,0,94,114,
+        3,14,7,0,95,96,3,14,7,0,96,97,3,14,7,0,97,114,1,0,0,0,98,99,3,14,
+        7,0,99,104,5,17,0,0,100,103,3,10,5,0,101,103,3,32,16,0,102,100,1,
+        0,0,0,102,101,1,0,0,0,103,106,1,0,0,0,104,102,1,0,0,0,104,105,1,
+        0,0,0,105,107,1,0,0,0,106,104,1,0,0,0,107,108,3,14,7,0,108,114,1,
+        0,0,0,109,110,3,14,7,0,110,111,3,8,4,0,111,112,3,14,7,0,112,114,
+        1,0,0,0,113,94,1,0,0,0,113,95,1,0,0,0,113,98,1,0,0,0,113,109,1,0,
+        0,0,114,7,1,0,0,0,115,116,7,0,0,0,116,9,1,0,0,0,117,118,5,35,0,0,
+        118,119,3,20,10,0,119,120,3,54,27,0,120,121,3,60,30,0,121,122,5,
+        36,0,0,122,130,1,0,0,0,123,124,5,35,0,0,124,125,3,20,10,0,125,126,
+        3,52,26,0,126,127,3,46,23,0,127,128,5,36,0,0,128,130,1,0,0,0,129,
+        117,1,0,0,0,129,123,1,0,0,0,130,11,1,0,0,0,131,132,5,39,0,0,132,
+        133,5,39,0,0,133,134,3,20,10,0,134,13,1,0,0,0,135,142,3,34,17,0,
+        136,141,3,16,8,0,137,141,3,30,15,0,138,141,3,24,12,0,139,141,3,32,
+        16,0,140,136,1,0,0,0,140,137,1,0,0,0,140,138,1,0,0,0,140,139,1,0,
+        0,0,141,144,1,0,0,0,142,140,1,0,0,0,142,143,1,0,0,0,143,146,1,0,
+        0,0,144,142,1,0,0,0,145,147,3,12,6,0,146,145,1,0,0,0,146,147,1,0,
+        0,0,147,15,1,0,0,0,148,149,5,47,0,0,149,17,1,0,0,0,150,151,7,1,0,
+        0,151,19,1,0,0,0,152,154,5,30,0,0,153,152,1,0,0,0,153,154,1,0,0,
+        0,154,155,1,0,0,0,155,156,5,34,0,0,156,21,1,0,0,0,157,159,5,30,0,
+        0,158,157,1,0,0,0,158,159,1,0,0,0,159,160,1,0,0,0,160,165,5,34,0,
+        0,161,162,7,2,0,0,162,164,5,34,0,0,163,161,1,0,0,0,164,167,1,0,0,
+        0,165,163,1,0,0,0,165,166,1,0,0,0,166,23,1,0,0,0,167,165,1,0,0,0,
+        168,169,5,35,0,0,169,170,3,26,13,0,170,171,5,36,0,0,171,25,1,0,0,
+        0,172,175,3,28,14,0,173,175,3,58,29,0,174,172,1,0,0,0,174,173,1,
+        0,0,0,175,27,1,0,0,0,176,178,5,31,0,0,177,176,1,0,0,0,177,178,1,
+        0,0,0,178,181,1,0,0,0,179,182,3,22,11,0,180,182,3,18,9,0,181,179,
+        1,0,0,0,181,180,1,0,0,0,182,184,1,0,0,0,183,185,5,2,0,0,184,183,
+        1,0,0,0,184,185,1,0,0,0,185,191,1,0,0,0,186,188,5,31,0,0,187,186,
+        1,0,0,0,187,188,1,0,0,0,188,189,1,0,0,0,189,191,3,62,31,0,190,177,
+        1,0,0,0,190,187,1,0,0,0,191,29,1,0,0,0,192,193,5,31,0,0,193,194,
+        5,11,0,0,194,198,3,20,10,0,195,196,5,11,0,0,196,198,3,20,10,0,197,
+        192,1,0,0,0,197,195,1,0,0,0,198,31,1,0,0,0,199,200,5,39,0,0,200,
+        201,5,31,0,0,201,208,3,20,10,0,202,203,5,31,0,0,203,204,5,39,0,0,
+        204,208,3,20,10,0,205,206,5,39,0,0,206,208,3,20,10,0,207,199,1,0,
+        0,0,207,202,1,0,0,0,207,205,1,0,0,0,208,33,1,0,0,0,209,212,3,20,
+        10,0,210,212,5,26,0,0,211,209,1,0,0,0,211,210,1,0,0,0,212,35,1,0,
+        0,0,213,214,5,37,0,0,214,215,3,38,19,0,215,216,5,38,0,0,216,220,
+        1,0,0,0,217,218,5,37,0,0,218,220,5,38,0,0,219,213,1,0,0,0,219,217,
+        1,0,0,0,220,37,1,0,0,0,221,226,3,40,20,0,222,223,5,40,0,0,223,225,
+        3,40,20,0,224,222,1,0,0,0,225,228,1,0,0,0,226,224,1,0,0,0,226,227,
+        1,0,0,0,227,232,1,0,0,0,228,226,1,0,0,0,229,231,5,40,0,0,230,229,
+        1,0,0,0,231,234,1,0,0,0,232,230,1,0,0,0,232,233,1,0,0,0,233,39,1,
+        0,0,0,234,232,1,0,0,0,235,237,5,32,0,0,236,238,5,11,0,0,237,236,
+        1,0,0,0,237,238,1,0,0,0,238,239,1,0,0,0,239,245,3,20,10,0,240,241,
+        3,42,21,0,241,242,5,39,0,0,242,243,3,44,22,0,243,245,1,0,0,0,244,
+        235,1,0,0,0,244,240,1,0,0,0,245,41,1,0,0,0,246,247,3,20,10,0,247,
+        43,1,0,0,0,248,251,3,48,24,0,249,251,3,64,32,0,250,248,1,0,0,0,250,
+        249,1,0,0,0,251,45,1,0,0,0,252,255,5,43,0,0,253,255,5,44,0,0,254,
+        252,1,0,0,0,254,253,1,0,0,0,255,47,1,0,0,0,256,263,5,43,0,0,257,
+        263,5,44,0,0,258,263,5,45,0,0,259,263,5,46,0,0,260,263,3,18,9,0,
+        261,263,3,22,11,0,262,256,1,0,0,0,262,257,1,0,0,0,262,258,1,0,0,
+        0,262,259,1,0,0,0,262,260,1,0,0,0,262,261,1,0,0,0,263,49,1,0,0,0,
+        264,265,7,3,0,0,265,51,1,0,0,0,266,267,7,4,0,0,267,53,1,0,0,0,268,
+        274,3,52,26,0,269,274,5,20,0,0,270,274,5,21,0,0,271,274,5,22,0,0,
+        272,274,5,23,0,0,273,268,1,0,0,0,273,269,1,0,0,0,273,270,1,0,0,0,
+        273,271,1,0,0,0,273,272,1,0,0,0,274,55,1,0,0,0,275,276,7,5,0,0,276,
+        57,1,0,0,0,277,278,6,29,-1,0,278,279,5,9,0,0,279,280,3,58,29,0,280,
+        281,5,10,0,0,281,298,1,0,0,0,282,283,5,31,0,0,283,298,3,58,29,6,
+        284,285,3,60,30,0,285,286,3,54,27,0,286,287,3,60,30,0,287,298,1,
+        0,0,0,288,289,3,60,30,0,289,290,3,56,28,0,290,291,3,62,31,0,291,
+        298,1,0,0,0,292,293,3,62,31,0,293,294,3,56,28,0,294,295,3,62,31,
+        0,295,298,1,0,0,0,296,298,3,64,32,0,297,277,1,0,0,0,297,282,1,0,
+        0,0,297,284,1,0,0,0,297,288,1,0,0,0,297,292,1,0,0,0,297,296,1,0,
+        0,0,298,305,1,0,0,0,299,300,10,5,0,0,300,301,3,50,25,0,301,302,3,
+        58,29,6,302,304,1,0,0,0,303,299,1,0,0,0,304,307,1,0,0,0,305,303,
+        1,0,0,0,305,306,1,0,0,0,306,59,1,0,0,0,307,305,1,0,0,0,308,309,6,
+        30,-1,0,309,310,5,9,0,0,310,311,3,60,30,0,311,312,5,10,0,0,312,316,
+        1,0,0,0,313,316,3,66,33,0,314,316,3,64,32,0,315,308,1,0,0,0,315,
+        313,1,0,0,0,315,314,1,0,0,0,316,322,1,0,0,0,317,318,10,3,0,0,318,
+        319,7,6,0,0,319,321,3,60,30,4,320,317,1,0,0,0,321,324,1,0,0,0,322,
+        320,1,0,0,0,322,323,1,0,0,0,323,61,1,0,0,0,324,322,1,0,0,0,325,328,
+        3,18,9,0,326,328,5,48,0,0,327,325,1,0,0,0,327,326,1,0,0,0,328,63,
+        1,0,0,0,329,330,3,20,10,0,330,339,5,9,0,0,331,336,3,60,30,0,332,
+        333,5,1,0,0,333,335,3,60,30,0,334,332,1,0,0,0,335,338,1,0,0,0,336,
+        334,1,0,0,0,336,337,1,0,0,0,337,340,1,0,0,0,338,336,1,0,0,0,339,
+        331,1,0,0,0,339,340,1,0,0,0,340,341,1,0,0,0,341,342,5,10,0,0,342,
+        65,1,0,0,0,343,358,5,45,0,0,344,358,5,43,0,0,345,358,5,46,0,0,346,
+        358,5,44,0,0,347,349,5,26,0,0,348,347,1,0,0,0,348,349,1,0,0,0,349,
+        350,1,0,0,0,350,358,3,18,9,0,351,353,5,26,0,0,352,351,1,0,0,0,352,
+        353,1,0,0,0,353,354,1,0,0,0,354,358,3,22,11,0,355,356,5,26,0,0,356,
+        358,3,62,31,0,357,343,1,0,0,0,357,344,1,0,0,0,357,345,1,0,0,0,357,
+        346,1,0,0,0,357,348,1,0,0,0,357,352,1,0,0,0,357,355,1,0,0,0,358,
+        67,1,0,0,0,41,71,83,89,102,104,113,129,140,142,146,153,158,165,174,
+        177,181,184,187,190,197,207,211,219,226,232,237,244,250,254,262,
+        273,297,305,315,322,327,336,339,348,352,357
+    ]
 
 class MapCSSParser ( Parser ):
 
@@ -192,9 +154,9 @@ class MapCSSParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "','", "'?'", "'\u2208'", "'\u29C9'", 
-                     "'\u2286'", "'\u2287'", "'\u2288'", "'\u2289'", "'('", 
-                     "')'", "'.'", "<INVALID>", "'!='", "'<='", "'>='", 
+    literalNames = [ "<INVALID>", "','", "'?'", "'\\u2208'", "'\\u29C9'", 
+                     "'\\u2286'", "'\\u2287'", "'\\u2288'", "'\\u2289'", 
+                     "'('", "')'", "'.'", "<INVALID>", "'!='", "'<='", "'>='", 
                      "'<'", "'>'", "'=~'", "'!~'", "'^='", "'$='", "'*='", 
                      "'~='", "'||'", "'&&'", "'*'", "'/'", "'%'", "'+'", 
                      "'-'", "'!'", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -354,7 +316,7 @@ class MapCSSParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.8")
+        self.checkVersion("4.10.1")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -362,6 +324,7 @@ class MapCSSParser ( Parser ):
 
 
     class StylesheetContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -420,6 +383,7 @@ class MapCSSParser ( Parser ):
 
 
     class EntryContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -461,6 +425,7 @@ class MapCSSParser ( Parser ):
 
 
     class Rule_Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -541,6 +506,7 @@ class MapCSSParser ( Parser ):
 
 
     class SelectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -664,6 +630,7 @@ class MapCSSParser ( Parser ):
 
 
     class Simple_selector_operatorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -728,6 +695,7 @@ class MapCSSParser ( Parser ):
 
 
     class Link_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -821,6 +789,7 @@ class MapCSSParser ( Parser ):
 
 
     class Layer_id_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -873,6 +842,7 @@ class MapCSSParser ( Parser ):
 
 
     class Simple_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -988,6 +958,7 @@ class MapCSSParser ( Parser ):
 
 
     class Zoom_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1028,6 +999,7 @@ class MapCSSParser ( Parser ):
 
 
     class QuotedContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1077,6 +1049,7 @@ class MapCSSParser ( Parser ):
 
 
     class CssidentContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1129,6 +1102,7 @@ class MapCSSParser ( Parser ):
 
 
     class OsmtagContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1214,6 +1188,7 @@ class MapCSSParser ( Parser ):
 
 
     class Attribute_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1265,6 +1240,7 @@ class MapCSSParser ( Parser ):
 
 
     class PredicateContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1323,6 +1299,7 @@ class MapCSSParser ( Parser ):
 
 
     class Predicate_simpleContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1428,6 +1405,7 @@ class MapCSSParser ( Parser ):
 
 
     class Class_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1494,6 +1472,7 @@ class MapCSSParser ( Parser ):
 
 
     class Pseudo_class_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1570,6 +1549,7 @@ class MapCSSParser ( Parser ):
 
 
     class Type_selectorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1627,6 +1607,7 @@ class MapCSSParser ( Parser ):
 
 
     class Declaration_blockContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1694,6 +1675,7 @@ class MapCSSParser ( Parser ):
 
 
     class DeclarationsContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1768,6 +1750,7 @@ class MapCSSParser ( Parser ):
 
 
     class DeclarationContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1854,6 +1837,7 @@ class MapCSSParser ( Parser ):
 
 
     class Declaration_propertyContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1895,6 +1879,7 @@ class MapCSSParser ( Parser ):
 
 
     class Declaration_valueContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1953,6 +1938,7 @@ class MapCSSParser ( Parser ):
 
 
     class Int_Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2010,6 +1996,7 @@ class MapCSSParser ( Parser ):
 
 
     class Single_valueContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2101,6 +2088,7 @@ class MapCSSParser ( Parser ):
 
 
     class BooleanOperatorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2156,6 +2144,7 @@ class MapCSSParser ( Parser ):
 
 
     class NumericOperatorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2217,6 +2206,7 @@ class MapCSSParser ( Parser ):
 
 
     class ValueOperatorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2298,6 +2288,7 @@ class MapCSSParser ( Parser ):
 
 
     class RegexOperatorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2347,6 +2338,7 @@ class MapCSSParser ( Parser ):
 
 
     class BooleanExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2506,6 +2498,7 @@ class MapCSSParser ( Parser ):
 
 
     class ValueExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2633,6 +2626,7 @@ class MapCSSParser ( Parser ):
 
 
     class RegexExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2690,6 +2684,7 @@ class MapCSSParser ( Parser ):
 
 
     class FunctionExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2776,6 +2771,7 @@ class MapCSSParser ( Parser ):
 
 
     class PrimaryExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
