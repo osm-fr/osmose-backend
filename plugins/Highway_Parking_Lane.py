@@ -46,7 +46,7 @@ class Highway_Parking_Lane(Plugin):
 sides.'''))
         self.errors[31615] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:chair'],
             title = T_('Bad parking:lane:[side] value'),
-            fix = T_('''Use any of the following values: `{0}`''', "`, `".join(self.parkingLaneValues)),
+            fix = T_('''Use any of the following values: `{0}`.''', "`, `".join(self.parkingLaneValues)),
             resource = "https://wiki.openstreetmap.org/wiki/Key:parking:lane")
         self.errors[31616] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:condition:[side] without parking:lane:[side] value'),
@@ -64,7 +64,7 @@ that the parking area is mapped separately. Any parking conditions should
 be tagged on that object instead.'''))
         self.errors[31619] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('Bad parking:condition:[side] value'),
-            fix = T_('''Use any of the following values: `{0}`''', ", ".join(self.parkingConditionValues)),
+            fix = T_('''Use any of the following values: `{0}`.''', ", ".join(self.parkingConditionValues)),
             resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
 
     def way(self, data, tags, nds):
