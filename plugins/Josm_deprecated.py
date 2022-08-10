@@ -4736,6 +4736,61 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"natural=water + water=river"
                 err.append({'class': 9002001, 'subclass': 630806094, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[waterway=riverbank][!natural][!water]
+        # *[waterway=riverbank][natural=water][!water]
+        # *[waterway=riverbank][!natural][water=river]
+        # *[waterway=riverbank][natural=water][water=river]
+        if ('natural' in keys and 'water' in keys and 'waterway' in keys) or ('natural' in keys and 'waterway' in keys) or ('water' in keys and 'waterway' in keys) or ('waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural') == mapcss._value_capture(capture_tags, 1, 'water')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') == mapcss._value_capture(capture_tags, 2, 'river')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural') == mapcss._value_capture(capture_tags, 1, 'water')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') == mapcss._value_capture(capture_tags, 2, 'river')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=river"
+                # fixAdd:"natural=water"
+                # fixAdd:"water=river"
+                # fixRemove:"waterway"
+                err.append({'class': 9002001, 'subclass': 1604946271, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['natural','water'],
+                    ['water','river']]),
+                    '-': ([
+                    'waterway'])
+                }})
+
+        # *[waterway=riverbank][natural][natural!=water]
+        # *[waterway=riverbank][water][water!=river]
+        if ('natural' in keys and 'waterway' in keys) or ('water' in keys and 'waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'natural') != mapcss._value_const_capture(capture_tags, 2, 'water', 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'water')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') != mapcss._value_const_capture(capture_tags, 2, 'river', 'river')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=river"
+                err.append({'class': 9002001, 'subclass': 301661430, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # node[amenity=bench][capacity][!seats]
         if ('amenity' in keys and 'capacity' in keys):
             match = False
@@ -5227,6 +5282,23 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"landuse=education"
                 err.append({'class': 9002001, 'subclass': 817812278, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[surface=decoturf]
+        if ('surface' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface') == mapcss._value_capture(capture_tags, 0, 'decoturf')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"surface=acrylic"
+                # fixAdd:"surface=acrylic"
+                err.append({'class': 9002001, 'subclass': 1995300591, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['surface','acrylic']])
+                }})
+
         # *[role]
         if ('role' in keys):
             match = False
@@ -5238,6 +5310,20 @@ class Josm_deprecated(PluginMapCSS):
                 # throwWarning:tr("{0} as a tag on an object. Roles are specified in the relation members list instead.","{0.tag}","{0.key}")
                 # assertMatch:"node role=stop"
                 err.append({'class': 9002022, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # *[school=entrance]
+        if ('school' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'school') == mapcss._value_capture(capture_tags, 0, 'entrance')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"entrance=main"
+                # suggestAlternative:"entrance=yes"
+                err.append({'class': 9002001, 'subclass': 1398581809, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -9819,6 +9905,75 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"natural=water + water=river"
                 err.append({'class': 9002001, 'subclass': 630806094, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[waterway=riverbank][!natural][!water]
+        # *[waterway=riverbank][natural=water][!water]
+        # *[waterway=riverbank][!natural][water=river]
+        # *[waterway=riverbank][natural=water][water=river]
+        if ('natural' in keys and 'water' in keys and 'waterway' in keys) or ('natural' in keys and 'waterway' in keys) or ('water' in keys and 'waterway' in keys) or ('waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural') == mapcss._value_capture(capture_tags, 1, 'water')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') == mapcss._value_capture(capture_tags, 2, 'river')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural') == mapcss._value_capture(capture_tags, 1, 'water')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') == mapcss._value_capture(capture_tags, 2, 'river')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=river"
+                # fixAdd:"natural=water"
+                # fixAdd:"water=river"
+                # fixRemove:"waterway"
+                # assertNoMatch:"way waterway=riverbank natural=shingle water=river"
+                # assertNoMatch:"way waterway=riverbank natural=shingle"
+                # assertNoMatch:"way waterway=riverbank natural=water water=lake"
+                # assertMatch:"way waterway=riverbank natural=water water=river"
+                # assertMatch:"way waterway=riverbank natural=water"
+                # assertNoMatch:"way waterway=riverbank water=lake"
+                # assertMatch:"way waterway=riverbank water=river"
+                # assertMatch:"way waterway=riverbank"
+                err.append({'class': 9002001, 'subclass': 1604946271, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['natural','water'],
+                    ['water','river']]),
+                    '-': ([
+                    'waterway'])
+                }})
+
+        # *[waterway=riverbank][natural][natural!=water]
+        # *[waterway=riverbank][water][water!=river]
+        if ('natural' in keys and 'waterway' in keys) or ('water' in keys and 'waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'natural') != mapcss._value_const_capture(capture_tags, 2, 'water', 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'water')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') != mapcss._value_const_capture(capture_tags, 2, 'river', 'river')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=river"
+                # assertMatch:"way waterway=riverbank natural=shingle"
+                # assertNoMatch:"way waterway=riverbank natural=water water=river"
+                # assertNoMatch:"way waterway=riverbank natural=water"
+                # assertMatch:"way waterway=riverbank water=lake"
+                # assertNoMatch:"way waterway=riverbank water=river"
+                # assertNoMatch:"way waterway=riverbank"
+                err.append({'class': 9002001, 'subclass': 301661430, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # way[amenity=bench][capacity][!seats]
         if ('amenity' in keys and 'capacity' in keys):
             match = False
@@ -10324,6 +10479,23 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"landuse=education"
                 err.append({'class': 9002001, 'subclass': 817812278, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[surface=decoturf]
+        if ('surface' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface') == mapcss._value_capture(capture_tags, 0, 'decoturf')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"surface=acrylic"
+                # fixAdd:"surface=acrylic"
+                err.append({'class': 9002001, 'subclass': 1995300591, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['surface','acrylic']])
+                }})
+
         # *[role]
         if ('role' in keys):
             match = False
@@ -10334,6 +10506,20 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # throwWarning:tr("{0} as a tag on an object. Roles are specified in the relation members list instead.","{0.tag}","{0.key}")
                 err.append({'class': 9002022, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # *[school=entrance]
+        if ('school' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'school') == mapcss._value_capture(capture_tags, 0, 'entrance')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"entrance=main"
+                # suggestAlternative:"entrance=yes"
+                err.append({'class': 9002001, 'subclass': 1398581809, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -14395,6 +14581,61 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"natural=water + water=river"
                 err.append({'class': 9002001, 'subclass': 630806094, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[waterway=riverbank][!natural][!water]
+        # *[waterway=riverbank][natural=water][!water]
+        # *[waterway=riverbank][!natural][water=river]
+        # *[waterway=riverbank][natural=water][water=river]
+        if ('natural' in keys and 'water' in keys and 'waterway' in keys) or ('natural' in keys and 'waterway' in keys) or ('water' in keys and 'waterway' in keys) or ('waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural') == mapcss._value_capture(capture_tags, 1, 'water')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') == mapcss._value_capture(capture_tags, 2, 'river')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural') == mapcss._value_capture(capture_tags, 1, 'water')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') == mapcss._value_capture(capture_tags, 2, 'river')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=river"
+                # fixAdd:"natural=water"
+                # fixAdd:"water=river"
+                # fixRemove:"waterway"
+                err.append({'class': 9002001, 'subclass': 1604946271, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['natural','water'],
+                    ['water','river']]),
+                    '-': ([
+                    'waterway'])
+                }})
+
+        # *[waterway=riverbank][natural][natural!=water]
+        # *[waterway=riverbank][water][water!=river]
+        if ('natural' in keys and 'waterway' in keys) or ('water' in keys and 'waterway' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'natural') != mapcss._value_const_capture(capture_tags, 2, 'water', 'water')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'water')) and (mapcss._tag_capture(capture_tags, 2, tags, 'water') != mapcss._value_const_capture(capture_tags, 2, 'river', 'river')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"natural=water + water=river"
+                err.append({'class': 9002001, 'subclass': 301661430, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
         # *[shop=lamps]
         if ('shop' in keys):
             match = False
@@ -14803,6 +15044,23 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"landuse=education"
                 err.append({'class': 9002001, 'subclass': 817812278, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[surface=decoturf]
+        if ('surface' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface') == mapcss._value_capture(capture_tags, 0, 'decoturf')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"surface=acrylic"
+                # fixAdd:"surface=acrylic"
+                err.append({'class': 9002001, 'subclass': 1995300591, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['surface','acrylic']])
+                }})
+
         # *[role]
         if ('role' in keys):
             match = False
@@ -14813,6 +15071,20 @@ class Josm_deprecated(PluginMapCSS):
             if match:
                 # throwWarning:tr("{0} as a tag on an object. Roles are specified in the relation members list instead.","{0.tag}","{0.key}")
                 err.append({'class': 9002022, 'subclass': 2041296832, 'text': mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+
+        # *[school=entrance]
+        if ('school' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'school') == mapcss._value_capture(capture_tags, 0, 'entrance')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"entrance=main"
+                # suggestAlternative:"entrance=yes"
+                err.append({'class': 9002001, 'subclass': 1398581809, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         return err
 
@@ -14880,6 +15152,20 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'building': 'supermarket', 'building:type': 'church'}, [0]), expected={'class': 9002001, 'subclass': 1133239698})
         self.check_not_err(n.way(data, {'building': 'yes', 'building:type': 'church'}, [0]), expected={'class': 9002001, 'subclass': 1133239698})
         self.check_not_err(n.way(data, {'building:type': 'church'}, [0]), expected={'class': 9002001, 'subclass': 1133239698})
+        self.check_not_err(n.way(data, {'natural': 'shingle', 'water': 'river', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_not_err(n.way(data, {'natural': 'shingle', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_not_err(n.way(data, {'natural': 'water', 'water': 'lake', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_err(n.way(data, {'natural': 'water', 'water': 'river', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_err(n.way(data, {'natural': 'water', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_not_err(n.way(data, {'water': 'lake', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_err(n.way(data, {'water': 'river', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_err(n.way(data, {'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 1604946271})
+        self.check_err(n.way(data, {'natural': 'shingle', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 301661430})
+        self.check_not_err(n.way(data, {'natural': 'water', 'water': 'river', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 301661430})
+        self.check_not_err(n.way(data, {'natural': 'water', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 301661430})
+        self.check_err(n.way(data, {'water': 'lake', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 301661430})
+        self.check_not_err(n.way(data, {'water': 'river', 'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 301661430})
+        self.check_not_err(n.way(data, {'waterway': 'riverbank'}, [0]), expected={'class': 9002001, 'subclass': 301661430})
         self.check_err(n.way(data, {'cuisine': 'BBQ'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
         self.check_err(n.way(data, {'cuisine': 'bbq'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})
         self.check_not_err(n.way(data, {'cuisine': 'bbq;pizza'}, [0]), expected={'class': 9002001, 'subclass': 1943338875})

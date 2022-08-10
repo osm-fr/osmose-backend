@@ -4,7 +4,7 @@ Generate the parser
 ===================
 
 ```
-java -jar antlr-4.8-complete.jar -o generated/ -Dlanguage=Python3 MapCSS.g4
+java -jar antlr-4.10.1-complete.jar -o generated/ -Dlanguage=Python3 MapCSS.g4
 ```
 
 Convert one MapCSS

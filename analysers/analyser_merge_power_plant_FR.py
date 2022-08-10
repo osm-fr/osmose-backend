@@ -42,7 +42,9 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                 columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load_XY("longitude", "latitude",
                 where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 1000,
-                map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001})),
+                map = lambda res: dict(res, **{"_geom": [
+                    float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001,
+                    float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] })),
             Conflate(
                 select = Select(
                     types = ["ways", "relations"],

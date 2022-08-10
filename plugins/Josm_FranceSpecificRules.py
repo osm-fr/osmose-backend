@@ -212,8 +212,8 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
                 # -osmoseItemClassLevel:"3040/30401/3"
-                # throwWarning:tr("{0} is invalid. Should look like PT123 without trailing zeros","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without trailing zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                # throwWarning:tr("{0} is invalid. Should look like PT123 without leading zeros","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:Orange:NRO' in keys):
@@ -498,8 +498,8 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
                 # -osmoseItemClassLevel:"3040/30401/3"
-                # throwWarning:tr("{0} is invalid. Should look like PT123 without trailing zeros","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without trailing zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                # throwWarning:tr("{0} is invalid. Should look like PT123 without leading zeros","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:Orange:NRO' in keys):
@@ -862,8 +862,8 @@ class Josm_FranceSpecificRules(PluginMapCSS):
             if match:
                 # -osmoseTags:list("ref","infrastructure","telecom")
                 # -osmoseItemClassLevel:"3040/30401/3"
-                # throwWarning:tr("{0} is invalid. Should look like PT123 without trailing zeros","{0.tag}")
-                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without trailing zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                # throwWarning:tr("{0} is invalid. Should look like PT123 without leading zeros","{0.tag}")
+                err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like PT123 without leading zeros', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *["ref:FR:Orange:NRO"]["ref:FR:Orange:NRO"!~/[0-9]{5}[A-Z0-9]{3}/][inside("FR")]
         if ('ref:FR:Orange:NRO' in keys):
