@@ -27,6 +27,11 @@ class Highway_Parking_Lane(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+
+        self.parkingLaneValues = ["parallel", "diagonal", "perpendicular", "marked", "yes", "no", "separate"]
+        self.parkingConditionValues = ["free", "ticket", "disc", "residents", "customers", "private", "disabled", "loading", "no_parking", "no_standing", "no_stopping", "no"] # or custom
+        self.parkingConditionReasonValues = ["bus_stop", "crossing", "driveway", "dual_carriage", "fire_lane", "junction", "loading_zone", "narrow", "passenger_loading_zone", "priority_road", "street_cleaning", "turnaround", "turn_lane"] # or custom
+
         self.errors[31611] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Bad parking:lane:[side]'),
             detail = T_(
@@ -41,9 +46,8 @@ class Highway_Parking_Lane(Plugin):
 sides.'''))
         self.errors[31615] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:chair'],
             title = T_('Bad parking:lane:[side] value'),
-            fix = T_(
-'''See values at
-[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane).'''))
+            fix = T_('''Use any of the following values: `{0}`.''', "`, `".join(self.parkingLaneValues)),
+            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:lane")
         self.errors[31616] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
             title = T_('parking:condition:[side] without parking:lane:[side] value'),
             detail = T_(
@@ -58,6 +62,10 @@ sides.'''))
 '''A parking condition is set for a parking:lane:[side] value that indicates
 that the parking area is mapped separately. Any parking conditions should
 be tagged on that object instead.'''))
+        self.errors[31619] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:survey'],
+            title = T_('Bad parking:condition:[side] value'),
+            fix = T_('''Use any of the following values: `{0}`.''', ", ".join(self.parkingConditionValues)),
+            resource = "https://wiki.openstreetmap.org/wiki/Key:parking:condition")
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -67,7 +75,7 @@ be tagged on that object instead.'''))
 
         if (("parking:condition:right" in tags and not "parking:lane:right" in tags and not "parking:lane:both" in tags) or
             ("parking:condition:left" in tags and not "parking:lane:left" in tags and not "parking:lane:both" in tags) or
-            ("parking:condition:both" in tags and not "parking:condition:both" in tags)):
+            ("parking:condition:both" in tags and not "parking:lane:both" in tags and not ("parking:lane:left" in tags and "parking:lane:right" in tags))):
             err.append({"class": 31616})
 
         sides = list(map(lambda tag: tag[len("parking:lane:"):].split(":")[0], filter(lambda tag: tag.startswith("parking:lane:"), tags)))
@@ -85,15 +93,27 @@ be tagged on that object instead.'''))
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
             if side in tags:
-                if tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "no", "fire_lane", "separate"):
-                    err.append({"class": 31615, "subclass": stablehash64(side)})
+                if tags[side] not in self.parkingLaneValues:
+                    # Unknown value of parking:lane:[side]
+                    if tags[side] in self.parkingConditionValues:
+                        err.append({"class": 31615, "subclass": stablehash64(side), "text": T_("`{0}` is a value for key `{1}`", tags[side], "parking:condition:[side]")})
+                    elif tags[side] in self.parkingConditionReasonValues:
+                        err.append({"class": 31615, "subclass": stablehash64(side), "text": T_("`{0}` is a value for key `{1}`", tags[side], "parking:condition:[side]:reason")})
+                    else:
+                        err.append({"class": 31615, "subclass": stablehash64(side)})
                 condition = side.replace("lane", "condition")
+                if not condition in tags:
+                    condition = "parking:condition:both"
                 if condition in tags:
-                    if tags[side] in ("fire_lane", "no", "no_parking", "no_stopping"):
+                    if tags[side] == "no" and tags[condition][0:2] != "no":
+                        # parking:lane:[side] = no together with parking:condition:[side]
                         err.append({"class": 31617, "subclass": stablehash64(side)})
-                    if tags[side] == "separate":
+                    elif tags[side] == "separate":
+                        # parking:lane:[side] = separate together with parking:condition:[side]
                         err.append({"class": 31618, "subclass": stablehash64(side)})
-
+                    elif tags[condition] in self.parkingLaneValues and tags[condition] not in self.parkingConditionValues:
+                        # A value for parking:lane:[side] was used as condition
+                        err.append({"class": 31619, "subclass": stablehash64(side), "text": T_("`{0}` is a value for key `{1}`", tags[condition], "parking:lane:[side]")})
 
         return err
 
@@ -109,12 +129,14 @@ class Test(TestPluginCommon):
         for t in [{"highway": "r", "parking:lane:side": "t"},
                   {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "parallel"},
                   {"highway": "r", "parking:lane:right": "p"},
+                  {"highway": "r", "parking:lane:right": "free"},
+                  {"highway": "r", "parking:lane:right": "bus_stop"},
                   {"highway": "r", "parking:condition:right": "parallel"},
-                  {"highway": "r", "parking:lane:both": "separate", "parking:condition:both": "free"},
-                  {"highway": "r", "parking:lane:left": "no_parking", "parking:condition:left": "free"},
-                  {"highway": "r", "parking:lane:right": "no_stopping", "parking:condition:right": "free"},
+                  {"highway": "r", "parking:lane:left": "no", "parking:condition:both": "no"},
                   {"highway": "r", "parking:lane:both": "no", "parking:condition:both": "free"},
-                  {"highway": "r", "parking:lane:both": "fire_lane", "parking:condition:both": "free"},
+                  {"highway": "r", "parking:lane:left": "no", "parking:lane:right": "parallel", "parking:condition:both": "free"},
+                  {"highway": "r", "parking:lane:both": "separate", "parking:condition:both": "free"},
+                  {"highway": "r", "parking:lane:both": "yes", "parking:condition:both": "parallel"},
                  ]:
             self.check_err(a.way(None, t, None), t)
             del t["highway"]
@@ -129,5 +151,7 @@ class Test(TestPluginCommon):
                   {"highway": "r", "parking:lane:left": "parallel", "parking:lane:right": "separate"},
                   {"highway": "r", "parking:lane:both": "separate"},
                   {"highway": "r", "parking:lane:left": "parallel", "parking:condition:left": "free", "parking:lane:right": "separate"},
+                  {"highway": "r", "parking:lane:both": "no", "parking:condition:both": "no_stopping"},
+                  {"highway": "r", "parking:condition:both": "private", "parking:lane:left": "parallel", "parking:lane:right": "perpendicular"},
                  ]:
             assert not a.way(None, t, None), t
