@@ -38,7 +38,7 @@ class Polygon:
 
     def bboxes(self):
         bbox = self.polygon.bounds
-        if not(bbox[0] < -179 and bbox[2] > 179):
+        if not (bbox[0] < -179 and bbox[2] > 179):
             return [bbox]
         else: # Cross the 180°
             negative = []

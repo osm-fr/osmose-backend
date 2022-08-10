@@ -31,7 +31,7 @@ class Name_Multilingual(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         language = self.father.config.options.get("language")
-        if not(language and self.father.config.options.get("multilingual_style")):
+        if not (language and self.father.config.options.get("multilingual_style")):
             return False
 
         self.errors[50604] = self.def_class(item = 5060, level = 2, tags = ['name', 'fix:chair'],

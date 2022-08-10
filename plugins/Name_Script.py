@@ -111,7 +111,7 @@ appropriate.'''),
 
         for l, s in list(self.lang.items()):
             if s is None:
-                del(self.lang[l])
+                del self.lang[l]
             else:
                 self.lang[l] = regex.compile(r"[\p{{Common}}{0}]".format(s), flags=regex.V1)
 
@@ -162,7 +162,7 @@ appropriate.'''),
                     s = self.alone_char.sub(u"", s)
                     s = self.roman_number.sub(u"", s)
                     s = self.default.sub(u"", s)
-                    if len(s) > 0 and not(len(value) == 2 and len(s) == 1) and len(s) <= len(value) / 10 + 1:
+                    if len(s) > 0 and not (len(value) == 2 and len(s) == 1) and len(s) <= len(value) / 10 + 1:
                         if len(s) == 1:
                             c = s[0]
                             u = self.uniq_script and confusables.unconfuse(c, self.uniq_script)

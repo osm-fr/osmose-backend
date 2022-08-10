@@ -119,7 +119,7 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
         self.errors[32302] = self.def_class(item = 3230, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Suspicious name for a container'))
 
-        self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
+        self.driving_side_right = not (self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
         for i in main_tags:

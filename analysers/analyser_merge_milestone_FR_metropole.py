@@ -66,8 +66,9 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
                 )))
 
     def is_milestone(self,row):
-        if [ele for ele in ('P', 'N1', 'N2', 'A9', 'N9') if ele in row['route']]:
-            #P for temporary ; N1 for future up_class and N2 for down_class road ; A9,N9 in metropole, is not milestone but way_link or roundabout
+        if [ele for ele in ('P', 'N1', 'N2', 'A9', 'N9', 'A8', 'N8') if ele in row['route']]:
+            #P for temporary ; N1 for future up_class and N2 for down_class road ; A9, N9 for way_link or roundabout ; A8, N8 for service area
             return False
         else:
-            return True
+            # Filter only real milestone (not logical as DRD, FRG, CS etc...)
+            return row['nom_plo'][2:4] == 'PR'
