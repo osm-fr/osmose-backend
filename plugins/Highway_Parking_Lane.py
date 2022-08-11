@@ -38,12 +38,12 @@ class Highway_Parking_Lane(Plugin):
 '''The side was not recognized, see
 [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane).'''),
             fix = T_(
-'''Use `left`, `right` or `both`.'''))
+'''Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`.'''))
         self.errors[31614] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Too many parking:lane:[side]'),
             detail = T_(
-'''There are more types of parking for sides than a street have
-sides.'''))
+'''The key `parking:lane:both` was used together with `parking:lane:left` and/or `parking:lane:right`.
+However, `both` already covers both sides of a street, so the latter are redundant.'''))
         self.errors[31615] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:chair'],
             title = T_('Bad parking:lane:[side] value'),
             fix = T_('''Use any of the following values: `{0}`.''', "`, `".join(self.parkingLaneValues)),
