@@ -32,7 +32,7 @@ class Highway_Parking_Lane(Plugin):
         self.parkingConditionValues = ["free", "ticket", "disc", "residents", "customers", "private", "disabled", "loading", "no_parking", "no_standing", "no_stopping", "no"] # or custom
         self.parkingConditionReasonValues = ["bus_stop", "crossing", "driveway", "dual_carriage", "fire_lane", "junction", "loading_zone", "narrow", "passenger_loading_zone", "priority_road", "street_cleaning", "turnaround", "turn_lane"] # or custom
 
-        self.errors[31611] = self.def_class(item = 3161, level = 3, tags = ['highway', 'parking', 'fix:imagery'],
+        self.errors[31611] = self.def_class(item = 3161, level = 2, tags = ['highway', 'parking', 'fix:imagery'],
             title = T_('Bad parking:lane:[side]'),
             detail = T_(
 '''The side was not recognized, see
