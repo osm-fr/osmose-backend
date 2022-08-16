@@ -283,7 +283,7 @@ Ensure that `service=drive-through` is the correct tag.''')),
             resource = 'https://wiki.openstreetmap.org/wiki/Tag:service%3Ddrive-through')
 
         self.callback20 = lambda res: {"class":1 if res[3] == 'cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
-        self.callback40 = lambda res: {"class":4, "data":[self.way_full, self.node, self.positionAsText]}
+        self.callback40 = lambda res: {"class":5, "data":[self.way_full, self.node, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql30)
