@@ -242,7 +242,7 @@ GROUP BY
     nodes.geom
 HAVING
     COUNT(*) = 1
-)
+) AS t
 """
 
 class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
