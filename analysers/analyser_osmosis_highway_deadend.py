@@ -206,6 +206,45 @@ WHERE
   r.nid IS NULL
 """
 
+
+sql40 = """
+SELECT
+    wid,
+    nid,
+    ST_AsText(geom),
+    highway
+FROM (
+SELECT
+    MIN(way_ends.id) AS wid,
+    nodes.id AS nid,
+    nodes.geom,
+    MIN(way_ends.highway) AS highway
+FROM
+    {0}highway_ends AS way_ends
+    JOIN highways ON
+        highways.linestring && way_ends.linestring AND
+        way_ends.nid = ANY(highways.nodes) AND
+        NOT highways.is_construction AND
+        NOT highways.is_oneway AND -- oneway implies an exit
+        highways.tags->'service' = 'drive-through'
+    JOIN nodes ON
+        nodes.id = way_ends.nid AND
+        (NOT nodes.tags?'highway' OR (
+          nodes.tags->'highway' != 'turning_circle' AND
+          nodes.tags->'highway' != 'turning_loop' AND
+          nodes.tags->'highway' != 'mini_roundabout'
+        )) AND
+        (NOT nodes.tags?'entrance' OR nodes.tags->'entrance' = 'no') -- i.e. indoor part not drawn
+WHERE
+    way_ends.highway = 'service'
+GROUP BY
+    nodes.id,
+    nodes.geom
+HAVING
+    COUNT(*) = 1
+)
+"""
+
 class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
     requires_tables_common = ['highways']
@@ -231,10 +270,20 @@ path.'''))
 lead to somewhere and in particular to a network of minor roads.''')),
             fix = T_(
 '''Review the classification of road or draw the local road network.'''))
-        self.classs[3] = self.def_class(item =1210, level = 1, tags = ["highway", "fix:chair"],
+        self.classs[3] = self.def_class(item = 1210, level = 1, tags = ["highway", "fix:chair"],
             title = T_('One way inaccessible or missing parking or parking entrance'))
+        self.classs_change[4] = self.def_class(item = 1210, level = 2, tags = ['highway', 'fix:chair'],
+            title = T_('Unconnected drive-through'),
+            detail = self.merge_doc(detail, T_(
+'''Drive-throughs are usually not dead-ended. Make sure the full drive-through path was drawn, including i.e. turning circles and covered areas.
+
+Ensure that `service=drive-through` is the correct tag.''')),
+            fix = T_(
+'''Review the type of the service road or draw the local road network.'''),
+            resource = 'https://wiki.openstreetmap.org/wiki/Tag:service%3Ddrive-through')
 
         self.callback20 = lambda res: {"class":1 if res[3] == 'cycleway' else 2, "data":[self.way_full, self.node_full, self.positionAsText]}
+        self.callback40 = lambda res: {"class":4, "data":[self.way_full, self.node, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql30)
@@ -246,6 +295,8 @@ lead to somewhere and in particular to a network of minor roads.''')),
 
     def analyser_osmosis_full(self):
         self.run(sql20.format(''), self.callback20)
+        self.run(sql40.format(''), self.callback40)
 
     def analyser_osmosis_diff(self):
         self.run(sql20.format('touched_'), self.callback20)
+        self.run(sql40.format('touched_'), self.callback40)
