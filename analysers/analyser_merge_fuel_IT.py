@@ -55,7 +55,8 @@ class Analyser_Merge_Fuel_IT(Analyser_Merge_Point):
         self.init(
             'https://www.mise.gov.it/index.php/it/open-data/elenco-dataset/2032336-carburanti-prezzi-praticati-e-anagrafica-degli-impianti',
             'MISE - Ministero Sviluppo Economico',
-            CSV(Source_Fuel(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv'),
+            CSV(Source_Fuel(Source(attribution = 'MISE - Ministero Sviluppo Economico', fileUrl = 'https://www.mise.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv',
+                        filter = lambda t: t.replace('&#039;', '\'')),
                     fileUrl = 'https://www.mise.gov.it/images/exportCSV/prezzo_alle_8.csv')),
             Load_XY('Longitudine', 'Latitudine',
                 where = lambda row: row['Longitudine'] != 'NULL' and row['Latitudine'] != 'NULL'),
