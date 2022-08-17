@@ -11,6 +11,7 @@
 # Teiron, 2016
 # maro21 OSM, 2019-2021
 # Teiron, 2016-2017
+# Piotr Strębski <strebski@gmail.com>, 2022
 # endro, 2014
 # Teiron, 2016
 msgid ""
@@ -19,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: maro21 OSM, 2019-2021\n"
+"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2022\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,19 +343,19 @@ msgstr "Zły format daty"
 msgid "Bad lanes value"
 msgstr "Zła wartość lanes"
 
-#: ../plugins/Highway_Parking_Lane.py:31
+#: ../plugins/Highway_Parking_Lane.py:36
 msgid "Bad parking:lane:[side]"
 msgstr "Nieprawidłowa strona w parking:lane:[strona]"
 
-#: ../plugins/Highway_Parking_Lane.py:38
+#: ../plugins/Highway_Parking_Lane.py:43
 msgid "Too many parking:lane:[side]"
 msgstr "Za dużo tagów parking:lane:[strona]"
 
-#: ../plugins/Highway_Parking_Lane.py:43
+#: ../plugins/Highway_Parking_Lane.py:48
 msgid "Bad parking:lane:[side] value"
 msgstr "Nieprawidłowa wartość klucza parking:lane:[strona]"
 
-#: ../plugins/Highway_Parking_Lane.py:48
+#: ../plugins/Highway_Parking_Lane.py:52
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[strona] bez tagu parking:lane:[strona] "
 
@@ -442,10 +443,10 @@ msgstr "Droga z jednym węzłem"
 msgid "Deprecated tag"
 msgstr "Przestarzały tag"
 
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Przyjrzyj się grupie tagów"
 
@@ -623,15 +624,15 @@ msgstr "Obiekt landuse nie na ziemi"
 msgid "Natural feature underground"
 msgstr "Obiekt naturalny pod ziemią"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
 msgid "Default and local language name not the same"
 msgstr "Domyślny i lokalny język nie są takie same"
 
-#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
 msgid "Local language name without default name"
 msgstr "Nazwa w lokalnym języku bez domyślnej nazwy"
 
-#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
+#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
 msgid "Language name without default name"
 msgstr "Nazwa w innym języku bez domyślnej nazwy"
 
@@ -1332,7 +1333,6 @@ msgstr "Adres strony internetowej nie ma poprawnego formatu"
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
-#: ../analysers/analyser_merge_public_transport_IN_kerala_bus.py:31
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr "Przystanek {0} niezintegrowany"
@@ -1643,7 +1643,7 @@ msgstr "Wartość \"addr:street\" nie pasuje do ulic w pobliżu"
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "Niewłaściwe użycie addr:interpolation w połączeniu z innymi tagami"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:63
+#: ../analysers/analyser_merge_power_plant_FR.py:65
 #, python-format, python-brace-format
 msgid "Power plant {0}"
 msgstr "Elektrownia {0}"
@@ -1701,6 +1701,7 @@ msgstr "Tag przedziałów warunkowych jest niepoprawny"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1710,7 +1711,6 @@ msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2566,17 +2566,7 @@ msgid ""
 "side* and `the merge_to_left` on the *right side*."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:36
-msgid "Use `left`, `right` or `both`."
-msgstr "Prawidłowe wartości to `left`, `right` lub `both`."
-
-#: ../plugins/Highway_Parking_Lane.py:40
-msgid ""
-"There are more types of parking for sides than a street have\n"
-"sides."
-msgstr "Jest więcej rodzajów parkowania niż ulica ma stron.\n\nTag `parking:lane:both=*` nie może występować razem z `parking:lane:left=*` i `parking:lane:right=*`."
-
-#: ../plugins/Highway_Parking_Lane.py:50
+#: ../plugins/Highway_Parking_Lane.py:54
 msgid "A parking condition is present but without parking kind."
 msgstr "Warunki parkowania, ale bez rodzaju parkowania."
 
@@ -3269,20 +3259,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "Relacji brakuje tagu `type=*`."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "Wypożyczalnia rowerów {0} niezintegrowana"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "Wypożyczalnia rowerów {0}, propozycja integracji"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "Wypożyczalnia rowerów {0}, aktualizacja"
@@ -3387,14 +3377,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr "Stacja paliw bez tagu \"ref:mise\" lub tag niepoprawny"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:38
+#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "Parking {0} niezintegrowany"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:41
+#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "Parking {0}, propozycja integracji"
@@ -3605,17 +3595,11 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:33
+#: ../plugins/Highway_Parking_Lane.py:38
 msgid ""
 "The side was not recognized, see\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 msgstr "Nieprawidłowa wartość, zobacz\n[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)."
-
-#: ../plugins/Highway_Parking_Lane.py:45
-msgid ""
-"See values at\n"
-"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
-msgstr "Zobacz możliwe wartości [`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Pl:Key:parking:lane)."
 
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:32
 msgid ""
@@ -3636,35 +3620,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1130
+#: ../analysers/Analyser_Merge.py:1132
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1133
+#: ../analysers/Analyser_Merge.py:1135
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1138
+#: ../analysers/Analyser_Merge.py:1140
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1293
+#: ../analysers/Analyser_Merge.py:1295
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1306
+#: ../analysers/Analyser_Merge.py:1308
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1126
+#: ../analysers/Analyser_Merge.py:1128
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -3801,7 +3785,7 @@ msgstr "Ten przystanek jest częścią drogi, więc powinien mieć przypisaną r
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:585
 msgid "The stop is not part of a way"
-msgstr ""
+msgstr "Przystanek nie jest częścią drogi"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:586
 msgid ""
@@ -4078,12 +4062,12 @@ msgstr "Wygląda na to, że linia jest narysowana niezbyt dokładnie. Istnieje r
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr "Po sprawdzeniu przebiegu na zdjęciach lotniczych lub satelitarnych, dodaj więcej węzłów lub przesuń istniejące."
 
-#: ../plugins/TagFix_DuplicateValue.py:123
+#: ../plugins/TagFix_DuplicateValue.py:124
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
 msgstr "Powielone wartości {key}={val}"
 
-#: ../plugins/TagFix_DuplicateValue.py:130
+#: ../plugins/TagFix_DuplicateValue.py:131
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
 msgstr "Powielone podobne wartości {key}={val}"
@@ -4304,22 +4288,22 @@ msgstr ""
 msgid "Spring box not integrated"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:52
+#: ../plugins/Highway_Parking_Lane.py:56
 msgid "parking:condition:[side] not applicable"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:54
+#: ../plugins/Highway_Parking_Lane.py:58
 msgid ""
 "A parking condition is set for a parking:lane:[side] value that forbids "
 "parking."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:56
+#: ../plugins/Highway_Parking_Lane.py:60
 msgid ""
 "parking:condition:[side] should be mapped on separately mapped parking area"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:58
+#: ../plugins/Highway_Parking_Lane.py:62
 msgid ""
 "A parking condition is set for a parking:lane:[side] value that indicates\n"
 "that the parking area is mapped separately. Any parking conditions should\n"
@@ -4878,4 +4862,30 @@ msgstr ""
 #: ../plugins/TagFix_BadValue.py:44
 msgid ""
 "The value of the tag is very unspecific. Replace it by a meaningful value."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:41
+msgid "Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:45
+msgid ""
+"The key `parking:lane:both` was used together with `parking:lane:left` and/or `parking:lane:right`.\n"
+"However, `both` already covers both sides of a street, so the latter are redundant."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:49 ../plugins/Highway_Parking_Lane.py:67
+#, python-brace-format
+msgid "Use any of the following values: `{0}`."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:66
+msgid "Bad parking:condition:[side] value"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:99
+#: ../plugins/Highway_Parking_Lane.py:101
+#: ../plugins/Highway_Parking_Lane.py:116
+#, python-brace-format
+msgid "`{0}` is a value for key `{1}`"
 msgstr ""

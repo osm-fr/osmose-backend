@@ -1,10 +1,11 @@
 # 
 # Translators:
 # maro21 OSM, 2021
+# Dave Ska, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: maro21 OSM, 2021\n"
+"Last-Translator: Dave Ska, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/openstreetmap-france/teams/17462/pl/)\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -208,16 +209,19 @@ msgstr "Dodaj highway=bus_stop lub tram=yes"
 
 #: ../transport.validator.mapcss:359
 msgid "Subway entrances should be mapped as nodes"
-msgstr ""
+msgstr "Wejścia do metra powinny być oznaczone jako węzły"
 
 #: ../transport.validator.mapcss:391
 msgid ""
 "The station entrance should be part of a building or a highway (steps, "
 "footway, etc)"
 msgstr ""
+"Wejście do stacji powinno być częścią budynku lub drogi (schody, chodnik "
+"itp.)"
 
 #: ../transport.validator.mapcss:375
 msgid ""
 "The station entrance should be in part of a station: add it to a stop_area "
 "relation"
 msgstr ""
+"Wejście do stacji powinno być częścią stacji: dodaj je do relacji stop_area"

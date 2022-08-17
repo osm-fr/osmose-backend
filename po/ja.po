@@ -340,19 +340,19 @@ msgstr "日付の書式が間違っている"
 msgid "Bad lanes value"
 msgstr "lanesの値が間違っている"
 
-#: ../plugins/Highway_Parking_Lane.py:31
+#: ../plugins/Highway_Parking_Lane.py:36
 msgid "Bad parking:lane:[side]"
 msgstr "不正な parking:lane:[side]"
 
-#: ../plugins/Highway_Parking_Lane.py:38
+#: ../plugins/Highway_Parking_Lane.py:43
 msgid "Too many parking:lane:[side]"
 msgstr "多すぎる parking:lane:[side]"
 
-#: ../plugins/Highway_Parking_Lane.py:43
+#: ../plugins/Highway_Parking_Lane.py:48
 msgid "Bad parking:lane:[side] value"
 msgstr "不正な parking:lane:[side] の値"
 
-#: ../plugins/Highway_Parking_Lane.py:48
+#: ../plugins/Highway_Parking_Lane.py:52
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] に parking:lane:[side] の値が無い"
 
@@ -440,10 +440,10 @@ msgstr "単一ノードだけのウェイ"
 msgid "Deprecated tag"
 msgstr "非推奨のタグ"
 
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "複数のタグを見る"
 
@@ -621,15 +621,15 @@ msgstr "地面に無いlanduseの地物"
 msgid "Natural feature underground"
 msgstr "地下にあるnatureの地物"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
 msgid "Default and local language name not the same"
 msgstr "nameタグのデフォルト値と現地語の値が異なる"
 
-#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
 msgid "Local language name without default name"
 msgstr "nameタグの現地語だけが記入され、デフォルト値が未設定"
 
-#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
+#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
 msgid "Language name without default name"
 msgstr "nameタグ未指定だが、現地語のname指定あり"
 
@@ -1330,7 +1330,6 @@ msgstr "URLのスキーマが不適切です"
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
-#: ../analysers/analyser_merge_public_transport_IN_kerala_bus.py:31
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr "{0} stop未統合"
@@ -1641,7 +1640,7 @@ msgstr "\"addr:street\"タグが周辺の通りの名前と一致しない"
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr "addr:interpolationと他のタグとの誤用"
 
-#: ../analysers/analyser_merge_power_plant_FR.py:63
+#: ../analysers/analyser_merge_power_plant_FR.py:65
 #, python-format, python-brace-format
 msgid "Power plant {0}"
 msgstr "発電所 {0}"
@@ -1699,6 +1698,7 @@ msgstr "条件によるintervalsタグが無効"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "条件によるintervalsタグがopening hoursと合っていない"
 
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1708,7 +1708,6 @@ msgstr "条件によるintervalsタグがopening hoursと合っていない"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2564,17 +2563,7 @@ msgid ""
 "side* and `the merge_to_left` on the *right side*."
 msgstr "`merge_to_right` または `merge_to_left` レーンは同じウェイ上になければなりません。\n行き先レーン及び `merge_to_right`は *左側 にあってかつ `merge_to_left`は on the *右側*になければならないため。"
 
-#: ../plugins/Highway_Parking_Lane.py:36
-msgid "Use `left`, `right` or `both`."
-msgstr "`left`, `right` または `both`を使います。"
-
-#: ../plugins/Highway_Parking_Lane.py:40
-msgid ""
-"There are more types of parking for sides than a street have\n"
-"sides."
-msgstr "側道用の駐車場には、街路の側道よりも多くの種類があります。"
-
-#: ../plugins/Highway_Parking_Lane.py:50
+#: ../plugins/Highway_Parking_Lane.py:54
 msgid "A parking condition is present but without parking kind."
 msgstr "駐車場の条件はありますが、駐車場の種類がありません。"
 
@@ -3267,20 +3256,20 @@ msgstr "トップレベルのタグを追加してこの地物を記述します
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "このリレーションにはそれが何を表しているかを定義する`type`タグがありません。"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "{0} 未統合のbicycle rental"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "{0} bicycle rentalの統合の提案"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "{0} bicycleの更新"
@@ -3385,14 +3374,14 @@ msgstr "マッパーは同意の無いタグであっても地物をマッピン
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr "`ref:mise`タグが無い、または無効なガソリンスタンド"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:38
+#: ../analysers/analyser_merge_parking_FR_bm.py:31
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "{0} 未統合のparking"
 
-#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:41
+#: ../analysers/analyser_merge_parking_FR_bm.py:33
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "{0} parkingの統合の提案"
@@ -3603,17 +3592,11 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr "化粧品店 (フランス語で\"parapharmacie\") はこの分類には入りません。現在のところ特にタグはありません。"
 
-#: ../plugins/Highway_Parking_Lane.py:33
+#: ../plugins/Highway_Parking_Lane.py:38
 msgid ""
 "The side was not recognized, see\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 msgstr "どちら側か認識できませんでした。[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)参照。"
-
-#: ../plugins/Highway_Parking_Lane.py:45
-msgid ""
-"See values at\n"
-"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
-msgstr "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)の値を参照。"
 
 #: ../analysers/analyser_merge_parking_FR_BNLS.py:32
 msgid ""
@@ -3634,35 +3617,35 @@ msgstr "これは道路脇の駐車場ではなく、閉じられているだけ
 msgid "{0} parking  update"
 msgstr "{0} parkingの更新"
 
-#: ../analysers/Analyser_Merge.py:1130
+#: ../analysers/Analyser_Merge.py:1132
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr "レビューした結果、新しいデータでOpenStreetMapに登録すべきデータである場合には、追加してください。"
 
-#: ../analysers/Analyser_Merge.py:1133
+#: ../analysers/Analyser_Merge.py:1135
 msgid "Be sure that it is not already existing in another place."
 msgstr "付近の別の場所に既に存在していないことを十分確認してください。"
 
-#: ../analysers/Analyser_Merge.py:1138
+#: ../analysers/Analyser_Merge.py:1140
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr "これはオープンデータの情報源に報告されているもので、このデータに関する検証は行われていません。"
 
-#: ../analysers/Analyser_Merge.py:1293
+#: ../analysers/Analyser_Merge.py:1295
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr "これは統合の提案で、オープンデータのソースとOpenStreetMapを混合します。"
 
-#: ../analysers/Analyser_Merge.py:1306
+#: ../analysers/Analyser_Merge.py:1308
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr "オープンデータとOSMの双方に同じrefが見つかったので更新した方が良いかもしれません。"
 
-#: ../analysers/Analyser_Merge.py:1126
+#: ../analysers/Analyser_Merge.py:1128
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4076,12 +4059,12 @@ msgstr "幾何形状が粗く描かれているようです。描かれたもの
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr "背景画像をチェックしてからノードを追加したり既存ノードを移動したりします。"
 
-#: ../plugins/TagFix_DuplicateValue.py:123
+#: ../plugins/TagFix_DuplicateValue.py:124
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
 msgstr "重複した値 {key}={val}"
 
-#: ../plugins/TagFix_DuplicateValue.py:130
+#: ../plugins/TagFix_DuplicateValue.py:131
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
 msgstr "重複した類似の値 {key}={val}"
@@ -4302,22 +4285,22 @@ msgstr "未統合の羨道墳"
 msgid "Spring box not integrated"
 msgstr "未統合のばね箱"
 
-#: ../plugins/Highway_Parking_Lane.py:52
+#: ../plugins/Highway_Parking_Lane.py:56
 msgid "parking:condition:[side] not applicable"
 msgstr "parking:condition:[side] は適用できません"
 
-#: ../plugins/Highway_Parking_Lane.py:54
+#: ../plugins/Highway_Parking_Lane.py:58
 msgid ""
 "A parking condition is set for a parking:lane:[side] value that forbids "
 "parking."
 msgstr "駐車を禁じる条件が parking:lane:[side] の値としてセットされています。"
 
-#: ../plugins/Highway_Parking_Lane.py:56
+#: ../plugins/Highway_Parking_Lane.py:60
 msgid ""
 "parking:condition:[side] should be mapped on separately mapped parking area"
 msgstr "parking:condition:[side] は駐車エリアに個々にマッピングすべきです"
 
-#: ../plugins/Highway_Parking_Lane.py:58
+#: ../plugins/Highway_Parking_Lane.py:62
 msgid ""
 "A parking condition is set for a parking:lane:[side] value that indicates\n"
 "that the parking area is mapped separately. Any parking conditions should\n"
@@ -4876,4 +4859,30 @@ msgstr ""
 #: ../plugins/TagFix_BadValue.py:44
 msgid ""
 "The value of the tag is very unspecific. Replace it by a meaningful value."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:41
+msgid "Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:45
+msgid ""
+"The key `parking:lane:both` was used together with `parking:lane:left` and/or `parking:lane:right`.\n"
+"However, `both` already covers both sides of a street, so the latter are redundant."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:49 ../plugins/Highway_Parking_Lane.py:67
+#, python-brace-format
+msgid "Use any of the following values: `{0}`."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:66
+msgid "Bad parking:condition:[side] value"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:99
+#: ../plugins/Highway_Parking_Lane.py:101
+#: ../plugins/Highway_Parking_Lane.py:116
+#, python-brace-format
+msgid "`{0}` is a value for key `{1}`"
 msgstr ""
