@@ -211,8 +211,7 @@ sql40 = """
 SELECT
     wid,
     nid,
-    ST_AsText(geom),
-    highway
+    ST_AsText(geom)
 FROM (
 SELECT
     MIN(way_ends.id) AS wid,
@@ -223,10 +222,7 @@ FROM
     {0}highway_ends AS way_ends
     JOIN highways ON
         highways.linestring && way_ends.linestring AND
-        way_ends.nid = ANY(highways.nodes) AND
-        NOT highways.is_construction AND
-        NOT highways.is_oneway AND -- oneway implies an exit
-        highways.tags->'service' = 'drive-through'
+        way_ends.nid = ANY(highways.nodes)
     JOIN nodes ON
         nodes.id = way_ends.nid AND
         (NOT nodes.tags?'highway' OR (
@@ -243,6 +239,13 @@ GROUP BY
 HAVING
     COUNT(*) = 1
 ) AS t
+    LEFT JOIN highways AS drivethrough ON
+        drivethrough.linestring && t.geom AND
+        t.nid = ANY(drivethrough.nodes) AND
+        drivethrough.tags?'service' AND
+        drivethrough.tags->'service' = 'drive-through'
+WHERE
+    drivethrough.id IS NOT NULL
 """
 
 class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
