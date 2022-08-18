@@ -93,10 +93,12 @@ class Source_Mapillary(Source):
                 if n % 500 == 0:
                     self.logger.log(f"{n} / {n_tiles}")
 
+                # Use proxy.osmose.openstreetmap.fr as whitelisted proxy for tiles.mapillary.com
+                mapillary_host = 'https://proxy.osmose.openstreetmap.fr/mapillary'
                 if self.layer == 'trafficsigns':
-                    url = f"https://tiles.mapillary.com/maps/vtp/mly_map_feature_traffic_sign/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
+                    url = f"{mapillary_host}/maps/vtp/mly_map_feature_traffic_sign/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
                 elif self.layer == 'points':
-                    url = f"https://tiles.mapillary.com/maps/vtp/mly_map_feature_point/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
+                    url = f"{mapillary_host}/maps/vtp/mly_map_feature_point/2/{z}/{x}/{y}/?access_token={MLY_ACCESS_TOKEN}"
 
                 r = downloader.request_get(url).content
                 # Tile on cache alternative
