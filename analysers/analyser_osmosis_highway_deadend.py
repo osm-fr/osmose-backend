@@ -275,7 +275,7 @@ lead to somewhere and in particular to a network of minor roads.''')),
 '''Review the classification of road or draw the local road network.'''))
         self.classs[3] = self.def_class(item = 1210, level = 1, tags = ["highway", "fix:chair"],
             title = T_('One way inaccessible or missing parking or parking entrance'))
-        self.classs_change[4] = self.def_class(item = 1210, level = 2, tags = ['highway', 'fix:chair'],
+        self.classs_change[5] = self.def_class(item = 1210, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Unconnected drive-through'),
             detail = self.merge_doc(detail, T_(
 '''Drive-throughs are usually not dead-ended. Make sure the full drive-through path was drawn, including i.e. turning circles and covered areas.
