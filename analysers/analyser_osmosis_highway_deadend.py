@@ -242,6 +242,7 @@ HAVING
     LEFT JOIN highways AS drivethrough ON
         drivethrough.linestring && t.geom AND
         t.nid = ANY(drivethrough.nodes) AND
+        drivethrough.id = t.wid AND
         drivethrough.tags?'service' AND
         drivethrough.tags->'service' = 'drive-through'
 WHERE
