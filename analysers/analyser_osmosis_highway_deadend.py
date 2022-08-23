@@ -216,8 +216,7 @@ FROM (
 SELECT
     MIN(way_ends.id) AS wid,
     nodes.id AS nid,
-    nodes.geom,
-    MIN(way_ends.highway) AS highway
+    nodes.geom
 FROM
     {0}highway_ends AS way_ends
     JOIN highways ON
