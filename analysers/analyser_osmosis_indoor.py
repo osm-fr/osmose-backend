@@ -74,8 +74,7 @@ WHERE
   ways.is_polygon
   AND ways.tags?'indoor'
   AND ways.tags->'indoor' = 'room'
-  AND ways.tags?'access'
-  AND NOT ways.tags->'access' IN ('no', 'private')
+  AND (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private'))
 """
 
 sql00 = """
