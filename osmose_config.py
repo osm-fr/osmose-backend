@@ -367,6 +367,7 @@ include_ile_de_france = [
     'merge_public_transport_FR_idfm',
     'merge_bicycle_rental_FR_IDF',
     'merge_parking_FR_IDF',
+    'osmosis_indoor',
 ]
 france_departement("ile_de_france/paris", 71525, "FR-75", include=include_ile_de_france + [
     # Paris
@@ -682,7 +683,9 @@ se_part('jamtland', 52826, 'SE-Z')
 #########################################################################
 
 ch_part = gen_country('europe', 'switzerland', download_repo=OSMFR, proj=2056, municipality_ref=['swisstopo:BFS_NUMMER', 'swisstopo:BEZIRKSNUM'],
-    phone_code='41', phone_len=9, phone_international='00', phone_local_prefix='0')
+    phone_code='41', phone_len=9, phone_international='00', phone_local_prefix='0',
+    include=['osmosis_indoor']
+)
 
 ch_part('aargau', 1686359, 'CH-AG', language='de')
 ch_part('appenzell_ausserrhoden', 1686649, 'CH-AR', language='de')
@@ -1444,7 +1447,8 @@ pl_province("zachodniopomorskie", 104401, "PL-ZP")
 de_state = gen_country('europe', 'germany', language='de', proj=32632, municipality_ref='de:regionalschluessel',
     phone_code='49', phone_international='00', phone_local_prefix='0', phone_values_separators=[','],
     include=[
-        'osmosis_highway_zone'
+        'osmosis_highway_zone',
+        'osmosis_indoor',
     ]
 )
 
