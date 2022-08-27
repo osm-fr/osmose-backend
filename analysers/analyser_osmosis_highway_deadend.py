@@ -211,7 +211,7 @@ SELECT
   wid,
   nid,
   (SELECT ST_AsText(geom) FROM nodes WHERE id = nid)
-FROM 
+FROM
   (
   SELECT
     id AS wid,
