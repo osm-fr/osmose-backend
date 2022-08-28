@@ -1,6 +1,6 @@
 # Backend part of the Osmose QA tool
 
-This is the part of [Osmose](http://osmose.openstreetmap.fr) which analyses OSM
+This is the part of [Osmose](https://osmose.openstreetmap.fr) which analyses OSM
 and sends the results to the frontend. This works as follows:
 
   - an .osm.pbf extraction is downloaded
