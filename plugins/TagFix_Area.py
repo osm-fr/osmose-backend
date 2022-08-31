@@ -45,6 +45,8 @@ class TagFix_Area(Plugin):
 
     def way(self, data, tags, nds):
         err = []
+        if not "area" in tags:
+            return err
         key_set = set(tags.keys())
         if tags.get("area") == "yes":
             if len(key_set & self.area_yes_default) == 0 and len(key_set & self.area_yes_good) == 0 and tags.get("railway") != "platform":
