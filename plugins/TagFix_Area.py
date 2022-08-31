@@ -28,12 +28,7 @@ class TagFix_Area(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'playground', 'power', 'public_transport', 'sport', 'tourism', 'traffic_calming', 'waterway'))
-        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'indoor', 'landuse', 'natural', 'office', 'place', 'shop'))
-        self.errors[32001] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
-            title = T_('Redundant area tagging'),
-            detail = T_('This feature is already implicitly an area due to another tag.'),
-            fix = T_('Remove the `{0}` tag.', 'area=yes')
-        )
+        self.area_yes_default = set(('boundary', 'building', 'craft', 'geological', 'indoor', 'landuse', 'natural', 'office', 'place', 'shop'))
         self.errors[32002] = self.def_class(item = 3200, level = 3, tags = ['tag', 'fix:chair'],
             title = T_('Untagged area object'),
             detail = T_('The object is missing any tag which defines what kind of feature it is. This is unexpected for something tagged with `area=yes`.'),
@@ -52,16 +47,9 @@ class TagFix_Area(Plugin):
         err = []
         key_set = set(tags.keys())
         if tags.get("area") == "yes":
-            tagged_as_bad = set(key_set & self.area_yes_bad)
-            if len(tagged_as_bad) > 0:
-                err.append({
-                    "class": 32001,
-                    "subclass": 1,
-                    "text": T_('Tags, {0}, already make this an area.', '/'.join(map(lambda x: '`{}`'.format(x), tagged_as_bad)))
-                })
-            elif not (len(key_set & self.area_yes_good) > 0 or tags.get("railway") == "platform"):
+            if len(key_set & self.area_yes_default) == 0 and len(key_set & self.area_yes_good) == 0 and tags.get("railway") != "platform":
                 err.append({"class": 32002, "subclass": 1})
-        if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural" in tags:
+        elif tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural" in tags:
             err.append({"class": 32003, "subclass": 1})
 
         return err
@@ -75,15 +63,17 @@ class Test(TestPluginCommon):
         a.init(None)
 
         for t in [{"area":"yes", "railway": "rail"},
-                  {"area":"yes", "building": "yes"},
-                  {"area":"yes", "landuse": "farm"},
                   {"area":"no", "amenity": "bakery"},
-                  {"area":"yes", "indoor": "room"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
         for t in [{"area":"yes", "railway": "platform"},
                   {"area":"yes", "amenity": "bakery"},
                   {"area":"no", "building": "yes"},
+                 ]:
+            assert not a.way(None, t, None), t
+
+        # Unnecessary area=yes, dealt with by JOSM mapcss rules instead
+        for t in [{"area":"yes", "building": "yes"},
                  ]:
             assert not a.way(None, t, None), t
