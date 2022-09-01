@@ -208,31 +208,20 @@ WHERE
 
 sql40 = """
 SELECT
-  wid,
+  drivethroughs.id,
   nid,
-  (SELECT ST_AsText(geom) FROM nodes WHERE id = nid)
+  ST_AsText(nodes.geom)
 FROM
-  (
-  SELECT
-    id AS wid,
-    linestring,
-    nodes
-  FROM
-    highways as drivethroughs
-  WHERE
-    drivethroughs.highway = 'service' AND
-    drivethroughs.tags?'service' AND
-    drivethroughs.tags->'service' = 'drive-through' AND
-    NOT drivethroughs.is_oneway
-  ) as highways_drivethrough
-  JOIN highway_ends AS way_ends ON
-    highways_drivethrough.linestring && way_ends.linestring AND
-    way_ends.nid = ANY(highways_drivethrough.nodes)
+  highways AS drivethroughs
+  JOIN highway_ends ON
+    drivethroughs.linestring && highway_ends.geom AND
+    highway_ends.nid = ANY(drivethroughs.nodes)
   LEFT JOIN highways AS other_highways ON
-    way_ends.nid = ANY(other_highways.nodes) AND
-    other_highways.id != highways_drivethrough.wid
+    other_highways.linestring && highway_ends.geom AND
+    highway_ends.nid = ANY(other_highways.nodes) AND
+    other_highways.id != drivethroughs.id
   JOIN nodes ON
-    nodes.id = way_ends.nid AND
+    nodes.id = highway_ends.nid AND
     (NOT nodes.tags?'highway' OR (
       nodes.tags->'highway' != 'turning_circle' AND
       nodes.tags->'highway' != 'turning_loop' AND
@@ -240,6 +229,10 @@ FROM
     )) AND
     (NOT nodes.tags?'entrance' OR nodes.tags->'entrance' = 'no') -- i.e. indoor part not drawn
 WHERE
+  drivethroughs.highway = 'service' AND
+  drivethroughs.tags?'service' AND
+  drivethroughs.tags->'service' = 'drive-through' AND
+  NOT drivethroughs.is_oneway AND
   other_highways.id IS NULL
 """
 
