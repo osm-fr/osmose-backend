@@ -47,34 +47,44 @@ WHERE
 """
 
 sql30 = """
-CREATE TEMP TABLE indoor_rooms_with_door AS
+CREATE TEMP TABLE public_indoor_rooms AS
 (
 SELECT
-  ways.id
-FROM
-  ways
-JOIN way_nodes ON ways.id = way_nodes.way_id
-JOIN nodes ON nodes.id = way_nodes.node_id
-WHERE
-  ways.is_polygon
-  AND ways.tags?'indoor'
-  AND ways.tags->'indoor' = 'room'
-  AND nodes.tags?'door'
-)
-"""
-
-sql31 = """
-SELECT
   ways.id,
-  ST_AsText(ST_Centroid(ways.linestring))
+  ST_AsText(ST_Centroid(ways.linestring)) as geom
 FROM
   ways
-LEFT JOIN indoor_rooms_with_door ON indoor_rooms_with_door.id = ways.id
 WHERE
   ways.is_polygon
   AND ways.tags?'indoor'
   AND ways.tags->'indoor' = 'room'
   AND (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private'))
+)
+"""
+
+sql31 = """
+CREATE TEMP TABLE indoor_rooms_with_door AS
+(
+SELECT DISTINCT
+  public_indoor_rooms.id
+FROM
+  public_indoor_rooms
+JOIN way_nodes ON public_indoor_rooms.id = way_nodes.way_id
+JOIN nodes ON nodes.id = way_nodes.node_id
+WHERE
+  nodes.tags?'door'
+)
+"""
+
+sql32 = """
+SELECT
+  public_indoor_rooms.id,
+  public_indoor_rooms.geom
+FROM
+  public_indoor_rooms
+LEFT JOIN indoor_rooms_with_door ON indoor_rooms_with_door.id = public_indoor_rooms.id
+WHERE
+  indoor_rooms_with_door.id IS NULL
 """
 
 sql00 = """
@@ -188,19 +198,19 @@ class Analyser_Osmosis_Indoor(Analyser_Osmosis):
             fix = T_(
 '''If this feature is actually an indoor area, try to map it as a closed way.
 If this is an indoor object (any kind of feature located inside a building),
-consider using indoor=yes instead'''))
+consider using indoor=yes instead.'''))
         self.classs[3] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor room should have a door'),
             fix = T_(
-'''Find out where are the entrances of the room and add them (with a door=* tag) so we can actually enter this indoor room'''))
+'''Find out where are the entrances of the room and add them (with a door=* tag) so we can actually enter this indoor room.'''))
         self.classs[4] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor feature should have a level'),
             fix = T_(
-'''Find out which level is the room/area/corridor in and add it with the level=* tag'''))
+'''Find out which level is the room/area/corridor in and add it with the level=* tag.'''))
         self.classs[5] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey', 'shop'],
             title = T_('This indoor shop should probably be inside a room'),
             fix = T_(
-'''Indoor shops are usually enclosed by walls, so they should have indoor=room + room=shop'''))
+'''Indoor shops are usually enclosed by walls, so they should have indoor=room + room=shop.'''))
         self.classs[6] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor feature is not reachable'),
             detail = T_(
@@ -217,7 +227,8 @@ consider using indoor=yes instead'''))
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         self.run(sql30)
-        self.run(sql31, self.callback30)
+        self.run(sql31)
+        self.run(sql32, self.callback30)
         self.run(sql00)
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
