@@ -35,7 +35,7 @@ The tag `name=*` must be present if this is the name of the roundabout
 and not a road connected, same thing for `ref=*`.'''))
 
     def way(self, data, tags, nds):
-        if tags.get("junction") == "roundabout" and u"oneway" in tags:
+        if tags.get("junction") == "roundabout" and u"oneway" in tags and tags.get("oneway") != "no":
             return {"class": 101, "subclass": 0, "text": T_(u"Unnecessary tag oneway"), "fix": {"-": ["oneway"]}}
 
 
@@ -47,5 +47,6 @@ class Test(TestPluginCommon):
         a = TagRemove_Roundabout(None)
         a.init(None)
         assert not a.way(None, {"junction": "roundabout"}, None)
+        assert not a.way(None, {"junction": "roundabout", "oneway": "no"}, None)
         assert not a.way(None, {"junction": "yes", "oneway": "true"}, None)
         self.check_err(a.way(None, {"junction": "roundabout", "oneway": "true"}, None))
