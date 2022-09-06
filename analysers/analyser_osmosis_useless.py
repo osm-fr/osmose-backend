@@ -82,7 +82,7 @@ FROM
         relation_members.member_role = ''
     JOIN not_touched_ways AS ways ON
         ways.id = relation_members.member_id AND
-        ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
+        ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name', 'area'] = ''::hstore
 """
 
 sql30 = """
