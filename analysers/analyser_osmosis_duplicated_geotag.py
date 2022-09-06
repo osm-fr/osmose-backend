@@ -67,7 +67,7 @@ FROM
     ways AS ways
 WHERE
     tags != ''::hstore AND
-    tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power', 'aeroway'] AND
+    tags ?| ARRAY['area', 'name', 'natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power', 'aeroway'] AND
     ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
 """
@@ -91,6 +91,8 @@ WHERE
     b1.linestring && b2.linestring AND
     ST_Equals(b1.linestring, b2.linestring) AND
     (
+        (b1.lsttag->'area' = b2.lsttag->'area') OR
+        (b1.lsttag->'name' = b2.lsttag->'name') OR
         (b1.lsttag->'natural' = b2.lsttag->'natural') OR
         (b1.lsttag->'landuse' = b2.lsttag->'landuse') OR
         (b1.lsttag->'waterway' = b2.lsttag->'waterway') OR
