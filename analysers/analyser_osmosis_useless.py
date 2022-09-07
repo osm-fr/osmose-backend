@@ -66,7 +66,7 @@ FROM
         member_type = 'W'
 WHERE
     (member_role IS NULL OR member_role = '') AND
-    ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
+    ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'area', 'name'] = ''::hstore
 """
 
 sql21 = """
@@ -124,7 +124,7 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
         doc = dict(
             detail = T_(
 '''An object without relevant tag (no other tag than `source`,
-`created_by`, `note:qadastre` nor `name`) nor a relation member with a
+`created_by`, `note:qadastre`, `area` nor `name`) nor a relation member with a
 role.'''),
             fix = T_(
 '''Add tags, role into a relation or delete.'''),
