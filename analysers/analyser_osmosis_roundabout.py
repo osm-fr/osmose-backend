@@ -70,8 +70,8 @@ FROM
     nodes.id = ANY(roundabouts.nodes) AND
     nodes.tags?'highway' AND nodes.tags->'highway' IN ('traffic_signals', 'give_way', 'stop') AND -- "yield-nodes"
     (-- tolerate rarely-red traffic_signals such as emergency, blink_mode, continuous_green, ...
-     NOT nodes.tags?'traffic_signals' OR
-     nodes.tags->'traffic_signals' IN ('signal', 'traffic_lights', 'stop', 'pedestrian_crossing', 'cyclist_crossing')
+      NOT nodes.tags?'traffic_signals' OR
+      nodes.tags->'traffic_signals' IN ('signal', 'traffic_lights', 'stop', 'pedestrian_crossing', 'cyclist_crossing')
     )
 WHERE
   roundabouts.is_roundabout
