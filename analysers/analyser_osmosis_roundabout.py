@@ -57,6 +57,26 @@ HAVING
     COUNT(*) >= 2 -- select roundabout at least connected with two other ways
 """
 
+
+sql20 = """
+SELECT
+  roundabouts.id,
+  nodes.id,
+  ST_AsText(nodes.geom)
+FROM
+  highways AS roundabouts
+  JOIN nodes ON
+    roundabouts.linestring && nodes.geom AND
+    nodes.id = ANY(roundabouts.nodes) AND
+    nodes.tags?'highway' AND nodes.tags->'highway' IN ('traffic_signals', 'give_way', 'stop') AND -- "yield-nodes"
+    (-- tolerate rarely-red traffic_signals such as emergency, blink_mode, continuous_green, ...
+      NOT nodes.tags?'traffic_signals' OR
+      nodes.tags->'traffic_signals' IN ('signal', 'traffic_lights', 'stop', 'pedestrian_crossing', 'cyclist_crossing')
+    )
+WHERE
+  roundabouts.is_roundabout
+"""
+
 class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
     requires_tables_full = ['highways']
@@ -80,8 +100,20 @@ on the right, and remove the tag `oneway=yes` if present.'''),
 survey.
 
 Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead.'''))
+        self.classs[2] = self.def_class(item = 2010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
+            title = T_('Roundabout without right of way'),
+            detail = T_(
+'''A highway with `junction=roundabout` must by definition have the right of way.
+Circular highways without right of way should be tagged as `junction=circular`.'''),
+            fix = T_(
+'''Replace `junction=roundabout` on the entire circular road with `junction=circular`.
 
-            self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
+If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for the road entering the roundabout, tag it on that way only.'''),
+            trap = T_(
+'''Make sure to tag `oneway=*` when using `junction=circular`. Unlike `junction=roundabout`, `junction=circular` does not imply `oneway=yes`.'''),
+            resource = "https://wiki.openstreetmap.org/wiki/Tag:junction%3Dcircular")
+
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
     def analyser_osmosis_full(self):
         if "proj" in self.config.options:
@@ -91,3 +123,6 @@ Ensure the traffic on the roundabout has right of way. If not, use `junction=cir
         if "proj" in self.config.options:
             self.run(sql10.format(self.config.options.get("proj"), "touched_", ""), self.callback10)
             self.run(sql10.format(self.config.options.get("proj"), "not_touched_", "touched_"), self.callback10)
+
+    def analyser_osmosis_common(self):
+        self.run(sql20, lambda res: {"class":2, "data":[self.way_full, self.node_full, self.positionAsText]})
