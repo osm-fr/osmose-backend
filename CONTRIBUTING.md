@@ -47,7 +47,7 @@ cd po/josm
 bzr checkout --lightweight lp:~openstreetmap/josm/josm_trans
 ```
 
-## Connection to the "official" frontend at http://osmose.openstreetmap.fr
+## Connection to the "official" frontend at https://osmose.openstreetmap.fr
 
 When you have configured the backend for the country you want to add, please
 send an email to osmose-contact@openstreetmap.fr. We will then send you the

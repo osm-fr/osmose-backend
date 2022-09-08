@@ -75,7 +75,7 @@ Documentation:
 Classification:
 * `item`: a 4-digit number, where to put the result of this class of issues in the Frontend menu of categories.
 * `level`: the impact of the Osmose-QA issues on the OSM data, `1`: high, `2`: normal, `3`: low.
-* `tags`: Osmose-QA tags (not OSM tags), allow thematic classification on the Frontend, see already existing tags at [/api/0.3/tags](http://osmose.openstreetmap.fr/api/0.3/tags).
+* `tags`: Osmose-QA tags (not OSM tags), allow thematic classification on the Frontend, see already existing tags at [/api/0.3/tags](https://osmose.openstreetmap.fr/api/0.3/tags).
 
 ### Instances of issues
 Each issue yield by the analyzer should refer to a class definition by using the same class `id`:
