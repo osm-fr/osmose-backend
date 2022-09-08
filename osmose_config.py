@@ -1099,10 +1099,10 @@ default_country("asia", "armenia", 364066, {"country": "AM", "language": "hy", "
 default_country("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
 default_country("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
 default_country("asia", "bahrain", 378734, {"country": "BH", "language": "ar","proj": 32639}, download_repo=OSMFR)
-default_country("asia", "bhutan", 184629, {"country": "BT", "language": ["dz", "en"], "proj": 32646}, download_repo=OSMFR)
+default_country("asia", "bhutan", 184629, {"country": "BT", "language": ["dz", "en"], "driving_side": "left", "proj": 32646}, download_repo=OSMFR)
 default_country("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country("asia", "cambodia", 49898, {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
-default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "proj": 32651}, download_repo=OSMFR)
+default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "driving_side": "left", "proj": 32651}, download_repo=OSMFR)
 default_country("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country("asia", "iran", 304938, {"country": "IR", "language": "fa","proj": 32640}, download_repo=GEOFABRIK)
@@ -1143,7 +1143,7 @@ default_country("asia", "yemen", 305092, {"country": "YE", "language": "ar","pro
 
 #########################################################################
 
-id_province = gen_country('asia', 'indonesia', download_repo=OSMFR, language='id', proj=23837)
+id_province = gen_country('asia', 'indonesia', download_repo=OSMFR, language='id', driving_side='left', proj=23837)
 
 id_province("aceh", 2390836, "ID-AC")
 id_province("bali", 1615621, "ID-BA")
@@ -1231,7 +1231,7 @@ default_country("oceania", "nauru", 571804, {"country": "NR", "language": "en", 
 default_country("oceania", "niue", 1558556, {"country": "NU", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
 default_country("oceania", "palau", 571805, {"country": "PW", "language": "en", "proj": 32653}, download_repo=OSMFR)
 default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "en", "speed_limit_unit": "mph", "proj": 32656}, download_repo=OSMFR)
-default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
+default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en", "driving_side": "left", "proj": 32755}, download_repo=OSMFR)
 default_country("oceania", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32602}, download_repo=OSMFR)
 default_country("oceania", "solomon_islands", 1857436, {"country": "SB", "language": "en", "driving_side": "left", "proj": 32657}, download_repo=OSMFR)
 default_country("oceania", "new_zealand_tokelau", 2186600, {"country": "TK", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR, download_country="tokelau")
@@ -1789,7 +1789,7 @@ china_province("shanghai", 913067, "CN-31", proj=32651)
 china_province("chongqing", 913069, "CN-50", proj=32649)
 
 china_province("hong_kong", 913110, "CN-91", proj=32650, language=["zh", "en"], driving_side="left")
-china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"])
+china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"], driving_side="left")
 
 #########################################################################
 
