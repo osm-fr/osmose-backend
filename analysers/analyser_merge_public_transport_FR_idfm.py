@@ -39,7 +39,7 @@ class _Analyser_Merge_Public_Transport_FR_IdFM(Analyser_Merge_Point):
             SHP(Source(attribution = 'Île-de-France Mobilités', millesime = '03/2022',
                     fileUrl = 'https://eu.ftp.opendatasoft.com/stif/Reflex/REF_ZDE.zip',
                     zip = '*.shp')),
-            LoadGeomCentroid(srid = 2154,
+            LoadGeomCentroid(
                 select = {"type_arret": select}),
             Conflate(
                 select = Select(
