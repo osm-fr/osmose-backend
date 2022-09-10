@@ -510,7 +510,7 @@ class Parser:
     def header(self):
         pass
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         pass
 
     def close(self):
@@ -546,7 +546,7 @@ class CSV(Parser):
         if self.have_header:
             return next(csv.reader(self.f, delimiter=self.separator, quotechar=self.quote))
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         self.f = self.f or self.source.open()
         for _ in range(self.skip_first_lines):
             self.f.__next__()
@@ -623,7 +623,7 @@ class JSON(Parser):
         columns = list(columns)
         return columns
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         self.json = self.json or map(flattenjson, self.extractor(json.loads(self.source.open().read())))
         for row in self.json:
             osmosis.giscurs.execute("insert into \"{0}\" (\"{1}\") values ({2})".format(
@@ -653,7 +653,7 @@ class GeoJSON(Parser):
         columns.append(u"geom_y")
         return columns
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         self.json = self.json or self.extractor(json.loads(self.source.open().read()))
         for row in self.json['features']:
             if row['geometry'] and row['geometry']['coordinates'] and len(row['geometry']['coordinates']) > 0:
@@ -697,9 +697,8 @@ class SHP(Parser):
         unzip = "unzip -o -d {0}_ {1}".format(tmp_file.name, self.source.path())
         if os.system(unzip):
             raise Exception("unzip error")
-        shp2pgsql = "shp2pgsql -e -k -W \"{0}\" -s \"{1}\" \"{2}_/{3}\" \"{4}\" > \"{5}\"".format(
+        shp2pgsql = "shp2pgsql -e -k -W \"{0}\" \"{1}_/{2}\" \"{3}\" > \"{4}\"".format(
             self.source.encoding,
-            srid,
             tmp_file.name,
             self.source.zipFile().filename,
             table,
@@ -724,7 +723,7 @@ class GDAL(Parser):
     def header(self):
         return True
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         try:
             tmp_file = tempfile.NamedTemporaryFile(mode = 'wb', delete = False)
             tmp_file.write(self.source.open(binary = True).read())
@@ -803,7 +802,7 @@ class Load(object):
             osmosis.run(sql_schema.format(schema = db_schema))
             if self.create:
                 osmosis.run("CREATE TABLE {0} ({1})".format(table, self.create))
-            parser.import_(table, self.srid, osmosis)
+            parser.import_(table, osmosis)
             osmosis.run("DELETE FROM meta WHERE name = '{0}'".format(table))
             osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, version))
             osmosis.run0("COMMIT")
