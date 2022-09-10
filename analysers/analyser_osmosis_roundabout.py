@@ -45,6 +45,7 @@ WHERE
     NOT ways.is_construction AND
     (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- no name or start with 'Rond' or 'Giratoire' (French)
     NOT ways.tags->'oneway' = 'no' AND
+    NOT ways.tags->'junction' = 'circular' AND
     -- geometry
     ways.is_polygon AND -- It's a polygon
     ST_NPoints(ways.linestring) < 24 AND
@@ -68,6 +69,7 @@ FROM
   JOIN nodes ON
     roundabouts.linestring && nodes.geom AND
     nodes.id = ANY(roundabouts.nodes) AND
+    nodes.tags != ''::hstore AND
     nodes.tags?'highway' AND nodes.tags->'highway' IN ('traffic_signals', 'give_way', 'stop') AND -- "yield-nodes"
     (-- tolerate rarely-red traffic_signals such as emergency, blink_mode, continuous_green, ...
       NOT nodes.tags?'traffic_signals' OR
