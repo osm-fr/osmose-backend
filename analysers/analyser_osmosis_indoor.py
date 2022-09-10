@@ -49,41 +49,31 @@ WHERE
 sql30 = """
 CREATE TEMP TABLE public_indoor_rooms AS
 SELECT
-    ways.id,
-    ST_AsText(ST_Centroid(ways.linestring)) as geom
+    id,
+    nodes,
+    linestring as geom
 FROM
     ways
 WHERE
-    ways.is_polygon AND
-    ways.tags?'indoor' AND
-    ways.tags->'indoor' = 'room' AND
-    (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private'))
+    is_polygon AND
+    tags?'indoor' AND
+    tags->'indoor' = 'room' AND
+    (NOT tags?'access' OR NOT tags->'access' IN ('no', 'private'))
 """
 
 sql31 = """
-CREATE TEMP TABLE indoor_rooms_with_door AS
-SELECT DISTINCT
-    public_indoor_rooms.id
-FROM
-    public_indoor_rooms
-    JOIN way_nodes ON
-        public_indoor_rooms.id = way_nodes.way_id
-    JOIN nodes ON
-        nodes.id = way_nodes.node_id
-WHERE
-    nodes.tags?'door'
-"""
-
-sql32 = """
 SELECT
     public_indoor_rooms.id,
-    public_indoor_rooms.geom
+    ST_AsText(way_locate(public_indoor_rooms.geom))
 FROM
     public_indoor_rooms
-    LEFT JOIN indoor_rooms_with_door ON
-        indoor_rooms_with_door.id = public_indoor_rooms.id
+    LEFT JOIN nodes ON
+        public_indoor_rooms.geom && nodes.geom AND
+        nodes.id = ANY(public_indoor_rooms.nodes) AND
+        nodes.tags != ''::hstore AND
+        nodes.tags?'door'
 WHERE
-    indoor_rooms_with_door.id IS NULL
+    nodes.id IS NULL
 """
 
 sql00 = """
@@ -175,7 +165,7 @@ WHERE
 sql62 = """
 SELECT
     indoor_surfaces.id,
-    indoor_surfaces.geom
+    ST_AsText(indoor_surfaces.geom)
 FROM
     indoor_surfaces
     LEFT JOIN indoor_surfaces_connected_to_other_surfaces ON
@@ -229,8 +219,7 @@ consider using indoor=yes instead.'''))
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         self.run(sql30)
-        self.run(sql31)
-        self.run(sql32, self.callback30)
+        self.run(sql31, self.callback30)
         self.run(sql00)
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
