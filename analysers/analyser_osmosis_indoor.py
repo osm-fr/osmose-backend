@@ -42,6 +42,10 @@ WHERE
     tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
+sql01 = """
+CREATE INDEX indoor_surfaces_idx_geom on indoor_surfaces USING gist(geom)
+"""
+
 sql10 = """
 SELECT
     id,
@@ -134,37 +138,22 @@ WHERE
 # and assuming than no level on highway is probably implicit level=0)
 
 sql61 = """
-CREATE TEMP TABLE indoor_surfaces_connected_to_other_surfaces AS
-SELECT
-    i1.id AS id,
-    i1.level AS surface_level,
-    i2.id AS other_surface_id,
-    i2.level AS other_surface_level
-FROM
-    indoor_surfaces i1
-    JOIN indoor_surfaces i2 ON
-        i2.id < i1.id AND
-        i2.geom && i1.geom AND
-        i2.nodes && i1.nodes
-WHERE
-    i1.tags->'indoor' IN ('room', 'corridor', 'area')
-""" # maybe check the levels too to make sure they are actually connected ?
-
-sql62 = """
 SELECT
     indoor_surfaces.id,
     ST_AsText(way_locate(indoor_surfaces.geom))
 FROM
     indoor_surfaces
-    LEFT JOIN indoor_surfaces_connected_to_other_surfaces ON
-        indoor_surfaces_connected_to_other_surfaces.id = indoor_surfaces.id
+    LEFT JOIN indoor_surfaces AS indoor_surfaces_other ON
+        indoor_surfaces_other.id != indoor_surfaces.id AND
+        indoor_surfaces_other.geom && indoor_surfaces.geom AND
+        indoor_surfaces_other.nodes && indoor_surfaces.nodes
     LEFT JOIN indoor_surfaces_connected_to_highways ON
         indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
 WHERE
     indoor_surfaces.indoor IN ('room', 'corridor', 'area') AND
     indoor_surfaces_connected_to_highways.id IS NULL AND
-    indoor_surfaces_connected_to_other_surfaces.id is NULL
-"""
+    indoor_surfaces_other.id is NULL
+""" # maybe check the levels too to make sure they are actually connected ?
 
 class Analyser_Osmosis_Indoor(Analyser_Osmosis):
     requires_tables_common = ['highway_ends']
@@ -205,6 +194,7 @@ consider using indoor=yes instead.'''))
 
     def analyser_osmosis_common(self):
         self.run(sql00)
+        self.run(sql01)
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         self.run(sql30)
@@ -212,5 +202,4 @@ consider using indoor=yes instead.'''))
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
         self.run(sql60)
-        self.run(sql61)
-        self.run(sql62, self.callback60)
+        self.run(sql61, self.callback60)
