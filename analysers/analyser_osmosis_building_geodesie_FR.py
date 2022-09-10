@@ -77,7 +77,7 @@ SELECT
     ways.id AS b_id
 FROM
     survery_building
-    JOIN {0}buildings AS ways ON
+    JOIN buildings AS ways ON
         survery_building.geom && ways.linestring AND
         ST_DWithIn(survery_building.geom_transform, polygon_proj, 0.5)
 """
@@ -123,14 +123,8 @@ It could be that all the surrounding buildings are shifted.'''))
             "data":[self.node_full, self.positionAsText],
             "text":{"en":res[2]} }
 
-    def analyser_osmosis_full(self):
+    def analyser_osmosis_common(self):
         self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
-        self.run(sql12.format(""))
-        self.run(sql13, self.callback10)
-
-    def analyser_osmosis_diff(self):
-        self.run(sql10.format(self.config.options.get("proj")))
-        self.run(sql11)
-        self.run(sql12.format("touched_"))
+        self.run(sql12)
         self.run(sql13, self.callback10)
