@@ -23,6 +23,25 @@
 from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 
+sql00 = """
+CREATE TEMP TABLE indoor_surfaces AS
+SELECT
+    id,
+    linestring AS geom,
+    nodes,
+    tags->'indoor' AS indoor,
+    tags->'level' AS level,
+    tags,
+    (NOT tags?'access' OR NOT tags->'access' IN ('no', 'private')) AS public_access
+FROM
+    ways
+WHERE
+    is_polygon AND
+    tags != ''::hstore AND
+    tags?'indoor' AND
+    tags->'indoor' in ('room', 'corridor', 'area', 'level')
+"""
+
 sql10 = """
 SELECT
     id,
@@ -48,53 +67,21 @@ WHERE
     tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
-sql30 = """
-CREATE TEMP TABLE public_indoor_rooms AS
-SELECT
-    id,
-    nodes,
-    linestring as geom
-FROM
-    ways
-WHERE
-    is_polygon AND
-    tags != ''::hstore AND
-    tags?'indoor' AND
-    tags->'indoor' = 'room' AND
-    (NOT tags?'access' OR NOT tags->'access' IN ('no', 'private'))
-"""
-
 sql31 = """
 SELECT
     public_indoor_rooms.id,
     ST_AsText(way_locate(public_indoor_rooms.geom))
 FROM
-    public_indoor_rooms
+    indoor_surfaces AS public_indoor_rooms
     LEFT JOIN nodes ON
         public_indoor_rooms.geom && nodes.geom AND
         nodes.id = ANY(public_indoor_rooms.nodes) AND
         nodes.tags != ''::hstore AND
         nodes.tags?'door'
 WHERE
+    public_indoor_rooms.indoor = 'room' AND
+    public_indoor_rooms.public_access AND
     nodes.id IS NULL
-"""
-
-sql00 = """
-CREATE TEMP TABLE indoor_surfaces AS
-SELECT
-    id,
-    linestring AS geom,
-    nodes,
-    tags->'indoor' AS indoor,
-    tags->'level' AS level,
-    tags
-FROM
-    ways
-WHERE
-    is_polygon AND
-    tags != ''::hstore AND
-    tags?'indoor' AND
-    tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
 sql40 = """
@@ -138,7 +125,7 @@ FROM
     JOIN highways ON
         highways.id = highway_ends.id
 WHERE
-    indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area') AND
+    indoor_surfaces.indoor IN ('room', 'corridor', 'area') AND
     highways.highway IN ('steps', 'footway', 'pedestrian')
 """
 
@@ -174,7 +161,7 @@ FROM
     LEFT JOIN indoor_surfaces_connected_to_highways ON
         indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
 WHERE
-    indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area') AND
+    indoor_surfaces.indoor IN ('room', 'corridor', 'area') AND
     indoor_surfaces_connected_to_highways.id IS NULL AND
     indoor_surfaces_connected_to_other_surfaces.id is NULL
 """
@@ -217,11 +204,11 @@ consider using indoor=yes instead.'''))
         self.callback60 = lambda res: {"class":6, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
+        self.run(sql00)
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         self.run(sql30)
         self.run(sql31, self.callback30)
-        self.run(sql00)
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
         self.run(sql60)
