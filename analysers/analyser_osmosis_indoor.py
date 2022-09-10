@@ -25,128 +25,127 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-  id,
-  ST_AsText(way_locate(linestring))
+    id,
+    ST_AsText(way_locate(linestring))
 FROM
-  ways
+    ways
 WHERE
-  NOT is_polygon
-  AND tags?'indoor'
-  AND tags->'indoor' in ('room', 'corridor', 'area', 'level')
+    NOT is_polygon AND
+    tags?'indoor' AND
+    tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
 sql20 = """
 SELECT
-  id,
-  ST_AsText(geom)
+    id,
+    ST_AsText(geom)
 FROM
-  nodes
+    nodes
 WHERE
-  tags?'indoor'
-  AND tags->'indoor' in ('room', 'corridor', 'area', 'level')
+    tags?'indoor' AND
+    tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
 sql30 = """
 CREATE TEMP TABLE public_indoor_rooms AS
-(
 SELECT
-  ways.id,
-  ST_AsText(ST_Centroid(ways.linestring)) as geom
+    ways.id,
+    ST_AsText(ST_Centroid(ways.linestring)) as geom
 FROM
-  ways
+    ways
 WHERE
-  ways.is_polygon
-  AND ways.tags?'indoor'
-  AND ways.tags->'indoor' = 'room'
-  AND (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private'))
-)
+    ways.is_polygon AND
+    ways.tags?'indoor' AND
+    ways.tags->'indoor' = 'room' AND
+    (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private'))
 """
 
 sql31 = """
 CREATE TEMP TABLE indoor_rooms_with_door AS
-(
 SELECT DISTINCT
-  public_indoor_rooms.id
+    public_indoor_rooms.id
 FROM
-  public_indoor_rooms
-JOIN way_nodes ON public_indoor_rooms.id = way_nodes.way_id
-JOIN nodes ON nodes.id = way_nodes.node_id
+    public_indoor_rooms
+    JOIN way_nodes ON
+        public_indoor_rooms.id = way_nodes.way_id
+    JOIN nodes ON
+        nodes.id = way_nodes.node_id
 WHERE
-  nodes.tags?'door'
-)
+    nodes.tags?'door'
 """
 
 sql32 = """
 SELECT
-  public_indoor_rooms.id,
-  public_indoor_rooms.geom
+    public_indoor_rooms.id,
+    public_indoor_rooms.geom
 FROM
-  public_indoor_rooms
-LEFT JOIN indoor_rooms_with_door ON indoor_rooms_with_door.id = public_indoor_rooms.id
+    public_indoor_rooms
+    LEFT JOIN indoor_rooms_with_door ON
+        indoor_rooms_with_door.id = public_indoor_rooms.id
 WHERE
-  indoor_rooms_with_door.id IS NULL
+    indoor_rooms_with_door.id IS NULL
 """
 
 sql00 = """
 CREATE TEMP TABLE indoor_surfaces AS
-(
 SELECT
-  ways.id,
-  ST_AsText(ST_Centroid(ways.linestring)) as geom,
-  ways.tags->'indoor' as indoor,
-  ways.tags->'level' as level,
-  ways.tags
+    ways.id,
+    ST_AsText(ST_Centroid(ways.linestring)) AS geom,
+    ways.tags->'indoor' AS indoor,
+    ways.tags->'level' AS level,
+    ways.tags
 FROM
-  ways
+    ways
 WHERE
-  ways.is_polygon
-  AND ways.tags?'indoor'
-  AND ways.tags->'indoor' in ('room', 'corridor', 'area', 'level')
-)
+    ways.is_polygon AND
+    ways.tags?'indoor' AND
+    ways.tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
 sql40 = """
 SELECT
-  id,
-  geom
+    id,
+    geom
 FROM
-  indoor_surfaces
+    indoor_surfaces
 WHERE
-   NOT tags?'level'
+    NOT tags?'level'
 """
 
 sql50 = """
 SELECT
-  id,
-  geom
+    id,
+    geom
 FROM
-  indoor_surfaces
+    indoor_surfaces
 WHERE
-  indoor_surfaces.indoor != 'room'
-  AND indoor_surfaces.tags?'shop'
+    indoor_surfaces.indoor != 'room' AND
+    indoor_surfaces.tags?'shop'
 """
 
 sql60 = """
 CREATE TEMP TABLE indoor_surfaces_connected_to_highways AS
-(
 SELECT DISTINCT
-  indoor_surfaces.id,
-  indoor_surfaces.geom,
-  indoor_surfaces.indoor,
-  indoor_surfaces.level as surface_level,
-  highway_ends.nid,
-  highway_ends.highway,
-  highways.tags->'level' as connected_highway_level
+    indoor_surfaces.id,
+    indoor_surfaces.geom,
+    indoor_surfaces.indoor,
+    indoor_surfaces.level AS surface_level,
+    highway_ends.nid,
+    highway_ends.highway,
+    highways.tags->'level' AS connected_highway_level
 FROM
-  indoor_surfaces
-JOIN way_nodes ON indoor_surfaces.id = way_nodes.way_id
-JOIN nodes ON nodes.id = way_nodes.node_id
-JOIN highway_ends ON nodes.id = highway_ends.nid
-JOIN highways ON highway_ends.id = highways.id
+    indoor_surfaces
+    JOIN way_nodes ON
+        indoor_surfaces.id = way_nodes.way_id
+    JOIN nodes ON
+        nodes.id = way_nodes.node_id
+    JOIN highway_ends ON
+        nodes.id = highway_ends.nid
+    JOIN highways ON
+        highway_ends.id = highways.id
 WHERE
-  indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area')
-  AND highways.highway IN ('steps', 'footway', 'pedestrian')
-)
+    indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area') AND
+    highways.highway IN ('steps', 'footway', 'pedestrian')
 """
 
 # TODO : check that all surfaces have at least one connected_highway_level that matches it own surface_level
@@ -155,35 +154,38 @@ WHERE
 
 sql61 = """
 CREATE TEMP TABLE indoor_surfaces_connected_to_other_surfaces AS
-(
-  SELECT DISTINCT
-  i1.id as id,
-  i1.level as surface_level,
-  i2.id as other_surface_id,
-  i2.level as other_surface_level
+SELECT DISTINCT
+    i1.id AS id,
+    i1.level AS surface_level,
+    i2.id AS other_surface_id,
+    i2.level AS other_surface_level
 FROM
-  way_nodes w2
-JOIN way_nodes w1 ON w1.node_id = w2.node_id
-JOIN indoor_surfaces i1 ON i1.id = w1.way_id
-JOIN indoor_surfaces i2 ON i2.id = w2.way_id
+    way_nodes w2
+    JOIN way_nodes w1 ON
+        w1.node_id = w2.node_id
+    JOIN indoor_surfaces i1 ON
+        i1.id = w1.way_id
+    JOIN indoor_surfaces i2 ON
+        i2.id = w2.way_id
 WHERE
-  i1.id <> i2.id
-  AND i1.tags->'indoor' IN ('room', 'corridor', 'area')
-)
+    i1.id <> i2.id AND
+    i1.tags->'indoor' IN ('room', 'corridor', 'area')
 """ # maybe check the levels too to make sure they are actually connected ?
 
 sql62 = """
 SELECT
-  indoor_surfaces.id,
-  indoor_surfaces.geom
+    indoor_surfaces.id,
+    indoor_surfaces.geom
 FROM
-  indoor_surfaces
-LEFT JOIN indoor_surfaces_connected_to_other_surfaces ON indoor_surfaces_connected_to_other_surfaces.id = indoor_surfaces.id
-LEFT JOIN indoor_surfaces_connected_to_highways ON indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
+    indoor_surfaces
+    LEFT JOIN indoor_surfaces_connected_to_other_surfaces ON
+        indoor_surfaces_connected_to_other_surfaces.id = indoor_surfaces.id
+    LEFT JOIN indoor_surfaces_connected_to_highways ON
+        indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
 WHERE
-  indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area')
-  AND indoor_surfaces_connected_to_highways.id IS NULL
-  AND indoor_surfaces_connected_to_other_surfaces.id is NULL
+    indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area') AND
+    indoor_surfaces_connected_to_highways.id IS NULL AND
+    indoor_surfaces_connected_to_other_surfaces.id is NULL
 """
 
 class Analyser_Osmosis_Indoor(Analyser_Osmosis):
