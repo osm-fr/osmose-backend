@@ -82,18 +82,19 @@ WHERE
 sql00 = """
 CREATE TEMP TABLE indoor_surfaces AS
 SELECT
-    ways.id,
-    ST_AsText(ST_Centroid(ways.linestring)) AS geom,
-    ways.tags->'indoor' AS indoor,
-    ways.tags->'level' AS level,
-    ways.tags
+    id,
+    linestring AS geom,
+    nodes,
+    tags->'indoor' AS indoor,
+    tags->'level' AS level,
+    tags
 FROM
     ways
 WHERE
-    ways.is_polygon AND
+    is_polygon AND
     tags != ''::hstore AND
-    ways.tags?'indoor' AND
-    ways.tags->'indoor' in ('room', 'corridor', 'area', 'level')
+    tags?'indoor' AND
+    tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
 sql40 = """
@@ -129,14 +130,13 @@ SELECT DISTINCT
     highways.tags->'level' AS connected_highway_level
 FROM
     indoor_surfaces
-    JOIN way_nodes ON
-        indoor_surfaces.id = way_nodes.way_id
     JOIN nodes ON
-        nodes.id = way_nodes.node_id
+        nodes.geom && indoor_surfaces.geom AND
+        nodes.id = ANY(indoor_surfaces.nodes)
     JOIN highway_ends ON
-        nodes.id = highway_ends.nid
+        highway_ends.nid = nodes.id
     JOIN highways ON
-        highway_ends.id = highways.id
+        highways.id = highway_ends.id
 WHERE
     indoor_surfaces.tags->'indoor' IN ('room', 'corridor', 'area') AND
     highways.highway IN ('steps', 'footway', 'pedestrian')
@@ -148,28 +148,25 @@ WHERE
 
 sql61 = """
 CREATE TEMP TABLE indoor_surfaces_connected_to_other_surfaces AS
-SELECT DISTINCT
+SELECT
     i1.id AS id,
     i1.level AS surface_level,
     i2.id AS other_surface_id,
     i2.level AS other_surface_level
 FROM
-    way_nodes w2
-    JOIN way_nodes w1 ON
-        w1.node_id = w2.node_id
-    JOIN indoor_surfaces i1 ON
-        i1.id = w1.way_id
+    indoor_surfaces i1
     JOIN indoor_surfaces i2 ON
-        i2.id = w2.way_id
+        i2.id < i1.id AND
+        i2.geom && i1.geom AND
+        i2.nodes && i1.nodes
 WHERE
-    i1.id <> i2.id AND
     i1.tags->'indoor' IN ('room', 'corridor', 'area')
 """ # maybe check the levels too to make sure they are actually connected ?
 
 sql62 = """
 SELECT
     indoor_surfaces.id,
-    ST_AsText(indoor_surfaces.geom)
+    ST_AsText(way_locate(indoor_surfaces.geom))
 FROM
     indoor_surfaces
     LEFT JOIN indoor_surfaces_connected_to_other_surfaces ON
