@@ -30,6 +30,7 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     NOT is_polygon AND
     tags?'indoor' AND
     tags->'indoor' in ('room', 'corridor', 'area', 'level')
@@ -42,6 +43,7 @@ SELECT
 FROM
     nodes
 WHERE
+    tags != ''::hstore AND
     tags?'indoor' AND
     tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
@@ -56,6 +58,7 @@ FROM
     ways
 WHERE
     is_polygon AND
+    tags != ''::hstore AND
     tags?'indoor' AND
     tags->'indoor' = 'room' AND
     (NOT tags?'access' OR NOT tags->'access' IN ('no', 'private'))
@@ -88,6 +91,7 @@ FROM
     ways
 WHERE
     ways.is_polygon AND
+    tags != ''::hstore AND
     ways.tags?'indoor' AND
     ways.tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
