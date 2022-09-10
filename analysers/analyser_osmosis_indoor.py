@@ -71,7 +71,7 @@ WHERE
     tags->'indoor' in ('room', 'corridor', 'area', 'level')
 """
 
-sql31 = """
+sql30 = """
 SELECT
     public_indoor_rooms.id,
     ST_AsText(way_locate(public_indoor_rooms.geom))
@@ -197,8 +197,7 @@ consider using indoor=yes instead.'''))
         self.run(sql01)
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
-        self.run(sql30)
-        self.run(sql31, self.callback30)
+        self.run(sql30, self.callback30)
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
         self.run(sql60)
