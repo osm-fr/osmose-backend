@@ -28,17 +28,18 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    {0}ways
+    {0}highways
 WHERE
-    tags != ''::hstore AND
-    tags?'junction' AND
-    tags->'junction' = 'roundabout' AND
+    is_roundabout AND
     is_polygon AND
     ST_IsSimple(linestring) AND
     {1} ST_OrderingEquals(ST_Makepolygon(linestring), st_forceRHR(ST_Makepolygon(linestring)))
 """
 
 class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
+
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways', 'touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
