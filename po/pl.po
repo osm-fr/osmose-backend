@@ -141,7 +141,7 @@ msgstr "Specjalny budynek (okrągły)"
 msgid "Special building (large)"
 msgstr "Specjalny budynek (duży)"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:220
+#: ../analysers/analyser_osmosis_highway_deadend.py:250
 msgid "Unconnected cycleway"
 msgstr "Niepołączone drogi rowerowe"
 
@@ -379,10 +379,6 @@ msgstr "Źle napisane słowo"
 msgid "The name tag contains two names"
 msgstr "Tag name zawiera dwie nazwy"
 
-#: ../plugins/Name_PoorlyWrittenWayType.py:49
-msgid "Badly written way type"
-msgstr "Źle napisany typ drogi"
-
 #: ../plugins/Name_Spaces.py:32
 msgid "Too many spaces"
 msgstr "Za dużo spacji"
@@ -443,10 +439,10 @@ msgstr "Droga z jednym węzłem"
 msgid "Deprecated tag"
 msgstr "Przestarzały tag"
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr "Przyjrzyj się grupie tagów"
 
@@ -624,15 +620,15 @@ msgstr "Obiekt landuse nie na ziemi"
 msgid "Natural feature underground"
 msgstr "Obiekt naturalny pod ziemią"
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr "Domyślny i lokalny język nie są takie same"
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Nazwa w lokalnym języku bez domyślnej nazwy"
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr "Nazwa w innym języku bez domyślnej nazwy"
 
@@ -816,19 +812,19 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Sprzeczność między tagami: crossing=no należy używać bez highway=crossing"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:172
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
 msgid "Duplicated way geometry and tags"
 msgstr "Zduplikowana geometria i tagi linii"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
 msgid "Duplicated way geometry but different tags"
 msgstr "Zduplikowana geometria, ale inne tagi linii"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:182
 msgid "Duplicated node geometry and tags"
 msgstr "Zduplikowana geometria i tagi węzła"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:182
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:184
 msgid "Duplicated node geometry but different tags"
 msgstr "Zduplikowana geometria węzła, ale inne tagi"
 
@@ -973,7 +969,7 @@ msgstr ""
 msgid "Large relation of type {0}"
 msgstr "Duża relacja \"type={0}\""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:184
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:186
 msgid "Duplicated node without tag"
 msgstr "Zduplikowany węzeł bez tagów"
 
@@ -985,7 +981,7 @@ msgstr "To powinien być wielokąt, część relacji multipolygon lub nie powinn
 msgid "Almost junction, join or use noexit tag"
 msgstr "Prawie skrzyżowanie, połącz lub użyj tagu noexit=yes"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:235
+#: ../analysers/analyser_osmosis_highway_deadend.py:265
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Droga jednokierunkowa nieosiągalna lub brakuje parkingu lub oznaczenia wjazdu/wyjazdu z parkingu"
 
@@ -1560,7 +1556,7 @@ msgstr ""
 msgid "Fence with material tag, better use fence_type tag"
 msgstr "Płot z tagiem \"material\", lepiej użyć \"fence_type\""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:228
+#: ../analysers/analyser_osmosis_highway_deadend.py:258
 msgid "Unconnected highway"
 msgstr "Niepołączona droga"
 
@@ -1701,7 +1697,6 @@ msgstr "Tag przedziałów warunkowych jest niepoprawny"
 msgid "Conditional intervals does not fit into opening hours"
 msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
 #: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
@@ -1711,6 +1706,7 @@ msgstr "Tag przedziałów warunkowych nie pasuje do godzin otwarcia"
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2003,11 +1999,11 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 msgstr "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
 msgid "Delete one of the two objects."
 msgstr "Usuń jeden z obiektów."
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
@@ -2043,24 +2039,24 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr "![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)\n\nDroga drugorzędna połączona bezpośrednio z drogami lokalnymi."
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:218
+#: ../analysers/analyser_osmosis_highway_deadend.py:248
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:117
 msgid "The end of the way is not connected to another way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:225
+#: ../analysers/analyser_osmosis_highway_deadend.py:255
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:230
+#: ../analysers/analyser_osmosis_highway_deadend.py:260
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:233
+#: ../analysers/analyser_osmosis_highway_deadend.py:263
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -2352,25 +2348,25 @@ msgstr ""
 msgid "Check if it is really a roundabout and cut the way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:69
+#: ../analysers/analyser_osmosis_roundabout.py:91
 msgid "Missing `junction=roundabout`"
 msgstr "Brakuje junction=roundabout"
 
-#: ../analysers/analyser_osmosis_roundabout.py:71
+#: ../analysers/analyser_osmosis_roundabout.py:93
 msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
 msgstr "Wygląda to na rondo, ale brakuje tagu [`junction=roundabout`](https://wiki.openstreetmap.org/wiki/Pl:Tag:junction%3Droundabout)."
 
-#: ../analysers/analyser_osmosis_roundabout.py:75
+#: ../analysers/analyser_osmosis_roundabout.py:97
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
 "verify that the way direction is counter-clockwise when the driving side is\n"
 "on the right, and remove the tag `oneway=yes` if present."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:79
+#: ../analysers/analyser_osmosis_roundabout.py:101
 msgid ""
 "Ensure that it is a roundabout, using satellite imagery or a local\n"
 "survey.\n"
@@ -2579,14 +2575,6 @@ msgid ""
 "Some streets have not the same names on the each side, especially if\n"
 "the houses by both sides are on different city. In this case, you can use\n"
 "the tag `name:left=*` and `name:right=*`."
-msgstr ""
-
-#: ../plugins/Name_PoorlyWrittenWayType.py:51
-msgid "An abbreviation is present."
-msgstr "W nazwie drogi jest skrót."
-
-#: ../plugins/Name_PoorlyWrittenWayType.py:53
-msgid "Write the type of the way with all letters."
 msgstr ""
 
 #: ../plugins/Name_Quotation.py:31
@@ -3259,20 +3247,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr "Relacji brakuje tagu `type=*`."
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr "Wypożyczalnia rowerów {0} niezintegrowana"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr "Wypożyczalnia rowerów {0}, propozycja integracji"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr "Wypożyczalnia rowerów {0}, aktualizacja"
@@ -3377,14 +3365,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr "Stacja paliw bez tagu \"ref:mise\" lub tag niepoprawny"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr "Parking {0} niezintegrowany"
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr "Parking {0}, propozycja integracji"
@@ -4045,13 +4033,6 @@ msgstr ""
 msgid "Multiple numbers \"{numbers}\" in way \"{way}\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_useless.py:126
-msgid ""
-"An object without relevant tag (no other tag than `source`,\n"
-"`created_by`, `note:qadastre` nor `name`) nor a relation member with a\n"
-"role."
-msgstr "Obiekt bez istotnego tagu (innego niż `source`, `created_by`, `note:qadastre` lub `name`) lub człon relacji bez roli."
-
 #: ../analysers/analyser_osmosis_way_approximate.py:169
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
@@ -4162,7 +4143,7 @@ msgstr ""
 msgid "Guess with probability: {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:222
+#: ../analysers/analyser_osmosis_highway_deadend.py:252
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."
@@ -4888,4 +4869,64 @@ msgstr ""
 #: ../plugins/Highway_Parking_Lane.py:116
 #, python-brace-format
 msgid "`{0}` is a value for key `{1}`"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:267
+msgid "Unconnected drive-through"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:269
+msgid ""
+"Drive-throughs are usually not dead-ended. Make sure the full drive-through path was drawn, including i.e. turning circles and covered areas.\n"
+"Ensure that `service=drive-through` is the correct tag."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:272
+msgid "Review the type of the service road or draw the local road network."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:106
+msgid "Roundabout without right of way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:108
+msgid ""
+"A highway with `junction=roundabout` must by definition have the right of way.\n"
+"Circular highways without right of way should be tagged as `junction=circular`."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:111
+msgid ""
+"Replace `junction=roundabout` on the entire circular road with `junction=circular`.\n"
+"\n"
+"If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for the road entering the roundabout, tag it on that way only."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:115
+msgid ""
+"Make sure to tag `oneway=*` when using `junction=circular`. Unlike "
+"`junction=roundabout`, `junction=circular` does not imply `oneway=yes`."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_useless.py:126
+msgid ""
+"An object without relevant tag (no other tag than `source`,\n"
+"`created_by`, `note:qadastre`, `area` nor `name`) nor a relation member with a\n"
+"role."
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:49
+msgid "Badly written way name"
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:51
+msgid ""
+"An abbreviation is present (eg Rd instead of Road) or first letter of name "
+"is lower case."
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:53
+msgid ""
+"Write the name with all letters without an abbreviation and first letter in "
+"upper case."
 msgstr ""

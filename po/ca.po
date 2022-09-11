@@ -134,7 +134,7 @@ msgstr ""
 msgid "Special building (large)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:220
+#: ../analysers/analyser_osmosis_highway_deadend.py:250
 msgid "Unconnected cycleway"
 msgstr "Via ciclista desconnectada"
 
@@ -336,19 +336,19 @@ msgstr "Format de data incorrecte"
 msgid "Bad lanes value"
 msgstr "Valor incorrecte de carrils"
 
-#: ../plugins/Highway_Parking_Lane.py:31
+#: ../plugins/Highway_Parking_Lane.py:36
 msgid "Bad parking:lane:[side]"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:38
+#: ../plugins/Highway_Parking_Lane.py:43
 msgid "Too many parking:lane:[side]"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:43
+#: ../plugins/Highway_Parking_Lane.py:48
 msgid "Bad parking:lane:[side] value"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:48
+#: ../plugins/Highway_Parking_Lane.py:52
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr ""
 
@@ -371,10 +371,6 @@ msgstr "Paraula mal escrita"
 #: ../plugins/Name_Multiple.py:35
 msgid "The name tag contains two names"
 msgstr "L'etiqueta name conté dos noms"
-
-#: ../plugins/Name_PoorlyWrittenWayType.py:49
-msgid "Badly written way type"
-msgstr "Tipus de via mal escrit"
 
 #: ../plugins/Name_Spaces.py:32
 msgid "Too many spaces"
@@ -809,19 +805,19 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:172
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
 msgid "Duplicated way geometry and tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
 msgid "Duplicated way geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:182
 msgid "Duplicated node geometry and tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:182
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:184
 msgid "Duplicated node geometry but different tags"
 msgstr ""
 
@@ -966,7 +962,7 @@ msgstr ""
 msgid "Large relation of type {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:184
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:186
 msgid "Duplicated node without tag"
 msgstr ""
 
@@ -978,7 +974,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:235
+#: ../analysers/analyser_osmosis_highway_deadend.py:265
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1326,7 +1322,6 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
-#: ../analysers/analyser_merge_public_transport_IN_kerala_bus.py:31
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr ""
@@ -1554,7 +1549,7 @@ msgstr ""
 msgid "Fence with material tag, better use fence_type tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:228
+#: ../analysers/analyser_osmosis_highway_deadend.py:258
 msgid "Unconnected highway"
 msgstr ""
 
@@ -1637,7 +1632,7 @@ msgstr ""
 msgid "Misusing addr:interpolation in combination with other tags"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_plant_FR.py:63
+#: ../analysers/analyser_merge_power_plant_FR.py:65
 #, python-format, python-brace-format
 msgid "Power plant {0}"
 msgstr ""
@@ -1997,11 +1992,11 @@ msgid ""
 "![](https://wiki.openstreetmap.org/w/images/0/08/Osmose-eg-error-4080.png)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:174
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:176
 msgid "Delete one of the two objects."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:178
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:180
 msgid "Compare tags and delete object or merge them."
 msgstr ""
 
@@ -2037,24 +2032,24 @@ msgid ""
 "Secondary connecting directly to the residentials."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:218
+#: ../analysers/analyser_osmosis_highway_deadend.py:248
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:117
 msgid "The end of the way is not connected to another way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:225
+#: ../analysers/analyser_osmosis_highway_deadend.py:255
 msgid ""
 "Connect the `cycleway` to the road, even with a little virtual\n"
 "path."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:230
+#: ../analysers/analyser_osmosis_highway_deadend.py:260
 msgid ""
 "Highway from `motorway` to `tertiary` are important ways. They should\n"
 "lead to somewhere and in particular to a network of minor roads."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:233
+#: ../analysers/analyser_osmosis_highway_deadend.py:263
 msgid "Review the classification of road or draw the local road network."
 msgstr ""
 
@@ -2346,25 +2341,25 @@ msgstr ""
 msgid "Check if it is really a roundabout and cut the way."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:69
+#: ../analysers/analyser_osmosis_roundabout.py:91
 msgid "Missing `junction=roundabout`"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:71
+#: ../analysers/analyser_osmosis_roundabout.py:93
 msgid ""
 "This looks like a roundabout, but the tag `junction=roundabout` is not\n"
 "present. See [Roundabout](https://wiki.openstreetmap.org/wiki/Roundabout)\n"
 "for more info."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:75
+#: ../analysers/analyser_osmosis_roundabout.py:97
 msgid ""
 "If it is really a roundabout, add the tag `junction=roundabout`,\n"
 "verify that the way direction is counter-clockwise when the driving side is\n"
 "on the right, and remove the tag `oneway=yes` if present."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:79
+#: ../analysers/analyser_osmosis_roundabout.py:101
 msgid ""
 "Ensure that it is a roundabout, using satellite imagery or a local\n"
 "survey.\n"
@@ -2560,17 +2555,7 @@ msgid ""
 "side* and `the merge_to_left` on the *right side*."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:36
-msgid "Use `left`, `right` or `both`."
-msgstr ""
-
-#: ../plugins/Highway_Parking_Lane.py:40
-msgid ""
-"There are more types of parking for sides than a street have\n"
-"sides."
-msgstr ""
-
-#: ../plugins/Highway_Parking_Lane.py:50
+#: ../plugins/Highway_Parking_Lane.py:54
 msgid "A parking condition is present but without parking kind."
 msgstr ""
 
@@ -2583,14 +2568,6 @@ msgid ""
 "Some streets have not the same names on the each side, especially if\n"
 "the houses by both sides are on different city. In this case, you can use\n"
 "the tag `name:left=*` and `name:right=*`."
-msgstr ""
-
-#: ../plugins/Name_PoorlyWrittenWayType.py:51
-msgid "An abbreviation is present."
-msgstr ""
-
-#: ../plugins/Name_PoorlyWrittenWayType.py:53
-msgid "Write the type of the way with all letters."
 msgstr ""
 
 #: ../plugins/Name_Quotation.py:31
@@ -3599,15 +3576,9 @@ msgid ""
 "classification. They do not have a specific tag for the moment."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:33
+#: ../plugins/Highway_Parking_Lane.py:38
 msgid ""
 "The side was not recognized, see\n"
-"[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
-msgstr ""
-
-#: ../plugins/Highway_Parking_Lane.py:45
-msgid ""
-"See values at\n"
 "[`parking:lane=*`](https://wiki.openstreetmap.org/wiki/Key:parking:lane)."
 msgstr ""
 
@@ -3630,35 +3601,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1130
+#: ../analysers/Analyser_Merge.py:1132
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1133
+#: ../analysers/Analyser_Merge.py:1135
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1138
+#: ../analysers/Analyser_Merge.py:1140
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1293
+#: ../analysers/Analyser_Merge.py:1295
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1306
+#: ../analysers/Analyser_Merge.py:1308
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1126
+#: ../analysers/Analyser_Merge.py:1128
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4055,13 +4026,6 @@ msgstr ""
 msgid "Multiple numbers \"{numbers}\" in way \"{way}\""
 msgstr ""
 
-#: ../analysers/analyser_osmosis_useless.py:126
-msgid ""
-"An object without relevant tag (no other tag than `source`,\n"
-"`created_by`, `note:qadastre` nor `name`) nor a relation member with a\n"
-"role."
-msgstr ""
-
 #: ../analysers/analyser_osmosis_way_approximate.py:169
 msgid ""
 "Geometry seems to be draw crudely, there is a discrepancy between the\n"
@@ -4072,12 +4036,12 @@ msgstr ""
 msgid "After checking orthophotos, add nodes or move existing nodes."
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:123
+#: ../plugins/TagFix_DuplicateValue.py:124
 #, python-brace-format
 msgid "Duplicated values {key}={val}"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:130
+#: ../plugins/TagFix_DuplicateValue.py:131
 #, python-brace-format
 msgid "Duplicated similar values {key}={val}"
 msgstr ""
@@ -4172,7 +4136,7 @@ msgstr ""
 msgid "Guess with probability: {0}"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:222
+#: ../analysers/analyser_osmosis_highway_deadend.py:252
 msgid ""
 "The end of a `highway=cycleway` must be connected to the rest of the\n"
 "road network to ensure continuity, especially for routes planner."
@@ -4298,22 +4262,22 @@ msgstr ""
 msgid "Spring box not integrated"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:52
+#: ../plugins/Highway_Parking_Lane.py:56
 msgid "parking:condition:[side] not applicable"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:54
+#: ../plugins/Highway_Parking_Lane.py:58
 msgid ""
 "A parking condition is set for a parking:lane:[side] value that forbids "
 "parking."
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:56
+#: ../plugins/Highway_Parking_Lane.py:60
 msgid ""
 "parking:condition:[side] should be mapped on separately mapped parking area"
 msgstr ""
 
-#: ../plugins/Highway_Parking_Lane.py:58
+#: ../plugins/Highway_Parking_Lane.py:62
 msgid ""
 "A parking condition is set for a parking:lane:[side] value that indicates\n"
 "that the parking area is mapped separately. Any parking conditions should\n"
@@ -4872,4 +4836,90 @@ msgstr ""
 #: ../plugins/TagFix_BadValue.py:44
 msgid ""
 "The value of the tag is very unspecific. Replace it by a meaningful value."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:41
+msgid "Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:45
+msgid ""
+"The key `parking:lane:both` was used together with `parking:lane:left` and/or `parking:lane:right`.\n"
+"However, `both` already covers both sides of a street, so the latter are redundant."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:49 ../plugins/Highway_Parking_Lane.py:67
+#, python-brace-format
+msgid "Use any of the following values: `{0}`."
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:66
+msgid "Bad parking:condition:[side] value"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:99
+#: ../plugins/Highway_Parking_Lane.py:101
+#: ../plugins/Highway_Parking_Lane.py:116
+#, python-brace-format
+msgid "`{0}` is a value for key `{1}`"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:267
+msgid "Unconnected drive-through"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:269
+msgid ""
+"Drive-throughs are usually not dead-ended. Make sure the full drive-through path was drawn, including i.e. turning circles and covered areas.\n"
+"Ensure that `service=drive-through` is the correct tag."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_deadend.py:272
+msgid "Review the type of the service road or draw the local road network."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:106
+msgid "Roundabout without right of way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:108
+msgid ""
+"A highway with `junction=roundabout` must by definition have the right of way.\n"
+"Circular highways without right of way should be tagged as `junction=circular`."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:111
+msgid ""
+"Replace `junction=roundabout` on the entire circular road with `junction=circular`.\n"
+"\n"
+"If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for the road entering the roundabout, tag it on that way only."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:115
+msgid ""
+"Make sure to tag `oneway=*` when using `junction=circular`. Unlike "
+"`junction=roundabout`, `junction=circular` does not imply `oneway=yes`."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_useless.py:126
+msgid ""
+"An object without relevant tag (no other tag than `source`,\n"
+"`created_by`, `note:qadastre`, `area` nor `name`) nor a relation member with a\n"
+"role."
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:49
+msgid "Badly written way name"
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:51
+msgid ""
+"An abbreviation is present (eg Rd instead of Road) or first letter of name "
+"is lower case."
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:53
+msgid ""
+"Write the name with all letters without an abbreviation and first letter in "
+"upper case."
 msgstr ""
