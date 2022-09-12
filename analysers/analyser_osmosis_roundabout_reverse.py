@@ -84,7 +84,7 @@ class Test(TestAnalyserOsmosis):
         TestAnalyserOsmosis.setup_class()
         cls.analyser_conf = cls.load_osm("tests/osmosis_roundabout_reverse.test.osm",
                                          config.dir_tmp + "/tests/osmosis_roundabout_reverse.test.xml",
-                                         {"proj": 2154}) # Random unused proj for highway table generation
+                                         {"proj": 2154}) # Random proj for highway table generation
 
     def test_left(self):
         self.analyser_conf.options["driving_side"] = "left"
@@ -94,7 +94,7 @@ class Test(TestAnalyserOsmosis):
         self.compare_results("tests/results/osmosis_roundabout_reverse.test.left.osm")
 
         self.root_err = self.load_errors()
-        self.check_err(cl="1", lat="43.95350322319254", lon="6.369968210917709", elems=[("way", "2")])
+        self.check_err(cl="1", lat="43.9535032231925", lon="6.36996821091771", elems=[("way", "2")])
         self.check_num_err(1)
 
     def test_right(self):
@@ -105,5 +105,5 @@ class Test(TestAnalyserOsmosis):
         self.compare_results("tests/results/osmosis_roundabout_reverse.test.right.osm")
 
         self.root_err = self.load_errors()
-        self.check_err(cl="1", lat="43.953310001816334", lon="6.369762387443226", elems=[("way", "1")])
+        self.check_err(cl="1", lat="43.9533100018163", lon="6.36976238744323", elems=[("way", "1")])
         self.check_num_err(1)
