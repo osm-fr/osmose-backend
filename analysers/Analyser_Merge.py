@@ -35,6 +35,7 @@ import tempfile
 import json
 import re
 import fnmatch
+import shutil
 from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
@@ -404,8 +405,7 @@ class Source:
             f = io.BytesIO(bz2.decompress(f.read()))
             f.seek(0)
         elif self.gzip:
-            f = io.BytesIO(gzip.decompress(f.read()))
-            f.seek(0)
+            f = gzip.GzipFile(fileobj=f)
 
         if not binary:
             f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
@@ -739,7 +739,7 @@ class GDAL(Parser):
     def import_(self, table, osmosis):
         try:
             tmp_file = tempfile.NamedTemporaryFile(mode = 'wb', delete = False)
-            tmp_file.write(self.source.open(binary = True).read())
+            shutil.copyfileobj(self.source.open(binary = True), tmp_file, 20*1024*1024)
             tmp_file.close()
 
             gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:{} '{}' ".format(
