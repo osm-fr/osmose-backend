@@ -91,7 +91,7 @@ WHERE
 sql40 = """
 SELECT
     id,
-    geom
+    ST_AsText(way_locate(geom))
 FROM
     indoor_surfaces
 WHERE
@@ -101,7 +101,7 @@ WHERE
 sql50 = """
 SELECT
     id,
-    geom
+    ST_AsText(way_locate(geom))
 FROM
     indoor_surfaces
 WHERE
