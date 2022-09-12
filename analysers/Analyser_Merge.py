@@ -726,12 +726,14 @@ class SHP(Parser):
         return self.proj
 
 class GDAL(Parser):
-    def __init__(self, source):
+    def __init__(self, source, layer = None):
         """
         Load any GDAL supported format.
         @param source: source file reader
+        @param layer: layer to use when source is multi-layer.
         """
         self.source = source
+        self.layer = layer
 
     def header(self):
         return True
@@ -742,12 +744,13 @@ class GDAL(Parser):
             shutil.copyfileobj(self.source.open(binary = True), tmp_file, 20*1024*1024)
             tmp_file.close()
 
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:{} '{}' ".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
                 self.proj,
-                tmp_file.name
+                tmp_file.name,
+                f"'{self.layer}'" if self.layer else '',
             )
             osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
             osmosis.giscurs.execute("COMMIT")
