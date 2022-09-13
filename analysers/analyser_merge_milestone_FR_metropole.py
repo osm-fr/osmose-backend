@@ -47,7 +47,7 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
                 dataset="57a837e2c751df5b90bb5dd4",
                 resource="92d86944-52e8-44c1-b4cc-b17ac82d70ed",
                 zip='BORNAGE_TOUT.shp')),
-            LoadGeomCentroid(srid = 2154,
+            LoadGeomCentroid(
                 where = lambda row: (
                     self.is_milestone(row)
                 )), # Check for valid Lambert98 coords

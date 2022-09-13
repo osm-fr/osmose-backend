@@ -39,7 +39,7 @@ class Analyser_Merge_Wastewater_Plant_FR(Analyser_Merge_Point):
             CSV(Source(attribution = u"Sandre", millesime = "09/2019",
                     fileUrl = u"https://services.sandre.eaufrance.fr/geo/odp?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typename=SysTraitementEauxUsees&SRSNAME=EPSG:4326&OUTPUTFORMAT=CSV")),
             Load_XY("LongWGS84OuvrageDepollution", "LatWGS84OuvrageDepollution",
-                select = {"DateMiseHorServiceOuvrageDepollution": None}),
+                select = {"DateMiseHorServiceOuvrageDepollution": False}),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways"],

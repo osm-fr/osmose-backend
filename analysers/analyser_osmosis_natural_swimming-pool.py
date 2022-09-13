@@ -50,6 +50,7 @@ FROM
                 ways.tags->'source' ILIKE '%cadastre%' AND
                 NOT ways.tags?'name' AND
                 NOT ways.tags?'landuse' AND
+                NOT ways.tags?'water' AND
                 array_length(ways.nodes, 1) = 5 AND
                 is_polygon AND
                 ST_Area(ST_MakePolygon(ways.linestring)) < 7e-9
@@ -70,6 +71,7 @@ FROM
         w.tags->'source' ILIKE '%cadastre%' AND
         NOT w.tags?'name' AND
         NOT w.tags?'landuse' AND
+        NOT w.tags?'water' AND
         is_polygon AND
         ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
         ST_Intersects(w.linestring, geom_union.geom)

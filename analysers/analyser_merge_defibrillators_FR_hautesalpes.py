@@ -39,7 +39,7 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge_Point):
                     dataset="5acb4dc2c751df71629a1e28",
                     resource="a3a2d9c1-2157-41f5-b2e3-7984ce05e902",
                     zip="dept05_defibrillateurs.shp")),
-            LoadGeomCentroid(srid = 2154),
+            LoadGeomCentroid(),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

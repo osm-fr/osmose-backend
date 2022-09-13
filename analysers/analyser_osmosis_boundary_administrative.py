@@ -68,55 +68,6 @@ sql13 = """
 CREATE INDEX commune_dump_ref_idx ON commune_dump(ref)
 """
 
-sql20 = """
-CREATE TEMP TABLE geodesic_hull AS
-SELECT
-    relations.id,
-    ST_ConvexHull(ST_Collect(nodes.geom)) AS hull,
-    substring(relations.tags->'ref', 1, 5) AS ref
-FROM
-    relations
-    JOIN relation_members ON
-        relation_members.relation_id = relations.id AND
-        relation_members.member_type = 'N'
-    JOIN nodes ON
-        nodes.id = relation_members.member_id
-WHERE
-    relations.tags?'type' AND
-    relations.tags->'type' = 'site' AND
-    relations.tags?'site' AND
-    relations.tags->'site' = 'geodesic' AND
-    relations.tags?'ref' AND
-    length(relations.tags->'ref') >= 5
-GROUP BY
-    relations.id,
-    substring(relations.tags->'ref', 1, 5)
-"""
-
-sql21 = """
-CREATE INDEX geodesic_hull_ref ON geodesic_hull(ref);
-"""
-
-sql22 = """
-SELECT
-    geodesic_hull.id,
-    commune.id,
-    ST_AsText(ST_Centroid(geodesic_hull.hull))
-FROM
-    geodesic_hull
-    JOIN commune_dump AS commune ON
-        geodesic_hull.ref = commune.ref
-WHERE
-    ST_IsValid(geodesic_hull.hull) AND
-    ST_IsValid(commune.polygon)
-GROUP BY
-    commune.id,
-    geodesic_hull.hull,
-    geodesic_hull.id
-HAVING
-    NOT BOOL_OR(ST_Intersects(geodesic_hull.hull, commune.polygon))
-"""
-
 sql40 = """
 SELECT
     c1.id,
@@ -183,12 +134,6 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and ("country" in config.options and config.options["country"].startswith("FR") or "test" in config.options)
-        if self.FR:
-            self.classs[100] = self.def_class(item = 6070, level = 3, tags = ['boundary', 'geom', 'fix:chair'],
-                title = T_('Survey point out of boundary'),
-                trap = T_(
-'''The geodesic markers should not be moved. These are reference points.
-Some geodesic markers are really out of boundary.'''))
         self.classs[2] = self.def_class(item = 6060, level = 1, tags = ['boundary', 'geom', 'fix:chair'],
             title = T_('Boundary intersection'),
             detail = T_(
@@ -203,7 +148,6 @@ boundary relation.'''),
             fix = T_(
 '''Delete the way, remove boundary tag or add to a relation.'''))
 
-        self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":2, "subclass": stablehash64(res[2]), "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText]}
 
@@ -213,10 +157,6 @@ boundary relation.'''),
         self.run(sql11)
         self.run(sql12)
         self.run(sql13)
-        if self.FR:
-            self.run(sql20)
-            self.run(sql21)
-            self.run(sql22, self.callback20)
         self.run(sql40, self.callback40)
 
     def analyser_osmosis_full(self):

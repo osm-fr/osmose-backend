@@ -35,6 +35,7 @@ import tempfile
 import json
 import re
 import fnmatch
+import shutil
 from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
@@ -404,8 +405,7 @@ class Source:
             f = io.BytesIO(bz2.decompress(f.read()))
             f.seek(0)
         elif self.gzip:
-            f = io.BytesIO(gzip.decompress(f.read()))
-            f.seek(0)
+            f = gzip.GzipFile(fileobj=f)
 
         if not binary:
             f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
@@ -510,10 +510,13 @@ class Parser:
     def header(self):
         pass
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         pass
 
     def close(self):
+        pass
+
+    def srid(self):
         pass
 
 class CSV(Parser):
@@ -546,7 +549,7 @@ class CSV(Parser):
         if self.have_header:
             return next(csv.reader(self.f, delimiter=self.separator, quotechar=self.quote))
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         self.f = self.f or self.source.open()
         for _ in range(self.skip_first_lines):
             self.f.__next__()
@@ -570,6 +573,9 @@ class GTFS(CSV):
         """
         source.zip = "stops.txt"
         CSV.__init__(self, source)
+
+    def srid(self):
+        return 4326
 
 def flattenjson(b):
     """
@@ -623,7 +629,7 @@ class JSON(Parser):
         columns = list(columns)
         return columns
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         self.json = self.json or map(flattenjson, self.extractor(json.loads(self.source.open().read())))
         for row in self.json:
             osmosis.giscurs.execute("insert into \"{0}\" (\"{1}\") values ({2})".format(
@@ -653,7 +659,7 @@ class GeoJSON(Parser):
         columns.append(u"geom_y")
         return columns
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         self.json = self.json or self.extractor(json.loads(self.source.open().read()))
         for row in self.json['features']:
             if row['geometry'] and row['geometry']['coordinates'] and len(row['geometry']['coordinates']) > 0:
@@ -678,6 +684,9 @@ class GeoJSON(Parser):
                         table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
                         values)
 
+    def srid(self):
+        return 4326
+
 class SHP(Parser):
     def __init__(self, source, edit = lambda s: s):
         """
@@ -697,12 +706,12 @@ class SHP(Parser):
         unzip = "unzip -o -d {0}_ {1}".format(tmp_file.name, self.source.path())
         if os.system(unzip):
             raise Exception("unzip error")
-        shp2pgsql = "shp2pgsql -e -k -W \"{0}\" -s \"{1}\" \"{2}_/{3}\" \"{4}\" > \"{5}\"".format(
+        shp2pgsql = "shp2pgsql -e -k -W \"{0}\" \"{1}_/{2}\" \"{3}\" s \"{4}\" > \"{5}\"".format(
             self.source.encoding,
-            srid,
             tmp_file.name,
             self.source.zipFile().filename,
             table,
+            self.proj,
             tmp_file.name
         )
         if os.system(shp2pgsql):
@@ -713,29 +722,35 @@ class SHP(Parser):
                 osmosis.giscurs.execute(s)
         os.remove(tmp_file.name)
 
+    def srid(self):
+        return self.proj
+
 class GDAL(Parser):
-    def __init__(self, source):
+    def __init__(self, source, layer = None):
         """
         Load any GDAL supported format.
         @param source: source file reader
+        @param layer: layer to use when source is multi-layer.
         """
         self.source = source
+        self.layer = layer
 
     def header(self):
         return True
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         try:
             tmp_file = tempfile.NamedTemporaryFile(mode = 'wb', delete = False)
-            tmp_file.write(self.source.open(binary = True).read())
+            shutil.copyfileobj(self.source.open(binary = True), tmp_file, 20*1024*1024)
             tmp_file.close()
 
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:{} '{}' ".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
                 self.proj,
-                tmp_file.name
+                tmp_file.name,
+                f"'{self.layer}'" if self.layer else '',
             )
             osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
             osmosis.giscurs.execute("COMMIT")
@@ -746,15 +761,18 @@ class GDAL(Parser):
         finally:
             os.remove(tmp_file.name)
 
+    def srid(self):
+        return self.proj
+
 GPKG = GDAL
 
 class Load(object):
-    def __init__(self, geom = ("NULL",), srid = 4326, table_name = None, create = None,
+    def __init__(self, geom = ("NULL",), srid = None, table_name = None, create = None,
             select = {}, unique = None, where = lambda res: True, map = lambda i: i, geomFunction = lambda i: i, validationGeomSQL = "1=1", spatialGeom = lambda geom: f"ST_GeomFromEWKT('{geom}')"):
         """
         Describ the conversion of data set loaded with COPY into the database into an other table more usable for processing.
         @param geom: the name of geom column, can be a SQL expression formatted as ("SQL CODE",)
-        @param srid: the projection of x and y coordinate
+        @param srid: overwrite the projection of geometry, by default projection comes from parsed content, or if no fallback to 4326.
         @param table_name: override the default table name
         @param create: the data base table description, generated by default from file header et format
         @param select: dict reformatted as SQL to filter row import before conversion, prefer this as the where parameter
@@ -766,7 +784,7 @@ class Load(object):
         @param spatialGeom: SQL to get the geometry
         """
         self.geom = geom
-        self.srid = srid
+        self.sridOverwrite = srid
         self.table_name = table_name
         self.create = create
         self.select = select
@@ -777,7 +795,10 @@ class Load(object):
         self.validationGeomSQL = validationGeomSQL
         self.spatialGeom = spatialGeom
 
-    def run(self, osmosis, parser, conflate, db_schema, default_table_base_name, version):
+    def srid(self):
+        return self.sridOverwrite if self.sridOverwrite is not None else (self.parser.srid() or 4326)
+
+    def run(self, osmosis, conflate, db_schema, default_table_base_name, version):
         """
         @return if data loaded in data base
         """
@@ -794,7 +815,7 @@ class Load(object):
             osmosis.logger.log(u"Load source into database")
             osmosis.run("DROP TABLE IF EXISTS {0}".format(table))
             if not self.create:
-                header = parser.header()
+                header = self.parser.header()
                 if header:
                     if header is not True:
                         self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
@@ -803,12 +824,12 @@ class Load(object):
             osmosis.run(sql_schema.format(schema = db_schema))
             if self.create:
                 osmosis.run("CREATE TABLE {0} ({1})".format(table, self.create))
-            parser.import_(table, self.srid, osmosis)
+            self.parser.import_(table, osmosis)
             osmosis.run("DELETE FROM meta WHERE name = '{0}'".format(table))
             osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, version))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
-            parser.close()
+            self.parser.close()
 
         # Convert
         country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hexastablehash(osmosis.config.db_schema)[-4:]
@@ -858,7 +879,7 @@ class Load(object):
                 distinct = order_by = ""
             osmosis.run0((sql01_ref if conflate.osmRef != "NULL" else sql01_geo).format(table = table, geom = self.geom, validationGeomSQL = self.validationGeomSQL, where = Select.where_attributes(self.select), distinct = distinct, order_by = order_by), insertOfficial)
             osmosis.run(sql02b.format(official = tableOfficial))
-            if self.srid:
+            if self.srid():
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom))) FROM {0}".format(tableOfficial))
                 self.bbox = giscurs.fetchone()[0]
             else:
@@ -876,7 +897,7 @@ class Load(object):
         else:
             self.bbox = self.data[0]
 
-        if not (self.srid and not self.bbox): # Abort condition
+        if not (self.srid() and not self.bbox): # Abort condition
             return tableOfficial
 
     @staticmethod
@@ -897,13 +918,13 @@ class Load(object):
 class Load_XY(Load):
     pip = None
 
-    def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table_name = None, create = None,
+    def __init__(self, x = ("NULL",), y = ("NULL",), srid = None, table_name = None, create = None,
             select = {}, unique = None, where = lambda res: True, map = lambda i: i, xFunction = lambda i: i, yFunction = lambda i: i):
         """
         Describ the conversion of data set loaded with COPY into the database into an other table more usable for processing.
         @param x: the name of x column, as or converted to longitude, can be a SQL expression formatted as ("SQL CODE",)
         @param y: the name of y column, as or converted to latitude, can be a SQL expression formatted as ("SQL CODE",)
-        @param srid: the projection of x and y coordinate
+        @param srid: overwrite the projection of geometry, by default projection comes from parsed content, or if no fallback to 4326.
         @param table_name: override the default table name
         @param create: the data base table description, generated by default from file header et format
         @param select: dict reformatted as SQL to filter row import before conversion, prefer this as the where parameter
@@ -931,18 +952,18 @@ class Load_XY(Load):
     {x}::varchar NOT IN ('', 'null') AND
     {y}::varchar NOT IN ('', 'null')
 """
-        spatialGeom = lambda geom: f"ST_Transform(ST_GeomFromEWKT('SRID={srid};POINT({geom[0]} {geom[1]})'), {self.proj})" if self.srid else "NULL::geometry"
+        spatialGeom = lambda geom: f"ST_Transform(ST_GeomFromEWKT('SRID={self.srid()};POINT({geom[0]} {geom[1]})'), {self.proj})" if self.srid() else "NULL::geometry"
         super().__init__((f'ARRAY[{x}, {y}]',), srid, table_name, create, select, unique, where, map, self.geomFunctionPoint, validationGeomSQL, spatialGeom)
 
-    def run(self, osmosis, parser, conflate, db_schema, default_table_base_name, version):
+    def run(self, osmosis, conflate, db_schema, default_table_base_name, version):
         """
         @return if data loaded in data base
         """
         if not self.pip:
-            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
+            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid() and self.polygon_id else None
             if self.pip:
                 if Transformer:
-                    self.transformer = Transformer.from_crs(self.srid, 4326, always_xy = True)
+                    self.transformer = Transformer.from_crs(self.srid(), 4326, always_xy = True)
                 else: # pyproj < 2.1
                     self.transformer = None
 
@@ -950,7 +971,7 @@ class Load_XY(Load):
             if self.pip and not self.transformer:
                 self.giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-            return super().run(osmosis, parser, conflate, db_schema, default_table_base_name, version)
+            return super().run(osmosis, conflate, db_schema, default_table_base_name, version)
         finally:
             if self.pip and not self.transformer and self.giscurs_getpoint:
                 self.giscurs_getpoint.close()
@@ -963,7 +984,7 @@ class Load_XY(Load):
                 if self.transformer:
                     lonLat = self.transformer.transform(x, y)
                 else:
-                    self.giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint({x}, {y}), {srid}), 4326))".format(x=x, y=y, srid=self.srid))
+                    self.giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint({x}, {y}), {srid}), 4326))".format(x=x, y=y, srid=self.srid()))
                     lonLat = self.osmosis.get_points(self.giscurs_getpoint.fetchone()[0])[0]
                     lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                 is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
@@ -1188,13 +1209,14 @@ verification on this data.'''))
 
     def analyser_osmosis_common(self):
         self.run("SET search_path TO {0}".format(self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public'])))
-        table = self.load.run(self, self.parser, self.conflate, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
+        self.load.parser = self.parser
+        table = self.load.run(self, self.conflate, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
         if not table:
             self.logger.log(u"Empty bbox, abort")
             return None
 
         # Extract OSM objects
-        if self.load.srid:
+        if self.load.srid():
             typeSelect, typeGeom, typeShape = self.typeGeom()
         else:
             typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
@@ -1218,8 +1240,8 @@ verification on this data.'''))
                         {from_}
                         LEFT JOIN LATERAL regexp_split_to_table(tags->'{ref}', ';') a(ref) ON true
                     WHERE""" + ("""
-                        {geomSelect} IS NOT NULL AND""" if self.load.srid else "") + ("""
-                        ST_Transform(ST_Expand(ST_SetSRID(ST_GeomFromText('{bbox}'), {proj}), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.load.srid else "") + """
+                        {geomSelect} IS NOT NULL AND""" if self.load.srid() else "") + ("""
+                        ST_Transform(ST_Expand(ST_SetSRID(ST_GeomFromText('{bbox}'), {proj}), {distance}), 4326) && {geomSelect} AND""" if self.load.bbox and self.load.srid() else "") + """
                         tags != ''::hstore AND
                         {where})""").format(
                         type = type[0].upper(),
@@ -1229,7 +1251,7 @@ verification on this data.'''))
                         shape = typeShape[type[0].upper()],
                         from_ = type,
                         bbox = self.load.bbox,
-                        srid = self.load.srid,
+                        srid = self.load.srid(),
                         proj = self.config.options.get("proj"),
                         distance = self.conflate.conflationDistance or 0, where = where),
                     self.conflate.select.types
@@ -1360,7 +1382,7 @@ OpenData and OSM.'''))
         joinClause = []
         if self.conflate.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
-        elif self.load.srid:
+        elif self.load.srid():
             joinClause.append("ST_DWithin(official.geom, osm_item.shape, {0})".format(self.conflate.conflationDistance))
         if self.conflate.extraJoin:
             joinClause.append("official.tags->'{tag}' = osm_item.tags->'{tag}'".format(tag=self.conflate.extraJoin))
@@ -1420,7 +1442,7 @@ OpenData and OSM.'''))
             if self.possible_merge:
                 possible_merge_joinClause = []
                 possible_merge_orderBy = ""
-                if self.load.srid:
+                if self.load.srid():
                     possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, {0})".format(self.conflate.conflationDistance))
                     possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
                 if self.conflate.extraJoin:

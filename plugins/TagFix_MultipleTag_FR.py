@@ -57,6 +57,8 @@ written in a form actually used.'''),
         country = self.father.config.options.get("country")
         if country and country.startswith("NC"):
             self.Ref = re.compile(r"^(RT|RP|VU|VE|VDE|RPN|RM|CR)[-\s]?[0-9]?", re.IGNORECASE)
+        elif country and (country.startswith("FR-2A") or country.startswith("FR-2B")):
+            self.Ref = re.compile(r"^([ANDCVR]|RN|RD|VC|CR|CE|EV|V|T)[-\s]?[0-9]?", re.IGNORECASE)
         else: # "FR"
             self.Ref = re.compile(r"^([ANDMCVR]|RN|RD|VC|CR|CE|EV|V)[-\s]?[0-9]?", re.IGNORECASE)
 
