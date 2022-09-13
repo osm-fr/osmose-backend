@@ -44,7 +44,7 @@ WHERE
     NOT ways.is_area AND
     NOT ways.is_construction AND
     (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- no name or start with 'Rond' or 'Giratoire' (French)
-    NOT ways.tags->'oneway' = 'no' AND
+    ways.is_oneway AND
     NOT ways.tags?'junction' AND
     -- geometry
     ways.is_polygon AND -- It's a polygon
@@ -102,20 +102,20 @@ on the right, and remove the tag `oneway=yes` if present.'''),
 survey.
 
 Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead.'''))
-        self.classs[2] = self.def_class(item = 2010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
-            title = T_('Roundabout without right of way'),
-            detail = T_(
+            self.classs[2] = self.def_class(item = 2010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
+                title = T_('Roundabout without right of way'),
+                detail = T_(
 '''A highway with `junction=roundabout` must by definition have the right of way.
 Circular highways without right of way should be tagged as `junction=circular`.'''),
-            fix = T_(
+                fix = T_(
 '''Replace `junction=roundabout` on the entire circular road with `junction=circular`.
 
 If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for the road entering the roundabout, tag it on that way only.'''),
-            trap = T_(
+                trap = T_(
 '''Make sure to tag `oneway=*` when using `junction=circular`. Unlike `junction=roundabout`, `junction=circular` does not imply `oneway=yes`.'''),
-            resource = "https://wiki.openstreetmap.org/wiki/Tag:junction%3Dcircular")
+                resource = "https://wiki.openstreetmap.org/wiki/Tag:junction%3Dcircular")
 
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
+            self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
     def analyser_osmosis_full(self):
         if "proj" in self.config.options:
@@ -127,4 +127,28 @@ If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for
             self.run(sql10.format(self.config.options.get("proj"), "not_touched_", "touched_"), self.callback10)
 
     def analyser_osmosis_common(self):
-        self.run(sql20, lambda res: {"class":2, "data":[self.way_full, self.node_full, self.positionAsText]})
+        if "proj" in self.config.options:
+            self.run(sql20, lambda res: {"class":2, "data":[self.way_full, self.node_full, self.positionAsText]})
+
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_roundabout.test.osm",
+                                         config.dir_tmp + "/tests/osmosis_roundabout.test.xml",
+                                         {"proj": 2154}) # Random proj to satisfy highway table generation
+
+    def test_class1(self):
+        with Analyser_Osmosis_Roundabout(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", elems=[("way", "119")])
+        self.check_num_err(1)
