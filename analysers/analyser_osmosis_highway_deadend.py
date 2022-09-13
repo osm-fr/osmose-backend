@@ -244,6 +244,8 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         detail = T_(
 '''The end of the way is not connected to another way.''')
         self.classs_change[1] = self.def_class(item = 1210, level = 1, tags = ['highway', 'cycleway', 'fix:chair'],

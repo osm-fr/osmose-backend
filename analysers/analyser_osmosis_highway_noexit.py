@@ -86,6 +86,8 @@ class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs_change[1] = self.def_class(item = 3210, level = 2, tags = ['highway', 'tag', 'fix:chair'],
             title = T_('Noexit on node with exit'))
         self.classs[2] = self.def_class(item = 3210, level = 2, tags = ['highway', 'tag', 'fix:chair'],

@@ -362,6 +362,8 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs_change[1] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:survey'],
             title = T_('Restriction relation, wrong number of members'),
             detail = T_(

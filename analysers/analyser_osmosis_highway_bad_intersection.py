@@ -90,6 +90,8 @@ class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs_change[1] = self.def_class(item = 1250, level = 3, tags = ['highway', 'power', 'fix:chair'],
             title = T_('Intersection of unrelated highway and power objects'))
         self.classs_change[2] = self.def_class(item = 1250, level = 3, tags = ['highway', 'waterway', 'fix:chair'],

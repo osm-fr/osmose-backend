@@ -128,6 +128,8 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 1110, level = 1, tags = ['highway', 'fix:chair'],
             title = T_('Bad *_link highway'),
             detail = T_(

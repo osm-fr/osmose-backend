@@ -106,6 +106,8 @@ class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         doc = dict(
             title = T_('Broken highway level continuity'),
             detail = T_(

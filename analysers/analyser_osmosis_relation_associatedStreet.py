@@ -612,6 +612,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 2060, level = 3, tags = ['addr', 'relation', 'fix:chair'],
             title = T_('addr:housenumber or addr:housename without addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation'),
             detail = T_(
@@ -666,14 +668,13 @@ provide a consistent address.'''))
         self.run(sql01.format(self.config.options.get("proj", 4326)))
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
-        if "proj" in self.config.options:
-            self.run(sql60.format(self.config.options.get("proj")))
-            self.run(sql61)
-            self.run(sql62)
-            self.run(sql63, lambda res: {"class":6, "subclass":1,
-                "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
-                "text": T_("Multiple numbers \"{numbers}\" in way \"{way}\"", numbers = ",  ".join(filter(lambda z: z, res[4:])), way = res[3]),
-            })
+        self.run(sql60.format(self.config.options.get("proj")))
+        self.run(sql61)
+        self.run(sql62)
+        self.run(sql63, lambda res: {"class":6, "subclass":1,
+            "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
+            "text": T_("Multiple numbers \"{numbers}\" in way \"{way}\"", numbers = ",  ".join(filter(lambda z: z, res[4:])), way = res[3]),
+        })
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )
         self.run(sql90)
@@ -684,9 +685,8 @@ provide a consistent address.'''))
             self.run(sqlC0)
             self.run(sqlC1.format( "','".join(self.config.options.get("addr:city-admin_level").split(','))))
             self.run(sqlC2, self.callbackC2)
-        if "proj" in self.config.options:
-            self.run(sqlD0)
-            self.run(sqlD1.format(self.config.options.get("addr:street_distance", 500)), self.callbackD1)
+        self.run(sqlD0)
+        self.run(sqlD1.format(self.config.options.get("addr:street_distance", 500)), self.callbackD1)
         self.run(sqlF0.format(self.config.options.get("proj")), self.callbackF0)
 
     def analyser_osmosis_full(self):

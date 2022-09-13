@@ -159,6 +159,8 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         doc = dict(
             detail = T_(
 '''An other node very close have already a traffic signals.'''),

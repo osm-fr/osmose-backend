@@ -61,6 +61,8 @@ class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 1180, level = 2, tags = ['geom', 'highway', 'cycleway', 'fix:chair'],
             title = T_('Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`'),
             detail = T_(

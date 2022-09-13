@@ -63,6 +63,8 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 3161, level = 1, tags = ['highway', 'fix:chair'],
             title = T_('Missing access way to parking'),
             detail = T_('There should be a `highway` feature leading to this parking facility to allow for correct routing.'))

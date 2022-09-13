@@ -48,6 +48,8 @@ class Analyser_Osmosis_Highway_Without_Ref(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[20804] = self.def_class(item = 2080, level = 2, tags = ['highway', 'ref', 'fix:chair'],
             title = T_('Motorway without ref, nat_ref, int_ref or noref tag'))
 

@@ -49,6 +49,8 @@ class Analyser_Osmosis_Highway_Motorway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs_change[1] = self.def_class(item = 3220, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Direct or too permissive access to motorway'))
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}

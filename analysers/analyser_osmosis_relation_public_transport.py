@@ -565,6 +565,8 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],
             title = T_('The track of this route contains gaps'))
         self.classs[2] = self.def_class(item = 1260, level = 3, tags = ['public_transport'],

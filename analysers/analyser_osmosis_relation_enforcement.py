@@ -55,6 +55,8 @@ class Analyser_Osmosis_Relation_Enforcement(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 1280, level = 3, tags = ['highway', 'fix:chair'],
             title = T_('Disconnected speed camera'),
             fix = T_('Speed camera should be mapped as a node on the highway or use an enforcement relation.'))

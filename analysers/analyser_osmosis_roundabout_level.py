@@ -258,6 +258,8 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[1] = self.def_class(item = 3010, level = 2, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Wrong highway on roundabout'),
             detail = T_(

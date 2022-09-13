@@ -59,6 +59,8 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs_change[1] = self.def_class(item = 2130, level = 3, tags = ['highway', 'routing'],
             title = T_('Inconsistent Access'),
             detail = T_(

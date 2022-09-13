@@ -109,6 +109,8 @@ class Analyser_Osmosis_Highway_Zone(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs[20] = self.def_class(item = 2150, level = 1, tags = ['highway', 'fix:survey'],
             title = T_('Probably missing tag zone:maxspeed=XX:{0}, according to the neighborhood', 20))
         self.classs[30] = self.def_class(item = 2150, level = 1, tags = ['highway', 'fix:survey'],

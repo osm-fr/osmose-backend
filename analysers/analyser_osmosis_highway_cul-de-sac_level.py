@@ -60,6 +60,8 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         doc = dict(
             detail = T_(
 '''A way connects directly to the street classification much
