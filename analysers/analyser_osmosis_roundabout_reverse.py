@@ -43,6 +43,8 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        if not "proj" in self.config.options:
+            return
         self.classs_change[1] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Reverse roundabout'),
             detail = T_(
@@ -68,12 +70,10 @@ Clockwise rotation.'''))
             self.driving_side = ""
 
     def analyser_osmosis_full(self):
-        if "proj" in self.config.options:
-            self.run(sql10.format("", self.driving_side), self.callback10)
+        self.run(sql10.format("", self.driving_side), self.callback10)
 
     def analyser_osmosis_diff(self):
-        if "proj" in self.config.options:
-            self.run(sql10.format("touched_", self.driving_side), self.callback10)
+        self.run(sql10.format("touched_", self.driving_side), self.callback10)
 
 ###########################################################################
 
