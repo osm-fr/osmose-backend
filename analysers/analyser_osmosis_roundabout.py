@@ -101,6 +101,7 @@ on the right, and remove the tag `oneway=yes` if present.'''),
             trap = T_(
 '''Ensure that it is a roundabout, using satellite imagery or a local
 survey.
+
 Ensure the traffic on the roundabout has right of way. If not, use `junction=circular` instead.'''))
         self.classs[2] = self.def_class(item = 2010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
             title = T_('Roundabout without right of way'),
@@ -109,6 +110,7 @@ Ensure the traffic on the roundabout has right of way. If not, use `junction=cir
 Circular highways without right of way should be tagged as `junction=circular`.'''),
             fix = T_(
 '''Replace `junction=roundabout` on the entire circular road with `junction=circular`.
+
 If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for the road entering the roundabout, tag it on that way only.'''),
             trap = T_(
 '''Make sure to tag `oneway=*` when using `junction=circular`. Unlike `junction=roundabout`, `junction=circular` does not imply `oneway=yes`.'''),
