@@ -38,7 +38,7 @@ class Analyser_merge_defibrillators_FR_gers(Analyser_Merge_Point):
                 dataset="5d26ec979ce2e73529f50c5e",
                 resource="479b8047-f8e3-4536-9a07-12f96c9a3cd7",
                 zip="inventaire-des-defibrillateurs-automatises-externes-dans-le-gers.shp")),
-            LoadGeomCentroid(srid = 2154),
+            LoadGeomCentroid(),
             Conflate(
                 select = Select(
                     types = ["nodes", "ways", "relations"],

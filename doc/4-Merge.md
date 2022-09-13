@@ -212,7 +212,7 @@ Helpers function are also available:
 - `Load_XY.float_comma`: Convert decimal comma to dot separated.
 - `Load_XY.degree`: Convert coordinate in degree, minute, second to decimal degrees.
 
-If the raw data coordinates are not in longitude / latitude (SIRD 4362), the SIRD must be set in order to reproject the data:
+Overwrite the projection of geometry, by default projection comes from parsed content, or if no fallback to 4326.
 - `srid`: SIRD code of the data coordinates.
 
 ### Data Table

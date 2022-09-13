@@ -38,7 +38,7 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge_Point):
             CSV(SourceOpenDataSoft(
                 attribution="La Poste",
                 url="https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal")),
-            Load_XY(srid = None),
+            Load_XY(srid = False),
             Conflate(
                 select = Select(
                     types = ["relations"],

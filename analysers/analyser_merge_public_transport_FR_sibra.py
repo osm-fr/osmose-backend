@@ -39,7 +39,7 @@ class Analyser_Merge_Public_Transport_FR_sibra(Analyser_Merge_Point):
             GTFS(SourceDataGouv(
                 attribution="SIBRA",
                 dataset="5bd9843e634f413220f7f04a",
-                resource="bd213411-2d50-4b71-a89f-2dab76f62b73")),
+                resource="6a98d6c8-63b3-4abd-9fa7-8c6c1a0cad31")),
             Load_XY("stop_lon", "stop_lat"),
             Conflate(
                 select = Select(

@@ -64,7 +64,7 @@ class PointInPolygon:
 
     def build(self):
         ivals = []
-        for p in self.polygon.polygon:
+        for p in self.polygon.polygon.geoms:
             ivals += self.build_polygon(p.exterior.coords)
             for i in p.interiors:
                 ivals += self.build_polygon(i.coords)

@@ -23,7 +23,7 @@
 from collections import defaultdict
 from modules.Stablehash import stablehash64
 
-from .Analyser_Merge import Analyser_Merge
+from .Analyser_Merge import Analyser_Merge, Conflate
 
 
 sql10 = """
@@ -76,7 +76,7 @@ FROM (
 ) AS t
 WHERE
     NOT ST_isEmpty(geom) AND
-    ST_Length(geom) > 30
+    ST_MaxDistance(geom, geom) > {minLength}
 """
 
 sql30 = """
@@ -89,6 +89,14 @@ FROM
     diff2
 """
 
+class ConflateNetwork(Conflate):
+    def __init__(self, minLength = None,**args):
+        """
+        @param minLength: raise issue only for part with larger diameter than minLength, default to twice the conflationDistance.
+        """
+        Conflate.__init__(self, **args)
+        self.minLength = minLength
+
 class Analyser_Merge_Network(Analyser_Merge):
 
     def analyser_osmosis_common(self):
@@ -99,7 +107,7 @@ class Analyser_Merge_Network(Analyser_Merge):
         self.run(sql10.format(buffer = self.conflate.conflationDistance))
         self.run(sql11)
         self.run(sql20.format(table))
-        self.run(sql21)
+        self.run(sql21.format(minLength = self.conflate.minLength if self.conflate.minLength else 2 * self.conflate.conflationDistance))
         self.run(sql30, lambda res: {
             "class": self.missing_official['id'],
             "subclass": str(stablehash64("{0}{1}{2}".format(
