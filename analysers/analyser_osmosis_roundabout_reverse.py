@@ -72,8 +72,8 @@ Clockwise rotation.'''))
             self.run(sql10.format("", self.driving_side), self.callback10)
 
     def analyser_osmosis_diff(self):
-      if "proj" in self.config.options:
-        self.run(sql10.format("touched_", self.driving_side), self.callback10)
+        if "proj" in self.config.options:
+            self.run(sql10.format("touched_", self.driving_side), self.callback10)
 
 ###########################################################################
 
