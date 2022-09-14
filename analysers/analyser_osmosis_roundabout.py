@@ -81,6 +81,7 @@ WHERE
 
 class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
+    requires_tables_common = ['highways']
     requires_tables_full = ['highways']
     requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
