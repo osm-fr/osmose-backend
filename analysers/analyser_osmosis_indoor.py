@@ -145,6 +145,7 @@ FROM
     indoor_surfaces
     LEFT JOIN indoor_surfaces AS indoor_surfaces_other ON
         indoor_surfaces_other.id != indoor_surfaces.id AND
+        indoor_surfaces_other.indoor IN ('room', 'corridor', 'area') AND
         indoor_surfaces_other.geom && indoor_surfaces.geom AND
         indoor_surfaces_other.nodes && indoor_surfaces.nodes
     LEFT JOIN indoor_surfaces_connected_to_highways ON
