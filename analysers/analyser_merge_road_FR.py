@@ -32,6 +32,8 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
             title = T_('Road not integrated'))
 
         dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
+        if len(dep_code) == 2:
+            dep_code = f"0{dep_code}"
         self.init(
             "https://ign.fr",
             "IGN-troncon_de_route",
