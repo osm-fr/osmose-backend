@@ -1758,17 +1758,32 @@ class Josm_numeric(PluginMapCSS):
                 err.append({'class': 9006026, 'subclass': 1258177985, 'text': mapcss.tr('unusual value of {0}: {1} is default; only positive values; point is decimal separator; if units, put space then unit', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss.tr('kilometers'))})
 
         # way[voltage][voltage=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
-        if ('voltage' in keys):
+        # way[voltage:primary][voltage:primary=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
+        # way[voltage:secondary][voltage:secondary=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
+        # way[voltage:tertiary][voltage:tertiary=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
+        if ('voltage' in keys) or ('voltage:primary' in keys) or ('voltage:secondary' in keys) or ('voltage:tertiary' in keys):
             match = False
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_43c55ce5), mapcss._tag_capture(capture_tags, 1, tags, 'voltage'))))
                 except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_43c55ce5), mapcss._tag_capture(capture_tags, 1, tags, 'voltage:primary'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:secondary')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_43c55ce5), mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:tertiary')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_43c55ce5), mapcss._tag_capture(capture_tags, 1, tags, 'voltage:tertiary'))))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("voltage should be in volts with no units/delimiter/spaces")
                 # assertNoMatch:"way voltage=15000"
                 # assertMatch:"way voltage=medium"
-                err.append({'class': 9006013, 'subclass': 300093258, 'text': mapcss.tr('voltage should be in volts with no units/delimiter/spaces')})
+                err.append({'class': 9006013, 'subclass': 44019535, 'text': mapcss.tr('voltage should be in volts with no units/delimiter/spaces')})
 
         # way[frequency][frequency!~/^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$/]
         if ('frequency' in keys):
@@ -3406,8 +3421,8 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {'distance': '5.'}, [0]), expected={'class': 9006026, 'subclass': 1258177985})
         self.check_not_err(n.way(data, {'distance': '7 mi'}, [0]), expected={'class': 9006026, 'subclass': 1258177985})
         self.check_err(n.way(data, {'distance': 'something'}, [0]), expected={'class': 9006026, 'subclass': 1258177985})
-        self.check_not_err(n.way(data, {'voltage': '15000'}, [0]), expected={'class': 9006013, 'subclass': 300093258})
-        self.check_err(n.way(data, {'voltage': 'medium'}, [0]), expected={'class': 9006013, 'subclass': 300093258})
+        self.check_not_err(n.way(data, {'voltage': '15000'}, [0]), expected={'class': 9006013, 'subclass': 44019535})
+        self.check_err(n.way(data, {'voltage': 'medium'}, [0]), expected={'class': 9006013, 'subclass': 44019535})
         self.check_not_err(n.way(data, {'frequency': '0'}, [0]), expected={'class': 9006010, 'subclass': 582321238})
         self.check_not_err(n.way(data, {'frequency': '123.5 MHz'}, [0]), expected={'class': 9006010, 'subclass': 582321238})
         self.check_not_err(n.way(data, {'frequency': '16.7'}, [0]), expected={'class': 9006010, 'subclass': 582321238})
