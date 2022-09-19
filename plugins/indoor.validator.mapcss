@@ -1,0 +1,77 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Noémie Lehuby 2022                                         ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
+meta {
+	title: "Simple Indoor QA";
+	version: "0.1";
+	description: "Validation ruleset for indoor features";
+	author: "nlehuby";
+	min-josm-version: 14481;
+	-osmoseTags: list("indoor", "geom");
+}
+
+meta[lang=en] {
+	description: tr("Validation ruleset for indoor features");
+}
+
+
+node[indoor=~/room|corridor|area|level/],
+node[room],
+way!:closed[indoor=~/room|corridor|area|level/],
+way!:closed[room] {
+	throwError: tr("This indoor feature should be a closed and valid polygon");
+	-osmoseItemClassLevel: "9999/1/3";
+	-osmoseTags: list("fix:survey");
+
+	assertMatch: "node indoor=room";
+	assertMatch: "node room=shop";
+}
+
+
+
+node[door] < area[indoor=room] {
+	set .room_with_door;
+}
+
+area[indoor=room][access!~/no|private/]!.room_with_door {
+	throwError: tr("This indoor room should have a door");
+}
+
+
+area[indoor=~/room|corridor|area|level/][!level] {
+	throwWarning: tr("This indoor feature should have a level");
+	-osmoseItemClassLevel: "9999/4/3";
+	-osmoseTags: list("fix:survey");
+
+	assertMatch: "way indoor=room";
+	assertNoMatch: "way indoor=room level=-0.5";	
+}
+
+
+area[indoor=area][shop],
+area[indoor=corridor][shop] {
+	throwWarning: tr("This indoor shop should probably be inside a room");
+	fixAdd: "indoor=room";
+	-osmoseItemClassLevel: "9999/5/3";
+	-osmoseTags: list("fix:survey", "shop");
+
+	assertMatch: "way indoor=area shop=florist level=3";
+	assertMatch: "way indoor=corridor shop=tickets";
+	assertNoMatch: "way indoor=room room=shop shop=florist";
+}
