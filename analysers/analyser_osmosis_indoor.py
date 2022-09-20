@@ -46,31 +46,6 @@ sql01 = """
 CREATE INDEX indoor_surfaces_idx_geom on indoor_surfaces USING gist(geom)
 """
 
-sql10 = """
-SELECT
-    id,
-    ST_AsText(way_locate(linestring))
-FROM
-    ways
-WHERE
-    tags != ''::hstore AND
-    NOT is_polygon AND
-    tags?'indoor' AND
-    tags->'indoor' in ('room', 'corridor', 'area', 'level')
-"""
-
-sql20 = """
-SELECT
-    id,
-    ST_AsText(geom)
-FROM
-    nodes
-WHERE
-    tags != ''::hstore AND
-    tags?'indoor' AND
-    tags->'indoor' in ('room', 'corridor', 'area', 'level')
-"""
-
 sql30 = """
 SELECT
     public_indoor_rooms.id,
@@ -86,27 +61,6 @@ WHERE
     public_indoor_rooms.indoor = 'room' AND
     public_indoor_rooms.public_access AND
     nodes.id IS NULL
-"""
-
-sql40 = """
-SELECT
-    id,
-    ST_AsText(way_locate(geom))
-FROM
-    indoor_surfaces
-WHERE
-    NOT tags?'level'
-"""
-
-sql50 = """
-SELECT
-    id,
-    ST_AsText(way_locate(geom))
-FROM
-    indoor_surfaces
-WHERE
-    indoor_surfaces.indoor != 'room' AND
-    indoor_surfaces.tags?'shop'
 """
 
 sql60 = """
@@ -161,45 +115,22 @@ class Analyser_Osmosis_Indoor(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:chair'],
-            title = T_('This indoor feature should be a closed and valid polygon'))
-        self.classs[2] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:chair'],
-            title = T_('This indoor feature should be a polygon instead of a point'),
-            fix = T_(
-'''If this feature is actually an indoor area, try to map it as a closed way.
-If this is an indoor object (any kind of feature located inside a building),
-consider using indoor=yes instead.'''))
-        self.classs[3] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
+        self.classs[1] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor room should have a door'),
             fix = T_(
 '''Find out where are the entrances of the room and add them (with a door=* tag) so we can actually enter this indoor room.'''))
-        self.classs[4] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
-            title = T_('This indoor feature should have a level'),
-            fix = T_(
-'''Find out which level is the room/area/corridor in and add it with the level=* tag.'''))
-        self.classs[5] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey', 'shop'],
-            title = T_('This indoor shop should probably be inside a room'),
-            fix = T_(
-'''Indoor shops are usually enclosed by walls, so they should have indoor=room + room=shop.'''))
-        self.classs[6] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
+        self.classs[2] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor feature is not reachable'),
             detail = T_(
 '''Each indoor feature should be connected to an another indoor feature or to some footpath so people can actually go to them.'''))
 
+
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.positionAsText]}
-        self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText]}
-        self.callback40 = lambda res: {"class":4, "data":[self.way_full, self.positionAsText]}
-        self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
-        self.callback60 = lambda res: {"class":6, "data":[self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql00)
         self.run(sql01)
-        self.run(sql10, self.callback10)
-        self.run(sql20, self.callback20)
-        self.run(sql30, self.callback30)
-        self.run(sql40, self.callback40)
-        self.run(sql50, self.callback50)
+        self.run(sql30, self.callback10)
         self.run(sql60)
-        self.run(sql61, self.callback60)
+        self.run(sql61, self.callback20)

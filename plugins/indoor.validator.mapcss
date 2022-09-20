@@ -36,7 +36,7 @@ node[room],
 way!:closed[indoor=~/room|corridor|area|level/],
 way!:closed[room] {
 	throwError: tr("This indoor feature should be a closed and valid polygon");
-	-osmoseItemClassLevel: "9999/1/3";
+	-osmoseItemClassLevel: "9999/50/3";
 	-osmoseTags: list("fix:survey");
 
 	assertMatch: "node indoor=room";
@@ -54,21 +54,21 @@ area[indoor=room][access!~/no|private/]!.room_with_door {
 }
 
 
-area[indoor=~/room|corridor|area|level/][!level] {
+way:closed[indoor=~/room|corridor|area|level/][!level] {
 	throwWarning: tr("This indoor feature should have a level");
-	-osmoseItemClassLevel: "9999/4/3";
+	-osmoseItemClassLevel: "9999/51/3";
 	-osmoseTags: list("fix:survey");
 
-	assertMatch: "way indoor=room";
+	assertMatch: "way indoor=room room=shop";
 	assertNoMatch: "way indoor=room level=-0.5";	
 }
 
 
-area[indoor=area][shop],
-area[indoor=corridor][shop] {
+way:closed[indoor=area][shop],
+way:closed[indoor=corridor][shop] {
 	throwWarning: tr("This indoor shop should probably be inside a room");
 	fixAdd: "indoor=room";
-	-osmoseItemClassLevel: "9999/5/3";
+	-osmoseItemClassLevel: "9999/52/3";
 	-osmoseTags: list("fix:survey", "shop");
 
 	assertMatch: "way indoor=area shop=florist level=3";
