@@ -112,8 +112,23 @@ However, this should probably still conform to the typical format used for value
         for k in keys:
             if not self.Values_open.match(tags[k]):
                 if k in self.exceptions_open:
-                    if tags[k] in self.exceptions_open[k]:
-                        # no error if in exception list
+                    isWhitelisted = tags[k] in self.exceptions_open[k]
+                    if not isWhitelisted and ";" in tags[k]:
+                        for val in tags[k].split(";"):
+                            if val in self.exceptions_open[k]:
+                                # Whitelisted value
+                                isWhitelisted = True
+                                continue
+                            elif self.Values_open.match(val):
+                                # Normal value
+                                continue
+                            else:
+                                # Bad value
+                                isWhitelisted = False
+                                break
+
+                    if isWhitelisted:
+                        # No error if in exception list
                         continue
                 err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
@@ -151,6 +166,9 @@ class Test(TestPluginCommon):
                   {"tunnel": "-1st"},
                   {"area": "a"},
                   {"oneway": "yes;yes"},
+                  {"sport": "rugby-union;long_jump"}, # bad;good
+                  {"sport": "rugby-union;shot-put;long_jump"}, # bad;whitelisted;good
+                  {"sport": "rugby_union;shot-put;long-jump"}, # good;whitelisted;bad
                   {"access": "unknown"},
                  ]:
             self.check_err(a.node(None, t), t)
@@ -164,6 +182,7 @@ class Test(TestPluginCommon):
                   {"barrier": "yes"},
                   {"area": "yes"},
                   {"aerialway": "t-bar"},
+                  {"sport": "athletics;jiu-jitsu;rugby_union;hockey;shot-put;long_jump"},
                   {"oneway": "yes"},
                  ]:
             assert not a.node(None, t), t
@@ -179,5 +198,5 @@ class Test(TestPluginCommon):
                  ]:
             assert not a.relation(None, t, None), t
 
-            # Assure keys are not present in both sets
-            assert not a.check_list_open & a.check_list_closed
+        # Assure keys are not present in both sets
+        assert not a.check_list_open & a.check_list_closed
