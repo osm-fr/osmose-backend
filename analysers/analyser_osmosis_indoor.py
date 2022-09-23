@@ -116,11 +116,11 @@ class Analyser_Osmosis_Indoor(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
+        self.classs[1] = self.def_class(item = 1300, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor room should have a door'),
             fix = T_(
 '''Find out where are the entrances of the room and add them (with a door=* tag) so we can actually enter this indoor room.'''))
-        self.classs[2] = self.def_class(item = 9999, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
+        self.classs[2] = self.def_class(item = 1300, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor feature is not reachable'),
             detail = T_(
 '''Each indoor feature should be connected to an another indoor feature or to some footpath so people can actually go to them.'''))
