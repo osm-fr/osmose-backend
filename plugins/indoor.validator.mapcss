@@ -18,16 +18,16 @@
 #########################################################################*/
 
 meta {
-	title: "Simple Indoor QA";
-	version: "0.1";
-	description: "Validation ruleset for indoor features";
-	author: "nlehuby";
-	min-josm-version: 14481;
-	-osmoseTags: list("indoor", "geom");
+    title: "Simple Indoor QA";
+    version: "0.1";
+    description: "Validation ruleset for indoor features";
+    author: "nlehuby";
+    min-josm-version: 14481;
+    -osmoseTags: list("indoor", "geom");
 }
 
 meta[lang=en] {
-	description: tr("Validation ruleset for indoor features");
+    description: tr("Validation ruleset for indoor features");
 }
 
 
@@ -35,43 +35,42 @@ node[indoor=~/room|corridor|area|level/],
 node[room],
 way!:closed[indoor=~/room|corridor|area|level/],
 way!:closed[room] {
-	throwError: tr("This indoor feature should be a closed and valid polygon");
-	-osmoseItemClassLevel: "9999/50/3";
-	-osmoseTags: list("fix:survey");
+    throwError: tr("This indoor feature should be a closed and valid polygon");
+    -osmoseItemClassLevel: "9999/50/3";
+    -osmoseTags: list("fix:survey");
 
-	assertMatch: "node indoor=room";
-	assertMatch: "node room=shop";
+    assertMatch: "node indoor=room";
+    assertMatch: "node room=shop";
 }
-
 
 
 node[door] < area[indoor=room] {
-	set .room_with_door;
+    set .room_with_door;
 }
 
 area[indoor=room][access!~/no|private/]!.room_with_door {
-	throwError: tr("This indoor room should have a door");
+    throwError: tr("This indoor room should have a door");
 }
 
 
 way:closed[indoor=~/room|corridor|area|level/][!level] {
-	throwWarning: tr("This indoor feature should have a level");
-	-osmoseItemClassLevel: "9999/51/3";
-	-osmoseTags: list("fix:survey");
+    throwWarning: tr("This indoor feature should have a level");
+    -osmoseItemClassLevel: "9999/51/3";
+    -osmoseTags: list("fix:survey");
 
-	assertMatch: "way indoor=room room=shop";
-	assertNoMatch: "way indoor=room level=-0.5";	
+    assertMatch: "way indoor=room room=shop";
+    assertNoMatch: "way indoor=room level=-0.5";
 }
 
 
 way:closed[indoor=area][shop],
 way:closed[indoor=corridor][shop] {
-	throwWarning: tr("This indoor shop should probably be inside a room");
-	fixAdd: "indoor=room";
-	-osmoseItemClassLevel: "9999/52/3";
-	-osmoseTags: list("fix:survey", "shop");
+    throwWarning: tr("This indoor shop should probably be inside a room");
+    fixAdd: "indoor=room";
+    -osmoseItemClassLevel: "9999/52/3";
+    -osmoseTags: list("fix:survey", "shop");
 
-	assertMatch: "way indoor=area shop=florist level=3";
-	assertMatch: "way indoor=corridor shop=tickets";
-	assertNoMatch: "way indoor=room room=shop shop=florist";
+    assertMatch: "way indoor=area shop=florist level=3";
+    assertMatch: "way indoor=corridor shop=tickets";
+    assertNoMatch: "way indoor=room room=shop shop=florist";
 }

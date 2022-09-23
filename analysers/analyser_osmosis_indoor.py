@@ -46,7 +46,7 @@ sql01 = """
 CREATE INDEX indoor_surfaces_idx_geom on indoor_surfaces USING gist(geom)
 """
 
-sql30 = """
+sql10 = """
 SELECT
     public_indoor_rooms.id,
     ST_AsText(way_locate(public_indoor_rooms.geom))
@@ -63,7 +63,7 @@ WHERE
     nodes.id IS NULL
 """
 
-sql60 = """
+sql20 = """
 CREATE TEMP TABLE indoor_surfaces_connected_to_highways AS
 SELECT DISTINCT
     indoor_surfaces.id,
@@ -91,7 +91,7 @@ WHERE
 # (dealing with level="0;1" that occurs on highway=steps
 # and assuming than no level on highway is probably implicit level=0)
 
-sql61 = """
+sql21 = """
 SELECT
     indoor_surfaces.id,
     ST_AsText(way_locate(indoor_surfaces.geom))
@@ -110,6 +110,7 @@ WHERE
     indoor_surfaces_other.id is NULL
 """ # maybe check the levels too to make sure they are actually connected ?
 
+
 class Analyser_Osmosis_Indoor(Analyser_Osmosis):
     requires_tables_common = ['highway_ends']
 
@@ -124,13 +125,12 @@ class Analyser_Osmosis_Indoor(Analyser_Osmosis):
             detail = T_(
 '''Each indoor feature should be connected to an another indoor feature or to some footpath so people can actually go to them.'''))
 
-
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class": 1, "data": [self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class": 2, "data": [self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql00)
         self.run(sql01)
-        self.run(sql30, self.callback10)
-        self.run(sql60)
-        self.run(sql61, self.callback20)
+        self.run(sql10, self.callback10)
+        self.run(sql20)
+        self.run(sql21, self.callback20)
