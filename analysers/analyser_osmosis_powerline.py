@@ -221,9 +221,12 @@ FROM
     NATURAL JOIN power_line
     JOIN nodes ON
         power_line.nid = nodes.id AND
-        (
-            NOT nodes.tags?'power' OR
-            nodes.tags->'power' != 'transformer'
+        NOT (
+            nodes.tags?'power' AND
+            (
+                nodes.tags->'power' = 'transformer' OR
+                nodes.tags?'transformer' -- example: power=pole + transformer=*
+            )
         )
 GROUP BY
     nid,
@@ -367,7 +370,10 @@ or marked as transitioning into ground (`location:transition=yes`).'''),
 In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[3] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
             title = T_('Connection between different voltages'),
-            detail = T_('Two power lines meet at this point, but have inconsistent voltages (`voltage=*`).'))
+            detail = T_('Two power lines meet at this point, but have inconsistent voltages (`voltage=*`).'),
+            fix = T_(
+'''Check if the voltages are really different.
+Add a transformer using `power=transformer` (standalone transformers) or `power=pole + transformer=*` (pole mounted transformers).'''))
         self.classs[4] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
             title = T_('Non power node on power way'),
             detail = T_(
