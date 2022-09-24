@@ -111,26 +111,10 @@ However, this should probably still conform to the typical format used for value
         keys = set(keyss) & check_list_open
         for k in keys:
             if not self.Values_open.match(tags[k]):
-                if k in self.exceptions_open:
-                    isWhitelisted = tags[k] in self.exceptions_open[k]
-                    if not isWhitelisted and ";" in tags[k]:
-                        for val in tags[k].split(";"):
-                            if val in self.exceptions_open[k]:
-                                # Whitelisted value
-                                isWhitelisted = True
-                                continue
-                            elif self.Values_open.match(val):
-                                # Normal value
-                                continue
-                            else:
-                                # Bad value
-                                isWhitelisted = False
-                                break
-
-                    if isWhitelisted:
-                        # No error if in exception list
-                        continue
-                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+                if (not k in self.exceptions_open or # no whitelists exist for the key
+                   (not ";" in tags[k] and not tags[k] in self.exceptions_open[k]) or # single-valued tag and not whitelisted
+                   (";" in tags[k] and any(map(lambda val: val not in self.exceptions_open[k] and not self.Values_open.match(val), tags[k].split(";"))))): # multi-valued tag and one or more bad values
+                    err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         keys = set(keyss) & self.check_list_closed
         for k in keys:
