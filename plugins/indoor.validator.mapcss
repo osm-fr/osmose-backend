@@ -31,16 +31,16 @@ meta[lang=en] {
 }
 
 
-node[indoor=~/room|corridor|area|level/],
-node[room],
-way!:closed[indoor=~/room|corridor|area|level/],
-way!:closed[room] {
+node[indoor=~/room|corridor|area|level/][inside("DE,CH,FR-IDF")],
+node[room][inside("DE,CH,FR-IDF")],
+way!:closed[indoor=~/room|corridor|area|level/][inside("DE,CH,FR-IDF")],
+way!:closed[room][inside("DE,CH,FR-IDF")] {
     throwError: tr("This indoor feature should be a closed and valid polygon");
     -osmoseItemClassLevel: "1300/50/3";
     -osmoseTags: list("fix:survey");
 
-    assertMatch: "node indoor=room";
-    assertMatch: "node room=shop";
+    -osmoseAssertMatchWithContext: list("node room=shop", "inside=DE");
+    -osmoseAssertMatchWithContext: list("node indoor=room", "inside=FR-IDF");
 }
 
 
@@ -53,24 +53,24 @@ area[indoor=room][access!~/no|private/]!.room_with_door {
 }
 
 
-way:closed[indoor=~/room|corridor|area|level/][!level] {
+way:closed[indoor=~/room|corridor|area|level/][!level][inside("DE,CH,FR-IDF")] {
     throwWarning: tr("This indoor feature should have a level");
     -osmoseItemClassLevel: "1300/51/3";
     -osmoseTags: list("fix:survey");
 
-    assertMatch: "way indoor=room room=shop";
-    assertNoMatch: "way indoor=room level=-0.5";
+    -osmoseAssertMatchWithContext: list("way indoor=room room=shop", "inside=FR-IDF");
+    -osmoseAssertNoMatchWithContext: list("way indoor=room level=-0.5", "inside=DE");
 }
 
 
-way:closed[indoor=area][shop],
-way:closed[indoor=corridor][shop] {
+way:closed[indoor=area][shop][inside("DE,CH,FR-IDF")],
+way:closed[indoor=corridor][shop][inside("DE,CH,FR-IDF")] {
     throwWarning: tr("This indoor shop should probably be inside a room");
     fixAdd: "indoor=room";
     -osmoseItemClassLevel: "1300/52/3";
     -osmoseTags: list("fix:survey", "shop");
 
-    assertMatch: "way indoor=area shop=florist level=3";
-    assertMatch: "way indoor=corridor shop=tickets";
-    assertNoMatch: "way indoor=room room=shop shop=florist";
+    -osmoseAssertMatchWithContext: list("way indoor=area shop=florist level=3", "inside=DE");
+    -osmoseAssertMatchWithContext: list("way indoor=corridor shop=tickets", "inside=FR-IDF");
+    -osmoseAssertNoMatchWithContext: list("way indoor=room room=shop shop=florist", "inside=DE");
 }
