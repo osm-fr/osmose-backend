@@ -32,7 +32,6 @@ meta[lang=fr] {
     description: "Transformateurs électriques";
 }
 
-way[power=transformer],
 relation[power=transformer] {
     throwWarning: tr("Power Transformers should always be on a node");
     -osmoseItemClassLevel: "9100/91001/2";
