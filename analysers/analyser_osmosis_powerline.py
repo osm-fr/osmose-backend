@@ -221,12 +221,11 @@ FROM
     NATURAL JOIN power_line
     JOIN nodes ON
         power_line.nid = nodes.id AND
-        NOT (
-            nodes.tags?'power' AND
-            (
-                nodes.tags->'power' = 'transformer' OR
-                nodes.tags?'transformer' -- example: power=pole + transformer=*
-            )
+        (
+            NOT nodes.tags?'power' OR
+            nodes.tags->'power' != 'transformer'
+        ) AND
+        NOT nodes.tags?'transformer' -- example: power=pole + transformer=*
         )
 GROUP BY
     nid,
