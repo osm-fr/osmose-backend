@@ -226,7 +226,6 @@ FROM
             nodes.tags->'power' != 'transformer'
         ) AND
         NOT nodes.tags?'transformer' -- example: power=pole + transformer=*
-        )
 GROUP BY
     nid,
     voltage,
