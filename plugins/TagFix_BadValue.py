@@ -114,7 +114,7 @@ However, this should probably still conform to the typical format used for value
                    not k in self.exceptions_open or # no exceptions exist for the key
                    any(map(lambda val: val not in self.exceptions_open[k] and not self.Values_open.match(val), tags[k].split(";"))) # Check each value in a multiple-value key for not being whitelisted (or normal)
             )):
-                err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
+               err.append({"class": 3040, "subclass": stablehash64(k), "text": T_("Concerns tag: `{0}`", '='.join([k, tags[k]])) })
 
         keys = set(keyss) & self.check_list_closed
         for k in keys:
