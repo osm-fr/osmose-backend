@@ -224,7 +224,8 @@ FROM
         (
             NOT nodes.tags?'power' OR
             nodes.tags->'power' != 'transformer'
-        )
+        ) AND
+        NOT nodes.tags?'transformer' -- example: power=pole + transformer=*
 GROUP BY
     nid,
     voltage,
@@ -367,7 +368,10 @@ or marked as transitioning into ground (`location:transition=yes`).'''),
 In which case make use of the `disused:` [lifecycle prefix](https://wiki.openstreetmap.org/wiki/Lifecycle_prefix).'''))
         self.classs[3] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:chair'],
             title = T_('Connection between different voltages'),
-            detail = T_('Two power lines meet at this point, but have inconsistent voltages (`voltage=*`).'))
+            detail = T_('Two power lines meet at this point, but have inconsistent voltages (`voltage=*`).'),
+            fix = T_(
+'''Check if the voltages are really different.
+Add a transformer using `power=transformer` (standalone transformers) or `power=pole + transformer=*` (pole mounted transformers).'''))
         self.classs[4] = self.def_class(item = 7040, level = 3, tags = ['power', 'fix:imagery'],
             title = T_('Non power node on power way'),
             detail = T_(
@@ -411,3 +415,24 @@ there's likely an unmapped pole nearby.'''))
         self.run(sql50.format("touched_"))
         self.run(sql51)
         self.run(sql52, self.callback50)
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_powerline_voltage.test.osm",
+                                         config.dir_tmp + "/tests/osmosis_powerline_voltage.test.xml")
+
+    def test_class3(self):
+        with Analyser_Osmosis_Powerline(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="3", elems=[("node", "4")])
+        self.check_num_err(1)
