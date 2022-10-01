@@ -32,8 +32,7 @@ meta[lang=fr] {
     description: "Transformateurs électriques";
 }
 
-way[power=transformer],
-relation[power=transformer] {
+relation[power=transformer] { /* check for ways is in JOSM rules */
     throwWarning: tr("Power Transformers should always be on a node");
     -osmoseItemClassLevel: "9100/91001/2";
     -osmoseTags: list("geom");
