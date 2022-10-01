@@ -55,27 +55,6 @@ class Power(PluginMapCSS):
 
         return err
 
-    def way(self, data, tags, nds):
-        capture_tags = {}
-        keys = tags.keys()
-        err = []
-
-
-        # way[power=transformer]
-        if ('power' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # -osmoseTags:list("geom")
-                # -osmoseItemClassLevel:"9100/91001/2"
-                # throwWarning:tr("Power Transformers should always be on a node")
-                err.append({'class': 91001, 'subclass': 0, 'text': mapcss.tr('Power Transformers should always be on a node')})
-
-        return err
-
     def relation(self, data, tags, members):
         capture_tags = {}
         keys = tags.keys()
