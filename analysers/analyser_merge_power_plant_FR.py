@@ -64,9 +64,8 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
                         "plant:output:electricity": lambda fields: None if not fields["puisMaxRac"] else str(float(fields["puisMaxRac"]) / 1000).rstrip(".0") + " MW"},
                     mapping2 = {
-                        "start_date": lambda fields: None if not fields.get("dateMiseEnService") else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"],
-                        "name": lambda fields: None if not fields.get("nomInstallation") or fields.get("nomInstallation") == 'Confidentiel' else fields.get("nomInstallation")},
-                    text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
+                        "start_date": lambda fields: None if not fields["dateMiseEnService"] else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"] },
+                    text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"] if fields["nomInstallation"] != 'Confidentiel' else None, fields["commune"]]))) )))
 
     filiere = {
         "Autre": {
