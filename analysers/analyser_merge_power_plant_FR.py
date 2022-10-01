@@ -33,36 +33,39 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
             title = T_('Power plant not integrated, geocoded at municipality level'))
 
         self.init(
-            "https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217",
+            "https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege",
             "Registre national des installations de production d'électricité et de stockage",
             CSV(Geocode_Addok_CSV(
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:RTE",
-                    url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege-311217"),
+                    url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege"),
                 columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load_XY("longitude", "latitude",
-                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 1000,
+                where = lambda res: res["puisMaxRac"] and float(res["puisMaxRac"]) >= 250 and res["nomInstallation"] != "Agrégation des installations de moins de 36KW",
                 map = lambda res: dict(res, **{"_geom": [
                     float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001,
-                    float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] })),
+                    float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] }),
+                unique = ("codeEICResourceObject",)),
             Conflate(
                 select = Select(
                     types = ["ways", "relations"],
                     tags = {"power": "plant"}),
                 conflationDistance = 5000,
+                osmRef = "ref:EU:ENTSOE_EIC",
                 tag_keep_multiple_values = ["voltage"],
                 mapping = Mapping(
                     static1 = {
                         "power": "plant"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        # No voltage tga on power=plant
-                        #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
+                        "ref:EU:ENTSOE_EIC": lambda fields: fields["codeEICResourceObject"],
+                        # No voltage, frequency, phases tags on power=plant
+                        #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields["Tension raccordement"] and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
-                        "plant:output:electricity": lambda fields: int(float(fields["puisMaxRac"]) * 1000)},
+                        "plant:output:electricity": lambda fields: None if not fields["puisMaxRac"] else str(float(fields["puisMaxRac"]) / 1000).rstrip(".0") + " MW"},
                     mapping2 = {
-                        "start_date": lambda fields: None if not fields.get("dateMiseEnService") else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"]},
-                    text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
+                        "start_date": lambda fields: None if not fields["dateMiseEnService"] else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"] },
+                    text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"] if fields["nomInstallation"] != 'Confidentiel' else None, fields["commune"]]))) )))
 
     filiere = {
         "Autre": {
