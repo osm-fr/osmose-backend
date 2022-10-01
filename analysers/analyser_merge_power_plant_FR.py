@@ -60,7 +60,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                     mapping1 = {
                         "ref:EU:ENTSOE_EIC": lambda fields: fields["codeEICResourceObject"],
                         # No voltage, frequency, phases tags on power=plant
-                        #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
+                        #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields["Tension raccordement"] and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
                         "plant:output:electricity": lambda fields: None if not fields.get("puisMaxRac") else str(float(fields["puisMaxRac"]) / 1000).rstrip(".0") + " MW"},
                     mapping2 = {
