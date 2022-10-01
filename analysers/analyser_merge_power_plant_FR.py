@@ -41,7 +41,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                     url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege"),
                 columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load_XY("longitude", "latitude",
-                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) >= 250 and res.get('nomInstallation') != 'Agrégation des installations de moins de 36KW',
+                where = lambda res: res["puisMaxRac"] and float(res["puisMaxRac"]) >= 250 and res["nomInstallation"] != "Agrégation des installations de moins de 36KW",
                 map = lambda res: dict(res, **{"_geom": [
                     float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001,
                     float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] }),
