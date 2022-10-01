@@ -41,8 +41,10 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                     url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege"),
                 columns='commune', citycode='codeINSEEcommune', logger=logger)),
             Load_XY("longitude", "latitude",
-                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) > 250,
-                map = lambda res: dict(res, **{"_x": float(res["_x"]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001, "_y": float(res["_y"]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001}),
+                where = lambda res: res.get('puisMaxRac') and float(res["puisMaxRac"]) >= 250 and res.get('nomInstallation') != 'Agrégation des installations de moins de 36KW',
+                map = lambda res: dict(res, **{"_geom": [
+                    float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001,
+                    float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] })),
                 unique = ("codeEICResourceObject",)),
             Conflate(
                 select = Select(
@@ -57,12 +59,13 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:EU:ENTSOE_EIC": lambda fields: fields["codeEICResourceObject"],
-                        # No voltage tga on power=plant
+                        # No voltage, frequency, phases tags on power=plant
                         #"voltage": lambda fields: (int(fields["Tension raccordement"].split(' ')[0]) * 1000) if fields.get("Tension raccordement") and fields["Tension raccordement"] not in ["< 45 kV", "BT", "HTA"] else None,
                         "plant:source": lambda fields: self.filiere[fields["filiere"]][fields["combustible"]],
                         "plant:output:electricity": lambda fields: None if not fields.get("puisMaxRac") else str(float(fields["puisMaxRac"]) / 1000).rstrip(".0") + " MW"},
                     mapping2 = {
-                        "start_date": lambda fields: None if not fields.get("dateMiseEnService") else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"]},
+                        "start_date": lambda fields: None if not fields.get("dateMiseEnService") else fields["dateMiseEnService"][0:4] if fields["dateMiseEnService"].endswith('-01-01') or fields["dateMiseEnService"].endswith('-12-31') else fields["dateMiseEnService"],
+                        "name": lambda fields: None if not fields.get("nomInstallation") or fields.get("nomInstallation") == 'Confidentiel' else fields.get("nomInstallation")},
                     text = lambda tags, fields: T_("Power plant {0}", ', '.join(filter(lambda res: res and res != 'None', [fields["nomInstallation"], fields["commune"]]))) )))
 
     filiere = {
