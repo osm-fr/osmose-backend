@@ -37,7 +37,7 @@ class TagFix_MultipleTag_Lang_fr(Plugin):
         self.EgliseNot1 = re.compile(u"(.glise|chapelle|basilique|cath.drale) de la .*", re.IGNORECASE)
         self.EgliseNot2 = re.compile(u"(.glise|chapelle|basilique|cath.drale) de l'.*", re.IGNORECASE)
         self.MonumentAuxMorts = re.compile(u"monument aux morts.*", re.IGNORECASE)
-        self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
+        self.SalleDesFetes = re.compile(u"salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
         self.Marche = re.compile(u"marché( .+)?", re.IGNORECASE)
 
