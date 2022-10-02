@@ -700,7 +700,7 @@ class SHP(Parser):
     def header(self):
         return True
 
-    def import_(self, table, srid, osmosis):
+    def import_(self, table, osmosis):
         tmp_file = tempfile.NamedTemporaryFile(delete = False)
         tmp_file.close()
         unzip = "unzip -o -d {0}_ {1}".format(tmp_file.name, self.source.path())

@@ -27,21 +27,25 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         self.errors[9019002] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules nat_ref in France'))
         self.errors[9019003] = self.def_class(item = 9019, level = 3, tags = [], title = mapcss.tr('missing tag'))
         self.errors[9019004] = self.def_class(item = 9019, level = 3, tags = [], title = {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'})
+        self.errors[9019005] = self.def_class(item = 9019, level = 3, tags = mapcss.list_('ref', 'highway'), title = mapcss.tr('validation rules Fantoir in France'))
 
         self.re_045a0f34 = re.compile(r'(?i)co.?voiturage')
         self.re_107d2c86 = re.compile(r'PT[1-9]{1}[0-9]*')
         self.re_173ac8d4 = re.compile(r'[0-9]{5}[A-Z0-9]{3}')
+        self.re_17c26258 = re.compile(r'^(motorway|trunk|primary|secondary|tertiary|service)$')
         self.re_23d0d993 = re.compile(r'[A-Z0-9]{3}')
         self.re_299ea34e = re.compile(r'^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$')
         self.re_30299d59 = re.compile(r'^(Enedis|GRDF)$')
-        self.re_33342623 = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$')
-        self.re_33d533dc = re.compile(r'^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]D))$')
+        self.re_34120557 = re.compile(r'^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$')
         self.re_3b90619c = re.compile(r'^\D')
+        self.re_419bc5d2 = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$')
         self.re_4bae79a8 = re.compile(r'[0-9AB]{5}[A-Z]{1,3}[0-9]{4}|[0-9AB]{5}EEM[0-9]{2}')
+        self.re_4e9373ac = re.compile(r'^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$')
         self.re_55ee32ac = re.compile(r'^(motorway|trunk|primary|secondary|tertiary)$')
+        self.re_66c32242 = re.compile(r'^([1-9][0-9]|0[1-9])[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D$')
         self.re_6ac6c83c = re.compile(r'^(pole|tower)$')
         self.re_7510958f = re.compile(r'^(([1-9][0-9]|0[1-9])PR([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[DGU](|C))$')
-        self.re_7d53ef9c = re.compile(r'^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D)$')
+        self.re_7f2e60da = re.compile(r'^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9])D)$')
 
 
     def node(self, data, tags):
@@ -302,7 +306,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                     'ref'])
                 }})
 
-        # *[amenity=kindergarten][school:FR=maternelle]
+        # *[amenity=kindergarten]["school:FR"=maternelle]
         if ('amenity' in keys and 'school:FR' in keys):
             match = False
             if not match:
@@ -319,6 +323,30 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                     '+': dict([
                     ['amenity','school']])
                 }})
+
+        # *["ref:FR:FANTOIR"]["ref:FR:FANTOIR"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        # *["ref:FR:FANTOIR:left"]["ref:FR:FANTOIR:left"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        # *["ref:FR:FANTOIR:right"]["ref:FR:FANTOIR:right"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        if ('ref:FR:FANTOIR' in keys) or ('ref:FR:FANTOIR:left' in keys) or ('ref:FR:FANTOIR:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR:left')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR:left'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR:right')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR:right'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("validation rules Fantoir in France")
+                # -osmoseTags:list("ref","highway")
+                # -osmoseItemClassLevel:"9019/9019005/3"
+                # throwWarning:"wrong ref:FR:FANTOIR"
+                err.append({'class': 9019005, 'subclass': 0, 'text': {'en': 'wrong ref:FR:FANTOIR'}})
 
         return err
 
@@ -576,27 +604,28 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way highway=motorway_link nat_ref:forward=62A902615CD_1D nat_ref:backward=62A902615CD_2D operator='SANEF'","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} must be a link road ', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/][nat_ref][nat_ref!~/^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D)$/][operator!="VILLE DE PARIS"][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/][nat_ref][nat_ref!~/^([1-9][0-9]|0[1-9])[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D$/][operator!="VILLE DE PARIS"][inside("FR")]
         if ('highway' in keys and 'nat_ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7d53ef9c, '^([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D)$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') != mapcss._value_const_capture(capture_tags, 3, 'VILLE DE PARIS', 'VILLE DE PARIS')) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_66c32242, '^([1-9][0-9]|0[1-9])[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') != mapcss._value_const_capture(capture_tags, 3, 'VILLE DE PARIS', 'VILLE DE PARIS')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
                 # -osmoseTags:list("ref","highway")
                 # -osmoseItemClassLevel:"9019/9019002/3"
                 # throwWarning:tr("{0} is not a valid reference","{1.tag}")
+                # -osmoseAssertNoMatchWithContext:list("way highway=motorway_link nat_ref=78A801319CD_1D operator=SAPN","inside=FR")
                 # -osmoseAssertNoMatchWithContext:list("way highway=motorway_link nat_ref=80A901645CD_6D operator=SANEF","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid reference', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # way[junction=roundabout][highway=~/^(motorway|trunk|primary|secondary|tertiary)$/][nat_ref][nat_ref!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$/][inside("FR")]
+        # way[junction=roundabout][highway=~/^(motorway|trunk|primary|secondary|tertiary|service)$/][nat_ref][nat_ref!~/^(([1-9][0-9]|0[1-9])[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$/][inside("FR")]
         if ('highway' in keys and 'junction' in keys and 'nat_ref' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'junction') == mapcss._value_capture(capture_tags, 0, 'roundabout')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_33342623, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$'), mapcss._tag_capture(capture_tags, 3, tags, 'nat_ref'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'junction') == mapcss._value_capture(capture_tags, 0, 'roundabout')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_17c26258), mapcss._tag_capture(capture_tags, 1, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 3, self.re_419bc5d2, '^(([1-9][0-9]|0[1-9])[ANP](8|9)[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$'), mapcss._tag_capture(capture_tags, 3, tags, 'nat_ref'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -604,14 +633,15 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseItemClassLevel:"9019/9019002/3"
                 # throwWarning:tr("{0} is not a valid reference","{2.tag}")
                 # -osmoseAssertNoMatchWithContext:list("way highway=primary junction=roundabout nat_ref=80A901645_6D operator=DIRN","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way highway=service junction=roundabout nat_ref=80A801645_5D operator=DIRN","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid reference', mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/][nat_ref][nat_ref!~/^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]D))$/][operator="VILLE DE PARIS"][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/][nat_ref][nat_ref!~/^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9])D)$/][operator="VILLE DE PARIS"][inside("FR")]
         if ('highway' in keys and 'nat_ref' in keys and 'operator' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_33d533dc, '^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9]D))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'VILLE DE PARIS')) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_7f2e60da, '^(75Periph_Paris_[0-9]{2}_(1[0-9]|[1-9])D)$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref'))) and (mapcss._tag_capture(capture_tags, 3, tags, 'operator') == mapcss._value_capture(capture_tags, 3, 'VILLE DE PARIS')) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -621,17 +651,17 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # -osmoseAssertNoMatchWithContext:list("way highway=trunk_link nat_ref=75Periph_Paris_05_3D operator=\"VILLE DE PARIS\"","inside=FR")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} is not a valid reference (Paris)', mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:forward"]["nat_ref:forward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$/][inside("FR")]
-        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:backward"]["nat_ref:backward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$/][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:forward"]["nat_ref:forward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$/][inside("FR")]
+        # way[highway=~/^(motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$/]["nat_ref:backward"]["nat_ref:backward"!~/^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$/][inside("FR")]
         if ('highway' in keys and 'nat_ref:backward' in keys) or ('highway' in keys and 'nat_ref:forward' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:forward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_33342623, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:forward'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:forward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4e9373ac, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:forward'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:backward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_33342623, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9]D))$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:backward'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_299ea34e), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))) and (mapcss._tag_capture(capture_tags, 1, tags, 'nat_ref:backward')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_4e9373ac, '^(([1-9][0-9]|0[1-9])[ANP]9[0-9]{3}(|A|N)([0-9]?[0-9]|B1|B2)(|[A-Z]|[a-z])(|CD)_(1[0-9]|[1-9])D)$'), mapcss._tag_capture(capture_tags, 2, tags, 'nat_ref:backward'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("validation rules nat_ref in France")
@@ -687,7 +717,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # throwWarning:tr("{0} no tag forward if oneway","{2.tag}")
                 err.append({'class': 9019002, 'subclass': 0, 'text': mapcss.tr('{0} no tag forward if oneway', mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
-        # *[amenity=kindergarten][school:FR=maternelle]
+        # *[amenity=kindergarten]["school:FR"=maternelle]
         if ('amenity' in keys and 'school:FR' in keys):
             match = False
             if not match:
@@ -704,6 +734,32 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                     '+': dict([
                     ['amenity','school']])
                 }})
+
+        # *["ref:FR:FANTOIR"]["ref:FR:FANTOIR"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        # *["ref:FR:FANTOIR:left"]["ref:FR:FANTOIR:left"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        # *["ref:FR:FANTOIR:right"]["ref:FR:FANTOIR:right"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        if ('ref:FR:FANTOIR' in keys) or ('ref:FR:FANTOIR:left' in keys) or ('ref:FR:FANTOIR:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR:left')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR:left'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR:right')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR:right'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("validation rules Fantoir in France")
+                # -osmoseTags:list("ref","highway")
+                # -osmoseItemClassLevel:"9019/9019005/3"
+                # throwWarning:"wrong ref:FR:FANTOIR"
+                # -osmoseAssertNoMatchWithContext:list("way highway=residential name=impasse ref:FR:FANTOIR:left=75106S581L ref:FR:FANTOIR:right=75106S581R","inside=FR")
+                # -osmoseAssertNoMatchWithContext:list("way highway=residential name=impasse ref:FR:FANTOIR=75106S581T","inside=FR")
+                err.append({'class': 9019005, 'subclass': 0, 'text': {'en': 'wrong ref:FR:FANTOIR'}})
 
         return err
 
@@ -904,7 +960,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # throwWarning:tr("{0} is invalid. Should look like 12345ABC","{0.tag}")
                 err.append({'class': 30401, 'subclass': 0, 'text': mapcss.tr('{0} is invalid. Should look like 12345ABC', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
-        # *[amenity=kindergarten][school:FR=maternelle]
+        # *[amenity=kindergarten]["school:FR"=maternelle]
         if ('amenity' in keys and 'school:FR' in keys):
             match = False
             if not match:
@@ -921,6 +977,30 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                     '+': dict([
                     ['amenity','school']])
                 }})
+
+        # *["ref:FR:FANTOIR"]["ref:FR:FANTOIR"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        # *["ref:FR:FANTOIR:left"]["ref:FR:FANTOIR:left"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        # *["ref:FR:FANTOIR:right"]["ref:FR:FANTOIR:right"!~/^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$/][inside("FR")]
+        if ('ref:FR:FANTOIR' in keys) or ('ref:FR:FANTOIR:left' in keys) or ('ref:FR:FANTOIR:right' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR:left')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR:left'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ref:FR:FANTOIR:right')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_34120557, '^(no|((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))(|(|;((((0[1-9]|1[0-9]|2A|2B|2[1-9]|[3-8][0-9]|9[0-5])([0-9]{3}))|((971(0[1-9]|[1-3][0-9]))|(972(0[1-9]|[1-3][0-9]))|(973(0[1-9]|[1-6][0-9]))|(974(0[1-9]|[1-2][0-9]))|(976(0[1-9]|1[0-7]))))([0-9]|[A-Z])([0-9]{3})([ABCDEFGHJKLMNPRSTUVWXYZ])))+)$'), mapcss._tag_capture(capture_tags, 1, tags, 'ref:FR:FANTOIR:right'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("validation rules Fantoir in France")
+                # -osmoseTags:list("ref","highway")
+                # -osmoseItemClassLevel:"9019/9019005/3"
+                # throwWarning:"wrong ref:FR:FANTOIR"
+                err.append({'class': 9019005, 'subclass': 0, 'text': {'en': 'wrong ref:FR:FANTOIR'}})
 
         return err
 
@@ -969,10 +1049,18 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '78A801319CD_1D', 'operator': 'SAPN'}, [0]), expected={'class': 9019002, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '80A901645CD_6D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '80A901645_6D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '80A801645_5D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'trunk_link', 'nat_ref': '75Periph_Paris_05_3D', 'operator': 'VILLE DE PARIS'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'impasse', 'ref:FR:FANTOIR:left': '75106S581L', 'ref:FR:FANTOIR:right': '75106S581R'}, [0]), expected={'class': 9019005, 'subclass': 0})
+        with with_options(n, {'country': 'FR'}):
+            self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'impasse', 'ref:FR:FANTOIR': '75106S581T'}, [0]), expected={'class': 9019005, 'subclass': 0})

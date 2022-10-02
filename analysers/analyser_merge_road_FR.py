@@ -26,18 +26,30 @@ from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
 
 
 class Analyser_Merge_Road_FR(Analyser_Merge_Network):
+    dep_proj = {
+        "971": "RGAF09UTM20",
+        "972": "RGAF09UTM20",
+        "974": "RGR92UTM40S",
+        "976": "RGM04UTM38S",
+        "977": "RGAF09UTM20",
+        "978": "RGAF09UTM20",
+    }
+
     def __init__(self, config, logger = None):
         Analyser_Merge_Network.__init__(self, config, logger)
         self.def_class_missing_official(item = 7170, id = 13, level = 2, tags = ['merge', 'highway', 'fix:survey', 'fix:imagery'],
             title = T_('Road not integrated'))
 
         dep_code = config.options.get('dep_code') or config.options.get('country').split('-')[1]
+        if len(str(dep_code)) == 2:
+            dep_code = f"0{dep_code}"
+        proj = self.dep_proj.get(str(dep_code), "LAMB93")
         self.init(
             "https://ign.fr",
             "IGN-troncon_de_route",
             GPKG(SourceIGN(attribution = "IGN",
-                    fileUrl = f"http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/BDTOPO_3-0_TOUSTHEMES_GPKG_LAMB93_D{dep_code}_2022-06-15.7z",
-                    extract = f"BDTOPO_3-0_TOUSTHEMES_GPKG_LAMB93_D{dep_code}_2022-06-15/BDTOPO/1_DONNEES_LIVRAISON_2022-06-00173/BDT_3-0_GPKG_LAMB93_D{dep_code}-ED2022-06-15/BDT_3-0_GPKG_LAMB93_D{dep_code}-ED2022-06-15.gpkg"),
+                    fileUrl = f"http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/BDTOPO_3-0_TOUSTHEMES_GPKG_{proj}_D{dep_code}_2022-06-15.7z",
+                    extract = f"BDTOPO_3-0_TOUSTHEMES_GPKG_{proj}_D{dep_code}_2022-06-15/BDTOPO/1_DONNEES_LIVRAISON_2022-06-00173/BDT_3-0_GPKG_{proj}_D{dep_code}-ED2022-06-15/BDT_3-0_GPKG_{proj}_D{dep_code}-ED2022-06-15.gpkg"),
                 layer = "troncon_de_route"),
             Load('geom',
                 table_name = 'road_fr_' + config.options['country'].replace("-", "_"),

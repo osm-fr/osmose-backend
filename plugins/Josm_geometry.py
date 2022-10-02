@@ -19,7 +19,7 @@ class Josm_geometry(PluginMapCSS):
         self.errors[9003003] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a node. Should be drawn as an area.', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9003004] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr('{0} on a node. Should be used in a relation', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9003006] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a node', mapcss._tag_uncapture(capture_tags, '{0.key}')))
-        self.errors[9003007] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9003007] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[9003008] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr('{0} on a way. Should be used in a relation', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
         self.errors[9003009] = self.def_class(item = 9003, level = 2, tags = ["geom"], title = mapcss.tr('Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.'))
         self.errors[9003011] = self.def_class(item = 9003, level = 3, tags = ["geom"], title = mapcss.tr('{0} on a closed way. Should be used on an unclosed way.', mapcss._tag_uncapture(capture_tags, '{1.tag}')))
@@ -478,16 +478,11 @@ class Josm_geometry(PluginMapCSS):
         err = []
 
 
-        # way[line_attachment]
-        # way[line_management]
         # way[emergency=fire_hydrant]
         # way[emergency=defibrillator]
-        # way[entrance]
-        # way[door]
         # way[railway=subway_entrance]
         # way[man_made=survey_point]
         # way[power=transformer]
-        # way[transformer]
         # way[power=pole]
         # way[power=catenary_mast]
         # way[power=connection]
@@ -507,16 +502,8 @@ class Josm_geometry(PluginMapCSS):
         # way[highway=turning_loop]
         # way[highway=turning_circle]
         # way[highway=motorway_junction]
-        if ('amenity' in keys) or ('door' in keys) or ('emergency' in keys) or ('entrance' in keys) or ('highway' in keys) or ('line_attachment' in keys) or ('line_management' in keys) or ('man_made' in keys) or ('natural' in keys) or ('power' in keys) or ('railway' in keys) or ('transformer' in keys):
+        if ('amenity' in keys) or ('emergency' in keys) or ('highway' in keys) or ('man_made' in keys) or ('natural' in keys) or ('power' in keys) or ('railway' in keys):
             match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'line_attachment')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'line_management')))
-                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'emergency') == mapcss._value_capture(capture_tags, 0, 'fire_hydrant')))
@@ -524,14 +511,6 @@ class Josm_geometry(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'emergency') == mapcss._value_capture(capture_tags, 0, 'defibrillator')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'entrance')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'door')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -544,10 +523,6 @@ class Josm_geometry(PluginMapCSS):
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'transformer')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'transformer')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -627,7 +602,53 @@ class Josm_geometry(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
-                err.append({'class': 9003007, 'subclass': 1374694710, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9003007, 'subclass': 1619711985, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # way[voltage:primary]
+        # way[voltage:secondary]
+        # way[voltage:tertiary]
+        # way[transformer]
+        # way[line_attachment]
+        # way[line_management]
+        # way[entrance]
+        # way[door]
+        if ('door' in keys) or ('entrance' in keys) or ('line_attachment' in keys) or ('line_management' in keys) or ('transformer' in keys) or ('voltage:primary' in keys) or ('voltage:secondary' in keys) or ('voltage:tertiary' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:secondary')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:tertiary')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'transformer')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'line_attachment')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'line_management')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'entrance')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'door')))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} on a way. Should be used on a node.","{0.key}")
+                err.append({'class': 9003007, 'subclass': 685282689, 'text': mapcss.tr('{0} on a way. Should be used on a node.', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[restriction][restriction=~/^(no_right_turn|no_left_turn|no_u_turn|no_straight_on|only_right_turn|only_left_turn|only_straight_on|no_entry|no_exit)$/]
         # way[type=multipolygon]

@@ -457,14 +457,34 @@ class Josm_unnecessary(PluginMapCSS):
                     mapcss._tag_uncapture(capture_tags, '{0.key}')])
                 }})
 
+        # way:closed[boundary][area?]
+        # way:closed[indoor][area?][!highway][indoor!=no]
+        # way:closed[office][area?]
+        # way:closed[place][area?][!highway]
         # way:closed[amenity][area?][!highway]
         # way:closed[building][area?]
         # way:closed[landuse][area?][!highway]
         # way:closed[leisure][area?][!highway][leisure!=track][leisure!=slipway]
         # way:closed[natural][area?]
         # way:closed[shop][area?]
-        if ('amenity' in keys and 'area' in keys) or ('area' in keys and 'building' in keys) or ('area' in keys and 'landuse' in keys) or ('area' in keys and 'leisure' in keys) or ('area' in keys and 'natural' in keys) or ('area' in keys and 'shop' in keys):
+        if ('amenity' in keys and 'area' in keys) or ('area' in keys and 'boundary' in keys) or ('area' in keys and 'building' in keys) or ('area' in keys and 'indoor' in keys) or ('area' in keys and 'landuse' in keys) or ('area' in keys and 'leisure' in keys) or ('area' in keys and 'natural' in keys) or ('area' in keys and 'office' in keys) or ('area' in keys and 'place' in keys) or ('area' in keys and 'shop' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (nds[0] == nds[-1]))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (nds[0] == nds[-1]))
@@ -493,7 +513,7 @@ class Josm_unnecessary(PluginMapCSS):
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary for {1}","{2.tag}","{1.key}")
                 # fixRemove:"{2.key}"
-                err.append({'class': 9010001, 'subclass': 1347803818, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 9010001, 'subclass': 1227640117, 'text': mapcss.tr('{0} is unnecessary for {1}', mapcss._tag_uncapture(capture_tags, '{2.tag}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     mapcss._tag_uncapture(capture_tags, '{2.key}')])
                 }})

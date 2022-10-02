@@ -81,6 +81,9 @@ class Josm_combinations(PluginMapCSS):
         err = []
         set_AllSameCycleway = set_AllSameMaxspeed = set_AllSameSidewalk = set_MotorwayTrunk = set_PlacementTransitionWarning = set_fully_paved_surface = set_only_one_tag = set_unpaved_surface = False
 
+        # node[voltage:primary][!transformer]
+        # node[voltage:secondary][!transformer]
+        # node[voltage:tertiary][!transformer]
         # node[ntd_id][!highway]
         # *[border_type][!boundary]
         # *[piste:difficulty][!piste:type]
@@ -111,8 +114,20 @@ class Josm_combinations(PluginMapCSS):
         # *[source:housenumber][!addr:housenumber]
         # *[source:addr:postcode][!addr:postcode]
         # *[source:addr:housenumber][!addr:housenumber]
-        if ('border_type' in keys) or ('ntd_id' in keys) or ('piste:difficulty' in keys) or ('place' in keys) or ('source:addr:housenumber' in keys) or ('source:addr:postcode' in keys) or ('source:bicycle' in keys) or ('source:bridge' in keys) or ('source:building' in keys) or ('source:date' in keys) or ('source:designation' in keys) or ('source:ele' in keys) or ('source:height' in keys) or ('source:hgv' in keys) or ('source:highway' in keys) or ('source:housenumber' in keys) or ('source:lanes' in keys) or ('source:lit' in keys) or ('source:maxaxleload' in keys) or ('source:maxspeed:backward' in keys) or ('source:maxspeed:forward' in keys) or ('source:name' in keys) or ('source:old_name' in keys) or ('source:population' in keys) or ('source:postal_code' in keys) or ('source:postcode' in keys) or ('source:ref' in keys) or ('source:ref:INSEE' in keys) or ('source:surface' in keys) or ('transformer' in keys):
+        if ('border_type' in keys) or ('ntd_id' in keys) or ('piste:difficulty' in keys) or ('place' in keys) or ('source:addr:housenumber' in keys) or ('source:addr:postcode' in keys) or ('source:bicycle' in keys) or ('source:bridge' in keys) or ('source:building' in keys) or ('source:date' in keys) or ('source:designation' in keys) or ('source:ele' in keys) or ('source:height' in keys) or ('source:hgv' in keys) or ('source:highway' in keys) or ('source:housenumber' in keys) or ('source:lanes' in keys) or ('source:lit' in keys) or ('source:maxaxleload' in keys) or ('source:maxspeed:backward' in keys) or ('source:maxspeed:forward' in keys) or ('source:name' in keys) or ('source:old_name' in keys) or ('source:population' in keys) or ('source:postal_code' in keys) or ('source:postcode' in keys) or ('source:ref' in keys) or ('source:ref:INSEE' in keys) or ('source:surface' in keys) or ('transformer' in keys) or ('voltage:primary' in keys) or ('voltage:secondary' in keys) or ('voltage:tertiary' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'transformer')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:secondary')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'transformer')))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:tertiary')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'transformer')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ntd_id')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'highway')))
@@ -237,7 +252,7 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("missing tag")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 # assertMatch:"node source:addr:postcode=postman"
-                err.append({'class': 9001001, 'subclass': 956537030, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001001, 'subclass': 31231113, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # node[railway:switch][railway!=switch]
         # *[generator:source][power!=generator]
@@ -641,6 +656,7 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 2109026588, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
+        # node[transformer][voltage]
         # node[marker][cover]
         # node[marker][voltage]
         # node[marker][pressure]
@@ -648,8 +664,12 @@ class Josm_combinations(PluginMapCSS):
         # node[marker][substance]
         # *[building:part][building]
         # *[addr:street][addr:place][outside("CZ,DK")]
-        if ('addr:place' in keys and 'addr:street' in keys) or ('building' in keys and 'building:part' in keys) or ('cover' in keys and 'marker' in keys) or ('diameter' in keys and 'marker' in keys) or ('marker' in keys and 'pressure' in keys) or ('marker' in keys and 'substance' in keys) or ('marker' in keys and 'voltage' in keys):
+        if ('addr:place' in keys and 'addr:street' in keys) or ('building' in keys and 'building:part' in keys) or ('cover' in keys and 'marker' in keys) or ('diameter' in keys and 'marker' in keys) or ('marker' in keys and 'pressure' in keys) or ('marker' in keys and 'substance' in keys) or ('marker' in keys and 'voltage' in keys) or ('transformer' in keys and 'voltage' in keys):
             match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'transformer')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage')))
+                except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'marker')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cover')))
@@ -681,7 +701,7 @@ class Josm_combinations(PluginMapCSS):
             if match:
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
-                err.append({'class': 9001002, 'subclass': 229130622, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 9001002, 'subclass': 1424906562, 'text': mapcss.tr('{0} together with {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # node[access][eval(number_of_tags())=1]
         # node[area][eval(number_of_tags())=1]!.area_yes_autofix
@@ -1182,23 +1202,6 @@ class Josm_combinations(PluginMapCSS):
                     'collection_times'])
                 }})
 
-        # *[amenity=recycling][collection_times="24/7"][opening_hours]
-        # *[amenity=recycling][collection_times][opening_hours][collection_times=~/[a-z]-[A-Z].*[0-9]-[0-9]/]
-        if ('amenity' in keys and 'collection_times' in keys and 'opening_hours' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'recycling')) and (mapcss._tag_capture(capture_tags, 1, tags, 'collection_times') == mapcss._value_capture(capture_tags, 1, '24/7')) and (mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'recycling')) and (mapcss._tag_capture(capture_tags, 1, tags, 'collection_times')) and (mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_3a43a33d), mapcss._tag_capture(capture_tags, 3, tags, 'collection_times'))))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}. Probably {2} is meant.","{1.key}","{0.tag}","{2.key}")
-                err.append({'class': 9001002, 'subclass': 953408236, 'text': mapcss.tr('{0} together with {1}. Probably {2} is meant.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
-
         # *[amenity=recycling][!/^recycling:/][recycling_type!=centre]
         if ('amenity' in keys):
             match = False
@@ -1301,6 +1304,18 @@ class Josm_combinations(PluginMapCSS):
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("{0} together with {1} at left-hand traffic","{1.tag}","{2.tag}")
                 err.append({'class': 9001002, 'subclass': 317760248, 'text': mapcss.tr('{0} together with {1} at left-hand traffic', mapcss._tag_uncapture(capture_tags, '{1.tag}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
+        # *[voltage:primary][voltage:secondary][transformer=generator][tag("voltage:secondary")<tag("voltage:primary")]
+        if ('transformer' in keys and 'voltage:primary' in keys and 'voltage:secondary' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss._tag_capture(capture_tags, 3, tags, 'voltage:secondary') < mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'voltage:primary'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
+                err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         return err
 
@@ -3149,23 +3164,6 @@ class Josm_combinations(PluginMapCSS):
                     'collection_times'])
                 }})
 
-        # *[amenity=recycling][collection_times="24/7"][opening_hours]
-        # *[amenity=recycling][collection_times][opening_hours][collection_times=~/[a-z]-[A-Z].*[0-9]-[0-9]/]
-        if ('amenity' in keys and 'collection_times' in keys and 'opening_hours' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'recycling')) and (mapcss._tag_capture(capture_tags, 1, tags, 'collection_times') == mapcss._value_capture(capture_tags, 1, '24/7')) and (mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'recycling')) and (mapcss._tag_capture(capture_tags, 1, tags, 'collection_times')) and (mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_3a43a33d), mapcss._tag_capture(capture_tags, 3, tags, 'collection_times'))))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}. Probably {2} is meant.","{1.key}","{0.tag}","{2.key}")
-                err.append({'class': 9001002, 'subclass': 953408236, 'text': mapcss.tr('{0} together with {1}. Probably {2} is meant.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
-
         # way[highway][crossing][highway=~/^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$/]
         if ('crossing' in keys and 'highway' in keys):
             match = False
@@ -3424,6 +3422,18 @@ class Josm_combinations(PluginMapCSS):
 
         # way[piste:type=~/^downhill|nordic|skitour$/][!piste:difficulty][count(parent_tags("piste:difficulty"))==0]
         # Part of rule not implemented
+
+        # *[voltage:primary][voltage:secondary][transformer=generator][tag("voltage:secondary")<tag("voltage:primary")]
+        if ('transformer' in keys and 'voltage:primary' in keys and 'voltage:secondary' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss._tag_capture(capture_tags, 3, tags, 'voltage:secondary') < mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'voltage:primary'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
+                err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
 
         return err
 
@@ -4362,23 +4372,6 @@ class Josm_combinations(PluginMapCSS):
                     'collection_times'])
                 }})
 
-        # *[amenity=recycling][collection_times="24/7"][opening_hours]
-        # *[amenity=recycling][collection_times][opening_hours][collection_times=~/[a-z]-[A-Z].*[0-9]-[0-9]/]
-        if ('amenity' in keys and 'collection_times' in keys and 'opening_hours' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'recycling')) and (mapcss._tag_capture(capture_tags, 1, tags, 'collection_times') == mapcss._value_capture(capture_tags, 1, '24/7')) and (mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity') == mapcss._value_capture(capture_tags, 0, 'recycling')) and (mapcss._tag_capture(capture_tags, 1, tags, 'collection_times')) and (mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 3, self.re_3a43a33d), mapcss._tag_capture(capture_tags, 3, tags, 'collection_times'))))
-                except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-                # throwWarning:tr("{0} together with {1}. Probably {2} is meant.","{1.key}","{0.tag}","{2.key}")
-                err.append({'class': 9001002, 'subclass': 953408236, 'text': mapcss.tr('{0} together with {1}. Probably {2} is meant.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
-
         # *[amenity=recycling][!/^recycling:/][recycling_type!=centre]
         if ('amenity' in keys):
             match = False
@@ -4445,6 +4438,18 @@ class Josm_combinations(PluginMapCSS):
                 # throwWarning:tr("{0} together with {1}. Is the fixme fixed?","{0.tag}","{0.value}")
                 err.append({'class': 9001002, 'subclass': 2092275873, 'text': mapcss.tr('{0} together with {1}. Is the fixme fixed?', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.value}'))})
 
+        # *[voltage:primary][voltage:secondary][transformer=generator][tag("voltage:secondary")<tag("voltage:primary")]
+        if ('transformer' in keys and 'voltage:primary' in keys and 'voltage:secondary' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'voltage:primary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'voltage:secondary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'transformer') == mapcss._value_capture(capture_tags, 2, 'generator')) and (mapcss._tag_capture(capture_tags, 3, tags, 'voltage:secondary') < mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'voltage:primary'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("{0} is lower than {1} on {2}.","{1.key}","{0.key}","{2.tag}")
+                err.append({'class': 9001002, 'subclass': 1175862429, 'text': mapcss.tr('{0} is lower than {1} on {2}.', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.tag}'))})
+
         return err
 
 
@@ -4462,7 +4467,7 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'source:addr:postcode': 'postman'}), expected={'class': 9001001, 'subclass': 956537030})
+        self.check_err(n.node(data, {'source:addr:postcode': 'postman'}), expected={'class': 9001001, 'subclass': 31231113})
         self.check_not_err(n.node(data, {'maxspeed:hgv:conditional': '80 @ (weight>7.5 AND 22:00-05:00)', 'traffic_sign': 'maxspeed'}), expected={'class': 9001001, 'subclass': 2095780217})
         self.check_not_err(n.node(data, {'addr:postcode': '12345', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 1053814004})
         self.check_err(n.node(data, {'addr:housenumber': '5', 'addr:postcode': '12345', 'place': 'foo'}), expected={'class': 9001002, 'subclass': 1053814004})

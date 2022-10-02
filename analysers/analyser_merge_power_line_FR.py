@@ -21,8 +21,8 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import SourceOpenDataSoft, GDAL, Load, Conflate, Select, Mapping
-from .Analyser_Merge_Network import Analyser_Merge_Network
+from .Analyser_Merge import SourceOpenDataSoft, GDAL, Load, Select, Mapping
+from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
 
 
 class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
@@ -40,7 +40,7 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
                 format='geojson')),
             Load('geom',
                 select={'tension': lambda t: f'{t} != \'HORS TENSION\''}),
-            Conflate(
+            ConflateNetwork(
                 select = Select(
                     types = ['ways'],
                     tags = [{'power': 'line'}, {'disused:power': 'line'}]),
