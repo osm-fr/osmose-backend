@@ -307,6 +307,7 @@ ANALYZE {0}.buildings;
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
             self.logger.log(u"Warning: duplicate class in {0}".format(self.__class__.__name__))
 
+        self.giscurs.execute("SET LOCAL statement_timeout = '12h';")
         self.giscurs.execute("SET search_path TO {0},public;".format(self.config.db_schema_path or self.config.db_schema))
 
 
