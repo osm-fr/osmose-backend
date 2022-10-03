@@ -43,8 +43,8 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
             Load_XY("longitude", "latitude",
                 where = lambda res: res["puisMaxRac"] and float(res["puisMaxRac"]) >= 250 and res["nomInstallation"] != "Agrégation des installations de moins de 36KW",
                 map = lambda res: dict(res, **{"_geom": [
-                    float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001,
-                    float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001] }),
+                    res["_geom"][0] is not None and (float(res["_geom"][0]) + (Stablehash.stablehash(str(res)) % 200 - 100) * 0.00001),
+                    res["_geom"][1] is not None and (float(res["_geom"][1]) + (Stablehash.stablehash(str(res)) % 212 - 106) * 0.00001)] }),
                 unique = ("codeEICResourceObject",)),
             Conflate(
                 select = Select(
