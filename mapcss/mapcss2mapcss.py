@@ -41,7 +41,7 @@ def to_mapcss(t):
     elif t['type'] == 'class_selector':
         return ("!" if t['not'] else "") + "." + t['class']
     elif t['type'] == 'predicate_simple':
-        return ("!" if t['not'] else "") + to_mapcss(t['predicate']) + ("?" if t['question_mark'] else "")
+        return ("!" if t['not'] else "") + to_mapcss(t['predicate']) + ("?" if t['question_mark'] else "?!" if t['question_mark_negated'] else "")
     elif t['type'] == 'pseudo_class':
         return (
             ("!" if t['not_class'] else "") +

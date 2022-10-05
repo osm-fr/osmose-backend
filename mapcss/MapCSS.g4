@@ -46,6 +46,7 @@ fragment UNICODE: '\u0080'..'\uFFFD';  /* FIXME, Should be '\u0080'..'\uFFFE', b
 
 COMMA: ',';
 QUESTION_MARK: '?';
+QUESTION_MARK_NEGATED: '?!';
 OP_INCLUDED_IN: '∈';
 OP_INTERSECTS: '⧉';
 OP_SUBSET: '⊆';
@@ -201,7 +202,7 @@ predicate
     ;
 
 predicate_simple
-    : OP_NOT ? (osmtag | quoted) QUESTION_MARK ?
+    : OP_NOT ? (osmtag | quoted) (QUESTION_MARK_NEGATED | QUESTION_MARK) ?
     | OP_NOT ? regexExpression
     ;
 
