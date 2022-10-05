@@ -34,12 +34,14 @@ class Josm_deprecated(PluginMapCSS):
         self.errors[9002020] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}')))
         self.errors[9002021] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('Unusual key {0}, maybe {1} or {2} is meant', mapcss._tag_uncapture(capture_tags, '{0.key}'), 'level', 'building:levels'))
         self.errors[9002022] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} as a tag on an object. Roles are specified in the relation members list instead.', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{0.key}')))
-        self.errors[9002023] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
+        self.errors[9002023] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} with a temporary URL which may be outdated very soon', mapcss._tag_uncapture(capture_tags, '{0.key}')))
+        self.errors[9002024] = self.def_class(item = 9002, level = 3, tags = ["tag", "deprecated"], title = mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}')))
 
         self.re_01eb1711 = re.compile(r'^(yes|both|no)$')
         self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
         self.re_0c5b5730 = re.compile(r'color:')
         self.re_0f294fdf = re.compile(r'^[1-9][0-9]*$')
+        self.re_0fbae48f = re.compile(r'^https:\/\/westnordost.de\/p\/')
         self.re_1f92073a = re.compile(r'^(?i)fixme$')
         self.re_24dfeb95 = re.compile(r'^(tower|pole|insulator|portal|terminal)$')
         self.re_27210286 = re.compile(r'^.$')
@@ -5352,6 +5354,24 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"type=connectivity"
                 err.append({'class': 9002001, 'subclass': 1789083769, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[image][image=~/^https:\/\/westnordost.de\/p\//]
+        if ('image' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'image')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fbae48f), mapcss._tag_capture(capture_tags, 1, tags, 'image'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} with a temporary URL which may be outdated very soon","{0.key}")
+                # fixRemove:"{0.key}"
+                # assertNoMatch:"node image=https://commons.wikimedia.org/wiki/File:2015-05-13_Basteibr%C3%BCcke-.jpg"
+                # assertNoMatch:"node image=https://web.archive.org/web/20220623215400/https://westnordost.de/p/97331.jpg"
+                # assertMatch:"node image=https://westnordost.de/p/17484.jpg"
+                err.append({'class': 9002023, 'subclass': 2042174729, 'text': mapcss.tr('{0} with a temporary URL which may be outdated very soon', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
         return err
 
     def way(self, data, tags, nds):
@@ -6552,7 +6572,7 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"sidewalk=left"
                 # suggestAlternative:"sidewalk=right"
                 # suggestAlternative:"sidewalk=separate"
-                err.append({'class': 9002023, 'subclass': 36539821, 'text': mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+                err.append({'class': 9002024, 'subclass': 36539821, 'text': mapcss.tr('{0} is unspecific', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
         # *[waterway=water_point]
         if ('waterway' in keys):
@@ -10575,6 +10595,21 @@ class Josm_deprecated(PluginMapCSS):
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"type=connectivity"
                 err.append({'class': 9002001, 'subclass': 1789083769, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
+
+        # *[image][image=~/^https:\/\/westnordost.de\/p\//]
+        if ('image' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'image')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fbae48f), mapcss._tag_capture(capture_tags, 1, tags, 'image'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} with a temporary URL which may be outdated very soon","{0.key}")
+                # fixRemove:"{0.key}"
+                err.append({'class': 9002023, 'subclass': 2042174729, 'text': mapcss.tr('{0} with a temporary URL which may be outdated very soon', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
 
         return err
 
@@ -15169,6 +15204,21 @@ class Josm_deprecated(PluginMapCSS):
                 # suggestAlternative:"type=connectivity"
                 err.append({'class': 9002001, 'subclass': 1789083769, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}'))})
 
+        # *[image][image=~/^https:\/\/westnordost.de\/p\//]
+        if ('image' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'image')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0fbae48f), mapcss._tag_capture(capture_tags, 1, tags, 'image'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} with a temporary URL which may be outdated very soon","{0.key}")
+                # fixRemove:"{0.key}"
+                err.append({'class': 9002023, 'subclass': 2042174729, 'text': mapcss.tr('{0} with a temporary URL which may be outdated very soon', mapcss._tag_uncapture(capture_tags, '{0.key}')), 'allow_fix_override': True, 'fix': {
+                    '-': ([
+                    mapcss._tag_uncapture(capture_tags, '{0.key}')])
+                }})
+
         return err
 
 
@@ -15206,6 +15256,9 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {'emergency_telephone_code': '123', 'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 663070970})
         self.check_not_err(n.node(data, {'highway': 'emergency_access_point', 'phone': '123'}), expected={'class': 9002001, 'subclass': 663070970})
         self.check_err(n.node(data, {'role': 'stop'}), expected={'class': 9002022, 'subclass': 2041296832})
+        self.check_not_err(n.node(data, {'image': 'https://commons.wikimedia.org/wiki/File:2015-05-13_Basteibr%C3%BCcke-.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
+        self.check_not_err(n.node(data, {'image': 'https://web.archive.org/web/20220623215400/https://westnordost.de/p/97331.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
+        self.check_err(n.node(data, {'image': 'https://westnordost.de/p/17484.jpg'}), expected={'class': 9002023, 'subclass': 2042174729})
         self.check_not_err(n.way(data, {'barrier': 'fence'}, [0]), expected={'class': 9002001, 'subclass': 1107799632})
         self.check_err(n.way(data, {'barrier': 'wire_fence'}, [0]), expected={'class': 9002001, 'subclass': 1107799632})
         self.check_err(n.way(data, {'access': 'designated'}, [0]), expected={'class': 9002002, 'subclass': 2057594338})
