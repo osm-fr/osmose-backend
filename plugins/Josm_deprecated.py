@@ -1313,7 +1313,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setlevels_building
+                # set levels_building
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{1.key}")
                 # suggestAlternative:"building:levels"
@@ -1479,7 +1479,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'color')) and (mapcss._tag_capture(capture_tags, 1, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 2, tags, 'color') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'colour'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setsamecolor
+                # set samecolor
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 # suggestAlternative:"colour"
@@ -3764,7 +3764,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -3785,7 +3785,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0f294fdf), mapcss._tag_capture(capture_tags, 1, tags, 'diaper'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table=yes + changing_table:count=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -3808,7 +3808,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper') == mapcss._value_capture(capture_tags, 0, 'room')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table=dedicated_room"
@@ -3837,7 +3837,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:male') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=male_toilet"
@@ -3859,7 +3859,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:female') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=female_toilet"
@@ -3881,7 +3881,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:unisex') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=unisex_toilet"
@@ -3908,7 +3908,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:wheelchair') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table:wheelchair=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -3934,7 +3934,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:fee') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table:fee=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -4096,7 +4096,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'suspension')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -4122,7 +4122,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=split"
@@ -4151,7 +4151,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=branch"
@@ -4175,7 +4175,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=cross"
@@ -4199,7 +4199,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'termination')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=termination"
@@ -4221,7 +4221,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transition')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"location:transition=yes"
@@ -4243,7 +4243,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transposing')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=transpose"
@@ -4265,7 +4265,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'crossing')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"height=* + design=*"
@@ -4280,7 +4280,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((not set_power_tower_type_warning) and (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type')) and (mapcss._tag_capture(capture_tags, 1, tags, 'power')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setgeneric_power_tower_type_warning
+                # set generic_power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
                 # suggestAlternative:"design"
@@ -4303,7 +4303,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'suspension')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_pole_type_warning
+                # set power_pole_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -4329,7 +4329,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_pole_type_warning
+                # set power_pole_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=split"
@@ -4358,7 +4358,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_pole_type_warning
+                # set power_pole_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=branch"
@@ -4382,7 +4382,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_pole_type_warning
+                # set power_pole_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=cross"
@@ -4406,7 +4406,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'termination')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_pole_type_warning
+                # set power_pole_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=termination"
@@ -4428,7 +4428,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pole:type') == mapcss._value_capture(capture_tags, 0, 'transition')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_pole_type_warning
+                # set power_pole_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"location:transition=yes"
@@ -5038,7 +5038,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2f881233), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setbbq_autofix
+                # set bbq_autofix
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"cuisine=barbecue"
@@ -5148,7 +5148,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpumping_ring_no_mech
+                # set pumping_ring_no_mech
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"man_made=petroleum_well"
@@ -5186,7 +5186,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pump:type') == mapcss._value_capture(capture_tags, 0, 'beam_pump')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setbeam_pump_no_mech
+                # set beam_pump_no_mech
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"pump_mechanism"
@@ -6645,7 +6645,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setlevels_building
+                # set levels_building
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{1.key}")
                 # suggestAlternative:"building:levels"
@@ -6841,7 +6841,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'color')) and (mapcss._tag_capture(capture_tags, 1, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 2, tags, 'color') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'colour'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setsamecolor
+                # set samecolor
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 # suggestAlternative:"colour"
@@ -9111,7 +9111,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -9132,7 +9132,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0f294fdf), mapcss._tag_capture(capture_tags, 1, tags, 'diaper'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table=yes + changing_table:count=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -9155,7 +9155,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper') == mapcss._value_capture(capture_tags, 0, 'room')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table=dedicated_room"
@@ -9184,7 +9184,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:male') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=male_toilet"
@@ -9206,7 +9206,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:female') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=female_toilet"
@@ -9228,7 +9228,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:unisex') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=unisex_toilet"
@@ -9255,7 +9255,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:wheelchair') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table:wheelchair=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -9281,7 +9281,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:fee') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table:fee=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -9443,7 +9443,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'suspension')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -9469,7 +9469,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=split"
@@ -9498,7 +9498,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=branch"
@@ -9522,7 +9522,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=cross"
@@ -9546,7 +9546,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'termination')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=termination"
@@ -9568,7 +9568,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transition')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"location:transition=yes"
@@ -9590,7 +9590,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transposing')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=transpose"
@@ -9612,7 +9612,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'crossing')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"height=* + design=*"
@@ -9627,7 +9627,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((not set_power_tower_type_warning) and (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type')) and (mapcss._tag_capture(capture_tags, 1, tags, 'power')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setgeneric_power_tower_type_warning
+                # set generic_power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
                 # suggestAlternative:"design"
@@ -10230,7 +10230,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2f881233), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setbbq_autofix
+                # set bbq_autofix
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"cuisine=barbecue"
@@ -10391,7 +10391,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpumping_ring_no_mech
+                # set pumping_ring_no_mech
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"man_made=petroleum_well"
@@ -10429,7 +10429,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pump:type') == mapcss._value_capture(capture_tags, 0, 'beam_pump')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setbeam_pump_no_mech
+                # set beam_pump_no_mech
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"pump_mechanism"
@@ -11822,7 +11822,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building:part')) and (mapcss._tag_capture(capture_tags, 1, tags, 'levels')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setlevels_building
+                # set levels_building
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{1.key}")
                 # suggestAlternative:"building:levels"
@@ -11988,7 +11988,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'color')) and (mapcss._tag_capture(capture_tags, 1, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 2, tags, 'color') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, 'colour'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setsamecolor
+                # set samecolor
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 # suggestAlternative:"colour"
@@ -13902,7 +13902,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -13923,7 +13923,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0f294fdf), mapcss._tag_capture(capture_tags, 1, tags, 'diaper'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table=yes + changing_table:count=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -13946,7 +13946,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper') == mapcss._value_capture(capture_tags, 0, 'room')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper_checked
+                # set diaper_checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table=dedicated_room"
@@ -13975,7 +13975,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:male') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=male_toilet"
@@ -13997,7 +13997,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:female') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=female_toilet"
@@ -14019,7 +14019,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:unisex') == mapcss._value_capture(capture_tags, 0, 'yes')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"changing_table:location=unisex_toilet"
@@ -14046,7 +14046,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:wheelchair') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table:wheelchair=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -14072,7 +14072,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper:fee') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdiaper___checked
+                # set diaper___checked
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("changing_table:fee=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -14234,7 +14234,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'suspension')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # suggestAlternative:concat("line_attachment=","{0.value}")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
@@ -14260,7 +14260,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'loop')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=split"
@@ -14289,7 +14289,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'tap')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=branch"
@@ -14313,7 +14313,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'branch')) and (mapcss._tag_capture(capture_tags, 1, tags, 'branch:type') == mapcss._value_capture(capture_tags, 1, 'cross')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=cross"
@@ -14337,7 +14337,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'termination')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=termination"
@@ -14359,7 +14359,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transition')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"location:transition=yes"
@@ -14381,7 +14381,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'transposing')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"line_management=transpose"
@@ -14403,7 +14403,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'tower:type') == mapcss._value_capture(capture_tags, 0, 'crossing')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpower_tower_type_warning
+                # set power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"height=* + design=*"
@@ -14418,7 +14418,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((not set_power_tower_type_warning) and (mapcss._tag_capture(capture_tags, 0, tags, 'tower:type')) and (mapcss._tag_capture(capture_tags, 1, tags, 'power')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_24dfeb95), mapcss._tag_capture(capture_tags, 2, tags, 'power'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setgeneric_power_tower_type_warning
+                # set generic_power_tower_type_warning
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated for {1}","{0.key}","{1.tag}")
                 # suggestAlternative:"design"
@@ -14889,7 +14889,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cuisine')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2f881233), mapcss._tag_capture(capture_tags, 1, tags, 'cuisine'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setbbq_autofix
+                # set bbq_autofix
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"cuisine=barbecue"
@@ -14999,7 +14999,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'man_made') == mapcss._value_capture(capture_tags, 0, 'pumping_rig')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpumping_ring_no_mech
+                # set pumping_ring_no_mech
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"man_made=petroleum_well"
@@ -15037,7 +15037,7 @@ class Josm_deprecated(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'pump:type') == mapcss._value_capture(capture_tags, 0, 'beam_pump')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'pump_mechanism')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'mechanical_driver')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'mechanical_coupling')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setbeam_pump_no_mech
+                # set beam_pump_no_mech
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"pump_mechanism"

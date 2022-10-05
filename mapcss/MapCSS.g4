@@ -78,7 +78,7 @@ OP_PLUS: '+';
 OP_MINUS: '-';
 OP_NOT: '!'; // NOTE: boolean not -> !(expr)
 
-SET: ('s' | 'S') ('e' | 'E') ('t' | 'T');
+SET: ('s' | 'S') ('e' | 'E') ('t' | 'T') (' ' | '\t') ?;
 IMPORT: '@' ('i' | 'I') ('m' | 'M') ('p' | 'P') ('o' | 'O')('r' | 'R') ('t' | 'T');
 
 fragment DIGIT:  '0'..'9';

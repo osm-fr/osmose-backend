@@ -49,7 +49,7 @@ class Josm_addresses(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb')) and (mapcss.inside(self.father.config.options, 'BA')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setok_housenumber
+                # set ok_housenumber
                 set_ok_housenumber = True
 
         # *[addr:housenumber][addr:housenumber!~/[0-9]/]!.ok_housenumber
@@ -90,7 +90,7 @@ class Josm_addresses(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb')) and (mapcss.inside(self.father.config.options, 'BA')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setok_housenumber
+                # set ok_housenumber
                 set_ok_housenumber = True
 
         # *[addr:housenumber][addr:housenumber!~/[0-9]/]!.ok_housenumber
@@ -138,7 +138,7 @@ class Josm_addresses(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'addr:housenumber') == mapcss._value_capture(capture_tags, 0, 'bb')) and (mapcss.inside(self.father.config.options, 'BA')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setok_housenumber
+                # set ok_housenumber
                 set_ok_housenumber = True
 
         # *[addr:housenumber][addr:housenumber!~/[0-9]/]!.ok_housenumber
