@@ -616,9 +616,9 @@ def to_p(t):
         return ("not " if t['not'] else "") + "set_" + t['class']
     elif t['type'] == 'predicate_simple':
         return (
-                ("not " if t['not'] else "") + to_p(t['predicate']) + 
-                ((" not" if t['question_mark_negated'] else "") + " in ('yes', 'true', '1')" if t['question_mark'] or t['question_mark_negated'] else "")
-               )
+            ("not " if t['not'] else "") + to_p(t['predicate']) +
+            ((" not" if t['question_mark_negated'] else "") + " in ('yes', 'true', '1')" if t['question_mark'] or t['question_mark_negated'] else "")
+        )
     elif t['type'] == 'pseudo_class':
         if t['pseudo_class'] in ('closed', 'closed2'):
             return "nds[0] != nds[-1]" if t['not_class'] else "nds[0] == nds[-1]"
