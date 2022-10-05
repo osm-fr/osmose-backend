@@ -103,7 +103,8 @@ class MapCSSListenerL(MapCSSListener):
         self.stack[-1]['predicate_simple'] = {'type': 'predicate_simple',
             'predicate': v['osmtag'] or v['quoted'] or v['regexExpression'][0],
             'not': not (not (ctx.OP_NOT())),
-            'question_mark': not (not (ctx.QUESTION_MARK()))}
+            'question_mark': not (not (ctx.QUESTION_MARK())),
+            'question_mark_negated': not (not (ctx.QUESTION_MARK_NEGATED()))}
 
 
 #    # Enter a parse tree produced by MapCSSParser#class_selector.
