@@ -573,11 +573,12 @@ SELECT
 FROM
     addr_street
     LEFT JOIN highways ON
-        highways.tags ?| ARRAY['name', 'name:left', 'name:right'] AND
+        highways.tags ?| ARRAY['name', 'name:left', 'name:right', 'official_name'] AND
         (
             highways.tags->'name' = addr_street.addr_street OR
             highways.tags->'name:left' = addr_street.addr_street OR
-            highways.tags->'name:right' = addr_street.addr_street
+            highways.tags->'name:right' = addr_street.addr_street OR
+            highways.tags->'official_name' = addr_street.addr_street
         ) AND
         ST_DWithIn(highways.linestring_proj, addr_street.geom_proj, {0})
 WHERE
