@@ -20,5 +20,6 @@ Update all external MapCSS
 
 From root directory
 ```
-python -X utf8 -m mapcss.update
+python -m mapcss.update
 ```
+(Windows users should set the system variable `PYTHONUTF8` to `1` first)
