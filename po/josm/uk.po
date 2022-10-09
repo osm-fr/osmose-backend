@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: josm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-02 03:34+0200\n"
-"PO-Revision-Date: 2022-07-21 17:45+0000\n"
+"POT-Creation-Date: 2022-10-07 03:34+0200\n"
+"PO-Revision-Date: 2022-10-07 16:59+0000\n"
 "Last-Translator: andygol <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2022-08-03 06:09+0000\n"
-"X-Generator: Launchpad (build d8a8b6effe4eae83e8bb5babdb93ddb4ac4f09e0)\n"
+"X-Launchpad-Export-Date: 2022-10-08 06:01+0000\n"
+"X-Generator: Launchpad (build 762fb15a975e8b23af6a1f86e44e46bfd0451459)\n"
 "Language: uk\n"
+
+#: ../core/resources/data/validator/combinations.mapcss:80
+#: ../core/resources/data/validator/combinations.mapcss:92
+#: ../core/resources/data/validator/combinations.mapcss:117
+#: ../core/resources/data/validator/combinations.mapcss:153
+#: ../core/resources/data/validator/combinations.mapcss:160
+#: ../core/resources/data/validator/combinations.mapcss:166
+#: ../core/resources/data/validator/combinations.mapcss:195
+#: ../core/resources/data/validator/combinations.mapcss:228
+#: ../core/resources/data/validator/combinations.mapcss:244
+#: ../core/resources/data/validator/combinations.mapcss:251
+#: ../core/resources/data/validator/combinations.mapcss:258
+#: ../core/resources/data/validator/combinations.mapcss:264
+#: ../core/resources/data/validator/combinations.mapcss:270
+#: ../core/resources/data/validator/combinations.mapcss:277
+#: ../core/resources/data/validator/combinations.mapcss:283
+#: ../core/resources/data/validator/combinations.mapcss:289
+#: ../core/resources/data/validator/combinations.mapcss:421
+#: ../core/resources/data/validator/combinations.mapcss:429
+#: ../core/resources/data/validator/combinations.mapcss:435
+#: ../core/resources/data/validator/combinations.mapcss:441
+#: ../core/resources/data/validator/combinations.mapcss:508
+#: ../core/resources/data/validator/combinations.mapcss:534
+#: ../core/resources/data/validator/combinations.mapcss:547
+#: ../core/resources/data/validator/combinations.mapcss:553
+#: ../core/resources/data/validator/combinations.mapcss:681
+#: ../core/resources/data/validator/combinations.mapcss:699
+#: ../core/resources/data/validator/combinations.mapcss:720
+#: ../core/resources/data/validator/combinations.mapcss:733
+#: ../core/resources/data/validator/combinations.mapcss:741
+#: ../core/resources/data/validator/combinations.mapcss:801
+#: ../core/resources/data/validator/combinations.mapcss:807
+#: ../core/resources/data/validator/combinations.mapcss:818
+#: ../core/resources/data/validator/combinations.mapcss:831
+#: ../core/resources/data/validator/combinations.mapcss:892
+#: ../core/resources/data/validator/combinations.mapcss:896
+#: ../core/resources/data/validator/combinations.mapcss:902
+#: ../core/resources/data/validator/combinations.mapcss:986
+#: ../core/resources/data/validator/combinations.mapcss:1021
+#: ../core/resources/data/validator/combinations.mapcss:1032
+#: ../core/resources/data/validator/combinations.mapcss:1039
+#: ../core/resources/data/validator/combinations.mapcss:1045
+#: ../core/resources/data/validator/combinations.mapcss:1052
+#: ../core/resources/data/validator/combinations.mapcss:1058
+#: ../core/resources/data/validator/highway.mapcss:74
+#: ../core/resources/data/validator/highway.mapcss:153
+#: ../core/resources/data/validator/highway.mapcss:158
+#: ../core/resources/data/validator/relation.mapcss:19
+#: ../core/resources/data/validator/relation.mapcss:38
+#: ../core/resources/data/validator/religion.mapcss:5
+#: ../core/resources/data/validator/wikipedia.mapcss:140
+msgid "missing tag"
+msgstr "Відсутній теґ"
 
 #: ../core/resources/data/validator/numeric.mapcss:282
 #: ../plugins/austriaaddresshelper/src/org/openstreetmap/josm/plugins/austriaaddresshelper/AustriaAddressHelperAction.java:242
@@ -55,10 +108,10 @@ msgstr ""
 "Обʼєкт не має {0}, проте, він має {1} та {2}, що виглядають як номер будинку."
 
 #: ../core/resources/data/validator/addresses.mapcss:29
-#: ../core/resources/data/validator/combinations.mapcss:556
-#: ../core/resources/data/validator/combinations.mapcss:570
-#: ../core/resources/data/validator/combinations.mapcss:585
-#: ../core/resources/data/validator/combinations.mapcss:600
+#: ../core/resources/data/validator/combinations.mapcss:560
+#: ../core/resources/data/validator/combinations.mapcss:574
+#: ../core/resources/data/validator/combinations.mapcss:589
+#: ../core/resources/data/validator/combinations.mapcss:604
 #, java-format
 msgid "Same value of {0} and {1}"
 msgstr "Те ж саме значення {0} і {1}"
@@ -68,270 +121,217 @@ msgstr "Те ж саме значення {0} і {1}"
 msgid "{0} without number"
 msgstr "{0} без номера"
 
-#: ../core/resources/data/validator/combinations.mapcss:76
-#: ../core/resources/data/validator/combinations.mapcss:88
-#: ../core/resources/data/validator/combinations.mapcss:113
-#: ../core/resources/data/validator/combinations.mapcss:191
-#: ../core/resources/data/validator/combinations.mapcss:224
-#: ../core/resources/data/validator/combinations.mapcss:247
-#: ../core/resources/data/validator/combinations.mapcss:254
-#: ../core/resources/data/validator/combinations.mapcss:503
-#: ../core/resources/data/validator/combinations.mapcss:676
-#: ../core/resources/data/validator/combinations.mapcss:728
-#: ../core/resources/data/validator/combinations.mapcss:736
-#: ../core/resources/data/validator/combinations.mapcss:802
-#: ../core/resources/data/validator/combinations.mapcss:892
-#: ../core/resources/data/validator/combinations.mapcss:896
-#: ../core/resources/data/validator/combinations.mapcss:986
+#: ../core/resources/data/validator/combinations.mapcss:79
+#: ../core/resources/data/validator/combinations.mapcss:91
+#: ../core/resources/data/validator/combinations.mapcss:116
+#: ../core/resources/data/validator/combinations.mapcss:194
+#: ../core/resources/data/validator/combinations.mapcss:227
+#: ../core/resources/data/validator/combinations.mapcss:250
+#: ../core/resources/data/validator/combinations.mapcss:257
+#: ../core/resources/data/validator/combinations.mapcss:507
+#: ../core/resources/data/validator/combinations.mapcss:680
+#: ../core/resources/data/validator/combinations.mapcss:732
+#: ../core/resources/data/validator/combinations.mapcss:740
+#: ../core/resources/data/validator/combinations.mapcss:806
+#: ../core/resources/data/validator/combinations.mapcss:891
+#: ../core/resources/data/validator/combinations.mapcss:895
+#: ../core/resources/data/validator/combinations.mapcss:985
 #: ../core/resources/data/validator/territories.mapcss:28
 #: ../core/resources/data/validator/territories.mapcss:33
 #, java-format
 msgid "{0} without {1}"
 msgstr "{0} без {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:77
-#: ../core/resources/data/validator/combinations.mapcss:89
-#: ../core/resources/data/validator/combinations.mapcss:114
-#: ../core/resources/data/validator/combinations.mapcss:150
-#: ../core/resources/data/validator/combinations.mapcss:157
-#: ../core/resources/data/validator/combinations.mapcss:163
-#: ../core/resources/data/validator/combinations.mapcss:192
-#: ../core/resources/data/validator/combinations.mapcss:225
-#: ../core/resources/data/validator/combinations.mapcss:241
-#: ../core/resources/data/validator/combinations.mapcss:248
-#: ../core/resources/data/validator/combinations.mapcss:255
-#: ../core/resources/data/validator/combinations.mapcss:261
-#: ../core/resources/data/validator/combinations.mapcss:267
-#: ../core/resources/data/validator/combinations.mapcss:274
-#: ../core/resources/data/validator/combinations.mapcss:280
-#: ../core/resources/data/validator/combinations.mapcss:286
-#: ../core/resources/data/validator/combinations.mapcss:417
-#: ../core/resources/data/validator/combinations.mapcss:425
-#: ../core/resources/data/validator/combinations.mapcss:431
-#: ../core/resources/data/validator/combinations.mapcss:437
-#: ../core/resources/data/validator/combinations.mapcss:504
-#: ../core/resources/data/validator/combinations.mapcss:530
-#: ../core/resources/data/validator/combinations.mapcss:543
-#: ../core/resources/data/validator/combinations.mapcss:549
-#: ../core/resources/data/validator/combinations.mapcss:677
-#: ../core/resources/data/validator/combinations.mapcss:695
-#: ../core/resources/data/validator/combinations.mapcss:716
-#: ../core/resources/data/validator/combinations.mapcss:729
-#: ../core/resources/data/validator/combinations.mapcss:737
-#: ../core/resources/data/validator/combinations.mapcss:797
-#: ../core/resources/data/validator/combinations.mapcss:803
-#: ../core/resources/data/validator/combinations.mapcss:814
-#: ../core/resources/data/validator/combinations.mapcss:827
-#: ../core/resources/data/validator/combinations.mapcss:893
-#: ../core/resources/data/validator/combinations.mapcss:897
-#: ../core/resources/data/validator/combinations.mapcss:903
-#: ../core/resources/data/validator/combinations.mapcss:987
-#: ../core/resources/data/validator/combinations.mapcss:1022
-#: ../core/resources/data/validator/combinations.mapcss:1033
-#: ../core/resources/data/validator/combinations.mapcss:1040
-#: ../core/resources/data/validator/combinations.mapcss:1046
-#: ../core/resources/data/validator/combinations.mapcss:1053
-#: ../core/resources/data/validator/combinations.mapcss:1059
-#: ../core/resources/data/validator/highway.mapcss:74
-#: ../core/resources/data/validator/highway.mapcss:153
-#: ../core/resources/data/validator/highway.mapcss:158
-#: ../core/resources/data/validator/relation.mapcss:19
-#: ../core/resources/data/validator/relation.mapcss:38
-#: ../core/resources/data/validator/religion.mapcss:5
-#: ../core/resources/data/validator/wikipedia.mapcss:140
-msgid "missing tag"
-msgstr "Відсутній теґ"
-
-#: ../core/resources/data/validator/combinations.mapcss:119
+#: ../core/resources/data/validator/combinations.mapcss:122
 #, java-format
 msgid "{0} without access tags such as {1}, {2}, or {3}."
 msgstr "{0} без теґів access, наприклад:  {1}, {2}, чи {3}."
 
-#: ../core/resources/data/validator/combinations.mapcss:120
-#: ../core/resources/data/validator/combinations.mapcss:136
-#: ../core/resources/data/validator/combinations.mapcss:141
+#: ../core/resources/data/validator/combinations.mapcss:123
+#: ../core/resources/data/validator/combinations.mapcss:139
+#: ../core/resources/data/validator/combinations.mapcss:144
 msgid "suspicious barrier"
 msgstr "підозрілий бар’єр"
 
-#: ../core/resources/data/validator/combinations.mapcss:134
-#: ../core/resources/data/validator/combinations.mapcss:140
+#: ../core/resources/data/validator/combinations.mapcss:137
+#: ../core/resources/data/validator/combinations.mapcss:143
 #, java-format
 msgid ""
 "Suspicious {0} on a connection of a small highway with a larger highway"
 msgstr "Підозра {0} щодо з’єднання незначної дороги з більш значною дорогою"
 
-#: ../core/resources/data/validator/combinations.mapcss:149
-#: ../core/resources/data/validator/combinations.mapcss:240
-#: ../core/resources/data/validator/combinations.mapcss:260
-#: ../core/resources/data/validator/combinations.mapcss:542
-#: ../core/resources/data/validator/combinations.mapcss:902
+#: ../core/resources/data/validator/combinations.mapcss:152
+#: ../core/resources/data/validator/combinations.mapcss:243
+#: ../core/resources/data/validator/combinations.mapcss:263
+#: ../core/resources/data/validator/combinations.mapcss:546
+#: ../core/resources/data/validator/combinations.mapcss:901
 #, java-format
 msgid "{0} without {1} or {2}"
 msgstr "{0} без {1} чи {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:156
-#: ../core/resources/data/validator/combinations.mapcss:279
-#: ../core/resources/data/validator/combinations.mapcss:285
+#: ../core/resources/data/validator/combinations.mapcss:159
+#: ../core/resources/data/validator/combinations.mapcss:282
+#: ../core/resources/data/validator/combinations.mapcss:288
 #, java-format
 msgid "{0} without {1}, {2} or {3}"
 msgstr "{0} без {1}, {2} або {3}"
 
-#: ../core/resources/data/validator/combinations.mapcss:162
-#: ../core/resources/data/validator/combinations.mapcss:266
-#: ../core/resources/data/validator/combinations.mapcss:273
+#: ../core/resources/data/validator/combinations.mapcss:165
+#: ../core/resources/data/validator/combinations.mapcss:269
+#: ../core/resources/data/validator/combinations.mapcss:276
 #, java-format
 msgid "{0} without {1}, {2}, {3} or {4}"
 msgstr "{0} без {1}, {2}, {3} або {4}"
 
-#: ../core/resources/data/validator/combinations.mapcss:307
-#: ../core/resources/data/validator/combinations.mapcss:315
-#: ../core/resources/data/validator/combinations.mapcss:338
-#: ../core/resources/data/validator/combinations.mapcss:344
-#: ../core/resources/data/validator/combinations.mapcss:356
-#: ../core/resources/data/validator/combinations.mapcss:375
-#: ../core/resources/data/validator/combinations.mapcss:381
-#: ../core/resources/data/validator/combinations.mapcss:445
-#: ../core/resources/data/validator/combinations.mapcss:452
-#: ../core/resources/data/validator/combinations.mapcss:460
-#: ../core/resources/data/validator/combinations.mapcss:469
-#: ../core/resources/data/validator/combinations.mapcss:477
-#: ../core/resources/data/validator/combinations.mapcss:515
-#: ../core/resources/data/validator/combinations.mapcss:626
-#: ../core/resources/data/validator/combinations.mapcss:633
-#: ../core/resources/data/validator/combinations.mapcss:655
-#: ../core/resources/data/validator/combinations.mapcss:665
-#: ../core/resources/data/validator/combinations.mapcss:682
-#: ../core/resources/data/validator/combinations.mapcss:757
-#: ../core/resources/data/validator/combinations.mapcss:763
-#: ../core/resources/data/validator/combinations.mapcss:781
-#: ../core/resources/data/validator/combinations.mapcss:860
-#: ../core/resources/data/validator/combinations.mapcss:908
-#: ../core/resources/data/validator/combinations.mapcss:954
-#: ../core/resources/data/validator/combinations.mapcss:973
-#: ../core/resources/data/validator/combinations.mapcss:981
-#: ../core/resources/data/validator/combinations.mapcss:993
-#: ../core/resources/data/validator/combinations.mapcss:1009
-#: ../core/resources/data/validator/deprecated.mapcss:603
-#: ../core/resources/data/validator/deprecated.mapcss:612
-#: ../core/resources/data/validator/deprecated.mapcss:621
-#: ../core/resources/data/validator/deprecated.mapcss:1324
-#: ../core/resources/data/validator/deprecated.mapcss:1329
+#: ../core/resources/data/validator/combinations.mapcss:310
+#: ../core/resources/data/validator/combinations.mapcss:318
+#: ../core/resources/data/validator/combinations.mapcss:341
+#: ../core/resources/data/validator/combinations.mapcss:347
+#: ../core/resources/data/validator/combinations.mapcss:360
+#: ../core/resources/data/validator/combinations.mapcss:379
+#: ../core/resources/data/validator/combinations.mapcss:385
+#: ../core/resources/data/validator/combinations.mapcss:449
+#: ../core/resources/data/validator/combinations.mapcss:456
+#: ../core/resources/data/validator/combinations.mapcss:464
+#: ../core/resources/data/validator/combinations.mapcss:473
+#: ../core/resources/data/validator/combinations.mapcss:481
+#: ../core/resources/data/validator/combinations.mapcss:519
+#: ../core/resources/data/validator/combinations.mapcss:630
+#: ../core/resources/data/validator/combinations.mapcss:637
+#: ../core/resources/data/validator/combinations.mapcss:659
+#: ../core/resources/data/validator/combinations.mapcss:669
+#: ../core/resources/data/validator/combinations.mapcss:686
+#: ../core/resources/data/validator/combinations.mapcss:761
+#: ../core/resources/data/validator/combinations.mapcss:767
+#: ../core/resources/data/validator/combinations.mapcss:785
+#: ../core/resources/data/validator/combinations.mapcss:864
+#: ../core/resources/data/validator/combinations.mapcss:907
+#: ../core/resources/data/validator/combinations.mapcss:953
+#: ../core/resources/data/validator/combinations.mapcss:972
+#: ../core/resources/data/validator/combinations.mapcss:980
+#: ../core/resources/data/validator/combinations.mapcss:992
+#: ../core/resources/data/validator/combinations.mapcss:1008
+#: ../core/resources/data/validator/deprecated.mapcss:600
+#: ../core/resources/data/validator/deprecated.mapcss:609
+#: ../core/resources/data/validator/deprecated.mapcss:618
+#: ../core/resources/data/validator/deprecated.mapcss:1315
+#: ../core/resources/data/validator/deprecated.mapcss:1320
 #: ../core/resources/data/validator/highway.mapcss:93
 #: ../core/resources/data/validator/highway.mapcss:163
 #, java-format
 msgid "{0} together with {1}"
 msgstr "{0} разом з {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:308
-#: ../core/resources/data/validator/combinations.mapcss:316
-#: ../core/resources/data/validator/combinations.mapcss:339
-#: ../core/resources/data/validator/combinations.mapcss:345
-#: ../core/resources/data/validator/combinations.mapcss:357
-#: ../core/resources/data/validator/combinations.mapcss:363
-#: ../core/resources/data/validator/combinations.mapcss:370
-#: ../core/resources/data/validator/combinations.mapcss:377
-#: ../core/resources/data/validator/combinations.mapcss:385
-#: ../core/resources/data/validator/combinations.mapcss:393
-#: ../core/resources/data/validator/combinations.mapcss:446
-#: ../core/resources/data/validator/combinations.mapcss:453
+#: ../core/resources/data/validator/combinations.mapcss:311
+#: ../core/resources/data/validator/combinations.mapcss:319
+#: ../core/resources/data/validator/combinations.mapcss:342
+#: ../core/resources/data/validator/combinations.mapcss:348
+#: ../core/resources/data/validator/combinations.mapcss:361
+#: ../core/resources/data/validator/combinations.mapcss:367
+#: ../core/resources/data/validator/combinations.mapcss:374
+#: ../core/resources/data/validator/combinations.mapcss:381
+#: ../core/resources/data/validator/combinations.mapcss:389
+#: ../core/resources/data/validator/combinations.mapcss:397
+#: ../core/resources/data/validator/combinations.mapcss:450
 #: ../core/resources/data/validator/combinations.mapcss:457
 #: ../core/resources/data/validator/combinations.mapcss:461
-#: ../core/resources/data/validator/combinations.mapcss:466
-#: ../core/resources/data/validator/combinations.mapcss:471
-#: ../core/resources/data/validator/combinations.mapcss:479
-#: ../core/resources/data/validator/combinations.mapcss:493
-#: ../core/resources/data/validator/combinations.mapcss:499
-#: ../core/resources/data/validator/combinations.mapcss:516
-#: ../core/resources/data/validator/combinations.mapcss:523
-#: ../core/resources/data/validator/combinations.mapcss:557
-#: ../core/resources/data/validator/combinations.mapcss:572
-#: ../core/resources/data/validator/combinations.mapcss:580
-#: ../core/resources/data/validator/combinations.mapcss:587
-#: ../core/resources/data/validator/combinations.mapcss:595
-#: ../core/resources/data/validator/combinations.mapcss:602
-#: ../core/resources/data/validator/combinations.mapcss:610
-#: ../core/resources/data/validator/combinations.mapcss:618
-#: ../core/resources/data/validator/combinations.mapcss:627
-#: ../core/resources/data/validator/combinations.mapcss:634
-#: ../core/resources/data/validator/combinations.mapcss:645
+#: ../core/resources/data/validator/combinations.mapcss:465
+#: ../core/resources/data/validator/combinations.mapcss:470
+#: ../core/resources/data/validator/combinations.mapcss:475
+#: ../core/resources/data/validator/combinations.mapcss:483
+#: ../core/resources/data/validator/combinations.mapcss:497
+#: ../core/resources/data/validator/combinations.mapcss:503
+#: ../core/resources/data/validator/combinations.mapcss:520
+#: ../core/resources/data/validator/combinations.mapcss:527
+#: ../core/resources/data/validator/combinations.mapcss:561
+#: ../core/resources/data/validator/combinations.mapcss:576
+#: ../core/resources/data/validator/combinations.mapcss:584
+#: ../core/resources/data/validator/combinations.mapcss:591
+#: ../core/resources/data/validator/combinations.mapcss:599
+#: ../core/resources/data/validator/combinations.mapcss:606
+#: ../core/resources/data/validator/combinations.mapcss:614
+#: ../core/resources/data/validator/combinations.mapcss:622
+#: ../core/resources/data/validator/combinations.mapcss:631
+#: ../core/resources/data/validator/combinations.mapcss:638
 #: ../core/resources/data/validator/combinations.mapcss:649
-#: ../core/resources/data/validator/combinations.mapcss:656
+#: ../core/resources/data/validator/combinations.mapcss:653
 #: ../core/resources/data/validator/combinations.mapcss:660
-#: ../core/resources/data/validator/combinations.mapcss:667
-#: ../core/resources/data/validator/combinations.mapcss:685
-#: ../core/resources/data/validator/combinations.mapcss:710
-#: ../core/resources/data/validator/combinations.mapcss:751
-#: ../core/resources/data/validator/combinations.mapcss:758
-#: ../core/resources/data/validator/combinations.mapcss:765
-#: ../core/resources/data/validator/combinations.mapcss:776
-#: ../core/resources/data/validator/combinations.mapcss:782
-#: ../core/resources/data/validator/combinations.mapcss:788
-#: ../core/resources/data/validator/combinations.mapcss:839
-#: ../core/resources/data/validator/combinations.mapcss:850
-#: ../core/resources/data/validator/combinations.mapcss:861
-#: ../core/resources/data/validator/combinations.mapcss:868
-#: ../core/resources/data/validator/combinations.mapcss:878
-#: ../core/resources/data/validator/combinations.mapcss:884
-#: ../core/resources/data/validator/combinations.mapcss:910
-#: ../core/resources/data/validator/combinations.mapcss:928
-#: ../core/resources/data/validator/combinations.mapcss:955
-#: ../core/resources/data/validator/combinations.mapcss:964
-#: ../core/resources/data/validator/combinations.mapcss:968
-#: ../core/resources/data/validator/combinations.mapcss:974
-#: ../core/resources/data/validator/combinations.mapcss:982
-#: ../core/resources/data/validator/combinations.mapcss:994
-#: ../core/resources/data/validator/combinations.mapcss:1010
+#: ../core/resources/data/validator/combinations.mapcss:664
+#: ../core/resources/data/validator/combinations.mapcss:671
+#: ../core/resources/data/validator/combinations.mapcss:689
+#: ../core/resources/data/validator/combinations.mapcss:714
+#: ../core/resources/data/validator/combinations.mapcss:755
+#: ../core/resources/data/validator/combinations.mapcss:762
+#: ../core/resources/data/validator/combinations.mapcss:769
+#: ../core/resources/data/validator/combinations.mapcss:780
+#: ../core/resources/data/validator/combinations.mapcss:786
+#: ../core/resources/data/validator/combinations.mapcss:792
+#: ../core/resources/data/validator/combinations.mapcss:843
+#: ../core/resources/data/validator/combinations.mapcss:854
+#: ../core/resources/data/validator/combinations.mapcss:865
+#: ../core/resources/data/validator/combinations.mapcss:872
+#: ../core/resources/data/validator/combinations.mapcss:883
+#: ../core/resources/data/validator/combinations.mapcss:909
+#: ../core/resources/data/validator/combinations.mapcss:927
+#: ../core/resources/data/validator/combinations.mapcss:954
+#: ../core/resources/data/validator/combinations.mapcss:963
+#: ../core/resources/data/validator/combinations.mapcss:967
+#: ../core/resources/data/validator/combinations.mapcss:973
+#: ../core/resources/data/validator/combinations.mapcss:981
+#: ../core/resources/data/validator/combinations.mapcss:993
+#: ../core/resources/data/validator/combinations.mapcss:1009
+#: ../core/resources/data/validator/combinations.mapcss:1066
 #: ../core/resources/data/validator/highway.mapcss:165
 #: ../core/resources/data/validator/highway.mapcss:203
-#: ../core/resources/data/validator/numeric.mapcss:419
+#: ../core/resources/data/validator/numeric.mapcss:422
 #: ../core/resources/data/validator/relation.mapcss:72
 msgid "suspicious tag combination"
 msgstr "Підозріла комбінація теґів"
 
-#: ../core/resources/data/validator/combinations.mapcss:362
-#: ../core/resources/data/validator/combinations.mapcss:369
+#: ../core/resources/data/validator/combinations.mapcss:366
+#: ../core/resources/data/validator/combinations.mapcss:373
 #, java-format
 msgid "{0} together with {1} and {2}"
 msgstr "{0} разом з {1} та {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:384
+#: ../core/resources/data/validator/combinations.mapcss:388
 #, java-format
 msgid "two objects, one with {0} and one with {1} + {2} + {3}"
 msgstr "два обʼєкти, один з {0} та інший з {1} + {2} + {3}"
 
-#: ../core/resources/data/validator/combinations.mapcss:390
+#: ../core/resources/data/validator/combinations.mapcss:394
 #, java-format
 msgid "{0} on an inner multipolygon ring without further tags"
 msgstr "{0} на внутрішньому контурі мультиполігона без додаткових теґів"
 
-#: ../core/resources/data/validator/combinations.mapcss:415
-#: ../core/resources/data/validator/combinations.mapcss:430
+#: ../core/resources/data/validator/combinations.mapcss:419
+#: ../core/resources/data/validator/combinations.mapcss:434
 #, java-format
 msgid "incomplete object: only {0}"
 msgstr "неповний об’єкт: тільки {0}"
 
-#: ../core/resources/data/validator/combinations.mapcss:424
-#: ../core/resources/data/validator/combinations.mapcss:436
+#: ../core/resources/data/validator/combinations.mapcss:428
+#: ../core/resources/data/validator/combinations.mapcss:440
 #, java-format
 msgid "incomplete object: only {0} and {1}"
 msgstr "неповний об’єкт: тільки {0} та {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:456
-#: ../core/resources/data/validator/combinations.mapcss:465
-#: ../core/resources/data/validator/combinations.mapcss:849
-#: ../core/resources/data/validator/deprecated.mapcss:631
-#: ../core/resources/data/validator/deprecated.mapcss:638
-#: ../core/resources/data/validator/deprecated.mapcss:645
+#: ../core/resources/data/validator/combinations.mapcss:460
+#: ../core/resources/data/validator/combinations.mapcss:469
+#: ../core/resources/data/validator/combinations.mapcss:853
+#: ../core/resources/data/validator/deprecated.mapcss:628
+#: ../core/resources/data/validator/deprecated.mapcss:635
+#: ../core/resources/data/validator/deprecated.mapcss:642
 #, java-format
 msgid "{0} together with {1} and conflicting values"
 msgstr "{0} разом з {1} та суперечливими значеннями"
 
-#: ../core/resources/data/validator/combinations.mapcss:492
+#: ../core/resources/data/validator/combinations.mapcss:496
 #, java-format
 msgid "{0} on suspicious object"
 msgstr "{0} на сумнівному об’єкті"
 
-#: ../core/resources/data/validator/combinations.mapcss:498
+#: ../core/resources/data/validator/combinations.mapcss:502
 #, java-format
 msgid ""
 "{0} together with {1}. The flow direction is defined by the way direction. "
@@ -340,42 +340,42 @@ msgstr ""
 "{0} разом з {1}. Напрямок руху визначається напрямком лінії. Використовуйте "
 "{1} для {0} тільки в специфічних випадках зазначення заборон доступу."
 
-#: ../core/resources/data/validator/combinations.mapcss:522
+#: ../core/resources/data/validator/combinations.mapcss:526
 msgid "natural water used for swimming pool"
 msgstr "natural=water у плавальних басейнах"
 
-#: ../core/resources/data/validator/combinations.mapcss:529
+#: ../core/resources/data/validator/combinations.mapcss:533
 msgid "sport without physical feature"
 msgstr "теґ sport без фізичного об’єкта"
 
-#: ../core/resources/data/validator/combinations.mapcss:548
+#: ../core/resources/data/validator/combinations.mapcss:552
 #, java-format
 msgid "alternative name without {0}"
 msgstr "альтернативна назва без {0}"
 
-#: ../core/resources/data/validator/combinations.mapcss:563
+#: ../core/resources/data/validator/combinations.mapcss:567
 #, java-format
 msgid "incomplete usage of {0} on a way without {1}"
 msgstr "неповне використання {0} на лінії без {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:577
-#: ../core/resources/data/validator/combinations.mapcss:592
-#: ../core/resources/data/validator/combinations.mapcss:607
+#: ../core/resources/data/validator/combinations.mapcss:581
+#: ../core/resources/data/validator/combinations.mapcss:596
+#: ../core/resources/data/validator/combinations.mapcss:611
 #, java-format
 msgid "Same value of {0}, {1} and {2}"
 msgstr "Те ж саме значення {0}, {1} і {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:617
+#: ../core/resources/data/validator/combinations.mapcss:621
 #, java-format
 msgid "{0} and {1} together with {2} and conflicting values"
 msgstr "{0} і {1} разом з {2} і значеннями, що спричиняють конфлікт"
 
-#: ../core/resources/data/validator/combinations.mapcss:639
+#: ../core/resources/data/validator/combinations.mapcss:643
 #, java-format
 msgid "{0} on a relation without {1}"
 msgstr "{0} на звʼязку без {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:644
+#: ../core/resources/data/validator/combinations.mapcss:648
 #, java-format
 msgid ""
 "Long waterway with {0} but without a tag which defines it as tunnel or "
@@ -386,7 +386,7 @@ msgstr ""
 "таким, що є під землею. Вилучіть {1} або додайте теґ tunnel, якщо можливо. "
 "Також перевірте перетини з мостами та їх {1} теґи."
 
-#: ../core/resources/data/validator/combinations.mapcss:648
+#: ../core/resources/data/validator/combinations.mapcss:652
 #, java-format
 msgid ""
 "Short waterway with {0} but without a tag which defines it as tunnel or "
@@ -397,113 +397,117 @@ msgstr ""
 "таким, що є під землею. Вилучіть {1} або додайте теґ tunnel, якщо можливо. "
 "Також перевірте перетини з мостами та їх {1} теґи."
 
-#: ../core/resources/data/validator/combinations.mapcss:659
+#: ../core/resources/data/validator/combinations.mapcss:663
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {1} and {2}"
 msgstr "{0} разом з {1} та {2}. Вилучіть {1} та {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:694
+#: ../core/resources/data/validator/combinations.mapcss:698
 #, java-format
 msgid "possibly missing {0} tag"
 msgstr "можливо, пропущено теґ {0}"
 
-#: ../core/resources/data/validator/combinations.mapcss:709
+#: ../core/resources/data/validator/combinations.mapcss:713
 #, java-format
 msgid "Different number of lanes in the keys {0} and {1}"
 msgstr "Різна кількість смуг для ругу в ключах {0} та {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:715
+#: ../core/resources/data/validator/combinations.mapcss:719
 #, java-format
 msgid "street with odd number of {0}, but without {1} and {2} or {3}"
 msgstr "дорога з непарним значенням {0}, але без {1} та {2} або {3}"
 
-#: ../core/resources/data/validator/combinations.mapcss:745
+#: ../core/resources/data/validator/combinations.mapcss:749
 #, java-format
 msgid "{0} together with {1}. Tag each hydrant separately."
 msgstr "{0} разом з {1}. Позначайте кожен гідрант окремо."
 
-#: ../core/resources/data/validator/combinations.mapcss:750
+#: ../core/resources/data/validator/combinations.mapcss:754
 #, java-format
 msgid "{0} together with {1} on a node. Remove {0}."
 msgstr "{0} разом з {1} на точці. Вилучить {0}."
 
-#: ../core/resources/data/validator/combinations.mapcss:775
+#: ../core/resources/data/validator/combinations.mapcss:779
 #, java-format
 msgid ""
 "A linear object {0} without {1} has a tag indicating that it is an area."
 msgstr "Лінійний об’єкт {0} без {1} має теґ що описує його як полігон."
 
-#: ../core/resources/data/validator/combinations.mapcss:787
+#: ../core/resources/data/validator/combinations.mapcss:791
 #, java-format
 msgid "{0} together with {1}. Remove {1}."
 msgstr "{0} разом з {1}. Вилучіть {1}."
 
-#: ../core/resources/data/validator/combinations.mapcss:796
+#: ../core/resources/data/validator/combinations.mapcss:800
 #, java-format
 msgid "Combined foot- and cycleway without {0}."
 msgstr "Суміщений вело-пішохідний шлях без {0}."
 
-#: ../core/resources/data/validator/combinations.mapcss:813
+#: ../core/resources/data/validator/combinations.mapcss:817
 #, java-format
 msgid "{0} without {1} and {2}"
 msgstr "{0} без {1} та {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:826
+#: ../core/resources/data/validator/combinations.mapcss:830
 #, java-format
 msgid "{0} together with {1} but without {2}"
 msgstr "{0} разом з {1} але без {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:838
+#: ../core/resources/data/validator/combinations.mapcss:842
 #, java-format
 msgid "{0} together with {1} and conflicting values plus no {2}"
 msgstr "{0} разом з {1} та конфліктними значеннями, плюс без {2}"
 
-#: ../core/resources/data/validator/combinations.mapcss:867
-#: ../core/resources/data/validator/combinations.mapcss:877
+#: ../core/resources/data/validator/combinations.mapcss:871
 #, java-format
 msgid "{0} together with {1}. Probably {2} is meant."
 msgstr "{0} разом з {1}. Можливо значить {2}."
 
-#: ../core/resources/data/validator/combinations.mapcss:883
+#: ../core/resources/data/validator/combinations.mapcss:882
 #, java-format
 msgid ""
 "{0} together with {1}. Should be used on a minor highway type or a node"
 msgstr ""
 "{0} разом з {1}. Має застосовуватись до доріг нижчих класів або до точок"
 
-#: ../core/resources/data/validator/combinations.mapcss:927
+#: ../core/resources/data/validator/combinations.mapcss:926
 #, java-format
 msgid "{0} together with {1}. Is the fixme fixed?"
 msgstr "{0} разом з {1}. Чи виправлена проблема з fixme?"
 
-#: ../core/resources/data/validator/combinations.mapcss:939
+#: ../core/resources/data/validator/combinations.mapcss:938
 #, java-format
 msgid "Use {0} only as value of {1}"
 msgstr "Використовуйте {0} тільки як значення для {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:963
+#: ../core/resources/data/validator/combinations.mapcss:962
 #, java-format
 msgid "{0} together with {1} at right-hand traffic"
 msgstr "{0} разом з {1} у правосторонньому русі"
 
-#: ../core/resources/data/validator/combinations.mapcss:967
+#: ../core/resources/data/validator/combinations.mapcss:966
 #, java-format
 msgid "{0} together with {1} at left-hand traffic"
 msgstr "{0} разом з {1} у лівосторонньому русі"
 
-#: ../core/resources/data/validator/combinations.mapcss:1021
-#: ../core/resources/data/validator/combinations.mapcss:1058
+#: ../core/resources/data/validator/combinations.mapcss:1020
+#: ../core/resources/data/validator/combinations.mapcss:1057
 #, java-format
 msgid "No grooming defined for {0} skiing, add {1}"
 msgstr "Не вказано тип підготовки лижних – {0}, додайте {1}"
 
-#: ../core/resources/data/validator/combinations.mapcss:1032
-#: ../core/resources/data/validator/combinations.mapcss:1039
-#: ../core/resources/data/validator/combinations.mapcss:1045
-#: ../core/resources/data/validator/combinations.mapcss:1052
+#: ../core/resources/data/validator/combinations.mapcss:1031
+#: ../core/resources/data/validator/combinations.mapcss:1038
+#: ../core/resources/data/validator/combinations.mapcss:1044
+#: ../core/resources/data/validator/combinations.mapcss:1051
 #, java-format
 msgid "No difficulty defined for skiing, add {0}"
 msgstr "Не вказано рівень складності лижної траси, додайте {0}"
+
+#: ../core/resources/data/validator/combinations.mapcss:1065
+#, java-format
+msgid "{0} is lower than {1} on {2}."
+msgstr "{0} нижче ніж {1} у {2}."
 
 #: ../core/resources/data/validator/deprecated.mapcss:2
 #: ../core/resources/data/validator/deprecated.mapcss:12
@@ -550,212 +554,215 @@ msgstr "Не вказано рівень складності лижної тр�
 #: ../core/resources/data/validator/deprecated.mapcss:336
 #: ../core/resources/data/validator/deprecated.mapcss:343
 #: ../core/resources/data/validator/deprecated.mapcss:351
-#: ../core/resources/data/validator/deprecated.mapcss:359
-#: ../core/resources/data/validator/deprecated.mapcss:366
-#: ../core/resources/data/validator/deprecated.mapcss:372
-#: ../core/resources/data/validator/deprecated.mapcss:387
-#: ../core/resources/data/validator/deprecated.mapcss:394
-#: ../core/resources/data/validator/deprecated.mapcss:400
-#: ../core/resources/data/validator/deprecated.mapcss:407
-#: ../core/resources/data/validator/deprecated.mapcss:431
-#: ../core/resources/data/validator/deprecated.mapcss:439
-#: ../core/resources/data/validator/deprecated.mapcss:487
-#: ../core/resources/data/validator/deprecated.mapcss:493
-#: ../core/resources/data/validator/deprecated.mapcss:499
-#: ../core/resources/data/validator/deprecated.mapcss:509
-#: ../core/resources/data/validator/deprecated.mapcss:521
-#: ../core/resources/data/validator/deprecated.mapcss:550
-#: ../core/resources/data/validator/deprecated.mapcss:558
-#: ../core/resources/data/validator/deprecated.mapcss:570
-#: ../core/resources/data/validator/deprecated.mapcss:578
-#: ../core/resources/data/validator/deprecated.mapcss:586
-#: ../core/resources/data/validator/deprecated.mapcss:594
-#: ../core/resources/data/validator/deprecated.mapcss:654
-#: ../core/resources/data/validator/deprecated.mapcss:662
-#: ../core/resources/data/validator/deprecated.mapcss:694
-#: ../core/resources/data/validator/deprecated.mapcss:704
-#: ../core/resources/data/validator/deprecated.mapcss:729
-#: ../core/resources/data/validator/deprecated.mapcss:736
-#: ../core/resources/data/validator/deprecated.mapcss:742
-#: ../core/resources/data/validator/deprecated.mapcss:748
-#: ../core/resources/data/validator/deprecated.mapcss:754
-#: ../core/resources/data/validator/deprecated.mapcss:767
-#: ../core/resources/data/validator/deprecated.mapcss:774
-#: ../core/resources/data/validator/deprecated.mapcss:785
-#: ../core/resources/data/validator/deprecated.mapcss:792
-#: ../core/resources/data/validator/deprecated.mapcss:800
-#: ../core/resources/data/validator/deprecated.mapcss:806
+#: ../core/resources/data/validator/deprecated.mapcss:360
+#: ../core/resources/data/validator/deprecated.mapcss:368
+#: ../core/resources/data/validator/deprecated.mapcss:383
+#: ../core/resources/data/validator/deprecated.mapcss:390
+#: ../core/resources/data/validator/deprecated.mapcss:396
+#: ../core/resources/data/validator/deprecated.mapcss:403
+#: ../core/resources/data/validator/deprecated.mapcss:427
+#: ../core/resources/data/validator/deprecated.mapcss:435
+#: ../core/resources/data/validator/deprecated.mapcss:484
+#: ../core/resources/data/validator/deprecated.mapcss:490
+#: ../core/resources/data/validator/deprecated.mapcss:496
+#: ../core/resources/data/validator/deprecated.mapcss:506
+#: ../core/resources/data/validator/deprecated.mapcss:518
+#: ../core/resources/data/validator/deprecated.mapcss:547
+#: ../core/resources/data/validator/deprecated.mapcss:555
+#: ../core/resources/data/validator/deprecated.mapcss:567
+#: ../core/resources/data/validator/deprecated.mapcss:575
+#: ../core/resources/data/validator/deprecated.mapcss:583
+#: ../core/resources/data/validator/deprecated.mapcss:591
+#: ../core/resources/data/validator/deprecated.mapcss:651
+#: ../core/resources/data/validator/deprecated.mapcss:659
+#: ../core/resources/data/validator/deprecated.mapcss:691
+#: ../core/resources/data/validator/deprecated.mapcss:701
+#: ../core/resources/data/validator/deprecated.mapcss:720
+#: ../core/resources/data/validator/deprecated.mapcss:727
+#: ../core/resources/data/validator/deprecated.mapcss:733
+#: ../core/resources/data/validator/deprecated.mapcss:739
+#: ../core/resources/data/validator/deprecated.mapcss:745
+#: ../core/resources/data/validator/deprecated.mapcss:758
+#: ../core/resources/data/validator/deprecated.mapcss:765
+#: ../core/resources/data/validator/deprecated.mapcss:776
+#: ../core/resources/data/validator/deprecated.mapcss:783
+#: ../core/resources/data/validator/deprecated.mapcss:791
+#: ../core/resources/data/validator/deprecated.mapcss:797
+#: ../core/resources/data/validator/deprecated.mapcss:803
 #: ../core/resources/data/validator/deprecated.mapcss:812
-#: ../core/resources/data/validator/deprecated.mapcss:821
-#: ../core/resources/data/validator/deprecated.mapcss:827
-#: ../core/resources/data/validator/deprecated.mapcss:832
-#: ../core/resources/data/validator/deprecated.mapcss:838
-#: ../core/resources/data/validator/deprecated.mapcss:845
-#: ../core/resources/data/validator/deprecated.mapcss:855
-#: ../core/resources/data/validator/deprecated.mapcss:861
-#: ../core/resources/data/validator/deprecated.mapcss:868
-#: ../core/resources/data/validator/deprecated.mapcss:874
+#: ../core/resources/data/validator/deprecated.mapcss:818
+#: ../core/resources/data/validator/deprecated.mapcss:823
+#: ../core/resources/data/validator/deprecated.mapcss:829
+#: ../core/resources/data/validator/deprecated.mapcss:836
+#: ../core/resources/data/validator/deprecated.mapcss:846
+#: ../core/resources/data/validator/deprecated.mapcss:852
+#: ../core/resources/data/validator/deprecated.mapcss:859
+#: ../core/resources/data/validator/deprecated.mapcss:865
+#: ../core/resources/data/validator/deprecated.mapcss:884
 #: ../core/resources/data/validator/deprecated.mapcss:893
 #: ../core/resources/data/validator/deprecated.mapcss:902
-#: ../core/resources/data/validator/deprecated.mapcss:911
-#: ../core/resources/data/validator/deprecated.mapcss:918
-#: ../core/resources/data/validator/deprecated.mapcss:926
-#: ../core/resources/data/validator/deprecated.mapcss:933
-#: ../core/resources/data/validator/deprecated.mapcss:939
-#: ../core/resources/data/validator/deprecated.mapcss:945
-#: ../core/resources/data/validator/deprecated.mapcss:952
-#: ../core/resources/data/validator/deprecated.mapcss:960
-#: ../core/resources/data/validator/deprecated.mapcss:967
-#: ../core/resources/data/validator/deprecated.mapcss:975
-#: ../core/resources/data/validator/deprecated.mapcss:982
-#: ../core/resources/data/validator/deprecated.mapcss:992
-#: ../core/resources/data/validator/deprecated.mapcss:998
-#: ../core/resources/data/validator/deprecated.mapcss:1014
-#: ../core/resources/data/validator/deprecated.mapcss:1022
-#: ../core/resources/data/validator/deprecated.mapcss:1040
-#: ../core/resources/data/validator/deprecated.mapcss:1048
-#: ../core/resources/data/validator/deprecated.mapcss:1054
-#: ../core/resources/data/validator/deprecated.mapcss:1061
-#: ../core/resources/data/validator/deprecated.mapcss:1075
-#: ../core/resources/data/validator/deprecated.mapcss:1083
-#: ../core/resources/data/validator/deprecated.mapcss:1091
-#: ../core/resources/data/validator/deprecated.mapcss:1107
-#: ../core/resources/data/validator/deprecated.mapcss:1115
+#: ../core/resources/data/validator/deprecated.mapcss:909
+#: ../core/resources/data/validator/deprecated.mapcss:917
+#: ../core/resources/data/validator/deprecated.mapcss:924
+#: ../core/resources/data/validator/deprecated.mapcss:930
+#: ../core/resources/data/validator/deprecated.mapcss:936
+#: ../core/resources/data/validator/deprecated.mapcss:943
+#: ../core/resources/data/validator/deprecated.mapcss:951
+#: ../core/resources/data/validator/deprecated.mapcss:958
+#: ../core/resources/data/validator/deprecated.mapcss:966
+#: ../core/resources/data/validator/deprecated.mapcss:973
+#: ../core/resources/data/validator/deprecated.mapcss:983
+#: ../core/resources/data/validator/deprecated.mapcss:989
+#: ../core/resources/data/validator/deprecated.mapcss:1005
+#: ../core/resources/data/validator/deprecated.mapcss:1013
+#: ../core/resources/data/validator/deprecated.mapcss:1031
+#: ../core/resources/data/validator/deprecated.mapcss:1039
+#: ../core/resources/data/validator/deprecated.mapcss:1045
+#: ../core/resources/data/validator/deprecated.mapcss:1052
+#: ../core/resources/data/validator/deprecated.mapcss:1066
+#: ../core/resources/data/validator/deprecated.mapcss:1074
+#: ../core/resources/data/validator/deprecated.mapcss:1082
+#: ../core/resources/data/validator/deprecated.mapcss:1098
+#: ../core/resources/data/validator/deprecated.mapcss:1106
+#: ../core/resources/data/validator/deprecated.mapcss:1114
 #: ../core/resources/data/validator/deprecated.mapcss:1123
-#: ../core/resources/data/validator/deprecated.mapcss:1132
-#: ../core/resources/data/validator/deprecated.mapcss:1143
+#: ../core/resources/data/validator/deprecated.mapcss:1134
+#: ../core/resources/data/validator/deprecated.mapcss:1141
 #: ../core/resources/data/validator/deprecated.mapcss:1150
-#: ../core/resources/data/validator/deprecated.mapcss:1159
-#: ../core/resources/data/validator/deprecated.mapcss:1167
-#: ../core/resources/data/validator/deprecated.mapcss:1260
-#: ../core/resources/data/validator/deprecated.mapcss:1265
-#: ../core/resources/data/validator/deprecated.mapcss:1275
-#: ../core/resources/data/validator/deprecated.mapcss:1282
-#: ../core/resources/data/validator/deprecated.mapcss:1339
-#: ../core/resources/data/validator/deprecated.mapcss:1351
-#: ../core/resources/data/validator/deprecated.mapcss:1359
-#: ../core/resources/data/validator/deprecated.mapcss:1374
-#: ../core/resources/data/validator/deprecated.mapcss:1384
-#: ../core/resources/data/validator/deprecated.mapcss:1391
-#: ../core/resources/data/validator/deprecated.mapcss:1398
-#: ../core/resources/data/validator/deprecated.mapcss:1408
-#: ../core/resources/data/validator/deprecated.mapcss:1416
-#: ../core/resources/data/validator/deprecated.mapcss:1424
-#: ../core/resources/data/validator/deprecated.mapcss:1430
-#: ../core/resources/data/validator/deprecated.mapcss:1437
-#: ../core/resources/data/validator/deprecated.mapcss:1442
-#: ../core/resources/data/validator/deprecated.mapcss:1450
-#: ../core/resources/data/validator/deprecated.mapcss:1458
-#: ../core/resources/data/validator/deprecated.mapcss:1466
-#: ../core/resources/data/validator/deprecated.mapcss:1473
-#: ../core/resources/data/validator/deprecated.mapcss:1483
-#: ../core/resources/data/validator/deprecated.mapcss:1490
-#: ../core/resources/data/validator/deprecated.mapcss:1503
-#: ../core/resources/data/validator/deprecated.mapcss:1513
-#: ../core/resources/data/validator/deprecated.mapcss:1521
-#: ../core/resources/data/validator/deprecated.mapcss:1529
-#: ../core/resources/data/validator/deprecated.mapcss:1536
-#: ../core/resources/data/validator/deprecated.mapcss:1544
-#: ../core/resources/data/validator/deprecated.mapcss:1552
-#: ../core/resources/data/validator/deprecated.mapcss:1558
+#: ../core/resources/data/validator/deprecated.mapcss:1158
+#: ../core/resources/data/validator/deprecated.mapcss:1251
+#: ../core/resources/data/validator/deprecated.mapcss:1256
+#: ../core/resources/data/validator/deprecated.mapcss:1266
+#: ../core/resources/data/validator/deprecated.mapcss:1273
+#: ../core/resources/data/validator/deprecated.mapcss:1330
+#: ../core/resources/data/validator/deprecated.mapcss:1342
+#: ../core/resources/data/validator/deprecated.mapcss:1350
+#: ../core/resources/data/validator/deprecated.mapcss:1365
+#: ../core/resources/data/validator/deprecated.mapcss:1375
+#: ../core/resources/data/validator/deprecated.mapcss:1382
+#: ../core/resources/data/validator/deprecated.mapcss:1389
+#: ../core/resources/data/validator/deprecated.mapcss:1399
+#: ../core/resources/data/validator/deprecated.mapcss:1407
+#: ../core/resources/data/validator/deprecated.mapcss:1415
+#: ../core/resources/data/validator/deprecated.mapcss:1421
+#: ../core/resources/data/validator/deprecated.mapcss:1428
+#: ../core/resources/data/validator/deprecated.mapcss:1433
+#: ../core/resources/data/validator/deprecated.mapcss:1441
+#: ../core/resources/data/validator/deprecated.mapcss:1449
+#: ../core/resources/data/validator/deprecated.mapcss:1457
+#: ../core/resources/data/validator/deprecated.mapcss:1464
+#: ../core/resources/data/validator/deprecated.mapcss:1474
+#: ../core/resources/data/validator/deprecated.mapcss:1481
+#: ../core/resources/data/validator/deprecated.mapcss:1494
+#: ../core/resources/data/validator/deprecated.mapcss:1504
+#: ../core/resources/data/validator/deprecated.mapcss:1512
+#: ../core/resources/data/validator/deprecated.mapcss:1520
+#: ../core/resources/data/validator/deprecated.mapcss:1527
+#: ../core/resources/data/validator/deprecated.mapcss:1535
+#: ../core/resources/data/validator/deprecated.mapcss:1543
+#: ../core/resources/data/validator/deprecated.mapcss:1549
+#: ../core/resources/data/validator/deprecated.mapcss:1557
 #: ../core/resources/data/validator/deprecated.mapcss:1566
-#: ../core/resources/data/validator/deprecated.mapcss:1575
-#: ../core/resources/data/validator/deprecated.mapcss:1583
-#: ../core/resources/data/validator/deprecated.mapcss:1588
-#: ../core/resources/data/validator/deprecated.mapcss:1593
-#: ../core/resources/data/validator/deprecated.mapcss:1599
-#: ../core/resources/data/validator/deprecated.mapcss:1604
-#: ../core/resources/data/validator/deprecated.mapcss:1610
-#: ../core/resources/data/validator/deprecated.mapcss:1616
-#: ../core/resources/data/validator/deprecated.mapcss:1621
-#: ../core/resources/data/validator/deprecated.mapcss:1627
-#: ../core/resources/data/validator/deprecated.mapcss:1633
-#: ../core/resources/data/validator/deprecated.mapcss:1639
-#: ../core/resources/data/validator/deprecated.mapcss:1646
-#: ../core/resources/data/validator/deprecated.mapcss:1657
-#: ../core/resources/data/validator/deprecated.mapcss:1664
-#: ../core/resources/data/validator/deprecated.mapcss:1669
-#: ../core/resources/data/validator/deprecated.mapcss:1675
-#: ../core/resources/data/validator/deprecated.mapcss:1681
-#: ../core/resources/data/validator/deprecated.mapcss:1687
-#: ../core/resources/data/validator/deprecated.mapcss:1697
-#: ../core/resources/data/validator/deprecated.mapcss:1704
-#: ../core/resources/data/validator/deprecated.mapcss:1712
-#: ../core/resources/data/validator/deprecated.mapcss:1719
-#: ../core/resources/data/validator/deprecated.mapcss:1724
-#: ../core/resources/data/validator/deprecated.mapcss:1732
+#: ../core/resources/data/validator/deprecated.mapcss:1574
+#: ../core/resources/data/validator/deprecated.mapcss:1579
+#: ../core/resources/data/validator/deprecated.mapcss:1584
+#: ../core/resources/data/validator/deprecated.mapcss:1590
+#: ../core/resources/data/validator/deprecated.mapcss:1595
+#: ../core/resources/data/validator/deprecated.mapcss:1601
+#: ../core/resources/data/validator/deprecated.mapcss:1607
+#: ../core/resources/data/validator/deprecated.mapcss:1612
+#: ../core/resources/data/validator/deprecated.mapcss:1618
+#: ../core/resources/data/validator/deprecated.mapcss:1624
+#: ../core/resources/data/validator/deprecated.mapcss:1630
+#: ../core/resources/data/validator/deprecated.mapcss:1637
+#: ../core/resources/data/validator/deprecated.mapcss:1648
+#: ../core/resources/data/validator/deprecated.mapcss:1655
+#: ../core/resources/data/validator/deprecated.mapcss:1660
+#: ../core/resources/data/validator/deprecated.mapcss:1666
+#: ../core/resources/data/validator/deprecated.mapcss:1672
+#: ../core/resources/data/validator/deprecated.mapcss:1678
+#: ../core/resources/data/validator/deprecated.mapcss:1688
+#: ../core/resources/data/validator/deprecated.mapcss:1695
+#: ../core/resources/data/validator/deprecated.mapcss:1703
+#: ../core/resources/data/validator/deprecated.mapcss:1710
+#: ../core/resources/data/validator/deprecated.mapcss:1715
+#: ../core/resources/data/validator/deprecated.mapcss:1723
+#: ../core/resources/data/validator/deprecated.mapcss:1731
 #: ../core/resources/data/validator/deprecated.mapcss:1740
-#: ../core/resources/data/validator/deprecated.mapcss:1749
-#: ../core/resources/data/validator/deprecated.mapcss:1757
-#: ../core/resources/data/validator/deprecated.mapcss:1764
-#: ../core/resources/data/validator/deprecated.mapcss:1777
-#: ../core/resources/data/validator/deprecated.mapcss:1785
-#: ../core/resources/data/validator/deprecated.mapcss:1793
+#: ../core/resources/data/validator/deprecated.mapcss:1748
+#: ../core/resources/data/validator/deprecated.mapcss:1755
+#: ../core/resources/data/validator/deprecated.mapcss:1768
+#: ../core/resources/data/validator/deprecated.mapcss:1776
+#: ../core/resources/data/validator/deprecated.mapcss:1784
+#: ../core/resources/data/validator/deprecated.mapcss:1792
 #: ../core/resources/data/validator/deprecated.mapcss:1801
-#: ../core/resources/data/validator/deprecated.mapcss:1810
+#: ../core/resources/data/validator/deprecated.mapcss:1809
 #: ../core/resources/data/validator/deprecated.mapcss:1818
-#: ../core/resources/data/validator/deprecated.mapcss:1827
-#: ../core/resources/data/validator/deprecated.mapcss:1835
+#: ../core/resources/data/validator/deprecated.mapcss:1826
+#: ../core/resources/data/validator/deprecated.mapcss:1836
 #: ../core/resources/data/validator/deprecated.mapcss:1845
 #: ../core/resources/data/validator/deprecated.mapcss:1854
-#: ../core/resources/data/validator/deprecated.mapcss:1863
-#: ../core/resources/data/validator/deprecated.mapcss:1871
-#: ../core/resources/data/validator/deprecated.mapcss:1879
-#: ../core/resources/data/validator/deprecated.mapcss:1887
-#: ../core/resources/data/validator/deprecated.mapcss:1903
-#: ../core/resources/data/validator/deprecated.mapcss:1911
+#: ../core/resources/data/validator/deprecated.mapcss:1862
+#: ../core/resources/data/validator/deprecated.mapcss:1870
+#: ../core/resources/data/validator/deprecated.mapcss:1878
+#: ../core/resources/data/validator/deprecated.mapcss:1894
+#: ../core/resources/data/validator/deprecated.mapcss:1902
+#: ../core/resources/data/validator/deprecated.mapcss:1912
 #: ../core/resources/data/validator/deprecated.mapcss:1921
 #: ../core/resources/data/validator/deprecated.mapcss:1930
-#: ../core/resources/data/validator/deprecated.mapcss:1939
-#: ../core/resources/data/validator/deprecated.mapcss:1947
-#: ../core/resources/data/validator/deprecated.mapcss:1966
-#: ../core/resources/data/validator/deprecated.mapcss:1973
-#: ../core/resources/data/validator/deprecated.mapcss:1981
-#: ../core/resources/data/validator/deprecated.mapcss:1989
-#: ../core/resources/data/validator/deprecated.mapcss:1996
-#: ../core/resources/data/validator/deprecated.mapcss:2004
-#: ../core/resources/data/validator/deprecated.mapcss:2011
-#: ../core/resources/data/validator/deprecated.mapcss:2024
-#: ../core/resources/data/validator/deprecated.mapcss:2032
-#: ../core/resources/data/validator/deprecated.mapcss:2038
-#: ../core/resources/data/validator/deprecated.mapcss:2046
+#: ../core/resources/data/validator/deprecated.mapcss:1938
+#: ../core/resources/data/validator/deprecated.mapcss:1957
+#: ../core/resources/data/validator/deprecated.mapcss:1964
+#: ../core/resources/data/validator/deprecated.mapcss:1972
+#: ../core/resources/data/validator/deprecated.mapcss:1980
+#: ../core/resources/data/validator/deprecated.mapcss:1987
+#: ../core/resources/data/validator/deprecated.mapcss:1995
+#: ../core/resources/data/validator/deprecated.mapcss:2002
+#: ../core/resources/data/validator/deprecated.mapcss:2015
+#: ../core/resources/data/validator/deprecated.mapcss:2023
+#: ../core/resources/data/validator/deprecated.mapcss:2029
+#: ../core/resources/data/validator/deprecated.mapcss:2037
+#: ../core/resources/data/validator/deprecated.mapcss:2045
 #: ../core/resources/data/validator/deprecated.mapcss:2054
-#: ../core/resources/data/validator/deprecated.mapcss:2063
-#: ../core/resources/data/validator/deprecated.mapcss:2071
-#: ../core/resources/data/validator/deprecated.mapcss:2078
-#: ../core/resources/data/validator/deprecated.mapcss:2085
-#: ../core/resources/data/validator/deprecated.mapcss:2095
-#: ../core/resources/data/validator/deprecated.mapcss:2112
-#: ../core/resources/data/validator/deprecated.mapcss:2139
-#: ../core/resources/data/validator/deprecated.mapcss:2146
-#: ../core/resources/data/validator/deprecated.mapcss:2154
-#: ../core/resources/data/validator/deprecated.mapcss:2160
-#: ../core/resources/data/validator/deprecated.mapcss:2166
-#: ../core/resources/data/validator/deprecated.mapcss:2172
-#: ../core/resources/data/validator/deprecated.mapcss:2178
-#: ../core/resources/data/validator/deprecated.mapcss:2184
-#: ../core/resources/data/validator/deprecated.mapcss:2190
-#: ../core/resources/data/validator/deprecated.mapcss:2196
-#: ../core/resources/data/validator/deprecated.mapcss:2204
-#: ../core/resources/data/validator/deprecated.mapcss:2212
-#: ../core/resources/data/validator/deprecated.mapcss:2218
-#: ../core/resources/data/validator/deprecated.mapcss:2224
-#: ../core/resources/data/validator/deprecated.mapcss:2230
-#: ../core/resources/data/validator/deprecated.mapcss:2238
-#: ../core/resources/data/validator/deprecated.mapcss:2253
-#: ../core/resources/data/validator/deprecated.mapcss:2271
-#: ../core/resources/data/validator/deprecated.mapcss:2279
+#: ../core/resources/data/validator/deprecated.mapcss:2062
+#: ../core/resources/data/validator/deprecated.mapcss:2069
+#: ../core/resources/data/validator/deprecated.mapcss:2076
+#: ../core/resources/data/validator/deprecated.mapcss:2086
+#: ../core/resources/data/validator/deprecated.mapcss:2103
+#: ../core/resources/data/validator/deprecated.mapcss:2130
+#: ../core/resources/data/validator/deprecated.mapcss:2137
+#: ../core/resources/data/validator/deprecated.mapcss:2145
+#: ../core/resources/data/validator/deprecated.mapcss:2151
+#: ../core/resources/data/validator/deprecated.mapcss:2157
+#: ../core/resources/data/validator/deprecated.mapcss:2163
+#: ../core/resources/data/validator/deprecated.mapcss:2169
+#: ../core/resources/data/validator/deprecated.mapcss:2175
+#: ../core/resources/data/validator/deprecated.mapcss:2181
+#: ../core/resources/data/validator/deprecated.mapcss:2187
+#: ../core/resources/data/validator/deprecated.mapcss:2195
+#: ../core/resources/data/validator/deprecated.mapcss:2203
+#: ../core/resources/data/validator/deprecated.mapcss:2209
+#: ../core/resources/data/validator/deprecated.mapcss:2215
+#: ../core/resources/data/validator/deprecated.mapcss:2221
+#: ../core/resources/data/validator/deprecated.mapcss:2229
+#: ../core/resources/data/validator/deprecated.mapcss:2244
+#: ../core/resources/data/validator/deprecated.mapcss:2262
+#: ../core/resources/data/validator/deprecated.mapcss:2270
+#: ../core/resources/data/validator/deprecated.mapcss:2281
 #: ../core/resources/data/validator/deprecated.mapcss:2290
-#: ../core/resources/data/validator/deprecated.mapcss:2299
-#: ../core/resources/data/validator/deprecated.mapcss:2307
-#: ../core/resources/data/validator/deprecated.mapcss:2315
-#: ../core/resources/data/validator/deprecated.mapcss:2325
-#: ../core/resources/data/validator/deprecated.mapcss:2331
-#: ../core/resources/data/validator/deprecated.mapcss:2341
-#: ../core/resources/data/validator/deprecated.mapcss:2346
-#: ../core/resources/data/validator/deprecated.mapcss:2354
-#: ../core/resources/data/validator/deprecated.mapcss:2364
+#: ../core/resources/data/validator/deprecated.mapcss:2298
+#: ../core/resources/data/validator/deprecated.mapcss:2306
+#: ../core/resources/data/validator/deprecated.mapcss:2316
+#: ../core/resources/data/validator/deprecated.mapcss:2322
+#: ../core/resources/data/validator/deprecated.mapcss:2332
+#: ../core/resources/data/validator/deprecated.mapcss:2337
+#: ../core/resources/data/validator/deprecated.mapcss:2345
+#: ../core/resources/data/validator/deprecated.mapcss:2355
+#: ../core/resources/data/validator/deprecated.mapcss:2369
 #: ../core/resources/data/validator/deprecated.mapcss:2378
+#: ../core/resources/data/validator/deprecated.mapcss:2386
+#: ../core/resources/data/validator/deprecated.mapcss:2392
+#: ../core/resources/data/validator/deprecated.mapcss:2399
 #: ../core/resources/data/validator/highway.mapcss:131
 #: ../core/resources/data/validator/highway.mapcss:139
 #, java-format
@@ -807,237 +814,240 @@ msgstr "{0} заборонено"
 #: ../core/resources/data/validator/deprecated.mapcss:338
 #: ../core/resources/data/validator/deprecated.mapcss:345
 #: ../core/resources/data/validator/deprecated.mapcss:353
-#: ../core/resources/data/validator/deprecated.mapcss:361
-#: ../core/resources/data/validator/deprecated.mapcss:368
-#: ../core/resources/data/validator/deprecated.mapcss:376
-#: ../core/resources/data/validator/deprecated.mapcss:381
-#: ../core/resources/data/validator/deprecated.mapcss:391
-#: ../core/resources/data/validator/deprecated.mapcss:397
-#: ../core/resources/data/validator/deprecated.mapcss:402
-#: ../core/resources/data/validator/deprecated.mapcss:409
-#: ../core/resources/data/validator/deprecated.mapcss:419
-#: ../core/resources/data/validator/deprecated.mapcss:425
-#: ../core/resources/data/validator/deprecated.mapcss:434
-#: ../core/resources/data/validator/deprecated.mapcss:441
-#: ../core/resources/data/validator/deprecated.mapcss:489
-#: ../core/resources/data/validator/deprecated.mapcss:495
-#: ../core/resources/data/validator/deprecated.mapcss:501
-#: ../core/resources/data/validator/deprecated.mapcss:511
-#: ../core/resources/data/validator/deprecated.mapcss:523
-#: ../core/resources/data/validator/deprecated.mapcss:545
-#: ../core/resources/data/validator/deprecated.mapcss:553
-#: ../core/resources/data/validator/deprecated.mapcss:560
-#: ../core/resources/data/validator/deprecated.mapcss:572
-#: ../core/resources/data/validator/deprecated.mapcss:580
-#: ../core/resources/data/validator/deprecated.mapcss:588
-#: ../core/resources/data/validator/deprecated.mapcss:596
-#: ../core/resources/data/validator/deprecated.mapcss:605
-#: ../core/resources/data/validator/deprecated.mapcss:614
-#: ../core/resources/data/validator/deprecated.mapcss:623
-#: ../core/resources/data/validator/deprecated.mapcss:633
-#: ../core/resources/data/validator/deprecated.mapcss:640
-#: ../core/resources/data/validator/deprecated.mapcss:647
-#: ../core/resources/data/validator/deprecated.mapcss:656
-#: ../core/resources/data/validator/deprecated.mapcss:664
-#: ../core/resources/data/validator/deprecated.mapcss:697
-#: ../core/resources/data/validator/deprecated.mapcss:706
-#: ../core/resources/data/validator/deprecated.mapcss:730
-#: ../core/resources/data/validator/deprecated.mapcss:738
-#: ../core/resources/data/validator/deprecated.mapcss:744
-#: ../core/resources/data/validator/deprecated.mapcss:750
-#: ../core/resources/data/validator/deprecated.mapcss:756
-#: ../core/resources/data/validator/deprecated.mapcss:762
-#: ../core/resources/data/validator/deprecated.mapcss:769
-#: ../core/resources/data/validator/deprecated.mapcss:776
-#: ../core/resources/data/validator/deprecated.mapcss:787
-#: ../core/resources/data/validator/deprecated.mapcss:795
-#: ../core/resources/data/validator/deprecated.mapcss:802
-#: ../core/resources/data/validator/deprecated.mapcss:808
+#: ../core/resources/data/validator/deprecated.mapcss:362
+#: ../core/resources/data/validator/deprecated.mapcss:372
+#: ../core/resources/data/validator/deprecated.mapcss:377
+#: ../core/resources/data/validator/deprecated.mapcss:387
+#: ../core/resources/data/validator/deprecated.mapcss:393
+#: ../core/resources/data/validator/deprecated.mapcss:398
+#: ../core/resources/data/validator/deprecated.mapcss:405
+#: ../core/resources/data/validator/deprecated.mapcss:415
+#: ../core/resources/data/validator/deprecated.mapcss:421
+#: ../core/resources/data/validator/deprecated.mapcss:430
+#: ../core/resources/data/validator/deprecated.mapcss:437
+#: ../core/resources/data/validator/deprecated.mapcss:486
+#: ../core/resources/data/validator/deprecated.mapcss:492
+#: ../core/resources/data/validator/deprecated.mapcss:498
+#: ../core/resources/data/validator/deprecated.mapcss:508
+#: ../core/resources/data/validator/deprecated.mapcss:520
+#: ../core/resources/data/validator/deprecated.mapcss:542
+#: ../core/resources/data/validator/deprecated.mapcss:550
+#: ../core/resources/data/validator/deprecated.mapcss:557
+#: ../core/resources/data/validator/deprecated.mapcss:569
+#: ../core/resources/data/validator/deprecated.mapcss:577
+#: ../core/resources/data/validator/deprecated.mapcss:585
+#: ../core/resources/data/validator/deprecated.mapcss:593
+#: ../core/resources/data/validator/deprecated.mapcss:602
+#: ../core/resources/data/validator/deprecated.mapcss:611
+#: ../core/resources/data/validator/deprecated.mapcss:620
+#: ../core/resources/data/validator/deprecated.mapcss:630
+#: ../core/resources/data/validator/deprecated.mapcss:637
+#: ../core/resources/data/validator/deprecated.mapcss:644
+#: ../core/resources/data/validator/deprecated.mapcss:653
+#: ../core/resources/data/validator/deprecated.mapcss:661
+#: ../core/resources/data/validator/deprecated.mapcss:694
+#: ../core/resources/data/validator/deprecated.mapcss:703
+#: ../core/resources/data/validator/deprecated.mapcss:721
+#: ../core/resources/data/validator/deprecated.mapcss:729
+#: ../core/resources/data/validator/deprecated.mapcss:735
+#: ../core/resources/data/validator/deprecated.mapcss:741
+#: ../core/resources/data/validator/deprecated.mapcss:747
+#: ../core/resources/data/validator/deprecated.mapcss:753
+#: ../core/resources/data/validator/deprecated.mapcss:760
+#: ../core/resources/data/validator/deprecated.mapcss:767
+#: ../core/resources/data/validator/deprecated.mapcss:778
+#: ../core/resources/data/validator/deprecated.mapcss:786
+#: ../core/resources/data/validator/deprecated.mapcss:793
+#: ../core/resources/data/validator/deprecated.mapcss:799
+#: ../core/resources/data/validator/deprecated.mapcss:805
 #: ../core/resources/data/validator/deprecated.mapcss:814
-#: ../core/resources/data/validator/deprecated.mapcss:823
-#: ../core/resources/data/validator/deprecated.mapcss:829
-#: ../core/resources/data/validator/deprecated.mapcss:834
-#: ../core/resources/data/validator/deprecated.mapcss:842
-#: ../core/resources/data/validator/deprecated.mapcss:852
-#: ../core/resources/data/validator/deprecated.mapcss:857
-#: ../core/resources/data/validator/deprecated.mapcss:863
-#: ../core/resources/data/validator/deprecated.mapcss:870
-#: ../core/resources/data/validator/deprecated.mapcss:876
-#: ../core/resources/data/validator/deprecated.mapcss:887
-#: ../core/resources/data/validator/deprecated.mapcss:895
-#: ../core/resources/data/validator/deprecated.mapcss:903
-#: ../core/resources/data/validator/deprecated.mapcss:914
-#: ../core/resources/data/validator/deprecated.mapcss:920
-#: ../core/resources/data/validator/deprecated.mapcss:928
-#: ../core/resources/data/validator/deprecated.mapcss:935
-#: ../core/resources/data/validator/deprecated.mapcss:941
-#: ../core/resources/data/validator/deprecated.mapcss:947
-#: ../core/resources/data/validator/deprecated.mapcss:954
-#: ../core/resources/data/validator/deprecated.mapcss:962
-#: ../core/resources/data/validator/deprecated.mapcss:972
-#: ../core/resources/data/validator/deprecated.mapcss:977
-#: ../core/resources/data/validator/deprecated.mapcss:988
-#: ../core/resources/data/validator/deprecated.mapcss:994
-#: ../core/resources/data/validator/deprecated.mapcss:1001
-#: ../core/resources/data/validator/deprecated.mapcss:1009
-#: ../core/resources/data/validator/deprecated.mapcss:1016
-#: ../core/resources/data/validator/deprecated.mapcss:1024
-#: ../core/resources/data/validator/deprecated.mapcss:1043
-#: ../core/resources/data/validator/deprecated.mapcss:1050
-#: ../core/resources/data/validator/deprecated.mapcss:1056
-#: ../core/resources/data/validator/deprecated.mapcss:1070
-#: ../core/resources/data/validator/deprecated.mapcss:1077
-#: ../core/resources/data/validator/deprecated.mapcss:1085
-#: ../core/resources/data/validator/deprecated.mapcss:1093
-#: ../core/resources/data/validator/deprecated.mapcss:1109
-#: ../core/resources/data/validator/deprecated.mapcss:1117
+#: ../core/resources/data/validator/deprecated.mapcss:820
+#: ../core/resources/data/validator/deprecated.mapcss:825
+#: ../core/resources/data/validator/deprecated.mapcss:833
+#: ../core/resources/data/validator/deprecated.mapcss:843
+#: ../core/resources/data/validator/deprecated.mapcss:848
+#: ../core/resources/data/validator/deprecated.mapcss:854
+#: ../core/resources/data/validator/deprecated.mapcss:861
+#: ../core/resources/data/validator/deprecated.mapcss:867
+#: ../core/resources/data/validator/deprecated.mapcss:878
+#: ../core/resources/data/validator/deprecated.mapcss:886
+#: ../core/resources/data/validator/deprecated.mapcss:894
+#: ../core/resources/data/validator/deprecated.mapcss:905
+#: ../core/resources/data/validator/deprecated.mapcss:911
+#: ../core/resources/data/validator/deprecated.mapcss:919
+#: ../core/resources/data/validator/deprecated.mapcss:926
+#: ../core/resources/data/validator/deprecated.mapcss:932
+#: ../core/resources/data/validator/deprecated.mapcss:938
+#: ../core/resources/data/validator/deprecated.mapcss:945
+#: ../core/resources/data/validator/deprecated.mapcss:953
+#: ../core/resources/data/validator/deprecated.mapcss:963
+#: ../core/resources/data/validator/deprecated.mapcss:968
+#: ../core/resources/data/validator/deprecated.mapcss:979
+#: ../core/resources/data/validator/deprecated.mapcss:985
+#: ../core/resources/data/validator/deprecated.mapcss:992
+#: ../core/resources/data/validator/deprecated.mapcss:1000
+#: ../core/resources/data/validator/deprecated.mapcss:1007
+#: ../core/resources/data/validator/deprecated.mapcss:1015
+#: ../core/resources/data/validator/deprecated.mapcss:1034
+#: ../core/resources/data/validator/deprecated.mapcss:1041
+#: ../core/resources/data/validator/deprecated.mapcss:1047
+#: ../core/resources/data/validator/deprecated.mapcss:1061
+#: ../core/resources/data/validator/deprecated.mapcss:1068
+#: ../core/resources/data/validator/deprecated.mapcss:1076
+#: ../core/resources/data/validator/deprecated.mapcss:1084
+#: ../core/resources/data/validator/deprecated.mapcss:1100
+#: ../core/resources/data/validator/deprecated.mapcss:1108
+#: ../core/resources/data/validator/deprecated.mapcss:1116
 #: ../core/resources/data/validator/deprecated.mapcss:1125
-#: ../core/resources/data/validator/deprecated.mapcss:1134
-#: ../core/resources/data/validator/deprecated.mapcss:1145
+#: ../core/resources/data/validator/deprecated.mapcss:1136
+#: ../core/resources/data/validator/deprecated.mapcss:1143
 #: ../core/resources/data/validator/deprecated.mapcss:1152
-#: ../core/resources/data/validator/deprecated.mapcss:1161
-#: ../core/resources/data/validator/deprecated.mapcss:1169
-#: ../core/resources/data/validator/deprecated.mapcss:1177
-#: ../core/resources/data/validator/deprecated.mapcss:1188
-#: ../core/resources/data/validator/deprecated.mapcss:1198
-#: ../core/resources/data/validator/deprecated.mapcss:1255
-#: ../core/resources/data/validator/deprecated.mapcss:1262
-#: ../core/resources/data/validator/deprecated.mapcss:1267
-#: ../core/resources/data/validator/deprecated.mapcss:1277
-#: ../core/resources/data/validator/deprecated.mapcss:1284
-#: ../core/resources/data/validator/deprecated.mapcss:1310
-#: ../core/resources/data/validator/deprecated.mapcss:1318
-#: ../core/resources/data/validator/deprecated.mapcss:1325
-#: ../core/resources/data/validator/deprecated.mapcss:1330
-#: ../core/resources/data/validator/deprecated.mapcss:1342
+#: ../core/resources/data/validator/deprecated.mapcss:1160
+#: ../core/resources/data/validator/deprecated.mapcss:1168
+#: ../core/resources/data/validator/deprecated.mapcss:1179
+#: ../core/resources/data/validator/deprecated.mapcss:1189
+#: ../core/resources/data/validator/deprecated.mapcss:1246
+#: ../core/resources/data/validator/deprecated.mapcss:1253
+#: ../core/resources/data/validator/deprecated.mapcss:1258
+#: ../core/resources/data/validator/deprecated.mapcss:1268
+#: ../core/resources/data/validator/deprecated.mapcss:1275
+#: ../core/resources/data/validator/deprecated.mapcss:1301
+#: ../core/resources/data/validator/deprecated.mapcss:1309
+#: ../core/resources/data/validator/deprecated.mapcss:1316
+#: ../core/resources/data/validator/deprecated.mapcss:1321
+#: ../core/resources/data/validator/deprecated.mapcss:1333
+#: ../core/resources/data/validator/deprecated.mapcss:1345
 #: ../core/resources/data/validator/deprecated.mapcss:1354
-#: ../core/resources/data/validator/deprecated.mapcss:1363
-#: ../core/resources/data/validator/deprecated.mapcss:1376
-#: ../core/resources/data/validator/deprecated.mapcss:1388
-#: ../core/resources/data/validator/deprecated.mapcss:1395
-#: ../core/resources/data/validator/deprecated.mapcss:1401
-#: ../core/resources/data/validator/deprecated.mapcss:1412
-#: ../core/resources/data/validator/deprecated.mapcss:1419
-#: ../core/resources/data/validator/deprecated.mapcss:1427
-#: ../core/resources/data/validator/deprecated.mapcss:1434
-#: ../core/resources/data/validator/deprecated.mapcss:1439
-#: ../core/resources/data/validator/deprecated.mapcss:1447
-#: ../core/resources/data/validator/deprecated.mapcss:1453
-#: ../core/resources/data/validator/deprecated.mapcss:1461
-#: ../core/resources/data/validator/deprecated.mapcss:1469
-#: ../core/resources/data/validator/deprecated.mapcss:1476
-#: ../core/resources/data/validator/deprecated.mapcss:1484
+#: ../core/resources/data/validator/deprecated.mapcss:1367
+#: ../core/resources/data/validator/deprecated.mapcss:1379
+#: ../core/resources/data/validator/deprecated.mapcss:1386
+#: ../core/resources/data/validator/deprecated.mapcss:1392
+#: ../core/resources/data/validator/deprecated.mapcss:1403
+#: ../core/resources/data/validator/deprecated.mapcss:1410
+#: ../core/resources/data/validator/deprecated.mapcss:1418
+#: ../core/resources/data/validator/deprecated.mapcss:1425
+#: ../core/resources/data/validator/deprecated.mapcss:1430
+#: ../core/resources/data/validator/deprecated.mapcss:1438
+#: ../core/resources/data/validator/deprecated.mapcss:1444
+#: ../core/resources/data/validator/deprecated.mapcss:1452
+#: ../core/resources/data/validator/deprecated.mapcss:1460
+#: ../core/resources/data/validator/deprecated.mapcss:1467
+#: ../core/resources/data/validator/deprecated.mapcss:1475
+#: ../core/resources/data/validator/deprecated.mapcss:1489
 #: ../core/resources/data/validator/deprecated.mapcss:1498
 #: ../core/resources/data/validator/deprecated.mapcss:1507
-#: ../core/resources/data/validator/deprecated.mapcss:1516
-#: ../core/resources/data/validator/deprecated.mapcss:1524
-#: ../core/resources/data/validator/deprecated.mapcss:1532
-#: ../core/resources/data/validator/deprecated.mapcss:1538
-#: ../core/resources/data/validator/deprecated.mapcss:1548
-#: ../core/resources/data/validator/deprecated.mapcss:1555
-#: ../core/resources/data/validator/deprecated.mapcss:1562
+#: ../core/resources/data/validator/deprecated.mapcss:1515
+#: ../core/resources/data/validator/deprecated.mapcss:1523
+#: ../core/resources/data/validator/deprecated.mapcss:1529
+#: ../core/resources/data/validator/deprecated.mapcss:1539
+#: ../core/resources/data/validator/deprecated.mapcss:1546
+#: ../core/resources/data/validator/deprecated.mapcss:1553
+#: ../core/resources/data/validator/deprecated.mapcss:1559
 #: ../core/resources/data/validator/deprecated.mapcss:1568
-#: ../core/resources/data/validator/deprecated.mapcss:1577
-#: ../core/resources/data/validator/deprecated.mapcss:1585
-#: ../core/resources/data/validator/deprecated.mapcss:1590
-#: ../core/resources/data/validator/deprecated.mapcss:1595
-#: ../core/resources/data/validator/deprecated.mapcss:1601
-#: ../core/resources/data/validator/deprecated.mapcss:1606
-#: ../core/resources/data/validator/deprecated.mapcss:1613
-#: ../core/resources/data/validator/deprecated.mapcss:1618
-#: ../core/resources/data/validator/deprecated.mapcss:1624
-#: ../core/resources/data/validator/deprecated.mapcss:1629
-#: ../core/resources/data/validator/deprecated.mapcss:1635
-#: ../core/resources/data/validator/deprecated.mapcss:1641
-#: ../core/resources/data/validator/deprecated.mapcss:1654
-#: ../core/resources/data/validator/deprecated.mapcss:1659
-#: ../core/resources/data/validator/deprecated.mapcss:1666
-#: ../core/resources/data/validator/deprecated.mapcss:1671
-#: ../core/resources/data/validator/deprecated.mapcss:1678
-#: ../core/resources/data/validator/deprecated.mapcss:1683
-#: ../core/resources/data/validator/deprecated.mapcss:1689
-#: ../core/resources/data/validator/deprecated.mapcss:1699
+#: ../core/resources/data/validator/deprecated.mapcss:1576
+#: ../core/resources/data/validator/deprecated.mapcss:1581
+#: ../core/resources/data/validator/deprecated.mapcss:1586
+#: ../core/resources/data/validator/deprecated.mapcss:1592
+#: ../core/resources/data/validator/deprecated.mapcss:1597
+#: ../core/resources/data/validator/deprecated.mapcss:1604
+#: ../core/resources/data/validator/deprecated.mapcss:1609
+#: ../core/resources/data/validator/deprecated.mapcss:1615
+#: ../core/resources/data/validator/deprecated.mapcss:1620
+#: ../core/resources/data/validator/deprecated.mapcss:1626
+#: ../core/resources/data/validator/deprecated.mapcss:1632
+#: ../core/resources/data/validator/deprecated.mapcss:1645
+#: ../core/resources/data/validator/deprecated.mapcss:1650
+#: ../core/resources/data/validator/deprecated.mapcss:1657
+#: ../core/resources/data/validator/deprecated.mapcss:1662
+#: ../core/resources/data/validator/deprecated.mapcss:1669
+#: ../core/resources/data/validator/deprecated.mapcss:1674
+#: ../core/resources/data/validator/deprecated.mapcss:1680
+#: ../core/resources/data/validator/deprecated.mapcss:1690
+#: ../core/resources/data/validator/deprecated.mapcss:1697
 #: ../core/resources/data/validator/deprecated.mapcss:1706
-#: ../core/resources/data/validator/deprecated.mapcss:1715
-#: ../core/resources/data/validator/deprecated.mapcss:1721
-#: ../core/resources/data/validator/deprecated.mapcss:1726
-#: ../core/resources/data/validator/deprecated.mapcss:1734
+#: ../core/resources/data/validator/deprecated.mapcss:1712
+#: ../core/resources/data/validator/deprecated.mapcss:1717
+#: ../core/resources/data/validator/deprecated.mapcss:1725
+#: ../core/resources/data/validator/deprecated.mapcss:1733
 #: ../core/resources/data/validator/deprecated.mapcss:1742
-#: ../core/resources/data/validator/deprecated.mapcss:1751
-#: ../core/resources/data/validator/deprecated.mapcss:1759
-#: ../core/resources/data/validator/deprecated.mapcss:1766
-#: ../core/resources/data/validator/deprecated.mapcss:1779
-#: ../core/resources/data/validator/deprecated.mapcss:1787
-#: ../core/resources/data/validator/deprecated.mapcss:1795
+#: ../core/resources/data/validator/deprecated.mapcss:1750
+#: ../core/resources/data/validator/deprecated.mapcss:1757
+#: ../core/resources/data/validator/deprecated.mapcss:1770
+#: ../core/resources/data/validator/deprecated.mapcss:1778
+#: ../core/resources/data/validator/deprecated.mapcss:1786
+#: ../core/resources/data/validator/deprecated.mapcss:1794
 #: ../core/resources/data/validator/deprecated.mapcss:1803
 #: ../core/resources/data/validator/deprecated.mapcss:1812
-#: ../core/resources/data/validator/deprecated.mapcss:1821
-#: ../core/resources/data/validator/deprecated.mapcss:1831
-#: ../core/resources/data/validator/deprecated.mapcss:1841
+#: ../core/resources/data/validator/deprecated.mapcss:1822
+#: ../core/resources/data/validator/deprecated.mapcss:1832
+#: ../core/resources/data/validator/deprecated.mapcss:1842
 #: ../core/resources/data/validator/deprecated.mapcss:1851
-#: ../core/resources/data/validator/deprecated.mapcss:1860
-#: ../core/resources/data/validator/deprecated.mapcss:1868
-#: ../core/resources/data/validator/deprecated.mapcss:1876
-#: ../core/resources/data/validator/deprecated.mapcss:1884
+#: ../core/resources/data/validator/deprecated.mapcss:1859
+#: ../core/resources/data/validator/deprecated.mapcss:1867
+#: ../core/resources/data/validator/deprecated.mapcss:1875
+#: ../core/resources/data/validator/deprecated.mapcss:1881
 #: ../core/resources/data/validator/deprecated.mapcss:1890
-#: ../core/resources/data/validator/deprecated.mapcss:1899
-#: ../core/resources/data/validator/deprecated.mapcss:1907
-#: ../core/resources/data/validator/deprecated.mapcss:1917
+#: ../core/resources/data/validator/deprecated.mapcss:1898
+#: ../core/resources/data/validator/deprecated.mapcss:1908
+#: ../core/resources/data/validator/deprecated.mapcss:1918
 #: ../core/resources/data/validator/deprecated.mapcss:1927
-#: ../core/resources/data/validator/deprecated.mapcss:1936
-#: ../core/resources/data/validator/deprecated.mapcss:1944
-#: ../core/resources/data/validator/deprecated.mapcss:1952
-#: ../core/resources/data/validator/deprecated.mapcss:1958
-#: ../core/resources/data/validator/deprecated.mapcss:1968
-#: ../core/resources/data/validator/deprecated.mapcss:1976
-#: ../core/resources/data/validator/deprecated.mapcss:1984
-#: ../core/resources/data/validator/deprecated.mapcss:1991
-#: ../core/resources/data/validator/deprecated.mapcss:1998
-#: ../core/resources/data/validator/deprecated.mapcss:2006
-#: ../core/resources/data/validator/deprecated.mapcss:2014
-#: ../core/resources/data/validator/deprecated.mapcss:2027
-#: ../core/resources/data/validator/deprecated.mapcss:2035
-#: ../core/resources/data/validator/deprecated.mapcss:2041
-#: ../core/resources/data/validator/deprecated.mapcss:2049
+#: ../core/resources/data/validator/deprecated.mapcss:1935
+#: ../core/resources/data/validator/deprecated.mapcss:1943
+#: ../core/resources/data/validator/deprecated.mapcss:1949
+#: ../core/resources/data/validator/deprecated.mapcss:1959
+#: ../core/resources/data/validator/deprecated.mapcss:1967
+#: ../core/resources/data/validator/deprecated.mapcss:1975
+#: ../core/resources/data/validator/deprecated.mapcss:1982
+#: ../core/resources/data/validator/deprecated.mapcss:1989
+#: ../core/resources/data/validator/deprecated.mapcss:1997
+#: ../core/resources/data/validator/deprecated.mapcss:2005
+#: ../core/resources/data/validator/deprecated.mapcss:2018
+#: ../core/resources/data/validator/deprecated.mapcss:2026
+#: ../core/resources/data/validator/deprecated.mapcss:2032
+#: ../core/resources/data/validator/deprecated.mapcss:2040
+#: ../core/resources/data/validator/deprecated.mapcss:2047
 #: ../core/resources/data/validator/deprecated.mapcss:2056
-#: ../core/resources/data/validator/deprecated.mapcss:2065
-#: ../core/resources/data/validator/deprecated.mapcss:2073
-#: ../core/resources/data/validator/deprecated.mapcss:2080
-#: ../core/resources/data/validator/deprecated.mapcss:2087
-#: ../core/resources/data/validator/deprecated.mapcss:2097
-#: ../core/resources/data/validator/deprecated.mapcss:2114
-#: ../core/resources/data/validator/deprecated.mapcss:2127
-#: ../core/resources/data/validator/deprecated.mapcss:2134
-#: ../core/resources/data/validator/deprecated.mapcss:2142
-#: ../core/resources/data/validator/deprecated.mapcss:2148
-#: ../core/resources/data/validator/deprecated.mapcss:2156
-#: ../core/resources/data/validator/deprecated.mapcss:2162
-#: ../core/resources/data/validator/deprecated.mapcss:2168
-#: ../core/resources/data/validator/deprecated.mapcss:2174
-#: ../core/resources/data/validator/deprecated.mapcss:2180
-#: ../core/resources/data/validator/deprecated.mapcss:2186
-#: ../core/resources/data/validator/deprecated.mapcss:2192
-#: ../core/resources/data/validator/deprecated.mapcss:2198
-#: ../core/resources/data/validator/deprecated.mapcss:2206
-#: ../core/resources/data/validator/deprecated.mapcss:2214
-#: ../core/resources/data/validator/deprecated.mapcss:2220
-#: ../core/resources/data/validator/deprecated.mapcss:2226
-#: ../core/resources/data/validator/deprecated.mapcss:2232
-#: ../core/resources/data/validator/deprecated.mapcss:2240
-#: ../core/resources/data/validator/deprecated.mapcss:2255
-#: ../core/resources/data/validator/deprecated.mapcss:2273
-#: ../core/resources/data/validator/deprecated.mapcss:2281
+#: ../core/resources/data/validator/deprecated.mapcss:2064
+#: ../core/resources/data/validator/deprecated.mapcss:2071
+#: ../core/resources/data/validator/deprecated.mapcss:2078
+#: ../core/resources/data/validator/deprecated.mapcss:2088
+#: ../core/resources/data/validator/deprecated.mapcss:2105
+#: ../core/resources/data/validator/deprecated.mapcss:2118
+#: ../core/resources/data/validator/deprecated.mapcss:2125
+#: ../core/resources/data/validator/deprecated.mapcss:2133
+#: ../core/resources/data/validator/deprecated.mapcss:2139
+#: ../core/resources/data/validator/deprecated.mapcss:2147
+#: ../core/resources/data/validator/deprecated.mapcss:2153
+#: ../core/resources/data/validator/deprecated.mapcss:2159
+#: ../core/resources/data/validator/deprecated.mapcss:2165
+#: ../core/resources/data/validator/deprecated.mapcss:2171
+#: ../core/resources/data/validator/deprecated.mapcss:2177
+#: ../core/resources/data/validator/deprecated.mapcss:2183
+#: ../core/resources/data/validator/deprecated.mapcss:2189
+#: ../core/resources/data/validator/deprecated.mapcss:2197
+#: ../core/resources/data/validator/deprecated.mapcss:2205
+#: ../core/resources/data/validator/deprecated.mapcss:2211
+#: ../core/resources/data/validator/deprecated.mapcss:2217
+#: ../core/resources/data/validator/deprecated.mapcss:2223
+#: ../core/resources/data/validator/deprecated.mapcss:2231
+#: ../core/resources/data/validator/deprecated.mapcss:2246
+#: ../core/resources/data/validator/deprecated.mapcss:2264
+#: ../core/resources/data/validator/deprecated.mapcss:2272
+#: ../core/resources/data/validator/deprecated.mapcss:2283
 #: ../core/resources/data/validator/deprecated.mapcss:2292
-#: ../core/resources/data/validator/deprecated.mapcss:2301
-#: ../core/resources/data/validator/deprecated.mapcss:2309
-#: ../core/resources/data/validator/deprecated.mapcss:2321
+#: ../core/resources/data/validator/deprecated.mapcss:2300
+#: ../core/resources/data/validator/deprecated.mapcss:2312
+#: ../core/resources/data/validator/deprecated.mapcss:2319
 #: ../core/resources/data/validator/deprecated.mapcss:2328
-#: ../core/resources/data/validator/deprecated.mapcss:2337
-#: ../core/resources/data/validator/deprecated.mapcss:2343
-#: ../core/resources/data/validator/deprecated.mapcss:2349
-#: ../core/resources/data/validator/deprecated.mapcss:2359
-#: ../core/resources/data/validator/deprecated.mapcss:2367
+#: ../core/resources/data/validator/deprecated.mapcss:2334
+#: ../core/resources/data/validator/deprecated.mapcss:2340
+#: ../core/resources/data/validator/deprecated.mapcss:2350
+#: ../core/resources/data/validator/deprecated.mapcss:2358
+#: ../core/resources/data/validator/deprecated.mapcss:2372
 #: ../core/resources/data/validator/deprecated.mapcss:2381
+#: ../core/resources/data/validator/deprecated.mapcss:2388
+#: ../core/resources/data/validator/deprecated.mapcss:2394
+#: ../core/resources/data/validator/deprecated.mapcss:2401
 #: ../core/resources/data/validator/highway.mapcss:113
 #: ../core/resources/data/validator/highway.mapcss:120
 #: ../core/resources/data/validator/highway.mapcss:133
@@ -1089,12 +1099,12 @@ msgstr ""
 "{0} – не визначений. Замість цього використовуйте ключ fixme, в значенні "
 "якого вкажіть інформацію про те, що потрібно виправити."
 
-#: ../core/resources/data/validator/deprecated.mapcss:380
+#: ../core/resources/data/validator/deprecated.mapcss:376
 #, java-format
 msgid "{0} is deprecated. Please use instead a multipolygon."
 msgstr "{0} є застрілим. Використовуйте замість цього мультиполігон."
 
-#: ../core/resources/data/validator/deprecated.mapcss:418
+#: ../core/resources/data/validator/deprecated.mapcss:414
 #, java-format
 msgid ""
 "{0} is deprecated. Please specify interval by using opening_hours syntax"
@@ -1102,7 +1112,7 @@ msgstr ""
 "{0} є застарілим. Будь ласка, вказуйте час роботи, використовуючи синтаксис "
 "opening_hours"
 
-#: ../core/resources/data/validator/deprecated.mapcss:424
+#: ../core/resources/data/validator/deprecated.mapcss:420
 #, java-format
 msgid ""
 "{0} is deprecated. Please delete this object and use a private layer instead"
@@ -1110,50 +1120,50 @@ msgstr ""
 "{0} є застарілим. Будь ласка, вилучіть цей об’єкт та використовуйте "
 "приватний шар"
 
-#: ../core/resources/data/validator/deprecated.mapcss:465
+#: ../core/resources/data/validator/deprecated.mapcss:462
 #, java-format
 msgid "{0}={1} is unspecific. Please replace ''{1}'' by a specific value."
 msgstr ""
 "{0}={1} є неспецифічним. Будь ласка, вкажіть замість ''{1}'' конкретніше "
 "значення."
 
-#: ../core/resources/data/validator/deprecated.mapcss:470
+#: ../core/resources/data/validator/deprecated.mapcss:467
 #, java-format
 msgid "{0} should be replaced with {1}"
 msgstr "{0} потрібно замінити на {1}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:474
+#: ../core/resources/data/validator/deprecated.mapcss:471
 #, java-format
 msgid "{0} = {1}; remove {0}"
 msgstr "{0} = {1}; видаліть {0}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:479
+#: ../core/resources/data/validator/deprecated.mapcss:476
 #, java-format
 msgid "{0} is unspecific"
 msgstr "{0} є розпливчастим"
 
-#: ../core/resources/data/validator/deprecated.mapcss:516
+#: ../core/resources/data/validator/deprecated.mapcss:513
 #, java-format
 msgid "Unusual key {0}, maybe {1} or {2} is meant"
 msgstr "Незвичайний ключ {0}, можливо це має бути {1} або {2}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:538
+#: ../core/resources/data/validator/deprecated.mapcss:535
 #, java-format
 msgid "Unspecific tag {0}"
 msgstr "Незрозумілий теґ {0}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:543
-#: ../core/resources/data/validator/numeric.mapcss:619
+#: ../core/resources/data/validator/deprecated.mapcss:540
+#: ../core/resources/data/validator/numeric.mapcss:622
 #, java-format
 msgid "Definition of {0} is unclear"
 msgstr "Визначення {0} є неточним"
 
-#: ../core/resources/data/validator/deprecated.mapcss:544
+#: ../core/resources/data/validator/deprecated.mapcss:541
 #, java-format
 msgid "{0} + {1} + {2}"
 msgstr "{0} + {1} + {2}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:566
+#: ../core/resources/data/validator/deprecated.mapcss:563
 #, java-format
 msgid ""
 "{0} is not recommended. Use the Reverse Ways function from the Tools menu."
@@ -1161,36 +1171,34 @@ msgstr ""
 "{0} не рекомендується. Скористайтесь пунктом «Змініти напрямок» з меню "
 "«Інструменти»."
 
-#: ../core/resources/data/validator/deprecated.mapcss:671
-#: ../core/resources/data/validator/deprecated.mapcss:1030
-#: ../core/resources/data/validator/deprecated.mapcss:1206
-#: ../core/resources/data/validator/deprecated.mapcss:1212
-#: ../core/resources/data/validator/deprecated.mapcss:1218
-#: ../core/resources/data/validator/deprecated.mapcss:1224
-#: ../core/resources/data/validator/deprecated.mapcss:1230
-#: ../core/resources/data/validator/deprecated.mapcss:1292
-#: ../core/resources/data/validator/deprecated.mapcss:1367
-#: ../core/resources/data/validator/geometry.mapcss:303
-#: ../core/resources/data/validator/numeric.mapcss:546
+#: ../core/resources/data/validator/deprecated.mapcss:668
+#: ../core/resources/data/validator/deprecated.mapcss:1021
+#: ../core/resources/data/validator/deprecated.mapcss:1197
+#: ../core/resources/data/validator/deprecated.mapcss:1203
+#: ../core/resources/data/validator/deprecated.mapcss:1209
+#: ../core/resources/data/validator/deprecated.mapcss:1215
+#: ../core/resources/data/validator/deprecated.mapcss:1221
+#: ../core/resources/data/validator/deprecated.mapcss:1283
+#: ../core/resources/data/validator/deprecated.mapcss:1358
+#: ../core/resources/data/validator/geometry.mapcss:310
+#: ../core/resources/data/validator/numeric.mapcss:549
 #: ../core/resources/data/validator/religion.mapcss:33
-#: ../core/resources/data/validator/unnecessary.mapcss:114
-#: ../core/resources/data/validator/unnecessary.mapcss:150
+#: ../core/resources/data/validator/unnecessary.mapcss:119
+#: ../core/resources/data/validator/unnecessary.mapcss:155
 #, java-format
 msgid "{0}"
 msgstr "{0}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:672
+#: ../core/resources/data/validator/deprecated.mapcss:669
 msgid "key with uncommon character"
 msgstr "Ключ з незвичайним символом"
 
-#: ../core/resources/data/validator/deprecated.mapcss:681
+#: ../core/resources/data/validator/deprecated.mapcss:678
 msgid "uncommon short key"
 msgstr "незвично короткий ключ"
 
+#: ../core/resources/data/validator/deprecated.mapcss:709
 #: ../core/resources/data/validator/deprecated.mapcss:712
-#: ../core/resources/data/validator/deprecated.mapcss:715
-#: ../core/resources/data/validator/deprecated.mapcss:718
-#: ../core/resources/data/validator/deprecated.mapcss:721
 #, java-format
 msgid ""
 "{0} is inaccurate. Use separate tags for each specific type, e.g. {1} or {2}."
@@ -1198,82 +1206,87 @@ msgstr ""
 "{0} є неточним. Використовуйте окремі теґи для кожного типу, на приклад {1} "
 "або {2}."
 
-#: ../core/resources/data/validator/deprecated.mapcss:760
-#: ../core/resources/data/validator/deprecated.mapcss:885
-#: ../core/resources/data/validator/deprecated.mapcss:1175
-#: ../core/resources/data/validator/deprecated.mapcss:1186
-#: ../core/resources/data/validator/deprecated.mapcss:1196
-#: ../core/resources/data/validator/deprecated.mapcss:1253
-#: ../core/resources/data/validator/deprecated.mapcss:1893
-#: ../core/resources/data/validator/deprecated.mapcss:1955
-#: ../core/resources/data/validator/deprecated.mapcss:2125
-#: ../core/resources/data/validator/deprecated.mapcss:2132
+#: ../core/resources/data/validator/deprecated.mapcss:751
+#: ../core/resources/data/validator/deprecated.mapcss:876
+#: ../core/resources/data/validator/deprecated.mapcss:1166
+#: ../core/resources/data/validator/deprecated.mapcss:1177
+#: ../core/resources/data/validator/deprecated.mapcss:1187
+#: ../core/resources/data/validator/deprecated.mapcss:1244
+#: ../core/resources/data/validator/deprecated.mapcss:1884
+#: ../core/resources/data/validator/deprecated.mapcss:1946
+#: ../core/resources/data/validator/deprecated.mapcss:2116
+#: ../core/resources/data/validator/deprecated.mapcss:2123
 #, java-format
 msgid "{0} is deprecated for {1}"
 msgstr "{0} є застарілим для {1}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:1008
+#: ../core/resources/data/validator/deprecated.mapcss:999
 #, java-format
 msgid "{0} is deprecated. Use the {1}: key prefix instead."
 msgstr ""
 "{0} є застрілим. Використовуйте {1}: префікс для ключа замість цього."
 
-#: ../core/resources/data/validator/deprecated.mapcss:1031
+#: ../core/resources/data/validator/deprecated.mapcss:1022
 msgid "questionable key (ending with a number)"
 msgstr "Сумнівний ключ (з цифрою в кінці)"
 
-#: ../core/resources/data/validator/deprecated.mapcss:1102
+#: ../core/resources/data/validator/deprecated.mapcss:1093
 #, java-format
 msgid "The key {0} has an uncommon value."
 msgstr "Ключ {0} має дивне значення."
 
-#: ../core/resources/data/validator/deprecated.mapcss:1208
-#: ../core/resources/data/validator/deprecated.mapcss:1214
-#: ../core/resources/data/validator/deprecated.mapcss:1220
-#: ../core/resources/data/validator/deprecated.mapcss:1226
-#: ../core/resources/data/validator/deprecated.mapcss:1232
-#: ../core/resources/data/validator/deprecated.mapcss:1294
-#: ../core/resources/data/validator/deprecated.mapcss:1369
+#: ../core/resources/data/validator/deprecated.mapcss:1199
+#: ../core/resources/data/validator/deprecated.mapcss:1205
+#: ../core/resources/data/validator/deprecated.mapcss:1211
+#: ../core/resources/data/validator/deprecated.mapcss:1217
+#: ../core/resources/data/validator/deprecated.mapcss:1223
+#: ../core/resources/data/validator/deprecated.mapcss:1285
+#: ../core/resources/data/validator/deprecated.mapcss:1360
 msgid "misspelled value"
 msgstr "значення з помилкою"
 
+#: ../core/resources/data/validator/deprecated.mapcss:1227
 #: ../core/resources/data/validator/deprecated.mapcss:1236
-#: ../core/resources/data/validator/deprecated.mapcss:1245
-#: ../core/resources/data/validator/deprecated.mapcss:1769
-#: ../core/resources/data/validator/numeric.mapcss:580
-#: ../core/resources/data/validator/numeric.mapcss:589
-#: ../core/resources/data/validator/numeric.mapcss:598
+#: ../core/resources/data/validator/deprecated.mapcss:1760
+#: ../core/resources/data/validator/numeric.mapcss:583
+#: ../core/resources/data/validator/numeric.mapcss:592
+#: ../core/resources/data/validator/numeric.mapcss:601
 #, java-format
 msgid "wrong value: {0}"
 msgstr "невірне значення: {0}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:1309
-#: ../core/resources/data/validator/deprecated.mapcss:1317
+#: ../core/resources/data/validator/deprecated.mapcss:1300
+#: ../core/resources/data/validator/deprecated.mapcss:1308
 #, java-format
 msgid "{0} is not a building type."
 msgstr "{0} не є будинком."
 
-#: ../core/resources/data/validator/deprecated.mapcss:2019
+#: ../core/resources/data/validator/deprecated.mapcss:2010
 #: ../core/resources/data/validator/highway.mapcss:181
-#: ../core/resources/data/validator/numeric.mapcss:384
-#: ../core/resources/data/validator/numeric.mapcss:407
-#: ../core/resources/data/validator/numeric.mapcss:434
-#: ../core/resources/data/validator/numeric.mapcss:470
-#: ../core/resources/data/validator/numeric.mapcss:481
-#: ../core/resources/data/validator/numeric.mapcss:560
-#: ../core/resources/data/validator/numeric.mapcss:564
-#: ../core/resources/data/validator/numeric.mapcss:606
+#: ../core/resources/data/validator/numeric.mapcss:387
+#: ../core/resources/data/validator/numeric.mapcss:410
+#: ../core/resources/data/validator/numeric.mapcss:437
+#: ../core/resources/data/validator/numeric.mapcss:473
+#: ../core/resources/data/validator/numeric.mapcss:484
+#: ../core/resources/data/validator/numeric.mapcss:563
+#: ../core/resources/data/validator/numeric.mapcss:567
+#: ../core/resources/data/validator/numeric.mapcss:609
 #, java-format
 msgid "unusual value of {0}"
 msgstr "Незвичайне значення {0}"
 
-#: ../core/resources/data/validator/deprecated.mapcss:2372
+#: ../core/resources/data/validator/deprecated.mapcss:2363
 #, java-format
 msgid ""
 "{0} as a tag on an object. Roles are specified in the relation members list "
 "instead."
 msgstr ""
 "{0} є теґом об’єкта. Натомість роль зазначається в переліку членів зв’язку."
+
+#: ../core/resources/data/validator/deprecated.mapcss:2406
+#, java-format
+msgid "{0} with a temporary URL which may be outdated very soon"
+msgstr "{0} містить тимчасовий URL, що невдовзі може змінитись"
 
 #: ../core/resources/data/validator/geometry.mapcss:43
 #, java-format
@@ -1295,32 +1308,33 @@ msgstr "{0} на точці. Слід застосовувати до поліг
 msgid "{0} on a node. Should be used in a relation"
 msgstr "{0} на точці. Повинен використовуватись для звʼязку"
 
-#: ../core/resources/data/validator/geometry.mapcss:127
+#: ../core/resources/data/validator/geometry.mapcss:122
+#: ../core/resources/data/validator/geometry.mapcss:134
 #, java-format
 msgid "{0} on a way. Should be used on a node."
 msgstr "{0} на лінії, замість точки."
 
-#: ../core/resources/data/validator/geometry.mapcss:135
+#: ../core/resources/data/validator/geometry.mapcss:142
 #, java-format
 msgid "{0} on a way. Should be used in a relation"
 msgstr "{0} на лінії, а повинен бути на зв’язку"
 
-#: ../core/resources/data/validator/geometry.mapcss:140
+#: ../core/resources/data/validator/geometry.mapcss:147
 #, java-format
 msgid "{0} on a closed way. Should be used on an unclosed way."
 msgstr "{0} на замкненій лінії. Має використовуватись не незамкненій лінії."
 
-#: ../core/resources/data/validator/geometry.mapcss:145
+#: ../core/resources/data/validator/geometry.mapcss:152
 #, java-format
 msgid "{0} on a relation"
 msgstr "{0} на зв’язку"
 
-#: ../core/resources/data/validator/geometry.mapcss:162
-#: ../core/resources/data/validator/geometry.mapcss:165
+#: ../core/resources/data/validator/geometry.mapcss:169
+#: ../core/resources/data/validator/geometry.mapcss:172
 msgid "node connects highway and building"
 msgstr "точка приєднує дорогу до будівлі"
 
-#: ../core/resources/data/validator/geometry.mapcss:170
+#: ../core/resources/data/validator/geometry.mapcss:177
 msgid ""
 "Object at Position 0.00E 0.00N. There is nothing at this position except an "
 "already mapped weather buoy."
@@ -1328,95 +1342,95 @@ msgstr ""
 "Об’єкт з позицією 0.00E 0.00N. У цьому місці немає нічого, окрім вже "
 "позначеного метеорологічного буя."
 
-#: ../core/resources/data/validator/geometry.mapcss:176
+#: ../core/resources/data/validator/geometry.mapcss:183
 #: ../core/resources/data/validator/highway.mapcss:51
 #: ../core/resources/data/validator/highway.mapcss:56
 #, java-format
 msgid "{0} on a node"
 msgstr "{0} на точці"
 
-#: ../core/resources/data/validator/geometry.mapcss:183
+#: ../core/resources/data/validator/geometry.mapcss:190
 msgid "Building inside building"
 msgstr "Будівля всередині іншої будівлі"
 
-#: ../core/resources/data/validator/geometry.mapcss:189
+#: ../core/resources/data/validator/geometry.mapcss:196
 msgid "Overlapping buildings"
 msgstr "Будинки, що перетинаються"
 
-#: ../core/resources/data/validator/geometry.mapcss:201
+#: ../core/resources/data/validator/geometry.mapcss:208
 msgid "Overlapping Water Areas"
 msgstr "Перетин/накладення водойм"
 
-#: ../core/resources/data/validator/geometry.mapcss:211
+#: ../core/resources/data/validator/geometry.mapcss:218
 msgid "Water area inside water area"
 msgstr "Вода в середині води"
 
-#: ../core/resources/data/validator/geometry.mapcss:215
+#: ../core/resources/data/validator/geometry.mapcss:222
 msgid "Overlapping Areas"
 msgstr "Полігони, що перекриваються"
 
-#: ../core/resources/data/validator/geometry.mapcss:220
-#: ../core/resources/data/validator/geometry.mapcss:221
-#: ../core/resources/data/validator/geometry.mapcss:235
-#: ../core/resources/data/validator/geometry.mapcss:236
-#: ../core/resources/data/validator/geometry.mapcss:239
-#: ../core/resources/data/validator/geometry.mapcss:240
+#: ../core/resources/data/validator/geometry.mapcss:227
+#: ../core/resources/data/validator/geometry.mapcss:228
+#: ../core/resources/data/validator/geometry.mapcss:242
 #: ../core/resources/data/validator/geometry.mapcss:243
-#: ../core/resources/data/validator/geometry.mapcss:244
+#: ../core/resources/data/validator/geometry.mapcss:246
 #: ../core/resources/data/validator/geometry.mapcss:247
-#: ../core/resources/data/validator/geometry.mapcss:248
+#: ../core/resources/data/validator/geometry.mapcss:250
 #: ../core/resources/data/validator/geometry.mapcss:251
-#: ../core/resources/data/validator/geometry.mapcss:252
+#: ../core/resources/data/validator/geometry.mapcss:254
+#: ../core/resources/data/validator/geometry.mapcss:255
+#: ../core/resources/data/validator/geometry.mapcss:258
+#: ../core/resources/data/validator/geometry.mapcss:259
 #, java-format
 msgid "{0} inside {1}"
 msgstr "{0} в середині {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:226
+#: ../core/resources/data/validator/geometry.mapcss:233
 msgid "Overlapping Identical Natural Areas"
 msgstr "Перекриття ідентичних природних ділянок"
 
-#: ../core/resources/data/validator/geometry.mapcss:230
+#: ../core/resources/data/validator/geometry.mapcss:237
 msgid "Overlapping Identical Landuses"
 msgstr "Перекриття ідентичних ділянок землекористування"
 
-#: ../core/resources/data/validator/geometry.mapcss:304
+#: ../core/resources/data/validator/geometry.mapcss:311
 msgid "isolated node which must be connected to a way"
 msgstr "відокремлена точка, що повинна бути приєднана до лінії"
 
-#: ../core/resources/data/validator/geometry.mapcss:313
+#: ../core/resources/data/validator/geometry.mapcss:320
 msgid "node connects waterway and bridge"
 msgstr "точка є спільною для мосту та водного шляху"
 
-#: ../core/resources/data/validator/geometry.mapcss:319
-#: ../core/resources/data/validator/geometry.mapcss:332
+#: ../core/resources/data/validator/geometry.mapcss:326
+#: ../core/resources/data/validator/geometry.mapcss:339
 #, java-format
 msgid "{0} node connected to a highway"
 msgstr "точка {0} приєднана до дороги"
 
-#: ../core/resources/data/validator/geometry.mapcss:338
+#: ../core/resources/data/validator/geometry.mapcss:345
 #, java-format
 msgid "{0} node connected to an underground object"
 msgstr "{0} точка приєднана до підземного об’єкта"
 
-#: ../core/resources/data/validator/geometry.mapcss:343
+#: ../core/resources/data/validator/geometry.mapcss:350
 msgid "suspicious roundabout direction"
 msgstr "сумнівний напрям кругового руху"
 
-#: ../core/resources/data/validator/geometry.mapcss:348
+#: ../core/resources/data/validator/geometry.mapcss:355
 #, java-format
 msgid "{0} on a large area"
 msgstr "{0} на великій площі"
 
-#: ../core/resources/data/validator/geometry.mapcss:354
+#: ../core/resources/data/validator/geometry.mapcss:361
 #, java-format
 msgid "{0} on a small area"
 msgstr "{0} на маленькій площі"
 
-#: ../core/resources/data/validator/geometry.mapcss:361
+#: ../core/resources/data/validator/geometry.mapcss:368
 msgid "Too large building"
 msgstr "Завелика будівля"
 
-#: ../core/resources/data/validator/geometry.mapcss:366
+#: ../core/resources/data/validator/geometry.mapcss:373
 msgid ""
 "Waterway ends without a connection to another waterway or the direction of "
 "the waterway is wrong."
@@ -1424,17 +1438,17 @@ msgstr ""
 "Кінець водного шляху не зʼєднується з іншим водним шляхом, або його напрямок "
 "помилковий"
 
-#: ../core/resources/data/validator/geometry.mapcss:372
+#: ../core/resources/data/validator/geometry.mapcss:379
 #, java-format
 msgid "Coastline inside {1}"
 msgstr "Берегова лінія в середині {1}"
 
-#: ../core/resources/data/validator/geometry.mapcss:379
+#: ../core/resources/data/validator/geometry.mapcss:386
 #, java-format
 msgid "{0} should be on the node where {1} and {2} intersect"
 msgstr "{0} повинен бути точкою перетину {1} ​​і {2}"
 
-#: ../core/resources/data/validator/geometry.mapcss:388
+#: ../core/resources/data/validator/geometry.mapcss:395
 #, java-format
 msgid ""
 "{0} is the tag for the linear waterway. To tag the water area use {1} + {2} "
@@ -1443,12 +1457,12 @@ msgstr ""
 "{0} – теґ для лінійних водних обʼєктів. Для позначення полігональних водних "
 "обʼєктів використовуйте {1} + {2}."
 
-#: ../core/resources/data/validator/geometry.mapcss:402
+#: ../core/resources/data/validator/geometry.mapcss:409
 msgid "Ferry route is not connected to the road network or branches."
 msgstr ""
 "Поромний маршрут не пов’язаний з дорожньою мережею або його відгалуженнями."
 
-#: ../core/resources/data/validator/geometry.mapcss:410
+#: ../core/resources/data/validator/geometry.mapcss:417
 msgid "Ferry route is not connected to a ferry terminal or branches."
 msgstr ""
 "Поромний маршрут не пов’язаний з поромним терміналом або його відгалуженнями."
@@ -1504,6 +1518,15 @@ msgstr "{0} без зазначення пріоритету руху"
 #, java-format
 msgid "Area with {0} above {1} is invalid"
 msgstr "Полігон {0} поверх {1} є помилкою"
+
+#: ../core/resources/data/validator/highway.mapcss:213
+#, java-format
+msgid "{0} with trailing number"
+msgstr "{0} закінчується цифрою"
+
+#: ../core/resources/data/validator/highway.mapcss:214
+msgid "questionable value (ending with a number)"
+msgstr "сумнівне значення (закінчується цифрою)"
 
 #: ../core/resources/data/validator/multiple.mapcss:10
 #, java-format
@@ -1568,7 +1591,7 @@ msgstr ""
 #: ../core/resources/data/validator/numeric.mapcss:303
 #: ../core/resources/data/validator/numeric.mapcss:315
 #: ../core/resources/data/validator/numeric.mapcss:355
-#: ../core/resources/data/validator/numeric.mapcss:523
+#: ../core/resources/data/validator/numeric.mapcss:526
 #, java-format
 msgid "unusual value of {0}: use . instead of , as decimal separator"
 msgstr ""
@@ -1576,22 +1599,22 @@ msgstr ""
 "як десятковий розділювач"
 
 #: ../core/resources/data/validator/numeric.mapcss:137
-#: ../core/resources/data/validator/unnecessary.mapcss:28
-#: ../core/resources/data/validator/unnecessary.mapcss:39
-#: ../core/resources/data/validator/unnecessary.mapcss:49
-#: ../core/resources/data/validator/unnecessary.mapcss:78
+#: ../core/resources/data/validator/unnecessary.mapcss:33
+#: ../core/resources/data/validator/unnecessary.mapcss:44
+#: ../core/resources/data/validator/unnecessary.mapcss:54
+#: ../core/resources/data/validator/unnecessary.mapcss:83
 #, java-format
 msgid "{0} is unnecessary for {1}"
 msgstr "{0} є непотрібним для {1}"
 
 #: ../core/resources/data/validator/numeric.mapcss:138
 #: ../core/resources/data/validator/unnecessary.mapcss:8
-#: ../core/resources/data/validator/unnecessary.mapcss:29
-#: ../core/resources/data/validator/unnecessary.mapcss:40
-#: ../core/resources/data/validator/unnecessary.mapcss:50
-#: ../core/resources/data/validator/unnecessary.mapcss:72
-#: ../core/resources/data/validator/unnecessary.mapcss:79
-#: ../core/resources/data/validator/unnecessary.mapcss:166
+#: ../core/resources/data/validator/unnecessary.mapcss:34
+#: ../core/resources/data/validator/unnecessary.mapcss:45
+#: ../core/resources/data/validator/unnecessary.mapcss:55
+#: ../core/resources/data/validator/unnecessary.mapcss:77
+#: ../core/resources/data/validator/unnecessary.mapcss:84
+#: ../core/resources/data/validator/unnecessary.mapcss:171
 msgid "unnecessary tag"
 msgstr "Непотрібний теґ"
 
@@ -1620,60 +1643,60 @@ msgstr "км/год"
 msgid "kilometers"
 msgstr "кілометри"
 
-#: ../core/resources/data/validator/numeric.mapcss:376
+#: ../core/resources/data/validator/numeric.mapcss:379
 msgid "voltage should be in volts with no units/delimiter/spaces"
 msgstr ""
 "напруга повинна зазначатись у вольтах без пробілів/роздільників/одиниць "
 "виміру"
 
-#: ../core/resources/data/validator/numeric.mapcss:395
+#: ../core/resources/data/validator/numeric.mapcss:398
 #, java-format
 msgid "imprecise value of {0}"
 msgstr "неточне значення {0}"
 
-#: ../core/resources/data/validator/numeric.mapcss:396
+#: ../core/resources/data/validator/numeric.mapcss:399
 msgid "an integer value in millimeters, without unit"
 msgstr "ціле число в міліметрах, без одиниць виміру"
 
-#: ../core/resources/data/validator/numeric.mapcss:420
+#: ../core/resources/data/validator/numeric.mapcss:423
 #, java-format
 msgid "unusual {0} value on narrow gauge railway"
 msgstr "незвичайне значення {0} для вузькоколійки"
 
-#: ../core/resources/data/validator/numeric.mapcss:449
+#: ../core/resources/data/validator/numeric.mapcss:452
 #, java-format
 msgid "{0} must be a numeric value"
 msgstr "{0} має бути числовим значенням"
 
-#: ../core/resources/data/validator/numeric.mapcss:459
+#: ../core/resources/data/validator/numeric.mapcss:462
 #, java-format
 msgid "{0} must be a positive integer number"
 msgstr "{0} має бути цілим позитивним числом"
 
-#: ../core/resources/data/validator/numeric.mapcss:511
-#: ../core/resources/data/validator/numeric.mapcss:534
+#: ../core/resources/data/validator/numeric.mapcss:514
+#: ../core/resources/data/validator/numeric.mapcss:537
 #, java-format
 msgid "{0} must be a numeric value, in meters and without units"
 msgstr "{0} повинне бути числом в метрах, без зазначення одиниць виміру"
 
-#: ../core/resources/data/validator/numeric.mapcss:547
+#: ../core/resources/data/validator/numeric.mapcss:550
 msgid "Unnecessary amount of decimal places"
 msgstr "Зайва кількість десяткових знаків"
 
-#: ../core/resources/data/validator/numeric.mapcss:581
-#: ../core/resources/data/validator/numeric.mapcss:590
-#: ../core/resources/data/validator/numeric.mapcss:599
+#: ../core/resources/data/validator/numeric.mapcss:584
+#: ../core/resources/data/validator/numeric.mapcss:593
+#: ../core/resources/data/validator/numeric.mapcss:602
 #: ../core/resources/data/validator/territories.mapcss:29
 #: ../core/resources/data/validator/territories.mapcss:34
 msgid "Airport tagging"
 msgstr "Теґування аеропортів"
 
-#: ../core/resources/data/validator/numeric.mapcss:628
-#: ../core/resources/data/validator/numeric.mapcss:640
-#: ../core/resources/data/validator/numeric.mapcss:648
-#: ../core/resources/data/validator/numeric.mapcss:658
-#: ../core/resources/data/validator/numeric.mapcss:668
-#: ../core/resources/data/validator/numeric.mapcss:681
+#: ../core/resources/data/validator/numeric.mapcss:631
+#: ../core/resources/data/validator/numeric.mapcss:643
+#: ../core/resources/data/validator/numeric.mapcss:651
+#: ../core/resources/data/validator/numeric.mapcss:661
+#: ../core/resources/data/validator/numeric.mapcss:671
+#: ../core/resources/data/validator/numeric.mapcss:684
 #, java-format
 msgid ""
 "unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point "
@@ -1682,7 +1705,7 @@ msgstr ""
 "незвичайне значення {0}: встановіть одиниці виміру, напр. {1} або {2}; "
 "десятковий роздільник - точка; пробіл між значенням та одиницями виміру"
 
-#: ../core/resources/data/validator/numeric.mapcss:700
+#: ../core/resources/data/validator/numeric.mapcss:703
 #, java-format
 msgid "Numeric name: {0}. Maybe {1} or {2} is meant."
 msgstr "Число в назві: {0}. Можливо має бути {1} або {2}."
@@ -1746,26 +1769,26 @@ msgstr "{0} є непотрібним"
 msgid "{0} is optional on {1}"
 msgstr "{0} є необов’язковим для {1}"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:58
+#: ../core/resources/data/validator/unnecessary.mapcss:63
 #, java-format
 msgid "{0} makes no sense"
 msgstr "{0} не має сенсу"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:66
+#: ../core/resources/data/validator/unnecessary.mapcss:71
 msgid "Nodes duplicating parent way tags"
 msgstr "Точки дублюють теґи батьківської лінії"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:71
+#: ../core/resources/data/validator/unnecessary.mapcss:76
 #, java-format
 msgid "{0} together with {1} and {2}. Remove {0}."
 msgstr "{0} разом з {1} та {2}. Вилучіть {0}."
 
-#: ../core/resources/data/validator/unnecessary.mapcss:115
-#: ../core/resources/data/validator/unnecessary.mapcss:151
+#: ../core/resources/data/validator/unnecessary.mapcss:120
+#: ../core/resources/data/validator/unnecessary.mapcss:156
 msgid "descriptive name"
 msgstr "Опис замість назви"
 
-#: ../core/resources/data/validator/unnecessary.mapcss:165
+#: ../core/resources/data/validator/unnecessary.mapcss:170
 #, java-format
 msgid "{0} should not be uploaded"
 msgstr "̱{0} не слід завантажувати"
