@@ -743,7 +743,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface')) and (len(tags) == 1))
                 except mapcss.RuleAbort: pass
             if match:
-                # setonly_one_tag
+                # set only_one_tag
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 set_only_one_tag = True
@@ -1333,7 +1333,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_6f957488), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setunpaved_surface
+                # set unpaved_surface
                 set_unpaved_surface = True
 
         # way[surface=~/^(paved|asphalt|cobblestone|cobblestone:flattened|sett|concrete|concrete:plates|paving_stones|metal|wood|unhewn_cobblestone)$/]
@@ -1344,7 +1344,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_01d4d495), mapcss._tag_capture(capture_tags, 0, tags, 'surface'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setfully_paved_surface
+                # set fully_paved_surface
                 set_fully_paved_surface = True
 
         # way[junction][!highway][junction!=yes][!area:highway]
@@ -2252,7 +2252,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'surface')) and (len(tags) == 1))
                 except mapcss.RuleAbort: pass
             if match:
-                # setonly_one_tag
+                # set only_one_tag
                 # group:tr("missing tag")
                 # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 set_only_one_tag = True
@@ -2596,7 +2596,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxspeed:forward')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:backward')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed')) and (mapcss._tag_capture(capture_tags, 3, tags, 'maxspeed:forward') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'maxspeed'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'maxspeed:backward') == mapcss._value_capture(capture_tags, 4, mapcss.tag(tags, 'maxspeed'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setAllSameMaxspeed
+                # set AllSameMaxspeed
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("Same value of {0}, {1} and {2}","{0.key}","{1.key}","{2.key}")
                 # suggestAlternative:"maxspeed"
@@ -2638,7 +2638,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'cycleway:left')) and (mapcss._tag_capture(capture_tags, 1, tags, 'cycleway:right')) and (mapcss._tag_capture(capture_tags, 2, tags, 'cycleway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'cycleway:left') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'cycleway'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'cycleway:right') == mapcss._value_capture(capture_tags, 4, mapcss.tag(tags, 'cycleway'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setAllSameCycleway
+                # set AllSameCycleway
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("Same value of {0}, {1} and {2}","{0.key}","{1.key}","{2.key}")
                 # suggestAlternative:"cycleway"
@@ -2680,7 +2680,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'sidewalk:left')) and (mapcss._tag_capture(capture_tags, 1, tags, 'sidewalk:right')) and (mapcss._tag_capture(capture_tags, 2, tags, 'sidewalk')) and (mapcss._tag_capture(capture_tags, 3, tags, 'sidewalk:left') == mapcss._value_capture(capture_tags, 3, mapcss.tag(tags, 'sidewalk'))) and (mapcss._tag_capture(capture_tags, 4, tags, 'sidewalk:right') == mapcss._value_capture(capture_tags, 4, mapcss.tag(tags, 'sidewalk'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setAllSameSidewalk
+                # set AllSameSidewalk
                 # group:tr("suspicious tag combination")
                 # throwWarning:tr("Same value of {0}, {1} and {2}","{0.key}","{1.key}","{2.key}")
                 # suggestAlternative:"sidewalk"
@@ -2849,7 +2849,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_23888fca), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setMotorwayTrunk
+                # set MotorwayTrunk
                 set_MotorwayTrunk = True
 
         # way.MotorwayTrunk[lanes][turn:lanes][tag(lanes)!=eval(count(split("|",tag("turn:lanes"))))]
@@ -3266,7 +3266,7 @@ class Josm_combinations(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'placement')) and (mapcss._tag_capture(capture_tags, 2, tags, self.re_57c5150b)) and (mapcss.join_list('', mapcss.uniq_list(mapcss.tag_regex(tags, self.re_57c5150b))) == 'transition'))
                 except mapcss.RuleAbort: pass
             if match:
-                # setPlacementTransitionWarning
+                # set PlacementTransitionWarning
                 # throwWarning:tr("Use {0} only as value of {1}","transition","placement")
                 # fixRemove:"placement:backward"
                 # fixRemove:"placement:both_ways"

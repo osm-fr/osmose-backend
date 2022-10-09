@@ -164,7 +164,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmajor_road
+                # set major_road
                 set_major_road = True
 
         # way[highway=~/^.*_link$/]
@@ -175,7 +175,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_3092b7ac), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setlink_road
+                # set link_road
                 set_link_road = True
 
         # way[highway=~/^(unclassified|residential|living_street|service)$/]
@@ -186,7 +186,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_015aabd5), mapcss._tag_capture(capture_tags, 0, tags, 'highway'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setminor_road
+                # set minor_road
                 set_minor_road = True
 
         # way[highway][name=~/(?i).* (Ave|Blvd|Bnd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Cv|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Trl|Vw|Wy|Xing)[.]?$/]
@@ -313,7 +313,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'no')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
                 except mapcss.RuleAbort: pass
             if match:
-                # setnot_fixable_footway
+                # set not_fixable_footway
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk","{1.key}")
                 # assertMatch:"way footway=both footway:surface=asphalt"
@@ -329,7 +329,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'none')) and (mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
                 except mapcss.RuleAbort: pass
             if match:
-                # setnot_fixable_footway
+                # set not_fixable_footway
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk=no","{1.key}")
                 # assertNoMatch:"way footway=no footway:surface=asphalt"
@@ -365,7 +365,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((not set_not_fixable_footway) and (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'no')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setfixable_footway
+                # set fixable_footway
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"sidewalk"
@@ -386,7 +386,7 @@ class Josm_highway(PluginMapCSS):
                 try: match = ((not set_not_fixable_footway) and (mapcss._tag_capture(capture_tags, 0, tags, 'footway') == mapcss._value_capture(capture_tags, 0, 'none')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setfixable_footway
+                # set fixable_footway
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"sidewalk=no"

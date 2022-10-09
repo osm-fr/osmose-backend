@@ -3,6 +3,7 @@
 from .generated.MapCSSListener import MapCSSListener
 from .generated.MapCSSParser import MapCSSParser
 from typing import Dict, List, Optional
+import re
 
 
 class MapCSSListenerL(MapCSSListener):
@@ -136,7 +137,7 @@ class MapCSSListenerL(MapCSSListener):
         v = self.stack.pop()
         self.declarations.append({
             'type': 'declaration',
-            'text': ctx.getText(),
+            'text': re.sub(r'^set', 'set ', ctx.getText(), flags=re.IGNORECASE) if ctx.cssident() else ctx.getText(),
             'set': ctx.cssident() and ctx.cssident().getText(),
             'property': ctx.declaration_property() and ctx.declaration_property().getText(),
             'value': v['single_value'] or v['functionExpression']

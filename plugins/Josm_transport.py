@@ -271,7 +271,7 @@ class Josm_transport(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6194d2a4), mapcss._tag_capture(capture_tags, 1, tags, 'route'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpt_route
+                # set pt_route
                 set_pt_route = True
 
         # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus|walking_bus)$/]
@@ -282,7 +282,7 @@ class Josm_transport(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route_master')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_6194d2a4), mapcss._tag_capture(capture_tags, 1, tags, 'route_master'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setpt_route_master
+                # set pt_route_master
                 set_pt_route_master = True
 
         # relation.pt_route[!public_transport:version]

@@ -145,7 +145,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'building:levels'), mapcss._value_capture(capture_tags, 0, '-'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setnegative_value
+                # set negative_value
                 # throwError:tr("negative {0} value","{0.key}")
                 # assertNoMatch:"node building:levels=+1"
                 # assertMatch:"node building:levels=-1"
@@ -202,7 +202,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_meter_autofix
+                # set height_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," m")
                 # assertNoMatch:"node height=2 m"
@@ -224,7 +224,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_foot_autofix
+                # set height_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," ft")
                 # assertNoMatch:"node height=2 ft"
@@ -246,7 +246,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_separator_autofix
+                # set height_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("height=",replace(tag("height"),",","."))
                 # assertMatch:"node height=12,00"
@@ -270,7 +270,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5ea59bc2), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_meter_autofix
+                # set maxheight_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," m")
                 # assertNoMatch:"node maxheight=2 m"
@@ -292,7 +292,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_foot_autofix
+                # set maxheight_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," ft")
                 # assertNoMatch:"node maxheight=2 ft"
@@ -314,7 +314,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_separator_autofix
+                # set maxheight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxheight=",replace(tag("maxheight"),",","."))
                 # assertMatch:"node maxheight=12,00"
@@ -338,7 +338,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3c02ab12), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setzero_roof_height_flat
+                # set zero_roof_height_flat
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{2.tag}")
                 # fixRemove:"{0.key}"
@@ -360,7 +360,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_zero_roof_height_flat) and (mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_meter_autofix
+                # set roof_height_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("roof:height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("roof:height")),1)," m")
                 # assertNoMatch:"node roof:height=2 m"
@@ -382,7 +382,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_zero_roof_height_flat) and (mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_foot_autofix
+                # set roof_height_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("roof:height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("roof:height")),1)," ft")
                 # assertNoMatch:"node roof:height=2 ft"
@@ -404,7 +404,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_separator_autofix
+                # set roof_height_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("roof:height=",replace(tag("roof:height"),",","."))
                 # assertMatch:"node roof:height=12,00"
@@ -428,7 +428,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5ea59bc2), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_meter_autofix
+                # set maxlength_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," m")
                 # assertNoMatch:"node maxlength=2 m"
@@ -450,7 +450,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_foot_autofix
+                # set maxlength_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," ft")
                 # assertNoMatch:"node maxlength=2 ft"
@@ -472,7 +472,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_separator_autofix
+                # set maxlength_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxlength=",replace(tag("maxlength"),",","."))
                 # assertMatch:"node maxlength=12,00"
@@ -496,7 +496,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_meter_autofix
+                # set width_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
                 # assertNoMatch:"node width=2 m"
@@ -518,7 +518,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_foot_autofix
+                # set width_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," ft")
                 # assertNoMatch:"node width=2 ft"
@@ -540,7 +540,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_separator_autofix
+                # set width_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("width=",replace(tag("width"),",","."))
                 # assertMatch:"node width=12,00"
@@ -563,7 +563,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_meter_autofix
+                # set maxwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
                 # assertNoMatch:"node maxwidth=2 m"
@@ -585,7 +585,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_foot_autofix
+                # set maxwidth_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," ft")
                 # assertNoMatch:"node maxwidth=2 ft"
@@ -607,7 +607,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_separator_autofix
+                # set maxwidth_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxwidth=",replace(tag("maxwidth"),",","."))
                 # assertMatch:"node maxwidth=12,00"
@@ -683,7 +683,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxaxleload')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, 'maxaxleload'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxaxleload_separator_autofix
+                # set maxaxleload_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxaxleload=",replace(tag("maxaxleload"),",","."))
                 # assertMatch:"node maxaxleload=12,00"
@@ -706,7 +706,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxweight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, 'maxweight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxweight_separator_autofix
+                # set maxweight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxweight=",replace(tag("maxweight"),",","."))
                 # assertMatch:"node maxweight=12,00"
@@ -750,7 +750,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'distance')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55d147d6), mapcss._tag_capture(capture_tags, 1, tags, 'distance'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdistance_separator_autofix
+                # set distance_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("distance=",replace(tag("distance"),",","."))
                 # assertMatch:"node distance=12,00"
@@ -874,7 +874,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ele')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_762a1d1d), mapcss._tag_capture(capture_tags, 1, tags, 'ele'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setele_meter_remove_autofix
+                # set ele_meter_remove_autofix
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
                 # assertMatch:"node ele=-12.1 m"
@@ -898,7 +898,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ele')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2b84c9ab), mapcss._tag_capture(capture_tags, 1, tags, 'ele'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setele_separator_autofix
+                # set ele_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("ele=",replace(tag("ele"),",","."))
                 # assertMatch:"node ele=12,00"
@@ -1067,7 +1067,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b78ea82), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 min', '1 min')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"min","minutes"))
                 # assertNoMatch:"node maxstay=\"02 minutes\""
@@ -1099,7 +1099,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay') == mapcss._value_capture(capture_tags, 0, '1 hr')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:"maxstay=1 hour"
                 # assertMatch:"node maxstay=\"1 h\""
@@ -1119,7 +1119,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_19ef4172), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 h', '1 h')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h","hours"))
                 # assertNoMatch:"node maxstay=\"02 hours\""
@@ -1141,7 +1141,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_330da7b0), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 hr', '1 hr')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"hr","hours"))
                 # assertNoMatch:"node maxstay=\"02 hours\""
@@ -1163,7 +1163,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_52f27115), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1h', '1h')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h"," hours"))
                 # assertNoMatch:"node maxstay=\"2 h\""
@@ -1259,7 +1259,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'building:levels'), mapcss._value_capture(capture_tags, 0, '-'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setnegative_value
+                # set negative_value
                 # throwError:tr("negative {0} value","{0.key}")
                 set_negative_value = True
                 err.append({'class': 9006023, 'subclass': 29188290, 'text': mapcss.tr('negative {0} value', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
@@ -1288,7 +1288,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_meter_autofix
+                # set height_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," m")
                 set_height_meter_autofix = True
@@ -1305,7 +1305,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_foot_autofix
+                # set height_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," ft")
                 set_height_foot_autofix = True
@@ -1322,7 +1322,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_separator_autofix
+                # set height_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("height=",replace(tag("height"),",","."))
                 set_height_separator_autofix = True
@@ -1339,7 +1339,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5ea59bc2), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_meter_autofix
+                # set maxheight_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," m")
                 set_maxheight_meter_autofix = True
@@ -1356,7 +1356,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_foot_autofix
+                # set maxheight_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," ft")
                 set_maxheight_foot_autofix = True
@@ -1373,7 +1373,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_separator_autofix
+                # set maxheight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxheight=",replace(tag("maxheight"),",","."))
                 set_maxheight_separator_autofix = True
@@ -1390,7 +1390,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3c02ab12), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setzero_roof_height_flat
+                # set zero_roof_height_flat
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{2.tag}")
                 # fixRemove:"{0.key}"
@@ -1408,7 +1408,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_zero_roof_height_flat) and (mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_meter_autofix
+                # set roof_height_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("roof:height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("roof:height")),1)," m")
                 set_roof_height_meter_autofix = True
@@ -1425,7 +1425,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_zero_roof_height_flat) and (mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_foot_autofix
+                # set roof_height_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("roof:height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("roof:height")),1)," ft")
                 set_roof_height_foot_autofix = True
@@ -1442,7 +1442,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_separator_autofix
+                # set roof_height_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("roof:height=",replace(tag("roof:height"),",","."))
                 set_roof_height_separator_autofix = True
@@ -1459,7 +1459,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5ea59bc2), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_meter_autofix
+                # set maxlength_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," m")
                 set_maxlength_meter_autofix = True
@@ -1476,7 +1476,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_foot_autofix
+                # set maxlength_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," ft")
                 set_maxlength_foot_autofix = True
@@ -1493,7 +1493,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_separator_autofix
+                # set maxlength_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxlength=",replace(tag("maxlength"),",","."))
                 set_maxlength_separator_autofix = True
@@ -1510,7 +1510,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_meter_autofix
+                # set width_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
                 set_width_meter_autofix = True
@@ -1527,7 +1527,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_foot_autofix
+                # set width_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," ft")
                 set_width_foot_autofix = True
@@ -1544,7 +1544,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_separator_autofix
+                # set width_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("width=",replace(tag("width"),",","."))
                 set_width_separator_autofix = True
@@ -1561,7 +1561,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_meter_autofix
+                # set maxwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
                 set_maxwidth_meter_autofix = True
@@ -1578,7 +1578,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_foot_autofix
+                # set maxwidth_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," ft")
                 set_maxwidth_foot_autofix = True
@@ -1595,7 +1595,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_separator_autofix
+                # set maxwidth_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxwidth=",replace(tag("maxwidth"),",","."))
                 set_maxwidth_separator_autofix = True
@@ -1648,7 +1648,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxaxleload')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, 'maxaxleload'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxaxleload_separator_autofix
+                # set maxaxleload_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxaxleload=",replace(tag("maxaxleload"),",","."))
                 set_maxaxleload_separator_autofix = True
@@ -1665,7 +1665,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxweight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, 'maxweight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxweight_separator_autofix
+                # set maxweight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxweight=",replace(tag("maxweight"),",","."))
                 set_maxweight_separator_autofix = True
@@ -1731,7 +1731,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'distance')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55d147d6), mapcss._tag_capture(capture_tags, 1, tags, 'distance'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdistance_separator_autofix
+                # set distance_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("distance=",replace(tag("distance"),",","."))
                 set_distance_separator_autofix = True
@@ -1810,7 +1810,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a9b9c26), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setimprecise_gauge
+                # set imprecise_gauge
                 # suggestAlternative:tr("an integer value in millimeters, without unit")
                 # throwWarning:tr("imprecise value of {0}","{0.tag}")
                 # assertNoMatch:"way gauge=2''10'"
@@ -1830,7 +1830,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_imprecise_gauge) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58d78904, '^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setunusual_gauge
+                # set unusual_gauge
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 # assertMatch:"way gauge=2''10'"
                 # assertNoMatch:"way gauge=1000;1435"
@@ -1971,7 +1971,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ele')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_762a1d1d), mapcss._tag_capture(capture_tags, 1, tags, 'ele'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setele_meter_remove_autofix
+                # set ele_meter_remove_autofix
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
                 set_ele_meter_remove_autofix = True
@@ -1988,7 +1988,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ele')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2b84c9ab), mapcss._tag_capture(capture_tags, 1, tags, 'ele'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setele_separator_autofix
+                # set ele_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("ele=",replace(tag("ele"),",","."))
                 set_ele_separator_autofix = True
@@ -2136,7 +2136,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b78ea82), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 min', '1 min')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"min","minutes"))
                 set_maxstay_autofix = True
@@ -2163,7 +2163,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay') == mapcss._value_capture(capture_tags, 0, '1 hr')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:"maxstay=1 hour"
                 set_maxstay_autofix = True
@@ -2180,7 +2180,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_19ef4172), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 h', '1 h')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h","hours"))
                 set_maxstay_autofix = True
@@ -2197,7 +2197,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_330da7b0), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 hr', '1 hr')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"hr","hours"))
                 set_maxstay_autofix = True
@@ -2214,7 +2214,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_52f27115), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1h', '1h')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h"," hours"))
                 set_maxstay_autofix = True
@@ -2287,7 +2287,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss.startswith(mapcss._tag_capture(capture_tags, 0, tags, 'building:levels'), mapcss._value_capture(capture_tags, 0, '-'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setnegative_value
+                # set negative_value
                 # throwError:tr("negative {0} value","{0.key}")
                 set_negative_value = True
                 err.append({'class': 9006023, 'subclass': 29188290, 'text': mapcss.tr('negative {0} value', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
@@ -2316,7 +2316,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_meter_autofix
+                # set height_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," m")
                 set_height_meter_autofix = True
@@ -2333,7 +2333,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_foot_autofix
+                # set height_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("height")),1)," ft")
                 set_height_foot_autofix = True
@@ -2350,7 +2350,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setheight_separator_autofix
+                # set height_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("height=",replace(tag("height"),",","."))
                 set_height_separator_autofix = True
@@ -2367,7 +2367,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5ea59bc2), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_meter_autofix
+                # set maxheight_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," m")
                 set_maxheight_meter_autofix = True
@@ -2384,7 +2384,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_foot_autofix
+                # set maxheight_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxheight=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxheight")),1)," ft")
                 set_maxheight_foot_autofix = True
@@ -2401,7 +2401,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxheight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxheight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxheight_separator_autofix
+                # set maxheight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxheight=",replace(tag("maxheight"),",","."))
                 set_maxheight_separator_autofix = True
@@ -2418,7 +2418,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3c02ab12), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'roof:shape') == mapcss._value_capture(capture_tags, 2, 'flat')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setzero_roof_height_flat
+                # set zero_roof_height_flat
                 # group:tr("unnecessary tag")
                 # throwWarning:tr("{0} is unnecessary for {1}","{0.tag}","{2.tag}")
                 # fixRemove:"{0.key}"
@@ -2436,7 +2436,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_zero_roof_height_flat) and (mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_meter_autofix
+                # set roof_height_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("roof:height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("roof:height")),1)," m")
                 set_roof_height_meter_autofix = True
@@ -2453,7 +2453,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_zero_roof_height_flat) and (mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_foot_autofix
+                # set roof_height_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("roof:height=",get(regexp_match("([0-9.]+)( )*(.+)",tag("roof:height")),1)," ft")
                 set_roof_height_foot_autofix = True
@@ -2470,7 +2470,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'roof:height')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'roof:height'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setroof_height_separator_autofix
+                # set roof_height_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("roof:height=",replace(tag("roof:height"),",","."))
                 set_roof_height_separator_autofix = True
@@ -2487,7 +2487,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5ea59bc2), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_meter_autofix
+                # set maxlength_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," m")
                 set_maxlength_meter_autofix = True
@@ -2504,7 +2504,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_foot_autofix
+                # set maxlength_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxlength=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxlength")),1)," ft")
                 set_maxlength_foot_autofix = True
@@ -2521,7 +2521,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxlength')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxlength'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxlength_separator_autofix
+                # set maxlength_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxlength=",replace(tag("maxlength"),",","."))
                 set_maxlength_separator_autofix = True
@@ -2538,7 +2538,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_meter_autofix
+                # set width_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," m")
                 set_width_meter_autofix = True
@@ -2555,7 +2555,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_foot_autofix
+                # set width_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("width=",get(regexp_match("([0-9.]+)( )*(.+)",tag("width")),1)," ft")
                 set_width_foot_autofix = True
@@ -2572,7 +2572,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'width')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'width'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setwidth_separator_autofix
+                # set width_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("width=",replace(tag("width"),",","."))
                 set_width_separator_autofix = True
@@ -2589,7 +2589,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4a19323d), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_meter_autofix
+                # set maxwidth_meter_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," m")
                 set_maxwidth_meter_autofix = True
@@ -2606,7 +2606,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_4c11a9bc), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_foot_autofix
+                # set maxwidth_foot_autofix
                 # throwWarning:tr("unusual value of {0}: use abbreviation for unit and space between value and unit","{0.key}")
                 # fixAdd:concat("maxwidth=",get(regexp_match("([0-9.]+)( )*(.+)",tag("maxwidth")),1)," ft")
                 set_maxwidth_foot_autofix = True
@@ -2623,7 +2623,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxwidth')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_18424cc6), mapcss._tag_capture(capture_tags, 1, tags, 'maxwidth'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxwidth_separator_autofix
+                # set maxwidth_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxwidth=",replace(tag("maxwidth"),",","."))
                 set_maxwidth_separator_autofix = True
@@ -2676,7 +2676,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxaxleload')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, 'maxaxleload'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxaxleload_separator_autofix
+                # set maxaxleload_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxaxleload=",replace(tag("maxaxleload"),",","."))
                 set_maxaxleload_separator_autofix = True
@@ -2693,7 +2693,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxweight')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_09e9525d), mapcss._tag_capture(capture_tags, 1, tags, 'maxweight'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxweight_separator_autofix
+                # set maxweight_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("maxweight=",replace(tag("maxweight"),",","."))
                 set_maxweight_separator_autofix = True
@@ -2726,7 +2726,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'distance')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_55d147d6), mapcss._tag_capture(capture_tags, 1, tags, 'distance'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setdistance_separator_autofix
+                # set distance_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("distance=",replace(tag("distance"),",","."))
                 set_distance_separator_autofix = True
@@ -2754,7 +2754,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_5a9b9c26), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setimprecise_gauge
+                # set imprecise_gauge
                 # suggestAlternative:tr("an integer value in millimeters, without unit")
                 # throwWarning:tr("imprecise value of {0}","{0.tag}")
                 set_imprecise_gauge = True
@@ -2768,7 +2768,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((not set_imprecise_gauge) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_58d78904, '^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*)$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setunusual_gauge
+                # set unusual_gauge
                 # throwWarning:tr("unusual value of {0}","{0.key}")
                 set_unusual_gauge = True
                 err.append({'class': 9006010, 'subclass': 1964213800, 'text': mapcss.tr('unusual value of {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
@@ -2847,7 +2847,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ele')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_762a1d1d), mapcss._tag_capture(capture_tags, 1, tags, 'ele'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setele_meter_remove_autofix
+                # set ele_meter_remove_autofix
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
                 # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
                 set_ele_meter_remove_autofix = True
@@ -2864,7 +2864,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'ele')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2b84c9ab), mapcss._tag_capture(capture_tags, 1, tags, 'ele'))))
                 except mapcss.RuleAbort: pass
             if match:
-                # setele_separator_autofix
+                # set ele_separator_autofix
                 # throwWarning:tr("unusual value of {0}: use . instead of , as decimal separator","{0.key}")
                 # fixAdd:concat("ele=",replace(tag("ele"),",","."))
                 set_ele_separator_autofix = True
@@ -2994,7 +2994,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b78ea82), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 min', '1 min')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"min","minutes"))
                 set_maxstay_autofix = True
@@ -3021,7 +3021,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay') == mapcss._value_capture(capture_tags, 0, '1 hr')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:"maxstay=1 hour"
                 set_maxstay_autofix = True
@@ -3038,7 +3038,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_19ef4172), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 h', '1 h')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h","hours"))
                 set_maxstay_autofix = True
@@ -3055,7 +3055,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_330da7b0), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1 hr', '1 hr')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"hr","hours"))
                 set_maxstay_autofix = True
@@ -3072,7 +3072,7 @@ class Josm_numeric(PluginMapCSS):
                 try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'maxstay')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_52f27115), mapcss._tag_capture(capture_tags, 1, tags, 'maxstay'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxstay') != mapcss._value_const_capture(capture_tags, 2, '1h', '1h')))
                 except mapcss.RuleAbort: pass
             if match:
-                # setmaxstay_autofix
+                # set maxstay_autofix
                 # throwWarning:tr("unusual value of {0}: set unit e.g. {1} or {2}; only positive values; point is decimal separator; space between value and unit","{0.key}","minutes","hours")
                 # fixAdd:concat("maxstay=",replace(tag("maxstay"),"h"," hours"))
                 set_maxstay_autofix = True
