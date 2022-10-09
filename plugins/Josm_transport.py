@@ -290,7 +290,7 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 0, tags, 'public_transport:version')))
+                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 1, tags, 'public_transport:version')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21401/3"
@@ -305,11 +305,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 0, tags, 'network')))
+                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 1, tags, 'network')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (not mapcss._tag_capture(capture_tags, 0, tags, 'network')))
+                try: match = ((set_pt_route_master) and (not mapcss._tag_capture(capture_tags, 1, tags, 'network')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21402/3"
@@ -324,11 +324,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 0, tags, 'operator')))
+                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 1, tags, 'operator')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (not mapcss._tag_capture(capture_tags, 0, tags, 'operator')))
+                try: match = ((set_pt_route_master) and (not mapcss._tag_capture(capture_tags, 1, tags, 'operator')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21403/3"
@@ -343,11 +343,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 0, tags, 'from')))
+                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 1, tags, 'from')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 0, tags, 'to')))
+                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 1, tags, 'to')))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21405/3"
@@ -379,11 +379,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 0, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 1, tags, 'color')))
+                try: match = ((set_pt_route) and (not mapcss._tag_capture(capture_tags, 1, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 2, tags, 'color')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (not mapcss._tag_capture(capture_tags, 0, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 1, tags, 'color')))
+                try: match = ((set_pt_route_master) and (not mapcss._tag_capture(capture_tags, 1, tags, 'colour')) and (mapcss._tag_capture(capture_tags, 2, tags, 'color')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("The color of the public transport line should be in a colour tag")
@@ -401,11 +401,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((set_pt_route) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_25554804), mapcss._tag_capture(capture_tags, 1, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((set_pt_route_master) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_25554804), mapcss._tag_capture(capture_tags, 1, tags, 'operator'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Check the operator tag : this operator does not exist, it may be a typo")
@@ -417,11 +417,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, 'network'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((set_pt_route) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_25554804), mapcss._tag_capture(capture_tags, 1, tags, 'network'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, 'network'))) and (mapcss.inside(self.father.config.options, 'FR')))
+                try: match = ((set_pt_route_master) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_25554804), mapcss._tag_capture(capture_tags, 1, tags, 'network'))) and (mapcss.inside(self.father.config.options, 'FR')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Check the network tag : this network does not exist, it may be a typo")
@@ -452,11 +452,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
+                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 1, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 2, tags, 'interval'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 0, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'interval'))))
+                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 1, tags, 'interval')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 2, tags, 'interval'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("The interval is invalid (try a number of minutes)")
@@ -478,11 +478,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 0, tags, 'duration')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'duration'))))
+                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 1, tags, 'duration')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 2, tags, 'duration'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 0, tags, 'duration')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 1, tags, 'duration'))))
+                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 1, tags, 'duration')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_2fe0817d, '^([0-9][0-9]?[0-9]?|[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?)$'), mapcss._tag_capture(capture_tags, 2, tags, 'duration'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("The duration is invalid (try a number of minutes)")
@@ -501,11 +501,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 0, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'interval')))
+                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 1, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'interval')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 0, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'interval')))
+                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 1, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'interval')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing interval tag to specify the main interval")
@@ -517,11 +517,11 @@ class Josm_transport(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 0, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours')))
+                try: match = ((set_pt_route) and (mapcss._tag_capture(capture_tags, 1, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 0, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'opening_hours')))
+                try: match = ((set_pt_route_master) and (mapcss._tag_capture(capture_tags, 1, tags, 'interval:conditional')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'opening_hours')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing opening_hours tag")

@@ -118,10 +118,9 @@ def predicate_simple_dereference(t, c):
     Replace predicate by a function call
     """
 #    if t['predicate']['type'] != 'functionExpression': # Do only once
-    c['selector_capture_index'] += 1
     if not t['not']:
         c['selector_capture'].append(t['predicate'])
-    t['predicate'] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['predicate']]}
+    t['predicate'] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(t['selector_index']), 'tags', t['predicate']]}
     return t
 
 def booleanExpression_dereference_first_operand(t, c):
@@ -139,14 +138,13 @@ def booleanExpression_capture_first_operand(t, c):
     Capture first operand tag
     """
     if len(t['operands']) >= 1 and t['operands'][0]['type'] == 'functionExpression' and t['operands'][0]['name'] == 'tag':
-        c['selector_capture_index'] += 1
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
-        t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['operands'][0]['params'][0]]}
+        t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(t['selector_index']), 'tags', t['operands'][0]['params'][0]]}
         if t['operator'] in ('!', '!=', '!~') and t['operands'][1]['type'] in ('quoted', 'osmtag', 'regexExpression'):
-            t['operands'][1] = {'type': 'functionExpression', 'name': '_value_const_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1], {'type': 'quoted', 'value': str(t['operands'][1]['value'])}]}
+            t['operands'][1] = {'type': 'functionExpression', 'name': '_value_const_capture', 'params': ['capture_tags', str(t['selector_index']), t['operands'][1], {'type': 'quoted', 'value': str(t['operands'][1]['value'])}]}
         else:
-            t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1]]}
+            t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': ['capture_tags', str(t['selector_index']), t['operands'][1]]}
     return t
 
 def booleanExpression_negated_operator(t, c):
@@ -254,7 +252,6 @@ def selector_before_capture(t, c):
     """
     type = selector
     """
-    c['selector_capture_index'] = 0
     c['selector_capture'] = []
     return t
 
