@@ -1286,7 +1286,7 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'mini_roundabout')) and (mapcss._tag_capture(capture_tags, 1, tags, 'direction') == mapcss._value_capture(capture_tags, 1, 'clockwise')) and (mapcss.setting(self.father.config.options, 'driving_side') != 'left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'mini_roundabout')) and (mapcss._tag_capture(capture_tags, 2, tags, 'direction') == mapcss._value_capture(capture_tags, 2, 'clockwise')) and (mapcss.setting(self.father.config.options, 'driving_side') != 'left'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -1298,7 +1298,7 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'mini_roundabout')) and (mapcss._tag_capture(capture_tags, 1, tags, 'direction') == mapcss._value_capture(capture_tags, 1, 'anticlockwise')) and (mapcss.setting(self.father.config.options, 'driving_side') == 'left'))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'mini_roundabout')) and (mapcss._tag_capture(capture_tags, 2, tags, 'direction') == mapcss._value_capture(capture_tags, 2, 'anticlockwise')) and (mapcss.setting(self.father.config.options, 'driving_side') == 'left'))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -2863,31 +2863,31 @@ class Josm_combinations(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'turn:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'turn:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'turn:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'turn:lanes'))))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'change:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'change:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'change:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'change:lanes'))))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'maxspeed:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'maxspeed:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'maxspeed:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'maxspeed:lanes'))))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'minspeed:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'minspeed:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'minspeed:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'minspeed:lanes'))))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'destination:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:lanes'))))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'destination:ref:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:ref:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:ref:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:ref:lanes'))))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 0, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 1, tags, 'destination:symbol:lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'lanes') != mapcss._value_capture(capture_tags, 2, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:symbol:lanes'))))))
+                try: match = ((set_MotorwayTrunk) and (mapcss._tag_capture(capture_tags, 1, tags, 'lanes')) and (mapcss._tag_capture(capture_tags, 2, tags, 'destination:symbol:lanes')) and (mapcss._tag_capture(capture_tags, 3, tags, 'lanes') != mapcss._value_capture(capture_tags, 3, mapcss.count(mapcss.split('|', mapcss.tag(tags, 'destination:symbol:lanes'))))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
