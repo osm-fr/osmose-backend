@@ -60,11 +60,11 @@ class indoor(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2a047336), mapcss._tag_capture(capture_tags, 0, tags, 'indoor'))) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] != nds[-1]))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2a047336), mapcss._tag_capture(capture_tags, 1, tags, 'indoor'))) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] != nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'room')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] != nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'room')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] != nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:survey")
@@ -77,7 +77,7 @@ class indoor(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_2a047336), mapcss._tag_capture(capture_tags, 0, tags, 'indoor'))) and (not mapcss._tag_capture(capture_tags, 1, tags, 'level')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_2a047336), mapcss._tag_capture(capture_tags, 1, tags, 'indoor'))) and (not mapcss._tag_capture(capture_tags, 2, tags, 'level')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:survey")
@@ -93,11 +93,11 @@ class indoor(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor') == mapcss._value_capture(capture_tags, 0, 'area')) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'indoor') == mapcss._value_capture(capture_tags, 1, 'area')) and (mapcss._tag_capture(capture_tags, 2, tags, 'shop')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor') == mapcss._value_capture(capture_tags, 0, 'corridor')) and (mapcss._tag_capture(capture_tags, 1, tags, 'shop')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'indoor') == mapcss._value_capture(capture_tags, 1, 'corridor')) and (mapcss._tag_capture(capture_tags, 2, tags, 'shop')) and (mapcss.inside(self.father.config.options, 'DE,CH,FR')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("fix:survey","shop")
