@@ -21,8 +21,8 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Source, SHP, Load, Conflate, Select, Mapping
-from .Analyser_Merge_Network import Analyser_Merge_Network
+from .Analyser_Merge import Source, SHP, Load, Select, Mapping
+from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
 
 
 class Analyser_Merge_Road_ES(Analyser_Merge_Network):
@@ -44,7 +44,7 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
                 select = {
                     'claseD': ['Carretera convencional', 'Urbano', 'Autovía', 'Carretera multicarril'],  # Exclude 'Senda' and 'Camino'
                     'estadofis': '1'} ),
-            Conflate(
+            ConflateNetwork(
                 select = Select(
                     types = ['ways'],
                     tags = {'highway': None}),
