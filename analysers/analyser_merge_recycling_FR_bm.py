@@ -40,8 +40,8 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge_Point):
             SHP(SourceOpenDataSoft(
                 attribution='Bordeaux Métropole',
                 url="https://opendata.bordeaux-metropole.fr/explore/dataset/en_empac_p",
-                format="shp",
-                zip='en_empac_p.shp')),
+                format="shp"),
+                zip='en_empac_p.shp'),
             LoadGeomCentroid(
                 select = {"ident": {"like": "%"}}),
             Conflate(

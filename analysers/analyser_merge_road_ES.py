@@ -37,8 +37,8 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
             SHP(Source(
                 attribution='Instituto Geográfico Nacional', millesime='2022-04-26',
                 fileUrl='http://centrodedescargas.cnig.es/CentroDescargas/descargaDir', post={'secuencialDescDir': self.secuencialDescDir(config.options['country']), 'aceptCodsLicsDD_0': '15'},
-                encoding='LATIN1',
-                zip='*/*/rt_tramo_vial.shp')),
+                encoding='LATIN1'),
+                zip="*/*/rt_tramo_vial.shp"),
             Load('geom',
                 table_name = 'road_es_' + self.secuencialDescDir(config.options['country']),
                 select = {
