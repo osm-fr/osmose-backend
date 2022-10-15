@@ -688,16 +688,18 @@ class GeoJSON(Parser):
         return 4326
 
 class GDAL(Parser):
-    def __init__(self, source, zip = None, layer = None):
+    def __init__(self, source, zip = None, layer = None, fields = None):
         """
         Load any GDAL supported format.
         @param source: source file reader
         @param zip: use path in zip file.
         @param layer: layer to use when source is multi-layer.
+        @param fields: array of fields to load. Default to All. Usefull for big dataset.
         """
         self.source = source
         self.zip = zip
         self.layer = layer
+        self.fields = fields
 
     def header(self):
         return True
@@ -715,10 +717,12 @@ class GDAL(Parser):
                 if info:
                     self.zip = info.filename
 
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO -t_srs EPSG:{} '{}' {}".format(
+            select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
+                select,
                 self.proj,
                 ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
                 f"'{self.layer}'" if self.layer else '',
