@@ -76,6 +76,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
             None: "",
             "Biogaz de station d'épuration": "biogas",
             "Bois": "biomass",
+            "Déchets industriels": "waste",
             "Déchets ménagers": "waste", # For RTE waste is bio-power!
             "Déchets papeterie": "biomass",
             "Gaz": "biogas",
@@ -86,6 +87,7 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
         "Hydraulique": {None: "hydro"},
         "Nucléaire": {"Uranium": "nuclear"},
         "Solaire": {None: "solar"},
+        "Stockage non hydraulique": { None: ""},
         "Thermique non renouvelable": {
             None: "",
             "Charbon": "coal",

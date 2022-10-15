@@ -40,8 +40,8 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge_Point):
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
                 url="https://opendata.bordeaux-metropole.fr/explore/dataset/st_park_p",
-                format="shp",
-                zip='st_park_p.shp')),
+                format="shp"),
+                zip='st_park_p.shp'),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(
@@ -76,8 +76,8 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge_Point):
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
                 url="https://opendata.bordeaux-metropole.fr/explore/dataset/grs_gigc_p",
-                format="shp",
-                zip="grs_gigc_p.shp")),
+                format="shp"),
+                zip="grs_gigc_p.shp"),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(

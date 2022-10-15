@@ -45,8 +45,8 @@ class Analyser_Merge_Milestone_FR_metropole(Analyser_Merge_Point):
             SHP(SourceDataGouv(
                 attribution="data.gouv.fr:Ministère de la Transition écologique",
                 dataset="57a837e2c751df5b90bb5dd4",
-                resource="92d86944-52e8-44c1-b4cc-b17ac82d70ed",
-                zip='BORNAGE_TOUT.shp')),
+                resource="92d86944-52e8-44c1-b4cc-b17ac82d70ed"),
+                zip='BORNAGE_TOUT.shp'),
             LoadGeomCentroid(
                 where = lambda row: (
                     self.is_milestone(row)

@@ -29,6 +29,7 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
     dep_proj = {
         "971": "RGAF09UTM20",
         "972": "RGAF09UTM20",
+        "973": "UTM22RGFG95",
         "974": "RGR92UTM40S",
         "976": "RGM04UTM38S",
         "977": "RGAF09UTM20",

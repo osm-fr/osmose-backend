@@ -36,9 +36,9 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge_Point)
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
                 url="https://opendata.bordeaux-metropole.fr/explore/dataset/st_arceau_p",
-                format="shp",
+                format="shp"),
                 zip='st_arceau_p.shp'
-            )),
+            ),
             LoadGeomCentroid(
                 select={
                     "typologie": [False, "ARCEAU_VELO_CARGO"],
@@ -73,9 +73,9 @@ class Analyser_Merge_Motorcycle_Parking_FR_Bordeaux_Metropole(Analyser_Merge_Poi
             SHP(SourceOpenDataSoft(
                 attribution="Bordeaux Métropole",
                 url="https://opendata.bordeaux-metropole.fr/explore/dataset/st_arceau_p",
-                format="shp",
+                format="shp"),
                 zip='st_arceau_p.shp'
-            )),
+            ),
             LoadGeomCentroid(
                 select={
                     "typologie": "ARCEAU_MOTO",

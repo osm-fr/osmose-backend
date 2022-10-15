@@ -687,52 +687,16 @@ class GeoJSON(Parser):
     def srid(self):
         return 4326
 
-class SHP(Parser):
-    def __init__(self, source, edit = lambda s: s):
-        """
-        Load Shape file data.
-        @param source: source file reader
-        @param edit: edit the SQL code produced by shp2pgsql
-        """
-        self.source = source
-        self.edit = edit
-
-    def header(self):
-        return True
-
-    def import_(self, table, osmosis):
-        tmp_file = tempfile.NamedTemporaryFile(delete = False)
-        tmp_file.close()
-        unzip = "unzip -o -d {0}_ {1}".format(tmp_file.name, self.source.path())
-        if os.system(unzip):
-            raise Exception("unzip error")
-        shp2pgsql = "shp2pgsql -e -k -W \"{0}\" \"{1}_/{2}\" \"{3}\" s \"{4}\" > \"{5}\"".format(
-            self.source.encoding,
-            tmp_file.name,
-            self.source.zipFile().filename,
-            table,
-            self.proj,
-            tmp_file.name
-        )
-        if os.system(shp2pgsql):
-            raise Exception("shp2pgsql error")
-        sql = self.edit(open(tmp_file.name, 'r').read()).split(";\n")
-        for s in sql:
-            if s != "":
-                osmosis.giscurs.execute(s)
-        os.remove(tmp_file.name)
-
-    def srid(self):
-        return self.proj
-
 class GDAL(Parser):
-    def __init__(self, source, layer = None):
+    def __init__(self, source, zip = None, layer = None):
         """
         Load any GDAL supported format.
         @param source: source file reader
+        @param zip: use path in zip file.
         @param layer: layer to use when source is multi-layer.
         """
         self.source = source
+        self.zip = zip
         self.layer = layer
 
     def header(self):
@@ -740,16 +704,23 @@ class GDAL(Parser):
 
     def import_(self, table, osmosis):
         try:
-            tmp_file = tempfile.NamedTemporaryFile(mode = 'wb', delete = False)
+            tmp_file = tempfile.NamedTemporaryFile(suffix = '.zip' if self.zip else '', mode = 'wb', delete = False)
             shutil.copyfileobj(self.source.open(binary = True), tmp_file, 20*1024*1024)
             tmp_file.close()
 
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -t_srs EPSG:{} '{}' {}".format(
+            if self.zip:
+                # Resolve pattern filename into the zip archive.
+                z = zipfile.ZipFile(tmp_file.name, 'r')
+                info = next(filter(lambda zipinfo: fnmatch.fnmatch(zipinfo.filename, self.zip), z.infolist()))
+                if info:
+                    self.zip = info.filename
+
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
                 self.proj,
-                tmp_file.name,
+                ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
                 f"'{self.layer}'" if self.layer else '',
             )
             osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
@@ -764,6 +735,7 @@ class GDAL(Parser):
     def srid(self):
         return self.proj
 
+SHP = GDAL
 GPKG = GDAL
 
 class Load(object):
