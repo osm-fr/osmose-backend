@@ -71,9 +71,9 @@ END $$
 sql00 = """
 CREATE TEMP TABLE {official}_temp (
     ref varchar(65534),
-    tags hstore,
-    tags1 hstore,
-    fields hstore,
+    tags jsonb,
+    tags1 jsonb,
+    fields jsonb,
     geom geometry(geometry, {proj})
 )
 """
@@ -108,9 +108,9 @@ INSERT INTO
     {official}_temp
 VALUES (
     %(ref)s,
-    %(tags)s,
-    %(tags1)s,
-    %(fields)s,
+    %(tags)s::jsonb,
+    %(tags1)s::jsonb,
+    %(fields)s::jsonb,
     CASE WHEN {geom} IS NOT NULL THEN
         ST_Transform(ST_Force2D({geom}), {proj})
     ELSE NULL END
@@ -257,7 +257,7 @@ sql41 = """
     SELECT
         id::bigint AS osm_id,
         type::varchar AS osm_type,
-        tags::hstore,
+        tags::jsonb,
         ST_X(geom)::float AS lon,
         ST_Y(geom)::float AS lat
     FROM
@@ -266,7 +266,7 @@ sql41 = """
     SELECT
         NULL::bigint AS osm_id,
         NULL::varchar AS osm_type,
-        tags::hstore,
+        tags::jsonb,
         ST_X(geom)::float AS lon,
         ST_Y(geom)::float AS lat
     FROM
@@ -275,7 +275,7 @@ sql41 = """
     SELECT
         id::bigint AS osm_id,
         type::varchar AS osm_type,
-        tags::hstore,
+        tags::jsonb,
         ST_X(geom)::float AS lon,
         ST_Y(geom)::float AS lat
     FROM
@@ -308,7 +308,7 @@ FROM
     JOIN osm_item ON
         {joinClause}
 WHERE
-    official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::hstore
+    official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::jsonb
 """
 
 class Source:
