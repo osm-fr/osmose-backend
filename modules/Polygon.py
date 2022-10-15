@@ -27,10 +27,15 @@ from modules import downloader
 class Polygon:
 
     def __init__(self, polygon_id, cache_delay=60):
+        # polygon_id can be an integer, or a list of integers
+        if isinstance(polygon_id, int):
+            polygon_id = (polygon_id, )
+
         polygon_url = u"http://polygons.openstreetmap.fr/"
-        url = polygon_url + "index.py?id="+str(polygon_id)
-        s = downloader.urlread(url, cache_delay)
-        url = polygon_url + "get_wkt.py?params=0&id="+str(polygon_id)
+        for id in polygon_id:
+            url = polygon_url + "index.py?id="+str(id)
+            s = downloader.urlread(url, cache_delay)
+        url = polygon_url + "get_wkt.py?params=0&id=" + ",".join(map(str, polygon_id))
         s = downloader.urlread(url, cache_delay)
         if s.startswith("SRID="):
             s = s.split(";", 1)[1]
@@ -72,3 +77,15 @@ class Test(unittest.TestCase):
         b = p.bboxes()
         self.assertNotEqual(b, None)
         self.assertEqual(len(b), 2)
+
+        # Two texas counties
+        p = Polygon((1812313,1812314))
+        b = p.bboxes()
+        self.assertNotEqual(b, None)
+        self.assertEqual(len(b), 1)
+
+        # Four texas counties
+        p = Polygon((1812313,1812314,1809481,1827113))
+        b = p.bboxes()
+        self.assertNotEqual(b, None)
+        self.assertEqual(len(b), 1)
