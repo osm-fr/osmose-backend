@@ -821,6 +821,7 @@ class Load(object):
                     return
                 res = self.map(res)
                 geom = self.geomFunction(res['_geom'])
+                res = {k: v for k, v in res.items() if k not in ['_geom', 'geom', 'geometry']}
                 if geom:
                     for k in res.keys():
                         try:
