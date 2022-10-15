@@ -779,31 +779,7 @@ class Load(object):
 
         osmosis.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
-        self.data = False
-        def setDataTrue():
-            self.data = True
-        osmosis.run0("SELECT * FROM meta WHERE name='{0}' AND update={1}".format(table, version), lambda res: setDataTrue())
-        if not self.data:
-            osmosis.logger.log(u"Load source into database")
-            osmosis.run("DROP TABLE IF EXISTS {0}".format(table))
-            if not self.create:
-                header = self.parser.header()
-                if header:
-                    if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
-                else:
-                    raise AssertionError("No table schema provided")
-            osmosis.run(sql_schema.format(schema = db_schema))
-            if self.create:
-                osmosis.run("CREATE TABLE {0} ({1})".format(table, self.create))
-            self.parser.import_(table, osmosis)
-            osmosis.run("DELETE FROM meta WHERE name = '{0}'".format(table))
-            osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, version))
-            osmosis.run0("COMMIT")
-            osmosis.run0("BEGIN")
-            self.parser.close()
-
-        # Convert
+        # Official data table cache
         country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hexastablehash(osmosis.config.db_schema)[-4:]
         if len(default_table_base_name + '_' + country_hash) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
             tableOfficial = default_table_base_name + '_' + country_hash + "_o"
@@ -814,8 +790,24 @@ class Load(object):
         def setData(res):
             self.data = res
         osmosis.run0("SELECT bbox FROM meta WHERE name='{0}' AND bbox IS NOT NULL AND update IS NOT NULL AND update={1}".format(tableOfficial, version), lambda res: setData(res))
+
         if not self.data:
-            osmosis.logger.log(u"Convert data to tags")
+            osmosis.logger.log("Load raw data into database")
+            if not self.create:
+                header = self.parser.header()
+                if header:
+                    if header is not True:
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
+                else:
+                    raise AssertionError("No table schema provided")
+            osmosis.run(sql_schema.format(schema = db_schema))
+            if self.create:
+                osmosis.run("CREATE TEMP TABLE {0} ({1})".format(table, self.create))
+            self.parser.import_(table, osmosis)
+            self.parser.close()
+
+            # Convert
+            osmosis.logger.log("Convert raw data to tags")
             osmosis.run(sql_schema.format(schema = db_schema))
             osmosis.run(sql00.format(official = tableOfficial, proj = self.proj))
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -864,6 +856,8 @@ class Load(object):
             osmosis.run("DELETE FROM meta WHERE name='{0}'".format(tableOfficial))
             if self.bbox is not None:
                 osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, '{2}')".format(tableOfficial, version, self.bbox))
+
+            osmosis.run("DROP TABLE {0}".format(table))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
         else:
