@@ -130,16 +130,16 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'indoor': 'room'}), expected={'class': 50, 'subclass': 0})
+            self.check_err(n.node(data, {'indoor': 'room'}), expected={'class': 50, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'DE'}):
-            self.check_err(n.node(data, {'room': 'shop'}), expected={'class': 50, 'subclass': 0})
+            self.check_err(n.node(data, {'room': 'shop'}), expected={'class': 50, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'DE'}):
-            self.check_not_err(n.way(data, {'indoor': 'room', 'level': '-0.5'}, [0]), expected={'class': 51, 'subclass': 0})
+            self.check_not_err(n.way(data, {'indoor': 'room', 'level': '-0.5'}, [0]), expected={'class': 51, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'indoor': 'room', 'room': 'shop'}, [0]), expected={'class': 51, 'subclass': 0})
+            self.check_err(n.way(data, {'indoor': 'room', 'room': 'shop'}, [0]), expected={'class': 51, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'DE'}):
-            self.check_err(n.way(data, {'indoor': 'area', 'level': '3', 'shop': 'florist'}, [0]), expected={'class': 52, 'subclass': 0})
+            self.check_err(n.way(data, {'indoor': 'area', 'level': '3', 'shop': 'florist'}, [0]), expected={'class': 52, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'indoor': 'corridor', 'shop': 'tickets'}, [0]), expected={'class': 52, 'subclass': 0})
+            self.check_err(n.way(data, {'indoor': 'corridor', 'shop': 'tickets'}, [0]), expected={'class': 52, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'DE'}):
-            self.check_not_err(n.way(data, {'indoor': 'room', 'room': 'shop', 'shop': 'florist'}, [0]), expected={'class': 52, 'subclass': 0})
+            self.check_not_err(n.way(data, {'indoor': 'room', 'room': 'shop', 'shop': 'florist'}, [0]), expected={'class': 52, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])

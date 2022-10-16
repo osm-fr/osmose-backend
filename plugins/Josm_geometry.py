@@ -727,6 +727,6 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'bridge': 'viaduct'}), expected={'class': 9003001, 'subclass': 431750003})
-        self.check_err(n.node(data, {'bridge': 'yes'}), expected={'class': 9003001, 'subclass': 431750003})
-        self.check_err(n.node(data, {'oneway': '-1'}), expected={'class': 9003001, 'subclass': 431750003})
+        self.check_err(n.node(data, {'bridge': 'viaduct'}), expected={'class': 9003001, 'subclass': 431750003}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.node(data, {'bridge': 'yes'}), expected={'class': 9003001, 'subclass': 431750003}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.node(data, {'oneway': '-1'}), expected={'class': 9003001, 'subclass': 431750003}, disallowed_str_in_text = ['{', '}'])
