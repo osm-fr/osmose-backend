@@ -19,7 +19,7 @@ class Bicycle(PluginMapCSS):
         self.errors[30328] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:chair'), title = mapcss.tr('{0} with {1}', 'highway=cycleway', 'cycleway=track'))
         self.errors[30329] = self.def_class(item = 3032, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('fix:chair'), title = mapcss.tr('{0} with {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}')))
         self.errors[40101] = self.def_class(item = 4010, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('fix:chair'), title = mapcss.tr('{0} is preferred to {1}', 'psv', 'service=psv'))
-        self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:chair'), title = mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', '{cycleway:left}'))
+        self.errors[40301] = self.def_class(item = 4030, level = 2, tags = mapcss.list_('tag', 'highway') + mapcss.list_('cycleway', 'fix:chair'), title = mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', 'cycleway:left'))
 
         self.re_1825c777 = re.compile(r'footway|construction')
         self.re_5b286a0d = re.compile(r'no|use_sidepath')
@@ -43,9 +43,9 @@ class Bicycle(PluginMapCSS):
             if match:
                 # -osmoseTags:list("cycleway","fix:chair")
                 # -osmoseItemClassLevel:"4030/40301/2"
-                # throwWarning:tr("{0} with {1} and {2}","cycleway","cycleway:right","{cycleway:left}")
+                # throwWarning:tr("{0} with {1} and {2}","cycleway","cycleway:right","cycleway:left")
                 # assertMatch:"way cycleway=a cycleway:right=b cycleway:left=c"
-                err.append({'class': 40301, 'subclass': 0, 'text': mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', '{cycleway:left}')})
+                err.append({'class': 40301, 'subclass': 0, 'text': mapcss.tr('{0} with {1} and {2}', 'cycleway', 'cycleway:right', 'cycleway:left')})
 
         # way[footway=sidewalk][highway!~/footway|construction/]
         if ('footway' in keys):
