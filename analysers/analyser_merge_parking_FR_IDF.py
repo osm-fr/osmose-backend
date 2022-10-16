@@ -48,4 +48,4 @@ class Analyser_Merge_Parking_FR_IDF_park_ride(Analyser_Merge_Point):
                 mapping = Mapping(
                     static1 = {"amenity": "parking", "park_ride": "yes"},
                     static2 = {"source": self.source},
-                    mapping1 = {"capacity": lambda res: int(float(res["NB_PL_PR"])) if res["NB_PL_PR"] != "0" else None} )))
+                    mapping1 = {"capacity": lambda res: int(float(res["PL_PR"])) if res["PL_PR"] != "0" else None} )))
