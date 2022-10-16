@@ -51,7 +51,8 @@ class Analyser_Merge_Road_FR(Analyser_Merge_Network):
             GPKG(SourceIGN(attribution = "IGN",
                     fileUrl = f"http://files.opendatarchives.fr/professionnels.ign.fr/bdtopo/latest/BDTOPO_3-0_TOUSTHEMES_GPKG_{proj}_D{dep_code}_2022-06-15.7z",
                     extract = f"BDTOPO_3-0_TOUSTHEMES_GPKG_{proj}_D{dep_code}_2022-06-15/BDTOPO/1_DONNEES_LIVRAISON_2022-06-00173/BDT_3-0_GPKG_{proj}_D{dep_code}-ED2022-06-15/BDT_3-0_GPKG_{proj}_D{dep_code}-ED2022-06-15.gpkg"),
-                layer = "troncon_de_route"),
+                layer = "troncon_de_route",
+                fields = ['importance', 'fictif', 'etat_de_l_objet', 'nature', 'nom_1_gauche', 'nom_1_droite', 'nom_2_gauche', 'nom_2_droite']),
             Load('geom',
                 table_name = 'road_fr_' + config.options['country'].replace("-", "_"),
                 # Ignore : 'Chemin', 'Bac ou liaison maritime', 'Sentier'

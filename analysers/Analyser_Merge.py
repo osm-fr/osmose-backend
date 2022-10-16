@@ -71,9 +71,9 @@ END $$
 sql00 = """
 CREATE TEMP TABLE {official}_temp (
     ref varchar(65534),
-    tags hstore,
-    tags1 hstore,
-    fields hstore,
+    tags jsonb,
+    tags1 jsonb,
+    fields jsonb,
     geom geometry(geometry, {proj})
 )
 """
@@ -108,9 +108,9 @@ INSERT INTO
     {official}_temp
 VALUES (
     %(ref)s,
-    %(tags)s,
-    %(tags1)s,
-    %(fields)s,
+    %(tags)s::jsonb,
+    %(tags1)s::jsonb,
+    %(fields)s::jsonb,
     CASE WHEN {geom} IS NOT NULL THEN
         ST_Transform(ST_Force2D({geom}), {proj})
     ELSE NULL END
@@ -257,7 +257,7 @@ sql41 = """
     SELECT
         id::bigint AS osm_id,
         type::varchar AS osm_type,
-        tags::hstore,
+        tags::jsonb,
         ST_X(geom)::float AS lon,
         ST_Y(geom)::float AS lat
     FROM
@@ -266,7 +266,7 @@ sql41 = """
     SELECT
         NULL::bigint AS osm_id,
         NULL::varchar AS osm_type,
-        tags::hstore,
+        tags::jsonb,
         ST_X(geom)::float AS lon,
         ST_Y(geom)::float AS lat
     FROM
@@ -275,7 +275,7 @@ sql41 = """
     SELECT
         id::bigint AS osm_id,
         type::varchar AS osm_type,
-        tags::hstore,
+        tags::jsonb,
         ST_X(geom)::float AS lon,
         ST_Y(geom)::float AS lat
     FROM
@@ -308,7 +308,7 @@ FROM
     JOIN osm_item ON
         {joinClause}
 WHERE
-    official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::hstore
+    official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::jsonb
 """
 
 class Source:
@@ -688,16 +688,18 @@ class GeoJSON(Parser):
         return 4326
 
 class GDAL(Parser):
-    def __init__(self, source, zip = None, layer = None):
+    def __init__(self, source, zip = None, layer = None, fields = None):
         """
         Load any GDAL supported format.
         @param source: source file reader
         @param zip: use path in zip file.
         @param layer: layer to use when source is multi-layer.
+        @param fields: array of fields to load. Default to All. Usefull for big dataset.
         """
         self.source = source
         self.zip = zip
         self.layer = layer
+        self.fields = fields
 
     def header(self):
         return True
@@ -715,10 +717,12 @@ class GDAL(Parser):
                 if info:
                     self.zip = info.filename
 
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO -t_srs EPSG:{} '{}' {}".format(
+            select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
+                select,
                 self.proj,
                 ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
                 f"'{self.layer}'" if self.layer else '',
@@ -779,31 +783,7 @@ class Load(object):
 
         osmosis.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
-        self.data = False
-        def setDataTrue():
-            self.data = True
-        osmosis.run0("SELECT * FROM meta WHERE name='{0}' AND update={1}".format(table, version), lambda res: setDataTrue())
-        if not self.data:
-            osmosis.logger.log(u"Load source into database")
-            osmosis.run("DROP TABLE IF EXISTS {0}".format(table))
-            if not self.create:
-                header = self.parser.header()
-                if header:
-                    if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
-                else:
-                    raise AssertionError("No table schema provided")
-            osmosis.run(sql_schema.format(schema = db_schema))
-            if self.create:
-                osmosis.run("CREATE TABLE {0} ({1})".format(table, self.create))
-            self.parser.import_(table, osmosis)
-            osmosis.run("DELETE FROM meta WHERE name = '{0}'".format(table))
-            osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, NULL)".format(table, version))
-            osmosis.run0("COMMIT")
-            osmosis.run0("BEGIN")
-            self.parser.close()
-
-        # Convert
+        # Official data table cache
         country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hexastablehash(osmosis.config.db_schema)[-4:]
         if len(default_table_base_name + '_' + country_hash) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
             tableOfficial = default_table_base_name + '_' + country_hash + "_o"
@@ -814,8 +794,24 @@ class Load(object):
         def setData(res):
             self.data = res
         osmosis.run0("SELECT bbox FROM meta WHERE name='{0}' AND bbox IS NOT NULL AND update IS NOT NULL AND update={1}".format(tableOfficial, version), lambda res: setData(res))
+
         if not self.data:
-            osmosis.logger.log(u"Convert data to tags")
+            osmosis.logger.log("Load raw data into database")
+            if not self.create:
+                header = self.parser.header()
+                if header:
+                    if header is not True:
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
+                else:
+                    raise AssertionError("No table schema provided")
+            osmosis.run(sql_schema.format(schema = db_schema))
+            if self.create:
+                osmosis.run("CREATE TEMP TABLE {0} ({1})".format(table, self.create))
+            self.parser.import_(table, osmosis)
+            self.parser.close()
+
+            # Convert
+            osmosis.logger.log("Convert raw data to tags")
             osmosis.run(sql_schema.format(schema = db_schema))
             osmosis.run(sql00.format(official = tableOfficial, proj = self.proj))
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -825,6 +821,7 @@ class Load(object):
                     return
                 res = self.map(res)
                 geom = self.geomFunction(res['_geom'])
+                res = {k: v for k, v in res.items() if k not in ['_geom', 'geom', 'geometry']}
                 if geom:
                     for k in res.keys():
                         try:
@@ -864,6 +861,8 @@ class Load(object):
             osmosis.run("DELETE FROM meta WHERE name='{0}'".format(tableOfficial))
             if self.bbox is not None:
                 osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, '{2}')".format(tableOfficial, version, self.bbox))
+
+            osmosis.run("DROP TABLE {0}".format(table))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
         else:
