@@ -160,7 +160,7 @@ class TestPluginCommon(unittest.TestCase):
         plugin.father = father()
 
     # Check errors generation, and unicode encoding
-    def check_err(self, errors, log="Valid errors expected", expected=None):
+    def check_err(self, errors, log="Valid errors expected", expected=None, disallowed_str_in_text = []):
         if isinstance(errors, dict):
             errors = [errors]
         assert errors, log
@@ -177,6 +177,10 @@ class TestPluginCommon(unittest.TestCase):
             for k in error.keys():
                 if k not in ("class", "subclass", "text", "fix", "allow_fix_override"):
                     assert False, "key '{0}' is not accepted in error: {1}".format(k, error)
+
+        if "text" in error and "en" in error["text"] and len(disallowed_str_in_text):
+            assert not any(c in disallowed_str_in_text for c in error["text"]["en"]), ("Encountered any of '" +
+              ''.join(disallowed_str_in_text) + "' in text: " + error["text"]["en"])
 
         if expected:
             found = False

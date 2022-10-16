@@ -756,7 +756,7 @@ def build_tests(tests):
         tags = dict(kvs)
         test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') or test['type'].startswith('-osmoseAssertMatch') else "check_not_err") + "(" +
             "n." + o + "(data, {" + ', '.join(map(lambda kv: "'" + kv[0].replace("'", "\\'") + "': '" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}" + {'node': "", 'way': ", [0]", 'relation': ", []"}[o] + "), " +
-            "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})")
+            "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "}, disallowed_str_in_text = ['{', '}'])")
         out.append(test_code)
     return "\n".join(out)
 
