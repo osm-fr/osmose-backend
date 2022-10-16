@@ -70,6 +70,6 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.way(data, {'construction': 'primary', 'highway': 'construction'}, [0]), expected={'class': 40701, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'construction': 'minor', 'highway': 'primary'}, [0]), expected={'class': 40701, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.way(data, {'construction': 'primary', 'highway': 'construction'}, [0]), expected={'class': 40701, 'subclass': 0})
+        self.check_not_err(n.way(data, {'construction': 'minor', 'highway': 'primary'}, [0]), expected={'class': 40701, 'subclass': 0})
         self.check_err(n.way(data, {'construction': 'primary', 'highway': 'primary'}, [0]), expected={'class': 40701, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
