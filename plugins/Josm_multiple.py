@@ -599,7 +599,7 @@ class Test(TestPluginCommon):
 
         self.check_err(n.node(data, {'ref': ';'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.node(data, {'ref': ';A1'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.node(data, {'ref': 'A1'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.node(data, {'ref': 'A1'}), expected={'class': 9005002, 'subclass': 1082723721})
         self.check_err(n.node(data, {'ref': 'A1;'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.node(data, {'ref': 'A1;;A2'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.node(data, {'ref': 'A1;A2'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.node(data, {'ref': 'A1;A2'}), expected={'class': 9005002, 'subclass': 1082723721})

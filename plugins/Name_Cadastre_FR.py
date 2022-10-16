@@ -87,8 +87,8 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'name': 'Kerbrest', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.node(data, {'name': 'Kerbrest', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'name': 'ZA Sud Loire', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.node(data, {'name': 'ZA Sud Loire', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'name': 'Montdésert-Sud', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])

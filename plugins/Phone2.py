@@ -143,4 +143,4 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_err(n.node(data, {'contact:phone': '2', 'phone': '1'}), expected={'class': 3097, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.node(data, {'contact:website': '1', 'website': '1'}), expected={'class': 3097, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.node(data, {'contact:website': '1', 'website': '1'}), expected={'class': 3097, 'subclass': 0})

@@ -178,8 +178,8 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_err(n.way(data, {'name': 'Hauptstrasse'}, [0]), expected={'class': 9009002, 'subclass': 821908491}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'name': 'Hauptstraße'}, [0]), expected={'class': 9009002, 'subclass': 821908491}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'name': 'Kapitän-Strasser-Straße'}, [0]), expected={'class': 9009002, 'subclass': 821908491}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'name': 'Peter-Strasser-Platz'}, [0]), expected={'class': 9009002, 'subclass': 821908491}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'name': 'Hauptstrasse'}, [0]), expected={'class': 9009003, 'subclass': 610086334}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.way(data, {'name': 'Hauptstraße'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {'name': 'Kapitän-Strasser-Straße'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {'name': 'Peter-Strasser-Platz'}, [0]), expected={'class': 9009002, 'subclass': 821908491})
+        self.check_not_err(n.way(data, {'name': 'Hauptstrasse'}, [0]), expected={'class': 9009003, 'subclass': 610086334})
         self.check_err(n.way(data, {'name': 'Hauptstraße'}, [0]), expected={'class': 9009003, 'subclass': 610086334}, disallowed_str_in_text = ['{', '}'])

@@ -199,8 +199,8 @@ class Test(TestPluginCommon):
         with with_options(n, {'language': 'fa'}):
             self.check_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.node(data, {'name:fa': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0})
         with with_options(n, {'language': 'fa'}):
             self.check_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.node(data, {'name:fa': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1})

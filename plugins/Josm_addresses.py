@@ -170,10 +170,10 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_err(n.node(data, {'addr:housename': '1', 'addr:housenumber': '1'}), expected={'class': 9000003, 'subclass': 1820984183}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.node(data, {'addr:housename': '1', 'addr:housenumber': '2'}), expected={'class': 9000003, 'subclass': 1820984183}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'addr:housenumber': '0'}, [0]), expected={'class': 9000004, 'subclass': 1053226919}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'addr:housenumber': '5/1'}, [0]), expected={'class': 9000004, 'subclass': 1053226919}, disallowed_str_in_text = ['{', '}'])
-        self.check_not_err(n.way(data, {'addr:housenumber': '5a'}, [0]), expected={'class': 9000004, 'subclass': 1053226919}, disallowed_str_in_text = ['{', '}'])
+        self.check_not_err(n.node(data, {'addr:housename': '1', 'addr:housenumber': '2'}), expected={'class': 9000003, 'subclass': 1820984183})
+        self.check_not_err(n.way(data, {'addr:housenumber': '0'}, [0]), expected={'class': 9000004, 'subclass': 1053226919})
+        self.check_not_err(n.way(data, {'addr:housenumber': '5/1'}, [0]), expected={'class': 9000004, 'subclass': 1053226919})
+        self.check_not_err(n.way(data, {'addr:housenumber': '5a'}, [0]), expected={'class': 9000004, 'subclass': 1053226919})
         self.check_err(n.way(data, {'addr:housenumber': '?'}, [0]), expected={'class': 9000004, 'subclass': 1053226919}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.way(data, {'addr:housenumber': 'Palace of Westminster'}, [0]), expected={'class': 9000004, 'subclass': 1053226919}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.way(data, {'addr:housenumber': 'S/N'}, [0]), expected={'class': 9000004, 'subclass': 1053226919}, disallowed_str_in_text = ['{', '}'])

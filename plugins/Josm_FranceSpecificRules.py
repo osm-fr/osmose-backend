@@ -1016,61 +1016,61 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'amenity': 'parking', 'name': 'Aire de Covoiturage'}), expected={'class': 20806, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 30403, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 30403, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019004, 'subclass': 323412661}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'railway': 'disused'}, [0]), expected={'class': 21600, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'railway': 'disused'}, [0]), expected={'class': 21600, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'gauge': '1435', 'railway': 'rail'}, [0]), expected={'class': 21600, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'gauge': '1435', 'railway': 'rail'}, [0]), expected={'class': 21600, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.way(data, {'railway': 'rail'}, [0]), expected={'class': 21600, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'amenity': 'car_pooling', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'amenity': 'car_pooling', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.way(data, {'amenity': 'car_sharing', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'amenity': 'parking', 'carpool': 'designated', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'amenity': 'parking', 'carpool': 'designated', 'name': 'Aire de covoiturage'}, [0]), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'name': 'Station Covoiturage', 'public_transport': 'platform'}, [0]), expected={'class': 20806, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'name': 'Station Covoiturage', 'public_transport': 'platform'}, [0]), expected={'class': 20806, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '62A901609CD_2D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '62A901609CD_2D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.way(data, {'highway': 'primary', 'nat_ref': '62A901609CD_2D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '62A801609CD_12D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '62A801609CD_12D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_11D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_11D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '78A801319CD_1D', 'operator': 'SAPN'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '78A801319CD_1D', 'operator': 'SAPN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '78A901319CD_1D', 'operator': 'SAPN'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '78A901319CD_1D', 'operator': 'SAPN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '80A801645CD_16D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '80A801645CD_16D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '80A901645CD_16D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref': '80A901645CD_16D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '78A901319CD_15D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '78A901319CD_15D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '80A901645_16D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'primary', 'junction': 'roundabout', 'nat_ref': '80A901645_16D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '78A801319CD_1D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '78A801319CD_1D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '80A801645_6D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'service', 'junction': 'roundabout', 'nat_ref': '80A801645_6D', 'operator': 'DIRN'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'primary_link', 'nat_ref': '75Periph_Paris_05_13D', 'operator': 'VILLE DE PARIS'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'primary_link', 'nat_ref': '75Periph_Paris_05_13D', 'operator': 'VILLE DE PARIS'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'trunk_link', 'nat_ref': '75Periph_Paris_05_3D', 'operator': 'VILLE DE PARIS'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'trunk_link', 'nat_ref': '75Periph_Paris_05_3D', 'operator': 'VILLE DE PARIS'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_11D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_11D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_12D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_12D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'motorway_link', 'nat_ref:backward': '62A902615CD_2D', 'nat_ref:forward': '62A902615CD_1D', 'operator': 'SANEF'}, [0]), expected={'class': 9019002, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'impasse', 'ref:FR:FANTOIR:left': '75106S581L', 'ref:FR:FANTOIR:right': '75106S581R'}, [0]), expected={'class': 9019005, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'impasse', 'ref:FR:FANTOIR:left': '75106S581L', 'ref:FR:FANTOIR:right': '75106S581R'}, [0]), expected={'class': 9019005, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'impasse', 'ref:FR:FANTOIR': '75106S581T'}, [0]), expected={'class': 9019005, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_not_err(n.way(data, {'highway': 'residential', 'name': 'impasse', 'ref:FR:FANTOIR': '75106S581T'}, [0]), expected={'class': 9019005, 'subclass': 0})
