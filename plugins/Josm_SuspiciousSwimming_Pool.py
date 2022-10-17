@@ -199,10 +199,10 @@ class Josm_SuspiciousSwimming_Pool(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_SuspiciousSwimming_Pool(None)
         class _config:
@@ -213,7 +213,7 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'building': 'yes', 'leisure': 'swimming_pool'}), expected={'class': 30801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
-        self.check_err(n.way(data, {'leisure': 'swimming_pool', 'url': 'A'}, [0]), expected={'class': 30801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.node(data, {'building': 'yes', 'leisure': 'swimming_pool'}), expected={'class': 30801, 'subclass': 0})
+        self.check_err(n.way(data, {'leisure': 'swimming_pool', 'url': 'A'}, [0]), expected={'class': 30801, 'subclass': 0})
         self.check_not_err(n.way(data, {'leisure': 'swimming_pool'}, [0]), expected={'class': 30801, 'subclass': 0})
-        self.check_err(n.relation(data, {'leisure': 'swimming_pool', 'phone': '+3334656565'}, []), expected={'class': 30801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.relation(data, {'leisure': 'swimming_pool', 'phone': '+3334656565'}, []), expected={'class': 30801, 'subclass': 0})

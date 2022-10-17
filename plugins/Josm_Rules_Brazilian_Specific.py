@@ -4604,10 +4604,10 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_Rules_Brazilian_Specific(None)
         class _config:

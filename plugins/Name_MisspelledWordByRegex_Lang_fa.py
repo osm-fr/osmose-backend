@@ -182,10 +182,10 @@ class Name_MisspelledWordByRegex_Lang_fa(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Name_MisspelledWordByRegex_Lang_fa(None)
         class _config:
@@ -197,10 +197,10 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         with with_options(n, {'language': 'fa'}):
-            self.check_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
-        self.check_err(n.node(data, {'name:fa': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0})
+        self.check_err(n.node(data, {'name:fa': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0})
         self.check_not_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 0})
         with with_options(n, {'language': 'fa'}):
-            self.check_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1}, disallowed_str_in_text = ['{', '}'])
-        self.check_err(n.node(data, {'name:fa': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1})
+        self.check_err(n.node(data, {'name:fa': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1})
         self.check_not_err(n.node(data, {'name': 'روابط عمومي مجتمع مس شهربابك'}), expected={'class': 50109001, 'subclass': 1})

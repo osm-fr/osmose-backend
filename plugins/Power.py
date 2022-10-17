@@ -77,10 +77,10 @@ class Power(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Power(None)
         class _config:
@@ -92,4 +92,4 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_not_err(n.node(data, {'frequency': '50', 'power': 'transformer'}), expected={'class': 91003, 'subclass': 0})
-        self.check_err(n.node(data, {'power': 'transformer'}), expected={'class': 91003, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.node(data, {'power': 'transformer'}), expected={'class': 91003, 'subclass': 0})

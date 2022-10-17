@@ -269,10 +269,10 @@ class Covid19(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Covid19(None)
         class _config:
@@ -284,9 +284,9 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'takeaway': 'no', 'takeaway:covid19': 'yes'}), expected={'class': 202004, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.node(data, {'takeaway': 'no', 'takeaway:covid19': 'yes'}), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'delivery': 'no', 'delivery:covid19': 'yes'}), expected={'class': 202004, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.node(data, {'delivery': 'no', 'delivery:covid19': 'yes'}), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'takeaway:covid19': 'no'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
@@ -294,7 +294,7 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'takeaway': 'yes', 'takeaway:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'takeaway:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.way(data, {'takeaway:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'delivery:covid19': 'no'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
@@ -302,14 +302,14 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'delivery': 'yes', 'delivery:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'delivery:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.way(data, {'delivery:covid19': 'yes'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'opening_hours': 'Mo-Su 09:00-20:00', 'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'opening_hours:covid19': 'restricted'}, [0]), expected={'class': 202004, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.way(data, {'opening_hours:covid19': 'restricted'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'opening_hours:covid19': 'same'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'opening_hours': 'Mo-Su 09:00-20:00', 'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.way(data, {'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.way(data, {'opening_hours:covid19': 'Mo-Su 09:00-20:00'}, [0]), expected={'class': 202004, 'subclass': 0})

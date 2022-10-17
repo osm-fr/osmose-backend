@@ -56,10 +56,10 @@ class Construction2(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Construction2(None)
         class _config:
@@ -72,4 +72,4 @@ class Test(TestPluginCommon):
 
         self.check_not_err(n.way(data, {'construction': 'primary', 'highway': 'construction'}, [0]), expected={'class': 40701, 'subclass': 0})
         self.check_not_err(n.way(data, {'construction': 'minor', 'highway': 'primary'}, [0]), expected={'class': 40701, 'subclass': 0})
-        self.check_err(n.way(data, {'construction': 'primary', 'highway': 'primary'}, [0]), expected={'class': 40701, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.way(data, {'construction': 'primary', 'highway': 'primary'}, [0]), expected={'class': 40701, 'subclass': 0})

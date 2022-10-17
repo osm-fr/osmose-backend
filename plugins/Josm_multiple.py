@@ -583,10 +583,10 @@ class Josm_multiple(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_multiple(None)
         class _config:
@@ -597,9 +597,9 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'ref': ';'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
-        self.check_err(n.node(data, {'ref': ';A1'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.node(data, {'ref': ';'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_err(n.node(data, {'ref': ';A1'}), expected={'class': 9005002, 'subclass': 1082723721})
         self.check_not_err(n.node(data, {'ref': 'A1'}), expected={'class': 9005002, 'subclass': 1082723721})
-        self.check_err(n.node(data, {'ref': 'A1;'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
-        self.check_err(n.node(data, {'ref': 'A1;;A2'}), expected={'class': 9005002, 'subclass': 1082723721}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.node(data, {'ref': 'A1;'}), expected={'class': 9005002, 'subclass': 1082723721})
+        self.check_err(n.node(data, {'ref': 'A1;;A2'}), expected={'class': 9005002, 'subclass': 1082723721})
         self.check_not_err(n.node(data, {'ref': 'A1;A2'}), expected={'class': 9005002, 'subclass': 1082723721})

@@ -72,10 +72,10 @@ class Name_Cadastre_FR(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Name_Cadastre_FR(None)
         class _config:
@@ -91,4 +91,4 @@ class Test(TestPluginCommon):
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.node(data, {'name': 'ZA Sud Loire', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
-            self.check_err(n.node(data, {'name': 'Montdésert-Sud', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+            self.check_err(n.node(data, {'name': 'Montdésert-Sud', 'place': 'hamlet'}), expected={'class': 50801, 'subclass': 0})

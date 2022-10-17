@@ -74,10 +74,10 @@ class TagFix_Destination(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = TagFix_Destination(None)
         class _config:
@@ -89,13 +89,13 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_not_err(n.way(data, {'destination:colour': 'Red', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
-        self.check_err(n.way(data, {'destination:colour': 'Red|Yellow', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.way(data, {'destination:colour': 'Red|Yellow', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination:lanes:backward': 'A8|Centre|Plage', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination:lanes': 'A8|Centre|Plage', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination:ref:lanes': 'A8|A10|A23', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination': 'A8', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
-        self.check_err(n.way(data, {'destination': 'A8|Centre|Plage', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.way(data, {'destination': 'A8|Centre|Plage', 'highway': 'primary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination:ref:lanes:backward': 'B 3|B 3', 'highway': 'tertiary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination:ref:to:lanes': 'A 7|', 'highway': 'tertiary'}, [0]), expected={'class': 316010, 'subclass': 0})
         self.check_not_err(n.way(data, {'destination': 'East', 'waterway': 'river'}, [0]), expected={'class': 316010, 'subclass': 0})
-        self.check_err(n.way(data, {'destination': 'East|West', 'waterway': 'river'}, [0]), expected={'class': 316010, 'subclass': 0}, disallowed_str_in_text = ['{', '}'])
+        self.check_err(n.way(data, {'destination': 'East|West', 'waterway': 'river'}, [0]), expected={'class': 316010, 'subclass': 0})
