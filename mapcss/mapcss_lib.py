@@ -164,7 +164,7 @@ class str_value_(str):
         except:
             raise RuleAbort()
 
-    # Required in Pyhton 3 the make the class hashable
+    # Required in Python 3 to make the class hashable
     def __hash__(self):
         return str.__hash__(self)
 
@@ -311,7 +311,7 @@ def tag(tags, key_name):
 
 def _tag_capture(stock, index, tags, key_name):
     if tags is not None and key_name is not None:
-        if index >= len(stock):
+        if not index in stock:
             stock_index = stock[index] = [None, None]
         else:
             stock_index = stock[index]
@@ -335,7 +335,7 @@ def _tag_capture(stock, index, tags, key_name):
     return None_value
 
 def _value_capture(stock, index, value):
-    if index >= len(stock):
+    if not index in stock:
         stock[index] = [None, None]
     if value.__class__ in (str, str_value_):
         # If not a string, let the tag capture fill the value part

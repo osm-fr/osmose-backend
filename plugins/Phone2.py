@@ -128,10 +128,10 @@ class Phone2(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Phone2(None)
         class _config:

@@ -79,10 +79,10 @@ class Josm_ru_housenumber(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_ru_housenumber(None)
         class _config:

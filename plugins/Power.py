@@ -77,10 +77,10 @@ class Power(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Power(None)
         class _config:

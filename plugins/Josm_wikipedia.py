@@ -1118,10 +1118,10 @@ class Josm_wikipedia(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_wikipedia(None)
         class _config:

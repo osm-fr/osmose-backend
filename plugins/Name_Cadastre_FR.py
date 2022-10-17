@@ -72,10 +72,10 @@ class Name_Cadastre_FR(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Name_Cadastre_FR(None)
         class _config:

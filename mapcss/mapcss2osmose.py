@@ -817,10 +817,10 @@ class """ + prefix + class_name + """(PluginMapCSS):
         return err
 """, sorted(rules.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a]))) + """
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = """ + prefix + class_name + """(None)
         class _config:
