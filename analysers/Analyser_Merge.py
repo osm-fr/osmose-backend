@@ -308,7 +308,11 @@ FROM
     JOIN osm_item ON
         {joinClause}
 WHERE
-    official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::jsonb
+    official.tags1
+        - (SELECT coalesce(array_agg(key), array[]::text[]) FROM jsonb_each(official.tags1) WHERE NOT osm_item.tags?key AND value::text = '""" + GENERATE_DELETE_TAG + """')
+        - (SELECT array_agg(key) FROM jsonb_object_keys(osm_item.tags) AS t(key))
+        - 'source'::text
+        != '{{}}'::jsonb
 """
 
 class Source:
@@ -1206,7 +1210,7 @@ verification on this data.'''))
                         trim(both from ref) AS ref,
                         ST_Transform({geom}::geometry, {proj}) AS geom,
                         ST_Transform({shape}::geometry, {proj}) AS shape,
-                        tags
+                        tags::jsonb
                     FROM
                         {from_}
                         LEFT JOIN LATERAL regexp_split_to_table(tags->'{ref}', ';') a(ref) ON true
