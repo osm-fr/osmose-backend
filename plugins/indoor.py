@@ -44,7 +44,7 @@ class indoor(PluginMapCSS):
                 # throwError:tr("This indoor feature should be a closed and valid polygon")
                 # -osmoseAssertMatchWithContext:list("node indoor=room","inside=FR")
                 # -osmoseAssertMatchWithContext:list("node room=shop","inside=DE")
-                err.append({'class': 50, 'subclass': 0, 'text': mapcss.tr('This indoor feature should be a closed and valid polygon')})
+                err.append({'class': 50, 'subclass': 0, 'text': mapcss.tr('This indoor fe{{ature should be a closed and valid polygon')})
 
         return err
 

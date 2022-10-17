@@ -199,7 +199,7 @@ class Test(TestPluginMapcss):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.way(data, {'cycleway': 'a', 'cycleway:left': 'c', 'cycleway:right': 'b'}, [0]), expected={'class': 40301, 'subclass': 0})
+        self.check_err(n.way(data, {'cycleway': 'a', 'cyclway:left': 'c', 'cyclway:right': 'b'}, [0]), expected={'class': 40301, 'subclass': 0})
         self.check_not_err(n.way(data, {'construction': 'footway', 'footway': 'sidewalk', 'highway': 'construction'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_not_err(n.way(data, {'footway': 'sidewalk', 'highway': 'footway'}, [0]), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {'footway': 'sidewalk', 'highway': 'path'}, [0]), expected={'class': 20805, 'subclass': 0})

@@ -685,7 +685,7 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'building:colour': '#123'}, [0]), expected={'class': 30911, 'subclass': 1})
         self.check_err(n.way(data, {'building:colour': '123'}, [0]), expected={'class': 30911, 'subclass': 1})
         self.check_err(n.way(data, {'building:colour': 'abcdef'}, [0]), expected={'class': 30911, 'subclass': 1})
-        self.check_not_err(n.way(data, {'building:colour': 'beige'}, [0]), expected={'class': 30911, 'subclass': 1})
+        self.check_not_err(n.way(data, {'building:colour': '#red'}, [0]), expected={'class': 30911, 'subclass': 1})
         self.check_not_err(n.way(data, {'building:colour': '#8c6b57', 'roof:colour': '#484443'}, [0]), expected={'class': 30911, 'subclass': 1})
         self.check_not_err(n.way(data, {'building:colour': '#FFFFFF'}, [0]), expected={'class': 30914, 'subclass': 0})
         self.check_not_err(n.way(data, {'building:colour': '#red'}, [0]), expected={'class': 30914, 'subclass': 0})
