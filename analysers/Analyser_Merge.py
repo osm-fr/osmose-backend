@@ -731,12 +731,9 @@ class GDAL(Parser):
                 ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
                 f"'{self.layer}'" if self.layer else '',
             )
-            osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
-            osmosis.giscurs.execute("COMMIT")
             print(gdal)
             if os.system(gdal):
                 raise Exception("ogr2ogr error")
-            osmosis.giscurs.execute("BEGIN")
         finally:
             os.remove(tmp_file.name)
 
