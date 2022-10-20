@@ -27,6 +27,7 @@ import regex as re
 UpperCase_WhiteList = {
     "FR": ["CNFPT", "COSEC", "EHPAD", "MACIF", "MEDEF", "URSSAF"],
     "ES": ["FREMAP"],
+    "DE": ["ALDI", "EDEKA", "MARKTKAUF", "PENNY", "REWE"],
 }
 
 class Name_UpperCase(Plugin):
