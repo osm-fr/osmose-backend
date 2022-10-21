@@ -84,7 +84,7 @@ SELECT
     {geom} AS _geom,
     *
 FROM
-    {table}
+    "{table}"
 WHERE
     {where}
 {order_by}
@@ -96,7 +96,7 @@ SELECT
     {geom} AS _geom,
     *
 FROM
-    {table}
+    "{table}"
 WHERE
     ({validationGeomSQL}) AND
     {where}
@@ -722,7 +722,7 @@ class GDAL(Parser):
                     self.zip = info.filename
 
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
@@ -731,12 +731,9 @@ class GDAL(Parser):
                 ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
                 f"'{self.layer}'" if self.layer else '',
             )
-            osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
-            osmosis.giscurs.execute("COMMIT")
             print(gdal)
             if os.system(gdal):
                 raise Exception("ogr2ogr error")
-            osmosis.giscurs.execute("BEGIN")
         finally:
             os.remove(tmp_file.name)
 
@@ -810,7 +807,7 @@ class Load(object):
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema.format(schema = db_schema))
             if self.create:
-                osmosis.run("CREATE TEMP TABLE {0} ({1})".format(table, self.create))
+                osmosis.run("CREATE TEMP TABLE \"{0}\" ({1})".format(table, self.create))
             self.parser.import_(table, osmosis)
             self.parser.close()
 
@@ -866,7 +863,7 @@ class Load(object):
             if self.bbox is not None:
                 osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, '{2}')".format(tableOfficial, version, self.bbox))
 
-            osmosis.run("DROP TABLE {0}".format(table))
+            osmosis.run("DROP TABLE \"{0}\"".format(table))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
         else:
