@@ -39,7 +39,7 @@ way[highway=service][psv=yes][motor_vehicle=no][!bicycle] {
 }
 
 way[cycleway][cycleway:right][cycleway:left] {
-    throwWarning: tr("{0} with {1} and {2}", "cycleway", "cycleway:right", "{cycleway:left}");
+    throwWarning: tr("{0} with {1} and {2}", "cycleway", "cycleway:right", "cycleway:left");
     -osmoseItemClassLevel: "4030/40301/2";
     -osmoseTags: list("cycleway", "fix:chair");
 

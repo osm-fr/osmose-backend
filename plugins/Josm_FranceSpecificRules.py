@@ -999,10 +999,10 @@ class Josm_FranceSpecificRules(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_FranceSpecificRules(None)
         class _config:

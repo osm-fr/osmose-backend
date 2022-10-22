@@ -182,10 +182,10 @@ class Name_MisspelledWordByRegex_Lang_fa(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Name_MisspelledWordByRegex_Lang_fa(None)
         class _config:

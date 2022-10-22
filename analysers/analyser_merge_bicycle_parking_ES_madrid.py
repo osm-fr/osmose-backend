@@ -35,8 +35,8 @@ class Analyser_Merge_Bicycle_Parking_ES_Madrid(Analyser_Merge_Point):
             "Bici. Aparcabicis",
             SHP(Source(
                 attribution="Ayuntamiento de Madrid",
-                fileUrl="https://datos.madrid.es/egob/catalogo/205099-14-aparca-bicis.zip",
-                zip="20220329_APARCABICIS.shp")),
+                fileUrl="https://datos.madrid.es/egob/catalogo/205099-14-aparca-bicis.zip"),
+                zip="*.shp"),
             LoadGeomCentroid(
                 select = {"ESTADO": ["ACTIVO", "OPERATIVO"]}),
             Conflate(

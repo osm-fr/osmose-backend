@@ -31,7 +31,8 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
             "Grand Lyon - Points d'adressage sur bâtiments de la Métropole de Lyon",
             SHP(Source(attribution = "Grand Lyon", millesime = "092020",
                     fileUrl = "https://download.data.grandlyon.com/ws/grandlyon/adr_voie_lieu.adradresse.shp?srsname=EPSG:4326&maxfeatures=999999&start=1",
-                zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
+                    encoding = "ISO-8859-15"),
+                zip = "adr_voie_lieu.adradresse.shp"),
             LoadGeomCentroid(),
             Conflate(
                 mapping = Mapping(

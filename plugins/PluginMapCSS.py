@@ -39,3 +39,18 @@ class PluginMapCSS(Plugin):
                 kwargs['source'] = '{0}/plugins/{1}{2}'.format(config and hasattr(config, 'source_url') and config.source_url or None, os.path.basename(caller), lineno)
 
         return super().def_class(**kwargs)
+
+
+
+from plugins.Plugin import TestPluginCommon
+
+class TestPluginMapcss(TestPluginCommon):
+
+    def check_err(self, errors, **kwargs):
+        disallowed_str_in_text = ['{', '}']
+        for error in errors:
+            if "text" in error and "en" in error["text"]:
+                assert not any(c in disallowed_str_in_text for c in error["text"]["en"]), ("Encountered any of '" +
+                  ''.join(disallowed_str_in_text) + "' in text: " + error["text"]["en"])
+
+        return super().check_err(errors, **kwargs)

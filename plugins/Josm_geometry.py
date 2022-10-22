@@ -681,7 +681,7 @@ class Josm_geometry(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'power') == mapcss._value_capture(capture_tags, 0, 'line')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'power') == mapcss._value_capture(capture_tags, 1, 'line')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a closed way. Should be used on an unclosed way.","{1.tag}")
@@ -713,10 +713,10 @@ class Josm_geometry(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_geometry(None)
         class _config:

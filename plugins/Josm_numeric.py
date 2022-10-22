@@ -1846,7 +1846,7 @@ class Josm_numeric(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_imprecise_gauge) and (not set_unusual_gauge) and (mapcss.regexp_test(self.re_70dc3282, mapcss._match_regex(tags, self.re_7e626945))) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_33ecb9da, '^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))))
+                try: match = ((not set_imprecise_gauge) and (not set_unusual_gauge) and (mapcss.regexp_test(self.re_70dc3282, mapcss._match_regex(tags, self.re_7e626945))) and (mapcss._tag_capture(capture_tags, 1, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_33ecb9da, '^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$'), mapcss._tag_capture(capture_tags, 2, tags, 'gauge'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -2778,7 +2778,7 @@ class Josm_numeric(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_imprecise_gauge) and (not set_unusual_gauge) and (mapcss.regexp_test(self.re_70dc3282, mapcss._match_regex(tags, self.re_7e626945))) and (mapcss._tag_capture(capture_tags, 0, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 1, self.re_33ecb9da, '^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$'), mapcss._tag_capture(capture_tags, 1, tags, 'gauge'))) and (mapcss._tag_capture(capture_tags, 2, tags, 'type') == mapcss._value_capture(capture_tags, 2, 'route')))
+                try: match = ((not set_imprecise_gauge) and (not set_unusual_gauge) and (mapcss.regexp_test(self.re_70dc3282, mapcss._match_regex(tags, self.re_7e626945))) and (mapcss._tag_capture(capture_tags, 1, tags, 'gauge')) and (not mapcss.regexp_test(mapcss._value_const_capture(capture_tags, 2, self.re_33ecb9da, '^((14(?:3[0-4]|[4-9])|(?:14[0-2]|(?:1[0-3]|9)[0-9])[0-9]?|143|(?:[2-7][0-9]|1[5-9])[0-9]|8(?:[0-8][0-9]|9[0-9]?));?)+$'), mapcss._tag_capture(capture_tags, 2, tags, 'gauge'))) and (mapcss._tag_capture(capture_tags, 5, tags, 'type') == mapcss._value_capture(capture_tags, 5, 'route')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -3095,10 +3095,10 @@ class Josm_numeric(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_numeric(None)
         class _config:

@@ -471,43 +471,43 @@ class Josm_unnecessary(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'boundary')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'boundary')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'indoor')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 3, 'no', 'no')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'indoor')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 4, tags, 'indoor') != mapcss._value_const_capture(capture_tags, 4, 'no', 'no')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'office')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'office')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'place')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'place')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'highway')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'amenity')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'highway')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'building')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'building')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'landuse')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'landuse')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'highway')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'leisure')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 3, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 3, 'track', 'track')) and (mapcss._tag_capture(capture_tags, 4, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 4, 'slipway', 'slipway')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'leisure')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'highway')) and (mapcss._tag_capture(capture_tags, 4, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 4, 'track', 'track')) and (mapcss._tag_capture(capture_tags, 5, tags, 'leisure') != mapcss._value_const_capture(capture_tags, 5, 'slipway', 'slipway')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'natural')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'shop')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'shop')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
@@ -527,23 +527,23 @@ class Josm_unnecessary(PluginMapCSS):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'rest_area')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'rest_area')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'highway') == mapcss._value_capture(capture_tags, 0, 'services')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'highway') == mapcss._value_capture(capture_tags, 1, 'services')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'aerodrome')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') == mapcss._value_capture(capture_tags, 1, 'aerodrome')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'waterway') == mapcss._value_capture(capture_tags, 0, 'riverbank')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'waterway') == mapcss._value_capture(capture_tags, 1, 'riverbank')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'aeroway') == mapcss._value_capture(capture_tags, 0, 'helipad')) and (mapcss._tag_capture(capture_tags, 1, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
+                try: match = ((mapcss._tag_capture(capture_tags, 1, tags, 'aeroway') == mapcss._value_capture(capture_tags, 1, 'helipad')) and (mapcss._tag_capture(capture_tags, 2, tags, 'area') in ('yes', 'true', '1')) and (nds[0] == nds[-1]))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
@@ -1201,10 +1201,10 @@ class Josm_unnecessary(PluginMapCSS):
         return err
 
 
-from plugins.Plugin import TestPluginCommon
+from plugins.PluginMapCSS import TestPluginMapcss
 
 
-class Test(TestPluginCommon):
+class Test(TestPluginMapcss):
     def test(self):
         n = Josm_unnecessary(None)
         class _config:

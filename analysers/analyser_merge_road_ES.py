@@ -21,8 +21,8 @@
 ###########################################################################
 
 from modules.OsmoseTranslation import T_
-from .Analyser_Merge import Source, SHP, Load, Conflate, Select, Mapping
-from .Analyser_Merge_Network import Analyser_Merge_Network
+from .Analyser_Merge import Source, SHP, Load, Select, Mapping
+from .Analyser_Merge_Network import Analyser_Merge_Network, ConflateNetwork
 
 
 class Analyser_Merge_Road_ES(Analyser_Merge_Network):
@@ -37,14 +37,15 @@ class Analyser_Merge_Road_ES(Analyser_Merge_Network):
             SHP(Source(
                 attribution='Instituto Geográfico Nacional', millesime='2022-04-26',
                 fileUrl='http://centrodedescargas.cnig.es/CentroDescargas/descargaDir', post={'secuencialDescDir': self.secuencialDescDir(config.options['country']), 'aceptCodsLicsDD_0': '15'},
-                encoding='LATIN1',
-                zip='*/*/rt_tramo_vial.shp')),
+                encoding='LATIN1'),
+                zip="*/*/rt_tramo_vial.shp",
+                fields=['claseD', 'estadofis']),
             Load('geom',
                 table_name = 'road_es_' + self.secuencialDescDir(config.options['country']),
                 select = {
                     'claseD': ['Carretera convencional', 'Urbano', 'Autovía', 'Carretera multicarril'],  # Exclude 'Senda' and 'Camino'
                     'estadofis': '1'} ),
-            Conflate(
+            ConflateNetwork(
                 select = Select(
                     types = ['ways'],
                     tags = {'highway': None}),

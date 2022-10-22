@@ -37,8 +37,8 @@ class Analyser_merge_defibrillators_FR_toulouse(Analyser_Merge_Point):
                 SourceDataGouv(
                     attribution="data.gouv.fr:Toulouse métropole",
                     dataset="56b0c2cda3a7294d39b88a65",
-                    resource="15cbc8a3-411b-4690-894a-d84a7e6cac7b",
-                    zip="defibrillateurs.shp")),
+                    resource="15cbc8a3-411b-4690-894a-d84a7e6cac7b"),
+                zip="defibrillateurs.shp"),
             LoadGeomCentroid(),
             Conflate(
                 select = Select(

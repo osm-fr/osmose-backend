@@ -65,6 +65,7 @@ class MapCSSListenerL(MapCSSListener):
         self.predicates: List[Dict] = []
         self.predicates_function_base: Optional[List[Dict]] = None
         self.pseudo_class = [] # : List[Dict]
+        self.selector_index = 0
 
     # Exit a parse tree produced by MapCSSParser#simple_selector.
     def exitSimple_selector(self, ctx:MapCSSParser.Simple_selectorContext):
@@ -104,7 +105,9 @@ class MapCSSListenerL(MapCSSListener):
             'predicate': v['osmtag'] or v['quoted'] or v['regexExpression'][0],
             'not': not (not (ctx.OP_NOT())),
             'question_mark': not (not (ctx.QUESTION_MARK())),
-            'question_mark_negated': not (not (ctx.QUESTION_MARK_NEGATED()))}
+            'question_mark_negated': not (not (ctx.QUESTION_MARK_NEGATED())),
+            'selector_index': self.selector_index}
+        self.selector_index += 1
 
 
 #    # Enter a parse tree produced by MapCSSParser#class_selector.
@@ -113,7 +116,11 @@ class MapCSSListenerL(MapCSSListener):
 
     # Exit a parse tree produced by MapCSSParser#class_selector.
     def exitClass_selector(self, ctx:MapCSSParser.Class_selectorContext):
-        self.class_selectors.append({'type': 'class_selector', 'not': not (not (ctx.OP_NOT())), 'class': ctx.cssident().getText()})
+        self.class_selectors.append({'type': 'class_selector',
+            'not': not (not (ctx.OP_NOT())),
+            'class': ctx.cssident().getText(),
+            'selector_index': self.selector_index})
+        self.selector_index += 1
 
 
 #    # Enter a parse tree produced by MapCSSParser#pseudo_class_selector.
@@ -122,7 +129,11 @@ class MapCSSListenerL(MapCSSListener):
 
     # Exit a parse tree produced by MapCSSParser#pseudo_class_selector.
     def exitPseudo_class_selector(self, ctx:MapCSSParser.Pseudo_class_selectorContext):
-        self.pseudo_class.append({'type': 'pseudo_class', 'not_class': not (not (ctx.OP_NOT())), 'pseudo_class': ctx.cssident().getText()})
+        self.pseudo_class.append({'type': 'pseudo_class',
+            'not_class': not (not (ctx.OP_NOT())),
+            'pseudo_class': ctx.cssident().getText(),
+            'selector_index': self.selector_index})
+        self.selector_index += 1
 
 
     # Enter a parse tree produced by MapCSSParser#declaration.
@@ -184,8 +195,10 @@ class MapCSSListenerL(MapCSSListener):
             'operands':
                 v['booleanExpressions'] or # Juste get operands array
                 (v['functionExpression'] and [v['functionExpression']]) or
-                []
+                [],
+            'selector_index': self.selector_index
         })
+        self.selector_index += 1
 
 
     # Enter a parse tree produced by MapCSSParser#valueExpression.
