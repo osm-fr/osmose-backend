@@ -64,7 +64,11 @@ class PointInPolygon:
 
     def build(self):
         ivals = []
-        for p in self.polygon.polygon.geoms:
+        if hasattr(self.polygon.polygon, "geoms"):
+            polygons = self.polygon.polygon.geoms
+        else:
+            polygons = [self.polygon.polygon]
+        for p in polygons:
             ivals += self.build_polygon(p.exterior.coords)
             for i in p.interiors:
                 ivals += self.build_polygon(i.coords)
