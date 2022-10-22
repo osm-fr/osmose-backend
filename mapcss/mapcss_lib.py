@@ -210,7 +210,7 @@ def string_contains(subject, string):
 
 def list_contains(subject, string):
     if subject is not None and string is not None:
-        return string in subject
+        return string in subject and string in subject.split(";")
 
 def at(asset_lat, asset_lon, lat, lon):
     return asset_lat == lat and asset_lon == lon
