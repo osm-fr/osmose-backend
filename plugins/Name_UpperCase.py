@@ -22,12 +22,13 @@
 from modules.OsmoseTranslation import T_
 from plugins.Plugin import Plugin
 import regex as re
+from modules.downloader import urlread
+import json
 
 # Whitelist of allowed capitals by country code
 UpperCase_WhiteList = {
-    "FR": ["CNFPT", "COSEC", "EHPAD", "MACIF", "MEDEF", "URSSAF"],
+    "FR": ["CNFPT", "COSEC", "EHPAD", "MEDEF", "URSSAF"],
     "ES": ["FREMAP"],
-    "DE": ["ALDI", "EDEKA", "MARKTKAUF", "PENNY", "REWE"],
 }
 
 class Name_UpperCase(Plugin):
@@ -50,16 +51,45 @@ class Name_UpperCase(Plugin):
 
         if "country" in self.father.config.options:
             country = self.father.config.options.get("country")[:2]
-            self.whitelist = UpperCase_WhiteList.get(country, None)
+            self.whitelist = set(UpperCase_WhiteList.get(country, []))
+            nsi = self._download_nsi()
+            self.whitelist.update(self._whitelist_from_nsi(nsi, "brands/", country.lower()))
         else:
-            self.whitelist = None
+            self.whitelist = set()
+
+    def _download_nsi(self):
+        nsi_url = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.json"
+        json_str = urlread(nsi_url, 30)
+        results = json.loads(json_str)
+        return results['nsi']
+
+    def _whitelist_from_nsi(self, nsi, nsiprefix, country):
+        whitelist = set()
+        for tag, details in nsi.items():
+            if tag.startswith(nsiprefix) and "items" in details:
+                for preset in details["items"]:
+                    if "locationSet" in preset:
+                        if ("include" in preset["locationSet"] and
+                                country not in preset["locationSet"]["include"] and
+                                "001" not in preset["locationSet"]["include"]):
+                            continue
+                        if "exclude" in preset["locationSet"] and country in preset["locationSet"]["exclude"]:
+                            continue
+                    if "name" in preset["tags"]:
+                        for name in preset["tags"]["name"].split():
+                            if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
+                                whitelist.add(name)
+                    for name in preset["displayName"].split():
+                        if self.UpperTitleCase.match(name) and not self.RomanNumber.match(name):
+                            whitelist.add(name)
+        return whitelist
 
     def node(self, data, tags):
         err = []
         if u"name" in tags:
             # first check if the name *might* match
             if self.UpperTitleCase.match(tags[u"name"]) and not self.RomanNumber.match(tags[u"name"]):
-                if self.whitelist is None:
+                if not self.whitelist:
                     err.append({"class": 803, "text": T_("Concerns tag: `{0}`", '='.join(['name', tags['name']])) })
                 else:
                     # Check if we match the whitelist and if so re-try
