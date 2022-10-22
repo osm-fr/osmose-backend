@@ -26,15 +26,16 @@
 
 from .Analyser_Merge import Source
 from modules import downloader
+import csv
 import json
 
 
-class Geocode_City_CSV(Source):
+class Geocode_FR_City_CSV(Source):
 
     def __init__(self, source, logger, citycode, delimiter = ',', encoding = 'utf-8'):
         self.source = source
-        self.delimiter = delimiter
         self.citycode = citycode
+        self.delimiter = delimiter
         self.encoding = encoding
         self.logger = logger
 
@@ -45,30 +46,19 @@ class Geocode_City_CSV(Source):
         return open(downloader.update_cache('citycoded://' + self.source.fileUrl, 60, fetch=self.fetch))
 
     def fetch(self, url, tmp_file, date_string=None):
-        outfile = open(tmp_file, 'w', encoding='utf-8')
+        data = downloader.urlread('https://geo.api.gouv.fr/communes?zone=metro&fields=nom,code,codesPostaux,siren,codeEpci,codeDepartement,codeRegion,population&format=geojson&geometry=centre', delay=60)
+        jdata = json.loads(data)
+        mapCode = dict(map(lambda feature: [feature['properties']['code'], feature['geometry']['coordinates']], jdata['features']))
 
-        infile = self.source.open()
-        header = None
-        i = 0
+        with open(tmp_file, 'w', encoding='utf-8') as output:
+            csv_writer = csv.writer(output, delimiter=self.delimiter)
+            csv_reader = csv.reader(self.source.open(), delimiter=self.delimiter)
 
-        for linestr in infile:
-            outline = linestr.split(self.delimiter)
-
-            if i == 0:
-                outline.extend(["longitude", "latitude"])
-                header = outline
-            else:
-                self.logger.log("Geocode line {0}".format(i))
-                geocode_url = "https://geo.api.gouv.fr/communes/"+outline[header[self.citycode]]+"?fields=centre&format=json&geometry=centre"
-                json_str = downloader.urlread(geocode_url, 60)
-
-                if json_str:
-                    rData = json.loads(json_str)
-                    outline.extend(rData["centre"]["coordinates"])
-                else:
-                    outline.extend(["",""])
-
-            outfile.write(self.delimiter.join(outline))
-            i += 1
+            headers = next(csv_reader)
+            citycode_index = headers.index(self.citycode)
+            csv_writer.writerow(headers + ['longitude', 'latitude'])
+            for row in csv_reader:
+                coords = mapCode.get(row[citycode_index], [None, None])
+                csv_writer.writerow(row + coords)
 
         return True

@@ -22,7 +22,7 @@
 
 from modules.OsmoseTranslation import T_
 from .Analyser_Merge import Analyser_Merge_Point, SourceOpenDataSoft, CSV, Load_XY, Conflate, Select, Mapping
-from .Analyser_Merge_Geocode_City_CSV import Geocode_City_CSV
+from .Analyser_Merge_Geocode_FR_City_CSV import Geocode_FR_City_CSV
 from modules import Stablehash
 
 
@@ -35,11 +35,11 @@ class Analyser_Merge_Power_Plant_FR(Analyser_Merge_Point):
         self.init(
             "https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege",
             "Registre national des installations de production d'électricité et de stockage",
-            CSV(Geocode_City_CSV(
+            CSV(Geocode_FR_City_CSV(
                 SourceOpenDataSoft(
                     attribution="data.gouv.fr:RTE",
                     url="https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege"),
-                columns='commune', citycode='codeINSEEcommune', logger=logger)),
+                citycode='codeINSEECommune', logger = logger)),
             Load_XY("longitude", "latitude",
                 where = lambda res: res["puisMaxRac"] and float(res["puisMaxRac"]) >= 250 and res["nomInstallation"] != "Agrégation des installations de moins de 36KW",
                 map = lambda res: dict(res, **{"_geom": [
