@@ -812,7 +812,7 @@ class Load(object):
                 header = self.parser.header()
                 if header:
                     if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header))
                 else:
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema.format(schema = db_schema))
