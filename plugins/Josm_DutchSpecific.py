@@ -55,8 +55,8 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_5ed5036a = re.compile(r'(?i)^speeltuin$')
         self.re_5f5aa10b = re.compile(r'^footway(:left|:right|:both)?:')
         self.re_6211f625 = re.compile(r'(?i)(voormalige?)')
-        self.re_65f97ba4 = re.compile(r'^(00|\+)31 ?0')
         self.re_6cd83c9e = re.compile(r'(?i)^gratis\s|gratis\)')
+        self.re_70de8f0d = re.compile(r'^(00|\+)31 ?0[0-9]{8,}')
         self.re_7184e9bc = re.compile(r'^sidewalk:(left|right|both)$')
         self.re_71a0b33c = re.compile(r'(?i)(drinkwater|\swater|kraan)')
         self.re_798edef1 = re.compile(r'(?i)(aansl|empl|goed|ind|inhaalsp|opstel|overloopw|racc|rang|terr)\.')
@@ -70,51 +70,52 @@ class Josm_DutchSpecific(PluginMapCSS):
         err = []
         set_badPhoneNumber = False
 
-        # node[contact:phone=~/^(00|\+)31 ?0/]
-        # node[contact:mobile=~/^(00|\+)31 ?0/]
-        # node[phone=~/^(00|\+)31 ?0/]
+        # node[contact:phone=~/^(00|\+)31 ?0[0-9]{8,}/]
+        # node[contact:mobile=~/^(00|\+)31 ?0[0-9]{8,}/]
+        # node[phone=~/^(00|\+)31 ?0[0-9]{8,}/]
         if ('contact:mobile' in keys) or ('contact:phone' in keys) or ('phone' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65f97ba4), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_70de8f0d), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65f97ba4), mapcss._tag_capture(capture_tags, 0, tags, 'contact:mobile'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_70de8f0d), mapcss._tag_capture(capture_tags, 0, tags, 'contact:mobile'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_65f97ba4), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_70de8f0d), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .badPhoneNumber
                 # group:tr("NL addresses and contacts")
                 # throwWarning:tr("Invalid tag {0}: country code should not be followed by a 0","{0.key}")
                 # assertMatch:"node phone=\"+31 06123456789\""
+                # assertNoMatch:"node phone=\"+31 08008844\""
                 # assertNoMatch:"node phone=\"+31 6123456789\""
                 # assertMatch:"node phone=\"003106123456789\""
                 # assertNoMatch:"node phone=\"00316123456789\""
                 # assertNoMatch:"node phone=\"06123456789\""
                 set_badPhoneNumber = True
-                err.append({'class': 1, 'subclass': 1989771860, 'text': mapcss.tr('Invalid tag {0}: country code should not be followed by a 0', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 1, 'subclass': 2136227068, 'text': mapcss.tr('Invalid tag {0}: country code should not be followed by a 0', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # node[contact:phone=~/^(\+|00)31 ?0?[0-9]{3,7}$/]!.badPhoneNumber
-        # node[contact:mobile=~/^(\+|00)31 ?0?[0-9]{3,7}$/]!.badPhoneNumber
-        # node[phone=~/^(\+|00)31 ?0?[0-9]{3,7}$/]!.badPhoneNumber
+        # node[contact:phone=~/^(\+|00)31 ?0?[0-9]{3,7}$/]
+        # node[contact:mobile=~/^(\+|00)31 ?0?[0-9]{3,7}$/]
+        # node[phone=~/^(\+|00)31 ?0?[0-9]{3,7}$/]
         if ('contact:mobile' in keys) or ('contact:phone' in keys) or ('phone' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_508e7773), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_508e7773), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_508e7773), mapcss._tag_capture(capture_tags, 0, tags, 'contact:mobile'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_508e7773), mapcss._tag_capture(capture_tags, 0, tags, 'contact:mobile'))))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_508e7773), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))))
+                try: match = ((mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_508e7773), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))))
                 except mapcss.RuleAbort: pass
             if match:
                 # set .badPhoneNumber
@@ -123,13 +124,14 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertMatch:"node phone=\"+31 08008844\""
                 # assertNoMatch:"node phone=\"+31 6123456789\""
                 # assertMatch:"node phone=\"+3114024\""
+                # assertMatch:"node phone=\"+318008844\""
                 # assertNoMatch:"node phone=\"00316123456789\""
                 # assertMatch:"node phone=\"00318008844\""
                 # assertNoMatch:"node phone=\"06123456789\""
                 # assertNoMatch:"node phone=\"08008844\""
                 # assertNoMatch:"node phone=\"14024\""
                 set_badPhoneNumber = True
-                err.append({'class': 1, 'subclass': 865550819, 'text': mapcss.tr('Invalid tag {0}: short phone numbers cannot be used with international prefix (or: wrong phone number length)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                err.append({'class': 1, 'subclass': 253472651, 'text': mapcss.tr('Invalid tag {0}: short phone numbers cannot be used with international prefix (or: wrong phone number length)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # node[contact:phone=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){9}/][inside("NL")]!.badPhoneNumber
         # node[contact:mobile=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){9}/][inside("NL")]!.badPhoneNumber
@@ -1745,19 +1747,21 @@ class Test(TestPluginMapcss):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {'phone': '+31 06123456789'}), expected={'class': 1, 'subclass': 1989771860})
-        self.check_not_err(n.node(data, {'phone': '+31 6123456789'}), expected={'class': 1, 'subclass': 1989771860})
-        self.check_err(n.node(data, {'phone': '003106123456789'}), expected={'class': 1, 'subclass': 1989771860})
-        self.check_not_err(n.node(data, {'phone': '00316123456789'}), expected={'class': 1, 'subclass': 1989771860})
-        self.check_not_err(n.node(data, {'phone': '06123456789'}), expected={'class': 1, 'subclass': 1989771860})
-        self.check_err(n.node(data, {'phone': '+31 08008844'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_not_err(n.node(data, {'phone': '+31 6123456789'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_err(n.node(data, {'phone': '+3114024'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_not_err(n.node(data, {'phone': '00316123456789'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_err(n.node(data, {'phone': '00318008844'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_not_err(n.node(data, {'phone': '06123456789'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_not_err(n.node(data, {'phone': '08008844'}), expected={'class': 1, 'subclass': 865550819})
-        self.check_not_err(n.node(data, {'phone': '14024'}), expected={'class': 1, 'subclass': 865550819})
+        self.check_err(n.node(data, {'phone': '+31 06123456789'}), expected={'class': 1, 'subclass': 2136227068})
+        self.check_not_err(n.node(data, {'phone': '+31 08008844'}), expected={'class': 1, 'subclass': 2136227068})
+        self.check_not_err(n.node(data, {'phone': '+31 6123456789'}), expected={'class': 1, 'subclass': 2136227068})
+        self.check_err(n.node(data, {'phone': '003106123456789'}), expected={'class': 1, 'subclass': 2136227068})
+        self.check_not_err(n.node(data, {'phone': '00316123456789'}), expected={'class': 1, 'subclass': 2136227068})
+        self.check_not_err(n.node(data, {'phone': '06123456789'}), expected={'class': 1, 'subclass': 2136227068})
+        self.check_err(n.node(data, {'phone': '+31 08008844'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_not_err(n.node(data, {'phone': '+31 6123456789'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_err(n.node(data, {'phone': '+3114024'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_err(n.node(data, {'phone': '+318008844'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_not_err(n.node(data, {'phone': '00316123456789'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_err(n.node(data, {'phone': '00318008844'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_not_err(n.node(data, {'phone': '06123456789'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_not_err(n.node(data, {'phone': '08008844'}), expected={'class': 1, 'subclass': 253472651})
+        self.check_not_err(n.node(data, {'phone': '14024'}), expected={'class': 1, 'subclass': 253472651})
         self.check_not_err(n.node(data, {'phone': '+31 6 12345678'}), expected={'class': 1, 'subclass': 1083644254})
         self.check_not_err(n.node(data, {'phone': '0031612345678'}), expected={'class': 1, 'subclass': 1083644254})
         self.check_not_err(n.node(data, {'phone': '06 12345678'}), expected={'class': 1, 'subclass': 1083644254})
