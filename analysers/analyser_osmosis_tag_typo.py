@@ -52,9 +52,9 @@ FROM
         length(key) > {keylen} AND
         key NOT IN (
             -- Regional keys (imports and such)
-            'fdot', -- vs foot (Florida)
+            'fdot', -- vs foot (Florida, USA)
             'linz', -- vs line (New Zealand)
-            'kern', -- vs kerb (California, USA)
+            'kern' -- vs kerb (California, USA)
             -- Documented keys without their own wiki page
             -- to be discovered
         ) AND
