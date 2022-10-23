@@ -53,13 +53,28 @@ FROM
         key NOT IN (
             -- Regional keys (imports and such)
             'fdot', -- vs foot (Florida, USA)
+            'kern', -- vs kerb (California, USA)
             'linz', -- vs line (New Zealand)
-            'kern' -- vs kerb (California, USA)
-            -- Documented keys without their own wiki page
-            -- to be discovered
+            'traces', -- vs tracks (Hungary)
+            -- Documented keys without their own key:* wiki page. Between () where it's documented
+            'dist', -- vs dirt, list, diet (golf=hole)
+            'hide', -- vs site, sides, side (amenity=hunting_stand)
+            'levels', -- vs level (building:levels)
+            'path', -- vs bath (highway=path)
+            -- Undocumented keys, not found in Wiki
+            'clock', -- vs lock
+            'hall', -- vs wall
+            'mail', -- vs email (#702)
+            'plane', -- vs place, plant, lane
+            'rock', -- vs lock, dock, rack (from: MapComplete)
+            'services', -- vs service (from: JOSM)
+            'start', -- vs stairs, stars
+            'weight', -- vs height
+            'well' -- vs wall
         ) AND
-        NOT key LIKE 'AND_%' AND -- Dutch import
-        NOT key LIKE '%_[1-9]' -- ignore name_1, addr2, etc
+        NOT key LIKE 'AND_%' AND -- Dutch AND import tags
+        NOT key LIKE 'expected_%n_route_relations' AND -- Node networks
+        NOT key SIMILAR TO '%[1-9]' -- ignore name_1, addr2, etc
     ) AS keys
 GROUP BY
     key
