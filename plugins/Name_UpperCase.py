@@ -28,7 +28,6 @@ import json
 # Whitelist of allowed capitals by country code
 UpperCase_WhiteList = {
     "FR": ["CNFPT", "COSEC", "EHPAD", "MEDEF", "URSSAF"],
-    "ES": ["FREMAP"],
 }
 
 class Name_UpperCase(Plugin):
