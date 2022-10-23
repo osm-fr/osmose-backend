@@ -14,6 +14,7 @@ git+https://github.com/jocelynj/PyEasyArchive.git
 protobuf < 4 # 4.x binary not yet compatible with system package, deps of vt2geojson
 vt2geojson
 tiletanic
+sentry-sdk
 
 # Tests
 pytest

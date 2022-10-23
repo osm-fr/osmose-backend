@@ -109,6 +109,7 @@ password while processing the files.
 
 See https://wiki.postgresql.org/wiki/Pgpass for more info.
 
+You may use `SENTRY_DSN` environment variable to enable error report centralization.
 
 Run Tests
 ---------
