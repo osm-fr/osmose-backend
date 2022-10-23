@@ -524,7 +524,7 @@ class Parser:
         pass
 
 class CSV(Parser):
-    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True, skip_first_lines = 0):
+    def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True, skip_first_lines = 0, fields = None):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
@@ -535,6 +535,7 @@ class CSV(Parser):
         @param quote: one char string delimiter
         @param csv: load file as CSV on COPY command
         @param skip_first_lines: skip lines before reading CSV content
+        @param fields: array of fields to load. Default to All. Usefull for big dataset.
         """
         self.source = source
         self.separator = separator
@@ -543,6 +544,7 @@ class CSV(Parser):
         self.quote = quote
         self.csv = csv
         self.skip_first_lines = skip_first_lines
+        self.fields = fields
 
         self.f = None
 
@@ -565,6 +567,14 @@ class CSV(Parser):
             "HEADER" if self.csv and self.header else "",
             ("QUOTE '{0}'".format(self.quote)) if self.csv and self.quote else "")
         osmosis.giscurs.copy_expert(copy, self.f)
+
+        if self.fields:
+            osmosis.run0("CREATE TABLE {0}_fields AS SELECT {1} FROM {0}".format(
+                table,
+                ', '.join(map(lambda field: '"' + field + '"', self.fields)))
+            )
+            osmosis.run0("DROP TABLE {0}".format(table))
+            osmosis.run0("ALTER TABLE {0}_fields RENAME TO {0}".format(table))
 
     def close(self):
         self.f.close()
