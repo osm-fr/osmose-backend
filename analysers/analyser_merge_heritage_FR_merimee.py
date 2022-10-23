@@ -109,6 +109,6 @@ World Heritage.'''))
                     mapping1 = {
                         "ref:mhs": "Référence",
                         "mhs:inscription_date": lambda res: parseDPRO(res["Date de protection"]),
-                        "heritage": lambda res: 2 if res["Précision sur la protection"] and "classement par arrêté" in res["Précision sur la protection"] else 3 if res["Précision sur la protection"] and "inscription par arrêté" in res["Précision sur la protection"] else None},
+                        "heritage": lambda res: 2 if res["Précision protection"] and "classement par arrêté" in res["Précision protection"] else 3 if res["Précision protection"] and "inscription par arrêté" in res["Précision protection"] else None},
                     mapping2 = {"name": lambda res: res["Appellation courante"] if res["Appellation courante"] not in BLACK_WORDS else None},
                     text = lambda tags, fields: T_("Historical monument: {0}", ", ".join(filter(lambda x: x, [fields["Date de Protection"], fields["Adresse"], fields["Commune"]]))) )))

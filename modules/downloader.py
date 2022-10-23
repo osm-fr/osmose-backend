@@ -126,7 +126,10 @@ def update_cache(url, delay, extra_cache_key: str = '', fetch = http_query()):
     return cache
 
 def urlmtime(url, delay, post: Optional[Dict[str, str]] = None):
-    return os.stat(update_cache(url, delay, str(post or ''))).st_mtime
+    if post:
+        return os.stat(update_cache(url, delay, extra_cache_key=str(post or ''), fetch = http_query(request_post(post)))).st_mtime
+    else:
+        return os.stat(update_cache(url, delay)).st_mtime
 
 def path(url, delay, post: Optional[Dict[str, str]] = None):
     if post:

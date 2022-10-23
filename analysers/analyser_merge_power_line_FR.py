@@ -37,7 +37,8 @@ class Analyser_Merge_Power_Line_FR(Analyser_Merge_Network):
             GDAL(SourceOpenDataSoft(
                 url='https://odre.opendatasoft.com/explore/dataset/lignes-aeriennes-rte/information',
                 attribution='RTE',
-                format='geojson')),
+                format='geojson'),
+                fields=['tension']),
             Load('geom',
                 select={'tension': lambda t: f'{t} != \'HORS TENSION\''}),
             ConflateNetwork(

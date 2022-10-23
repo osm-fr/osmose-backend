@@ -39,7 +39,8 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge_Point):
             "Postes HTA/BT",
             CSV(SourceOpenDataSoft(
                 attribution="Exploitants contributeurs de l'Agence ORE",
-                url="https://opendata.agenceore.fr/explore/dataset/postes-de-distribution-publique-postes-htabt/")),
+                url="https://opendata.agenceore.fr/explore/dataset/postes-de-distribution-publique-postes-htabt/"),
+                fields=["Geo Point", "GRD", "Nom poste"]),
             Load_XY("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

@@ -23,6 +23,8 @@ To build the docker image run this command from the docker folder:
 docker-compose build
 ```
 
+For production setup, you may fill the `SENTRY_DSN` field in
+`docker-compose.yml` to enable error report centralization.
 
 Running on a single country
 ===========================

@@ -40,6 +40,7 @@ services:
     environment:
       - DB_HOST=postgis
       - JUPYTER_RUNTIME_DIR=/tmp
+      #- SENTRY_DSN=
     user: "1000:1000"
     command: ./osmose_run.py --country=monaco --analyser=osmosis_highway_floating_islands
     networks:

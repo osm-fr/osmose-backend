@@ -55,7 +55,8 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             # https://github.com/osm-fr/osmose-backend/pull/1092#pullrequestreview-577717867
             CSV(SourceOpenDataSoft(
                 attribution = "Le ministère de la ville, de la jeunesse et des sports",
-                url = "https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/")),
+                url = "https://equipements-sgsocialgouv.opendatasoft.com/explore/dataset/data-es/"),
+                fields=["Longitude (WGS84)", "Latitude (WGS84)", "Type d'équipement sportif", "Numéro de l'installation sportive", "Nom de l'installation sportive", "Nom du bâtiment", "Nature du sol"]),
             Load_XY("Longitude (WGS84)", "Latitude (WGS84)",
                 select = {"Type d'équipement sportif": topic},
                 where = lambda row: self.validLatLon(row)),
