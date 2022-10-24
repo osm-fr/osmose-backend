@@ -52,6 +52,7 @@ FROM
         length(key) > {keylen} AND
         key NOT IN (
             -- Regional keys (imports and such)
+            'dcgis', -- vs dc-gis (Columbia, USA)
             'fdot', -- vs foot (Florida, USA)
             'kern', -- vs kerb (California, USA)
             'linz', -- vs line (New Zealand)
@@ -60,7 +61,9 @@ FROM
             'dist', -- vs dirt, list, diet (golf=hole)
             'hide', -- vs site, sides, side (amenity=hunting_stand)
             'levels', -- vs level (building:levels)
+            'linen', -- vs line, lines (shop=bed)
             'path', -- vs bath (highway=path)
+            'lwn_ref', -- vs XYn_ref (Node_Networks)
             -- Undocumented keys, not found in Wiki
             'clock', -- vs lock
             'hall', -- vs wall
@@ -73,7 +76,7 @@ FROM
             'well' -- vs wall
         ) AND
         NOT key LIKE 'AND_%' AND -- Dutch AND import tags
-        NOT key LIKE 'expected_%n_route_relations' AND -- Node networks
+        NOT key LIKE 'expected_%n_route_relations' AND -- Node networks, not all tags have wiki pages
         NOT key SIMILAR TO '%[1-9]' -- ignore name_1, addr2, etc
     ) AS keys
 GROUP BY
