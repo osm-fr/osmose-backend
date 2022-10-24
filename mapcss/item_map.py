@@ -14,7 +14,7 @@ item_map = \
                    'url_display': 'https://josm.openstreetmap.de/wiki/Rules/ItalySpecific'},
  'DutchSpecific': {'prefix': 'Josm_',
                    'item': 9020,
-                   'only_for': ['NL'],
+                   'only_for': ['NL-ZH', 'NL-ZE', 'NL-NB', 'NL-LI', 'NL-GE', 'NL-OV', 'NL-DR', 'NL-FR', 'NL-GR', 'NL-FL', 'NL-UT', 'NL-NH'],
                    'url': 'https://raw.githubusercontent.com/Famlam/OsmMapcssValidationNL/main/netherlands.validator.mapcss',
                    'url_display': 'https://github.com/Famlam/OsmMapcssValidationNL/blob/main/netherlands.validator.mapcss'},
  'Rules_Brazilian-Specific': {'class': {'Brasil - Correções e melhorias': 9018006,

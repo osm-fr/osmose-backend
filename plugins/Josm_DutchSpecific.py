@@ -10,7 +10,7 @@ class Josm_DutchSpecific(PluginMapCSS):
 
     MAPCSS_URL = 'https://github.com/Famlam/OsmMapcssValidationNL/blob/main/netherlands.validator.mapcss'
 
-    only_for = ['NL']
+    only_for = ['NL-ZH', 'NL-ZE', 'NL-NB', 'NL-LI', 'NL-GE', 'NL-OV', 'NL-DR', 'NL-FR', 'NL-GR', 'NL-FL', 'NL-UT', 'NL-NH']
 
 
     def init(self, logger):
@@ -339,19 +339,26 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 err.append({'class': 3, 'subclass': 1559900162, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
-        # *[name:nl][!name][inside("NL")][type!=route]
-        if ('name:nl' in keys):
+        # *[name:nl][!name][inside("NL")][type!=route][name:fy]["name:fy"=*"name:nl"]
+        # *[name:nl][!name][inside("NL")][type!=route][!name:fy]
+        if ('name:fy' in keys and 'name:nl' in keys) or ('name:nl' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')) and (mapcss._tag_capture(capture_tags, 4, tags, 'name:fy')) and (mapcss._tag_capture(capture_tags, 5, tags, 'name:fy') == mapcss._value_capture(capture_tags, 5, mapcss.tag(tags, 'name:nl'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'name:fy')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 # suggestAlternative:"name"
                 # fixChangeKey:"{0.key}=>{1.key}"
-                err.append({'class': 3, 'subclass': 152569614, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                # assertNoMatch:"node name:nl=x name:fy=y"
+                # assertNoMatch:"node name=x name:nl=x name:en=y"
+                err.append({'class': 3, 'subclass': 1647353731, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [(mapcss._tag_uncapture(capture_tags, '{0.key}=>{1.key}')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key}=>{1.key}')).split('=>', 1)[0].strip())]]),
                     '-': ([
@@ -1299,19 +1306,24 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 err.append({'class': 3, 'subclass': 1559900162, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
-        # *[name:nl][!name][inside("NL")][type!=route]
-        if ('name:nl' in keys):
+        # *[name:nl][!name][inside("NL")][type!=route][name:fy]["name:fy"=*"name:nl"]
+        # *[name:nl][!name][inside("NL")][type!=route][!name:fy]
+        if ('name:fy' in keys and 'name:nl' in keys) or ('name:nl' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')) and (mapcss._tag_capture(capture_tags, 4, tags, 'name:fy')) and (mapcss._tag_capture(capture_tags, 5, tags, 'name:fy') == mapcss._value_capture(capture_tags, 5, mapcss.tag(tags, 'name:nl'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'name:fy')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 # suggestAlternative:"name"
                 # fixChangeKey:"{0.key}=>{1.key}"
-                err.append({'class': 3, 'subclass': 152569614, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 3, 'subclass': 1647353731, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [(mapcss._tag_uncapture(capture_tags, '{0.key}=>{1.key}')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key}=>{1.key}')).split('=>', 1)[0].strip())]]),
                     '-': ([
@@ -1658,19 +1670,24 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # throwWarning:tr("Gebiedsnaam met afkorting")
                 err.append({'class': 3, 'subclass': 1559900162, 'text': mapcss.tr('Gebiedsnaam met afkorting')})
 
-        # *[name:nl][!name][inside("NL")][type!=route]
-        if ('name:nl' in keys):
+        # *[name:nl][!name][inside("NL")][type!=route][name:fy]["name:fy"=*"name:nl"]
+        # *[name:nl][!name][inside("NL")][type!=route][!name:fy]
+        if ('name:fy' in keys and 'name:nl' in keys) or ('name:nl' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')) and (mapcss._tag_capture(capture_tags, 4, tags, 'name:fy')) and (mapcss._tag_capture(capture_tags, 5, tags, 'name:fy') == mapcss._value_capture(capture_tags, 5, mapcss.tag(tags, 'name:nl'))))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'name:nl')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'name')) and (mapcss.inside(self.father.config.options, 'NL')) and (mapcss._tag_capture(capture_tags, 3, tags, 'type') != mapcss._value_const_capture(capture_tags, 3, 'route', 'route')) and (not mapcss._tag_capture(capture_tags, 4, tags, 'name:fy')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL nomenclature")
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 # suggestAlternative:"name"
                 # fixChangeKey:"{0.key}=>{1.key}"
-                err.append({'class': 3, 'subclass': 152569614, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
+                err.append({'class': 3, 'subclass': 1647353731, 'text': mapcss.tr('{0} without {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [(mapcss._tag_uncapture(capture_tags, '{0.key}=>{1.key}')).split('=>', 1)[1].strip(), mapcss.tag(tags, (mapcss._tag_uncapture(capture_tags, '{0.key}=>{1.key}')).split('=>', 1)[0].strip())]]),
                     '-': ([
@@ -1766,6 +1783,8 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'phone': '0031612345678'}), expected={'class': 1, 'subclass': 1083644254})
         self.check_not_err(n.node(data, {'phone': '06 12345678'}), expected={'class': 1, 'subclass': 1083644254})
         self.check_not_err(n.node(data, {'name': 'Landgoed', 'railway': 'tram_stop'}), expected={'class': 3, 'subclass': 884545585})
+        self.check_not_err(n.node(data, {'name:fy': 'y', 'name:nl': 'x'}), expected={'class': 3, 'subclass': 1647353731})
+        self.check_not_err(n.node(data, {'name': 'x', 'name:en': 'y', 'name:nl': 'x'}), expected={'class': 3, 'subclass': 1647353731})
         self.check_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C01'}, [0]), expected={'class': 5, 'subclass': 1346556208})
         self.check_not_err(n.way(data, {'access': 'no', 'highway': 'service', 'traffic_sign': 'NL:C01;NL:C16'}, [0]), expected={'class': 5, 'subclass': 1346556208})
         self.check_err(n.way(data, {'highway': 'service', 'traffic_sign': 'NL:C01;NL:OB58'}, [0]), expected={'class': 5, 'subclass': 1346556208})
