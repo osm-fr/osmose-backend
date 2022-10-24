@@ -28,6 +28,7 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_076895f4 = re.compile(r'payment:O[vV][-_]?[cC]hipkaart')
         self.re_088b0835 = re.compile(r'^addr:')
         self.re_092e62c6 = re.compile(r'(?i)klanten|bezoek(ers)?|medewerkers')
+        self.re_0ffb8103 = re.compile(r'^(0031|\+31|0) ?[1-9]( ?[0-9]){10}')
         self.re_143f11c5 = re.compile(r'^(no|use_sidepath)$')
         self.re_1582ff37 = re.compile(r'(?i)bus\s?(baan|strook)')
         self.re_1705b261 = re.compile(r'(?i)(^|\sen\s)((on)?verplicht\s)?(\(?brom\)?)?fietspad$')
@@ -44,7 +45,6 @@ class Josm_DutchSpecific(PluginMapCSS):
         self.re_44720f99 = re.compile(r'(?i)^roltrap(pen)?$')
         self.re_467ce1ba = re.compile(r'(?i)(parkeren|parkeerplaats|parkeergarage|^garage)$')
         self.re_47aaa0f7 = re.compile(r'^(yes|designated)$')
-        self.re_493c424f = re.compile(r'^(0031|\+31|0) ?[1-9]( ?[0-9]){9}')
         self.re_508e7773 = re.compile(r'^(\+|00)31 ?0?[0-9]{3,7}$')
         self.re_51d31414 = re.compile(r'[A-Z][a-z]+\.')
         self.re_51f98600 = re.compile(r'^yes$')
@@ -133,22 +133,22 @@ class Josm_DutchSpecific(PluginMapCSS):
                 set_badPhoneNumber = True
                 err.append({'class': 1, 'subclass': 253472651, 'text': mapcss.tr('Invalid tag {0}: short phone numbers cannot be used with international prefix (or: wrong phone number length)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
-        # node[contact:phone=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){9}/][inside("NL")]!.badPhoneNumber
-        # node[contact:mobile=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){9}/][inside("NL")]!.badPhoneNumber
-        # node[phone=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){9}/][inside("NL")]!.badPhoneNumber
+        # node[contact:phone=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){10}/][inside("NL")]!.badPhoneNumber
+        # node[contact:mobile=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){10}/][inside("NL")]!.badPhoneNumber
+        # node[phone=~/^(0031|\+31|0) ?[1-9]( ?[0-9]){10}/][inside("NL")]!.badPhoneNumber
         if ('contact:mobile' in keys) or ('contact:phone' in keys) or ('phone' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_493c424f), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0ffb8103), mapcss._tag_capture(capture_tags, 0, tags, 'contact:phone'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_493c424f), mapcss._tag_capture(capture_tags, 0, tags, 'contact:mobile'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0ffb8103), mapcss._tag_capture(capture_tags, 0, tags, 'contact:mobile'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_493c424f), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'NL')))
+                try: match = ((not set_badPhoneNumber) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_0ffb8103), mapcss._tag_capture(capture_tags, 0, tags, 'phone'))) and (mapcss.inside(self.father.config.options, 'NL')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("NL addresses and contacts")
@@ -156,7 +156,9 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"node phone=\"+31 6 12345678\""
                 # assertNoMatch:"node phone=\"0031612345678\""
                 # assertNoMatch:"node phone=\"06 12345678\""
-                err.append({'class': 1, 'subclass': 1083644254, 'text': mapcss.tr('Invalid tag {0}: too many digits (or foreign number, if so: ignore)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
+                # assertNoMatch:"node phone=\"0800 1234567\""
+                # assertNoMatch:"node phone=\"08001234\""
+                err.append({'class': 1, 'subclass': 1429902606, 'text': mapcss.tr('Invalid tag {0}: too many digits (or foreign number, if so: ignore)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # node["addr:postcode"]["addr:postcode"!~/[0-9]{4} ?[A-Z]{2}/][inside("NL")]
         if ('addr:postcode' in keys):
@@ -1779,9 +1781,11 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'phone': '06123456789'}), expected={'class': 1, 'subclass': 253472651})
         self.check_not_err(n.node(data, {'phone': '08008844'}), expected={'class': 1, 'subclass': 253472651})
         self.check_not_err(n.node(data, {'phone': '14024'}), expected={'class': 1, 'subclass': 253472651})
-        self.check_not_err(n.node(data, {'phone': '+31 6 12345678'}), expected={'class': 1, 'subclass': 1083644254})
-        self.check_not_err(n.node(data, {'phone': '0031612345678'}), expected={'class': 1, 'subclass': 1083644254})
-        self.check_not_err(n.node(data, {'phone': '06 12345678'}), expected={'class': 1, 'subclass': 1083644254})
+        self.check_not_err(n.node(data, {'phone': '+31 6 12345678'}), expected={'class': 1, 'subclass': 1429902606})
+        self.check_not_err(n.node(data, {'phone': '0031612345678'}), expected={'class': 1, 'subclass': 1429902606})
+        self.check_not_err(n.node(data, {'phone': '06 12345678'}), expected={'class': 1, 'subclass': 1429902606})
+        self.check_not_err(n.node(data, {'phone': '0800 1234567'}), expected={'class': 1, 'subclass': 1429902606})
+        self.check_not_err(n.node(data, {'phone': '08001234'}), expected={'class': 1, 'subclass': 1429902606})
         self.check_not_err(n.node(data, {'name': 'Landgoed', 'railway': 'tram_stop'}), expected={'class': 3, 'subclass': 884545585})
         self.check_not_err(n.node(data, {'name:fy': 'y', 'name:nl': 'x'}), expected={'class': 3, 'subclass': 1647353731})
         self.check_not_err(n.node(data, {'name': 'x', 'name:en': 'y', 'name:nl': 'x'}), expected={'class': 3, 'subclass': 1647353731})
