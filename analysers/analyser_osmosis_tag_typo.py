@@ -151,8 +151,8 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         # TagInfo has a JSON file with all wiki pages
         taginfo_url = "https://taginfo.openstreetmap.org/api/4/keys/wiki_pages"
         json_str = urlread(taginfo_url, 30)
-        json_entrylist = json.loads(json_str)['data'] or []
-        keyset = set(map(lambda x: (x['key'] or "").split(':', 1)[0], json_entrylist)) # Get all (unique) keys, discard :suffixes
+        json_entrylist = json.loads(json_str)['data']
+        keyset = set(map(lambda x: x['key'].split(':', 1)[0], json_entrylist)) # Get all (unique) keys, discard :suffixes
         return list(filter(lambda x: len(x) > self.minKeyLength, keyset)) # Ignore small keys / wildcards
 
 
