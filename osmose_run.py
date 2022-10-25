@@ -312,7 +312,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (conf.country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
-                                        if not was_on_timeout:
+                                        if nb_iter >= 3 and not was_on_timeout:
                                             err_code |= 4
                                 except Exception as e:
                                     if isinstance(e, requests.exceptions.ConnectTimeout):
