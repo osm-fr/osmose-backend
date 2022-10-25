@@ -84,7 +84,7 @@ SELECT
     {geom} AS _geom,
     *
 FROM
-    {table}
+    "{table}"
 WHERE
     {where}
 {order_by}
@@ -96,7 +96,7 @@ SELECT
     {geom} AS _geom,
     *
 FROM
-    {table}
+    "{table}"
 WHERE
     ({validationGeomSQL}) AND
     {where}
@@ -524,7 +524,7 @@ class Parser:
         pass
 
 class CSV(Parser):
-    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True, skip_first_lines = 0):
+    def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True, skip_first_lines = 0, fields = None):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
@@ -535,6 +535,7 @@ class CSV(Parser):
         @param quote: one char string delimiter
         @param csv: load file as CSV on COPY command
         @param skip_first_lines: skip lines before reading CSV content
+        @param fields: array of fields to load. Default to All. Usefull for big dataset.
         """
         self.source = source
         self.separator = separator
@@ -543,6 +544,7 @@ class CSV(Parser):
         self.quote = quote
         self.csv = csv
         self.skip_first_lines = skip_first_lines
+        self.fields = fields
 
         self.f = None
 
@@ -565,6 +567,14 @@ class CSV(Parser):
             "HEADER" if self.csv and self.header else "",
             ("QUOTE '{0}'".format(self.quote)) if self.csv and self.quote else "")
         osmosis.giscurs.copy_expert(copy, self.f)
+
+        if self.fields:
+            osmosis.run0("CREATE TABLE {0}_fields AS SELECT {1} FROM {0}".format(
+                table,
+                ', '.join(map(lambda field: '"' + field + '"', self.fields)))
+            )
+            osmosis.run0("DROP TABLE {0}".format(table))
+            osmosis.run0("ALTER TABLE {0}_fields RENAME TO {0}".format(table))
 
     def close(self):
         self.f.close()
@@ -722,7 +732,7 @@ class GDAL(Parser):
                     self.zip = info.filename
 
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
@@ -731,12 +741,9 @@ class GDAL(Parser):
                 ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
                 f"'{self.layer}'" if self.layer else '',
             )
-            osmosis.giscurs.execute("DROP TABLE IF EXISTS {} CASCADE".format(table))
-            osmosis.giscurs.execute("COMMIT")
             print(gdal)
             if os.system(gdal):
                 raise Exception("ogr2ogr error")
-            osmosis.giscurs.execute("BEGIN")
         finally:
             os.remove(tmp_file.name)
 
@@ -805,12 +812,12 @@ class Load(object):
                 header = self.parser.header()
                 if header:
                     if header is not True:
-                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR(65534)".format(DictCursorUnicode.identifier(c)), header))
+                        self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header))
                 else:
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema.format(schema = db_schema))
             if self.create:
-                osmosis.run("CREATE TEMP TABLE {0} ({1})".format(table, self.create))
+                osmosis.run("CREATE TEMP TABLE \"{0}\" ({1})".format(table, self.create))
             self.parser.import_(table, osmosis)
             self.parser.close()
 
@@ -866,7 +873,7 @@ class Load(object):
             if self.bbox is not None:
                 osmosis.run("INSERT INTO meta VALUES ('{0}', {1}, '{2}')".format(tableOfficial, version, self.bbox))
 
-            osmosis.run("DROP TABLE {0}".format(table))
+            osmosis.run("DROP TABLE \"{0}\"".format(table))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
         else:

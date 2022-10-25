@@ -40,6 +40,11 @@ import time
 import dateutil.parser
 import requests
 
+try:
+    import sentry_sdk
+except:
+    pass
+
 ###########################################################################
 
 def get_version():
@@ -205,6 +210,9 @@ def execc(conf, logger, analysers, options, osmosis_manager):
     lunched_analyser_resume = []
 
     for analyser in analysers:
+        if os.getenv('SENTRY_DSN'):
+            sentry_sdk.set_tag('analyser', analyser)
+
         if not options.analyser and analyser not in conf.analyser:
             continue
 
@@ -304,7 +312,7 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                                         logger.sub().sub().sub().err(u"UPDATE ERROR %s/%s : %s\n" % (conf.country, analyser_name, dt))
                                         if dt == "FAIL: Already up to date":
                                             update_finished = True
-                                        if not was_on_timeout:
+                                        if nb_iter >= 3 and not was_on_timeout:
                                             err_code |= 4
                                 except Exception as e:
                                     if isinstance(e, requests.exceptions.ConnectTimeout):
@@ -319,13 +327,18 @@ def execc(conf, logger, analysers, options, osmosis_manager):
                         if not update_finished:
                             err_code |= 1
 
-        except:
+        except Exception as e:
             tb = traceback.format_exc()
             logger.sub().err("error on analyse {0}...".format(analyser))
             for l in tb.splitlines():
                 logger.sub().sub().log(l)
             err_code |= 2
+            if os.getenv('SENTRY_DSN'):
+                sentry_sdk.capture_exception(e)
             continue
+
+    if os.getenv('SENTRY_DSN'):
+        sentry_sdk.set_tag('analyser', None)
 
     if not options.no_clean:
         for (obj, analyser_conf) in lunched_analyser:
@@ -426,6 +439,9 @@ def main(options):
 
     logger.log("osmose backend version: %s" % get_version())
 
+    if os.getenv('SENTRY_DSN'):
+        sentry_sdk.init(dsn=os.getenv('SENTRY_DSN'), traces_sample_rate=1.0, release=get_version())
+
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
@@ -459,6 +475,8 @@ def main(options):
 
     for country in options.country:
         country_conf = config.config[country]
+        if os.getenv('SENTRY_DSN'):
+            sentry_sdk.set_tag('country', country)
 
         # acquire lock
         try:
@@ -486,6 +504,9 @@ def main(options):
 
         # free lock
         del lock
+
+    if os.getenv('SENTRY_DSN'):
+        sentry_sdk.set_tag('country', None)
 
     logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
     return err_code
