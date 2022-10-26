@@ -116,7 +116,7 @@ Note: the conditions related to multiple objects are not implement on Osmose-QA.
 
 #### Functions
 
-Function may be used in selector (and properties, see below). Thank to these it is possible to rework string, number, regex... all the details are on the [JOSM documentation](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation#Evalexpressions). The full list of implemented function in Osmose-QA can be found in the [source code](https://github.com/osm-fr/osmose-backend/blob/master/mapcss/mapcss_lib.py).
+Functions may be used in selector (and properties, see below). Thank to these it is possible to rework string, number, regex... all the details are on the [JOSM documentation](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation#Evalexpressions). The full list of implemented function in Osmose-QA can be found in the [source code](https://github.com/osm-fr/osmose-backend/blob/master/mapcss/mapcss_lib.py).
 
 One of the most present function is `tr()` for translation. Fist parameter of the `tr()` will be send to translator, and replaced by translation at runtime.
 
@@ -145,7 +145,7 @@ node!:tagged {
 }
 ```
 
-See the full [JOSM list](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation#PseudoClasses) of Pseudo Classes, but only the part not linked to JOSM edit functionallity are supported in Osmose-QA.
+See the full [JOSM list](https://josm.openstreetmap.de/wiki/Help/Styles/MapCSSImplementation#PseudoClasses) of Pseudo Classes, but only the part not linked to JOSM edit functionality are supported in Osmose-QA.
 
 
 ### Properties
@@ -186,11 +186,11 @@ The `throw*` properties report a message with placeholders and can be adjusted t
 The string will be translated, then placeholder `{0}` (`{1}`, `{2}`...) will be replaced by the parameters. The parameters could be string of using matched OSM objects, the number indicate the tag from the condition, in the same order. Then `[N].tag` will be `key=value` and `[N].key` or `[N].value` could be used.
 
 ##### Level
-Each `throw*` define a level. Osmose-QA issue level and JOSM level are not based on the same concept. JOSM define Error, Warning and Info, like Osmose-QA use gravity from 1 up to 3 and only aime to report issues.
+Each `throw*` define a level. Osmose-QA issue level and JOSM level are not based on the same concept. JOSM define Error, Warning and Info, like Osmose-QA use gravity from 1 up to 3 and only aim to report issues.
 
 By default, `throwError` is mapped to Osmose-QA issue of level 2 and `throwWarning` is mapped to level 3. JOSM also define `throwOther`, but these are not reported by Osmose-QA.
 
-Level can also be explicitly defined, and override the default mapping from `throw*`, using `-osmoseItemClassLevel` (see bellow).
+Level can also be explicitly defined, and override the default mapping from `throw*`, using `-osmoseItemClassLevel` (see below).
 
 #### Fix
 
@@ -199,7 +199,7 @@ A suggestion of correction can be made. Note the MapCSS allows less possibilitie
 * `fixAdd`: Add an OSM tag `fixAdd: "key=val";`
 * `fixRemove`: Remove an OSM tag `fixRemove: "key";`
 * `fixChangeKey`: Change a key, and keep the value `fixChangeKey: "old=>new";`
-* `fixDeleteObject`: Delete the matched object `fixDeleteObject: this;` (partilay implemented in Osmose-QA)
+* `fixDeleteObject`: Delete the matched object `fixDeleteObject: this;` (partially implemented in Osmose-QA)
 
 A free text on how to fix can also be present:
 * `suggestAlternative: "any text (e.g., alternative key)";` (not implemented in Osmose-QA)
@@ -264,7 +264,7 @@ The available assert properties are:
 * `-osmoseAssertMatchWithContext`
 * `-osmoseAssertNoMatchWithContext`
 
-They assert the following fake OSM objet match or not one selector of the rule. The two latest are not supported by JOSM, and allow to set up a country or a language.
+They assert whether the following fake OSM objects match or not match any selector of the rule. The latter two are not supported by JOSM, and allow to set up a country or a language.
 
 The fake OSM object is described by a type and a list of tags.
 
@@ -282,7 +282,7 @@ The test code of generated plugins can be run with `pytest`:
 pytest plugins/Bicycle.py
 ```
 
-## Runing on JOSM
+## Running on JOSM
 
 Local MapCSS file can be added to the JOSM Validator.
 
