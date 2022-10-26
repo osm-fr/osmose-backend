@@ -92,6 +92,20 @@ WHERE
 # and assuming than no level on highway is probably implicit level=0)
 
 sql21 = """
+CREATE TEMP TABLE indoor_pt_platforms AS
+SELECT
+    id,
+    linestring AS geom
+FROM
+    ways
+WHERE
+    is_polygon AND
+    tags != ''::hstore AND
+    tags?'public_transport' AND
+    tags->'public_transport'= 'platform'
+"""
+
+sql22 = """
 SELECT
     indoor_surfaces.id,
     ST_AsText(way_locate(indoor_surfaces.geom))
@@ -102,11 +116,14 @@ FROM
         indoor_surfaces_other.indoor IN ('room', 'corridor', 'area') AND
         indoor_surfaces_other.geom && indoor_surfaces.geom AND
         indoor_surfaces_other.nodes && indoor_surfaces.nodes
+    LEFT JOIN indoor_pt_platforms ON
+        indoor_pt_platforms.geom && indoor_surfaces.geom   
     LEFT JOIN indoor_surfaces_connected_to_highways ON
         indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
 WHERE
     indoor_surfaces.indoor IN ('room', 'corridor', 'area') AND
     indoor_surfaces_connected_to_highways.id IS NULL AND
+    indoor_pt_platforms.id IS NULL AND
     indoor_surfaces_other.id is NULL
 """ # maybe check the levels too to make sure they are actually connected ?
 
@@ -133,4 +150,5 @@ class Analyser_Osmosis_Indoor(Analyser_Osmosis):
         self.run(sql01)
         self.run(sql10, self.callback10)
         self.run(sql20)
-        self.run(sql21, self.callback20)
+        self.run(sql21)
+        self.run(sql22, self.callback20)
