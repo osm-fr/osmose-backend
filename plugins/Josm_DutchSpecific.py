@@ -156,7 +156,6 @@ class Josm_DutchSpecific(PluginMapCSS):
                 # assertNoMatch:"node phone=\"0031612345678\""
                 # assertNoMatch:"node phone=\"06 12345678\""
                 # assertNoMatch:"node phone=\"0800 1234567\""
-                # assertNoMatch:"node phone=\"08001234\""
                 err.append({'class': 1, 'subclass': 1429902606, 'text': mapcss.tr('Invalid tag {0}: too many digits (or foreign number, if so: ignore)', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # node["addr:postcode"]["addr:postcode"!~/[0-9]{4} ?[A-Z]{2}/][inside("NL")]
@@ -1789,7 +1788,6 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.node(data, {'phone': '0031612345678'}), expected={'class': 1, 'subclass': 1429902606})
         self.check_not_err(n.node(data, {'phone': '06 12345678'}), expected={'class': 1, 'subclass': 1429902606})
         self.check_not_err(n.node(data, {'phone': '0800 1234567'}), expected={'class': 1, 'subclass': 1429902606})
-        self.check_not_err(n.node(data, {'phone': '08001234'}), expected={'class': 1, 'subclass': 1429902606})
         self.check_not_err(n.node(data, {'addr:street': 'D. Visserstraat'}), expected={'class': 3, 'subclass': 1817163121})
         self.check_not_err(n.node(data, {'addr:street': 'De Visserstraat'}), expected={'class': 3, 'subclass': 1817163121})
         self.check_not_err(n.node(data, {'addr:street': 'Doctor J. Th. de Visserstraat'}), expected={'class': 3, 'subclass': 1817163121})
