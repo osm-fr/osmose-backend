@@ -478,7 +478,7 @@ def main(options):
             country_conf = config.config[country]
         else:
             logger.log("Failed to load country {0}".format(country))
-            return 2
+            return 8
 
         if os.getenv('SENTRY_DSN'):
             sentry_sdk.set_tag('country', country)
