@@ -301,7 +301,7 @@ class Josm_FranceSpecificRules(PluginMapCSS):
                 # suggestAlternative:"'destination:ref=*' tag on the exiting 'highway=*_link'"
                 # throwWarning:"Unusual ref for motorway_junction; use of 'ref=*' for the exit destination ref?"
                 # fixRemove:"ref"
-                # assertMatch:"node highway=motorway_junction ref=N7"
+                # -osmoseAssertMatchWithContext:list("node highway=motorway_junction ref=N7","inside=FR")
                 err.append({'class': 9019004, 'subclass': 995082934, 'text': {'en': 'Unusual ref for motorway_junction; use of \'ref=*\' for the exit destination ref?'}, 'allow_fix_override': True, 'fix': {
                     '-': ([
                     'ref'])
@@ -1029,7 +1029,8 @@ class Test(TestPluginMapcss):
             self.check_not_err(n.node(data, {'distance': '38', 'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
             self.check_err(n.node(data, {'highway': 'milestone', 'nat_ref': '77PR38DC', 'operator': 'SANEF'}), expected={'class': 9019001, 'subclass': 0})
-        self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019004, 'subclass': 995082934})
+        with with_options(n, {'country': 'FR'}):
+            self.check_err(n.node(data, {'highway': 'motorway_junction', 'ref': 'N7'}), expected={'class': 9019004, 'subclass': 995082934})
         with with_options(n, {'country': 'FR'}):
             self.check_not_err(n.way(data, {'railway': 'disused'}, [0]), expected={'class': 21600, 'subclass': 0})
         with with_options(n, {'country': 'FR'}):
