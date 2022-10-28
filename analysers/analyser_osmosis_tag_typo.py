@@ -23,6 +23,8 @@
 from modules.OsmoseTranslation import T_
 from modules.Stablehash import stablehash64
 from .Analyser_Osmosis import Analyser_Osmosis
+from modules.downloader import urlread
+import json
 
 sql10 = """
 CREATE TEMP TABLE rtag_{type} AS
@@ -47,66 +49,35 @@ FROM
             key
         ) AS keys
     WHERE
-        length(key) > 3 AND
+        length(key) > {keylen} AND
         key NOT IN (
-            'tower', -- vs power
-            'food', -- vs foot, ford
-            'fdot', -- vs foot (Florida)
-            'diet', -- vs dirt, dist
-            'dist', -- vs dirt, list, diet
-            'lines', -- vs line, lanes
+            -- Regional keys (imports and such)
+            'dcgis', -- vs dc-gis (Columbia, USA)
+            'fdot', -- vs foot (Florida, USA)
+            'kern', -- vs kerb (California, USA)
             'linz', -- vs line (New Zealand)
-            'wine', -- vs line
-            'levels', -- vs level
-            'maxweight', -- vs maxheight
-            'stop', -- vs shop
-            'ship', -- vs shop
-            'stars', -- vs start, stairs
-            'right', -- vs light
-            'truck',
-            'tracks', -- vs traces
-            'size', -- vs site, side
-            'weight', -- vs height
-            'lawyer', -- vs layer
-            'hall', -- vs wall
-            'well', -- vs wall
+            'traces', -- vs tracks (Hungary)
+            -- Documented keys without their own key:* wiki page. Between () where it's documented
+            'dist', -- vs dirt, list, diet (golf=hole)
+            'hide', -- vs site, sides, side (amenity=hunting_stand)
+            'levels', -- vs level (building:levels)
+            'linen', -- vs line, lines (shop=bed)
+            'path', -- vs bath (highway=path)
+            'lwn_ref', -- vs XYn_ref (Node_Networks)
+            -- Undocumented keys, not found in Wiki
             'clock', -- vs lock
+            'hall', -- vs wall
+            'mail', -- vs email (#702)
             'plane', -- vs place, plant, lane
-            'services', -- vs service
-            'room', -- vs roof, rooms
-            'house', -- vs horse
-            'addr2', 'addr3', 'addr4', 'addr5',
-            'kern', -- vs kerb
-            'lock_name', -- vs loc_name
-            'camp_type', -- vs lamp_type
-            'lock_ref', -- vs loc_ref
-            'change', -- vs charge
-            'mail', -- vs email
-            'lock', -- vs rock, dock
-            'rock', -- vs lock, dock, rack
-            'reg_name', -- vs ref_name
-            'massage', -- vs message
-            'bath', -- vs path
-            'port', -- vs sport, post
-            'cave', -- vs cafe
-            'produce', -- vs product
-            'side', -- vs site, sides, hide
-            'draft', -- vs craft
-            'fridge', -- vs bridge
-            'moved', -- vs moped
-            'drain', -- vs train
-            'camra', -- vs camera
-            'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9', -- Tiger mess
-
-            -- Regional hiking/cycling/etc. routes. Lesser used ones like 'rhn' for horse riding trigger false positives:
-            'rcn', 'rhn', 'rin', 'rmn', 'rpn', 'rwn',
-            'rcn:name', 'rhn:name', 'rin:name', 'rmn:name', 'rpn:name', 'rwn:name',
-            'operator:rcn', 'operator:rhn', 'operator:rin', 'operator:rmn', 'operator:rpn', 'operator:rwn',
-            'rcn_ref', 'rhn_ref', 'rin_ref', 'rmn_ref', 'rpn_ref', 'rwn_ref',
-            'expected_rcn_route_relations', 'expected_rhn_route_relations', 'expected_rin_route_relations',
-            'expected_rmn_route_relations', 'expected_rpn_route_relations', 'expected_rwn_route_relations'
+            'rock', -- vs lock, dock, rack (from: MapComplete)
+            'services', -- vs service (from: JOSM)
+            'start', -- vs stairs, stars
+            'weight', -- vs height
+            'well' -- vs wall
         ) AND
-        NOT key LIKE 'AND_%'
+        NOT key LIKE 'AND_%' AND -- Dutch AND import tags
+        NOT key LIKE 'expected_%n_route_relations' AND -- Node networks, not all tags have wiki pages
+        NOT key SIMILAR TO '%[1-9]' -- ignore name_1, addr2, etc
     ) AS keys
 GROUP BY
     key
@@ -122,6 +93,7 @@ FROM
     rtag_{type} AS t2
 WHERE
     t1.count < t2.count / 20 AND
+    t1.key NOT IN ({wikikeys}) AND
     abs(length(t1.key) - length(t2.key)) <= 1 AND
     levenshtein(t1.key, t2.key) <= 1
 ORDER BY
@@ -167,11 +139,26 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             detail = T_(
 '''The tag is misspelled. Detection is based on statistics.'''),
             trap = T_(
-'''Check that the correction does not change the intent of the tag.'''))
+'''Check that the correction does not change the intent of the tag.'''),
+            resource = "https://taginfo.openstreetmap.org/")
+
+        self.minKeyLength = 3
+        self.keysWithWiki = "'" + "','".join(self.get_keys_wiki_taginfo()) + "'"
+
+
+    def get_keys_wiki_taginfo(self):
+        # See https://taginfo.openstreetmap.org/taginfo/apidoc#api_4_keys_wiki_pages
+        # TagInfo has a JSON file with all keys with wiki pages
+        taginfo_url = "https://taginfo.openstreetmap.org/api/4/keys/wiki_pages"
+        json_str = urlread(taginfo_url, 30)
+        json_entrylist = json.loads(json_str)['data']
+        keyset = set(map(lambda x: x['key'].split(':', 1)[0], json_entrylist)) # Get all (unique) keys, discard :suffixes
+        return list(filter(lambda x: len(x) > self.minKeyLength, keyset)) # Ignore small keys / wildcards
+
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format(type="nodes"))
-        self.run(sql20.format(type="nodes"))
+        self.run(sql10.format(type="nodes", keylen=self.minKeyLength))
+        self.run(sql20.format(type="nodes", wikikeys=self.keysWithWiki))
         self.run(sql30.format(type="nodes", as_text="geom", table="nodes", geo="geom"), lambda res: {
             "class":1,
             "subclass": stablehash64(res[1]),
@@ -179,8 +166,8 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        self.run(sql10.format(type="ways"))
-        self.run(sql20.format(type="ways"))
+        self.run(sql10.format(type="ways", keylen=self.minKeyLength))
+        self.run(sql20.format(type="ways", wikikeys=self.keysWithWiki))
         self.run(sql30.format(type="ways", as_text="way_locate(linestring)", table="ways", geo="linestring"), lambda res: {
             "class":1,
             "subclass": stablehash64(res[1]),
@@ -188,8 +175,8 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        self.run(sql10.format(type="relations"))
-        self.run(sql20.format(type="relations"))
+        self.run(sql10.format(type="relations", keylen=self.minKeyLength))
+        self.run(sql20.format(type="relations", wikikeys=self.keysWithWiki))
         self.run(sql30.format(type="relations", as_text="relation_locate(id)", table="relations", geo="user"), lambda res: {
             "class":1,
             "subclass": stablehash64(res[1]),
