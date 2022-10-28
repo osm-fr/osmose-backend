@@ -732,7 +732,7 @@ class GDAL(Parser):
                     self.zip = info.filename
 
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO -skipfailures {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
