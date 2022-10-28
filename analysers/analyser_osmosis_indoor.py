@@ -51,14 +51,14 @@ SELECT
     (NOT relations.tags?'access' OR NOT relations.tags->'access' IN ('no', 'private')) AS public_access
 FROM
     relations AS relations
-    JOIN relation_members as outer_members ON
+    JOIN relation_members AS outer_members ON
         outer_members.relation_id = relations.id AND
         outer_members.member_type = 'W' AND
         outer_members.member_role = 'outer'
     JOIN ways AS outer_ways ON
         outer_ways.id = outer_members.member_id AND
         ST_NumPoints(outer_ways.linestring) >= 2
-    JOIN relation_members as inner_members ON
+    JOIN relation_members AS inner_members ON
         inner_members.relation_id = relations.id AND
         inner_members.member_type = 'W' AND
         inner_members.member_role = 'inner'
@@ -131,14 +131,14 @@ SELECT
     ST_MakePolygon(outer_ways.linestring,array_agg(inner_ways.linestring)) AS geom
 FROM
     relations AS relations
-    JOIN relation_members as outer_members ON
+    JOIN relation_members AS outer_members ON
         outer_members.relation_id = relations.id AND
         outer_members.member_type = 'W' AND
         outer_members.member_role = 'outer'
     JOIN ways AS outer_ways ON
         outer_ways.id = outer_members.member_id AND
         ST_NumPoints(outer_ways.linestring) >= 2
-    JOIN relation_members as inner_members ON
+    JOIN relation_members AS inner_members ON
         inner_members.relation_id = relations.id AND
         inner_members.member_type = 'W' AND
         inner_members.member_role = 'inner'
