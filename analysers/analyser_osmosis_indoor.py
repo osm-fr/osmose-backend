@@ -36,10 +36,10 @@ SELECT
 FROM
     ways
 WHERE
-    ways.is_polygon AND
-    ways.tags != ''::hstore AND
-    ways.tags?'indoor' AND
-    ways.tags->'indoor' in ('room', 'corridor', 'area', 'level')
+    is_polygon AND
+    tags != ''::hstore AND
+    tags?'indoor' AND
+    tags->'indoor' in ('room', 'corridor', 'area', 'level')
 UNION ALL
 SELECT
     relations.id,
