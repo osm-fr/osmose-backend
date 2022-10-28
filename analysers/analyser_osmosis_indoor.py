@@ -26,20 +26,53 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql00 = """
 CREATE TEMP TABLE indoor_surfaces AS
 SELECT
-    id,
-    linestring AS geom,
-    nodes,
-    tags->'indoor' AS indoor,
-    tags->'level' AS level,
-    tags,
-    (NOT tags?'access' OR NOT tags->'access' IN ('no', 'private')) AS public_access
+    ways.id,
+    ways.linestring AS geom,
+    ways.nodes,
+    ways.tags->'indoor' AS indoor,
+    ways.tags->'level' AS level,
+    ways.tags,
+    (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private')) AS public_access
 FROM
     ways
 WHERE
-    is_polygon AND
-    tags != ''::hstore AND
-    tags?'indoor' AND
-    tags->'indoor' in ('room', 'corridor', 'area', 'level')
+    ways.is_polygon AND
+    ways.tags != ''::hstore AND
+    ways.tags?'indoor' AND
+    ways.tags->'indoor' in ('room', 'corridor', 'area', 'level')
+UNION ALL
+SELECT
+    relations.id,
+    ST_MakePolygon(outer_ways.linestring,array_agg(inner_ways.linestring)) AS geom,
+    ARRAY(select unnest(array_agg(inner_ways.nodes))) ||outer_ways.nodes as nodes,
+    relations.tags->'indoor' AS indoor,
+    relations.tags->'level' AS level,
+    relations.tags,
+    (NOT relations.tags?'access' OR NOT relations.tags->'access' IN ('no', 'private')) AS public_access
+FROM
+    relations AS relations
+    JOIN relation_members as outer_members ON
+        outer_members.relation_id = relations.id AND
+        outer_members.member_type = 'W' AND
+        outer_members.member_role = 'outer'
+    JOIN ways AS outer_ways ON
+        outer_ways.id = outer_members.member_id AND
+        ST_NumPoints(outer_ways.linestring) >= 2
+    JOIN relation_members as inner_members ON
+        inner_members.relation_id = relations.id AND
+        inner_members.member_type = 'W' AND
+        inner_members.member_role = 'inner'
+    JOIN ways AS inner_ways ON
+        inner_ways.id = inner_members.member_id AND
+        ST_NumPoints(inner_ways.linestring) >= 2
+WHERE
+    relations.tags?'type' AND
+    relations.tags->'type' = 'multipolygon' AND
+    relations.tags?'indoor' AND
+    relations.tags->'indoor' in ('room', 'corridor', 'area')
+GROUP BY
+    relations.id,
+    outer_ways.id
 """
 
 sql01 = """
@@ -94,15 +127,43 @@ WHERE
 sql21 = """
 CREATE TEMP TABLE indoor_pt_platforms AS
 SELECT
-    id,
-    linestring AS geom
+    relations.id,
+    ST_MakePolygon(outer_ways.linestring,array_agg(inner_ways.linestring)) AS geom
+FROM
+    relations AS relations
+    JOIN relation_members as outer_members ON
+        outer_members.relation_id = relations.id AND
+        outer_members.member_type = 'W' AND
+        outer_members.member_role = 'outer'
+    JOIN ways AS outer_ways ON
+        outer_ways.id = outer_members.member_id AND
+        ST_NumPoints(outer_ways.linestring) >= 2
+    JOIN relation_members as inner_members ON
+        inner_members.relation_id = relations.id AND
+        inner_members.member_type = 'W' AND
+        inner_members.member_role = 'inner'
+    JOIN ways AS inner_ways ON
+        inner_ways.id = inner_members.member_id AND
+        ST_NumPoints(inner_ways.linestring) >= 2
+WHERE
+    relations.tags?'type' AND
+    relations.tags->'type' = 'multipolygon' AND
+    relations.tags?'public_transport' AND
+    relations.tags->'public_transport' = 'platform'
+GROUP BY
+    relations.id,
+    outer_ways.id
+UNION ALL
+SELECT
+    ways.id,
+    ways.linestring AS geom
 FROM
     ways
 WHERE
-    is_polygon AND
-    tags != ''::hstore AND
-    tags?'public_transport' AND
-    tags->'public_transport'= 'platform'
+    ways.is_polygon AND
+    ways.tags != ''::hstore AND
+    ways.tags?'public_transport' AND
+    ways.tags->'public_transport'= 'platform'
 """
 
 sql22 = """
@@ -117,7 +178,7 @@ FROM
         indoor_surfaces_other.geom && indoor_surfaces.geom AND
         indoor_surfaces_other.nodes && indoor_surfaces.nodes
     LEFT JOIN indoor_pt_platforms ON
-        indoor_pt_platforms.geom && indoor_surfaces.geom   
+        indoor_pt_platforms.geom && indoor_surfaces.geom
     LEFT JOIN indoor_surfaces_connected_to_highways ON
         indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
 WHERE
