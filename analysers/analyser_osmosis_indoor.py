@@ -26,13 +26,13 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql00 = """
 CREATE TEMP TABLE indoor_surfaces AS
 SELECT
-    ways.id,
-    ways.linestring AS geom,
-    ways.nodes,
-    ways.tags->'indoor' AS indoor,
-    ways.tags->'level' AS level,
-    ways.tags,
-    (NOT ways.tags?'access' OR NOT ways.tags->'access' IN ('no', 'private')) AS public_access
+    id,
+    linestring AS geom,
+    nodes,
+    tags->'indoor' AS indoor,
+    tags->'level' AS level,
+    tags,
+    (NOT tags?'access' OR NOT tags->'access' IN ('no', 'private')) AS public_access
 FROM
     ways
 WHERE
@@ -43,8 +43,8 @@ WHERE
 UNION ALL
 SELECT
     relations.id,
-    ST_MakePolygon(outer_ways.linestring,array_agg(inner_ways.linestring)) AS geom,
-    ARRAY(select unnest(array_agg(inner_ways.nodes))) ||outer_ways.nodes as nodes,
+    ST_MakePolygon(outer_ways.linestring ,array_agg(inner_ways.linestring)) AS geom,
+    ARRAY(select unnest(array_agg(inner_ways.nodes))) || outer_ways.nodes as nodes,
     relations.tags->'indoor' AS indoor,
     relations.tags->'level' AS level,
     relations.tags,
