@@ -148,7 +148,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
 
     def get_keys_wiki_taginfo(self):
         # See https://taginfo.openstreetmap.org/taginfo/apidoc#api_4_keys_wiki_pages
-        # TagInfo has a JSON file with all wiki pages
+        # TagInfo has a JSON file with all keys with wiki pages
         taginfo_url = "https://taginfo.openstreetmap.org/api/4/keys/wiki_pages"
         json_str = urlread(taginfo_url, 30)
         json_entrylist = json.loads(json_str)['data']
