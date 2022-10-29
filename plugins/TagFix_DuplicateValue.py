@@ -37,7 +37,9 @@ similar.'''),
             fix = T_(
 '''Delete one value.'''),
             trap = T_(
-'''In some case all values maybe required.'''))
+'''In some cases all values may be required.
+
+Ensure the interpretation of the tag does not change when you delete one item.'''))
         self.errors[3060]  = self.def_class(item = 3060, level = 3, tags = ['value', 'fix:chair'],
             title = T_('Duplicated values'),
             **doc)
