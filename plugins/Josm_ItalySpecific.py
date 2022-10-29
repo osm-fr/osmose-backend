@@ -10,6 +10,8 @@ class Josm_ItalySpecific(PluginMapCSS):
 
     MAPCSS_URL = 'https://josm.openstreetmap.de/wiki/Rules/ItalySpecific'
 
+    only_for = ['IT']
+
 
     def init(self, logger):
         super().init(logger)
