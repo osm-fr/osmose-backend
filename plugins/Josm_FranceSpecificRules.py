@@ -10,6 +10,8 @@ class Josm_FranceSpecificRules(PluginMapCSS):
 
     MAPCSS_URL = 'https://josm.openstreetmap.de/wiki/Rules/FranceSpecificRules'
 
+    only_for = ['FR']
+
 
     def init(self, logger):
         super().init(logger)
