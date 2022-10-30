@@ -76,7 +76,6 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'communication:mobile_phone',
             'cuisine',
             'operator',
-            'source',
         ))
         self.WhitelistSimilarEqualRegex = set(( # Regexes for keys that can have similar and even equal values
             re.compile('seamark:.+:colour'),
