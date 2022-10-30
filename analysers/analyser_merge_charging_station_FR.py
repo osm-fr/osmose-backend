@@ -51,7 +51,7 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
         self.init(
             "https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/",
             "Stations de recharge pour véhicules électriques",
-            CSV(Source(attribution="data.gouv.fr:Etalab", millesime="01/2020",
+            CSV(Source(attribution="data.gouv.fr:Etalab", millesime="05/2022",
                        fileUrl="https://raw.githubusercontent.com/Jungle-Bus/ref-EU-EVSE/gh-pages/opendata_stations.csv")),
             Load_XY("Xlongitude", "Ylatitude"),
             Conflate(
@@ -66,42 +66,28 @@ with `capacity=6` can sometimes match to 3 charging station with `capacity=2`'''
                         "motorcar": "yes"},
                     static2={"source": self.source},
                     mapping1={
-                        "operator": "n_operateur",
-                        "network": "n_enseigne",
-                        "owner": "n_amenageur",
-                        "ref:EU:EVSE": "id_station"
+                        "operator": "nom_operateur",
+                        "network": "nom_enseigne",
+                        "owner": "nom_amenageur",
+                        "ref:EU:EVSE": "id_station_itinerance"
                     },
                     mapping2={
-                        # "source": "source_grouped",
+                        "email": "contact_operateur",
+                        "phone": "telephone_operateur",
                         "capacity": "nbre_pdc",
-                        #"name": "n_station",
-                        "socket:type2_combo": lambda fields: fields["nb_combo_grouped"] if fields["nb_combo_grouped"] != "0" else None,
-                        "socket:type2": lambda fields: fields["nb_T2_grouped"] if fields["nb_T2_grouped"] != "0" else None,
-                        "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields["nb_chademo_grouped"] != "0" else None,
+                        "bicycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
+                        "motorcycle": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
+                        "moped": lambda fields: "yes" if fields["station_deux_roues"] == "true" else None,
+                        "motorcar": lambda fields: "no" if fields["station_deux_roues"] == "true" else "yes",
+                        "opening_hours": "horaires_grouped",
+                        "fee": lambda fields: "yes" if fields["gratuit_grouped"] == "false" else ("no" if fields["gratuit_grouped"] == "true" else None),
+                        "authentication:none": lambda fields: "yes" if fields["paiement_acte_grouped"] == "true" else None,
+                        "payment:credit_cards": lambda fields: "yes" if fields["paiement_cb_grouped"] == "true" else ("no" if fields["paiement_cb_grouped"] == "false" else None),
+                        "reservation": lambda fields: "yes" if fields["reservation_grouped"] == "true" else None,
+                        "wheelchair": lambda fields: "yes" if fields["accessibilite_pmr_grouped"] == "Accessible mais non réservé PMR" else ("no" if fields["accessibilite_pmr_grouped"] == "Non accessible" else None),
                         "socket:typee": lambda fields: fields["nb_EF_grouped"] if fields["nb_EF_grouped"] != "0" else None,
-                        "socket:type3c": lambda fields: fields["nb_T3c_grouped"] if fields["nb_T3c_grouped"] != "0" else None,
-                        "fee": lambda fields: guess_fee(fields["acces_recharge_grouped"]),
-                        "opening_hours": lambda fields: guess_opening_hours(fields["accessibilité_grouped"]),
+                        "socket:type2": lambda fields: fields["nb_T2_grouped"] if fields["nb_T2_grouped"] != "0" else None,
+                        "socket:type2_combo": lambda fields: fields["nb_combo_ccs_grouped"] if fields["nb_combo_ccs_grouped"] != "0" else None,
+                        "socket:chademo": lambda fields: fields["nb_chademo_grouped"] if fields["nb_chademo_grouped"] != "0" else None
                     },
-                    text=lambda tags, fields: {"en": "{0}, {1}".format(fields["n_station"], fields["ad_station"])})))
-
-        def guess_fee(text_fee):
-            if text_fee is None:
-                return None
-            if "payant" in text_fee.lower():
-                return "yes"
-            if "gratuit" in text_fee.lower():
-                return "no"
-            if "€" in text_fee:
-                return "yes"
-            return None
-
-        def guess_opening_hours(text_opening_hours):
-
-            if text_opening_hours is None:
-                return None
-            if "24/24" in text_opening_hours:
-                return "24/7"
-            if "24h/24" in text_opening_hours:
-                return "24/7"
-            return None
+                    text=lambda tags, fields: {"en": "{0}, {1}, {2}".format(fields["nom_station"], fields["adresse_station"], fields["observations"] if fields["observations"] != "null" else "-")})))

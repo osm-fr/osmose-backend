@@ -675,7 +675,7 @@ def to_p(t):
             fix[t['property']].append(to_p(t['value']))
         elif t['property'] == 'fixDeleteObject':
             # raise NotImplementedError(t['property'])
-            fix['fixRemove'] == "*keys" # TODO delete completly the objet in place of remove all tags
+            fix['fixRemove'] == "*keys" # TODO delete the object completely in place of removing all tags
         elif t['property'].startswith('assert') or t['property'].startswith('-osmoseAssert'):
             if t['value']['type'] == 'single_value':
                 what, context = (to_p(t['value']), None)

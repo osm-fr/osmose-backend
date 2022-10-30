@@ -732,7 +732,7 @@ class GDAL(Parser):
                     self.zip = info.filename
 
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO {} -t_srs EPSG:{} '{}' {}".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO -skipfailures {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
@@ -815,7 +815,12 @@ class Load(object):
                         self.create = ",".join(map(lambda c: "\"{0}\" VARCHAR".format(DictCursorUnicode.identifier(c)), header))
                 else:
                     raise AssertionError("No table schema provided")
+
+            # Create schema if not exists and ensure is flushed before running import internaly or with external tools
             osmosis.run(sql_schema.format(schema = db_schema))
+            osmosis.giscurs.execute("COMMIT")
+            osmosis.giscurs.execute("BEGIN")
+
             if self.create:
                 osmosis.run("CREATE TEMP TABLE \"{0}\" ({1})".format(table, self.create))
             self.parser.import_(table, osmosis)
