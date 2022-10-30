@@ -66,12 +66,17 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'is_in',
             'service_times', 'collection_times',
             'phone', 'contact:phone', 'fax', 'contact:fax',
+            'email',
             'url',
             'destination',
             'passenger',
             'healthcare:speciality',
-            'traffic_sign',
+            'traffic_sign', 'traffic_sign:forward', 'traffic_sign:backward',
             'sport',
+            'communication:mobile_phone',
+            'cuisine',
+            'operator',
+            'source',
         ))
         self.WhitelistSimilarEqualRegex = set(( # Regexes for keys that can have similar and even equal values
             re.compile('seamark:.+:colour'),
@@ -84,7 +89,9 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             re.compile('turn:lanes.*'),
         ))
         self.WhitelistSimilarRegex = set(( # Regexes for keys that can have similar, but not equal values
+            re.compile('.+_name'),
             re.compile('.+:conditional'),
+            re.compile('.+:date'),
             re.compile('opening_hours(:.+)?'),
             re.compile('(.+:)?wikidata'),
             re.compile('railway:signal:.+'),
