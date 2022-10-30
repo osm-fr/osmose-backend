@@ -6,6 +6,7 @@
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2020
 # Eduardo Addad de Oliveira <eduardoaddad@hotmail.com>, 2020
 # frodrigo <fred.rodrigo@gmail.com>, 2014
+# Matheus Gomes Correia, 2022
 # OpenStreetMap contributor Paulo, 2014
 # Rui <xymarior@yandex.com>, 2016,2018
 # Thiago Vieira <thipvieira@gmail.com>, 2014
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014\n"
+"Last-Translator: Matheus Gomes Correia, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openstreetmap-france/osmose/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,7 +555,7 @@ msgstr "Polícia não integrada"
 #: ../analysers/analyser_merge_fuel_FR.py:31
 #: ../analysers/analyser_merge_fuel_IT.py:47
 msgid "Gas station not integrated"
-msgstr "Gasolineira não integrada"
+msgstr "Posto de combustível não integrado"
 
 #: ../plugins/TagFix_Wikipedia.py:85
 msgid "Same wikipedia topic on other language"

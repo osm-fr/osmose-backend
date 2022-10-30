@@ -283,7 +283,7 @@ msgstr ""
 msgid "Soundex test"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:166
+#: ../analysers/analyser_osmosis_tag_typo.py:139
 msgid "Typo in tag"
 msgstr ""
 
@@ -423,10 +423,10 @@ msgstr ""
 msgid "Deprecated tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 #: ../plugins/TagFix_MultipleTag_Lang_es.py:33
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:33
+#: ../plugins/TagFix_MultipleTag.py:34 ../plugins/TagFix_MultipleTag.py:36
 msgid "Watch multiple tags"
 msgstr ""
 
@@ -604,15 +604,15 @@ msgstr ""
 msgid "Natural feature underground"
 msgstr ""
 
-#: ../plugins/Name_Local.py:42 ../plugins/Name_Local_JP.py:34
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local.py:44 ../plugins/Name_Local_JP.py:36
+#: ../plugins/Name_Local_JP.py:36 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local.py:46 ../plugins/Name_Local_JP.py:38
+#: ../plugins/Name_Local_JP.py:38 ../plugins/Name_Local.py:46
 msgid "Language name without default name"
 msgstr ""
 
@@ -704,7 +704,7 @@ msgstr ""
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:39
+#: ../plugins/Name_UpperCase.py:40
 msgid "Name with uppercase"
 msgstr ""
 
@@ -1307,20 +1307,28 @@ msgstr ""
 msgid "The URL does not have a valid scheme"
 msgstr ""
 
+#: ../analysers/analyser_merge_public_transport_FR_rla.py:32
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:32
+#: ../analysers/analyser_merge_public_transport_FR_sillages.py:32
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:32
 #: ../analysers/analyser_merge_public_transport_FR_star.py:32
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:32
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:32
+#: ../analysers/analyser_merge_public_transport_FR_zestbus.py:32
+#: ../analysers/analyser_merge_public_transport_FR_zou_06.py:36
 #, python-brace-format
 msgid "{0} stop not integrated"
 msgstr ""
 
+#: ../analysers/analyser_merge_public_transport_FR_rla.py:34
 #: ../analysers/analyser_merge_public_transport_FR_sibra.py:34
+#: ../analysers/analyser_merge_public_transport_FR_sillages.py:34
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:34
 #: ../analysers/analyser_merge_public_transport_FR_star.py:34
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:34
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:34
+#: ../analysers/analyser_merge_public_transport_FR_zestbus.py:34
+#: ../analysers/analyser_merge_public_transport_FR_zou_06.py:38
 #, python-brace-format
 msgid "{0} stop, integration suggestion"
 msgstr ""
@@ -1334,8 +1342,12 @@ msgstr ""
 msgid "{0} stop of {1}"
 msgstr ""
 
+#: ../analysers/analyser_merge_public_transport_FR_rla.py:36
+#: ../analysers/analyser_merge_public_transport_FR_sillages.py:36
 #: ../analysers/analyser_merge_public_transport_FR_star.py:36
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:36
+#: ../analysers/analyser_merge_public_transport_FR_zestbus.py:36
+#: ../analysers/analyser_merge_public_transport_FR_zou_06.py:40
 #, python-brace-format
 msgid "{0} stop update"
 msgstr ""
@@ -1679,16 +1691,14 @@ msgstr ""
 msgid "Conditional intervals does not fit into opening hours"
 msgstr ""
 
-#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_aedmap.py:34
-#: ../analysers/analyser_merge_defibrillators_FR_basrhin.py:31
-#: ../analysers/analyser_merge_defibrillators_FR_cugnaux.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_gers.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_hautesalpes.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_issylesmoulineaux.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_lorient.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_montfort.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_paris.py:31
+#: ../analysers/analyser_merge_defibrillators_FR.py:61
 #: ../analysers/analyser_merge_defibrillators_FR_saintmalo.py:31
 #: ../analysers/analyser_merge_defibrillators_FR_toulouse.py:31
 msgid "Defibrillator not integrated"
@@ -2413,11 +2423,11 @@ msgid ""
 "* Mac Donald ==> McDonald's"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:168
+#: ../analysers/analyser_osmosis_tag_typo.py:141
 msgid "The tag is misspelled. Detection is based on statistics."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:170
+#: ../analysers/analyser_osmosis_tag_typo.py:143
 msgid "Check that the correction does not change the intent of the tag."
 msgstr ""
 
@@ -3223,20 +3233,20 @@ msgstr ""
 msgid "The relation is missing a `type` tag to define what it represents."
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:31
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:31
 #, python-brace-format
 msgid "{0} bicycle rental not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:33
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:33
 #, python-brace-format
 msgid "{0} bicycle rental integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:35
+#: ../analysers/analyser_merge_bicycle_rental_FR_IDF.py:35
 #, python-brace-format
 msgid "{0} bicycle update"
 msgstr ""
@@ -3286,8 +3296,8 @@ msgid ""
 msgstr ""
 
 #: ../plugins/Date.py:91 ../plugins/Date.py:93
-#: ../plugins/Name_ShouldBeHousenumber.py:63 ../plugins/Name_UpperCase.py:62
-#: ../plugins/Name_UpperCase.py:67 ../plugins/Number.py:99
+#: ../plugins/Name_ShouldBeHousenumber.py:63 ../plugins/Name_UpperCase.py:92
+#: ../plugins/Name_UpperCase.py:97 ../plugins/Number.py:99
 #: ../plugins/Number.py:106 ../plugins/Number.py:108 ../plugins/Number.py:115
 #: ../plugins/Phone.py:127 ../plugins/Phone.py:141 ../plugins/Phone.py:147
 #: ../plugins/Phone.py:153 ../plugins/Phone.py:159 ../plugins/Phone.py:166
@@ -3304,14 +3314,14 @@ msgstr ""
 msgid "Unexpected character: `{0}`"
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:41
+#: ../plugins/Name_UpperCase.py:42
 msgid ""
 "This feature is tagged with a name which contains a fully uppercase word (or "
 "words).\n"
 " This is not expected for the majority of named features."
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:44
+#: ../plugins/Name_UpperCase.py:45
 msgid ""
 "While uncommon, it is possible for a name to have uppercase words.\n"
 " This is particularly the case for corporate/branded locations as well as "
@@ -3349,14 +3359,14 @@ msgstr ""
 msgid "Gas station without tag `ref:mise` or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #: ../analysers/analyser_merge_parking_FR_bm.py:31
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:38
 #, python-brace-format
 msgid "{0} parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #: ../analysers/analyser_merge_parking_FR_bm.py:33
+#: ../analysers/analyser_merge_parking_FR_BNLS.py:41
 #, python-brace-format
 msgid "{0} parking integration suggestion"
 msgstr ""
@@ -3595,35 +3605,35 @@ msgstr ""
 msgid "{0} parking  update"
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1153
+#: ../analysers/Analyser_Merge.py:1140
 msgid ""
 "If after review you are sure that it is a new data and right for\n"
 "OpenStreetMap, then you can add it."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1156
+#: ../analysers/Analyser_Merge.py:1143
 msgid "Be sure that it is not already existing in another place."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1161
+#: ../analysers/Analyser_Merge.py:1148
 msgid ""
 "This is reported from an OpenData source, without any prior individual\n"
 "verification on this data."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1317
+#: ../analysers/Analyser_Merge.py:1304
 msgid ""
 "This is a integration suggestion, mixing OpenData source and\n"
 "OpenStreetMap."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1330
+#: ../analysers/Analyser_Merge.py:1317
 msgid ""
 "This is an update suggestion because the same ref can be found on both\n"
 "OpenData and OSM."
 msgstr ""
 
-#: ../analysers/Analyser_Merge.py:1149
+#: ../analysers/Analyser_Merge.py:1136
 msgid ""
 "It is from OpenData source, but that not enough to ensure the quality\n"
 "of the data. Review it before integration. You must not done blind import\n"
@@ -4770,7 +4780,7 @@ msgid "Power line not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_road_ES.py:32
-#: ../analysers/analyser_merge_road_FR.py:41
+#: ../analysers/analyser_merge_road_FR.py:42
 msgid "Road not integrated"
 msgstr ""
 
@@ -4969,11 +4979,9 @@ msgid ""
 "`power=pole + transformer=*` (pole mounted transformers)."
 msgstr ""
 
-#: ../plugins/Colour.py:17
 msgid "Unknown colour name"
 msgstr ""
 
-#: ../plugins/Colour.py:223 ../plugins/Colour.py:452 ../plugins/Colour.py:655
 #, python-brace-format
 msgid "Unknown colour in tag ''{0}''"
 msgstr ""
@@ -4988,4 +4996,27 @@ msgstr ""
 
 #: ../plugins/indoor.py:18 ../plugins/indoor.py:110
 msgid "This indoor shop should probably be inside a room"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_rla.py:64
+#: ../analysers/analyser_merge_public_transport_FR_sillages.py:63
+#: ../analysers/analyser_merge_public_transport_FR_zestbus.py:62
+#: ../analysers/analyser_merge_public_transport_FR_zou_06.py:69
+msgid "{place} stop of {fields['stop_name']}"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_tag_typo.py:167
+#: ../analysers/analyser_osmosis_tag_typo.py:176
+#: ../analysers/analyser_osmosis_tag_typo.py:185
+#, python-brace-format
+msgid "`{0}` is more common than `{1}`, is `{1}` a typo?"
+msgstr ""
+
+#: ../plugins/Colour.py:17
+msgid "Bad colour name"
+msgstr ""
+
+#: ../plugins/Colour.py:223 ../plugins/Colour.py:452 ../plugins/Colour.py:655
+#, python-brace-format
+msgid "Unknown or invalid colour in tag ''{0}''"
 msgstr ""

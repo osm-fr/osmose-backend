@@ -5,7 +5,7 @@
 # Translators:
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
-# Ali z <ali.zaroili@outlook.be>, 2021
+# Ali z <ali.zaroili@outlook.be>, 2021-2022
 # ali zaroili <ali.zaroili@gmail.com>, 2014,2016-2018
 # danieldegroot2 <danieldegroot18@gmail.com>, 2021-2022
 # Dimas, 2020
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2014-04-30 17:25+0000\n"
-"Last-Translator: danieldegroot2 <danieldegroot18@gmail.com>, 2021-2022\n"
+"Last-Translator: Ali z <ali.zaroili@outlook.be>, 2021-2022\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3518,7 +3518,7 @@ msgstr ""
 msgid ""
 "The tag `historic=wayside_cross` can always be used in combination with\n"
 "the tag `material=*`."
-msgstr ""
+msgstr "De tag `historic=wayside_cross` kan altijd gebruikt worden in combinatie met\nde tag `material=*`."
 
 #: ../plugins/Historic_Wayside_cross_without_material.py:38
 msgid "Fill the tag `material=*` as specific as possible."
@@ -4060,7 +4060,7 @@ msgstr "Stoppositie zonder perron of bushalte"
 msgid ""
 "A bus `public_transport=stop_position` without close "
 "`public_transport=platform` nor `highway=bus_stop`."
-msgstr ""
+msgstr "Een bus `public_transport=stop_position` zonder gesloten `public_transport=platform` of `highway=bus_stop`."
 
 #: tmp.json:53
 msgid "cycling infrastructure"
@@ -4367,11 +4367,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_waterway.py:168
 msgid "Unconnected river or wrong way flow"
-msgstr ""
+msgstr "Niet verbonden rivier, of verkeerde stromingsrichting"
 
 #: ../analysers/analyser_osmosis_waterway.py:172
 msgid "Unconnected stream or wrong way flow"
-msgstr ""
+msgstr "Niet verbonden beek, of verkeerde stromingsrichting"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:662
 #, python-brace-format
@@ -4465,7 +4465,7 @@ msgstr ""
 #: ../plugins/ConditionalRestrictions.py:114
 #, python-brace-format
 msgid "Missing `@` in \"{0}\""
-msgstr ""
+msgstr "Ontbrekend `@` in \"{0}\""
 
 #: ../plugins/ConditionalRestrictions.py:106
 #, python-brace-format
@@ -4515,11 +4515,11 @@ msgstr ""
 
 #: ../plugins/Name_Dictionary.py:35
 msgid "Probably missing a capital, accent or typo."
-msgstr ""
+msgstr "Waarschijnlijk ontbreekt er een hoofdletter,accent of typefout"
 
 #: ../plugins/Number.py:50
 msgid "Suspicious value"
-msgstr ""
+msgstr "Verdachte waarde"
 
 #: ../plugins/Number.py:52
 msgid "The tag expects a positive, round number without unit."
@@ -4527,7 +4527,7 @@ msgstr ""
 
 #: ../plugins/Number.py:58
 msgid "Unknown unit"
-msgstr ""
+msgstr "Onbekend waarde"
 
 #: ../plugins/Number.py:60
 msgid "The tag uses an unexpected unit."
@@ -4553,7 +4553,7 @@ msgstr ""
 #: ../plugins/Highway_Sides.py:64
 #, python-brace-format
 msgid "Conflicting values of \"{0}\" and \"{1}\""
-msgstr ""
+msgstr "Conflicterende waarden van \"{0}\" en \"{1}\""
 
 #: ../plugins/Name_Multiple.py:37
 msgid ""
@@ -4572,7 +4572,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_ES_madrid.py:31
 msgid "Bicycle parking not integrated"
-msgstr ""
+msgstr "Fiets parking niet toegevoegd"
 
 #: ../analysers/analyser_merge_power_branch_FR.py:31
 msgid "Power connection not known from operator"
@@ -4624,7 +4624,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_idfm.py:32
 #, python-brace-format
 msgid "{0} from {1} not integrated"
-msgstr ""
+msgstr "{0} from {1} niet toegevoegd"
 
 #: ../analysers/analyser_merge_public_transport_FR_idfm.py:34
 #, python-brace-format
@@ -4633,11 +4633,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_water_drinking_ES_madrid.py:31
 msgid "Drinking water not integrated"
-msgstr ""
+msgstr "Drinkwater niet toegevoegd"
 
 #: ../plugins/ConditionalRestrictions.py:68
 msgid "Invalid date/time span"
-msgstr ""
+msgstr "Ongeldige date/time bereik"
 
 #: ../plugins/ConditionalRestrictions.py:69
 msgid ""
@@ -4669,7 +4669,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:49
 msgid "[Valid values](https://wiki.openstreetmap.org/wiki/Key:turn#Values)"
-msgstr ""
+msgstr "[Geldige waarden](https://wiki.openstreetmap.org/wiki/Key:turn#Values)"
 
 #: ../plugins/Highway_Lanes.py:79
 msgid "Unknown change lanes value"
@@ -4678,7 +4678,7 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:81
 msgid ""
 "[Valid values](https://wiki.openstreetmap.org/wiki/Key:change#How_to_map)"
-msgstr ""
+msgstr "[Geldige waarden](https://wiki.openstreetmap.org/wiki/Key:change#How_to_map)"
 
 #: ../plugins/Highway_Lanes.py:83
 msgid "Lane changing value only_* need an aside lane on the good side"
@@ -4740,16 +4740,16 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_line_FR.py:32
 msgid "Power line not integrated"
-msgstr ""
+msgstr "Hoogspanningskabel niet geintegreerd"
 
 #: ../analysers/analyser_merge_road_ES.py:32
 #: ../analysers/analyser_merge_road_FR.py:41
 msgid "Road not integrated"
-msgstr ""
+msgstr "Straat niet geïntegreerd"
 
 #: ../plugins/Name_Multiple.py:50
 msgid "Conflicting names"
-msgstr ""
+msgstr "Conflicterende namen"
 
 #: ../plugins/Name_Multiple.py:52
 msgid ""
@@ -4822,7 +4822,7 @@ msgstr ""
 
 #: ../plugins/Highway_Parking_Lane.py:41
 msgid "Use `parking:lane:left`, `parking:lane:right` or `parking:lane:both`."
-msgstr ""
+msgstr "Gebruik `parking:lane:left`, `parking:lane:right` of `parking:lane:both`."
 
 #: ../plugins/Highway_Parking_Lane.py:45
 msgid ""
@@ -4833,7 +4833,7 @@ msgstr ""
 #: ../plugins/Highway_Parking_Lane.py:49 ../plugins/Highway_Parking_Lane.py:67
 #, python-brace-format
 msgid "Use any of the following values: `{0}`."
-msgstr ""
+msgstr "Gebruik een van de volgende waarden: `{0}`."
 
 #: ../plugins/Highway_Parking_Lane.py:66
 msgid "Bad parking:condition:[side] value"
@@ -4904,7 +4904,7 @@ msgstr ""
 msgid ""
 "Write the name with all letters without an abbreviation and first letter in "
 "upper case."
-msgstr ""
+msgstr "Schrijf de naam met alle letters zonder afkorting en de eerste letter in hoofdletters."
 
 #: ../analysers/analyser_osmosis_indoor.py:120
 msgid "This indoor room should have a door"
@@ -4934,12 +4934,12 @@ msgstr ""
 
 #: ../plugins/Colour.py:17
 msgid "Unknown colour name"
-msgstr ""
+msgstr "Onbekend kleur naam"
 
 #: ../plugins/Colour.py:223 ../plugins/Colour.py:452 ../plugins/Colour.py:655
 #, python-brace-format
 msgid "Unknown colour in tag ''{0}''"
-msgstr ""
+msgstr "Onbekend kleur tag in ''{0}''"
 
 #: ../plugins/indoor.py:16 ../plugins/indoor.py:47 ../plugins/indoor.py:73
 msgid "This indoor feature should be a closed and valid polygon"
