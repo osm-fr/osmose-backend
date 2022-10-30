@@ -70,6 +70,7 @@ FROM
             'mail', -- vs email (#702)
             'plane', -- vs place, plant, lane
             'rock', -- vs lock, dock, rack (from: MapComplete)
+            'sale', -- vs salt, male (from: JOSM)
             'services', -- vs service (from: JOSM)
             'start', -- vs stairs, stars
             'weight', -- vs height
@@ -163,7 +164,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.node_full, None, None, None, None, self.positionAsText],
-            "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
+            "text": T_("`{0}` is more common than `{1}`, is `{1}` a typo?", res[1].replace(res[3], res[4], 1), res[1]),
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10.format(type="ways", keylen=self.minKeyLength))
@@ -172,7 +173,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.way_full, None, None, None, None, self.positionAsText],
-            "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
+            "text": T_("`{0}` is more common than `{1}`, is `{1}` a typo?", res[1].replace(res[3], res[4], 1), res[1]),
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10.format(type="relations", keylen=self.minKeyLength))
@@ -181,5 +182,5 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "class":1,
             "subclass": stablehash64(res[1]),
             "data":[self.relation_full, None, None, None, None, self.positionAsText],
-            "text": {"en": "{0} -> {1}".format(res[1], res[1].replace(res[3], res[4], 1))},
+            "text": T_("`{0}` is more common than `{1}`, is `{1}` a typo?", res[1].replace(res[3], res[4], 1), res[1]),
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
