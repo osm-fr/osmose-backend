@@ -43,7 +43,7 @@ WHERE
 UNION ALL
 SELECT
     relations.id,
-    ST_MakePolygon(outer_ways.linestring ,array_agg(inner_ways.linestring)) AS geom,
+    outer_ways.linestring AS geom,
     ARRAY(select unnest(array_agg(inner_ways.nodes))) || outer_ways.nodes as nodes,
     relations.tags->'indoor' AS indoor,
     relations.tags->'level' AS level,
@@ -51,19 +51,15 @@ SELECT
     (NOT relations.tags?'access' OR NOT relations.tags->'access' IN ('no', 'private')) AS public_access
 FROM
     relations AS relations
-    JOIN relation_members AS outer_members ON
-        outer_members.relation_id = relations.id AND
-        outer_members.member_type = 'W' AND
-        outer_members.member_role = 'outer'
+    JOIN relation_members AS rel_members ON
+        rel_members.relation_id = relations.id AND
+        rel_members.member_type = 'W' AND
+        rel_members.member_role in ('outer', 'inner')
     JOIN ways AS outer_ways ON
-        outer_ways.id = outer_members.member_id AND
+        outer_ways.id = rel_members.member_id AND
         ST_NumPoints(outer_ways.linestring) >= 2
-    JOIN relation_members AS inner_members ON
-        inner_members.relation_id = relations.id AND
-        inner_members.member_type = 'W' AND
-        inner_members.member_role = 'inner'
     JOIN ways AS inner_ways ON
-        inner_ways.id = inner_members.member_id AND
+        inner_ways.id = rel_members.member_id AND
         ST_NumPoints(inner_ways.linestring) >= 2
 WHERE
     relations.tags?'type' AND
@@ -128,22 +124,19 @@ sql21 = """
 CREATE TEMP TABLE indoor_pt_platforms AS
 SELECT
     relations.id,
-    ST_MakePolygon(outer_ways.linestring,array_agg(inner_ways.linestring)) AS geom
+    outer_ways.linestring AS geom,
+    ARRAY(select unnest(array_agg(inner_ways.nodes))) || outer_ways.nodes as nodes
 FROM
     relations AS relations
-    JOIN relation_members AS outer_members ON
-        outer_members.relation_id = relations.id AND
-        outer_members.member_type = 'W' AND
-        outer_members.member_role = 'outer'
+    JOIN relation_members AS rel_members ON
+        rel_members.relation_id = relations.id AND
+        rel_members.member_type = 'W' AND
+        rel_members.member_role in ('outer', 'inner')
     JOIN ways AS outer_ways ON
-        outer_ways.id = outer_members.member_id AND
+        outer_ways.id = rel_members.member_id AND
         ST_NumPoints(outer_ways.linestring) >= 2
-    JOIN relation_members AS inner_members ON
-        inner_members.relation_id = relations.id AND
-        inner_members.member_type = 'W' AND
-        inner_members.member_role = 'inner'
     JOIN ways AS inner_ways ON
-        inner_ways.id = inner_members.member_id AND
+        inner_ways.id = rel_members.member_id AND
         ST_NumPoints(inner_ways.linestring) >= 2
 WHERE
     relations.tags?'type' AND
@@ -155,15 +148,16 @@ GROUP BY
     outer_ways.id
 UNION ALL
 SELECT
-    ways.id,
-    ways.linestring AS geom
+    id,
+    linestring AS geom,
+    nodes
 FROM
     ways
 WHERE
-    ways.is_polygon AND
-    ways.tags != ''::hstore AND
-    ways.tags?'public_transport' AND
-    ways.tags->'public_transport'= 'platform'
+    is_polygon AND
+    tags != ''::hstore AND
+    tags?'public_transport' AND
+    tags->'public_transport'= 'platform'
 """
 
 sql22 = """
@@ -178,7 +172,8 @@ FROM
         indoor_surfaces_other.geom && indoor_surfaces.geom AND
         indoor_surfaces_other.nodes && indoor_surfaces.nodes
     LEFT JOIN indoor_pt_platforms ON
-        indoor_pt_platforms.geom && indoor_surfaces.geom
+        indoor_pt_platforms.geom && indoor_surfaces.geom AND
+        indoor_pt_platforms.nodes && indoor_surfaces.nodes
     LEFT JOIN indoor_surfaces_connected_to_highways ON
         indoor_surfaces_connected_to_highways.id = indoor_surfaces.id
 WHERE
