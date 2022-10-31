@@ -152,7 +152,7 @@ Ensure the interpretation of the tag does not change when you delete one item.''
                 for v1,v2 in itertools.combinations(vs_long, 2):
                     if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
                         err.append({"class": 30601, "subclass": stablehash64(k),
-                                    "text": T_("Duplicated similar values {key}={val}", key = k, val = tags[k])})
+                                    "text": T_("Similar values {v1} and {v2} in {key}={val}", v1 = v1, v2 = v2, key = k, val = tags[k])})
                         break
 
         return err
