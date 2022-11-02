@@ -43,7 +43,7 @@ WHERE
 UNION ALL
 SELECT
     relations.id,
-    outer_ways.linestring AS geom,
+    ST_Envelope(ST_Collect(array_agg(inner_ways.linestring) || outer_ways.linestring)) AS geom,
     ARRAY(select unnest(array_agg(inner_ways.nodes))) || outer_ways.nodes as nodes,
     relations.tags->'indoor' AS indoor,
     relations.tags->'level' AS level,
@@ -124,7 +124,7 @@ sql21 = """
 CREATE TEMP TABLE indoor_pt_platforms AS
 SELECT
     relations.id,
-    outer_ways.linestring AS geom,
+    ST_Envelope(ST_Collect(array_agg(inner_ways.linestring) || outer_ways.linestring)) AS geom,
     ARRAY(select unnest(array_agg(inner_ways.nodes))) || outer_ways.nodes as nodes
 FROM
     relations AS relations
