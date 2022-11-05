@@ -653,7 +653,13 @@ be_part = gen_country('europe', 'belgium', download_repo=OSMFR, proj=32631, muni
     phone_code='32', phone_len=[8, 9], phone_len_short=4, phone_international='00', phone_local_prefix='0')
 
 be_part('brussels_capital_region', 54094, 'BE-BRU', language=['fr', 'nl'], multilingual_style='be')
-be_part('flanders', 53134, 'BE-VLG', language='nl')
+
+be_part('flanders/antwerp', 53114, 'BE-VLG', language='nl')
+be_part('flanders/east_flanders', 53135, 'BE-VLG', language='nl')
+be_part('flanders/flemish_brabant', 58004, 'BE-VLG', language='nl')
+be_part('flanders/limburg', 53142, 'BE-VLG', language='nl')
+be_part('flanders/west_flanders', 416271, 'BE-VLG', language='nl')
+
 be_part('wallonia_french_community', 2620920, 'BE-WAL', language='fr')
 be_part('wallonia_german_community', 2425209, 'BE-WAL', language='de')
 
