@@ -63,6 +63,8 @@ Ensure the interpretation of the tag does not change when you delete one item.''
         ))
         self.WhitelistSimilar = set(( # Keys that can have similar, but not equal values
             'source:geometry:ref', # Belgium, Flanders
+            'gnis:id', 'gnis:feature_id', # USA
+            'network:guid',
             'created_by',
             'is_in',
             'service_times', 'collection_times',
@@ -79,6 +81,11 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'operator',
             'changing_table:location',
             'furniture',
+            'seamark:berth:category',
+            'seamark:restricted_area:restriction',
+            'historic:period',
+            'charge',
+            'social_facility:for',
         ))
         self.WhitelistSimilarEqualRegex = set(( # Regexes for keys that can have similar and even equal values
             re.compile('seamark:.+:colour'),
@@ -94,6 +101,7 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             re.compile('.+_name'),
             re.compile('.+:conditional'),
             re.compile('.+:date'),
+            re.compile('.+:colour'),
             re.compile('opening_hours(:.+)?'),
             re.compile('(.+:)?wikidata'),
             re.compile('railway:signal:.+'),
