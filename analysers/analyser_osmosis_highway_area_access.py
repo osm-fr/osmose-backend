@@ -126,12 +126,12 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
         self.run(sql20.format(barriertype='bus_trap'))
         for vehicle in ['motorcycle', 'mofa', 'moped', 'emergency', 'motorcar']:
             self.run(sql21.format(barriertype='bollard', vehicle=vehicle), lambda res: {
-              "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
-              "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
+                "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
+                "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
         for vehicle in ['motorcycle', 'mofa', 'moped', 'agricultural', 'hgv', 'emergency']:
             self.run(sql21.format(barriertype='bus_trap', vehicle=vehicle), lambda res: {
-              "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
-              "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
+                "class":2, "data":[self.way_full, self.node_full, self.positionAsText],
+                "text": T_("Inconsistent {0} access: '{1}' on highway, not set on barrier", vehicle, res[3])})
 
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
