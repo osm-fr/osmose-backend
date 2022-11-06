@@ -28,11 +28,11 @@ class Analyser_Merge_Public_Transport_FR_zestbus(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         place = "Zest'Bus"
-        self.def_class_missing_official(item = 8040, id = 41, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
+        self.def_class_missing_official(item = 8040, id = 141, level = 3, tags = ['merge', 'public transport', 'fix:survey', 'fix:picture'],
             title = T_('{0} stop not integrated', place))
-        self.def_class_possible_merge(item = 8041, id = 43, level = 3, tags = ['merge', 'public transport', 'fix:chair'],
+        self.def_class_possible_merge(item = 8041, id = 143, level = 3, tags = ['merge', 'public transport', 'fix:chair'],
             title = T_('{0} stop, integration suggestion', place))
-        self.def_class_update_official(item = 8042, id = 44, level = 3, tags = ['merge', 'public transport', 'fix:chair'],
+        self.def_class_update_official(item = 8042, id = 144, level = 3, tags = ['merge', 'public transport', 'fix:chair'],
             title = T_('{0} stop update', place))
 
         self.init(
