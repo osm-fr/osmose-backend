@@ -166,4 +166,5 @@ class Test(TestAnalyserOsmosis):
         self.check_err(cl="1", elems=[("node", "29"), ("way", "109")])
         self.check_err(cl="1", elems=[("node", "30"), ("way", "110")])
         self.check_err(cl="2", elems=[("node", "20"), ("way", "107")])
-        self.check_num_err(4)
+        self.check_err(cl="2", elems=[("node", "37"), ("way", "107")])
+        self.check_num_err(5)
