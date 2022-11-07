@@ -73,9 +73,11 @@ WHERE
   barrier.tags != ''::hstore AND
   barrier.tags?'barrier' AND
   barrier.tags->'barrier' = '{barriertype}' AND
-  (NOT barrier.tags?'access' OR barrier.tags->'access' = 'no') AND -- no = default if we don't test foot/horse/bicycle/psv/bus
-  (NOT barrier.tags?'vehicle' OR barrier.tags->'vehicle' = 'no') AND -- no = default if we don't test foot/horse/bicycle/psv/bus
-  (NOT barrier.tags?'motor_vehicle' OR barrier.tags->'motor_vehicle' = 'no') AND -- no = default if we don't test foot/horse/bicycle/psv/bus/taxi
+  /* Default of bollard is access=no / bicycle=foot=yes; default of bus_trap is motor_vehicle=no / psv=foot=bicycle=yes.
+  Hence, the below three lines should cover all cases as long as we don't test for any non-motor_vehicle or vehicles under psv */
+  (NOT barrier.tags?'access' OR barrier.tags->'access' = 'no') AND
+  (NOT barrier.tags?'vehicle' OR barrier.tags->'vehicle' = 'no') AND
+  (NOT barrier.tags?'motor_vehicle' OR barrier.tags->'motor_vehicle' = 'no') AND
   highway_ends.nid IS NULL -- Ignore transitions between ways that may have different tags
 """
 
