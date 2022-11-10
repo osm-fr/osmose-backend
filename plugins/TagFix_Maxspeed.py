@@ -36,7 +36,8 @@ class TagFix_Maxspeed(Plugin):
     maxspeed_table = {
         'at:rural': ['100'],
         'at:trunk': ['100'],
-        'at:urban': ['30', '40'],
+        'at:urban40': ['40'],
+        'at:urban30': ['30'],
         'be-bru:rural': ['70'],
         'be-bru:urban': ['30'],
         'be:motorway': ['120'],
