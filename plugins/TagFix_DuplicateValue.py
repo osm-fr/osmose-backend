@@ -59,15 +59,16 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'couplings:diameters',
             'voltage',
             'addr:flats', 'addr:housenumber', 'addr:unit', 'addr:floor', 'addr:block', 'addr:door',
+            'note', 'description', 'inscription', # Text; not ;-separated values
         ))
         self.WhitelistSimilar = set(( # Keys that can have similar, but not equal values
             'source:geometry:ref', # Belgium, Flanders
             'created_by',
             'is_in',
             'service_times', 'collection_times',
-            'phone', 'contact:phone', 'fax', 'contact:fax',
+            'phone', 'fax', 'emergency:phone',
             'email',
-            'url',
+            'url', 'website',
             'destination',
             'passenger',
             'healthcare:speciality',
@@ -76,6 +77,8 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             'communication:mobile_phone',
             'cuisine',
             'operator',
+            'changing_table:location',
+            'furniture',
         ))
         self.WhitelistSimilarEqualRegex = set(( # Regexes for keys that can have similar and even equal values
             re.compile('seamark:.+:colour'),
@@ -94,6 +97,7 @@ Ensure the interpretation of the tag does not change when you delete one item.''
             re.compile('opening_hours(:.+)?'),
             re.compile('(.+:)?wikidata'),
             re.compile('railway:signal:.+'),
+            re.compile('contact:.+'),
         ))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python

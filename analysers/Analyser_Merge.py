@@ -316,7 +316,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, post: Dict[str, str] = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
+    def __init__(self, attribution = None, millesime = None, encoding = "utf-8", file = None, fileUrl = None, post: Optional[Dict[str, str]] = None, fileUrlCache = 30, zip = None, extract = None, bz2 = False, gzip = False, filter = None):
         """
         Describe the source file.
         @param attribution: Author of the data, for the OSM source tag
@@ -949,7 +949,7 @@ class Load_XY(Load):
         if not self.pip:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid() and self.polygon_id else None
             if self.pip:
-                if Transformer:
+                if Transformer:  # type: ignore
                     self.transformer = Transformer.from_crs(self.srid(), 4326, always_xy = True)
                 else: # pyproj < 2.1
                     self.transformer = None
