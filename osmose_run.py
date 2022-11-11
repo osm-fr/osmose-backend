@@ -430,7 +430,7 @@ def main(options):
         logger = OsmoseLog.logger(output, True)
 
     if options.change_init and not options.change:
-        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
+        logger.err("--change must be specified")
         return 1
 
     #=====================================
@@ -456,16 +456,16 @@ def main(options):
                 analysers[fn[9:-3]] = importlib.import_module("analysers." + fn[:-3])
             except ImportError as e:
                 logger.log(e)
-                logger.log("Fails to load analysers {0}".format(fn[:-3]))
+                logger.err("Fails to load analysers {0}".format(fn[:-3]))
     if options.analyser:
         count = 0
         for k in options.analyser:
             if k not in analysers:
-                logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
+                logger.err("not found "+k)
                 count += 1
         # user is passing only non-existent analysers
         if len(options.analyser) == count:
-            logger.log(logger.log_av_b+"No valid analysers specified"+logger.log_ap)
+            logger.err("No valid analysers specified")
             return 1
 
     sys.path[:] = old_path # restore previous path
@@ -477,7 +477,7 @@ def main(options):
         if country in config.config:
             country_conf = config.config[country]
         else:
-            logger.log("Failed to load country {0}".format(country))
+            logger.err("Failed to load country {0}".format(country))
             return 8
 
         if os.getenv('SENTRY_DSN'):
