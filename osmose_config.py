@@ -1109,7 +1109,14 @@ default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en"
 default_country("africa", "tanzania", 195270, {"country": "TZ", "language": "en", "driving_side": "left", "proj": 32736})
 default_country("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "tunisia", 192757,  {"country": "TN", "language": ["ar", "fr"], "proj": 32632}, download_repo=OSMFR)
-default_country("africa", "uganda", 192796, {"country": "UG", "language": "en", "driving_side": "left", "proj": 32636}, download_repo=OSMFR)
+
+uganda_region = gen_country('africa', 'uganda', proj=32636, country_code='UG', language='en', driving_side="left", download_repo=OSMFR)
+
+uganda_region("central", 3771649)
+uganda_region("eastern", 3771602)
+uganda_region("northern", 3771442)
+uganda_region("western", 3772011)
+
 default_country("africa", "united_kingdom_saint_helena_ascension_tristan_da_cunha", 1964272, {"country": "SH", "language": "en", "driving_side": "left", "proj": 32729}, download_repo=OSMFR, download_country="saint_helena_ascension_tristan_da_cunha")
 default_country("africa", "western_sahara", 2559126, {"country": "EH", "proj": 32629}, download_repo=OSMFR)
 default_country("africa", "zambia", 195271, {"country": "ZM", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
