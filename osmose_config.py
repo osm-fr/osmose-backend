@@ -1090,7 +1090,19 @@ default_country("africa", "senegal", 192775,  {"country": "SN", "language": "fr"
 default_country("africa", "seychelles", 536765, {"country": "SC", "language": ["en", "fr"], "driving_side": "left", "proj": 32739}, download_repo=OSMFR)
 default_country("africa", "sierra-leone", 192777, {"country": "SL", "language": "en", "proj": 32629})
 default_country("africa", "somalia", 192799,  {"country": "SO", "language": "so", "proj": 32638})
-default_country("africa", "south_africa", 87565, {"country": "ZA", "language": "en", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
+
+south_africa_province = gen_country('africa', 'south_africa', proj=32735, country_code='ZA', language='en', driving_side="left", download_repo=OSMFR)
+
+south_africa_province("eastern_cape", 88574)
+south_africa_province("free_state", 92417)
+south_africa_province("gauteng", 349344)
+south_africa_province("kwazulu_natal", 349390)
+south_africa_province("limpopo", 349547)
+south_africa_province("mpumalanga", 349556)
+south_africa_province("north_west", 349519)
+south_africa_province("northern_cape", 86720)
+south_africa_province("western_cape", 80501)
+
 default_country("africa", "south_sudan", 1656678, {"country": "SS", "language": "en", "proj": 32635}, download_repo=OSMFR)
 default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", "en"], "proj": 32636}, download_repo=OSMFR)
 default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
