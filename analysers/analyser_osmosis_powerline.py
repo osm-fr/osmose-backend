@@ -24,6 +24,7 @@ from modules.OsmoseTranslation import T_
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules.Stablehash import stablehash64
 
+# Lone power supports
 sql10 = """
 SELECT
     nodes.id,
@@ -40,7 +41,7 @@ FROM
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'power' AND
-    nodes.tags->'power' IN ('pole', 'tower')
+    nodes.tags->'power' IN ('pole', 'tower', 'insulator', 'terminal', 'portal')
 GROUP BY
     nodes.id,
     nodes.geom
@@ -48,6 +49,7 @@ HAVING
     bool_and(ways.id IS NULL)
 """
 
+# Power lines ends with their voltages
 sql20 = """
 CREATE TEMP TABLE line_ends AS
 SELECT DISTINCT ON (ends(ways.nodes))
@@ -69,6 +71,7 @@ sql21 = """
 CREATE INDEX idx_line_ends_id ON line_ends(id)
 """
 
+# Unfinished lines ends
 sql22 = """
 CREATE TEMP TABLE line_ends1 AS
 SELECT
@@ -94,9 +97,10 @@ FROM
     ) AS line_ends
     JOIN nodes ON
         line_ends.id = nodes.id AND
-        NOT (tags?'pole' AND tags->'pole' = 'transition') AND -- deprecated
         NOT (tags?'location:transition' AND tags->'location:transition' = 'yes') AND
-        NOT (tags?'transformer' AND tags->'transformer' in ('distribution', 'minor_distribution')) AND
+        NOT (tags?'transformer' AND tags->'transformer' in ('distribution', 'main')) AND
+        NOT (tags?'substation' AND tags->'substation' in ('minor_distribution')) AND
+        NOT (tags?'line_management' AND tags->'line_management' = 'termination') AND
         NOT (tags?'power' AND tags->'power' = 'terminal')
 """
 
@@ -118,7 +122,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'power' AND
-    tags->'power' NOT IN ('pole', 'tower')
+    tags->'power' NOT IN ('pole', 'tower', 'portal')
 )
 UNION ALL
 (
@@ -142,6 +146,7 @@ sql25 = """
 CREATE INDEX idx_line_terminators_geom ON line_terminators USING GIST(geom)
 """
 
+# Find every unfinished end that isn't near of any terminator
 sql26 = """
 SELECT
     id,
@@ -164,7 +169,7 @@ SELECT
 FROM
     line_ends1
     JOIN line_terminators ON
-        ST_DWithin(line_ends1.geom, line_terminators.geom, 150)
+        ST_DWithin(line_ends1.geom, line_terminators.geom, 50)
 
 EXCEPT
 
@@ -244,7 +249,7 @@ FROM
         nodes.id = ANY (ways.nodes[2:array_length(nodes,1)-1]) AND
         NOT nodes.tags?'power'
     LEFT JOIN line_terminators ON
-        ST_DWithin(nodes.geom, line_terminators.geom, 150)
+        ST_DWithin(nodes.geom, line_terminators.geom, 50)
 WHERE
     ways.tags != ''::hstore AND
     ways.tags?'power' AND
