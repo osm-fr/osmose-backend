@@ -99,7 +99,7 @@ FROM
         line_ends.id = nodes.id AND
         NOT (tags?'location:transition' AND tags->'location:transition' = 'yes') AND
         NOT (tags?'transformer' AND tags->'transformer' in ('distribution', 'main')) AND
-        NOT (tags?'substation' AND tags->'substation' in ('minor_distribution')) AND
+        NOT (tags?'substation' AND tags->'substation' = 'minor_distribution') AND
         NOT (tags?'line_management' AND tags->'line_management' = 'termination') AND
         NOT (tags?'power' AND tags->'power' = 'terminal')
 """
