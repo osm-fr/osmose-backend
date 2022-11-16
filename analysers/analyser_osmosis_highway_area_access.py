@@ -119,7 +119,7 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
             trap = T_(
 '''Sometimes a barrier can exist on an (otherwise uninterrupted) highway to prevent vehicles from using it for purposes other than destination traffic.'''),
             fix = T_(
-'''Copy the appropriate access tag to the barrier node'''))
+'''Copy the appropriate access tag to the barrier node.'''))
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_("Inconsistent motor_vehicle values ('{0}'!='{1}')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
