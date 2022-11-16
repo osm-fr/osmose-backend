@@ -236,6 +236,14 @@ class OsmOsisManager:
             new_bg_proc.remove((p, name))
           bg_proc = new_bg_proc
 
+    except:
+      if parallel:
+        for (p, name) in bg_proc:
+          if p.returncode is None:
+            self.logger.err("Killing pid=%d - %s" % (p.pid, p.args))
+            p.kill()
+      raise
+
     finally:
       # clean even in case of an exception
       shutil.rmtree(dir_country_tmp, ignore_errors=True)
