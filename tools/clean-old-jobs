@@ -29,7 +29,7 @@ if [ "x$SCHEMA_OSMOSE" != "x" ]; then
       echo "$i"
       # Set lock_timeout, as schema could be blocked by a 'CREATE TABLE'
       # TODO: investigate how to kill these postgres jobs
-      psql osmose -c "SET LOCAL lock_timeout = '4s'; DROP SCHEMA $i CASCADE"
+      psql osmose -c "SET LOCAL lock_timeout = '4s'; DROP SCHEMA $i CASCADE" || echo "Error when removing schema '$i'"
     fi
   done
 fi
