@@ -1106,7 +1106,17 @@ south_africa_province("western_cape", 80501)
 default_country("africa", "south_sudan", 1656678, {"country": "SS", "language": "en", "proj": 32635}, download_repo=OSMFR)
 default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", "en"], "proj": 32636}, download_repo=OSMFR)
 default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
-default_country("africa", "tanzania", 195270, {"country": "TZ", "language": "en", "driving_side": "left", "proj": 32736})
+
+tanzania_zone = gen_country('africa', 'tanzania', proj=32736, country_code='TZ', language='en', driving_side="left", download_repo=OSMFR)
+
+tanzania_zone("central", 3775063)
+tanzania_zone("coastal", 3775060)
+tanzania_zone("lake", 3775052)
+tanzania_zone("northern", 3775058)
+tanzania_zone("southern_highlands", 3775072)
+tanzania_zone("western", 8158565)
+tanzania_zone("zanzibar", 3775035)
+
 default_country("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "tunisia", 192757,  {"country": "TN", "language": ["ar", "fr"], "proj": 32632}, download_repo=OSMFR)
 
