@@ -1090,14 +1090,43 @@ default_country("africa", "senegal", 192775,  {"country": "SN", "language": "fr"
 default_country("africa", "seychelles", 536765, {"country": "SC", "language": ["en", "fr"], "driving_side": "left", "proj": 32739}, download_repo=OSMFR)
 default_country("africa", "sierra-leone", 192777, {"country": "SL", "language": "en", "proj": 32629})
 default_country("africa", "somalia", 192799,  {"country": "SO", "language": "so", "proj": 32638})
-default_country("africa", "south_africa", 87565, {"country": "ZA", "language": "en", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
+
+south_africa_province = gen_country('africa', 'south_africa', proj=32735, country_code='ZA', language='en', driving_side="left", download_repo=OSMFR)
+
+south_africa_province("eastern_cape", 88574)
+south_africa_province("free_state", 92417)
+south_africa_province("gauteng", 349344)
+south_africa_province("kwazulu_natal", 349390)
+south_africa_province("limpopo", 349547)
+south_africa_province("mpumalanga", 349556)
+south_africa_province("north_west", 349519)
+south_africa_province("northern_cape", 86720)
+south_africa_province("western_cape", 80501)
+
 default_country("africa", "south_sudan", 1656678, {"country": "SS", "language": "en", "proj": 32635}, download_repo=OSMFR)
 default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", "en"], "proj": 32636}, download_repo=OSMFR)
 default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
-default_country("africa", "tanzania", 195270, {"country": "TZ", "language": "en", "driving_side": "left", "proj": 32736})
+
+tanzania_zone = gen_country('africa', 'tanzania', proj=32736, country_code='TZ', language='en', driving_side="left", download_repo=OSMFR)
+
+tanzania_zone("central", 3775063)
+tanzania_zone("coastal", 3775060)
+tanzania_zone("lake", 3775052)
+tanzania_zone("northern", 3775058)
+tanzania_zone("southern_highlands", 3775072)
+tanzania_zone("western", 8158565)
+tanzania_zone("zanzibar", 3775035)
+
 default_country("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "tunisia", 192757,  {"country": "TN", "language": ["ar", "fr"], "proj": 32632}, download_repo=OSMFR)
-default_country("africa", "uganda", 192796, {"country": "UG", "language": "en", "driving_side": "left", "proj": 32636}, download_repo=OSMFR)
+
+uganda_region = gen_country('africa', 'uganda', proj=32636, country_code='UG', language='en', driving_side="left", download_repo=OSMFR)
+
+uganda_region("central", 3771649)
+uganda_region("eastern", 3771602)
+uganda_region("northern", 3771442)
+uganda_region("western", 3772011)
+
 default_country("africa", "united_kingdom_saint_helena_ascension_tristan_da_cunha", 1964272, {"country": "SH", "language": "en", "driving_side": "left", "proj": 32729}, download_repo=OSMFR, download_country="saint_helena_ascension_tristan_da_cunha")
 default_country("africa", "western_sahara", 2559126, {"country": "EH", "proj": 32629}, download_repo=OSMFR)
 default_country("africa", "zambia", 195271, {"country": "ZM", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
