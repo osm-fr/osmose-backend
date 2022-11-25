@@ -1318,7 +1318,26 @@ au_state("norfolk_island", 2574988, "NF", proj=32658)
 #########################################################################
 
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
-default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
+
+chile_region = gen_country('south-america', 'chile', proj=32718, country_code='CL', language='es', download_repo=OSMFR)
+
+chile_region("antofagasta", 240932)
+chile_region("araucania", 296378)
+chile_region("arica_y_parinacota", 238392)
+chile_region("atacama", 271889)
+chile_region("aysen", 305693)
+chile_region("biobio", 252891)
+chile_region("coquimbo", 231672)
+chile_region("los_lagos", 274991)
+chile_region("los_rios", 274988)
+chile_region("magallanes", 301542)
+chile_region("maule", 239882)
+chile_region("nuble", 7421025)
+chile_region("o_higgins", 206487)
+chile_region("santiago", 198848)
+chile_region("tarapaca", 238393)
+chile_region("valparaiso", 198847)
+
 colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618}, exclude=[
     "osmosis_highway_name_close",  # Complicated Street Numbering
 ])
