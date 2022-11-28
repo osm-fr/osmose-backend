@@ -92,6 +92,13 @@
     <tag k='barrier' v='bollard' />
     <tag k='vehicle' v='private' />
   </node>
+  <node id='41' timestamp='2014-03-31T22:00:00Z' lat='51.83095287618' lon='5.85577926076' version='1'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='42' timestamp='2014-03-31T22:00:00Z' lat='51.83167236111' lon='5.85577926076' version='1'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='43' timestamp='2014-03-31T22:00:00Z' lat='51.83132895975' lon='5.85577926076' version='1' />
   <way id='101' timestamp='2014-03-31T22:00:00Z' version='1' >
     <nd ref='1' />
     <nd ref='3' />
@@ -224,6 +231,14 @@
     <nd ref='35' />
     <tag k='access' v='destination' />
     <tag k='highway' v='residential' />
+    <tag k='moped' v='designated' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='115' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='41' />
+    <nd ref='43' />
+    <nd ref='42' />
+    <tag k='highway' v='cycleway' />
     <tag k='moped' v='designated' />
     <tag k='name' v='class 2 test' />
   </way>

@@ -56,51 +56,44 @@ CREATE TEMP TABLE {barriertype} AS
 SELECT
   barrier.id AS id,
   barrier.tags AS tags,
-  ways.id as wid,
-  ST_AsText(barrier.geom) AS geom
+  ways.id AS wid,
+  barrier.geom AS geom,
+  ways.tags AS waytags
 FROM
   nodes AS barrier
-  JOIN way_nodes ON
-    way_nodes.node_id = barrier.id
   JOIN highways AS ways ON
-    ways.id = way_nodes.way_id AND
+    barrier.id = ANY(ways.nodes) AND
     NOT ways.is_construction AND
     NOT ways.is_area
-  LEFT JOIN highway_ends ON
-    ways.id = highway_ends.id AND
-    barrier.id = highway_ends.nid
 WHERE
   barrier.tags != ''::hstore AND
   barrier.tags?'barrier' AND
   barrier.tags->'barrier' = '{barriertype}' AND
-  /* Default of bollard is access=no / bicycle=foot=yes; default of bus_trap is motor_vehicle=no / psv=foot=bicycle=yes.
-  Hence, the below three lines should cover all cases as long as we don't test for any non-motor_vehicle or vehicles under psv */
+  -- Default of bollard is access=no / bicycle=foot=yes; default of bus_trap is motor_vehicle=no / psv=foot=bicycle=yes.
+  -- Hence, the below three lines should cover all cases as long as we don't test for any non-motor_vehicle or vehicles under psv
   (NOT barrier.tags?'access' OR barrier.tags->'access' = 'no') AND
   (NOT barrier.tags?'vehicle' OR barrier.tags->'vehicle' = 'no') AND
   (NOT barrier.tags?'motor_vehicle' OR barrier.tags->'motor_vehicle' = 'no') AND
-  highway_ends.nid IS NULL -- Ignore transitions between ways that may have different tags
+  barrier.id != ways.nodes[1] AND barrier.id != ways.nodes[array_length(ways.nodes,1)] -- Barrier is not an end node
 """
 
 sql21 = """
 SELECT
     barrier.wid,
     barrier.id,
-    barrier.geom,
-    highway.tags->'{vehicle}'
+    ST_AsText(barrier.geom),
+    barrier.waytags->'{vehicle}'
 FROM
     {barriertype} AS barrier
-    JOIN highways AS highway ON
-      highway.id = barrier.wid AND
-      highway.tags?'{vehicle}' AND
-      NOT highway.tags->'{vehicle}' IN ('no', 'use_sidepath', 'unknown')
 WHERE
-    NOT barrier.tags?'{vehicle}'
+    NOT barrier.tags?'{vehicle}' AND
+    barrier.waytags?'{vehicle}' AND
+    NOT barrier.waytags->'{vehicle}' IN ('no', 'use_sidepath', 'unknown')
 """
 
 
 class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 
-    requires_tables_common = ['highway_ends']
     requires_tables_full = ['highways']
     requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
