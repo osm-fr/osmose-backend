@@ -61,8 +61,10 @@ SELECT
   ways.tags AS waytags
 FROM
   nodes AS barrier
+  JOIN way_nodes ON
+    way_nodes.node_id = barrier.id
   JOIN highways AS ways ON
-    barrier.id = ANY(ways.nodes) AND
+    ways.id = way_nodes.way_id AND
     NOT ways.is_construction AND
     NOT ways.is_area
 WHERE
