@@ -135,6 +135,8 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             name_parent.append("removed:" + i)
             name_parent.append("razed:" + i)
             name_parent.append("was:" + i)
+            name_parent.append(i + ":backward")
+            name_parent.append(i + ":forward")
         self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
@@ -265,6 +267,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"name": "foo", "abandoned:highway": "bar"})
         assert not a.node(None, {"name": "foo", "historic:railway": "station"})
         assert not a.node(None, {"name": "foo", "building:part": "yes"})
+        assert not a.node(None, {"name": "foo", "traffic_sign:forward": "city_limit;DE:310", "traffic_sign:backward": "city_limit;DE:311"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 
