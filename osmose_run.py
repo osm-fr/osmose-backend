@@ -156,14 +156,18 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
             if not newer and options.diff and os.path.exists(conf.download["dst"]):
                 status = False
-                if options.pbf_update_tool == 'osmosis':
-                    if osmosis_manager.check_osmosis_diff(conf):
-                        (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
-                else:
-                    if osmosis_manager.check_osmium_diff(conf):
-                        (status, xml_change) = osmosis_manager.run_osmium_diff(conf)
-                if status:
-                    newer = True
+                try:
+                    if options.pbf_update_tool == 'osmosis':
+                        if osmosis_manager.check_osmosis_diff(conf):
+                            (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
+                    else:
+                        if osmosis_manager.check_osmium_diff(conf):
+                            (status, xml_change) = osmosis_manager.run_osmium_diff(conf)
+                    if status:
+                        newer = True
+                except Exception:
+                    traceback.print_exc()
+                    logger.log("Update with diff fails. Fallback to download.")
 
             if not newer:
                 logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
