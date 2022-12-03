@@ -66,7 +66,14 @@ SELECT
         WHEN 'track' THEN 5
         WHEN 'cycleway' THEN 5
         WHEN 'service' THEN 5
+        WHEN 'busway' THEN 5
+        WHEN 'bus_guideway' THEN 5
         WHEN 'road' THEN 5
+        WHEN 'pedestrian' THEN 6
+        WHEN 'footway' THEN 6
+        WHEN 'bridleway' THEN 6
+        WHEN 'steps' THEN 6
+        WHEN 'path' THEN 6
         ELSE NULL
     END AS level
 FROM

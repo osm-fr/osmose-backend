@@ -97,6 +97,7 @@ FROM (
       highways
     WHERE
       NOT highways.is_construction AND
+      highways.level IS NOT NULL AND
       highway != 'motorway' AND -- Ignore motorway even with oneway tag
       (
         is_oneway OR
