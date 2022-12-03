@@ -58,12 +58,7 @@ FROM
             'linz', -- vs line (New Zealand)
             'traces', -- vs tracks (Hungary)
             -- Documented keys without their own key:* wiki page. Between () where it's documented
-            'dist', -- vs dirt, list, diet (golf=hole)
-            'hide', -- vs site, sides, side (amenity=hunting_stand)
-            'levels', -- vs level (building:levels)
-            'linen', -- vs line, lines (shop=bed)
-            'path', -- vs bath (highway=path)
-            'lwn_ref', -- vs XYn_ref (Node_Networks)
+            'levels', -- vs level (listed as deprecated on building:levels)
             -- Undocumented keys, not found in Wiki
             'clock', -- vs lock
             'hall', -- vs wall

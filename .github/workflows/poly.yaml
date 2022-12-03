@@ -25,3 +25,7 @@ jobs:
     - name: Check polygons
       run: |
         python -m tools.test-polygons
+
+    - name: Compare polygons and relations
+      run: |
+        python -m tools.check-boundary-polygon

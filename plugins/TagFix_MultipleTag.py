@@ -28,7 +28,7 @@ class TagFix_MultipleTag(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.country = self.father.config.options.get("country")
-        main_tags = ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', "building:part", 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction', 'information', 'advertising', 'ford', 'cemetery', 'area:highway', 'checkpoint', 'telecom')
+        main_tags = ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', "building:part", 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type', 'indoor', 'club', 'seamark:type', 'attraction', 'information', 'advertising', 'ford', 'cemetery', 'area:highway', 'checkpoint', 'telecom', 'airmark')
 
         self.errors[30320] = self.def_class(item = 3032, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Watch multiple tags'))
@@ -135,6 +135,8 @@ For further detail, see [the wiki](https://wiki.openstreetmap.org/wiki/Key:acces
             name_parent.append("removed:" + i)
             name_parent.append("razed:" + i)
             name_parent.append("was:" + i)
+            name_parent.append(i + ":backward")
+            name_parent.append(i + ":forward")
         self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
@@ -265,6 +267,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"name": "foo", "abandoned:highway": "bar"})
         assert not a.node(None, {"name": "foo", "historic:railway": "station"})
         assert not a.node(None, {"name": "foo", "building:part": "yes"})
+        assert not a.node(None, {"name": "foo", "traffic_sign:forward": "city_limit;DE:310", "traffic_sign:backward": "city_limit;DE:311"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 
