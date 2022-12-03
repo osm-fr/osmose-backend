@@ -156,14 +156,18 @@ def execc(conf, logger, analysers, options, osmosis_manager):
 
             if not newer and options.diff and os.path.exists(conf.download["dst"]):
                 status = False
-                if options.pbf_update_tool == 'osmosis':
-                    if osmosis_manager.check_osmosis_diff(conf):
-                        (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
-                else:
-                    if osmosis_manager.check_osmium_diff(conf):
-                        (status, xml_change) = osmosis_manager.run_osmium_diff(conf)
-                if status:
-                    newer = True
+                try:
+                    if options.pbf_update_tool == 'osmosis':
+                        if osmosis_manager.check_osmosis_diff(conf):
+                            (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
+                    else:
+                        if osmosis_manager.check_osmium_diff(conf):
+                            (status, xml_change) = osmosis_manager.run_osmium_diff(conf)
+                    if status:
+                        newer = True
+                except Exception:
+                    traceback.print_exc()
+                    logger.log("Update with diff fails. Fallback to download.")
 
             if not newer:
                 logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
@@ -446,6 +450,7 @@ def main(options):
     sys.path.insert(0, analysers_path)
 
     logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
+    options.analyser = list(map(lambda analyser: analyser[len("analyser_"):] if analyser.startswith("analyser_") else analyser, options.analyser))
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):

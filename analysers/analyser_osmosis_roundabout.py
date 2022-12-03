@@ -116,7 +116,12 @@ If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for
 '''Make sure to tag `oneway=*` when using `junction=circular`. Unlike `junction=roundabout`, `junction=circular` does not imply `oneway=yes`.'''),
             resource = "https://wiki.openstreetmap.org/wiki/Tag:junction%3Dcircular")
 
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
+        country = "country" in self.config.options and self.config.options["country"]
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText],
+            "fix": (
+                [{"+": {"junction":"circular"}}, {"+": {"junction":"roundabout"}}] if country and country.starstwith("JP") else
+                {"+": {"junction":"roundabout"}})
+        }
 
     def analyser_osmosis_full(self):
         self.run(sql10.format(self.config.options.get("proj"), "", ""), self.callback10)

@@ -61,7 +61,9 @@ class TagFix_MultipleTag_Lang_fr(Plugin):
                     err.append({"class": 3032, "subclass": 2, "text": T_(u"A war memorial is not a historic=monument"),
                                 "fix": {"historic": "memorial"} })
 
-        if (not "highway" in tags and not "public_transport" in tags) and (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and not ("amenity" in tags and tags["amenity"] == "community_centre"):
+        if ((not "highway" in tags and not "public_transport" in tags and "leisure" not in tags and ("type" not in tags or tags["type"] != "associatedStreet")) and
+            (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and
+            not ("amenity" in tags and tags["amenity"] == "community_centre")):
             err.append({"class": 3032, "subclass": 3, "text": T_(u"Put a tag for a village hall or a community center"),
                         "fix": {"+": {"amenity": "community_centre"}} })
 
@@ -105,5 +107,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "name": u"Maison de quartier"},
                   {"amenity": "community_centre", "name": u"Salle des fêtes"},
                   {"amenity": "community_centre", "name": u"Maison de quartier"},
+                  {"type": "associatedStreet", "name": "Rue de la Salle des Fêtes"},
+                  {"leisure": "park", "name": "Rue de la Salle des Fêtes"},
                  ]:
             assert not a.way(None, t, None), t

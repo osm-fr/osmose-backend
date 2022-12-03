@@ -224,27 +224,27 @@ class Josm_transport(PluginMapCSS):
         err = []
         set_pt_route = set_pt_route_master = False
 
-        # relation[type=route][!route]
+        # relation[type=route][!route][!disused:route]
         if ('type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'route')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'route')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'disused:route')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing transportation mode, add a tag route = bus/coach/tram/etc")
-                err.append({'class': 9014009, 'subclass': 828849115, 'text': mapcss.tr('Missing transportation mode, add a tag route = bus/coach/tram/etc')})
+                err.append({'class': 9014009, 'subclass': 1678105256, 'text': mapcss.tr('Missing transportation mode, add a tag route = bus/coach/tram/etc')})
 
-        # relation[type=route_master][!route_master][!route]
+        # relation[type=route_master][!route_master][!route][!disused:route_master]
         if ('type' in keys):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route_master')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'route_master')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'route')))
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'type') == mapcss._value_capture(capture_tags, 0, 'route_master')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'route_master')) and (not mapcss._tag_capture(capture_tags, 2, tags, 'route')) and (not mapcss._tag_capture(capture_tags, 3, tags, 'disused:route_master')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing transportation mode, add a tag route = bus/coach/tram/etc")
-                err.append({'class': 9014009, 'subclass': 607011337, 'text': mapcss.tr('Missing transportation mode, add a tag route = bus/coach/tram/etc')})
+                err.append({'class': 9014009, 'subclass': 1165025485, 'text': mapcss.tr('Missing transportation mode, add a tag route = bus/coach/tram/etc')})
 
         # relation[type=route_master][!route_master][route]
         if ('route' in keys and 'type' in keys):
