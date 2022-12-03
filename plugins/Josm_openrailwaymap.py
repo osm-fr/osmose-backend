@@ -38,7 +38,6 @@ class Josm_openrailwaymap(PluginMapCSS):
         self.errors[9015024] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'lanes=* is used for highways, not railways'})
         self.errors[9015025] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'maxspeed=signals is deprecated, tag the highest possible speed instead'})
         self.errors[9015026] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'maxspeed should contain the value as it is shown on the line with mph as unit'})
-        self.errors[9015027] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = mapcss.tr('{0}={1} without {2}:railway', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{0.value}')))
         self.errors[9015028] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'Milestone without position, add railway:position=*'})
         self.errors[9015029] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'supervised=* is deprecated'})
         self.errors[9015030] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'signal specification given but node is not tagged as signal or equivalent type'})
@@ -1505,41 +1504,7 @@ class Josm_openrailwaymap(PluginMapCSS):
         # way|z9-[railway=razed][!"razed:railway"]
         # way|z9-[railway=proposed][!"proposed:railway"]
         # way|z9-[railway=construction][!"construction:railway"]
-        if ('railway' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'disused')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'disused:railway')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'abandoned')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'abandoned:railway')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'razed')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'razed:railway')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'proposed')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'proposed:railway')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'construction')) and (not mapcss._tag_capture(capture_tags, 1, tags, 'construction:railway')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # throwWarning:tr("{0}={1} without {2}:railway","{0.key}","{0.value}","{0.value}")
-                # assertNoMatch:"way railway=abandoned abandoned:railway=rail"
-                # assertMatch:"way railway=abandoned"
-                # assertNoMatch:"way railway=construction construction:railway=rail"
-                # assertMatch:"way railway=construction"
-                # assertNoMatch:"way railway=disused disused:railway=rail"
-                # assertMatch:"way railway=disused"
-                # assertNoMatch:"way railway=proposed proposed:railway=rail"
-                # assertMatch:"way railway=proposed"
-                # assertNoMatch:"way railway=razed razed:railway=rail"
-                # assertMatch:"way railway=razed"
-                err.append({'class': 9015027, 'subclass': 160705788, 'text': mapcss.tr('{0}={1} without {2}:railway', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{0.value}'), mapcss._tag_uncapture(capture_tags, '{0.value}'))})
+        # Rule Blacklisted
 
         return err
 
@@ -1822,16 +1787,6 @@ class Test(TestPluginMapcss):
         self.check_not_err(n.way(data, {'mph:maxspeed': '50 mph', 'railway': 'rail'}, [0]), expected={'class': 9015026, 'subclass': 2074447149})
         self.check_not_err(n.way(data, {'mph:maxspeed': '50', 'railway': 'rail'}, [0]), expected={'class': 9015026, 'subclass': 2074447149})
         self.check_not_err(n.way(data, {'maxspeed': '161', 'mph:maxspeed': '100', 'railway': 'rail'}, [0]), expected={'class': 9015026, 'subclass': 2074447149})
-        self.check_not_err(n.way(data, {'abandoned:railway': 'rail', 'railway': 'abandoned'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_err(n.way(data, {'railway': 'abandoned'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_not_err(n.way(data, {'construction:railway': 'rail', 'railway': 'construction'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_err(n.way(data, {'railway': 'construction'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_not_err(n.way(data, {'disused:railway': 'rail', 'railway': 'disused'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_err(n.way(data, {'railway': 'disused'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_not_err(n.way(data, {'proposed:railway': 'rail', 'railway': 'proposed'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_err(n.way(data, {'railway': 'proposed'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_not_err(n.way(data, {'railway': 'razed', 'razed:railway': 'rail'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
-        self.check_err(n.way(data, {'railway': 'razed'}, [0]), expected={'class': 9015027, 'subclass': 160705788})
         self.check_err(n.relation(data, {'railway': 'controlled_area'}, []), expected={'class': 9015041, 'subclass': 53808548})
         self.check_not_err(n.relation(data, {'railway': 'interlocking'}, []), expected={'class': 9015041, 'subclass': 53808548})
         self.check_not_err(n.relation(data, {'railway': 'interlocking', 'type': 'railway'}, []), expected={'class': 9015042, 'subclass': 1490437342})
