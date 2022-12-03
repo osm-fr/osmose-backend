@@ -450,7 +450,8 @@ def main(options):
     sys.path.insert(0, analysers_path)
 
     logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
-    options.analyser = list(map(lambda analyser: analyser[len("analyser_"):] if analyser.startswith("analyser_") else analyser, options.analyser))
+    if options.analyser:
+        options.analyser = list(map(lambda analyser: analyser[len("analyser_"):] if analyser.startswith("analyser_") else analyser, options.analyser))
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
