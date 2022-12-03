@@ -364,7 +364,7 @@ item_map = \
                               '{0}={1} without {2}:railway': 9015027},
                     'item': 9015,
                     'prefix': 'Josm_',
-                    'subclass_blacklist': [9015003, 9015006, 160705788],
+                    'subclass_blacklist': [160705788],
                     'tags': ['tag', 'railway'],
                     'url': 'https://www.openrailwaymap.org/validator/openrailwaymap.validator.mapcss'},
  'relation': {'class': {'missing tag': 9007001,
