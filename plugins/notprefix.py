@@ -13,7 +13,7 @@ class notprefix(PluginMapCSS):
     def init(self, logger):
         super().init(logger)
         tags = capture_tags = {} # noqa
-        self.errors[40302] = self.def_class(item = 4030, level = 2, tags = [], title = mapcss.tr('{0} together with {1} and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
+        self.errors[40302] = self.def_class(item = 4030, level = 2, tags = [], title = mapcss.tr('`{0}` together with `{1}` and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}')))
 
 
 
@@ -67,8 +67,8 @@ class notprefix(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4030/40302/2"
-                # throwWarning:tr("{0} together with {1} and equal values","{0.key}","{1.key}")
-                err.append({'class': 40302, 'subclass': 0, 'text': mapcss.tr('{0} together with {1} and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                # throwWarning:tr("`{0}` together with `{1}` and equal values","{0.key}","{1.key}")
+                err.append({'class': 40302, 'subclass': 0, 'text': mapcss.tr('`{0}` together with `{1}` and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
@@ -122,10 +122,10 @@ class notprefix(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4030/40302/2"
-                # throwWarning:tr("{0} together with {1} and equal values","{0.key}","{1.key}")
+                # throwWarning:tr("`{0}` together with `{1}` and equal values","{0.key}","{1.key}")
                 # assertMatch:"way name=Osmoseroad not:name=Osmoseroad"
                 # assertNoMatch:"way name=Osmosestreet not:name=Osmoseroad"
-                err.append({'class': 40302, 'subclass': 0, 'text': mapcss.tr('{0} together with {1} and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                err.append({'class': 40302, 'subclass': 0, 'text': mapcss.tr('`{0}` together with `{1}` and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
@@ -179,8 +179,8 @@ class notprefix(PluginMapCSS):
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"4030/40302/2"
-                # throwWarning:tr("{0} together with {1} and equal values","{0.key}","{1.key}")
-                err.append({'class': 40302, 'subclass': 0, 'text': mapcss.tr('{0} together with {1} and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
+                # throwWarning:tr("`{0}` together with `{1}` and equal values","{0.key}","{1.key}")
+                err.append({'class': 40302, 'subclass': 0, 'text': mapcss.tr('`{0}` together with `{1}` and equal values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         return err
 
