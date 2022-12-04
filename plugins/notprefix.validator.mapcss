@@ -33,7 +33,7 @@ meta {
 *[not:network:wikidata][network:wikidata]["not:network:wikidata"=*"network:wikidata"],
 *[not:operator:wikidata][operator:wikidata]["not:operator:wikidata"=*"operator:wikidata"],
 *[not:highway][highway]["not:highway"=*"highway"] {
-	throwWarning: tr("{0} together with {1} and equal values", "{0.key}", "{1.key}");
+	throwWarning: tr("`{0}` together with `{1}` and equal values", "{0.key}", "{1.key}");
 	-osmoseItemClassLevel: "4030/40302/2";
 	assertMatch: "way name=Osmoseroad not:name=Osmoseroad";
 	assertNoMatch: "way name=Osmosestreet not:name=Osmoseroad";
