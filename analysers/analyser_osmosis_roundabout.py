@@ -119,7 +119,7 @@ If the node with `highway=traffic_signals`, `give_way` or `stop` is actually for
         country = "country" in self.config.options and self.config.options["country"]
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText],
             "fix": (
-                [{"+": {"junction":"circular"}}, {"+": {"junction":"roundabout"}}] if country and country.starstwith("JP") else
+                [{"+": {"junction":"circular"}}, {"+": {"junction":"roundabout"}}] if country and country.startswith("JP") else
                 {"+": {"junction":"roundabout"}})
         }
 
