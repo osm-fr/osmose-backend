@@ -1079,7 +1079,21 @@ default_country("africa", "mali", 192785,     {"country": "ML", "language": "fr"
 default_country("africa", "mauritania", 192763, {"country": "MR", "language": "ar", "proj": 32628}, download_repo=OSMFR)
 default_country("africa", "mauritius", 535828, {"country": "MU", "language": ["en", "fr"], "driving_side": "left", "proj": 32740}, download_repo=OSMFR)
 default_country("africa", "morocco", 3630439,  {"country": "MA", "language": ["ar", "fr", "zgh", "ber"], "proj": 32629, "multilingual_style": "ma"})
-default_country("africa", "mozambique", 195273, {"country": "MZ", "language": "pt", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
+
+mozambique_province = gen_country('africa', 'mozambique', proj=32736, country_code='MZ', language='pt', driving_side="left", download_repo=OSMFR)
+
+mozambique_province("cabo_delgado", 2908364)
+mozambique_province("gaza", 2908438)
+mozambique_province("inhambane", 2908439)
+mozambique_province("manica", 2908440)
+mozambique_province("maputo_city", 3348644)
+mozambique_province("maputo", 2908441)
+mozambique_province("nampula", 2908365)
+mozambique_province("niassa", 2908366)
+mozambique_province("sofala", 2908442)
+mozambique_province("tete", 2908443)
+mozambique_province("zambezia", 2997943)
+
 default_country("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
 default_country("africa", "nigeria", 192787,  {"country": "NG", "language": "en", "proj": 32633})
