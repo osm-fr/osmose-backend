@@ -98,6 +98,7 @@ FROM (
     WHERE
       NOT highways.is_construction AND
       highway != 'motorway' AND -- Ignore motorway even with oneway tag
+      highway != 'raceway' AND -- Usually not part of the regular road network
       (
         is_oneway OR
         is_roundabout
@@ -141,6 +142,7 @@ WHERE
     ways.tags?'highway' AND
     (
         ways.tags->'highway' = 'motorway' OR -- Force motorway as input nodes
+        ways.tags->'highway' = 'raceway' OR -- Commonly isolated chunks
         (
           (NOT ways.tags?'oneway' OR ways.tags->'oneway' NOT IN ('yes', 'true', '1', '-1')) AND
           (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
@@ -290,3 +292,40 @@ Ensure that `service=drive-through` is the correct tag.''')),
 
     def analyser_osmosis_diff(self):
         self.run(sql20.format('touched_'), self.callback20)
+
+
+###########################################################################
+
+from .Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        from modules import config
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_highway_deadend.osm",
+                                         config.dir_tmp + "/tests/osmosis_highway_deadend.test.xml",
+                                         {"proj": 2154}) # Random proj to satisfy highway table generation
+
+    def test_classes(self):
+        with Analyser_Osmosis_Highway_DeadEnd(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="2", elems=[("node", "59"), ("way", "1026")])
+        self.check_err(cl="2", elems=[("node", "55"), ("way", "1024")])
+
+        self.check_err(cl="3", elems=[("node", "2"), ("way", "1000")]) # May become node = 1
+        self.check_err(cl="3", elems=[("node", "5"), ("way", "1001")]) # May become node = 3
+        self.check_err(cl="3", elems=[("node", "3"), ("way", "1002")]) # May become node = 4
+        self.check_err(cl="3", elems=[("node", "9"), ("way", "1003")])
+        self.check_err(cl="3", elems=[("node", "14"), ("way", "1005")])
+        self.check_err(cl="3", elems=[("node", "65"), ("way", "1028")])
+        self.check_err(cl="3", elems=[("node", "15"), ("way", "1006")])
+        self.check_err(cl="3", elems=[("node", "15"), ("way", "1007")])
+        self.check_err(cl="3", elems=[("node", "21"), ("way", "1009")]) # May become node = 23
+        self.check_err(cl="3", elems=[("node", "23"), ("way", "1034")]) # May become node = 21
+
+        self.check_err(cl="5", elems=[("node", "73"), ("way", "1031")])
+
+        self.check_num_err(13)
