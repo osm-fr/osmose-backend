@@ -259,7 +259,7 @@
     <nd ref='62' />
     <nd ref='56' />
     <tag k='highway' v='motorway' />
-		<tag k='name' v='Class 3 good, class 2 bad' />
+    <tag k='name' v='Class 3 good, class 2 bad' />
   </way>
   <way id='1025' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='57' />
@@ -273,7 +273,7 @@
     <nd ref='61' />
     <nd ref='60' />
     <tag k='highway' v='primary' />
-		<tag k='name' v='Class 3 good, class 2 bad' />
+    <tag k='name' v='Class 3 good, class 2 bad' />
   </way>
   <way id='1027' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='61' />
@@ -330,14 +330,14 @@
     <tag k='name' v='Class 5 good' />
     <tag k='service' v='drive-through' />
   </way>
-	<way id='1034' timestamp='2014-03-31T22:00:00Z' version='1'>
+  <way id='1034' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='21' />
     <nd ref='22' />
     <nd ref='23' />
     <tag k='highway' v='residential' />
     <tag k='junction' v='roundabout' />
   </way>
-	<way id='1035' timestamp='2014-03-31T22:00:00Z' version='1'>
+  <way id='1035' timestamp='2014-03-31T22:00:00Z' version='1'>
     <nd ref='56' />
     <nd ref='60' />
     <tag k='highway' v='tertiary' />
