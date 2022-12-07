@@ -93,7 +93,7 @@ class Josm_openrailwaymap(PluginMapCSS):
 
         # node[railway=level_crossing][supervised]
         # node[railway=crossing][supervised]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 321695123)
 
         # node[/^railway:signal:/][railway!=signal][railway!=buffer_stop][railway!=derail]
         if True:
@@ -1482,7 +1482,7 @@ class Josm_openrailwaymap(PluginMapCSS):
         # way|z9-[railway=razed][!"razed:railway"]
         # way|z9-[railway=proposed][!"proposed:railway"]
         # way|z9-[railway=construction][!"construction:railway"]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 160705788)
 
         return err
 
