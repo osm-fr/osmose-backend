@@ -262,7 +262,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1104230922, 'text': mapcss.tr('local com nome supérfluo, incompleto ou descritivo')})
 
         # *[amenity=parking][name=~/(?i)^Estacionamento /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1322492249)
 
         # *[designation=*"addr:housename"][inside("BR")]
         # *[ref=*designation][inside("BR")]
@@ -472,7 +472,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[place=city][!population][inside("BR")]
         # *[place=town][!population][inside("BR")]
         # *[place=village][!population][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 339470124)
 
         # *[place=city][!name][inside("BR")]
         # *[place=town][!name][inside("BR")]
@@ -658,7 +658,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[name=~/^(?i)Catedral .*/][building][building!=cathedral][inside("BR")]
         # *[name=~/^(?i)Fazenda .*/][building][building!=farm][inside("BR")]
         # *[name=~/^(?i)Supermercado .*/][building][building!=supermarket][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1123790420)
 
         # *[name=~/^(?i)(?u)(AM(A|E)|(Posto|Unidade (Básica)?) de Sa(u|ú)de|UBS|PSF).*/][amenity=hospital][inside("BR")]
         if ('amenity' in keys and 'name' in keys):
@@ -758,13 +758,13 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # *[name=~/^(?U)(\p{Upper}| )+$/][inside("BR")]
         # *["addr:street"=~/^(?U)(\p{Upper}| )+$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 951501764)
 
         # *["addr:postcode"=~/^[0-9]{8}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1948798798)
 
         # *[postal_code=~/^[0-9]{8}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 733725137)
 
         # *["addr:postcode"=~/^[0-9]{5}( |\.)[0-9]{3}$/][inside("BR")]
         if ('addr:postcode' in keys):
@@ -800,7 +800,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # *["addr:postcode"]["addr:postcode"!~/^[0-9]{5}-[0-9]{3}$/][inside("BR")]
         # *[postal_code][postal_code!~/^[0-9]{5}-[0-9]{3}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2074305530)
 
         # *[alt_source][source][inside("BR")]
         if ('alt_source' in keys and 'source' in keys):
@@ -970,7 +970,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1633437696, 'text': mapcss.tr('\'\'{0}\'\' não faz sentido em aeroporto', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # node[surface][!traffic_calming][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 282605167)
 
         # *[waterway][layer<0][!tunnel][inside("BR")]
         if ('layer' in keys and 'waterway' in keys):
@@ -997,7 +997,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1870051659, 'text': mapcss.tr('{0} positivo de {1} com ausência de {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # *[layer][!building][!highway][man_made!=pipeline][!railway][!waterway][power!=line][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 39095837)
 
         # *[name=~/^(?i)(?u)edifício.*/][!building][inside("BR")]
         if ('name' in keys):
@@ -1050,16 +1050,16 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018030, 'subclass': 1431112366, 'text': mapcss.tr('utilizar prefixo em português (pt:) para {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[name=~/.*\(.*\).*/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2146320716)
 
         # *[name=~/ - /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1840875080)
 
         # *[name=~/, /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1508736498)
 
         # *[name=~/: /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 877403916)
 
         # *[name=~/ ou /][inside("BR")]
         if ('name' in keys):
@@ -1643,7 +1643,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
 
         # way[name=*ref][highway][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 995006835)
 
         # way[highway][name=~/\b[A-Z]{2,4} (- )?[0-9]{2,3}\b/][inside("BR")]
         if ('highway' in keys and 'name' in keys):
@@ -1818,7 +1818,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1104230922, 'text': mapcss.tr('local com nome supérfluo, incompleto ou descritivo')})
 
         # *[amenity=parking][name=~/(?i)^Estacionamento /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1322492249)
 
         # way[highway][type=route][inside("BR")]
         if ('highway' in keys and 'type' in keys):
@@ -1832,7 +1832,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018053, 'subclass': 1158257088, 'text': mapcss.tr('{0} não deve possuir {1}', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # way[highway][highway!~/bus_stop|milestone|motorway_junction|traffic_signals/][ref][ref!~/^(([A-Z]{2,3}-[0-9]{2,4}|SPM(-| )[0-9]{3} ?(D|E)?|SP(A|D|I)(-| )[0-9]{3}\/[0-9]{3}|[A-Z]{3}-[0-9]{3}\/[0-9]{3});?)+$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 481849808)
 
         # way[highway][!ref][name=~/.*([A-Z]{2,3}-[0-9]{2,4}|SPM(-| )[0-9]{3} ?(D|E)?|SP(A|D|I)(-| )[0-9]{3}\/[0-9]{3}|[A-Z]{3}-[0-9]{3}\/[0-9]{3}).*/][inside("BR")]
         if ('highway' in keys and 'name' in keys):
@@ -1873,7 +1873,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[name=*reg_name][inside("BR")]
         # *[name=*short_name][inside("BR")]
         # *[name=*sorting_name][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1279481357)
 
         # *[source=*name][inside("BR")]
         if ('source' in keys):
@@ -1913,10 +1913,10 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018009, 'subclass': 1818234763, 'text': mapcss.tr('{0} é uma chave utilizada apenas no Reino Unido', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[highway=~/^(trunk|motorway)$/][!operator][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1594044971)
 
         # way[highway$=_link][name=~/(Alameda|Avenida|Rua|Travessa|Viela) .*/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 200264401)
 
         # way[highway][name=~/(Alameda|Avenida|Rua|Travessa|Viela) .*/][ref][inside("BR")]
         if ('highway' in keys and 'name' in keys and 'ref' in keys):
@@ -1981,7 +1981,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[place=city][!population][inside("BR")]
         # *[place=town][!population][inside("BR")]
         # *[place=village][!population][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 339470124)
 
         # *[place=city][!name][inside("BR")]
         # *[place=town][!name][inside("BR")]
@@ -2134,7 +2134,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[name=~/^(?i)Catedral .*/][building][building!=cathedral][inside("BR")]
         # *[name=~/^(?i)Fazenda .*/][building][building!=farm][inside("BR")]
         # *[name=~/^(?i)Supermercado .*/][building][building!=supermarket][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1123790420)
 
         # *[name=~/^(?i)(?u)(AM(A|E)|(Posto|Unidade (Básica)?) de Sa(u|ú)de|UBS|PSF).*/][amenity=hospital][inside("BR")]
         if ('amenity' in keys and 'name' in keys):
@@ -2254,13 +2254,13 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # *[name=~/^(?U)(\p{Upper}| )+$/][inside("BR")]
         # *["addr:street"=~/^(?U)(\p{Upper}| )+$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 951501764)
 
         # *["addr:postcode"=~/^[0-9]{8}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1948798798)
 
         # *[postal_code=~/^[0-9]{8}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 733725137)
 
         # *["addr:postcode"=~/^[0-9]{5}( |\.)[0-9]{3}$/][inside("BR")]
         if ('addr:postcode' in keys):
@@ -2296,7 +2296,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # *["addr:postcode"]["addr:postcode"!~/^[0-9]{5}-[0-9]{3}$/][inside("BR")]
         # *[postal_code][postal_code!~/^[0-9]{5}-[0-9]{3}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2074305530)
 
         # way[highway]["addr:postcode"][highway!=services][inside("BR")]
         if ('addr:postcode' in keys and 'highway' in keys):
@@ -2469,18 +2469,18 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1633437696, 'text': mapcss.tr('\'\'{0}\'\' não faz sentido em aeroporto', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[waterway][tunnel=yes][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1154433213)
 
         # way[highway][layer<0][!tunnel][inside("BR")]
         # *[waterway][layer<0][!tunnel][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1415734409)
 
         # way[highway][layer>0][!bridge][highway!=bus_stop][inside("BR")]
         # *[waterway][layer>0][!bridge][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 58812649)
 
         # *[layer][!building][!highway][man_made!=pipeline][!railway][!waterway][power!=line][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 39095837)
 
         # way[highway=motorway_junction][inside("BR")]
         if ('highway' in keys):
@@ -2569,7 +2569,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018030, 'subclass': 1431112366, 'text': mapcss.tr('utilizar prefixo em português (pt:) para {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # way[highway][lanes=1][!oneway?][!junction][!narrow][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 226394604)
 
         # way[cycleway=lane]["cycleway:left"=lane][inside("BR")]
         # way[cycleway=lane]["cycleway:right"=lane][inside("BR")]
@@ -2589,16 +2589,16 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018063, 'subclass': 1071847858, 'text': mapcss.tr('uso incorreto de {0} com {1}', mapcss._tag_uncapture(capture_tags, '{0.tag}'), mapcss._tag_uncapture(capture_tags, '{1.tag}'))})
 
         # *[name=~/.*\(.*\).*/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2146320716)
 
         # *[name=~/ - /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1840875080)
 
         # *[name=~/, /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1508736498)
 
         # *[name=~/: /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 877403916)
 
         # *[name=~/ ou /][inside("BR")]
         if ('name' in keys):
@@ -2750,7 +2750,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018064, 'subclass': 1242889729, 'text': mapcss.tr('uso incorreto de {0}', mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # way[highway!=track][tracktype][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2012241162)
 
         # *[surface][eval(number_of_tags())=1][inside("BR")]
         if ('surface' in keys):
@@ -2793,7 +2793,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # way[bridge][!layer][inside("BR")]
         # way[tunnel][!layer][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1354724892)
 
         # *[leisure=pitch][sport=tennis][surface=unpaved][inside("BR")]
         if ('leisure' in keys and 'sport' in keys and 'surface' in keys):
@@ -3295,7 +3295,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1104230922, 'text': mapcss.tr('local com nome supérfluo, incompleto ou descritivo')})
 
         # *[amenity=parking][name=~/(?i)^Estacionamento /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1322492249)
 
         # relation[type=route][highway][inside("BR")]
         if ('highway' in keys and 'type' in keys):
@@ -3477,7 +3477,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[place=city][!population][inside("BR")]
         # *[place=town][!population][inside("BR")]
         # *[place=village][!population][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 339470124)
 
         # *[place=city][!name][inside("BR")]
         # *[place=town][!name][inside("BR")]
@@ -3630,7 +3630,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
         # *[name=~/^(?i)Catedral .*/][building][building!=cathedral][inside("BR")]
         # *[name=~/^(?i)Fazenda .*/][building][building!=farm][inside("BR")]
         # *[name=~/^(?i)Supermercado .*/][building][building!=supermarket][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1123790420)
 
         # *[name=~/^(?i)(?u)(AM(A|E)|(Posto|Unidade (Básica)?) de Sa(u|ú)de|UBS|PSF).*/][amenity=hospital][inside("BR")]
         if ('amenity' in keys and 'name' in keys):
@@ -3755,13 +3755,13 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # *[name=~/^(?U)(\p{Upper}| )+$/][inside("BR")]
         # *["addr:street"=~/^(?U)(\p{Upper}| )+$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 951501764)
 
         # *["addr:postcode"=~/^[0-9]{8}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1948798798)
 
         # *[postal_code=~/^[0-9]{8}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 733725137)
 
         # *["addr:postcode"=~/^[0-9]{5}( |\.)[0-9]{3}$/][inside("BR")]
         if ('addr:postcode' in keys):
@@ -3797,7 +3797,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
 
         # *["addr:postcode"]["addr:postcode"!~/^[0-9]{5}-[0-9]{3}$/][inside("BR")]
         # *[postal_code][postal_code!~/^[0-9]{5}-[0-9]{3}$/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2074305530)
 
         # *[alt_source][source][inside("BR")]
         if ('alt_source' in keys and 'source' in keys):
@@ -3975,7 +3975,7 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018002, 'subclass': 1870051659, 'text': mapcss.tr('{0} positivo de {1} com ausência de {2}', mapcss._tag_uncapture(capture_tags, '{1.key}'), mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{2.key}'))})
 
         # *[layer][!building][!highway][man_made!=pipeline][!railway][!waterway][power!=line][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 39095837)
 
         # *[name=~/^(?i)(?u)edifício.*/][!building][inside("BR")]
         if ('name' in keys):
@@ -4028,16 +4028,16 @@ class Josm_Rules_Brazilian_Specific(PluginMapCSS):
                 err.append({'class': 9018030, 'subclass': 1431112366, 'text': mapcss.tr('utilizar prefixo em português (pt:) para {0}', mapcss._tag_uncapture(capture_tags, '{0.key}'))})
 
         # *[name=~/.*\(.*\).*/][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 2146320716)
 
         # *[name=~/ - /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1840875080)
 
         # *[name=~/, /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 1508736498)
 
         # *[name=~/: /][inside("BR")]
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 877403916)
 
         # *[name=~/ ou /][inside("BR")]
         if ('name' in keys):
