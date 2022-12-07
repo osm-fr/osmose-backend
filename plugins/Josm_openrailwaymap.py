@@ -39,7 +39,6 @@ class Josm_openrailwaymap(PluginMapCSS):
         self.errors[9015025] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'maxspeed=signals is deprecated, tag the highest possible speed instead'})
         self.errors[9015026] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'maxspeed should contain the value as it is shown on the line with mph as unit'})
         self.errors[9015028] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'Milestone without position, add railway:position=*'})
-        self.errors[9015029] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'supervised=* is deprecated'})
         self.errors[9015030] = self.def_class(item = 9015, level = 3, tags = ["tag", "railway"], title = {'en': 'signal specification given but node is not tagged as signal or equivalent type'})
         self.errors[9015031] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'A sign cannot have different states.'})
         self.errors[9015032] = self.def_class(item = 9015, level = 2, tags = ["tag", "railway"], title = {'en': 'railway=flat_crossing is deprecated'})
@@ -94,28 +93,7 @@ class Josm_openrailwaymap(PluginMapCSS):
 
         # node[railway=level_crossing][supervised]
         # node[railway=crossing][supervised]
-        if ('railway' in keys and 'supervised' in keys):
-            match = False
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'level_crossing')) and (mapcss._tag_capture(capture_tags, 1, tags, 'supervised')))
-                except mapcss.RuleAbort: pass
-            if not match:
-                capture_tags = {}
-                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'railway') == mapcss._value_capture(capture_tags, 0, 'crossing')) and (mapcss._tag_capture(capture_tags, 1, tags, 'supervised')))
-                except mapcss.RuleAbort: pass
-            if match:
-                # suggestAlternative:"crossing:supervision"
-                # throwWarning:"supervised=* is deprecated"
-                # fixChangeKey:"supervised=>crossing:supervision"
-                # assertMatch:"node railway=level_crossing supervised=yes"
-                # assertNoMatch:"node railway=level_crossing"
-                err.append({'class': 9015029, 'subclass': 321695123, 'text': {'en': 'supervised=* is deprecated'}, 'allow_fix_override': True, 'fix': {
-                    '+': dict([
-                    ['crossing:supervision', mapcss.tag(tags, 'supervised')]]),
-                    '-': ([
-                    'supervised'])
-                }})
+        # Rule Blacklisted
 
         # node[/^railway:signal:/][railway!=signal][railway!=buffer_stop][railway!=derail]
         if True:
@@ -1582,8 +1560,6 @@ class Test(TestPluginMapcss):
 
         self.check_not_err(n.node(data, {'railway': 'milestone', 'railway:position': '42.0'}), expected={'class': 9015028, 'subclass': 1237934683})
         self.check_err(n.node(data, {'railway': 'milestone'}), expected={'class': 9015028, 'subclass': 1237934683})
-        self.check_err(n.node(data, {'railway': 'level_crossing', 'supervised': 'yes'}), expected={'class': 9015029, 'subclass': 321695123})
-        self.check_not_err(n.node(data, {'railway': 'level_crossing'}), expected={'class': 9015029, 'subclass': 321695123})
         self.check_err(n.node(data, {'railway:signal:direction': 'forward'}), expected={'class': 9015030, 'subclass': 908641862})
         self.check_err(n.node(data, {'railway': 'level_crossing', 'railway:signal:position': 'right'}), expected={'class': 9015030, 'subclass': 908641862})
         self.check_not_err(n.node(data, {'railway': 'signal', 'railway:signal:position': 'right'}), expected={'class': 9015030, 'subclass': 908641862})
