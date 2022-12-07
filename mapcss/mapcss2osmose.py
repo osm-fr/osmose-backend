@@ -560,7 +560,7 @@ def to_p(t):
         selectors_text = "# " + "\n# ".join(map(lambda s: s['text'], t['selectors']))
         subclass_id = stablehash(selectors_text)
         if subclass_id in subclass_blacklist:
-            return selectors_text + "\n# Rule Blacklisted\n"
+            return selectors_text + "\n# Rule Blacklisted (id: {0})\n".format(subclass_id)
         elif t.get('_flag'):
             return selectors_text + "\n# Part of rule not implemented\n"
         elif not is_meta_rule:
