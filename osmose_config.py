@@ -960,7 +960,7 @@ us_state("new-hampshire", 67213, "US-NH", proj=3613)
 us_state("new-jersey", 224951, "US-NJ", proj=3615)
 us_state("new-mexico", 162014, "US-NM", proj=3617)
 
-us_ny_region = gen_country('north-america/us-northeast/new-york', country_base='usa_new_york', download_repo=OSMFR, language='en', proj=3623)
+us_ny_region = gen_country('north-america/us-northeast/new-york', country_base='usa_new_york', country_code='US_NY', download_repo=OSMFR, language='en', proj=3623)
 
 us_ny_region("capital_district", (1428041,87979,1428790,1428121,1428091,1427734,1427757,1838018))
 us_ny_region("central_new_york", (1835284,1835253,1838019,3379365,1838016))
