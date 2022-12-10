@@ -1,4 +1,4 @@
-name: Poly
+name: Boundary
 
 on:
   schedule:
@@ -22,6 +22,6 @@ jobs:
       run: |
         pip install requests
 
-    - name: Check polygons
+    - name: Compare polygons and relations
       run: |
-        python -m tools.test-polygons
+        python -m tools.check-boundary-polygon
