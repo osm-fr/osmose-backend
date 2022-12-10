@@ -3,6 +3,7 @@ name: Boundary
 on:
   schedule:
   - cron: '0 4 * * 6'
+  workflow_dispatch:
 
 jobs:
   poly:
