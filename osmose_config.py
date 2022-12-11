@@ -642,8 +642,7 @@ default_country("europe", "united_kingdom_northern_ireland", 156393, {"country":
 default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
 default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "speed_limit_unit": "mph", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
-iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
-iceland.download["url"] = ""
+iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}, download_repo=GEOFABRIK) # 299133
 
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632, "phone_code": '45', "phone_len": 8, "phone_international": '00'}, download_repo=GEOFABRIK)
 
@@ -960,7 +959,20 @@ us_state("nevada", 165473, "US-NV", proj=3607)
 us_state("new-hampshire", 67213, "US-NH", proj=3613)
 us_state("new-jersey", 224951, "US-NJ", proj=3615)
 us_state("new-mexico", 162014, "US-NM", proj=3617)
-us_state("new-york", 61320, "US-NY", proj=3623)
+
+us_ny_region = gen_country('north-america/us-northeast/new-york', country_base='usa_new_york', country_code='US_NY', download_repo=OSMFR, language='en', proj=3623)
+
+us_ny_region("capital_district", (1428041,87979,1428790,1428121,1428091,1427734,1427757,1838018))
+us_ny_region("central_new_york", (1835284,1835253,1838019,3379365,1838016))
+us_ny_region("finger_lakes", (1837995,1838139,1837998,1837993,1804311,1837992))
+us_ny_region("hudson_valley", (1838023,1838026,1427979,1838022,1835362,1835363,1838027))
+us_ny_region("long_island", (404243,2552442))
+us_ny_region("mohawk_valley", (1835282,1838102,1835283,1838104,1838021,1838138))
+us_ny_region("new_york_city", (2552450,369518,369519,2552485,962876))
+us_ny_region("north_country", (87741,87689,87783,87742,87775,2552234,1835268))
+us_ny_region("southern_tier", (1838015,1838025,1837994,1837996,1837991,1838024,1838014,1838017))
+us_ny_region("western_new_york", (68855,36267,78970,1837997,36074,1837989,1838089,78971))
+
 us_state("north-carolina", 224045, "US-NC", proj=3631)
 us_state("north-dakota", 161653, "US-ND", proj=3633)
 us_state("ohio", 162061, "US-OH", proj=26917)
@@ -1079,7 +1091,21 @@ default_country("africa", "mali", 192785,     {"country": "ML", "language": "fr"
 default_country("africa", "mauritania", 192763, {"country": "MR", "language": "ar", "proj": 32628}, download_repo=OSMFR)
 default_country("africa", "mauritius", 535828, {"country": "MU", "language": ["en", "fr"], "driving_side": "left", "proj": 32740}, download_repo=OSMFR)
 default_country("africa", "morocco", 3630439,  {"country": "MA", "language": ["ar", "fr", "zgh", "ber"], "proj": 32629, "multilingual_style": "ma"})
-default_country("africa", "mozambique", 195273, {"country": "MZ", "language": "pt", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
+
+mozambique_province = gen_country('africa', 'mozambique', proj=32736, country_code='MZ', language='pt', driving_side="left", download_repo=OSMFR)
+
+mozambique_province("cabo_delgado", 2908364)
+mozambique_province("gaza", 2908438)
+mozambique_province("inhambane", 2908439)
+mozambique_province("manica", 2908440)
+mozambique_province("maputo_city", 3348644)
+mozambique_province("maputo", 2908441)
+mozambique_province("nampula", 2908365)
+mozambique_province("niassa", 2908366)
+mozambique_province("sofala", 2908442)
+mozambique_province("tete", 2908443)
+mozambique_province("zambezia", 2997943)
+
 default_country("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
 default_country("africa", "nigeria", 192787,  {"country": "NG", "language": "en", "proj": 32633})

@@ -170,8 +170,16 @@ if __name__ == "__main__":
 
       print("  downloading %d" % i)
       try:
-        u = buildbot_api + "builds/%d/steps/2/logs/stdio/contents" % i
-        log: Dict[str, List[Dict[str, str]]] = json.loads(requests.get(u).text)
+        for step in (3, 2):
+          u = buildbot_api + "builds/%d/steps/%d/logs/stdio/contents" % (i, step)
+          r = requests.get(u)
+          if r.status_code == 200 and "./osmose_run.py" in r.text:
+            break
+        else:
+          raise Exception("Could not find log for %d" % i)
+
+        log: Dict[str, List[Dict[str, str]]] = json.loads(r.text)
+
         with open(log_name, 'w') as f:
           for cc in log["logchunks"]:
             for line in cc["content"].split("\n"):

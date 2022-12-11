@@ -1504,10 +1504,10 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1064658218, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[building:color][building:colour]!.samebuildingcolor
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 740601387)
 
         # *[roof:color][roof:colour]!.sameroofcolor
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 512779280)
 
         # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
@@ -6870,10 +6870,10 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1064658218, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[building:color][building:colour]!.samebuildingcolor
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 740601387)
 
         # *[roof:color][roof:colour]!.sameroofcolor
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 512779280)
 
         # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
@@ -12013,10 +12013,10 @@ class Josm_deprecated(PluginMapCSS):
                 err.append({'class': 9002001, 'subclass': 1064658218, 'text': mapcss.tr('{0} together with {1} and conflicting values', mapcss._tag_uncapture(capture_tags, '{0.key}'), mapcss._tag_uncapture(capture_tags, '{1.key}'))})
 
         # *[building:color][building:colour]!.samebuildingcolor
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 740601387)
 
         # *[roof:color][roof:colour]!.sameroofcolor
-        # Rule Blacklisted
+        # Rule Blacklisted (id: 512779280)
 
         # *[/:color/][!building:color][!roof:color][!gpxd:color]
         if True:
