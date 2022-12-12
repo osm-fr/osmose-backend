@@ -14,6 +14,12 @@ jobs:
 
     - uses: actions/checkout@v2
 
+    - name: Setup env
+      run: |
+        # configure paths used for tmp files
+        sudo mkdir -p /data/work/$USER /data/work/$USER/cache
+        sudo chown $USER /data/work/$USER /data/work/$USER/cache
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -21,7 +27,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests
+        pip install requests shapely
 
     - name: Compare polygons and relations
       run: |
