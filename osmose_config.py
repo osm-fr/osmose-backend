@@ -542,6 +542,7 @@ france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=
     phone_code="687", phone_len=6, phone_format=r"^[+]%s([- ./]*[0-9]){5}[0-9]$", phone_international='00')
 
 default_country("merge", "france_taaf", 2186658, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
+default_country("oceania", "clipperton", 2573009, download_repo=OSMFR, analyser_options={"country": "CP", "language": "fr", "proj": 32612})
 
 ###########################################################################
 
@@ -1082,6 +1083,8 @@ default_country("africa", "guinea", 192778,   {"country": "GN", "language": "fr"
 default_country("africa", "guinea-bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628})
 default_country("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "kenya", 192798,    {"country": "KE", "language": "en", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
+default_country("africa", "ilemi", 192797,    {"country": "KE", "language": "en", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)  # Disputed area, defacto controled by Kenya
+
 default_country("africa", "lesotho", 2093234, {"country": "LS", "language": "en", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
 default_country("africa", "liberia", 192780,  {"country": "LR", "language": "en", "speed_limit_unit": "mph", "proj": 32629})
 default_country("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32633})
@@ -1131,6 +1134,7 @@ south_africa_province("western_cape", 80501)
 
 default_country("africa", "south_sudan", 1656678, {"country": "SS", "language": "en", "proj": 32635}, download_repo=OSMFR)
 default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", "en"], "proj": 32636}, download_repo=OSMFR)
+default_country("africa", "bir_tawil", 3335661, {"country": None, "language": ["ar"], "proj": 32636}, download_repo=OSMFR)
 default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 
 tanzania_zone = gen_country('africa', 'tanzania', proj=32736, country_code='TZ', language='en', driving_side="left", download_repo=OSMFR)
@@ -1183,6 +1187,7 @@ default_country("asia", "cambodia", 49898, {"country": "KHM", "language": "km", 
 default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "driving_side": "left", "proj": 32651}, download_repo=OSMFR)
 default_country("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
+default_country("asia", "israel_west_bank", 1803010, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country("asia", "iran", 304938, {"country": "IR", "language": "fa","proj": 32640}, download_repo=GEOFABRIK)
 default_country("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
@@ -1230,11 +1235,13 @@ id_province("banten", 2388356, "ID-BT")
 id_province("bengkulu", 2390837, "ID-BE")
 id_province("central_java", 2388357, "ID-JT")
 id_province("central_kalimantan", 2388613, "ID-KT")
+id_province("central_papua", 14309178, "ID")  # No specific area short code
 id_province("central_sulawesi", 2388664, "ID-ST")
 id_province("east_java", 3438227, "ID-JI")
 id_province("east_kalimantan", 5449459, "ID-KI")
 id_province("east_nusa_tenggara", 2396778, "ID-NT")
 id_province("gorontalo", 2388665, "ID-GO")
+id_province("highland_papua", 14309176, "ID")  # No specific area short code
 id_province("jakarta", 6362934, "ID-JK")
 id_province("jambi", 2390838, "ID-JA")
 id_province("lampung", 2390839, "ID-LA")
@@ -1248,8 +1255,10 @@ id_province("riau", 2390840, "ID-RI")
 id_province("riau_islands", 3797244, "ID-KR")
 id_province("southeast_sulawesi", 2388668, "ID-SG")
 id_province("south_kalimantan", 2388615, "ID-KS")
+id_province("south_papua", 14309177, "ID")
 id_province("south_sulawesi", 2388667, "ID-SN")
 id_province("south_sumatra", 2390842, "ID-SS")
+id_province("southwest_papua", 14905625, "ID")  # No specific area short code
 id_province("west_java", 2388361, "ID-JB")
 id_province("west_kalimantan", 2388616, "ID-KB")
 id_province("west_nusa_tenggara", 1615622, "ID-NB")
@@ -1354,6 +1363,8 @@ au_state("christmas_island", 2177207, "CX", proj=32648)
 au_state("cocos_islands", 82636, "CC", proj=32646)
 au_state("coral_sea_islands", 3225677, "AU", proj=32655)
 au_state("norfolk_island", 2574988, "NF", proj=32658)
+au_state("ashmore_and_cartier_islands", 2559345, "AU", proj=32750)
+au_state("heard_island_and_mcdonald_slands", 2177227, "HM", proj=32738)
 
 #########################################################################
 
@@ -1735,6 +1746,7 @@ india_state("jammu_and_kashmir", 1943188, "IN-JK", proj=32643)
 india_state("jharkhand", 1960191, "IN-JH", proj=32645)
 india_state("karnataka", 2019939, "IN-KA", proj=32643)
 india_state("kerala", 2018151, "IN-KL", proj=32643)
+india_state("ladakh", 5515045, "IN-LA", proj=32643)
 india_state("madhya_pradesh", 1950071, "IN-MP", proj=32643)
 india_state("maharashtra", 1950884, "IN-MH", proj=32643)
 india_state("manipur", 2027869, "IN-MN", proj=32646)
