@@ -1328,7 +1328,21 @@ default_country("merge", "kiribati", 571178, {"country": "KL", "language": "en",
 au_state = gen_country('oceania', 'australia', download_repo=OSMFR, language='en', driving_side='left')
 
 au_state("australian_capital_territory", 2354197, "AU-ACT", proj=32755)
-au_state("new_south_wales", 2316593, "AU-NSW", proj=32755)
+
+au_state("new_south_wales/greater_metropolitan_sydney", (7038238,6217858,2161967,6290069,6290704,6217271,2162244,6210859,6212438,6205809,6218957,6273237,1251053,6228261,6275980,6212442,6276645,6275976,2978550,6217262,6282698,6201664,6218884,6210847,6206752,1251066,6219220,6203556,6230051,6203650), "AU-NSW", proj=32755)
+au_state("new_south_wales/sydney_surrounds", (6299568,6195207,6222206,6287823), "AU-NSW", proj=32755)
+au_state("new_south_wales/mid_north_coast", (6165980,6143220,6165983,6178731,6165979,6180709,8425530), "AU-NSW", proj=32755)
+au_state("new_south_wales/murray", (3487773,5897433,6230406,6139012,6232188,3487850,6134295,5884892), "AU-NSW", proj=32755)
+au_state("new_south_wales/the_riverina", (6257747,6095007,6321566,6247073,6149251,6092948,6252194,6411154,6322050,6231900,6322034,6239423,6252224,6247060), "AU-NSW", proj=32755)
+au_state("new_south_wales/greater_metropolitan_newcastle", (6191219,6185449,6191221,6189782,6249291,6343182,6189831,6185732,6191883,6186848), "AU-NSW", proj=32755)
+au_state("new_south_wales/illawarra", (6311642,6304532,6311648,6304530,6303077), "AU-NSW", proj=32755)
+au_state("new_south_wales/richmond_tweed", (6168644,6170304,6163138,6168485,6143221,6170302), "AU-NSW", proj=32755)
+au_state("new_south_wales/south_east_region", (6239664,6239661,6310493,6256597,6137309,6239422,6257920,6247446), "AU-NSW", proj=32755)
+au_state("new_south_wales/northern", (6165969,6163165,6389934,6260771,6195194,6364998,6088821,6389900,6365595,6163155,6260188,6180603), "AU-NSW", proj=32755)
+au_state("new_south_wales/central_west", (6330866,6423630,6268804,6257796,6413174,6106054,6299566,6268502,6307911,6427044,6271674,6257772), "AU-NSW", proj=32755)
+au_state("new_south_wales/north_western", (6086047,5892186,6076330,6083910,7145506,6268489,6268488,6271676,6079201,6100934,6268496), "AU-NSW", proj=32755)
+au_state("new_south_wales/far_west", (5892296,5885448,7032873), "AU-NSW", proj=32755)
+
 au_state("northern_territory", 2316594, "AU-NT", proj=32753)
 au_state("western_australia", 2316598, "AU-WA", proj=32750)
 au_state("south_australia", 2316596, "AU-SA", proj=32753)
