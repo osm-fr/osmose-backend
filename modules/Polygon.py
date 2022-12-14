@@ -48,7 +48,7 @@ class Polygon:
         else: # Cross the 180°
             negative = []
             positive = []
-            for polygon in self.polygon:
+            for polygon in self.polygon.geoms:
                 sub_bbox = polygon.bounds
                 if sub_bbox[0] < 0:
                     negative.append(polygon)
