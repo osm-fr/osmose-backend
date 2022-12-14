@@ -535,7 +535,7 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
 
 france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
 france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
-france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
+france_com(["north-america", "saint_pierre_et_miquelon"], 3406826, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
 france_com(["oceania", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
 france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_format=None, phone_len=8, phone_len_short=6, phone_local_prefix=None, phone_international='00')
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
@@ -1208,7 +1208,7 @@ default_country("asia", "sri-lanka", 536807, {"country": "LK", "language": ["en"
 default_country("asia", "south_korea", 307756, {"country": "KR", "language": "ko", "proj": 32652}, download_country="south-korea")
 default_country("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
-default_country("asia", "taiwan", 3777248, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
+default_country("asia", "taiwan", 449220, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
 default_country("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
 default_country("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR, exclude=[
