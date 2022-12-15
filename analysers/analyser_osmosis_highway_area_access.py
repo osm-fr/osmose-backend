@@ -61,15 +61,13 @@ SELECT
   ways.tags AS waytags
 FROM
   nodes AS barrier
-  JOIN way_nodes ON
-    way_nodes.node_id = barrier.id
   JOIN highways AS ways ON
-    ways.id = way_nodes.way_id AND
+    barrier.id = ANY(ways.nodes) AND
     NOT ways.is_construction AND
     NOT ways.is_area
 WHERE
   barrier.tags != ''::hstore AND
-  barrier.tags?'barrier' AND
+  -- barrier.tags?'barrier' AND -- commented to avoid planner to try to use idx_nodes_tags, build bad plan with it. Very slow
   barrier.tags->'barrier' = '{barriertype}' AND
   -- Default of bollard is access=no / bicycle=foot=yes; default of bus_trap is motor_vehicle=no / psv=foot=bicycle=yes.
   -- Hence, the below three lines should cover all cases as long as we don't test for any non-motor_vehicle or vehicles under psv
