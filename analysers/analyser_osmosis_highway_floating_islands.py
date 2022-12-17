@@ -137,11 +137,11 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":4, "subclass":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
-        boundary_relation = self.config.polygon_id
+        boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
         if isinstance(boundary_relation, int):
-          boundary_relation = "('{0}')".format(boundary_relation)
-        else:
-          boundary_relation = str(set(map(str, boundary_relation)))
+          boundary_relation = "({0})".format(boundary_relation)
+        elif not boundary_relation:
+          boundary_relation = "(0)"
 
         self.run(sql10.format(boundary_ids=boundary_relation))
         self.run(sql11)
