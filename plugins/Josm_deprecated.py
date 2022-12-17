@@ -36,6 +36,7 @@ class Josm_deprecated(PluginMapCSS):
         self.re_01eb1711 = re.compile(r'^(yes|both|no)$')
         self.re_047d5648 = re.compile(r'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
         self.re_0c5b5730 = re.compile(r'color:')
+        self.re_0f294fdf = re.compile(r'^[1-9][0-9]*$')
         self.re_0fbae48f = re.compile(r'^https:\/\/westnordost.de\/p\/')
         self.re_1f92073a = re.compile(r'^(?i)fixme$')
         self.re_24dfeb95 = re.compile(r'^(tower|pole|insulator|portal|terminal)$')
@@ -2635,7 +2636,27 @@ class Josm_deprecated(PluginMapCSS):
         # Rule Blacklisted (id: 1957125311)
 
         # *[diaper][diaper=~/^[1-9][0-9]*$/]
-        # Rule Blacklisted (id: 2105051472)
+        if ('diaper' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0f294fdf), mapcss._tag_capture(capture_tags, 1, tags, 'diaper'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set diaper_checked
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("changing_table=yes + changing_table:count=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixAdd:"changing_table=yes"
+                # fixChangeKey:"diaper => changing_table:count"
+                set_diaper_checked = True
+                err.append({'class': 9002001, 'subclass': 2105051472, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['changing_table','yes'],
+                    ['changing_table:count', mapcss.tag(tags, 'diaper')]]),
+                    '-': ([
+                    'diaper'])
+                }})
 
         # *[diaper=room]
         if ('diaper' in keys):
@@ -6780,7 +6801,27 @@ class Josm_deprecated(PluginMapCSS):
         # Rule Blacklisted (id: 1957125311)
 
         # *[diaper][diaper=~/^[1-9][0-9]*$/]
-        # Rule Blacklisted (id: 2105051472)
+        if ('diaper' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0f294fdf), mapcss._tag_capture(capture_tags, 1, tags, 'diaper'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set diaper_checked
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("changing_table=yes + changing_table:count=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixAdd:"changing_table=yes"
+                # fixChangeKey:"diaper => changing_table:count"
+                set_diaper_checked = True
+                err.append({'class': 9002001, 'subclass': 2105051472, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['changing_table','yes'],
+                    ['changing_table:count', mapcss.tag(tags, 'diaper')]]),
+                    '-': ([
+                    'diaper'])
+                }})
 
         # *[diaper=room]
         if ('diaper' in keys):
@@ -10397,7 +10438,27 @@ class Josm_deprecated(PluginMapCSS):
         # Rule Blacklisted (id: 1957125311)
 
         # *[diaper][diaper=~/^[1-9][0-9]*$/]
-        # Rule Blacklisted (id: 2105051472)
+        if ('diaper' in keys):
+            match = False
+            if not match:
+                capture_tags = {}
+                try: match = ((mapcss._tag_capture(capture_tags, 0, tags, 'diaper')) and (mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_0f294fdf), mapcss._tag_capture(capture_tags, 1, tags, 'diaper'))))
+                except mapcss.RuleAbort: pass
+            if match:
+                # set diaper_checked
+                # group:tr("deprecated tagging")
+                # suggestAlternative:concat("changing_table=yes + changing_table:count=","{0.value}")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # fixAdd:"changing_table=yes"
+                # fixChangeKey:"diaper => changing_table:count"
+                set_diaper_checked = True
+                err.append({'class': 9002001, 'subclass': 2105051472, 'text': mapcss.tr('{0} is deprecated', mapcss._tag_uncapture(capture_tags, '{0.tag}')), 'allow_fix_override': True, 'fix': {
+                    '+': dict([
+                    ['changing_table','yes'],
+                    ['changing_table:count', mapcss.tag(tags, 'diaper')]]),
+                    '-': ([
+                    'diaper'])
+                }})
 
         # *[diaper=room]
         if ('diaper' in keys):
