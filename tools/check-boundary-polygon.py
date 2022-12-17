@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+import os
 import sys
 import logging
 
@@ -35,6 +36,7 @@ sys.path.append("..")
 from modules import IssuesFile_PolygonFilter
 from modules import downloader
 
+import modules.config
 import osmose_config as config
 
 
@@ -94,6 +96,8 @@ def load_poly(poly):
         print(e)
         return
 
+if not os.path.exists(modules.config.dir_cache):
+    os.makedirs(modules.config.dir_cache)
 
 for country, country_conf in config.config.items():
     if not country_conf.polygon_id:

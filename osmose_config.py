@@ -535,7 +535,7 @@ france_com = gen_country(None, country_base='france', download_repo=OSMFR, langu
 
 france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
 france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
-france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
+france_com(["north-america", "saint_pierre_et_miquelon"], 3406826, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
 france_com(["oceania", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
 france_com(["oceania", "polynesie"], 3412620, "FR-PF", language='fr_PF', proj=32706, phone_code="689", phone_format=None, phone_len=8, phone_len_short=6, phone_local_prefix=None, phone_international='00')
 france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, country="nouvellecaledonie",
@@ -1208,7 +1208,7 @@ default_country("asia", "sri-lanka", 536807, {"country": "LK", "language": ["en"
 default_country("asia", "south_korea", 307756, {"country": "KR", "language": "ko", "proj": 32652}, download_country="south-korea")
 default_country("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
-default_country("asia", "taiwan", 3777248, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
+default_country("asia", "taiwan", 449220, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
 default_country("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
 default_country("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR, exclude=[
@@ -1328,7 +1328,21 @@ default_country("merge", "kiribati", 571178, {"country": "KL", "language": "en",
 au_state = gen_country('oceania', 'australia', download_repo=OSMFR, language='en', driving_side='left')
 
 au_state("australian_capital_territory", 2354197, "AU-ACT", proj=32755)
-au_state("new_south_wales", 2316593, "AU-NSW", proj=32755)
+
+au_state("new_south_wales/greater_metropolitan_sydney", (7038238,6217858,2161967,6290069,6290704,6217271,2162244,6210859,6212438,6205809,6218957,6273237,1251053,6228261,6275980,6212442,6276645,6275976,2978550,6217262,6282698,6201664,6218884,6210847,6206752,1251066,6219220,6203556,6230051,6203650), "AU-NSW", proj=32755)
+au_state("new_south_wales/sydney_surrounds", (6299568,6195207,6222206,6287823), "AU-NSW", proj=32755)
+au_state("new_south_wales/mid_north_coast", (6165980,6143220,6165983,6178731,6165979,6180709,8425530), "AU-NSW", proj=32755)
+au_state("new_south_wales/murray", (3487773,5897433,6230406,6139012,6232188,3487850,6134295,5884892), "AU-NSW", proj=32755)
+au_state("new_south_wales/the_riverina", (6257747,6095007,6321566,6247073,6149251,6092948,6252194,6411154,6322050,6231900,6322034,6239423,6252224,6247060), "AU-NSW", proj=32755)
+au_state("new_south_wales/greater_metropolitan_newcastle", (6191219,6185449,6191221,6189782,6249291,6343182,6189831,6185732,6191883,6186848), "AU-NSW", proj=32755)
+au_state("new_south_wales/illawarra", (6311642,6304532,6311648,6304530,6303077), "AU-NSW", proj=32755)
+au_state("new_south_wales/richmond_tweed", (6168644,6170304,6163138,6168485,6143221,6170302), "AU-NSW", proj=32755)
+au_state("new_south_wales/south_east_region", (6239664,6239661,6310493,6256597,6137309,6239422,6257920,6247446), "AU-NSW", proj=32755)
+au_state("new_south_wales/northern", (6165969,6163165,6389934,6260771,6195194,6364998,6088821,6389900,6365595,6163155,6260188,6180603), "AU-NSW", proj=32755)
+au_state("new_south_wales/central_west", (6330866,6423630,6268804,6257796,6413174,6106054,6299566,6268502,6307911,6427044,6271674,6257772), "AU-NSW", proj=32755)
+au_state("new_south_wales/north_western", (6086047,5892186,6076330,6083910,7145506,6268489,6268488,6271676,6079201,6100934,6268496), "AU-NSW", proj=32755)
+au_state("new_south_wales/far_west", (5892296,5885448,7032873), "AU-NSW", proj=32755)
+
 au_state("northern_territory", 2316594, "AU-NT", proj=32753)
 au_state("western_australia", 2316598, "AU-WA", proj=32750)
 au_state("south_australia", 2316596, "AU-SA", proj=32753)

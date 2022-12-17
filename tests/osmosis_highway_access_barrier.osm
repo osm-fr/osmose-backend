@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83738953481' lon='5.85440300052' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83439308396' lon='5.85425878386'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83601619452' lon='5.85433690162'>
+    <tag k='barrier' v='bollard' />
+    <tag k='mofa' v='yes' />
+    <tag k='moped' v='yes' />
+    <tag k='motorcycle' v='yes' />
+  </node>
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83396820002' lon='5.85580538566'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82992329278' lon='5.85404367441' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83730723801' lon='5.86172838167' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82979726792' lon='5.86158886709' />
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83409044123' lon='5.86166861959'>
+    <tag k='barrier' v='bus_trap' />
+  </node>
+  <node id='9' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8319168476' lon='5.85413961193'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='10' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83727852169' lon='5.86428446864' />
+  <node id='11' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82975674538' lon='5.86401497406' />
+  <node id='12' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8339260375' lon='5.86416434833'>
+    <tag k='barrier' v='bus_trap' />
+    <tag k='hgv' v='yes' />
+  </node>
+  <node id='13' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83763931333' lon='5.87308795843' />
+  <node id='14' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83735398569' lon='5.85756729087' />
+  <node id='15' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82986619667' lon='5.85746205913' />
+  <node id='16' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83280978555' lon='5.85750023214'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='17' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83468681569' lon='5.85752793064'>
+    <tag k='access' v='delivery' />
+    <tag k='barrier' v='bollard' />
+    <tag k='bollard' v='rising' />
+  </node>
+  <node id='18' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82761030376' lon='5.852928273' />
+  <node id='19' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82774909991' lon='5.86388771947' />
+  <node id='20' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82768028797' lon='5.85845427317'>
+    <tag k='barrier' v='bollard' />
+    <tag k='note' v='I should have a moped tag' />
+  </node>
+  <node id='21' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83177615107' lon='5.86408732208'>
+    <tag k='barrier' v='bus_trap' />
+    <tag k='hgv' v='no' />
+    <tag k='note' v='No hgv through-traffic' />
+  </node>
+  <node id='22' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8361871024' lon='5.8456519192' />
+  <node id='23' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83318957205' lon='5.84906551728' />
+  <node id='24' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83511805197' lon='5.84686938365'>
+    <tag k='barrier' v='bollard' />
+    <tag k='bollard' v='removable' />
+    <tag k='motor_vehicle' v='delivery' />
+  </node>
+  <node id='25' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83490179141' lon='5.84557381426' />
+  <node id='26' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83208229619' lon='5.84909087326' />
+  <node id='27' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83328280385' lon='5.84547543584' />
+  <node id='28' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83075651384' lon='5.84912123209' />
+  <node id='29' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83374289702' lon='5.84701945426'>
+    <tag k='barrier' v='bollard' />
+    <tag k='bollard' v='removable' />
+    <tag k='motor_vehicle' v='yes' />
+  </node>
+  <node id='30' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83221881465' lon='5.84701094872'>
+    <tag k='barrier' v='bollard' />
+    <tag k='bollard' v='removable' />
+  </node>
+  <node id='31' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.8302473575' lon='5.84913289093' />
+  <node id='32' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82973112143' lon='5.8472694457'>
+    <tag k='barrier' v='bollard' />
+    <tag k='bollard' v='removable' />
+    <tag k='motor_vehicle' v='delivery' />
+  </node>
+  <node id='33' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82916479622' lon='5.84522521944' />
+  <node id='34' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83733002345' lon='5.85970021087' />
+  <node id='35' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83234277992' lon='5.85964247053' />
+  <node id='36' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83492624383' lon='5.85967081441'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='37' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82771274187' lon='5.86101685819'>
+    <tag k='barrier' v='bollard' />
+    <tag k='note' v='I should have a moped tag' />
+  </node>
+  <node id='38' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82845094135' lon='5.86096548758' />
+  <node id='39' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.82982934447' lon='5.85966842454' />
+  <node id='40' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83114925343' lon='5.8596547952'>
+    <tag k='barrier' v='bollard' />
+    <tag k='vehicle' v='private' />
+  </node>
+  <node id='41' timestamp='2014-03-31T22:00:00Z' lat='51.83095287618' lon='5.85577926076' version='1'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='42' timestamp='2014-03-31T22:00:00Z' lat='51.83167236111' lon='5.85577926076' version='1'>
+    <tag k='barrier' v='bollard' />
+  </node>
+  <node id='43' timestamp='2014-03-31T22:00:00Z' lat='51.83132895975' lon='5.85577926076' version='1' />
+  <way id='101' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='1' />
+    <nd ref='3' />
+    <nd ref='2' />
+    <tag k='highway' v='cycleway' />
+    <tag k='mofa' v='yes' />
+    <tag k='moped' v='designated' />
+    <tag k='motorcycle' v='destination' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='102' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='5' />
+    <nd ref='9' />
+    <nd ref='2' />
+    <tag k='highway' v='footway' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='103' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='6' />
+    <nd ref='8' />
+    <nd ref='7' />
+    <tag k='highway' v='busway' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='104' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='10' />
+    <nd ref='12' />
+    <nd ref='21' />
+    <nd ref='11' />
+    <tag k='bus' v='designated' />
+    <tag k='hgv' v='yes' />
+    <tag k='highway' v='busway' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='105' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='14' />
+    <nd ref='17' />
+    <nd ref='16' />
+    <tag k='4wd_only' v='yes' />
+    <tag k='agricultural' v='yes' />
+    <tag k='bdouble' v='yes' />
+    <tag k='bicycle' v='yes' />
+    <tag k='bus' v='yes' />
+    <tag k='carriage' v='yes' />
+    <tag k='disabled' v='yes' />
+    <tag k='dog' v='yes' />
+    <tag k='emergency' v='yes' />
+    <tag k='foot' v='yes' />
+    <tag k='golf_cart' v='yes' />
+    <tag k='goods' v='yes' />
+    <tag k='hazmat' v='yes' />
+    <tag k='hgv' v='yes' />
+    <tag k='highway' v='service' />
+    <tag k='horse' v='yes' />
+    <tag k='hov' v='yes' />
+    <tag k='mofa' v='yes' />
+    <tag k='moped' v='yes' />
+    <tag k='motorcar' v='yes' />
+    <tag k='motorcycle' v='yes' />
+    <tag k='name' v='class 2 test' />
+    <tag k='psv' v='yes' />
+    <tag k='ski' v='yes' />
+    <tag k='snowmobile' v='yes' />
+    <tag k='taxi' v='yes' />
+    <tag k='tourist_bus' v='yes' />
+    <tag k='wheelchair' v='yes' />
+  </way>
+  <way id='106' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='16' />
+    <nd ref='15' />
+    <tag k='access' v='private' />
+    <tag k='highway' v='service' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='107' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='18' />
+    <nd ref='20' />
+    <nd ref='37' />
+    <nd ref='19' />
+    <tag k='highway' v='cycleway' />
+    <tag k='moped' v='designated' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='108' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='22' />
+    <nd ref='24' />
+    <nd ref='23' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='name' v='class 1 test' />
+  </way>
+  <way id='109' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='25' />
+    <nd ref='29' />
+    <nd ref='26' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='motor_vehicle' v='delivery' />
+    <tag k='name' v='class 1 test' />
+  </way>
+  <way id='110' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='27' />
+    <nd ref='30' />
+    <nd ref='28' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='motor_vehicle' v='delivery' />
+    <tag k='name' v='class 1 test' />
+  </way>
+  <way id='111' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='31' />
+    <nd ref='32' />
+    <nd ref='33' />
+    <tag k='highway' v='pedestrian' />
+    <tag k='motor_vehicle' v='delivery' />
+    <tag k='name' v='class 1 test' />
+  </way>
+  <way id='112' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='34' />
+    <nd ref='36' />
+    <nd ref='35' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='113' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='37' />
+    <nd ref='38' />
+    <tag k='highway' v='footway' />
+  </way>
+  <way id='114' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='39' />
+    <nd ref='40' />
+    <nd ref='35' />
+    <tag k='access' v='destination' />
+    <tag k='highway' v='residential' />
+    <tag k='moped' v='designated' />
+    <tag k='name' v='class 2 test' />
+  </way>
+  <way id='115' timestamp='2014-03-31T22:00:00Z' version='1' >
+    <nd ref='41' />
+    <nd ref='43' />
+    <nd ref='42' />
+    <tag k='highway' v='cycleway' />
+    <tag k='moped' v='designated' />
+    <tag k='name' v='class 2 test' />
+  </way>
+</osm>
