@@ -44,6 +44,20 @@ WHERE
     (tags?'railway' AND tags->'railway' = 'platform') OR
     (tags?'highway' AND tags->'highway' IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
   )
+UNION
+SELECT
+  -- highways crossing borders of extracts without reaching a main road within the extract
+  borderways.linestring,
+  borderways.id
+FROM
+  relation_members AS boundary_members
+  JOIN ways AS boundary_ways ON
+    boundary_members.member_id = boundary_ways.id
+  JOIN highways AS borderways ON
+    ST_Intersects(boundary_ways.linestring, borderways.linestring)
+WHERE
+  boundary_members.member_type = 'W' AND
+  boundary_members.relation_id IN {boundary_ids}
 """
 
 sql11 = """
@@ -121,7 +135,13 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":4, "subclass":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
-        self.run(sql10)
+        boundary_relation = self.config.polygon_id # Either a number, None or (number, number, ...)
+        if isinstance(boundary_relation, int):
+          boundary_relation = "({0})".format(boundary_relation)
+        elif not boundary_relation:
+          boundary_relation = "(0)"
+
+        self.run(sql10.format(boundary_ids=boundary_relation))
         self.run(sql11)
         self.run(sqlb13)
         self.run(sqlb14)
