@@ -124,8 +124,6 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        if not "proj" in self.config.options:
-          return
         self.classs[4] = self.def_class(item = 1210, level = 1, tags = ['highway'],
             title = T_('Small highway group apart from the main network or with insufficient access upstream'),
             detail = T_(
