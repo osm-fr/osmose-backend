@@ -22,6 +22,8 @@
 from shapely.wkt import loads
 from shapely.geometry import MultiPolygon
 from modules import downloader
+import pyproj
+from shapely.ops import transform
 
 
 class Polygon:
@@ -34,12 +36,19 @@ class Polygon:
         polygon_url = u"http://polygons.openstreetmap.fr/"
         for id in polygon_id:
             url = polygon_url + "index.py?id="+str(id)
-            s = downloader.urlread(url, cache_delay)
+            downloader.urlread(url, cache_delay)
         url = polygon_url + "get_wkt.py?params=0&id=" + ",".join(map(str, polygon_id))
-        s = downloader.urlread(url, cache_delay)
-        if s.startswith("SRID="):
-            s = s.split(";", 1)[1]
-        self.polygon = loads(s)
+        self.wkt = wkt = downloader.urlread(url, cache_delay)
+        if wkt.startswith("SRID="):
+            wkt = wkt.split(";", 1)[1]
+        self.polygon = loads(wkt)
+
+    def as_wkt(self, srid) -> str:
+        wgs84 = pyproj.CRS('EPSG:4326')
+        t_src = pyproj.CRS(f'EPSG:{srid}')
+        project = pyproj.Transformer.from_crs(wgs84, t_src, always_xy=True).transform
+        t_poly = transform(project, self.polygon)
+        return t_poly
 
     def bboxes(self):
         bbox = self.polygon.bounds

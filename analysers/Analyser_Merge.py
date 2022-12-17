@@ -36,6 +36,7 @@ import json
 import re
 import fnmatch
 import shutil
+import subprocess
 from typing import Optional, Dict, Union, Callable
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
@@ -731,15 +732,25 @@ class GDAL(Parser):
                 if info:
                     self.zip = info.filename
 
+            source_layer = [
+                ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
+            ]
+            if self.layer:
+                source_layer.append(f"'{self.layer}'")
+
+            s_src = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", *source_layer], stdout=subprocess.PIPE).stdout.decode('utf-8')).group(1)
+            wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_wkt(s_src) if self.polygon_id else None
+
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
-            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO -skipfailures {} -t_srs EPSG:{} '{}' {}".format(
+            gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO -skipfailures {} -t_srs EPSG:{} '{}' {}".format(
                 osmosis.config.osmosis_manager.db_string,
                 osmosis.config.osmosis_manager.db_user,
                 table,
+                f"-clipsrc '{wkt}'" if wkt else '',
                 select,
                 self.proj,
-                ('/vsizip/' if self.zip else '' ) + tmp_file.name + (('/' + self.zip) if self.zip else ''),
-                f"'{self.layer}'" if self.layer else '',
+                source_layer[0],
+                source_layer[1] if len(source_layer) >= 2 else '',
             )
             print(gdal)
             if os.system(gdal):
@@ -1168,6 +1179,7 @@ verification of this data.'''))
             self.conflate.select.tags = [self.conflate.select.tags]
         self.conflate.mapping.eval_static(self)
 
+        self.parser.polygon_id = self.config.polygon_id
         self.load.osmosis = self
         self.load.polygon_id = self.config.polygon_id
         if "proj" in self.config.options:
