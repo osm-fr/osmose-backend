@@ -81,7 +81,7 @@ class TagFix_Postcode(Plugin):
         self.errors[31901] = self.def_class(item = 3190, level = 3, tags = ['postcode', 'fix:chair'],
             title = T_('Invalid postcode'),
             detail = T_(
-'''Check postcode as decribed on
+'''Check postcode as described on
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_postal_codes)'''),
             resource = 'https://en.wikipedia.org/wiki/List_of_postal_codes')
 
