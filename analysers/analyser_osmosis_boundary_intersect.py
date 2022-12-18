@@ -97,7 +97,7 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
             detail = T_(
 '''Borders crossing each other.'''),
             fix = T_(
-'''Check the type of border and keep the best or merged.'''),
+'''Check the type of border and keep the best one or merge them.'''),
             trap = T_(
 '''The borders are part of relations which normally form a loop.'''),
             example = T_(
