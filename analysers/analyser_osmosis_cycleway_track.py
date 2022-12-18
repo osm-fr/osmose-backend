@@ -64,10 +64,10 @@ class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
         self.classs[1] = self.def_class(item = 1180, level = 2, tags = ['geom', 'highway', 'cycleway', 'fix:chair'],
             title = T_('Duplicated cycle tracks, `highway=*`+`cycleway=track` and `highway=cycleway`'),
             detail = T_(
-'''Double cycleway mapping. `highway=*`+`cycleway=track` parallel to an
+'''Double cycleway mapping. `highway=*` with `cycleway=track` tag parallel to a
 `highway=cycleway`'''),
             fix = T_(
-'''When the cycle way is explicited. The `cycleway=track` must be removed
+'''When the cycleway is seperately mapped, the `cycleway=track` tag must be removed
 from the main highway.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/1/16/Osmose-eg-error-1180.png)
