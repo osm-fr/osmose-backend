@@ -95,7 +95,7 @@ Clockwise rotation.'''))
         self.errors[21201] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
             title = T_('Level or repeat_on tag missing'))
         self.errors[21202] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
-            title = T_('Indoor or buildingpart tag missing'))
+            title = T_('Indoor or building:part tag missing'))
         self.errors[20802] = self.def_class(item = 2080, level = 2, tags = ['highway'],
             title = T_('Missing tag ref for emergency access point'))
 #        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],
