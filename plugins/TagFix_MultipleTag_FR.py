@@ -66,7 +66,7 @@ written in a form actually used.'''),
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
-            err.append({"class": 30321, "subclass": 5, "text": T_(u"Need tag amenity=nursery|kindergarten|school besides on school:FR")})
+            err.append({"class": 30321, "subclass": 5, "text": T_(u"Needs tag amenity=nursery|kindergarten|school besides on school:FR")})
         if "name" in tags and tags.get("amenity") == "school" and "school:FR" not in tags:
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
             matches = list(filter(lambda kv: kv[0] in canonicalSchool, self.school.keys()))
