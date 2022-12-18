@@ -38,7 +38,7 @@ class TagFix_MultipleTag_FR(Plugin):
 '''The name was copied from the land register (cadastre), but it is not
 written in a form actually used.'''),
             fix = T_(
-'''Eg. replace "Chemin Rural dit des Vignes" by "Chemin des Vignes".'''))
+'''E.g. replace "Chemin Rural dit des Vignes" by "Chemin des Vignes".'''))
         self.errors[30324] = self.def_class(item = 3032, level = 2, tags = ['highway', 'maxspeed', 'fix:survey'],
             title = T_('incoherent maxspeed'))
         self.errors[30325] = self.def_class(item = 3032, level = 2, tags = ['highway', 'ref', 'fix:chair'],
