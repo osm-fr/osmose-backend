@@ -62,12 +62,12 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         doc = dict(
             detail = T_(
-'''A way connects directly to the street classification much
-smaller.'''),
+'''A way connects directly to one with much
+lower classification.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/b/be/Osmose-eg-error-1090.png)
 
-Secondary connecting directly to the residentials.'''))
+Secondary connecting directly to a residential.'''))
 
         self.classs[1] = self.def_class(item = 1090, level = 1, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
             title = T_('Sudden highway type change (level {0})', 1),
