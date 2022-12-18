@@ -123,13 +123,13 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         doc = dict(
             detail = T_(
-'''An object without relevant tag (no other tag than `source`,
-`created_by`, `note:qadastre`, `area` nor `name`) nor a relation member with a
+'''An object without any relevant tags (no other tags than `source`,
+`created_by`, `note:qadastre`, `area` or `name`) nor a relation member with a
 role.'''),
             fix = T_(
 '''Add tags, role into a relation or delete.'''),
             trap = T_(
-'''The object is sometimes duplicate.'''))
+'''The object may be a duplicate.'''))
 
         self.classs_change[1] = self.def_class(item = 1140, level = 3, tags = ['fix:chair'],
             title = T_('Missing tag or role on node'),
