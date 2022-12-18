@@ -104,7 +104,7 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge_Point):
     def __init__(self, config, logger = None):
         Analyser_Merge_Point.__init__(self, config, logger)
         self.def_class_missing_official(item = 8150, id = 41, level = 3, tags = ['merge', 'public equipment', 'bicycle', 'motorcycle', 'fix:survey', 'fix:picture'],
-            title = T_('Paris shared motorcycle/motorcycle parking not integrated'))
+            title = T_('Paris motorcycle/shared motorcycle parking not integrated'))
 
         self.init(
             "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
