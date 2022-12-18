@@ -137,7 +137,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.classs[2] = self.def_class(item = 6060, level = 1, tags = ['boundary', 'geom', 'fix:chair'],
             title = T_('Boundary intersection'),
             detail = T_(
-'''An area is marked as belonging to several city at once.'''),
+'''An area is marked as belonging to several cities at once.'''),
             fix = T_(
 '''Check how this area should be owned.'''))
         self.classs_change[3] = self.def_class(item = 6060, level = 2, tags = ['boundary', 'geom', 'fix:chair'],
