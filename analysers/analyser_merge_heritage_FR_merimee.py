@@ -36,12 +36,12 @@ comes from the database "Merimee Inventory of monuments" in France by the
 Ministry of Culture.'''),
             fix = T_(
 '''See [heritage](https://wiki.openstreetmap.org/wiki/Key:heritage) on
-wiki. Add a node or to integrate tags if something already existing.'''),
+wiki. Add the proper tags if something already exists.'''),
             trap = T_(
-'''The position of the markers is made by address geocoding, it may be
-located elsewhere. The marker can be a very rough position, located as
+'''The position of the markers comes from address geocoding. They may be
+located elsewhere. The marker can have a very rough position, with
 low accuracy to the town. Carefully check the contents of the proposed
-tags, can be curious or unsuitable values. Do not overide tags of UNESCO
+tags, there can be curious or unsuitable values. Do not override tags of UNESCO
 World Heritage.'''))
         self.def_class_missing_official(item = 8010, id = 1, level = 3, tags = ['merge', 'building', 'historic', 'fix:imagery', 'fix:survey'],
             title = T_('Historical monument not integrated'), **doc)

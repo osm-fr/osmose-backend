@@ -235,8 +235,8 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
             self.classs[1] = self.def_class(item = 5050, level = 2, tags = ['name', 'fix:survey'],
                 title = T_('Soundex test'),
                 detail = T_(
-'''A street name "sounds" like a other street name already known but is
-not spelled on the same way.'''),
+'''A street name "sounds" similar to that of another street but is
+not spelled the same way.'''),
                 fix = T_(
 '''After you have checked that it is a mistake, change the name.'''),
                 trap = T_(

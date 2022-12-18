@@ -57,8 +57,8 @@ class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
             detail = T_(
 '''Nodes in the vicinity without tag and not part of a way.'''),
             fix = T_(
-'''Find the origin of these nodes. Probably resulting from bad import.
-Contact the contributor submiting the nodes or remove those.'''),
+'''Find the origin of these nodes. They probably result from a bad import.
+Contact the contributor submitting the nodes or remove them.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/0/0c/Osmose-eg-error-1080.png)
 

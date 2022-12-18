@@ -48,16 +48,16 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
         self.classs_change[1] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Reverse roundabout'),
             detail = T_(
-'''The circulation of the roundabout is draw clockwise, but in countries
-where they driveon the right the sense of roundabouts is
-counterclockwise, and vice versa for the other countries.'''),
+'''The circulation of the roundabout is drawn clockwise, but in countries
+where they drive on the right, the circulation of roundabouts is
+counterclockwise, and vice versa for other countries.'''),
             fix = T_(
 '''For roundabout `junction=roundabout`: change the direction by
 reversing the order of nodes in the path. In JOSM, select the roundabout
 and use the tool reverse path (shortcut: 'R').'''),
             trap = T_(
-'''Make sure that it is a roundabout (for example, no a side way in
-oposite direction around a square or a central roundabout, or driveways
+'''Make sure that it is a roundabout (for example, not a side way in
+opposite direction around a square or a central roundabout, or a driveway
 separated by traffic islands at an intersection without cross).'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)

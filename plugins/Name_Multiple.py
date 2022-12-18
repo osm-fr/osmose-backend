@@ -35,16 +35,16 @@ class Name_Multiple(Plugin):
             title = T_('The name tag contains two names'),
             detail = T_(
 '''The tag `name=*` contains multiple names, separated by a semicolon,
-a "/", a "\\" or a "+". This issue was probably produced by the fusion of two
-way and the concatenation of the names of the streets.'''),
+a "/", a "\\" or a "+". This issue was probably produced by merging two
+ways and the concatenation of the names of the streets.'''),
             fix = T_(
 '''* If duplicate name, delete one.
 * Otherwise, a survey is required: check if it is a street whose name
-changes at a crossroads, if this is the case, cut the street and set the
-proper names of both part.'''),
+changes at a crossroads, if this is the case, split the street and set the
+proper names of both parts.'''),
             trap = T_(
-'''Some streets have not the same names on the each side, especially if
-the houses by both sides are on different city. In this case, you can use
+'''Some streets do not have the same name on both sides, especially if
+the houses on one side are in a different city. In this case, you can use
 the tag `name:left=*` and `name:right=*`.'''))
         self.errors[50301] = self.def_class(item = 5030, level = 2, tags = ['name', 'fix:chair'],
             title = T_('Conflicting names'),
@@ -91,7 +91,7 @@ The tag `name` should have the value `name:right / name:left` or `name:left / na
                 return
 
             if "name:left" in tags and "name:right" in tags:
-                # name:left and name:right may be combined in name, separated by a /
+                # name:left and name:right may be combined in the regular name tag, separated by a /
                 nameparts = [n.strip() for n in tags["name"].split("/")]
                 if tags["name:left"] in nameparts and tags["name:right"] in nameparts and len(nameparts) == 2:
                     return

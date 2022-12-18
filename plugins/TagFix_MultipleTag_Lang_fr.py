@@ -64,7 +64,7 @@ class TagFix_MultipleTag_Lang_fr(Plugin):
         if ((not "highway" in tags and not "public_transport" in tags and "leisure" not in tags and ("type" not in tags or tags["type"] != "associatedStreet")) and
             (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and
             not ("amenity" in tags and tags["amenity"] == "community_centre")):
-            err.append({"class": 3032, "subclass": 3, "text": T_(u"Put a tag for a village hall or a community center"),
+            err.append({"class": 3032, "subclass": 3, "text": T_(u"Put a tag for a village hall or a community centre"),
                         "fix": {"+": {"amenity": "community_centre"}} })
 
         return err

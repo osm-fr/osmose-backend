@@ -64,7 +64,7 @@ class Analyser_Osmosis_Camp_Pitch_Out_Of_Camp_Site(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = self.def_class(item = 1290, level = 2, tags = ['geom', 'fix:chair'],
-          title = T_('Camp pitchs outside a camp site'))
+          title = T_('Camp pitches outside a camp site'))
 
     def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]})

@@ -365,8 +365,8 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
         self.classs_change[1] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:survey'],
             title = T_('Restriction relation, wrong number of members'),
             detail = T_(
-'''Some required member are missing, eg. there is a `from` and `via`
-role, but missing the `to` role.'''))
+'''Some required members are missing, e.g. there is a `from` and `via`
+member, but it is missing a member with the `to` role.'''))
         self.classs_change[2] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:chair'],
             title = T_('Restriction relation, bad member type'))
         self.classs_change[3] = self.def_class(item = 3180, level = 2, tags = ['relation', 'restriction', 'fix:chair'],

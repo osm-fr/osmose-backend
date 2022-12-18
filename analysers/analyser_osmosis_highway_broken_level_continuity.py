@@ -116,7 +116,7 @@ with a road of higher classification.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/e/e8/Osmose-eg-error-1120.png)
 
-`highway=secondary` should not becoming a residential.'''))
+`highway=secondary` should not become a residential.'''))
         self.classs[1] = self.def_class(item = 1120, level = 1, tags = ['highway', 'fix:chair'], **self.merge_docs(doc,
             detail = {'en':
 '''motorway, motorway_link, trunk, trunk_link, primary,

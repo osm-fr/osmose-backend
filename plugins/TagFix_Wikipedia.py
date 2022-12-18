@@ -36,12 +36,12 @@ class TagFix_Wikipedia(Plugin):
         detail = T_(
 '''Replace the faulty value by the value displayed at the top of the
 article on Wikipedia, preceded by the language code and the separator ':'
-(in the absence of linguistic code, the item will be searched by default
+(in the absence of a language code, the item will be searched by default
 on the English Wikipedia, but it is advisable in this case to explicitly
-indicate the lingusitique code "en" if the article mentioned is in
-English, the language codes supported are those editions of Wikipedia in
+indicate the language code \"en\" if the article mentioned is in
+English, the language codes supported are those editions of Wikipedia. In
 some cases they are different from the standard language codes BCP47 used
-a suffixes in other key OSM as "name:[LANG]=*").''')
+as suffixes in other keys such as \"name:[LANG]=*\").''')
         self.errors[30310] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
             title = T_('Not a Wikipedia URL'),
             detail = detail)
@@ -54,8 +54,8 @@ mentioned and not the URL of the page.'''),
         self.errors[30312] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
             title = T_('Missing Wikipedia language before article title'),
             detail = self.merge_doc(T_(
-'''The title must be preceded by the term "en:" when the article is on
-the English Wikipedia or the linguistic code of the Wikipedia site.'''),
+'''The title must be preceded by the language code "en:", when the article is on
+the English Wikipedia, or the respective language code if the article is in a different language.'''),
                 detail),
             example = {'en':
 '''`wikipedia=en:Paris`'''})
