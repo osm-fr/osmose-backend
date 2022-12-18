@@ -276,12 +276,12 @@ Highway level should be secondary.'''))
 a sign of roundabout insertion way. These segments are often
 one-way.'''),
             fix = T_(
-'''After verifying that it is an access roads to the roundabout and they
+'''After verifying that it is an access road to the roundabout and they
 were well oriented, set the tag `oneway=yes` on the two segments.'''),
             trap = T_(
 '''* If a way is prolonged after joining the second segment, cut the way
 before putting the tag oneway.
-* Two roundabout close can be connected by a small lane in both
+* Two roundabouts close to each other can be connected by a small lane in both
 directions.'''))
 
         self.classs[3] = self.def_class(item = 3010, level = 2, tags = ['highway', 'roundabout', 'fix:imagery'],
