@@ -32,9 +32,9 @@ class TagRemove_OpenSeaMap(Plugin):
         self.errors[4060] = self.def_class(item = 4060, level = 2, tags = ['waterway', 'fix:imagery'],
             title = T_('OpenSeaMap import, very approximative position.'),
             detail = T_(
-'''Seamark was imported but need manual review `seamark:fixme=*`.'''),
+'''Seamark was imported but needs manual review (`seamark:fixme=*`).'''),
             fix = T_(
-'''Move the seamark on real position and remove the tag
+'''Move the seamark to the correct position and remove the tag
 `seamark:fixme=*`.'''))
 
     def node(self, data, tags):
