@@ -54,8 +54,8 @@ mentioned and not the URL of the page.'''),
         self.errors[30312] = self.def_class(item = 3031, level = 2, tags = ['value', 'wikipedia', 'fix:chair'],
             title = T_('Missing Wikipedia language before article title'),
             detail = self.merge_doc(T_(
-'''The title must be preceded by the term "en:" when the article is on
-the English Wikipedia or the linguistic code of the Wikipedia site.'''),
+'''The title must be preceded by the language code "en:", when the article is on
+the English Wikipedia, or the respective language code if the article is in a different language.'''),
                 detail),
             example = {'en':
 '''`wikipedia=en:Paris`'''})
