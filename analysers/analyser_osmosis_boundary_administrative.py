@@ -139,7 +139,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
             detail = T_(
 '''An area is marked as belonging to several cities at once.'''),
             fix = T_(
-'''Check how this area should be owned.'''))
+'''Check what city this area belongs to.'''))
         self.classs_change[3] = self.def_class(item = 6060, level = 2, tags = ['boundary', 'geom', 'fix:chair'],
             title = T_('Lone boundary fragment'),
             detail = T_(
