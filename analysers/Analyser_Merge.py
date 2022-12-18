@@ -1110,9 +1110,9 @@ class Conflate:
         """
         How data is mapped with OSM data.
         @param select: fetch OSM data, see Select
-        @param osmRef: the OSM key for join data on reference, must refer to mapped tag from OpenData set.
+        @param osmRef: the OSM key for join data on reference, must refer to mapped tag from open data set.
         @param conflationDistance: if no osmRef, do do conflation, use this threshold
-        @param extraJoin: an additional OSM key to join on, must refer to mapped tag from OpenData set.
+        @param extraJoin: an additional OSM key to join on, must refer to mapped tag from open data set.
         @param tag_keep_multiple_values: if tags already have value or multiple values just append the new one
         @param subclass_hash: lambda return dict from dict fields to be used in subclass hash computation (to be stable)
         @param mapping: map the fields to OSM tags, see Mapping
@@ -1133,8 +1133,8 @@ class Analyser_Merge(Analyser_Osmosis):
 
     doc_master = dict(
         detail = T_(
-'''It is from OpenData source, but that not enough to ensure the quality
-of the data. Review it before integration. You must not done blind import
+'''It is from an open data source, but that is not enough to ensure the quality
+of the data. Review it before integrating the data. You must not do blind imports
 into OSM, you must do critical review of data integration.'''),
         fix = T_(
 '''If after review you are sure that it is a new data and right for
@@ -1145,7 +1145,7 @@ OpenStreetMap, then you can add it.'''),
     def def_class_missing_official(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
             detail = T_(
-'''This is reported from an OpenData source, without any prior individual
+'''This is reported from an open data source, without any prior individual
 verification on this data.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.missing_official = self.def_class(back_in_stack = 3, **kwargs)
@@ -1301,7 +1301,7 @@ class Analyser_Merge_Point(Analyser_Merge):
     def def_class_possible_merge(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
             detail = T_(
-'''This is a integration suggestion, mixing OpenData source and
+'''This is a integration suggestion, mixing open data source and
 OpenStreetMap.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.possible_merge = self.def_class(back_in_stack = 3, **kwargs)
@@ -1315,7 +1315,7 @@ OpenStreetMap.'''))
         doc = self.merge_docs(self.doc_master,
             detail = T_(
 '''This is an update suggestion because the same ref can be found on both
-OpenData and OSM.'''))
+open data and OSM.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.update_official = self.def_class(back_in_stack = 3, **kwargs)
 
