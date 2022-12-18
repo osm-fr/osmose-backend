@@ -1137,16 +1137,16 @@ class Analyser_Merge(Analyser_Osmosis):
 of the data. Review it before integrating the data. You must not do blind imports
 into OSM, you must do critical review of data integration.'''),
         fix = T_(
-'''If after review you are sure that it is a new data and right for
+'''If after review you are sure that it is new data and right for
 OpenStreetMap, then you can add it.'''),
         trap = T_(
-'''Be sure that it is not already existing in another place.'''))
+'''Be sure that it does not already exist in another place.'''))
 
     def def_class_missing_official(self, **kwargs):
         doc = self.merge_docs(self.doc_master,
             detail = T_(
 '''This is reported from an open data source, without any prior individual
-verification on this data.'''))
+verification of this data.'''))
         kwargs.update(self.merge_docs(doc, **kwargs))
         self.missing_official = self.def_class(back_in_stack = 3, **kwargs)
 
