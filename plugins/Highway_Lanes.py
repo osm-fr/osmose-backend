@@ -35,7 +35,7 @@ class Highway_Lanes(Plugin):
         self.errors[31603] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)'),
             detail = T_(
-'''You can not set at the same time a tag and the variante with this
+'''You can not set at the same time a tag and the variants with this
 prefix `forward`, `backward`, `both_ways`.'''))
         self.errors[31604] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
             title = T_('Conflict between lanes number'))
@@ -52,7 +52,7 @@ prefix `forward`, `backward`, `both_ways`.'''))
             detail = T_(
 '''Right must be on the right and left on the left.'''))
         self.errors[31608] = self.def_class(item = 3160, level = 2, tags = ['highway', 'fix:chair'],
-            title = T_('Conflict between lanes number of same sufix ("", forward, backward or both_ways)'),
+            title = T_('Conflict between lanes number of same suffix ("", forward, backward or both_ways)'),
             detail = T_(
 '''The number of lanes defined by many lane tags are not the same for a
 given direction.'''))
