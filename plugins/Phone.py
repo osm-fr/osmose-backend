@@ -60,7 +60,7 @@ class Phone(Plugin):
         self.errors[30924] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
             title = T_('Bad international prefix'))
         self.errors[30925] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
-            title = T_('Unallowed char in phone number'))
+            title = T_('Prohibited char in phone number'))
         self.errors[30926] = self.def_class(item = 3092, level = 3, tags = ['value', 'fix:chair'],
             title = T_('Bad separator for multiple values'))
 
