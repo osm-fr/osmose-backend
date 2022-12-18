@@ -358,8 +358,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 '''Move a feature if it's in the wrong place. Connect the features if appropriate or update the tags if not.'''),
             trap = T_(
 '''A feature may be missing a tag e.g. `tunnel=*`, `bridge=*`,
-`covered=*` or consider `layer=*` on the buidling where a road or railway
-enters a structure. Warning, information sources can be contradictory in
+`covered=*`. If a road or railway intersects a building, consider adding the `layer=*` tag to it. Warning: information sources can be contradictory in
 time or with spatial offset.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/d/dc/Osmose-eg-error-1070.png)
