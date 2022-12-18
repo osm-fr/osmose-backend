@@ -41,7 +41,7 @@ wiki. Add a node or to integrate tags if something already existing.'''),
 '''The position of the markers is made by address geocoding, it may be
 located elsewhere. The marker can be a very rough position, located as
 low accuracy to the town. Carefully check the contents of the proposed
-tags, can be curious or unsuitable values. Do not overide tags of UNESCO
+tags, can be curious or unsuitable values. Do not override tags of UNESCO
 World Heritage.'''))
         self.def_class_missing_official(item = 8010, id = 1, level = 3, tags = ['merge', 'building', 'historic', 'fix:imagery', 'fix:survey'],
             title = T_('Historical monument not integrated'), **doc)
