@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83216791492' lon='5.84570362807' />
+  <node id='2' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83044698127' lon='5.84750025864' />
+  <node id='3' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83111315693' lon='5.84947655227' />
+  <node id='4' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83089964362' lon='5.8476057774' />
+  <node id='5' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83077473584' lon='5.84792018775' />
+  <node id='6' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83110782248' lon='5.84814476657' />
+  <node id='7' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83198216319' lon='5.84500066308'>
+    <tag k='highway' v='bus_stop' />
+  </node>
+  <node id='8' timestamp='2014-03-31T22:00:00Z' version='1' lat='51.83080249315' lon='5.85000877079'>
+    <tag k='highway' v='bus_stop' />
+  </node>
+  <way id='100' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='1' />
+    <nd ref='2' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='101' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='2' />
+    <nd ref='3' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='102' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <nd ref='4' />
+    <nd ref='5' />
+    <nd ref='6' />
+    <nd ref='4' />
+    <tag k='building' v='house' />
+  </way>
+  <relation id='10000' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='from' />
+    <member type='node' ref='2' role='via' />
+    <member type='way' ref='101' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='10001' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='street' />
+    <member type='way' ref='101' role='street' />
+    <member type='way' ref='102' role='house' />
+    <tag k='name' v='Mystreet' />
+    <tag k='type' v='associatedStreet' />
+  </relation>
+  <relation id='10002' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='node' ref='7' role='platform' />
+    <member type='node' ref='8' role='platform' />
+    <member type='way' ref='100' role='' />
+    <member type='way' ref='101' role='' />
+    <tag k='name' v='Bus to destination' />
+    <tag k='public_transport:version' v='2' />
+    <tag k='route' v='bus' />
+    <tag k='type' v='route' />
+  </relation>
+  <relation id='10003' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='relation' ref='10002' role='' />
+    <tag k='name' v='Bus to destination' />
+    <tag k='route_master' v='bus' />
+    <tag k='type' v='route_master' />
+  </relation>
+  <relation id='10004' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='relation' ref='10003' role='' />
+    <tag k='network' v='Bus network MyTown' />
+    <tag k='type' v='network' />
+  </relation>
+  <relation id='10005' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+    <member type='way' ref='101' role='' />
+    <member type='relation' ref='10006' role='' />
+    <member type='relation' ref='10003' role='' />
+    <tag k='name' v='Bad relation simple 1' />
+    <tag k='public_transport:version' v='2' />
+    <tag k='route' v='monorail' />
+    <tag k='type' v='route' />
+  </relation>
+  <relation id='10006' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='101' role='' />
+    <member type='way' ref='100' role='' />
+    <member type='relation' ref='10005' role='' />
+    <tag k='name' v='Bad relation simple 2' />
+    <tag k='public_transport:version' v='2' />
+    <tag k='route' v='monorail' />
+    <tag k='type' v='route' />
+  </relation>
+  <relation id='10007' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+    <member type='way' ref='101' role='' />
+		<member type='relation' ref='10008' role='' />
+		<member type='relation' ref='10009' role='' />
+    <tag k='name' v='Bad complicated 1' />
+    <tag k='type' v='network' />
+  </relation>
+  <relation id='10008' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+    <member type='way' ref='101' role='' />
+    <member type='relation' ref='10007' role='' />
+    <tag k='name' v='Bad complicated 2' />
+    <tag k='type' v='network' />
+  </relation>
+  <relation id='10009' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+    <member type='way' ref='101' role='' />
+    <member type='relation' ref='10007' role='' />
+    <tag k='name' v='Bad complicated 3' />
+    <tag k='type' v='network' />
+  </relation>
+  <relation id='10010' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+    <member type='relation' ref='10011' role='' />
+    <tag k='name' v='Bad Triple 1' />
+    <tag k='type' v='network' />
+  </relation>
+  <relation id='10011' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+		<member type='relation' ref='10012' role='' />
+    <tag k='name' v='Bad Triple 2' />
+    <tag k='type' v='network' />
+  </relation>
+  <relation id='10012' timestamp='2014-03-31T22:00:00Z' version='1'>
+    <member type='way' ref='100' role='' />
+    <member type='relation' ref='10010' role='' />
+    <tag k='name' v='Bad Triple 3' />
+    <tag k='type' v='network' />
+  </relation>
+</osm>
