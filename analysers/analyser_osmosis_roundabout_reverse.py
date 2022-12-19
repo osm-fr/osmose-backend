@@ -50,7 +50,7 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
             detail = T_(
 '''The circulation of the roundabout is drawn clockwise, but in countries
 where they drive on the right, the circulation of roundabouts is
-counter clockwise, and vice versa for other countries.'''),
+counterclockwise, and vice versa for other countries.'''),
             fix = T_(
 '''For roundabout `junction=roundabout`: change the direction by
 reversing the order of nodes in the path. In JOSM, select the roundabout
