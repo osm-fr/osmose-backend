@@ -86,8 +86,8 @@
   <relation id='10007' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='100' role='' />
     <member type='way' ref='101' role='' />
-		<member type='relation' ref='10008' role='' />
-		<member type='relation' ref='10009' role='' />
+    <member type='relation' ref='10008' role='' />
+    <member type='relation' ref='10009' role='' />
     <tag k='name' v='Bad complicated 1' />
     <tag k='type' v='network' />
   </relation>
@@ -113,7 +113,7 @@
   </relation>
   <relation id='10011' timestamp='2014-03-31T22:00:00Z' version='1'>
     <member type='way' ref='100' role='' />
-		<member type='relation' ref='10012' role='' />
+    <member type='relation' ref='10012' role='' />
     <tag k='name' v='Bad Triple 2' />
     <tag k='type' v='network' />
   </relation>
