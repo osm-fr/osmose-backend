@@ -76,7 +76,7 @@ bridge.'''))
             detail = T_(
 '''The circulation of the roundabout is drawn clockwise, but in countries
 where they drive on the right, the circulation of roundabouts is
-counter clockwise, and vice versa for other countries.'''),
+counterclockwise, and vice versa for other countries.'''),
             fix = T_(
 '''For the mini roundabouts `highway=mini_roundabout`: the tag
 `direction=*` indicates the direction, in countries driven on the right,
