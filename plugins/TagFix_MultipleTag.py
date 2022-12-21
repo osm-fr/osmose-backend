@@ -51,7 +51,7 @@ class TagFix_MultipleTag(Plugin):
             detail = T_(
 '''The way has a tag `oneway=*` but without `highway=*`.'''),
             trap = T_(
-'''Check if it is really an highway and it is not already mapped.'''))
+'''Check if it is really a highway and it is not already mapped.'''))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', 'fix:survey'],
