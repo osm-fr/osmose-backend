@@ -48,11 +48,10 @@ WITH RECURSIVE rcte AS (
   FROM
     rcte
     JOIN relation_members AS child ON
-      child.relation_id = rcte.member_id
-    WHERE
+      child.relation_id = rcte.member_id AND
       child.member_type = 'R' AND
       child.relation_id != rcte.start_id AND
-      nloops < {maxloops} -- avoid getting stuck in strange constructions
+      nloops < 10 -- avoid getting stuck in strange constructions
 )
 SELECT DISTINCT ON (start_id)
   start_id,
@@ -61,8 +60,7 @@ SELECT DISTINCT ON (start_id)
 FROM
   rcte
 WHERE
-  start_id = member_id AND
-  nloops < {maxloops}
+  start_id=member_id
 ORDER BY
   start_id,
   LENGTH(path) -- to get the shortest path selected by the DISTINCT ON call
@@ -78,7 +76,7 @@ class Analyser_Osmosis_Relation_Cyclic(Analyser_Osmosis):
 '''A relation whose members (eventually) refer back to itself is rarely correct.'''))
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format(maxloops=10), lambda res: {
+        self.run(sql10, lambda res: {
             "class": 2,
             "data": [self.relation, self.positionAsText],
             "text": {"en": res[2] + " > r" + str(res[0])}
