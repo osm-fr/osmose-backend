@@ -192,11 +192,11 @@ class Analyser_Osmosis_Indoor(Analyser_Osmosis):
         self.classs[1] = self.def_class(item = 1300, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor room should have a door'),
             fix = T_(
-'''Find out where are the entrances of the room and add them (with a door=* tag) so we can actually enter this indoor room.'''))
+'''Find out where the entrances of the room are and add them (with a `door=*` tag) so we can actually enter this indoor room.'''))
         self.classs[2] = self.def_class(item = 1300, level = 3, tags = ['indoor', 'geom', 'fix:survey'],
             title = T_('This indoor feature is not reachable'),
             detail = T_(
-'''Each indoor feature should be connected to an another indoor feature or to some footpath so people can actually go to them.'''))
+'''Each indoor feature should be connected to another indoor feature or to some footpath so people can actually go to them.'''))
 
         self.callback10 = lambda res: {"class": 1, "data": [self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class": 2, "data": [self.way_full, self.positionAsText]}
