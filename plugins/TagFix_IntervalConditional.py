@@ -28,7 +28,7 @@ class TagFix_IntervalConditional(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[32502] = self.def_class(item = 3250, level = 3, tags = ['value', 'fix:chair', 'public_transport'],
-            title = T_('Invalid Conditional Intervals'))
+            title = T_('Invalid Conditional Interval'))
         self._th = Main()
 
     def check_tags(self, tags):
@@ -44,11 +44,11 @@ class TagFix_IntervalConditional(Plugin):
 
         # Check validity of interval:conditional tag
         if parsedData['otherIntervals'] == 'invalid':
-            return { 'class': 32502, 'subclass': 2, 'text': T_(u'Conditional intervals tag is not valid') }
+            return { 'class': 32502, 'subclass': 2, 'text': T_(u'Conditional interval tag is not valid') }
 
         # Check combination of opening_hours, interval and interval:conditional
         if 'opening_hours' in tags and type(parsedData['opens']) is dict and parsedData['allComputedIntervals'] == 'invalid':
-            return { 'class': 32502, 'subclass': 3, 'text': T_(u'Conditional intervals does not fit into opening hours') }
+            return { 'class': 32502, 'subclass': 3, 'text': T_(u'Conditional interval does not fit into opening hours') }
 
 
     def relation(self, data, tags, members):

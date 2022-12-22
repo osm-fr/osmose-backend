@@ -67,7 +67,7 @@ class TagFix_Tree_Lang_fr(Plugin):
         self.errors[3120] = self.def_class(item = 3120, level = 3, tags = ['natural', 'fix:imagery'],
             title = T_('Tree tagging'),
             detail = T_(
-'''To characterize the trees `natural=tree`, there are two main tag:
+'''To characterize the trees `natural=tree`, there are two main tags:
 `type` and `species`.'''),
             fix = T_(
 '''Put the right data in the correct tag, in this case species.'''),

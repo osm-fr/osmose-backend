@@ -205,12 +205,12 @@ relation without tag and another with tags not part of the relation.'''),
 '''Remove the ring without tag. Add in the relation the one with the tags
 as `inner` role.'''))
         self.classs_change[2] = self.def_class(item = 1170, level = 2, tags = ['relation', 'fix:chair', 'multipolygon'],
-            title = T_('Inconsistant multipolygon nature with members nature'),
+            title = T_('Inconsistent multipolygon nature with members nature'),
             detail = T_(
 '''Multipolygon defines a nature that is different from that specified in
 the outers roles.'''))
         self.classs_change[3] = self.def_class(item = 1170, level = 2, tags = ['relation', 'fix:chair', 'multipolygon'],
-            title = T_('Inconsistant multipolygon member nature'),
+            title = T_('Inconsistent multipolygon member nature'),
             detail = T_(
 '''Multipolygon does not define nature, several found on the outer role
 members.'''))

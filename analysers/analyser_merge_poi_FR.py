@@ -99,7 +99,7 @@ class Analyser_Merge_POI_FR(Analyser_Merge_Dynamic):
             item = 8110,
             id = 10100,
             level = 3,
-            title = T_('Townhall not integrated'),
+            title = T_('Town hall not integrated'),
             select = {'nature': 'Mairie', 'nature_detaillee': [False, 'Mairie de commune associée ou déléguée', 'Mairie annexe', 'Hôtel de ville', 'Mairie d\'arrondissement']},
             tags = {'amenity': 'townhall'},
         ),

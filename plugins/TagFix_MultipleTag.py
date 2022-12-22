@@ -45,13 +45,13 @@ class TagFix_MultipleTag(Plugin):
             detail = T_(
 '''The way has a tag `junction=*` but without `highway=*`.'''),
             trap = T_(
-'''Check if it is really an highway and it is not already mapped.'''))
+'''Check if it is really a highway and it is not already mapped.'''))
         self.errors[20801] = self.def_class(item = 2080, level = 1, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing on oneway'),
             detail = T_(
 '''The way has a tag `oneway=*` but without `highway=*`.'''),
             trap = T_(
-'''Check if it is really an highway and it is not already mapped.'''))
+'''Check if it is really a highway and it is not already mapped.'''))
         self.errors[20803] = self.def_class(item = 2080, level = 2, tags = ['tag', 'highway', 'fix:chair'],
             title = T_('Tag highway missing for tracktype or lanes'))
         self.errors[71301] = self.def_class(item = 7130, level = 3, tags = ['tag', 'highway', 'maxheight', 'fix:survey'],
@@ -74,17 +74,17 @@ bridge.'''))
         self.errors[1050] = self.def_class(item = 1050, level = 1, tags = ['highway', 'roundabout', 'fix:chair'],
             title = T_('Reverse roundabout'),
             detail = T_(
-'''The circulation of the roundabout is draw clockwise, but in countries
-where they drive on the right the sense of roundabouts is
-counterclockwise, and vice versa for the other countries.'''),
+'''The circulation of the roundabout is drawn clockwise, but in countries
+where they drive on the right, the circulation of roundabouts is
+counterclockwise, and vice versa for other countries.'''),
             fix = T_(
 '''For the mini roundabouts `highway=mini_roundabout`: the tag
 `direction=*` indicates the direction, in countries driven on the right,
 the default is `direction=anticlockwise`, in this case it is useless as
 tag.'''),
             trap = T_(
-'''Make sure that it is a roundabout (for example, no a side way in
-oposite direction around a square or a central roundabout, ordriveways
+'''Make sure that it is a roundabout (for example, not a side way in
+opposite direction around a square or a central roundabout, or a driveway
 separated by traffic islands at an intersection without cross).'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/6/68/Osmose-eg-error-1050.png)
@@ -95,7 +95,7 @@ Clockwise rotation.'''))
         self.errors[21201] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
             title = T_('Level or repeat_on tag missing'))
         self.errors[21202] = self.def_class(item = 2120, level = 3, tags = ['indoor'],
-            title = T_('Indoor or buildingpart tag missing'))
+            title = T_('Indoor or building:part tag missing'))
         self.errors[20802] = self.def_class(item = 2080, level = 2, tags = ['highway'],
             title = T_('Missing tag ref for emergency access point'))
 #        self.errors[70401] = self.def_class(item = 7040, level = 2, tags = ['tag', 'power', 'fix:chair'],

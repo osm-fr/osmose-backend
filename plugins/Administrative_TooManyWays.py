@@ -34,7 +34,7 @@ class Administrative_TooManyWays(Plugin):
             fix = T_(
 '''Most often, this is a user issue that added several times the same way.
 The editor JOSM can easily visualize the relationships and see duplicates
-(in color).'''),
+(in colour).'''),
             trap = T_(
 '''Double check the ways roles in the relation before deleting.
 

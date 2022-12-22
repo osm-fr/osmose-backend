@@ -147,6 +147,7 @@ class default_simple(template_config):
         self.analyser["osmosis_orphan_nodes_cluster"] = "xxx"
         self.analyser["osmosis_powerline"] = "xxx"
         self.analyser["osmosis_double_tagging"] = "xxx"
+        self.analyser["osmosis_relation_cyclic"] = "xxx"
         self.analyser["osmosis_relation_associatedStreet"] = "xxx"
         self.analyser["osmosis_highway_link"] = "xxx"
         self.analyser["osmosis_highway_broken_level_continuity"] = "xxx"

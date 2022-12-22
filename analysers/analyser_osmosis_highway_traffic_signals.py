@@ -161,7 +161,7 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         doc = dict(
             detail = T_(
-'''An other node very close have already a traffic signals.'''),
+'''A nearby node already has the `highway=traffic_signals` tag.'''),
             fix = T_(
 '''It is very likely that the traffic signals on the junction are
 inconsistent with each other, see also

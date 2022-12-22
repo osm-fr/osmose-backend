@@ -623,7 +623,7 @@ provide a consistent address.'''))
             detail = T_(
 '''The street is not present in relation with the role `street`.'''))
         self.classs_change[3] = self.def_class(item = 2060, level = 2, tags = ['addr', 'fix:chair'],
-            title = T_('street role is not an highway'),
+            title = T_('street role is not a highway'),
             detail = T_(
 '''The street must be a highway.'''))
         self.classs_change[4] = self.def_class(item = 2060, level = 3, tags = ['addr', 'relation', 'fix:chair'],

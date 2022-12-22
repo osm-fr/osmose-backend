@@ -38,7 +38,7 @@ class TagFix_MultipleTag_FR(Plugin):
 '''The name was copied from the land register (cadastre), but it is not
 written in a form actually used.'''),
             fix = T_(
-'''Eg. replace "Chemin Rural dit des Vignes" by "Chemin des Vignes".'''))
+'''E.g. replace "Chemin Rural dit des Vignes" by "Chemin des Vignes".'''))
         self.errors[30324] = self.def_class(item = 3032, level = 2, tags = ['highway', 'maxspeed', 'fix:survey'],
             title = T_('incoherent maxspeed'))
         self.errors[30325] = self.def_class(item = 3032, level = 2, tags = ['highway', 'ref', 'fix:chair'],
@@ -66,7 +66,7 @@ written in a form actually used.'''),
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
-            err.append({"class": 30321, "subclass": 5, "text": T_(u"Need tag amenity=nursery|kindergarten|school besides on school:FR")})
+            err.append({"class": 30321, "subclass": 5, "text": T_(u"Needs tag amenity=nursery|kindergarten|school besides on school:FR")})
         if "name" in tags and tags.get("amenity") == "school" and "school:FR" not in tags:
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
             matches = list(filter(lambda kv: kv[0] in canonicalSchool, self.school.keys()))

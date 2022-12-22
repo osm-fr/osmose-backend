@@ -169,12 +169,12 @@ If geometry is correct and there's some vertical difference then make use of the
         self.classs_change[2] = self.def_class(item = 0, level = 2, tags = ['building', 'geom', 'fix:chair'],
             title = T_('Large building intersection'),
             fix = self.merge_doc(fix, T_(
-'''Large intersections may also be a duplicated mapping - in which case delete the less accurate elements.''')))
+'''Large intersections may also be duplicates - in which case you should delete the less accurate elements.''')))
         self.classs_change[3] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
             title = T_('Building too small'),
             detail = T_('The area of this feature is too small to possibly be a building.'),
             fix = T_(
-'''- Correct the gometry if inaccurately mapped.
+'''- Correct the geometry if inaccurately mapped.
 - Correct the tagging if this isn't a building.
 - Delete the feature if it's invalid.'''))
         self.classs_change[4] = self.def_class(item = 0, level = 3, tags = ['building', 'geom', 'fix:chair'],
@@ -185,7 +185,7 @@ If geometry is correct and there's some vertical difference then make use of the
         self.classs_change[5] = self.def_class(item = 0, level = 1, tags = ['building', 'fix:chair'],
             title = T_('Large building intersection cluster'),
             fix = self.merge_doc(fix, T_(
-'''Large intersections may also be a duplicated mapping - in which case delete the less accurate elements.''')))
+'''Large intersections may also be duplicates - in which case you should delete the less accurate elements.''')))
         if self.FR:
             self.classs_change[6] = self.def_class(item = 1, level = 3, tags = ['building', 'geom', 'fix:chair'],
                 title = T_("Building in parts"),

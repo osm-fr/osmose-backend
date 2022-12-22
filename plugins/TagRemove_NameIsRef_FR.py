@@ -33,7 +33,7 @@ class TagRemove_NameIsRef_FR(Plugin):
         self.errors[904] = self.def_class(item = 4040, level = 1, tags = ['name', 'highway', 'ref', 'fix:chair'],
             title = T_('Highway reference in name tag'),
             detail = T_(
-'''Reference road (eg. D 73) is in the tag `name=*` and not in the tag
+'''Reference (e.g. D 73) is in the tag `name=*` and not in the tag
 `ref=*`.'''),
             fix = T_(
 '''Transfer the value from the tag `name=*` to the tag `ref=*`.'''))

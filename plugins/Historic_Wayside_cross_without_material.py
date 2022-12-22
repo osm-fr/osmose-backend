@@ -37,8 +37,8 @@ the tag `material=*`.'''),
             fix = T_(
 '''Fill the tag `material=*` as specific as possible.'''),
             trap = T_(
-'''The tag `historic=wayside_cross` is sometimes misused. Please x-check
-if `historic=wayside_shrine` or `summit:cross=yes` is more appropiate.'''))
+'''The tag `historic=wayside_cross` is sometimes misused. Please cross-check
+if `historic=wayside_shrine` or `summit:cross=yes` is more appropriate.'''))
 
     def node(self, data, tags):
         if tags.get("historic") == "wayside_cross" and "material" not in tags:

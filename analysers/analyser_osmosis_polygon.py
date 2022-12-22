@@ -83,7 +83,7 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
 '''The polygon intersects itself. The marker points directly to the
 error area of the crossing.'''),
             fix = T_(
-'''Find where the polygon intersects itself (ie it forms an '8') and
+'''Find where the polygon intersects itself (i.e. it forms an '8') and
 correct geometry for a single loop (a '0') or by removing nodes or
 changing the order of these nodes, by adding new nodes or by creating
 multiple polygons.'''),

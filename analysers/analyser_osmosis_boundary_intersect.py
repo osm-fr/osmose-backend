@@ -97,9 +97,9 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
             detail = T_(
 '''Borders crossing each other.'''),
             fix = T_(
-'''Check the type of border and keep the best or merged.'''),
+'''Check the type of border and keep the best one or merge them.'''),
             trap = T_(
-'''The borders are part of relations, they normally doing a loops.'''),
+'''The borders are part of relations which normally form a loop.'''),
             example = T_(
 '''![](https://wiki.openstreetmap.org/w/images/6/69/Osmose-eg-error-1060.png)
 
