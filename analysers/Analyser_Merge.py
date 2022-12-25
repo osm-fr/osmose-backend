@@ -739,7 +739,7 @@ class GDAL(Parser):
                 source_layer.append(f"'{self.layer}'")
 
             s_src = re.search('EPSG:([0-9]+)', subprocess.run(["gdalsrsinfo", "-e", *source_layer], stdout=subprocess.PIPE).stdout.decode('utf-8')).group(1)
-            wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_wkt(s_src) if self.polygon_id else None
+            wkt = PointInPolygon.PointInPolygon(self.polygon_id).polygon.as_simplified_wkt(s_src, self.srid()) if self.polygon_id else None
 
             select = "-select '{}'".format(','.join(self.fields)) if self.fields else ''
             gdal = "ogr2ogr -f PostgreSQL 'PG:{}' -lco SCHEMA={} -nln '{}' {} -lco OVERWRITE=yes -lco GEOMETRY_NAME=geom -lco OVERWRITE=YES -lco LAUNDER=NO -skipfailures {} -t_srs EPSG:{} '{}' {}".format(

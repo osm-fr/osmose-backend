@@ -43,12 +43,18 @@ class Polygon:
             wkt = wkt.split(";", 1)[1]
         self.polygon = loads(wkt)
 
-    def as_wkt(self, srid) -> str:
+    def as_simplified_wkt(self, out_src, metric_src) -> str:
         wgs84 = pyproj.CRS('EPSG:4326')
-        t_src = pyproj.CRS(f'EPSG:{srid}')
-        project = pyproj.Transformer.from_crs(wgs84, t_src, always_xy=True).transform
-        t_poly = transform(project, self.polygon)
-        return t_poly
+        metric_src = pyproj.CRS(f'EPSG:{metric_src}')
+        out_src = pyproj.CRS(f'EPSG:{out_src}')
+        project_metric = pyproj.Transformer.from_crs(wgs84, metric_src, always_xy=True).transform
+        project_out = pyproj.Transformer.from_crs(metric_src, out_src, always_xy=True).transform
+
+        out_poly = transform(project_metric, self.polygon)
+        out_poly = out_poly.buffer(5000).simplify(5000)
+
+        out_poly = transform(project_out, out_poly)
+        return out_poly
 
     def bboxes(self):
         bbox = self.polygon.bounds
